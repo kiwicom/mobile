@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fde559d7612037cb74025b126a6387d4
+ * @relayHash 4744147d9a8fe716e496e2ee42bb062a
  */
 
 /* eslint-disable */
@@ -10,11 +10,7 @@
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
 export type AppAllFlightsQueryResponse = {|
-  +allFlights: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{| |};
-    |}>;
-  |};
+  +allFlights: ?{| |};
 |};
 */
 
@@ -24,18 +20,28 @@ query AppAllFlightsQuery(
   $search: FlightsSearchInput!
 ) {
   allFlights(search: $search) {
-    edges {
-      node {
-        ...App_flights
-      }
-    }
+    ...App_flights
   }
 }
 
-fragment App_flights on Flight {
-  price {
-    amount
-    currency
+fragment App_flights on FlightConnection {
+  edges {
+    node {
+      price {
+        amount
+        currency
+      }
+      departure {
+        airport {
+          locationId
+        }
+      }
+      arrival {
+        airport {
+          locationId
+        }
+      }
+    }
   }
 }
 */
@@ -70,31 +76,9 @@ const batch /*: ConcreteBatch*/ = {
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "FlightEdge",
-            "name": "edges",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "Flight",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "FragmentSpread",
-                    "name": "App_flights",
-                    "args": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "App_flights",
+            "args": null
           }
         ],
         "storageKey": null
@@ -174,6 +158,64 @@ const batch /*: ConcreteBatch*/ = {
                       }
                     ],
                     "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "RouteStop",
+                    "name": "departure",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Location",
+                        "name": "airport",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "locationId",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "RouteStop",
+                    "name": "arrival",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "Location",
+                        "name": "airport",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "locationId",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -186,7 +228,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query AppAllFlightsQuery(\n  $search: FlightsSearchInput!\n) {\n  allFlights(search: $search) {\n    edges {\n      node {\n        ...App_flights\n      }\n    }\n  }\n}\n\nfragment App_flights on Flight {\n  price {\n    amount\n    currency\n  }\n}\n"
+  "text": "query AppAllFlightsQuery(\n  $search: FlightsSearchInput!\n) {\n  allFlights(search: $search) {\n    ...App_flights\n  }\n}\n\nfragment App_flights on FlightConnection {\n  edges {\n    node {\n      price {\n        amount\n        currency\n      }\n      departure {\n        airport {\n          locationId\n        }\n      }\n      arrival {\n        airport {\n          locationId\n        }\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

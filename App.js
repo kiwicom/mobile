@@ -6,23 +6,22 @@ import environment from './src/Environment';
 const AppAllFlightsQuery = graphql`
   query AppAllFlightsQuery($search: FlightsSearchInput!) {
     allFlights(search: $search) {
-      edges {
-        node {
-          ...App_flights
-        }
-      }
+      ...App_flights
     }
   }
 `;
 
 class App extends React.Component {
   render() {
-    console.warn(JSON.stringify(this.props.flights)); // FIXME - make it useful
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        {this.props.flights.edges.map(({ node }) => (
+          <Text>
+            {node.price.amount} {node.price.currency} from{' '}
+            {node.departure.airport.locationId} to{' '}
+            {node.arrival.airport.locationId}
+          </Text>
+        ))}
       </View>
     );
   }
@@ -31,11 +30,25 @@ class App extends React.Component {
 const AppWithFragments = createFragmentContainer(
   App,
   graphql`
-    fragment App_flights on Flight {
+    fragment App_flights on FlightConnection {
       # <FileName>_<propName>
-      price {
-        amount
-        currency
+      edges {
+        node {
+          price {
+            amount
+            currency
+          }
+          departure {
+            airport {
+              locationId
+            }
+          }
+          arrival {
+            airport {
+              locationId
+            }
+          }
+        }
       }
     }
   `,
@@ -58,9 +71,7 @@ export default class AppWithRelay extends React.Component {
           if (error) {
             return <Text>{error.message}</Text>;
           } else if (props) {
-            return (
-              <AppWithFragments flights={props.allFlights.edges[0].node} /> // FIXME - realy way!
-            );
+            return <AppWithFragments flights={props.allFlights} />;
           }
           return <Text>Loading</Text>;
         }}
