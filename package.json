@@ -19,7 +19,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "relay": "relay-compiler --src . --schema schema.graphql"
+    "relay": "relay-compiler --src ./screens --schema ./schema.graphql"
   },
   "jest": {
     "preset": "jest-expo"

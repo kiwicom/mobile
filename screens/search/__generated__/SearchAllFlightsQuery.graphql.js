@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4744147d9a8fe716e496e2ee42bb062a
+ * @relayHash 7cb5c730a6421390d92259d7782bcdb2
  */
 
 /* eslint-disable */
@@ -9,22 +9,22 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type AppAllFlightsQueryResponse = {|
+export type SearchAllFlightsQueryResponse = {|
   +allFlights: ?{| |};
 |};
 */
 
 
 /*
-query AppAllFlightsQuery(
+query SearchAllFlightsQuery(
   $search: FlightsSearchInput!
 ) {
   allFlights(search: $search) {
-    ...App_flights
+    ...SearchResults_flights
   }
 }
 
-fragment App_flights on FlightConnection {
+fragment SearchResults_flights on FlightConnection {
   edges {
     node {
       price {
@@ -58,7 +58,7 @@ const batch /*: ConcreteBatch*/ = {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "AppAllFlightsQuery",
+    "name": "SearchAllFlightsQuery",
     "selections": [
       {
         "kind": "LinkedField",
@@ -77,7 +77,7 @@ const batch /*: ConcreteBatch*/ = {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "App_flights",
+            "name": "SearchResults_flights",
             "args": null
           }
         ],
@@ -89,7 +89,7 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "AppAllFlightsQuery",
+  "name": "SearchAllFlightsQuery",
   "query": {
     "argumentDefinitions": [
       {
@@ -100,7 +100,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ],
     "kind": "Root",
-    "name": "AppAllFlightsQuery",
+    "name": "SearchAllFlightsQuery",
     "operation": "query",
     "selections": [
       {
@@ -228,7 +228,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query AppAllFlightsQuery(\n  $search: FlightsSearchInput!\n) {\n  allFlights(search: $search) {\n    ...App_flights\n  }\n}\n\nfragment App_flights on FlightConnection {\n  edges {\n    node {\n      price {\n        amount\n        currency\n      }\n      departure {\n        airport {\n          locationId\n        }\n      }\n      arrival {\n        airport {\n          locationId\n        }\n      }\n    }\n  }\n}\n"
+  "text": "query SearchAllFlightsQuery(\n  $search: FlightsSearchInput!\n) {\n  allFlights(search: $search) {\n    ...SearchResults_flights\n  }\n}\n\nfragment SearchResults_flights on FlightConnection {\n  edges {\n    node {\n      price {\n        amount\n        currency\n      }\n      departure {\n        airport {\n          locationId\n        }\n      }\n      arrival {\n        airport {\n          locationId\n        }\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

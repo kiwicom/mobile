@@ -1,1 +1,1 @@
-export default from './screens/App';
+export default from './screens';
