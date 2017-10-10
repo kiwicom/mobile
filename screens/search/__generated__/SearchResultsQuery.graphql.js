@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7cb5c730a6421390d92259d7782bcdb2
+ * @relayHash a850a6aface54282b4984c1633a17b5d
  */
 
 /* eslint-disable */
@@ -9,38 +9,44 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type SearchAllFlightsQueryResponse = {|
-  +allFlights: ?{| |};
-|};
+export type SearchResultsQueryResponse = {| |};
 */
 
 
 /*
-query SearchAllFlightsQuery(
+query SearchResultsQuery(
   $search: FlightsSearchInput!
+  $count: Int!
+  $after: String
 ) {
-  allFlights(search: $search) {
-    ...SearchResults_flights
-  }
+  ...SearchResults_flights
 }
 
-fragment SearchResults_flights on FlightConnection {
-  edges {
-    node {
-      price {
-        amount
-        currency
-      }
-      departure {
-        airport {
-          locationId
+fragment SearchResults_flights on RootQuery {
+  allFlights(search: $search, first: $count, after: $after) {
+    edges {
+      cursor
+      node {
+        __typename
+        price {
+          amount
+          currency
+        }
+        departure {
+          airport {
+            locationId
+          }
+        }
+        arrival {
+          airport {
+            locationId
+          }
         }
       }
-      arrival {
-        airport {
-          locationId
-        }
-      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
     }
   }
 }
@@ -54,34 +60,28 @@ const batch /*: ConcreteBatch*/ = {
         "name": "search",
         "type": "FlightsSearchInput!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "count",
+        "type": "Int!",
+        "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "after",
+        "type": "String",
+        "defaultValue": null
       }
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "SearchAllFlightsQuery",
+    "name": "SearchResultsQuery",
     "selections": [
       {
-        "kind": "LinkedField",
-        "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "search",
-            "variableName": "search",
-            "type": "FlightsSearchInput!"
-          }
-        ],
-        "concreteType": "FlightConnection",
-        "name": "allFlights",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "FragmentSpread",
-            "name": "SearchResults_flights",
-            "args": null
-          }
-        ],
-        "storageKey": null
+        "kind": "FragmentSpread",
+        "name": "SearchResults_flights",
+        "args": null
       }
     ],
     "type": "RootQuery"
@@ -89,7 +89,7 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "SearchAllFlightsQuery",
+  "name": "SearchResultsQuery",
   "query": {
     "argumentDefinitions": [
       {
@@ -97,16 +97,40 @@ const batch /*: ConcreteBatch*/ = {
         "name": "search",
         "type": "FlightsSearchInput!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "count",
+        "type": "Int!",
+        "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "after",
+        "type": "String",
+        "defaultValue": null
       }
     ],
     "kind": "Root",
-    "name": "SearchAllFlightsQuery",
+    "name": "SearchResultsQuery",
     "operation": "query",
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "args": [
+          {
+            "kind": "Variable",
+            "name": "after",
+            "variableName": "after",
+            "type": "String"
+          },
+          {
+            "kind": "Variable",
+            "name": "first",
+            "variableName": "count",
+            "type": "Int"
+          },
           {
             "kind": "Variable",
             "name": "search",
@@ -127,6 +151,13 @@ const batch /*: ConcreteBatch*/ = {
             "plural": true,
             "selections": [
               {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "cursor",
+                "storageKey": null
+              },
+              {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
@@ -134,6 +165,13 @@ const batch /*: ConcreteBatch*/ = {
                 "name": "node",
                 "plural": false,
                 "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "__typename",
+                    "storageKey": null
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -222,13 +260,68 @@ const batch /*: ConcreteBatch*/ = {
               }
             ],
             "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "args": null,
+            "concreteType": "PageInfo",
+            "name": "pageInfo",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "endCursor",
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "hasNextPage",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
+      },
+      {
+        "kind": "LinkedHandle",
+        "alias": null,
+        "args": [
+          {
+            "kind": "Variable",
+            "name": "after",
+            "variableName": "after",
+            "type": "String"
+          },
+          {
+            "kind": "Variable",
+            "name": "first",
+            "variableName": "count",
+            "type": "Int"
+          },
+          {
+            "kind": "Variable",
+            "name": "search",
+            "variableName": "search",
+            "type": "FlightsSearchInput!"
+          }
+        ],
+        "handle": "connection",
+        "name": "allFlights",
+        "key": "SearchResults_allFlights",
+        "filters": [
+          "search"
+        ]
       }
     ]
   },
-  "text": "query SearchAllFlightsQuery(\n  $search: FlightsSearchInput!\n) {\n  allFlights(search: $search) {\n    ...SearchResults_flights\n  }\n}\n\nfragment SearchResults_flights on FlightConnection {\n  edges {\n    node {\n      price {\n        amount\n        currency\n      }\n      departure {\n        airport {\n          locationId\n        }\n      }\n      arrival {\n        airport {\n          locationId\n        }\n      }\n    }\n  }\n}\n"
+  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResults_flights\n}\n\nfragment SearchResults_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        price {\n          amount\n          currency\n        }\n        departure {\n          airport {\n            locationId\n          }\n        }\n        arrival {\n          airport {\n            locationId\n          }\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

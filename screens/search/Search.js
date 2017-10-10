@@ -24,12 +24,13 @@ export default class Search extends React.Component {
               to: { location: params.to },
               date: { exact: params.date },
             },
+            count: 10,
           }}
           render={({ error, props }) => {
             if (error) {
               return <Text>{error.message}</Text>;
             } else if (props) {
-              return <SearchResults flights={props.allFlights} />;
+              return <SearchResults flights={props} />;
             }
             return <Text>Loading...</Text>;
           }}
@@ -40,9 +41,11 @@ export default class Search extends React.Component {
 }
 
 const SearchAllFlightsQuery = graphql`
-  query SearchAllFlightsQuery($search: FlightsSearchInput!) {
-    allFlights(search: $search) {
-      ...SearchResults_flights
-    }
+  query SearchResultsQuery(
+    $search: FlightsSearchInput!
+    $count: Int!
+    $after: String
+  ) {
+    ...SearchResults_flights
   }
 `;
