@@ -4,7 +4,7 @@ import { graphql, QueryRenderer } from 'react-relay';
 import Styles from '../../src/Styles';
 
 import Environment from '../../src/Environment';
-import SearchResults from './SearchResults';
+import SearchResultsContainer from './SearchResultsContainer';
 
 export default class Search extends React.Component {
   static navigationOptions = ({ navigation: { state: { params } } }) => ({
@@ -30,7 +30,7 @@ export default class Search extends React.Component {
             if (error) {
               return <Text>{error.message}</Text>;
             } else if (props) {
-              return <SearchResults flights={props} />;
+              return <SearchResultsContainer flights={props} />;
             }
             return <Text>Loading...</Text>;
           }}
