@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, AsyncStorage } from 'react-native';
 
 import SearchForm from './search/SearchForm';
 
@@ -11,9 +11,36 @@ type Props = {
   },
 };
 
-export default class Homepage extends React.PureComponent<void, Props, void> {
+type State = {
+  bookings: null | string
+}
+
+export default class Homepage extends React.PureComponent<void, Props, State> {
+  state: State;
+
   static navigationOptions = {
-    title: 'Welcome, User',
+    title: 'Welcome traveler!',
+  };
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      bookings: null,
+    };
+  }
+
+  componentDidMount = async () => {
+    try {
+      // await AsyncStorage.removeItem('@BookingsStore:key');
+      const value = await AsyncStorage.getItem('@BookingsStore:key');
+      if (value !== null) {
+        this.setState({ bookings: value });
+      } else {
+        await AsyncStorage.setItem('@BookingsStore:key', 'STORED OFFLINE');
+      }
+    } catch (error) {
+      console.error(error); // eslint-disable-line
+    }
   };
 
   render = () => {
@@ -31,7 +58,9 @@ export default class Homepage extends React.PureComponent<void, Props, void> {
           />
         </View>
         <View style={{ flex: 4, backgroundColor: 'powderblue' }}>
-          <Text>You will see your bookings here (after login)...</Text>
+          <Text>
+            You will see your bookings here after login ({this.state.bookings})...
+          </Text>
         </View>
       </View>
     );
