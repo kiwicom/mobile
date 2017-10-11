@@ -1,0 +1,15 @@
+language: node_js
+node_js: 'node' # latest stable Node.js release
+
+install:
+  - yarn install
+
+script:
+  - ./scripts/test.sh
+
+cache: yarn
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mrtnzlml/native.svg?branch=master)](https://travis-ci.org/mrtnzlml/native)
+
 ## Known issues: 
 
 - https://github.com/facebook/relay/issues/1852
