@@ -1,3 +1,5 @@
+// @flow
+
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
 const store = new Store(new RecordSource());

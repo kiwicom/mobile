@@ -1,10 +1,25 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { Text, View, Button } from 'react-native';
 
 import Styles from '../../src/Styles';
 
-export default class SearchResults extends React.PureComponent {
-  constructor(props) {
+import type { SearchResultsContainer_flights } from './__generated__/SearchResultsContainer_flights.graphql';
+
+type Props = {
+  flights: SearchResultsContainer_flights,
+  relay: Object, // FIXME
+};
+
+type State = {
+  loading: boolean,
+};
+
+export default class SearchResults extends React.Component<void, Props, State> {
+  state: State;
+
+  constructor(props: Props) {
     super(props);
     this.state = { loading: false };
   }
@@ -25,13 +40,33 @@ export default class SearchResults extends React.PureComponent {
     return (
       <View style={Styles.container}>
         {/* FIXME: Flight type doesn't have ID (for node key) - bad API design */}
-        {this.props.flights.allFlights.edges.map(({ node, cursor }) => (
-          <Text key={cursor}>
-            {node.price.amount} {node.price.currency} from{' '}
-            {node.departure.airport.locationId} to{' '}
-            {node.arrival.airport.locationId}
-          </Text>
-        ))}
+        {this.props.flights.allFlights &&
+          this.props.flights.allFlights.edges ? (
+            this.props.flights.allFlights.edges.map(edge => {
+              if (edge) {
+                const { node, cursor } = edge;
+                if (node) {
+                  const { price, departure, arrival } = node;
+                  return (
+                    <Text key={cursor}>
+                      {price && price.amount} {price && price.currency} from{' '}
+                      {departure &&
+                      departure.airport &&
+                      departure.airport.locationId}{' '}
+                    to{' '}
+                      {arrival && arrival.airport && arrival.airport.locationId}
+                    </Text>
+                  );
+                } else {
+                  return <Text>Couldn&apos;t load the graph node.</Text>;
+                }
+              } else {
+                return <Text>Couldn&apos;t load the graph edge.</Text>;
+              }
+            })
+          ) : (
+            <Text>No results.</Text>
+          )}
         {this.props.relay.hasMore() &&
           (this.state.loading ? (
             <Button onPress={() => {}} title="Loading..." />

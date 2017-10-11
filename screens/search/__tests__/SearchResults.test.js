@@ -1,11 +1,9 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 
 import SearchResults from '../SearchResults';
-
-const navigation = {
-  navigate: () => {},
-};
 
 it('renders without crashing', () => {
   const rendered = renderer

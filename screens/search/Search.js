@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import { Text, View } from 'react-native';
 import { graphql, QueryRenderer } from 'react-relay';
 import Styles from '../../src/Styles';
@@ -6,7 +8,11 @@ import Styles from '../../src/Styles';
 import Environment from '../../src/Environment';
 import SearchResultsContainer from './SearchResultsContainer';
 
-export default class Search extends React.Component {
+type Props = {
+  navigation: Object, // TODO
+}
+
+export default class Search extends React.Component<void, Props, void> {
   static navigationOptions = ({ navigation: { state: { params } } }) => ({
     title: `Flights ${params.from} - ${params.to}`,
   });
@@ -46,6 +52,6 @@ const SearchAllFlightsQuery = graphql`
     $count: Int!
     $after: String
   ) {
-    ...SearchResults_flights
+    ...SearchResultsContainer_flights
   }
 `;

@@ -1,4 +1,6 @@
-import React from 'react';
+// @flow
+
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 
 import Homepage from '../Homepage';
@@ -8,6 +10,6 @@ const navigation = {
 };
 
 it('renders without crashing', () => {
-  const rendered = renderer.create(<Homepage navigation />).toJSON();
+  const rendered = renderer.create(<Homepage navigation={navigation} />).toJSON();
   expect(rendered).toBeTruthy();
 });

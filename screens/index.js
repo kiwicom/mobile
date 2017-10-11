@@ -1,3 +1,5 @@
+// @flow
+
 import { StackNavigator } from 'react-navigation';
 
 import Homepage from './Homepage';

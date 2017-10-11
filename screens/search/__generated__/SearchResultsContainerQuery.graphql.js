@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0004f5d4a1832635e07643fc657a96cd
+ * @relayHash 4b25e952d41f01d2578d3fb888649001
  */
 
 /* eslint-disable */
@@ -9,12 +9,12 @@
 
 /*::
 import type {ConcreteBatch} from 'relay-runtime';
-export type SearchResultsQueryResponse = {| |};
+export type SearchResultsContainerQueryResponse = {| |};
 */
 
 
 /*
-query SearchResultsQuery(
+query SearchResultsContainerQuery(
   $search: FlightsSearchInput!
   $count: Int!
   $after: String
@@ -76,7 +76,7 @@ const batch /*: ConcreteBatch*/ = {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "SearchResultsQuery",
+    "name": "SearchResultsContainerQuery",
     "selections": [
       {
         "kind": "FragmentSpread",
@@ -89,7 +89,7 @@ const batch /*: ConcreteBatch*/ = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "SearchResultsQuery",
+  "name": "SearchResultsContainerQuery",
   "query": {
     "argumentDefinitions": [
       {
@@ -112,7 +112,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ],
     "kind": "Root",
-    "name": "SearchResultsQuery",
+    "name": "SearchResultsContainerQuery",
     "operation": "query",
     "selections": [
       {
@@ -321,7 +321,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResultsContainer_flights\n}\n\nfragment SearchResultsContainer_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        price {\n          amount\n          currency\n        }\n        departure {\n          airport {\n            locationId\n          }\n        }\n        arrival {\n          airport {\n            locationId\n          }\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+  "text": "query SearchResultsContainerQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResultsContainer_flights\n}\n\nfragment SearchResultsContainer_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        price {\n          amount\n          currency\n        }\n        departure {\n          airport {\n            locationId\n          }\n        }\n        arrival {\n          airport {\n            locationId\n          }\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

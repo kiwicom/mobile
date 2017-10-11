@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+
 import { createPaginationContainer, graphql } from 'react-relay';
 
 import SearchResults from './SearchResults';
@@ -7,10 +8,9 @@ export default createPaginationContainer(
   SearchResults,
   {
     flights: graphql`
-      fragment SearchResults_flights on RootQuery {
-        # <FileName>_<propName>
+      fragment SearchResultsContainer_flights on RootQuery {
         allFlights(search: $search, first: $count, after: $after)
-          @connection(key: "SearchResults_allFlights") {
+          @connection(key: "SearchResultsContainer_allFlights") {
           edges {
             cursor
             node {
@@ -37,12 +37,12 @@ export default createPaginationContainer(
   {
     // FIXME: this is why we need to implement `node` query:
     query: graphql`
-      query SearchResultsQuery(
+      query SearchResultsContainerQuery(
         $search: FlightsSearchInput!
         $count: Int!
         $after: String
       ) {
-        ...SearchResults_flights
+        ...SearchResultsContainer_flights
       }
     `,
     getVariables: (props, { count, cursor }, fragmentVariables) => ({

@@ -1,1 +1,3 @@
-export default from './screens';
+// @flow
+
+export { default } from './screens';

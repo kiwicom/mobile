@@ -1,9 +1,17 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+// @flow
+
+import * as React from 'react';
+import { View, Button } from 'react-native';
 
 import Styles from '../src/Styles';
 
-export default class Homepage extends React.PureComponent {
+type Props = {
+  navigation: {
+    navigate: (screen: string, parameters: Object) => void,
+  },
+};
+
+export default class Homepage extends React.PureComponent<void, Props, void> {
   static navigationOptions = {
     title: 'Welcome, User',
   };
