@@ -18,13 +18,21 @@ export type SearchResultsContainer_flights = {|
           +currency: ?string;
         |};
         +departure: ?{|
+          +localTime: ?any;
           +airport: ?{|
             +locationId: ?string;
+            +city: ?{|
+              +name: ?string;
+            |};
           |};
         |};
         +arrival: ?{|
+          +localTime: ?any;
           +airport: ?{|
             +locationId: ?string;
+            +city: ?{|
+              +name: ?string;
+            |};
           |};
         |};
       |};
@@ -139,6 +147,13 @@ const fragment /*: ConcreteFragment*/ = {
                   "plural": false,
                   "selections": [
                     {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "args": null,
+                      "name": "localTime",
+                      "storageKey": null
+                    },
+                    {
                       "kind": "LinkedField",
                       "alias": null,
                       "args": null,
@@ -151,6 +166,24 @@ const fragment /*: ConcreteFragment*/ = {
                           "alias": null,
                           "args": null,
                           "name": "locationId",
+                          "storageKey": null
+                        },
+                        {
+                          "kind": "LinkedField",
+                          "alias": null,
+                          "args": null,
+                          "concreteType": "LocationArea",
+                          "name": "city",
+                          "plural": false,
+                          "selections": [
+                            {
+                              "kind": "ScalarField",
+                              "alias": null,
+                              "args": null,
+                              "name": "name",
+                              "storageKey": null
+                            }
+                          ],
                           "storageKey": null
                         }
                       ],
@@ -168,6 +201,13 @@ const fragment /*: ConcreteFragment*/ = {
                   "plural": false,
                   "selections": [
                     {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "args": null,
+                      "name": "localTime",
+                      "storageKey": null
+                    },
+                    {
                       "kind": "LinkedField",
                       "alias": null,
                       "args": null,
@@ -180,6 +220,24 @@ const fragment /*: ConcreteFragment*/ = {
                           "alias": null,
                           "args": null,
                           "name": "locationId",
+                          "storageKey": null
+                        },
+                        {
+                          "kind": "LinkedField",
+                          "alias": null,
+                          "args": null,
+                          "concreteType": "LocationArea",
+                          "name": "city",
+                          "plural": false,
+                          "selections": [
+                            {
+                              "kind": "ScalarField",
+                              "alias": null,
+                              "args": null,
+                              "name": "name",
+                              "storageKey": null
+                            }
+                          ],
                           "storageKey": null
                         }
                       ],

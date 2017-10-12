@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4b25e952d41f01d2578d3fb888649001
+ * @relayHash 3bb7a517d921ae1dee1fd532a9223b0b
  */
 
 /* eslint-disable */
@@ -33,13 +33,21 @@ fragment SearchResultsContainer_flights on RootQuery {
           currency
         }
         departure {
+          localTime
           airport {
             locationId
+            city {
+              name
+            }
           }
         }
         arrival {
+          localTime
           airport {
             locationId
+            city {
+              name
+            }
           }
         }
       }
@@ -206,6 +214,13 @@ const batch /*: ConcreteBatch*/ = {
                     "plural": false,
                     "selections": [
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "localTime",
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
@@ -218,6 +233,24 @@ const batch /*: ConcreteBatch*/ = {
                             "alias": null,
                             "args": null,
                             "name": "locationId",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "LinkedField",
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "LocationArea",
+                            "name": "city",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "name",
+                                "storageKey": null
+                              }
+                            ],
                             "storageKey": null
                           }
                         ],
@@ -235,6 +268,13 @@ const batch /*: ConcreteBatch*/ = {
                     "plural": false,
                     "selections": [
                       {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "localTime",
+                        "storageKey": null
+                      },
+                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
@@ -247,6 +287,24 @@ const batch /*: ConcreteBatch*/ = {
                             "alias": null,
                             "args": null,
                             "name": "locationId",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "LinkedField",
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "LocationArea",
+                            "name": "city",
+                            "plural": false,
+                            "selections": [
+                              {
+                                "kind": "ScalarField",
+                                "alias": null,
+                                "args": null,
+                                "name": "name",
+                                "storageKey": null
+                              }
+                            ],
                             "storageKey": null
                           }
                         ],
@@ -321,7 +379,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query SearchResultsContainerQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResultsContainer_flights\n}\n\nfragment SearchResultsContainer_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        price {\n          amount\n          currency\n        }\n        departure {\n          airport {\n            locationId\n          }\n        }\n        arrival {\n          airport {\n            locationId\n          }\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+  "text": "query SearchResultsContainerQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResultsContainer_flights\n}\n\nfragment SearchResultsContainer_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        price {\n          amount\n          currency\n        }\n        departure {\n          localTime\n          airport {\n            locationId\n            city {\n              name\n            }\n          }\n        }\n        arrival {\n          localTime\n          airport {\n            locationId\n            city {\n              name\n            }\n          }\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
 };
 
 module.exports = batch;

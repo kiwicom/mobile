@@ -47,7 +47,7 @@ export default class SearchForm extends React.PureComponent<
       />
       <Button
         onPress={() => this.props.onSend(this.state.from, this.state.to)}
-        title="Search flights now!"
+        title="Find connections!"
       />
     </View>
   );

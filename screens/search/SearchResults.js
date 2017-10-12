@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, ScrollView } from 'react-native';
 
 import Styles from '../../src/Styles';
 
@@ -16,13 +16,39 @@ type State = {
   loading: boolean,
 };
 
-export default class SearchResults extends React.Component<void, Props, State> {
-  state: State;
-
-  constructor(props: Props) {
-    super(props);
-    this.state = { loading: false };
+const AirportDetails = ({ airport }) => {
+  if (!airport) {
+    return;
   }
+  return <Text>
+    {airport.city && airport.city.name} ({airport.locationId})
+  </Text>;
+};
+
+const SearchResultRow = ({ node }) => {
+  const { price, departure, arrival } = node;
+  return (
+    <View>
+      <Text>
+        {departure && departure.airport && <AirportDetails airport={departure.airport} />}
+        &rarr; {arrival && arrival.airport && <AirportDetails airport={arrival.airport} />}
+      </Text>
+      <Text>
+        {departure && departure.localTime} &rarr; {arrival && arrival.localTime}
+      </Text>
+      <Text>
+        {price && price.amount} {price && price.currency}
+      </Text>
+      <Button title="Choose" onPress={() => {}} />
+      <Text>-----</Text>
+    </View>
+  );
+};
+
+export default class SearchResults extends React.Component<void, Props, State> {
+  state: State = {
+    loading: false,
+  };
 
   _loadMore = () => {
     this.setState({ loading: true });
@@ -38,7 +64,7 @@ export default class SearchResults extends React.Component<void, Props, State> {
 
   render = () => {
     return (
-      <View style={Styles.container}>
+      <ScrollView style={Styles.container}>
         {/* FIXME: Flight type doesn't have ID (for node key) - bad API design */}
         {this.props.flights.allFlights &&
           this.props.flights.allFlights.edges ? (
@@ -46,17 +72,7 @@ export default class SearchResults extends React.Component<void, Props, State> {
               if (edge) {
                 const { node, cursor } = edge;
                 if (node) {
-                  const { price, departure, arrival } = node;
-                  return (
-                    <Text key={cursor}>
-                      {price && price.amount} {price && price.currency} from{' '}
-                      {departure &&
-                      departure.airport &&
-                      departure.airport.locationId}{' '}
-                    to{' '}
-                      {arrival && arrival.airport && arrival.airport.locationId}
-                    </Text>
-                  );
+                  return <SearchResultRow node={node} key={cursor} />;
                 } else {
                   return <Text>Couldn&apos;t load the graph node.</Text>;
                 }
@@ -73,7 +89,7 @@ export default class SearchResults extends React.Component<void, Props, State> {
           ) : (
             <Button onPress={this._loadMore} title="Load more!" />
           ))}
-      </View>
+      </ScrollView>
     );
   };
 }

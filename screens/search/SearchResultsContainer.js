@@ -19,13 +19,21 @@ export default createPaginationContainer(
                 currency
               }
               departure {
+                localTime
                 airport {
                   locationId
+                  city {
+                    name
+                  }
                 }
               }
               arrival {
+                localTime
                 airport {
                   locationId
+                  city {
+                    name
+                  }
                 }
               }
             }

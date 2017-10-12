@@ -3,6 +3,7 @@
 ## Known issues: 
 
 - https://github.com/facebook/relay/issues/1852
+- https://github.com/facebook/flow/commit/2bdbc33b458f8f6165466864b1f59f4428881b75
 
 ---
 

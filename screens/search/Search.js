@@ -14,7 +14,7 @@ type Props = {
 
 export default class Search extends React.Component<void, Props, void> {
   static navigationOptions = ({ navigation: { state: { params } } }) => ({
-    title: `Flights ${params.from} - ${params.to}`,
+    title: `${params.from} - ${params.to}`,
   });
 
   render = () => {
