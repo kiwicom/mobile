@@ -1,19 +1,24 @@
 {
-  "name": "KiwiCom",
-  "version": "0.0.1",
+  "name": "native",
+  "version": "0.1.0",
   "private": true,
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "android": "react-native-scripts android",
+    "eject": "react-native-scripts eject",
+    "ios": "react-native-scripts ios",
     "lint": "eslint app",
     "relay": "relay-compiler --verbose --src ./app/screens --schema ./app/schema.graphql",
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "start": "react-native-scripts start",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
+  "jest": {
+    "preset": "jest-expo"
   },
   "dependencies": {
-    "react": "16.0.0-beta.5",
-    "react-native": "0.49.3",
-    "react-native-google-signin": "^0.12.0",
+    "expo": "^21.0.0",
+    "react": "^16.0.0",
+    "react-native": "^0.48.4",
     "react-navigation": "^1.0.0-beta.13",
     "react-relay": "^1.4.1"
   },
@@ -27,10 +32,9 @@
     "eslint-plugin-react": "^7.4.0",
     "flow-bin": "^0.53.0",
     "jest": "21.2.1",
-    "react-test-renderer": "16.0.0-beta.5",
+    "jest-expo": "^21.0.2",
+    "react-native-scripts": "1.5.0",
+    "react-test-renderer": "^16.0.0",
     "relay-compiler": "^1.4.1"
-  },
-  "jest": {
-    "preset": "react-native"
   }
 }

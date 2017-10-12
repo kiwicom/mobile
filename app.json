@@ -1,4 +1,5 @@
 {
-  "name": "KiwiCom",
-  "displayName": "KiwiCom"
+  "expo": {
+    "sdkVersion": "21.0.0"
+  }
 }

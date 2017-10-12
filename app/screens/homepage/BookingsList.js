@@ -17,7 +17,10 @@ type State = {
 };
 
 export default class SearchResults extends React.Component<Props, State> {
+  render = () => <Text>OK</Text>
+
   // TODO: offline layer for allBookings
+/*
   render = () => {
     return this.props.bookings.allBookings.edges.map(edge => {
       return <View key={edge.node.id}>
@@ -26,6 +29,5 @@ export default class SearchResults extends React.Component<Props, State> {
       </View>
     })
   }
+*/
 }
-
-// render = () => <Text>OK</Text>
