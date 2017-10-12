@@ -2,7 +2,7 @@
 
 import { StackNavigator } from 'react-navigation';
 
-import Homepage from './Homepage';
+import Homepage from './homepage/Homepage';
 import Search from './search/Search';
 
 export default StackNavigator(
