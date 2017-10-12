@@ -12,13 +12,7 @@ type State = {
   to: string,
 };
 
-export default class SearchForm extends React.PureComponent<
-  void,
-  Props,
-  State,
-> {
-  state: State;
-
+export default class SearchForm extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
