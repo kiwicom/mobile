@@ -1,11 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text, AsyncStorage, TouchableOpacity } from 'react-native';
+import { View, Text, AsyncStorage, TouchableOpacity, ScrollView } from 'react-native';
+import { graphql, QueryRenderer } from 'react-relay';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
-import SearchForm from './search/SearchForm';
-import Styles from '../src/Styles';
+import Environment from '../../src/Environment';
+import BookingsListContainer from './BookingsListContainer';
+
+import SearchForm from '../search/SearchForm';
+import Styles from '../../src/Styles';
 
 type Props = {
   navigation: {
@@ -26,6 +30,7 @@ export default class Homepage extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       bookings: null,
+      user: null,
     };
   }
 
@@ -46,33 +51,34 @@ export default class Homepage extends React.PureComponent<Props, State> {
       await GoogleSignin.hasPlayServices({ autoResolve: true });
       await GoogleSignin.configure({
         iosClientId: '235429053328-f9mmpf635ts242dr2rpbo2oa5858ncm5.apps.googleusercontent.com',
-        // offlineAccess: false,
+        offlineAccess: false,
       });
 
       const user = await GoogleSignin.currentUserAsync();
-      console.warn(JSON.stringify(user));
-      // this.setState({ user });
+      this.setState({ user });
     } catch (err) {
       console.error('Google signin error', err.code, err.message);
     }
   };
 
   _signIn() {
-    GoogleSignin.signIn()
-      .then(user => {
-        console.warn(JSON.stringify(user));
-        // this.setState({user: user});
-      })
-      .catch(err => {
-        console.error('WRONG SIGNIN', err);
-      })
-      .done();
+    GoogleSignin.signOut().then(() => {
+      GoogleSignin.signIn()
+        .then(user => {
+          console.log(user);
+          this.setState({ user: user });
+        })
+        .catch(err => {
+          console.error('WRONG SIGNIN', err);
+        })
+        .done();
+    })
   }
 
   render = () => {
     const { navigate } = this.props.navigation;
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView style={{ flex: 1 }}>
         <View>
           <SearchForm
             onSend={(from, to) =>
@@ -93,8 +99,28 @@ export default class Homepage extends React.PureComponent<Props, State> {
               <Text style={Styles.googleButtonText}>Google Sign in</Text>
             </View>
           </TouchableOpacity>
+
+          <QueryRenderer
+            environment={Environment}
+            query={AllBookingsQuery}
+            render={({ error, props }) => {
+              // FIXME: it does not catch errors?
+              if (error) {
+                return <Text>{error.message}</Text>;
+              } else if (props) {
+                return <BookingsListContainer bookings={props} />;
+              }
+              return <Text>Loading...</Text>;
+            }}
+          />
         </View>
-      </View>
+      </ScrollView>
     );
   };
 }
+
+const AllBookingsQuery = graphql`
+  query HomepageQuery {
+    ...BookingsListContainer_bookings
+  }
+`;

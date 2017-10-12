@@ -3,7 +3,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 
-import Homepage from '../Homepage';
+import Homepage from '../homepage/Homepage';
 
 const navigation = {
   navigate: () => {},
