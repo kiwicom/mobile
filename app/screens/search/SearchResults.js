@@ -45,7 +45,7 @@ const SearchResultRow = ({ node }) => {
   );
 };
 
-export default class SearchResults extends React.Component<void, Props, State> {
+export default class SearchResults extends React.Component<Props, State> {
   state: State = {
     loading: false,
   };

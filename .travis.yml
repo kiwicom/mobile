@@ -5,7 +5,7 @@ install:
   - yarn install
 
 script:
-  - ./scripts/test.sh
+  - ./app/scripts/test.sh
 
 cache: yarn
 

@@ -15,9 +15,7 @@ type State = {
   bookings: null | string
 }
 
-export default class Homepage extends React.PureComponent<void, Props, State> {
-  state: State;
-
+export default class Homepage extends React.PureComponent<Props, State> {
   static navigationOptions = {
     title: 'Welcome traveler!',
   };

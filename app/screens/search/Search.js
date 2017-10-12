@@ -12,7 +12,7 @@ type Props = {
   navigation: Object, // TODO
 }
 
-export default class Search extends React.Component<void, Props, void> {
+export default class Search extends React.Component<Props> {
   static navigationOptions = ({ navigation: { state: { params } } }) => ({
     title: `${params.from} - ${params.to}`,
   });
