@@ -2,14 +2,13 @@
 
 import * as React from 'react';
 import { View, Text, AsyncStorage, ScrollView } from 'react-native';
-import { graphql, QueryRenderer } from 'react-relay';
-
-import Environment from '../../src/Environment';
+import { graphql } from 'react-relay';
 
 import BookingsListContainer from './BookingsListContainer';
-import SearchForm from '../search/SearchForm';
+import SearchForm from './SearchForm';
 import GoogleLogin from '../../components/functional/auth/GoogleLogin';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
+import PublicApiRenderer from '../../src/PublicApiRenderer';
 
 type Props = {
   navigation: {
@@ -72,8 +71,7 @@ export default class Homepage extends React.PureComponent<Props, State> {
             onSuccess={accessToken => this.setState({ accessToken })}
           />
 
-          <QueryRenderer
-            environment={Environment}
+          <PublicApiRenderer
             query={AllBookingsQuery}
             render={({ error, props }) => {
               // FIXME: it does not catch errors?
@@ -82,7 +80,7 @@ export default class Homepage extends React.PureComponent<Props, State> {
               } else if (props) {
                 return <BookingsListContainer bookings={props} />;
               }
-              return <SimpleLoading/>;
+              return <SimpleLoading />;
             }}
           />
         </View>

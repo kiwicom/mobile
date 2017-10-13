@@ -39,7 +39,6 @@ const SearchResultRow = ({ node }) => {
       <Text>
         {price && price.amount} {price && price.currency}
       </Text>
-      <Button title="Choose" onPress={() => {}} />
       <Text>-----</Text>
     </View>
   );
