@@ -3,8 +3,14 @@
 import * as React from 'react';
 import { Text } from 'react-native';
 
-export default class SimpleLoading extends React.PureComponent {
-  state = {
+type State = {
+  dots: string,
+};
+
+export default class SimpleLoading extends React.PureComponent<*, State> {
+  timerID: number;
+
+  state: State = {
     dots: '',
   };
 

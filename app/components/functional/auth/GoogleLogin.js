@@ -6,13 +6,19 @@ import GoogleAuth from '../../../src/authentication/Google';
 
 import GoogleButton from '../../visual/buttons/GoogleButton';
 
-export default ({ onSuccess }) => (
-  <GoogleButton
-    onPress={() => {
-      const success = GoogleAuth.signIn();
-      if (success) {
-        onSuccess(success);
-      }
-    }}
-  />
-);
+type Props = {
+  onSuccess: (accessToken: string) => void,
+};
+
+export default function GoogleLogin({ onSuccess }: Props) {
+  return (
+    <GoogleButton
+      onPress={async () => {
+        const success = await GoogleAuth.signIn();
+        if (success) {
+          onSuccess(success);
+        }
+      }}
+    />
+  );
+}

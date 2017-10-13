@@ -17,6 +17,7 @@ type Props = {
 };
 
 type State = {
+  accessToken: null | string,
   bookings: null | string,
 };
 
