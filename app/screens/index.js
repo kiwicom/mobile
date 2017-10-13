@@ -11,6 +11,7 @@ export default StackNavigator(
     SearchResults: { screen: Search },
   },
   {
+    initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
         backgroundColor: '#01bba5',
