@@ -4,11 +4,11 @@ import * as React from 'react';
 import { Text } from 'react-native';
 
 type Props = {
-  minutes: number,
+  minutes: ?number,
 };
 
 export default function Duration({ minutes }: Props) {
-  if (minutes < 0) {
+  if (!minutes || minutes < 0) {
     minutes = 0;
   }
 

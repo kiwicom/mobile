@@ -97,3 +97,31 @@ exports[`works as expected 7`] = `
   m
 </Text>
 `;
+
+exports[`works as with falsey values 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  0
+  h 
+  0
+  m
+</Text>
+`;
+
+exports[`works as with falsey values 2`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  0
+  h 
+  0
+  m
+</Text>
+`;
