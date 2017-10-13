@@ -9,7 +9,6 @@ const network = Network.create((operation, variables) => {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      authorization: 'WyJTNVRTWTBOdXNWT3NRUlR5UnBNZV9HIiwiWFZQTTdIOFJVeW5OTFJsYjZGMllmZW9ZRWx0Y05NdWNzRWdkeUFyYmIxdC96bDFlcTNoL2UiLDQxODM1NTM5MDhd.BYrizeavnsynpp8Od7NgpF9l8XY',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
