@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { graphql, QueryRenderer } from 'react-relay';
+import { graphql } from 'react-relay';
 import Styles from '../../src/Styles';
 
-import Environment from '../../src/Environment';
 import SearchResultsContainer from './SearchResultsContainer';
+import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
+import PublicApiRenderer from '../../src/PublicApiRenderer';
 
 type Props = {
   navigation: Object, // TODO
@@ -21,8 +22,7 @@ export default class Search extends React.Component<Props> {
     const { params } = this.props.navigation.state;
     return (
       <View style={Styles.container}>
-        <QueryRenderer
-          environment={Environment}
+        <PublicApiRenderer
           query={SearchAllFlightsQuery}
           variables={{
             search: {
@@ -38,7 +38,7 @@ export default class Search extends React.Component<Props> {
             } else if (props) {
               return <SearchResultsContainer flights={props} />;
             }
-            return <Text>Loading...</Text>;
+            return <SimpleLoading/>;
           }}
         />
       </View>
