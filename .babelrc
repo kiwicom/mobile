@@ -6,6 +6,12 @@
         "transform-react-jsx-source",
         "relay"
       ]
+    },
+    "test": {
+      "plugins": [
+        "transform-react-jsx-source",
+        "relay"
+      ]
     }
   }
 }
