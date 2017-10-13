@@ -2,8 +2,12 @@
 
 ## Known issues: 
 
-- https://github.com/facebook/relay/issues/1852
-- https://github.com/facebook/flow/commit/2bdbc33b458f8f6165466864b1f59f4428881b75
+Flow:
+- React lifecycle methods cannot return Pormise (Fixed): https://github.com/facebook/flow/commit/2bdbc33b458f8f6165466864b1f59f4428881b75
+
+React Relay
+- `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852
+- Relay swallows all GraphQL errors in `QueryRenderer`: https://github.com/facebook/relay/issues/1913
 
 ---
 

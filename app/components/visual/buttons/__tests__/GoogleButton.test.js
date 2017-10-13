@@ -3,9 +3,9 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 
-import GoogleLoginButton from '../GoogleLogin';
+import GoogleButton from '../GoogleButton';
 
 it('renders as expected', () => {
-  const rendered = renderer.create(<GoogleLoginButton />).toJSON();
+  const rendered = renderer.create(<GoogleButton />).toJSON();
   expect(rendered).toMatchSnapshot();
 });

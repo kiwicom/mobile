@@ -15,7 +15,7 @@ type State = {
 };
 
 export default class SearchResults extends React.Component<Props, State> {
-  render = () => <Text>OK</Text>
+  render = () => <Text>TODO: bookings</Text>
 
   // TODO: offline layer for allBookings
 /*
