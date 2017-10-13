@@ -1,8 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text, AsyncStorage, TouchableOpacity, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  AsyncStorage,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
 import { graphql, QueryRenderer } from 'react-relay';
+import Expo from 'expo';
 
 import Environment from '../../src/Environment';
 import BookingsListContainer from './BookingsListContainer';
@@ -32,6 +39,7 @@ export default class Homepage extends React.PureComponent<Props, State> {
     };
   }
 
+  // $FlowFixMe: following method cannot return promise (fixed in next React release)
   componentDidMount = async () => {
     try {
       // await AsyncStorage.removeItem('@BookingsStore:key');
@@ -43,6 +51,24 @@ export default class Homepage extends React.PureComponent<Props, State> {
       }
     } catch (error) {
       console.error(error); // eslint-disable-line
+    }
+  };
+
+  _signInWithGoogleAsync = async () => {
+    try {
+      const result = await Expo.Google.logInAsync({
+        // androidClientId: 'YOUR_CLIENT_ID_HERE', // TODO
+        iosClientId: '821339778560-1cjv43n0hj275atn6qncd4m6cmn9tjtl.apps.googleusercontent.com', // https://docs.expo.io/versions/latest/sdk/google.html#create-an-ios-oauth-client-id
+        scopes: ['profile', 'email'],
+      });
+
+      if (result.type === 'success') {
+        return result.accessToken;
+      } else {
+        return { cancelled: true };
+      }
+    } catch (e) {
+      return { error: true };
     }
   };
 
@@ -65,7 +91,7 @@ export default class Homepage extends React.PureComponent<Props, State> {
             You will see your bookings here after login ({this.state.bookings})...
           </Text>
 
-          <TouchableOpacity onPress={() => alert('TODO')}>
+          <TouchableOpacity onPress={this._signInWithGoogleAsync}>
             <View style={Styles.googleButton}>
               <Text style={Styles.googleButtonText}>Google Sign in</Text>
             </View>

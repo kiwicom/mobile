@@ -1,9 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View, Button, ScrollView } from 'react-native';
-
-import Styles from '../../src/Styles';
+import { Text } from 'react-native';
 
 import type { BookingsListContainer_bookings } from './__generated__/BookingsListContainer_bookings.graphql';
 

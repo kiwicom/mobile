@@ -32,8 +32,10 @@
 
 ; Custom Kiwi.com ignores
 .*/node_modules/graphql/*
+.*/node_modules/react-native/*
 .*/node_modules/react-native-tab-view/*
 .*/node_modules/react-navigation/.*
+.*/node_modules/metro-bundler/.*
 
 ; Custom Kiwi.com duplicate ignores
 .*/node_modules/babel-plugin-relay/.*
@@ -46,7 +48,7 @@
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
 node_modules/react-native/flow
-flow/
+app/config/flow-typed/
 
 [options]
 module.system=haste
@@ -58,6 +60,8 @@ experimental.strict_type_args=true
 munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
+module.name_mapper='^expo$' -> 'emptyObject'
+module.name_mapper='^react-native$' -> 'emptyObject'
 module.name_mapper='^react-navigation$' -> 'emptyObject'
 
 suppress_type=$FlowIssue
@@ -72,4 +76,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 unsafe.enable_getters_and_setters=true
 
 [version]
-^0.49.1
+^0.56.0
