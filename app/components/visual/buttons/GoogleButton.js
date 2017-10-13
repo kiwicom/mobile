@@ -3,13 +3,19 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default ({ onPress }) => (
-  <TouchableOpacity onPress={onPress}>
-    <View style={styles.button}>
-      <Text style={styles.buttonText}>Google Sign in</Text>
-    </View>
-  </TouchableOpacity>
-);
+type Props = {
+  onPress?: () => Promise<void>,
+};
+
+export default function GoogleButton({ onPress }: Props) {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.button}>
+        <Text style={styles.buttonText}>Google Sign in</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
 
 const styles = StyleSheet.create({
   button: {
