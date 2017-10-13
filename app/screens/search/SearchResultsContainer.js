@@ -14,28 +14,7 @@ export default createPaginationContainer(
           edges {
             cursor
             node {
-              price {
-                amount
-                currency
-              }
-              departure {
-                localTime
-                airport {
-                  locationId
-                  city {
-                    name
-                  }
-                }
-              }
-              arrival {
-                localTime
-                airport {
-                  locationId
-                  city {
-                    name
-                  }
-                }
-              }
+              ...SearchResultRow_node
             }
           }
         }

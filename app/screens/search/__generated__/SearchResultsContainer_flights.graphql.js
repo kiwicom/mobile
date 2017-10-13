@@ -12,30 +12,7 @@ export type SearchResultsContainer_flights = {|
   +allFlights: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string;
-      +node: ?{|
-        +price: ?{|
-          +amount: ?number;
-          +currency: ?string;
-        |};
-        +departure: ?{|
-          +localTime: ?any;
-          +airport: ?{|
-            +locationId: ?string;
-            +city: ?{|
-              +name: ?string;
-            |};
-          |};
-        |};
-        +arrival: ?{|
-          +localTime: ?any;
-          +airport: ?{|
-            +locationId: ?string;
-            +city: ?{|
-              +name: ?string;
-            |};
-          |};
-        |};
-      |};
+      +node: ?{| |};
     |}>;
   |};
 |};
@@ -114,137 +91,9 @@ const fragment /*: ConcreteFragment*/ = {
               "plural": false,
               "selections": [
                 {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "Price",
-                  "name": "price",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "args": null,
-                      "name": "amount",
-                      "storageKey": null
-                    },
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "args": null,
-                      "name": "currency",
-                      "storageKey": null
-                    }
-                  ],
-                  "storageKey": null
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "RouteStop",
-                  "name": "departure",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "args": null,
-                      "name": "localTime",
-                      "storageKey": null
-                    },
-                    {
-                      "kind": "LinkedField",
-                      "alias": null,
-                      "args": null,
-                      "concreteType": "Location",
-                      "name": "airport",
-                      "plural": false,
-                      "selections": [
-                        {
-                          "kind": "ScalarField",
-                          "alias": null,
-                          "args": null,
-                          "name": "locationId",
-                          "storageKey": null
-                        },
-                        {
-                          "kind": "LinkedField",
-                          "alias": null,
-                          "args": null,
-                          "concreteType": "LocationArea",
-                          "name": "city",
-                          "plural": false,
-                          "selections": [
-                            {
-                              "kind": "ScalarField",
-                              "alias": null,
-                              "args": null,
-                              "name": "name",
-                              "storageKey": null
-                            }
-                          ],
-                          "storageKey": null
-                        }
-                      ],
-                      "storageKey": null
-                    }
-                  ],
-                  "storageKey": null
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "RouteStop",
-                  "name": "arrival",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "args": null,
-                      "name": "localTime",
-                      "storageKey": null
-                    },
-                    {
-                      "kind": "LinkedField",
-                      "alias": null,
-                      "args": null,
-                      "concreteType": "Location",
-                      "name": "airport",
-                      "plural": false,
-                      "selections": [
-                        {
-                          "kind": "ScalarField",
-                          "alias": null,
-                          "args": null,
-                          "name": "locationId",
-                          "storageKey": null
-                        },
-                        {
-                          "kind": "LinkedField",
-                          "alias": null,
-                          "args": null,
-                          "concreteType": "LocationArea",
-                          "name": "city",
-                          "plural": false,
-                          "selections": [
-                            {
-                              "kind": "ScalarField",
-                              "alias": null,
-                              "args": null,
-                              "name": "name",
-                              "storageKey": null
-                            }
-                          ],
-                          "storageKey": null
-                        }
-                      ],
-                      "storageKey": null
-                    }
-                  ],
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "SearchResultRow_node",
+                  "args": null
                 },
                 {
                   "kind": "ScalarField",
