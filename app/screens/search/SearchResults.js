@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View, Button, ScrollView } from 'react-native';
+import { Text, Button, ScrollView } from 'react-native';
 
 import Styles from '../../src/Styles';
+import SearchResultRow from './SearchResultRow';
 
 import type { SearchResultsContainer_flights } from './__generated__/SearchResultsContainer_flights.graphql';
 
@@ -14,34 +15,6 @@ type Props = {
 
 type State = {
   loading: boolean,
-};
-
-const AirportDetails = ({ airport }) => {
-  if (!airport) {
-    return;
-  }
-  return <Text>
-    {airport.city && airport.city.name} ({airport.locationId})
-  </Text>;
-};
-
-const SearchResultRow = ({ node }) => {
-  const { price, departure, arrival } = node;
-  return (
-    <View>
-      <Text>
-        {departure && departure.airport && <AirportDetails airport={departure.airport} />}
-        &rarr; {arrival && arrival.airport && <AirportDetails airport={arrival.airport} />}
-      </Text>
-      <Text>
-        {departure && departure.localTime} &rarr; {arrival && arrival.localTime}
-      </Text>
-      <Text>
-        {price && price.amount} {price && price.currency}
-      </Text>
-      <Text>-----</Text>
-    </View>
-  );
 };
 
 export default class SearchResults extends React.Component<Props, State> {

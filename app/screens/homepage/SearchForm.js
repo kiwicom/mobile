@@ -17,7 +17,7 @@ export default class SearchForm extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       from: 'Prague',
-      to: 'London',
+      to: 'NYC',
     };
   }
 

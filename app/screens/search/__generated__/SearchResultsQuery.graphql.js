@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e5dd8bf624e2f92b4000b04da6f9c7e3
+ * @relayHash 88ca3d1f657c212016a4ad557e7994c3
  */
 
 /* eslint-disable */
@@ -28,34 +28,49 @@ fragment SearchResultsContainer_flights on RootQuery {
       cursor
       node {
         __typename
-        price {
-          amount
-          currency
-        }
-        departure {
-          localTime
-          airport {
-            locationId
-            city {
-              name
-            }
-          }
-        }
-        arrival {
-          localTime
-          airport {
-            locationId
-            city {
-              name
-            }
-          }
-        }
+        ...SearchResultRow_node
       }
     }
     pageInfo {
       endCursor
       hasNextPage
     }
+  }
+}
+
+fragment SearchResultRow_node on Flight {
+  duration
+  price {
+    amount
+    currency
+  }
+  legs {
+    id
+    airline {
+      name
+      logoUrl
+    }
+    departure {
+      localTime
+      ...RouteStop
+    }
+    arrival {
+      localTime
+      ...RouteStop
+    }
+  }
+}
+
+fragment RouteStop on RouteStop {
+  airport {
+    ...Airport
+  }
+}
+
+fragment Airport on Location {
+  locationId
+  city {
+    name
   }
 }
 */
@@ -181,6 +196,13 @@ const batch /*: ConcreteBatch*/ = {
                     "storageKey": null
                   },
                   {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "duration",
+                    "storageKey": null
+                  },
+                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "args": null,
@@ -209,45 +231,88 @@ const batch /*: ConcreteBatch*/ = {
                     "kind": "LinkedField",
                     "alias": null,
                     "args": null,
-                    "concreteType": "RouteStop",
-                    "name": "departure",
-                    "plural": false,
+                    "concreteType": "Leg",
+                    "name": "legs",
+                    "plural": true,
                     "selections": [
                       {
                         "kind": "ScalarField",
                         "alias": null,
                         "args": null,
-                        "name": "localTime",
+                        "name": "id",
                         "storageKey": null
                       },
                       {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
-                        "concreteType": "Location",
-                        "name": "airport",
+                        "concreteType": "Airline",
+                        "name": "airline",
                         "plural": false,
                         "selections": [
                           {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "name": "locationId",
+                            "name": "name",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "logoUrl",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "RouteStop",
+                        "name": "departure",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "localTime",
                             "storageKey": null
                           },
                           {
                             "kind": "LinkedField",
                             "alias": null,
                             "args": null,
-                            "concreteType": "LocationArea",
-                            "name": "city",
+                            "concreteType": "Location",
+                            "name": "airport",
                             "plural": false,
                             "selections": [
                               {
                                 "kind": "ScalarField",
                                 "alias": null,
                                 "args": null,
-                                "name": "name",
+                                "name": "locationId",
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "LinkedField",
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "LocationArea",
+                                "name": "city",
+                                "plural": false,
+                                "selections": [
+                                  {
+                                    "kind": "ScalarField",
+                                    "alias": null,
+                                    "args": null,
+                                    "name": "name",
+                                    "storageKey": null
+                                  }
+                                ],
                                 "storageKey": null
                               }
                             ],
@@ -255,53 +320,53 @@ const batch /*: ConcreteBatch*/ = {
                           }
                         ],
                         "storageKey": null
-                      }
-                    ],
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "RouteStop",
-                    "name": "arrival",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "localTime",
-                        "storageKey": null
                       },
                       {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
-                        "concreteType": "Location",
-                        "name": "airport",
+                        "concreteType": "RouteStop",
+                        "name": "arrival",
                         "plural": false,
                         "selections": [
                           {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "name": "locationId",
+                            "name": "localTime",
                             "storageKey": null
                           },
                           {
                             "kind": "LinkedField",
                             "alias": null,
                             "args": null,
-                            "concreteType": "LocationArea",
-                            "name": "city",
+                            "concreteType": "Location",
+                            "name": "airport",
                             "plural": false,
                             "selections": [
                               {
                                 "kind": "ScalarField",
                                 "alias": null,
                                 "args": null,
-                                "name": "name",
+                                "name": "locationId",
+                                "storageKey": null
+                              },
+                              {
+                                "kind": "LinkedField",
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "LocationArea",
+                                "name": "city",
+                                "plural": false,
+                                "selections": [
+                                  {
+                                    "kind": "ScalarField",
+                                    "alias": null,
+                                    "args": null,
+                                    "name": "name",
+                                    "storageKey": null
+                                  }
+                                ],
                                 "storageKey": null
                               }
                             ],
@@ -379,7 +444,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResultsContainer_flights\n}\n\nfragment SearchResultsContainer_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        price {\n          amount\n          currency\n        }\n        departure {\n          localTime\n          airport {\n            locationId\n            city {\n              name\n            }\n          }\n        }\n        arrival {\n          localTime\n          airport {\n            locationId\n            city {\n              name\n            }\n          }\n        }\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResultsContainer_flights\n}\n\nfragment SearchResultsContainer_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        ...SearchResultRow_node\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SearchResultRow_node on Flight {\n  duration\n  price {\n    amount\n    currency\n  }\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
 module.exports = batch;
