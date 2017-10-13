@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { graphql } from 'react-relay';
-import Styles from '../../src/Styles';
 
 import SearchResultsContainer from './SearchResultsContainer';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
@@ -21,7 +20,7 @@ export default class Search extends React.Component<Props> {
   render = () => {
     const { params } = this.props.navigation.state;
     return (
-      <View style={Styles.container}>
+      <View>
         <PublicApiRenderer
           query={SearchAllFlightsQuery}
           variables={{

@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { Text, Button, ScrollView } from 'react-native';
 
-import Styles from '../../src/Styles';
 import SearchResultRow from './SearchResultRow';
 
 import type { SearchResultsContainer_flights } from './__generated__/SearchResultsContainer_flights.graphql';
@@ -36,7 +35,7 @@ export default class SearchResults extends React.Component<Props, State> {
 
   render = () => {
     return (
-      <ScrollView style={Styles.container}>
+      <ScrollView>
         {/* FIXME: Flight type doesn't have ID (for node key) - bad API design */}
         {this.props.flights.allFlights &&
           this.props.flights.allFlights.edges ? (
