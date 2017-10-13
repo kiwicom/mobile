@@ -55,11 +55,11 @@ export default class Homepage extends React.PureComponent<Props, State> {
       <ScrollView style={{ flex: 1 }}>
         <View>
           <SearchForm
-            onSend={(from, to) =>
+            onSend={(from, to, date) =>
               navigate('SearchResults', {
                 from,
                 to,
-                date: '2017-11-11',
+                date,
               })}
           />
         </View>

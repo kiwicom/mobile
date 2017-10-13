@@ -11,7 +11,7 @@ import PublicApiRenderer from '../../src/PublicApiRenderer';
 
 type Props = {
   navigation: Object, // TODO
-}
+};
 
 export default class Search extends React.Component<Props> {
   static navigationOptions = ({ navigation: { state: { params } } }) => ({
@@ -28,17 +28,17 @@ export default class Search extends React.Component<Props> {
             search: {
               from: { location: params.from },
               to: { location: params.to },
-              date: { exact: params.date },
+              date: { exact: new Date(params.date).toISOString().slice(0, 10) },
             },
             count: 10,
           }}
           render={({ error, props }) => {
             if (error) {
-              return <Text>{error.message}</Text>;
+              return <Text>{error.message}</Text>; // TODO: error view
             } else if (props) {
               return <SearchResultsContainer flights={props} />;
             }
-            return <SimpleLoading/>;
+            return <SimpleLoading />;
           }}
         />
       </View>
