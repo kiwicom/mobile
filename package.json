@@ -10,13 +10,13 @@
     "lint": "eslint app",
     "relay": "relay-compiler --verbose --src ./app/screens --schema ./app/schema.graphql",
     "start": "react-native-scripts start",
-    "test": "node node_modules/jest/bin/jest.js --watch"
+    "test": "node node_modules/jest/bin/jest.js"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^21.0.0",
+    "expo": "^21.0.2",
     "react": "^16.0.0",
     "react-native": "^0.48.4",
     "react-navigation": "^1.0.0-beta.13",
@@ -30,7 +30,7 @@
     "eslint": "^4.8.0",
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-react": "^7.4.0",
-    "flow-bin": "^0.53.0",
+    "flow-bin": "^0.56.0",
     "jest": "21.2.1",
     "jest-expo": "^21.0.2",
     "react-native-scripts": "1.5.0",
