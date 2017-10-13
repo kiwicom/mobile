@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders loading indicator correctly over the time 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  Loading
+  
+</Text>
+`;
+
+exports[`renders loading indicator correctly over the time 2`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  Loading
+  .
+</Text>
+`;
+
+exports[`renders loading indicator correctly over the time 3`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  Loading
+  ..
+</Text>
+`;
+
+exports[`renders loading indicator correctly over the time 4`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  Loading
+  ...
+</Text>
+`;
+
+exports[`renders loading indicator correctly over the time 5`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  Loading
+  
+</Text>
+`;
