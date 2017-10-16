@@ -1,5 +1,15 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0"
+    "name": "Kiwi.com",
+    "icon": "./app/assets/icon.png",
+    "version": "0.0.1",
+    "slug": "kiwi-com",
+    "sdkVersion": "21.0.0",
+    "ios": {
+      "bundleIdentifier": "com.kiwi.rn"
+    },
+    "android": {
+      "package": "com.kiwi.rn"
+    }
   }
 }
