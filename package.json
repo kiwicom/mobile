@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "expo": "^21.0.2",
+    "json-stable-stringify": "^1.0.1",
     "react": "^16.0.0",
     "react-native": "^0.48.4",
     "react-native-datepicker": "^1.6.0",
