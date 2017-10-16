@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text, AsyncStorage, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { graphql } from 'react-relay';
 
 import BookingsListContainer from './BookingsListContainer';
 import SearchForm from './SearchForm';
+// import GoogleLogin from '../../components/functional/auth/GoogleLogin';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
 import PrivateApiRenderer from '../../src/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
@@ -35,21 +36,6 @@ export default class Homepage extends React.PureComponent<Props, State> {
     };
   }
 
-  // $FlowFixMe: following method cannot return promise (fixed in next React release)
-  componentDidMount = async () => {
-    try {
-      // await AsyncStorage.removeItem('@BookingsStore:key');
-      const value = await AsyncStorage.getItem('@BookingsStore:key');
-      if (value !== null) {
-        this.setState({ bookings: value });
-      } else {
-        await AsyncStorage.setItem('@BookingsStore:key', 'STORED OFFLINE');
-      }
-    } catch (error) {
-      console.error(error); // eslint-disable-line
-    }
-  };
-
   render = () => {
     const { navigate } = this.props.navigation;
     return (
@@ -74,6 +60,9 @@ export default class Homepage extends React.PureComponent<Props, State> {
                 return <BookingsListContainer bookings={props} />;
               }
               return <SimpleLoading />;
+            }}
+            cacheConfig={{
+              offline: true
             }}
           />
         ) : (

@@ -7,17 +7,26 @@ import createEnvironment from './Environment';
 
 type Props = {
   query: string,
-  variables?: Object,
   render: ({ error: Object, props: Object }) => React.Node,
+  variables?: Object,
+  cacheConfig?: {
+    offline: boolean,
+  },
 };
 
-export default function publicApiRenderer({ query, variables, render }: Props) {
+export default function publicApiRenderer({
+  query,
+  render,
+  variables,
+  cacheConfig,
+}: Props) {
   return (
     <QueryRenderer
       environment={createEnvironment()}
       query={query}
       variables={variables}
       render={render}
+      cacheConfig={cacheConfig}
     />
   );
 }

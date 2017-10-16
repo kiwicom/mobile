@@ -2,6 +2,10 @@
 
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
+import RelayQueryResponseCache from './RelayQueryResponseCache';
+
+const cache = new RelayQueryResponseCache();
+
 export default function createEnvironment(accessToken: string = '') {
   const store = new Store(new RecordSource());
 
@@ -13,18 +17,35 @@ export default function createEnvironment(accessToken: string = '') {
     networkHeaders.authorization = accessToken;
   }
 
-  const network = Network.create((operation, variables) => {
-    return fetch('https://graphql.kiwi.com/', {
+  const fetchQuery = async (operation, variables, cacheConfig) => {
+    const query = operation.text;
+
+    if (cacheConfig.offline === true) {
+      const value = await cache.get(query, variables);
+      if (value !== null) {
+        // cache hit
+        return value;
+      }
+    } else {
+      await cache.remove(query, variables);
+    }
+
+    const jsonPayload = await (await fetch('https://graphql.kiwi.com/', {
       method: 'POST',
       headers: networkHeaders,
       body: JSON.stringify({
         query: operation.text,
         variables,
       }),
-    }).then(response => {
-      return response.json();
-    });
-  });
+    })).json();
+
+    if (cacheConfig.offline === true) {
+      await cache.set(query, variables, jsonPayload);
+    }
+    return jsonPayload;
+  };
+
+  const network = Network.create(fetchQuery);
 
   return new Environment({
     network,

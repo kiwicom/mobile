@@ -8,15 +8,19 @@ import createEnvironment from './Environment';
 type Props = {
   accessToken: string,
   query: string,
-  variables?: Object,
   render: ({ error: Object, props: Object }) => React.Node,
+  variables?: Object,
+  cacheConfig?: {
+    offline: boolean,
+  },
 };
 
 export default function publicApiRenderer({
   accessToken,
   query,
-  variables,
   render,
+  variables,
+  cacheConfig,
 }: Props) {
   return (
     <QueryRenderer
@@ -24,6 +28,7 @@ export default function publicApiRenderer({
       query={query}
       variables={variables}
       render={render}
+      cacheConfig={cacheConfig}
     />
   );
 }
