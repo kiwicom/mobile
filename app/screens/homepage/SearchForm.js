@@ -5,7 +5,7 @@ import { Button, TextInput, View, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
 type Props = {
-  onSend: (from: string, to: string, date: string) => void,
+  onSend: (from: string, to: string, date: Date) => void,
 };
 
 type State = {
@@ -14,7 +14,7 @@ type State = {
     to: string,
   },
   date: {
-    from: string,
+    from: Date,
   },
 };
 

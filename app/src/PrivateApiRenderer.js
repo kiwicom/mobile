@@ -6,15 +6,21 @@ import { QueryRenderer } from 'react-relay';
 import createEnvironment from './Environment';
 
 type Props = {
+  accessToken: string,
   query: string,
   variables?: Object,
   render: ({ error: Object, props: Object }) => React.Node,
 };
 
-export default function publicApiRenderer({ query, variables, render }: Props) {
+export default function publicApiRenderer({
+  accessToken,
+  query,
+  variables,
+  render,
+}: Props) {
   return (
     <QueryRenderer
-      environment={createEnvironment()}
+      environment={createEnvironment(accessToken)}
       query={query}
       variables={variables}
       render={render}

@@ -6,9 +6,10 @@ import { graphql } from 'react-relay';
 
 import BookingsListContainer from './BookingsListContainer';
 import SearchForm from './SearchForm';
-import GoogleLogin from '../../components/functional/auth/GoogleLogin';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
-import PublicApiRenderer from '../../src/PublicApiRenderer';
+import PrivateApiRenderer from '../../src/PrivateApiRenderer';
+import SingleLoginForm from './SimpleLoginForm';
+import LoginMutation from './mutation/Login';
 
 type Props = {
   navigation: {
@@ -52,27 +53,18 @@ export default class Homepage extends React.PureComponent<Props, State> {
   render = () => {
     const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={{ flex: 1 }}>
-        <View>
-          <SearchForm
-            onSend={(from, to, date) =>
-              navigate('SearchResults', {
-                from,
-                to,
-                date,
-              })}
-          />
-        </View>
-        <View style={{ flex: 4, backgroundColor: 'powderblue' }}>
-          <Text>
-            You will see your bookings here after login ({this.state.bookings})...
-          </Text>
-
-          <GoogleLogin
-            onSuccess={accessToken => this.setState({ accessToken })}
-          />
-
-          <PublicApiRenderer
+      <ScrollView>
+        <SearchForm
+          onSend={(from, to, date) =>
+            navigate('SearchResults', {
+              from,
+              to,
+              date,
+            })}
+        />
+        {this.state.accessToken ? (
+          <PrivateApiRenderer
+            accessToken={this.state.accessToken}
             query={AllBookingsQuery}
             render={({ error, props }) => {
               // FIXME: it does not catch errors?
@@ -84,7 +76,18 @@ export default class Homepage extends React.PureComponent<Props, State> {
               return <SimpleLoading />;
             }}
           />
-        </View>
+        ) : (
+          <View>
+            <Text>Login to see your bookings offline:</Text>
+            <SingleLoginForm
+              onSend={(username, password) => {
+                LoginMutation(username, password, response => {
+                  this.setState({ accessToken: response.login && response.login.token });
+                });
+              }}
+            />
+          </View>
+        )}
       </ScrollView>
     );
   };
