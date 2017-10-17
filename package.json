@@ -2,14 +2,13 @@
   "name": "native",
   "version": "0.1.0",
   "private": true,
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "android": "react-native-scripts android",
-    "eject": "react-native-scripts eject",
-    "ios": "react-native-scripts ios",
-    "lint": "eslint app",
-    "relay": "relay-compiler --verbose --src ./app/screens --schema ./app/schema.graphql",
-    "start": "react-native-scripts start",
+    "android": "yarn react-native-scripts android",
+    "ios": "yarn react-native-scripts ios",
+    "lint": "yarn eslint app",
+    "relay": "yarn relay-compiler --verbose --src ./app/screens --schema ./app/schema.graphql",
+    "start": "yarn react-native-scripts start --dev",
     "test": "node node_modules/jest/bin/jest.js"
   },
   "jest": {
@@ -19,7 +18,7 @@
     "expo": "^21.0.2",
     "json-stable-stringify": "^1.0.1",
     "react": "^16.0.0",
-    "react-native": "^0.48.4",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz",
     "react-native-datepicker": "^1.6.0",
     "react-navigation": "^1.0.0-beta.13",
     "react-relay": "^1.4.1"

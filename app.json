@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "Kiwi.com",
+    "privacy": "public",
     "icon": "./app/assets/icon.png",
     "version": "0.0.1",
     "slug": "kiwi-com",
