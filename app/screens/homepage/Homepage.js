@@ -11,29 +11,24 @@ import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import LoginMutation from './mutation/Login';
 
+import type { Navigation } from '../../types/Navigation';
+
 type Props = {
-  navigation: {
-    navigate: (screen: string, parameters: Object) => void,
-  },
+  navigation: Navigation,
 };
 
 type State = {
   accessToken: null | string,
-  bookings: null | string,
 };
 
 export default class Homepage extends React.PureComponent<Props, State> {
+  state = {
+    accessToken: null,
+  };
+
   static navigationOptions = {
     title: 'Welcome traveler!',
   };
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      accessToken: null,
-      bookings: null,
-    };
-  }
 
   render = () => {
     const { navigate } = this.props.navigation;
@@ -56,7 +51,12 @@ export default class Homepage extends React.PureComponent<Props, State> {
               if (error) {
                 return <Text>{error.message}</Text>;
               } else if (props) {
-                return <BookingsListContainer bookings={props} />;
+                return (
+                  <BookingsListContainer
+                    bookings={props}
+                    navigation={this.props.navigation}
+                  />
+                );
               }
               return <SimpleLoading />;
             }}

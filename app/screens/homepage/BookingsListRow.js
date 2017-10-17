@@ -1,25 +1,27 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
 import { Text, View, Image } from 'react-native';
+import { graphql, createFragmentContainer } from 'react-relay';
 
 import SimpleCard from '../../components/visual/cards/SimpleCard';
 import Date from '../../components/visual/datetime/Date';
-import RouteStop from './RouteStop';
-import Duration from './Duration';
+import RouteStop from '../search/RouteStop';
 
-import type { SearchResultRow_node } from './__generated__/SearchResultRow_node.graphql';
+import type { BookingsListRow_node } from './__generated__/BookingsListRow_node.graphql';
+import type { Navigation } from '../../types/Navigation';
 
-const SearchResultRowWithoutData = ({
-  node,
-}: {
-  node: SearchResultRow_node,
-}) => {
-  const { duration, price, legs } = node;
+type Props = {
+  node: BookingsListRow_node,
+  navigation: Navigation,
+};
+
+export function BookingListRowWithoutData({ node, navigation }: Props) {
+  const { legs } = node;
+  const { navigate } = navigation;
   if (legs) {
     return (
-      <SimpleCard>
+      <SimpleCard onPress={() => navigate('Booking')}>
         {legs.map(leg => {
           if (leg) {
             const { id, departure, arrival, airline } = leg;
@@ -45,27 +47,17 @@ const SearchResultRowWithoutData = ({
             // TODO: log such an event?
           }
         })}
-
-        <Text>
-          {price && price.amount} {price && price.currency}
-        </Text>
-        <Duration minutes={duration} />
       </SimpleCard>
     );
   } else {
     // TODO: log such an event?
   }
-};
+}
 
 export default createFragmentContainer(
-  SearchResultRowWithoutData,
+  BookingListRowWithoutData,
   graphql`
-    fragment SearchResultRow_node on Flight {
-      duration
-      price {
-        amount
-        currency
-      }
+    fragment BookingsListRow_node on Booking {
       legs {
         id
         airline {

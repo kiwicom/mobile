@@ -3,18 +3,22 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
 
+import BookingListRow from './BookingsListRow';
+
 import type { BookingsListContainer_bookings } from './__generated__/BookingsListContainer_bookings.graphql';
+import type { Navigation } from '../../types/Navigation';
 
 type Props = {
   bookings: BookingsListContainer_bookings,
   relay: Object, // FIXME
+  navigation: Navigation,
 };
 
 type State = {
   loading: boolean,
 };
 
-export default class SearchResults extends React.Component<Props, State> {
+export default class BookingsList extends React.Component<Props, State> {
   render = () => {
     return (
       <View>
@@ -23,22 +27,13 @@ export default class SearchResults extends React.Component<Props, State> {
           this.props.bookings.allBookings.edges &&
           this.props.bookings.allBookings.edges.map(edge => {
             if (edge) {
-              const { node } = edge;
+              const { node, cursor } = edge;
               return (
-                <View key={node && node.id}>
-                  <Text>{node && node.id}</Text>
-                  <Text>
-                    {node &&
-                      node.departure &&
-                      node.departure.airport &&
-                      node.departure.airport.locationId}{' '}
-                    &rarr;{' '}
-                    {node &&
-                      node.arrival &&
-                      node.arrival.airport &&
-                      node.arrival.airport.locationId}
-                  </Text>
-                </View>
+                <BookingListRow
+                  node={node}
+                  key={cursor}
+                  navigation={this.props.navigation}
+                />
               );
             } else {
               return <Text>Edge not found in the graph.</Text>;

@@ -11,19 +11,8 @@ import type {ConcreteFragment} from 'relay-runtime';
 export type BookingsListContainer_bookings = {|
   +allBookings: ?{|
     +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: ?string;
-        +departure: ?{|
-          +airport: ?{|
-            +locationId: ?string;
-          |};
-        |};
-        +arrival: ?{|
-          +airport: ?{|
-            +locationId: ?string;
-          |};
-        |};
-      |};
+      +cursor: string;
+      +node: ?{| |};
     |}>;
   |};
 |};
@@ -53,6 +42,13 @@ const fragment /*: ConcreteFragment*/ = {
           "plural": true,
           "selections": [
             {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "cursor",
+              "storageKey": null
+            },
+            {
               "kind": "LinkedField",
               "alias": null,
               "args": null,
@@ -61,69 +57,9 @@ const fragment /*: ConcreteFragment*/ = {
               "plural": false,
               "selections": [
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "id",
-                  "storageKey": null
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "RouteStop",
-                  "name": "departure",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "LinkedField",
-                      "alias": null,
-                      "args": null,
-                      "concreteType": "Location",
-                      "name": "airport",
-                      "plural": false,
-                      "selections": [
-                        {
-                          "kind": "ScalarField",
-                          "alias": null,
-                          "args": null,
-                          "name": "locationId",
-                          "storageKey": null
-                        }
-                      ],
-                      "storageKey": null
-                    }
-                  ],
-                  "storageKey": null
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "RouteStop",
-                  "name": "arrival",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "LinkedField",
-                      "alias": null,
-                      "args": null,
-                      "concreteType": "Location",
-                      "name": "airport",
-                      "plural": false,
-                      "selections": [
-                        {
-                          "kind": "ScalarField",
-                          "alias": null,
-                          "args": null,
-                          "name": "locationId",
-                          "storageKey": null
-                        }
-                      ],
-                      "storageKey": null
-                    }
-                  ],
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "BookingsListRow_node",
+                  "args": null
                 }
               ],
               "storageKey": null

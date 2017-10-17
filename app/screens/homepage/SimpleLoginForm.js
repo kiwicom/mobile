@@ -10,12 +10,14 @@ type Props = {
 type State = {
   username: string,
   password: string,
+  loading: boolean,
 };
 
 export default class SimpleLoginForm extends React.PureComponent<Props, State> {
   state = {
     username: 'kiwicomtester@gmail.com', // FIXME: remove
     password: '',
+    loading: false,
   };
 
   render = () => (
@@ -37,11 +39,19 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
         placeholder="Password"
         secureTextEntry={true}
       />
-      <Button
-        onPress={() =>
-          this.props.onSend(this.state.username, this.state.password)}
-        title="Login!"
-      />
+      {this.state.loading ? (
+        <Button onPress={() => {}} title="Logging in..." />
+      ) : (
+        <Button
+          onPress={() => {
+            this.setState({
+              loading: true,
+            });
+            this.props.onSend(this.state.username, this.state.password);
+          }}
+          title="Login!"
+        />
+      )}
     </View>
   );
 }

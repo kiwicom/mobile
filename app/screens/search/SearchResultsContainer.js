@@ -22,7 +22,6 @@ export default createPaginationContainer(
     `,
   },
   {
-    // FIXME: this is why we need to implement `node` query:
     query: graphql`
       query SearchResultsContainerQuery(
         $search: FlightsSearchInput!

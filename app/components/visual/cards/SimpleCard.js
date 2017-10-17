@@ -1,14 +1,21 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 
 type Props = {
   children: React.Node,
+  onPress?: Function,
 };
 
-export default function SimpleCard({ children }: Props) {
-  return <View style={styles.container}>{children}</View>;
+export default function SimpleCard({ children, onPress }: Props) {
+  const Card = <View style={styles.container}>{children}</View>;
+
+  if (onPress) {
+    return <TouchableOpacity onPress={onPress}>{Card}</TouchableOpacity>;
+  } else {
+    return Card;
+  }
 }
 
 const MARGIN = 5;
