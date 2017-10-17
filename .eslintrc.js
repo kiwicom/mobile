@@ -5,22 +5,33 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:flowtype/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:flowtype/recommended',
+    'prettier',
+    'prettier/react',
+    'prettier/flowtype',
+  ],
   parser: 'babel-eslint',
   parserOptions: {
+    sourceType: 'module',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
       jsx: true,
     },
-    sourceType: 'module',
   },
-  plugins: ['react', 'flowtype'],
+  plugins: ['prettier', 'react', 'flowtype'],
   rules: {
-    indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
-    quotes: ['error', 'single'],
-    semi: ['error', 'always'],
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        trailingComma: 'all',
+        jsxBracketSameLine: true,
+      },
+    ],
+    'react/prop-types': 'off', // we use Flow instead,
     'flowtype/require-valid-file-annotation': ['error', 'always'],
-    'react/prop-types': 'off' // we use Flow instead
   },
 };

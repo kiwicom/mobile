@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-exp login -u $EXP_USERNAME -p $EXP_PASSWORD
-exp publish --non-interactive
+yarn exp -- login -u $EXP_USERNAME -p $EXP_PASSWORD
+yarn exp -- publish --non-interactive

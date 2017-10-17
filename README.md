@@ -9,6 +9,7 @@
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
+* [Project structure](#project-structure)
 * [Updating to New Releases](#updating-to-new-releases)
 * [Available Scripts](#available-scripts)
   * [yarn start](#yarn-start)
@@ -21,6 +22,29 @@ Below you'll find information about performing common tasks. The most recent ver
   * [Networking](#networking)
   * [iOS Simulator won't open](#ios-simulator-wont-open)
   * [QR Code does not scan](#qr-code-does-not-scan)
+
+## Project structure
+
+```
+.
+├── app
+│   ├── assets                  - static assets (icons)
+│   ├── components
+│   │   ├── functional
+│   │   └── visual
+│   ├── config                  - application configutations
+│   ├── screens                 - individual application screens
+│   │   ├── homepage
+│   │   ├── search
+│   │   └── index.js            - navigation and screens definition
+│   ├── scripts
+│   │   ├── deploy.sh
+│   │   └── test.sh             - test script for CI
+│   ├── src
+│   └── schema.graphql          - GraphQL API schema
+├── App.js                      - bootstrap component
+└── app.json                    - application settings for Expo
+```
 
 ## Updating to New Releases
 

@@ -2,7 +2,7 @@
 
 import { commitMutation, graphql } from 'react-relay';
 
-import createEnvironment from '../../../src/Environment';
+import createEnvironment from '../../../src/relay/Environment';
 
 const mutation = graphql`
   mutation LoginMutation($email: String!, $password: String!) {

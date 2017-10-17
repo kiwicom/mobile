@@ -6,9 +6,8 @@ import { graphql } from 'react-relay';
 
 import BookingsListContainer from './BookingsListContainer';
 import SearchForm from './SearchForm';
-// import GoogleLogin from '../../components/functional/auth/GoogleLogin';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
-import PrivateApiRenderer from '../../src/PrivateApiRenderer';
+import PrivateApiRenderer from '../../components/functional/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import LoginMutation from './mutation/Login';
 
@@ -62,7 +61,7 @@ export default class Homepage extends React.PureComponent<Props, State> {
               return <SimpleLoading />;
             }}
             cacheConfig={{
-              offline: true
+              offline: true,
             }}
           />
         ) : (
@@ -71,7 +70,9 @@ export default class Homepage extends React.PureComponent<Props, State> {
             <SingleLoginForm
               onSend={(username, password) => {
                 LoginMutation(username, password, response => {
-                  this.setState({ accessToken: response.login && response.login.token });
+                  this.setState({
+                    accessToken: response.login && response.login.token,
+                  });
                 });
               }}
             />

@@ -7,15 +7,12 @@ install:
 script:
   - ./app/scripts/test.sh
 
-after_success:
-  - chmod -x ./app/scripts/deploy.sh # make deploy script executable
-
-deploy:
-  skip_cleanup: true
-  provider: script
-  script: ./app/scripts/deploy.sh
-  on:
-    branch: master
+#deploy:
+#  provider: script
+#  skip_cleanup: true
+#  script: chmod +x ./app/scripts/deploy.sh && ./app/scripts/deploy.sh
+#  on:
+#    branch: master
 
 cache: yarn
 

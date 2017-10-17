@@ -4,4 +4,4 @@ set -e
 
 yarn lint
 yarn flow
-yarn test --ci
+yarn test -- --ci
