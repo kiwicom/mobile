@@ -11,11 +11,11 @@ import Duration from './Duration';
 
 import type { SearchResultRow_node } from './__generated__/SearchResultRow_node.graphql';
 
-const SearchResultRowWithoutData = ({
-  node,
-}: {
+type Props = {
   node: SearchResultRow_node,
-}) => {
+};
+
+const SearchResultRowWithoutData = ({ node }: Props) => {
   const { duration, price, legs } = node;
   if (legs) {
     return (

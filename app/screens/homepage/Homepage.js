@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { graphql } from 'react-relay';
 
-import BookingsListContainer from './BookingsListContainer';
+import BookingsListContainer from './BookingsList';
 import SearchForm from './SearchForm';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
@@ -85,6 +85,6 @@ export default class Homepage extends React.PureComponent<Props, State> {
 
 const AllBookingsQuery = graphql`
   query HomepageQuery {
-    ...BookingsListContainer_bookings
+    ...BookingsList_bookings
   }
 `;

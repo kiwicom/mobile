@@ -4,12 +4,14 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { graphql } from 'react-relay';
 
-import SearchResultsContainer from './SearchResultsContainer';
+import SearchResultsContainer from './SearchResults';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
 import PublicApiRenderer from '../../components/relay/PublicApiRenderer';
 
+import type { Navigation } from '../../types/Navigation';
+
 type Props = {
-  navigation: Object, // TODO
+  navigation: Navigation,
 };
 
 export default class Search extends React.Component<Props> {
@@ -51,6 +53,6 @@ const SearchAllFlightsQuery = graphql`
     $count: Int!
     $after: String
   ) {
-    ...SearchResultsContainer_flights
+    ...SearchResults_flights
   }
 `;

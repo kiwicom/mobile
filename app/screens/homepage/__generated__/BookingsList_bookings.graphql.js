@@ -8,7 +8,7 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type BookingsListContainer_bookings = {|
+export type BookingsList_bookings = {|
   +allBookings: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string;
@@ -23,7 +23,7 @@ const fragment /*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "BookingsListContainer_bookings",
+  "name": "BookingsList_bookings",
   "selections": [
     {
       "kind": "LinkedField",
