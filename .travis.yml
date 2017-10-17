@@ -7,6 +7,13 @@ install:
 script:
   - ./app/scripts/test.sh
 
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: app/scripts/deploy.sh
+  on:
+    branch: master
+
 cache: yarn
 
 notifications:
