@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 
-import GoogleAuth from '../../../src/authentication/Google';
+import GoogleAuth from '../../src/authentication/Google';
 
-import GoogleButton from '../../visual/buttons/GoogleButton';
+import GoogleButton from '../visual/buttons/GoogleButton';
 
 type Props = {
   onSuccess: (accessToken: string) => void,

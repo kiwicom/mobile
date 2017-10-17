@@ -7,7 +7,7 @@ import { graphql } from 'react-relay';
 import BookingsListContainer from './BookingsListContainer';
 import SearchForm from './SearchForm';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
-import PrivateApiRenderer from '../../components/functional/relay/PrivateApiRenderer';
+import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import LoginMutation from './mutation/Login';
 
