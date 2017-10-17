@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { QueryRenderer } from 'react-relay';
 
-import createEnvironment from './Environment';
+import createEnvironment from '../../../src/relay/Environment';
 
 type Props = {
   query: string,

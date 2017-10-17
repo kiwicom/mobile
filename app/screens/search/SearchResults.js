@@ -38,22 +38,22 @@ export default class SearchResults extends React.Component<Props, State> {
       <ScrollView>
         {/* FIXME: Flight type doesn't have ID (for node key) - bad API design */}
         {this.props.flights.allFlights &&
-          this.props.flights.allFlights.edges ? (
-            this.props.flights.allFlights.edges.map(edge => {
-              if (edge) {
-                const { node, cursor } = edge;
-                if (node) {
-                  return <SearchResultRow node={node} key={cursor} />;
-                } else {
-                  return <Text>Couldn&apos;t load the graph node.</Text>;
-                }
+        this.props.flights.allFlights.edges ? (
+          this.props.flights.allFlights.edges.map(edge => {
+            if (edge) {
+              const { node, cursor } = edge;
+              if (node) {
+                return <SearchResultRow node={node} key={cursor} />;
               } else {
-                return <Text>Couldn&apos;t load the graph edge.</Text>;
+                return <Text>Couldn&apos;t load the graph node.</Text>;
               }
-            })
-          ) : (
-            <Text>No results.</Text>
-          )}
+            } else {
+              return <Text>Couldn&apos;t load the graph edge.</Text>;
+            }
+          })
+        ) : (
+          <Text>No results.</Text>
+        )}
         {this.props.relay.hasMore() &&
           (this.state.loading ? (
             <Button onPress={() => {}} title="Loading..." />

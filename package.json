@@ -11,9 +11,6 @@
     "start": "yarn react-native-scripts start --dev",
     "test": "node node_modules/jest/bin/jest.js"
   },
-  "jest": {
-    "preset": "jest-expo"
-  },
   "dependencies": {
     "expo": "^21.0.2",
     "json-stable-stringify": "^1.0.1",
@@ -29,13 +26,20 @@
     "babel-plugin-relay": "^1.4.1",
     "babel-preset-react-native": "4.0.0",
     "eslint": "^4.8.0",
+    "eslint-config-prettier": "^2.6.0",
     "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
+    "exp": "^44.0.0",
     "flow-bin": "^0.57.0",
     "jest": "21.2.1",
     "jest-expo": "^21.0.2",
+    "prettier": "^1.7.4",
     "react-native-scripts": "1.5.0",
     "react-test-renderer": "^16.0.0",
     "relay-compiler": "^1.4.1"
+  },
+  "jest": {
+    "preset": "jest-expo"
   }
 }

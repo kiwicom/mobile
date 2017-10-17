@@ -18,7 +18,9 @@ export default class SearchResults extends React.Component<Props, State> {
   render = () => {
     return (
       <View>
-        {this.props.bookings && this.props.bookings.allBookings && this.props.bookings.allBookings.edges &&
+        {this.props.bookings &&
+          this.props.bookings.allBookings &&
+          this.props.bookings.allBookings.edges &&
           this.props.bookings.allBookings.edges.map(edge => {
             if (edge) {
               const { node } = edge;
@@ -26,8 +28,15 @@ export default class SearchResults extends React.Component<Props, State> {
                 <View key={node && node.id}>
                   <Text>{node && node.id}</Text>
                   <Text>
-                    {node && node.departure && node.departure.airport && node.departure.airport.locationId} &rarr;{' '}
-                    {node && node.arrival && node.arrival.airport && node.arrival.airport.locationId}
+                    {node &&
+                      node.departure &&
+                      node.departure.airport &&
+                      node.departure.airport.locationId}{' '}
+                    &rarr;{' '}
+                    {node &&
+                      node.arrival &&
+                      node.arrival.airport &&
+                      node.arrival.airport.locationId}
                   </Text>
                 </View>
               );
