@@ -6,7 +6,7 @@ import { graphql, createFragmentContainer } from 'react-relay';
 
 import SimpleCard from '../../components/visual/cards/SimpleCard';
 import Date from '../../components/visual/datetime/Date';
-import RouteStop from '../search/RouteStop';
+import RouteStop from '../search/RouteStop'; // FIXME: do not use components from different screen - extract them outside
 
 import type { BookingsListRow_node } from './__generated__/BookingsListRow_node.graphql';
 import type { Navigation } from '../../types/Navigation';

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 88ca3d1f657c212016a4ad557e7994c3
+ * @relayHash 37410de3144b37c021b3d9e5dfa8d63e
  */
 
 /* eslint-disable */
@@ -19,10 +19,10 @@ query SearchResultsQuery(
   $count: Int!
   $after: String
 ) {
-  ...SearchResultsContainer_flights
+  ...SearchResults_flights
 }
 
-fragment SearchResultsContainer_flights on RootQuery {
+fragment SearchResults_flights on RootQuery {
   allFlights(search: $search, first: $count, after: $after) {
     edges {
       cursor
@@ -103,7 +103,7 @@ const batch /*: ConcreteBatch*/ = {
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "SearchResultsContainer_flights",
+        "name": "SearchResults_flights",
         "args": null
       }
     ],
@@ -444,7 +444,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResultsContainer_flights\n}\n\nfragment SearchResultsContainer_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        ...SearchResultRow_node\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SearchResultRow_node on Flight {\n  duration\n  price {\n    amount\n    currency\n  }\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
+  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResults_flights\n}\n\nfragment SearchResults_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        ...SearchResultRow_node\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SearchResultRow_node on Flight {\n  duration\n  price {\n    amount\n    currency\n  }\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
 module.exports = batch;

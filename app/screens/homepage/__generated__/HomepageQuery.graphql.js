@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash be68750dd98547d220d9bb5485b66f73
+ * @relayHash 9938255cae13ecee45263855158cdf56
  */
 
 /* eslint-disable */
@@ -15,10 +15,10 @@ export type HomepageQueryResponse = {| |};
 
 /*
 query HomepageQuery {
-  ...BookingsListContainer_bookings
+  ...BookingsList_bookings
 }
 
-fragment BookingsListContainer_bookings on RootQuery {
+fragment BookingsList_bookings on RootQuery {
   allBookings {
     edges {
       cursor
@@ -71,7 +71,7 @@ const batch /*: ConcreteBatch*/ = {
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "BookingsListContainer_bookings",
+        "name": "BookingsList_bookings",
         "args": null
       }
     ],
@@ -287,7 +287,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query HomepageQuery {\n  ...BookingsListContainer_bookings\n}\n\nfragment BookingsListContainer_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        ...BookingsListRow_node\n        id\n      }\n    }\n  }\n}\n\nfragment BookingsListRow_node on Booking {\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
+  "text": "query HomepageQuery {\n  ...BookingsList_bookings\n}\n\nfragment BookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        ...BookingsListRow_node\n        id\n      }\n    }\n  }\n}\n\nfragment BookingsListRow_node on Booking {\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
 module.exports = batch;

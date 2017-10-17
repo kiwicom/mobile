@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { Text, View } from 'react-native';
+import { createFragmentContainer, graphql } from 'react-relay';
 
 import BookingListRow from './BookingsListRow';
 
-import type { BookingsListContainer_bookings } from './__generated__/BookingsListContainer_bookings.graphql';
+import type { BookingsListContainer_bookings } from './__generated__/BookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
 
 type Props = {
@@ -18,7 +19,7 @@ type State = {
   loading: boolean,
 };
 
-export default class BookingsList extends React.Component<Props, State> {
+export class BookingsListWithoutData extends React.Component<Props, State> {
   render = () => {
     return (
       <View>
@@ -43,3 +44,19 @@ export default class BookingsList extends React.Component<Props, State> {
     );
   };
 }
+
+export default createFragmentContainer(
+  BookingsListWithoutData,
+  graphql`
+    fragment BookingsList_bookings on RootQuery {
+      allBookings {
+        edges {
+          cursor
+          node {
+            ...BookingsListRow_node
+          }
+        }
+      }
+    }
+  `,
+);

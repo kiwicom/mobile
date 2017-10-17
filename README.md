@@ -41,6 +41,7 @@ Below you'll find information about performing common tasks. The most recent ver
 │   │   ├── deploy.sh
 │   │   └── test.sh             - test script for CI
 │   ├── src
+│   ├── types                   - only Flow types
 │   └── schema.graphql          - GraphQL API schema
 ├── App.js                      - bootstrap component
 └── app.json                    - application settings for Expo

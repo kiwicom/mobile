@@ -8,7 +8,7 @@
 
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
-export type SearchResultsContainer_flights = {|
+export type SearchResults_flights = {|
   +allFlights: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string;
@@ -50,7 +50,7 @@ const fragment /*: ConcreteFragment*/ = {
       }
     ]
   },
-  "name": "SearchResultsContainer_flights",
+  "name": "SearchResults_flights",
   "selections": [
     {
       "kind": "LinkedField",

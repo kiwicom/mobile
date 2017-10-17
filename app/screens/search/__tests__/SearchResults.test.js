@@ -3,12 +3,12 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 
-import SearchResults from '../SearchResults';
+import { SearchResultsWithoutData } from '../SearchResults';
 
 it('renders without crashing', () => {
   const rendered = renderer
     .create(
-      <SearchResults
+      <SearchResultsWithoutData
         flights={{
           allFlights: { edges: [] },
         }}

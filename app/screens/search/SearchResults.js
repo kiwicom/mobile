@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { Text, Button, ScrollView } from 'react-native';
+import { createPaginationContainer, graphql } from 'react-relay';
 
 import SearchResultRow from './SearchResultRow';
 
-import type { SearchResultsContainer_flights } from './__generated__/SearchResultsContainer_flights.graphql';
+import type { SearchResultsContainer_flights } from './__generated__/SearchResults_flights.graphql';
 
 type Props = {
   flights: SearchResultsContainer_flights,
@@ -16,7 +17,7 @@ type State = {
   loading: boolean,
 };
 
-export default class SearchResults extends React.Component<Props, State> {
+export class SearchResultsWithoutData extends React.Component<Props, State> {
   state: State = {
     loading: false,
   };
@@ -63,3 +64,38 @@ export default class SearchResults extends React.Component<Props, State> {
     );
   };
 }
+
+export default createPaginationContainer(
+  SearchResultsWithoutData,
+  {
+    flights: graphql`
+      fragment SearchResults_flights on RootQuery {
+        allFlights(search: $search, first: $count, after: $after)
+          @connection(key: "SearchResultsContainer_allFlights") {
+          edges {
+            cursor
+            node {
+              ...SearchResultRow_node
+            }
+          }
+        }
+      }
+    `,
+  },
+  {
+    query: graphql`
+      query SearchResultsQuery(
+        $search: FlightsSearchInput!
+        $count: Int!
+        $after: String
+      ) {
+        ...SearchResults_flights
+      }
+    `,
+    getVariables: (props, { count, cursor }, fragmentVariables) => ({
+      ...fragmentVariables,
+      count,
+      after: cursor,
+    }),
+  },
+);
