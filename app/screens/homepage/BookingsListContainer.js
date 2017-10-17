@@ -10,18 +10,9 @@ export default createFragmentContainer(
     fragment BookingsListContainer_bookings on RootQuery {
       allBookings {
         edges {
+          cursor
           node {
-            id
-            departure {
-              airport {
-                locationId
-              }
-            }
-            arrival {
-              airport {
-                locationId
-              }
-            }
+            ...BookingsListRow_node
           }
         }
       }

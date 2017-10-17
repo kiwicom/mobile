@@ -28,7 +28,7 @@ module.exports = {
       {
         singleQuote: true,
         trailingComma: 'all',
-        jsxBracketSameLine: true,
+        jsxBracketSameLine: false,
       },
     ],
     'react/prop-types': 'off', // we use Flow instead,

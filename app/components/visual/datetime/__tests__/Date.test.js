@@ -6,7 +6,7 @@ import renderer from 'react-test-renderer';
 import Date from '../Date';
 
 it('returns NULL without datetime parameter', () => {
-  expect(renderer.create(<Date />)).toMatchSnapshot();
+  expect(renderer.create(<Date dateTime={undefined} />)).toMatchSnapshot();
 });
 
 it('formats date', () => {

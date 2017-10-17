@@ -36,7 +36,6 @@ export default class SearchResults extends React.Component<Props, State> {
   render = () => {
     return (
       <ScrollView>
-        {/* FIXME: Flight type doesn't have ID (for node key) - bad API design */}
         {this.props.flights.allFlights &&
         this.props.flights.allFlights.edges ? (
           this.props.flights.allFlights.edges.map(edge => {

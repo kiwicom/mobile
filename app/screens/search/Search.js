@@ -25,8 +25,8 @@ export default class Search extends React.Component<Props> {
           query={SearchAllFlightsQuery}
           variables={{
             search: {
-              from: { location: params.from },
-              to: { location: params.to },
+              from: { location: params.from.trim() },
+              to: { location: params.to.trim() },
               date: { exact: new Date(params.date).toISOString().slice(0, 10) },
             },
             count: 10,

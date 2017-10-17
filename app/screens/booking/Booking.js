@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Text } from 'react-native';
 
-export default class Booking extends React.PureComponent {
+export default class Booking extends React.PureComponent<{}, {}> {
   static navigationOptions = {
     title: 'Booking detail - 1234567',
   };
