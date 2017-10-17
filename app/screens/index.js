@@ -19,7 +19,7 @@ export default StackNavigator(
       headerTitleStyle: {
         color: '#fff',
       },
-      headerTintColor: '#fff', // what is this?
+      headerTintColor: '#fff',
     },
   },
 );
