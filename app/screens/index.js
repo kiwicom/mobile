@@ -2,11 +2,13 @@
 
 import { StackNavigator } from 'react-navigation';
 
+import Booking from './booking/Booking';
 import Homepage from './homepage/Homepage';
 import Search from './search/Search';
 
 export default StackNavigator(
   {
+    Booking: { screen: Booking },
     Home: { screen: Homepage },
     SearchResults: { screen: Search },
   },
