@@ -6,7 +6,7 @@ import { graphql } from 'react-relay';
 
 import BookingsListContainer from './BookingsList';
 import SearchForm from './SearchForm';
-import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
+import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import LoginMutation from './mutation/Login';
@@ -58,7 +58,7 @@ export default class Homepage extends React.PureComponent<Props, State> {
                   />
                 );
               }
-              return <SimpleLoading />;
+              return <FullPageLoading />;
             }}
             cacheConfig={{
               offline: true,
