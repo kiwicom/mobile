@@ -31,17 +31,11 @@
 .*/node_modules/react-native-fbads/*
 
 ; Custom Kiwi.com ignores
-.*/node_modules/graphql/*
-.*/node_modules/react-native/*
-.*/node_modules/react-native-tab-view/*
-.*/node_modules/react-navigation/.*
-.*/node_modules/metro-bundler/.*
-
-; Custom Kiwi.com duplicate ignores
 .*/node_modules/babel-plugin-relay/.*
+.*/node_modules/react-navigation/.*
+.*/node_modules/react-relay/lib/.*\.js
 .*/node_modules/relay-compiler/lib/.*
 .*/node_modules/relay-runtime/lib/.*
-.*/node_modules/react-relay/lib/.*\.js
 
 [include]
 
@@ -77,4 +71,4 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 unsafe.enable_getters_and_setters=true
 
 [version]
-^0.56.0
+^0.57.0
