@@ -6,7 +6,7 @@ import { graphql } from 'react-relay';
 
 import SearchResultsContainer from './SearchResultsContainer';
 import SimpleLoading from '../../components/visual/loaders/SimpleLoading';
-import PublicApiRenderer from '../../components/functional/relay/PublicApiRenderer';
+import PublicApiRenderer from '../../components/relay/PublicApiRenderer';
 
 type Props = {
   navigation: Object, // TODO
