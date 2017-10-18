@@ -43,6 +43,9 @@ const SearchResultRowWithoutData = ({ node }: Props) => {
             );
           } else {
             // TODO: log such an event?
+            return (
+              <Text>Flight leg could not be loaded because of API error.</Text>
+            );
           }
         })}
 
@@ -54,6 +57,7 @@ const SearchResultRowWithoutData = ({ node }: Props) => {
     );
   } else {
     // TODO: log such an event?
+    return <Text>Flight legs could not be loaded because of API error.</Text>;
   }
 };
 

@@ -4,6 +4,11 @@ import { commitMutation, graphql } from 'react-relay';
 
 import createEnvironment from '../../../src/relay/Environment';
 
+import type {
+  LoginMutationVariables,
+  LoginMutationResponse,
+} from './__generated__/LoginMutation.graphql';
+
 const mutation = graphql`
   mutation LoginMutation($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -15,16 +20,17 @@ const mutation = graphql`
   }
 `;
 
-export default (email: string, password: string, callback: Function) => {
+export type Callback = (
+  response: $PropertyType<LoginMutationResponse, 'login'>,
+  errors: ?[Error],
+) => void;
+
+export default (input: LoginMutationVariables, callback: Callback) => {
   commitMutation(createEnvironment(), {
     mutation,
-    variables: {
-      email,
-      password,
+    variables: input,
+    onCompleted: (response: LoginMutationResponse, errors) => {
+      callback(response.login, errors);
     },
-    onCompleted: (response, errors) => {
-      callback(response, errors);
-    },
-    // FIXME: onError
   });
 };
