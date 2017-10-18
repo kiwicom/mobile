@@ -21,7 +21,7 @@ export function BookingListRowWithoutData({ node, navigation }: Props) {
   const { navigate } = navigation;
   if (legs) {
     return (
-      <SimpleCard onPress={() => navigate('Booking')}>
+      <SimpleCard onPress={() => navigate('Booking', { booking: node })}>
         {legs.map(leg => {
           if (leg) {
             const { id, departure, arrival, airline } = leg;
@@ -45,12 +45,16 @@ export function BookingListRowWithoutData({ node, navigation }: Props) {
             );
           } else {
             // TODO: log such an event?
+            return (
+              <Text>Flight leg could not be loaded because of API error.</Text>
+            );
           }
         })}
       </SimpleCard>
     );
   } else {
     // TODO: log such an event?
+    return <Text>Flight legs could not be loaded because of API error.</Text>;
   }
 }
 

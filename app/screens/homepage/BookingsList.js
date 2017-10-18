@@ -1,17 +1,17 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import BookingListRow from './BookingsListRow';
+import BookingListRowError from './BookingsListRowError';
 
-import type { BookingsListContainer_bookings } from './__generated__/BookingsList_bookings.graphql';
+import type { BookingsList_bookings } from './__generated__/BookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
 
 type Props = {
-  bookings: BookingsListContainer_bookings,
-  relay: Object, // FIXME
+  bookings: BookingsList_bookings,
   navigation: Navigation,
 };
 
@@ -21,12 +21,11 @@ type State = {
 
 export class BookingsListWithoutData extends React.Component<Props, State> {
   render = () => {
+    let { allBookings } = this.props.bookings;
     return (
       <View>
-        {this.props.bookings &&
-          this.props.bookings.allBookings &&
-          this.props.bookings.allBookings.edges &&
-          this.props.bookings.allBookings.edges.map(edge => {
+        {allBookings && allBookings.edges ? (
+          allBookings.edges.map(edge => {
             if (edge) {
               const { node, cursor } = edge;
               return (
@@ -37,9 +36,16 @@ export class BookingsListWithoutData extends React.Component<Props, State> {
                 />
               );
             } else {
-              return <Text>Edge not found in the graph.</Text>;
+              return <BookingListRowError />;
             }
-          })}
+          })
+        ) : (
+          // FIXME: maybe there are just no bookings?
+          <Text>
+            We couldn&apos;t load the bookings because of our API returned an
+            error. Please try it again later.
+          </Text>
+        )}
       </View>
     );
   };

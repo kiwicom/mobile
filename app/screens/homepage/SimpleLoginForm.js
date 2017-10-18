@@ -3,8 +3,10 @@
 import * as React from 'react';
 import { Button, TextInput, View } from 'react-native';
 
+import LoginMutation, { type Callback } from './mutation/Login';
+
 type Props = {
-  onSend: (username: string, password: string) => void,
+  onSend: Callback,
 };
 
 type State = {
@@ -18,6 +20,14 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
     username: 'kiwicomtester@gmail.com', // FIXME: remove
     password: '',
     loading: false,
+  };
+
+  _tryLogIn = (username: string, password: string, callback: Callback) => {
+    this.setState({ loading: true });
+    LoginMutation({ email: username, password }, (response, errors) => {
+      callback(response, errors);
+      this.setState({ loading: false });
+    });
   };
 
   render = () => (
@@ -44,10 +54,13 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
       ) : (
         <Button
           onPress={() => {
-            this.setState({
-              loading: true,
-            });
-            this.props.onSend(this.state.username, this.state.password);
+            this._tryLogIn(
+              this.state.username,
+              this.state.password,
+              (response, errors) => {
+                this.props.onSend(response, errors);
+              },
+            );
           }}
           title="Login!"
         />

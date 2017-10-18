@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { ScrollView, AsyncStorage } from 'react-native';
 import { graphql } from 'react-relay';
 
 import BookingsListContainer from './BookingsList';
 import SearchForm from './SearchForm';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
-import LoginMutation from './mutation/Login';
 import { type AccessToken, createAccessToken } from '../../types/AccessToken';
 
 import type { Navigation } from '../../types/Navigation';
@@ -30,13 +29,20 @@ export default class Homepage extends React.PureComponent<Props, State> {
     title: 'Welcome traveler!',
   };
 
+  componentDidMount = async () => {
+    AsyncStorage.getItem('access_token', (error, value) => {
+      this.setState({
+        accessToken: value,
+      });
+    });
+  };
+
   render = () => {
-    const { navigate } = this.props.navigation;
     return (
       <ScrollView>
         <SearchForm
           onSend={(from, to, date) =>
-            navigate('SearchResults', {
+            this.props.navigation.navigate('SearchResults', {
               from,
               to,
               date,
@@ -59,18 +65,20 @@ export default class Homepage extends React.PureComponent<Props, State> {
             }}
           />
         ) : (
-          <View>
-            <Text>Login to see your bookings offline:</Text>
-            <SingleLoginForm
-              onSend={(username, password) => {
-                LoginMutation(username, password, response => {
-                  this.setState({
-                    accessToken: response.login && response.login.token,
-                  });
-                });
-              }}
-            />
-          </View>
+          <SingleLoginForm
+            onSend={(response, errors) => {
+              if (errors) {
+                // TODO: display errors
+                console.warn(JSON.stringify(errors)); // eslint-disable-line no-console
+              } else {
+                const accessToken = createAccessToken(
+                  response && response.token,
+                );
+                this.setState({ accessToken: accessToken });
+                AsyncStorage.setItem('access_token', accessToken);
+              }
+            }}
+          />
         )}
       </ScrollView>
     );

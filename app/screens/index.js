@@ -23,5 +23,8 @@ export default StackNavigator(
       },
       headerTintColor: '#fff',
     },
+    cardStyle: {
+      backgroundColor: '#eee',
+    },
   },
 );

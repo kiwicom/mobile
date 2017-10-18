@@ -1,14 +1,26 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-export default class Booking extends React.PureComponent<{}, {}> {
+import type { Navigation } from '../../types/Navigation';
+
+type Props = {
+  navigation: Navigation,
+};
+
+export default class Booking extends React.PureComponent<Props, {}> {
   static navigationOptions = {
     title: 'Booking detail - 1234567',
   };
 
   render = () => {
-    return <Text>You will see details of the booking here.</Text>;
+    const { params } = this.props.navigation.state;
+    return (
+      <View>
+        <Text>You will see details of the booking here:</Text>
+        <Text>{JSON.stringify(params, null, 2)}</Text>
+      </View>
+    );
   };
 }

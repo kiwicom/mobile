@@ -35,24 +35,23 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
   };
 
   render = () => {
+    const { allFlights } = this.props.flights;
     return (
       <ScrollView>
-        {this.props.flights.allFlights &&
-        this.props.flights.allFlights.edges ? (
-          this.props.flights.allFlights.edges.map(edge => {
+        {allFlights && allFlights.edges ? (
+          allFlights.edges.map(edge => {
             if (edge) {
               const { node, cursor } = edge;
-              if (node) {
-                return <SearchResultRow node={node} key={cursor} />;
-              } else {
-                return <Text>Couldn&apos;t load the graph node.</Text>;
-              }
+              return <SearchResultRow node={node} key={cursor} />;
             } else {
-              return <Text>Couldn&apos;t load the graph edge.</Text>;
+              return <SearchResultRow />;
             }
           })
         ) : (
-          <Text>No results.</Text>
+          <Text>
+            We couldn&apos;t find the right flights. Try to adjust the search a
+            little bit.
+          </Text>
         )}
         {this.props.relay.hasMore() &&
           (this.state.loading ? (
