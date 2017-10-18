@@ -6,10 +6,10 @@ import { graphql } from 'react-relay';
 
 import BookingsListContainer from './BookingsList';
 import SearchForm from './SearchForm';
-import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import LoginMutation from './mutation/Login';
+import { type AccessToken, createAccessToken } from '../../types/AccessToken';
 
 import type { Navigation } from '../../types/Navigation';
 
@@ -18,12 +18,12 @@ type Props = {
 };
 
 type State = {
-  accessToken: null | string,
+  accessToken: AccessToken,
 };
 
 export default class Homepage extends React.PureComponent<Props, State> {
   state = {
-    accessToken: null,
+    accessToken: createAccessToken(),
   };
 
   static navigationOptions = {
@@ -46,19 +46,13 @@ export default class Homepage extends React.PureComponent<Props, State> {
           <PrivateApiRenderer
             accessToken={this.state.accessToken}
             query={AllBookingsQuery}
-            render={({ error, props }) => {
-              // FIXME: it does not catch errors?
-              if (error) {
-                return <Text>{error.message}</Text>;
-              } else if (props) {
-                return (
-                  <BookingsListContainer
-                    bookings={props}
-                    navigation={this.props.navigation}
-                  />
-                );
-              }
-              return <FullPageLoading />;
+            render={props => {
+              return (
+                <BookingsListContainer
+                  bookings={props}
+                  navigation={this.props.navigation}
+                />
+              );
             }}
             cacheConfig={{
               offline: true,

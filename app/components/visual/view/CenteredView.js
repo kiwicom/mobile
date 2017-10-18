@@ -16,7 +16,7 @@ export default function CenteredView({ children }: Props) {
     <View
       style={{
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
       }}

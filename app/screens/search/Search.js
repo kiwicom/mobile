@@ -1,11 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
 import { graphql } from 'react-relay';
 
 import SearchResultsContainer from './SearchResults';
-import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
 import PublicApiRenderer from '../../components/relay/PublicApiRenderer';
 
 import type { Navigation } from '../../types/Navigation';
@@ -32,13 +30,8 @@ export default class Search extends React.Component<Props> {
           },
           count: 10,
         }}
-        render={({ error, props }) => {
-          if (error) {
-            return <Text>{error.message}</Text>; // TODO: error view
-          } else if (props) {
-            return <SearchResultsContainer flights={props} />;
-          }
-          return <FullPageLoading />;
+        render={props => {
+          return <SearchResultsContainer flights={props} />;
         }}
       />
     );

@@ -4,6 +4,8 @@ import * as React from 'react';
 import { QueryRenderer } from 'react-relay';
 
 import createEnvironment from '../../src/relay/Environment';
+import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
+import GeneralError from '../../components/errors/GeneralError';
 
 type Props = {
   query: string,
@@ -25,7 +27,15 @@ export default function publicApiRenderer({
       environment={createEnvironment()}
       query={query}
       variables={variables}
-      render={render}
+      render={({ error, props }) => {
+        // FIXME: it does not catch errors?
+        if (error) {
+          return <GeneralError errorMessage={error.message} />;
+        } else if (props) {
+          return render(props);
+        }
+        return <FullPageLoading />;
+      }}
       cacheConfig={cacheConfig}
     />
   );
