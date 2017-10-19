@@ -45,16 +45,14 @@ export function BookingListRowWithoutData({ node, navigation }: Props) {
             );
           } else {
             // TODO: log such an event?
-            return (
-              <Text>Flight leg could not be loaded because of API error.</Text>
-            );
+            return <Text>Flight leg could not be loaded (missing data).</Text>;
           }
         })}
       </SimpleCard>
     );
   } else {
     // TODO: log such an event?
-    return <Text>Flight legs could not be loaded because of API error.</Text>;
+    return <Text>Flight legs could not be loaded (missing data).</Text>;
   }
 }
 

@@ -52,11 +52,7 @@ export class BookingsListWithoutData extends React.Component<Props, State> {
             }
           })
         ) : (
-          // FIXME: maybe there are just no bookings?
-          <Text>
-            We couldn&apos;t load the bookings because of our API returned an
-            error. Please try it again later.
-          </Text>
+          <Text>We couldn&apos;t load the bookings (missing data).</Text>
         )}
       </View>
     );
