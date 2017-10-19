@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 
 import type { Navigation } from '../../types/Navigation';
 
@@ -17,10 +17,10 @@ export default class Booking extends React.PureComponent<Props, {}> {
   render = () => {
     const { params } = this.props.navigation.state;
     return (
-      <View>
+      <ScrollView>
         <Text>You will see details of the booking here:</Text>
         <Text>{JSON.stringify(params, null, 2)}</Text>
-      </View>
+      </ScrollView>
     );
   };
 }

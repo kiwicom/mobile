@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9938255cae13ecee45263855158cdf56
+ * @relayHash e353f863493d7215ac77c2857784c9b0
  */
 
 /* eslint-disable */
@@ -23,6 +23,10 @@ fragment BookingsList_bookings on RootQuery {
     edges {
       cursor
       node {
+        assets {
+          ticketUrl
+          invoiceUrl
+        }
         ...BookingsListRow_node
         id
       }
@@ -31,6 +35,10 @@ fragment BookingsList_bookings on RootQuery {
 }
 
 fragment BookingsListRow_node on Booking {
+  assets {
+    ticketUrl
+    invoiceUrl
+  }
   legs {
     id
     airline {
@@ -118,6 +126,31 @@ const batch /*: ConcreteBatch*/ = {
                 "name": "node",
                 "plural": false,
                 "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "BookingAssets",
+                    "name": "assets",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "ticketUrl",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "invoiceUrl",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -287,7 +320,7 @@ const batch /*: ConcreteBatch*/ = {
       }
     ]
   },
-  "text": "query HomepageQuery {\n  ...BookingsList_bookings\n}\n\nfragment BookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        ...BookingsListRow_node\n        id\n      }\n    }\n  }\n}\n\nfragment BookingsListRow_node on Booking {\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
+  "text": "query HomepageQuery {\n  ...BookingsList_bookings\n}\n\nfragment BookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        assets {\n          ticketUrl\n          invoiceUrl\n        }\n        ...BookingsListRow_node\n        id\n      }\n    }\n  }\n}\n\nfragment BookingsListRow_node on Booking {\n  assets {\n    ticketUrl\n    invoiceUrl\n  }\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
 module.exports = batch;

@@ -9,8 +9,12 @@
 /*::
 import type {ConcreteFragment} from 'relay-runtime';
 export type BookingsListRow_node = {|
+  +assets: ?{|
+    +ticketUrl: ?string;
+    +invoiceUrl: ?string;
+  |};
   +legs: ?$ReadOnlyArray<?{|
-    +id: ?string;
+    +id: string;
     +airline: ?{|
       +name: ?string;
       +logoUrl: ?string;
@@ -32,6 +36,31 @@ const fragment /*: ConcreteFragment*/ = {
   "metadata": null,
   "name": "BookingsListRow_node",
   "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "BookingAssets",
+      "name": "assets",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "ticketUrl",
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "invoiceUrl",
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
