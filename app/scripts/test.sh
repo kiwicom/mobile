@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-set -e
+# see: https://www.gnu.org/software/bash/manual/html_node/The-Set-Builtin.html
+set -e # exit immediately if a pipeline returns a non-zero status
+set -x # print a trace of simple commands
 
 yarn lint
-yarn flow
-yarn test -- --ci
+yarn flow app
+yarn test -- --ci --color --config=".jest.json"
