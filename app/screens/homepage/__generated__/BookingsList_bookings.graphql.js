@@ -12,7 +12,12 @@ export type BookingsList_bookings = {|
   +allBookings: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string;
-      +node: ?{| |};
+      +node: ?{|
+        +assets: ?{|
+          +ticketUrl: ?string;
+          +invoiceUrl: ?string;
+        |};
+      |};
     |}>;
   |};
 |};
@@ -56,6 +61,31 @@ const fragment /*: ConcreteFragment*/ = {
               "name": "node",
               "plural": false,
               "selections": [
+                {
+                  "kind": "LinkedField",
+                  "alias": null,
+                  "args": null,
+                  "concreteType": "BookingAssets",
+                  "name": "assets",
+                  "plural": false,
+                  "selections": [
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "args": null,
+                      "name": "ticketUrl",
+                      "storageKey": null
+                    },
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "args": null,
+                      "name": "invoiceUrl",
+                      "storageKey": null
+                    }
+                  ],
+                  "storageKey": null
+                },
                 {
                   "kind": "FragmentSpread",
                   "name": "BookingsListRow_node",

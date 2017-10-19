@@ -62,6 +62,10 @@ export default createFragmentContainer(
   BookingListRowWithoutData,
   graphql`
     fragment BookingsListRow_node on Booking {
+      assets {
+        ticketUrl
+        invoiceUrl
+      }
       legs {
         id
         airline {

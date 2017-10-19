@@ -15,7 +15,7 @@ export type SearchResultRow_node = {|
     +currency: ?string;
   |};
   +legs: ?$ReadOnlyArray<?{|
-    +id: ?string;
+    +id: string;
     +airline: ?{|
       +name: ?string;
       +logoUrl: ?string;

@@ -1,5 +1,5 @@
-# source: https://graphql.kiwi.com
-# timestamp: Mon Oct 02 2017 16:38:34 GMT-0500 (CDT)
+# source: https://graphql.kiwi.com/
+# timestamp: Thu Oct 19 2017 14:39:19 GMT-0500 (CDT)
 
 schema {
   query: RootQuery
@@ -52,16 +52,28 @@ type Baggage {
 }
 
 type Booking {
-  id: ID
+  # The ID of an object
+  id: ID!
 
   # Internal database ID.
   databaseId: Int @deprecated(reason: "Use id field instead.")
   allowedBaggage: AllowedBaggage
   arrival: RouteStop
+
+  # Static assets related to this booking.
+  assets: BookingAssets
   departure: RouteStop
 
   # Flight segments, e.g. stopover, change of aircraft, etc.
   legs: [Leg]
+}
+
+type BookingAssets {
+  # URL of the electronic ticket. Ticket may not be available yet (returns null).
+  ticketUrl: String
+
+  # URL of the invoice.
+  invoiceUrl: String
 }
 
 # A connection to a list of items.
@@ -302,6 +314,9 @@ input DurationInput {
 }
 
 type Flight {
+  # The ID of an object
+  id: ID!
+
   # List of all Airlines involved.
   airlines: [Airline]
   departure: RouteStop
@@ -365,7 +380,8 @@ input FlightsSearchInput {
 }
 
 type Identity {
-  id: ID
+  # The ID of an object
+  id: ID!
 
   # Internal database ID.
   databaseId: String @deprecated(reason: "Use id field instead.")
@@ -385,7 +401,8 @@ type Identity {
 
 # Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
 type Leg {
-  id: ID
+  # The ID of an object
+  id: ID!
   airline: Airline
   arrival: RouteStop
   departure: RouteStop
