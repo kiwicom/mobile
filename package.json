@@ -9,7 +9,7 @@
     "lint": "yarn eslint app",
     "relay": "yarn relay-compiler --verbose --src ./app --schema ./app/schema.graphql",
     "start": "yarn react-native-scripts start --dev",
-    "test": "node node_modules/jest/bin/jest.js",
+    "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./app/scripts/test.sh"
   },
   "dependencies": {

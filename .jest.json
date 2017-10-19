@@ -1,7 +1,5 @@
 {
-  "collectCoverage": true,
-  "collectCoverageFrom": ["app/**.js"],
-  "coverageReporters": ["lcov", "text", "text-summary"],
+  "collectCoverage": false,
   "preset": "jest-expo",
   "verbose": false
 }

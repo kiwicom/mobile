@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with partial legs 1`] = `
+<SimpleCard>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "http://.../",
+        }
+      }
+      style={
+        Object {
+          "height": 25,
+          "width": 25,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+      >
+        <Relay(RouteStopWithoutData)
+          data={
+            Object {
+              "localTime": "2017-11-19T09:00:00",
+            }
+          }
+        />
+         →
+         
+        <Relay(RouteStopWithoutData)
+          data={
+            Object {
+              "localTime": "2017-11-19T12:00:00",
+            }
+          }
+        />
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        disabled={false}
+        ellipsizeMode="tail"
+      >
+        <DateComponent
+          dateTime="2017-11-19T09:00:00"
+        />
+         →
+         
+        <DateComponent
+          dateTime="2017-11-19T12:00:00"
+        />
+      </Text>
+    </View>
+  </View>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+  >
+    Flight leg could not be loaded (missing data).
+  </Text>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+  >
+    20
+     
+    EUR
+  </Text>
+  <Duration
+    minutes={60}
+  />
+</SimpleCard>
+`;
+
+exports[`renders without legs 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+>
+  Flight legs could not be loaded (missing data).
+</Text>
+`;
