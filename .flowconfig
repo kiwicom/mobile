@@ -14,28 +14,21 @@
 .*/Libraries/react-native/React.js
 .*/Libraries/react-native/ReactNative.js
 
-; Additional create-react-native-app ignores
-
 ; Ignore duplicate module providers
 .*/node_modules/fbemitter/lib/*
 
 ; Ignore misbehaving dev-dependencies
-.*/node_modules/xdl/build/*
 .*/node_modules/reqwest/tests/*
 
 ; Ignore missing expo-sdk dependencies (temporarily)
 ; https://github.com/expo/expo/issues/162
 .*/node_modules/expo/src/*
 
-; Ignore react-native-fbads dependency of the expo sdk
-.*/node_modules/react-native-fbads/*
-
 ; Custom Kiwi.com ignores
-.*/node_modules/babel-plugin-relay/.*
-.*/node_modules/react-navigation/.*
-.*/node_modules/react-relay/lib/.*\.js
-.*/node_modules/relay-compiler/lib/.*
-.*/node_modules/relay-runtime/lib/.*
+.*/node_modules/babel-plugin-relay/.+
+.*/node_modules/react-relay/lib/.+
+.*/node_modules/relay-compiler/lib/.+
+.*/node_modules/relay-runtime/lib/.+
 
 [include]
 
@@ -45,18 +38,13 @@ node_modules/react-native/flow
 app/config/flow-typed/
 
 [options]
-module.system=haste
-
 emoji=true
-
-experimental.strict_type_args=true
-
+module.system=haste
 munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
 module.name_mapper='^expo$' -> 'emptyObject'
 module.name_mapper='^react-native$' -> 'emptyObject'
-module.name_mapper='^react-native-datepicker$' -> 'emptyObject'
 module.name_mapper='^react-navigation$' -> 'emptyObject'
 
 suppress_type=$FlowIssue
