@@ -6,8 +6,8 @@ import { Text, View, Image } from 'react-native';
 
 import SimpleCard from '../../components/visual/cards/SimpleCard';
 import Date from '../../components/visual/datetime/Date';
-import RouteStop from './RouteStop';
-import Duration from './Duration';
+import RouteStop from '../../components/flights/RouteStop';
+import Duration from '../../components/flights/Duration';
 
 import type { SearchResultRow_node } from './__generated__/SearchResultRow_node.graphql';
 
