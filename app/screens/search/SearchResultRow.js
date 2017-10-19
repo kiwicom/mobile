@@ -15,7 +15,7 @@ type Props = {
   node: SearchResultRow_node,
 };
 
-const SearchResultRowWithoutData = ({ node }: Props) => {
+export const SearchResultRowWithoutData = ({ node }: Props) => {
   const { duration, price, legs } = node;
   if (legs) {
     return (
@@ -44,7 +44,9 @@ const SearchResultRowWithoutData = ({ node }: Props) => {
           } else {
             // TODO: log such an event?
             return (
-              <Text>Flight leg could not be loaded because of API error.</Text>
+              <Text key="leg:not-found">
+                Flight leg could not be loaded (missing data).
+              </Text>
             );
           }
         })}
@@ -57,7 +59,7 @@ const SearchResultRowWithoutData = ({ node }: Props) => {
     );
   } else {
     // TODO: log such an event?
-    return <Text>Flight legs could not be loaded because of API error.</Text>;
+    return <Text>Flight legs could not be loaded (missing data).</Text>;
   }
 };
 
