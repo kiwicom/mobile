@@ -3,7 +3,9 @@
 import * as React from 'react';
 import { Text } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
 
+import Store from '../src/redux/Store';
 import Booking from './booking/Booking';
 import Homepage from './homepage/Homepage';
 import Profile from './profile/Profile';
@@ -32,7 +34,7 @@ const TravelStackNavigator = StackNavigator(
   },
 );
 
-export default TabNavigator({
+const MainTabNavigator = TabNavigator({
   Travel: {
     screen: TravelStackNavigator,
     navigationOptions: {
@@ -52,3 +54,13 @@ export default TabNavigator({
     },
   },
 });
+
+export default class Application extends React.Component<{}, {}> {
+  render() {
+    return (
+      <Provider store={Store}>
+        <MainTabNavigator />
+      </Provider>
+    );
+  }
+}
