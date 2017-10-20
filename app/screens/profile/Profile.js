@@ -1,16 +1,36 @@
 // @flow
 
 import * as React from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, Button } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class Booking extends React.PureComponent<{}, {}> {
+import CenteredView from '../../components/visual/view/CenteredView';
+
+type Props = {
+  onLogout: () => void,
+};
+
+const Profile = class Profile extends React.PureComponent<Props, {}> {
   render = () => {
     return (
-      <ScrollView>
+      <CenteredView>
         <Text>TODO: basic user info</Text>
-        <Text>TODO: logout</Text>
         <Text>TODO: login if not logged</Text>
-      </ScrollView>
+        <Button
+          onPress={() => {
+            this.props.onLogout();
+          }}
+          title="Logout"
+        />
+      </CenteredView>
     );
   };
-}
+};
+
+export default connect(null, dispatch => ({
+  onLogout: () => {
+    dispatch({
+      type: 'logout',
+    });
+  },
+}))(Profile);

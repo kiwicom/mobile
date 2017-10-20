@@ -25,8 +25,8 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
   _tryLogIn = (username: string, password: string, callback: Callback) => {
     this.setState({ loading: true });
     LoginMutation({ email: username, password }, (response, errors) => {
-      callback(response, errors);
       this.setState({ loading: false });
+      callback(response, errors);
     });
   };
 

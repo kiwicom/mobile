@@ -1,40 +1,28 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView, AsyncStorage } from 'react-native';
+import { ScrollView } from 'react-native';
 import { graphql } from 'react-relay';
+import { connect } from 'react-redux';
 
 import BookingsListContainer from './BookingsList';
 import SearchForm from './SearchForm';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
-import { type AccessToken, createAccessToken } from '../../types/AccessToken';
+import { createAccessToken } from '../../types/AccessToken';
 
 import type { Navigation } from '../../types/Navigation';
+import type { ReduxState } from '../../types/Redux';
 
 type Props = {
   navigation: Navigation,
+  user: $PropertyType<ReduxState, 'user'>,
+  onLogin: (accessToken: string) => void,
 };
 
-type State = {
-  accessToken: AccessToken,
-};
-
-export default class Homepage extends React.PureComponent<Props, State> {
-  state = {
-    accessToken: createAccessToken(),
-  };
-
+const Homepage = class Homepage extends React.PureComponent<Props> {
   static navigationOptions = {
     title: 'Welcome traveler!',
-  };
-
-  componentDidMount = async () => {
-    AsyncStorage.getItem('access_token', (error, value) => {
-      this.setState({
-        accessToken: value,
-      });
-    });
   };
 
   render = () => {
@@ -48,9 +36,9 @@ export default class Homepage extends React.PureComponent<Props, State> {
               date,
             })}
         />
-        {this.state.accessToken ? (
+        {this.props.user.logged ? (
           <PrivateApiRenderer
-            accessToken={this.state.accessToken}
+            accessToken={this.props.user.accessToken}
             query={AllBookingsQuery}
             render={props => {
               return (
@@ -71,11 +59,9 @@ export default class Homepage extends React.PureComponent<Props, State> {
                 // TODO: display errors
                 console.warn(JSON.stringify(errors)); // eslint-disable-line no-console
               } else {
-                const accessToken = createAccessToken(
-                  response && response.token,
+                this.props.onLogin(
+                  createAccessToken(response && response.token),
                 );
-                this.setState({ accessToken: accessToken });
-                AsyncStorage.setItem('access_token', accessToken);
               }
             }}
           />
@@ -83,7 +69,21 @@ export default class Homepage extends React.PureComponent<Props, State> {
       </ScrollView>
     );
   };
-}
+};
+
+export default connect(
+  state => ({
+    user: state.user,
+  }),
+  dispatch => ({
+    onLogin: accessToken => {
+      dispatch({
+        type: 'login',
+        accessToken,
+      });
+    },
+  }),
+)(Homepage);
 
 const AllBookingsQuery = graphql`
   query HomepageQuery {
