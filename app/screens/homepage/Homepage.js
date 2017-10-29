@@ -13,6 +13,7 @@ import { createAccessToken } from '../../types/AccessToken';
 
 import type { Navigation } from '../../types/Navigation';
 import type { ReduxState } from '../../types/Redux';
+import { contentPadding } from '../../styles/sizes';
 
 type Props = {
   navigation: Navigation,
@@ -27,7 +28,7 @@ const Homepage = class Homepage extends React.PureComponent<Props> {
 
   render = () => {
     return (
-      <ScrollView>
+      <ScrollView style={{ padding: contentPadding }}>
         <SearchForm
           onSend={(from, to, date) =>
             this.props.navigation.navigate('SearchResults', {

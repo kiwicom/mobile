@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, Platform } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
@@ -10,6 +10,7 @@ import Booking from './booking/Booking';
 import Homepage from './homepage/Homepage';
 import Profile from './profile/Profile';
 import Search from './search/Search';
+import { caption, neutral100, white } from '../styles/colors';
 
 const TravelStackNavigator = StackNavigator(
   {
@@ -21,39 +22,60 @@ const TravelStackNavigator = StackNavigator(
     initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
-        backgroundColor: '#01bba5',
+        backgroundColor: caption,
       },
       headerTitleStyle: {
-        color: '#fff',
+        color: white,
       },
-      headerTintColor: '#fff',
+      headerTintColor: white,
     },
     cardStyle: {
-      backgroundColor: '#eee',
+      backgroundColor: neutral100,
     },
   },
 );
 
-const MainTabNavigator = TabNavigator({
-  Travel: {
-    screen: TravelStackNavigator,
-    navigationOptions: {
-      title: 'Travel',
-      tabBarIcon: function Icon() {
-        return <Text>T</Text>;
+const MainTabNavigator = TabNavigator(
+  {
+    Travel: {
+      screen: TravelStackNavigator,
+      navigationOptions: {
+        title: 'Travel',
+        tabBarIcon: function Icon() {
+          return <Text>T</Text>;
+        },
+      },
+    },
+    Profile: {
+      screen: Profile,
+      navigationOptions: {
+        title: 'Profile',
+        tabBarIcon: function Icon() {
+          return <Text>P</Text>;
+        },
       },
     },
   },
-  Profile: {
-    screen: Profile,
-    navigationOptions: {
-      title: 'Profile',
-      tabBarIcon: function Icon() {
-        return <Text>P</Text>;
-      },
+  {
+    tabBarOptions: {
+      ...Platform.select({
+        ios: {
+          activeTintColor: caption,
+        },
+        android: {
+          style: {
+            backgroundColor: caption,
+          },
+          activeTintColor: white,
+          inactiveTintColor: neutral100,
+          indicatorStyle: {
+            backgroundColor: neutral100,
+          },
+        },
+      }),
     },
   },
-});
+);
 
 export default class Application extends React.Component<{}, {}> {
   render() {

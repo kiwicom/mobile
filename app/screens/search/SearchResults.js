@@ -7,6 +7,7 @@ import { createPaginationContainer, graphql } from 'react-relay';
 import SearchResultRow from './SearchResultRow';
 
 import type { SearchResultsContainer_flights } from './__generated__/SearchResults_flights.graphql';
+import { button } from '../../styles/colors';
 
 type Props = {
   flights: SearchResultsContainer_flights,
@@ -55,9 +56,13 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
         )}
         {this.props.relay.hasMore() &&
           (this.state.loading ? (
-            <Button onPress={() => {}} title="Loading..." />
+            <Button onPress={() => {}} title="Loading..." color={button} />
           ) : (
-            <Button onPress={this._loadMore} title="Load more!" />
+            <Button
+              onPress={this._loadMore}
+              title="Load more!"
+              color={button}
+            />
           ))}
       </ScrollView>
     );

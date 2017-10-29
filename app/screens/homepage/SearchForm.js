@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Button, TextInput, View, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import { button } from '../../styles/colors';
 
 type Props = {
   onSend: (from: string, to: string, date: Date) => void,
@@ -90,6 +91,7 @@ export default class SearchForm extends React.PureComponent<Props, State> {
             this.state.date.from,
           )}
         title="Find connections!"
+        color={button}
       />
     </View>
   );
