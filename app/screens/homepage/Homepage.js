@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { graphql } from 'react-relay';
 import { connect } from 'react-redux';
 
@@ -54,18 +54,20 @@ const Homepage = class Homepage extends React.PureComponent<Props> {
             }}
           />
         ) : (
-          <SingleLoginForm
-            onSend={(response, errors) => {
-              if (errors) {
-                // TODO: display errors
-                console.warn(JSON.stringify(errors)); // eslint-disable-line no-console
-              } else {
-                this.props.onLogin(
-                  createAccessToken(response && response.token),
-                );
-              }
-            }}
-          />
+          <View style={{ marginTop: 50 }}>
+            <SingleLoginForm
+              onSend={(response, errors) => {
+                if (errors) {
+                  // TODO: display errors
+                  console.warn(JSON.stringify(errors)); // eslint-disable-line no-console
+                } else {
+                  this.props.onLogin(
+                    createAccessToken(response && response.token),
+                  );
+                }
+              }}
+            />
+          </View>
         )}
       </ScrollView>
     );
