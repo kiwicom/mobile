@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Button, TextInput, View } from 'react-native';
 
 import LoginMutation, { type Callback } from './mutation/Login';
+import { button } from '../../styles/colors';
 
 type Props = {
   onSend: Callback,
@@ -50,7 +51,7 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
         secureTextEntry={true}
       />
       {this.state.loading ? (
-        <Button onPress={() => {}} title="Logging in..." />
+        <Button onPress={() => {}} title="Logging in..." color={button} />
       ) : (
         <Button
           onPress={() => {
@@ -63,6 +64,7 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
             );
           }}
           title="Login!"
+          color={button}
         />
       )}
     </View>
