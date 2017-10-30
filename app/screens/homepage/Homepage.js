@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { graphql } from 'react-relay';
 import { connect } from 'react-redux';
 
@@ -10,6 +10,7 @@ import SearchForm from './SearchForm';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import { createAccessToken } from '../../types/AccessToken';
+import { contentPadding } from '../../styles/sizes';
 
 import type { Navigation } from '../../types/Navigation';
 import type { ReduxState } from '../../types/Redux';
@@ -27,7 +28,7 @@ const Homepage = class Homepage extends React.PureComponent<Props> {
 
   render = () => {
     return (
-      <ScrollView>
+      <ScrollView style={{ padding: contentPadding }}>
         <SearchForm
           onSend={(from, to, date) =>
             this.props.navigation.navigate('SearchResults', {
@@ -53,18 +54,20 @@ const Homepage = class Homepage extends React.PureComponent<Props> {
             }}
           />
         ) : (
-          <SingleLoginForm
-            onSend={(response, errors) => {
-              if (errors) {
-                // TODO: display errors
-                console.warn(JSON.stringify(errors)); // eslint-disable-line no-console
-              } else {
-                this.props.onLogin(
-                  createAccessToken(response && response.token),
-                );
-              }
-            }}
-          />
+          <View style={{ marginTop: 50 }}>
+            <SingleLoginForm
+              onSend={(response, errors) => {
+                if (errors) {
+                  // TODO: display errors
+                  console.warn(JSON.stringify(errors)); // eslint-disable-line no-console
+                } else {
+                  this.props.onLogin(
+                    createAccessToken(response && response.token),
+                  );
+                }
+              }}
+            />
+          </View>
         )}
       </ScrollView>
     );
