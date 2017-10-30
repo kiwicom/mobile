@@ -1,5 +1,8 @@
 {
   "collectCoverage": false,
   "preset": "jest-expo",
-  "verbose": false
+  "verbose": false,
+  "globals": {
+    "__DEV__": false
+  }
 }
