@@ -13,11 +13,11 @@
     "test-ci": "./app/scripts/test.sh"
   },
   "dependencies": {
-    "expo": "^21.0.2",
+    "expo": "^22.0.0",
     "idx": "^2.2.0",
     "json-stable-stringify": "^1.0.1",
     "react": "^16.0.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.0.tar.gz",
     "react-native-datepicker": "^1.6.0",
     "react-navigation": "^1.0.0-beta.13",
     "react-redux": "^5.0.6",
@@ -34,13 +34,13 @@
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
-    "exp": "^44.0.0",
+    "exp": "^45.1.0",
     "flow-bin": "^0.57.0",
     "graphql-cli": "^1.1.0",
     "jest": "21.2.1",
-    "jest-expo": "^21.0.2",
+    "jest-expo": "^22.0.1",
     "prettier": "^1.7.4",
-    "react-native-scripts": "1.5.0",
+    "react-native-scripts": "1.6.0",
     "react-test-renderer": "^16.0.0",
     "relay-compiler": "^1.4.1"
   }
