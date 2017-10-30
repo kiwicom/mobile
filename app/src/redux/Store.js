@@ -1,6 +1,7 @@
 // @flow
 
 import { createStore } from 'redux';
+import { AsyncStorage } from 'react-native';
 
 import type { ReduxState, ReduxActions } from '../../types/Redux';
 
@@ -23,6 +24,7 @@ const reducer = (state: ReduxState = InitialState, action: ReduxActions) => {
     };
   }
   if (action.type === 'logout') {
+    AsyncStorage.clear(); // clear all the local cache
     return {
       ...state,
       user: {

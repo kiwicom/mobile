@@ -53,3 +53,32 @@ exports[`renders as expected 1`] = `
   </View>
 </View>
 `;
+
+exports[`renders as expected while loading 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "rgb(202, 0, 0)",
+      "borderRadius": 4,
+      "justifyContent": "center",
+      "padding": 4,
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    disabled={false}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#fff",
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Logging in...
+  </Text>
+</View>
+`;
