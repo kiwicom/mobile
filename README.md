@@ -18,6 +18,8 @@ Below you'll find information about performing common tasks. The most recent ver
   * [yarn test](#yarn-test)
   * [yarn run ios](#yarn-run-ios)
   * [yarn run android](#yarn-run-android)
+* [Best Practices](#best-practices)
+  * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 * [Environment Variables](#environment-variables)
   * [Configuring Packager IP Address](#configuring-packager-ip-address)
 * [Troubleshooting](#troubleshooting)
@@ -95,6 +97,29 @@ Like `yarn start`, but also attempts to open your app on a connected Android dev
 1. Find Genymotion’s copy of adb. On macOS for example, this is normally `/Applications/Genymotion.app/Contents/MacOS/tools/`.
 2. Add the Genymotion tools directory to your path (instructions for [Mac](http://osxdaily.com/2014/08/14/add-new-path-to-path-command-line/), [Linux](http://www.computerhope.com/issues/ch001647.htm), and [Windows](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/)).
 3. Make sure that you can run adb from your terminal.
+
+## Best Practices
+
+### Accessing arbitrarily nested, possibly nullable properties on a JavaScript object
+
+Sometimes (especially in GraphQL environment with nullable results) it's necessary to access deeply nested objects in order to get the value. However the path may contain nullable fields and therefore it's necessary to do checks like this:
+
+```js
+props.user &&
+props.user.friends &&
+props.user.friends[0] &&
+props.user.friends[0].friends
+```
+
+But that's not very friendly and this is why we have `idx` function. You can use it like this:
+
+```js
+import idx from 'idx';
+
+idx(props, _ => _.user.friends[0].friends)
+```
+
+**Do not use `_.get(...)` from Lodash!** For more information please read [documentation here](https://github.com/facebookincubator/idx).
 
 ## Environment Variables
 
