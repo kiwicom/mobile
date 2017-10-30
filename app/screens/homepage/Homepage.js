@@ -9,8 +9,8 @@ import BookingsListContainer from './BookingsList';
 import SearchForm from './SearchForm';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
-import { createAccessToken } from '../../types/AccessToken';
 import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
+import GoogleLoginButton from '../../components/authentication/GoogleLogin';
 
 import type { Navigation } from '../../types/Navigation';
 import type { ReduxState } from '../../types/Redux';
@@ -52,17 +52,11 @@ const Homepage = class Homepage extends React.PureComponent<Props> {
             />
           ) : (
             <View style={{ marginTop: 50 }}>
+              <GoogleLoginButton
+                onSuccess={accessToken => this.props.onLogin(accessToken)}
+              />
               <SingleLoginForm
-                onSend={(response, errors) => {
-                  if (errors) {
-                    // TODO: display errors
-                    console.warn(JSON.stringify(errors)); // eslint-disable-line no-console
-                  } else {
-                    this.props.onLogin(
-                      createAccessToken(response && response.token),
-                    );
-                  }
-                }}
+                onSuccess={accessToken => this.props.onLogin(accessToken)}
               />
             </View>
           )}

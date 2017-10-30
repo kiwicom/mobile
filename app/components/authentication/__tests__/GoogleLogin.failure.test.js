@@ -16,6 +16,7 @@ beforeEach(() => {
 
 it('calls Google sing-in service unsuccessfully', async () => {
   expect.assertions(0);
+  // onSuccess event should not be called!
   renderer.render(<GoogleLogin onSuccess={() => expect(true).toBe(false)} />);
   await renderer.getRenderOutput().props.onPress();
 });

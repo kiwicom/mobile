@@ -1,12 +1,19 @@
 // @flow
 
-module.exports = {
+export default {
   auth: {
     android: {
-      clientId: 'TODO',
+      google: {
+        clientId: null,
+      },
     },
     ios: {
-      clientId: 'TODO',
+      google: {
+        clientId: null,
+      },
+    },
+    kiwi: {
+      backend: null,
     },
   },
 };

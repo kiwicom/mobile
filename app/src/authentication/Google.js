@@ -8,8 +8,8 @@ export default new class Google {
   signIn = async (): Promise<string | false> => {
     try {
       const result = await Expo.Google.logInAsync({
-        androidClientId: config.auth.android.clientId, // https://docs.expo.io/versions/latest/sdk/google.html#create-an-android-oauth-client-id
-        iosClientId: config.auth.ios.clientId, // https://docs.expo.io/versions/latest/sdk/google.html#create-an-ios-oauth-client-id
+        androidClientId: config.auth.android.google.clientId, // https://docs.expo.io/versions/latest/sdk/google.html#create-an-android-oauth-client-id
+        iosClientId: config.auth.ios.google.clientId, // https://docs.expo.io/versions/latest/sdk/google.html#create-an-ios-oauth-client-id
         scopes: ['profile', 'email'],
       });
 

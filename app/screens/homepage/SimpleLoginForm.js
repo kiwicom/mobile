@@ -6,9 +6,10 @@ import { Button, View } from 'react-native';
 import LoginMutation, { type Callback } from './mutation/Login';
 import { button } from '../../styles/colors';
 import TextInput from '../../components/forms/TextInput';
+import { createAccessToken, type AccessToken } from '../../types/AccessToken';
 
 type Props = {
-  onSend: Callback,
+  onSuccess: (accessToken: AccessToken) => void,
 };
 
 type State = {
@@ -60,7 +61,13 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
               this.state.username,
               this.state.password,
               (response, errors) => {
-                this.props.onSend(response, errors);
+                if (errors) {
+                  // TODO: onFailure event with errors
+                } else {
+                  this.props.onSuccess(
+                    createAccessToken(response && response.token),
+                  );
+                }
               },
             );
           }}
