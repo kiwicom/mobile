@@ -6,6 +6,11 @@ exports[`formats date 1`] = `
   allowFontScaling={true}
   disabled={false}
   ellipsizeMode="tail"
+  style={
+    Object {
+      "color": "#888",
+    }
+  }
 >
   2017-11-17
 </Text>

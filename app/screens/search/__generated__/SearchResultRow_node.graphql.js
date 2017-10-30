@@ -10,22 +10,16 @@
 import type {ConcreteFragment} from 'relay-runtime';
 export type SearchResultRow_node = {|
   +duration: ?number;
-  +price: ?{|
-    +amount: ?number;
-    +currency: ?string;
+  +price: ?{| |};
+  +departure: ?{|
+    +localTime: ?any;
+  |};
+  +arrival: ?{|
+    +localTime: ?any;
   |};
   +legs: ?$ReadOnlyArray<?{|
     +id: string;
-    +airline: ?{|
-      +name: ?string;
-      +logoUrl: ?string;
-    |};
-    +departure: ?{|
-      +localTime: ?any;
-    |};
-    +arrival: ?{|
-      +localTime: ?any;
-    |};
+    +airline: ?{| |};
   |}>;
 |};
 */
@@ -53,18 +47,55 @@ const fragment /*: ConcreteFragment*/ = {
       "plural": false,
       "selections": [
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "amount",
-          "storageKey": null
-        },
+          "kind": "FragmentSpread",
+          "name": "Price",
+          "args": null
+        }
+      ],
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "RouteStop",
+      "name": "departure",
+      "plural": false,
+      "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
           "args": null,
-          "name": "currency",
+          "name": "localTime",
           "storageKey": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "RouteStop",
+          "args": null
+        }
+      ],
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "RouteStop",
+      "name": "arrival",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "localTime",
+          "storageKey": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "RouteStop",
+          "args": null
         }
       ],
       "storageKey": null
@@ -93,63 +124,8 @@ const fragment /*: ConcreteFragment*/ = {
           "plural": false,
           "selections": [
             {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "name",
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "logoUrl",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "name": "departure",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "localTime",
-              "storageKey": null
-            },
-            {
               "kind": "FragmentSpread",
-              "name": "RouteStop",
-              "args": null
-            }
-          ],
-          "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "name": "arrival",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "localTime",
-              "storageKey": null
-            },
-            {
-              "kind": "FragmentSpread",
-              "name": "RouteStop",
+              "name": "AirlineLogo",
               "args": null
             }
           ],

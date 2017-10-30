@@ -6,10 +6,11 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 type Props = {
   children: React.Node,
   onPress?: Function,
+  style?: Object,
 };
 
-export default function SimpleCard({ children, onPress }: Props) {
-  const Card = <View style={styles.container}>{children}</View>;
+export default function SimpleCard({ children, onPress, style }: Props) {
+  const Card = <View style={[styles.container, style]}>{children}</View>;
 
   if (onPress) {
     return <TouchableOpacity onPress={onPress}>{Card}</TouchableOpacity>;

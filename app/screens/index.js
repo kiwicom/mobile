@@ -10,27 +10,30 @@ import Booking from './booking/Booking';
 import Homepage from './homepage/Homepage';
 import Profile from './profile/Profile';
 import Search from './search/Search';
-import { caption, neutral100, white } from '../styles/colors';
+import { caption, neutral100, white, font } from '../styles/colors';
 
 const TravelStackNavigator = StackNavigator(
   {
     Booking: { screen: Booking },
-    Home: { screen: Homepage },
+    Home: {
+      screen: Homepage,
+    },
     SearchResults: { screen: Search },
   },
   {
     initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
-        backgroundColor: caption,
+        backgroundColor: white,
+        borderBottomWidth: 0,
       },
       headerTitleStyle: {
-        color: white,
+        color: font,
       },
-      headerTintColor: white,
+      headerTintColor: font,
     },
     cardStyle: {
-      backgroundColor: neutral100,
+      backgroundColor: white,
     },
   },
 );

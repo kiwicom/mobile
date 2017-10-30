@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
 export default function DateComponent({
   dateTime,
@@ -12,5 +12,11 @@ export default function DateComponent({
     return null;
   }
   const date = new Date(dateTime);
-  return <Text>{date.toISOString().substr(0, 10)}</Text>;
+  return <Text style={style.text}>{date.toISOString().substr(0, 10)}</Text>;
 }
+
+const style = StyleSheet.create({
+  text: {
+    color: '#888',
+  },
+});

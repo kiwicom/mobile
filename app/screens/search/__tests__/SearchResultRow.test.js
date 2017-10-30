@@ -13,6 +13,8 @@ it('renders without legs', () => {
       node={{
         duration: null,
         price: null,
+        departure: null,
+        arrival: null,
         legs: null,
       }}
     />,
@@ -25,23 +27,17 @@ it('renders with partial legs', () => {
     <SearchResultRowWithoutData
       node={{
         duration: 60, // minutes
-        price: {
-          amount: 20,
-          currency: 'EUR',
+        price: {},
+        departure: {
+          localTime: '2017-11-19T09:00:00',
+        },
+        arrival: {
+          localTime: '2017-11-19T12:00:00',
         },
         legs: [
           {
             id: '1',
-            airline: {
-              name: 'ČSA',
-              logoUrl: 'http://.../',
-            },
-            departure: {
-              localTime: '2017-11-19T09:00:00',
-            },
-            arrival: {
-              localTime: '2017-11-19T12:00:00',
-            },
+            airline: {},
           },
           null, // simulates API failure
         ],

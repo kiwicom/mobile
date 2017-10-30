@@ -1,95 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders with partial legs 1`] = `
-<SimpleCard>
+<SimpleCard
+  style={
+    Object {
+      "borderBottomColor": "#eee",
+      "borderBottomWidth": 1,
+    }
+  }
+>
   <View
     style={
       Object {
+        "flex": 16,
         "flexDirection": "row",
       }
     }
   >
-    <Image
-      source={
-        Object {
-          "uri": "http://.../",
-        }
-      }
-      style={
-        Object {
-          "height": 25,
-          "width": 25,
-        }
-      }
-    />
     <View
       style={
         Object {
+          "flex": 2,
+        }
+      }
+    >
+      <Relay(PriceWithoutData)
+        data={Object {}}
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 14,
           "flexDirection": "column",
         }
       }
     >
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
       >
-        <Relay(RouteStopWithoutData)
-          data={
+        <View
+          style={
             Object {
-              "localTime": "2017-11-19T09:00:00",
+              "flexDirection": "column",
             }
           }
-        />
-         →
-         
-        <Relay(RouteStopWithoutData)
-          data={
+        >
+          <Relay(RouteStopWithoutData)
+            data={
+              Object {
+                "localTime": "2017-11-19T09:00:00",
+              }
+            }
+          />
+          <DateComponent
+            dateTime="2017-11-19T09:00:00"
+          />
+        </View>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+        >
+           → 
+        </Text>
+        <View
+          style={
             Object {
-              "localTime": "2017-11-19T12:00:00",
+              "flexDirection": "column",
             }
           }
-        />
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        disabled={false}
-        ellipsizeMode="tail"
+        >
+          <Relay(RouteStopWithoutData)
+            data={
+              Object {
+                "localTime": "2017-11-19T12:00:00",
+              }
+            }
+          />
+          <DateComponent
+            dateTime="2017-11-19T12:00:00"
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
       >
-        <DateComponent
-          dateTime="2017-11-19T09:00:00"
+        <Relay(AirlineLogoData)
+          data={Object {}}
         />
-         →
-         
-        <DateComponent
-          dateTime="2017-11-19T12:00:00"
-        />
-      </Text>
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          disabled={false}
+          ellipsizeMode="tail"
+        >
+          in 
+          <Duration
+            minutes={60}
+          />
+        </Text>
+      </View>
     </View>
   </View>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-  >
-    Flight leg could not be loaded (missing data).
-  </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    disabled={false}
-    ellipsizeMode="tail"
-  >
-    20
-     
-    EUR
-  </Text>
-  <Duration
-    minutes={60}
-  />
 </SimpleCard>
 `;
 

@@ -22,10 +22,6 @@ type Props = {
 };
 
 const Homepage = class Homepage extends React.PureComponent<Props> {
-  static navigationOptions = {
-    title: 'Welcome traveler!',
-  };
-
   render = () => {
     return (
       <ScrollView style={{ padding: contentPadding }}>
