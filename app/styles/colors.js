@@ -15,3 +15,5 @@ export const textInput = {
   background: white,
   text: neutral900,
 };
+
+export const font = '#222';

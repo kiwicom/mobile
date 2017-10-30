@@ -22,6 +22,7 @@ const Profile = class Profile extends React.PureComponent<Props, {}> {
           }}
           title="Logout"
         />
+        <Text>TODO: default currency</Text>
       </CenteredView>
     );
   };

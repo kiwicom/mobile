@@ -3,16 +3,19 @@
 exports[`renders as expected 1`] = `
 <View
   style={
-    Object {
-      "backgroundColor": "#fff",
-      "marginBottom": 5,
-      "marginLeft": 5,
-      "marginRight": 5,
-      "paddingBottom": 5,
-      "paddingLeft": 10,
-      "paddingRight": 10,
-      "paddingTop": 5,
-    }
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "marginBottom": 5,
+        "marginLeft": 5,
+        "marginRight": 5,
+        "paddingBottom": 5,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "paddingTop": 5,
+      },
+      undefined,
+    ]
   }
 >
   CHILDREN
@@ -46,16 +49,19 @@ exports[`renders as expected with onPress callback 1`] = `
 >
   <View
     style={
-      Object {
-        "backgroundColor": "#fff",
-        "marginBottom": 5,
-        "marginLeft": 5,
-        "marginRight": 5,
-        "paddingBottom": 5,
-        "paddingLeft": 10,
-        "paddingRight": 10,
-        "paddingTop": 5,
-      }
+      Array [
+        Object {
+          "backgroundColor": "#fff",
+          "marginBottom": 5,
+          "marginLeft": 5,
+          "marginRight": 5,
+          "paddingBottom": 5,
+          "paddingLeft": 10,
+          "paddingRight": 10,
+          "paddingTop": 5,
+        },
+        undefined,
+      ]
     }
   >
     CHILDREN

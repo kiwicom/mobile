@@ -28,7 +28,7 @@ export default class Search extends React.Component<Props> {
             to: { location: params.to.trim() },
             date: { exact: new Date(params.date).toISOString().slice(0, 10) },
           },
-          count: 10,
+          count: 50,
         }}
         render={props => {
           return <SearchResultsContainer flights={props} />;

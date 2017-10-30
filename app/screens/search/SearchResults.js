@@ -30,7 +30,7 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
       return;
     }
 
-    this.props.relay.loadMore(5, () => {
+    this.props.relay.loadMore(25, () => {
       this.setState({ loading: false });
     });
   };
