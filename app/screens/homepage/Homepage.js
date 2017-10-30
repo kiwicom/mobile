@@ -14,6 +14,7 @@ import { contentPadding } from '../../styles/sizes';
 
 import type { Navigation } from '../../types/Navigation';
 import type { ReduxState } from '../../types/Redux';
+import { contentPadding } from '../../styles/sizes';
 
 type Props = {
   navigation: Navigation,

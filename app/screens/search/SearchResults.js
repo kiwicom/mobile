@@ -8,6 +8,7 @@ import SearchResultRow from './SearchResultRow';
 import { button } from '../../styles/colors';
 
 import type { SearchResultsContainer_flights } from './__generated__/SearchResults_flights.graphql';
+import { button } from '../../styles/colors';
 
 type Props = {
   flights: SearchResultsContainer_flights,
