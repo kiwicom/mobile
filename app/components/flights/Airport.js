@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { Text } from 'react-native';
+import idx from 'idx';
 
 import type { Airport } from './__generated__/Airport.graphql';
 
@@ -16,7 +17,7 @@ export const AirportWithoutData = ({ data }: Props) => {
   }
   return (
     <Text>
-      {data.city && data.city.name} ({data.locationId})
+      {idx(data, _ => _.city.name)} ({data.locationId})
     </Text>
   );
 };

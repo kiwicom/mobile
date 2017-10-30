@@ -1,6 +1,7 @@
 {
   "presets": ["babel-preset-expo"],
   "plugins": [
+    "babel-plugin-idx",
     ["relay", {"schema": "app/schema.graphql"}]
   ],
   "env": {

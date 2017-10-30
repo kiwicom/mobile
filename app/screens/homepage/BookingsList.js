@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
+import idx from 'idx';
 
 import BookingListRow from './BookingsListRow';
 import BookingListRowError from './BookingsListRowError';
@@ -22,11 +23,11 @@ type State = {
 
 export class BookingsListWithoutData extends React.Component<Props, State> {
   render = () => {
-    let { allBookings } = this.props.bookings;
+    const edges = idx(this.props, _ => _.bookings.allBookings.edges);
     return (
       <View>
-        {allBookings && allBookings.edges ? (
-          allBookings.edges.map(edge => {
+        {edges ? (
+          edges.map(edge => {
             if (edge) {
               const { node, cursor } = edge;
 

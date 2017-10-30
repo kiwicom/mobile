@@ -4,6 +4,7 @@
 
 - `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852
 - Relay swallows all GraphQL errors in `QueryRenderer`: https://github.com/facebook/relay/issues/1913
+- Jest code coverage (Instanbul) doesn't work with Facebook IDX: https://github.com/facebookincubator/idx/issues/19
 
 ## Table of Contents
 
