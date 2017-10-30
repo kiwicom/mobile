@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { Button, TextInput, View, Text } from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import { button } from '../../styles/colors';
+import { textInput } from '../../styles/forms';
 
 type Props = {
   onSend: (from: string, to: string, date: Date) => void,
@@ -40,28 +42,25 @@ export default class SearchForm extends React.PureComponent<Props, State> {
         <View style={{ flex: 1 }}>
           <Text>From:</Text>
           <TextInput
-            style={{
-              height: 40,
-              borderColor: 'gray',
-              borderWidth: 1,
-              borderRightWidth: 0,
-            }}
+            style={[textInput, { borderRightWidth: 0 }]}
             onChangeText={text =>
               this.setState({
                 destination: { ...this.state.destination, from: text },
               })}
             value={this.state.destination.from}
+            underlineColorAndroid="transparent"
           />
         </View>
         <View style={{ flex: 1 }}>
           <Text>To:</Text>
           <TextInput
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={textInput}
             onChangeText={text =>
               this.setState({
                 destination: { ...this.state.destination, to: text },
               })}
             value={this.state.destination.to}
+            underlineColorAndroid="transparent"
           />
         </View>
       </View>
@@ -90,6 +89,7 @@ export default class SearchForm extends React.PureComponent<Props, State> {
             this.state.date.from,
           )}
         title="Find connections!"
+        color={button}
       />
     </View>
   );
