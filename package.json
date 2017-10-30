@@ -17,7 +17,7 @@
     "idx": "^2.2.0",
     "json-stable-stringify": "^1.0.1",
     "react": "^16.0.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.0.tar.gz",
     "react-native-datepicker": "^1.6.0",
     "react-navigation": "^1.0.0-beta.13",
     "react-redux": "^5.0.6",
