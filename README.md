@@ -1,8 +1,7 @@
 [![Build Status](https://travis-ci.org/mrtnzlml/native.svg?branch=master)](https://travis-ci.org/mrtnzlml/native)
-
-## Known issues: 
-
 [![Greenkeeper badge](https://badges.greenkeeper.io/mrtnzlml/native.svg)](https://greenkeeper.io/)
+
+## Known issues
 
 - `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852
 - Relay swallows all GraphQL errors in `QueryRenderer`: https://github.com/facebook/relay/issues/1913
