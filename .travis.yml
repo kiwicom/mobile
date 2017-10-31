@@ -1,11 +1,11 @@
 language: node_js
 node_js: 'node' # latest stable Node.js release
 
-install:
-  - yarn install
-
-script:
-  - ./app/scripts/test.sh
+before_install: yarn global add greenkeeper-lockfile@1
+install: yarn install
+before_script: greenkeeper-lockfile-update
+script: ./app/scripts/test.sh
+after_script: greenkeeper-lockfile-upload
 
 #deploy:
 #  provider: script
