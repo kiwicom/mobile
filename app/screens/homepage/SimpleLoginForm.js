@@ -1,11 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Button, TextInput, View } from 'react-native';
+import { Button, View } from 'react-native';
 
 import LoginMutation, { type Callback } from './mutation/Login';
 import { button } from '../../styles/colors';
-import { textInput } from '../../styles/forms';
+import TextInput from '../../components/forms/TextInput';
 
 type Props = {
   onSend: Callback,
@@ -42,8 +42,6 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
         keyboardType="email-address"
         placeholder="Email"
         value={this.state.username}
-        style={textInput}
-        underlineColorAndroid="transparent"
       />
       <TextInput
         onChangeText={text =>
@@ -52,8 +50,6 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
           })}
         placeholder="Password"
         secureTextEntry={true}
-        style={textInput}
-        underlineColorAndroid="transparent"
       />
       {this.state.loading ? (
         <Button onPress={() => {}} title="Logging in..." color={button} />
