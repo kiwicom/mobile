@@ -10,7 +10,7 @@ import SearchForm from './SearchForm';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import { createAccessToken } from '../../types/AccessToken';
-import Layout from '../../components/visual/view/Layout';
+import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
 
 import type { Navigation } from '../../types/Navigation';
 import type { ReduxState } from '../../types/Redux';
@@ -24,7 +24,7 @@ type Props = {
 const Homepage = class Homepage extends React.PureComponent<Props> {
   render = () => {
     return (
-      <Layout>
+      <LayoutWithoutHeader>
         <ScrollView>
           <SearchForm
             onSend={(from, to, date) =>
@@ -67,7 +67,7 @@ const Homepage = class Homepage extends React.PureComponent<Props> {
             </View>
           )}
         </ScrollView>
-      </Layout>
+      </LayoutWithoutHeader>
     );
   };
 };
