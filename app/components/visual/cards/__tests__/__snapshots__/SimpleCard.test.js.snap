@@ -1,21 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders airy density 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderBottomColor": "#eee",
+      "borderBottomWidth": 1,
+      "paddingBottom": 20,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 20,
+    }
+  }
+>
+  CHILDREN
+</View>
+`;
+
 exports[`renders as expected 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "backgroundColor": "#fff",
-        "marginBottom": 5,
-        "marginLeft": 5,
-        "marginRight": 5,
-        "paddingBottom": 5,
-        "paddingLeft": 10,
-        "paddingRight": 10,
-        "paddingTop": 5,
-      },
-      undefined,
-    ]
+    Object {
+      "backgroundColor": "#fff",
+      "borderBottomColor": "#eee",
+      "borderBottomWidth": 1,
+      "paddingBottom": 5,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 5,
+    }
   }
 >
   CHILDREN
@@ -49,22 +63,34 @@ exports[`renders as expected with onPress callback 1`] = `
 >
   <View
     style={
-      Array [
-        Object {
-          "backgroundColor": "#fff",
-          "marginBottom": 5,
-          "marginLeft": 5,
-          "marginRight": 5,
-          "paddingBottom": 5,
-          "paddingLeft": 10,
-          "paddingRight": 10,
-          "paddingTop": 5,
-        },
-        undefined,
-      ]
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottomColor": "#eee",
+        "borderBottomWidth": 1,
+        "paddingBottom": 5,
+        "paddingLeft": 10,
+        "paddingRight": 10,
+        "paddingTop": 5,
+      }
     }
   >
     CHILDREN
   </View>
+</View>
+`;
+
+exports[`renders without separator 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "paddingBottom": 5,
+      "paddingLeft": 10,
+      "paddingRight": 10,
+      "paddingTop": 5,
+    }
+  }
+>
+  CHILDREN
 </View>
 `;
