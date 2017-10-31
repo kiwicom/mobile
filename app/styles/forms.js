@@ -1,4 +1,5 @@
 // @flow
+
 import { textInput as textInputColors } from './colors';
 
 export const textInput = {

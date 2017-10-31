@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View } from 'react-native';
 
 import AirlineLogo from '../../components/flights/AirlineLogo';
 import Date from '../../components/visual/datetime/Date';
@@ -21,7 +21,7 @@ export const SearchResultRowWithoutData = ({ node }: Props) => {
   const { duration, price, legs, departure, arrival } = node;
   if (legs) {
     return (
-      <SimpleCard style={styles.card}>
+      <SimpleCard>
         <View style={{ flex: 16, flexDirection: 'row' }}>
           <View style={{ flex: 2 }}>
             <Price data={price} />
@@ -87,10 +87,3 @@ export default createFragmentContainer(
     }
   `,
 );
-
-const styles = StyleSheet.create({
-  card: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-  },
-});

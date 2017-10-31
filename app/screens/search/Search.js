@@ -5,6 +5,7 @@ import { graphql } from 'react-relay';
 
 import SearchResultsContainer from './SearchResults';
 import PublicApiRenderer from '../../components/relay/PublicApiRenderer';
+import Layout from '../../components/visual/view/Layout';
 
 import type { Navigation } from '../../types/Navigation';
 
@@ -31,7 +32,11 @@ export default class Search extends React.Component<Props> {
           count: 50,
         }}
         render={props => {
-          return <SearchResultsContainer flights={props} />;
+          return (
+            <Layout>
+              <SearchResultsContainer flights={props} />
+            </Layout>
+          );
         }}
       />
     );
