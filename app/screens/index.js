@@ -17,6 +17,9 @@ const TravelStackNavigator = StackNavigator(
     Booking: { screen: Booking },
     Home: {
       screen: Homepage,
+      navigationOptions: {
+        header: null,
+      },
     },
     SearchResults: { screen: Search },
   },
@@ -35,6 +38,7 @@ const TravelStackNavigator = StackNavigator(
     cardStyle: {
       backgroundColor: white,
     },
+    headerMode: 'screen',
   },
 );
 
