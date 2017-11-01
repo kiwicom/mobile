@@ -43,7 +43,7 @@ export default function VerificationBadge({ verified }: Props) {
         onLayout={textElement => {
           this.viewContainer.setNativeProps({
             style: {
-              width: textElement.nativeEvent.layout.width + 15, // extra padding to prevent text wrapping
+              width: textElement.nativeEvent.layout.width + 10, // extra padding to prevent text wrapping (text container must be always bigger)
             },
           });
         }}
@@ -55,7 +55,7 @@ export default function VerificationBadge({ verified }: Props) {
 }
 
 const basicButtonStyle = {
-  padding: 4,
+  padding: 1,
   borderRadius: 2,
   justifyContent: 'center',
   alignItems: 'center',
@@ -64,8 +64,8 @@ const basicButtonStyle = {
 };
 
 const basicButtonTextStyle = {
-  fontWeight: 'bold',
   color: '#fff',
+  fontSize: 10,
 };
 
 const verifiedStyle = StyleSheet.create({
