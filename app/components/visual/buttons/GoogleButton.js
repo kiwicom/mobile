@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 4,
-    borderRadius: 4,
-    backgroundColor: 'rgb(202, 0, 0)',
+    padding: 10,
+    borderRadius: 2,
+    backgroundColor: '#ca0000',
   },
   buttonText: {
     fontWeight: 'bold',

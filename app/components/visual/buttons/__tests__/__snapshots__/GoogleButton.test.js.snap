@@ -29,10 +29,10 @@ exports[`renders as expected 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "rgb(202, 0, 0)",
-        "borderRadius": 4,
+        "backgroundColor": "#ca0000",
+        "borderRadius": 2,
         "justifyContent": "center",
-        "padding": 4,
+        "padding": 10,
       }
     }
   >
@@ -59,10 +59,10 @@ exports[`renders as expected while loading 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "rgb(202, 0, 0)",
-      "borderRadius": 4,
+      "backgroundColor": "#ca0000",
+      "borderRadius": 2,
       "justifyContent": "center",
-      "padding": 4,
+      "padding": 10,
     }
   }
 >

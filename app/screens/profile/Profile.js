@@ -8,6 +8,8 @@ import { graphql } from 'react-relay';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
 import SimpleCard from '../../components/visual/cards/SimpleCard';
+import VerificationBadge from '../../components/visual/badge/VerificationBadge';
+import LargeText from '../../components/visual/text/Large';
 
 import type { ReduxState } from '../../types/Redux';
 // import type { ProfileQueryResponse } from './__generated__/ProfileQuery.graphql';
@@ -33,21 +35,21 @@ const Profile = class Profile extends React.PureComponent<Props, {}> {
               return (
                 <View>
                   <Row>
-                    <Text>
+                    <LargeText>
                       {props.currentUser && props.currentUser.fullName}
-                    </Text>
+                    </LargeText>
+                    <View style={{ flexDirection: 'row' }}>
+                      <Text>
+                        {props.currentUser && props.currentUser.email}{' '}
+                      </Text>
+                      <VerificationBadge
+                        verified={
+                          props.currentUser && props.currentUser.emailVerified
+                        }
+                      />
+                    </View>
                   </Row>
-                  <Row>
-                    <Text>{props.currentUser && props.currentUser.email} </Text>
-                    <Text>
-                      {props.currentUser && props.currentUser.emailVerified
-                        ? 'VERIFIED'
-                        : 'UNVERIFIED'}
-                    </Text>
-                  </Row>
-                  <Row>
-                    <Text>TODO: default currency</Text>
-                  </Row>
+                  {/* TODO: default currency */}
                   <Row>
                     <Button
                       onPress={() => {
