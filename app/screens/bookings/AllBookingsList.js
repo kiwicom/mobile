@@ -5,15 +5,15 @@ import { View, Text } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import BookingListRow from './BookingsListRow';
-import BookingListRowError from './BookingsListRowError';
+import BookingListRow from './AllBookingsListRow';
+import BookingListRowError from './AllBookingsListRowError';
 import AssetsDownloader from '../../src/assets/AssetsDownloader';
 
-import type { BookingsList_bookings } from './__generated__/BookingsList_bookings.graphql';
+import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
 
 type Props = {
-  bookings: BookingsList_bookings,
+  bookings: AllBookingsList_bookings,
   navigation: Navigation,
 };
 
@@ -63,7 +63,7 @@ export class BookingsListWithoutData extends React.Component<Props, State> {
 export default createFragmentContainer(
   BookingsListWithoutData,
   graphql`
-    fragment BookingsList_bookings on RootQuery {
+    fragment AllBookingsList_bookings on RootQuery {
       allBookings {
         edges {
           cursor
@@ -72,7 +72,7 @@ export default createFragmentContainer(
               ticketUrl
               invoiceUrl
             }
-            ...BookingsListRow_node
+            ...AllBookingsListRow_node
           }
         }
       }

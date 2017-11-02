@@ -9,7 +9,7 @@ type Props = {
   navigation: Navigation,
 };
 
-export default class Booking extends React.PureComponent<Props, {}> {
+export default class SingleBooking extends React.PureComponent<Props, {}> {
   static navigationOptions = {
     title: 'Booking detail - 1234567',
   };
