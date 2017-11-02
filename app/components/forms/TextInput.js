@@ -11,10 +11,11 @@ export default function TextInput(props: Object) {
       underlineColorAndroid="transparent"
       {...props}
       style={{
+        color: textInputColors.text,
+        fontSize: 14,
         padding: 10,
         backgroundColor: textInputColors.background,
         borderColor: textInputColors.border,
-        color: textInputColors.text,
         borderWidth: 1,
         ...props.style,
       }}

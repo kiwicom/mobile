@@ -6,15 +6,32 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import { Provider } from 'react-redux';
 
 import Store from '../src/redux/Store';
-import Booking from './booking/Booking';
+import SingleBooking from './bookings/SingleBooking';
+import AllBookings from './bookings/AllBookings';
 import Homepage from './homepage/Homepage';
 import Profile from './profile/Profile';
 import Search from './search/Search';
 import { caption, neutral100, white, font } from '../styles/colors';
 
-const TravelStackNavigator = StackNavigator(
+const stackNavigatorOptions = {
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: white,
+      borderBottomWidth: 0,
+    },
+    headerTitleStyle: {
+      color: font,
+    },
+    headerTintColor: font,
+  },
+  cardStyle: {
+    backgroundColor: white,
+  },
+  headerMode: 'screen',
+};
+
+const ExploreStackNavigator = StackNavigator(
   {
-    Booking: { screen: Booking },
     Home: {
       screen: Homepage,
       navigationOptions: {
@@ -24,30 +41,42 @@ const TravelStackNavigator = StackNavigator(
     SearchResults: { screen: Search },
   },
   {
+    ...stackNavigatorOptions,
     initialRouteName: 'Home',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: white,
-        borderBottomWidth: 0,
+  },
+);
+
+const TravelStackNavigator = StackNavigator(
+  {
+    AllBookings: {
+      screen: AllBookings,
+      navigationOptions: {
+        header: null,
       },
-      headerTitleStyle: {
-        color: font,
-      },
-      headerTintColor: font,
     },
-    cardStyle: {
-      backgroundColor: white,
-    },
-    headerMode: 'screen',
+    SingleBooking: { screen: SingleBooking },
+  },
+  {
+    ...stackNavigatorOptions,
+    initialRouteName: 'AllBookings',
   },
 );
 
 const MainTabNavigator = TabNavigator(
   {
-    Travel: {
+    Explore: {
+      screen: ExploreStackNavigator,
+      navigationOptions: {
+        title: 'Explore',
+        tabBarIcon: function Icon() {
+          return <Text>E</Text>;
+        },
+      },
+    },
+    Trips: {
       screen: TravelStackNavigator,
       navigationOptions: {
-        title: 'Travel',
+        title: 'Trips',
         tabBarIcon: function Icon() {
           return <Text>T</Text>;
         },

@@ -8,11 +8,11 @@ import SimpleCard from '../../components/visual/cards/SimpleCard';
 import Date from '../../components/visual/datetime/Date';
 import RouteStop from '../../components/flights/RouteStop';
 
-import type { BookingsListRow_node } from './__generated__/BookingsListRow_node.graphql';
+import type { AllBookingsListRow_node } from './__generated__/AllBookingsListRow_node.graphql';
 import type { Navigation } from '../../types/Navigation';
 
 type Props = {
-  node: BookingsListRow_node,
+  node: AllBookingsListRow_node,
   navigation: Navigation,
 };
 
@@ -21,7 +21,7 @@ export function BookingListRowWithoutData({ node, navigation }: Props) {
   const { navigate } = navigation;
   if (legs) {
     return (
-      <SimpleCard onPress={() => navigate('Booking', { booking: node })}>
+      <SimpleCard onPress={() => navigate('SingleBooking', { booking: node })}>
         {legs.map(leg => {
           if (leg) {
             const { id, departure, arrival, airline } = leg;
@@ -59,7 +59,7 @@ export function BookingListRowWithoutData({ node, navigation }: Props) {
 export default createFragmentContainer(
   BookingListRowWithoutData,
   graphql`
-    fragment BookingsListRow_node on Booking {
+    fragment AllBookingsListRow_node on Booking {
       assets {
         ticketUrl
         invoiceUrl
