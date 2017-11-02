@@ -1,7 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { Animated, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import {
+  Animated,
+  StyleSheet,
+  View,
+  Platform,
+  StatusBar,
+} from 'react-native';
 
 import SearchForm from './SearchForm';
 
@@ -20,7 +26,7 @@ export default class SearchHeader extends React.PureComponent<Props, {}> {
   };
 
   render = () => (
-    <KeyboardAvoidingView style={styles.container} behavior="padding">
+    <View style={styles.container} behavior="padding">
       {/* TODO: this.state.expanded */}
       <SearchForm
         onSend={(from, to, date) =>
@@ -30,7 +36,7 @@ export default class SearchHeader extends React.PureComponent<Props, {}> {
             date,
           })}
       />
-    </KeyboardAvoidingView>
+    </View>
   );
 }
 
@@ -38,8 +44,9 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     zIndex: 1,
-    bottom: 20,
-    right: 20,
+    top: Platform.OS === 'ios' ? 40 : StatusBar.currentHeight,
+    right: 10,
+    left: 10,
     margin: 10,
     backgroundColor: 'white',
     shadowColor: 'black',
