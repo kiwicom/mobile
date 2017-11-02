@@ -35,7 +35,7 @@
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
     "exp": "^45.1.0",
-    "flow-bin": "^0.57.0",
+    "flow-bin": "^0.58.0",
     "graphql-cli": "^1.1.0",
     "jest": "21.2.1",
     "jest-expo": "^22.0.1",
