@@ -6447,9 +6447,9 @@ react-native-safe-module@^1.1.0:
   dependencies:
     dedent "^0.6.0"
 
-react-native-scripts@1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-scripts/-/react-native-scripts-1.6.0.tgz#ea48f118290436200bb200156ea4f3a48b19cdb8"
+react-native-scripts@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-scripts/-/react-native-scripts-1.7.0.tgz#17aef327877dbc6bd7e0fca83308681941ce111a"
   dependencies:
     "@expo/bunyan" "1.8.10"
     babel-runtime "^6.9.2"
