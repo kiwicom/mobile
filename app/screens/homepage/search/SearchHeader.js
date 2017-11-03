@@ -1,13 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Animated,
-  StyleSheet,
-  View,
-  Platform,
-  StatusBar,
-} from 'react-native';
+import { Animated, StyleSheet, View, Platform, StatusBar } from 'react-native';
 
 import SearchForm from './SearchForm';
 
