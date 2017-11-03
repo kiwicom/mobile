@@ -16,4 +16,7 @@ export default {
       backend: null,
     },
   },
+  animations: {
+    duration: 150, // ms
+  },
 };
