@@ -1,24 +1,33 @@
 // @flow
 
 import * as React from 'react';
-import { TextInput as OriginalTextInput } from 'react-native';
+import { TextInput as OriginalTextInput, View } from 'react-native';
 
-import { textInput as textInputColors } from '../../styles/colors';
+export const colours = {
+  text: 'black',
+  background: 'transparent',
+};
 
 export default function TextInput(props: Object) {
   return (
-    <OriginalTextInput
-      underlineColorAndroid="transparent"
-      {...props}
+    <View
       style={{
-        color: textInputColors.text,
-        fontSize: 14,
+        height: 40,
+        backgroundColor: '#ededed',
         padding: 10,
-        backgroundColor: textInputColors.background,
-        borderColor: textInputColors.border,
-        borderWidth: 1,
-        ...props.style,
+        marginBottom: 5,
       }}
-    />
+    >
+      <OriginalTextInput
+        underlineColorAndroid="transparent"
+        {...props}
+        style={{
+          flex: 1,
+          color: colours.text,
+          backgroundColor: colours.background,
+          fontSize: 15,
+        }}
+      />
+    </View>
   );
 }
