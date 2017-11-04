@@ -17,6 +17,6 @@ export default {
     },
   },
   animations: {
-    duration: 150, // ms
+    duration: 100, // ms
   },
 };

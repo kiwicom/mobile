@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 
 import LoginMutation, { type Callback } from './mutation/Login';
-import { button } from '../../styles/colors';
+import Colour from '../../styles/Colour';
 import TextInput from '../../components/forms/TextInput';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
 
@@ -53,7 +53,7 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
         secureTextEntry={true}
       />
       {this.state.loading ? (
-        <Button onPress={() => {}} title="Logging in..." color={button} />
+        <Button onPress={() => {}} title="Logging in..." color={Colour.brand} />
       ) : (
         <Button
           onPress={() => {
@@ -72,7 +72,7 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
             );
           }}
           title="Login!"
-          color={button}
+          color={Colour.brand}
         />
       )}
     </View>
