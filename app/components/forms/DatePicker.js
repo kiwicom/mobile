@@ -2,52 +2,46 @@
 
 import * as React from 'react';
 import OriginalDatePicker from 'react-native-datepicker';
-import { View, Dimensions } from 'react-native';
 
 import config from '../../config/application';
-import { colours as inputColours } from './TextInput';
+import { styles } from './TextInput';
 
 export default function DatePicker(props: Object) {
   return (
-    <View
+    <OriginalDatePicker
+      {...props}
+      mode="date"
+      placeholder="select date"
+      format="YYYY-MM-DD"
+      confirmBtnText="Select date"
+      cancelBtnText="Cancel"
+      showIcon={false}
+      duration={config.animations.duration}
       style={{
-        height: 40,
-        backgroundColor: '#ededed',
-        padding: 10,
-        marginBottom: 5,
+        // styles for 'TouchableComponent' around date picker
+        width: null, // removes default width
       }}
-    >
-      <OriginalDatePicker
-        {...props}
-        mode="date"
-        placeholder="select date"
-        format="YYYY-MM-DD"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        showIcon={false}
-        duration={config.animations.duration}
-        style={{
-          width: Dimensions.get('window').width, // FIXME: how to do it better?
-        }}
-        customStyles={{
-          dateInput: {
-            flex: 1,
-            height: 0,
-            margin: 0,
-            borderWidth: 0,
-            alignItems: 'flex-start',
-          },
-          placeholderText: {
-            colours: inputColours.text,
-          },
-          dateTouchBody: {
-            flexDirection: 'row',
-            height: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-          },
-        }}
-      />
-    </View>
+      customStyles={{
+        // date input wrapper (View)
+        dateInput: {
+          flex: styles.input.flex,
+          height: styles.wrapper.height,
+          margin: 0,
+          borderWidth: 0,
+          alignItems: 'flex-start',
+          backgroundColor: styles.input.backgroundColor,
+          padding: styles.input.padding,
+        },
+        // text inside of the date input wrapper (Text)
+        dateText: {
+          color: styles.input.color,
+          fontSize: styles.input.fontSize,
+        },
+        // touchable area around the 'dateInput' (View)
+        dateTouchBody: {
+          ...styles.wrapper,
+        },
+      }}
+    />
   );
 }
