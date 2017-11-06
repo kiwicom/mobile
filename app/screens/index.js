@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text, Platform } from 'react-native';
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import { Provider } from 'react-redux';
 
 import Store from '../src/redux/Store';
@@ -12,6 +11,7 @@ import Homepage from './homepage/Homepage';
 import Profile from './profile/Profile';
 import Search from './search/Search';
 import Color from '../styles/Color';
+import TabBarIcon from '../components/navigation/TabBarIcon';
 
 const stackNavigatorOptions = {
   navigationOptions: {
@@ -67,48 +67,34 @@ const MainTabNavigator = TabNavigator(
     Explore: {
       screen: ExploreStackNavigator,
       navigationOptions: {
-        title: 'Explore',
-        tabBarIcon: function Icon() {
-          return <Text>E</Text>;
+        tabBarIcon: function TabBarIconWrapper(props) {
+          return <TabBarIcon type="Explore" {...props} />;
         },
       },
     },
     Trips: {
       screen: TravelStackNavigator,
       navigationOptions: {
-        title: 'Trips',
-        tabBarIcon: function Icon() {
-          return <Text>T</Text>;
+        tabBarIcon: function TabBarIconWrapper(props) {
+          return <TabBarIcon type="Trips" {...props} />;
         },
       },
     },
     Profile: {
       screen: Profile,
       navigationOptions: {
-        title: 'Profile',
-        tabBarIcon: function Icon() {
-          return <Text>P</Text>;
+        tabBarIcon: function TabBarIconWrapper(props) {
+          return <TabBarIcon type="Profile" {...props} />;
         },
       },
     },
   },
   {
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: 'bottom',
     tabBarOptions: {
-      ...Platform.select({
-        ios: {
-          activeTintColor: Color.brand,
-        },
-        android: {
-          style: {
-            backgroundColor: Color.brand,
-          },
-          activeTintColor: '#fff',
-          inactiveTintColor: Color.grey._100,
-          indicatorStyle: {
-            backgroundColor: Color.grey._100,
-          },
-        },
-      }),
+      activeTintColor: Color.brand,
+      showLabel: false,
     },
   },
 );
