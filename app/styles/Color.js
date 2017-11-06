@@ -1,10 +1,10 @@
 // @flow
 
 export default {
-  // brand colours (see: https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf)
+  // brand colors (see: https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf)
   brand: '#01bba5',
 
-  // complimentary brand colours
+  // complimentary brand colors
   buttercup: '#EB9D08',
   sun: '#FBAD18',
 
