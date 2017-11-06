@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Animated, Text, Dimensions } from 'react-native';
 
 import config from '../../../config/application';
+import { headerHeight } from './SearchHeader';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
@@ -15,17 +16,14 @@ type State = {
   top: number,
 };
 
-export default class LocationSuggestions extends React.Component<
-  Props,
-  State,
-> {
+export default class LocationSuggestions extends React.Component<Props, State> {
   state = {
-    top: new Animated.Value(this.props.visible ? 250 : windowHeight), // default
+    top: new Animated.Value(this.props.visible ? headerHeight : windowHeight), // default
   };
 
   componentWillReceiveProps = (nextProps: Props) => {
     Animated.timing(this.state.top, {
-      toValue: nextProps.visible ? 250 : windowHeight, // FIXME: header height!
+      toValue: nextProps.visible ? headerHeight : windowHeight,
       duration: config.animations.duration,
     }).start();
   };
@@ -34,6 +32,7 @@ export default class LocationSuggestions extends React.Component<
     return (
       <Animated.View
         style={{
+          position: 'absolute',
           top: this.state.top,
           height: windowHeight,
           width: windowWidth,

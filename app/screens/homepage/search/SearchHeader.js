@@ -34,7 +34,7 @@ type State = AnimatedState & {
 };
 
 const shrinkedValues = ({
-  top: Platform.OS === 'ios' ? 40 : StatusBar.currentHeight,
+  top: Platform.OS === 'ios' ? 40 : StatusBar.currentHeight + 20,
   right: 20,
   left: 20,
   height: 65,
@@ -46,10 +46,12 @@ const expandedValues = ({
   top: 0,
   right: 0,
   left: 0,
-  height: 200,
+  height: 240,
   fade: 0,
   brighten: 1,
 }: AnimatedState);
+
+export const headerHeight = 240;
 
 export default class SearchHeader extends React.Component<Props, State> {
   state = {
@@ -94,6 +96,7 @@ export default class SearchHeader extends React.Component<Props, State> {
           shadowOffset: { width: 0, height: 4 },
           shadowOpacity: 0.3,
           padding: 20,
+          zIndex: 1, // must be above the location suggestions (because of shadow)
         }}
       >
         <Animated.Text
