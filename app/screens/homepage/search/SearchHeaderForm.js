@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Button, View } from 'react-native';
 
-import Colour from '../../../styles/Colour';
+import Color from '../../../styles/Color';
 import TextInput from '../../../components/forms/TextInput';
 import DatePicker from '../../../components/forms/DatePicker';
 
@@ -81,7 +81,7 @@ export default class SearchForm extends React.PureComponent<Props, State> {
                 this.state.date.from,
               )}
             title="Find connections!"
-            color={Colour.brand}
+            color={Color.brand}
           />
         )}
       </View>

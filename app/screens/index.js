@@ -11,7 +11,7 @@ import AllBookings from './bookings/AllBookings';
 import Homepage from './homepage/Homepage';
 import Profile from './profile/Profile';
 import Search from './search/Search';
-import Colour from '../styles/Colour';
+import Color from '../styles/Color';
 
 const stackNavigatorOptions = {
   navigationOptions: {
@@ -20,9 +20,9 @@ const stackNavigatorOptions = {
       borderBottomWidth: 0,
     },
     headerTitleStyle: {
-      color: Colour.grey._900,
+      color: Color.grey._900,
     },
-    headerTintColor: Colour.grey._900,
+    headerTintColor: Color.grey._900,
   },
   cardStyle: {
     backgroundColor: '#fff',
@@ -96,16 +96,16 @@ const MainTabNavigator = TabNavigator(
     tabBarOptions: {
       ...Platform.select({
         ios: {
-          activeTintColor: Colour.brand,
+          activeTintColor: Color.brand,
         },
         android: {
           style: {
-            backgroundColor: Colour.brand,
+            backgroundColor: Color.brand,
           },
           activeTintColor: '#fff',
-          inactiveTintColor: Colour.grey._100,
+          inactiveTintColor: Color.grey._100,
           indicatorStyle: {
-            backgroundColor: Colour.grey._100,
+            backgroundColor: Color.grey._100,
           },
         },
       }),
