@@ -27,13 +27,18 @@ exports[`renders as expected 1`] = `
 >
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#ca0000",
-        "borderRadius": 2,
-        "justifyContent": "center",
-        "padding": 10,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#01bba5",
+          "borderRadius": 2,
+          "justifyContent": "center",
+          "padding": 10,
+        },
+        Object {
+          "backgroundColor": "#ca0000",
+        },
+      ]
     }
   >
     <Text
@@ -42,10 +47,13 @@ exports[`renders as expected 1`] = `
       disabled={false}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#fff",
-          "fontWeight": "bold",
-        }
+        Array [
+          Object {
+            "color": "#fff",
+            "fontWeight": "bold",
+          },
+          undefined,
+        ]
       }
     >
       Google Sign in
@@ -57,13 +65,18 @@ exports[`renders as expected 1`] = `
 exports[`renders as expected while loading 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "#ca0000",
-      "borderRadius": 2,
-      "justifyContent": "center",
-      "padding": 10,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#01bba5",
+        "borderRadius": 2,
+        "justifyContent": "center",
+        "padding": 10,
+      },
+      Object {
+        "backgroundColor": "#ca0000",
+      },
+    ]
   }
 >
   <Text
@@ -72,10 +85,13 @@ exports[`renders as expected while loading 1`] = `
     disabled={false}
     ellipsizeMode="tail"
     style={
-      Object {
-        "color": "#fff",
-        "fontWeight": "bold",
-      }
+      Array [
+        Object {
+          "color": "#fff",
+          "fontWeight": "bold",
+        },
+        undefined,
+      ]
     }
   >
     Logging in...
