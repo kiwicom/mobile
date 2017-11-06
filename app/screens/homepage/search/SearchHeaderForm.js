@@ -1,11 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 
-import Color from '../../../styles/Color';
 import TextInput from '../../../components/forms/TextInput';
 import DatePicker from '../../../components/forms/DatePicker';
+import Button from '../../../components/visual/buttons/Button';
 
 type Props = {
   onSend: (from: string, to: string, date: Date) => void,
@@ -81,7 +81,6 @@ export default class SearchForm extends React.PureComponent<Props, State> {
                 this.state.date.from,
               )}
             title="Find connections!"
-            color={Color.brand}
           />
         )}
       </View>

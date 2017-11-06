@@ -15,7 +15,7 @@ export const styles = {
     height: 40,
     backgroundColor: '#ededed',
     marginBottom: 5,
-  }
+  },
 };
 
 export default function TextInput(props: Object) {

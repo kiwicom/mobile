@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 
 import LoginMutation, { type Callback } from './mutation/Login';
-import Color from '../../styles/Color';
 import TextInput from '../../components/forms/TextInput';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
+import Button from '../../components/visual/buttons/Button';
 
 type Props = {
   onSuccess: (accessToken: AccessToken) => void,
@@ -53,7 +53,7 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
         secureTextEntry={true}
       />
       {this.state.loading ? (
-        <Button onPress={() => {}} title="Logging in..." color={Color.brand} />
+        <Button onPress={() => {}} title="Logging in..." />
       ) : (
         <Button
           onPress={() => {
@@ -72,7 +72,6 @@ export default class SimpleLoginForm extends React.PureComponent<Props, State> {
             );
           }}
           title="Login!"
-          color={Color.brand}
         />
       )}
     </View>
