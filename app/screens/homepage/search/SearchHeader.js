@@ -94,6 +94,7 @@ export default class SearchHeader extends React.Component<Props, State> {
           backgroundColor: 'white',
           shadowColor: 'black',
           shadowOffset: { width: 0, height: 4 },
+          elevation: 5, // Android only
           shadowOpacity: 0.3,
           padding: 20,
           zIndex: 1, // must be above the location suggestions (because of shadow)
