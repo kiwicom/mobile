@@ -20,7 +20,7 @@ type Props = {
   onLogin: (accessToken: string) => void,
 };
 
-class AllBookings extends React.PureComponent<Props, {}> {
+class AllBookings extends React.Component<Props, {}> {
   static navigationOptions = {
     title: 'All my bookings',
   };

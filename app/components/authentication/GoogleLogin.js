@@ -16,7 +16,7 @@ type State = {
   loading: boolean,
 };
 
-export default class GoogleLogin extends React.PureComponent<Props, State> {
+export default class GoogleLogin extends React.Component<Props, State> {
   state = {
     loading: false,
   };

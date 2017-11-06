@@ -18,7 +18,7 @@ type State = {
   loading: boolean,
 };
 
-export default class SimpleLoginForm extends React.PureComponent<Props, State> {
+export default class SimpleLoginForm extends React.Component<Props, State> {
   state = {
     username: 'kiwicomtester@gmail.com', // FIXME: remove
     password: '',
