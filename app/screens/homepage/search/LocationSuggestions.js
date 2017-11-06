@@ -15,7 +15,7 @@ type State = {
   top: number,
 };
 
-export default class LocationSuggestions extends React.PureComponent<
+export default class LocationSuggestions extends React.Component<
   Props,
   State,
 > {

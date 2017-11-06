@@ -24,7 +24,7 @@ const Row = function Row({ children }) {
   return <SimpleCard density="airy">{children}</SimpleCard>;
 };
 
-const Profile = class Profile extends React.PureComponent<Props, {}> {
+const Profile = class Profile extends React.Component<Props, {}> {
   render = () => {
     return (
       <LayoutWithoutHeader>

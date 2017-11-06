@@ -7,7 +7,7 @@ type State = {
   dots: string,
 };
 
-export default class SimpleLoading extends React.PureComponent<*, State> {
+export default class SimpleLoading extends React.Component<*, State> {
   timerID: number;
 
   state: State = {

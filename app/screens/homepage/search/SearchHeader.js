@@ -51,7 +51,7 @@ const expandedValues = ({
   brighten: 1,
 }: AnimatedState);
 
-export default class SearchHeader extends React.PureComponent<Props, State> {
+export default class SearchHeader extends React.Component<Props, State> {
   state = {
     expanded: false,
     top: new Animated.Value(shrinkedValues.top),
