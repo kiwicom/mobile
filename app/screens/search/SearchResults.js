@@ -1,11 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Text, Button, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { createPaginationContainer, graphql } from 'react-relay';
 
 import SearchResultRow from './SearchResultRow';
-import Color from '../../styles/Color';
+import Button from '../../components/visual/buttons/Button';
 
 import type { SearchResultsContainer_flights } from './__generated__/SearchResults_flights.graphql';
 
@@ -56,17 +56,9 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
         )}
         {this.props.relay.hasMore() &&
           (this.state.loading ? (
-            <Button
-              onPress={() => {}}
-              title="Loading..."
-              color={Color.brand}
-            />
+            <Button onPress={() => {}} title="Loading..." />
           ) : (
-            <Button
-              onPress={this._loadMore}
-              title="Load more!"
-              color={Color.brand}
-            />
+            <Button onPress={this._loadMore} title="Load more!" />
           ))}
       </ScrollView>
     );

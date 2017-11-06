@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text, Button, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { graphql } from 'react-relay';
 
@@ -10,6 +10,7 @@ import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeade
 import SimpleCard from '../../components/visual/cards/SimpleCard';
 import VerificationBadge from '../../components/visual/badge/VerificationBadge';
 import LargeText from '../../components/visual/text/Large';
+import Button from '../../components/visual/buttons/Button';
 
 import type { ReduxState } from '../../types/Redux';
 // import type { ProfileQueryResponse } from './__generated__/ProfileQuery.graphql';
