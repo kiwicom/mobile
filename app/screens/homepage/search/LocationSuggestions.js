@@ -1,46 +1,60 @@
 // @flow
 
 import * as React from 'react';
-import { Animated, Text, Dimensions } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import { graphql, createFragmentContainer } from 'react-relay';
+import idx from 'idx';
 
-import config from '../../../config/application';
-import { headerHeight } from './SearchHeader';
+import SimpleCard from '../../../components/visual/cards/SimpleCard';
 
-const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
+import type { LocationSuggestions } from './__generated__/LocationSuggestions.graphql';
 
 type Props = {
-  visible: boolean,
+  data: LocationSuggestions,
+  onLocationSelected: (locationId: string, locationName: string) => void,
 };
 
-type State = {
-  top: number,
+const LocationSuggestionsWithoutData = (props: Props) => {
+  const edges = idx(props, _ => _.data.allLocations.edges);
+
+  if (edges) {
+    return edges.map(edge => {
+      if (edge && edge.node) {
+        const { node } = edge;
+        return (
+          <SimpleCard key={node.locationId}>
+            <TouchableOpacity
+              onPress={() =>
+                props.onLocationSelected(
+                  node.locationId || '',
+                  node.name || '',
+                )}
+            >
+              <Text>{node.name}</Text>
+            </TouchableOpacity>
+          </SimpleCard>
+        );
+      }
+      // TODO: is this correct assumption?
+      return <Text key="failed">Cannot find any existing locations.</Text>;
+    });
+  } else {
+    return <Text>Cannot find any existing locations.</Text>;
+  }
 };
 
-export default class LocationSuggestions extends React.Component<Props, State> {
-  state = {
-    top: new Animated.Value(this.props.visible ? headerHeight : windowHeight), // default
-  };
-
-  componentWillReceiveProps = (nextProps: Props) => {
-    Animated.timing(this.state.top, {
-      toValue: nextProps.visible ? headerHeight : windowHeight,
-      duration: config.animations.duration,
-    }).start();
-  };
-
-  render = () => {
-    return (
-      <Animated.View
-        style={{
-          position: 'absolute',
-          top: this.state.top,
-          height: windowHeight,
-          width: windowWidth,
-          backgroundColor: '#fff',
-        }}
-      >
-        <Text>TODO: locations suggestions</Text>
-      </Animated.View>
-    );
-  };
-}
+export default createFragmentContainer(
+  LocationSuggestionsWithoutData,
+  graphql`
+    fragment LocationSuggestions on RootQuery {
+      allLocations(search: $search, first: $count) {
+        edges {
+          node {
+            locationId
+            name
+          }
+        }
+      }
+    }
+  `,
+);

@@ -1,40 +1,13 @@
 // @flow
 
-import { createStore } from 'redux';
-import { AsyncStorage } from 'react-native';
+import { createStore, combineReducers } from 'redux';
 
-import type { ReduxState, ReduxActions } from '../../types/Redux';
+import SearchReducer from './reducers/SearchReducer';
+import UserReducer from './reducers/UserReducer';
 
-const InitialState: ReduxState = {
-  user: {
-    logged: false,
-    accessToken: null,
-  },
-};
-
-const reducer = (state: ReduxState = InitialState, action: ReduxActions) => {
-  if (action.type === 'login') {
-    return {
-      ...state,
-      user: {
-        ...state.user,
-        logged: true,
-        accessToken: action.accessToken,
-      },
-    };
-  }
-  if (action.type === 'logout') {
-    AsyncStorage.clear(); // clear all the local cache
-    return {
-      ...state,
-      user: {
-        ...state.user,
-        logged: false,
-        accessToken: null,
-      },
-    };
-  }
-  return state;
-};
+const reducer = combineReducers({
+  search: SearchReducer,
+  user: UserReducer,
+});
 
 export default createStore(reducer);
