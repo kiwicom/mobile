@@ -13,7 +13,7 @@ const InitialSearchState: SearchState = {
 export default (
   state: SearchState = InitialSearchState,
   action: ReduxActions,
-) => {
+): SearchState => {
   if (action.type === 'updateFieldValue') {
     return {
       ...state,

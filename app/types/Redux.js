@@ -10,16 +10,16 @@ export type ReduxState = {|
         logged: false,
         accessToken: null,
       |},
-  search: {|
+  search: {
     // we may have more fields than just "from" and "to" because of multi-city
-    fields: {
+    fields: {|
       [identifier: string]: string, // identifier: value
-    },
+    |},
     // this is what user typed to the last input
     lastFocusedField: string,
     // this is what our system suggests for 'userTyped' field
     systemSuggested: string,
-  |},
+  },
 |};
 
 export type ReduxActions =
