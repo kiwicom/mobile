@@ -4,8 +4,7 @@ import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { MapView } from 'expo';
 
-import SearchHeader from './search/SearchHeader';
-import LocationSuggestions from './search/LocationSuggestions';
+import FlightsSearchOverlay from './search/FlightsSearchOverlay';
 
 import type { Navigation } from '../../types/Navigation';
 
@@ -13,15 +12,7 @@ type Props = {
   navigation: Navigation,
 };
 
-type State = {
-  searchExpanded: boolean,
-};
-
-export default class Homepage extends React.Component<Props, State> {
-  state = {
-    searchExpanded: false,
-  };
-
+export default class Homepage extends React.Component<Props, {}> {
   render = () => {
     return (
       <View style={styles.container}>
@@ -37,15 +28,7 @@ export default class Homepage extends React.Component<Props, State> {
             radius={100000}
           />
         </MapView>
-        <SearchHeader
-          onSend={searchParameters => {
-            this.props.navigation.navigate('SearchResults', searchParameters);
-          }}
-          onToggle={() => {
-            this.setState({ searchExpanded: !this.state.searchExpanded });
-          }}
-        />
-        <LocationSuggestions visible={this.state.searchExpanded} />
+        <FlightsSearchOverlay navigation={this.props.navigation} />
       </View>
     );
   };
