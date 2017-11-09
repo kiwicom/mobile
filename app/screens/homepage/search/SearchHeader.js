@@ -33,24 +33,6 @@ type State = AnimatedState & {
   expanded: boolean,
 };
 
-const shrinkedValues = ({
-  top: Platform.OS === 'ios' ? 40 : StatusBar.currentHeight + 20,
-  right: 20,
-  left: 20,
-  height: 65,
-  fade: 1,
-  brighten: 0,
-}: AnimatedState);
-
-const expandedValues = ({
-  top: 0,
-  right: 0,
-  left: 0,
-  height: 240,
-  fade: 0,
-  brighten: 1,
-}: AnimatedState);
-
 export const headerHeight = 240;
 
 export default class SearchHeader extends React.Component<Props, State> {
@@ -129,3 +111,21 @@ export default class SearchHeader extends React.Component<Props, State> {
     </TouchableWithoutFeedback>
   );
 }
+
+const shrinkedValues = ({
+  top: Platform.OS === 'ios' ? 40 : StatusBar.currentHeight + 20,
+  right: 20,
+  left: 20,
+  height: 65,
+  fade: 1,
+  brighten: 0,
+}: AnimatedState);
+
+const expandedValues = ({
+  top: 0,
+  right: 0,
+  left: 0,
+  height: headerHeight,
+  fade: 0,
+  brighten: 1,
+}: AnimatedState);
