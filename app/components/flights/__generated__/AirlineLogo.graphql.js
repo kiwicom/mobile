@@ -1,20 +1,13 @@
-/**
- * @flow
- */
-
+// @flow
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteFragment} from 'relay-runtime';
+import type { ConcreteFragment } from 'relay-runtime';
 export type AirlineLogo = {|
   +logoUrl: ?string;
 |};
-*/
 
 
-const fragment /*: ConcreteFragment*/ = {
+export const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -30,5 +23,3 @@ const fragment /*: ConcreteFragment*/ = {
   ],
   "type": "Airline"
 };
-
-module.exports = fragment;

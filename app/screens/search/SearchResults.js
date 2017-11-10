@@ -7,10 +7,10 @@ import { createPaginationContainer, graphql } from 'react-relay';
 import SearchResultRow from './SearchResultRow';
 import Button from '../../components/visual/buttons/Button';
 
-import type { SearchResultsContainer_flights } from './__generated__/SearchResults_flights.graphql';
+import type { SearchResults_flights } from './__generated__/SearchResults_flights.graphql';
 
 type Props = {
-  flights: SearchResultsContainer_flights,
+  flights: SearchResults_flights,
   relay: Object, // FIXME
 };
 
