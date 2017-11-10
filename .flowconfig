@@ -49,6 +49,10 @@ module.name_mapper='^react-native$' -> 'emptyObject'
 module.name_mapper='^react-navigation$' -> 'emptyObject'
 module.name_mapper='^redux-persist$' -> 'emptyObject'
 
+; app/scripts/RelayCompiler.js:
+module.name_mapper='^graphql$' -> 'emptyObject'
+module.name_mapper='^relay-compiler/lib/GraphQLWatchmanClient$' -> 'emptyObject'
+
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
 suppress_type=$FixMe

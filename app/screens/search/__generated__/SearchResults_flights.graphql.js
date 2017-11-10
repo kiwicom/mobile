@@ -1,13 +1,7 @@
-/**
- * @flow
- */
-
+// @flow
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteFragment} from 'relay-runtime';
+import type { ConcreteFragment } from 'relay-runtime';
 export type SearchResults_flights = {|
   +allFlights: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -16,10 +10,9 @@ export type SearchResults_flights = {|
     |}>;
   |};
 |};
-*/
 
 
-const fragment /*: ConcreteFragment*/ = {
+export const node: ConcreteFragment = {
   "argumentDefinitions": [
     {
       "kind": "RootArgument",
@@ -139,5 +132,3 @@ const fragment /*: ConcreteFragment*/ = {
   ],
   "type": "RootQuery"
 };
-
-module.exports = fragment;

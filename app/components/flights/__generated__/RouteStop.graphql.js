@@ -1,20 +1,13 @@
-/**
- * @flow
- */
-
+// @flow
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteFragment} from 'relay-runtime';
+import type { ConcreteFragment } from 'relay-runtime';
 export type RouteStop = {|
   +airport: ?{| |};
 |};
-*/
 
 
-const fragment /*: ConcreteFragment*/ = {
+export const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -39,5 +32,3 @@ const fragment /*: ConcreteFragment*/ = {
   ],
   "type": "RouteStop"
 };
-
-module.exports = fragment;
