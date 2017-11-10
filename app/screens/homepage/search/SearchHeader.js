@@ -114,7 +114,7 @@ export default class SearchHeader extends React.Component<Props, State> {
 }
 
 const shrinkedValues = ({
-  top: Platform.OS === 'ios' ? 40 : StatusBar.currentHeight + 20,
+  top: Platform.OS === 'ios' ? 60 : StatusBar.currentHeight + 40,
   right: 20,
   left: 20,
   height: 65,
