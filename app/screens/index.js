@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
 
-import Store from '../src/redux/Store';
+import { configureStore } from '../src/redux/Store';
 import SingleBooking from './bookings/SingleBooking';
 import AllBookings from './bookings/AllBookings';
 import Homepage from './homepage/Homepage';
@@ -99,11 +100,15 @@ const MainTabNavigator = TabNavigator(
   },
 );
 
+const { persistor, store } = configureStore();
+
 export default class Application extends React.Component<{}, {}> {
   render() {
     return (
-      <Provider store={Store}>
-        <MainTabNavigator />
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <MainTabNavigator />
+        </PersistGate>
       </Provider>
     );
   }
