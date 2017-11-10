@@ -19,4 +19,8 @@ export default {
   animations: {
     duration: 100, // ms
   },
+  sentry: {
+    dsn: null,
+    enableInExpoDevelopment: false,
+  },
 };
