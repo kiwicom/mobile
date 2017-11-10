@@ -104,7 +104,8 @@ export default class SearchHeader extends React.Component<Props, State> {
                 from,
                 to,
                 date,
-              })}
+              })
+            }
           />
         </Animated.View>
       </Animated.View>
