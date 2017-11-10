@@ -7,7 +7,7 @@
     "android": "yarn react-native-scripts android",
     "ios": "yarn react-native-scripts ios",
     "lint": "yarn eslint app",
-    "relay": "yarn relay-compiler --verbose --src ./app --schema ./app/schema.graphql",
+    "relay": "yarn babel-node app/scripts/RelayCompiler.js --verbose --src ./app --schema ./app/schema.graphql",
     "start": "yarn react-native-scripts start --dev",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./app/scripts/test.sh"
@@ -26,6 +26,7 @@
     "sentry-expo": "^1.6.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-jest": "21.2.0",
     "babel-plugin-idx": "^2.2.0",
