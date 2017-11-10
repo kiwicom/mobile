@@ -30,7 +30,8 @@ it('calls Google sing-in service successfully', async () => {
   renderer.render(
     <GoogleLogin
       onSuccess={accessToken =>
-        expect(accessToken).toBe('fake mocked access token from Kiwi service')}
+        expect(accessToken).toBe('fake mocked access token from Kiwi service')
+      }
     />,
   );
   await renderer.getRenderOutput().props.onPress();

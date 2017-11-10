@@ -39,7 +39,8 @@ export default class SimpleLoginForm extends React.Component<Props, State> {
         onChangeText={text =>
           this.setState({
             username: text,
-          })}
+          })
+        }
         keyboardType="email-address"
         placeholder="Email"
         value={this.state.username}
@@ -48,7 +49,8 @@ export default class SimpleLoginForm extends React.Component<Props, State> {
         onChangeText={text =>
           this.setState({
             password: text,
-          })}
+          })
+        }
         placeholder="Password"
         secureTextEntry={true}
       />

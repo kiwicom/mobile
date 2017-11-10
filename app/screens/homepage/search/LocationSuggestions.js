@@ -25,10 +25,8 @@ const LocationSuggestionsWithoutData = (props: Props) => {
           <SimpleCard key={node.locationId}>
             <TouchableOpacity
               onPress={() =>
-                props.onLocationSelected(
-                  node.locationId || '',
-                  node.name || '',
-                )}
+                props.onLocationSelected(node.locationId || '', node.name || '')
+              }
             >
               <Text>{node.name}</Text>
             </TouchableOpacity>

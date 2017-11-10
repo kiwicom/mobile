@@ -63,7 +63,8 @@ const SearchForm = class SearchForm extends React.Component<Props, State> {
 
       <TextInput
         onFocus={event =>
-          this._changeDestinationLocation(event.nativeEvent.text)}
+          this._changeDestinationLocation(event.nativeEvent.text)
+        }
         onChangeText={text => this._changeDestinationLocation(text)}
         style={{
           flex: 1,
@@ -89,7 +90,8 @@ const SearchForm = class SearchForm extends React.Component<Props, State> {
               this.props.fields.from,
               this.props.fields.to,
               this.state.date.from,
-            )}
+            )
+          }
           title="Find connections!"
         />
       )}
