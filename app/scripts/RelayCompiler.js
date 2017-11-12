@@ -44,7 +44,9 @@ import type { ${documentType} } from '${relayRuntimeModule}';
 ${flowText || ''}
 
 ${docTextComment}
-export const node: ${documentType} = ${concreteText};
+const node: ${documentType} = ${concreteText};
+
+module.exports = node;
 `;
 };
 

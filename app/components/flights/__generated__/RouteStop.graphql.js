@@ -7,7 +7,7 @@ export type RouteStop = {|
 |};
 
 
-export const node: ConcreteFragment = {
+const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -32,3 +32,5 @@ export const node: ConcreteFragment = {
   ],
   "type": "RouteStop"
 };
+
+module.exports = node;
