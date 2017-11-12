@@ -10,7 +10,7 @@ export type Airport = {|
 |};
 
 
-export const node: ConcreteFragment = {
+const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -44,3 +44,5 @@ export const node: ConcreteFragment = {
   ],
   "type": "Location"
 };
+
+module.exports = node;

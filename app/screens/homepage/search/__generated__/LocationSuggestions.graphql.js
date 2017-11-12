@@ -14,7 +14,7 @@ export type LocationSuggestions = {|
 |};
 
 
-export const node: ConcreteFragment = {
+const node: ConcreteFragment = {
   "argumentDefinitions": [
     {
       "kind": "RootArgument",
@@ -94,3 +94,5 @@ export const node: ConcreteFragment = {
   ],
   "type": "RootQuery"
 };
+
+module.exports = node;

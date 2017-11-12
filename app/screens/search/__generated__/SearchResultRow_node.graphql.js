@@ -18,7 +18,7 @@ export type SearchResultRow_node = {|
 |};
 
 
-export const node: ConcreteFragment = {
+const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -130,3 +130,5 @@ export const node: ConcreteFragment = {
   ],
   "type": "Flight"
 };
+
+module.exports = node;
