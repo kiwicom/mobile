@@ -5,13 +5,8 @@
 
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteBatch} from 'relay-runtime';
+import type { ConcreteBatch } from 'relay-runtime';
 export type LocationSuggestionsWrapperQueryResponse = {| |};
-*/
-
 
 /*
 query LocationSuggestionsWrapperQuery(
@@ -33,7 +28,7 @@ fragment LocationSuggestions on RootQuery {
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
+const node: ConcreteBatch = {
   "fragment": {
     "argumentDefinitions": [
       {
@@ -149,4 +144,4 @@ const batch /*: ConcreteBatch*/ = {
   "text": "query LocationSuggestionsWrapperQuery(\n  $search: String\n  $count: Int!\n) {\n  ...LocationSuggestions\n}\n\nfragment LocationSuggestions on RootQuery {\n  allLocations(search: $search, first: $count) {\n    edges {\n      node {\n        locationId\n        name\n      }\n    }\n  }\n}\n"
 };
 
-module.exports = batch;
+module.exports = node;

@@ -1,5 +1,4 @@
 // @flow
-/* eslint-disable no-console */
 
 import fs from 'fs';
 import path from 'path';
@@ -11,12 +10,7 @@ import {
   FileWriter as RelayFileWriter,
   IRTransforms as RelayIRTransforms,
 } from 'relay-compiler';
-import {
-  buildASTSchema,
-  buildClientSchema,
-  parse,
-  printSchema,
-} from 'relay-compiler/node_modules/graphql'; // it's necessary to use the same version from relay-compiler
+import { buildASTSchema, parse } from 'relay-compiler/node_modules/graphql'; // it's necessary to use the same version from relay-compiler
 import WatchmanClient from 'relay-compiler/lib/GraphQLWatchmanClient';
 
 import type { GraphQLSchema } from 'graphql';
@@ -34,10 +28,15 @@ const formatGeneratedModule = ({
   docText,
   concreteText,
   flowText,
+  hash,
   relayRuntimeModule,
 }) => {
-  const docTextComment = docText ? '\n/*\n' + docText.trim() + '\n*/\n' : '';
-  return `// @flow
+  const docTextComment = docText ? '/*\n' + docText.trim() + '\n*/\n' : '';
+  const hashText = hash ? `\n * ${hash}` : '';
+  return `/**
+ * ${'@'}flow${hashText}
+ */
+
 /* eslint-disable */
 
 import type { ${documentType} } from '${relayRuntimeModule}';
@@ -51,14 +50,13 @@ module.exports = node;
 };
 
 const buildWatchExpression = (options: {
-  extensions: Array<string>,
   include: Array<string>,
   exclude: Array<string>,
 }) => {
   return [
     'allof',
-    ['type', 'f'],
-    ['anyof', ...options.extensions.map(ext => ['suffix', ext])],
+    ['type', 'f'], // regular file
+    ['suffix', 'js'],
     [
       'anyof',
       ...options.include.map(include => ['match', include, 'wholename']),
@@ -70,13 +68,12 @@ const buildWatchExpression = (options: {
 const getFilepathsFromGlob = (
   baseDir,
   options: {
-    extensions: Array<string>,
     include: Array<string>,
     exclude: Array<string>,
   },
 ): Array<string> => {
-  const { extensions, include, exclude } = options;
-  const patterns = include.map(inc => `${inc}/*.+(${extensions.join('|')})`);
+  const { include, exclude } = options;
+  const patterns = include.map(inc => `${inc}/*.+(js)`);
 
   const glob = require('fast-glob');
   return glob.sync(patterns, {
@@ -90,11 +87,8 @@ const getFilepathsFromGlob = (
 const run = async (options: {
   schema: string,
   src: string,
-  extensions: Array<string>,
   include: Array<string>,
   exclude: Array<string>,
-  verbose: boolean,
-  watchman: boolean,
   watch?: ?boolean,
   validate: boolean,
 }) => {
@@ -106,27 +100,18 @@ const run = async (options: {
   if (!fs.existsSync(srcDir)) {
     throw new Error(`--source path does not exist: ${srcDir}.`);
   }
-  if (options.watch && !options.watchman) {
-    throw new Error('Watchman is required to watch for changes.');
-  }
-  if (options.watch && !hasWatchmanRootFile(srcDir)) {
+  if (!hasWatchmanRootFile(srcDir)) {
     throw new Error(
       `
---watch requires that the src directory have a valid watchman "root" file.
+--watch requires that the src directory have a valid watchman "root" (.git/ folder).
 
-Root files can include:
-- A .git/ Git folder
-- A .hg/ Mercurial folder
-- A .watchmanconfig file
-
-Ensure that one such file exists in ${srcDir} or its parents.
+Ensure that it exists in ${srcDir} or its parents.
     `.trim(),
     );
   }
 
-  const reporter = new ConsoleReporter({ verbose: options.verbose });
-
-  const useWatchman = options.watchman && (await WatchmanClient.isAvailable());
+  const reporter = new ConsoleReporter({ verbose: true });
+  const useWatchman = await WatchmanClient.isAvailable();
 
   const parserConfigs = {
     default: {
@@ -152,7 +137,7 @@ Ensure that one such file exists in ${srcDir} or its parents.
     writerConfigs,
     onlyValidate: options.validate,
   });
-  if (!options.validate && !options.watch && options.watchman) {
+  if (!options.validate && !options.watch) {
     // eslint-disable-next-line no-console
     console.log('HINT: pass --watch to keep watching for changes.');
   }
@@ -183,7 +168,8 @@ const getRelayFileWriter = (baseDir: string) => {
         formatModule: formatGeneratedModule,
         inputFieldWhiteListForFlow: [],
         schemaExtensions,
-        useHaste: false,
+        useHaste: true,
+        // persistQuery, // TODO: persist if '--persist' option enabled (see: https://github.com/facebook/relay/pull/1846)
       },
       onlyValidate,
       schema,
@@ -197,9 +183,6 @@ const getRelayFileWriter = (baseDir: string) => {
 const getSchema = (schemaPath: string): GraphQLSchema => {
   try {
     let source = fs.readFileSync(schemaPath, 'utf8');
-    if (path.extname(schemaPath) === '.json') {
-      source = printSchema(buildClientSchema(JSON.parse(source).data));
-    }
     source = `
   directive @include(if: Boolean) on FRAGMENT | FIELD
   directive @skip(if: Boolean) on FRAGMENT | FIELD
@@ -210,8 +193,7 @@ const getSchema = (schemaPath: string): GraphQLSchema => {
   } catch (error) {
     throw new Error(
       `
-Error loading schema. Expected the schema to be a .graphql or a .json
-file, describing your GraphQL server's API. Error detail:
+Error loading schema. Expected the schema to be a .graphql file, describing your GraphQL server's API. Error detail:
 
 ${error.stack}
     `.trim(),
@@ -221,14 +203,9 @@ ${error.stack}
 
 // Ensure that a watchman "root" file exists in the given directory
 // or a parent so that it can be watched
-const WATCHMAN_ROOT_FILES = ['.git', '.hg', '.watchmanconfig'];
 const hasWatchmanRootFile = testPath => {
   while (path.dirname(testPath) !== testPath) {
-    if (
-      WATCHMAN_ROOT_FILES.some(file => {
-        return fs.existsSync(path.join(testPath, file));
-      })
-    ) {
+    if (fs.existsSync(path.join(testPath, '.git'))) {
       return true;
     }
     testPath = path.dirname(testPath);
@@ -244,7 +221,7 @@ const argv = yargs
   )
   .options({
     schema: {
-      describe: 'Path to schema.graphql or schema.json',
+      describe: 'Path to schema.graphql.',
       demandOption: true,
       type: 'string',
     },
@@ -270,21 +247,6 @@ const argv = yargs
       describe: 'Directories to ignore under src',
       type: 'string',
     },
-    extensions: {
-      array: true,
-      default: ['js'],
-      describe: 'File extensions to compile (--extensions js jsx)',
-      type: 'string',
-    },
-    verbose: {
-      describe: 'More verbose logging',
-      type: 'boolean',
-    },
-    watchman: {
-      describe: 'Use watchman when not in watch mode',
-      type: 'boolean',
-      default: true,
-    },
     watch: {
       describe: 'If specified, watches files and regenerates on changes',
       type: 'boolean',
@@ -300,6 +262,7 @@ const argv = yargs
   .help().argv;
 
 run(argv).catch(error => {
+  // eslint-disable-next-line no-console
   console.error(String(error.stack || error));
   process.exit(1);
 });

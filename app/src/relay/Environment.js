@@ -30,6 +30,7 @@ export default function createEnvironment(accessToken: string = '') {
       await cache.remove(query, variables);
     }
 
+    // TODO: fetch persisted queries instead (based on operation.id)
     const jsonPayload = await (await fetch('https://graphql.kiwi.com/', {
       method: 'POST',
       headers: networkHeaders,

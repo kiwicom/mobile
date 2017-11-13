@@ -5,13 +5,8 @@
 
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteBatch} from 'relay-runtime';
+import type { ConcreteBatch } from 'relay-runtime';
 export type SearchResultsQueryResponse = {| |};
-*/
-
 
 /*
 query SearchResultsQuery(
@@ -83,7 +78,7 @@ fragment Airport on Location {
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
+const node: ConcreteBatch = {
   "fragment": {
     "argumentDefinitions": [
       {
@@ -455,4 +450,4 @@ const batch /*: ConcreteBatch*/ = {
   "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResults_flights\n}\n\nfragment SearchResults_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        ...SearchResultRow_node\n        id\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SearchResultRow_node on Flight {\n  duration\n  price {\n    ...Price\n  }\n  departure {\n    localTime\n    ...RouteStop\n  }\n  arrival {\n    localTime\n    ...RouteStop\n  }\n  legs {\n    id\n    airline {\n      ...AirlineLogo\n    }\n  }\n}\n\nfragment Price on Price {\n  amount\n  currency\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment AirlineLogo on Airline {\n  logoUrl\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
-module.exports = batch;
+module.exports = node;

@@ -5,9 +5,10 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "android": "yarn react-native-scripts android",
+    "graphql:update": "yarn graphql get-schema",
     "ios": "yarn react-native-scripts ios",
     "lint": "yarn eslint app",
-    "relay": "yarn babel-node app/scripts/RelayCompiler.js --verbose --src ./app --schema ./app/schema.graphql",
+    "relay": "yarn babel-node app/scripts/RelayCompiler.js --src ./app --schema ./app/schema.graphql",
     "start": "yarn react-native-scripts start --dev",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./app/scripts/test.sh"

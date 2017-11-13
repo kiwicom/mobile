@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Thu Oct 19 2017 14:39:19 GMT-0500 (CDT)
+# timestamp: Mon Nov 13 2017 11:56:28 GMT-0600 (CST)
 
 schema {
   query: RootQuery
@@ -584,7 +584,9 @@ type RootQuery {
   # Search for scheduled flights.
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
 
-  # Search for airports, cities, countries.
+  # Search for airports, cities, countries. You can search by location name,
+  # radius on the map or rectangle on the map. If you do not specify one of these
+  # search inputs then the alphabetical dump of all locations is returned.
   allLocations(
     # Search location by name.
     search: String

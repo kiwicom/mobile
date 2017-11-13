@@ -5,10 +5,7 @@
 
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteBatch} from 'relay-runtime';
+import type { ConcreteBatch } from 'relay-runtime';
 export type ProfileQueryResponse = {|
   +currentUser: ?{|
     +email: ?string;
@@ -16,8 +13,6 @@ export type ProfileQueryResponse = {|
     +fullName: ?string;
   |};
 |};
-*/
-
 
 /*
 query ProfileQuery {
@@ -30,7 +25,7 @@ query ProfileQuery {
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
+const node: ConcreteBatch = {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
@@ -126,4 +121,4 @@ const batch /*: ConcreteBatch*/ = {
   "text": "query ProfileQuery {\n  currentUser {\n    email\n    emailVerified\n    fullName\n    id\n  }\n}\n"
 };
 
-module.exports = batch;
+module.exports = node;
