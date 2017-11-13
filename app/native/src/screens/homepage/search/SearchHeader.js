@@ -79,7 +79,7 @@ export default class SearchHeader extends React.Component<Props, State> {
           elevation: 5, // Android only
           shadowOpacity: 0.3,
           padding: 20,
-          zIndex: 1, // must be above the location suggestions (because of shadow)
+          zIndex: 2, // must be above the location suggestions (because of shadow)
         }}
       >
         <Animated.Text

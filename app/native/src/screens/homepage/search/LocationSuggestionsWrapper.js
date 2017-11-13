@@ -57,6 +57,7 @@ const LocationSuggestionsWrapper = class LocationSuggestionsWrapper extends Reac
         height: windowHeight,
         width: windowWidth,
         backgroundColor: '#fff',
+        zIndex: 1,
       }}
     >
       <Layout>
