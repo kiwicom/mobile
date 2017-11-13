@@ -5,7 +5,7 @@ import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
 
-import { configureStore } from '../src/redux/Store';
+import { configureStore } from '../services/redux/Store';
 import SingleBooking from './bookings/SingleBooking';
 import AllBookings from './bookings/AllBookings';
 import Homepage from './homepage/Homepage';

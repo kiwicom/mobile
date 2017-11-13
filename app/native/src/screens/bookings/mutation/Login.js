@@ -2,7 +2,7 @@
 
 import { commitMutation, graphql } from 'react-relay';
 
-import createEnvironment from '../../../src/relay/Environment';
+import createEnvironment from '../../../services/relay/Environment';
 
 import type {
   LoginMutationVariables,

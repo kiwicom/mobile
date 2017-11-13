@@ -5,7 +5,7 @@ import { Animated, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { graphql } from 'react-relay';
 
-import config from '../../../config/application';
+import config from '../../../../config/application';
 import { headerHeight } from './SearchHeader';
 import PublicApiRenderer from '../../../components/relay/PublicApiRenderer';
 import Layout from '../../../components/visual/view/Layout';

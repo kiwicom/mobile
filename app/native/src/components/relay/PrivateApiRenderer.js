@@ -3,11 +3,12 @@
 import * as React from 'react';
 import { QueryRenderer } from 'react-relay';
 
-import createEnvironment from '../../src/relay/Environment';
+import createEnvironment from '../../services/relay/Environment';
 import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
 import GeneralError from '../../components/errors/GeneralError';
 
 type Props = {
+  accessToken: string,
   query: string,
   render: ({ error: Object, props: Object }) => React.Node,
   variables?: Object,
@@ -17,6 +18,7 @@ type Props = {
 };
 
 export default function publicApiRenderer({
+  accessToken,
   query,
   render,
   variables,
@@ -24,7 +26,7 @@ export default function publicApiRenderer({
 }: Props) {
   return (
     <QueryRenderer
-      environment={createEnvironment()}
+      environment={createEnvironment(accessToken)}
       query={query}
       variables={variables}
       render={({ error, props }) => {

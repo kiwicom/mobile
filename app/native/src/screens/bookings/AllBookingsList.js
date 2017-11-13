@@ -7,7 +7,7 @@ import idx from 'idx';
 
 import BookingListRow from './AllBookingsListRow';
 import BookingListRowError from './AllBookingsListRowError';
-import AssetsDownloader from '../../src/assets/AssetsDownloader';
+import AssetsDownloader from '../../services/assets/AssetsDownloader';
 
 import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';

@@ -1,4 +1,4 @@
-schemaPath: app/schema.graphql
+schemaPath: schema.graphql
 extensions:
   endpoints:
     public: 'https://graphql.kiwi.com/'
