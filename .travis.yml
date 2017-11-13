@@ -8,7 +8,7 @@ before_install:
 
 install: yarn install
 before_script: greenkeeper-lockfile-update
-script: ./app/scripts/test.sh
+script: yarn test-ci
 after_script: greenkeeper-lockfile-upload
 
 cache: yarn
