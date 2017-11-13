@@ -53,9 +53,6 @@ module.name_mapper='^redux-persist$' -> 'emptyObject'
 module.name_mapper='^graphql$' -> 'emptyObject'
 module.name_mapper='^relay-compiler/lib/GraphQLWatchmanClient$' -> 'emptyObject'
 
-; monorepo settions
-module.name_mapper='^@kiwicom.+$' -> '<PROJECT_ROOT>/app'
-
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
 suppress_type=$FixMe
