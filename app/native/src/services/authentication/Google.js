@@ -2,7 +2,7 @@
 
 import Expo from 'expo';
 
-import config from '../../config/application';
+import config from '../../../config/application';
 
 export default new class Google {
   signIn = async (): Promise<string | false> => {

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import OriginalDatePicker from 'react-native-datepicker';
 
-import config from '../../config/application';
+import config from '../../../config/application';
 import { styles } from './TextInput';
 
 export default function DatePicker(props: Object) {

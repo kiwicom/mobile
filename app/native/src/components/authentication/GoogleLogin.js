@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 
-import GoogleAuth from '../../src/authentication/Google';
+import GoogleAuth from '../../services/authentication/Google';
 import GoogleButton from '../visual/buttons/GoogleButton';
-import config from '../../config/application';
+import config from '../../../config/application';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
 
 type Props = {

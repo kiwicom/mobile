@@ -11,13 +11,6 @@ before_script: greenkeeper-lockfile-update
 script: ./app/scripts/test.sh
 after_script: greenkeeper-lockfile-upload
 
-#deploy:
-#  provider: script
-#  skip_cleanup: true
-#  script: chmod +x ./app/scripts/deploy.sh && ./app/scripts/deploy.sh
-#  on:
-#    branch: master
-
 cache: yarn
 
 notifications:

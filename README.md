@@ -9,32 +9,33 @@
 
 ## Table of Contents
 
+* [Installation](#installation)
 * [Project structure](#project-structure)
 * [Best Practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 
+## Installation
+
+```
+yarn install
+```
+
+To start the application simple run `yarn start`. This will change in the future (after Expo detach).
+
 ## Project structure
+
+This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) so the root directory is actually so called "workspace root". Workspace root is responsible for handling this repository (especially testing). You can find all sources inside of the `app` directory. Each directory inside `app` should be treated as separate NPM package and you **should not** reuse code from each other via `import` statements. If you need to use one package inside of other package (this should be very common use-case) please require it in `package.json` file (see `app/native/pacakge.json`).
 
 ```
 .
-├── app
-│   ├── assets                  - static assets (icons)
-│   ├── components
-│   │   ├── functional
-│   │   └── visual
-│   ├── config                  - application configutations
-│   ├── screens                 - individual application screens
-│   │   ├── homepage
-│   │   ├── search
-│   │   └── index.js            - navigation and screens definition
-│   ├── scripts
-│   │   ├── deploy.sh
-│   │   └── test.sh             - test script for CI
-│   ├── src
-│   ├── types                   - only Flow types
-│   └── schema.graphql          - GraphQL API schema
+├── app/
+│   ├── hotels/                 - sources @kiwicom/native-hotels
+│   └── native/                 - main sources of the application               <<<
+├── scripts/                    - support scripts for the whole monorepo
+├── .travis.yml                 - CI configuration
 ├── App.js                      - bootstrap component
-└── app.json                    - application settings for Expo
+├── app.json                    - application settings for Expo
+└── schema.graphql              - GraphQL schema of the backend server
 ```
 
 ## Best Practices

@@ -4,5 +4,8 @@
   "verbose": false,
   "globals": {
     "__DEV__": false
+  },
+  "transform": {
+    "^.+\\.js$": "babel-jest"
   }
 }

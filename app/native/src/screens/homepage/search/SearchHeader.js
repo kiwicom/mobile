@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import SearchHeaderForm from './SearchHeaderForm';
-import config from '../../../config/application';
+import config from '../../../../config/application';
 
 type Props = {
   onSend: ({

@@ -1,30 +1,23 @@
 {
-  "name": "native",
-  "version": "0.1.0",
   "private": true,
   "main": "node_modules/expo/AppEntry.js",
+  "workspaces": [
+    "app/*"
+  ],
   "scripts": {
     "android": "yarn react-native-scripts android",
     "graphql:update": "yarn graphql get-schema",
     "ios": "yarn react-native-scripts ios",
     "lint": "yarn eslint app",
-    "relay": "yarn babel-node app/scripts/RelayCompiler.js --src ./app --schema ./app/schema.graphql",
+    "relay": "yarn babel-node ./scripts/RelayCompiler.js --src ./app --schema ./schema.graphql",
     "start": "yarn react-native-scripts start --dev",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
-    "test-ci": "./app/scripts/test.sh"
+    "test-ci": "./scripts/test.sh"
   },
   "dependencies": {
     "expo": "22.0.3",
-    "idx": "^2.2.0",
-    "json-stable-stringify": "^1.0.1",
     "react": "^16.0.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.2.tar.gz",
-    "react-native-datepicker": "^1.6.0",
-    "react-navigation": "^1.0.0-beta.13",
-    "react-redux": "^5.0.6",
-    "react-relay": "^1.4.1",
-    "redux-persist": "^5.3.4",
-    "sentry-expo": "^1.6.0"
+    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.2.tar.gz"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -38,14 +31,12 @@
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
-    "exp": "^45.1.0",
     "flow-bin": "^0.59.0",
     "graphql-cli": "^1.1.0",
     "jest": "21.2.1",
     "jest-expo": "^22.0.1",
     "prettier": "^1.7.4",
     "react-native-scripts": "1.7.0",
-    "react-test-renderer": "^16.0.0",
     "relay-compiler": "^1.4.1"
   }
 }
