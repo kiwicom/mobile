@@ -1,4 +1,7 @@
-// @flow
+/**
+ * @flow
+ */
+
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';

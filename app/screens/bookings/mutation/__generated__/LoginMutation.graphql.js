@@ -5,10 +5,7 @@
 
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteBatch} from 'relay-runtime';
+import type { ConcreteBatch } from 'relay-runtime';
 export type LoginMutationVariables = {|
   email: string;
   password: string;
@@ -21,8 +18,6 @@ export type LoginMutationResponse = {|
     |};
   |};
 |};
-*/
-
 
 /*
 mutation LoginMutation(
@@ -39,7 +34,7 @@ mutation LoginMutation(
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
+const node: ConcreteBatch = {
   "fragment": {
     "argumentDefinitions": [
       {
@@ -195,4 +190,4 @@ const batch /*: ConcreteBatch*/ = {
   "text": "mutation LoginMutation(\n  $email: String!\n  $password: String!\n) {\n  login(email: $email, password: $password) {\n    token\n    identity {\n      fullName\n      id\n    }\n  }\n}\n"
 };
 
-module.exports = batch;
+module.exports = node;

@@ -5,13 +5,8 @@
 
 /* eslint-disable */
 
-'use strict';
-
-/*::
-import type {ConcreteBatch} from 'relay-runtime';
+import type { ConcreteBatch } from 'relay-runtime';
 export type AllBookingsQueryResponse = {| |};
-*/
-
 
 /*
 query AllBookingsQuery {
@@ -70,7 +65,7 @@ fragment Airport on Location {
 }
 */
 
-const batch /*: ConcreteBatch*/ = {
+const node: ConcreteBatch = {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
@@ -323,4 +318,4 @@ const batch /*: ConcreteBatch*/ = {
   "text": "query AllBookingsQuery {\n  ...AllBookingsList_bookings\n}\n\nfragment AllBookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        assets {\n          ticketUrl\n          invoiceUrl\n        }\n        ...AllBookingsListRow_node\n        id\n      }\n    }\n  }\n}\n\nfragment AllBookingsListRow_node on Booking {\n  assets {\n    ticketUrl\n    invoiceUrl\n  }\n  legs {\n    id\n    airline {\n      name\n      logoUrl\n    }\n    departure {\n      localTime\n      ...RouteStop\n    }\n    arrival {\n      localTime\n      ...RouteStop\n    }\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
-module.exports = batch;
+module.exports = node;
