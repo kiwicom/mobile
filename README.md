@@ -20,7 +20,11 @@
 yarn install
 ```
 
-To start the application simple run `yarn start`. This will change in the future (after Expo detach).
+To start the application simple run `yarn start`. This will change in the future (after Expo detach). During development you may need to fetch new files into monorepo workspace. In this case just run:
+
+```
+yarn upgrade @kiwicom
+```
 
 ## Project structure
 
