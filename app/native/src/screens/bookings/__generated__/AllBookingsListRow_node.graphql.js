@@ -10,19 +10,12 @@ export type AllBookingsListRow_node = {|
     +ticketUrl: ?string;
     +invoiceUrl: ?string;
   |};
-  +legs: ?$ReadOnlyArray<?{|
-    +id: string;
-    +airline: ?{|
-      +name: ?string;
-      +logoUrl: ?string;
-    |};
-    +departure: ?{|
-      +localTime: ?any;
-    |};
-    +arrival: ?{|
-      +localTime: ?any;
-    |};
-  |}>;
+  +departure: ?{|
+    +localTime: ?any;
+  |};
+  +arrival: ?{|
+    +localTime: ?any;
+  |};
 |};
 
 
@@ -61,87 +54,44 @@ const node: ConcreteFragment = {
       "kind": "LinkedField",
       "alias": null,
       "args": null,
-      "concreteType": "Leg",
-      "name": "legs",
-      "plural": true,
+      "concreteType": "RouteStop",
+      "name": "departure",
+      "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
           "args": null,
-          "name": "id",
+          "name": "localTime",
           "storageKey": null
         },
         {
-          "kind": "LinkedField",
+          "kind": "FragmentSpread",
+          "name": "RouteStop",
+          "args": null
+        }
+      ],
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "RouteStop",
+      "name": "arrival",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
           "alias": null,
           "args": null,
-          "concreteType": "Airline",
-          "name": "airline",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "name",
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "logoUrl",
-              "storageKey": null
-            }
-          ],
+          "name": "localTime",
           "storageKey": null
         },
         {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "name": "departure",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "localTime",
-              "storageKey": null
-            },
-            {
-              "kind": "FragmentSpread",
-              "name": "RouteStop",
-              "args": null
-            }
-          ],
-          "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "name": "arrival",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "localTime",
-              "storageKey": null
-            },
-            {
-              "kind": "FragmentSpread",
-              "name": "RouteStop",
-              "args": null
-            }
-          ],
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "RouteStop",
+          "args": null
         }
       ],
       "storageKey": null
