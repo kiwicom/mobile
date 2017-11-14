@@ -91,6 +91,7 @@ const MainTabNavigator = TabNavigator(
     },
   },
   {
+    initialRouteName: 'Explore',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     tabBarOptions: {
