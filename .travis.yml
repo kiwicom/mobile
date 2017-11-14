@@ -6,10 +6,18 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
   - yarn global add greenkeeper-lockfile@1
 
-install: yarn install
-before_script: greenkeeper-lockfile-update
-script: yarn test-ci
-after_script: greenkeeper-lockfile-upload
+install:
+  - yarn install
+
+before_script:
+  # Option 'ignore-workspace-root-check' is needed because Greenkeeper updates the root lock file.
+  - GK_LOCK_YARN_OPTS=--ignore-workspace-root-check greenkeeper-lockfile-update
+
+script:
+  - yarn test-ci
+
+after_script:
+  - greenkeeper-lockfile-upload
 
 cache: yarn
 
