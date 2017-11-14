@@ -15,7 +15,7 @@
     "test-ci": "./scripts/test.sh"
   },
   "dependencies": {
-    "expo": "22.0.3",
+    "expo": "22.0.4",
     "react": "^16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.2.tar.gz"
   },
