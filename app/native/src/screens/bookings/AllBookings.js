@@ -5,7 +5,7 @@ import { ScrollView, View } from 'react-native';
 import { graphql } from 'react-relay';
 import { connect } from 'react-redux';
 
-import BookingsListContainer from './AllBookingsList';
+import AllBookingsListContainer from './AllBookingsList';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleLoginForm from './SimpleLoginForm';
 import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
@@ -35,7 +35,7 @@ class AllBookings extends React.Component<Props, {}> {
               query={AllBookingsQuery}
               render={props => {
                 return (
-                  <BookingsListContainer
+                  <AllBookingsListContainer
                     bookings={props}
                     navigation={this.props.navigation}
                   />
