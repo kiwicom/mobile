@@ -5,9 +5,9 @@ import { View, Text } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import BookingListRow from './AllBookingsListRow';
-import BookingListRowError from './AllBookingsListRowError';
-import AssetsDownloader from '../../services/assets/AssetsDownloader';
+import AllBookingsListRow from './AllBookingsListRow';
+import AllBookingsListRowError from './AllBookingsListRowError';
+import AllBookingsAssetsDownloader from './AllBookingsAssetsDownloader';
 
 import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
@@ -21,7 +21,7 @@ type State = {
   loading: boolean,
 };
 
-export class BookingsListWithoutData extends React.Component<Props, State> {
+export class AllBookingsListWithoutData extends React.Component<Props, State> {
   render = () => {
     const edges = idx(this.props, _ => _.bookings.allBookings.edges);
     return (
@@ -31,25 +31,19 @@ export class BookingsListWithoutData extends React.Component<Props, State> {
             if (edge) {
               const { node, cursor } = edge;
 
-              if (node && node.assets) {
-                const { ticketUrl, invoiceUrl } = node.assets;
-                if (ticketUrl) {
-                  AssetsDownloader({ url: ticketUrl });
-                }
-                if (invoiceUrl) {
-                  AssetsDownloader({ url: invoiceUrl });
-                }
-              }
-
-              return (
-                <BookingListRow
+              return [
+                <AllBookingsAssetsDownloader
+                  data={node && node.assets}
+                  key="downloader"
+                />,
+                <AllBookingsListRow
                   node={node}
                   key={cursor}
                   navigation={this.props.navigation}
-                />
-              );
+                />,
+              ];
             } else {
-              return <BookingListRowError />;
+              return <AllBookingsListRowError />;
             }
           })
         ) : (
@@ -61,7 +55,7 @@ export class BookingsListWithoutData extends React.Component<Props, State> {
 }
 
 export default createFragmentContainer(
-  BookingsListWithoutData,
+  AllBookingsListWithoutData,
   graphql`
     fragment AllBookingsList_bookings on RootQuery {
       allBookings {
@@ -69,8 +63,15 @@ export default createFragmentContainer(
           cursor
           node {
             assets {
-              ticketUrl
-              invoiceUrl
+              ...AllBookingsAssetsDownloader
+            }
+            departure {
+              localTime
+              ...RouteStop
+            }
+            arrival {
+              localTime
+              ...RouteStop
             }
             ...AllBookingsListRow_node
           }
