@@ -25,10 +25,10 @@ exports[`renders as expected 1`] = `
       "backgroundColor": "#fff",
       "borderBottomColor": "#eee",
       "borderBottomWidth": 1,
-      "paddingBottom": 5,
+      "paddingBottom": 10,
       "paddingLeft": 10,
       "paddingRight": 10,
-      "paddingTop": 5,
+      "paddingTop": 10,
     }
   }
 >
@@ -67,10 +67,10 @@ exports[`renders as expected with onPress callback 1`] = `
         "backgroundColor": "#fff",
         "borderBottomColor": "#eee",
         "borderBottomWidth": 1,
-        "paddingBottom": 5,
+        "paddingBottom": 10,
         "paddingLeft": 10,
         "paddingRight": 10,
-        "paddingTop": 5,
+        "paddingTop": 10,
       }
     }
   >
@@ -84,10 +84,10 @@ exports[`renders without separator 1`] = `
   style={
     Object {
       "backgroundColor": "#fff",
-      "paddingBottom": 5,
+      "paddingBottom": 10,
       "paddingLeft": 10,
       "paddingRight": 10,
-      "paddingTop": 5,
+      "paddingTop": 10,
     }
   }
 >
