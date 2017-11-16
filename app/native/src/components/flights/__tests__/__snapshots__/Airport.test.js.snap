@@ -4,7 +4,6 @@ exports[`renders without crashing 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   Mocked City Name
