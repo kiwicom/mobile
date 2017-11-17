@@ -33,7 +33,7 @@ type State = AnimatedState & {
   expanded: boolean,
 };
 
-export const headerHeight = 240;
+export const headerHeight = 250;
 
 export default class SearchHeader extends React.Component<Props, State> {
   state = {
@@ -87,6 +87,7 @@ export default class SearchHeader extends React.Component<Props, State> {
             fontSize: 20,
             color: '#525760',
             opacity: this.state.fade,
+            display: this.state.expanded ? 'none' : 'flex',
           }}
         >
           Where do you travel?
@@ -95,6 +96,7 @@ export default class SearchHeader extends React.Component<Props, State> {
         <Animated.View
           style={{
             opacity: this.state.brighten,
+            display: this.state.expanded ? 'flex' : 'none',
           }}
         >
           <SearchHeaderForm

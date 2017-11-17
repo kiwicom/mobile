@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 
 import SearchHeader from '../search/SearchHeader';
 import LocationSuggestionsWrapper from './LocationSuggestionsWrapper';
@@ -34,20 +35,22 @@ export default class FlightsSearchOverlay extends React.Component<
   };
 
   render = () => {
-    return [
-      <SearchHeader
-        key="header"
-        onSend={searchParameters => {
-          this.props.navigation.navigate('SearchResults', searchParameters);
-        }}
-        onToggle={() => {
-          this.setState({ overlayExpanded: !this.state.overlayExpanded });
-        }}
-      />,
-      <LocationSuggestionsWrapper
-        key="suggestions"
-        visible={this.state.overlayExpanded}
-      />,
-    ];
+    return (
+      <View style={{ height: 150, zIndex: 1 }}>
+        <SearchHeader
+          key="header"
+          onSend={searchParameters => {
+            this.props.navigation.navigate('SearchResults', searchParameters);
+          }}
+          onToggle={() => {
+            this.setState({ overlayExpanded: !this.state.overlayExpanded });
+          }}
+        />
+        <LocationSuggestionsWrapper
+          key="suggestions"
+          visible={this.state.overlayExpanded}
+        />
+      </View>
+    );
   };
 }

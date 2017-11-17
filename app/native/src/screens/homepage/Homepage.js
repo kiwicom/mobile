@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import HotelSuggestions from '@kiwicom/native-hotels';
 
 import FlightsSearchOverlay from './search/FlightsSearchOverlay';
-import CenteredView from '../../components/visual/view/CenteredView';
+import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
 
 import type { Navigation } from '../../types/Navigation';
 
@@ -18,9 +18,9 @@ export default class Homepage extends React.Component<Props, {}> {
     return (
       <View style={styles.container}>
         <FlightsSearchOverlay navigation={this.props.navigation} />
-        <CenteredView>
+        <LayoutWithoutHeader>
           <HotelSuggestions />
-        </CenteredView>
+        </LayoutWithoutHeader>
       </View>
     );
   };
@@ -29,6 +29,5 @@ export default class Homepage extends React.Component<Props, {}> {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#eee',
-    flex: 1,
   },
 });
