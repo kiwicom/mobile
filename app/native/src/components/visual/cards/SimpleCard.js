@@ -3,17 +3,21 @@
 import * as React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 
-type Props = {
+type Props = {|
   children: React.Node,
   density?: 'airy' | 'compact',
   onPress?: Function,
   separator?: boolean,
-};
+  additionalStyles?: Object,
+|};
 
-const style = ({ density = 'compact', separator = true }: Props) => {
+const style = ({
+  density = 'compact',
+  separator = true,
+  additionalStyles = {},
+}: Props) => {
   const PADDING_TOP_BOTTOM = density === 'compact' ? 10 : 20;
   const PADDING_LEFT_RIGHT = 0;
-  let additionalStyles = {};
 
   if (separator) {
     additionalStyles = {

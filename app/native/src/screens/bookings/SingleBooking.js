@@ -5,9 +5,9 @@ import { Text, ScrollView } from 'react-native';
 
 import type { Navigation } from '../../types/Navigation';
 
-type Props = {
+type Props = {|
   navigation: Navigation,
-};
+|};
 
 export default class SingleBooking extends React.Component<Props, {}> {
   static navigationOptions = {

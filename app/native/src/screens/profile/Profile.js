@@ -13,9 +13,9 @@ import Logout from '../../components/authentication/Logout';
 
 // import type { ProfileQueryResponse } from './__generated__/ProfileQuery.graphql';
 
-type Props = {
+type Props = {|
   onLogout: () => void,
-};
+|};
 
 const Row = function Row({ children }) {
   return <SimpleCard density="airy">{children}</SimpleCard>;

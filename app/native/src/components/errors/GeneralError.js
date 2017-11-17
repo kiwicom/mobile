@@ -5,9 +5,9 @@ import { Text } from 'react-native';
 
 import CenteredView from '../visual/view/CenteredView';
 
-type Props = {
+type Props = {|
   errorMessage: string,
-};
+|};
 
 export default function GeneralError({ errorMessage }: Props) {
   return (

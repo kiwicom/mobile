@@ -11,14 +11,14 @@ import {
 import SearchHeaderForm from './SearchHeaderForm';
 import config from '../../../../config/application';
 
-type Props = {
-  onSend: ({
+type Props = {|
+  onSend: ({|
     from: string,
     to: string,
     date: Date,
-  }) => void,
+  |}) => void,
   onToggle: () => void,
-};
+|};
 
 type AnimatedState = {
   top: number,

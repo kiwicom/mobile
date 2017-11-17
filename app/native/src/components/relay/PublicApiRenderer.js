@@ -7,14 +7,14 @@ import createEnvironment from '../../services/relay/Environment';
 import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
 import GeneralError from '../../components/errors/GeneralError';
 
-type Props = {
+type Props = {|
   query: string,
   render: ({ error: Object, props: Object }) => React.Node,
   variables?: Object,
-  cacheConfig?: {
+  cacheConfig?: {|
     offline: boolean,
-  },
-};
+  |},
+|};
 
 export default function publicApiRenderer({
   query,

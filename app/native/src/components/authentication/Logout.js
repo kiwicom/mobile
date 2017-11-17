@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 
 import Button from '../visual/buttons/Button';
 
-type Props = {
+type Props = {|
   onLogout: () => void,
-};
+|};
 
 function Logout({ onLogout }: Props) {
   return <Button onPress={onLogout} title="Logout" />;

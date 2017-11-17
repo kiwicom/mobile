@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-type Props = {
+type Props = {|
   dateTime: ?string,
-};
+|};
 
 export default function DateComponent({ dateTime }: Props): React.Node {
   if (!dateTime) {

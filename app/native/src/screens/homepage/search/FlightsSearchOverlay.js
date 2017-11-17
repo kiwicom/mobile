@@ -7,9 +7,9 @@ import LocationSuggestionsWrapper from './LocationSuggestionsWrapper';
 
 import type { Navigation } from '../../../types/Navigation';
 
-type Props = {
+type Props = {|
   navigation: Navigation,
-};
+|};
 
 type State = {
   /**

@@ -9,10 +9,10 @@ import SimpleCard from '../../../components/visual/cards/SimpleCard';
 
 import type { LocationSuggestions } from './__generated__/LocationSuggestions.graphql';
 
-type Props = {
+type Props = {|
   data: LocationSuggestions,
   onLocationSelected: (locationId: string, locationName: string) => void,
-};
+|};
 
 const LocationSuggestionsWithoutData = (props: Props) => {
   const edges = idx(props, _ => _.data.allLocations.edges);

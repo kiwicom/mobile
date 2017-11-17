@@ -6,9 +6,9 @@ import { Text } from 'react-native';
 
 import type { Price } from './__generated__/Price.graphql';
 
-type Props = {
+type Props = {|
   data: Price,
-};
+|};
 
 const styles = {
   fontWeight: 'bold',

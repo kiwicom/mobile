@@ -7,9 +7,9 @@ import idx from 'idx';
 
 import type { Airport } from './__generated__/Airport.graphql';
 
-type Props = {
+type Props = {|
   data: Airport,
-};
+|};
 
 export const AirportWithoutData = ({ data }: Props) => {
   if (!data) {

@@ -5,7 +5,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Color from '../../../styles/Color';
 
-type Props = {
+type Props = {|
   onPress: Function,
   title: string,
   styles?: {
@@ -13,7 +13,7 @@ type Props = {
     buttonText?: Object,
   },
   touchable?: boolean,
-};
+|};
 
 export default function Button({
   onPress,

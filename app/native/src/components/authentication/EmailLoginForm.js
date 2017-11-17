@@ -8,15 +8,15 @@ import TextInput from '../forms/TextInput';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
 import Button from '../visual/buttons/Button';
 
-type Props = {
+type Props = {|
   onSuccess: (accessToken: AccessToken) => void,
-};
+|};
 
-type State = {
+type State = {|
   username: string,
   password: string,
   loading: boolean,
-};
+|};
 
 export default class SimpleLoginForm extends React.Component<Props, State> {
   state = {

@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
 
-type Props = {
+type Props = {|
   children: React.Node,
-};
+|};
 
 export default function LargeText({ children }: Props): React.Node {
   return <Text style={style.largeText}>{children}</Text>;

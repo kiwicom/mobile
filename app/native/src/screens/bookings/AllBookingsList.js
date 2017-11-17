@@ -13,14 +13,14 @@ import Large from '../../components/visual/text/Large';
 import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
 
-type Props = {
+type Props = {|
   bookings: AllBookingsList_bookings,
   navigation: Navigation,
-};
+|};
 
-type State = {
+type State = {|
   loading: boolean,
-};
+|};
 
 const filterEdges = allEdges => {
   const filteredTrips = [[], []];

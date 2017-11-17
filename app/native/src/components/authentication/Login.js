@@ -6,13 +6,13 @@ import { Button, View } from 'react-native';
 import EmailLoginForm from './EmailLoginForm';
 import GoogleLoginForm from './GoogleLoginForm';
 
-type Props = {
+type Props = {|
   onLogin: (accessToken: string) => void,
-};
+|};
 
-type State = {
+type State = {|
   loginViaFederatedIdentities: boolean,
-};
+|};
 
 export default class Login extends React.Component<Props, State> {
   state: State = {
