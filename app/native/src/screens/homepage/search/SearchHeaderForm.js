@@ -8,23 +8,23 @@ import TextInput from '../../../components/forms/TextInput';
 import DatePicker from '../../../components/forms/DatePicker';
 import Button from '../../../components/visual/buttons/Button';
 
-type Props = {
+type Props = {|
   onSend: (from: string, to: string, date: Date) => void,
   /**
    * Field indicates what 'TextInput' are we manipulating.
    */
   onLocationChange: (newLocation: string, field: 'from' | 'to') => void,
-  fields: {
+  fields: {|
     from: string,
     to: string,
-  },
-};
+  |},
+|};
 
-type State = {
-  date: {
+type State = {|
+  date: {|
     from: Date,
-  },
-};
+  |},
+|};
 
 const SearchForm = class SearchForm extends React.Component<Props, State> {
   constructor(props: Props) {

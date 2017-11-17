@@ -5,10 +5,10 @@ import { StyleSheet } from 'react-native';
 
 import Button from './Button';
 
-type Props = {
+type Props = {|
   loading: boolean,
   onPress: () => Promise<void>,
-};
+|};
 
 export default function GoogleButton({ onPress, loading = false }: Props) {
   if (loading === true) {

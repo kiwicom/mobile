@@ -10,9 +10,9 @@ import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeade
 
 import type { Navigation } from '../../types/Navigation';
 
-type Props = {
+type Props = {|
   navigation: Navigation,
-};
+|};
 
 export default class AllBookings extends React.Component<Props, {}> {
   render = () => {

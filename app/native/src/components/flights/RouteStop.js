@@ -7,9 +7,9 @@ import type { RouteStop } from './__generated__/RouteStop.graphql';
 
 import Airport from './Airport';
 
-type Props = {
+type Props = {|
   data: RouteStop,
-};
+|};
 
 export const RouteStopWithoutData = ({ data }: Props) => {
   return <Airport data={data.airport} />;

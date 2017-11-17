@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-type Props = {
+type Props = {|
   verified: boolean,
-};
+|};
 
 /**
  * This component creates badge for verified/unverified statuses. It

@@ -9,9 +9,9 @@ import CenteredView from '../../components/visual/view/CenteredView';
 
 import type { Navigation } from '../../types/Navigation';
 
-type Props = {
+type Props = {|
   navigation: Navigation,
-};
+|};
 
 export default class Homepage extends React.Component<Props, {}> {
   render = () => {

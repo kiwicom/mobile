@@ -13,7 +13,7 @@ import LocationSuggestionsContainer from './LocationSuggestions';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
 
-type Props = {
+type Props = {|
   visible: boolean,
   onLocationSelected: (locationId: string, locationName: string) => void,
   /**
@@ -24,11 +24,11 @@ type Props = {
    * Name (identifier) of the last focused field so it can be updated.
    */
   lastFocusedField: string,
-};
+|};
 
-type State = {
+type State = {|
   top: number,
-};
+|};
 
 /**
  * This component is animated wrapper (container) around 'LocationSuggestions'.

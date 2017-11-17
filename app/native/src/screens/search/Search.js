@@ -9,9 +9,9 @@ import Layout from '../../components/visual/view/Layout';
 
 import type { Navigation } from '../../types/Navigation';
 
-type Props = {
+type Props = {|
   navigation: Navigation,
-};
+|};
 
 export default class Search extends React.Component<Props> {
   static navigationOptions = ({

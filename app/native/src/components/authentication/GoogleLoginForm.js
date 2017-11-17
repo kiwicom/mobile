@@ -8,13 +8,13 @@ import GoogleButton from '../visual/buttons/GoogleButton';
 import config from '../../../config/application';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
 
-type Props = {
+type Props = {|
   onSuccess: (accessToken: AccessToken) => void,
-};
+|};
 
-type State = {
+type State = {|
   loading: boolean,
-};
+|};
 
 export default class GoogleLogin extends React.Component<Props, State> {
   state = {

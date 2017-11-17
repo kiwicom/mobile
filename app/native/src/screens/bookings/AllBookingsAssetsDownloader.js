@@ -6,9 +6,9 @@ import AssetsDownloader from '../../services/assets/AssetsDownloader';
 
 import type { AllBookingsAssetsDownloader } from './__generated__/AllBookingsAssetsDownloader.graphql';
 
-type Props = {
+type Props = {|
   data: AllBookingsAssetsDownloader,
-};
+|};
 
 /**
  * This is not visual component. It just downloads all necessary assets for

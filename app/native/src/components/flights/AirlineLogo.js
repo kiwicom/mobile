@@ -6,9 +6,9 @@ import { Image } from 'react-native';
 
 import type { AirlineLogo } from './__generated__/AirlineLogo.graphql';
 
-type Props = {
+type Props = {|
   data: AirlineLogo,
-};
+|};
 
 const styles = {
   width: 16,

@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { Text } from 'react-native';
 
-type Props = {
+type Props = {|
   minutes: ?number,
-};
+|};
 
 export default function Duration({ minutes }: Props) {
   if (!minutes || minutes < 0) {

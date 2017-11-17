@@ -11,11 +11,11 @@ import Date from '../../components/visual/datetime/Date';
 import type { AllBookingsListRow_node } from './__generated__/AllBookingsListRow_node.graphql';
 import type { Navigation } from '../../types/Navigation';
 
-type Props = {
+type Props = {|
   node: AllBookingsListRow_node,
   navigation: Navigation,
   showSeparator: boolean,
-};
+|};
 
 export function BookingListRowWithoutData({
   node,

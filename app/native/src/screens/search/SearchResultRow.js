@@ -13,9 +13,9 @@ import SimpleCard from '../../components/visual/cards/SimpleCard';
 
 import type { SearchResultRow_node } from './__generated__/SearchResultRow_node.graphql';
 
-type Props = {
+type Props = {|
   node: SearchResultRow_node,
-};
+|};
 
 export const SearchResultRowWithoutData = ({ node }: Props) => {
   const { duration, price, legs, departure, arrival } = node;

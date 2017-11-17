@@ -7,7 +7,7 @@ import SimpleCard from '../../components/visual/cards/SimpleCard';
 
 export default function BookingListRowError() {
   return (
-    <SimpleCard style={styles.card}>
+    <SimpleCard additionalStyles={styles.card}>
       <Text>
         We couldn&apos;t load this search result because of our API returned an
         error.

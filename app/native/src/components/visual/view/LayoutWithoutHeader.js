@@ -5,9 +5,9 @@ import { StatusBar, Platform } from 'react-native';
 
 import Layout from './Layout';
 
-type Props = {
+type Props = {|
   children: React.Node,
-};
+|};
 
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 

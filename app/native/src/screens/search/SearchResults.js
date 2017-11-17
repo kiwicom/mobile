@@ -9,14 +9,14 @@ import Button from '../../components/visual/buttons/Button';
 
 import type { SearchResults_flights } from './__generated__/SearchResults_flights.graphql';
 
-type Props = {
+type Props = {|
   flights: SearchResults_flights,
   relay: Object, // FIXME
-};
+|};
 
-type State = {
+type State = {|
   loading: boolean,
-};
+|};
 
 export class SearchResultsWithoutData extends React.Component<Props, State> {
   state: State = {
