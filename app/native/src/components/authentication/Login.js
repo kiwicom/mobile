@@ -5,6 +5,7 @@ import { Button, View } from 'react-native';
 
 import EmailLoginForm from './EmailLoginForm';
 import GoogleLoginForm from './GoogleLoginForm';
+import CenteredView from '../visual/view/CenteredView';
 
 type Props = {|
   onLogin: (accessToken: string) => void,
@@ -31,23 +32,25 @@ export default class Login extends React.Component<Props, State> {
     );
 
     return (
-      <View>
-        {this.state.loginViaFederatedIdentities
-          ? [
-              <GoogleLoginForm
-                key="google"
-                onSuccess={accessToken => this.props.onLogin(accessToken)}
-              />,
-              toggleButton('Login using email'),
-            ]
-          : [
-              <EmailLoginForm
-                key="email"
-                onSuccess={accessToken => this.props.onLogin(accessToken)}
-              />,
-              toggleButton('Login using Google'),
-            ]}
-      </View>
+      <CenteredView>
+        <View style={{ width: '100%' }}>
+          {this.state.loginViaFederatedIdentities
+            ? [
+                <GoogleLoginForm
+                  key="google"
+                  onSuccess={accessToken => this.props.onLogin(accessToken)}
+                />,
+                toggleButton('Login using email'),
+              ]
+            : [
+                <EmailLoginForm
+                  key="email"
+                  onSuccess={accessToken => this.props.onLogin(accessToken)}
+                />,
+                toggleButton('Login using Google'),
+              ]}
+        </View>
+      </CenteredView>
     );
   };
 }
