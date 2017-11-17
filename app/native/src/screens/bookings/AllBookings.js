@@ -18,26 +18,26 @@ export default class AllBookings extends React.Component<Props, {}> {
   render = () => {
     return (
       <LayoutWithoutHeader>
-        <ScrollView>
-          <PrivateApiRenderer
-            query={graphql`
-              query AllBookingsQuery {
-                ...AllBookingsList_bookings
-              }
-            `}
-            render={props => {
-              return (
+        <PrivateApiRenderer
+          query={graphql`
+            query AllBookingsQuery {
+              ...AllBookingsList_bookings
+            }
+          `}
+          render={props => {
+            return (
+              <ScrollView>
                 <AllBookingsListContainer
                   bookings={props}
                   navigation={this.props.navigation}
                 />
-              );
-            }}
-            cacheConfig={{
-              offline: true,
-            }}
-          />
-        </ScrollView>
+              </ScrollView>
+            );
+          }}
+          cacheConfig={{
+            offline: true,
+          }}
+        />
       </LayoutWithoutHeader>
     );
   };
