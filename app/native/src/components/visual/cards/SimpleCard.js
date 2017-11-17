@@ -12,7 +12,7 @@ type Props = {
 
 const style = ({ density = 'compact', separator = true }: Props) => {
   const PADDING_TOP_BOTTOM = density === 'compact' ? 10 : 20;
-  const PADDING_LEFT_RIGHT = 10;
+  const PADDING_LEFT_RIGHT = 0;
   let additionalStyles = {};
 
   if (separator) {

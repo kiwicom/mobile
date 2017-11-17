@@ -16,7 +16,8 @@ export default function Layout({ children, style }: Props) {
     <View
       style={[
         {
-          padding: 10,
+          padding: 15,
+          flex: 1,
         },
         style,
       ]}

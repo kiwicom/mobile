@@ -8,8 +8,8 @@ exports[`renders airy density 1`] = `
       "borderBottomColor": "#eee",
       "borderBottomWidth": 1,
       "paddingBottom": 20,
-      "paddingLeft": 10,
-      "paddingRight": 10,
+      "paddingLeft": 0,
+      "paddingRight": 0,
       "paddingTop": 20,
     }
   }
@@ -26,8 +26,8 @@ exports[`renders as expected 1`] = `
       "borderBottomColor": "#eee",
       "borderBottomWidth": 1,
       "paddingBottom": 10,
-      "paddingLeft": 10,
-      "paddingRight": 10,
+      "paddingLeft": 0,
+      "paddingRight": 0,
       "paddingTop": 10,
     }
   }
@@ -68,8 +68,8 @@ exports[`renders as expected with onPress callback 1`] = `
         "borderBottomColor": "#eee",
         "borderBottomWidth": 1,
         "paddingBottom": 10,
-        "paddingLeft": 10,
-        "paddingRight": 10,
+        "paddingLeft": 0,
+        "paddingRight": 0,
         "paddingTop": 10,
       }
     }
@@ -85,8 +85,8 @@ exports[`renders without separator 1`] = `
     Object {
       "backgroundColor": "#fff",
       "paddingBottom": 10,
-      "paddingLeft": 10,
-      "paddingRight": 10,
+      "paddingLeft": 0,
+      "paddingRight": 0,
       "paddingTop": 10,
     }
   }

@@ -8,6 +8,7 @@ import idx from 'idx';
 import AllBookingsListRow from './AllBookingsListRow';
 import AllBookingsListRowError from './AllBookingsListRowError';
 import AllBookingsAssetsDownloader from './AllBookingsAssetsDownloader';
+import Large from '../../components/visual/text/Large';
 
 import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
@@ -21,34 +22,74 @@ type State = {
   loading: boolean,
 };
 
+const filterEdges = allEdges => {
+  const filteredTrips = [[], []];
+  allEdges.forEach(edge => {
+    const departureLocalTime = idx(edge, _ => _.node.departure.localTime);
+    if (departureLocalTime) {
+      if (new Date(departureLocalTime).getTime() >= Date.now()) {
+        // future trips
+        filteredTrips[0].push(edge);
+      }
+      filteredTrips[1].push(edge);
+    }
+  });
+  return filteredTrips;
+};
+
+/**
+ * Renders past and future trips. It automatically downloads all assets like
+ * plane tickets and invoices for future trips (not for the past trips).
+ */
 export class AllBookingsListWithoutData extends React.Component<Props, State> {
   render = () => {
-    const edges = idx(this.props, _ => _.bookings.allBookings.edges);
-    return (
-      <View>
-        {edges ? (
-          edges.map(edge => {
-            if (edge) {
-              const { node, cursor } = edge;
+    const allEdges = idx(this.props, _ => _.bookings.allBookings.edges) || [];
+    const [futureEdges, pastEdges] = filterEdges(allEdges);
 
-              return [
+    const title = titleString => (
+      <View style={{ paddingTop: 25, paddingBottom: 10 }}>
+        <Large>{titleString}</Large>
+      </View>
+    );
+
+    const renderEdges = (edges, downloadAssets: boolean = false) => {
+      const listLength = edges.length;
+      return listLength > 0 ? (
+        edges.map((edge, index) => {
+          if (edge) {
+            const { node, cursor } = edge;
+            return [
+              downloadAssets && (
                 <AllBookingsAssetsDownloader
                   data={node && node.assets}
                   key="downloader"
-                />,
-                <AllBookingsListRow
-                  node={node}
-                  key={cursor}
-                  navigation={this.props.navigation}
-                />,
-              ];
-            } else {
-              return <AllBookingsListRowError />;
-            }
-          })
-        ) : (
-          <Text>We couldn&apos;t load the bookings (missing data).</Text>
-        )}
+                />
+              ),
+              <AllBookingsListRow
+                node={node}
+                key={cursor}
+                navigation={this.props.navigation}
+                showSeparator={listLength !== index + 1} // everywhere except the last row in the list
+              />,
+            ];
+          } else {
+            return <AllBookingsListRowError />;
+          }
+        })
+      ) : (
+        <View style={{ paddingTop: 20, paddingBottom: 20 }}>
+          <Text>No trips yet.</Text>
+        </View>
+      );
+    };
+
+    return (
+      <View>
+        {title('Future trips')}
+        {renderEdges(futureEdges, true)}
+
+        {title('Past trips')}
+        {renderEdges(pastEdges)}
       </View>
     );
   };
@@ -67,11 +108,6 @@ export default createFragmentContainer(
             }
             departure {
               localTime
-              ...RouteStop
-            }
-            arrival {
-              localTime
-              ...RouteStop
             }
             ...AllBookingsListRow_node
           }

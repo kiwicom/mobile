@@ -14,9 +14,6 @@ export type AllBookingsList_bookings = {|
         +departure: ?{|
           +localTime: ?any;
         |};
-        +arrival: ?{|
-          +localTime: ?any;
-        |};
       |};
     |}>;
   |};
@@ -90,34 +87,6 @@ const node: ConcreteFragment = {
                       "args": null,
                       "name": "localTime",
                       "storageKey": null
-                    },
-                    {
-                      "kind": "FragmentSpread",
-                      "name": "RouteStop",
-                      "args": null
-                    }
-                  ],
-                  "storageKey": null
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "args": null,
-                  "concreteType": "RouteStop",
-                  "name": "arrival",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "args": null,
-                      "name": "localTime",
-                      "storageKey": null
-                    },
-                    {
-                      "kind": "FragmentSpread",
-                      "name": "RouteStop",
-                      "args": null
                     }
                   ],
                   "storageKey": null

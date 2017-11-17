@@ -6,16 +6,10 @@
 
 import type { ConcreteFragment } from 'relay-runtime';
 export type AllBookingsListRow_node = {|
-  +assets: ?{|
-    +ticketUrl: ?string;
-    +invoiceUrl: ?string;
-  |};
   +departure: ?{|
     +localTime: ?any;
   |};
-  +arrival: ?{|
-    +localTime: ?any;
-  |};
+  +arrival: ?{| |};
 |};
 
 
@@ -25,31 +19,6 @@ const node: ConcreteFragment = {
   "metadata": null,
   "name": "AllBookingsListRow_node",
   "selections": [
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "args": null,
-      "concreteType": "BookingAssets",
-      "name": "assets",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "ticketUrl",
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "invoiceUrl",
-          "storageKey": null
-        }
-      ],
-      "storageKey": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -81,13 +50,6 @@ const node: ConcreteFragment = {
       "name": "arrival",
       "plural": false,
       "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "localTime",
-          "storageKey": null
-        },
         {
           "kind": "FragmentSpread",
           "name": "RouteStop",
