@@ -2,31 +2,37 @@
 
 import * as React from 'react';
 import { QueryRenderer } from 'react-relay';
+import { connect } from 'react-redux';
 
 import createEnvironment from '../../services/relay/Environment';
 import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
 import GeneralError from '../../components/errors/GeneralError';
+import Login from '../../components/authentication/Login';
 
-type Props = {
-  accessToken: string,
+import type { ReduxState } from '../../types/Redux';
+
+type Props = {|
   query: string,
   render: ({ error: Object, props: Object }) => React.Node,
   variables?: Object,
-  cacheConfig?: {
+  cacheConfig?: {|
     offline: boolean,
-  },
-};
+  |},
+  user: $PropertyType<ReduxState, 'user'>,
+  onLogin: (accessToken: string) => void,
+|};
 
-export default function publicApiRenderer({
-  accessToken,
+function publicApiRenderer({
   query,
   render,
   variables,
   cacheConfig,
+  user,
+  onLogin,
 }: Props) {
-  return (
+  return user.logged ? (
     <QueryRenderer
-      environment={createEnvironment(accessToken)}
+      environment={createEnvironment(user.accessToken)}
       query={query}
       variables={variables}
       render={({ error, props }) => {
@@ -40,5 +46,21 @@ export default function publicApiRenderer({
       }}
       cacheConfig={cacheConfig}
     />
+  ) : (
+    <Login onLogin={onLogin} />
   );
 }
+
+export default connect(
+  state => ({
+    user: state.user,
+  }),
+  dispatch => ({
+    onLogin: accessToken => {
+      dispatch({
+        type: 'login',
+        accessToken,
+      });
+    },
+  }),
+)(publicApiRenderer);

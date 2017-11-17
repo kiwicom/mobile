@@ -4,9 +4,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 
 import LoginMutation, { type Callback } from './mutation/Login';
-import TextInput from '../../components/forms/TextInput';
+import TextInput from '../forms/TextInput';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
-import Button from '../../components/visual/buttons/Button';
+import Button from '../visual/buttons/Button';
 
 type Props = {
   onSuccess: (accessToken: AccessToken) => void,

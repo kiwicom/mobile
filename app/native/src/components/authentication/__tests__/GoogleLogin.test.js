@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import GoogleLogin from '../GoogleLogin';
+import GoogleLogin from '../GoogleLoginForm';
 
 let renderer;
 beforeEach(() => {

@@ -47,6 +47,9 @@ export default class GoogleLogin extends React.Component<Props, State> {
             )).json();
             this.setState({ loading: false });
             this.props.onSuccess(createAccessToken(jsonPayload.token));
+          } else {
+            // TODO: onFailure event with errors
+            this.setState({ loading: false });
           }
         }}
       />
