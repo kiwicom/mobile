@@ -33,8 +33,8 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ```
 .
 ├── app/
-│   ├── hotels/                 - sources @kiwicom/native-hotels
-│   └── native/                 - main sources of the application               <<<
+│   ├── hotels/                 - @kiwicom/native-hotels
+│   └── native/                 - @kiwicom/native (core package)
 ├── scripts/                    - support scripts for the whole monorepo
 ├── .travis.yml                 - CI configuration
 ├── App.js                      - bootstrap component

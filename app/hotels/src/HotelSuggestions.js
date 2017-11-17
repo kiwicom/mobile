@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 export default function HotelSuggestions() {
-  return <Text>TODO: hotel suggestions</Text>;
+  return (
+    <View style={{ backgroundColor: '#fff', paddingTop: 20 }}>
+      <Text>TODO: component with hotels will be here</Text>
+    </View>
+  );
 }

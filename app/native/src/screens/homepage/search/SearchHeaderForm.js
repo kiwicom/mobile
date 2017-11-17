@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import TextInput from '../../../components/forms/TextInput';
@@ -54,6 +54,10 @@ const SearchForm = class SearchForm extends React.Component<Props, State> {
 
   render = () => (
     <View>
+      <View>
+        <Text style={{ fontSize: 30 }}>&times;</Text>
+      </View>
+
       <TextInput
         onFocus={event => this._changeOriginLocation(event.nativeEvent.text)}
         onChangeText={text => this._changeOriginLocation(text)}
