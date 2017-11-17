@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import GoogleLogin from '../GoogleLogin';
+import GoogleLogin from '../GoogleLoginForm';
 
 jest.mock('../../../services/authentication/Google', () => ({
   signIn: () => 'fake mocked access token from Google service',

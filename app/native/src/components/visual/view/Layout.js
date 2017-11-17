@@ -17,6 +17,7 @@ export default function Layout({ children, style }: Props) {
       style={[
         {
           padding: 15,
+          paddingBottom: 0,
           flex: 1,
         },
         style,

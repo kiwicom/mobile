@@ -15,7 +15,7 @@ export type ReduxState = {|
     fields: {|
       [identifier: string]: string, // identifier: value
     |},
-    // this is what user typed to the last input
+    // this is identifier of the last used field during search
     lastFocusedField: string,
     // this is what our system suggests for 'userTyped' field
     systemSuggested: string,
