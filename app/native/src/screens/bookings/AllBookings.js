@@ -21,10 +21,6 @@ type Props = {
 };
 
 class AllBookings extends React.Component<Props, {}> {
-  static navigationOptions = {
-    title: 'All my bookings',
-  };
-
   render = () => {
     return (
       <LayoutWithoutHeader>
