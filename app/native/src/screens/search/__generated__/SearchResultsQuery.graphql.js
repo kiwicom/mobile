@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2022e83d7c0e65e2b455d8f0cc69ae21
+ * @relayHash 1ca522079a9bc8f207cd6243e3f5dfad
  */
 
 /* eslint-disable */
@@ -53,6 +53,7 @@ fragment SearchResultRow_node on Flight {
       ...AirlineLogo
     }
   }
+  bookingUrl
 }
 
 fragment Price on Price {
@@ -378,6 +379,13 @@ const node: ConcreteBatch = {
                     "kind": "ScalarField",
                     "alias": null,
                     "args": null,
+                    "name": "bookingUrl",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
                     "name": "id",
                     "storageKey": null
                   }
@@ -447,7 +455,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResults_flights\n}\n\nfragment SearchResults_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        ...SearchResultRow_node\n        id\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SearchResultRow_node on Flight {\n  duration\n  price {\n    ...Price\n  }\n  departure {\n    localTime\n    ...RouteStop\n  }\n  arrival {\n    localTime\n    ...RouteStop\n  }\n  legs {\n    id\n    airline {\n      ...AirlineLogo\n    }\n  }\n}\n\nfragment Price on Price {\n  amount\n  currency\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment AirlineLogo on Airline {\n  logoUrl\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
+  "text": "query SearchResultsQuery(\n  $search: FlightsSearchInput!\n  $count: Int!\n  $after: String\n) {\n  ...SearchResults_flights\n}\n\nfragment SearchResults_flights on RootQuery {\n  allFlights(search: $search, first: $count, after: $after) {\n    edges {\n      cursor\n      node {\n        __typename\n        ...SearchResultRow_node\n        id\n      }\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment SearchResultRow_node on Flight {\n  duration\n  price {\n    ...Price\n  }\n  departure {\n    localTime\n    ...RouteStop\n  }\n  arrival {\n    localTime\n    ...RouteStop\n  }\n  legs {\n    id\n    airline {\n      ...AirlineLogo\n    }\n  }\n  bookingUrl\n}\n\nfragment Price on Price {\n  amount\n  currency\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment AirlineLogo on Airline {\n  logoUrl\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
 module.exports = node;

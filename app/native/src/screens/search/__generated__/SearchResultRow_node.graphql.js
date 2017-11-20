@@ -18,6 +18,7 @@ export type SearchResultRow_node = {|
     +id: string;
     +airline: ?{| |};
   |}>;
+  +bookingUrl: ?string;
 |};
 
 
@@ -128,6 +129,13 @@ const node: ConcreteFragment = {
           "storageKey": null
         }
       ],
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "bookingUrl",
       "storageKey": null
     }
   ],
