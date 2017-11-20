@@ -12,16 +12,19 @@ import RouteStop from '../../components/flights/RouteStop';
 import SimpleCard from '../../components/visual/cards/SimpleCard';
 
 import type { SearchResultRow_node } from './__generated__/SearchResultRow_node.graphql';
+import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
+  navigation: Navigation,
   node: SearchResultRow_node,
 |};
 
-export const SearchResultRowWithoutData = ({ node }: Props) => {
+export const SearchResultRowWithoutData = ({ node, navigation }: Props) => {
   const { duration, price, legs, departure, arrival } = node;
+  const { navigate } = navigation;
   if (legs) {
     return (
-      <SimpleCard>
+      <SimpleCard onPress={() => navigate('WebBooking', { booking: node })}>
         <View style={{ flex: 16, flexDirection: 'row' }}>
           <View style={{ flex: 2 }}>
             <Price data={price} />
@@ -84,6 +87,7 @@ export default createFragmentContainer(
           ...AirlineLogo
         }
       }
+      bookingUrl
     }
   `,
 );
