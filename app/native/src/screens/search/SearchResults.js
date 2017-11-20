@@ -8,8 +8,10 @@ import SearchResultRow from './SearchResultRow';
 import Button from '../../components/visual/buttons/Button';
 
 import type { SearchResults_flights } from './__generated__/SearchResults_flights.graphql';
+import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
+  navigation: Navigation,
   flights: SearchResults_flights,
   relay: Object, // FIXME
 |};
@@ -43,9 +45,15 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
           allFlights.edges.map(edge => {
             if (edge) {
               const { node, cursor } = edge;
-              return <SearchResultRow node={node} key={cursor} />;
+              return (
+                <SearchResultRow
+                  node={node}
+                  key={cursor}
+                  navigation={this.props.navigation}
+                />
+              );
             } else {
-              return <SearchResultRow />;
+              return <SearchResultRow navigation={this.props.navigation} />;
             }
           })
         ) : (

@@ -4,6 +4,7 @@ import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 import { SearchResultRowWithoutData } from '../SearchResultRow';
+import ReactNavigation from './__mocks__/ReactNavigation';
 
 const renderer = new ShallowRenderer();
 
@@ -16,7 +17,9 @@ it('renders without legs', () => {
         departure: null,
         arrival: null,
         legs: null,
+        bookingUrl: null,
       }}
+      navigation={ReactNavigation}
     />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
@@ -39,9 +42,11 @@ it('renders with partial legs', () => {
             id: '1',
             airline: {},
           },
-          null, // simulates API failure
+          null, // simulates random API failure
         ],
+        bookingUrl: 'https://www.kiwi.com/en/booking?faked=true',
       }}
+      navigation={ReactNavigation}
     />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
