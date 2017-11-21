@@ -7,5 +7,6 @@
   },
   "transform": {
     "^.+\\.js$": "babel-jest"
-  }
+  },
+  "testPathIgnorePatterns": ["/node_modules/", "__tests__/__mocks__"]
 }
