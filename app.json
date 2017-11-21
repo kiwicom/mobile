@@ -5,7 +5,7 @@
     "icon": "./app/native/assets/icon.png",
     "version": "0.0.1",
     "slug": "kiwi-com",
-    "sdkVersion": "22.0.0",
+    "sdkVersion": "23.0.0",
     "ios": {
       "bundleIdentifier": "com.kiwi.rn"
     },
