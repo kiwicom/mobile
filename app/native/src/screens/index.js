@@ -13,6 +13,7 @@ import Profile from './profile/Profile';
 import Search from './search/Search';
 import Color from '../styles/Color';
 import TabBarIcon from '../components/navigation/TabBarIcon';
+import WebBooking from './search/WebBooking';
 
 const stackNavigatorOptions = {
   navigationOptions: {
@@ -40,6 +41,7 @@ const ExploreStackNavigator = StackNavigator(
       },
     },
     SearchResults: { screen: Search },
+    WebBooking: { screen: WebBooking },
   },
   {
     ...stackNavigatorOptions,

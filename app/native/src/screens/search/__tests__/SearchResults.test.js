@@ -4,6 +4,7 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 
 import { SearchResultsWithoutData } from '../SearchResults';
+import ReactNavigation from './__mocks__/ReactNavigation';
 
 it('renders without crashing', () => {
   const rendered = renderer
@@ -15,6 +16,7 @@ it('renders without crashing', () => {
         relay={{
           hasMore: () => {},
         }}
+        navigation={ReactNavigation}
       />,
     )
     .toJSON();

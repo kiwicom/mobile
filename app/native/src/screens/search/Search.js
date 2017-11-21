@@ -36,7 +36,10 @@ export default class Search extends React.Component<Props> {
         render={props => {
           return (
             <Layout>
-              <SearchResultsContainer flights={props} />
+              <SearchResultsContainer
+                flights={props}
+                navigation={this.props.navigation}
+              />
             </Layout>
           );
         }}
