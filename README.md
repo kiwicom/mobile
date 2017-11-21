@@ -23,6 +23,7 @@
 * [Update GraphQL schema](#update-graphql-schema)
 * [Best Practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
+* [Troubleshooting](#troubleshooting)
 
 ## Installation
 
@@ -80,3 +81,13 @@ idx(props, _ => _.user.friends[0].friends)
 ```
 
 **Do not use `_.get(...)` from Lodash!** For more information please read [documentation here](https://github.com/facebookincubator/idx).
+
+## Troubleshooting
+
+Expo client throws (even in emulator):
+
+```
+This experience uses an unsupported version of Expo (SDK 23.0.0). You may need to update Expo.
+```
+
+In this case please delete the Expo app (yes, even in the emulator) and run `yarn ios` again. The Expo client will update automatically.

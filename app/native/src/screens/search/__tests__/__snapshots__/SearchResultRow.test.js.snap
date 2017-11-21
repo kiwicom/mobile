@@ -59,7 +59,6 @@ exports[`renders with partial legs 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
         >
            → 
@@ -96,7 +95,6 @@ exports[`renders with partial legs 1`] = `
         <Text
           accessible={true}
           allowFontScaling={true}
-          disabled={false}
           ellipsizeMode="tail"
         >
           in 
@@ -114,7 +112,6 @@ exports[`renders without legs 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   Flight legs could not be loaded (missing data).

@@ -15,9 +15,9 @@
     "test-ci": "./scripts/test.sh"
   },
   "dependencies": {
-    "expo": "22.0.4",
-    "react": "16.0.0-beta.5",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.2.tar.gz"
+    "expo": "^23.0.0",
+    "react": "16.0.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -31,12 +31,14 @@
     "eslint-plugin-flowtype": "^2.39.1",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
+    "exp": "^45.1.0",
     "flow-bin": "^0.59.0",
     "graphql-cli": "^2.0.0",
     "jest": "21.2.1",
     "jest-expo": "^23.0.0",
     "prettier": "^1.7.4",
     "react-native-scripts": "1.7.0",
+    "react-test-renderer": "^16.1.0",
     "relay-compiler": "^1.4.1"
   }
 }

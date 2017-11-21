@@ -4,7 +4,6 @@ exports[`works as expected 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   0
@@ -18,7 +17,6 @@ exports[`works as expected 2`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   0
@@ -32,7 +30,6 @@ exports[`works as expected 3`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   0
@@ -46,7 +43,6 @@ exports[`works as expected 4`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   0
@@ -60,7 +56,6 @@ exports[`works as expected 5`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   1
@@ -74,7 +69,6 @@ exports[`works as expected 6`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   2
@@ -88,7 +82,6 @@ exports[`works as expected 7`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   168
@@ -102,7 +95,6 @@ exports[`works as with falsey values 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   0
@@ -116,7 +108,6 @@ exports[`works as with falsey values 2`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
-  disabled={false}
   ellipsizeMode="tail"
 >
   0
