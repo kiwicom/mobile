@@ -1,8 +1,15 @@
 // @flow
 
+type NavigationStateParameters = Object;
+
+/**
+ * @see https://reactnavigation.org/docs/navigators/navigation-prop
+ */
 export type Navigation = {
-  navigate: (screen: string, parameters?: Object) => void,
+  navigate: (routeName: string, parameters?: NavigationStateParameters) => void,
   state: {
-    params: Object,
+    params: NavigationStateParameters,
   },
+  setParams: (newParameters: NavigationStateParameters) => void,
+  goBack: () => void,
 };
