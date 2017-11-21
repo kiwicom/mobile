@@ -10,10 +10,8 @@ import {
   FileWriter as RelayFileWriter,
   IRTransforms as RelayIRTransforms,
 } from 'relay-compiler';
-import { buildASTSchema, parse } from 'relay-compiler/node_modules/graphql'; // it's necessary to use the same version from relay-compiler
+import { buildASTSchema, parse, type GraphQLSchema } from 'graphql';
 import WatchmanClient from 'relay-compiler/lib/GraphQLWatchmanClient';
-
-import type { GraphQLSchema } from 'graphql';
 
 const {
   codegenTransforms,

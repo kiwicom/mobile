@@ -52,7 +52,6 @@ module.name_mapper='^redux-persist$' -> 'emptyObject'
 ; app/scripts/RelayCompiler.js:
 module.name_mapper='^graphql$' -> 'emptyObject'
 module.name_mapper='^relay-compiler/lib/GraphQLWatchmanClient$' -> 'emptyObject'
-module.name_mapper='^relay-compiler/node_modules/graphql$' -> 'emptyObject'
 
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
