@@ -3,16 +3,16 @@
 
 ## Known issues
 
-We need to fix these issue before productions use:
+#### Important to fix before production ready state
 
 - `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852, fixed by https://github.com/facebook/relay/commit/a17b462b3ff7355df4858a42ddda75f58c161302 (not released yet)
 - Relay swallows all GraphQL errors in `QueryRenderer`: https://github.com/facebook/relay/issues/1913
 
-Necessary production improvements:
+#### Improvements necessary for production usage
 
 - persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
 
-Nice to have:
+#### Nice to have
 
 - Jest code coverage (Instanbul) doesn't work with Facebook IDX: https://github.com/facebookincubator/idx/issues/19
 
@@ -20,6 +20,7 @@ Nice to have:
 
 * [Installation](#installation)
 * [Project structure](#project-structure)
+* [Update GraphQL schema](#update-graphql-schema)
 * [Best Practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 
@@ -49,6 +50,12 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── App.js                      - bootstrap component
 ├── app.json                    - application settings for Expo
 └── schema.graphql              - GraphQL schema of the backend server
+```
+
+## Update GraphQL schema
+
+```
+yarn graphql get-schema
 ```
 
 ## Best Practices
