@@ -36,7 +36,7 @@ export default class FlightsSearchOverlay extends React.Component<
 
   render = () => {
     return (
-      <View style={{ height: 150, zIndex: 1 }}>
+      <View style={{ height: 170, zIndex: 1 }}>
         <SearchHeader
           key="header"
           onSend={searchParameters => {

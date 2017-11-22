@@ -2,5 +2,5 @@
   "name": "@kiwicom/native-hotels",
   "version": "0.0.0",
   "private": false,
-  "main": "src/HotelSuggestions.js"
+  "main": "index.js"
 }
