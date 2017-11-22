@@ -49,7 +49,7 @@ const ExploreStackNavigator = StackNavigator(
   },
 );
 
-const TravelStackNavigator = StackNavigator(
+const TripsStackNavigator = StackNavigator(
   {
     AllBookings: {
       screen: AllBookings,
@@ -76,7 +76,7 @@ const MainTabNavigator = TabNavigator(
       },
     },
     Trips: {
-      screen: TravelStackNavigator,
+      screen: TripsStackNavigator,
       navigationOptions: {
         tabBarIcon: function TabBarIconWrapper(props) {
           return <TabBarIcon type="Trips" {...props} />;

@@ -2,11 +2,23 @@
 
 type NavigationStateParameters = Object;
 
+type ExploreStackNavigatorRouteNames = 'Home' | 'SearchResults' | 'WebBooking';
+type TripsStackNavigatorRouteNames = 'AllBookings' | 'SingleBooking';
+type MainTabNavigatorRouteNames = 'Explore' | 'Trips' | 'Profile';
+
+type RouteNames =
+  | ExploreStackNavigatorRouteNames
+  | TripsStackNavigatorRouteNames
+  | MainTabNavigatorRouteNames;
+
 /**
  * @see https://reactnavigation.org/docs/navigators/navigation-prop
  */
 export type Navigation = {
-  navigate: (routeName: string, parameters?: NavigationStateParameters) => void,
+  navigate: (
+    routeName: RouteNames,
+    parameters?: NavigationStateParameters,
+  ) => void,
   state: {
     params: NavigationStateParameters,
   },
