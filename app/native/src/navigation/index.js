@@ -1,69 +1,17 @@
 // @flow
 
 import * as React from 'react';
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
 
 import { configureStore } from '../services/redux/Store';
-import SingleBooking from './bookings/SingleBooking';
-import AllBookings from './bookings/AllBookings';
-import Homepage from './homepage/Homepage';
-import Profile from './profile/Profile';
-import Search from './search/Search';
+import Profile from '../screens/profile/Profile';
 import Color from '../styles/Color';
 import TabBarIcon from '../components/navigation/TabBarIcon';
-import WebBooking from './search/WebBooking';
 
-const stackNavigatorOptions = {
-  navigationOptions: {
-    headerStyle: {
-      backgroundColor: '#fff',
-      borderBottomWidth: 0,
-    },
-    headerTitleStyle: {
-      color: Color.grey._900,
-    },
-    headerTintColor: Color.grey._900,
-  },
-  cardStyle: {
-    backgroundColor: '#fff',
-  },
-  headerMode: 'screen',
-};
-
-const ExploreStackNavigator = StackNavigator(
-  {
-    Home: {
-      screen: Homepage,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    SearchResults: { screen: Search },
-    WebBooking: { screen: WebBooking },
-  },
-  {
-    ...stackNavigatorOptions,
-    initialRouteName: 'Home',
-  },
-);
-
-const TripsStackNavigator = StackNavigator(
-  {
-    AllBookings: {
-      screen: AllBookings,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    SingleBooking: { screen: SingleBooking },
-  },
-  {
-    ...stackNavigatorOptions,
-    initialRouteName: 'AllBookings',
-  },
-);
+import ExploreStackNavigator from './ExploreStackNavigator';
+import TripsStackNavigator from './TripsStackNavigator';
 
 const MainTabNavigator = TabNavigator(
   {

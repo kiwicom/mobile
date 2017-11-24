@@ -21,6 +21,7 @@
 * [Installation](#installation)
 * [Project structure](#project-structure)
 * [Update GraphQL schema](#update-graphql-schema)
+* [Offline](#offline)
 * [Best Practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 * [Troubleshooting](#troubleshooting)
@@ -46,6 +47,10 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── app/
 │   ├── hotels/                 - @kiwicom/native-hotels
 │   └── native/                 - @kiwicom/native (core package)
+│       ├── assets/             - static files
+│       ├── config/             - application (module) configuration
+│       └── src/                - source files
+│           └── screens/        - main screens (usually Relay QueryRenderer roots)
 ├── scripts/                    - support scripts for the whole monorepo
 ├── .travis.yml                 - CI configuration
 ├── App.js                      - bootstrap component
@@ -57,6 +62,20 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 
 ```
 yarn graphql get-schema
+```
+
+## Offline
+
+This application is mainly for travelers so being offline is still quite a big issue. At this moment we want to have offline bookings. You can enable offline cache on query renderer like this:
+
+```js
+<PrivateApiRenderer
+  query={graphql`...`}
+  render={props => <Component />}
+  cacheConfig={{
+    offline: true, // <-
+  }}
+/>
 ```
 
 ## Best Practices

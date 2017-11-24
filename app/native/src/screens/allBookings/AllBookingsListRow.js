@@ -17,16 +17,13 @@ type Props = {|
   showSeparator: boolean,
 |};
 
-export function BookingListRowWithoutData({
-  node,
-  navigation,
-  showSeparator,
-}: Props) {
+function BookingListRowWithoutData({ node, navigation, showSeparator }: Props) {
   const { departure, arrival } = node;
   const { navigate } = navigation;
+
   return (
     <SimpleCard
-      onPress={() => navigate('SingleBooking', { booking: node })}
+      onPress={() => navigate('SingleBooking', { bookingId: node.id })}
       separator={showSeparator}
     >
       <View style={{ flexDirection: 'row' }}>
@@ -45,6 +42,7 @@ export default createFragmentContainer(
   BookingListRowWithoutData,
   graphql`
     fragment AllBookingsListRow_node on Booking {
+      id
       departure {
         localTime
         ...RouteStop
