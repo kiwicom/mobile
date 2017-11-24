@@ -73,6 +73,9 @@ const LocationSuggestionsWrapper = class LocationSuggestionsWrapper extends Reac
               onLocationSelected={this.props.onLocationSelected}
             />
           )}
+          cacheConfig={{
+            force: true, // do not cache the request
+          }}
         />
       </Layout>
     </Animated.View>

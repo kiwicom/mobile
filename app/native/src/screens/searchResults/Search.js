@@ -43,6 +43,9 @@ export default class Search extends React.Component<Props> {
             </Layout>
           );
         }}
+        cacheConfig={{
+          force: true, // do not cache the request
+        }}
       />
     );
   };

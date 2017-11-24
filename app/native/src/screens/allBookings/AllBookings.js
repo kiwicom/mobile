@@ -34,9 +34,6 @@ export default class AllBookings extends React.Component<Props, {}> {
               </ScrollView>
             );
           }}
-          cacheConfig={{
-            offline: true,
-          }}
         />
       </LayoutWithoutHeader>
     );
