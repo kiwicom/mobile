@@ -8,7 +8,7 @@
     "android": "yarn react-native-scripts android",
     "graphql:update": "yarn graphql get-schema",
     "ios": "yarn react-native-scripts ios",
-    "lint": "yarn eslint app",
+    "lint": "yarn eslint app --report-unused-disable-directives",
     "relay": "yarn babel-node ./scripts/RelayCompiler.js --src ./app --schema ./schema.graphql",
     "start": "yarn react-native-scripts start --dev",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
