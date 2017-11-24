@@ -28,7 +28,11 @@ export default class Login extends React.Component<Props, State> {
 
   render = () => {
     const toggleButton = title => (
-      <Button title={title} onPress={this.toggleFederatedIdentities} />
+      <Button
+        key={title}
+        title={title}
+        onPress={this.toggleFederatedIdentities}
+      />
     );
 
     return (
