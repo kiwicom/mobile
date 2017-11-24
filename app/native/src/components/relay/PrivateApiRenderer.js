@@ -16,7 +16,7 @@ type Props = {|
   render: ({ error: Object, props: Object }) => React.Node,
   variables?: Object,
   cacheConfig?: {|
-    offline: boolean,
+    force: boolean,
   |},
   user: $PropertyType<ReduxState, 'user'>,
   onLogin: (accessToken: string) => void,

@@ -20,14 +20,15 @@ export default function createEnvironment(accessToken: string = '') {
   const fetchQuery = async (operation, variables, cacheConfig) => {
     const query = operation.text;
 
-    if (cacheConfig.offline === true) {
+    if (cacheConfig.force === true) {
+      await cache.remove(query, variables);
+    } else {
+      // refetch not forced so try to find it in cache
       const value = await cache.get(query, variables);
       if (value !== null) {
-        // cache hit
+        // cache hit, yay
         return value;
       }
-    } else {
-      await cache.remove(query, variables);
     }
 
     // TODO: fetch persisted queries instead (based on operation.id)
@@ -40,9 +41,9 @@ export default function createEnvironment(accessToken: string = '') {
       }),
     })).json();
 
-    if (cacheConfig.offline === true) {
-      await cache.set(query, variables, jsonPayload);
-    }
+    // always save the response (probably not needed during cache "force")
+    await cache.set(query, variables, jsonPayload);
+
     return jsonPayload;
   };
 

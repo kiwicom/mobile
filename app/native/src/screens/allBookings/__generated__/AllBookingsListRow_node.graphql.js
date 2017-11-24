@@ -7,6 +7,7 @@
 import type { ConcreteFragment } from 'relay-runtime';
 export type AllBookingsListRow_node = {|
   +id: string;
+  +databaseId: ?number;
   +departure: ?{|
     +localTime: ?any;
   |};
@@ -25,6 +26,13 @@ const node: ConcreteFragment = {
       "alias": null,
       "args": null,
       "name": "id",
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "databaseId",
       "storageKey": null
     },
     {

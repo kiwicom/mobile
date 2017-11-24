@@ -21,7 +21,7 @@
 * [Installation](#installation)
 * [Project structure](#project-structure)
 * [Update GraphQL schema](#update-graphql-schema)
-* [Offline](#offline)
+* [Offline first](#offline-first)
 * [Best Practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 * [Troubleshooting](#troubleshooting)
@@ -64,18 +64,33 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 yarn graphql get-schema
 ```
 
-## Offline
+## Offline first
 
-This application is mainly for travelers so being offline is still quite a big issue. At this moment we want to have offline bookings. You can enable offline cache on query renderer like this:
+This application is mainly for travelers so being offline is still quite a big deal. We are storing by default every response from GraphQL API. However, this is not always appropriate. Especially not during search (flight, hotel). In this situations you need to pass `force:true` configuration:
 
 ```js
-<PrivateApiRenderer
-  query={graphql`...`}
+<PublicApiRenderer
+  query={qraphql`...`}
   render={props => <Component />}
   cacheConfig={{
-    offline: true, // <-
+    force: true, // always refetch the query (do not touch the cache)
   }}
 />
+```
+
+In case of refetch container:
+
+```js
+this.setState({ refreshing: true }, () => {
+  this.props.relay.refetch(
+    v => v,
+    null,
+    () => { this.setState({ refreshing: false }); },
+    {
+      force: true, // always refetch the query (do not touch the cache)
+    },
+  );
+});
 ```
 
 ## Best Practices

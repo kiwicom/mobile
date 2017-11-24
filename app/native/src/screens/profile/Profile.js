@@ -59,9 +59,6 @@ export default class Profile extends React.Component<Props, {}> {
               </View>
             );
           }}
-          cacheConfig={{
-            offline: true,
-          }}
         />
       </LayoutWithoutHeader>
     );

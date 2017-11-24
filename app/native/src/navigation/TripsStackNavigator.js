@@ -4,7 +4,7 @@ import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-nav
 import { StackNavigator } from 'react-navigation';
 
 import AllBookings from '../screens/allBookings/AllBookings';
-import SingleBooking from '../screens/singleBooking/SingleBooking';
+import SingleBooking from '../screens/singleBooking/SingleBookingRenderer';
 import NavigatorOptions from './NavigatorOptions';
 
 export default StackNavigator(
