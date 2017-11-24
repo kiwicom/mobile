@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Mon Nov 13 2017 15:47:27 GMT-0600 (CST)
+# timestamp: Fri Nov 24 2017 11:03:10 GMT-0600 (CST)
 
 schema {
   query: RootQuery
@@ -66,6 +66,7 @@ type Booking {
 
   # Flight segments, e.g. stopover, change of aircraft, etc.
   legs: [Leg]
+  status: BookingStatus
 }
 
 type BookingAssets {
@@ -92,6 +93,17 @@ type BookingEdge {
 
   # A cursor for use in pagination
   cursor: String!
+}
+
+enum BookingStatus {
+  NEW
+  REFUNDED
+  PENDING
+  CONFIRMED
+  CANCELLED
+  DELETED
+  CLOSED
+  EXPIRED
 }
 
 type Coordinates {
@@ -379,6 +391,50 @@ input FlightsSearchInput {
   passengers: PassengersInput
 }
 
+type Hotel {
+  # The ID of an object
+  id: ID!
+
+  # Total price for all guests and nights and in the hotel. (including VAT)
+  price: Price
+
+  # Main photo of the hotel.
+  photoUrl: String
+
+  # URL to our whitelabel page of this hotel.
+  url: String
+  cityName: String
+}
+
+# A connection to a list of items.
+type HotelConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelEdge]
+}
+
+# An edge in a connection.
+type HotelEdge {
+  # The item at the end of the edge
+  node: Hotel
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input HotelsSearchInput {
+  # Latitude in float format (example: 45.4654).
+  latitude: Float!
+
+  # Longitude in float format (example: 9.1859).
+  longitude: Float!
+  checkin: Date!
+  checkout: Date!
+  roomsConfiguration: [RoomsConfiguration!]!
+}
+
 type Identity {
   # The ID of an object
   id: ID!
@@ -568,6 +624,15 @@ input RadiusInput {
   radius: Int!
 }
 
+input RoomsChildrenConfiguration {
+  age: Int
+}
+
+input RoomsConfiguration {
+  adultsCount: Int!
+  children: [RoomsChildrenConfiguration]
+}
+
 # Root Mutation.
 type RootMutation {
   login(email: String!, password: String!): User
@@ -578,11 +643,11 @@ type RootQuery {
   # Search for your flight bookings.
   allBookings(after: String, first: Int, before: String, last: Int): BookingConnection
 
-  # Flight booking by ID.
-  booking(id: ID!): Booking
-
   # Search for scheduled flights.
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
+
+  # Search for all hotels in one location.
+  allHotels(search: HotelsSearchInput!, after: String, first: Int, before: String, last: Int): HotelConnection
 
   # Search for airports, cities, countries. You can search by location name,
   # radius on the map or rectangle on the map. If you do not specify one of these
@@ -602,6 +667,9 @@ type RootQuery {
     before: String
     last: Int
   ): LocationConnection
+
+  # Flight booking by ID.
+  booking(id: ID!): Booking
 
   # Current user information.
   currentUser: Identity
