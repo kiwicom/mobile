@@ -1,15 +1,22 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 
 import { createRefetchContainer, graphql } from 'react-relay';
-import { Text, ScrollView, RefreshControl } from 'react-native';
+import { ScrollView, RefreshControl, View, Text } from 'react-native';
 
-import type { SingleBooking_booking } from './__generated__/SingleBooking_booking.graphql';
+import BookingOverviewRow from '../../components/bookings/OverviewRow';
+import Layout from '../../components/visual/view/Layout';
+import RouteStop from '../../components/flights/RouteStop';
+import Date from '../../components/visual/datetime/Date';
+import Timeline from './Timeline';
+
+import type { SingleBooking as SingleBookingType } from './__generated__/SingleBooking.graphql';
 
 type Props = {
   relay: Object, // FIXME
-  booking: SingleBooking_booking,
+  data: SingleBookingType,
 };
 
 type State = {
@@ -36,35 +43,88 @@ class SingleBooking extends React.Component<Props, State> {
     });
   };
 
-  render = () => (
-    <ScrollView
-      refreshControl={
-        <RefreshControl
-          refreshing={this.state.refreshing}
-          onRefresh={this._refetch}
-        />
-      }
-    >
-      <Text>TODO: PrivateApiRenderer with offline cache</Text>
-      <Text>{JSON.stringify(this.props.booking, null, 1)}</Text>
-    </ScrollView>
-  );
+  render = () => {
+    const legs = idx(this.props, _ => _.data.booking.legs) || [];
+
+    return (
+      <Layout>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._refetch}
+            />
+          }
+        >
+          <BookingOverviewRow node={this.props.data.booking} />
+
+          <View style={{ marginTop: 10, marginBottom: 10 }}>
+            <Timeline
+              data={[].concat(
+                // TODO refactor a little bit (second prop renderItem)
+                ...legs.map(leg => {
+                  if (leg) {
+                    return [
+                      <View key={`departure_${leg.id}`}>
+                        <RouteStop data={leg.departure} />
+                        <Date
+                          dateTime={leg.departure && leg.departure.localTime}
+                        />
+                      </View>,
+                      <View key={`arrival_${leg.id}`}>
+                        <RouteStop data={leg.arrival} />
+                        <Date dateTime={leg.arrival && leg.arrival.localTime} />
+                      </View>,
+                    ];
+                  } else {
+                    return [
+                      // TODO: errored row component
+                      <View key="error">
+                        <Text>Leg could not be loaded.</Text>
+                      </View>,
+                    ];
+                  }
+                }),
+              )}
+            />
+          </View>
+
+          {/*
+          <Button title="Ticket PDF" />
+          TODO: simple button (link) + the same in login form!
+         */}
+        </ScrollView>
+      </Layout>
+    );
+  };
 }
 
 export default createRefetchContainer(
   SingleBooking,
   graphql`
-    fragment SingleBooking_booking on RootQuery
+    fragment SingleBooking on RootQuery
       @argumentDefinitions(bid: { type: "ID!" }) {
       booking(id: $bid) {
         id
         status
+        ...OverviewRow_node
+        legs {
+          id
+          departure {
+            localTime
+            ...RouteStop
+          }
+          arrival {
+            localTime
+            ...RouteStop
+          }
+        }
       }
     }
   `,
   graphql`
     query SingleBookingRendererQuery($bid: ID!) {
-      ...SingleBooking_booking @arguments(bid: $bid)
+      ...SingleBooking @arguments(bid: $bid)
     }
   `,
 );

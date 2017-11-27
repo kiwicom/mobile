@@ -16,20 +16,20 @@ export default class SingleBookingRenderer extends React.Component<Props, {}> {
     offline: true,
   };
 
-  static navigationOptions = ({ bookingDatabaseId }: Props) => ({
-    title: `Booking detail - ${bookingDatabaseId}`,
-  });
+  static navigationOptions = {
+    title: 'Booking detail',
+  };
 
   render = () => {
     return (
       <PrivateApiRenderer
         query={graphql`
           query SingleBookingRendererQuery($bid: ID!) {
-            ...SingleBooking_booking @arguments(bid: $bid)
+            ...SingleBooking @arguments(bid: $bid)
           }
         `}
         variables={{ bid: this.props.bookingDatabaseId }}
-        render={props => <SingleBooking booking={props} />}
+        render={props => <SingleBooking data={props} />}
       />
     );
   };

@@ -5,13 +5,13 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type AllBookingsListRow_node = {|
-  +id: string;
-  +databaseId: ?number;
+export type OverviewRow_node = {|
   +departure: ?{|
     +localTime: ?any;
   |};
-  +arrival: ?{| |};
+  +arrival: ?{|
+    +localTime: ?any;
+  |};
 |};
 
 
@@ -19,22 +19,8 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "AllBookingsListRow_node",
+  "name": "OverviewRow_node",
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "id",
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "databaseId",
-      "storageKey": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -66,6 +52,13 @@ const node: ConcreteFragment = {
       "name": "arrival",
       "plural": false,
       "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "localTime",
+          "storageKey": null
+        },
         {
           "kind": "FragmentSpread",
           "name": "RouteStop",

@@ -10,6 +10,8 @@ export type AllBookingsList_bookings = {|
     +edges: ?$ReadOnlyArray<?{|
       +cursor: string;
       +node: ?{|
+        +id: string;
+        +databaseId: ?number;
         +assets: ?{| |};
         +departure: ?{|
           +localTime: ?any;
@@ -58,6 +60,20 @@ const node: ConcreteFragment = {
               "plural": false,
               "selections": [
                 {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "args": null,
+                  "name": "id",
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "args": null,
+                  "name": "databaseId",
+                  "storageKey": null
+                },
+                {
                   "kind": "LinkedField",
                   "alias": null,
                   "args": null,
@@ -93,7 +109,7 @@ const node: ConcreteFragment = {
                 },
                 {
                   "kind": "FragmentSpread",
-                  "name": "AllBookingsListRow_node",
+                  "name": "OverviewRow_node",
                   "args": null
                 }
               ],

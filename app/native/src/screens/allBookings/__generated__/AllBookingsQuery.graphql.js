@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 57574c33c9e53585000ef3b859f841ca
+ * @relayHash a3dbb080925dd30c66f3fe4cc80c0982
  */
 
 /* eslint-disable */
@@ -18,14 +18,15 @@ fragment AllBookingsList_bookings on RootQuery {
     edges {
       cursor
       node {
+        id
+        databaseId
         assets {
           ...AllBookingsAssetsDownloader
         }
         departure {
           localTime
         }
-        ...AllBookingsListRow_node
-        id
+        ...OverviewRow_node
       }
     }
   }
@@ -36,14 +37,13 @@ fragment AllBookingsAssetsDownloader on BookingAssets {
   invoiceUrl
 }
 
-fragment AllBookingsListRow_node on Booking {
-  id
-  databaseId
+fragment OverviewRow_node on Booking {
   departure {
     localTime
     ...RouteStop
   }
   arrival {
+    localTime
     ...RouteStop
   }
 }
@@ -118,6 +118,20 @@ const node: ConcreteBatch = {
                 "name": "node",
                 "plural": false,
                 "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "id",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "databaseId",
+                    "storageKey": null
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -198,20 +212,6 @@ const node: ConcreteBatch = {
                     "storageKey": null
                   },
                   {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "databaseId",
-                    "storageKey": null
-                  },
-                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "args": null,
@@ -219,6 +219,13 @@ const node: ConcreteBatch = {
                     "name": "arrival",
                     "plural": false,
                     "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "localTime",
+                        "storageKey": null
+                      },
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -269,7 +276,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllBookingsQuery {\n  ...AllBookingsList_bookings\n}\n\nfragment AllBookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        assets {\n          ...AllBookingsAssetsDownloader\n        }\n        departure {\n          localTime\n        }\n        ...AllBookingsListRow_node\n        id\n      }\n    }\n  }\n}\n\nfragment AllBookingsAssetsDownloader on BookingAssets {\n  ticketUrl\n  invoiceUrl\n}\n\nfragment AllBookingsListRow_node on Booking {\n  id\n  databaseId\n  departure {\n    localTime\n    ...RouteStop\n  }\n  arrival {\n    ...RouteStop\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
+  "text": "query AllBookingsQuery {\n  ...AllBookingsList_bookings\n}\n\nfragment AllBookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        id\n        databaseId\n        assets {\n          ...AllBookingsAssetsDownloader\n        }\n        departure {\n          localTime\n        }\n        ...OverviewRow_node\n      }\n    }\n  }\n}\n\nfragment AllBookingsAssetsDownloader on BookingAssets {\n  ticketUrl\n  invoiceUrl\n}\n\nfragment OverviewRow_node on Booking {\n  departure {\n    localTime\n    ...RouteStop\n  }\n  arrival {\n    localTime\n    ...RouteStop\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
 module.exports = node;

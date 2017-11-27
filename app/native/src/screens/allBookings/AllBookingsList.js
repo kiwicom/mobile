@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
-import AllBookingsListRow from './AllBookingsListRow';
+import BookingOverviewRow from '../../components/bookings/OverviewRow';
 import AllBookingsListRowError from './AllBookingsListRowError';
 import AllBookingsAssetsDownloader from './AllBookingsAssetsDownloader';
 import Large from '../../components/visual/text/Large';
@@ -65,10 +65,15 @@ export class AllBookingsListWithoutData extends React.Component<Props, State> {
                   key="downloader"
                 />
               ),
-              <AllBookingsListRow
+              <BookingOverviewRow
                 node={node}
                 key={cursor}
-                navigation={this.props.navigation}
+                onPress={() =>
+                  this.props.navigation.navigate('SingleBooking', {
+                    bookingId: node && node.id,
+                    bookingDatabaseId: node && node.databaseId,
+                  })
+                }
                 showSeparator={listLength !== index + 1} // everywhere except the last row in the list
               />,
             ];
@@ -103,13 +108,15 @@ export default createFragmentContainer(
         edges {
           cursor
           node {
+            id
+            databaseId
             assets {
               ...AllBookingsAssetsDownloader
             }
             departure {
               localTime
             }
-            ...AllBookingsListRow_node
+            ...OverviewRow_node
           }
         }
       }
