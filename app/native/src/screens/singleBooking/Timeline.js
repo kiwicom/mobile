@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
-import Color from '../../styles/Color';
+import { Color } from '@kiwicom/native-common';
 
 const lineWidth = 1;
 const circleSize = 10;

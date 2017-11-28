@@ -45,6 +45,7 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ```
 .
 ├── app/
+│   ├── common/                 - @kiwicom/native-common
 │   ├── hotels/                 - @kiwicom/native-hotels
 │   └── native/                 - @kiwicom/native (core package)
 │       ├── assets/             - static files

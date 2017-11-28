@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
+import { GoogleButton } from '@kiwicom/native-common';
 
 import GoogleAuth from '../../services/authentication/Google';
-import GoogleButton from '../visual/buttons/GoogleButton';
 import config from '../../../config/application';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
 

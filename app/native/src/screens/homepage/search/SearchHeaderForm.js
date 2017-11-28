@@ -3,10 +3,7 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-
-import TextInput from '../../../components/forms/TextInput';
-import DatePicker from '../../../components/forms/DatePicker';
-import Button from '../../../components/visual/buttons/Button';
+import { TextInput, DatePicker, Button } from '@kiwicom/native-common';
 
 type Props = {|
   onSend: (from: string, to: string, date: Date) => void,

@@ -4,10 +4,10 @@ import * as React from 'react';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
+import { Color } from '@kiwicom/native-common';
 
 import { configureStore } from '../services/redux/Store';
 import Profile from '../screens/profile/Profile';
-import Color from '../styles/Color';
 import TabBarIcon from '../components/navigation/TabBarIcon';
 
 import ExploreStackNavigator from './ExploreStackNavigator';

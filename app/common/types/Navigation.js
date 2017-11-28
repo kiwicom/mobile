@@ -4,11 +4,17 @@ type NavigationStateParameters = Object;
 
 type ExploreStackNavigatorRouteNames = 'Home' | 'SearchResults' | 'WebBooking';
 type TripsStackNavigatorRouteNames = 'AllBookings' | 'SingleBooking';
+type HotelsStackNavigatorRouteNames =
+  | 'AllHotels'
+  | 'AllHotelsMap'
+  | 'SingleHotel'
+  | 'Gallery';
 type MainTabNavigatorRouteNames = 'Explore' | 'Trips' | 'Profile';
 
 type RouteNames =
   | ExploreStackNavigatorRouteNames
   | TripsStackNavigatorRouteNames
+  | HotelsStackNavigatorRouteNames
   | MainTabNavigatorRouteNames;
 
 /**

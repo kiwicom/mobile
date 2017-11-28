@@ -2,12 +2,13 @@
 
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
+import {
+  Button,
+  LayoutWithoutHeader,
+  type Navigation,
+} from '@kiwicom/native-common';
 
 import FlightsSearchOverlay from './search/FlightsSearchOverlay';
-import Button from '../../components/visual/buttons/Button';
-import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
-
-import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
   navigation: Navigation,

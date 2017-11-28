@@ -2,12 +2,10 @@
 
 import * as React from 'react';
 import { graphql } from 'react-relay';
+import { Layout, type Navigation } from '@kiwicom/native-common';
 
 import SearchResultsContainer from './SearchResults';
 import PublicApiRenderer from '../../components/relay/PublicApiRenderer';
-import Layout from '../../components/visual/view/Layout';
-
-import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
   navigation: Navigation,

@@ -3,10 +3,9 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
+import { SimpleCard, Date } from '@kiwicom/native-common';
 
-import SimpleCard from '../../components/visual/cards/SimpleCard';
 import RouteStop from '../../components/flights/RouteStop';
-import Date from '../../components/visual/datetime/Date';
 
 import type { AllBookingsListRow_node } from './__generated__/OverviewRow_node.graphql';
 

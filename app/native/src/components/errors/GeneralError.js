@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { Text } from 'react-native';
-
-import CenteredView from '../visual/view/CenteredView';
+import { CenteredView } from '@kiwicom/native-common';
 
 type Props = {|
   errorMessage: string,

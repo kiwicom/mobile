@@ -3,12 +3,14 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
 import { graphql } from 'react-relay';
+import {
+  LayoutWithoutHeader,
+  SimpleCard,
+  VerificationBadge,
+  Large as LargeText,
+} from '@kiwicom/native-common';
 
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
-import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
-import SimpleCard from '../../components/visual/cards/SimpleCard';
-import VerificationBadge from '../../components/visual/badge/VerificationBadge';
-import LargeText from '../../components/visual/text/Large';
 import Logout from '../../components/authentication/Logout';
 
 // import type { ProfileQueryResponse } from './__generated__/ProfileQuery.graphql';

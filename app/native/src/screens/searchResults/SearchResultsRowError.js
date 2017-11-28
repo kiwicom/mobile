@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
-
-import SimpleCard from '../../components/visual/cards/SimpleCard';
+import { SimpleCard } from '@kiwicom/native-common';
 
 export default function BookingListRowError() {
   return (

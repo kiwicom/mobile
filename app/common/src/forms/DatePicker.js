@@ -3,7 +3,6 @@
 import * as React from 'react';
 import OriginalDatePicker from 'react-native-datepicker';
 
-import config from '../../../config/application';
 import { styles } from './TextInput';
 
 export default function DatePicker(props: Object) {
@@ -16,7 +15,7 @@ export default function DatePicker(props: Object) {
       confirmBtnText="Select date"
       cancelBtnText="Cancel"
       showIcon={false}
-      duration={config.animations.duration}
+      duration={100}
       style={{
         // styles for 'TouchableComponent' around date picker
         width: null, // removes default width

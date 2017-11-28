@@ -1,6 +1,6 @@
 // @flow
 
-import Color from '../styles/Color';
+import { Color } from '@kiwicom/native-common';
 
 export default {
   navigationOptions: {

@@ -4,11 +4,11 @@ import * as React from 'react';
 import { Animated, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { graphql } from 'react-relay';
+import { Layout } from '@kiwicom/native-common';
 
 import config from '../../../../config/application';
 import { headerHeight } from './SearchHeader';
 import PublicApiRenderer from '../../../components/relay/PublicApiRenderer';
-import Layout from '../../../components/visual/view/Layout';
 import LocationSuggestionsContainer from './LocationSuggestions';
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get('window');
