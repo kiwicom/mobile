@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@kiwicom/native-common": "^0",
     "@kiwicom/native-hotels": "^0",
     "idx": "^2.2.0",
     "json-stable-stringify": "^1.0.1",

@@ -3,12 +3,10 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { graphql } from 'react-relay';
+import { LayoutWithoutHeader, type Navigation } from '@kiwicom/native-common';
 
 import AllBookingsListContainer from './AllBookingsList';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
-import LayoutWithoutHeader from '../../components/visual/view/LayoutWithoutHeader';
-
-import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
   navigation: Navigation,

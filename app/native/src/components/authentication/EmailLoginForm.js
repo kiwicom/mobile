@@ -2,11 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import { TextInput, Button } from '@kiwicom/native-common';
 
 import LoginMutation, { type Callback } from './mutation/Login';
-import TextInput from '../forms/TextInput';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
-import Button from '../visual/buttons/Button';
 
 type Props = {|
   onSuccess: (accessToken: AccessToken) => void,

@@ -1,0 +1,6 @@
+{
+  "name": "@kiwicom/native-common",
+  "version": "0.0.0",
+  "private": false,
+  "main": "index.js"
+}

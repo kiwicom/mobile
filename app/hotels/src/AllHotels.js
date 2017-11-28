@@ -2,11 +2,13 @@
 
 import * as React from 'react';
 import { View, Text } from 'react-native';
+import { Button, type Navigation } from '@kiwicom/native-common';
 
-// FIXME: toto není správně (používají se komponenty z jiného balíku)
-import Button from '../../native/src/components/visual/buttons/Button';
+type Props = {
+  navigation: Navigation,
+};
 
-export default function AllHotels(props) {
+export default function AllHotels(props: Props) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>This is AllHotels component</Text>

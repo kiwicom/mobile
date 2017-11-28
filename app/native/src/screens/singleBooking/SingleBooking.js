@@ -2,14 +2,12 @@
 
 import * as React from 'react';
 import idx from 'idx';
-
 import { createRefetchContainer, graphql } from 'react-relay';
 import { ScrollView, RefreshControl, View, Text } from 'react-native';
+import { Layout, DateTime } from '@kiwicom/native-common';
 
 import BookingOverviewRow from '../../components/bookings/OverviewRow';
-import Layout from '../../components/visual/view/Layout';
 import RouteStop from '../../components/flights/RouteStop';
-import DateTime from '../../components/visual/datetime/DateTime';
 import Duration from '../../components/flights/Duration';
 import Airline from '../../components/flights/Airline';
 import Timeline from './Timeline';

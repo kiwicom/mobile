@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { QueryRenderer } from 'react-relay';
+import { FullPageLoading } from '@kiwicom/native-common';
 
 import createEnvironment from '../../services/relay/Environment';
-import FullPageLoading from '../../components/visual/loaders/FullPageLoading';
 import GeneralError from '../../components/errors/GeneralError';
 
 type Props = {|

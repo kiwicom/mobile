@@ -4,14 +4,13 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
+import { Large, type Navigation } from '@kiwicom/native-common';
 
 import BookingOverviewRow from '../../components/bookings/OverviewRow';
 import AllBookingsListRowError from './AllBookingsListRowError';
 import AllBookingsAssetsDownloader from './AllBookingsAssetsDownloader';
-import Large from '../../components/visual/text/Large';
 
 import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
-import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
   bookings: AllBookingsList_bookings,

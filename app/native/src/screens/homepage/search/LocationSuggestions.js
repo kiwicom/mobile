@@ -4,8 +4,7 @@ import * as React from 'react';
 import { Text, TouchableOpacity, ScrollView } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
-
-import SimpleCard from '../../../components/visual/cards/SimpleCard';
+import { SimpleCard } from '@kiwicom/native-common';
 
 import type { LocationSuggestions } from './__generated__/LocationSuggestions.graphql';
 

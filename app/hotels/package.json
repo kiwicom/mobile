@@ -2,5 +2,8 @@
   "name": "@kiwicom/native-hotels",
   "version": "0.0.0",
   "private": false,
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "@kiwicom/native-common": "^0"
+  }
 }

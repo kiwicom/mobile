@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import Color from '../../../styles/Color';
+import Color from '../Color';
 
 type Props = {|
   onPress: Function,

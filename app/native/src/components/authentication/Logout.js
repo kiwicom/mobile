@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-
-import Button from '../visual/buttons/Button';
+import { Button } from '@kiwicom/native-common';
 
 type Props = {|
   onLogout: () => void,

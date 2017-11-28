@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { Button, View } from 'react-native';
+import { CenteredView } from '@kiwicom/native-common';
 
 import EmailLoginForm from './EmailLoginForm';
 import GoogleLoginForm from './GoogleLoginForm';
-import CenteredView from '../visual/view/CenteredView';
 
 type Props = {|
   onLogin: (accessToken: string) => void,
