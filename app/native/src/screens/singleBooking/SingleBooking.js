@@ -9,7 +9,9 @@ import { ScrollView, RefreshControl, View, Text } from 'react-native';
 import BookingOverviewRow from '../../components/bookings/OverviewRow';
 import Layout from '../../components/visual/view/Layout';
 import RouteStop from '../../components/flights/RouteStop';
-import Date from '../../components/visual/datetime/Date';
+import DateTime from '../../components/visual/datetime/DateTime';
+import Duration from '../../components/flights/Duration';
+import Airline from '../../components/flights/Airline';
 import Timeline from './Timeline';
 
 import type { SingleBooking as SingleBookingType } from './__generated__/SingleBooking.graphql';
@@ -43,6 +45,55 @@ class SingleBooking extends React.Component<Props, State> {
     });
   };
 
+  /**
+   * Prepares array in this format (can be rendered in the time-line):
+   *
+   * [departure, arrival, departure, arrival, ...]
+   */
+  _prepareTimelineComponentsList = legs => {
+    return [].concat(
+      ...legs.map(leg => {
+        if (leg) {
+          return [
+            <View key={`departure_${leg.id}`}>
+              <Text style={{ fontWeight: 'bold' }}>
+                <RouteStop data={leg.departure} />
+              </Text>
+              <View style={{ paddingLeft: 10 }}>
+                <DateTime dateTime={leg.departure && leg.departure.localTime} />
+                <Text>Flight no.: {leg.flightNumber}</Text>
+                <Airline data={leg.airline} />
+                <View style={{ flexDirection: 'row' }}>
+                  <Text>Duration: </Text>
+                  <Duration minutes={leg.duration} />
+                </View>
+                <Text>
+                  {leg.recheckRequired
+                    ? 'Recheck is required!'
+                    : 'Recheck is not required... :)'}
+                </Text>
+              </View>
+            </View>,
+            <View key={`arrival_${leg.id}`}>
+              <Text style={{ fontWeight: 'bold' }}>
+                <RouteStop data={leg.arrival} />
+              </Text>
+              <View style={{ paddingLeft: 10 }}>
+                <DateTime dateTime={leg.arrival && leg.arrival.localTime} />
+              </View>
+            </View>,
+          ];
+        } else {
+          return [
+            <View key="error">
+              <Text>Flight leg could not be loaded.</Text>
+            </View>,
+          ];
+        }
+      }),
+    );
+  };
+
   render = () => {
     const legs = idx(this.props, _ => _.data.booking.legs) || [];
 
@@ -58,41 +109,16 @@ class SingleBooking extends React.Component<Props, State> {
         >
           <BookingOverviewRow node={this.props.data.booking} />
 
-          <View style={{ marginTop: 10, marginBottom: 10 }}>
+          <View style={{ marginTop: 15, marginBottom: 10 }}>
             <Timeline
-              data={[].concat(
-                // TODO refactor a little bit (second prop renderItem)
-                ...legs.map(leg => {
-                  if (leg) {
-                    return [
-                      <View key={`departure_${leg.id}`}>
-                        <RouteStop data={leg.departure} />
-                        <Date
-                          dateTime={leg.departure && leg.departure.localTime}
-                        />
-                      </View>,
-                      <View key={`arrival_${leg.id}`}>
-                        <RouteStop data={leg.arrival} />
-                        <Date dateTime={leg.arrival && leg.arrival.localTime} />
-                      </View>,
-                    ];
-                  } else {
-                    return [
-                      // TODO: errored row component
-                      <View key="error">
-                        <Text>Leg could not be loaded.</Text>
-                      </View>,
-                    ];
-                  }
-                }),
-              )}
+              componentsList={this._prepareTimelineComponentsList(legs)}
             />
           </View>
 
           {/*
-          <Button title="Ticket PDF" />
-          TODO: simple button (link) + the same in login form!
-         */}
+           <Button title="Ticket PDF" />
+           TODO: simple button (link) + the same in login form!
+           */}
         </ScrollView>
       </Layout>
     );
@@ -110,6 +136,12 @@ export default createRefetchContainer(
         ...OverviewRow_node
         legs {
           id
+          duration
+          flightNumber
+          recheckRequired
+          airline {
+            ...Airline
+          }
           departure {
             localTime
             ...RouteStop

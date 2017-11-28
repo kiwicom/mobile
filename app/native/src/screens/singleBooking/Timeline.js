@@ -9,16 +9,19 @@ const lineWidth = 1;
 const circleSize = 10;
 
 type Props = {
-  data: React.Node[],
+  componentsList: React.Node[],
 };
 
 export default class Timeline extends React.Component<Props> {
   render = () => (
     <FlatList
       style={styles.listView}
-      data={this.props.data}
+      data={this.props.componentsList}
       renderItem={({ item, index }) => {
-        return this.renderItem(item, this.props.data.length === index + 1);
+        return this.renderItem(
+          item,
+          this.props.componentsList.length === index + 1,
+        );
       }}
     />
   );
