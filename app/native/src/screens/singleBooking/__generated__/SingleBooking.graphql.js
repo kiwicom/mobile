@@ -11,6 +11,10 @@ export type SingleBooking = {|
     +status: ?"NEW" | "REFUNDED" | "PENDING" | "CONFIRMED" | "CANCELLED" | "DELETED" | "CLOSED" | "EXPIRED";
     +legs: ?$ReadOnlyArray<?{|
       +id: string;
+      +duration: ?number;
+      +flightNumber: ?number;
+      +recheckRequired: ?boolean;
+      +airline: ?{| |};
       +departure: ?{|
         +localTime: ?any;
       |};
@@ -82,6 +86,43 @@ const node: ConcreteFragment = {
               "alias": null,
               "args": null,
               "name": "id",
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "duration",
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "flightNumber",
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "recheckRequired",
+              "storageKey": null
+            },
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "args": null,
+              "concreteType": "Airline",
+              "name": "airline",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "FragmentSpread",
+                  "name": "Airline",
+                  "args": null
+                }
+              ],
               "storageKey": null
             },
             {
