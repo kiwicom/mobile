@@ -1,11 +1,34 @@
 # Available components
 
 ```
-import { HotelSuggestionsStripe } from '@kiwicom/native-hotels';
+import {
+  AllHotels,
+  AllHotelsMap,
+  SingleHotel,
+  Gallery,
+} from '@kiwicom/native-hotels';
 ```
 
-## HotelSuggestionsStripe
+## AllHotels
 
 ```
-<HotelSuggestionsStripe />
+<AllHotels />
+```
+
+## AllHotelsMap
+
+```
+<AllHotelsMap />
+```
+
+## SingleHotel
+
+```
+<SingleHotel />
+```
+
+## Gallery
+
+```
+<Gallery />
 ```
