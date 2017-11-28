@@ -7,6 +7,7 @@ import Homepage from '../screens/homepage/Homepage';
 import Search from '../screens/searchResults/Search';
 import WebBooking from '../screens/searchResults/WebBooking';
 import NavigatorOptions from './NavigatorOptions';
+import HotelsStackNavigator from './HotelsStackNavigator';
 
 export default StackNavigator(
   {
@@ -18,6 +19,7 @@ export default StackNavigator(
     },
     SearchResults: { screen: withMappedProps(Search) },
     WebBooking: { screen: withMappedProps(WebBooking) },
+    ...HotelsStackNavigator,
   },
   {
     ...NavigatorOptions,
