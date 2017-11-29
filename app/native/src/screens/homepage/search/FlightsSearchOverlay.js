@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import SearchHeader from '../search/SearchHeader';
 import LocationSuggestionsWrapper from './LocationSuggestionsWrapper';
 
-import type { Navigation } from '@kiwicom/native-common';
+import type { Navigation } from '../../../types/Navigation';
 
 type Props = {|
   navigation: Navigation,

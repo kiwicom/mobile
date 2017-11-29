@@ -1,7 +1,7 @@
 // @flow
 /* eslint-disable no-unused-vars */
 
-import type { Navigation } from '@kiwicom/native-common';
+import type { Navigation } from '../../../../types/Navigation';
 
 type Parameters = Object;
 

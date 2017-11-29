@@ -3,11 +3,12 @@
 import * as React from 'react';
 import { Text, ScrollView } from 'react-native';
 import { createPaginationContainer, graphql } from 'react-relay';
-import { Button, type Navigation } from '@kiwicom/native-common';
+import { Button } from '@kiwicom/native-common';
 
 import SearchResultRow from './SearchResultRow';
 
 import type { SearchResults_flights } from './__generated__/SearchResults_flights.graphql';
+import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
   navigation: Navigation,
