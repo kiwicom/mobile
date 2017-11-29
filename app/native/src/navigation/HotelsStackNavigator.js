@@ -57,7 +57,7 @@ export default {
     },
   },
   Gallery: {
-    screen: <Gallery />,
+    screen: Gallery,
     navigationOptions: {
       headerTitle: 'Photos',
     },
