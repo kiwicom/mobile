@@ -4,20 +4,12 @@ node_js: '8' # latest 8.x release
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
   - export PATH="$HOME/.yarn/bin:$PATH"
-  - yarn global add greenkeeper-lockfile@1
 
 install:
   - yarn install
 
-before_script:
-  # Option 'ignore-workspace-root-check' is needed because Greenkeeper updates the root lock file.
-  - GK_LOCK_YARN_OPTS=--ignore-workspace-root-check greenkeeper-lockfile-update
-
 script:
   - yarn test-ci
-
-after_script:
-  - greenkeeper-lockfile-upload
 
 cache: yarn
 
