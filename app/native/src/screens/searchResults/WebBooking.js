@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { WebView } from 'react-native';
 
-import type { Navigation } from '@kiwicom/native-common';
+import type { Navigation } from '../../types/Navigation';
 
 type Props = {
   navigation: Navigation,
