@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mrtnzlml/native.svg?branch=master)](https://travis-ci.org/mrtnzlml/native)
+[![Build Status](https://travis-ci.org/kiwicom/react-native-app.svg?branch=greenkeeper%2Finitial)](https://travis-ci.org/kiwicom/react-native-app)
 [![Greenkeeper badge](https://badges.greenkeeper.io/mrtnzlml/native.svg)](https://greenkeeper.io/)
 
 ## Known issues
