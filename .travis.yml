@@ -8,8 +8,11 @@ before_install:
 install:
   - yarn install
 
+# When one of the build commands returns a non-zero exit code, the Travis CI
+# build runs the subsequent commands as well, and accumulates the build result.
 script:
   - yarn test-ci
+  - node scripts/expo
 
 cache: yarn
 
