@@ -1,0 +1,13 @@
+module.exports = {
+  // Expo
+  EXP_USERNAME: process.env.EXP_USERNAME,
+  EXP_PASSWORD: process.env.EXP_PASSWORD,
+  // GitHub
+  GITHUB_USERNAME: process.env.GITHUB_USERNAME,
+  GITHUB_TOKEN: process.env.GITHUB_TOKEN,
+  // Travis CI
+  TRAVIS_BRANCH: process.env.TRAVIS_BRANCH,
+  TRAVIS_PULL_REQUEST: process.env.TRAVIS_PULL_REQUEST,
+  TRAVIS_PULL_REQUEST_BRANCH: process.env.TRAVIS_PULL_REQUEST_BRANCH,
+  TRAVIS_REPO_SLUG: process.env.TRAVIS_REPO_SLUG
+};
