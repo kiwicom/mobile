@@ -8,7 +8,8 @@ type HotelsStackNavigatorRouteNames =
   | 'AllHotels'
   | 'AllHotelsMap'
   | 'SingleHotel'
-  | 'Gallery';
+  | 'GalleryGrid'
+  | 'GalleryStripe';
 type MainTabNavigatorRouteNames = 'Explore' | 'Trips' | 'Profile';
 
 type RouteNames =

@@ -17,6 +17,9 @@ export { default as AllHotelsMap } from './src/AllHotelsMap';
 export { default as SingleHotel } from './src/SingleHotel';
 
 /**
- * All photos of the hotel with possibility to view single photo.
+ * All photos of the hotel with possibility to view single photo. You can
+ * choose between grid or photos stripe. It's usually good idea to use grid
+ * for quick overview with low-res photos and stripe for detailed view.
  */
-export { default as Gallery } from './src/Gallery';
+export { default as GalleryGrid } from './src/gallery/GalleryGrid';
+export { default as GalleryStripe } from './src/gallery/PhotosStripe';

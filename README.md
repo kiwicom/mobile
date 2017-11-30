@@ -6,7 +6,8 @@ Try it in [Expo](https://expo.io/):
 
 ## Table of Contents
 
-* [Installation](#installation)
+* [Installation and Run](#installation-and-run)
+* [Testing](#testing)
 * [Contributing](#contributing)
 * [Project structure](#project-structure)
 * [Update GraphQL schema](#update-graphql-schema)
@@ -16,17 +17,36 @@ Try it in [Expo](https://expo.io/):
 * [Known issues](#known-issues)
 * [Troubleshooting](#troubleshooting)
 
-## Installation
+## Installation and Run
 
 ```
 yarn install
 ```
+
+If you have Xcode just run `yarn ios` and you are ready to go. Similarly for Android (`yarn android`).
 
 To start the application simple run `yarn start`. This will change in the future (after Expo detach). During development you may need to fetch new files into monorepo workspace. In this case just run:
 
 ```
 yarn upgrade @kiwicom
 ```
+
+## Testing
+
+You will usually need only this during development:
+
+```
+yarn test
+yarn test --watch
+```
+
+It's good idea to run the whole test-set using this command:
+
+```
+yarn test-ci
+```
+
+It basically consists of code linting, type checking, complete testing and GraphQL schema validation. You can find more possibilities by running `yarn run`.
 
 ## Contributing
 
