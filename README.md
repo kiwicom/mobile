@@ -1,19 +1,8 @@
 [![Build Status](https://travis-ci.org/kiwicom/react-native-app.svg?branch=master)](https://travis-ci.org/kiwicom/react-native-app)
 
-## Known issues
+Try it in [Expo](https://expo.io/):
 
-#### Important to fix before production ready state
-
-- `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852, fixed by https://github.com/facebook/relay/commit/a17b462b3ff7355df4858a42ddda75f58c161302 (not released yet)
-- Relay swallows all GraphQL errors in `QueryRenderer`: https://github.com/facebook/relay/issues/1913
-
-#### Improvements necessary for production usage
-
-- persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
-
-#### Nice to have
-
-- Jest code coverage (Instanbul) doesn't work with Facebook IDX: https://github.com/facebookincubator/idx/issues/19 (possible solution: https://github.com/facebook/jest/issues/3549#issuecomment-347915603)
+![Expo QR code](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=exp://exp.host/@mrtnzlml/code-review-master)
 
 ## Table of Contents
 
@@ -24,6 +13,7 @@
 * [Offline first](#offline-first)
 * [Best Practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
+* [Known issues](#known-issues)
 * [Troubleshooting](#troubleshooting)
 
 ## Installation
@@ -126,6 +116,21 @@ idx(props, _ => _.user.friends[0].friends)
 ```
 
 **Do not use `_.get(...)` from Lodash!** For more information please read [documentation here](https://github.com/facebookincubator/idx).
+
+## Known issues
+
+#### Important to fix before production ready state
+
+- `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852, fixed by https://github.com/facebook/relay/commit/a17b462b3ff7355df4858a42ddda75f58c161302 (not released yet)
+- Relay swallows all GraphQL errors in `QueryRenderer`: https://github.com/facebook/relay/issues/1913
+
+#### Improvements necessary for production usage
+
+- persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
+
+#### Nice to have
+
+- Jest code coverage (Instanbul) doesn't work with Facebook IDX: https://github.com/facebookincubator/idx/issues/19 (possible solution: https://github.com/facebook/jest/issues/3549#issuecomment-347915603)
 
 ## Troubleshooting
 
