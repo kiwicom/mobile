@@ -1,6 +1,6 @@
 // @flow
 
-export type Search = {|
+export type SearchParametersType = {|
   latitude: number | null,
   longitude: number | null,
   checkin: Date | null,
