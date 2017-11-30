@@ -2,7 +2,7 @@
 
 export default {
   // brand colors (see: https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf)
-  brand: '#01bba5',
+  brand: '#ff0000',
 
   // complimentary brand colors
   buttercup: '#EB9D08',
