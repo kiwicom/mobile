@@ -4,6 +4,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@kiwicom/native-common": "^0"
+    "@kiwicom/native-common": "^0",
+    "react-native-swiper": "^1.5.13"
   }
 }

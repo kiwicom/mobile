@@ -1,17 +1,24 @@
 // @flow
 
 import * as React from 'react';
+import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   AllHotels,
   AllHotelsMap,
   SingleHotel,
-  Gallery,
+  GalleryGrid,
+  GalleryStripe,
 } from '@kiwicom/native-hotels';
 
 import type { Navigation } from '../types/Navigation';
 
 type Props = {
   navigation: Navigation,
+};
+
+type InjectorProps = {
+  navigation: Navigation,
+  WrappedComponent: React.ElementType,
 };
 
 /**
@@ -50,19 +57,63 @@ export default {
   },
   SingleHotel: {
     screen: function SingleHotelNavigationScreen(props: Props) {
-      function goToGallery() {
-        props.navigation.navigate('Gallery');
+      function goToGalleryGrid(hotelName, images) {
+        props.navigation.navigate('GalleryGrid', {
+          hotelName,
+          images,
+        });
       }
-      return <SingleHotel onGoToHotelGallery={goToGallery} />;
+      return <SingleHotel onGoToHotelGallery={goToGalleryGrid} />;
     },
     navigationOptions: {
       headerTitle: 'Detail',
     },
   },
-  Gallery: {
-    screen: Gallery,
+  GalleryGrid: {
+    screen: withMappedProps(
+      GalleryGrid,
+      class AdditionalPropsInjecter extends React.Component<InjectorProps> {
+        goToGalleryStripe = (hotelName, highResImages, imageIndex) => {
+          this.props.navigation.navigate('GalleryStripe', {
+            hotelName,
+            imageUrls: highResImages,
+            index: imageIndex,
+          });
+        };
+
+        render = () => {
+          const { WrappedComponent } = this.props;
+          return (
+            <WrappedComponent
+              {...this.props}
+              onGoToGalleryStripe={this.goToGalleryStripe}
+            />
+          );
+        };
+      },
+    ),
     navigationOptions: {
       headerTitle: 'Photos',
+    },
+  },
+  GalleryStripe: {
+    screen: withMappedProps(
+      GalleryStripe,
+      class AdditionalPropsInjecter extends React.Component<InjectorProps> {
+        goBack = () => {
+          this.props.navigation.goBack();
+        };
+
+        render = () => {
+          const { WrappedComponent } = this.props;
+          return <WrappedComponent {...this.props} goBack={this.goBack} />;
+        };
+      },
+    ),
+    navigationOptions: {
+      header: null,
+      tabBarVisible: false,
+      gesturesEnabled: false,
     },
   },
 };

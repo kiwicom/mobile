@@ -23,3 +23,7 @@ export { default as Layout } from './src/view/Layout';
 export { default as LayoutWithoutHeader } from './src/view/LayoutWithoutHeader';
 
 export { default as Color } from './src/Color';
+
+// Flow types:
+
+export type { OnFocus, OnLayout } from './types/Events';
