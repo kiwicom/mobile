@@ -7,6 +7,7 @@ import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import moment from 'moment';
 
 import SearchForm from './SearchForm';
+import FilterStripe from '../filter/FilterStripe';
 import AllHotelsSearchList from './AllHotelsSearchList';
 
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
@@ -70,6 +71,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
     return (
       <View style={styles.wrapper}>
         <SearchForm onChange={this._handleSearchChange} />
+        <FilterStripe />
         {this.isReadyToSearch() && (
           <PublicApiRenderer
             query={graphql`

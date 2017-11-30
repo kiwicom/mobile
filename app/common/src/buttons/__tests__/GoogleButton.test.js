@@ -1,22 +1,22 @@
 // @flow
 
 import * as React from 'react';
-import renderer from 'react-test-renderer';
-
+import ShallowRenderer from 'react-test-renderer/shallow';
 import GoogleButton from '../GoogleButton';
+
+let renderer;
+beforeEach(() => {
+  renderer = new ShallowRenderer();
+});
 
 const voidOperation = () => Promise.resolve();
 
 it('renders as expected', () => {
-  const rendered = renderer
-    .create(<GoogleButton loading={false} onPress={voidOperation} />)
-    .toJSON();
-  expect(rendered).toMatchSnapshot();
+  renderer.render(<GoogleButton loading={false} onPress={voidOperation} />);
+  expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renders as expected while loading', () => {
-  const rendered = renderer
-    .create(<GoogleButton loading={true} onPress={voidOperation} />)
-    .toJSON();
-  expect(rendered).toMatchSnapshot();
+  renderer.render(<GoogleButton loading={true} onPress={voidOperation} />);
+  expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

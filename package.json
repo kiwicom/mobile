@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "expo": "^23.0.0",
+    "lodash": "^4.17.4",
     "react": "16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz"
   },
