@@ -9,7 +9,8 @@ install:
   - yarn install
 
 script:
-  - yarn test-ci
+#  - yarn test-ci
+  - node scripts/expo
 
 cache: yarn
 
