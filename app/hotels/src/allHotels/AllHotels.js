@@ -7,10 +7,11 @@ import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import moment from 'moment';
 
 import SearchForm from './SearchForm';
+import FilterStripe from '../filter/FilterStripe';
 import AllHotelsSearchList from './AllHotelsSearchList';
 
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
-import type { Search } from './types';
+import type { SearchParametersType } from './SearchParametersType';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -23,7 +24,7 @@ type Props = {|
 |};
 
 type State = {|
-  search: Search,
+  search: SearchParametersType,
 |};
 
 export default class AllHotelsSearch extends React.Component<Props, State> {
@@ -39,7 +40,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
     },
   };
 
-  _handleSearchChange = (search: Search) => {
+  _handleSearchChange = (search: SearchParametersType) => {
     this.setState({
       search: {
         latitude: search.latitude,
@@ -59,10 +60,13 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
   };
 
   renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => (
-    <AllHotelsSearchList
-      data={propsFromRenderer.allHotels}
-      onGoToSingleHotel={this.props.onGoToSingleHotel}
-    />
+    <View>
+      <FilterStripe />
+      <AllHotelsSearchList
+        data={propsFromRenderer.allHotels}
+        onGoToSingleHotel={this.props.onGoToSingleHotel}
+      />
+    </View>
   );
 
   render = () => {

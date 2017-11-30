@@ -3,8 +3,8 @@
 import * as React from 'react';
 import idx from 'idx';
 import { graphql } from 'react-relay';
-import { View, Text } from 'react-native';
-import { Button } from '@kiwicom/react-native-app-common';
+import { Text } from 'react-native';
+import { Button, CenteredView } from '@kiwicom/react-native-app-common';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 
 import type { Image } from './gallery/GalleryGrid';
@@ -43,10 +43,10 @@ class SingleHotel extends React.Component<{
   };
 
   render = () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <CenteredView>
       <Text>This is SingleHotel component</Text>
       <Button title="Single hotel gallery" onPress={this.handleButtonPress} />
-    </View>
+    </CenteredView>
   );
 }
 

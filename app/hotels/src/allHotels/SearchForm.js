@@ -10,14 +10,14 @@ import {
 import { View, StyleSheet } from 'react-native';
 import moment from 'moment';
 
-import type { Search } from './types';
+import type { SearchParametersType } from './SearchParametersType';
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 
 const styles = StyleSheet.create({
   form: {
     padding: 10,
-    backgroundColor: Color.brand,
+    backgroundColor: Color.brandSecondary,
   },
   destination: {
     marginBottom: 6,
@@ -36,7 +36,6 @@ const buttonStyles = StyleSheet.create({
   button: {
     width: 115,
     backgroundColor: '#fff',
-    flex: 1,
     borderRadius: 0,
   },
   buttonText: {
@@ -45,7 +44,7 @@ const buttonStyles = StyleSheet.create({
 });
 
 type Props = {|
-  onChange: (search: Search) => void,
+  onChange: (search: SearchParametersType) => void,
 |};
 
 type State = {|

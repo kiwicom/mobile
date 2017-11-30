@@ -1,17 +1,26 @@
 // @flow
 
 export default {
-  // brand colors (see: https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf)
-  brand: '#01bba5',
+  // brand colors
+  // https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
+  brand: '#0097A9',
+  brandSecondary: '#0CB3C7',
 
   // complimentary brand colors
-  buttercup: '#EB9D08',
-  sun: '#FBAD18',
+  buttercup: '#eb9d08',
+  sun: '#fbad18',
 
-  // other colours
+  // other colors
+  // https://material.io/guidelines/style/color.html#color-color-palette
   grey: {
-    _100: '#e9eef2',
-    _700: '#57626c',
-    _900: '#171b1e',
+    _100: '#f5f5f5',
+    _200: '#eeeeee',
+    _300: '#e0e0e0',
+    _400: '#bdbdbd',
+    _500: '#9e9e9e',
+    _600: '#757575',
+    _700: '#616161',
+    _800: '#424242',
+    _900: '#212121',
   },
 };
