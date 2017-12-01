@@ -13,16 +13,15 @@ type Props = {|
 |};
 
 export default class Homepage extends React.Component<Props, {}> {
+  goToAllHotelsPage = () => this.props.navigation.navigate('AllHotels');
+
   render = () => {
     return (
       <View style={styles.container}>
         <FlightsSearchOverlay navigation={this.props.navigation} />
 
         <LayoutWithoutHeader>
-          <Button
-            title="All hotels search"
-            onPress={() => this.props.navigation.navigate('AllHotels')}
-          />
+          <Button title="All hotels search" onPress={this.goToAllHotelsPage} />
         </LayoutWithoutHeader>
       </View>
     );

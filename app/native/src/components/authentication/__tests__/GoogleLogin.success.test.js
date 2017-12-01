@@ -25,14 +25,12 @@ beforeEach(() => {
   );
 });
 
+function onSuccessCallback(accessToken) {
+  expect(accessToken).toBe('fake mocked access token from Kiwi service');
+}
+
 it('calls Google sing-in service successfully', async () => {
   expect.assertions(1);
-  renderer.render(
-    <GoogleLogin
-      onSuccess={accessToken =>
-        expect(accessToken).toBe('fake mocked access token from Kiwi service')
-      }
-    />,
-  );
+  renderer.render(<GoogleLogin onSuccess={onSuccessCallback} />);
   await renderer.getRenderOutput().props.onPress();
 });

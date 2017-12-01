@@ -6,9 +6,9 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 import { Large } from '@kiwicom/native-common';
 
-import BookingOverviewRow from '../../components/bookings/OverviewRow';
 import AllBookingsListRowError from './AllBookingsListRowError';
 import AllBookingsAssetsDownloader from './AllBookingsAssetsDownloader';
+import AllBookingsListNode from './AllBookingsListNode';
 
 import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
@@ -65,15 +65,10 @@ export class AllBookingsListWithoutData extends React.Component<Props, State> {
                   key="downloader"
                 />
               ),
-              <BookingOverviewRow
-                node={node}
+              <AllBookingsListNode
                 key={cursor}
-                onPress={() =>
-                  this.props.navigation.navigate('SingleBooking', {
-                    bookingId: node && node.id,
-                    bookingDatabaseId: node && node.databaseId,
-                  })
-                }
+                data={node}
+                navigation={this.props.navigation}
                 showSeparator={listLength !== index + 1} // everywhere except the last row in the list
               />,
             ];
@@ -108,15 +103,13 @@ export default createFragmentContainer(
         edges {
           cursor
           node {
-            id
-            databaseId
             assets {
               ...AllBookingsAssetsDownloader
             }
             departure {
               localTime
             }
-            ...OverviewRow_node
+            ...AllBookingsListNode
           }
         }
       }

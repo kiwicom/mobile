@@ -5,12 +5,10 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 
 import GoogleLogin from '../GoogleLoginForm';
 
-let renderer;
-beforeEach(() => {
-  renderer = new ShallowRenderer();
-});
+function onSuccessCallback() {}
 
 it('renders without crashing', () => {
-  renderer.render(<GoogleLogin onSuccess={() => {}} />);
+  const renderer = new ShallowRenderer();
+  renderer.render(<GoogleLogin onSuccess={onSuccessCallback} />);
   expect(renderer.getRenderOutput()).toBeTruthy();
 });
