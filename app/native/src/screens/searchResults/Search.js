@@ -20,6 +20,15 @@ export default class Search extends React.Component<Props> {
     title: `${params.from} - ${params.to}`,
   });
 
+  renderSearchLayout = (propsFromRenderer: Object) => (
+    <Layout>
+      <SearchResultsContainer
+        flights={propsFromRenderer}
+        navigation={this.props.navigation}
+      />
+    </Layout>
+  );
+
   render = () => {
     const { params } = this.props.navigation.state;
     return (
@@ -33,16 +42,7 @@ export default class Search extends React.Component<Props> {
           },
           count: 50,
         }}
-        render={props => {
-          return (
-            <Layout>
-              <SearchResultsContainer
-                flights={props}
-                navigation={this.props.navigation}
-              />
-            </Layout>
-          );
-        }}
+        render={this.renderSearchLayout}
         cacheConfig={{
           force: true, // do not cache the request
         }}

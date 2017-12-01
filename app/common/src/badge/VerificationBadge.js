@@ -7,6 +7,17 @@ type Props = {|
   verified: boolean,
 |};
 
+type TextOnLayout = {|
+  nativeEvent: {|
+    layout: {|
+      x: number,
+      y: number,
+      width: number,
+      height: number,
+    |},
+  |},
+|};
+
 /**
  * This component creates badge for verified/unverified statuses. It
  * automatically calculates the container width based on width of text
@@ -22,36 +33,47 @@ type Props = {|
  * | UNVERIFIED with very long text to make it clear |
  * `-------------------------------------------------`
  */
-export default function VerificationBadge({ verified }: Props) {
-  let styleSet = unverifiedStyle;
-  let badgeText = 'UNVERIFIED';
+export default class VerificationBadge extends React.Component<Props> {
+  viewContainerReference: React.Ref<typeof View> | null;
 
-  if (verified === true) {
-    styleSet = verifiedStyle;
-    badgeText = 'VERIFIED';
-  }
+  /**
+   * React will call the 'ref' callback with the DOM element when the
+   * component mounts, and call it with null when it unmounts.
+   * 'ref' callbacks are invoked before componentDidMount or
+   * componentDidUpdate lifecycle hooks.
+   */
+  storeContainerReference = (reference: React.Ref<typeof View> | null) =>
+    (this.viewContainerReference = reference);
 
-  return (
-    <View
-      style={styleSet.button}
-      ref={viewContainer => {
-        this.viewContainer = viewContainer;
-      }}
-    >
-      <Text
-        style={styleSet.buttonText}
-        onLayout={textElement => {
-          this.viewContainer.setNativeProps({
-            style: {
-              width: textElement.nativeEvent.layout.width + 10, // extra padding to prevent text wrapping (text container must be always bigger)
-            },
-          });
-        }}
-      >
-        {badgeText}
-      </Text>
-    </View>
-  );
+  recalculateWidth = (textElement: TextOnLayout) => {
+    if (!this.viewContainerReference) {
+      return;
+    }
+    // $FlowFixMe: FLow is broken for Native, this is correct: http://facebook.github.io/react-native/releases/0.49/docs/direct-manipulation.html
+    this.viewContainerReference.setNativeProps({
+      style: {
+        width: textElement.nativeEvent.layout.width + 10, // extra padding to prevent text wrapping (text container must be always bigger)
+      },
+    });
+  };
+
+  render = () => {
+    let styleSet = unverifiedStyle;
+    let badgeText = 'UNVERIFIED';
+
+    if (this.props.verified === true) {
+      styleSet = verifiedStyle;
+      badgeText = 'VERIFIED';
+    }
+
+    return (
+      <View style={styleSet.button} ref={this.storeContainerReference}>
+        <Text style={styleSet.buttonText} onLayout={this.recalculateWidth}>
+          {badgeText}
+        </Text>
+      </View>
+    );
+  };
 }
 
 const basicButtonStyle = {

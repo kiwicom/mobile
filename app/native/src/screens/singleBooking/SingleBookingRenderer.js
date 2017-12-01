@@ -6,6 +6,8 @@ import { graphql } from 'react-relay';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleBooking from './SingleBooking';
 
+import type { SingleBookingRendererQueryResponse } from './__generated__/SingleBookingRendererQuery.graphql';
+
 type Props = {|
   bookingId: string,
   bookingDatabaseId: number, // FIXME: fix underlying API to use opaque ID by default
@@ -20,6 +22,10 @@ export default class SingleBookingRenderer extends React.Component<Props, {}> {
     title: 'Booking detail',
   };
 
+  renderSingleBooking = (
+    propsFromRenderer: SingleBookingRendererQueryResponse,
+  ) => <SingleBooking data={propsFromRenderer} />;
+
   render = () => {
     return (
       <PrivateApiRenderer
@@ -29,7 +35,7 @@ export default class SingleBookingRenderer extends React.Component<Props, {}> {
           }
         `}
         variables={{ bid: this.props.bookingDatabaseId }}
-        render={props => <SingleBooking data={props} />}
+        render={this.renderSingleBooking}
       />
     );
   };

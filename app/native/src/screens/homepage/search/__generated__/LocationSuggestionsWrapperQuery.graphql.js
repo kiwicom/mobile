@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash abd4f6add8dda14d083e3a250ee28f8d
+ * @relayHash c5b92432033d512df277381e01153ce7
  */
 
 /* eslint-disable */
@@ -21,10 +21,15 @@ fragment LocationSuggestions on RootQuery {
     edges {
       node {
         locationId
-        name
+        ...LocationSuggestionsNode
       }
     }
   }
+}
+
+fragment LocationSuggestionsNode on Location {
+  locationId
+  name
 }
 */
 
@@ -141,7 +146,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query LocationSuggestionsWrapperQuery(\n  $search: String\n  $count: Int!\n) {\n  ...LocationSuggestions\n}\n\nfragment LocationSuggestions on RootQuery {\n  allLocations(search: $search, first: $count) {\n    edges {\n      node {\n        locationId\n        name\n      }\n    }\n  }\n}\n"
+  "text": "query LocationSuggestionsWrapperQuery(\n  $search: String\n  $count: Int!\n) {\n  ...LocationSuggestions\n}\n\nfragment LocationSuggestions on RootQuery {\n  allLocations(search: $search, first: $count) {\n    edges {\n      node {\n        locationId\n        ...LocationSuggestionsNode\n      }\n    }\n  }\n}\n\nfragment LocationSuggestionsNode on Location {\n  locationId\n  name\n}\n"
 };
 
 module.exports = node;

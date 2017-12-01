@@ -13,7 +13,7 @@ import {
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import Logout from '../../components/authentication/Logout';
 
-// import type { ProfileQueryResponse } from './__generated__/ProfileQuery.graphql';
+import type { ProfileQueryResponse } from './__generated__/ProfileQuery.graphql';
 
 type Props = {|
   onLogout: () => void,
@@ -24,6 +24,30 @@ const Row = function Row({ children }) {
 };
 
 export default class Profile extends React.Component<Props, {}> {
+  renderProfileContent = (props: ProfileQueryResponse) => {
+    return (
+      <View>
+        <Row>
+          <LargeText>
+            {props.currentUser && props.currentUser.fullName}
+          </LargeText>
+          <View style={{ flexDirection: 'row' }}>
+            <Text>{props.currentUser && props.currentUser.email} </Text>
+            <VerificationBadge
+              verified={
+                (props.currentUser && props.currentUser.emailVerified) || false
+              }
+            />
+          </View>
+        </Row>
+        {/* TODO: default currency */}
+        <Row>
+          <Logout />
+        </Row>
+      </View>
+    );
+  };
+
   render = () => {
     return (
       <LayoutWithoutHeader>
@@ -38,29 +62,7 @@ export default class Profile extends React.Component<Props, {}> {
               }
             }
           `}
-          render={(props: Object) => {
-            return (
-              <View>
-                <Row>
-                  <LargeText>
-                    {props.currentUser && props.currentUser.fullName}
-                  </LargeText>
-                  <View style={{ flexDirection: 'row' }}>
-                    <Text>{props.currentUser && props.currentUser.email} </Text>
-                    <VerificationBadge
-                      verified={
-                        props.currentUser && props.currentUser.emailVerified
-                      }
-                    />
-                  </View>
-                </Row>
-                {/* TODO: default currency */}
-                <Row>
-                  <Logout />
-                </Row>
-              </View>
-            );
-          }}
+          render={this.renderProfileContent}
         />
       </LayoutWithoutHeader>
     );

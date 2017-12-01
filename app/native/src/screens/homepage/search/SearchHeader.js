@@ -46,7 +46,7 @@ export default class SearchHeader extends React.Component<Props, State> {
     brighten: new Animated.Value(shrinkedValues.brighten),
   };
 
-  animate = (attributes: $Keys<AnimatedState>[]) => {
+  animate = (attributes: $Keys<AnimatedState>[]) =>
     attributes.forEach(attribute => {
       Animated.timing(this.state[attribute], {
         toValue: this.state.expanded
@@ -55,14 +55,19 @@ export default class SearchHeader extends React.Component<Props, State> {
         duration: config.animations.duration,
       }).start();
     });
-  };
 
-  toggleHeader = () => {
+  toggleHeader = () =>
     this.setState({ expanded: !this.state.expanded }, () => {
       this.props.onToggle();
       this.animate(['top', 'right', 'left', 'height', 'fade', 'brighten']);
     });
-  };
+
+  handleSearchFormSubmit = (from: string, to: string, date: Date) =>
+    this.props.onSend({
+      from,
+      to,
+      date,
+    });
 
   render = () => (
     <TouchableWithoutFeedback onPress={this.toggleHeader}>
@@ -101,13 +106,7 @@ export default class SearchHeader extends React.Component<Props, State> {
         >
           <SearchHeaderForm
             expanded={this.state.expanded}
-            onSend={(from, to, date) =>
-              this.props.onSend({
-                from,
-                to,
-                date,
-              })
-            }
+            onSend={this.handleSearchFormSubmit}
           />
         </Animated.View>
       </Animated.View>

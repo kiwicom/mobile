@@ -10,7 +10,6 @@ export type LocationSuggestions = {|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +locationId: ?string;
-        +name: ?string;
       |};
     |}>;
   |};
@@ -79,11 +78,9 @@ const node: ConcreteFragment = {
                   "storageKey": null
                 },
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "name",
-                  "storageKey": null
+                  "kind": "FragmentSpread",
+                  "name": "LocationSuggestionsNode",
+                  "args": null
                 }
               ],
               "storageKey": null
