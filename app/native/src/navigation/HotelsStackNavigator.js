@@ -21,11 +21,16 @@ type Props = {
 export default {
   AllHotels: {
     screen: function AllHotelsNavigationScreen(props: Props) {
+      function goToMap() {
+        props.navigation.navigate('AllHotelsMap');
+      }
+
+      function goToHotel() {
+        props.navigation.navigate('SingleHotel');
+      }
+
       return (
-        <AllHotels
-          onGoToHotelsMap={() => props.navigation.navigate('AllHotelsMap')}
-          onGoToSingleHotel={() => props.navigation.navigate('SingleHotel')}
-        />
+        <AllHotels onGoToHotelsMap={goToMap} onGoToSingleHotel={goToHotel} />
       );
     },
     navigationOptions: {
@@ -34,11 +39,10 @@ export default {
   },
   AllHotelsMap: {
     screen: function AllHotelsMapNavigationScreen(props: Props) {
-      return (
-        <AllHotelsMap
-          onGoToSingleHotel={() => props.navigation.navigate('SingleHotel')}
-        />
-      );
+      function goToHotel() {
+        props.navigation.navigate('SingleHotel');
+      }
+      return <AllHotelsMap onGoToSingleHotel={goToHotel} />;
     },
     navigationOptions: {
       headerTitle: 'Map',
@@ -46,11 +50,10 @@ export default {
   },
   SingleHotel: {
     screen: function SingleHotelNavigationScreen(props: Props) {
-      return (
-        <SingleHotel
-          onGoToHotelGallery={() => props.navigation.navigate('Gallery')}
-        />
-      );
+      function goToGallery() {
+        props.navigation.navigate('Gallery');
+      }
+      return <SingleHotel onGoToHotelGallery={goToGallery} />;
     },
     navigationOptions: {
       headerTitle: 'Detail',

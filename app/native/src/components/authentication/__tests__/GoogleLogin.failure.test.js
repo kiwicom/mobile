@@ -9,14 +9,13 @@ jest.mock('../../../services/authentication/Google', () => ({
   signIn: () => false,
 }));
 
-let renderer;
-beforeEach(() => {
-  renderer = new ShallowRenderer();
-});
+function onSuccessCallback() {
+  throw new Error('Should not be called');
+}
 
 it('calls Google sing-in service unsuccessfully', async () => {
   expect.assertions(0);
-  // onSuccess event should not be called!
-  renderer.render(<GoogleLogin onSuccess={() => expect(true).toBe(false)} />);
+  const renderer = new ShallowRenderer();
+  renderer.render(<GoogleLogin onSuccess={onSuccessCallback} />); // onSuccess event should not be called!
   await renderer.getRenderOutput().props.onPress();
 });

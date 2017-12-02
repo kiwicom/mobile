@@ -34,17 +34,24 @@ export default class FlightsSearchOverlay extends React.Component<
     overlayExpanded: false,
   };
 
+  handleHeaderSend = (searchParameters: {|
+    from: string,
+    to: string,
+    date: Date,
+  |}) => this.props.navigation.navigate('SearchResults', searchParameters);
+
+  handleHeaderToggle = () =>
+    this.setState({
+      overlayExpanded: !this.state.overlayExpanded,
+    });
+
   render = () => {
     return (
       <View style={{ height: 170, zIndex: 1 }}>
         <SearchHeader
           key="header"
-          onSend={searchParameters => {
-            this.props.navigation.navigate('SearchResults', searchParameters);
-          }}
-          onToggle={() => {
-            this.setState({ overlayExpanded: !this.state.overlayExpanded });
-          }}
+          onSend={this.handleHeaderSend}
+          onToggle={this.handleHeaderToggle}
         />
         <LocationSuggestionsWrapper
           key="suggestions"

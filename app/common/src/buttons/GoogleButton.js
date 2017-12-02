@@ -7,19 +7,12 @@ import Button from './Button';
 
 type Props = {|
   loading: boolean,
-  onPress: () => Promise<void>,
+  onPress?: () => Promise<void>,
 |};
 
 export default function GoogleButton({ onPress, loading = false }: Props) {
   if (loading === true) {
-    return (
-      <Button
-        title="Logging in..."
-        onPress={onPress}
-        touchable={false}
-        styles={styles}
-      />
-    );
+    return <Button title="Logging in..." styles={styles} />;
   } else {
     return <Button title="Google Sign in" onPress={onPress} styles={styles} />;
   }

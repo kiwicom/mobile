@@ -21,11 +21,13 @@ type Props = {|
 export const SearchResultRowWithoutData = ({ node, navigation }: Props) => {
   const { duration, price, legs, departure, arrival } = node;
   const { navigate } = navigation;
+  function goToWebBooking() {
+    navigate('WebBooking', { bookingUrl: node.bookingUrl });
+  }
+
   if (legs) {
     return (
-      <SimpleCard
-        onPress={() => navigate('WebBooking', { bookingUrl: node.bookingUrl })}
-      >
+      <SimpleCard onPress={goToWebBooking}>
         <View style={{ flex: 16, flexDirection: 'row' }}>
           <View style={{ flex: 2 }}>
             <Price data={price} />

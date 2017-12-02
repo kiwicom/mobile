@@ -32,6 +32,7 @@ module.exports = {
       },
     ],
     'react/prop-types': 'off', // we use Flow instead,
+    'react/jsx-no-bind': 'error',
     'flowtype/require-valid-file-annotation': ['error', 'always'],
   },
 };

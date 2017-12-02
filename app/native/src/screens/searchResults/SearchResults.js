@@ -64,7 +64,7 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
         )}
         {this.props.relay.hasMore() &&
           (this.state.loading ? (
-            <Button onPress={() => {}} title="Loading..." />
+            <Button title="Loading..." />
           ) : (
             <Button onPress={this._loadMore} title="Load more!" />
           ))}

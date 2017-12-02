@@ -21,6 +21,31 @@ export default class GoogleLogin extends React.Component<Props, State> {
     loading: false,
   };
 
+  handleLogginAction = async () => {
+    this.setState({ loading: true });
+    const accessToken = await GoogleAuth.signIn();
+    if (accessToken) {
+      const jsonPayload = await (await fetch(
+        'https://auth.skypicker.com/v1/oauth.google.connect',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: config.auth.kiwi.backend,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            access_token: accessToken,
+          }),
+        },
+      )).json();
+      this.setState({ loading: false });
+      this.props.onSuccess(createAccessToken(jsonPayload.token));
+    } else {
+      // TODO: onFailure event with errors
+      this.setState({ loading: false });
+    }
+  };
+
   render = () => {
     if (Platform.OS !== 'ios') {
       return null; // we currently support Google login only on iOS devices
@@ -28,30 +53,7 @@ export default class GoogleLogin extends React.Component<Props, State> {
     return (
       <GoogleButton
         loading={this.state.loading}
-        onPress={async () => {
-          this.setState({ loading: true });
-          const accessToken = await GoogleAuth.signIn();
-          if (accessToken) {
-            const jsonPayload = await (await fetch(
-              'https://auth.skypicker.com/v1/oauth.google.connect',
-              {
-                method: 'POST',
-                headers: {
-                  Authorization: config.auth.kiwi.backend,
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  access_token: accessToken,
-                }),
-              },
-            )).json();
-            this.setState({ loading: false });
-            this.props.onSuccess(createAccessToken(jsonPayload.token));
-          } else {
-            // TODO: onFailure event with errors
-            this.setState({ loading: false });
-          }
-        }}
+        onPress={this.handleLogginAction}
       />
     );
   };

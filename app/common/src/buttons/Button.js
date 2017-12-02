@@ -6,21 +6,15 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Color from '../Color';
 
 type Props = {|
-  onPress: Function,
   title: string,
+  onPress?: Function,
   styles?: {
     button?: Object,
     buttonText?: Object,
   },
-  touchable?: boolean,
 |};
 
-export default function Button({
-  onPress,
-  title,
-  styles,
-  touchable = true,
-}: Props) {
+export default function Button({ onPress, title, styles }: Props) {
   const buttonView = (
     <View style={[defaultStyles.button, styles && styles.button]}>
       <Text style={[defaultStyles.buttonText, styles && styles.buttonText]}>
@@ -29,7 +23,7 @@ export default function Button({
     </View>
   );
 
-  if (touchable) {
+  if (onPress) {
     return <TouchableOpacity onPress={onPress}>{buttonView}</TouchableOpacity>;
   } else {
     return buttonView;

@@ -24,6 +24,29 @@ export default class SimpleLoginForm extends React.Component<Props, State> {
     loading: false,
   };
 
+  _handleEmailChange = text =>
+    this.setState({
+      username: text,
+    });
+
+  _handlePasswordChange = text =>
+    this.setState({
+      password: text,
+    });
+
+  _handleFormSubmit = () =>
+    this._tryLogIn(
+      this.state.username,
+      this.state.password,
+      (response, errors) => {
+        if (errors) {
+          // TODO: onFailure event with errors
+        } else {
+          this.props.onSuccess(createAccessToken(response && response.token));
+        }
+      },
+    );
+
   _tryLogIn = (username: string, password: string, callback: Callback) => {
     this.setState({ loading: true });
     LoginMutation({ email: username, password }, (response, errors) => {
@@ -35,45 +58,20 @@ export default class SimpleLoginForm extends React.Component<Props, State> {
   render = () => (
     <View>
       <TextInput
-        onChangeText={text =>
-          this.setState({
-            username: text,
-          })
-        }
+        onChangeText={this._handleEmailChange}
         keyboardType="email-address"
         placeholder="Email"
         value={this.state.username}
       />
       <TextInput
-        onChangeText={text =>
-          this.setState({
-            password: text,
-          })
-        }
+        onChangeText={this._handlePasswordChange}
         placeholder="Password"
         secureTextEntry={true}
       />
       {this.state.loading ? (
-        <Button onPress={() => {}} title="Logging in..." />
+        <Button title="Logging in..." />
       ) : (
-        <Button
-          onPress={() => {
-            this._tryLogIn(
-              this.state.username,
-              this.state.password,
-              (response, errors) => {
-                if (errors) {
-                  // TODO: onFailure event with errors
-                } else {
-                  this.props.onSuccess(
-                    createAccessToken(response && response.token),
-                  );
-                }
-              },
-            );
-          }}
-          title="Login!"
-        />
+        <Button onPress={this._handleFormSubmit} title="Login!" />
       )}
     </View>
   );

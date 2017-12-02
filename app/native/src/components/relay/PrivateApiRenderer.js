@@ -1,53 +1,31 @@
 // @flow
 
 import * as React from 'react';
-import { QueryRenderer } from 'react-relay';
 import { connect } from 'react-redux';
-import { FullPageLoading } from '@kiwicom/native-common';
 
-import createEnvironment from '../../services/relay/Environment';
-import GeneralError from '../../components/errors/GeneralError';
 import Login from '../../components/authentication/Login';
+import QueryRenderer from './QueryRenderer';
 
 import type { ReduxState } from '../../types/Redux';
+import type { Props as PublicProps } from './PublicApiRenderer';
 
 type Props = {|
-  query: string,
-  render: ({ error: Object, props: Object }) => React.Node,
-  variables?: Object,
-  cacheConfig?: {|
-    force: boolean,
-  |},
+  ...PublicProps,
   user: $PropertyType<ReduxState, 'user'>,
   onLogin: (accessToken: string) => void,
 |};
 
-function publicApiRenderer({
-  query,
-  render,
-  variables,
-  cacheConfig,
-  user,
-  onLogin,
-}: Props) {
-  return user.logged ? (
+function PrivateApiRenderer(props: Props) {
+  return props.user.logged ? (
     <QueryRenderer
-      environment={createEnvironment(user.accessToken)}
-      query={query}
-      variables={variables}
-      render={({ error, props }) => {
-        // FIXME: it does not catch errors?
-        if (error) {
-          return <GeneralError errorMessage={error.message} />;
-        } else if (props) {
-          return render(props);
-        }
-        return <FullPageLoading />;
-      }}
-      cacheConfig={cacheConfig}
+      query={props.query}
+      variables={props.variables}
+      render={props.render}
+      cacheConfig={props.cacheConfig}
+      accessToken={props.user.accessToken}
     />
   ) : (
-    <Login onLogin={onLogin} />
+    <Login onLogin={props.onLogin} />
   );
 }
 
@@ -63,4 +41,4 @@ export default connect(
       });
     },
   }),
-)(publicApiRenderer);
+)(PrivateApiRenderer);

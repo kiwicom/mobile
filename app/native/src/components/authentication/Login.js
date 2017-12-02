@@ -20,11 +20,13 @@ export default class Login extends React.Component<Props, State> {
     loginViaFederatedIdentities: true,
   };
 
-  toggleFederatedIdentities = () => {
+  toggleFederatedIdentities = () =>
     this.setState({
       loginViaFederatedIdentities: !this.state.loginViaFederatedIdentities,
     });
-  };
+
+  handleSuccessfulLogin = (accessToken: string) =>
+    this.props.onLogin(accessToken);
 
   render = () => {
     const toggleButton = title => (
@@ -42,14 +44,14 @@ export default class Login extends React.Component<Props, State> {
             ? [
                 <GoogleLoginForm
                   key="google"
-                  onSuccess={accessToken => this.props.onLogin(accessToken)}
+                  onSuccess={this.handleSuccessfulLogin}
                 />,
                 toggleButton('Login using email'),
               ]
             : [
                 <EmailLoginForm
                   key="email"
-                  onSuccess={accessToken => this.props.onLogin(accessToken)}
+                  onSuccess={this.handleSuccessfulLogin}
                 />,
                 toggleButton('Login using Google'),
               ]}
