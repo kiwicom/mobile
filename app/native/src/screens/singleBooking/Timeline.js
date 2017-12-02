@@ -17,16 +17,12 @@ export default class Timeline extends React.Component<Props> {
     <FlatList
       style={styles.listView}
       data={this.props.componentsList}
-      renderItem={({ item, index }) => {
-        return this.renderItem(
-          item,
-          this.props.componentsList.length === index + 1,
-        );
-      }}
+      renderItem={this.renderItem}
     />
   );
 
-  renderItem = (item: React.Node, isLast: boolean) => {
+  renderItem = ({ item, index }: { item: React.Node, index: number }) => {
+    const isLast = this.props.componentsList.length === index + 1;
     const lastItemStyle = {};
     if (!isLast) {
       lastItemStyle.borderColor = Color.brand;

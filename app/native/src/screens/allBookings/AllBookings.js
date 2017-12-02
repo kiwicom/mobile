@@ -15,6 +15,15 @@ type Props = {|
 |};
 
 export default class AllBookings extends React.Component<Props, {}> {
+  renderAllBookingsContent = (props: Props) => (
+    <ScrollView>
+      <AllBookingsListContainer
+        bookings={props}
+        navigation={this.props.navigation}
+      />
+    </ScrollView>
+  );
+
   render = () => {
     return (
       <LayoutWithoutHeader>
@@ -24,16 +33,7 @@ export default class AllBookings extends React.Component<Props, {}> {
               ...AllBookingsList_bookings
             }
           `}
-          render={props => {
-            return (
-              <ScrollView>
-                <AllBookingsListContainer
-                  bookings={props}
-                  navigation={this.props.navigation}
-                />
-              </ScrollView>
-            );
-          }}
+          render={this.renderAllBookingsContent}
         />
       </LayoutWithoutHeader>
     );

@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Text, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
-import { SimpleCard } from '@kiwicom/native-common';
+
+import LocationSuggestionsNode from './LocationSuggestionsNode';
 
 import type { LocationSuggestions } from './__generated__/LocationSuggestions.graphql';
 
@@ -21,20 +22,12 @@ const LocationSuggestionsWithoutData = (props: Props) => {
       <ScrollView>
         {edges.map(edge => {
           if (edge && edge.node) {
-            const { node } = edge;
             return (
-              <SimpleCard key={node.locationId}>
-                <TouchableOpacity
-                  onPress={() =>
-                    props.onLocationSelected(
-                      node.locationId || '',
-                      node.name || '',
-                    )
-                  }
-                >
-                  <Text>{node.name}</Text>
-                </TouchableOpacity>
-              </SimpleCard>
+              <LocationSuggestionsNode
+                key={edge.node.locationId}
+                data={edge.node}
+                onPress={props.onLocationSelected}
+              />
             );
           }
           // TODO: is this correct assumption?
@@ -55,7 +48,7 @@ export default createFragmentContainer(
         edges {
           node {
             locationId
-            name
+            ...LocationSuggestionsNode
           }
         }
       }
