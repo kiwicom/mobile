@@ -10,7 +10,12 @@
       "bundleIdentifier": "com.kiwi.rn"
     },
     "android": {
-      "package": "com.kiwi.rn"
+      "package": "com.kiwi.rn",
+      "config": {
+        "googleMaps": {
+          "apiKey": "** GOOGLE MAPS API KEY HERE **"
+        }
+      }
     }
   }
 }
