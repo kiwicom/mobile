@@ -16,6 +16,8 @@ export { default as TextInput } from './src/forms/TextInput';
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as SimpleLoading } from './src/loaders/SimpleLoading';
 
+export { default as PriceMaker } from './src/map/PriceMarker';
+
 export { default as Large } from './src/text/Large';
 
 export { default as CenteredView } from './src/view/CenteredView';
