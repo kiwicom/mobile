@@ -27,7 +27,7 @@ async function commentOnGitHub(buildName, githubPullRequestId) {
   const issueUrl = `https://${env.GITHUB_USERNAME}:${env.GITHUB_TOKEN}@api.github.com/repos/${env.TRAVIS_REPO_SLUG}/issues/${githubPullRequestId}/comments`;
 
   const body = `
-  Please test these changes in [Expo](https://docs.expo.io/versions/latest/introduction/installation.html#mobile-client-expo-for-ios-and-android):
+  Please test these changes in [Expo](https://docs.expo.io/versions/latest/introduction/installation.html#mobile-client-expo-for-ios-and-android) after build has finished:
 
   ![QR Code](${qrUrl})
   `;
