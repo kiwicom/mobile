@@ -1,5 +1,8 @@
 {
-  "presets": ["babel-preset-expo"],
+  "presets": [
+    "babel-preset-expo",
+    "react-native-dotenv"
+  ],
   "plugins": [
     "babel-plugin-idx",
     ["relay", {"schema": "app/schema.graphql"}]
