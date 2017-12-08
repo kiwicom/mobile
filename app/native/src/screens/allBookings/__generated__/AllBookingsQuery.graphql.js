@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 83e4687caf39f375b03bb41075fc1ab5
+ * @relayHash 46cf3dc1aeaa46274268ae58eb92af89
  */
 
 /* eslint-disable */
@@ -21,7 +21,7 @@ fragment AllBookingsList_bookings on RootQuery {
         assets {
           ...AllBookingsAssetsDownloader
         }
-        departure {
+        arrival {
           localTime
         }
         ...AllBookingsListNode
@@ -153,7 +153,7 @@ const node: ConcreteBatch = {
                     "alias": null,
                     "args": null,
                     "concreteType": "RouteStop",
-                    "name": "departure",
+                    "name": "arrival",
                     "plural": false,
                     "selections": [
                       {
@@ -221,7 +221,7 @@ const node: ConcreteBatch = {
                     "alias": null,
                     "args": null,
                     "concreteType": "RouteStop",
-                    "name": "arrival",
+                    "name": "departure",
                     "plural": false,
                     "selections": [
                       {
@@ -281,7 +281,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllBookingsQuery {\n  ...AllBookingsList_bookings\n}\n\nfragment AllBookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        assets {\n          ...AllBookingsAssetsDownloader\n        }\n        departure {\n          localTime\n        }\n        ...AllBookingsListNode\n        id\n      }\n    }\n  }\n}\n\nfragment AllBookingsAssetsDownloader on BookingAssets {\n  ticketUrl\n  invoiceUrl\n}\n\nfragment AllBookingsListNode on Booking {\n  id\n  databaseId\n  ...OverviewRow_node\n}\n\nfragment OverviewRow_node on Booking {\n  departure {\n    localTime\n    ...RouteStop\n  }\n  arrival {\n    localTime\n    ...RouteStop\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
+  "text": "query AllBookingsQuery {\n  ...AllBookingsList_bookings\n}\n\nfragment AllBookingsList_bookings on RootQuery {\n  allBookings {\n    edges {\n      cursor\n      node {\n        assets {\n          ...AllBookingsAssetsDownloader\n        }\n        arrival {\n          localTime\n        }\n        ...AllBookingsListNode\n        id\n      }\n    }\n  }\n}\n\nfragment AllBookingsAssetsDownloader on BookingAssets {\n  ticketUrl\n  invoiceUrl\n}\n\nfragment AllBookingsListNode on Booking {\n  id\n  databaseId\n  ...OverviewRow_node\n}\n\nfragment OverviewRow_node on Booking {\n  departure {\n    localTime\n    ...RouteStop\n  }\n  arrival {\n    localTime\n    ...RouteStop\n  }\n}\n\nfragment RouteStop on RouteStop {\n  airport {\n    ...Airport\n  }\n}\n\nfragment Airport on Location {\n  locationId\n  city {\n    name\n  }\n}\n"
 };
 
 module.exports = node;

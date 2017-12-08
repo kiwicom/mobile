@@ -22,18 +22,33 @@ type State = {|
   loading: boolean,
 |};
 
-const filterEdges = allEdges => {
+/**
+ * Returns array in following format:
+ *
+ * [[futureTrip1, futureTrip1], [pastTrip1, pastTrip2]]
+ *
+ * Future (current) trips are trips with ARRIVAL in the future.
+ */
+export const filterEdges = (
+  allEdges: $PropertyType<
+    $NonMaybeType<$PropertyType<AllBookingsList_bookings, 'allBookings'>>,
+    'edges',
+  >,
+) => {
   const filteredTrips = [[], []];
-  allEdges.forEach(edge => {
-    const departureLocalTime = idx(edge, _ => _.node.departure.localTime);
-    if (departureLocalTime) {
-      if (new Date(departureLocalTime).getTime() >= Date.now()) {
-        // future trips
-        filteredTrips[0].push(edge);
+  allEdges &&
+    allEdges.forEach(edge => {
+      const arrivalLocalTime = idx(edge, _ => _.node.arrival.localTime);
+      if (arrivalLocalTime) {
+        if (new Date(arrivalLocalTime).getTime() >= Date.now()) {
+          // future and current trips
+          filteredTrips[0].push(edge);
+        } else {
+          // past trips
+          filteredTrips[1].push(edge);
+        }
       }
-      filteredTrips[1].push(edge);
-    }
-  });
+    });
   return filteredTrips;
 };
 
@@ -106,7 +121,7 @@ export default createFragmentContainer(
             assets {
               ...AllBookingsAssetsDownloader
             }
-            departure {
+            arrival {
               localTime
             }
             ...AllBookingsListNode
