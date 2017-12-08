@@ -11,7 +11,7 @@ export type AllBookingsList_bookings = {|
       +cursor: string;
       +node: ?{|
         +assets: ?{| |};
-        +departure: ?{|
+        +arrival: ?{|
           +localTime: ?any;
         |};
       |};
@@ -78,7 +78,7 @@ const node: ConcreteFragment = {
                   "alias": null,
                   "args": null,
                   "concreteType": "RouteStop",
-                  "name": "departure",
+                  "name": "arrival",
                   "plural": false,
                   "selections": [
                     {
