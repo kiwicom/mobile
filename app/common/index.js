@@ -37,6 +37,8 @@ export { default as Popup } from './src/popup/Popup';
 export { default as Color } from './src/Color';
 export { default as Price } from './src/Price';
 
+export { default as StretchedImage } from './src/image/StretchedImage';
+
 // Flow types:
 
 export type {
