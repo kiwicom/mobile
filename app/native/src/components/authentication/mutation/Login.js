@@ -1,8 +1,7 @@
 // @flow
 
-import { commitMutation, graphql } from 'react-relay';
-
-import createEnvironment from '../../../services/relay/Environment';
+import { graphql } from 'react-relay';
+import { commitMutation } from '@kiwicom/native-relay';
 
 import type {
   LoginMutationVariables,
@@ -26,7 +25,7 @@ export type Callback = (
 ) => void;
 
 export default (input: LoginMutationVariables, callback: Callback) => {
-  commitMutation(createEnvironment(), {
+  commitMutation({
     mutation,
     variables: input,
     onCompleted: (response: LoginMutationResponse, errors) => {

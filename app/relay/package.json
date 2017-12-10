@@ -1,0 +1,13 @@
+{
+  "name": "@kiwicom/native-relay",
+  "version": "0.0.0",
+  "private": false,
+  "main": "index.js",
+  "dependencies": {
+    "react-relay": "^1.4.1"
+  },
+  "devDependencies": {
+    "babel-plugin-relay": "^1.4.1",
+    "relay-compiler": "^1.4.1"
+  }
+}

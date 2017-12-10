@@ -2,15 +2,14 @@
 
 import * as React from 'react';
 import { QueryRenderer as OriginalQueryRenderer } from 'react-relay';
-import { FullPageLoading } from '@kiwicom/native-common';
+import { FullPageLoading, GeneralError } from '@kiwicom/native-common';
 
-import createEnvironment from '../../services/relay/Environment';
-import GeneralError from '../../components/errors/GeneralError';
+import createEnvironment from './Environment';
 
-import type { Props as PublicProps } from './PublicApiRenderer';
+import type { QueryRendererProps } from '../index';
 
 type Props = {|
-  ...PublicProps,
+  ...QueryRendererProps,
   accessToken?: string,
 |};
 
