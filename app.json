@@ -2,7 +2,7 @@
   "expo": {
     "name": "Kiwi.com",
     "privacy": "public",
-    "icon": "./app/native/assets/icon.png",
+    "icon": "./app/core/assets/icon.png",
     "version": "0.0.1",
     "slug": "kiwi-com",
     "sdkVersion": "23.0.0",

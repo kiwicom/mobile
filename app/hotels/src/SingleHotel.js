@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, Text } from 'react-native';
-import { Button } from '@kiwicom/native-common';
+import { Button } from '@kiwicom/react-native-app-common';
 
 import type { Image } from './gallery/GalleryGrid';
 

@@ -1,2 +1,2 @@
-app/native/config/flow-typed
+app/core/config/flow-typed
 **/node_modules/**

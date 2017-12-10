@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import { QueryRenderer as OriginalQueryRenderer } from 'react-relay';
-import { FullPageLoading, GeneralError } from '@kiwicom/native-common';
+import {
+  FullPageLoading,
+  GeneralError,
+} from '@kiwicom/react-native-app-common';
 
 import createEnvironment from './Environment';
 
