@@ -5,13 +5,13 @@
   "dependencies": {
     "@kiwicom/native-common": "^0",
     "@kiwicom/native-hotels": "^0",
+    "@kiwicom/native-relay": "^0",
     "idx": "^2.2.0",
     "json-stable-stringify": "^1.0.1",
     "react-native-datepicker": "^1.6.0",
     "react-navigation": "^1.0.0-beta.19",
     "react-navigation-props-mapper": "^0.1.2",
     "react-redux": "^5.0.6",
-    "react-relay": "^1.4.1",
     "redux-persist": "^5.3.4",
     "sentry-expo": "^1.6.0"
   }

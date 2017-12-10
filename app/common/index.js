@@ -10,6 +10,8 @@ export { default as SimpleCard } from './src/cards/SimpleCard';
 export { default as Date } from './src/datetime/Date';
 export { default as DateTime } from './src/datetime/DateTime';
 
+export { default as GeneralError } from './src/errors/GeneralError';
+
 export { default as DatePicker } from './src/forms/DatePicker';
 export { default as TextInput } from './src/forms/TextInput';
 

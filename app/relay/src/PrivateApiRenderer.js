@@ -4,22 +4,21 @@ import * as React from 'react';
 
 import QueryRenderer from './QueryRenderer';
 
-export type Props = {|
-  query: string,
-  render: (props: Object) => React.Node,
-  variables?: Object,
-  cacheConfig?: {|
-    force: boolean,
-  |},
+import type { QueryRendererProps } from '../index';
+
+type Props = {|
+  ...QueryRendererProps,
+  accessToken: string,
 |};
 
-export default function PublicApiRenderer(props: Props) {
+export default function PrivateApiRenderer(props: Props) {
   return (
     <QueryRenderer
       query={props.query}
       variables={props.variables}
       render={props.render}
       cacheConfig={props.cacheConfig}
+      accessToken={props.accessToken}
     />
   );
 }

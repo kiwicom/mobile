@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import { Layout } from '@kiwicom/native-common';
+import { PublicApiRenderer } from '@kiwicom/native-relay';
 
 import SearchResultsContainer from './SearchResults';
-import PublicApiRenderer from '../../components/relay/PublicApiRenderer';
 
 import type { Navigation } from '../../types/Navigation';
 

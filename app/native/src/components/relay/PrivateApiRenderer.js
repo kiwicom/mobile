@@ -2,22 +2,24 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
+import {
+  PrivateApiRenderer as PrivateApiRendererOriginal,
+  type QueryRendererProps,
+} from '@kiwicom/native-relay';
 
-import Login from '../../components/authentication/Login';
-import QueryRenderer from './QueryRenderer';
+import Login from '../authentication/Login';
 
 import type { ReduxState } from '../../types/Redux';
-import type { Props as PublicProps } from './PublicApiRenderer';
 
 type Props = {|
-  ...PublicProps,
+  ...QueryRendererProps,
   user: $PropertyType<ReduxState, 'user'>,
   onLogin: (accessToken: string) => void,
 |};
 
 function PrivateApiRenderer(props: Props) {
   return props.user.logged ? (
-    <QueryRenderer
+    <PrivateApiRendererOriginal
       query={props.query}
       variables={props.variables}
       render={props.render}
