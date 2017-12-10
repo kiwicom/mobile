@@ -1,10 +1,10 @@
 {
-  "name": "@kiwicom/native-hotels",
+  "name": "@kiwicom/react-native-app-hotels",
   "version": "0.0.0",
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@kiwicom/native-common": "^0",
+    "@kiwicom/react-native-app-common": "^0",
     "react-native-swiper": "^1.5.13"
   }
 }

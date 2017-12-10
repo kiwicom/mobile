@@ -9,7 +9,7 @@ import {
   SingleHotel,
   GalleryGrid,
   GalleryStripe,
-} from '@kiwicom/native-hotels';
+} from '@kiwicom/react-native-app-hotels';
 ```
 
 ## AllHotels

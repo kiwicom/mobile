@@ -1,5 +1,5 @@
 {
-  "name": "@kiwicom/native-common",
+  "name": "@kiwicom/react-native-app-common",
   "version": "0.0.0",
   "private": false,
   "main": "index.js"

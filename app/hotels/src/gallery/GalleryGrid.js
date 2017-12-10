@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { FlatList } from 'react-native';
 
-import type { OnLayout } from '@kiwicom/native-common';
+import type { OnLayout } from '@kiwicom/react-native-app-common';
 
 import GalleryGridTile from './GalleryGridTile';
 

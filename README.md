@@ -73,14 +73,14 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ```
 .
 ├── app/
-│   ├── common/                 - @kiwicom/native-common
-│   ├── hotels/                 - @kiwicom/native-hotels
-│   │── native/                 - @kiwicom/native (core package)
-│   │   ├── assets/             - static files
-│   │   ├── config/             - application (module) configuration
-│   │   └── src/                - source files
-│   │       └── screens/        - main screens (usually Relay QueryRenderer roots)
-│   └── relay/                  - @kiwicom/native-relay
+│   ├── common/                 - @kiwicom/react-native-app-common
+│   │── core/                   - @kiwicom/react-native-app-core (core package)
+│   │   ├── assets/                - static files
+│   │   ├── config/                - application (module) configuration
+│   │   └── src/                   - source files
+│   │       └── screens/           - main screens (usually Relay QueryRenderer roots)
+│   ├── hotels/                 - @kiwicom/react-native-app-hotels
+│   └── relay/                  - @kiwicom/react-native-app-relay
 ├── scripts/                    - support scripts for the whole monorepo
 ├── .travis.yml                 - CI configuration
 ├── App.js                      - bootstrap component

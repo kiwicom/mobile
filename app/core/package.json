@@ -1,0 +1,18 @@
+{
+  "name": "@kiwicom/react-native-app-core",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@kiwicom/react-native-app-common": "^0",
+    "@kiwicom/react-native-app-hotels": "^0",
+    "@kiwicom/react-native-app-relay": "^0",
+    "idx": "^2.2.0",
+    "json-stable-stringify": "^1.0.1",
+    "react-native-datepicker": "^1.6.0",
+    "react-navigation": "^1.0.0-beta.19",
+    "react-navigation-props-mapper": "^0.1.2",
+    "react-redux": "^5.0.6",
+    "redux-persist": "^5.3.4",
+    "sentry-expo": "^1.6.0"
+  }
+}
