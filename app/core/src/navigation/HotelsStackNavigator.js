@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { Button } from '@kiwicom/react-native-app-common';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   AllHotels,
@@ -27,21 +28,21 @@ type InjectorProps = {
  */
 export default {
   AllHotels: {
-    screen: function AllHotelsNavigationScreen(props: Props) {
-      function goToMap() {
-        props.navigation.navigate('AllHotelsMap');
-      }
+    screen: class AllHotelsNavigationScreen extends React.Component<Props> {
+      static navigationOptions = (props: Props) => {
+        function goToAllHotelsMap() {
+          props.navigation.navigate('AllHotelsMap');
+        }
 
-      function goToHotel() {
-        props.navigation.navigate('SingleHotel');
-      }
+        return {
+          headerTitle: 'Hotels',
+          headerRight: <Button title="MAP" onPress={goToAllHotelsMap} />,
+        };
+      };
 
-      return (
-        <AllHotels onGoToHotelsMap={goToMap} onGoToSingleHotel={goToHotel} />
-      );
-    },
-    navigationOptions: {
-      headerTitle: 'Hotels',
+      goToHotel = () => this.props.navigation.navigate('SingleHotel');
+
+      render = () => <AllHotels onGoToSingleHotel={this.goToHotel} />;
     },
   },
   AllHotelsMap: {
