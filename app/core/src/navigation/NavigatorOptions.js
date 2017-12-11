@@ -14,7 +14,7 @@ export default {
     headerTintColor: '#fff', // back arrow
   },
   cardStyle: {
-    backgroundColor: '#fff',
+    backgroundColor: '#eee',
   },
   headerMode: 'screen',
 };

@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Color from '../Color';
+import Price from '../Price';
 
 const styles = StyleSheet.create({
   bubble: {
@@ -80,10 +81,12 @@ const PriceMarker = (props: Props) => {
   return (
     <View>
       <View style={bubbleStyles}>
-        <Text>
-          <Text style={priceStyles}>{props.price}</Text>{' '}
-          <Text style={currencyStyles}>{props.currency}</Text>
-        </Text>
+        <Price
+          amount={props.price}
+          currency={props.currency}
+          amountStyle={priceStyles}
+          currencyStyle={currencyStyles}
+        />
       </View>
       <View style={[styles.arrowBorder]} />
       <View style={[styles.arrow, isSelected && selectedStyles.arrow]} />

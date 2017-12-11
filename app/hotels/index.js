@@ -3,7 +3,7 @@
 /**
  * Main component with all hotels, and search form.
  */
-export { default as AllHotels } from './src/AllHotels';
+export { default as AllHotels } from './src/allHotels/AllHotels';
 
 /**
  * Map of all hotels with search filters. This is basically different
