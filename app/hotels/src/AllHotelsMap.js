@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { MapView, type LatLng } from 'expo';
-import { PriceMaker } from '@kiwicom/react-native-app-common';
+import { MapView, type LatLng, type Region } from 'expo';
+import { PriceMarker } from '@kiwicom/react-native-app-common';
+import { getCenter, getBounds } from 'geolib';
 
 export type HotelMarker = {|
   id: string,
@@ -13,17 +14,30 @@ export type HotelMarker = {|
   |},
 |};
 
-type Props = {
+type Props_ = {|
   markers: HotelMarker[],
+  selectedMarkerId: string,
   currency: string,
-};
+|};
 
-const EDGE_PADDING = {
-  top: 50,
-  right: 50,
-  bottom: 50,
-  left: 50,
-};
+type Props = Props & $Shape<Props_>;
+
+type State = {|
+  region: Region,
+  mapIsReady: boolean,
+  selectedMarkerId: string,
+|};
+
+type MarkerPressEvent = {|
+  nativeEvent: {
+    action: 'marker-press',
+    coordinate: LatLng,
+    id: string, // id of the marker
+    target: string,
+  },
+|};
+
+const EDGE_PADDING = 1.3;
 
 const styles = StyleSheet.create({
   container: {
@@ -34,52 +48,112 @@ const styles = StyleSheet.create({
   },
 });
 
-class AllHotelsMap extends React.Component<Props> {
+class AllHotelsMap extends React.Component<Props, State> {
   map: typeof MapView | null;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      region: this.getRegion(props.markers),
+      mapIsReady: false,
+      selectedMarkerId: props.selectedMarkerId,
+    };
+  }
+
+  componentWillReceiveProps = nextProps => {
+    if (this.props.selectedMarkerId !== nextProps.selectedMarkerId) {
+      this.setState({ selectedMarkerId: nextProps.selectedMarkerId });
+    }
+  };
+
+  getRegion = markers => {
+    const coordinates = markers.map(marker => marker.coordinate);
+    const boundaries = getBounds(coordinates);
+    const topLeft = {
+      latitude: boundaries.maxLat,
+      longitude: boundaries.minLng,
+    };
+    const bottomRight = {
+      latitude: boundaries.minLat,
+      longitude: boundaries.maxLng,
+    };
+
+    const center = getCenter([topLeft, bottomRight]);
+
+    // multiply delta by edge padding so markers for extremes fit into view as well
+    const latitudeDelta =
+      (boundaries.maxLat - boundaries.minLat) * EDGE_PADDING;
+    const longitudeDelta =
+      (boundaries.maxLng - boundaries.minLng) * EDGE_PADDING;
+
+    return {
+      latitude: parseFloat(center.latitude),
+      longitude: parseFloat(center.longitude),
+      latitudeDelta,
+      longitudeDelta,
+    };
+  };
 
   storeMapReference = (map: React.Ref<typeof MapView> | null) => {
     this.map = map;
   };
 
-  fitToMarkers = () => {
-    const coordinates = this.props.markers.map(marker => marker.coordinate);
-    const options = {
-      edgePadding: EDGE_PADDING,
-      animated: true,
-    };
+  onMapReady = () => {
+    if (!this.state.mapIsReady) {
+      this.setState({ mapIsReady: true });
+      this.animateToCoordinate(this.state.selectedMarkerId);
+    }
+  };
 
-    if (!this.map) {
+  onMarkerPress = (e: MarkerPressEvent) => {
+    this.animateToCoordinate(e.nativeEvent.id);
+    this.setState({ selectedMarkerId: e.nativeEvent.id });
+  };
+
+  animateToCoordinate = (selectedMarkerId, duration = 400) => {
+    const { markers } = this.props;
+    const selectedMarker = markers.find(m => m.id === selectedMarkerId);
+
+    if (!(this.map && selectedMarker)) {
       return;
     }
 
-    this.map.fitToCoordinates(coordinates, options);
+    this.map.animateToCoordinate(selectedMarker.coordinate, duration);
   };
 
-  renderMarker = props => marker => {
+  renderMarker = marker => {
+    const { currency } = this.props;
+    const { selectedMarkerId } = this.state;
+
     return (
       <MapView.Marker
         key={marker.id}
         identifier={marker.id}
         coordinate={marker.coordinate}
+        onPress={this.onMarkerPress}
       >
-        <PriceMaker
+        <PriceMarker
           price={marker.data.price}
-          isSelected={marker.id === '1' /* Just as an example */}
-          currency={props.currency}
+          currency={currency}
+          isSelected={marker.id === selectedMarkerId}
         />
       </MapView.Marker>
     );
   };
 
   render = () => {
+    const { markers } = this.props;
+
     return (
       <View style={styles.container}>
         <MapView
           ref={this.storeMapReference}
           style={styles.map}
-          onLayout={this.fitToMarkers}
+          initialRegion={this.state.region}
+          onMapReady={this.onMapReady}
         >
-          {this.props.markers.map(this.renderMarker(this.props))}
+          {markers.map(this.renderMarker)}
         </MapView>
       </View>
     );
@@ -113,10 +187,31 @@ const FakeHOC = (ComponentToRender: React.ComponentType<Props>) => {
         price: 7551,
       },
     },
+    {
+      id: '4',
+      coordinate: {
+        latitude: LATITUDE + 0.0045,
+        longitude: LONGITUDE - 0.0045,
+      },
+      data: {
+        price: 89,
+      },
+    },
+    {
+      id: '5',
+      coordinate: {
+        latitude: LATITUDE + 0.0035,
+        longitude: LONGITUDE - 0.0035,
+      },
+      data: {
+        price: 17551,
+      },
+    },
   ];
   const props = {
     markers,
     currency: 'CZK',
+    selectedMarkerId: '2',
   };
 
   const hoc = () => <ComponentToRender {...props} />;
