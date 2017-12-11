@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/react-native-app-common": "^0",
+    "geolib": "2.0.24",
     "react-native-swiper": "^1.5.13"
   }
 }
