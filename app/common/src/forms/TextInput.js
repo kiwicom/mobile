@@ -13,7 +13,7 @@ export const styles = {
   },
   wrapper: {
     height: 40,
-    backgroundColor: '#ededed',
+    backgroundColor: '#fff',
     marginBottom: 5,
   },
 };
