@@ -15,7 +15,7 @@ type Props = {|
 |};
 
 function AllHotelsSearchList(combinedProps: Props) {
-  const hotels = idx(combinedProps, _ => _.data.edges) || [];
+  const hotels = idx(combinedProps, _ => _.data.edges) || []; // TODO: render 404 page instead of nothing
   return (
     <ScrollView>
       {hotels.map(edge => {
