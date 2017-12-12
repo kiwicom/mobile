@@ -9,7 +9,7 @@ export { default as AllHotels } from './src/allHotels/AllHotels';
  * Map of all hotels with search filters. This is basically different
  * (more visual) representation of main search component.
  */
-export { default as AllHotelsMap } from './src/AllHotelsMap';
+export { default as AllHotelsMap } from './src/map';
 
 /**
  * Single hotel view with all the details and "call to action" for booking.
