@@ -7,6 +7,7 @@
 import type { ConcreteFragment } from 'relay-runtime';
 export type AllHotelsSearchRow = {|
   +id: string;
+  +name: ?string;
   +price: ?{|
     +amount: ?number;
     +currency: ?string;
@@ -25,6 +26,13 @@ const node: ConcreteFragment = {
       "alias": null,
       "args": null,
       "name": "id",
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "name",
       "storageKey": null
     },
     {
