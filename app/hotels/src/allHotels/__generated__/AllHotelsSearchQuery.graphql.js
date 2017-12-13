@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1965c0b886027961fc4445d3ace89b8e
+ * @relayHash c1a7fc5e18f8db8e83eac06665093254
  */
 
 /* eslint-disable */
@@ -30,6 +30,7 @@ fragment AllHotelsSearchList on HotelConnection {
 
 fragment AllHotelsSearchRow on Hotel {
   id
+  name
   price {
     amount
     currency
@@ -133,6 +134,13 @@ const node: ConcreteBatch = {
                     "storageKey": null
                   },
                   {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "name",
+                    "storageKey": null
+                  },
+                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "args": null,
@@ -168,7 +176,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on Hotel {\n  id\n  price {\n    amount\n    currency\n  }\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on Hotel {\n  id\n  name\n  price {\n    amount\n    currency\n  }\n}\n"
 };
 
 module.exports = node;
