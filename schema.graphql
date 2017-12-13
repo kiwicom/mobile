@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Fri Nov 24 2017 11:03:10 GMT-0600 (CST)
+# timestamp: Wed Dec 13 2017 20:37:03 GMT+0700 (+07)
 
 schema {
   query: RootQuery
@@ -398,12 +398,30 @@ type Hotel {
   # Total price for all guests and nights and in the hotel. (including VAT)
   price: Price
 
+  # Name of the hotel.
+  name: String
+
+  # The star rating of the hotel.
+  rating: HotelRating
+
+  # Hotel review from hotel visitors.
+  review: HotelReview
+
   # Main photo of the hotel.
   photoUrl: String
+  cityName: String
 
   # URL to our whitelabel page of this hotel.
-  url: String
-  cityName: String
+  whitelabelUrl: String
+
+  # All facilities available in the hotel.
+  facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection
+
+  # All rooms available in the hotel.
+  rooms(after: String, first: Int, before: String, last: Int): HotelRoomConnection
+
+  # All available photos of the hotel in high and low resolution.
+  photos(after: String, first: Int, before: String, last: Int): HotelPhotoConnection
 }
 
 # A connection to a list of items.
@@ -419,6 +437,109 @@ type HotelConnection {
 type HotelEdge {
   # The item at the end of the edge
   node: Hotel
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelFacility {
+  # The ID of an object
+  id: ID!
+
+  # Name of the facility.
+  name: String
+}
+
+# A connection to a list of items.
+type HotelFacilityConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelFacilityEdge]
+}
+
+# An edge in a connection.
+type HotelFacilityEdge {
+  # The item at the end of the edge
+  node: HotelFacility
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelPhoto {
+  # The ID of an object
+  id: ID!
+  lowResUrl: String
+  highResUrl: String
+}
+
+# A connection to a list of items.
+type HotelPhotoConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelPhotoEdge]
+}
+
+# An edge in a connection.
+type HotelPhotoEdge {
+  # The item at the end of the edge
+  node: HotelPhoto
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelRating {
+  # Star rating is always in the interval 1-5 inclusive.
+  stars: Int
+
+  # Name of the stars category.
+  categoryName: String
+}
+
+type HotelReview {
+  # The review score of the hotel, in the range 1-10 inclusive.
+  score: Int
+
+  # The review score of the hotel in words.
+  description: String
+
+  # The number of reviews of the hotel.
+  count: Int
+}
+
+type HotelRoom {
+  # The ID of an object
+  id: ID!
+
+  # Type of the hotel room.
+  type: String
+  maxPersons: Int
+  bedding: [HotelRoomBedding]
+}
+
+type HotelRoomBedding {
+  type: String
+  amount: Int
+}
+
+# A connection to a list of items.
+type HotelRoomConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelRoomEdge]
+}
+
+# An edge in a connection.
+type HotelRoomEdge {
+  # The item at the end of the edge
+  node: HotelRoom
 
   # A cursor for use in pagination
   cursor: String!
@@ -673,6 +794,9 @@ type RootQuery {
 
   # Current user information.
   currentUser: Identity
+
+  # Single hotel by ID.
+  hotel(id: ID!): Hotel
 }
 
 type RouteStop {

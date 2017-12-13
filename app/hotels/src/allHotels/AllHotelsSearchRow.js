@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { Image, Text, View } from 'react-native';
 import { SimpleCard, Color, Price } from '@kiwicom/react-native-app-common';
@@ -13,20 +12,20 @@ type Props = {
   data: AllHotelsSearchRowProps,
 };
 
-function AllHotelsSearchRow(props: Props) {
+function AllHotelsSearchRow({ onGoToSingleHotel, data }: Props) {
   const price = {
     ...{
       // default null object
       amount: null,
       currency: null,
     },
-    ...idx(props, _ => _.data.price),
+    ...data.price,
   };
 
   return (
     <SimpleCard
       separator={false}
-      onPress={props.onGoToSingleHotel}
+      onPress={onGoToSingleHotel}
       additionalStyles={{ marginBottom: 5, flex: 1, flexDirection: 'row' }}
     >
       <View style={{ paddingHorizontal: 10 }}>
@@ -38,8 +37,8 @@ function AllHotelsSearchRow(props: Props) {
           }}
         />
       </View>
-      <View style={{ flexDirection: 'column' }}>
-        <Text style={{ fontWeight: 'bold' }}>TODO (needs GraphQL update)</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
         <Text>TODO (needs GraphQL update)</Text>
         <Price
           amount={price.amount}
@@ -56,6 +55,7 @@ export default createFragmentContainer(
   graphql`
     fragment AllHotelsSearchRow on Hotel {
       id
+      name
       price {
         amount
         currency
