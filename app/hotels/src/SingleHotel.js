@@ -1,55 +1,91 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
+import { graphql } from 'react-relay';
 import { View, Text } from 'react-native';
 import { Button } from '@kiwicom/react-native-app-common';
+import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 
 import type { Image } from './gallery/GalleryGrid';
+import type { SingleHotelScreenQueryResponse } from './__generated__/SingleHotelScreenQuery.graphql';
+
+class SingleHotel extends React.Component<{
+  onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
+  data: SingleHotelScreenQueryResponse,
+}> {
+  handleGoToHotelGallery = images =>
+    this.props.onGoToHotelGallery('Hotel Hilton', images);
+
+  handleButtonPress = () => {
+    const edges = idx(this.props, _ => _.data.hotel.photos.edges) || [];
+    return this.handleGoToHotelGallery(
+      edges.map((edge, index) => {
+        let missingImage = {
+          key: 'missing' + index,
+          lowRes: '', // FIXME: 404 image
+          highRes: '', // FIXME: 404 image
+        };
+        if (edge) {
+          const { node: photo } = edge;
+          if (photo) {
+            missingImage = {
+              ...missingImage,
+              key: photo.id,
+              lowRes: photo.lowResUrl || '', // FIXME: 404 image
+              highRes: photo.highResUrl || '', // FIXME: 404 image
+            };
+          }
+        }
+        return missingImage;
+      }),
+    );
+  };
+
+  render = () => (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>This is SingleHotel component</Text>
+      <Button title="Single hotel gallery" onPress={this.handleButtonPress} />
+    </View>
+  );
+}
 
 type Props = {
   onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
 };
 
-// TODO: this will be fetched from the GraphQL API
-const images = [
-  {
-    key: '1',
-    lowRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-    highRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-  },
-  {
-    key: '2',
-    lowRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-    highRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-  },
-  {
-    key: '3',
-    lowRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-    highRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-  },
-  {
-    key: '4',
-    lowRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-    highRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-  },
-  {
-    key: '5',
-    lowRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-    highRes: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg',
-  },
-];
-
-export default class AllHotels extends React.Component<Props> {
-  handleGoToHotelGallery = () =>
-    this.props.onGoToHotelGallery('Hotel Hilton', images);
+export default class SingleHotelScreen extends React.Component<Props> {
+  renderInnerComponent = (
+    propsFromRenderer: SingleHotelScreenQueryResponse,
+  ) => (
+    <SingleHotel
+      data={propsFromRenderer}
+      onGoToHotelGallery={this.props.onGoToHotelGallery}
+    />
+  );
 
   render = () => (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>This is SingleHotel component</Text>
-      <Button
-        title="Single hotel gallery"
-        onPress={this.handleGoToHotelGallery}
-      />
-    </View>
+    // TODO: replace with real ID of the hotel
+    <PublicApiRenderer
+      query={graphql`
+        query SingleHotelScreenQuery {
+          hotel(id: "aG90ZWw6MjQ4NTM5") {
+            photos {
+              edges {
+                node {
+                  id
+                  lowResUrl
+                  highResUrl
+                }
+              }
+            }
+          }
+        }
+      `}
+      render={this.renderInnerComponent}
+      cacheConfig={{
+        force: true,
+      }}
+    />
   );
 }
