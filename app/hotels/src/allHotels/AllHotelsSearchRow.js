@@ -32,9 +32,7 @@ function AllHotelsSearchRow({ onGoToSingleHotel, data }: Props) {
         <Image
           style={{ width: 50, height: 75, borderRadius: 2 }}
           resizeMode="cover"
-          source={{
-            uri: 'http://aff.bstatic.com/images/hotel/max500/588/58853664.jpg', // TODO (needs GraphQL update)
-          }}
+          source={{ uri: data.mainPhoto && data.mainPhoto.thumbnailUrl }}
         />
       </View>
       <View style={{ flex: 1 }}>
@@ -59,6 +57,9 @@ export default createFragmentContainer(
       price {
         amount
         currency
+      }
+      mainPhoto {
+        thumbnailUrl
       }
     }
   `,

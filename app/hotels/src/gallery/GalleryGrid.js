@@ -10,11 +10,11 @@ import GalleryGridTile from './GalleryGridTile';
 const tileGap = 2;
 const tilesInRow = 3;
 
-export type Image = {|
+export type Image = {
   key: string,
   lowRes: string,
   highRes: string,
-|};
+};
 
 type Props = {|
   hotelName: string,

@@ -12,6 +12,9 @@ export type AllHotelsSearchRow = {|
     +amount: ?number;
     +currency: ?string;
   |};
+  +mainPhoto: ?{|
+    +thumbnailUrl: ?string;
+  |};
 |};
 
 
@@ -55,6 +58,24 @@ const node: ConcreteFragment = {
           "alias": null,
           "args": null,
           "name": "currency",
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "HotelPhoto",
+      "name": "mainPhoto",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "thumbnailUrl",
           "storageKey": null
         }
       ],

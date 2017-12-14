@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c1a7fc5e18f8db8e83eac06665093254
+ * @relayHash d6ccd2bcfb65d6f5a855166fefee2f26
  */
 
 /* eslint-disable */
@@ -34,6 +34,10 @@ fragment AllHotelsSearchRow on Hotel {
   price {
     amount
     currency
+  }
+  mainPhoto {
+    thumbnailUrl
+    id
   }
 }
 */
@@ -164,6 +168,31 @@ const node: ConcreteBatch = {
                       }
                     ],
                     "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "HotelPhoto",
+                    "name": "mainPhoto",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "thumbnailUrl",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "id",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -176,7 +205,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on Hotel {\n  id\n  name\n  price {\n    amount\n    currency\n  }\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on Hotel {\n  id\n  name\n  price {\n    amount\n    currency\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n}\n"
 };
 
 module.exports = node;
