@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Wed Dec 13 2017 20:37:03 GMT+0700 (+07)
+# timestamp: Thu Dec 14 2017 18:31:57 GMT+0700 (+07)
 
 schema {
   query: RootQuery
@@ -408,7 +408,7 @@ type Hotel {
   review: HotelReview
 
   # Main photo of the hotel.
-  photoUrl: String
+  mainPhoto: HotelPhoto
   cityName: String
 
   # URL to our whitelabel page of this hotel.
@@ -420,7 +420,7 @@ type Hotel {
   # All rooms available in the hotel.
   rooms(after: String, first: Int, before: String, last: Int): HotelRoomConnection
 
-  # All available photos of the hotel in high and low resolution.
+  # All available photos of the hotel.
   photos(after: String, first: Int, before: String, last: Int): HotelPhotoConnection
 }
 
@@ -473,6 +473,7 @@ type HotelPhoto {
   id: ID!
   lowResUrl: String
   highResUrl: String
+  thumbnailUrl: String
 }
 
 # A connection to a list of items.
@@ -520,6 +521,9 @@ type HotelRoom {
   type: String
   maxPersons: Int
   bedding: [HotelRoomBedding]
+
+  # All available photos of the hotel room.
+  photos(after: String, first: Int, before: String, last: Int): HotelRoomPhotoConnection
 }
 
 type HotelRoomBedding {
@@ -540,6 +544,24 @@ type HotelRoomConnection {
 type HotelRoomEdge {
   # The item at the end of the edge
   node: HotelRoom
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# A connection to a list of items.
+type HotelRoomPhotoConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelRoomPhotoEdge]
+}
+
+# An edge in a connection.
+type HotelRoomPhotoEdge {
+  # The item at the end of the edge
+  node: HotelPhoto
 
   # A cursor for use in pagination
   cursor: String!
