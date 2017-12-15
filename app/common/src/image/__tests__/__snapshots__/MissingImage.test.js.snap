@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`passes props to the original Image component 1`] = `
+<Image
+  resizeMode="cover"
+  source={1}
+  style={
+    Object {
+      "borderRadius": 2,
+      "height": 75,
+      "width": 50,
+    }
+  }
+/>
+`;
