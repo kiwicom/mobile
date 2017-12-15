@@ -15,6 +15,8 @@ export { default as GeneralError } from './src/errors/GeneralError';
 export { default as DatePicker } from './src/forms/DatePicker';
 export { default as TextInput } from './src/forms/TextInput';
 
+export { default as NetworkImage } from './src/image/NetworkImage';
+
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as SimpleLoading } from './src/loaders/SimpleLoading';
 
