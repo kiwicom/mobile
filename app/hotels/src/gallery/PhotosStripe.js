@@ -5,11 +5,11 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   Dimensions,
   TouchableWithoutFeedback,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
+import { NetworkImage } from '@kiwicom/react-native-app-common';
 
 type Props = {|
   hotelName: string,
@@ -43,7 +43,7 @@ export default class PhotosStrip extends React.Component<Props> {
     <Swiper renderPagination={this.renderPagination} index={this.props.index}>
       {this.props.imageUrls.map(imageUrl => (
         <View style={styles.slide} key={imageUrl}>
-          <Image
+          <NetworkImage
             source={{ uri: imageUrl }}
             style={{ flex: 1 }}
             resizeMode="contain"

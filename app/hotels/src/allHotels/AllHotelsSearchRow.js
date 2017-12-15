@@ -1,9 +1,15 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Image, Text, View } from 'react-native';
-import { SimpleCard, Color, Price } from '@kiwicom/react-native-app-common';
+import { Text, View } from 'react-native';
+import {
+  SimpleCard,
+  Color,
+  Price,
+  NetworkImage,
+} from '@kiwicom/react-native-app-common';
 
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
 
@@ -21,6 +27,7 @@ function AllHotelsSearchRow({ onGoToSingleHotel, data }: Props) {
     },
     ...data.price,
   };
+  const thumbnailUrl = idx(data, _ => _.mainPhoto.thumbnailUrl);
 
   return (
     <SimpleCard
@@ -29,10 +36,10 @@ function AllHotelsSearchRow({ onGoToSingleHotel, data }: Props) {
       additionalStyles={{ marginBottom: 5, flex: 1, flexDirection: 'row' }}
     >
       <View style={{ paddingHorizontal: 10 }}>
-        <Image
+        <NetworkImage
           style={{ width: 50, height: 75, borderRadius: 2 }}
           resizeMode="cover"
-          source={{ uri: data.mainPhoto && data.mainPhoto.thumbnailUrl }}
+          source={{ uri: thumbnailUrl }}
         />
       </View>
       <View style={{ flex: 1 }}>
