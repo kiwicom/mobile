@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 
 import Map, { type Marker } from './Map';
 import FilterStripe from '../filter/FilterStripe';
+import HotelSwipeList from './HotelSwipeList';
 
 type Props_ = {|
   markers: Marker[],
@@ -16,6 +17,7 @@ type Props = Props & $Shape<Props_>;
 
 type State = {|
   selectedMarker: Marker | null,
+  markers: Marker[],
 |};
 
 const styles = StyleSheet.create({
@@ -29,15 +31,26 @@ const styles = StyleSheet.create({
 });
 
 class AllHotelsMap extends React.Component<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
+
+    // shift selected item to the beginning to avoid issue in carousel
+    // @see https://github.com/archriss/react-native-snap-carousel/issues/232
+    const selectedMarkerId = props.selectedMarkerId;
+    const markers = selectedMarkerId
+      ? [
+          props.markers.find(m => m.id === selectedMarkerId),
+          ...props.markers.filter(m => m.id !== selectedMarkerId),
+        ].filter(Boolean)
+      : props.markers;
     const selectedMarker = this.getSelectedMarker(
       props.markers,
-      props.selectedMarkerId,
+      selectedMarkerId,
     );
 
     this.state = {
       selectedMarker,
+      markers,
     };
   }
 
@@ -50,10 +63,14 @@ class AllHotelsMap extends React.Component<Props, State> {
 
       this.setState({ selectedMarker });
     }
+
+    if (this.props.markers !== nextProps.markers) {
+      this.setState({ markers: nextProps.markers });
+    }
   };
 
   getSelectedMarker = (markers, selectedMarkerId) => {
-    return markers.find(marker => marker.id === selectedMarkerId);
+    return markers.find(marker => marker.id === selectedMarkerId) || null;
   };
 
   selectMarker = (selectedMarker: Marker) => {
@@ -65,16 +82,29 @@ class AllHotelsMap extends React.Component<Props, State> {
   };
 
   onSelectMarker = (markerId: string) => {
-    const selectedMarker = this.getSelectedMarker(this.props.markers, markerId);
+    const selectedMarker = this.getSelectedMarker(this.state.markers, markerId);
 
     if (selectedMarker) {
       this.selectMarker(selectedMarker);
     }
   };
 
+  onSnapToItem = (index: number) => {
+    const selectedMarker = this.state.markers[index];
+
+    if (!selectedMarker) {
+      return;
+    }
+
+    this.selectMarker(selectedMarker);
+  };
+
   render = () => {
-    const { markers, currency } = this.props;
-    const { selectedMarker } = this.state;
+    const { currency } = this.props;
+    const { selectedMarker, markers } = this.state;
+    const index = selectedMarker
+      ? markers.findIndex(m => m.id === selectedMarker.id)
+      : 0;
 
     return (
       <View style={styles.wrapper}>
@@ -85,6 +115,11 @@ class AllHotelsMap extends React.Component<Props, State> {
             markers={markers}
             selectedMarker={selectedMarker}
             onSelectMarker={this.onSelectMarker}
+          />
+          <HotelSwipeList
+            items={markers}
+            selectedIndex={index}
+            onSnapToItem={this.onSnapToItem}
           />
         </View>
       </View>
