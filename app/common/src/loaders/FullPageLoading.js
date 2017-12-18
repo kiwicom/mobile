@@ -3,12 +3,12 @@
 import * as React from 'react';
 
 import CenteredView from '../view/CenteredView';
-import SimpleLoading from './SimpleLoading';
+import IconLoading from './IconLoading';
 
 export default function FullPageLoading() {
   return (
     <CenteredView>
-      <SimpleLoading />
+      <IconLoading />
     </CenteredView>
   );
 }
