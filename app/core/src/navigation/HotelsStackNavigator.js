@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Button } from '@kiwicom/react-native-app-common';
+import { TouchableOpacity } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   AllHotels,
@@ -10,6 +10,7 @@ import {
   GalleryGrid,
   GalleryStripe,
 } from '@kiwicom/react-native-app-hotels';
+import { Ionicons } from '@expo/vector-icons';
 
 import type { Navigation } from '../types/Navigation';
 
@@ -36,7 +37,14 @@ export default {
 
         return {
           headerTitle: 'Hotels',
-          headerRight: <Button title="MAP" onPress={goToAllHotelsMap} />,
+          headerRight: (
+            <TouchableOpacity
+              style={{ marginHorizontal: 10 }}
+              onPress={goToAllHotelsMap}
+            >
+              <Ionicons name="md-map" size={30} color="#fff" />
+            </TouchableOpacity>
+          ),
         };
       };
 
