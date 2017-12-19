@@ -1,34 +1,33 @@
 // @flow
 
 import * as React from 'react';
-import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import SimpleCard from '../SimpleCard';
 
+const renderer = new ShallowRenderer();
 function onPressVoidCallback() {}
 
 it('renders as expected', () => {
-  const rendered = renderer.create(<SimpleCard>CHILDREN</SimpleCard>).toJSON();
-  expect(rendered).toMatchSnapshot();
+  expect(renderer.render(<SimpleCard>CHILDREN</SimpleCard>)).toMatchSnapshot();
 });
 
 it('renders as expected with onPress callback', () => {
-  const rendered = renderer
-    .create(<SimpleCard onPress={onPressVoidCallback}>CHILDREN</SimpleCard>)
-    .toJSON();
-  expect(rendered).toMatchSnapshot();
+  expect(
+    renderer.render(
+      <SimpleCard onPress={onPressVoidCallback}>CHILDREN</SimpleCard>,
+    ),
+  ).toMatchSnapshot();
 });
 
 it('renders airy density', () => {
-  const rendered = renderer
-    .create(<SimpleCard density="airy">CHILDREN</SimpleCard>)
-    .toJSON();
-  expect(rendered).toMatchSnapshot();
+  expect(
+    renderer.render(<SimpleCard density="airy">CHILDREN</SimpleCard>),
+  ).toMatchSnapshot();
 });
 
 it('renders without separator', () => {
-  const rendered = renderer
-    .create(<SimpleCard separator={false}>CHILDREN</SimpleCard>)
-    .toJSON();
-  expect(rendered).toMatchSnapshot();
+  expect(
+    renderer.render(<SimpleCard separator={false}>CHILDREN</SimpleCard>),
+  ).toMatchSnapshot();
 });

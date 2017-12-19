@@ -16,8 +16,8 @@ const style = ({
   separator = true,
   additionalStyles = {},
 }: Props) => {
-  const PADDING_TOP_BOTTOM = density === 'compact' ? 10 : 20;
-  const PADDING_LEFT_RIGHT = 0;
+  const PADDING_VERTICAL = density === 'compact' ? 10 : 20;
+  const PADDING_HORIZONTAL = 0;
 
   if (separator) {
     additionalStyles = {
@@ -29,10 +29,8 @@ const style = ({
 
   return {
     backgroundColor: '#fff',
-    paddingTop: PADDING_TOP_BOTTOM,
-    paddingBottom: PADDING_TOP_BOTTOM,
-    paddingLeft: PADDING_LEFT_RIGHT,
-    paddingRight: PADDING_LEFT_RIGHT,
+    paddingVertical: PADDING_VERTICAL,
+    paddingHorizontal: PADDING_HORIZONTAL,
     ...additionalStyles,
   };
 };
