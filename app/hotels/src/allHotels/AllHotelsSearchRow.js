@@ -33,7 +33,7 @@ function AllHotelsSearchRow({ onGoToSingleHotel, data }: Props) {
     <SimpleCard
       separator={false}
       onPress={onGoToSingleHotel}
-      additionalStyles={{ marginBottom: 5, flex: 1, flexDirection: 'row' }}
+      additionalStyles={{ marginTop: 5, flex: 1, flexDirection: 'row' }}
     >
       <View style={{ paddingHorizontal: 10 }}>
         <NetworkImage

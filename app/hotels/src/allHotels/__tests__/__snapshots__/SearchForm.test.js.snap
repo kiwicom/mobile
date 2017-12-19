@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchForm Render all inputs 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#01bba5",
+      "padding": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginBottom": 6,
+      }
+    }
+  >
+    <TextInput
+      onChangeText={[Function]}
+      placeholder="Where do you go?"
+      value="Prague"
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "height": 40,
+      }
+    }
+  >
+    <DatePicker
+      date="08/01/2018"
+      format="DD/MM/YYYY"
+      onDateChange={[Function]}
+      placeholder="Start date"
+      style={
+        Object {
+          "flex": 1,
+          "marginRight": 10,
+        }
+      }
+    />
+    <DatePicker
+      date="14/01/2018"
+      format="DD/MM/YYYY"
+      onDateChange={[Function]}
+      placeholder="End date"
+      style={
+        Object {
+          "flex": 1,
+          "marginRight": 10,
+        }
+      }
+    />
+    <Button
+      onPress={[Function]}
+      styles={
+        Object {
+          "button": Object {
+            "backgroundColor": "#eee",
+            "borderRadius": 0,
+            "flex": 1,
+            "width": 115,
+          },
+          "buttonText": Object {
+            "color": "#171b1e",
+          },
+        }
+      }
+      title="1 Guest"
+    />
+  </View>
+</View>
+`;
