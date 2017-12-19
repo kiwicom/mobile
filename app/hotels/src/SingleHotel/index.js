@@ -8,6 +8,7 @@ import type { Image } from '../gallery/GalleryGrid';
 import type { SingleHotelQueryResponse } from './__generated__/SingleHotelQuery.graphql';
 
 type ContainerProps = {
+  hotelId: string,
   onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
 };
 
@@ -34,7 +35,7 @@ export default class SingleHotelContainer extends React.Component<
           }
         `}
         variables={{
-          hotelId: 'aG90ZWw6NjUwODk5',
+          hotelId: this.props.hotelId,
         }}
         render={this.renderInnerComponent}
       />
