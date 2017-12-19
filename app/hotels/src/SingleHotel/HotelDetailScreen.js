@@ -6,6 +6,7 @@ import HeaderContainer from './Header/HeaderContainer';
 import type { Image } from '../gallery/GalleryGrid';
 import LocationContainer from './Location/LocationContainer';
 import DescriptionContainer from './Description/DescriptionContainer';
+import type { SingleHotelQueryResponse } from './__generated__/SingleHotelQuery.graphql';
 
 const styles = StyleSheet.create({
   underlay: {
@@ -16,15 +17,16 @@ const styles = StyleSheet.create({
 
 export type Props = {
   openGallery: (hotelName: string, images: Image[]) => void,
+  hotel: SingleHotelQueryResponse,
 };
 
-export default function HotelDetailScreen({ openGallery }: Props) {
+export default function HotelDetailScreen({ openGallery, hotel }: Props) {
   return (
     <View style={styles.underlay}>
       <ScrollView>
-        <HeaderContainer openGallery={openGallery} />
-        <LocationContainer />
-        <DescriptionContainer />
+        <HeaderContainer openGallery={openGallery} hotel={hotel} />
+        <LocationContainer hotel={hotel} />
+        <DescriptionContainer hotel={hotel} />
       </ScrollView>
     </View>
   );

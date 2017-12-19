@@ -3,9 +3,11 @@ import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MapView } from 'expo';
 import { StretchedImage } from '@kiwicom/react-native-app-common';
+import idx from 'idx';
+
 import gradient from './white-to-alpha-horizontal.png';
 
-import type { LocationContainer_address } from './LocationContainer';
+import type { LocationContainer_hotel } from './__generated__/LocationContainer_hotel.graphql';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,37 +38,42 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  address: LocationContainer_address,
+  hotel: LocationContainer_hotel,
 };
 
-export default function Location({ address }: Props) {
+export default function Location({ hotel: { address, coordinates } }: Props) {
+  const latitude = idx(coordinates, _ => _.lat);
+  const longitude = idx(coordinates, _ => _.lng);
   return (
     <View style={styles.container}>
       <View style={styles.leftColumn}>
         <Text style={[styles.addressLine, styles.streetLine]}>
-          {address.streetLine}
+          {idx(address, _ => _.street)}
         </Text>
         <Text style={[styles.addressLine, styles.cityLine]}>
-          {address.city}
+          {idx(address, _ => _.city)}
         </Text>
       </View>
       <View style={styles.rightColumn}>
-        <MapView
-          region={{
-            latitude: address.coordinates.lat,
-            longitude: address.coordinates.lng - 0.004,
-            latitudeDelta: 0.01,
-            longitudeDelta: 0.01,
-          }}
-          style={StyleSheet.absoluteFillObject}
-        >
-          <MapView.Marker
-            coordinate={{
-              latitude: address.coordinates.lat,
-              longitude: address.coordinates.lng,
-            }}
-          />
-        </MapView>
+        {typeof latitude === 'number' &&
+          typeof longitude === 'number' && (
+            <MapView
+              region={{
+                latitude,
+                longitude: longitude - 0.004,
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+              }}
+              style={StyleSheet.absoluteFillObject}
+            >
+              <MapView.Marker
+                coordinate={{
+                  latitude,
+                  longitude,
+                }}
+              />
+            </MapView>
+          )}
         <StretchedImage source={gradient} />
         <TouchableOpacity style={styles.mapOverlay} />
       </View>

@@ -1,12 +1,14 @@
 // @flow
 import * as React from 'react';
 import { Image, StyleSheet, View, Text } from 'react-native';
-import GalleryButton from '../GalleryButton/GalleryButton';
 import { StretchedImage } from '@kiwicom/react-native-app-common';
+import idx from 'idx';
+import GalleryButton from '../GalleryButton/GalleryButton';
 import gradient from './black-to-alpha-vertical.png';
+import formatRating from './formatRating';
 
-import type { HeaderContainer_hotel } from './HeaderContainer';
 import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
+import type { HeaderContainer_hotel } from './__generated__/HeaderContainer_hotel.graphql';
 
 const height = 150;
 
@@ -52,38 +54,47 @@ export type Props = {
 
 export default class Header extends React.Component<Props> {
   openGallery = () => {
-    const { hotel: { name, pictures }, openGallery } = this.props;
-    const images = pictures.map(({ lowRes, highRes }, key) => ({
-      key: key.toString(),
-      lowRes,
-      highRes,
+    const { hotel, openGallery } = this.props;
+    const photosEdges = idx(hotel, _ => _.photos.edges) || [];
+    const images = photosEdges.map(edge => ({
+      key: idx(edge, _ => _.node.id) || '',
+      lowRes: idx(edge, _ => _.node.lowResUrl) || '',
+      highRes: idx(edge, _ => _.node.highResUrl) || '',
     }));
 
-    openGallery(name, images);
+    if (typeof hotel.name === 'string') {
+      openGallery(hotel.name, images);
+    }
   };
 
   render = () => {
     const { hotel } = this.props;
+    const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
+    const photosCount = idx(hotel, _ => _.photos.edges.length);
     return (
       <View>
-        <Image style={styles.picture} source={{ uri: hotel.photoUrl }} />
+        <Image
+          style={styles.picture}
+          source={mainPhotoUrl ? { uri: mainPhotoUrl } : null}
+        />
         <View style={styles.nameAndRatingContainer}>
           <StretchedImage source={gradient} />
           <View style={styles.nameAndRating}>
             <Text style={styles.hotelName}>{hotel.name}</Text>
             <Text style={styles.rating}>
-              {`${'★'.repeat(hotel.stars)} - ${hotel.rating.score} ${
-                hotel.rating.description
-              }`}
+              {formatRating(
+                idx(hotel, _ => _.rating.stars),
+                idx(hotel, _ => _.review.score),
+                idx(hotel, _ => _.review.description),
+              )}
             </Text>
           </View>
         </View>
-        <View style={styles.galleryButton}>
-          <GalleryButton
-            onClick={this.openGallery}
-            count={hotel.pictures.length}
-          />
-        </View>
+        {photosCount && (
+          <View style={styles.galleryButton}>
+            <GalleryButton onClick={this.openGallery} count={photosCount} />
+          </View>
+        )}
       </View>
     );
   };
