@@ -58,14 +58,6 @@ Merge master is responsible for:
 - taking care of overall picture of the application design
 - initializing bigger changes in application structure (because of increasing technical debt in some part)
 
-### Checklist
-
-Try to check this before making PR (or during code review):
-
-- [ ] it works on iOS and Android
-- [ ] it works in landscape and portrait mode
-- [ ] it works offline (if needed)
-
 ## Project structure
 
 This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) so the root directory is actually so called "workspace root". Workspace root is responsible for handling this repository (especially testing). You can find all sources inside of the `app` directory. Each directory inside `app` should be treated as separate NPM package and you **should not** reuse code from each other via `import` statements. If you need to use one package inside of other package (this should be very common use-case) please require it in `package.json` file (see `app/native/pacakge.json`).
