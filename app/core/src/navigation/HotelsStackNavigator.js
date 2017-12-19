@@ -48,9 +48,10 @@ export default {
         };
       };
 
-      goToHotel = () => this.props.navigation.navigate('SingleHotel');
+      openSingleHotel = (id: string) =>
+        this.props.navigation.navigate('SingleHotel', { hotelId: id });
 
-      render = () => <AllHotels onGoToSingleHotel={this.goToHotel} />;
+      render = () => <AllHotels openSingleHotel={this.openSingleHotel} />;
     },
   },
   AllHotelsMap: {
@@ -65,15 +66,22 @@ export default {
     },
   },
   SingleHotel: {
-    screen: function SingleHotelNavigationScreen(props: Props) {
+    screen: withMappedProps(function SingleHotelNavigationScreen(
+      props: Props & { hotelId: string },
+    ) {
       function goToGalleryGrid(hotelName, images) {
         props.navigation.navigate('GalleryGrid', {
           hotelName,
           images,
         });
       }
-      return <SingleHotel onGoToHotelGallery={goToGalleryGrid} />;
-    },
+      return (
+        <SingleHotel
+          onGoToHotelGallery={goToGalleryGrid}
+          hotelId={props.hotelId}
+        />
+      );
+    }),
     navigationOptions: {
       headerTitle: 'Detail',
     },

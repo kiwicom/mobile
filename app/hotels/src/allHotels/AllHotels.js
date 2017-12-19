@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
-  onGoToSingleHotel: () => void,
+  openSingleHotel: (id: string) => void,
 |};
 
 type State = {|
@@ -64,7 +64,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
       <FilterStripe />
       <AllHotelsSearchList
         data={propsFromRenderer.allHotels}
-        onGoToSingleHotel={this.props.onGoToSingleHotel}
+        openSingleHotel={this.props.openSingleHotel}
       />
     </View>
   );
