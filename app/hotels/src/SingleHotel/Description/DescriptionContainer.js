@@ -1,19 +1,18 @@
 // @flow
-import hotel from '../fakeHotel';
-import withFakeData from '../withFakeData';
+import { createFragmentContainer, graphql } from 'react-relay';
 import Description from './Description';
 
-export type DescriptionContainer_hotel = {
-  description: string,
-  facilities: {
-    edges: Array<{
-      node: {
-        name: string,
-      },
-    }>,
-  },
-};
-
-export default withFakeData(Description, () => ({
-  hotel,
-}));
+export default createFragmentContainer(
+  Description,
+  graphql`
+    fragment DescriptionContainer_hotel on Hotel {
+      facilities {
+        edges {
+          node {
+            name
+          }
+        }
+      }
+    }
+  `,
+);
