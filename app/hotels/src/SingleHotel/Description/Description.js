@@ -2,8 +2,9 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
+import idx from 'idx';
 
-import type { DescriptionContainer_hotel } from './DescriptionContainer';
+import type { DescriptionContainer_hotel } from './__generated__/DescriptionContainer_hotel.graphql';
 
 const styles = StyleSheet.create({
   container: {
@@ -71,7 +72,8 @@ type Props = {
 };
 
 export default function Description({ hotel }: Props) {
-  const facilities = hotel.facilities.edges.map(edge => edge.node.name);
+  const facilitiesEdges = idx(hotel, _ => _.facilities.edges) || [];
+  const facilities = facilitiesEdges.map(edge => idx(edge, _ => _.node.name));
 
   return (
     <View style={styles.container}>
@@ -81,7 +83,7 @@ export default function Description({ hotel }: Props) {
           renderTruncatedFooter={renderTruncatedFooter}
           renderRevealedFooter={renderRevealedFooter}
         >
-          <Text>{hotel.description}</Text>
+          <Text>{'TODO: hotel description'}</Text>
         </ReadMore>
       </View>
       <View style={styles.facilities}>

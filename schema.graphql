@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Thu Dec 14 2017 18:31:57 GMT+0700 (+07)
+# timestamp: Mon Dec 18 2017 16:46:25 GMT+0100 (CET)
 
 schema {
   query: RootQuery
@@ -11,6 +11,13 @@ type AdditionalBaggage {
 
   # Number of baggage.
   quantity: Int
+}
+
+type Address {
+  # Contains street and number.
+  street: String
+  city: String
+  zip: String
 }
 
 type Airline {
@@ -413,6 +420,10 @@ type Hotel {
 
   # URL to our whitelabel page of this hotel.
   whitelabelUrl: String
+
+  # Location of the hotel.
+  coordinates: Coordinates
+  address: Address
 
   # All facilities available in the hotel.
   facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection
