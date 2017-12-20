@@ -60,7 +60,7 @@ Merge master is responsible for:
 
 ## Project structure
 
-This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) so the root directory is actually so called "workspace root". Workspace root is responsible for handling this repository (especially testing). You can find all sources inside of the `app` directory. Each directory inside `app` should be treated as separate NPM package and you **should not** reuse code from each other via `import` statements. If you need to use one package inside of other package (this should be very common use-case) please require it in `package.json` file (see `app/native/pacakge.json`).
+This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) so the root directory is actually so called "workspace root". Workspace root is responsible for handling this repository (especially testing). You can find all sources inside of the `app` directory. Each directory inside `app` should be treated as separate NPM package and you **should not** reuse code from each other via `import` statements. If you need to use one package inside of other package (this should be very common use-case) please require it in `package.json` file (see `app/core/package.json`).
 
 ```
 .
@@ -79,6 +79,8 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── app.json                    - application settings for Expo
 └── schema.graphql              - GraphQL schema of the backend server
 ```
+
+In case you need additional dependency for the package, you should add it to the `package.json` of the workspace (for example `app/hotels/package.json`). Root `package.json` is only for global dependencies related to the whole monorepo (testing tools, linters and so on).
 
 ## Update GraphQL schema
 
