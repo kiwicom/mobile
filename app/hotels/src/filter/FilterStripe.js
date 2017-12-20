@@ -38,7 +38,7 @@ export default class FilterStripe extends React.Component<{||}, State> {
     ],
   };
 
-  _handleButtonPress = (filterId: string) => () => {
+  handleButtonPress = (filterId: string) => () => {
     // TODO Open filter control
 
     const filters = this.state.filters;
@@ -53,13 +53,13 @@ export default class FilterStripe extends React.Component<{||}, State> {
     this.setState({ filters });
   };
 
-  _renderFilterButton = ({ title, icon, filter, isActive }: FilterType) => (
+  renderFilterButton = ({ title, icon, filter, isActive }: FilterType) => (
     <FilterButton
       key={filter}
       title={title}
       icon={icon}
       isActive={isActive}
-      onPress={this._handleButtonPress(filter)}
+      onPress={this.handleButtonPress(filter)}
     />
   );
 
@@ -72,7 +72,7 @@ export default class FilterStripe extends React.Component<{||}, State> {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
-          {filters.map(this._renderFilterButton)}
+          {filters.map(this.renderFilterButton)}
         </ScrollView>
       </View>
     );

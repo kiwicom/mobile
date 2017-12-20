@@ -24,18 +24,18 @@ export default class SimpleLoginForm extends React.Component<Props, State> {
     loading: false,
   };
 
-  _handleEmailChange = text =>
+  handleEmailChange = (text: string) =>
     this.setState({
       username: text,
     });
 
-  _handlePasswordChange = text =>
+  handlePasswordChange = (text: string) =>
     this.setState({
       password: text,
     });
 
-  _handleFormSubmit = () =>
-    this._tryLogIn(
+  handleFormSubmit = () =>
+    this.tryLogIn(
       this.state.username,
       this.state.password,
       (response, errors) => {
@@ -47,7 +47,7 @@ export default class SimpleLoginForm extends React.Component<Props, State> {
       },
     );
 
-  _tryLogIn = (username: string, password: string, callback: Callback) => {
+  tryLogIn = (username: string, password: string, callback: Callback) => {
     this.setState({ loading: true });
     LoginMutation({ email: username, password }, (response, errors) => {
       this.setState({ loading: false });
@@ -58,20 +58,20 @@ export default class SimpleLoginForm extends React.Component<Props, State> {
   render = () => (
     <View>
       <TextInput
-        onChangeText={this._handleEmailChange}
+        onChangeText={this.handleEmailChange}
         keyboardType="email-address"
         placeholder="Email"
         value={this.state.username}
       />
       <TextInput
-        onChangeText={this._handlePasswordChange}
+        onChangeText={this.handlePasswordChange}
         placeholder="Password"
         secureTextEntry={true}
       />
       {this.state.loading ? (
         <Button title="Logging in..." />
       ) : (
-        <Button onPress={this._handleFormSubmit} title="Login!" />
+        <Button onPress={this.handleFormSubmit} title="Login!" />
       )}
     </View>
   );

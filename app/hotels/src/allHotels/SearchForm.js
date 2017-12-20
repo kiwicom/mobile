@@ -39,7 +39,7 @@ const buttonStyles = StyleSheet.create({
     borderRadius: 0,
   },
   buttonText: {
-    color: Color.grey._900,
+    color: Color.grey.$900,
   },
 });
 
@@ -79,9 +79,9 @@ export default class SearchForm extends React.Component<Props, State> {
   /**
    * Submit form with the initial search parameters.
    */
-  componentDidMount = () => this._handleOnChange();
+  componentDidMount = () => this.handleOnChange();
 
-  _handleOnChange = () =>
+  handleOnChange = () =>
     this.props.onChange({
       latitude: this.state.latitude,
       longitude: this.state.longitude,
@@ -90,21 +90,21 @@ export default class SearchForm extends React.Component<Props, State> {
       roomsConfiguration: this.state.roomsConfiguration,
     });
 
-  _handleDestinationChange = destination => {
-    this.setState({ destination }, () => this._handleOnChange());
-  };
+  handleDestinationChange = (destination: string) =>
+    this.setState({ destination }, () => this.handleOnChange());
 
-  _handleCheckinChange = date => this._handleDateChange(date, 'checkin');
+  handleCheckinChange = (date: string) =>
+    this.handleDateChange(date, 'checkin');
 
-  _handleCheckoutChange = date => this._handleDateChange(date, 'checkout');
+  handleCheckoutChange = (date: string) =>
+    this.handleDateChange(date, 'checkout');
 
-  _handleDateChange = (date, type: 'checkin' | 'checkout') => {
-    this.setState({ [type]: date }, () => this._handleOnChange());
-  };
+  handleDateChange = (date: string, type: 'checkin' | 'checkout') =>
+    this.setState({ [type]: date }, () => this.handleOnChange());
 
-  _handleGuestsPress = () => {
+  handleGuestsPress = () => {
     // TODO Open popup with guests configuration
-    this._handleOnChange();
+    this.handleOnChange();
   };
 
   render = () => {
@@ -114,7 +114,7 @@ export default class SearchForm extends React.Component<Props, State> {
         <View style={styles.destination}>
           <TextInput
             value={this.state.destination}
-            onChangeText={this._handleDestinationChange}
+            onChangeText={this.handleDestinationChange}
             placeholder="Where do you go?"
           />
         </View>
@@ -123,18 +123,18 @@ export default class SearchForm extends React.Component<Props, State> {
             placeholder="Start date"
             format={DATE_FORMAT}
             date={this.state.checkin}
-            onDateChange={this._handleCheckinChange}
+            onDateChange={this.handleCheckinChange}
             style={styles.datePicker}
           />
           <DatePicker
             placeholder="End date"
             format={DATE_FORMAT}
             date={this.state.checkout}
-            onDateChange={this._handleCheckoutChange}
+            onDateChange={this.handleCheckoutChange}
             style={styles.datePicker}
           />
           <Button
-            onPress={this._handleGuestsPress}
+            onPress={this.handleGuestsPress}
             title={guests}
             styles={buttonStyles}
           />

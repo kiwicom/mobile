@@ -25,7 +25,7 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
     loading: false,
   };
 
-  _loadMore = () => {
+  loadMore = () => {
     this.setState({ loading: true });
     const { relay } = this.props;
     if (!relay.hasMore() || relay.isLoading()) {
@@ -66,7 +66,7 @@ export class SearchResultsWithoutData extends React.Component<Props, State> {
           (this.state.loading ? (
             <Button title="Loading..." />
           ) : (
-            <Button onPress={this._loadMore} title="Load more!" />
+            <Button onPress={this.loadMore} title="Load more!" />
           ))}
       </ScrollView>
     );

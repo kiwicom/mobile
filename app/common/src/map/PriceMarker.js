@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   currency: {
-    color: Color.grey._700,
+    color: Color.grey.$700,
     fontSize: 12,
   },
   arrowBorder: {

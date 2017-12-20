@@ -40,29 +40,29 @@ const SearchForm = class SearchForm extends React.Component<Props, State> {
     };
   }
 
-  _changeLocation = (location: 'from' | 'to', newLocation) =>
+  changeLocation = (location: 'from' | 'to', newLocation) =>
     this.setState(() => {
       this.props.onLocationChange(newLocation, location);
     });
 
-  _handleOriginFocusChange = ({ nativeEvent }: InputOnFocusEvent) =>
-    this._handleOriginTextChange(nativeEvent.text);
+  handleOriginFocusChange = ({ nativeEvent }: InputOnFocusEvent) =>
+    this.handleOriginTextChange(nativeEvent.text);
 
-  _handleOriginTextChange = (newOrigin: string) =>
-    this._changeLocation('from', newOrigin);
+  handleOriginTextChange = (newOrigin: string) =>
+    this.changeLocation('from', newOrigin);
 
-  _handleDestinationFocusChange = ({ nativeEvent }: InputOnFocusEvent) =>
-    this._handleDestinationTextChange(nativeEvent.text);
+  handleDestinationFocusChange = ({ nativeEvent }: InputOnFocusEvent) =>
+    this.handleDestinationTextChange(nativeEvent.text);
 
-  _handleDestinationTextChange = (newDestination: string) =>
-    this._changeLocation('to', newDestination);
+  handleDestinationTextChange = (newDestination: string) =>
+    this.changeLocation('to', newDestination);
 
-  _handleDatepickerChange = date =>
+  handleDatepickerChange = date =>
     this.setState({
       date: { from: date },
     });
 
-  _handleSubmitButton = () =>
+  handleSubmitButton = () =>
     this.props.onSend(
       this.props.fields.from,
       this.props.fields.to,
@@ -76,15 +76,15 @@ const SearchForm = class SearchForm extends React.Component<Props, State> {
       </View>
 
       <TextInput
-        onFocus={this._handleOriginFocusChange}
-        onChangeText={this._handleOriginTextChange}
+        onFocus={this.handleOriginFocusChange}
+        onChangeText={this.handleOriginTextChange}
         value={this.props.fields.from}
         placeholder="Where do you travel from?"
       />
 
       <TextInput
-        onFocus={this._handleDestinationFocusChange}
-        onChangeText={this._handleDestinationTextChange}
+        onFocus={this.handleDestinationFocusChange}
+        onChangeText={this.handleDestinationTextChange}
         style={{
           flex: 1,
           color: 'black',
@@ -96,12 +96,12 @@ const SearchForm = class SearchForm extends React.Component<Props, State> {
       />
 
       <DatePicker
-        onDateChange={this._handleDatepickerChange}
+        onDateChange={this.handleDatepickerChange}
         date={this.state.date.from}
       />
 
       {this.props.expanded && (
-        <Button onPress={this._handleSubmitButton} title="Find connections!" />
+        <Button onPress={this.handleSubmitButton} title="Find connections!" />
       )}
     </View>
   );

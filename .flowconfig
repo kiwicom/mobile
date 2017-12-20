@@ -41,7 +41,7 @@ app/core/config/flow-typed/
 [options]
 emoji=true
 module.system=haste
-munge_underscores=true
+munge_underscores=false
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
 module.name_mapper='^expo$' -> 'emptyObject'

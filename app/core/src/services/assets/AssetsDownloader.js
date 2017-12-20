@@ -12,7 +12,7 @@ export default new class AssetsDownloader {
       return;
     }
 
-    const absoluteFileName = this._getAbsoluteFileName(url);
+    const absoluteFileName = this.getAbsoluteFileName(url);
 
     FileSystem.getInfoAsync(absoluteFileName).then(info => {
       if (info.exists) {
@@ -23,7 +23,7 @@ export default new class AssetsDownloader {
     });
   };
 
-  _getAbsoluteFileName = (url: string) => {
+  getAbsoluteFileName = (url: string) => {
     const parsedUrl = nodeUrl.parse(url);
     if (parsedUrl.pathname) {
       const fileName = parsedUrl.pathname.match(/[^/]+\.[^/]+/);
