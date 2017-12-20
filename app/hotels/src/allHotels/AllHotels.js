@@ -6,12 +6,12 @@ import { View, StyleSheet } from 'react-native';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import moment from 'moment';
 
-import SearchForm from './SearchForm';
+import SearchForm from './searchForm/SearchForm';
 import FilterStripe from '../filter/FilterStripe';
 import AllHotelsSearchList from './AllHotelsSearchList';
 
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
-import type { SearchParametersType } from './SearchParametersType';
+import type { SearchParametersType } from './searchForm/SearchParametersType';
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -36,6 +36,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
       checkout: null,
       roomsConfiguration: {
         adultsCount: 1,
+        children: [],
       },
     },
   };
@@ -60,13 +61,10 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
   };
 
   renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => (
-    <View>
-      <FilterStripe />
-      <AllHotelsSearchList
-        data={propsFromRenderer.allHotels}
-        openSingleHotel={this.props.openSingleHotel}
-      />
-    </View>
+    <AllHotelsSearchList
+      data={propsFromRenderer.allHotels}
+      openSingleHotel={this.props.openSingleHotel}
+    />
   );
 
   render = () => {
@@ -74,6 +72,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
     return (
       <View style={styles.wrapper}>
         <SearchForm onChange={this.handleSearchChange} />
+        <FilterStripe />
         {this.isReadyToSearch() && (
           <PublicApiRenderer
             query={graphql`

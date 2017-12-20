@@ -22,7 +22,7 @@ exports[`Popup render popup with child 1`] = `
       "margin": 0,
     }
   }
-  useNativeDriver={true}
+  useNativeDriver={false}
 >
   <View
     style={
