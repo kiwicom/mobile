@@ -4,7 +4,6 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Map, { type Marker } from './Map';
-import FilterStripe from '../filter/FilterStripe';
 import HotelSwipeList from './HotelSwipeList';
 
 type Props_ = {|
@@ -21,12 +20,10 @@ type State = {|
 |};
 
 const styles = StyleSheet.create({
-  wrapper: StyleSheet.absoluteFillObject,
   container: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    top: 50,
   },
 });
 
@@ -107,21 +104,18 @@ class AllHotelsMap extends React.Component<Props, State> {
       : 0;
 
     return (
-      <View style={styles.wrapper}>
-        <FilterStripe />
-        <View style={styles.container}>
-          <Map
-            currency={currency}
-            markers={markers}
-            selectedMarker={selectedMarker}
-            onSelectMarker={this.onSelectMarker}
-          />
-          <HotelSwipeList
-            items={markers}
-            selectedIndex={index}
-            onSnapToItem={this.onSnapToItem}
-          />
-        </View>
+      <View style={styles.container}>
+        <Map
+          currency={currency}
+          markers={markers}
+          selectedMarker={selectedMarker}
+          onSelectMarker={this.onSelectMarker}
+        />
+        <HotelSwipeList
+          items={markers}
+          selectedIndex={index}
+          onSnapToItem={this.onSnapToItem}
+        />
       </View>
     );
   };
