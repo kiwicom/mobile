@@ -10,7 +10,7 @@ import AllHotelsSearchRow from './AllHotelsSearchRow';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
 
 type Props = {|
-  onGoToSingleHotel: () => void,
+  openSingleHotel: (id: string) => void,
   data: AllHotelsSearchListProps,
 |};
 
@@ -24,7 +24,7 @@ function AllHotelsSearchList(combinedProps: Props) {
           return (
             <AllHotelsSearchRow
               data={hotel}
-              onGoToSingleHotel={combinedProps.onGoToSingleHotel}
+              openSingleHotel={combinedProps.openSingleHotel}
               key={hotel && hotel.id}
             />
           );

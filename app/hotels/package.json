@@ -9,6 +9,7 @@
     "idx": "2.2.0",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
+    "react-native-read-more-text": "^1.0.0",
     "react-native-swiper": "^1.5.13"
   },
   "devDependencies": {

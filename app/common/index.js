@@ -30,6 +30,8 @@ export { default as LayoutWithoutHeader } from './src/view/LayoutWithoutHeader';
 export { default as Color } from './src/Color';
 export { default as Price } from './src/Price';
 
+export { default as StretchedImage } from './src/image/StretchedImage';
+
 // Flow types:
 
 export type { OnFocus, OnLayout } from './types/Events';
