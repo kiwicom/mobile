@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import { Image, StyleSheet, View, Text } from 'react-native';
-import { StretchedImage } from '@kiwicom/react-native-app-common';
+import { StyleSheet, View, Text } from 'react-native';
+import { NetworkImage, StretchedImage } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 import GalleryButton from '../GalleryButton/GalleryButton';
 import gradient from './black-to-alpha-vertical.png';
@@ -73,7 +73,7 @@ export default class Header extends React.Component<Props> {
     const photosCount = idx(hotel, _ => _.photos.edges.length);
     return (
       <View>
-        <Image
+        <NetworkImage
           style={styles.picture}
           source={mainPhotoUrl ? { uri: mainPhotoUrl } : null}
         />
