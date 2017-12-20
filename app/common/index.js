@@ -27,6 +27,8 @@ export { default as CenteredView } from './src/view/CenteredView';
 export { default as Layout } from './src/view/Layout';
 export { default as LayoutWithoutHeader } from './src/view/LayoutWithoutHeader';
 
+export { default as Popup } from './src/popup/Popup';
+
 export { default as Color } from './src/Color';
 export { default as Price } from './src/Price';
 
