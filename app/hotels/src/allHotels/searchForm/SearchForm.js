@@ -1,16 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import {
-  TextInput,
-  DatePicker,
-  Color,
-  Button,
-} from '@kiwicom/react-native-app-common';
+import { TextInput, DatePicker, Color } from '@kiwicom/react-native-app-common';
 import { View, StyleSheet } from 'react-native';
 import moment from 'moment';
 
-import type { SearchParametersType } from './SearchParametersType';
+import Guests from './Guests';
+
+import type {
+  RoomConfigurationType,
+  SearchParametersType,
+} from './SearchParametersType';
 
 const DATE_FORMAT = 'DD/MM/YYYY';
 
@@ -32,17 +32,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const buttonStyles = StyleSheet.create({
-  button: {
-    width: 115,
-    backgroundColor: '#fff',
-    borderRadius: 0,
-  },
-  buttonText: {
-    color: Color.grey.$900,
-  },
-});
-
 type Props = {|
   onChange: (search: SearchParametersType) => void,
 |};
@@ -53,9 +42,7 @@ type State = {|
   longitude: number | null,
   checkin: string | null,
   checkout: string | null,
-  roomsConfiguration: {|
-    adultsCount: number,
-  |},
+  roomsConfiguration: RoomConfigurationType,
 |};
 
 export default class SearchForm extends React.Component<Props, State> {
@@ -73,6 +60,7 @@ export default class SearchForm extends React.Component<Props, State> {
       .format(DATE_FORMAT),
     roomsConfiguration: {
       adultsCount: 1,
+      children: [],
     },
   };
 
@@ -102,13 +90,11 @@ export default class SearchForm extends React.Component<Props, State> {
   handleDateChange = (date: string, type: 'checkin' | 'checkout') =>
     this.setState({ [type]: date }, () => this.handleOnChange());
 
-  handleGuestsPress = () => {
-    // TODO Open popup with guests configuration
-    this.handleOnChange();
+  handleGuestsSave = (roomsConfiguration: RoomConfigurationType) => {
+    this.setState({ roomsConfiguration }, () => this.handleOnChange());
   };
 
   render = () => {
-    const guests = '1 Guest'; // FIXME: this cannot be static
     return (
       <View style={styles.form}>
         <View style={styles.destination}>
@@ -133,10 +119,9 @@ export default class SearchForm extends React.Component<Props, State> {
             onDateChange={this.handleCheckoutChange}
             style={styles.datePicker}
           />
-          <Button
-            onPress={this.handleGuestsPress}
-            title={guests}
-            styles={buttonStyles}
+          <Guests
+            guests={this.state.roomsConfiguration}
+            onSave={this.handleGuestsSave}
           />
         </View>
       </View>

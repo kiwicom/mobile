@@ -54,21 +54,14 @@ exports[`SearchForm Render all inputs 1`] = `
         }
       }
     />
-    <Button
-      onPress={[Function]}
-      styles={
+    <Guests
+      guests={
         Object {
-          "button": Object {
-            "backgroundColor": "#fff",
-            "borderRadius": 0,
-            "width": 115,
-          },
-          "buttonText": Object {
-            "color": "#212121",
-          },
+          "adultsCount": 1,
+          "children": Array [],
         }
       }
-      title="1 Guest"
+      onSave={[Function]}
     />
   </View>
 </View>
