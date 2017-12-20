@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Popup render popup with child 1`] = `
+<ReactNativeModal
+  animationIn="slideInUp"
+  animationInTiming={300}
+  animationOut="slideOutDown"
+  animationOutTiming={300}
+  avoidKeyboard={false}
+  backdropColor="black"
+  backdropOpacity={0.5}
+  backdropTransitionInTiming={300}
+  backdropTransitionOutTiming={300}
+  isVisible={true}
+  onBackButtonPress={[Function]}
+  onBackdropPress={[Function]}
+  onModalHide={[Function]}
+  onModalShow={[Function]}
+  style={
+    Object {
+      "justifyContent": "flex-end",
+      "margin": 0,
+    }
+  }
+  useNativeDriver={true}
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "opacity": 1,
+        "padding": 20,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Child
+    </Text>
+    <Button
+      onPress={[Function]}
+      styles={
+        Object {
+          "button": Object {
+            "marginTop": 20,
+          },
+        }
+      }
+      title="Save"
+    />
+  </View>
+</ReactNativeModal>
+`;
