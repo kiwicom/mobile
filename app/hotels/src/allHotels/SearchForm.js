@@ -36,8 +36,9 @@ const buttonStyles = StyleSheet.create({
   button: {
     width: 115,
     backgroundColor: '#fff',
-    flex: 1,
+    flex: 0,
     borderRadius: 0,
+    height: 40,
   },
   buttonText: {
     color: Color.grey._900,

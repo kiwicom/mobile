@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter button render active button 1`] = `
+<View
+  style={
+    Object {
+      "padding": 3,
+      "paddingHorizontal": 3,
+    }
+  }
+>
+  <Button
+    icon={
+      Object {
+        "name": "attach-money",
+      }
+    }
+    onPress={[Function]}
+    styles={
+      Object {
+        "button": Object {
+          "backgroundColor": "#2f363c",
+          "paddingLeft": 10,
+        },
+        "icon": Object {
+          "backgroundColor": "#57626c",
+        },
+      }
+    }
+    title="title"
+  />
+</View>
+`;
+
+exports[`Filter button render default button 1`] = `
+<View
+  style={
+    Object {
+      "padding": 3,
+      "paddingHorizontal": 3,
+    }
+  }
+>
+  <Button
+    icon={
+      Object {
+        "name": "attach-money",
+      }
+    }
+    onPress={[Function]}
+    styles={
+      Object {
+        "button": Object {
+          "backgroundColor": "#01bba5",
+          "paddingLeft": 0,
+        },
+        "icon": Object {
+          "backgroundColor": "#01bba5",
+        },
+      }
+    }
+    title="title"
+  />
+</View>
+`;

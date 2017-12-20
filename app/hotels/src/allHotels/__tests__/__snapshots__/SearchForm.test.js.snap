@@ -61,7 +61,8 @@ exports[`SearchForm Render all inputs 1`] = `
           "button": Object {
             "backgroundColor": "#fff",
             "borderRadius": 0,
-            "flex": 1,
+            "flex": 0,
+            "height": 40,
             "width": 115,
           },
           "buttonText": Object {
