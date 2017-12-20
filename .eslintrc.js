@@ -23,6 +23,12 @@ module.exports = {
   },
   plugins: ['prettier', 'react', 'flowtype'],
   rules: {
+    'no-underscore-dangle': [
+      'error',
+      {
+        enforceInMethodNames: true,
+      },
+    ],
     'prettier/prettier': [
       'error',
       {

@@ -28,7 +28,7 @@ class SingleBooking extends React.Component<Props, State> {
     refreshing: false,
   };
 
-  _refetch = () => {
+  refetch = () => {
     this.setState({ refreshing: true }, () => {
       this.props.relay.refetch(
         v => v,
@@ -48,7 +48,7 @@ class SingleBooking extends React.Component<Props, State> {
    *
    * [departure, arrival, departure, arrival, ...]
    */
-  _prepareTimelineComponentsList = legs => {
+  prepareTimelineComponentsList = legs => {
     return [].concat(
       ...legs.map(leg => {
         if (leg) {
@@ -101,7 +101,7 @@ class SingleBooking extends React.Component<Props, State> {
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
-              onRefresh={this._refetch}
+              onRefresh={this.refetch}
             />
           }
         >
@@ -109,7 +109,7 @@ class SingleBooking extends React.Component<Props, State> {
 
           <View style={{ marginTop: 15, marginBottom: 10 }}>
             <Timeline
-              componentsList={this._prepareTimelineComponentsList(legs)}
+              componentsList={this.prepareTimelineComponentsList(legs)}
             />
           </View>
 

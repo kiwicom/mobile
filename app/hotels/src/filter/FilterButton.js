@@ -25,11 +25,11 @@ export default function FilterButton(props: Props) {
   const { title, isActive, icon, onPress } = props;
   const buttonStyles = {
     button: {
-      backgroundColor: isActive ? Color.grey._800 : Color.brand,
+      backgroundColor: isActive ? Color.grey.$800 : Color.brand,
       paddingLeft: isActive || !icon ? 10 : 0,
     },
     icon: {
-      backgroundColor: isActive ? Color.grey._700 : Color.brand,
+      backgroundColor: isActive ? Color.grey.$700 : Color.brand,
     },
   };
   return (
