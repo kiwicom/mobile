@@ -13,14 +13,14 @@ export default {
   // other colors
   // https://material.io/guidelines/style/color.html#color-color-palette
   grey: {
-    _100: '#f5f5f5',
-    _200: '#eeeeee',
-    _300: '#e0e0e0',
-    _400: '#bdbdbd',
-    _500: '#9e9e9e',
-    _600: '#757575',
-    _700: '#616161',
-    _800: '#424242',
-    _900: '#212121',
+    $100: '#f5f5f5',
+    $200: '#eeeeee',
+    $300: '#e0e0e0',
+    $400: '#bdbdbd',
+    $500: '#9e9e9e',
+    $600: '#757575',
+    $700: '#616161',
+    $800: '#424242',
+    $900: '#212121',
   },
 };

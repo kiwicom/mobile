@@ -40,7 +40,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
     },
   };
 
-  _handleSearchChange = (search: SearchParametersType) => {
+  handleSearchChange = (search: SearchParametersType) => {
     this.setState({
       search: {
         latitude: search.latitude,
@@ -73,7 +73,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
     const { search } = this.state;
     return (
       <View style={styles.wrapper}>
-        <SearchForm onChange={this._handleSearchChange} />
+        <SearchForm onChange={this.handleSearchChange} />
         {this.isReadyToSearch() && (
           <PublicApiRenderer
             query={graphql`
