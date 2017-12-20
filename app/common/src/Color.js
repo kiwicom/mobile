@@ -1,10 +1,16 @@
 // @flow
 
-export default {
+const Color = {
   // brand colors
   // https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
   brand: '#0097A9',
   brandSecondary: '#0CB3C7',
+
+  icon: {
+    get grey() {
+      return Color.grey.$600;
+    },
+  },
 
   // complimentary brand colors
   buttercup: '#eb9d08',
@@ -24,3 +30,5 @@ export default {
     $900: '#212121',
   },
 };
+
+export default Color;

@@ -4,6 +4,9 @@ export { default as VerificationBadge } from './src/badge/VerificationBadge';
 
 export { default as Button } from './src/buttons/Button';
 export { default as GoogleButton } from './src/buttons/GoogleButton';
+export {
+  default as IncrementDecrementButtons,
+} from './src/buttons/IncrementDecrementButtons';
 
 export { default as SimpleCard } from './src/cards/SimpleCard';
 
@@ -14,6 +17,7 @@ export { default as GeneralError } from './src/errors/GeneralError';
 
 export { default as DatePicker } from './src/forms/DatePicker';
 export { default as TextInput } from './src/forms/TextInput';
+export { default as NumberControl } from './src/forms/NumberControl';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 
