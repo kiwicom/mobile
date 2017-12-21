@@ -3,12 +3,13 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import {
   SimpleCard,
   Color,
   Price,
   NetworkImage,
+  Stars,
 } from '@kiwicom/react-native-app-common';
 
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
@@ -17,6 +18,31 @@ type Props = {|
   openSingleHotel: (id: string) => void,
   data: AllHotelsSearchRowProps,
 |};
+
+const style = StyleSheet.create({
+  imageWrapper: {
+    paddingHorizontal: 10,
+  },
+  image: {
+    width: 50,
+    height: 75,
+    borderRadius: 2,
+  },
+  hotelWrapper: {
+    flexGrow: 1,
+  },
+  hotelTitle: {
+    fontWeight: 'bold',
+  },
+  hotelRating: {
+    fontSize: 12,
+    color: Color.grey.$600,
+  },
+  hotelPrice: {
+    fontWeight: 'bold',
+    color: Color.brand,
+  },
+});
 
 class AllHotelsSearchRow extends React.Component<Props> {
   onGoToSingleHotel = () => {
@@ -41,20 +67,24 @@ class AllHotelsSearchRow extends React.Component<Props> {
         onPress={this.onGoToSingleHotel}
         additionalStyles={{ marginTop: 5, flex: 1, flexDirection: 'row' }}
       >
-        <View style={{ paddingHorizontal: 10 }}>
+        <View style={style.imageWrapper}>
           <NetworkImage
-            style={{ width: 50, height: 75, borderRadius: 2 }}
+            style={style.image}
             resizeMode="cover"
             source={{ uri: thumbnailUrl }}
           />
         </View>
-        <View style={{ flex: 1 }}>
-          <Text style={{ fontWeight: 'bold' }}>{data.name}</Text>
-          <Text>TODO (needs GraphQL update)</Text>
+        <View style={style.hotelWrapper}>
+          <Text>
+            <Text style={style.hotelTitle}>{data.name}</Text>{' '}
+            <Text style={style.hotelRating}>
+              <Stars rating={data.rating && data.rating.stars} />
+            </Text>
+          </Text>
           <Price
             amount={price.amount}
             currency={price.currency}
-            style={{ fontWeight: 'bold', color: Color.brand }}
+            style={style.hotelPrice}
           />
         </View>
       </SimpleCard>
@@ -74,6 +104,9 @@ export default createFragmentContainer(
       }
       mainPhoto {
         thumbnailUrl
+      }
+      rating {
+        stars
       }
     }
   `,

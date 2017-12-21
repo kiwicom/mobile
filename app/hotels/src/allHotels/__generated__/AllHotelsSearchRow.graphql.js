@@ -15,6 +15,9 @@ export type AllHotelsSearchRow = {|
   +mainPhoto: ?{|
     +thumbnailUrl: ?string;
   |};
+  +rating: ?{|
+    +stars: ?number;
+  |};
 |};
 
 
@@ -76,6 +79,24 @@ const node: ConcreteFragment = {
           "alias": null,
           "args": null,
           "name": "thumbnailUrl",
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "HotelRating",
+      "name": "rating",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "stars",
           "storageKey": null
         }
       ],
