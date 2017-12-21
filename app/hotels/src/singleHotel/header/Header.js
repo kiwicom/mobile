@@ -6,8 +6,8 @@ import { NetworkImage, StretchedImage } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 
 import GalleryButton from '../galleryButton/GalleryButton';
+import Rating from './Rating';
 import gradient from './black-to-alpha-vertical.png';
-import formatRating from './formatRating';
 
 import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 import type { HeaderContainer_hotel } from './__generated__/HeaderContainer_hotel.graphql';
@@ -81,11 +81,11 @@ export default class Header extends React.Component<Props> {
           <View style={styles.nameAndRating}>
             <Text style={styles.hotelName}>{hotel.name}</Text>
             <Text style={styles.rating}>
-              {formatRating(
-                idx(hotel, _ => _.rating.stars),
-                idx(hotel, _ => _.review.score),
-                idx(hotel, _ => _.review.description),
-              )}
+              <Rating
+                stars={idx(hotel, _ => _.rating.stars)}
+                score={idx(hotel, _ => _.review.score)}
+                description={idx(hotel, _ => _.review.description)}
+              />
             </Text>
           </View>
         </View>

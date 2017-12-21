@@ -34,6 +34,8 @@ export {
 
 export { default as Popup } from './src/popup/Popup';
 
+export { default as Stars } from './src/rating/Stars';
+
 export { default as Color } from './src/Color';
 export { default as Price } from './src/Price';
 
