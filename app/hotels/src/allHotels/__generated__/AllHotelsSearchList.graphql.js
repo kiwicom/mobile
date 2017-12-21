@@ -24,7 +24,7 @@ const node: ConcreteFragment = {
       "kind": "LinkedField",
       "alias": null,
       "args": null,
-      "concreteType": "HotelEdge",
+      "concreteType": "HotelAvailabilityEdge",
       "name": "edges",
       "plural": true,
       "selections": [
@@ -32,7 +32,7 @@ const node: ConcreteFragment = {
           "kind": "LinkedField",
           "alias": null,
           "args": null,
-          "concreteType": "Hotel",
+          "concreteType": "HotelAvailability",
           "name": "node",
           "plural": false,
           "selections": [
@@ -55,7 +55,7 @@ const node: ConcreteFragment = {
       "storageKey": null
     }
   ],
-  "type": "HotelConnection"
+  "type": "HotelAvailabilityConnection"
 };
 
 module.exports = node;

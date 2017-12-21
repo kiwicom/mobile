@@ -78,7 +78,8 @@ export default {
       return (
         <SingleHotel
           onGoToHotelGallery={goToGalleryGrid}
-          hotelId={props.hotelId}
+          // hotelId={props.hotelId}
+          hotelId="aG90ZWw6MjUyMTU=" // FIXME: we need to refactor this - it's not possible to fetch hotel just by simple ID here
         />
       );
     }),

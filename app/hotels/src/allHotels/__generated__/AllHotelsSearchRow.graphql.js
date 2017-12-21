@@ -7,16 +7,18 @@
 import type { ConcreteFragment } from 'relay-runtime';
 export type AllHotelsSearchRow = {|
   +id: string;
-  +name: ?string;
   +price: ?{|
     +amount: ?number;
     +currency: ?string;
   |};
-  +mainPhoto: ?{|
-    +thumbnailUrl: ?string;
-  |};
-  +rating: ?{|
-    +stars: ?number;
+  +hotel: ?{|
+    +name: ?string;
+    +mainPhoto: ?{|
+      +thumbnailUrl: ?string;
+    |};
+    +rating: ?{|
+      +stars: ?number;
+    |};
   |};
 |};
 
@@ -32,13 +34,6 @@ const node: ConcreteFragment = {
       "alias": null,
       "args": null,
       "name": "id",
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "name",
       "storageKey": null
     },
     {
@@ -70,40 +65,58 @@ const node: ConcreteFragment = {
       "kind": "LinkedField",
       "alias": null,
       "args": null,
-      "concreteType": "HotelPhoto",
-      "name": "mainPhoto",
+      "concreteType": "Hotel",
+      "name": "hotel",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
           "args": null,
-          "name": "thumbnailUrl",
+          "name": "name",
           "storageKey": null
-        }
-      ],
-      "storageKey": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "args": null,
-      "concreteType": "HotelRating",
-      "name": "rating",
-      "plural": false,
-      "selections": [
+        },
         {
-          "kind": "ScalarField",
+          "kind": "LinkedField",
           "alias": null,
           "args": null,
-          "name": "stars",
+          "concreteType": "HotelPhoto",
+          "name": "mainPhoto",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "thumbnailUrl",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "args": null,
+          "concreteType": "HotelRating",
+          "name": "rating",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "stars",
+              "storageKey": null
+            }
+          ],
           "storageKey": null
         }
       ],
       "storageKey": null
     }
   ],
-  "type": "Hotel"
+  "type": "HotelAvailability"
 };
 
 module.exports = node;

@@ -59,7 +59,8 @@ class AllHotelsSearchRow extends React.Component<Props> {
       },
       ...data.price,
     };
-    const thumbnailUrl = idx(data, _ => _.mainPhoto.thumbnailUrl);
+    const thumbnailUrl = idx(data, _ => _.hotel.mainPhoto.thumbnailUrl);
+    const hotelName = idx(data, _ => _.hotel.name);
 
     return (
       <SimpleCard
@@ -76,7 +77,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
         </View>
         <View style={style.hotelWrapper}>
           <Text>
-            <Text style={style.hotelTitle}>{data.name}</Text>{' '}
+            <Text style={style.hotelTitle}>{hotelName}</Text>{' '}
             <Text style={style.hotelRating}>
               <Stars rating={data.rating && data.rating.stars} />
             </Text>
@@ -95,18 +96,20 @@ class AllHotelsSearchRow extends React.Component<Props> {
 export default createFragmentContainer(
   AllHotelsSearchRow,
   graphql`
-    fragment AllHotelsSearchRow on Hotel {
+    fragment AllHotelsSearchRow on HotelAvailability {
       id
-      name
       price {
         amount
         currency
       }
-      mainPhoto {
-        thumbnailUrl
-      }
-      rating {
-        stars
+      hotel {
+        name
+        mainPhoto {
+          thumbnailUrl
+        }
+        rating {
+          stars
+        }
       }
     }
   `,
