@@ -1,5 +1,7 @@
 // @flow
+
 import { createFragmentContainer, graphql } from 'react-relay';
+
 import Description from './Description';
 
 export default createFragmentContainer(

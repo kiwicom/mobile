@@ -1,5 +1,6 @@
 // @flow
-import formatRating from './formatRating';
+
+import formatRating from '../formatRating';
 
 describe('formatRating', () => {
   it('concats stars, review score and review description', () => {

@@ -1,9 +1,11 @@
 // @flow
+
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { NetworkImage, StretchedImage } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
-import GalleryButton from '../GalleryButton/GalleryButton';
+
+import GalleryButton from '../galleryButton/GalleryButton';
 import gradient from './black-to-alpha-vertical.png';
 import formatRating from './formatRating';
 
@@ -47,10 +49,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export type Props = {
+export type Props = {|
   hotel: HeaderContainer_hotel,
   openGallery: (hotelName: string, images: GalleryGridImage[]) => void,
-};
+|};
 
 export default class Header extends React.Component<Props> {
   openGallery = () => {
@@ -73,10 +75,7 @@ export default class Header extends React.Component<Props> {
     const photosCount = idx(hotel, _ => _.photos.edges.length);
     return (
       <View>
-        <NetworkImage
-          style={styles.picture}
-          source={mainPhotoUrl ? { uri: mainPhotoUrl } : null}
-        />
+        <NetworkImage style={styles.picture} source={{ uri: mainPhotoUrl }} />
         <View style={styles.nameAndRatingContainer}>
           <StretchedImage source={gradient} />
           <View style={styles.nameAndRating}>

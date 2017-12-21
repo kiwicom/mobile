@@ -1,17 +1,17 @@
 /**
  * @flow
- * @relayHash 866a79c3c6f02c9c061c83acea586532
+ * @relayHash ee10ef1c4020995d868607a4d7fca071
  */
 
 /* eslint-disable */
 
 import type { ConcreteBatch } from 'relay-runtime';
-export type SingleHotelQueryResponse = {|
+export type singleHotelQueryResponse = {|
   +hotel: ?{| |};
 |};
 
 /*
-query SingleHotelQuery(
+query singleHotelQuery(
   $hotelId: ID!
 ) {
   hotel(id: $hotelId) {
@@ -82,7 +82,7 @@ const node: ConcreteBatch = {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "SingleHotelQuery",
+    "name": "singleHotelQuery",
     "selections": [
       {
         "kind": "LinkedField",
@@ -123,7 +123,7 @@ const node: ConcreteBatch = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "SingleHotelQuery",
+  "name": "singleHotelQuery",
   "query": {
     "argumentDefinitions": [
       {
@@ -134,7 +134,7 @@ const node: ConcreteBatch = {
       }
     ],
     "kind": "Root",
-    "name": "SingleHotelQuery",
+    "name": "singleHotelQuery",
     "operation": "query",
     "selections": [
       {
@@ -397,7 +397,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query SingleHotelQuery(\n  $hotelId: ID!\n) {\n  hotel(id: $hotelId) {\n    ...HeaderContainer_hotel\n    ...LocationContainer_hotel\n    ...DescriptionContainer_hotel\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  facilities {\n    edges {\n      node {\n        name\n        id\n      }\n    }\n  }\n}\n"
+  "text": "query singleHotelQuery(\n  $hotelId: ID!\n) {\n  hotel(id: $hotelId) {\n    ...HeaderContainer_hotel\n    ...LocationContainer_hotel\n    ...DescriptionContainer_hotel\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  facilities {\n    edges {\n      node {\n        name\n        id\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = node;

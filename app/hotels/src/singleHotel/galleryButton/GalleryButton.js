@@ -1,6 +1,8 @@
 // @flow
+
 import * as React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+
 import icon from './gallery-icon.png';
 
 const styles = StyleSheet.create({
@@ -24,10 +26,10 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
+type Props = {|
   count: number,
   onClick: () => void,
-};
+|};
 
 export default function GalleryButton({ count, onClick }: Props) {
   return (

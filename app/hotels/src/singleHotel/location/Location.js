@@ -1,4 +1,5 @@
 // @flow
+
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MapView } from 'expo';
@@ -37,9 +38,9 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {
+type Props = {|
   hotel: LocationContainer_hotel,
-};
+|};
 
 export default function Location({ hotel: { address, coordinates } }: Props) {
   const latitude = idx(coordinates, _ => _.lat);

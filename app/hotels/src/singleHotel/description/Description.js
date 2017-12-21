@@ -1,4 +1,5 @@
 // @flow
+
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
@@ -48,10 +49,10 @@ const styles = StyleSheet.create({
 const Link = ({
   label,
   handlePress,
-}: {
+}: {|
   label: string,
   handlePress: () => void,
-}) => (
+|}) => (
   <View style={styles.linkView}>
     <TouchableOpacity onPress={handlePress}>
       <Text style={styles.linkText}>{label}</Text>
@@ -67,9 +68,9 @@ const renderRevealedFooter = (handlePress: () => void) => (
   <Link label="Show Less" handlePress={handlePress} />
 );
 
-type Props = {
+type Props = {|
   hotel: DescriptionContainer_hotel,
-};
+|};
 
 export default function Description({ hotel }: Props) {
   const facilitiesEdges = idx(hotel, _ => _.facilities.edges) || [];
@@ -87,8 +88,8 @@ export default function Description({ hotel }: Props) {
         </ReadMore>
       </View>
       <View style={styles.facilities}>
-        {facilities.map((facility, index) => (
-          <View key={index} style={styles.facilityView}>
+        {facilities.map(facility => (
+          <View key={facility} style={styles.facilityView}>
             <Text style={styles.facilityText}>{facility}</Text>
           </View>
         ))}

@@ -13,17 +13,17 @@ import {
 
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
 
-type Props = {
+type Props = {|
   openSingleHotel: (id: string) => void,
   data: AllHotelsSearchRowProps,
-};
+|};
 
 class AllHotelsSearchRow extends React.Component<Props> {
   onGoToSingleHotel = () => {
     this.props.openSingleHotel(this.props.data.id);
   };
 
-  render() {
+  render = () => {
     const { data } = this.props;
     const price = {
       ...{
@@ -59,7 +59,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
         </View>
       </SimpleCard>
     );
-  }
+  };
 }
 
 export default createFragmentContainer(
