@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d6ccd2bcfb65d6f5a855166fefee2f26
+ * @relayHash c6baac3436a12fb3cb7eb58a7273b66d
  */
 
 /* eslint-disable */
@@ -38,6 +38,9 @@ fragment AllHotelsSearchRow on Hotel {
   mainPhoto {
     thumbnailUrl
     id
+  }
+  rating {
+    stars
   }
 }
 */
@@ -193,6 +196,24 @@ const node: ConcreteBatch = {
                       }
                     ],
                     "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "HotelRating",
+                    "name": "rating",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "stars",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
                   }
                 ],
                 "storageKey": null
@@ -205,7 +226,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on Hotel {\n  id\n  name\n  price {\n    amount\n    currency\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on Hotel {\n  id\n  name\n  price {\n    amount\n    currency\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n}\n"
 };
 
 module.exports = node;

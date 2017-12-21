@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works with failed rating prop 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+>
+  
+</Text>
+`;
+
+exports[`works with failed rating prop 2`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+>
+  
+</Text>
+`;
+
+exports[`works with rating prop 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+>
+  ★★★
+</Text>
+`;
+
+exports[`works with rating prop 2`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+>
+  ★★★★★★★★★★
+</Text>
+`;
