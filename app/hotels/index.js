@@ -14,7 +14,7 @@ export { default as AllHotelsMap } from './src/map';
 /**
  * Single hotel view with all the details and "call to action" for booking.
  */
-export { default as SingleHotel } from './src/SingleHotel';
+export { default as SingleHotel } from './src/singleHotel';
 
 /**
  * All photos of the hotel with possibility to view single photo. You can

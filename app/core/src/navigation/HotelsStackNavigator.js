@@ -14,14 +14,14 @@ import { Ionicons } from '@expo/vector-icons';
 
 import type { Navigation } from '../types/Navigation';
 
-type Props = {
+type Props = {|
   navigation: Navigation,
-};
+|};
 
-type InjectorProps = {
+type InjectorProps = {|
   navigation: Navigation,
   WrappedComponent: React.ElementType,
-};
+|};
 
 /**
  * This isn't actually true stack navigator. It's used inside of explore
@@ -67,7 +67,7 @@ export default {
   },
   SingleHotel: {
     screen: withMappedProps(function SingleHotelNavigationScreen(
-      props: Props & { hotelId: string },
+      props: Props & {| hotelId: string |},
     ) {
       function goToGalleryGrid(hotelName, images) {
         props.navigation.navigate('GalleryGrid', {

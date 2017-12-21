@@ -1,12 +1,14 @@
 // @flow
+
 import * as React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import HeaderContainer from './Header/HeaderContainer';
+
+import HeaderContainer from './header/HeaderContainer';
+import LocationContainer from './location/LocationContainer';
+import DescriptionContainer from './description/DescriptionContainer';
 
 import type { Image } from '../gallery/GalleryGrid';
-import LocationContainer from './Location/LocationContainer';
-import DescriptionContainer from './Description/DescriptionContainer';
-import type { SingleHotelQueryResponse } from './__generated__/SingleHotelQuery.graphql';
+import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 
 const styles = StyleSheet.create({
   underlay: {
@@ -15,10 +17,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export type Props = {
+export type Props = {|
   openGallery: (hotelName: string, images: Image[]) => void,
-  hotel: SingleHotelQueryResponse,
-};
+  hotel: singleHotelQueryResponse,
+|};
 
 export default function HotelDetailScreen({ openGallery, hotel }: Props) {
   return (
