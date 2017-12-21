@@ -7,6 +7,7 @@
     "@kiwicom/react-native-app-common": "^0",
     "geolib": "2.0.24",
     "idx": "2.2.0",
+    "react-native-snap-carousel": "3.4.0",
     "lodash": "^4.17.4",
     "moment": "^2.20.1",
     "react-native-swiper": "^1.5.13"
