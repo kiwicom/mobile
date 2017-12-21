@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, View } from 'react-native';
+import { Color, Price } from '@kiwicom/react-native-app-common';
 
-import Color from '../Color';
-import Price from '../Price';
+import type { PriceMarker as PriceMarkerData } from './__generated__/PriceMarker.graphql';
 
 const styles = StyleSheet.create({
   bubble: {
@@ -60,12 +61,11 @@ const selectedStyles = StyleSheet.create({
 
 type Props = {|
   isSelected?: boolean,
-  price: number,
-  currency: string,
+  data: PriceMarkerData,
 |};
 
 const PriceMarker = (props: Props) => {
-  const { isSelected } = props;
+  const { isSelected, data: price } = props;
   const bubbleStyles = StyleSheet.flatten([
     styles.bubble,
     isSelected && selectedStyles.bubble,
@@ -82,12 +82,16 @@ const PriceMarker = (props: Props) => {
   return (
     <View>
       <View style={bubbleStyles}>
-        <Price
-          amount={props.price}
-          currency={props.currency}
-          amountStyle={priceStyles}
-          currencyStyle={currencyStyles}
-        />
+        {price &&
+          price.amount &&
+          price.currency && (
+            <Price
+              amount={price.amount}
+              currency={price.currency}
+              amountStyle={priceStyles}
+              currencyStyle={currencyStyles}
+            />
+          )}
       </View>
       <View style={[styles.arrowBorder]} />
       <View style={[styles.arrow, isSelected && selectedStyles.arrow]} />
@@ -95,4 +99,12 @@ const PriceMarker = (props: Props) => {
   );
 };
 
-export default PriceMarker;
+export default createFragmentContainer(
+  PriceMarker,
+  graphql`
+    fragment PriceMarker on Price {
+      amount
+      currency
+    }
+  `,
+);
