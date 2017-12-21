@@ -46,4 +46,5 @@ export type {
   OnLayout,
   OnDimensionsChange,
   GestureState,
+  PanResponderEvent,
 } from './types/Events';

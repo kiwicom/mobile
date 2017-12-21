@@ -13,7 +13,7 @@ type Props = {|
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderTopColor: Color.grey._100,
+    borderTopColor: Color.grey.$100,
     borderTopWidth: 1,
     paddingVertical: 10,
     marginHorizontal: 10,
