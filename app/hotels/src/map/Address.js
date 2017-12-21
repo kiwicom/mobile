@@ -1,13 +1,15 @@
 // @flow
 
 import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Color } from '@kiwicom/react-native-app-common';
 
-import Color from '../Color';
+import type { Address as AddressData } from './__generated__/Address.graphql';
 
 type Props = {|
-  address: string,
+  data: AddressData,
 |};
 
 const styles = StyleSheet.create({
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
 
 class Address extends React.Component<Props> {
   render = () => {
-    const { address } = this.props;
+    const { data: address } = this.props;
 
     return (
       <View style={styles.container}>
@@ -38,11 +40,22 @@ class Address extends React.Component<Props> {
         </View>
         <View>
           <Text style={styles.header}>Address</Text>
-          <Text>{address}</Text>
+          <Text>
+            {address.street}, {address.city} {address.zip}
+          </Text>
         </View>
       </View>
     );
   };
 }
 
-export default Address;
+export default createFragmentContainer(
+  Address,
+  graphql`
+    fragment Address on Address {
+      street
+      city
+      zip
+    }
+  `,
+);
