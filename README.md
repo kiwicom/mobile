@@ -10,7 +10,7 @@ Try it in [Expo](https://expo.io/):
 * [Testing](#testing)
 * [Contributing](#contributing)
 * [Project structure](#project-structure)
-* [Update GraphQL schema](#update-graphql-schema)
+* [Working with GraphQL API](#working-with-graphql-api)
 * [Offline first](#offline-first)
 * [Best Practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
@@ -82,10 +82,18 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 
 In case you need additional dependency for the package, you should add it to the `package.json` of the workspace (for example `app/hotels/package.json`). Root `package.json` is only for global dependencies related to the whole monorepo (testing tools, linters and so on).
 
-## Update GraphQL schema
+## Working with GraphQL API
+
+This application uses GraphQL API as a data source. You can find GraphQL schema in `schema.graphql` file. This schema is used by Relay Compiler and Relay Babel plugin to generate and validate queries for backend server. GraphQL API itself is evolving over time so you may need to update our snapshot. You can do it easily using this command:
 
 ```
 yarn graphql get-schema
+```
+
+This GraphQL command is much more powerful. You may, for example, start GraphQL playground to play with the queries before using them in the application. This is very useful:
+
+```
+yarn graphql playground
 ```
 
 ## Offline first
