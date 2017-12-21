@@ -37,7 +37,7 @@ function AllHotelsSearchList(combinedProps: Props) {
 export default createFragmentContainer(
   AllHotelsSearchList,
   graphql`
-    fragment AllHotelsSearchList on HotelConnection {
+    fragment AllHotelsSearchList on HotelAvailabilityConnection {
       edges {
         node {
           id

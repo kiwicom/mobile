@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Mon Dec 18 2017 16:46:25 GMT+0100 (CET)
+# timestamp: Thu Dec 21 2017 19:21:58 GMT+0700 (+07)
 
 schema {
   query: RootQuery
@@ -398,32 +398,30 @@ input FlightsSearchInput {
   passengers: PassengersInput
 }
 
+# General information about the hotel.
 type Hotel {
   # The ID of an object
   id: ID!
 
-  # Total price for all guests and nights and in the hotel. (including VAT)
-  price: Price
-
   # Name of the hotel.
   name: String
+  cityName: String
+
+  # URL to our whitelabel page of this hotel.
+  whitelabelUrl: String
+
+  # Main photo of the hotel.
+  mainPhoto: HotelPhoto
+
+  # Location of the hotel.
+  coordinates: Coordinates
+  address: Address
 
   # The star rating of the hotel.
   rating: HotelRating
 
   # Hotel review from hotel visitors.
   review: HotelReview
-
-  # Main photo of the hotel.
-  mainPhoto: HotelPhoto
-  cityName: String
-
-  # URL to our whitelabel page of this hotel.
-  whitelabelUrl: String
-
-  # Location of the hotel.
-  coordinates: Coordinates
-  address: Address
 
   # All facilities available in the hotel.
   facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection
@@ -435,19 +433,31 @@ type Hotel {
   photos(after: String, first: Int, before: String, last: Int): HotelPhotoConnection
 }
 
+# Information about hotel availability during selected time period.
+type HotelAvailability {
+  # The ID of an object
+  id: ID!
+
+  # Total price for all guests and nights and in the hotel. (including VAT)
+  price: Price
+  availableRooms: [HotelRoomAvailability]
+  hotel: Hotel
+  hotelInformation: Hotel @deprecated(reason: "Use field 'hotel' instead.")
+}
+
 # A connection to a list of items.
-type HotelConnection {
+type HotelAvailabilityConnection {
   # Information to aid in pagination.
   pageInfo: PageInfo!
 
   # A list of edges.
-  edges: [HotelEdge]
+  edges: [HotelAvailabilityEdge]
 }
 
 # An edge in a connection.
-type HotelEdge {
+type HotelAvailabilityEdge {
   # The item at the end of the edge
-  node: Hotel
+  node: HotelAvailability
 
   # A cursor for use in pagination
   cursor: String!
@@ -535,6 +545,18 @@ type HotelRoom {
 
   # All available photos of the hotel room.
   photos(after: String, first: Int, before: String, last: Int): HotelRoomPhotoConnection
+  description: HotelRoomDescription
+}
+
+type HotelRoomAvailability {
+  # The ID of an object
+  id: ID!
+
+  # Base price for the room in this configuration.
+  minimalPrice: Price
+  incrementalPrice: [Price]
+  room: HotelRoom
+  roomInformation: HotelRoom @deprecated(reason: "Use field 'room' instead.")
 }
 
 type HotelRoomBedding {
@@ -549,6 +571,11 @@ type HotelRoomConnection {
 
   # A list of edges.
   edges: [HotelRoomEdge]
+}
+
+type HotelRoomDescription {
+  title: String
+  text: String
 }
 
 # An edge in a connection.
@@ -801,7 +828,7 @@ type RootQuery {
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
 
   # Search for all hotels in one location.
-  allHotels(search: HotelsSearchInput!, after: String, first: Int, before: String, last: Int): HotelConnection
+  allAvailableHotels(search: HotelsSearchInput!, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
 
   # Search for airports, cities, countries. You can search by location name,
   # radius on the map or rectangle on the map. If you do not specify one of these
@@ -830,6 +857,9 @@ type RootQuery {
 
   # Single hotel by ID.
   hotel(id: ID!): Hotel
+
+  # Search for all hotels in one location.
+  allHotels(search: HotelsSearchInput!, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection @deprecated(reason: "Use 'allAvailableHotels' query instead.")
 }
 
 type RouteStop {
