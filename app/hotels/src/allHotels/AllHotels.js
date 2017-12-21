@@ -78,7 +78,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
           <PublicApiRenderer
             query={graphql`
               query AllHotelsSearchQuery($search: HotelsSearchInput!) {
-                allHotels(search: $search) {
+                allHotels: allAvailableHotels(search: $search) {
                   ...AllHotelsSearchList
                 }
               }
