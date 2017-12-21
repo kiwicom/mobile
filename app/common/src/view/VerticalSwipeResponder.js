@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, PanResponder } from 'react-native';
 
-import type { GestureState } from '../../types/Events';
+import type { GestureState, PanResponderEvent } from '../../types/Events';
 
 type SwipeConfig = {|
   velocityThreshold: number,
@@ -51,7 +51,7 @@ function isValidSwipe(
  */
 class VerticalSwipeResponder extends React.Component<Props> {
   swipeConfig: SwipeConfig;
-  _panResponder: any;
+  panResponder: any;
 
   constructor(props: Props) {
     super(props);
@@ -63,9 +63,9 @@ class VerticalSwipeResponder extends React.Component<Props> {
   }
 
   componentWillMount() {
-    const responderEnd = this._handlePanResponderEnd.bind(this);
-    const shouldSetResponder = this._handleShouldSetPanResponder.bind(this);
-    this._panResponder = PanResponder.create({
+    const responderEnd = this.handlePanResponderEnd.bind(this);
+    const shouldSetResponder = this.handleShouldSetPanResponder.bind(this);
+    this.panResponder = PanResponder.create({
       //stop JS beautify collapse
       onStartShouldSetPanResponder: shouldSetResponder,
       onMoveShouldSetPanResponder: shouldSetResponder,
@@ -74,24 +74,30 @@ class VerticalSwipeResponder extends React.Component<Props> {
     });
   }
 
-  _handleShouldSetPanResponder(evt, gestureState) {
+  handleShouldSetPanResponder(
+    evt: PanResponderEvent,
+    gestureState: GestureState,
+  ) {
     return (
       evt.nativeEvent.touches.length === 1 &&
-      !this._gestureIsClick(gestureState) &&
-      this._isValidVerticalSwipe(gestureState)
+      !this.gestureIsClick(gestureState) &&
+      this.isValidVerticalSwipe(gestureState)
     );
   }
 
-  _gestureIsClick(gestureState) {
+  gestureIsClick(gestureState: GestureState) {
     return Math.abs(gestureState.dx) < 5 && Math.abs(gestureState.dy) < 5;
   }
 
-  _handlePanResponderEnd(evt, gestureState) {
-    const swipeDirection = this._getSwipeDirection(gestureState);
-    this._triggerSwipeHandlers(swipeDirection, gestureState);
+  handlePanResponderEnd(evt: PanResponderEvent, gestureState: GestureState) {
+    const swipeDirection = this.getSwipeDirection(gestureState);
+    this.triggerSwipeHandlers(swipeDirection, gestureState);
   }
 
-  _triggerSwipeHandlers(swipeDirection, gestureState) {
+  triggerSwipeHandlers(
+    swipeDirection: string | null,
+    gestureState: GestureState,
+  ) {
     const { onSwipeUp, onSwipeDown } = this.props;
     if (gestureState.dy > 0) {
       onSwipeDown && onSwipeDown(gestureState);
@@ -100,31 +106,31 @@ class VerticalSwipeResponder extends React.Component<Props> {
     }
   }
 
-  _getSwipeDirection(gestureState) {
+  getSwipeDirection(gestureState: GestureState) {
     const { SWIPE_LEFT, SWIPE_RIGHT, SWIPE_UP, SWIPE_DOWN } = swipeDirections;
     const { dx, dy } = gestureState;
-    if (this._isValidHorizontalSwipe(gestureState)) {
+    if (this.isValidHorizontalSwipe(gestureState)) {
       return dx > 0 ? SWIPE_RIGHT : SWIPE_LEFT;
-    } else if (this._isValidVerticalSwipe(gestureState)) {
+    } else if (this.isValidVerticalSwipe(gestureState)) {
       return dy > 0 ? SWIPE_DOWN : SWIPE_UP;
     }
     return null;
   }
 
-  _isValidHorizontalSwipe(gestureState) {
+  isValidHorizontalSwipe(gestureState: GestureState) {
     const { vx, dy } = gestureState;
     const { velocityThreshold, directionalOffsetThreshold } = this.swipeConfig;
     return isValidSwipe(vx, velocityThreshold, dy, directionalOffsetThreshold);
   }
 
-  _isValidVerticalSwipe(gestureState) {
+  isValidVerticalSwipe(gestureState: GestureState) {
     const { vy, dx } = gestureState;
     const { velocityThreshold, directionalOffsetThreshold } = this.swipeConfig;
     return isValidSwipe(vy, velocityThreshold, dx, directionalOffsetThreshold);
   }
 
   render() {
-    return <View {...this.props} {...this._panResponder.panHandlers} />;
+    return <View {...this.props} {...this.panResponder.panHandlers} />;
   }
 }
 

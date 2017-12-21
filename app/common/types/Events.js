@@ -58,3 +58,18 @@ export type GestureState = {
   x0: number,
   y0: number,
 };
+
+export type PanResponderEvent = {
+  nativeEvent: {
+    changedTouches: [],
+    force: number,
+    identifier: number,
+    locationX: number,
+    locationY: number,
+    pageX: number,
+    pageY: number,
+    target: number,
+    timestamp: number,
+    touches: [],
+  },
+};

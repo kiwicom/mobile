@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   metainfo: {
-    color: Color.grey._700,
+    color: Color.grey.$700,
     opacity: 0.8,
   },
   price: {
