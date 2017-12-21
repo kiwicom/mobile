@@ -73,8 +73,8 @@ export default class SearchForm extends React.Component<Props, State> {
     this.props.onChange({
       latitude: this.state.latitude,
       longitude: this.state.longitude,
-      checkin: moment(this.state.checkin, DATE_FORMAT).toDate(),
-      checkout: moment(this.state.checkout, DATE_FORMAT).toDate(),
+      checkin: moment(this.state.checkin, DATE_FORMAT).format('YYYY-MM-DD'),
+      checkout: moment(this.state.checkout, DATE_FORMAT).format('YYYY-MM-DD'),
       roomsConfiguration: this.state.roomsConfiguration,
     });
 
