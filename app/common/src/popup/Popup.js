@@ -1,0 +1,58 @@
+// @flow
+
+import * as React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { Button } from '@kiwicom/react-native-app-common';
+import Modal from 'react-native-modal';
+
+type Props = {|
+  children?: React.Node,
+  isVisible: boolean,
+  onClose: () => void,
+  onSave: () => void,
+|};
+
+export default class Popup extends React.Component<Props> {
+  onClose = () => this.props.onClose();
+
+  onSave = () => {
+    this.props.onSave();
+    this.onClose();
+  };
+
+  render() {
+    return (
+      <Modal
+        isVisible={this.props.isVisible}
+        style={styles.modal}
+        backdropOpacity={0.5}
+        onBackdropPress={this.onClose}
+        useNativeDriver={true}
+      >
+        <View style={styles.content}>
+          {this.props.children}
+          <Button
+            title="Save"
+            styles={{ button: styles.button }}
+            onPress={this.onSave}
+          />
+        </View>
+      </Modal>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  modal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  content: {
+    backgroundColor: '#fff',
+    opacity: 1,
+    padding: 20,
+  },
+  button: {
+    marginTop: 20,
+  },
+});
