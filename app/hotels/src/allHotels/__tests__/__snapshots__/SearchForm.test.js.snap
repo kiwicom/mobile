@@ -17,6 +17,11 @@ exports[`SearchForm Render all inputs 1`] = `
     }
   >
     <TextInput
+      icon={
+        Object {
+          "name": "location-city",
+        }
+      }
       onChangeText={[Function]}
       placeholder="Where do you go?"
       value="Prague"
