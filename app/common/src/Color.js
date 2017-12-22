@@ -1,23 +1,9 @@
 // @flow
 
-const Color = {
-  // brand colors
-  // https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
-  brand: '#0097a9',
-  brandSecondary: '#0cb3c7',
-
-  icon: {
-    get grey() {
-      return Color.grey.$600;
-    },
-  },
-
-  // complimentary brand colors
-  buttercup: '#eb9d08',
-  sun: '#fbad18',
-
-  // other colors
-  // https://material.io/guidelines/style/color.html#color-color-palette
+/**
+ * @see https://material.io/guidelines/style/color.html#color-color-palette
+ */
+const ColorPalette = {
   red: {
     $100: '#ffcdd2',
     $200: '#ef9a9a',
@@ -43,4 +29,20 @@ const Color = {
   },
 };
 
-export default Color;
+export default {
+  // brand colors
+  // https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
+  brand: '#0097a9',
+  brandSecondary: '#0cb3c7',
+
+  // complimentary brand colors
+  buttercup: '#eb9d08',
+  sun: '#fbad18',
+
+  // FIXME: this should be part of the Icon component
+  icon: {
+    grey: ColorPalette.grey.$600,
+  },
+
+  ...ColorPalette,
+};

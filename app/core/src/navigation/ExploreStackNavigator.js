@@ -23,6 +23,6 @@ export default StackNavigator(
   },
   {
     ...NavigatorOptions,
-    initialRouteName: 'Home',
+    initialRouteName: 'AllHotels',
   },
 );

@@ -102,6 +102,7 @@ export default class SearchForm extends React.Component<Props, State> {
             value={this.state.destination}
             onChangeText={this.handleDestinationChange}
             placeholder="Where do you go?"
+            iconName="location-city"
           />
         </View>
         <View style={styles.row}>
