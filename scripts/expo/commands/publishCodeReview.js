@@ -30,6 +30,7 @@ async function commentOnGitHub(buildName, githubPullRequestId) {
   Please test these changes in [Expo](https://docs.expo.io/versions/latest/introduction/installation.html#mobile-client-expo-for-ios-and-android) after build has finished:
 
   ![QR Code](${qrUrl})
+  \`${expUrl}\`
   `;
 
   const comments = await (await fetch(issueUrl)).json();
