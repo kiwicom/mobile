@@ -2,7 +2,13 @@
 
 import * as React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  type Styles,
+} from 'react-native';
 import defaultsDeep from 'lodash/defaultsDeep';
 
 import Color from '../Color';
@@ -11,10 +17,10 @@ type Props = {|
   title: string,
   onPress?: Function,
   styles?: {|
-    buttonWrapper?: Object,
-    button?: Object,
-    buttonText?: Object,
-    icon?: Object,
+    buttonWrapper?: Styles,
+    button?: Styles,
+    buttonText?: Styles,
+    icon?: Styles,
   |},
   icon?: Object,
 |};
