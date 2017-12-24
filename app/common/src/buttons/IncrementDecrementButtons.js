@@ -17,39 +17,32 @@ type Props = {|
 export default function IncrementDecrementButtons(props: Props) {
   const disableDecrement = props.number === props.min;
   const disableIncrement = props.number === props.max;
+  const styles = createStyles(disableDecrement, disableIncrement);
+
   return (
-    <View style={styles.buttons}>
+    <View style={styles.buttonsGroup}>
       <Button
         title="−" // minus sign, not hyphen
         onPress={!disableDecrement ? props.onDecrement : undefined}
         styles={{
-          button: [styles.button, styles.decrementButton],
-          buttonText: [
-            styles.buttonText,
-            disableDecrement && styles.buttonDisabled,
-          ],
+          button: styles.decrementButton,
+          buttonText: styles.decrementButtonText,
         }}
       />
       <Button
         title="+"
         onPress={!disableIncrement ? props.onIncrement : undefined}
         styles={{
-          button: [styles.button, styles.incrementButton],
-          buttonText: [
-            styles.buttonText,
-            disableIncrement && styles.buttonDisabled,
-          ],
+          button: styles.incrementButton,
+          buttonText: styles.incrementButtonText,
         }}
       />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  buttons: {
-    flexDirection: 'row',
-  },
-  button: {
+function createStyles(disableDecrement: boolean, disableIncrement: boolean) {
+  const buttonStyle = {
     borderWidth: 1,
     borderColor: Color.brand,
     backgroundColor: '#fff',
@@ -58,24 +51,36 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     padding: 2,
     flexGrow: 0,
-  },
-  buttonText: {
+  };
+  const buttonText = {
     flex: 1,
     lineHeight: 24,
     color: Color.brand,
     fontSize: 28,
     fontWeight: '300',
-  },
-  incrementButton: {
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-  },
-  decrementButton: {
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-    borderRightWidth: 0,
-  },
-  buttonDisabled: {
-    opacity: 0.55,
-  },
-});
+  };
+  return StyleSheet.create({
+    buttonsGroup: {
+      flexDirection: 'row',
+    },
+    incrementButton: {
+      ...buttonStyle,
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    decrementButton: {
+      ...buttonStyle,
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+      borderRightWidth: 0,
+    },
+    incrementButtonText: {
+      ...buttonText,
+      opacity: disableIncrement ? 0.55 : 1,
+    },
+    decrementButtonText: {
+      ...buttonText,
+      opacity: disableDecrement ? 0.55 : 1,
+    },
+  });
+}

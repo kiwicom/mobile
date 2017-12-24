@@ -25,6 +25,8 @@ exports[`Guests Render all inputs 1`] = `
         },
         "icon": Object {
           "backgroundColor": "#fff",
+          "borderBottomLeftRadius": 0,
+          "borderTopLeftRadius": 0,
           "paddingLeft": 10,
           "paddingRight": 0,
         },
