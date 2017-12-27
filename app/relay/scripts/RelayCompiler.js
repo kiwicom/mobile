@@ -260,7 +260,6 @@ const argv = yargs
   .help().argv;
 
 run(argv).catch(error => {
-  // eslint-disable-next-line no-console
   console.error(String(error.stack || error));
   process.exit(1);
 });

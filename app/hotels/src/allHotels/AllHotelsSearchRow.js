@@ -61,6 +61,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
     };
     const thumbnailUrl = idx(data, _ => _.hotel.mainPhoto.thumbnailUrl);
     const hotelName = idx(data, _ => _.hotel.name);
+    const hotelStars = idx(data, _ => _.hotel.rating.stars);
 
     return (
       <SimpleCard
@@ -79,7 +80,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
           <Text>
             <Text style={style.hotelTitle}>{hotelName}</Text>{' '}
             <Text style={style.hotelRating}>
-              <Stars rating={data.rating && data.rating.stars} />
+              <Stars rating={hotelStars} />
             </Text>
           </Text>
           <Price
