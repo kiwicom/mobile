@@ -26,6 +26,7 @@ export default class Popup extends React.Component<Props> {
       style={styles.modal}
       backdropOpacity={0.5}
       onBackdropPress={this.onClose}
+      supportedOrientations={['portrait', 'landscape']}
     >
       <View style={styles.content}>
         {this.props.children}
