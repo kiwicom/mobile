@@ -8,7 +8,6 @@ import {
   AllHotelsMap,
   SingleHotel,
   GalleryGrid,
-  GalleryStripe,
 } from '@kiwicom/react-native-app-hotels';
 ```
 
@@ -70,18 +69,5 @@ Component `GalleryGrid` displays grid of photo thumbnails. The property `onGoToG
     },
     // ...
   ]}
-/>
-```
-
-`GalleryStripe` is swipeable component with photos.
-
-```js
-<GalleryStripe
-  hotelName="Hotel Hilton"
-  imageUrls={[
-    'http://example.com/images/hotel/1-high.jpg',
-    'http://example.com/images/hotel/1-high.jpg',
-  ]}
-  goBack={() => navigator.goBack()} // or maybe "go to gallery grid"
 />
 ```

@@ -14,8 +14,8 @@ import { NetworkImage } from '@kiwicom/react-native-app-common';
 type Props = {|
   hotelName: string,
   imageUrls: string[],
-  index: string,
-  goBack: () => void,
+  index: number,
+  onClose: () => void,
 |};
 
 export default class PhotosStrip extends React.Component<Props> {
@@ -30,9 +30,9 @@ export default class PhotosStrip extends React.Component<Props> {
             {index + 1} of {total}
           </Text>
         </View>
-        <TouchableWithoutFeedback onPress={this.props.goBack}>
-          <View style={styles.goBackWrapper}>
-            <Text style={styles.goBack}>&times;</Text>
+        <TouchableWithoutFeedback onPress={this.props.onClose}>
+          <View style={styles.onCloseWrapper}>
+            <Text style={styles.onClose}>&times;</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
   headerWrapper: {
     position: 'absolute',
   },
-  goBackWrapper: {
+  onCloseWrapper: {
     position: 'absolute',
     top: 5,
     left: 20,
   },
-  goBack: {
+  onClose: {
     color: 'white',
     fontSize: 40,
   },

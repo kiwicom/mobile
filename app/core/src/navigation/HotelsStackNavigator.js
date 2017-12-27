@@ -8,7 +8,6 @@ import {
   AllHotelsMap,
   SingleHotel,
   GalleryGrid,
-  GalleryStripe,
 } from '@kiwicom/react-native-app-hotels';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -112,26 +111,6 @@ export default {
     ),
     navigationOptions: {
       headerTitle: 'Photos',
-    },
-  },
-  GalleryStripe: {
-    screen: withMappedProps(
-      GalleryStripe,
-      class AdditionalPropsInjecter extends React.Component<InjectorProps> {
-        goBack = () => {
-          this.props.navigation.goBack();
-        };
-
-        render = () => {
-          const { WrappedComponent } = this.props;
-          return <WrappedComponent {...this.props} goBack={this.goBack} />;
-        };
-      },
-    ),
-    navigationOptions: {
-      header: null,
-      tabBarVisible: false,
-      gesturesEnabled: false,
     },
   },
 };

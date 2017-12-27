@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button } from '@kiwicom/react-native-app-common';
-import Modal from 'react-native-modal';
+import Modal from '../Modal';
 
 type Props = {|
   children: React.Node,
@@ -26,7 +26,6 @@ export default class Popup extends React.Component<Props> {
       style={styles.modal}
       backdropOpacity={0.5}
       onBackdropPress={this.onClose}
-      supportedOrientations={['portrait', 'landscape']}
     >
       <View style={styles.content}>
         {this.props.children}
