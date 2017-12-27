@@ -13,5 +13,15 @@ export default function NetworkImage(imageProps: Object) {
   if (!imageProps.source.uri) {
     return <MissingImage {...imageProps} />;
   }
-  return <Image {...imageProps} />;
+
+  const newProps = {
+    ...imageProps,
+    style: [
+      imageProps.style,
+      {
+        overflow: 'hidden', // otherwise 'borderRadius' won't work
+      },
+    ],
+  };
+  return <Image {...newProps} />;
 }
