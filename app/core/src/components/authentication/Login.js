@@ -21,9 +21,9 @@ export default class Login extends React.Component<Props, State> {
   };
 
   toggleFederatedIdentities = () =>
-    this.setState({
-      loginViaFederatedIdentities: !this.state.loginViaFederatedIdentities,
-    });
+    this.setState(prevState => ({
+      loginViaFederatedIdentities: !prevState.loginViaFederatedIdentities,
+    }));
 
   handleSuccessfulLogin = (accessToken: string) =>
     this.props.onLogin(accessToken);

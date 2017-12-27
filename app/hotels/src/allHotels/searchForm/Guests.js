@@ -33,20 +33,20 @@ export default class Guests extends React.Component<Props, State> {
     this.setState({ guests, popupGuests: guests });
 
   handlePopupToggle = () =>
-    this.setState({
-      isPopupOpen: !this.state.isPopupOpen,
-      popupGuests: this.state.guests,
-    });
+    this.setState(prevState => ({
+      isPopupOpen: !prevState.isPopupOpen,
+      popupGuests: prevState.guests,
+    }));
 
   handleSave = () => this.props.onSave(this.state.popupGuests);
 
   handleAdultChange = (adultsCount: number) =>
-    this.setState({
+    this.setState(prevState => ({
       popupGuests: {
         adultsCount,
-        children: this.state.popupGuests.children,
+        children: prevState.popupGuests.children,
       },
-    });
+    }));
 
   handleChildrenChange = () => {
     // TODO!
