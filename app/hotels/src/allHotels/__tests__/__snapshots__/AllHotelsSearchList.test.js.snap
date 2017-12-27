@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a "not found" message when data is missing 1`] = `
+<CenteredView>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    No hotels found
+  </Text>
+</CenteredView>
+`;
+
+exports[`renders a "not found" message when no hotel is found 1`] = `
+<CenteredView>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    No hotels found
+  </Text>
+</CenteredView>
+`;
+
+exports[`renders found hotels 1`] = `
+<ScrollViewMock>
+  <Relay(AllHotelsSearchRow)
+    data={
+      Object {
+        "id": "hotel1",
+      }
+    }
+    openSingleHotel={[Function]}
+  />
+  <Relay(AllHotelsSearchRow)
+    data={
+      Object {
+        "id": "hotel2",
+      }
+    }
+    openSingleHotel={[Function]}
+  />
+</ScrollViewMock>
+`;
