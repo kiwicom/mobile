@@ -31,11 +31,16 @@ exports[`passes props to the original Image component 1`] = `
     }
   }
   style={
-    Object {
-      "borderRadius": 2,
-      "height": 75,
-      "width": 50,
-    }
+    Array [
+      Object {
+        "borderRadius": 2,
+        "height": 75,
+        "width": 50,
+      },
+      Object {
+        "overflow": "hidden",
+      },
+    ]
   }
   threshold={50}
 />
