@@ -1,3 +1,6 @@
+const OFF = 0;
+const ERROR = 2;
+
 module.exports = {
   env: {
     browser: true,
@@ -5,14 +8,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:flowtype/recommended',
-    'prettier',
-    'prettier/react',
-    'prettier/flowtype',
-  ],
+  root: true, // stop ESLint from looking for a configuration file in parent folders
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
@@ -22,23 +18,23 @@ module.exports = {
     },
   },
   plugins: ['prettier', 'react', 'flowtype'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:flowtype/recommended',
+    'prettier',
+    'prettier/react',
+    'prettier/flowtype',
+  ],
   rules: {
-    'no-underscore-dangle': [
-      'error',
-      {
-        enforceInMethodNames: true,
-      },
-    ],
+    'no-console': [ERROR, { allow: ['warn', 'error'] }],
+    'no-underscore-dangle': [ERROR, { enforceInMethodNames: true }],
     'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        trailingComma: 'all',
-        jsxBracketSameLine: false,
-      },
+      ERROR,
+      { singleQuote: true, trailingComma: 'all', jsxBracketSameLine: false },
     ],
-    'react/prop-types': 'off', // we use Flow instead,
-    'react/jsx-no-bind': 'error',
-    'flowtype/require-valid-file-annotation': ['error', 'always'],
+    'react/prop-types': OFF, // we use Flow instead,
+    'react/jsx-no-bind': ERROR,
+    'flowtype/require-valid-file-annotation': [ERROR, 'always'],
   },
 };
