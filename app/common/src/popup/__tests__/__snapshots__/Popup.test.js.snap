@@ -22,6 +22,12 @@ exports[`Popup render popup with child 1`] = `
       "margin": 0,
     }
   }
+  supportedOrientations={
+    Array [
+      "portrait",
+      "landscape",
+    ]
+  }
   useNativeDriver={false}
 >
   <View
