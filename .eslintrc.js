@@ -33,8 +33,9 @@ module.exports = {
       ERROR,
       { singleQuote: true, trailingComma: 'all', jsxBracketSameLine: false },
     ],
-    'react/prop-types': OFF, // we use Flow instead,
     'react/jsx-no-bind': ERROR,
+    'react/no-access-state-in-setstate': ERROR,
+    'react/prop-types': OFF, // we use Flow instead,
     'flowtype/require-valid-file-annotation': [ERROR, 'always'],
   },
 };

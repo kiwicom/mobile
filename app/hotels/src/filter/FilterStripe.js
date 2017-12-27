@@ -41,16 +41,19 @@ export default class FilterStripe extends React.Component<{||}, State> {
   handleButtonPress = (filterId: string) => () => {
     // TODO Open filter control
 
-    const filters = this.state.filters;
-    const filter: ?FilterType = filters.find(
-      filter => filter.filter === filterId,
-    );
-    if (!filter) {
-      return;
-    }
-    const isActive = filter.isActive;
-    filter.isActive = Boolean(filter.configuration) || !isActive;
-    this.setState({ filters });
+    this.setState(prevState => {
+      const filters = prevState.filters;
+      const filter: ?FilterType = filters.find(
+        filter => filter.filter === filterId,
+      );
+      if (!filter) {
+        return;
+      }
+      const isActive = filter.isActive;
+      filter.isActive = Boolean(filter.configuration) || !isActive;
+
+      return { filters };
+    });
   };
 
   renderFilterButton = ({ title, icon, filter, isActive }: FilterType) => (

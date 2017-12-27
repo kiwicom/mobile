@@ -41,9 +41,9 @@ export default class FlightsSearchOverlay extends React.Component<
   |}) => this.props.navigation.navigate('SearchResults', searchParameters);
 
   handleHeaderToggle = () =>
-    this.setState({
-      overlayExpanded: !this.state.overlayExpanded,
-    });
+    this.setState(prevState => ({
+      overlayExpanded: !prevState.overlayExpanded,
+    }));
 
   render = () => {
     return (

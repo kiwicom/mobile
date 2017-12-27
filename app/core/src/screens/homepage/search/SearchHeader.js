@@ -57,10 +57,13 @@ export default class SearchHeader extends React.Component<Props, State> {
     });
 
   toggleHeader = () =>
-    this.setState({ expanded: !this.state.expanded }, () => {
-      this.props.onToggle();
-      this.animate(['top', 'right', 'left', 'height', 'fade', 'brighten']);
-    });
+    this.setState(
+      prevState => ({ expanded: !prevState.expanded }),
+      () => {
+        this.props.onToggle();
+        this.animate(['top', 'right', 'left', 'height', 'fade', 'brighten']);
+      },
+    );
 
   handleSearchFormSubmit = (from: string, to: string, date: Date) =>
     this.props.onSend({
