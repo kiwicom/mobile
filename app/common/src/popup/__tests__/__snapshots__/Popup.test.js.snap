@@ -1,34 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Popup render popup with child 1`] = `
-<ReactNativeModal
-  animationIn="slideInUp"
-  animationInTiming={300}
-  animationOut="slideOutDown"
-  animationOutTiming={300}
-  avoidKeyboard={false}
-  backdropColor="black"
+<Modal
   backdropOpacity={0.5}
-  backdropTransitionInTiming={300}
-  backdropTransitionOutTiming={300}
   isVisible={true}
-  onBackButtonPress={[Function]}
   onBackdropPress={[Function]}
-  onModalHide={[Function]}
-  onModalShow={[Function]}
   style={
     Object {
       "justifyContent": "flex-end",
       "margin": 0,
     }
   }
-  supportedOrientations={
-    Array [
-      "portrait",
-      "landscape",
-    ]
-  }
-  useNativeDriver={false}
 >
   <View
     style={
@@ -58,5 +40,5 @@ exports[`Popup render popup with child 1`] = `
       title="Save"
     />
   </View>
-</ReactNativeModal>
+</Modal>
 `;

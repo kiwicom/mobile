@@ -3,9 +3,14 @@
 import * as React from 'react';
 import { FlatList } from 'react-native';
 
-import type { OnLayout } from '@kiwicom/react-native-app-common';
+import {
+  GeneralError,
+  Modal,
+  type OnLayout,
+} from '@kiwicom/react-native-app-common';
 
 import GalleryGridTile from './GalleryGridTile';
+import PhotosStripe from './PhotosStripe';
 
 const tileGap = 2;
 const tilesInRow = 3;
@@ -28,11 +33,15 @@ type Props = {|
 
 type State = {|
   tileWidth: number,
+  stripeVisible: boolean,
+  stripeImageIndex: number,
 |};
 
 export default class GalleryGrid extends React.Component<Props, State> {
   state = {
     tileWidth: 0,
+    stripeVisible: false,
+    stripeImageIndex: 0,
   };
 
   calculateTileWidth = (event: OnLayout) => {
@@ -42,12 +51,16 @@ export default class GalleryGrid extends React.Component<Props, State> {
     });
   };
 
-  handleTilePress = (imageIndex: number) =>
-    this.props.onGoToGalleryStripe(
-      this.props.hotelName,
-      this.props.images.map(image => image.highRes),
-      imageIndex,
-    );
+  openStripe = (imageIndex: number) =>
+    this.setState({
+      stripeVisible: true,
+      stripeImageIndex: imageIndex,
+    });
+
+  closeStripe = () =>
+    this.setState({
+      stripeVisible: false,
+    });
 
   renderItem = ({ item, index }: { item: Image, index: number }) => (
     <GalleryGridTile
@@ -56,17 +69,38 @@ export default class GalleryGrid extends React.Component<Props, State> {
       gap={tileGap}
       width={this.state.tileWidth}
       lastInRow={(index + 1) % tilesInRow === 0}
-      onTilePress={this.handleTilePress}
+      onTilePress={this.openStripe}
     />
   );
 
-  render = () => (
-    <FlatList
-      data={this.props.images}
-      extraData={this.state}
-      renderItem={this.renderItem}
-      numColumns={tilesInRow}
-      onLayout={this.calculateTileWidth}
-    />
-  );
+  render = () => {
+    return this.props.images ? (
+      [
+        <FlatList
+          key="grid"
+          data={this.props.images}
+          extraData={this.state}
+          renderItem={this.renderItem}
+          numColumns={tilesInRow}
+          onLayout={this.calculateTileWidth}
+        />,
+        <Modal
+          key="stripe"
+          isVisible={this.state.stripeVisible}
+          backdropColor="black"
+          backdropOpacity={1}
+          style={{ margin: 0 }}
+        >
+          <PhotosStripe
+            hotelName={this.props.hotelName}
+            imageUrls={this.props.images.map(image => image.highRes)}
+            index={this.state.stripeImageIndex}
+            onClose={this.closeStripe}
+          />
+        </Modal>,
+      ]
+    ) : (
+      <GeneralError errorMessage="No images available." />
+    );
+  };
 }
