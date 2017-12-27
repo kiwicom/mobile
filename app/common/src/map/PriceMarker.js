@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     backgroundColor: '#fff',
     borderRadius: 3,
-    borderColor: '#fff',
-    borderWidth: 2,
+    borderColor: Color.grey.$200,
+    borderWidth: 1,
   },
   price: {
     color: '#000',
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     borderWidth: 8,
-    borderTopColor: '#ffffff',
+    borderTopColor: Color.grey.$200,
+    borderRadius: 3,
     alignSelf: 'center',
   },
   arrow: {
