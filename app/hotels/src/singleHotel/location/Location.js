@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MapView } from 'expo';
-import { StretchedImage } from '@kiwicom/react-native-app-common';
+import { StretchedImage, DropMarker } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 
 import gradient from './white-to-alpha-horizontal.png';
@@ -60,8 +60,8 @@ export default function Location({ hotel: { address, coordinates } }: Props) {
           typeof longitude === 'number' && (
             <MapView
               region={{
-                latitude,
-                longitude: longitude - 0.004,
+                latitude: latitude + 0.001, // move center little bit down
+                longitude: longitude - 0.005, // move center little bit right
                 latitudeDelta: 0.01,
                 longitudeDelta: 0.01,
               }}
@@ -72,7 +72,9 @@ export default function Location({ hotel: { address, coordinates } }: Props) {
                   latitude,
                   longitude,
                 }}
-              />
+              >
+                <DropMarker size={30} />
+              </MapView.Marker>
             </MapView>
           )}
         <StretchedImage source={gradient} />
