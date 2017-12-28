@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Button, View } from 'react-native';
+import { Button } from 'react-native';
 import { CenteredView } from '@kiwicom/react-native-app-common';
 
 import EmailLoginForm from './EmailLoginForm';
@@ -39,23 +39,21 @@ export default class Login extends React.Component<Props, State> {
 
     return (
       <CenteredView>
-        <View style={{ width: '100%' }}>
-          {this.state.loginViaFederatedIdentities
-            ? [
-                <GoogleLoginForm
-                  key="google"
-                  onSuccess={this.handleSuccessfulLogin}
-                />,
-                toggleButton('Login using email'),
-              ]
-            : [
-                <EmailLoginForm
-                  key="email"
-                  onSuccess={this.handleSuccessfulLogin}
-                />,
-                toggleButton('Login using Google'),
-              ]}
-        </View>
+        {this.state.loginViaFederatedIdentities
+          ? [
+              <GoogleLoginForm
+                key="google"
+                onSuccess={this.handleSuccessfulLogin}
+              />,
+              toggleButton('Login using email'),
+            ]
+          : [
+              <EmailLoginForm
+                key="email"
+                onSuccess={this.handleSuccessfulLogin}
+              />,
+              toggleButton('Login using Google'),
+            ]}
       </CenteredView>
     );
   };

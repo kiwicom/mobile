@@ -7,10 +7,10 @@ import { Provider } from 'react-redux';
 import { Color } from '@kiwicom/react-native-app-common';
 
 import { configureStore } from '../services/redux/Store';
-import Profile from '../screens/profile/Profile';
 import TabBarIcon from '../components/navigation/TabBarIcon';
 
 import ExploreStackNavigator from './ExploreStackNavigator';
+import ProfileStackNavigator from './ProfileStackNavigator';
 import TripsStackNavigator from './TripsStackNavigator';
 
 const MainTabNavigator = TabNavigator(
@@ -32,7 +32,7 @@ const MainTabNavigator = TabNavigator(
       },
     },
     Profile: {
-      screen: Profile,
+      screen: ProfileStackNavigator,
       navigationOptions: {
         tabBarIcon: function TabBarIconWrapper(props) {
           return <TabBarIcon type="Profile" {...props} />;

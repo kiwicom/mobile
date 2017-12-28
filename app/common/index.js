@@ -32,7 +32,6 @@ export { default as Large } from './src/text/Large';
 
 export { default as CenteredView } from './src/view/CenteredView';
 export { default as Layout } from './src/view/Layout';
-export { default as LayoutWithoutHeader } from './src/view/LayoutWithoutHeader';
 export {
   default as VerticalSwipeResponder,
 } from './src/view/VerticalSwipeResponder';
@@ -42,6 +41,7 @@ export { default as Popup } from './src/popup/Popup';
 export { default as Stars } from './src/rating/Stars';
 
 export { default as Color } from './src/Color';
+export { default as Device } from './src/Device';
 export { default as Modal } from './src/Modal';
 export { default as Price } from './src/Price';
 
