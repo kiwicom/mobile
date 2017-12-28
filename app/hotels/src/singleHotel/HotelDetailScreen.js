@@ -8,20 +8,25 @@ import HeaderContainer from './header/HeaderContainer';
 import LocationContainer from './location/LocationContainer';
 import DescriptionContainer from './description/DescriptionContainer';
 import type { Image } from '../gallery/GalleryGrid';
-import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 
 export type Props = {|
   openGallery: (hotelName: string, images: Image[]) => void,
-  hotel: singleHotelQueryResponse,
+  availableHotel: any,
 |};
 
-export default function HotelDetailScreen({ openGallery, hotel }: Props) {
+export default function HotelDetailScreen({
+  openGallery,
+  availableHotel,
+}: Props) {
   return (
     <Layout>
       <ScrollView>
-        <HeaderContainer openGallery={openGallery} hotel={hotel} />
-        <LocationContainer hotel={hotel} />
-        <DescriptionContainer hotel={hotel} />
+        <HeaderContainer
+          openGallery={openGallery}
+          hotel={availableHotel.hotel}
+        />
+        <LocationContainer hotel={availableHotel.hotel} />
+        <DescriptionContainer hotel={availableHotel.hotel} />
       </ScrollView>
     </Layout>
   );

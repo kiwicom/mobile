@@ -3,40 +3,64 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import moment from 'moment';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 
-type ContainerProps = {|
+type RoomsChildrenConfiguration = {
+  age: number,
+};
+
+type RoomsConfiguration = {
+  adultsCount: number,
+  children: RoomsChildrenConfiguration[],
+};
+
+type AvailableHotelSearchInput = {
   hotelId: string,
+  checkin: Date,
+  checkout: Date,
+  roomsConfiguration: RoomsConfiguration[],
+};
+
+type ContainerProps = {|
+  search: AvailableHotelSearchInput,
   onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
 |};
 
 export default class SingleHotelContainer extends React.Component<
   ContainerProps,
 > {
-  renderInnerComponent = ({ hotel }: { hotel: singleHotelQueryResponse }) => (
+  renderInnerComponent = ({ availableHotel }: singleHotelQueryResponse) => (
     <HotelDetailScreen
       openGallery={this.props.onGoToHotelGallery}
-      hotel={hotel}
+      availableHotel={availableHotel}
     />
   );
 
   render() {
+    const { search } = this.props;
     return (
       <PublicApiRenderer
         query={graphql`
-          query singleHotelQuery($hotelId: ID!) {
-            hotel(id: $hotelId) {
-              ...HeaderContainer_hotel
-              ...LocationContainer_hotel
-              ...DescriptionContainer_hotel
+          query singleHotelQuery($search: AvailableHotelSearchInput!) {
+            availableHotel(search: $search) {
+              hotel {
+                ...HeaderContainer_hotel
+                ...LocationContainer_hotel
+                ...DescriptionContainer_hotel
+              }
             }
           }
         `}
         variables={{
-          hotelId: this.props.hotelId,
+          search: {
+            ...search,
+            checkin: moment(search.checkin).format('YYYY-MM-DD'),
+            checkout: moment(search.checkout).format('YYYY-MM-DD'),
+          },
         }}
         render={this.renderInnerComponent}
       />
