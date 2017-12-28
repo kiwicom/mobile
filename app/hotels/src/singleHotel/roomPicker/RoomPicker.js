@@ -25,8 +25,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 3,
   },
   disabledButton: {
-    width: 60,
-    backgroundColor: 'transparent',
+    opacity: 0.2,
   },
   buttonText: {
     backgroundColor: 'transparent',
@@ -94,7 +93,9 @@ export default function RoomPicker({
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       ) : (
-        <View style={[styles.disabledButton]} />
+        <View style={[styles.button, styles.plusButton, styles.disabledButton]}>
+          <Text style={styles.buttonText}>+</Text>
+        </View>
       )}
     </View>
   );
