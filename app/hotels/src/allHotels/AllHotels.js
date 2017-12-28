@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { graphql } from 'react-relay';
-import { View, StyleSheet } from 'react-native';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import { Layout } from '@kiwicom/react-native-app-common';
 import moment from 'moment';
 
 import SearchForm from './searchForm/SearchForm';
@@ -12,12 +12,6 @@ import AllHotelsSearchList from './AllHotelsSearchList';
 
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
 import type { SearchParametersType } from './searchForm/SearchParametersType';
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
-});
 
 type Props = {|
   openSingleHotel: (id: string) => void,
@@ -70,7 +64,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
   render = () => {
     const { search } = this.state;
     return (
-      <View style={styles.wrapper}>
+      <Layout>
         <SearchForm onChange={this.handleSearchChange} />
         <FilterStripe />
         {this.isReadyToSearch() && (
@@ -95,7 +89,7 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
             }}
           />
         )}
-      </View>
+      </Layout>
     );
   };
 }

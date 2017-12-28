@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button, LayoutWithoutHeader } from '@kiwicom/react-native-app-common';
+import { Button, Layout } from '@kiwicom/react-native-app-common';
 
 import FlightsSearchOverlay from './search/FlightsSearchOverlay';
 
@@ -17,20 +16,10 @@ export default class Homepage extends React.Component<Props, {}> {
 
   render = () => {
     return (
-      <View style={styles.container}>
+      <Layout>
         <FlightsSearchOverlay navigation={this.props.navigation} />
-
-        <LayoutWithoutHeader>
-          <Button title="All hotels search" onPress={this.goToAllHotelsPage} />
-        </LayoutWithoutHeader>
-      </View>
+        <Button title="All hotels search" onPress={this.goToAllHotelsPage} />
+      </Layout>
     );
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#eee',
-    flex: 1,
-  },
-});

@@ -20,7 +20,7 @@ export default function CenteredView({ children }: Props) {
         alignItems: 'center',
       }}
     >
-      {children}
+      <View>{children}</View>
     </View>
   );
 }
