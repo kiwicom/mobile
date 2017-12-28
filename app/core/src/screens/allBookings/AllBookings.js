@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { graphql } from 'react-relay';
-import { LayoutWithoutHeader } from '@kiwicom/react-native-app-common';
+import { Layout } from '@kiwicom/react-native-app-common';
 
 import AllBookingsListContainer from './AllBookingsList';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
@@ -26,7 +26,7 @@ export default class AllBookings extends React.Component<Props, {}> {
 
   render = () => {
     return (
-      <LayoutWithoutHeader>
+      <Layout>
         <PrivateApiRenderer
           query={graphql`
             query AllBookingsQuery {
@@ -35,7 +35,7 @@ export default class AllBookings extends React.Component<Props, {}> {
           `}
           render={this.renderAllBookingsContent}
         />
-      </LayoutWithoutHeader>
+      </Layout>
     );
   };
 }

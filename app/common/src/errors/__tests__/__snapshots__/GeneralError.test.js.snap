@@ -10,12 +10,14 @@ exports[`renders as expected 1`] = `
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    Error Message
-  </Text>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Error Message
+    </Text>
+  </View>
 </View>
 `;

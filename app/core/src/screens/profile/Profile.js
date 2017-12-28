@@ -4,9 +4,9 @@ import * as React from 'react';
 import { Text, View } from 'react-native';
 import { graphql } from 'react-relay';
 import {
-  LayoutWithoutHeader,
   SimpleCard,
   VerificationBadge,
+  Layout,
   Large as LargeText,
 } from '@kiwicom/react-native-app-common';
 
@@ -25,32 +25,27 @@ const Row = function Row({ children }) {
 
 export default class Profile extends React.Component<Props, {}> {
   renderProfileContent = (props: ProfileQueryResponse) => {
-    return (
-      <View>
-        <Row>
-          <LargeText>
-            {props.currentUser && props.currentUser.fullName}
-          </LargeText>
-          <View style={{ flexDirection: 'row' }}>
-            <Text>{props.currentUser && props.currentUser.email} </Text>
-            <VerificationBadge
-              verified={
-                (props.currentUser && props.currentUser.emailVerified) || false
-              }
-            />
-          </View>
-        </Row>
-        {/* TODO: default currency */}
-        <Row>
-          <Logout />
-        </Row>
-      </View>
-    );
+    return [
+      <Row key="name">
+        <LargeText>{props.currentUser && props.currentUser.fullName}</LargeText>
+        <View style={{ flexDirection: 'row' }}>
+          <Text>{props.currentUser && props.currentUser.email} </Text>
+          <VerificationBadge
+            verified={
+              (props.currentUser && props.currentUser.emailVerified) || false
+            }
+          />
+        </View>
+      </Row>,
+      <Row key="logout">
+        <Logout />
+      </Row>,
+    ];
   };
 
   render = () => {
     return (
-      <LayoutWithoutHeader>
+      <Layout>
         <PrivateApiRenderer
           query={graphql`
             query ProfileQuery {
@@ -58,13 +53,12 @@ export default class Profile extends React.Component<Props, {}> {
                 email
                 emailVerified
                 fullName
-                # TODO: profile picture
               }
             }
           `}
           render={this.renderProfileContent}
         />
-      </LayoutWithoutHeader>
+      </Layout>
     );
   };
 }
