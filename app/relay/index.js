@@ -16,7 +16,7 @@ type CommitMutationConfig = {|
 |};
 
 export const commitMutation = (config: CommitMutationConfig) =>
-  commitRelayMutation(createEnvironment(), config);
+  commitRelayMutation(createEnvironment(() => {}), config);
 
 export type QueryRendererProps = {|
   query: string,
