@@ -5,6 +5,7 @@ import { QueryRenderer as OriginalQueryRenderer } from 'react-relay';
 import {
   FullPageLoading,
   GeneralError,
+  PartialFailure,
 } from '@kiwicom/react-native-app-common';
 
 import createEnvironment from './Environment';
@@ -17,6 +18,13 @@ type Props = {|
 |};
 
 export default class QueryRenderer extends React.Component<Props> {
+  partialError: Object;
+
+  createEnvironment = () =>
+    createEnvironment(partialError => {
+      this.partialError = partialError;
+    }, this.props.accessToken || '');
+
   renderRelayContainer = ({
     error,
     props,
@@ -24,19 +32,30 @@ export default class QueryRenderer extends React.Component<Props> {
     error: Object,
     props: Object,
   }) => {
-    // FIXME: Relay swallows all GraphQL errors
     if (error) {
+      // total failure (data == null, errors != null)
       return <GeneralError errorMessage={error.message} />;
-    } else if (props) {
+    }
+
+    if (props) {
+      if (this.partialError) {
+        // partial failure (data != null, errors != null)
+        // Relay swallows all GraphQL errors if 'data != null' (see: https://github.com/facebook/relay/issues/1913)
+        return <PartialFailure>{this.props.render(props)}</PartialFailure>;
+      }
+
+      // success (data != null, errors == null)
       return this.props.render(props);
     }
+
+    // no data or errors yet
     return <FullPageLoading />;
   };
 
   render = () => {
     return (
       <OriginalQueryRenderer
-        environment={createEnvironment(this.props.accessToken || '')}
+        environment={this.createEnvironment()}
         query={this.props.query}
         variables={this.props.variables}
         render={this.renderRelayContainer}

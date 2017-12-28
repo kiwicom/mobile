@@ -11,7 +11,8 @@ Try it in [Expo](https://expo.io/):
 * [Project structure](#project-structure)
 * [Working with GraphQL API](#working-with-graphql-api)
 * [Offline first](#offline-first)
-* [Best Practices](#best-practices)
+* [Error handling](#error-handling)
+* [Best practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 * [Known issues](#known-issues)
 * [Troubleshooting](#troubleshooting)
@@ -114,7 +115,25 @@ this.setState({ refreshing: true }, () => {
 });
 ```
 
-## Best Practices
+## Error handling
+
+Error handling is complicated in general - especially in GraphQL environment. There are several scenarios that may occur:
+
+1. GraphQL API returns `data` field and no `errors`
+
+This should be considered as a valid full response and there should not be any errors. There may be nullable fields, however.
+
+2. GraphQL API returns `data = null` and `errors` field
+
+This is fatal error. Server was not able to get data and it's probably not operating correctly. It's like equivalent of total GraphQL server error (500). We should display full page error (`GeneralError` component).
+
+3. GraphQL API returns `data` but also `errors` field
+
+Most common scenario (somewhere between). In this case we are able to fetch at least something but it failed partially so there are errors and we can expect some nullable fields. This may be just missing prices but also completely missing data. It's very different to point 2.
+
+We are showing little warning in this case. How to handle nullable fields really depends on the situation. Sometimes it's OK to leave it empty instead of for example hotel rating (★★★), sometimes it's necessary to display error message or sad picture in case of completely missing hotels. It depends. We are always trying to render as much as possible.
+
+## Best practices
 
 ### Accessing arbitrarily nested, possibly nullable properties on a JavaScript object
 
@@ -142,7 +161,6 @@ idx(props, _ => _.user.friends[0].friends)
 #### Important to fix before production ready state
 
 - `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852, fixed by https://github.com/facebook/relay/commit/a17b462b3ff7355df4858a42ddda75f58c161302 (not released yet)
-- Relay swallows all GraphQL errors in `QueryRenderer`: https://github.com/facebook/relay/issues/1913
 
 #### Improvements necessary for production usage
 
