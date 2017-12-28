@@ -9,10 +9,5 @@ type Props = {|
 |};
 
 export default function Stars({ rating }: Props) {
-  if (!rating) {
-    console.warn(
-      'Rating cannot be undefined in Stars component. This usually indicates GraphQL API failure.',
-    );
-  }
   return <Text>{'★'.repeat(rating || 0)}</Text>;
 }
