@@ -7,11 +7,12 @@ import { GeneralError, Layout } from '@kiwicom/react-native-app-common';
 import HeaderContainer from './header/HeaderContainer';
 import LocationContainer from './location/LocationContainer';
 import DescriptionContainer from './description/DescriptionContainer';
+import RoomList from './roomList/RoomList';
 import type { Image } from '../gallery/GalleryGrid';
 
 export type Props = {|
   openGallery: (hotelName: string, images: Image[]) => void,
-  availableHotel: any,
+  availableHotel: ?Object,
 |};
 
 export default function HotelDetailScreen({
@@ -30,6 +31,7 @@ export default function HotelDetailScreen({
         />
         <LocationContainer hotel={availableHotel.hotel} />
         <DescriptionContainer hotel={availableHotel.hotel} />
+        <RoomList availableRooms={availableHotel.availableRooms} />
       </ScrollView>
     </Layout>
   );

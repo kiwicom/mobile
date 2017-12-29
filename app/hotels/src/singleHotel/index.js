@@ -52,6 +52,10 @@ export default class SingleHotelContainer extends React.Component<
                 ...LocationContainer_hotel
                 ...DescriptionContainer_hotel
               }
+              availableRooms {
+                id
+                ...RoomRowContainer_availableRoom
+              }
             }
           }
         `}
