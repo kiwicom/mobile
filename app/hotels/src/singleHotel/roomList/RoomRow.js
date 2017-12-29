@@ -6,13 +6,16 @@ import { NetworkImage } from '@kiwicom/react-native-app-common';
 import ReadMore from 'react-native-read-more-text';
 
 import type { RoomRowContainer_availableRoom } from './__generated__/RoomRowContainer_availableRoom.graphql';
+import RoomPicker from '../roomPicker/RoomPicker';
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     padding: 15,
-    flexDirection: 'row',
     marginBottom: 10,
+  },
+  row: {
+    flexDirection: 'row',
   },
   thumbnail: {
     width: 60,
@@ -45,6 +48,8 @@ type Props = {|
 |};
 
 export default class RoomRow extends React.Component<Props> {
+  doNothing() {}
+
   render() {
     const availableRoom = this.props.availableRoom;
     const title = idx(availableRoom, _ => _.room.description.title) || 'Room';
@@ -53,20 +58,40 @@ export default class RoomRow extends React.Component<Props> {
       availableRoom,
       _ => _.room.photos.edges[0].node.thumbnailUrl,
     );
+    const price = idx(availableRoom, _ => _.minimalPrice.amount);
+    const currency = idx(availableRoom, _ => _.minimalPrice.currency);
+    const selectableCount =
+      idx(availableRoom, _ => _.incrementalPrice.length) || 0;
     return (
       <View style={styles.container}>
-        <NetworkImage source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
-        <View style={styles.details}>
-          <Text style={styles.title}>{title}</Text>
-          {description && (
-            <View>
-              <View style={styles.delimiter} />
-              <ReadMore numberOfLines={2}>
-                <Text style={styles.description}>{description}</Text>
-              </ReadMore>
-            </View>
-          )}
+        <View style={styles.row}>
+          <NetworkImage
+            source={{ uri: thumbnailUrl }}
+            style={styles.thumbnail}
+          />
+          <View style={styles.details}>
+            <Text style={styles.title}>{title}</Text>
+            {description && (
+              <View>
+                <View style={styles.delimiter} />
+                <ReadMore numberOfLines={2}>
+                  <Text style={styles.description}>{description}</Text>
+                </ReadMore>
+              </View>
+            )}
+          </View>
         </View>
+        {price &&
+          currency && (
+            <RoomPicker
+              price={price}
+              currency={currency}
+              selectedCount={0}
+              selectableCount={selectableCount}
+              increment={this.doNothing}
+              decrement={this.doNothing}
+            />
+          )}
       </View>
     );
   }
