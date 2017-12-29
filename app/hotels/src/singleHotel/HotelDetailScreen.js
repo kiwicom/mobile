@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ScrollView } from 'react-native';
-import { Layout } from '@kiwicom/react-native-app-common';
+import { GeneralError, Layout } from '@kiwicom/react-native-app-common';
 
 import HeaderContainer from './header/HeaderContainer';
 import LocationContainer from './location/LocationContainer';
@@ -18,6 +18,9 @@ export default function HotelDetailScreen({
   openGallery,
   availableHotel,
 }: Props) {
+  if (!availableHotel) {
+    return <GeneralError errorMessage="Hotel not found" />;
+  }
   return (
     <Layout>
       <ScrollView>
