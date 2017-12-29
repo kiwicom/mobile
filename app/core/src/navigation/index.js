@@ -10,7 +10,6 @@ import { configureStore } from '../services/redux/Store';
 import TabBarIcon from '../components/navigation/TabBarIcon';
 
 import ExploreStackNavigator from './ExploreStackNavigator';
-import ProfileStackNavigator from './ProfileStackNavigator';
 import TripsStackNavigator from './TripsStackNavigator';
 
 const MainTabNavigator = TabNavigator(
@@ -28,14 +27,6 @@ const MainTabNavigator = TabNavigator(
       navigationOptions: {
         tabBarIcon: function TabBarIconWrapper(props) {
           return <TabBarIcon type="Trips" {...props} />;
-        },
-      },
-    },
-    Profile: {
-      screen: ProfileStackNavigator,
-      navigationOptions: {
-        tabBarIcon: function TabBarIconWrapper(props) {
-          return <TabBarIcon type="Profile" {...props} />;
         },
       },
     },
