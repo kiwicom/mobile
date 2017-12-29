@@ -74,8 +74,9 @@ export default {
         <SingleHotel
           onGoToHotelGallery={goToGalleryGrid}
           search={{
-            // FIXME: we need to refactor this - it's not possible to fetch hotel just by simple ID here
-            hotelId: 'aG90ZWw6MjUyMTU=',
+            // FIXME: we need to solve how to pass these data from search or map
+            // After GraphQL merge-request !564 is merged, change this to aG90ZWw6MjUyMTU=
+            hotelId: 'SG90ZWxBdmFpbGFiaWxpdHk6MjUyMTU=',
             checkin: new Date('2018-03-01'),
             checkout: new Date('2018-03-08'),
             roomsConfiguration: [
