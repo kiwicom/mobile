@@ -7,7 +7,7 @@ import defaultsDeep from 'lodash/defaultsDeep';
 
 import Color from '../Color';
 
-type Props = {|
+export type Props = {
   title: string,
   onPress?: Function,
   styles?: {|
@@ -17,7 +17,7 @@ type Props = {|
     icon?: Object,
   |},
   icon?: Object,
-|};
+};
 
 export default function Button(props: Props) {
   const styles = createStyles(props.icon);
