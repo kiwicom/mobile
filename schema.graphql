@@ -1,5 +1,5 @@
 # source: https://graphql.kiwi.com/
-# timestamp: Thu Dec 21 2017 19:21:58 GMT+0700 (+07)
+# timestamp: Fri Dec 29 2017 10:11:51 GMT+0700 (+07)
 
 schema {
   query: RootQuery
@@ -48,6 +48,14 @@ input AreaInput {
 
   # Bottom right coordinates of the area.
   bottomRight: CoordinatesInput!
+}
+
+input AvailableHotelSearchInput {
+  # Opaque hotel ID.
+  hotelId: ID!
+  checkin: Date!
+  checkout: Date!
+  roomsConfiguration: [RoomsConfiguration!]!
 }
 
 type Baggage {
@@ -442,7 +450,6 @@ type HotelAvailability {
   price: Price
   availableRooms: [HotelRoomAvailability]
   hotel: Hotel
-  hotelInformation: Hotel @deprecated(reason: "Use field 'hotel' instead.")
 }
 
 # A connection to a list of items.
@@ -458,6 +465,34 @@ type HotelAvailabilityConnection {
 type HotelAvailabilityEdge {
   # The item at the end of the edge
   node: HotelAvailability
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelCity {
+  # The ID of an object
+  id: ID!
+
+  # Name of the hotel.
+  name: String
+  location: Coordinates
+  numberOfHotels: Int
+}
+
+# A connection to a list of items.
+type HotelCityConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelCityEdge]
+}
+
+# An edge in a connection.
+type HotelCityEdge {
+  # The item at the end of the edge
+  node: HotelCity
 
   # A cursor for use in pagination
   cursor: String!
@@ -556,7 +591,6 @@ type HotelRoomAvailability {
   minimalPrice: Price
   incrementalPrice: [Price]
   room: HotelRoom
-  roomInformation: HotelRoom @deprecated(reason: "Use field 'room' instead.")
 }
 
 type HotelRoomBedding {
@@ -827,8 +861,13 @@ type RootQuery {
   # Search for scheduled flights.
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
 
-  # Search for all hotels in one location.
+  # Search for all available hotels in one location. It's necessary to send
+  # checkin and checkout dates as well as rooms configuration to get availability info.
   allAvailableHotels(search: HotelsSearchInput!, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
+
+  # Search for single available hotel by its ID. It's necessary to send checkin
+  # and checkout dates as well as rooms configuration to get availability info.
+  availableHotel(search: AvailableHotelSearchInput!): HotelAvailability
 
   # Search for airports, cities, countries. You can search by location name,
   # radius on the map or rectangle on the map. If you do not specify one of these
@@ -858,8 +897,15 @@ type RootQuery {
   # Single hotel by ID.
   hotel(id: ID!): Hotel
 
-  # Search for all hotels in one location.
-  allHotels(search: HotelsSearchInput!, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection @deprecated(reason: "Use 'allAvailableHotels' query instead.")
+  # All cities where you can find the hotels. This query can be used for suggestions of relevant cities (search for example).
+  hotelCities(
+    # First few letters. Note that search doesn't work with prefix shorter than 3 characters.
+    prefix: String!
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): HotelCityConnection
 }
 
 type RouteStop {
