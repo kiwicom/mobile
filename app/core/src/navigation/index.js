@@ -1,55 +1,47 @@
 // @flow
 
 import * as React from 'react';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
-import { Color } from '@kiwicom/react-native-app-common';
 
 import { configureStore } from '../services/redux/Store';
-import TabBarIcon from '../components/navigation/TabBarIcon';
+import BookingsStack from './BookingsStack';
+import HomepageStack from './HomepageStack';
+import HotelsStack from './HotelsStack';
+import { Color } from '../../../common';
 
-import ExploreStackNavigator from './ExploreStackNavigator';
-import TripsStackNavigator from './TripsStackNavigator';
-
-const MainTabNavigator = TabNavigator(
+const { persistor, store } = configureStore();
+const Navigation = StackNavigator(
   {
-    Explore: {
-      screen: ExploreStackNavigator,
-      navigationOptions: {
-        tabBarIcon: function TabBarIconWrapper(props) {
-          return <TabBarIcon type="Explore" {...props} />;
-        },
-      },
-    },
-    Trips: {
-      screen: TripsStackNavigator,
-      navigationOptions: {
-        tabBarIcon: function TabBarIconWrapper(props) {
-          return <TabBarIcon type="Trips" {...props} />;
-        },
-      },
-    },
+    ...HomepageStack,
+    ...BookingsStack,
+    ...HotelsStack,
   },
   {
-    initialRouteName: 'Explore',
-    tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
-    tabBarOptions: {
-      activeTintColor: Color.brand,
-      showLabel: false,
+    initialRoute: 'Home',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: Color.brand,
+        borderBottomWidth: 0,
+      },
+      headerTitleStyle: {
+        color: '#fff',
+      },
+      headerTintColor: '#fff', // back arrow
+    },
+    cardStyle: {
+      backgroundColor: '#eee',
     },
   },
 );
-
-const { persistor, store } = configureStore();
 
 export default class Application extends React.Component<{}, {}> {
   render() {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <MainTabNavigator />
+          <Navigation />
         </PersistGate>
       </Provider>
     );

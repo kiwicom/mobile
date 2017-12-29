@@ -22,10 +22,6 @@ type InjectorProps = {|
   WrappedComponent: React.ElementType,
 |};
 
-/**
- * This isn't actually true stack navigator. It's used inside of explore
- * stack navigator on the homepage.
- */
 export default {
   AllHotels: {
     screen: class AllHotelsNavigationScreen extends React.Component<Props> {
