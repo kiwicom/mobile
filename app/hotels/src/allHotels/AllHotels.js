@@ -9,7 +9,6 @@ import moment from 'moment';
 import SearchForm from './searchForm/SearchForm';
 import FilterStripe from '../filter/FilterStripe';
 import AllHotelsSearchList from './AllHotelsSearchList';
-
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
 import type { SearchParametersType } from './searchForm/SearchParametersType';
 

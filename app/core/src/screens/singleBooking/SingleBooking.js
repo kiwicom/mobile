@@ -11,7 +11,6 @@ import RouteStop from '../../components/flights/RouteStop';
 import Duration from '../../components/flights/Duration';
 import Airline from '../../components/flights/Airline';
 import Timeline from './Timeline';
-
 import type { SingleBooking as SingleBookingType } from './__generated__/SingleBooking.graphql';
 
 type Props = {

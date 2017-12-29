@@ -6,7 +6,6 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { IncrementDecrementButtons } from '@kiwicom/react-native-app-common';
 
 import Guests from '../Guests';
-
 import type { RoomConfigurationType } from '../SearchParametersType';
 
 const renderGuests = (onSave: Function) => {

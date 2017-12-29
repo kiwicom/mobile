@@ -7,7 +7,6 @@ import { ScrollView, Text } from 'react-native';
 import { CenteredView } from '@kiwicom/react-native-app-common';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
-
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
 
 type Props = {|

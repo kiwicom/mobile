@@ -6,7 +6,6 @@ import { View, StyleSheet } from 'react-native';
 import moment from 'moment';
 
 import Guests from './Guests';
-
 import type {
   RoomConfigurationType,
   SearchParametersType,

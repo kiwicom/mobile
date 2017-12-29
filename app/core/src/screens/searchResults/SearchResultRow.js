@@ -9,7 +9,6 @@ import AirlineLogo from '../../components/flights/AirlineLogo';
 import Duration from '../../components/flights/Duration';
 import Price from '../../components/flights/Price';
 import RouteStop from '../../components/flights/RouteStop';
-
 import type { SearchResultRow_node } from './__generated__/SearchResultRow_node.graphql';
 import type { Navigation } from '../../types/Navigation';
 

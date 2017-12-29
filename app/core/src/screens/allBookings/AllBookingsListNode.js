@@ -4,7 +4,6 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import BookingOverviewRow from '../../components/bookings/OverviewRow';
-
 import type { AllBookingsListNode as AllBookingsListNodeType } from './__generated__/AllBookingsListNode.graphql';
 import type { Navigation } from '../../types/Navigation';
 

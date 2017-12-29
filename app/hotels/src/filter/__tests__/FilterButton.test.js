@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+
 import FilterButton from '../FilterButton';
 
 let renderer;

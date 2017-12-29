@@ -6,7 +6,6 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { SimpleCard, Date } from '@kiwicom/react-native-app-common';
 
 import RouteStop from '../../components/flights/RouteStop';
-
 import type { AllBookingsListRow_node } from './__generated__/OverviewRow_node.graphql';
 
 type Props = {|
