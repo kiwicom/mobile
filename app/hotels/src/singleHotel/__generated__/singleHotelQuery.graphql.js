@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c9524a752684b428d7a09ced54375cbc
+ * @relayHash 986a214166a0990fe59b1d7fbb9f50bb
  */
 
 /* eslint-disable */
@@ -9,6 +9,9 @@ import type { ConcreteBatch } from 'relay-runtime';
 export type singleHotelQueryResponse = {|
   +availableHotel: ?{|
     +hotel: ?{| |};
+    +availableRooms: ?$ReadOnlyArray<?{|
+      +id: string;
+    |}>;
   |};
 |};
 
@@ -22,6 +25,10 @@ query singleHotelQuery(
       ...LocationContainer_hotel
       ...DescriptionContainer_hotel
       id
+    }
+    availableRooms {
+      id
+      ...RoomRowContainer_availableRoom
     }
     id
   }
@@ -71,6 +78,38 @@ fragment DescriptionContainer_hotel on Hotel {
         id
       }
     }
+  }
+}
+
+fragment RoomRowContainer_availableRoom on HotelRoomAvailability {
+  id
+  room {
+    description {
+      title
+      text
+    }
+    type
+    bedding {
+      type
+      amount
+    }
+    photos {
+      edges {
+        node {
+          thumbnailUrl
+          id
+        }
+      }
+    }
+    id
+  }
+  minimalPrice {
+    amount
+    currency
+  }
+  incrementalPrice {
+    amount
+    currency
   }
 }
 */
@@ -125,6 +164,29 @@ const node: ConcreteBatch = {
               {
                 "kind": "FragmentSpread",
                 "name": "DescriptionContainer_hotel",
+                "args": null
+              }
+            ],
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "args": null,
+            "concreteType": "HotelRoomAvailability",
+            "name": "availableRooms",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "id",
+                "storageKey": null
+              },
+              {
+                "kind": "FragmentSpread",
+                "name": "RoomRowContainer_availableRoom",
                 "args": null
               }
             ],
@@ -420,6 +482,202 @@ const node: ConcreteBatch = {
             "storageKey": null
           },
           {
+            "kind": "LinkedField",
+            "alias": null,
+            "args": null,
+            "concreteType": "HotelRoomAvailability",
+            "name": "availableRooms",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "id",
+                "storageKey": null
+              },
+              {
+                "kind": "InlineFragment",
+                "type": "HotelRoomAvailability",
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "HotelRoom",
+                    "name": "room",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "HotelRoomDescription",
+                        "name": "description",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "title",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "text",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "type",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "HotelRoomBedding",
+                        "name": "bedding",
+                        "plural": true,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "type",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "amount",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "HotelRoomPhotoConnection",
+                        "name": "photos",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "LinkedField",
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "HotelRoomPhotoEdge",
+                            "name": "edges",
+                            "plural": true,
+                            "selections": [
+                              {
+                                "kind": "LinkedField",
+                                "alias": null,
+                                "args": null,
+                                "concreteType": "HotelPhoto",
+                                "name": "node",
+                                "plural": false,
+                                "selections": [
+                                  {
+                                    "kind": "ScalarField",
+                                    "alias": null,
+                                    "args": null,
+                                    "name": "thumbnailUrl",
+                                    "storageKey": null
+                                  },
+                                  {
+                                    "kind": "ScalarField",
+                                    "alias": null,
+                                    "args": null,
+                                    "name": "id",
+                                    "storageKey": null
+                                  }
+                                ],
+                                "storageKey": null
+                              }
+                            ],
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "id",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Price",
+                    "name": "minimalPrice",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "amount",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "currency",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "args": null,
+                    "concreteType": "Price",
+                    "name": "incrementalPrice",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "amount",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "currency",
+                        "storageKey": null
+                      }
+                    ],
+                    "storageKey": null
+                  }
+                ]
+              }
+            ],
+            "storageKey": null
+          },
+          {
             "kind": "ScalarField",
             "alias": null,
             "args": null,
@@ -431,7 +689,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    hotel {\n      ...HeaderContainer_hotel\n      ...LocationContainer_hotel\n      ...DescriptionContainer_hotel\n      id\n    }\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  facilities {\n    edges {\n      node {\n        name\n        id\n      }\n    }\n  }\n}\n"
+  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    hotel {\n      ...HeaderContainer_hotel\n      ...LocationContainer_hotel\n      ...DescriptionContainer_hotel\n      id\n    }\n    availableRooms {\n      id\n      ...RoomRowContainer_availableRoom\n    }\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  facilities {\n    edges {\n      node {\n        name\n        id\n      }\n    }\n  }\n}\n\nfragment RoomRowContainer_availableRoom on HotelRoomAvailability {\n  id\n  room {\n    description {\n      title\n      text\n    }\n    type\n    bedding {\n      type\n      amount\n    }\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          id\n        }\n      }\n    }\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n"
 };
 
 module.exports = node;
