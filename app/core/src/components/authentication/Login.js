@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Button } from 'react-native';
-import { CenteredView } from '@kiwicom/react-native-app-common';
+import { CenteredView, LinkButton } from '@kiwicom/react-native-app-common';
 
 import EmailLoginForm from './EmailLoginForm';
 import GoogleLoginForm from './GoogleLoginForm';
@@ -30,7 +29,7 @@ export default class Login extends React.Component<Props, State> {
 
   render = () => {
     const toggleButton = title => (
-      <Button
+      <LinkButton
         key={title}
         title={title}
         onPress={this.toggleFederatedIdentities}

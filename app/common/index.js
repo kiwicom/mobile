@@ -7,6 +7,7 @@ export { default as GoogleButton } from './src/buttons/GoogleButton';
 export {
   default as IncrementDecrementButtons,
 } from './src/buttons/IncrementDecrementButtons';
+export { default as LinkButton } from './src/buttons/LinkButton';
 
 export { default as SimpleCard } from './src/cards/SimpleCard';
 
