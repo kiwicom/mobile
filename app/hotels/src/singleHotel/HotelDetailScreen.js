@@ -7,7 +7,6 @@ import { Layout } from '@kiwicom/react-native-app-common';
 import HeaderContainer from './header/HeaderContainer';
 import LocationContainer from './location/LocationContainer';
 import DescriptionContainer from './description/DescriptionContainer';
-
 import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
+
 import FilterButton from './FilterButton';
 import type { FilterType } from './FilterType';
 

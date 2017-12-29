@@ -9,7 +9,6 @@ import {
 } from '@kiwicom/react-native-app-common';
 
 import createEnvironment from './Environment';
-
 import type { QueryRendererProps } from '../index';
 
 type Props = {|

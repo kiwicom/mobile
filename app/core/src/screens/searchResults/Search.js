@@ -6,7 +6,6 @@ import { Layout } from '@kiwicom/react-native-app-common';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 
 import SearchResultsContainer from './SearchResults';
-
 import type { Navigation } from '../../types/Navigation';
 
 type Props = {|

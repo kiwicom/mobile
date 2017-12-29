@@ -7,7 +7,6 @@ import { StretchedImage, DropMarker } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 
 import gradient from './white-to-alpha-horizontal.png';
-
 import type { LocationContainer_hotel } from './__generated__/LocationContainer_hotel.graphql';
 
 const styles = StyleSheet.create({

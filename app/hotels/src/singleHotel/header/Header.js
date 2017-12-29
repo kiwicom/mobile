@@ -8,7 +8,6 @@ import idx from 'idx';
 import GalleryButton from '../galleryButton/GalleryButton';
 import Rating from './Rating';
 import gradient from './black-to-alpha-vertical.png';
-
 import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 import type { HeaderContainer_hotel } from './__generated__/HeaderContainer_hotel.graphql';
 

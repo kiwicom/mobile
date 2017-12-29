@@ -3,7 +3,6 @@
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import AssetsDownloader from '../../services/assets/AssetsDownloader';
-
 import type { AllBookingsAssetsDownloader } from './__generated__/AllBookingsAssetsDownloader.graphql';
 
 type Props = {|

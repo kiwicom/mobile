@@ -4,7 +4,6 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 
 import type { RouteStop } from './__generated__/RouteStop.graphql';
-
 import Airport from './Airport';
 
 type Props = {|
