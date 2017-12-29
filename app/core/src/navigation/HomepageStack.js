@@ -1,8 +1,6 @@
 // @flow
 
-import * as React from 'react';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
-import { Text } from 'react-native';
 
 import Homepage from '../screens/homepage/Homepage';
 import Search from '../screens/searchResults/Search';
@@ -12,7 +10,7 @@ export default {
   Home: {
     screen: withMappedProps(Homepage),
     navigationOptions: {
-      title: <Text>Welcome</Text>,
+      title: 'Welcome',
     },
   },
   SearchResults: { screen: withMappedProps(Search) },
