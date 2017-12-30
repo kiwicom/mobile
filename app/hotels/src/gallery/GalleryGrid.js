@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { FlatList } from 'react-native';
-
 import {
   GeneralError,
   Modal,

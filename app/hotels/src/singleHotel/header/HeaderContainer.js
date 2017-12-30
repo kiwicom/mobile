@@ -4,7 +4,6 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import Header from './Header';
-
 import type { Image } from '../../gallery/GalleryGrid';
 
 type ContainerProps = {

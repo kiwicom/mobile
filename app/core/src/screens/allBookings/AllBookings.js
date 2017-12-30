@@ -7,7 +7,6 @@ import { Layout } from '@kiwicom/react-native-app-common';
 
 import AllBookingsListContainer from './AllBookingsList';
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
-
 import type { Navigation } from '../../types/Navigation';
 
 type Props = {|

@@ -5,7 +5,6 @@ import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 
 import HotelDetailScreen from './HotelDetailScreen';
-
 import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 

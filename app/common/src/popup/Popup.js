@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Button } from '@kiwicom/react-native-app-common';
+
 import Modal from '../Modal';
 
 type Props = {|

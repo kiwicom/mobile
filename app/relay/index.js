@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-
 import { commitMutation as commitRelayMutation } from 'react-relay';
+
 import createEnvironment from './src/Environment';
 
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
