@@ -73,8 +73,18 @@ export default {
       return (
         <SingleHotel
           onGoToHotelGallery={goToGalleryGrid}
-          // hotelId={props.hotelId}
-          hotelId="aG90ZWw6MjUyMTU=" // FIXME: we need to refactor this - it's not possible to fetch hotel just by simple ID here
+          search={{
+            // FIXME: we need to solve how to pass these data from search or map
+            hotelId: 'aG90ZWw6NzcwOTQ=',
+            checkin: new Date('2018-03-01'),
+            checkout: new Date('2018-03-08'),
+            roomsConfiguration: [
+              {
+                adultsCount: 1,
+                children: [],
+              },
+            ],
+          }}
         />
       );
     }),
