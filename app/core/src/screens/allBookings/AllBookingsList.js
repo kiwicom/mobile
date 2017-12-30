@@ -9,7 +9,6 @@ import { Large } from '@kiwicom/react-native-app-common';
 import AllBookingsListRowError from './AllBookingsListRowError';
 import AllBookingsAssetsDownloader from './AllBookingsAssetsDownloader';
 import AllBookingsListNode from './AllBookingsListNode';
-
 import type { AllBookingsList_bookings } from './__generated__/AllBookingsList_bookings.graphql';
 import type { Navigation } from '../../types/Navigation';
 

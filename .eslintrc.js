@@ -17,7 +17,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['prettier', 'react', 'flowtype'],
+  plugins: ['import', 'prettier', 'react', 'flowtype'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -29,6 +29,16 @@ module.exports = {
   rules: {
     'no-console': [ERROR, { allow: ['warn', 'error'] }],
     'no-underscore-dangle': [ERROR, { enforceInMethodNames: true }],
+    'import/order': [
+      ERROR,
+      {
+        groups: [['builtin', 'external'], ['parent', 'sibling'], 'index'],
+        'newlines-between': 'always',
+      },
+    ],
+    'import/newline-after-import': ERROR,
+    'import/no-mutable-exports': ERROR,
+    'import/no-absolute-path': ERROR,
     'prettier/prettier': [
       ERROR,
       { singleQuote: true, trailingComma: 'all', jsxBracketSameLine: false },

@@ -8,7 +8,6 @@ import {
 } from '@kiwicom/react-native-app-relay';
 
 import Login from '../authentication/Login';
-
 import type { ReduxState } from '../../types/Redux';
 
 type Props = {|

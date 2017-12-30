@@ -6,7 +6,6 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
 
 import LocationSuggestionsNode from './LocationSuggestionsNode';
-
 import type { LocationSuggestions } from './__generated__/LocationSuggestions.graphql';
 
 type Props = {|

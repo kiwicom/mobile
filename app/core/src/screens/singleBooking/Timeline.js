@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
-
 import { Color } from '@kiwicom/react-native-app-common';
 
 const lineWidth = 1;

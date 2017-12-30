@@ -6,7 +6,6 @@ import { createPaginationContainer, graphql } from 'react-relay';
 import { Button } from '@kiwicom/react-native-app-common';
 
 import SearchResultRow from './SearchResultRow';
-
 import type { SearchResults_flights } from './__generated__/SearchResults_flights.graphql';
 import type { Navigation } from '../../types/Navigation';
 

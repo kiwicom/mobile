@@ -5,7 +5,6 @@ import { graphql } from 'react-relay';
 
 import PrivateApiRenderer from '../../components/relay/PrivateApiRenderer';
 import SingleBooking from './SingleBooking';
-
 import type { SingleBookingRendererQueryResponse } from './__generated__/SingleBookingRendererQuery.graphql';
 
 type Props = {|
