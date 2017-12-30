@@ -46,6 +46,7 @@ type State = {|
 |};
 
 export default class SearchForm extends React.Component<Props, State> {
+  // TODO do not format to string and then recreate moment object again for GraphQl in AllHotels
   state = {
     destination: 'Prague',
     latitude: 50.0755,

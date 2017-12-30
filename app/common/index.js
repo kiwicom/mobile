@@ -25,9 +25,6 @@ export { default as NetworkImage } from './src/image/NetworkImage';
 
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 
-export { default as PriceMarker } from './src/map/PriceMarker';
-export { default as HotelCard } from './src/map/HotelCard';
-export { default as Address } from './src/map/Address';
 export { default as DropMarker } from './src/map/DropMarker';
 
 export { default as Large } from './src/text/Large';

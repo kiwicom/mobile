@@ -1,17 +1,21 @@
 // @flow
 
 import * as React from 'react';
+import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
-  HotelCard,
-  Address,
   VerticalSwipeResponder,
   type OnDimensionsChange,
 } from '@kiwicom/react-native-app-common';
+import idx from 'idx';
+
+import HotelSwipeItem from './HotelSwipeItem';
+import Address from './Address';
+import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
 
 type Props = {|
-  items: Object[], // todo
+  data: HotelSwipeListData,
   selectedIndex: number,
   onSnapToItem: (index: number) => void,
 |};
@@ -72,12 +76,18 @@ class HotelSwipeList extends React.Component<Props, State> {
     return this.getWidth() * SNAP_WIDTH;
   };
 
+  getSelectedAddress = () => {
+    const { selectedIndex, data } = this.props;
+
+    return idx(data, _ => _[selectedIndex].node.hotel.address) || {};
+  };
+
   renderItem = ({ item }: { item: Object, index: number }) => {
-    return <HotelCard width={this.getCardItemWidth()} hotel={item.data} />;
+    return <HotelSwipeItem width={this.getCardItemWidth()} data={item.node} />;
   };
 
   render = () => {
-    const { items, selectedIndex, onSnapToItem } = this.props;
+    const { data, selectedIndex, onSnapToItem } = this.props;
     const { open } = this.state;
     const swipeConfig = {
       velocityThreshold: 0.3,
@@ -95,7 +105,7 @@ class HotelSwipeList extends React.Component<Props, State> {
         config={swipeConfig}
       >
         <Carousel
-          data={items}
+          data={data}
           renderItem={this.renderItem}
           sliderWidth={this.getWidth()}
           itemWidth={this.getCardItemWidth()}
@@ -103,16 +113,30 @@ class HotelSwipeList extends React.Component<Props, State> {
           inactiveSlideScale={1}
           inactiveSlideOpacity={0.5}
           decelerationRate="fast"
-          loop
           activeSlideAlignment="start"
           containerCustomStyle={styles.slider}
           removeClippedSubviews={false}
           onSnapToItem={onSnapToItem}
         />
-        {open && <Address address="950 Candice Wells Suite 375, Dublin" />}
+        {open && <Address data={this.getSelectedAddress()} />}
       </VerticalSwipeResponder>
     );
   };
 }
 
-export default HotelSwipeList;
+export default createFragmentContainer(
+  HotelSwipeList,
+  graphql`
+    fragment HotelSwipeList on HotelAvailabilityEdge @relay(plural: true) {
+      node {
+        id
+        ...HotelSwipeItem
+        hotel {
+          address {
+            ...Address
+          }
+        }
+      }
+    }
+  `,
+);
