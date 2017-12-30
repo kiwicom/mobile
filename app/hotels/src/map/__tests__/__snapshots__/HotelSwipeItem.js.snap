@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HotelSwipeItem renders "no reviews" when no reviews are available 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "width": 250,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View>
+      <NetworkImage
+        resizeMode="contain"
+        source={
+          Object {
+            "uri": "http://example.com/image.jpg",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 5,
+            "height": 50,
+            "marginRight": 10,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Hotel v Olomouci
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#616161",
+            "opacity": 0.8,
+          }
+        }
+      >
+        No reviews
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#0097a9",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <Price
+          amount={140}
+          currency="EUR"
+        />
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`HotelSwipeItem renders review 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "width": 250,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View>
+      <NetworkImage
+        resizeMode="contain"
+        source={
+          Object {
+            "uri": "http://example.com/image.jpg",
+          }
+        }
+        style={
+          Object {
+            "borderRadius": 5,
+            "height": 50,
+            "marginRight": 10,
+            "width": 50,
+          }
+        }
+      />
+    </View>
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Hotel v Olomouci
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#616161",
+            "opacity": 0.8,
+          }
+        }
+      >
+        8
+         
+        Very Good
+         · 
+        2
+         
+        reviews
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#0097a9",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        <Price
+          amount={140}
+          currency="EUR"
+        />
+      </Text>
+    </View>
+  </View>
+</View>
+`;
