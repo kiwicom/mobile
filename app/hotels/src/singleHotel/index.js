@@ -9,21 +9,21 @@ import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 
-type RoomsChildrenConfiguration = {
+type RoomsChildrenConfiguration = {|
   age: number,
-};
+|};
 
-type RoomsConfiguration = {
+type RoomsConfiguration = {|
   adultsCount: number,
   children: RoomsChildrenConfiguration[],
-};
+|};
 
-type AvailableHotelSearchInput = {
+type AvailableHotelSearchInput = {|
   hotelId: string,
   checkin: Date,
   checkout: Date,
   roomsConfiguration: RoomsConfiguration[],
-};
+|};
 
 type ContainerProps = {|
   search: AvailableHotelSearchInput,
@@ -47,15 +47,7 @@ export default class SingleHotelContainer extends React.Component<
         query={graphql`
           query singleHotelQuery($search: AvailableHotelSearchInput!) {
             availableHotel(search: $search) {
-              hotel {
-                ...HeaderContainer_hotel
-                ...LocationContainer_hotel
-                ...DescriptionContainer_hotel
-              }
-              availableRooms {
-                id
-                ...RoomRowContainer_availableRoom
-              }
+              ...HotelDetailScreen_availableHotel
             }
           }
         `}

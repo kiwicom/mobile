@@ -1,4 +1,5 @@
 // @flow
+
 import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import idx from 'idx';
@@ -62,6 +63,7 @@ export default class RoomRow extends React.Component<Props> {
     const currency = idx(availableRoom, _ => _.minimalPrice.currency);
     const selectableCount =
       idx(availableRoom, _ => _.incrementalPrice.length) || 0;
+
     return (
       <View style={styles.container}>
         <View style={styles.row}>

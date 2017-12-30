@@ -1,18 +1,13 @@
 /**
  * @flow
- * @relayHash 986a214166a0990fe59b1d7fbb9f50bb
+ * @relayHash 05cf807031f08a3410b390bc6237a47c
  */
 
 /* eslint-disable */
 
 import type { ConcreteBatch } from 'relay-runtime';
 export type singleHotelQueryResponse = {|
-  +availableHotel: ?{|
-    +hotel: ?{| |};
-    +availableRooms: ?$ReadOnlyArray<?{|
-      +id: string;
-    |}>;
-  |};
+  +availableHotel: ?{| |};
 |};
 
 /*
@@ -20,16 +15,20 @@ query singleHotelQuery(
   $search: AvailableHotelSearchInput!
 ) {
   availableHotel(search: $search) {
-    hotel {
-      ...HeaderContainer_hotel
-      ...LocationContainer_hotel
-      ...DescriptionContainer_hotel
-      id
-    }
-    availableRooms {
-      id
-      ...RoomRowContainer_availableRoom
-    }
+    ...HotelDetailScreen_availableHotel
+    id
+  }
+}
+
+fragment HotelDetailScreen_availableHotel on HotelAvailability {
+  hotel {
+    ...HeaderContainer_hotel
+    ...LocationContainer_hotel
+    ...DescriptionContainer_hotel
+    id
+  }
+  availableRooms {
+    ...RoomList
     id
   }
 }
@@ -81,8 +80,12 @@ fragment DescriptionContainer_hotel on Hotel {
   }
 }
 
-fragment RoomRowContainer_availableRoom on HotelRoomAvailability {
+fragment RoomList on HotelRoomAvailability {
   id
+  ...RoomRowContainer_availableRoom
+}
+
+fragment RoomRowContainer_availableRoom on HotelRoomAvailability {
   room {
     description {
       title
@@ -144,53 +147,9 @@ const node: ConcreteBatch = {
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "Hotel",
-            "name": "hotel",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "HeaderContainer_hotel",
-                "args": null
-              },
-              {
-                "kind": "FragmentSpread",
-                "name": "LocationContainer_hotel",
-                "args": null
-              },
-              {
-                "kind": "FragmentSpread",
-                "name": "DescriptionContainer_hotel",
-                "args": null
-              }
-            ],
-            "storageKey": null
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "HotelRoomAvailability",
-            "name": "availableRooms",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "kind": "FragmentSpread",
-                "name": "RoomRowContainer_availableRoom",
-                "args": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "HotelDetailScreen_availableHotel",
+            "args": null
           }
         ],
         "storageKey": null
@@ -689,7 +648,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    hotel {\n      ...HeaderContainer_hotel\n      ...LocationContainer_hotel\n      ...DescriptionContainer_hotel\n      id\n    }\n    availableRooms {\n      id\n      ...RoomRowContainer_availableRoom\n    }\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  facilities {\n    edges {\n      node {\n        name\n        id\n      }\n    }\n  }\n}\n\nfragment RoomRowContainer_availableRoom on HotelRoomAvailability {\n  id\n  room {\n    description {\n      title\n      text\n    }\n    type\n    bedding {\n      type\n      amount\n    }\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          id\n        }\n      }\n    }\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n"
+  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...HeaderContainer_hotel\n    ...LocationContainer_hotel\n    ...DescriptionContainer_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  facilities {\n    edges {\n      node {\n        name\n        id\n      }\n    }\n  }\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRowContainer_availableRoom\n}\n\nfragment RoomRowContainer_availableRoom on HotelRoomAvailability {\n  room {\n    description {\n      title\n      text\n    }\n    type\n    bedding {\n      type\n      amount\n    }\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          id\n        }\n      }\n    }\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n"
 };
 
 module.exports = node;
