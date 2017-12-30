@@ -19,7 +19,7 @@ const Navigation = StackNavigator(
     ...HotelsStack,
   },
   {
-    initialRoute: 'Home',
+    initialRouteName: 'Home',
     navigationOptions: {
       headerStyle: {
         backgroundColor: Color.brand,
