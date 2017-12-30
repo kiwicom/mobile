@@ -3,22 +3,21 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { GeneralError, Layout } from '@kiwicom/react-native-app-common';
+import { createFragmentContainer, graphql } from 'react-relay';
 
 import HeaderContainer from './header/HeaderContainer';
 import LocationContainer from './location/LocationContainer';
 import DescriptionContainer from './description/DescriptionContainer';
 import RoomList from './roomList/RoomList';
 import type { Image } from '../gallery/GalleryGrid';
+import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 
 export type Props = {|
   openGallery: (hotelName: string, images: Image[]) => void,
-  availableHotel: ?Object,
+  availableHotel: HotelDetailScreen_availableHotel,
 |};
 
-export default function HotelDetailScreen({
-  openGallery,
-  availableHotel,
-}: Props) {
+function HotelDetailScreen({ openGallery, availableHotel }: Props) {
   if (!availableHotel) {
     return <GeneralError errorMessage="Hotel not found" />;
   }
@@ -31,8 +30,24 @@ export default function HotelDetailScreen({
         />
         <LocationContainer hotel={availableHotel.hotel} />
         <DescriptionContainer hotel={availableHotel.hotel} />
-        <RoomList availableRooms={availableHotel.availableRooms} />
+        <RoomList data={availableHotel.availableRooms} />
       </ScrollView>
     </Layout>
   );
 }
+
+export default createFragmentContainer(
+  HotelDetailScreen,
+  graphql`
+    fragment HotelDetailScreen_availableHotel on HotelAvailability {
+      hotel {
+        ...HeaderContainer_hotel
+        ...LocationContainer_hotel
+        ...DescriptionContainer_hotel
+      }
+      availableRooms {
+        ...RoomList
+      }
+    }
+  `,
+);

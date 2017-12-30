@@ -6,7 +6,6 @@
 
 import type { ConcreteFragment } from 'relay-runtime';
 export type RoomRowContainer_availableRoom = {|
-  +id: string;
   +room: ?{|
     +description: ?{|
       +title: ?string;
@@ -42,13 +41,6 @@ const node: ConcreteFragment = {
   "metadata": null,
   "name": "RoomRowContainer_availableRoom",
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "id",
-      "storageKey": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,

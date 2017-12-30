@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import RoomRowContainer from './RoomRowContainer';
 import { View, StyleSheet, Text } from 'react-native';
+import { createFragmentContainer, graphql } from 'react-relay';
 
-import type { RoomRowContainer_availableRoom } from './__generated__/RoomRowContainer_availableRoom.graphql';
+import RoomRowContainer from './RoomRowContainer';
+import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
 
 const styles = StyleSheet.create({
   title: {
@@ -17,19 +18,17 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
-  availableRooms: RoomRowContainer_availableRoom[],
+  data: RoomListType,
 |};
 
-type State = {||};
-
-export default class RoomList extends React.Component<Props, State> {
+class RoomList extends React.Component<Props> {
   render() {
     return (
       <View>
         <View>
           <Text style={styles.title}>Rooms</Text>
         </View>
-        {this.props.availableRooms.map(availableRoom => (
+        {this.props.data.map(availableRoom => (
           <RoomRowContainer
             key={availableRoom.id}
             availableRoom={availableRoom}
@@ -39,3 +38,13 @@ export default class RoomList extends React.Component<Props, State> {
     );
   }
 }
+
+export default createFragmentContainer(
+  RoomList,
+  graphql`
+    fragment RoomList on HotelRoomAvailability @relay(plural: true) {
+      id
+      ...RoomRowContainer_availableRoom
+    }
+  `,
+);

@@ -13,7 +13,6 @@ export default (createFragmentContainer(
   RoomRow,
   graphql`
     fragment RoomRowContainer_availableRoom on HotelRoomAvailability {
-      id
       room {
         description {
           title

@@ -75,8 +75,7 @@ export default {
           onGoToHotelGallery={goToGalleryGrid}
           search={{
             // FIXME: we need to solve how to pass these data from search or map
-            // After GraphQL merge-request !564 is merged, change this to aG90ZWw6NzcwOTQ=
-            hotelId: 'SG90ZWxBdmFpbGFiaWxpdHk6NzcwOTQ=',
+            hotelId: 'aG90ZWw6NzcwOTQ=',
             checkin: new Date('2018-03-01'),
             checkout: new Date('2018-03-08'),
             roomsConfiguration: [
