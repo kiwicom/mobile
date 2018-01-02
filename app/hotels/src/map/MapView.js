@@ -5,7 +5,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet } from 'react-native';
 import { MapView, type Region, type LatLng } from 'expo';
-import { getCenter, getBounds } from 'geolib';
+import { orderByDistance, getBounds } from 'geolib';
 
 import PriceMarker from './PriceMarker';
 import type { MapView as MapViewData } from './__generated__/MapView.graphql';
@@ -18,7 +18,6 @@ type Props = {|
 
 type State = {|
   region: Region,
-  mapIsReady: boolean,
 |};
 
 type MarkerPressEvent = {|
@@ -34,8 +33,6 @@ const styles = StyleSheet.create({
   map: StyleSheet.absoluteFillObject,
 });
 
-const EDGE_PADDING = 1.3;
-
 class Map extends React.Component<Props, State> {
   map: typeof MapView | null;
 
@@ -43,8 +40,7 @@ class Map extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      region: this.getRegion(props.data),
-      mapIsReady: false,
+      region: this.getRegion(props),
     };
   }
 
@@ -71,36 +67,57 @@ class Map extends React.Component<Props, State> {
     return hotels.map(this.getCoordinate).filter(Boolean);
   };
 
-  getRegion = (hotels: MapViewData) => {
-    const coordinates = this.getCoordinates(hotels);
+  getDelta = (selectedCoordinate, coordinates) => {
+    const distances = orderByDistance(selectedCoordinate, coordinates);
 
-    if (!coordinates.length) {
-      return null;
+    if (coordinates.length === 1) {
+      return {
+        longitudeDelta: 0.005,
+        latitudeDelta: 0.005,
+      };
     }
 
-    const boundaries = getBounds(coordinates);
-    const topLeft = {
-      latitude: boundaries.maxLat,
-      longitude: boundaries.minLng,
-    };
-    const bottomRight = {
-      latitude: boundaries.minLat,
-      longitude: boundaries.maxLng,
-    };
+    // Use median to filter out extreme positions to compute more appropriate region
+    const lowMiddle = Math.floor((distances.length - 1) / 2);
+    const highMiddle = Math.ceil((distances.length - 1) / 2);
+    const median =
+      (distances[lowMiddle].distance + distances[highMiddle].distance) / 2;
+    const validDistances =
+      distances.length > 2
+        ? distances.filter(({ distance }) => median * 1.5 > distance)
+        : distances;
 
-    const center = getCenter([topLeft, bottomRight]);
+    const coordsByDistance = validDistances
+      .map(({ key }) => coordinates[parseInt(key)])
+      .filter(Boolean);
+    const boundaries = getBounds(coordsByDistance);
+    const latitudeDelta = boundaries.maxLat - boundaries.minLat;
+    const longitudeDelta = boundaries.maxLng - boundaries.minLng;
 
-    // multiply delta by edge padding so hotels for extremes fit into view as well
-    const latitudeDelta =
-      (boundaries.maxLat - boundaries.minLat) * EDGE_PADDING;
-    const longitudeDelta =
-      (boundaries.maxLng - boundaries.minLng) * EDGE_PADDING;
+    return { longitudeDelta, latitudeDelta };
+  };
+
+  getRegion = (props: Props) => {
+    const { data: hotels, selectedIndex } = props;
+    const selectedHotel = hotels[selectedIndex];
+
+    if (!selectedHotel) {
+      return;
+    }
+
+    const coordinate = this.getCoordinate(selectedHotel);
+
+    if (!coordinate) {
+      return;
+    }
+
+    const delta = this.getDelta(coordinate, this.getCoordinates(hotels));
 
     return {
-      latitude: parseFloat(center.latitude),
-      longitude: parseFloat(center.longitude),
-      latitudeDelta,
-      longitudeDelta,
+      latitude: coordinate.latitude,
+      longitude: coordinate.longitude,
+      latitudeDelta: delta.latitudeDelta,
+      longitudeDelta: delta.longitudeDelta,
     };
   };
 
@@ -126,13 +143,6 @@ class Map extends React.Component<Props, State> {
     }
 
     this.map.animateToCoordinate(coordinate, duration);
-  };
-
-  onMapReady = () => {
-    if (!this.state.mapIsReady) {
-      this.setState({ mapIsReady: true });
-      this.animateToCoordinate(this.props.selectedIndex);
-    }
   };
 
   onMarkerPress = (e: MarkerPressEvent) => {
@@ -165,7 +175,6 @@ class Map extends React.Component<Props, State> {
         ref={this.storeMapReference}
         style={styles.map}
         initialRegion={this.state.region}
-        onMapReady={this.onMapReady}
       >
         {data.map(this.renderHotelMarker)}
       </MapView>
