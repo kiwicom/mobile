@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
 
-import FilterButton from './FilterButton';
-import type { FilterType } from './FilterType';
+import StarsFilter from './stars/StarsFilter';
 
 const styles = {
   view: {
@@ -17,58 +16,12 @@ const styles = {
   },
 };
 
-type State = {|
-  filters: FilterType[],
-|};
-
-export default class FilterStripe extends React.Component<{||}, State> {
-  state = {
-    filters: [
-      {
-        title: 'price',
-        filter: 'price',
-        icon: { name: 'attach-money' },
-        isActive: false,
-      },
-      {
-        title: 'price2',
-        filter: 'price2',
-        icon: { name: 'attach-money' },
-        isActive: false,
-      },
-    ],
+export default class FilterStripe extends React.Component<{||}> {
+  handleChange = () => {
+    // TODO add onChange prop, pass changed values via callback
   };
-
-  handleButtonPress = (filterId: string) => () => {
-    // TODO Open filter control
-
-    this.setState(prevState => {
-      const filters = prevState.filters;
-      const filter: ?FilterType = filters.find(
-        filter => filter.filter === filterId,
-      );
-      if (!filter) {
-        return;
-      }
-      const isActive = filter.isActive;
-      filter.isActive = Boolean(filter.configuration) || !isActive;
-
-      return { filters };
-    });
-  };
-
-  renderFilterButton = ({ title, icon, filter, isActive }: FilterType) => (
-    <FilterButton
-      key={filter}
-      title={title}
-      icon={icon}
-      isActive={isActive}
-      onPress={this.handleButtonPress(filter)}
-    />
-  );
 
   render = () => {
-    const { filters } = this.state;
     return (
       <View style={styles.view}>
         <ScrollView
@@ -76,7 +29,7 @@ export default class FilterStripe extends React.Component<{||}, State> {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
-          {filters.map(this.renderFilterButton)}
+          <StarsFilter onChange={this.handleChange} />
         </ScrollView>
       </View>
     );
