@@ -28,6 +28,10 @@ type AvailableHotelSearchInput = {|
 type ContainerProps = {|
   search: AvailableHotelSearchInput,
   onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
+  onGoToPayment: ({
+    hotelId: number,
+    rooms: Array<{| id: string, count: number |}>,
+  }) => void,
 |};
 
 export default class SingleHotelContainer extends React.Component<
@@ -36,6 +40,7 @@ export default class SingleHotelContainer extends React.Component<
   renderInnerComponent = ({ availableHotel }: singleHotelQueryResponse) => (
     <HotelDetailScreen
       openGallery={this.props.onGoToHotelGallery}
+      onGoToPayment={this.props.onGoToPayment}
       availableHotel={availableHotel}
     />
   );

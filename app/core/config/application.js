@@ -1,6 +1,7 @@
 // @flow
 
 import {
+  AFFILIATE_BOOKINGCOM,
   AUTH_ANDROID_GOOGLE_CLIENTID,
   AUTH_IOS_GOOGLE_CLIENTID,
   AUTH_KIWI_BACKEND,
@@ -8,6 +9,12 @@ import {
 } from 'react-native-dotenv';
 
 export default {
+  affiliate: {
+    bookingCom: sanitize(AFFILIATE_BOOKINGCOM),
+  },
+  animations: {
+    duration: 100, // ms
+  },
   auth: {
     android: {
       google: {
@@ -22,9 +29,6 @@ export default {
     kiwi: {
       backend: sanitize(AUTH_KIWI_BACKEND),
     },
-  },
-  animations: {
-    duration: 100, // ms
   },
   sentry: {
     dsn: sanitize(SENTRY_DSN),

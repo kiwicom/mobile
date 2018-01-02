@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
 
 type Props = {|
   data: RoomListType,
+  onGoToPayment: ({
+    hotelId: number,
+    rooms: Array<{| id: string, count: number |}>,
+  }) => void,
 |};
 
 class RoomList extends React.Component<Props> {
@@ -32,6 +36,7 @@ class RoomList extends React.Component<Props> {
           <RoomRowContainer
             key={availableRoom.id}
             availableRoom={availableRoom}
+            onGoToPayment={this.props.onGoToPayment}
           />
         ))}
       </View>

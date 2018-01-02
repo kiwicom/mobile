@@ -7,6 +7,7 @@ Try it in [Expo](https://expo.io/):
 ## Table of Contents
 
 * [Installation and Run](#installation-and-run)
+* [Environment](#environment)
 * [Testing](#testing)
 * [Project structure](#project-structure)
 * [Working with GraphQL API](#working-with-graphql-api)
@@ -30,6 +31,14 @@ To start the application simple run `yarn start`. This will change in the future
 ```
 yarn upgrade @kiwicom
 ```
+
+## Environment
+
+All sensitive environment variables are stored in `.env` file. You should setup these variables if you want 100% of all functions.
+
+---
+
+**Information for Kiwi.com employees:** all environment variables are shared using [Vault](https://www.vaultproject.io/). Ask your colleagues how to get them. You'll first need VPN, secret key (token) and Vault namespace.
 
 ## Testing
 

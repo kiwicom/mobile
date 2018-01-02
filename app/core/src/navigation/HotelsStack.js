@@ -8,9 +8,11 @@ import {
   AllHotelsMap,
   SingleHotel,
   GalleryGrid,
+  Payment,
 } from '@kiwicom/react-native-app-hotels';
 import { Ionicons } from '@expo/vector-icons';
 
+import Config from '../../config/application';
 import type { Navigation } from '../types/Navigation';
 
 type Props = {|
@@ -70,9 +72,21 @@ export default {
           images,
         });
       }
+      function goToPayment(parameters) {
+        props.navigation.navigate('Payment', {
+          ...parameters,
+          // FIXME: we need to solve how to pass these data from search or map
+          checkin: new Date('2018-03-01'),
+          checkout: new Date('2018-03-08'),
+          affiliateId: Config.affiliate.bookingCom,
+          language: 'en', // TODO: we do not have language yet
+          currency: 'EUR', // TODO: we do not have currency yet
+        });
+      }
       return (
         <SingleHotel
           onGoToHotelGallery={goToGalleryGrid}
+          onGoToPayment={goToPayment}
           search={{
             // FIXME: we need to solve how to pass these data from search or map
             hotelId: 'aG90ZWw6NzcwOTQ=',
@@ -117,6 +131,12 @@ export default {
     ),
     navigationOptions: {
       headerTitle: 'Photos',
+    },
+  },
+  Payment: {
+    screen: withMappedProps(Payment),
+    navigationOptions: {
+      mode: 'modal',
     },
   },
 };
