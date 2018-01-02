@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: 'bold',
   },
+  content: {
+    flex: 1,
+  },
 });
 
 class Address extends React.Component<Props> {
@@ -38,9 +41,9 @@ class Address extends React.Component<Props> {
         <View style={styles.mapIcon}>
           <Ionicons name="md-map" size={24} color={Color.brand} />
         </View>
-        <View>
+        <View style={styles.content}>
           <Text style={styles.header}>Address</Text>
-          <Text>
+          <Text numberOfLines={2}>
             {address.street}, {address.city} {address.zip}
           </Text>
         </View>
