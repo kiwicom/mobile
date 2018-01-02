@@ -14,7 +14,7 @@ type Props = {
 };
 
 const styles = StyleSheet.create({
-  description: {
+  container: {
     flexDirection: 'row',
   },
   image: {
@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 5,
     marginRight: 10,
+  },
+  description: {
+    flex: 1,
   },
   hotelName: {
     fontSize: 18,
@@ -60,28 +63,28 @@ export const HotelSwipeItem = ({ width, data: hotel }: Props) => {
   const review = idx(hotel, _ => _.hotel.review);
 
   return (
-    <View style={[{ width }]}>
+    <View style={[styles.container, { width }]}>
+      <View>
+        <NetworkImage
+          style={styles.image}
+          source={{
+            uri: image,
+          }}
+          resizeMode="contain"
+        />
+      </View>
       <View style={styles.description}>
-        <View>
-          <NetworkImage
-            style={styles.image}
-            source={{
-              uri: image,
-            }}
-            resizeMode="contain"
-          />
-        </View>
-        <View>
-          <Text style={styles.hotelName}>{name}</Text>
-          {getReview(review)}
-          <Text style={styles.price}>
-            {price &&
-              price.currency &&
-              price.amount && (
-                <Price currency={price.currency} amount={price.amount} />
-              )}
-          </Text>
-        </View>
+        <Text style={styles.hotelName} numberOfLines={1}>
+          {name}
+        </Text>
+        {getReview(review)}
+        <Text style={styles.price}>
+          {price &&
+            price.currency &&
+            price.amount && (
+              <Price currency={price.currency} amount={price.amount} />
+            )}
+        </Text>
       </View>
     </View>
   );
