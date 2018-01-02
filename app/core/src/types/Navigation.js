@@ -7,9 +7,10 @@ type TripsStackNavigatorRouteNames = 'AllBookings' | 'SingleBooking';
 type HotelsStackNavigatorRouteNames =
   | 'AllHotels'
   | 'AllHotelsMap'
-  | 'SingleHotel'
   | 'GalleryGrid'
-  | 'GalleryStripe';
+  | 'GalleryStripe'
+  | 'Payment'
+  | 'SingleHotel';
 type MainTabNavigatorRouteNames = 'Explore' | 'Trips' | 'Profile';
 
 type RouteNames =

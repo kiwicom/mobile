@@ -20,3 +20,8 @@ export { default as SingleHotel } from './src/singleHotel';
  * All photos of the hotel with possibility to view single photo.
  */
 export { default as GalleryGrid } from './src/gallery/GalleryGrid';
+
+/**
+ * Payment "web view" page. Should be opened in "modal" mode.
+ */
+export { default as Payment } from './src/singleHotel/PaymentScreen';
