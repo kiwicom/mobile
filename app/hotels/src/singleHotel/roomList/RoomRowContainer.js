@@ -7,6 +7,10 @@ import RoomRow from './RoomRow';
 
 type ContainerProps = {|
   availableRoom: Object,
+  onGoToPayment: ({
+    hotelId: number,
+    rooms: Array<{| id: string, count: number |}>,
+  }) => void,
 |};
 
 export default (createFragmentContainer(

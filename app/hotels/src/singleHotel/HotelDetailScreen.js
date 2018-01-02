@@ -15,9 +15,17 @@ import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDeta
 export type Props = {|
   openGallery: (hotelName: string, images: Image[]) => void,
   availableHotel: HotelDetailScreen_availableHotel,
+  onGoToPayment: ({
+    hotelId: number,
+    rooms: Array<{| id: string, count: number |}>,
+  }) => void,
 |};
 
-function HotelDetailScreen({ openGallery, availableHotel }: Props) {
+function HotelDetailScreen({
+  openGallery,
+  availableHotel,
+  onGoToPayment,
+}: Props) {
   if (!availableHotel) {
     return <GeneralError errorMessage="Hotel not found" />;
   }
@@ -30,7 +38,10 @@ function HotelDetailScreen({ openGallery, availableHotel }: Props) {
         />
         <LocationContainer hotel={availableHotel.hotel} />
         <DescriptionContainer hotel={availableHotel.hotel} />
-        <RoomList data={availableHotel.availableRooms} />
+        <RoomList
+          data={availableHotel.availableRooms}
+          onGoToPayment={onGoToPayment}
+        />
       </ScrollView>
     </Layout>
   );

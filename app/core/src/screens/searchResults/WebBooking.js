@@ -1,16 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { WebView } from 'react-native';
-
-import type { Navigation } from '../../types/Navigation';
+import { WebView } from '@kiwicom/react-native-app-common';
 
 type Props = {
-  navigation: Navigation,
+  bookingUrl: string,
 };
 
-export default function WebBooking({
-  navigation: { state: { params } },
-}: Props) {
-  return <WebView source={{ uri: params.bookingUrl }} />;
+export default function WebBooking(props: Props) {
+  return <WebView source={{ uri: props.bookingUrl }} />;
 }

@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import idx from 'idx';
-import { NetworkImage } from '@kiwicom/react-native-app-common';
+import { NetworkImage, Button } from '@kiwicom/react-native-app-common';
 import ReadMore from 'react-native-read-more-text';
 
-import type { RoomRowContainer_availableRoom } from './__generated__/RoomRowContainer_availableRoom.graphql';
 import RoomPicker from '../roomPicker/RoomPicker';
+import type { RoomRowContainer_availableRoom } from './__generated__/RoomRowContainer_availableRoom.graphql';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,12 +46,33 @@ const styles = StyleSheet.create({
 
 type Props = {|
   availableRoom: RoomRowContainer_availableRoom,
+  onGoToPayment: ({
+    hotelId: number,
+    rooms: Array<{| id: string, count: number |}>,
+  }) => void,
 |};
 
 export default class RoomRow extends React.Component<Props> {
   doNothing() {}
 
-  render() {
+  handleGoToPayment = () => {
+    this.props.onGoToPayment({
+      hotelId: 77094, // TODO: real value
+      rooms: [
+        // TODO: real selected date (waiting for GraphQL update - originalId)
+        {
+          id: '7709411_91461863_1_1_0',
+          count: 1,
+        },
+        {
+          id: '7709404_91461863_0_1_0',
+          count: 1,
+        },
+      ],
+    });
+  };
+
+  render = () => {
     const availableRoom = this.props.availableRoom;
     const title = idx(availableRoom, _ => _.room.description.title) || 'Room';
     const description = idx(availableRoom, _ => _.room.description.text) || '';
@@ -94,7 +115,11 @@ export default class RoomRow extends React.Component<Props> {
               decrement={this.doNothing}
             />
           )}
+        <Button
+          title="Go To Payment (REMOVE THIS)"
+          onPress={this.handleGoToPayment}
+        />
       </View>
     );
-  }
+  };
 }
