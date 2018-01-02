@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 });
 
 const SNAP_WIDTH = 0.8;
-const OPEN_HEIGHT = 130;
+const OPEN_HEIGHT = 150;
 const CLOSED_HEIGHT = 80;
 
 class HotelSwipeList extends React.Component<Props, State> {
