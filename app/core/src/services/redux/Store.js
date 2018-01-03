@@ -6,6 +6,7 @@ import storage from 'redux-persist/es/storage';
 
 import SearchReducer from './reducers/SearchReducer';
 import UserReducer from './reducers/UserReducer';
+import HotelsReducer from './reducers/HotelsReducer';
 
 const config = {
   key: 'root',
@@ -15,6 +16,7 @@ const config = {
 const reducer = persistCombineReducers(config, {
   search: SearchReducer,
   user: UserReducer,
+  hotels: HotelsReducer,
 });
 
 export const configureStore = () => {

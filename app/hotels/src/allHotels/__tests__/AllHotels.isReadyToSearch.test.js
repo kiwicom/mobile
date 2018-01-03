@@ -9,44 +9,57 @@ const defaults = {
   },
 };
 
-it('works with zeros', () => {
-  const component = new AllHotels();
+const defaultProps = {
+  openSingleHotel: jest.fn(),
+  onFilterChange: jest.fn(),
+};
 
-  expect(component.isReadyToSearch()).toBe(false); // false by default
+describe('AllHotels.isReadyToSearch', () => {
+  it('works with one zero', () => {
+    const props = {
+      ...defaultProps,
+      search: {
+        ...defaults,
+        latitude: 51.5,
+        longitude: 0, // please keep zero here
+        checkin: new Date(1),
+        checkout: new Date(2),
+      },
+    };
+    const component = new AllHotels(props);
 
-  component.state = {
-    search: {
-      ...defaults,
-      latitude: 51.5,
-      longitude: 0, // please keep zero here
-      checkin: new Date(1),
-      checkout: new Date(2),
-    },
-  };
+    expect(component.isReadyToSearch()).toBe(true);
+  });
 
-  expect(component.isReadyToSearch()).toBe(true);
+  it('does not work with nulls', () => {
+    const props = {
+      ...defaultProps,
+      search: {
+        ...defaults,
+        latitude: null,
+        longitude: null,
+        checkin: null,
+        checkout: null,
+      },
+    };
+    const component = new AllHotels(props);
 
-  component.state = {
-    search: {
-      ...defaults,
-      latitude: null,
-      longitude: null,
-      checkin: null,
-      checkout: null,
-    },
-  };
+    expect(component.isReadyToSearch()).toBe(false);
+  });
 
-  expect(component.isReadyToSearch()).toBe(false);
+  it('works with zeros', () => {
+    const props = {
+      ...defaultProps,
+      search: {
+        ...defaults,
+        latitude: 0,
+        longitude: 0,
+        checkin: new Date(1),
+        checkout: new Date(2),
+      },
+    };
+    const component = new AllHotels(props);
 
-  component.state = {
-    search: {
-      ...defaults,
-      latitude: 0,
-      longitude: 0,
-      checkin: new Date(1),
-      checkout: new Date(2),
-    },
-  };
-
-  expect(component.isReadyToSearch()).toBe(true);
+    expect(component.isReadyToSearch()).toBe(true);
+  });
 });
