@@ -5,7 +5,7 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type DescriptionContainer_hotel = {|
+export type Description_hotel = {|
   +summary: ?string;
   +facilities: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -22,7 +22,7 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "DescriptionContainer_hotel",
+  "name": "Description_hotel",
   "selections": [
     {
       "kind": "ScalarField",

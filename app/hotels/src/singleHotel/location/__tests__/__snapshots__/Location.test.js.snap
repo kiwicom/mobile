@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "flexDirection": "row",
+      "height": 100,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 15,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "letterSpacing": -0.15,
+            "lineHeight": 19,
+          },
+          Object {
+            "color": "#30363d",
+          },
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "letterSpacing": -0.15,
+            "lineHeight": 19,
+          },
+          Object {
+            "color": "#79818a",
+          },
+        ]
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <StretchedImage
+      source={1}
+    />
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`renders without crashing with missing data 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "flexDirection": "row",
+      "height": 100,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "center",
+        "padding": 15,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "letterSpacing": -0.15,
+            "lineHeight": 19,
+          },
+          Object {
+            "color": "#30363d",
+          },
+        ]
+      }
+    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+            "letterSpacing": -0.15,
+            "lineHeight": 19,
+          },
+          Object {
+            "color": "#79818a",
+          },
+        ]
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <StretchedImage
+      source={1}
+    />
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+  </View>
+</View>
+`;

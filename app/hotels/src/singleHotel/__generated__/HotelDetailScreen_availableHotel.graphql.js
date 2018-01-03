@@ -27,17 +27,22 @@ const node: ConcreteFragment = {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "HeaderContainer_hotel",
+          "name": "Header_hotel",
           "args": null
         },
         {
           "kind": "FragmentSpread",
-          "name": "LocationContainer_hotel",
+          "name": "Location_hotel",
           "args": null
         },
         {
           "kind": "FragmentSpread",
-          "name": "DescriptionContainer_hotel",
+          "name": "Description_hotel",
+          "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "BookNow_hotel",
           "args": null
         }
       ],
@@ -54,6 +59,11 @@ const node: ConcreteFragment = {
         {
           "kind": "FragmentSpread",
           "name": "RoomList",
+          "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "BookNow_availableRooms",
           "args": null
         }
       ],
