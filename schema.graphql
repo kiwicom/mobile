@@ -1,6 +1,3 @@
-# source: https://graphql.kiwi.com/
-# timestamp: Fri Dec 29 2017 10:11:51 GMT+0700 (+07)
-
 schema {
   query: RootQuery
   mutation: RootMutation
@@ -586,6 +583,9 @@ type HotelRoom {
 type HotelRoomAvailability {
   # The ID of an object
   id: ID!
+
+  # Original block ID used to open Booking.com page.
+  originalId: String @deprecated(reason: "Use \\\"id\\\" field whenever possible.")
 
   # Base price for the room in this configuration.
   minimalPrice: Price
