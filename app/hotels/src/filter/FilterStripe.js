@@ -4,6 +4,7 @@ import * as React from 'react';
 import { ScrollView, View } from 'react-native';
 
 import StarsFilter from './stars/StarsFilter';
+import PriceFilter from './price/PriceFilter';
 
 const styles = {
   view: {
@@ -30,6 +31,14 @@ export default class FilterStripe extends React.Component<{||}> {
           showsHorizontalScrollIndicator={false}
         >
           <StarsFilter onChange={this.handleChange} />
+          <PriceFilter
+            onChange={this.handleChange}
+            min={18}
+            max={365}
+            start={18}
+            end={365}
+            currency="EUR"
+          />
         </ScrollView>
       </View>
     );
