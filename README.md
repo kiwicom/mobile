@@ -86,7 +86,7 @@ In case you need additional dependency for the package, you should add it to the
 This application uses GraphQL API as a data source. You can find GraphQL schema in `schema.graphql` file. This schema is used by Relay Compiler and Relay Babel plugin to generate and validate queries for backend server. GraphQL API itself is evolving over time so you may need to update our snapshot. You can do it easily using this command:
 
 ```
-node ./scripts/getSchema.js
+yarn graphql:update
 ```
 
 Additional useful tools:

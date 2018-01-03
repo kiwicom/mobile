@@ -1,6 +1,7 @@
 // @flow
 
 const fs = require('fs');
+const path = require('path');
 const fetch = require('node-fetch');
 const {
   buildClientSchema,
@@ -20,4 +21,9 @@ fetch('https://graphql.kiwi.com/', {
 })
   .then(res => res.json())
   .then(schemaJSON => printSchema(buildClientSchema(schemaJSON.data)))
-  .then(clientSchema => fs.writeFileSync('./schema.graphql', clientSchema));
+  .then(clientSchema =>
+    fs.writeFileSync(
+      path.join(__dirname, '..', 'schema.graphql'),
+      clientSchema,
+    ),
+  );
