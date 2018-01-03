@@ -20,6 +20,7 @@ export { default as PartialFailure } from './src/errors/PartialFailure';
 export { default as DatePicker } from './src/forms/DatePicker';
 export { default as TextInput } from './src/forms/TextInput';
 export { default as NumberControl } from './src/forms/NumberControl';
+export { default as Slider } from './src/forms/Slider';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 
