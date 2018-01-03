@@ -5,7 +5,7 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type HeaderContainer_hotel = {|
+export type Header_hotel = {|
   +name: ?string;
   +mainPhoto: ?{|
     +highResUrl: ?string;
@@ -34,7 +34,7 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "HeaderContainer_hotel",
+  "name": "Header_hotel",
   "selections": [
     {
       "kind": "ScalarField",

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 
-import RoomRowContainer from './RoomRowContainer';
+import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
 
 const styles = StyleSheet.create({
@@ -17,39 +17,49 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
-  data: RoomListType,
-  onGoToPayment: ({
-    hotelId: number,
-    rooms: Array<{| id: string, count: number |}>,
-  }) => void,
+type ContainerProps = {|
+  data: any,
+  select: (availabilityId: string) => void,
+  deselect: (availabilityId: string) => void,
+  selected: {
+    [string]: number,
+  },
 |};
+
+type Props = {
+  ...ContainerProps,
+  data: ?RoomListType,
+};
 
 class RoomList extends React.Component<Props> {
   render() {
+    const { data, select, deselect, selected } = this.props;
     return (
       <View>
         <View>
           <Text style={styles.title}>Rooms</Text>
         </View>
-        {this.props.data.map(availableRoom => (
-          <RoomRowContainer
-            key={availableRoom.id}
-            availableRoom={availableRoom}
-            onGoToPayment={this.props.onGoToPayment}
-          />
-        ))}
+        {data &&
+          data.map(availableRoom => (
+            <RoomRow
+              key={availableRoom.id}
+              availableRoom={availableRoom}
+              select={select}
+              deselect={deselect}
+              selected={selected}
+            />
+          ))}
       </View>
     );
   }
 }
 
-export default createFragmentContainer(
+export default (createFragmentContainer(
   RoomList,
   graphql`
     fragment RoomList on HotelRoomAvailability @relay(plural: true) {
       id
-      ...RoomRowContainer_availableRoom
+      ...RoomRow_availableRoom
     }
   `,
-);
+): React.ComponentType<ContainerProps>);

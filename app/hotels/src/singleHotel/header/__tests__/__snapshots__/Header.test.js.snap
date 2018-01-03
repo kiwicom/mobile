@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders without crashing 1`] = `
+<View>
+  <NetworkImage
+    source={
+      Object {
+        "uri": undefined,
+      }
+    }
+    style={
+      Object {
+        "height": 150,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flexDirection": "row",
+        "height": 150,
+        "marginTop": -150,
+      }
+    }
+  >
+    <StretchedImage
+      source={1}
+    />
+    <View
+      style={
+        Object {
+          "marginBottom": 10,
+          "marginLeft": 15,
+          "marginRight": 15,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#ffffff",
+            "fontSize": 18,
+            "fontWeight": "600",
+            "letterSpacing": -0.45,
+            "lineHeight": 18,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#ffffff",
+            "fontSize": 12,
+          }
+        }
+      >
+        <Rating
+          description={undefined}
+          score={undefined}
+          stars={undefined}
+        />
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`renders without crashing with missing data 1`] = `
+<View>
+  <NetworkImage
+    source={
+      Object {
+        "uri": undefined,
+      }
+    }
+    style={
+      Object {
+        "height": 150,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flexDirection": "row",
+        "height": 150,
+        "marginTop": -150,
+      }
+    }
+  >
+    <StretchedImage
+      source={1}
+    />
+    <View
+      style={
+        Object {
+          "marginBottom": 10,
+          "marginLeft": 15,
+          "marginRight": 15,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#ffffff",
+            "fontSize": 18,
+            "fontWeight": "600",
+            "letterSpacing": -0.45,
+            "lineHeight": 18,
+          }
+        }
+      />
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#ffffff",
+            "fontSize": 12,
+          }
+        }
+      >
+        <Rating
+          description={undefined}
+          score={undefined}
+          stars={undefined}
+        />
+      </Text>
+    </View>
+  </View>
+</View>
+`;
