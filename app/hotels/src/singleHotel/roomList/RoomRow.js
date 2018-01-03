@@ -3,11 +3,12 @@
 import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import idx from 'idx';
-import { NetworkImage, Button } from '@kiwicom/react-native-app-common';
+import { NetworkImage } from '@kiwicom/react-native-app-common';
 import ReadMore from 'react-native-read-more-text';
+import { createFragmentContainer, graphql } from 'react-relay';
 
+import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
 import RoomPicker from '../roomPicker/RoomPicker';
-import type { RoomRowContainer_availableRoom } from './__generated__/RoomRowContainer_availableRoom.graphql';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,32 +45,35 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
-  availableRoom: RoomRowContainer_availableRoom,
-  onGoToPayment: ({
-    hotelId: number,
-    rooms: Array<{| id: string, count: number |}>,
-  }) => void,
+type ContainerProps = {|
+  availableRoom: ?Object,
+  select: (availabilityId: string) => void,
+  deselect: (availabilityId: string) => void,
+  selected: {
+    [string]: number,
+  },
 |};
 
-export default class RoomRow extends React.Component<Props> {
-  doNothing() {}
+type Props = {
+  ...ContainerProps,
+  availableRoom: ?RoomRow_availableRoom,
+};
 
-  handleGoToPayment = () => {
-    this.props.onGoToPayment({
-      hotelId: 77094, // TODO: real value
-      rooms: [
-        // TODO: real selected date (waiting for GraphQL update - originalId)
-        {
-          id: '7709411_91461863_1_1_0',
-          count: 1,
-        },
-        {
-          id: '7709404_91461863_0_1_0',
-          count: 1,
-        },
-      ],
-    });
+export class RoomRow extends React.Component<Props> {
+  select = () => {
+    const { availableRoom, select } = this.props;
+    const originalId = idx(availableRoom, _ => _.originalId);
+    if (originalId) {
+      select(originalId);
+    }
+  };
+
+  deselect = () => {
+    const { availableRoom, deselect } = this.props;
+    const originalId = idx(availableRoom, _ => _.originalId);
+    if (originalId) {
+      deselect(originalId);
+    }
   };
 
   render = () => {
@@ -84,6 +88,8 @@ export default class RoomRow extends React.Component<Props> {
     const currency = idx(availableRoom, _ => _.minimalPrice.currency);
     const selectableCount =
       idx(availableRoom, _ => _.incrementalPrice.length) || 0;
+    const originalId = idx(availableRoom, _ => _.originalId) || '';
+    const selectedCount = idx(this.props.selected, _ => _[originalId]) || 0;
 
     return (
       <View style={styles.container}>
@@ -94,7 +100,7 @@ export default class RoomRow extends React.Component<Props> {
           />
           <View style={styles.details}>
             <Text style={styles.title}>{title}</Text>
-            {description && (
+            {description != null && (
               <View>
                 <View style={styles.delimiter} />
                 <ReadMore numberOfLines={2}>
@@ -109,17 +115,48 @@ export default class RoomRow extends React.Component<Props> {
             <RoomPicker
               price={price}
               currency={currency}
-              selectedCount={0}
+              selectedCount={selectedCount}
               selectableCount={selectableCount}
-              increment={this.doNothing}
-              decrement={this.doNothing}
+              increment={this.select}
+              decrement={this.deselect}
             />
           )}
-        <Button
-          title="Go To Payment (REMOVE THIS)"
-          onPress={this.handleGoToPayment}
-        />
       </View>
     );
   };
 }
+
+export default (createFragmentContainer(
+  RoomRow,
+  graphql`
+    fragment RoomRow_availableRoom on HotelRoomAvailability {
+      originalId
+      room {
+        description {
+          title
+          text
+        }
+        type
+        bedding {
+          type
+          amount
+        }
+        photos {
+          edges {
+            node {
+              thumbnailUrl
+            }
+          }
+        }
+      }
+      minimalPrice {
+        amount
+        currency
+      }
+      incrementalPrice {
+        amount
+        currency
+      }
+    }
+  `,
+): React.ComponentType<ContainerProps>);

@@ -5,7 +5,7 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type LocationContainer_hotel = {|
+export type Location_hotel = {|
   +address: ?{|
     +street: ?string;
     +city: ?string;
@@ -21,7 +21,7 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "LocationContainer_hotel",
+  "name": "Location_hotel",
   "selections": [
     {
       "kind": "LinkedField",

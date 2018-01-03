@@ -5,7 +5,8 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type RoomRowContainer_availableRoom = {|
+export type RoomRow_availableRoom = {|
+  +originalId: ?string;
   +room: ?{|
     +description: ?{|
       +title: ?string;
@@ -39,8 +40,15 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "RoomRowContainer_availableRoom",
+  "name": "RoomRow_availableRoom",
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "args": null,
+      "name": "originalId",
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,

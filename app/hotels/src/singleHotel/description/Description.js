@@ -4,8 +4,9 @@ import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
 import idx from 'idx';
+import { createFragmentContainer, graphql } from 'react-relay';
 
-import type { DescriptionContainer_hotel } from './__generated__/DescriptionContainer_hotel.graphql';
+import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,11 +69,16 @@ const renderRevealedFooter = (handlePress: () => void) => (
   <Link label="Show Less" handlePress={handlePress} />
 );
 
-type Props = {|
-  hotel: DescriptionContainer_hotel,
+type ContainerProps = {|
+  hotel: any,
 |};
 
-export default function Description({ hotel }: Props) {
+type Props = {
+  ...ContainerProps,
+  hotel: ?Description_hotel,
+};
+
+export function Description({ hotel }: Props) {
   const facilitiesEdges = idx(hotel, _ => _.facilities.edges) || [];
   const facilities = facilitiesEdges.map(edge => idx(edge, _ => _.node));
 
@@ -84,7 +90,7 @@ export default function Description({ hotel }: Props) {
           renderTruncatedFooter={renderTruncatedFooter}
           renderRevealedFooter={renderRevealedFooter}
         >
-          <Text>{hotel.summary}</Text>
+          <Text>{idx(hotel, _ => _.summary)}</Text>
         </ReadMore>
       </View>
       <View style={styles.facilities}>
@@ -101,3 +107,20 @@ export default function Description({ hotel }: Props) {
     </View>
   );
 }
+
+export default (createFragmentContainer(
+  Description,
+  graphql`
+    fragment Description_hotel on Hotel {
+      summary
+      facilities {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
+    }
+  `,
+): React.ComponentType<ContainerProps>);

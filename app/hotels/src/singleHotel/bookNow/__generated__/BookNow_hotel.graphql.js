@@ -5,33 +5,26 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type RoomList = $ReadOnlyArray<{|
-  +id: string;
-|}>;
+export type BookNow_hotel = {|
+  +originalId: ?string;
+|};
 
 
 const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": {
-    "plural": true
-  },
-  "name": "RoomList",
+  "metadata": null,
+  "name": "BookNow_hotel",
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
       "args": null,
-      "name": "id",
+      "name": "originalId",
       "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "RoomRow_availableRoom",
-      "args": null
     }
   ],
-  "type": "HotelRoomAvailability"
+  "type": "Hotel"
 };
 
 module.exports = node;
