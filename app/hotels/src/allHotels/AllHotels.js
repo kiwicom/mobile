@@ -46,10 +46,13 @@ export default class AllHotelsSearch extends React.Component<Props, State> {
     });
   };
 
-  isReadyToSearch = () => {
-    const { search } = this.state;
+  isReadyToSearch = (): boolean => {
+    const { search: s } = this.state;
     return (
-      search.latitude && search.longitude && search.checkin && search.checkout
+      s.latitude !== null &&
+      s.longitude !== null &&
+      s.checkin !== null &&
+      s.checkout !== null
     );
   };
 
