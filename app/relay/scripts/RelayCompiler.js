@@ -182,8 +182,8 @@ const getSchema = (schemaPath: string): GraphQLSchema => {
   try {
     let source = fs.readFileSync(schemaPath, 'utf8');
     source = `
-  directive @include(if: Boolean) on FRAGMENT | FIELD
-  directive @skip(if: Boolean) on FRAGMENT | FIELD
+  directive @include(if: Boolean) on FRAGMENT_SPREAD | FIELD
+  directive @skip(if: Boolean) on FRAGMENT_SPREAD | FIELD
 
   ${source}
   `;
