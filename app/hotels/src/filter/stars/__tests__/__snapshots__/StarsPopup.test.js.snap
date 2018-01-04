@@ -20,7 +20,6 @@ exports[`StarsPopup should render popup 1`] = `
     Hotel stars
   </Text>
   <StarsCheckbox
-    hotels={20}
     isChecked={false}
     onPress={[Function]}
     stars={5}
@@ -32,7 +31,6 @@ exports[`StarsPopup should render popup 1`] = `
     }
   />
   <StarsCheckbox
-    hotels={87}
     isChecked={false}
     onPress={[Function]}
     stars={4}
@@ -44,7 +42,6 @@ exports[`StarsPopup should render popup 1`] = `
     }
   />
   <StarsCheckbox
-    hotels={152}
     isChecked={false}
     onPress={[Function]}
     stars={3}
@@ -56,7 +53,6 @@ exports[`StarsPopup should render popup 1`] = `
     }
   />
   <StarsCheckbox
-    hotels={87}
     isChecked={false}
     onPress={[Function]}
     stars={2}
@@ -68,7 +64,6 @@ exports[`StarsPopup should render popup 1`] = `
     }
   />
   <StarsCheckbox
-    hotels={152}
     isChecked={false}
     onPress={[Function]}
     stars={1}
@@ -80,7 +75,6 @@ exports[`StarsPopup should render popup 1`] = `
     }
   />
   <StarsCheckbox
-    hotels={865}
     isChecked={false}
     onPress={[Function]}
     text="Unrated"

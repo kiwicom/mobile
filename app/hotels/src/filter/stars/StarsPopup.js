@@ -47,42 +47,36 @@ export default class StarsPopup extends React.Component<Props, State> {
         <Text style={styles.title}>Hotel stars</Text>
         <StarsCheckbox
           stars={5}
-          hotels={20}
           isChecked={stars.five}
           style={styles.delimiter}
           onPress={this.handleCheckboxOnPress('five')}
         />
         <StarsCheckbox
           stars={4}
-          hotels={87}
           isChecked={stars.four}
           style={styles.delimiter}
           onPress={this.handleCheckboxOnPress('four')}
         />
         <StarsCheckbox
           stars={3}
-          hotels={152}
           isChecked={stars.three}
           style={styles.delimiter}
           onPress={this.handleCheckboxOnPress('three')}
         />
         <StarsCheckbox
           stars={2}
-          hotels={87}
           isChecked={stars.two}
           style={styles.delimiter}
           onPress={this.handleCheckboxOnPress('two')}
         />
         <StarsCheckbox
           stars={1}
-          hotels={152}
           isChecked={stars.one}
           style={styles.delimiter}
           onPress={this.handleCheckboxOnPress('one')}
         />
         <StarsCheckbox
           text="Unrated"
-          hotels={865}
           isChecked={stars.unrated}
           onPress={this.handleCheckboxOnPress('unrated')}
         />

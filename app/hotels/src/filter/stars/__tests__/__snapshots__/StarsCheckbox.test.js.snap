@@ -20,6 +20,8 @@ exports[`StarsCheckbox render checked 1`] = `
       style={
         Object {
           "flex": 3,
+          "height": 26,
+          "justifyContent": "center",
         }
       }
     >
@@ -37,22 +39,6 @@ exports[`StarsCheckbox render checked 1`] = `
         <Stars
           rating={5}
         />
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#757575",
-            "fontSize": 12,
-            "marginLeft": 3,
-          }
-        }
-      >
-        123
-         hotel
-        s
       </Text>
     </View>
     <View
@@ -95,6 +81,8 @@ exports[`StarsCheckbox render text instead of stars 1`] = `
       style={
         Object {
           "flex": 3,
+          "height": 26,
+          "justifyContent": "center",
         }
       }
     >
@@ -112,28 +100,12 @@ exports[`StarsCheckbox render text instead of stars 1`] = `
       >
         Some text
       </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#757575",
-            "fontSize": 12,
-            "marginLeft": 3,
-          }
-        }
-      >
-        123
-         hotel
-        s
-      </Text>
     </View>
   </View>
 </TouchableWithoutFeedback>
 `;
 
-exports[`StarsCheckbox render unchecked with 1 star and 1 hotel 1`] = `
+exports[`StarsCheckbox render unchecked with 1 star 1`] = `
 <TouchableWithoutFeedback
   onPress={[Function]}
 >
@@ -153,6 +125,8 @@ exports[`StarsCheckbox render unchecked with 1 star and 1 hotel 1`] = `
       style={
         Object {
           "flex": 3,
+          "height": 26,
+          "justifyContent": "center",
         }
       }
     >
@@ -171,28 +145,12 @@ exports[`StarsCheckbox render unchecked with 1 star and 1 hotel 1`] = `
           rating={1}
         />
       </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#757575",
-            "fontSize": 12,
-            "marginLeft": 3,
-          }
-        }
-      >
-        1
-         hotel
-        
-      </Text>
     </View>
   </View>
 </TouchableWithoutFeedback>
 `;
 
-exports[`StarsCheckbox render unchecked with stars and hotels 1`] = `
+exports[`StarsCheckbox render unchecked with 3 stars 1`] = `
 <TouchableWithoutFeedback
   onPress={[Function]}
 >
@@ -212,6 +170,8 @@ exports[`StarsCheckbox render unchecked with stars and hotels 1`] = `
       style={
         Object {
           "flex": 3,
+          "height": 26,
+          "justifyContent": "center",
         }
       }
     >
@@ -229,22 +189,6 @@ exports[`StarsCheckbox render unchecked with stars and hotels 1`] = `
         <Stars
           rating={3}
         />
-      </Text>
-      <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
-        style={
-          Object {
-            "color": "#757575",
-            "fontSize": 12,
-            "marginLeft": 3,
-          }
-        }
-      >
-        10
-         hotel
-        s
       </Text>
     </View>
   </View>
