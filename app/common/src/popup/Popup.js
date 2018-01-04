@@ -13,6 +13,8 @@ type Props = {|
   onSave: () => void,
 |};
 
+export const POPUP_PADDING = 20;
+
 export default class Popup extends React.Component<Props> {
   onClose = () => this.props.onClose();
 
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
   content: {
     backgroundColor: '#fff',
     opacity: 1,
-    padding: 20,
+    padding: POPUP_PADDING,
   },
   button: {
     marginTop: 20,
