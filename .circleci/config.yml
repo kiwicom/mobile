@@ -6,7 +6,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8
+
+    working_directory: ~/react-native-app
 
     steps:
       - checkout
@@ -14,7 +16,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
@@ -23,10 +25,10 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Run tests!
       - run: yarn test-ci
 
       # Build and deploy tested version
-      - run: node scripts/expo
+      #- run: node scripts/expo
