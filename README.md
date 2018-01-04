@@ -36,8 +36,6 @@ yarn upgrade @kiwicom
 
 All sensitive environment variables are stored in `.env` file. You should setup these variables if you want 100% of all functions.
 
----
-
 **Information for Kiwi.com employees:** all environment variables are shared using [Vault](https://www.vaultproject.io/). Ask your colleagues how to get them. You'll first need VPN, secret key (token) and Vault namespace.
 
 ## Testing
@@ -73,7 +71,6 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 │   ├── hotels/                 - @kiwicom/react-native-app-hotels
 │   └── relay/                  - @kiwicom/react-native-app-relay
 ├── scripts/                    - support scripts for the whole monorepo
-├── .travis.yml                 - CI configuration
 ├── App.js                      - bootstrap component
 ├── app.json                    - application settings for Expo
 └── schema.graphql              - GraphQL schema of the backend server
