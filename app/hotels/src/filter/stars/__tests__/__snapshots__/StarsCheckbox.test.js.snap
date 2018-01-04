@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarsCheckbox render checked 1`] = `
+<TouchableWithoutFeedback
+  onPress={[Function]}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "paddingBottom": 8,
+          "paddingTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 3,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#0097a9",
+            "fontSize": 16,
+          }
+        }
+      >
+        <Stars
+          rating={5}
+        />
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#757575",
+            "fontSize": 12,
+            "marginLeft": 3,
+          }
+        }
+      >
+        123
+         hotel
+        s
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Icon
+        allowFontScaling={false}
+        color="#0097a9"
+        name="check"
+        size={26}
+      />
+    </View>
+  </View>
+</TouchableWithoutFeedback>
+`;
+
+exports[`StarsCheckbox render text instead of stars 1`] = `
+<TouchableWithoutFeedback
+  onPress={[Function]}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "paddingBottom": 8,
+          "paddingTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 3,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "fontSize": 16,
+            "fontWeight": "300",
+            "marginLeft": 3,
+          }
+        }
+      >
+        Some text
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#757575",
+            "fontSize": 12,
+            "marginLeft": 3,
+          }
+        }
+      >
+        123
+         hotel
+        s
+      </Text>
+    </View>
+  </View>
+</TouchableWithoutFeedback>
+`;
+
+exports[`StarsCheckbox render unchecked with 1 star and 1 hotel 1`] = `
+<TouchableWithoutFeedback
+  onPress={[Function]}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "paddingBottom": 8,
+          "paddingTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 3,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#0097a9",
+            "fontSize": 16,
+          }
+        }
+      >
+        <Stars
+          rating={1}
+        />
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#757575",
+            "fontSize": 12,
+            "marginLeft": 3,
+          }
+        }
+      >
+        1
+         hotel
+        
+      </Text>
+    </View>
+  </View>
+</TouchableWithoutFeedback>
+`;
+
+exports[`StarsCheckbox render unchecked with stars and hotels 1`] = `
+<TouchableWithoutFeedback
+  onPress={[Function]}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "paddingBottom": 8,
+          "paddingTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 3,
+        }
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#0097a9",
+            "fontSize": 16,
+          }
+        }
+      >
+        <Stars
+          rating={3}
+        />
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "#757575",
+            "fontSize": 12,
+            "marginLeft": 3,
+          }
+        }
+      >
+        10
+         hotel
+        s
+      </Text>
+    </View>
+  </View>
+</TouchableWithoutFeedback>
+`;
