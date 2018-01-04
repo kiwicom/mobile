@@ -28,7 +28,7 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Run tests!
-      - run: yarn test-ci
+      - run: yarn test-ci-circle
 
       # Build and deploy tested version
       #- run: node scripts/expo
