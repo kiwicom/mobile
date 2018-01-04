@@ -6,7 +6,6 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Color, Stars } from '@kiwicom/react-native-app-common';
 
 type Props = {|
-  hotels: number,
   onPress: () => void,
   stars?: number,
   isChecked?: boolean,
@@ -26,9 +25,6 @@ export default function StarsCheckbox(props: Props) {
           ) : (
             <Text style={styles.text}>{props.text}</Text>
           )}
-          <Text style={styles.hotels}>
-            {props.hotels} hotel{props.hotels === 1 ? '' : 's'}
-          </Text>
         </View>
         {props.isChecked && (
           <View style={styles.check}>
@@ -48,6 +44,8 @@ const styles = StyleSheet.create({
   },
   label: {
     flex: 3,
+    justifyContent: 'center',
+    height: 26,
   },
   stars: {
     fontSize: 16,

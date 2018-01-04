@@ -8,35 +8,26 @@ import StarsCheckbox from '../StarsCheckbox';
 const renderer = new ShallowRenderer();
 
 describe('StarsCheckbox', () => {
-  it('render unchecked with 1 star and 1 hotel', () => {
-    const starsCheckbox = (
-      <StarsCheckbox stars={1} hotels={1} onPress={jest.fn()} />
-    );
+  it('render unchecked with 1 star', () => {
+    const starsCheckbox = <StarsCheckbox stars={1} onPress={jest.fn()} />;
     expect(renderer.render(starsCheckbox)).toMatchSnapshot();
   });
 
-  it('render unchecked with stars and hotels', () => {
-    const starsCheckbox = (
-      <StarsCheckbox stars={3} hotels={10} onPress={jest.fn()} />
-    );
+  it('render unchecked with 3 stars', () => {
+    const starsCheckbox = <StarsCheckbox stars={3} onPress={jest.fn()} />;
     expect(renderer.render(starsCheckbox)).toMatchSnapshot();
   });
 
   it('render checked', () => {
     const starsCheckbox = (
-      <StarsCheckbox
-        stars={5}
-        hotels={123}
-        isChecked={true}
-        onPress={jest.fn()}
-      />
+      <StarsCheckbox stars={5} isChecked={true} onPress={jest.fn()} />
     );
     expect(renderer.render(starsCheckbox)).toMatchSnapshot();
   });
 
   it('render text instead of stars', () => {
     const starsCheckbox = (
-      <StarsCheckbox text="Some text" hotels={123} onPress={jest.fn()} />
+      <StarsCheckbox text="Some text" onPress={jest.fn()} />
     );
     expect(renderer.render(starsCheckbox)).toMatchSnapshot();
   });
