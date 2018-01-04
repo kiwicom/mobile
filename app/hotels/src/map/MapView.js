@@ -4,7 +4,7 @@ import idx from 'idx';
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet } from 'react-native';
-import { MapView, type Region, type LatLng } from 'expo';
+import { MapView } from 'expo';
 import { orderByDistance, getBounds } from 'geolib';
 
 import PriceMarker from './PriceMarker';
@@ -17,7 +17,12 @@ type Props = {|
 |};
 
 type State = {|
-  region: Region,
+  region: ?{|
+    latitude: number,
+    longitude: number,
+    latitudeDelta: number,
+    longitudeDelta: number,
+  |},
 |};
 
 type MarkerPressEvent = {|
@@ -29,11 +34,16 @@ type MarkerPressEvent = {|
   },
 |};
 
+type LatLng = {|
+  latitude: number,
+  longitude: number,
+|};
+
 const styles = StyleSheet.create({
   map: StyleSheet.absoluteFillObject,
 });
 
-class Map extends React.Component<Props, State> {
+export class Map extends React.Component<Props, State> {
   map: typeof MapView | null;
 
   constructor(props: Props) {
@@ -50,7 +60,7 @@ class Map extends React.Component<Props, State> {
     }
   };
 
-  getCoordinate = (hotel: Object) => {
+  getCoordinate = (hotel: Object): LatLng | null => {
     const coordinate = idx(hotel, _ => _.node.hotel.coordinates);
 
     if (coordinate) {
@@ -63,11 +73,11 @@ class Map extends React.Component<Props, State> {
     return null;
   };
 
-  getCoordinates = (hotels: MapViewData) => {
+  getCoordinates = (hotels: MapViewData): LatLng[] => {
     return hotels.map(this.getCoordinate).filter(Boolean);
   };
 
-  getDelta = (selectedCoordinate, coordinates) => {
+  getDelta = (selectedCoordinate: LatLng, coordinates: LatLng[]) => {
     const distances = orderByDistance(selectedCoordinate, coordinates);
 
     if (coordinates.length === 1) {
