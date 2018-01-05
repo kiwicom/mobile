@@ -9,6 +9,7 @@ import type { AllHotelsMapQueryResponse } from './__generated__/AllHotelsMapQuer
 import type { SearchParametersType } from '../allHotels/searchForm/SearchParametersType';
 
 type Props = {|
+  cityId: string | null,
   search: SearchParametersType,
   onFilterChange: SearchParametersType => void,
   onGoToSingleHotel: string => void,
@@ -20,6 +21,8 @@ class AllHotelsMap extends React.Component<Props> {
   );
 
   render = () => {
+    const { cityId, search } = this.props;
+
     return (
       <PublicApiRenderer
         query={graphql`
@@ -30,7 +33,10 @@ class AllHotelsMap extends React.Component<Props> {
           }
         `}
         variables={{
-          search: this.props.search,
+          search: {
+            cityId,
+            ...search,
+          },
         }}
         render={this.renderInnerComponent}
         cacheConfig={{ force: true }}

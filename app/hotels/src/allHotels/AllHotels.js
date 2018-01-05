@@ -2,35 +2,41 @@
 
 import * as React from 'react';
 import { graphql } from 'react-relay';
-import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import { Layout } from '@kiwicom/react-native-app-common';
+import { SimpleQueryRenderer } from '@kiwicom/react-native-app-relay';
+import moment from 'moment/moment';
+import idx from 'idx';
 
-import SearchForm from './searchForm/SearchForm';
-import FilterStripe from '../filter/FilterStripe';
-import AllHotelsSearchList from './AllHotelsSearchList';
-import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
-import type { SearchParametersType } from './searchForm/SearchParametersType';
+import AllHotelsSearch from './AllHotelsSearch';
+import type {
+  SearchParametersType,
+  OnChangeSearchParams,
+} from './searchForm/SearchParametersType';
 import type { AvailableHotelSearchInput } from '../singleHotel';
 
 type Props = {|
+  location: string,
   search: SearchParametersType,
   openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  onFilterChange: (filter: SearchParametersType) => void,
+  onFilterChange: (filter: OnChangeSearchParams) => void,
+  onLocationChange: (location: string) => void,
+  onCityIdChange: (cityId: string | null) => void,
 |};
 
-export default class AllHotelsSearch extends React.Component<Props> {
-  handleSearchChange = (search: SearchParametersType) => {
-    this.props.onFilterChange(search);
-  };
-
-  isReadyToSearch = (): boolean => {
-    const { search: s } = this.props;
-    return (
-      s.latitude !== null &&
-      s.longitude !== null &&
-      s.checkin !== null &&
-      s.checkout !== null
-    );
+export default class AllHotels extends React.Component<Props> {
+  /**
+   * Submit form with the initial date interval parameters.
+   */
+  componentDidMount = () => {
+    this.props.onFilterChange({
+      checkin: moment()
+        .add(1, 'week')
+        .startOf('isoWeek')
+        .format('YYYY-MM-DD'),
+      checkout: moment()
+        .add(1, 'week')
+        .endOf('isoWeek')
+        .format('YYYY-MM-DD'),
+    });
   };
 
   handleOpenSingleHotel = (hotelId: string) => {
@@ -52,36 +58,49 @@ export default class AllHotelsSearch extends React.Component<Props> {
     }
   };
 
-  renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => (
-    <AllHotelsSearchList
-      data={propsFromRenderer.allHotels}
-      openSingleHotel={this.handleOpenSingleHotel}
-    />
-  );
+  renderInnerComponent = (rendererProps: { error: Object, props: Object }) => {
+    const {
+      onFilterChange,
+      search,
+      location,
+      onLocationChange,
+      onCityIdChange,
+    } = this.props;
+    const data = idx(rendererProps, _ => _.props.city) || null;
+    const isLoading =
+      rendererProps.error === null && rendererProps.props === null;
+
+    return (
+      <AllHotelsSearch
+        data={data}
+        search={search}
+        location={location}
+        isLoading={isLoading}
+        onFilterChange={onFilterChange}
+        onLocationChange={onLocationChange}
+        onCityIdChange={onCityIdChange}
+        openSingleHotel={this.handleOpenSingleHotel}
+      />
+    );
+  };
 
   render = () => {
-    const { search } = this.props;
+    const { location } = this.props;
+
     return (
-      <Layout>
-        <SearchForm onChange={this.handleSearchChange} />
-        <FilterStripe />
-        {this.isReadyToSearch() && (
-          <PublicApiRenderer
-            query={graphql`
-              query AllHotelsSearchQuery($search: HotelsSearchInput!) {
-                allHotels: allAvailableHotels(search: $search) {
-                  ...AllHotelsSearchList
-                }
-              }
-            `}
-            variables={{ search }}
-            render={this.renderInnerComponent}
-            cacheConfig={{
-              force: true,
-            }}
-          />
-        )}
-      </Layout>
+      <SimpleQueryRenderer
+        query={graphql`
+          query AllHotelsQuery($prefix: String!) {
+            city: hotelCities(prefix: $prefix, first: 1) {
+              ...AllHotelsSearch
+            }
+          }
+        `}
+        render={this.renderInnerComponent}
+        variables={{
+          prefix: location,
+        }}
+      />
     );
   };
 }

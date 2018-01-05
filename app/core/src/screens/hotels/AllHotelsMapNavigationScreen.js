@@ -16,6 +16,7 @@ type ContainerProps = {|
 |};
 
 type StateProps = {|
+  cityId: string | null,
   search: HotelsSearchParametersType,
 |};
 
@@ -35,12 +36,14 @@ function AllHotelsMapNavigationScreen(props: Props) {
       onGoToSingleHotel={goToHotel}
       onFilterChange={props.onFilterChange}
       search={props.search}
+      cityId={props.cityId}
     />
   );
 }
 
 const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
   search: hotels.searchParams,
+  cityId: hotels.cityId,
 });
 
 const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({

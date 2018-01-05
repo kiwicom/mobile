@@ -9,9 +9,11 @@ import Guests from './guests/Guests';
 import type {
   RoomConfigurationType,
   SearchParametersType,
+  OnChangeSearchParams,
 } from './SearchParametersType';
 
-const DATE_FORMAT = 'DD/MM/YYYY';
+const DISPLAY_DATE_FORMAT = 'DD/MM/YYYY';
+const DATA_DATE_FORMAT = 'YYYY-MM-DD';
 
 const styles = StyleSheet.create({
   form: {
@@ -31,55 +33,17 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
-  onChange: (search: SearchParametersType) => void,
-|};
+type Props = {
+  location: string,
+  search: SearchParametersType,
+  onChange: (search: OnChangeSearchParams) => void,
+  onLocationChange: (location: string) => void,
+};
 
-type State = {|
-  destination: string | null,
-  latitude: number | null,
-  longitude: number | null,
-  checkin: string | null,
-  checkout: string | null,
-  roomsConfiguration: RoomConfigurationType,
-|};
-
-export default class SearchForm extends React.Component<Props, State> {
-  // TODO do not format to string and then recreate moment object again for GraphQl in AllHotels
-  state = {
-    destination: 'Prague',
-    latitude: 50.0755,
-    longitude: 14.4378,
-    checkin: moment()
-      .add(1, 'week')
-      .startOf('isoWeek')
-      .format(DATE_FORMAT),
-    checkout: moment()
-      .add(1, 'week')
-      .endOf('isoWeek')
-      .format(DATE_FORMAT),
-    roomsConfiguration: {
-      adultsCount: 1,
-      children: [],
-    },
+class SearchForm extends React.Component<Props> {
+  handleDestinationChange = (location: string) => {
+    this.props.onLocationChange(location);
   };
-
-  /**
-   * Submit form with the initial search parameters.
-   */
-  componentDidMount = () => this.handleOnChange();
-
-  handleOnChange = () =>
-    this.props.onChange({
-      latitude: this.state.latitude,
-      longitude: this.state.longitude,
-      checkin: moment(this.state.checkin, DATE_FORMAT).format('YYYY-MM-DD'),
-      checkout: moment(this.state.checkout, DATE_FORMAT).format('YYYY-MM-DD'),
-      roomsConfiguration: this.state.roomsConfiguration,
-    });
-
-  handleDestinationChange = (destination: string) =>
-    this.setState({ destination }, () => this.handleOnChange());
 
   handleCheckinChange = (date: string) =>
     this.handleDateChange(date, 'checkin');
@@ -87,19 +51,26 @@ export default class SearchForm extends React.Component<Props, State> {
   handleCheckoutChange = (date: string) =>
     this.handleDateChange(date, 'checkout');
 
-  handleDateChange = (date: string, type: 'checkin' | 'checkout') =>
-    this.setState({ [type]: date }, () => this.handleOnChange());
+  handleDateChange = (datestring: string, type: 'checkin' | 'checkout') => {
+    const date = moment(datestring, DISPLAY_DATE_FORMAT).format(
+      DATA_DATE_FORMAT,
+    );
+
+    this.props.onChange({ [type]: date });
+  };
 
   handleGuestsChange = (roomsConfiguration: RoomConfigurationType) => {
-    this.setState({ roomsConfiguration }, () => this.handleOnChange());
+    this.props.onChange({ roomsConfiguration });
   };
 
   render = () => {
+    const { search, location } = this.props;
+
     return (
       <View style={styles.form}>
         <View style={styles.destination}>
           <TextInput
-            value={this.state.destination}
+            value={location}
             onChangeText={this.handleDestinationChange}
             placeholder="Where do you go?"
             iconName="location-city"
@@ -108,20 +79,20 @@ export default class SearchForm extends React.Component<Props, State> {
         <View style={styles.row}>
           <DatePicker
             placeholder="Start date"
-            format={DATE_FORMAT}
-            date={this.state.checkin}
+            format={DISPLAY_DATE_FORMAT}
+            date={moment(search.checkin, DATA_DATE_FORMAT).toDate()}
             onDateChange={this.handleCheckinChange}
             style={styles.datePicker}
           />
           <DatePicker
             placeholder="End date"
-            format={DATE_FORMAT}
-            date={this.state.checkout}
+            format={DISPLAY_DATE_FORMAT}
+            date={moment(search.checkout, DATA_DATE_FORMAT).toDate()}
             onDateChange={this.handleCheckoutChange}
             style={styles.datePicker}
           />
           <Guests
-            guests={this.state.roomsConfiguration}
+            guests={search.roomsConfiguration}
             onChange={this.handleGuestsChange}
           />
         </View>
@@ -129,3 +100,5 @@ export default class SearchForm extends React.Component<Props, State> {
     );
   };
 }
+
+export default SearchForm;
