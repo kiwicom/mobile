@@ -3,15 +3,11 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Text, View, StyleSheet } from 'react-native';
-import {
-  SimpleCard,
-  Color,
-  Price,
-  NetworkImage,
-  Stars,
-} from '@kiwicom/react-native-app-common';
+import { View, StyleSheet } from 'react-native';
+import { SimpleCard, NetworkImage } from '@kiwicom/react-native-app-common';
 
+import HotelTitle from './HotelTitle';
+import HotelReviewScore from './HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
 
 type Props = {|
@@ -25,22 +21,12 @@ const style = StyleSheet.create({
   },
   image: {
     width: 50,
-    height: 75,
+    height: 60,
     borderRadius: 2,
   },
   hotelWrapper: {
-    flexGrow: 1,
-  },
-  hotelTitle: {
-    fontWeight: 'bold',
-  },
-  hotelRating: {
-    fontSize: 12,
-    color: Color.grey.$600,
-  },
-  hotelPrice: {
-    fontWeight: 'bold',
-    color: Color.brand,
+    flex: 1,
+    flexDirection: 'row',
   },
 });
 
@@ -51,17 +37,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
 
   render = () => {
     const { data } = this.props;
-    const price = {
-      ...{
-        // default null object
-        amount: null,
-        currency: null,
-      },
-      ...data.price,
-    };
     const thumbnailUrl = idx(data, _ => _.hotel.mainPhoto.thumbnailUrl);
-    const hotelName = idx(data, _ => _.hotel.name);
-    const hotelStars = idx(data, _ => _.hotel.rating.stars);
 
     return (
       <SimpleCard
@@ -77,17 +53,8 @@ class AllHotelsSearchRow extends React.Component<Props> {
           />
         </View>
         <View style={style.hotelWrapper}>
-          <Text>
-            <Text style={style.hotelTitle}>{hotelName}</Text>{' '}
-            <Text style={style.hotelRating}>
-              <Stars rating={hotelStars} />
-            </Text>
-          </Text>
-          <Price
-            amount={price.amount}
-            currency={price.currency}
-            style={style.hotelPrice}
-          />
+          <HotelTitle data={data} />
+          <HotelReviewScore hotel={data.hotel} />
         </View>
       </SimpleCard>
     );
@@ -99,18 +66,12 @@ export default createFragmentContainer(
   graphql`
     fragment AllHotelsSearchRow on HotelAvailability {
       id
-      price {
-        amount
-        currency
-      }
+      ...HotelTitle
       hotel {
-        name
         mainPhoto {
           thumbnailUrl
         }
-        rating {
-          stars
-        }
+        ...HotelReviewScore_hotel
       }
     }
   `,

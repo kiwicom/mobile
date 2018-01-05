@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ec4f06e3f309d6f5717f69ca8029e2d2
+ * @relayHash 00213221b31c683668593cad2b702a6c
  */
 
 /* eslint-disable */
@@ -30,20 +30,34 @@ fragment AllHotelsSearchList on HotelAvailabilityConnection {
 
 fragment AllHotelsSearchRow on HotelAvailability {
   id
+  ...HotelTitle
+  hotel {
+    mainPhoto {
+      thumbnailUrl
+      id
+    }
+    ...HotelReviewScore_hotel
+    id
+  }
+}
+
+fragment HotelTitle on HotelAvailability {
   price {
     amount
     currency
   }
   hotel {
     name
-    mainPhoto {
-      thumbnailUrl
-      id
-    }
     rating {
       stars
     }
     id
+  }
+}
+
+fragment HotelReviewScore_hotel on Hotel {
+  review {
+    score
   }
 }
 */
@@ -187,6 +201,31 @@ const node: ConcreteBatch = {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
+                        "concreteType": "HotelRating",
+                        "name": "rating",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "stars",
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "id",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
                         "concreteType": "HotelPhoto",
                         "name": "mainPhoto",
                         "plural": false,
@@ -212,25 +251,18 @@ const node: ConcreteBatch = {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
-                        "concreteType": "HotelRating",
-                        "name": "rating",
+                        "concreteType": "HotelReview",
+                        "name": "review",
                         "plural": false,
                         "selections": [
                           {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "name": "stars",
+                            "name": "score",
                             "storageKey": null
                           }
                         ],
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "id",
                         "storageKey": null
                       }
                     ],
@@ -247,7 +279,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels: allAvailableHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  id\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels: allAvailableHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  id\n  ...HotelTitle\n  hotel {\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n    id\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n"
 };
 
 module.exports = node;

@@ -1,6 +1,6 @@
 // @flow
 
-export { default as VerificationBadge } from './src/badge/VerificationBadge';
+export { default as AdaptableBadge } from './src/badge/AdaptableBadge';
 
 export { default as Button } from './src/buttons/Button';
 export { default as GoogleButton } from './src/buttons/GoogleButton';
