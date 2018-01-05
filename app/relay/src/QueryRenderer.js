@@ -40,6 +40,10 @@ export default class QueryRenderer extends React.Component<Props> {
       if (this.partialError) {
         // partial failure (data != null, errors != null)
         // Relay swallows all GraphQL errors if 'data != null' (see: https://github.com/facebook/relay/issues/1913)
+
+        console.log('QueryRenderer partial error:'); // eslint-disable-line no-console
+        console.log(JSON.stringify(this.partialError, null, 2)); // eslint-disable-line no-console
+
         return <PartialFailure>{this.props.render(props)}</PartialFailure>;
       }
 

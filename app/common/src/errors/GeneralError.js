@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text } from 'react-native';
-import { CenteredView } from '@kiwicom/react-native-app-common';
+import { CenteredView, Color } from '@kiwicom/react-native-app-common';
 
 type Props = {|
   errorMessage: string,
@@ -11,7 +11,7 @@ type Props = {|
 export default function GeneralError({ errorMessage }: Props) {
   return (
     <CenteredView>
-      <Text>{errorMessage}</Text>
+      <Text style={{ color: Color.red.$500 }}>{errorMessage}</Text>
     </CenteredView>
   );
 }

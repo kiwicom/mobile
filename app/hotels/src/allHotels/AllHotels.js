@@ -10,10 +10,11 @@ import FilterStripe from '../filter/FilterStripe';
 import AllHotelsSearchList from './AllHotelsSearchList';
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
 import type { SearchParametersType } from './searchForm/SearchParametersType';
+import type { AvailableHotelSearchInput } from '../singleHotel';
 
 type Props = {|
   search: SearchParametersType,
-  openSingleHotel: (id: string) => void,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
   onFilterChange: (filter: SearchParametersType) => void,
 |};
 
@@ -32,10 +33,29 @@ export default class AllHotelsSearch extends React.Component<Props> {
     );
   };
 
+  handleOpenSingleHotel = (hotelId: string) => {
+    const searchProps = this.props.search;
+    if (searchProps.checkin && searchProps.checkout) {
+      this.props.openSingleHotel({
+        hotelId,
+        checkin: searchProps.checkin,
+        checkout: searchProps.checkout,
+        roomsConfiguration: [
+          {
+            adultsCount: searchProps.roomsConfiguration.adultsCount,
+            children: searchProps.roomsConfiguration.children.map(childAge => ({
+              age: childAge,
+            })),
+          },
+        ],
+      });
+    }
+  };
+
   renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => (
     <AllHotelsSearchList
       data={propsFromRenderer.allHotels}
-      openSingleHotel={this.props.openSingleHotel}
+      openSingleHotel={this.handleOpenSingleHotel}
     />
   );
 
@@ -54,9 +74,7 @@ export default class AllHotelsSearch extends React.Component<Props> {
                 }
               }
             `}
-            variables={{
-              search: search,
-            }}
+            variables={{ search }}
             render={this.renderInnerComponent}
             cacheConfig={{
               force: true,

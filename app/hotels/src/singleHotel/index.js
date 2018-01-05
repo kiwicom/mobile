@@ -9,20 +9,16 @@ import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 
-type RoomsChildrenConfiguration = {|
-  age: number,
-|};
-
-type RoomsConfiguration = {|
-  adultsCount: number,
-  children: RoomsChildrenConfiguration[],
-|};
-
-type AvailableHotelSearchInput = {|
+export type AvailableHotelSearchInput = {|
   hotelId: string,
   checkin: Date,
   checkout: Date,
-  roomsConfiguration: RoomsConfiguration[],
+  roomsConfiguration: Array<{|
+    adultsCount: number,
+    children: Array<{|
+      age: number,
+    |}>,
+  |}>,
 |};
 
 type ContainerProps = {|
