@@ -408,12 +408,18 @@ type Hotel {
   # The ID of an object
   id: ID!
 
+  # Original (low level ID of the hotel). You are probably looking for "id" field.
+  originalId: String @deprecated(reason: "Use field \\\"id\\\" instead. This field is used only because of compatibility reasons with old APIs.")
+
   # Name of the hotel.
   name: String
   cityName: String
 
   # URL to our whitelabel page of this hotel.
   whitelabelUrl: String
+
+  # Main description (summary) of the hotel.
+  summary: String
 
   # Main photo of the hotel.
   mainPhoto: HotelPhoto
@@ -557,7 +563,7 @@ type HotelRating {
 
 type HotelReview {
   # The review score of the hotel, in the range 1-10 inclusive.
-  score: Int
+  score: Float
 
   # The review score of the hotel in words.
   description: String
@@ -639,12 +645,27 @@ type HotelRoomPhotoEdge {
   cursor: String!
 }
 
+input HotelsFilterInput {
+  # List of hotels classes (stars) you want to filter.
+  starsRating: [Int]
+
+  # Show only hotels having minimum total price lower than or equal to this value.
+  minPrice: Float
+
+  # Show only hotels having minimum total price higher than or equal to this value.
+  maxPrice: Float
+}
+
+# You must provide lat/lng combination OR city ID.
 input HotelsSearchInput {
   # Latitude in float format (example: 45.4654).
-  latitude: Float!
+  latitude: Float
 
   # Longitude in float format (example: 9.1859).
-  longitude: Float!
+  longitude: Float
+
+  # Opaque ID of the city.
+  cityId: String
   checkin: Date!
   checkout: Date!
   roomsConfiguration: [RoomsConfiguration!]!
@@ -863,7 +884,7 @@ type RootQuery {
 
   # Search for all available hotels in one location. It's necessary to send
   # checkin and checkout dates as well as rooms configuration to get availability info.
-  allAvailableHotels(search: HotelsSearchInput!, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
+  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
 
   # Search for single available hotel by its ID. It's necessary to send checkin
   # and checkout dates as well as rooms configuration to get availability info.
