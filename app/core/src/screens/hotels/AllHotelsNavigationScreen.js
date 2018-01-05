@@ -19,10 +19,13 @@ type ContainerProps = {|
 
 type StateProps = {|
   search: HotelsSearchParametersType,
+  location: string,
 |};
 
 type DispatchProps = {|
-  onFilterChange: HotelsSearchParametersType => void,
+  onFilterChange: Object => void,
+  onLocationChange: string => void,
+  onCityIdChange: (string | null) => void,
 |};
 
 type Props = ContainerProps & StateProps & DispatchProps;
@@ -52,14 +55,18 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
   render = () => (
     <AllHotels
       search={this.props.search}
+      location={this.props.location}
       openSingleHotel={this.openSingleHotel}
       onFilterChange={this.props.onFilterChange}
+      onLocationChange={this.props.onLocationChange}
+      onCityIdChange={this.props.onCityIdChange}
     />
   );
 }
 
 const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
   search: hotels.searchParams,
+  location: hotels.location,
 });
 
 const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
@@ -67,6 +74,16 @@ const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
     dispatch({
       type: 'setSearchFilters',
       filter,
+    }),
+  onLocationChange: (location: string) =>
+    dispatch({
+      type: 'setLocation',
+      location,
+    }),
+  onCityIdChange: (cityId: string | null) =>
+    dispatch({
+      type: 'setCityId',
+      cityId,
     }),
 });
 

@@ -16,23 +16,42 @@ afterEach(() => {
   MockDate.reset();
 });
 
+const searchParams = {
+  checkin: new Date(1),
+  checkout: new Date(2),
+  roomsConfiguration: {
+    adultsCount: 1,
+    children: [],
+  },
+};
+const defaultProps = {
+  location: 'Pra',
+  search: searchParams,
+  onChange: jest.fn(),
+  onLocationChange: jest.fn(),
+};
+
 describe('SearchForm', () => {
   it('Destination change triggers onChange', async () => {
     expect.assertions(1);
 
-    const onChange = jest.fn();
-    const testRenderer = renderer.create(<SearchForm onChange={onChange} />);
+    const onLocationChange = jest.fn();
+    const testRenderer = renderer.create(
+      <SearchForm {...defaultProps} onLocationChange={onLocationChange} />,
+    );
     const testInstance = testRenderer.root;
     await testInstance.findByType(TextInput).props.onChangeText('Prague');
 
-    expect(onChange).toBeCalled();
+    expect(onLocationChange).toBeCalled();
   });
 
   it('Checkin change triggers onChange', async () => {
     expect.assertions(1);
 
     const onChange = jest.fn();
-    const testRenderer = renderer.create(<SearchForm onChange={onChange} />);
+    const testRenderer = renderer.create(
+      <SearchForm {...defaultProps} onChange={onChange} />,
+    );
     const testInstance = testRenderer.root;
     await testInstance
       .findAllByType(DatePicker)[0]
@@ -45,7 +64,9 @@ describe('SearchForm', () => {
     expect.assertions(1);
 
     const onChange = jest.fn();
-    const testRenderer = renderer.create(<SearchForm onChange={onChange} />);
+    const testRenderer = renderer.create(
+      <SearchForm {...defaultProps} onChange={onChange} />,
+    );
     const testInstance = testRenderer.root;
     await testInstance
       .findAllByType(DatePicker)[1]
@@ -56,8 +77,6 @@ describe('SearchForm', () => {
 
   it('Render all inputs', async () => {
     const renderer = new ShallowRenderer();
-    expect(
-      renderer.render(<SearchForm onChange={jest.fn()} />),
-    ).toMatchSnapshot();
+    expect(renderer.render(<SearchForm {...defaultProps} />)).toMatchSnapshot();
   });
 });
