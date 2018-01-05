@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 00213221b31c683668593cad2b702a6c
+ * @relayHash 0c9badd85ea9e45fcf7d2a621b419f58
  */
 
 /* eslint-disable */
@@ -29,15 +29,14 @@ fragment AllHotelsSearchList on HotelAvailabilityConnection {
 }
 
 fragment AllHotelsSearchRow on HotelAvailability {
-  id
   ...HotelTitle
   hotel {
+    id
     mainPhoto {
       thumbnailUrl
       id
     }
     ...HotelReviewScore_hotel
-    id
   }
 }
 
@@ -279,7 +278,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels: allAvailableHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  id\n  ...HotelTitle\n  hotel {\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n    id\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels: allAvailableHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n"
 };
 
 module.exports = node;

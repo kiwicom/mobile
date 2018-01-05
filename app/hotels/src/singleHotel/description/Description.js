@@ -74,7 +74,7 @@ type Props = {|
 
 export default function Description({ hotel }: Props) {
   const facilitiesEdges = idx(hotel, _ => _.facilities.edges) || [];
-  const facilities = facilitiesEdges.map(edge => idx(edge, _ => _.node.name));
+  const facilities = facilitiesEdges.map(edge => idx(edge, _ => _.node));
 
   return (
     <View style={styles.container}>
@@ -84,15 +84,19 @@ export default function Description({ hotel }: Props) {
           renderTruncatedFooter={renderTruncatedFooter}
           renderRevealedFooter={renderRevealedFooter}
         >
-          <Text>{'TODO: hotel description'}</Text>
+          <Text>{hotel.summary}</Text>
         </ReadMore>
       </View>
       <View style={styles.facilities}>
-        {facilities.map(facility => (
-          <View key={facility} style={styles.facilityView}>
-            <Text style={styles.facilityText}>{facility}</Text>
-          </View>
-        ))}
+        {facilities.map(facility => {
+          return (
+            facility && (
+              <View key={facility.id} style={styles.facilityView}>
+                <Text style={styles.facilityText}>{facility.name}</Text>
+              </View>
+            )
+          );
+        })}
       </View>
     </View>
   );

@@ -15,6 +15,11 @@ exports[`renders as expected 1`] = `
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "#f44336",
+        }
+      }
     >
       Error Message
     </Text>
