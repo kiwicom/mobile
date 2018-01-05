@@ -75,7 +75,7 @@ export default class RoomRow extends React.Component<Props> {
   render = () => {
     const availableRoom = this.props.availableRoom;
     const title = idx(availableRoom, _ => _.room.description.title) || 'Room';
-    const description = idx(availableRoom, _ => _.room.description.text) || '';
+    const description = idx(availableRoom, _ => _.room.description.text);
     const thumbnailUrl = idx(
       availableRoom,
       _ => _.room.photos.edges[0].node.thumbnailUrl,

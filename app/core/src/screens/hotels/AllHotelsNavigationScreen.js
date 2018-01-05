@@ -46,8 +46,8 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     };
   };
 
-  openSingleHotel = (id: string) =>
-    this.props.navigation.navigate('SingleHotel', { hotelId: id });
+  openSingleHotel = searchParams =>
+    this.props.navigation.navigate('SingleHotel', searchParams);
 
   render = () => (
     <AllHotels

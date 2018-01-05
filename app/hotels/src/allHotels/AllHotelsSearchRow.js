@@ -32,7 +32,10 @@ const style = StyleSheet.create({
 
 class AllHotelsSearchRow extends React.Component<Props> {
   onGoToSingleHotel = () => {
-    this.props.openSingleHotel(this.props.data.id);
+    const hotelId = idx(this.props, _ => _.data.hotel.id);
+    if (hotelId) {
+      this.props.openSingleHotel(hotelId);
+    }
   };
 
   render = () => {
@@ -65,9 +68,9 @@ export default createFragmentContainer(
   AllHotelsSearchRow,
   graphql`
     fragment AllHotelsSearchRow on HotelAvailability {
-      id
       ...HotelTitle
       hotel {
+        id
         mainPhoto {
           thumbnailUrl
         }

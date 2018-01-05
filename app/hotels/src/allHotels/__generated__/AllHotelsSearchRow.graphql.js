@@ -6,8 +6,8 @@
 
 import type { ConcreteFragment } from 'relay-runtime';
 export type AllHotelsSearchRow = {|
-  +id: string;
   +hotel: ?{|
+    +id: string;
     +mainPhoto: ?{|
       +thumbnailUrl: ?string;
     |};
@@ -22,13 +22,6 @@ const node: ConcreteFragment = {
   "name": "AllHotelsSearchRow",
   "selections": [
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
-      "name": "id",
-      "storageKey": null
-    },
-    {
       "kind": "FragmentSpread",
       "name": "HotelTitle",
       "args": null
@@ -41,6 +34,13 @@ const node: ConcreteFragment = {
       "name": "hotel",
       "plural": false,
       "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "id",
+          "storageKey": null
+        },
         {
           "kind": "LinkedField",
           "alias": null,

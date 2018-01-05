@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 05cf807031f08a3410b390bc6237a47c
+ * @relayHash 353771139d558af1c97ba4e9a167dba3
  */
 
 /* eslint-disable */
@@ -70,11 +70,12 @@ fragment LocationContainer_hotel on Hotel {
 }
 
 fragment DescriptionContainer_hotel on Hotel {
+  summary
   facilities {
     edges {
       node {
-        name
         id
+        name
       }
     }
   }
@@ -384,6 +385,13 @@ const node: ConcreteBatch = {
                 "storageKey": null
               },
               {
+                "kind": "ScalarField",
+                "alias": null,
+                "args": null,
+                "name": "summary",
+                "storageKey": null
+              },
+              {
                 "kind": "LinkedField",
                 "alias": null,
                 "args": null,
@@ -411,14 +419,14 @@ const node: ConcreteBatch = {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "name": "name",
+                            "name": "id",
                             "storageKey": null
                           },
                           {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "name": "id",
+                            "name": "name",
                             "storageKey": null
                           }
                         ],
@@ -648,7 +656,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...HeaderContainer_hotel\n    ...LocationContainer_hotel\n    ...DescriptionContainer_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  facilities {\n    edges {\n      node {\n        name\n        id\n      }\n    }\n  }\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRowContainer_availableRoom\n}\n\nfragment RoomRowContainer_availableRoom on HotelRoomAvailability {\n  room {\n    description {\n      title\n      text\n    }\n    type\n    bedding {\n      type\n      amount\n    }\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          id\n        }\n      }\n    }\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n"
+  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...HeaderContainer_hotel\n    ...LocationContainer_hotel\n    ...DescriptionContainer_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    id\n  }\n}\n\nfragment HeaderContainer_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment LocationContainer_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment DescriptionContainer_hotel on Hotel {\n  summary\n  facilities {\n    edges {\n      node {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRowContainer_availableRoom\n}\n\nfragment RoomRowContainer_availableRoom on HotelRoomAvailability {\n  room {\n    description {\n      title\n      text\n    }\n    type\n    bedding {\n      type\n      amount\n    }\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          id\n        }\n      }\n    }\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n"
 };
 
 module.exports = node;

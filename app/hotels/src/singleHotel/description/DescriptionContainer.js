@@ -8,9 +8,11 @@ export default createFragmentContainer(
   Description,
   graphql`
     fragment DescriptionContainer_hotel on Hotel {
+      summary
       facilities {
         edges {
           node {
+            id
             name
           }
         }

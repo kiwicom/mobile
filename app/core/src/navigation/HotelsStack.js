@@ -22,6 +22,20 @@ type InjectorProps = {|
   WrappedComponent: React.ElementType,
 |};
 
+type AvailableHotelSearchInput = {|
+  hotelId: string,
+  checkin: Date,
+  checkout: Date,
+  roomsConfiguration: Array<{|
+    adultsCount: number,
+    children: Array<{|
+      age: number,
+    |}>,
+  |}>,
+|};
+
+type SingleHotelProps = Props & AvailableHotelSearchInput;
+
 export default {
   AllHotels: {
     screen: AllHotelsNavigationScreen,
@@ -34,7 +48,7 @@ export default {
   },
   SingleHotel: {
     screen: withMappedProps(function SingleHotelNavigationScreen(
-      props: Props & {| hotelId: string |},
+      props: SingleHotelProps,
     ) {
       function goToGalleryGrid(hotelName, images) {
         props.navigation.navigate('GalleryGrid', {
@@ -45,9 +59,8 @@ export default {
       function goToPayment(parameters) {
         props.navigation.navigate('Payment', {
           ...parameters,
-          // FIXME: we need to solve how to pass these data from search or map
-          checkin: new Date('2018-03-01'),
-          checkout: new Date('2018-03-08'),
+          checkin: new Date(props.checkin),
+          checkout: new Date(props.checkout),
           affiliateId: Config.affiliate.bookingCom,
           language: 'en', // TODO: we do not have language yet
           currency: 'EUR', // TODO: we do not have currency yet
@@ -58,16 +71,10 @@ export default {
           onGoToHotelGallery={goToGalleryGrid}
           onGoToPayment={goToPayment}
           search={{
-            // FIXME: we need to solve how to pass these data from search or map
-            hotelId: 'aG90ZWw6NzcwOTQ=',
-            checkin: new Date('2018-03-01'),
-            checkout: new Date('2018-03-08'),
-            roomsConfiguration: [
-              {
-                adultsCount: 1,
-                children: [],
-              },
-            ],
+            hotelId: props.hotelId,
+            checkin: new Date(props.checkin),
+            checkout: new Date(props.checkout),
+            roomsConfiguration: props.roomsConfiguration,
           }}
         />
       );
