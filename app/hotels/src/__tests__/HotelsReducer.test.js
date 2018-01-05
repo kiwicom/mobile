@@ -3,8 +3,6 @@
 import HotelsReducer from '../HotelsReducer';
 
 const defaultSearchParams = {
-  latitude: null,
-  longitude: null,
   checkin: null,
   checkout: null,
   roomsConfiguration: {
@@ -17,13 +15,14 @@ describe('HotelsReducer', () => {
   describe('setSearchFilters', () => {
     it('it should update search filters for list of hotels', () => {
       const state = {
+        cityId: null,
+        location: '',
         searchParams: defaultSearchParams,
       };
       const action = {
         type: 'setSearchFilters',
         filter: {
           ...defaultSearchParams,
-          latitude: 50.5,
           checkin: new Date(1),
         },
       };

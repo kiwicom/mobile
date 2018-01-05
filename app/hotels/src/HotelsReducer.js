@@ -1,8 +1,6 @@
 // @flow
 
-export type HotelsSearchParametersType = {|
-  latitude: number | null,
-  longitude: number | null,
+export type HotelsSearchParametersType = {
   checkin: Date | null,
   checkout: Date | null,
   roomsConfiguration: {|
@@ -11,21 +9,23 @@ export type HotelsSearchParametersType = {|
       age: number,
     |}>,
   |},
-|};
+};
 
 export type HotelsReducerState = {
+  cityId: string | null,
+  location: string,
   searchParams: HotelsSearchParametersType,
 };
 
-export type HotelsReducerActions = {|
-  type: 'setSearchFilters',
-  filter: HotelsSearchParametersType,
-|};
+export type HotelsReducerActions =
+  | {| type: 'setSearchFilters', filter: HotelsSearchParametersType |}
+  | {| type: 'setLocation', location: string |}
+  | {| type: 'setCityId', cityId: string | null |};
 
 const InitialHotelsState: HotelsReducerState = {
+  cityId: null,
+  location: 'Prague',
   searchParams: {
-    latitude: 50.08,
-    longitude: 14.44,
     checkin: null,
     checkout: null,
     roomsConfiguration: {
@@ -43,7 +43,20 @@ export default (
     case 'setSearchFilters':
       return {
         ...state,
-        searchParams: action.filter,
+        searchParams: {
+          ...state.searchParams,
+          ...action.filter,
+        },
+      };
+    case 'setLocation':
+      return {
+        ...state,
+        location: action.location,
+      };
+    case 'setCityId':
+      return {
+        ...state,
+        cityId: action.cityId,
       };
     default:
       return state;

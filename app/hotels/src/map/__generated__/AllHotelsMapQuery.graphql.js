@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fa08d15156284d5a152ee77caebb1257
+ * @relayHash 66d5a011e1f13c62dbf38066d36d41d7
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ export type AllHotelsMapQueryResponse = {|
 query AllHotelsMapQuery(
   $search: HotelsSearchInput!
 ) {
-  allAvailableHotels(search: $search) {
+  allAvailableHotels: allAvailableHotels(search: $search) {
     ...MapScreen
   }
 }
@@ -109,7 +109,7 @@ const node: ConcreteBatch = {
     "selections": [
       {
         "kind": "LinkedField",
-        "alias": null,
+        "alias": "allAvailableHotels",
         "args": [
           {
             "kind": "Variable",
@@ -152,7 +152,7 @@ const node: ConcreteBatch = {
     "selections": [
       {
         "kind": "LinkedField",
-        "alias": null,
+        "alias": "allAvailableHotels",
         "args": [
           {
             "kind": "Variable",
@@ -398,7 +398,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsMapQuery(\n  $search: HotelsSearchInput!\n) {\n  allAvailableHotels(search: $search) {\n    ...MapScreen\n  }\n}\n\nfragment MapScreen on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n    }\n    ...MapView\n    ...HotelSwipeList\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n    id\n  }\n}\n\nfragment Address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n"
+  "text": "query AllHotelsMapQuery(\n  $search: HotelsSearchInput!\n) {\n  allAvailableHotels: allAvailableHotels(search: $search) {\n    ...MapScreen\n  }\n}\n\nfragment MapScreen on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n    }\n    ...MapView\n    ...HotelSwipeList\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n    id\n  }\n}\n\nfragment Address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n"
 };
 
 module.exports = node;
