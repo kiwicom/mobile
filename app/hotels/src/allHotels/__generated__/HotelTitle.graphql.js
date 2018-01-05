@@ -5,11 +5,15 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type AllHotelsSearchRow = {|
-  +id: string;
+export type HotelTitle = {|
+  +price: ?{|
+    +amount: ?number;
+    +currency: ?string;
+  |};
   +hotel: ?{|
-    +mainPhoto: ?{|
-      +thumbnailUrl: ?string;
+    +name: ?string;
+    +rating: ?{|
+      +stars: ?number;
     |};
   |};
 |};
@@ -19,19 +23,32 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "AllHotelsSearchRow",
+  "name": "HotelTitle",
   "selections": [
     {
-      "kind": "ScalarField",
+      "kind": "LinkedField",
       "alias": null,
       "args": null,
-      "name": "id",
+      "concreteType": "Price",
+      "name": "price",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "amount",
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "currency",
+          "storageKey": null
+        }
+      ],
       "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "HotelTitle",
-      "args": null
     },
     {
       "kind": "LinkedField",
@@ -42,27 +59,29 @@ const node: ConcreteFragment = {
       "plural": false,
       "selections": [
         {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "name",
+          "storageKey": null
+        },
+        {
           "kind": "LinkedField",
           "alias": null,
           "args": null,
-          "concreteType": "HotelPhoto",
-          "name": "mainPhoto",
+          "concreteType": "HotelRating",
+          "name": "rating",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
               "args": null,
-              "name": "thumbnailUrl",
+              "name": "stars",
               "storageKey": null
             }
           ],
           "storageKey": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "HotelReviewScore_hotel",
-          "args": null
         }
       ],
       "storageKey": null
