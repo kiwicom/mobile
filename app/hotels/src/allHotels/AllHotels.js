@@ -44,7 +44,7 @@ export default class AllHotelsSearch extends React.Component<Props> {
           {
             adultsCount: searchProps.roomsConfiguration.adultsCount,
             children: searchProps.roomsConfiguration.children.map(childAge => ({
-              age: childAge,
+              age: childAge.age,
             })),
           },
         ],

@@ -3,26 +3,35 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import renderer from 'react-test-renderer';
-import { Text, TouchableWithoutFeedback } from 'react-native';
-import { Button } from '@kiwicom/react-native-app-common';
+import { Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 
-import Popup from '../Popup';
+import ButtonPopup from '../ButtonPopup';
 
 const shallowRenderer = new ShallowRenderer();
 
 const renderPopup = (onSave, onClose) =>
   renderer.create(
-    <Popup isVisible={true} onSave={onSave} onClose={onClose}>
+    <ButtonPopup
+      buttonTitle="Save"
+      isVisible={true}
+      onSave={onSave}
+      onClose={onClose}
+    >
       <Text>Child</Text>
-    </Popup>,
+    </ButtonPopup>,
   );
 
-describe('Popup', () => {
+describe('ButtonPopup', () => {
   it('render popup with child', () => {
     shallowRenderer.render(
-      <Popup isVisible={true} onSave={jest.fn()} onClose={jest.fn()}>
+      <ButtonPopup
+        buttonTitle="Save"
+        isVisible={true}
+        onSave={jest.fn()}
+        onClose={jest.fn()}
+      >
         <Text>Child</Text>
-      </Popup>,
+      </ButtonPopup>,
     );
     expect(shallowRenderer.getRenderOutput()).toMatchSnapshot();
   });
@@ -32,7 +41,7 @@ describe('Popup', () => {
     const onClose = jest.fn();
     const testRenderer = renderPopup(onSave, onClose);
     const testInstance = testRenderer.root;
-    await testInstance.findByType(Button).props.onPress();
+    await testInstance.findByType(TouchableOpacity).props.onPress();
 
     expect(onSave).toBeCalled();
     expect(onClose).toBeCalled();

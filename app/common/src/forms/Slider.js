@@ -5,7 +5,6 @@ import { StyleSheet, View } from 'react-native';
 import type { OnLayout } from '@kiwicom/react-native-app-common';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
-import { POPUP_PADDING } from '../popup/Popup';
 import Color from '../Color';
 
 type Props = {|
@@ -46,7 +45,7 @@ export default class Slider extends React.Component<Props, State> {
           max={this.props.max}
           allowOverlap
           selectedStyle={styles.selected}
-          sliderLength={this.state.width - 2 * POPUP_PADDING}
+          sliderLength={this.state.width - 2 * SLIDER_PADDING}
           touchDimensions={{
             height: 30,
             width: 30,
@@ -63,6 +62,8 @@ export default class Slider extends React.Component<Props, State> {
     );
   }
 }
+
+const SLIDER_PADDING = 20;
 
 const styles = StyleSheet.create({
   selected: { backgroundColor: Color.sun },
@@ -84,6 +85,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   sliderWrapper: {
-    paddingHorizontal: POPUP_PADDING,
+    paddingHorizontal: SLIDER_PADDING,
   },
 });

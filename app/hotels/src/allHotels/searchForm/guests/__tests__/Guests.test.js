@@ -6,14 +6,14 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { IncrementDecrementButtons } from '@kiwicom/react-native-app-common';
 
 import Guests from '../Guests';
-import type { RoomConfigurationType } from '../SearchParametersType';
+import type { RoomConfigurationType } from '../../SearchParametersType';
 
 const renderGuests = (onSave: Function) => {
   const guests: RoomConfigurationType = {
     adultsCount: 1,
     children: [],
   };
-  return renderer.create(<Guests onSave={onSave} guests={guests} />);
+  return renderer.create(<Guests onChange={onSave} guests={guests} />);
 };
 
 const shallowRenderGuests = (onSave: Function) => {
@@ -22,7 +22,7 @@ const shallowRenderGuests = (onSave: Function) => {
     adultsCount: 3,
     children: [],
   };
-  return renderer.render(<Guests onSave={onSave} guests={guests} />);
+  return renderer.render(<Guests onChange={onSave} guests={guests} />);
 };
 
 describe('Guests', () => {
