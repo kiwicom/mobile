@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StarsPopup should render popup 1`] = `
-<Popup
+<ButtonPopup
+  buttonTitle="Save"
   isVisible={true}
   onClose={[Function]}
   onSave={[Function]}
@@ -79,5 +80,5 @@ exports[`StarsPopup should render popup 1`] = `
     onPress={[Function]}
     text="Unrated"
   />
-</Popup>
+</ButtonPopup>
 `;

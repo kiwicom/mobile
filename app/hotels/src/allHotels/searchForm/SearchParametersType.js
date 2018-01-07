@@ -1,8 +1,11 @@
 // @flow
 
+// Valid room configuration with everything set.
 export type RoomConfigurationType = {|
   adultsCount: number,
-  children: number[],
+  children: Array<{|
+    age: number,
+  |}>,
 |};
 
 export type SearchParametersType = {|

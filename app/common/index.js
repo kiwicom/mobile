@@ -21,6 +21,7 @@ export { default as DatePicker } from './src/forms/DatePicker';
 export { default as TextInput } from './src/forms/TextInput';
 export { default as NumberControl } from './src/forms/NumberControl';
 export { default as Slider } from './src/forms/Slider';
+export { default as AgePicker } from './src/forms/AgePicker';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 
@@ -29,6 +30,7 @@ export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as DropMarker } from './src/map/DropMarker';
 
 export { default as Large } from './src/text/Large';
+export { default as Message } from './src/text/Message';
 
 export { default as CenteredView } from './src/view/CenteredView';
 export { default as Layout } from './src/view/Layout';
@@ -36,7 +38,8 @@ export {
   default as VerticalSwipeResponder,
 } from './src/view/VerticalSwipeResponder';
 
-export { default as Popup } from './src/popup/Popup';
+export { default as ButtonPopup } from './src/popup/ButtonPopup';
+export { default as BarPopup } from './src/popup/BarPopup';
 
 export { default as Stars } from './src/rating/Stars';
 
