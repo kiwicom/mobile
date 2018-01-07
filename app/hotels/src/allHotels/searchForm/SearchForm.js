@@ -5,7 +5,7 @@ import { TextInput, DatePicker, Color } from '@kiwicom/react-native-app-common';
 import { View, StyleSheet } from 'react-native';
 import moment from 'moment';
 
-import Guests from './Guests';
+import Guests from './guests/Guests';
 import type {
   RoomConfigurationType,
   SearchParametersType,
@@ -90,7 +90,7 @@ export default class SearchForm extends React.Component<Props, State> {
   handleDateChange = (date: string, type: 'checkin' | 'checkout') =>
     this.setState({ [type]: date }, () => this.handleOnChange());
 
-  handleGuestsSave = (roomsConfiguration: RoomConfigurationType) => {
+  handleGuestsChange = (roomsConfiguration: RoomConfigurationType) => {
     this.setState({ roomsConfiguration }, () => this.handleOnChange());
   };
 
@@ -122,7 +122,7 @@ export default class SearchForm extends React.Component<Props, State> {
           />
           <Guests
             guests={this.state.roomsConfiguration}
-            onSave={this.handleGuestsSave}
+            onChange={this.handleGuestsChange}
           />
         </View>
       </View>

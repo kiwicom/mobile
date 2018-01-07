@@ -7,7 +7,9 @@ export type HotelsSearchParametersType = {|
   checkout: Date | null,
   roomsConfiguration: {|
     adultsCount: number,
-    children: number[],
+    children: Array<{|
+      age: number,
+    |}>,
   |},
 |};
 

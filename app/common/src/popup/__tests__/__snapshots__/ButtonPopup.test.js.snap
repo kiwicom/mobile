@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonPopup render popup with child 1`] = `
+<Popup
+  isVisible={true}
+  onClose={[Function]}
+>
+  <View
+    style={
+      Array [
+        Object {
+          "padding": 20,
+          "paddingBottom": 0,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Child
+    </Text>
+  </View>
+  <Button
+    onPress={[Function]}
+    styles={
+      Object {
+        "button": Object {
+          "margin": 20,
+          "marginTop": 20,
+        },
+      }
+    }
+    title="Save"
+  />
+</Popup>
+`;

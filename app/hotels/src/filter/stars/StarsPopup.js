@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { Popup, Color } from '@kiwicom/react-native-app-common';
+import { ButtonPopup, Color } from '@kiwicom/react-native-app-common';
 
 import StarsCheckbox from './StarsCheckbox';
 
@@ -39,7 +39,8 @@ export default class StarsPopup extends React.Component<Props, State> {
   render() {
     const { stars } = this.state;
     return (
-      <Popup
+      <ButtonPopup
+        buttonTitle="Save"
         onSave={this.props.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
@@ -80,7 +81,7 @@ export default class StarsPopup extends React.Component<Props, State> {
           isChecked={stars.unrated}
           onPress={this.handleCheckboxOnPress('unrated')}
         />
-      </Popup>
+      </ButtonPopup>
     );
   }
 }

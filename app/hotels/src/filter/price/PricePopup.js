@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text } from 'react-native';
-import { Popup, Slider, Price } from '@kiwicom/react-native-app-common';
+import { ButtonPopup, Slider, Price } from '@kiwicom/react-native-app-common';
 
 type Props = {|
   onClose: () => void,
@@ -75,7 +75,8 @@ export default class PricePopup extends React.Component<Props, State> {
 
     const label = this.renderLabel(start, end, min, max, currency);
     return (
-      <Popup
+      <ButtonPopup
+        buttonTitle="Save"
         onSave={this.props.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
@@ -88,7 +89,7 @@ export default class PricePopup extends React.Component<Props, State> {
           max={max}
           onChange={this.handlePriceChanged}
         />
-      </Popup>
+      </ButtonPopup>
     );
   }
 }

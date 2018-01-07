@@ -62,7 +62,7 @@ exports[`SearchForm Render all inputs 1`] = `
           "children": Array [],
         }
       }
-      onSave={[Function]}
+      onChange={[Function]}
     />
   </View>
 </View>

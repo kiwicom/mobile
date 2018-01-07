@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button } from '@kiwicom/react-native-app-common';
+import { View, ScrollView, StyleSheet } from 'react-native';
 
 import Modal from '../Modal';
 
@@ -10,18 +9,10 @@ type Props = {|
   children: React.Node,
   isVisible: boolean,
   onClose: () => void,
-  onSave: () => void,
 |};
-
-export const POPUP_PADDING = 20;
 
 export default class Popup extends React.Component<Props> {
   onClose = () => this.props.onClose();
-
-  onSave = () => {
-    this.props.onSave();
-    this.onClose();
-  };
 
   render = () => (
     <Modal
@@ -30,13 +21,8 @@ export default class Popup extends React.Component<Props> {
       backdropOpacity={0.5}
       onBackdropPress={this.onClose}
     >
-      <View style={styles.content}>
-        {this.props.children}
-        <Button
-          title="Save"
-          styles={{ button: styles.button }}
-          onPress={this.onSave}
-        />
+      <View style={styles.body}>
+        <ScrollView>{this.props.children}</ScrollView>
       </View>
     </Modal>
   );
@@ -47,12 +33,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
-  content: {
-    backgroundColor: '#fff',
+  body: {
     opacity: 1,
-    padding: POPUP_PADDING,
-  },
-  button: {
-    marginTop: 20,
+    backgroundColor: '#fff',
   },
 });
