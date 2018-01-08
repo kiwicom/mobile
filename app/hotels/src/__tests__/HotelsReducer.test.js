@@ -1,6 +1,6 @@
 // @flow
 
-import HotelsReducer from './../HotelsReducer';
+import HotelsReducer from '../HotelsReducer';
 
 const defaultSearchParams = {
   latitude: null,
