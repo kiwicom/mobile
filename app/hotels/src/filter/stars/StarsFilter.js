@@ -5,9 +5,10 @@ import { View } from 'react-native';
 
 import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';
+import type { OnChangeFilterParams } from '../FilterParametersType';
 
 type Props = {|
-  onChange: () => void,
+  onChange: OnChangeFilterParams => void,
 |};
 
 type State = {|

@@ -8,7 +8,7 @@ export type RoomConfigurationType = {|
   |}>,
 |};
 
-export type SearchParametersType = {
+export type SearchParams = {
   checkin: Date | null,
   checkout: Date | null,
   roomsConfiguration: RoomConfigurationType,

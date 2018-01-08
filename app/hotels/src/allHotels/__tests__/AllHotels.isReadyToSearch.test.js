@@ -11,9 +11,14 @@ const defaults = {
 
 const defaultProps = {
   location: '',
+  filter: {
+    minPrice: null,
+    maxPrice: null,
+  },
   data: { edges: [] },
   isLoading: false,
   openSingleHotel: jest.fn(),
+  onSearchChange: jest.fn(),
   onFilterChange: jest.fn(),
   onLocationChange: jest.fn(),
   onCityIdChange: jest.fn(),

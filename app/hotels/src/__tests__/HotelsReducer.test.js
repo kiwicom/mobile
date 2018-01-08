@@ -11,19 +11,43 @@ const defaultSearchParams = {
   },
 };
 
+const defaultFilterParams = {
+  minPrice: null,
+  maxPrice: null,
+};
+
 describe('HotelsReducer', () => {
-  describe('setSearchFilters', () => {
+  describe('setSearch', () => {
     it('it should update search filters for list of hotels', () => {
       const state = {
         cityId: null,
         location: '',
         searchParams: defaultSearchParams,
+        filterParams: defaultFilterParams,
       };
       const action = {
-        type: 'setSearchFilters',
-        filter: {
+        type: 'setSearch',
+        search: {
           ...defaultSearchParams,
           checkin: new Date(1),
+        },
+      };
+
+      expect(HotelsReducer(state, action)).toMatchSnapshot();
+    });
+
+    it('it should update filters for list of hotels', () => {
+      const state = {
+        cityId: null,
+        location: '',
+        searchParams: defaultSearchParams,
+        filterParams: defaultFilterParams,
+      };
+      const action = {
+        type: 'setFilter',
+        filter: {
+          minPrice: 20,
+          maxPrice: 30,
         },
       };
 

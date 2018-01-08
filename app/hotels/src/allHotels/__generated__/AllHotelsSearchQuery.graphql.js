@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0c9badd85ea9e45fcf7d2a621b419f58
+ * @relayHash 03286187713930903aecce902bbc511a
  */
 
 /* eslint-disable */
@@ -13,8 +13,9 @@ export type AllHotelsSearchQueryResponse = {|
 /*
 query AllHotelsSearchQuery(
   $search: HotelsSearchInput!
+  $filter: HotelsFilterInput!
 ) {
-  allHotels: allAvailableHotels(search: $search) {
+  allHotels: allAvailableHotels(search: $search, filter: $filter) {
     ...AllHotelsSearchList
   }
 }
@@ -69,6 +70,12 @@ const node: ConcreteBatch = {
         "name": "search",
         "type": "HotelsSearchInput!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "filter",
+        "type": "HotelsFilterInput!",
+        "defaultValue": null
       }
     ],
     "kind": "Fragment",
@@ -79,6 +86,12 @@ const node: ConcreteBatch = {
         "kind": "LinkedField",
         "alias": "allHotels",
         "args": [
+          {
+            "kind": "Variable",
+            "name": "filter",
+            "variableName": "filter",
+            "type": "HotelsFilterInput"
+          },
           {
             "kind": "Variable",
             "name": "search",
@@ -112,6 +125,12 @@ const node: ConcreteBatch = {
         "name": "search",
         "type": "HotelsSearchInput!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "filter",
+        "type": "HotelsFilterInput!",
+        "defaultValue": null
       }
     ],
     "kind": "Root",
@@ -122,6 +141,12 @@ const node: ConcreteBatch = {
         "kind": "LinkedField",
         "alias": "allHotels",
         "args": [
+          {
+            "kind": "Variable",
+            "name": "filter",
+            "variableName": "filter",
+            "type": "HotelsFilterInput"
+          },
           {
             "kind": "Variable",
             "name": "search",
@@ -278,7 +303,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n) {\n  allHotels: allAvailableHotels(search: $search) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n) {\n  allHotels: allAvailableHotels(search: $search, filter: $filter) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n"
 };
 
 module.exports = node;

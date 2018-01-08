@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fa08d15156284d5a152ee77caebb1257
+ * @relayHash f6838fa9ce5ada12b9033368851bc4ea
  */
 
 /* eslint-disable */
@@ -13,8 +13,9 @@ export type AllHotelsMapQueryResponse = {|
 /*
 query AllHotelsMapQuery(
   $search: HotelsSearchInput!
+  $filter: HotelsFilterInput
 ) {
-  allAvailableHotels(search: $search) {
+  allAvailableHotels(search: $search, filter: $filter) {
     ...MapScreen
   }
 }
@@ -101,6 +102,12 @@ const node: ConcreteBatch = {
         "name": "search",
         "type": "HotelsSearchInput!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "filter",
+        "type": "HotelsFilterInput",
+        "defaultValue": null
       }
     ],
     "kind": "Fragment",
@@ -111,6 +118,12 @@ const node: ConcreteBatch = {
         "kind": "LinkedField",
         "alias": null,
         "args": [
+          {
+            "kind": "Variable",
+            "name": "filter",
+            "variableName": "filter",
+            "type": "HotelsFilterInput"
+          },
           {
             "kind": "Variable",
             "name": "search",
@@ -144,6 +157,12 @@ const node: ConcreteBatch = {
         "name": "search",
         "type": "HotelsSearchInput!",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "filter",
+        "type": "HotelsFilterInput",
+        "defaultValue": null
       }
     ],
     "kind": "Root",
@@ -154,6 +173,12 @@ const node: ConcreteBatch = {
         "kind": "LinkedField",
         "alias": null,
         "args": [
+          {
+            "kind": "Variable",
+            "name": "filter",
+            "variableName": "filter",
+            "type": "HotelsFilterInput"
+          },
           {
             "kind": "Variable",
             "name": "search",
@@ -398,7 +423,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsMapQuery(\n  $search: HotelsSearchInput!\n) {\n  allAvailableHotels(search: $search) {\n    ...MapScreen\n  }\n}\n\nfragment MapScreen on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n    }\n    ...MapView\n    ...HotelSwipeList\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n    id\n  }\n}\n\nfragment Address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n"
+  "text": "query AllHotelsMapQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput\n) {\n  allAvailableHotels(search: $search, filter: $filter) {\n    ...MapScreen\n  }\n}\n\nfragment MapScreen on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n    }\n    ...MapView\n    ...HotelSwipeList\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n    id\n  }\n}\n\nfragment Address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n"
 };
 
 module.exports = node;

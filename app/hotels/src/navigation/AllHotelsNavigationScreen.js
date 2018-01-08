@@ -7,9 +7,16 @@ import { Icon } from '@kiwicom/react-native-app-common';
 
 import AllHotels from '../allHotels/AllHotels';
 import type {
-  HotelsReducerState,
+  OnChangeSearchParams,
+  SearchParams,
+} from '../allHotels/searchForm/SearchParametersType';
+import type {
+  FilterParams,
+  OnChangeFilterParams,
+} from '../filter/FilterParametersType';
+import type {
   HotelsReducerActions,
-  HotelsSearchParametersType,
+  HotelsReducerState,
 } from '../HotelsReducer';
 
 type ContainerProps = {|
@@ -17,12 +24,14 @@ type ContainerProps = {|
 |};
 
 type StateProps = {|
-  search: HotelsSearchParametersType,
+  search: SearchParams,
   location: string,
+  filter: FilterParams,
 |};
 
 type DispatchProps = {|
-  onFilterChange: Object => void,
+  onSearchChange: OnChangeSearchParams => void,
+  onFilterChange: OnChangeFilterParams => void,
   onLocationChange: string => void,
   onCityIdChange: (string | null) => void,
 |};
@@ -55,7 +64,9 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     <AllHotels
       search={this.props.search}
       location={this.props.location}
+      filter={this.props.filter}
       openSingleHotel={this.openSingleHotel}
+      onSearchChange={this.props.onSearchChange}
       onFilterChange={this.props.onFilterChange}
       onLocationChange={this.props.onLocationChange}
       onCityIdChange={this.props.onCityIdChange}
@@ -66,12 +77,18 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
 const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
   search: hotels.searchParams,
   location: hotels.location,
+  filter: hotels.filterParams,
 });
 
 const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
+  onSearchChange: search =>
+    dispatch({
+      type: 'setSearch',
+      search,
+    }),
   onFilterChange: filter =>
     dispatch({
-      type: 'setSearchFilters',
+      type: 'setFilter',
       filter,
     }),
   onLocationChange: (location: string) =>

@@ -5,6 +5,10 @@ import { ScrollView, View } from 'react-native';
 
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
+import type {
+  FilterParams,
+  OnChangeFilterParams,
+} from './FilterParametersType';
 
 const styles = {
   view: {
@@ -17,30 +21,28 @@ const styles = {
   },
 };
 
-export default class FilterStripe extends React.Component<{||}> {
-  handleChange = () => {
-    // TODO add onChange prop, pass changed values via callback
-  };
+type Props = {|
+  onChange: OnChangeFilterParams => void,
+  filter: FilterParams,
+|};
 
-  render = () => {
-    return (
-      <View style={styles.view}>
-        <ScrollView
-          contentContainerStyle={styles.scrollView}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          <StarsFilter onChange={this.handleChange} />
-          <PriceFilter
-            onChange={this.handleChange}
-            min={18}
-            max={365}
-            start={18}
-            end={365}
-            currency="EUR"
-          />
-        </ScrollView>
-      </View>
-    );
-  };
+export default function FilterStripe(props: Props) {
+  const { minPrice, maxPrice } = props.filter;
+  return (
+    <View style={styles.view}>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      >
+        <StarsFilter onChange={props.onChange} />
+        <PriceFilter
+          onChange={props.onChange}
+          start={minPrice}
+          end={maxPrice}
+          currency="EUR"
+        />
+      </ScrollView>
+    </View>
+  );
 }
