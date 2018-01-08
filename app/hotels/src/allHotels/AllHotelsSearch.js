@@ -17,17 +17,23 @@ import AllHotelsSearchList from './AllHotelsSearchList';
 import type { AllHotelsSearch as AllHotelsSearchData } from './__generated__/AllHotelsSearch.graphql';
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
 import type {
-  SearchParametersType,
+  SearchParams,
   OnChangeSearchParams,
 } from './searchForm/SearchParametersType';
+import type {
+  FilterParams,
+  OnChangeFilterParams,
+} from '../filter/FilterParametersType';
 
 type Props = {|
   location: string,
   data: AllHotelsSearchData,
-  search: SearchParametersType,
+  search: SearchParams,
+  filter: FilterParams,
   isLoading: boolean,
   openSingleHotel: (hotelId: string) => void,
-  onFilterChange: (search: OnChangeSearchParams) => void,
+  onSearchChange: OnChangeSearchParams => void,
+  onFilterChange: OnChangeFilterParams => void,
   onLocationChange: (location: string) => void,
   onCityIdChange: (cityId: string | null) => void,
 |};
@@ -69,7 +75,9 @@ export class AllHotelsSearch extends React.Component<Props> {
   render() {
     const {
       search,
+      filter,
       onLocationChange,
+      onSearchChange,
       onFilterChange,
       location,
       data,
@@ -79,13 +87,13 @@ export class AllHotelsSearch extends React.Component<Props> {
     return (
       <Layout>
         <SearchForm
-          onChange={onFilterChange}
+          onChange={onSearchChange}
           onLocationChange={onLocationChange}
           search={search}
           location={location}
           data={null}
         />
-        <FilterStripe />
+        <FilterStripe filter={filter} onChange={onFilterChange} />
         {isLoading && <FullPageLoading />}
         {!(isLoading || this.getCityIdFromData(data)) && (
           <CenteredView>
@@ -99,8 +107,14 @@ export class AllHotelsSearch extends React.Component<Props> {
         {this.isReadyToSearch() && (
           <PublicApiRenderer
             query={graphql`
-              query AllHotelsSearchQuery($search: HotelsSearchInput!) {
-                allHotels: allAvailableHotels(search: $search) {
+              query AllHotelsSearchQuery(
+                $search: HotelsSearchInput!
+                $filter: HotelsFilterInput!
+              ) {
+                allHotels: allAvailableHotels(
+                  search: $search
+                  filter: $filter
+                ) {
                   ...AllHotelsSearchList
                 }
               }
@@ -110,6 +124,7 @@ export class AllHotelsSearch extends React.Component<Props> {
                 ...search,
                 cityId: this.getCityIdFromData(data),
               },
+              filter,
             }}
             render={this.renderInnerComponent}
             cacheConfig={{

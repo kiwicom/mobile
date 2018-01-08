@@ -6,7 +6,7 @@ import { ButtonPopup, Slider, Price } from '@kiwicom/react-native-app-common';
 
 type Props = {|
   onClose: () => void,
-  onSave: () => void,
+  onSave: ({ minPrice: number, maxPrice: number }) => void,
   isVisible: boolean,
   min: number,
   max: number,
@@ -30,16 +30,17 @@ export default class PricePopup extends React.Component<Props, State> {
     },
   };
 
-  componentWillMount = () =>
-    this.setState({
-      price: {
-        start: this.props.start,
-        end: this.props.end,
-      },
-    });
+  componentWillReceiveProps = ({ start, end }: Props) =>
+    this.setState({ price: { start, end } });
 
   handlePriceChanged = ([start, end]: number[]) =>
     this.setState({ price: { start, end } });
+
+  onSave = () =>
+    this.props.onSave({
+      minPrice: this.state.price.start,
+      maxPrice: this.state.price.end,
+    });
 
   renderLabel = (
     start: number,
@@ -77,7 +78,7 @@ export default class PricePopup extends React.Component<Props, State> {
     return (
       <ButtonPopup
         buttonTitle="Save"
-        onSave={this.props.onSave}
+        onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >

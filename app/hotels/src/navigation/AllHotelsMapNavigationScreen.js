@@ -7,8 +7,12 @@ import AllHotelsMap from '../map/AllHotelsMap';
 import type {
   HotelsReducerState,
   HotelsReducerActions,
-  HotelsSearchParametersType,
 } from '../HotelsReducer';
+import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
+import type {
+  FilterParams,
+  OnChangeFilterParams,
+} from '../filter/FilterParametersType';
 
 type ContainerProps = {|
   navigation: Object, // FIXME: navigation type is still part of the core package
@@ -16,11 +20,12 @@ type ContainerProps = {|
 
 type StateProps = {|
   cityId: string | null,
-  search: HotelsSearchParametersType,
+  search: SearchParams,
+  filter: FilterParams,
 |};
 
 type DispatchProps = {|
-  onFilterChange: HotelsSearchParametersType => void,
+  onFilterChange: OnChangeFilterParams => void,
 |};
 
 type Props = ContainerProps & StateProps & DispatchProps;
@@ -36,6 +41,7 @@ function AllHotelsMapNavigationScreen(props: Props) {
       onFilterChange={props.onFilterChange}
       search={props.search}
       cityId={props.cityId}
+      filter={props.filter}
     />
   );
 }
@@ -43,12 +49,13 @@ function AllHotelsMapNavigationScreen(props: Props) {
 const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
   search: hotels.searchParams,
   cityId: hotels.cityId,
+  filter: hotels.filterParams,
 });
 
 const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
   onFilterChange: filter =>
     dispatch({
-      type: 'setSearchFilters',
+      type: 'setFilter',
       filter,
     }),
 });

@@ -5,14 +5,16 @@ import { View } from 'react-native';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
+import type { OnChangeFilterParams } from '../FilterParametersType';
+
+export const MIN_PRICE = 0;
+export const MAX_PRICE = 300;
 
 type Props = {|
-  min: number,
-  max: number,
-  start: number,
-  end: number,
+  start: number | null,
+  end: number | null,
   currency: string,
-  onChange: () => void,
+  onChange: OnChangeFilterParams => void,
 |};
 
 type State = {|
@@ -29,18 +31,51 @@ export default class PriceFilter extends React.Component<Props, State> {
       isPopupOpen: !state.isPopupOpen,
     }));
 
-  handleSave = () => {
-    // TODO call onChange
+  handleSave = ({
+    minPrice,
+    maxPrice,
+  }: {
+    minPrice: number,
+    maxPrice: number,
+  }) => {
+    const filter = {
+      minPrice: minPrice !== MIN_PRICE ? minPrice : null,
+      maxPrice: maxPrice !== MAX_PRICE ? maxPrice : null,
+    };
+    this.props.onChange(filter);
+  };
+
+  getTitle = (
+    start: number,
+    end: number,
+    min: number,
+    max: number,
+    currency: string,
+  ) => {
+    if (start === min && end === max) {
+      return 'price';
+    }
+    if (start === min) {
+      return `< ${end} ${currency}`;
+    }
+    if (end === max) {
+      return `> ${start} ${currency}`;
+    }
+    return `${start} - ${end} ${currency}`;
   };
 
   render() {
-    const { min, max, start, end, currency } = this.props;
+    const min = MIN_PRICE;
+    const max = MAX_PRICE;
+    const start = this.props.start || MIN_PRICE;
+    const end = this.props.end || MAX_PRICE;
+    const currency = this.props.currency;
     return (
       <View>
         <FilterButton
-          title="price"
+          title={this.getTitle(start, end, min, max, currency)}
           icon={{ name: 'attach-money', color: '#fff' }}
-          isActive={false}
+          isActive={min !== start || max !== end}
           onPress={this.handlePopupToggle}
         />
         <PricePopup
