@@ -11,6 +11,7 @@ Try it in [Expo](https://expo.io/):
 * [Testing](#testing)
 * [Project structure](#project-structure)
 * [Working with GraphQL API](#working-with-graphql-api)
+* [Working with Redux](#working-with-redux)
 * [Offline first](#offline-first)
 * [Error handling](#error-handling)
 * [Best practices](#best-practices)
@@ -90,6 +91,27 @@ Additional useful tools:
 
 - https://kiwi-graphiql.now.sh/ (introspection and docs)
 - https://kiwi-graphql-voyager.now.sh/ (graphical visualisation)
+
+## Working with Redux
+
+This application consists of independent packages so they can be reused or replaced in other applications (or included in iOS and Android codebase). Unfortunately, this makes Redux usage little bit complicated because Redux by default expects centralized state store but reducers for each individual package should be stored in the package itself. In order to use Redux store - all Redux reducers must be registered first. So if you want to use Redux in, let's say, `hotels` package you must first:
+
+1. install Redux dependency (called in the `hotels` package scope):
+
+```
+yarn add @kiwicom/react-native-app-redux
+```
+
+2. register reducers:
+
+```js
+import { injectAsyncReducer, store } from '@kiwicom/react-native-app-redux';
+import HotelsReducer from './src/HotelsReducer';
+
+injectAsyncReducer(store, 'hotels', HotelsReducer);
+```
+
+We currently do not officially support calling actions on reducers outside of one package. This means that you should always work with actions and reducers from `HotelReducer`. This should be in most of the scenarios good enough.
 
 ## Offline first
 

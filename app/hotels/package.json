@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/react-native-app-common": "^0",
+    "@kiwicom/react-native-app-redux": "^0",
     "geolib": "2.0.24",
     "idx": "2.2.0",
     "react-native-snap-carousel": "3.4.0",

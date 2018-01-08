@@ -1,5 +1,11 @@
 // @flow
 
+import { injectAsyncReducer, store } from '@kiwicom/react-native-app-redux';
+
+import HotelsReducer from './src/HotelsReducer';
+
+injectAsyncReducer(store, 'hotels', HotelsReducer);
+
 /**
  * Main component with all hotels, and search form.
  */

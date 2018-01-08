@@ -2,16 +2,29 @@
 
 import { AsyncStorage } from 'react-native';
 
-import type { ReduxState, ReduxActions } from '../../../types/Redux';
+export type UserReducerState =
+  | {|
+      logged: true,
+      accessToken: string,
+    |}
+  | {|
+      logged: false,
+      accessToken: null,
+    |};
 
-type UserState = $PropertyType<ReduxState, 'user'>;
+type UserReducerActions =
+  | {| type: 'login', accessToken: string |}
+  | {| type: 'logout' |};
 
-const InitialUserState: UserState = {
+const InitialUserState: UserReducerState = {
   logged: false,
   accessToken: null,
 };
 
-export default (state: UserState = InitialUserState, action: ReduxActions) => {
+export default (
+  state: UserReducerState = InitialUserState,
+  action: UserReducerActions,
+) => {
   if (action.type === 'login') {
     return {
       ...state,
