@@ -6,5 +6,5 @@ set -x # print a trace of simple commands
 
 yarn lint
 yarn flow app
-node node_modules/jest/bin/jest.js --ci --color --config=.jest.json
+node node_modules/jest/bin/jest.js --ci --color --logHeapUsage --maxWorkers=4 --config=.jest.json
 yarn relay --validate

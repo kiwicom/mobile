@@ -13,7 +13,6 @@
     "start": "yarn react-native-scripts start",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./scripts/test.sh",
-    "test-ci-circle": "./scripts/test-circle.sh",
 
     "postinstall": "node ./scripts/configureApplication.js"
   },
