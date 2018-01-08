@@ -1,0 +1,11 @@
+{
+  "name": "@kiwicom/react-native-app-redux",
+  "version": "0.0.0",
+  "private": false,
+  "main": "index.js",
+  "dependencies": {
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-persist": "^5.3.4"
+  }
+}

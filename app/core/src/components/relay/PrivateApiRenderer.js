@@ -8,11 +8,11 @@ import {
 } from '@kiwicom/react-native-app-relay';
 
 import Login from '../authentication/Login';
-import type { ReduxState } from '../../types/Redux';
+import type { UserReducerState } from '../../services/redux/UserReducer';
 
 type Props = {|
   ...QueryRendererProps,
-  user: $PropertyType<ReduxState, 'user'>,
+  user: UserReducerState,
   onLogin: (accessToken: string) => void,
 |};
 

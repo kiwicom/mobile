@@ -6,21 +6,21 @@ import { AllHotelsMap } from '@kiwicom/react-native-app-hotels';
 
 import type { Navigation } from '../../types/Navigation';
 import type {
-  ReduxActions,
-  ReduxState,
-  SearchParametersType,
-} from '../../types/Redux';
+  HotelsReducerState,
+  HotelsReducerActions,
+  HotelsSearchParametersType,
+} from '../../../../hotels/src/HotelsReducer'; // FIXME: this wil be fixed with hotels package separation
 
 type ContainerProps = {|
   navigation: Navigation,
 |};
 
 type StateProps = {|
-  search: SearchParametersType,
+  search: HotelsSearchParametersType,
 |};
 
 type DispatchProps = {|
-  onFilterChange: SearchParametersType => void,
+  onFilterChange: HotelsSearchParametersType => void,
 |};
 
 type Props = ContainerProps & StateProps & DispatchProps;
@@ -39,11 +39,11 @@ function AllHotelsMapNavigationScreen(props: Props) {
   );
 }
 
-const select = (state: ReduxState): StateProps => ({
-  search: state.hotels.searchParams,
+const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
+  search: hotels.searchParams,
 });
 
-const actions = (dispatch: ReduxActions => void): DispatchProps => ({
+const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
   onFilterChange: filter =>
     dispatch({
       type: 'setSearchFilters',

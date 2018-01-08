@@ -4,14 +4,22 @@ import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
+import {
+  persistor,
+  store,
+  injectAsyncReducer,
+} from '@kiwicom/react-native-app-redux';
 
-import { configureStore } from '../services/redux/Store';
 import BookingsStack from './BookingsStack';
 import HomepageStack from './HomepageStack';
 import HotelsStack from './HotelsStack';
 import { Color } from '../../../common';
+import SearchReducer from '../services/redux/SearchReducer';
+import UserReducer from '../services/redux/UserReducer';
 
-const { persistor, store } = configureStore();
+injectAsyncReducer(store, 'search', SearchReducer);
+injectAsyncReducer(store, 'user', UserReducer);
+
 const Navigation = StackNavigator(
   {
     ...HomepageStack,
@@ -36,14 +44,12 @@ const Navigation = StackNavigator(
   },
 );
 
-export default class Application extends React.Component<{}, {}> {
-  render() {
-    return (
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <Navigation />
-        </PersistGate>
-      </Provider>
-    );
-  }
+export default class Application extends React.Component<{||}> {
+  render = () => (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <Navigation />
+      </PersistGate>
+    </Provider>
+  );
 }
