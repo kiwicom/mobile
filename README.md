@@ -1,8 +1,8 @@
-[![Build Status](https://travis-ci.org/kiwicom/react-native-app.svg?branch=master)](https://travis-ci.org/kiwicom/react-native-app)
-
 Try it in [Expo](https://expo.io/):
 
 ![Expo QR code](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=exp://exp.host/@mrtnzlml/code-review-master)
+
+[![CircleCI](https://circleci.com/gh/kiwicom/react-native-app/tree/master.svg?style=svg)](https://circleci.com/gh/kiwicom/react-native-app/tree/master)
 
 ## Table of Contents
 

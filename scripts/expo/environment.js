@@ -5,9 +5,9 @@ module.exports = {
   // GitHub
   GITHUB_USERNAME: process.env.GITHUB_USERNAME,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
-  // Travis CI
-  TRAVIS_BRANCH: process.env.TRAVIS_BRANCH,
-  TRAVIS_PULL_REQUEST: process.env.TRAVIS_PULL_REQUEST,
-  TRAVIS_PULL_REQUEST_BRANCH: process.env.TRAVIS_PULL_REQUEST_BRANCH,
-  TRAVIS_REPO_SLUG: process.env.TRAVIS_REPO_SLUG
+  // Continuous Integration:
+  // see: https://circleci.com/docs/2.0/env-vars/
+  CI_BRANCH: process.env.CIRCLE_BRANCH,
+  CI_PULL_REQUEST_ID: (process.env.CIRCLE_PULL_REQUEST || '').split('/').slice(-1)[0] || 0,
+  CI_PROJECT_REPONAME: process.env.CIRCLE_PROJECT_USERNAME + '/' + process.env.CIRCLE_PROJECT_REPONAME
 };
