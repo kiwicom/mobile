@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-if (process.env.TRAVIS !== 'true') {
-  console.error('This script can be executed only in Travis CI environment.');
+if (process.env.CIRCLECI !== 'true') {
+  console.error('This script can be executed only in CircleCI environment.');
   process.exit(1);
 }
 
@@ -12,6 +12,7 @@ const publishCodeReview = require('./commands/publishCodeReview');
 spawn(
   'yarn',
   [
+    '--silent', // hide executed Yarn commands so the ENVs are not exposed
     'exp',
     'login',
     '--username', env.EXP_USERNAME,
