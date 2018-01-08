@@ -8,16 +8,22 @@ import idx from 'idx';
 
 import AllHotelsSearch from './AllHotelsSearch';
 import type {
-  SearchParametersType,
+  SearchParams,
   OnChangeSearchParams,
 } from './searchForm/SearchParametersType';
+import type {
+  FilterParams,
+  OnChangeFilterParams,
+} from '../filter/FilterParametersType';
 import type { AvailableHotelSearchInput } from '../singleHotel';
 
 type Props = {|
   location: string,
-  search: SearchParametersType,
+  search: SearchParams,
+  filter: FilterParams,
   openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  onFilterChange: (filter: OnChangeSearchParams) => void,
+  onSearchChange: OnChangeSearchParams => void,
+  onFilterChange: OnChangeFilterParams => void,
   onLocationChange: (location: string) => void,
   onCityIdChange: (cityId: string | null) => void,
 |};
@@ -27,7 +33,7 @@ export default class AllHotels extends React.Component<Props> {
    * Submit form with the initial date interval parameters.
    */
   componentDidMount = () => {
-    this.props.onFilterChange({
+    this.props.onSearchChange({
       checkin: moment()
         .add(1, 'week')
         .startOf('isoWeek')
@@ -60,8 +66,10 @@ export default class AllHotels extends React.Component<Props> {
 
   renderInnerComponent = (rendererProps: { error: Object, props: Object }) => {
     const {
+      onSearchChange,
       onFilterChange,
       search,
+      filter,
       location,
       onLocationChange,
       onCityIdChange,
@@ -74,8 +82,10 @@ export default class AllHotels extends React.Component<Props> {
       <AllHotelsSearch
         data={data}
         search={search}
+        filter={filter}
         location={location}
         isLoading={isLoading}
+        onSearchChange={onSearchChange}
         onFilterChange={onFilterChange}
         onLocationChange={onLocationChange}
         onCityIdChange={onCityIdChange}

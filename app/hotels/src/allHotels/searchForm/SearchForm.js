@@ -8,7 +8,7 @@ import moment from 'moment';
 import Guests from './guests/Guests';
 import type {
   RoomConfigurationType,
-  SearchParametersType,
+  SearchParams,
   OnChangeSearchParams,
 } from './SearchParametersType';
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
 type Props = {
   location: string,
-  search: SearchParametersType,
+  search: SearchParams,
   onChange: (search: OnChangeSearchParams) => void,
   onLocationChange: (location: string) => void,
 };

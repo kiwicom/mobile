@@ -1,24 +1,24 @@
 // @flow
 
-export type HotelsSearchParametersType = {
-  checkin: Date | null,
-  checkout: Date | null,
-  roomsConfiguration: {|
-    adultsCount: number,
-    children: Array<{|
-      age: number,
-    |}>,
-  |},
-};
+import type {
+  OnChangeSearchParams,
+  SearchParams,
+} from './allHotels/searchForm/SearchParametersType';
+import type {
+  FilterParams,
+  OnChangeFilterParams,
+} from './filter/FilterParametersType';
 
 export type HotelsReducerState = {
   cityId: string | null,
   location: string,
-  searchParams: HotelsSearchParametersType,
+  searchParams: SearchParams,
+  filterParams: FilterParams,
 };
 
 export type HotelsReducerActions =
-  | {| type: 'setSearchFilters', filter: HotelsSearchParametersType |}
+  | {| type: 'setSearch', search: OnChangeSearchParams |}
+  | {| type: 'setFilter', filter: OnChangeFilterParams |}
   | {| type: 'setLocation', location: string |}
   | {| type: 'setCityId', cityId: string | null |};
 
@@ -33,6 +33,10 @@ const InitialHotelsState: HotelsReducerState = {
       children: [],
     },
   },
+  filterParams: {
+    minPrice: null,
+    maxPrice: null,
+  },
 };
 
 export default (
@@ -40,11 +44,19 @@ export default (
   action: HotelsReducerActions,
 ): HotelsReducerState => {
   switch (action.type) {
-    case 'setSearchFilters':
+    case 'setSearch':
       return {
         ...state,
         searchParams: {
           ...state.searchParams,
+          ...action.search,
+        },
+      };
+    case 'setFilter':
+      return {
+        ...state,
+        filterParams: {
+          ...state.filterParams,
           ...action.filter,
         },
       };

@@ -1,8 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HotelsReducer setSearchFilters it should update search filters for list of hotels 1`] = `
+exports[`HotelsReducer setSearch it should update filters for list of hotels 1`] = `
 Object {
   "cityId": null,
+  "filterParams": Object {
+    "maxPrice": 30,
+    "minPrice": 20,
+  },
+  "location": "",
+  "searchParams": Object {
+    "checkin": null,
+    "checkout": null,
+    "roomsConfiguration": Object {
+      "adultsCount": 1,
+      "children": Array [],
+    },
+  },
+}
+`;
+
+exports[`HotelsReducer setSearch it should update search filters for list of hotels 1`] = `
+Object {
+  "cityId": null,
+  "filterParams": Object {
+    "maxPrice": null,
+    "minPrice": null,
+  },
   "location": "",
   "searchParams": Object {
     "checkin": 1970-01-01T00:00:00.001Z,
