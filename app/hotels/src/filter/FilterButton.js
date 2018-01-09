@@ -15,7 +15,7 @@ type Props = {
   title: string,
   icon?: {|
     name: string,
-    type?: string,
+    color?: string,
   |},
   isActive: boolean,
   onPress: () => void,

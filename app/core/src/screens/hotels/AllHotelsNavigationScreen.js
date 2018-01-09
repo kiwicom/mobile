@@ -4,7 +4,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { TouchableOpacity } from 'react-native';
 import { AllHotels } from '@kiwicom/react-native-app-hotels';
-import { Ionicons } from '@expo/vector-icons';
+import { Icon } from '@kiwicom/react-native-app-common';
 
 import type { Navigation } from '../../types/Navigation';
 import type {
@@ -40,7 +40,7 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
           style={{ marginHorizontal: 10 }}
           onPress={goToAllHotelsMap}
         >
-          <Ionicons name="md-map" size={30} color="#fff" />
+          <Icon name="map" size={30} color="#fff" />
         </TouchableOpacity>
       ),
     };

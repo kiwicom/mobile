@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, View, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { Color } from '@kiwicom/react-native-app-common';
+import { Color, Icon } from '@kiwicom/react-native-app-common';
 
 import type { Address as AddressData } from './__generated__/Address.graphql';
 
@@ -39,7 +38,7 @@ class Address extends React.Component<Props> {
     return (
       <View style={styles.container}>
         <View style={styles.mapIcon}>
-          <Ionicons name="md-map" size={24} color={Color.brand} />
+          <Icon name="map" size={24} color={Color.brand} />
         </View>
         <View style={styles.content}>
           <Text style={styles.header}>Address</Text>

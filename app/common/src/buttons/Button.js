@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Icon } from '@kiwicom/react-native-app-common';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import defaultsDeep from 'lodash/defaultsDeep';
 
@@ -27,7 +27,7 @@ export default function Button(props: Props) {
     <View style={[styles.buttonWrapper, additionalStyles.buttonWrapper]}>
       {props.icon && (
         <View style={[styles.icon, additionalStyles.icon]}>
-          <MaterialIcons {...defaultsDeep(props.icon, defaultIconProps)} />
+          <Icon {...defaultsDeep(props.icon, defaultIconProps)} />
         </View>
       )}
       <View style={[styles.button, additionalStyles.button]}>
@@ -51,7 +51,6 @@ export default function Button(props: Props) {
 
 const defaultIconProps = {
   size: 20,
-  color: '#fff',
 };
 
 function createStyles(iconAvailable) {

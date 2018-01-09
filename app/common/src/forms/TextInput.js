@@ -1,10 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Icon } from '@kiwicom/react-native-app-common';
 import { TextInput as OriginalTextInput, View } from 'react-native';
-
-import Color from '../Color';
 
 export const styles = {
   input: {
@@ -35,12 +33,7 @@ export default function TextInput(props: Props) {
   return (
     <View style={styles.wrapper}>
       {props.iconName && (
-        <MaterialIcons
-          name={props.iconName}
-          size={20}
-          color={Color.icon.grey}
-          style={styles.icon}
-        />
+        <Icon name={props.iconName} size={20} style={styles.icon} />
       )}
       <OriginalTextInput
         underlineColorAndroid="transparent"
