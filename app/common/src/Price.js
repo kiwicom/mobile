@@ -1,14 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { Text, type Styles } from 'react-native';
+import { Text } from 'react-native';
 
 type Props = {|
   amount: number | null, // may be null (compatible with GraphQL query failure)
   currency: string | null, // may be null (compatible with GraphQL query failure)
-  style?: Styles,
-  amountStyle?: Styles,
-  currencyStyle?: Styles,
+  style?: Object,
+  amountStyle?: Object,
+  currencyStyle?: Object,
 |};
 
 /**
