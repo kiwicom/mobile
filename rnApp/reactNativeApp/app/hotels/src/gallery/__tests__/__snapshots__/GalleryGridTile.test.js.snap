@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with marginRight if not last in the row 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
+>
+  <NetworkImage
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "http://.../",
+      }
+    }
+    style={
+      Object {
+        "height": 10,
+        "marginBottom": 2,
+        "marginRight": 5,
+        "width": 10,
+      }
+    }
+  />
+</TouchableOpacity>
+`;
+
+exports[`renders without marginRight if last in the row 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
+>
+  <NetworkImage
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "http://.../",
+      }
+    }
+    style={
+      Object {
+        "height": 10,
+        "marginBottom": 2,
+        "width": 10,
+      }
+    }
+  />
+</TouchableOpacity>
+`;

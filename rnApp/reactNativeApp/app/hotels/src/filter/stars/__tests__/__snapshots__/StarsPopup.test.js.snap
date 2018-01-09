@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarsPopup should render popup 1`] = `
+<Popup
+  isVisible={true}
+  onClose={[Function]}
+  onSave={[Function]}
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#424242",
+        "paddingBottom": 5,
+      }
+    }
+  >
+    Hotel stars
+  </Text>
+  <StarsCheckbox
+    isChecked={false}
+    onPress={[Function]}
+    stars={5}
+    style={
+      Object {
+        "borderBottomColor": "#e0e0e0",
+        "borderBottomWidth": 1,
+      }
+    }
+  />
+  <StarsCheckbox
+    isChecked={false}
+    onPress={[Function]}
+    stars={4}
+    style={
+      Object {
+        "borderBottomColor": "#e0e0e0",
+        "borderBottomWidth": 1,
+      }
+    }
+  />
+  <StarsCheckbox
+    isChecked={false}
+    onPress={[Function]}
+    stars={3}
+    style={
+      Object {
+        "borderBottomColor": "#e0e0e0",
+        "borderBottomWidth": 1,
+      }
+    }
+  />
+  <StarsCheckbox
+    isChecked={false}
+    onPress={[Function]}
+    stars={2}
+    style={
+      Object {
+        "borderBottomColor": "#e0e0e0",
+        "borderBottomWidth": 1,
+      }
+    }
+  />
+  <StarsCheckbox
+    isChecked={false}
+    onPress={[Function]}
+    stars={1}
+    style={
+      Object {
+        "borderBottomColor": "#e0e0e0",
+        "borderBottomWidth": 1,
+      }
+    }
+  />
+  <StarsCheckbox
+    isChecked={false}
+    onPress={[Function]}
+    text="Unrated"
+  />
+</Popup>
+`;

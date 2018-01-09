@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculates the offsets base on icon size 1`] = `
+<Icon
+  color="#0097a9"
+  name="place"
+  size={50}
+  style={
+    Object {
+      "left": -25,
+      "position": "absolute",
+      "top": -50,
+    }
+  }
+/>
+`;
+
+exports[`calculates the offsets base on icon size 2`] = `
+<Icon
+  color="#0097a9"
+  name="place"
+  size={100}
+  style={
+    Object {
+      "left": -50,
+      "position": "absolute",
+      "top": -100,
+    }
+  }
+/>
+`;

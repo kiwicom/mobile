@@ -1,3 +1,14 @@
 {
-  "presets": ["react-native"]
+  "presets": ["react-native",  "react-native-dotenv"],
+  "plugins": [
+    "babel-plugin-idx",
+    ["relay", {"schema": "app/schema.graphql"}]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "transform-react-jsx-source"
+      ]
+    }
+  }
 }
