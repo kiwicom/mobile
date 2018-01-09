@@ -5,7 +5,6 @@ exports[`Guests Render all inputs 1`] = `
   <Button
     icon={
       Object {
-        "color": "#757575",
         "name": "people",
       }
     }

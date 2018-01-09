@@ -39,7 +39,7 @@ export default class PriceFilter extends React.Component<Props, State> {
       <View>
         <FilterButton
           title="price"
-          icon={{ name: 'attach-money' }}
+          icon={{ name: 'attach-money', color: '#fff' }}
           isActive={false}
           onPress={this.handlePopupToggle}
         />

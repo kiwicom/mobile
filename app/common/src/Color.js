@@ -63,10 +63,5 @@ export default {
   buttercup: '#eb9d08',
   sun: '#fbad18',
 
-  // FIXME: this should be part of the Icon component
-  icon: {
-    grey: ColorPalette.grey.$600,
-  },
-
   ...ColorPalette,
 };
