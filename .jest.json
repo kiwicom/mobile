@@ -8,6 +8,7 @@
   "transform": {
     "^.+\\.js$": "babel-jest"
   },
-  "testPathIgnorePatterns": ["/node_modules/", "__tests__/__mocks__"],
-  "transformIgnorePatterns": ["/node_modules/(?!@kiwicom)/"]
+  "testPathIgnorePatterns": ["/node_modules/", "__tests__/__mocks__", "<rootDir>/rnApp/"],
+  "transformIgnorePatterns": ["/node_modules/(?!@kiwicom)/"],
+  "modulePathIgnorePatterns": ["<rootDir>/rnApp/"]
 }

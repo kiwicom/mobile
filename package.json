@@ -13,7 +13,6 @@
     "start": "yarn react-native-scripts start",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./scripts/test.sh",
-
     "postinstall": "node ./scripts/configureApplication.js"
   },
   "dependencies": {
