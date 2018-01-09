@@ -31,6 +31,8 @@
 .*/node_modules/relay-compiler/lib/.+
 .*/node_modules/relay-runtime/lib/.+
 
+; Ignore rnApp folder for now
+<PROJECT_ROOT>/\rnApp/
 [include]
 
 [libs]
