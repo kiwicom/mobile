@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders text 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignSelf": "flex-start",
+        "backgroundColor": "#9e9e9e",
+        "borderRadius": 2,
+        "paddingHorizontal": 5,
+        "paddingVertical": 2,
+      },
+      Object {},
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#fff",
+      }
+    }
+  >
+    default badge
+  </Text>
+</View>
+`;
+
+exports[`renders text with color 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignSelf": "flex-start",
+        "backgroundColor": "#9e9e9e",
+        "borderRadius": 2,
+        "paddingHorizontal": 5,
+        "paddingVertical": 2,
+      },
+      Object {
+        "backgroundColor": "red",
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#fff",
+      }
+    }
+  >
+    badge with color
+  </Text>
+</View>
+`;
+
+exports[`renders very long texts 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignSelf": "flex-start",
+        "backgroundColor": "#9e9e9e",
+        "borderRadius": 2,
+        "paddingHorizontal": 5,
+        "paddingVertical": 2,
+      },
+      Object {},
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#fff",
+      }
+    }
+  >
+    very very very very very long badge (adaptable width)
+  </Text>
+</View>
+`;
