@@ -2,9 +2,8 @@
 
 exports[`calculates the offsets base on icon size 1`] = `
 <Icon
-  allowFontScaling={false}
   color="#0097a9"
-  name="map-marker"
+  name="place"
   size={50}
   style={
     Object {
@@ -18,9 +17,8 @@ exports[`calculates the offsets base on icon size 1`] = `
 
 exports[`calculates the offsets base on icon size 2`] = `
 <Icon
-  allowFontScaling={false}
   color="#0097a9"
-  name="map-marker"
+  name="place"
   size={100}
   style={
     Object {

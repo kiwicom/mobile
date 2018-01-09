@@ -42,6 +42,7 @@ export { default as Stars } from './src/rating/Stars';
 
 export { default as Color } from './src/Color';
 export { default as Device } from './src/Device';
+export { default as Icon } from './src/Icon';
 export { default as Modal } from './src/Modal';
 export { default as Price } from './src/Price';
 export { default as WebView } from './src/WebView';

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Icon } from '@kiwicom/react-native-app-common';
 
 import Color from '../Color';
 
@@ -25,8 +25,8 @@ type Props = {|
  */
 export default function DropMarker({ size = 50 }: Props) {
   return (
-    <MaterialCommunityIcons
-      name="map-marker"
+    <Icon
+      name="place"
       size={size}
       color={Color.brand}
       style={{ position: 'absolute', left: -size / 2, top: -size }}

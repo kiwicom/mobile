@@ -1,10 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Icon } from '@kiwicom/react-native-app-common';
 import { View, StyleSheet, Text } from 'react-native';
 
-import Color from '../Color';
 import IncrementDecrementButtons from '../buttons/IncrementDecrementButtons';
 
 type Props = {|
@@ -25,7 +24,7 @@ export default class NumberControl extends React.Component<Props> {
   render = () => (
     <View style={[styles.control, this.props.style]}>
       {this.props.icon && (
-        <MaterialIcons name={this.props.icon} size={20} style={styles.icon} />
+        <Icon name={this.props.icon} size={20} style={styles.icon} />
       )}
       <Text style={styles.label}>{this.props.label}</Text>
       <Text style={styles.number}>{this.props.number}</Text>
@@ -46,7 +45,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    color: Color.icon.grey,
     marginRight: 8,
   },
   label: {

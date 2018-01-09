@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Color, Stars } from '@kiwicom/react-native-app-common';
+import { Color, Stars, Icon } from '@kiwicom/react-native-app-common';
 
 type Props = {|
   onPress: () => void,
@@ -28,7 +27,7 @@ export default function StarsCheckbox(props: Props) {
         </View>
         {props.isChecked && (
           <View style={styles.check}>
-            <MaterialIcons name="check" size={26} color={Color.brand} />
+            <Icon name="check" size={26} color={Color.brand} />
           </View>
         )}
       </View>

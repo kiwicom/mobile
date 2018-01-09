@@ -51,7 +51,6 @@ exports[`StarsCheckbox render checked 1`] = `
       }
     >
       <Icon
-        allowFontScaling={false}
         color="#0097a9"
         name="check"
         size={26}

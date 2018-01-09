@@ -64,7 +64,6 @@ export default class Guests extends React.Component<Props, State> {
           styles={buttonStyles}
           icon={{
             name: 'people',
-            color: Color.icon.grey,
           }}
         />
         <Popup

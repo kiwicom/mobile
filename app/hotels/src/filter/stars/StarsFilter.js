@@ -33,7 +33,7 @@ export default class StarsFilter extends React.Component<Props, State> {
       <View>
         <FilterButton
           title="stars"
-          icon={{ name: 'star' }}
+          icon={{ name: 'star', color: '#fff' }}
           isActive={false}
           onPress={this.handlePopupToggle}
         />
