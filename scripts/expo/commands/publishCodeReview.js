@@ -48,7 +48,7 @@ module.exports = () => {
     }),
   });
 
-  const githubPullRequestId = env.CI_PULL_REQUEST_ID;
+  const githubPullRequestId = env.CIRCLE_PR_NUMBER;
   spawn('yarn', ['exp', 'publish'], async publishError => {
     if (publishError) {
       throw new Error(publishError);
@@ -56,6 +56,8 @@ module.exports = () => {
       // comments only when the PR is opened (but publish always)
       console.log(`Trying to comment PR #${githubPullRequestId}...`);
       await commentOnGitHub(slug, githubPullRequestId);
+    } else {
+      console.log('Skipping comment as it is not PR');
     }
   });
 };
