@@ -16,6 +16,9 @@
           "apiKey": "** GOOGLE MAPS API KEY HERE **"
         }
       }
+    },
+    "packagerOpts": {
+      "config": "./rn-cli.config.js"
     }
   }
 }
