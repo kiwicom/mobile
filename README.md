@@ -7,6 +7,7 @@
 * [Environment](#environment)
 * [Testing](#testing)
 * [Project structure](#project-structure)
+* [Working with Playground](#working-with-playground)
 * [Working with GraphQL API](#working-with-graphql-api)
 * [Working with Redux](#working-with-redux)
 * [Offline first](#offline-first)
@@ -110,6 +111,24 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ```
 
 In case you need additional dependency for the package, you should add it to the `package.json` of the workspace (for example `app/hotels/package.json`). Root `package.json` is only for global dependencies related to the whole monorepo (testing tools, linters and so on).
+
+## Working with Playground
+
+There is so called Playground for easier development. It's our custom WIP replacement for Storybook. The idea is to write regular component tests with ability to see them in the Playground. Therefore you need to write only the tests and you don't have to maintain additional stories. Example of simple test:
+
+```js
+it('Works!', () => {
+  PlaygroundRenderer.render(<AdaptableBadge text="default badge" />);
+  PlaygroundRenderer.render(<AdaptableBadge text="badge with color" color="red" />);
+});
+```
+
+The `PlaygroundRenderer` allows you to see the tests in the Playground and it automatically creates shallow snapshots of the component. You can start the Playground in the `index.js`:
+
+```js
+// import App from './app/App';
+import App from './app/Playground';
+```
 
 ## Working with GraphQL API
 
