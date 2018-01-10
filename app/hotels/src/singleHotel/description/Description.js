@@ -5,8 +5,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { Color } from '@kiwicom/react-native-app-common';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
+import Facilities from './Facilities';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,28 +24,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   linkText: {
-    color: '#0097a9',
+    color: Color.brand,
     fontWeight: '800',
-  },
-  facilities: {
-    paddingVertical: 15,
-    borderTopWidth: 1,
-    borderTopColor: '#edeff2',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-  },
-  facilityView: {
-    borderRadius: 2,
-    backgroundColor: '#edeff2',
-    marginRight: 5,
-    marginBottom: 5,
-  },
-  facilityText: {
-    fontSize: 12,
-    padding: 4,
-    color: '#79818a',
-    backgroundColor: 'transparent',
   },
 });
 
@@ -79,9 +61,6 @@ type Props = {
 };
 
 export function Description({ hotel }: Props) {
-  const facilitiesEdges = idx(hotel, _ => _.facilities.edges) || [];
-  const facilities = facilitiesEdges.map(edge => idx(edge, _ => _.node));
-
   return (
     <View style={styles.container}>
       <View style={styles.description}>
@@ -93,17 +72,7 @@ export function Description({ hotel }: Props) {
           <Text>{idx(hotel, _ => _.summary)}</Text>
         </ReadMore>
       </View>
-      <View style={styles.facilities}>
-        {facilities.map(facility => {
-          return (
-            facility && (
-              <View key={facility.id} style={styles.facilityView}>
-                <Text style={styles.facilityText}>{facility.name}</Text>
-              </View>
-            )
-          );
-        })}
-      </View>
+      <Facilities facilities={idx(hotel, _ => _.facilities)} />
     </View>
   );
 }
@@ -114,12 +83,7 @@ export default (createFragmentContainer(
     fragment Description_hotel on Hotel {
       summary
       facilities {
-        edges {
-          node {
-            id
-            name
-          }
-        }
+        ...Facilities_facilities
       }
     }
   `,
