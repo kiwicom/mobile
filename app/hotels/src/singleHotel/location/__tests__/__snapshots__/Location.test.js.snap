@@ -61,13 +61,25 @@ exports[`renders without crashing 1`] = `
       }
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
-      Please FIX ME!
-    </Text>
+    <StretchedImage
+      source={
+        Object {
+          "testUri": "../../../app/hotels/src/singleHotel/location/white-to-alpha-horizontal.png",
+        }
+      }
+    />
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
   </View>
 </View>
 `;
@@ -133,13 +145,25 @@ exports[`renders without crashing with missing data 1`] = `
       }
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
-      Please FIX ME!
-    </Text>
+    <StretchedImage
+      source={
+        Object {
+          "testUri": "../../../app/hotels/src/singleHotel/location/white-to-alpha-horizontal.png",
+        }
+      }
+    />
+    <TouchableOpacity
+      activeOpacity={0.2}
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
   </View>
 </View>
 `;

@@ -21,17 +21,16 @@
 All necessary information are described in the official [React Native documentation](http://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies). Basically you need to install Node and Watchman:
 
 ```
-brew install node
-brew install watchman
+brew install node watchman
 ```
 
-Install Xcode and Android Studio. After that install all the necessary JavaScript dependencies:
+Install Xcode and Android Studio. After that install all the necessary dependencies:
 
 ```
-yarn install
+yarn install && ( cd ios ; pod install )
 ```
 
-And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application.
+And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application. Similarly for Android (`yarn android`) but you have to open Android emulator first.
 
 ## Environment
 
