@@ -14,8 +14,8 @@ type Props = {|
 
 export default class ChildrenAgesControl extends React.Component<Props> {
   handleAgeChange = (index: number) => (age: number) => {
-    const { childrenAges } = this.props;
-    childrenAges[index].age = age;
+    const childrenAges = [...this.props.childrenAges];
+    childrenAges[index] = { age };
     this.props.onChange(childrenAges);
   };
 
