@@ -13,7 +13,6 @@
 * [Best practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 * [Known issues](#known-issues)
-* [Troubleshooting](#troubleshooting)
 
 ## Installation and Run
 
