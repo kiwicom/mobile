@@ -6,6 +6,7 @@
   "dependencies": {
     "@ptomasroos/react-native-multi-slider": "ptomasroos/react-native-multi-slider",
     "react-native-image-progress": "^1.0.1",
-    "react-native-modal": "^4.1.1"
+    "react-native-modal": "^4.1.1",
+    "react-native-vector-icons": "^4.5.0"
   }
 }
