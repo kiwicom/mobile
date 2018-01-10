@@ -43,6 +43,7 @@ const LocationSuggestionsWrapper = class LocationSuggestionsWrapper extends Reac
   };
 
   componentWillReceiveProps = (nextProps: Props) =>
+    // $FlowFixMe
     Animated.timing(this.state.top, {
       toValue: nextProps.visible ? headerHeight : windowHeight,
       duration: config.animations.duration,

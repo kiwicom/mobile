@@ -12,6 +12,7 @@ type SwipeConfig = {|
 
 type Props = {|
   config?: SwipeConfig,
+  // $FlowFixMeProps
   style?: Object | Object[],
   children?: React.Node,
   onSwipeUp?: (gestureState?: GestureState) => void,

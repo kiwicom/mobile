@@ -1,29 +1,29 @@
 {
+  "name": "reactNativeApp",
+  "version": "0.0.1",
   "private": true,
-  "main": "node_modules/expo/AppEntry.js",
   "workspaces": [
     "app/*"
   ],
   "scripts": {
-    "android": "yarn react-native-scripts android",
-    "graphql:update": "node ./scripts/getSchema.js",
-    "ios": "yarn react-native-scripts ios",
+    "android": "yarn react-native run-android",
+    "graphql": "node ./scripts/getSchema.js",
+    "ios": "yarn react-native run-ios",
     "lint": "yarn eslint app --report-unused-disable-directives",
     "relay": "yarn babel-node ./app/relay/scripts/RelayCompiler.js --src ./app --schema ./schema.graphql",
-    "start": "yarn react-native-scripts start",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./scripts/test.sh",
     "postinstall": "node ./scripts/configureApplication.js"
   },
   "dependencies": {
-    "expo": "^23.0.0",
-    "react": "16.0.0",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz"
+    "react": "16.2.0",
+    "react-native": "0.52.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
-    "babel-jest": "21.2.0",
+    "babel-jest": "22.0.4",
     "babel-plugin-idx": "^2.2.0",
     "babel-preset-react-native": "4.0.0",
     "eslint": "^4.8.0",
@@ -33,13 +33,12 @@
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
     "exp": "^45.1.0",
-    "flow-bin": "^0.59.0",
-    "jest": "21.2.1",
-    "jest-expo": "^23.0.0",
+    "flow-bin": "^0.61.0",
+    "jest": "22.0.5",
     "node-fetch": "^1.7.3",
     "prettier": "^1.7.4",
     "react-native-dotenv": "^0.1.0",
     "react-native-scripts": "1.8.0",
-    "react-test-renderer": "^16.1.0"
+    "react-test-renderer": "16.2.0"
   }
 }

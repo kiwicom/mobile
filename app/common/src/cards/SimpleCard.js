@@ -8,6 +8,7 @@ type Props = {|
   density?: 'airy' | 'compact',
   onPress?: Function,
   separator?: boolean,
+  // $FlowFixMeProps
   additionalStyles?: Object,
 |};
 

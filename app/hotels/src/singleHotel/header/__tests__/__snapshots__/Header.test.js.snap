@@ -25,7 +25,11 @@ exports[`renders without crashing 1`] = `
     }
   >
     <StretchedImage
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
+        }
+      }
     />
     <View
       style={
@@ -99,7 +103,11 @@ exports[`renders without crashing with missing data 1`] = `
     }
   >
     <StretchedImage
-      source={1}
+      source={
+        Object {
+          "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
+        }
+      }
     />
     <View
       style={

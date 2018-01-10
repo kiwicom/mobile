@@ -10,6 +10,7 @@ import Color from '../Color';
 export type Props = {
   title: string,
   onPress?: Function,
+  // $FlowFixMeProps
   styles?: {|
     buttonWrapper?: Object,
     button?: Object,

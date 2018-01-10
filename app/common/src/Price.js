@@ -6,8 +6,11 @@ import { Text } from 'react-native';
 type Props = {|
   amount: number | null, // may be null (compatible with GraphQL query failure)
   currency: string | null, // may be null (compatible with GraphQL query failure)
+  // $FlowFixMeProps
   style?: Object,
+  // $FlowFixMeProps
   amountStyle?: Object,
+  // $FlowFixMeProps
   currencyStyle?: Object,
 |};
 

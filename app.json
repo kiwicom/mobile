@@ -1,24 +1,4 @@
 {
-  "expo": {
-    "name": "Kiwi.com",
-    "privacy": "public",
-    "icon": "./app/core/assets/icon.png",
-    "version": "0.0.1",
-    "slug": "kiwi-com",
-    "sdkVersion": "23.0.0",
-    "ios": {
-      "bundleIdentifier": "com.kiwi.rn"
-    },
-    "android": {
-      "package": "com.kiwi.rn",
-      "config": {
-        "googleMaps": {
-          "apiKey": "** GOOGLE MAPS API KEY HERE **"
-        }
-      }
-    },
-    "packagerOpts": {
-      "config": "./rn-cli.config.js"
-    }
-  }
+  "name": "reactNativeApp",
+  "displayName": "reactNativeApp"
 }

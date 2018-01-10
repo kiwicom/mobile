@@ -3,7 +3,11 @@
 exports[`passes props to the original Image component 1`] = `
 <Image
   resizeMode="cover"
-  source={1}
+  source={
+    Object {
+      "testUri": "../../../app/common/src/image/assets/placeholders/100.png",
+    }
+  }
   style={
     Object {
       "borderRadius": 2,

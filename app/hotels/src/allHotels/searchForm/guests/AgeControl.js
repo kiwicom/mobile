@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Color, AgePicker } from '@kiwicom/react-native-app-common';
+import { Color, AgePicker, Icon } from '@kiwicom/react-native-app-common';
 
 type Props = {|
   label: string,
@@ -36,11 +35,7 @@ export default class AgeControl extends React.Component<Props, State> {
             <Text>{label}</Text>
             <View style={styles.ageView}>
               <Text style={styles.age}>{age}</Text>
-              <MaterialIcons
-                name="chevron-right"
-                size={26}
-                style={styles.icon}
-              />
+              <Icon name="chevron-right" size={26} style={styles.icon} />
             </View>
           </View>
         </TouchableWithoutFeedback>
