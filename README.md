@@ -18,6 +18,8 @@
 
 ```
 yarn install
+cd ios
+pod install
 ```
 
 If you have Xcode just run `yarn ios` and you are ready to go. Similarly for Android (`yarn android`).
