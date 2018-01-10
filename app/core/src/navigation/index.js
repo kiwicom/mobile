@@ -10,7 +10,6 @@ import {
   injectAsyncReducer,
 } from '@kiwicom/react-native-app-redux';
 
-import BookingsStack from './BookingsStack';
 import HomepageStack from './HomepageStack';
 import HotelsStack from './HotelsStack';
 import { Color } from '../../../common';
@@ -23,7 +22,6 @@ injectAsyncReducer(store, 'user', UserReducer);
 const Navigation = StackNavigator(
   {
     ...HomepageStack,
-    ...BookingsStack,
     ...HotelsStack,
   },
   {
