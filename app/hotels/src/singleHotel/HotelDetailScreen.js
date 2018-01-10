@@ -13,6 +13,7 @@ import RoomList from './roomList/RoomList';
 import type { Image } from '../gallery/GalleryGrid';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import BookNow from './bookNow/BookNow';
+import BrandLabel from './brandLabel/BrandLabel';
 
 type Props = {|
   openGallery: (hotelName: string, images: Image[]) => void,
@@ -75,6 +76,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
             deselect={this.deselectRoom}
             selected={selected}
           />
+          <BrandLabel />
         </ScrollView>
         <BookNow
           onGoToPayment={onGoToPayment}
