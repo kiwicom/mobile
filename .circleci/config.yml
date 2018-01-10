@@ -29,6 +29,3 @@ jobs:
 
       # Run tests!
       - run: yarn test-ci
-
-      # Build and deploy tested version
-      - run: node scripts/expo
