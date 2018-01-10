@@ -1,9 +1,8 @@
-/* eslint-disable */
 // @flow
 
 import * as React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-// import { MapView } from 'expo';
+import MapView from 'react-native-maps';
 import { StretchedImage, DropMarker } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -64,30 +63,29 @@ export function Location({ hotel }: Props) {
         </Text>
       </View>
       <View style={styles.rightColumn}>
-        <Text>Please FIX ME!</Text>
-        {/*{typeof latitude === 'number' &&*/}
-          {/*typeof longitude === 'number' && (*/}
-            {/*<MapView*/}
-              {/*region={{*/}
-                {/*latitude: latitude + 0.001, // move center little bit down*/}
-                {/*longitude: longitude - 0.005, // move center little bit right*/}
-                {/*latitudeDelta: 0.01,*/}
-                {/*longitudeDelta: 0.01,*/}
-              {/*}}*/}
-              {/*style={StyleSheet.absoluteFillObject}*/}
-            {/*>*/}
-              {/*<MapView.Marker*/}
-                {/*coordinate={{*/}
-                  {/*latitude,*/}
-                  {/*longitude,*/}
-                {/*}}*/}
-              {/*>*/}
-                {/*<DropMarker size={30} />*/}
-              {/*</MapView.Marker>*/}
-            {/*</MapView>*/}
-          {/*)}*/}
-        {/*<StretchedImage source={gradient} />*/}
-        {/*<TouchableOpacity style={styles.mapOverlay} />*/}
+        {typeof latitude === 'number' &&
+          typeof longitude === 'number' && (
+            <MapView
+              region={{
+                latitude: latitude + 0.001, // move center little bit down
+                longitude: longitude - 0.005, // move center little bit right
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+              }}
+              style={StyleSheet.absoluteFillObject}
+            >
+              <MapView.Marker
+                coordinate={{
+                  latitude,
+                  longitude,
+                }}
+              >
+                <DropMarker size={30} />
+              </MapView.Marker>
+            </MapView>
+          )}
+        <StretchedImage source={gradient} />
+        <TouchableOpacity style={styles.mapOverlay} />
       </View>
     </View>
   );
