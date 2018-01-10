@@ -2,8 +2,7 @@
 
 type NavigationStateParameters = Object;
 
-type ExploreStackNavigatorRouteNames = 'Home' | 'SearchResults' | 'WebBooking';
-type TripsStackNavigatorRouteNames = 'AllBookings' | 'SingleBooking';
+type HomepageStackNavigatorRouteNames = 'Home';
 type HotelsStackNavigatorRouteNames =
   | 'AllHotels'
   | 'AllHotelsMap'
@@ -11,13 +10,10 @@ type HotelsStackNavigatorRouteNames =
   | 'GalleryStripe'
   | 'Payment'
   | 'SingleHotel';
-type MainTabNavigatorRouteNames = 'Explore' | 'Trips' | 'Profile';
 
 type RouteNames =
-  | ExploreStackNavigatorRouteNames
-  | TripsStackNavigatorRouteNames
-  | HotelsStackNavigatorRouteNames
-  | MainTabNavigatorRouteNames;
+  | HomepageStackNavigatorRouteNames
+  | HotelsStackNavigatorRouteNames;
 
 /**
  * @see https://reactnavigation.org/docs/navigators/navigation-prop
