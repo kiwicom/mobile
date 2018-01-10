@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders airy density 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderBottomColor": "#eee",
+      "borderBottomWidth": 1,
+      "paddingHorizontal": 0,
+      "paddingVertical": 20,
+    }
+  }
+>
+  CHILDREN
+</View>
+`;
+
+exports[`renders as expected 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "borderBottomColor": "#eee",
+      "borderBottomWidth": 1,
+      "paddingHorizontal": 0,
+      "paddingVertical": 10,
+    }
+  }
+>
+  CHILDREN
+</View>
+`;
+
+exports[`renders as expected with onPress callback 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#fff",
+        "borderBottomColor": "#eee",
+        "borderBottomWidth": 1,
+        "paddingHorizontal": 0,
+        "paddingVertical": 10,
+      }
+    }
+  >
+    CHILDREN
+  </View>
+</TouchableOpacity>
+`;
+
+exports[`renders without separator 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "paddingHorizontal": 0,
+      "paddingVertical": 10,
+    }
+  }
+>
+  CHILDREN
+</View>
+`;

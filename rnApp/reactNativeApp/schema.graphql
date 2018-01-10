@@ -1,0 +1,950 @@
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
+
+type AdditionalBaggage {
+  price: Price
+
+  # Number of baggage.
+  quantity: Int
+}
+
+type Address {
+  # Contains street and number.
+  street: String
+  city: String
+  zip: String
+}
+
+type Airline {
+  name: String
+
+  # 2-letter IATA code of airline.
+  code: String
+  logoUrl: String
+
+  # Airline is low cost carrier.
+  isLowCost: Boolean
+}
+
+type AllowedBaggage {
+  # Extra and overweight baggage.
+  additionalBaggage: [AdditionalBaggage]
+
+  # Small carry-on luggage.
+  cabin: [Baggage]
+
+  # Baggage checked online.
+  checked: [Baggage]
+}
+
+input AreaInput {
+  # Top left coordinates of the area.
+  topLeft: CoordinatesInput!
+
+  # Bottom right coordinates of the area.
+  bottomRight: CoordinatesInput!
+}
+
+input AvailableHotelSearchInput {
+  # Opaque hotel ID.
+  hotelId: ID!
+  checkin: Date!
+  checkout: Date!
+  roomsConfiguration: [RoomsConfiguration!]!
+}
+
+type Baggage {
+  height: Int
+  length: Int
+  width: Int
+  weight: Int
+  note: String
+}
+
+type Booking {
+  # The ID of an object
+  id: ID!
+
+  # Internal database ID.
+  databaseId: Int @deprecated(reason: "Use id field instead.")
+  allowedBaggage: AllowedBaggage
+  arrival: RouteStop
+
+  # Static assets related to this booking.
+  assets: BookingAssets
+  departure: RouteStop
+
+  # Flight segments, e.g. stopover, change of aircraft, etc.
+  legs: [Leg]
+  status: BookingStatus
+}
+
+type BookingAssets {
+  # URL of the electronic ticket. Ticket may not be available yet (returns null).
+  ticketUrl: String
+
+  # URL of the invoice.
+  invoiceUrl: String
+}
+
+# A connection to a list of items.
+type BookingConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [BookingEdge]
+}
+
+# An edge in a connection.
+type BookingEdge {
+  # The item at the end of the edge
+  node: Booking
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+enum BookingStatus {
+  NEW
+  REFUNDED
+  PENDING
+  CONFIRMED
+  CANCELLED
+  DELETED
+  CLOSED
+  EXPIRED
+}
+
+type Coordinates {
+  # Latitude.
+  lat: Float
+
+  # Longitude.
+  lng: Float
+}
+
+input CoordinatesInput {
+  # Latitude.
+  lat: Float!
+
+  # Longitude.
+  lng: Float!
+}
+
+enum Currency {
+  DZD
+  NAD
+  GHS
+  EGP
+  BGN
+  PAB
+  BOB
+  DKK
+  BWP
+  LBP
+  TZS
+  VND
+  AOA
+  KHR
+  MYR
+  SOS
+  KYD
+  LYD
+  UAH
+  JOD
+  AZN
+  AWG
+  SAR
+  XAG
+  HKD
+  CHF
+  GIP
+  BYR
+  SVC
+  XPD
+  BYN
+  MRO
+  HRK
+  DJF
+  THB
+  XAF
+  BND
+  ETB
+  UYU
+  NIO
+  LAK
+  SYP
+  MAD
+  MZN
+  YER
+  ZAR
+  NPR
+  ZWL
+  NGN
+  CRC
+  AED
+  GBP
+  MWK
+  LKR
+  PKR
+  HUF
+  SZL
+  LSL
+  MNT
+  AMD
+  UGX
+  XDR
+  JMD
+  TTD
+  SHP
+  AFN
+  MMK
+  KPW
+  TRY
+  BDT
+  HTG
+  SLL
+  MGA
+  PHP
+  LRD
+  XCD
+  NOK
+  MOP
+  INR
+  MXN
+  CZK
+  TJS
+  BTC
+  BTN
+  COP
+  TMT
+  MUR
+  IDR
+  GEL
+  XPF
+  FJD
+  VUV
+  PEN
+  BZD
+  ILS
+  DOP
+  GGP
+  MDL
+  XPT
+  QAR
+  SEK
+  ZMK
+  MVR
+  AUD
+  SRD
+  CUP
+  CLF
+  BBD
+  KMF
+  KRW
+  GMD
+  VEF
+  GTQ
+  ANG
+  CUC
+  CLP
+  ZMW
+  EUR
+  ALL
+  RWF
+  KZT
+  RUB
+  ISK
+  CDF
+  RON
+  OMR
+  BRL
+  SBD
+  PLN
+  PYG
+  KES
+  QUN
+  MKD
+  EEK
+  TWD
+  TOP
+  JEP
+  GNF
+  WST
+  IQD
+  ERN
+  BAM
+  SCR
+  CAD
+  CVE
+  KWD
+  BIF
+  PGK
+  LTL
+  HNL
+  SGD
+  UZS
+  STD
+  IRR
+  CNY
+  XOF
+  TND
+  GYD
+  MTL
+  NZD
+  FKP
+  LVL
+  USD
+  BSD
+  KGS
+  ARS
+  BMD
+  IMP
+  RSD
+  BHD
+  JPY
+  SDG
+  XAU
+}
+
+# A date string, such as 2007-12-03, compliant with the `full-date` format
+# outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
+# representation of dates and times using the Gregorian calendar.
+scalar Date
+
+# You always have to setup exact date OR range from-to.
+input DateInput {
+  # Exact date (cannot be used in combination with from-to fields).
+  exact: Date
+
+  # Start of the date range (cannot be used in combination with exact date).
+  from: Date
+
+  # End of the date range (cannot be used in combination with exact date).
+  to: Date
+}
+
+# A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+# `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+# 8601 standard for representation of dates and times using the Gregorian calendar.
+scalar DateTime
+
+input DurationInput {
+  stopovers: StopoversInput
+  maxFlightDuration: Int
+}
+
+type Flight {
+  # The ID of an object
+  id: ID!
+
+  # List of all Airlines involved.
+  airlines: [Airline]
+  departure: RouteStop
+  arrival: RouteStop
+
+  # Flight duration in minutes.
+  duration: Int
+
+  # Flight segments, e.g. stopover, change of aircraft, etc.
+  legs: [Leg]
+
+  # Total flight price.
+  price: Price
+
+  # URL to the Kiwi.com for booking the flight.
+  bookingUrl: String
+}
+
+# A connection to a list of items.
+type FlightConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [FlightEdge]
+}
+
+# An edge in a connection.
+type FlightEdge {
+  # The item at the end of the edge
+  node: Flight
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input FlightsFiltersInput {
+  maxStopovers: Int
+  duration: DurationInput
+}
+
+input FlightsOptionsInput {
+  # An ISO-4217 currency code.
+  currency: Currency
+  locale: Locale
+}
+
+input FlightsSearchInput {
+  # From where you want to fly?
+  from: [LocationInput!]!
+
+  # To where you want to fly?
+  to: [LocationInput!]!
+
+  # When do you want to leave?
+  date: DateInput!
+
+  # When do you want to return?
+  returnDate: DateInput
+  passengers: PassengersInput
+}
+
+# General information about the hotel.
+type Hotel {
+  # The ID of an object
+  id: ID!
+
+  # Original (low level ID of the hotel). You are probably looking for "id" field.
+  originalId: String @deprecated(reason: "Use field \\\"id\\\" instead. This field is used only because of compatibility reasons with old APIs.")
+
+  # Name of the hotel.
+  name: String
+  cityName: String
+
+  # URL to our whitelabel page of this hotel.
+  whitelabelUrl: String
+
+  # Main description (summary) of the hotel.
+  summary: String
+
+  # Main photo of the hotel.
+  mainPhoto: HotelPhoto
+
+  # Location of the hotel.
+  coordinates: Coordinates
+  address: Address
+
+  # The star rating of the hotel.
+  rating: HotelRating
+
+  # Hotel review from hotel visitors.
+  review: HotelReview
+
+  # All facilities available in the hotel.
+  facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection
+
+  # All rooms available in the hotel.
+  rooms(after: String, first: Int, before: String, last: Int): HotelRoomConnection
+
+  # All available photos of the hotel.
+  photos(after: String, first: Int, before: String, last: Int): HotelPhotoConnection
+}
+
+# Information about hotel availability during selected time period.
+type HotelAvailability {
+  # The ID of an object
+  id: ID!
+
+  # Total price for all guests and nights and in the hotel. (including VAT)
+  price: Price
+  availableRooms: [HotelRoomAvailability]
+  hotel: Hotel
+}
+
+# A connection to a list of items.
+type HotelAvailabilityConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelAvailabilityEdge]
+}
+
+# An edge in a connection.
+type HotelAvailabilityEdge {
+  # The item at the end of the edge
+  node: HotelAvailability
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelCity {
+  # The ID of an object
+  id: ID!
+
+  # Name of the hotel.
+  name: String
+  location: Coordinates
+  numberOfHotels: Int
+}
+
+# A connection to a list of items.
+type HotelCityConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelCityEdge]
+}
+
+# An edge in a connection.
+type HotelCityEdge {
+  # The item at the end of the edge
+  node: HotelCity
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelFacility {
+  # The ID of an object
+  id: ID!
+
+  # Name of the facility.
+  name: String
+}
+
+# A connection to a list of items.
+type HotelFacilityConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelFacilityEdge]
+}
+
+# An edge in a connection.
+type HotelFacilityEdge {
+  # The item at the end of the edge
+  node: HotelFacility
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelPhoto {
+  # The ID of an object
+  id: ID!
+  lowResUrl: String
+  highResUrl: String
+  thumbnailUrl: String
+}
+
+# A connection to a list of items.
+type HotelPhotoConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelPhotoEdge]
+}
+
+# An edge in a connection.
+type HotelPhotoEdge {
+  # The item at the end of the edge
+  node: HotelPhoto
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+type HotelRating {
+  # Star rating is always in the interval 1-5 inclusive.
+  stars: Int
+
+  # Name of the stars category.
+  categoryName: String
+}
+
+type HotelReview {
+  # The review score of the hotel, in the range 1-10 inclusive.
+  score: Float
+
+  # The review score of the hotel in words.
+  description: String
+
+  # The number of reviews of the hotel.
+  count: Int
+}
+
+type HotelRoom {
+  # The ID of an object
+  id: ID!
+
+  # Type of the hotel room.
+  type: String
+  maxPersons: Int
+  bedding: [HotelRoomBedding]
+
+  # All available photos of the hotel room.
+  photos(after: String, first: Int, before: String, last: Int): HotelRoomPhotoConnection
+  description: HotelRoomDescription
+}
+
+type HotelRoomAvailability {
+  # The ID of an object
+  id: ID!
+
+  # Original block ID used to open Booking.com page.
+  originalId: String @deprecated(reason: "Use \\\"id\\\" field whenever possible.")
+
+  # Base price for the room in this configuration.
+  minimalPrice: Price
+  incrementalPrice: [Price]
+  room: HotelRoom
+}
+
+type HotelRoomBedding {
+  type: String
+  amount: Int
+}
+
+# A connection to a list of items.
+type HotelRoomConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelRoomEdge]
+}
+
+type HotelRoomDescription {
+  title: String
+  text: String
+}
+
+# An edge in a connection.
+type HotelRoomEdge {
+  # The item at the end of the edge
+  node: HotelRoom
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+# A connection to a list of items.
+type HotelRoomPhotoConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [HotelRoomPhotoEdge]
+}
+
+# An edge in a connection.
+type HotelRoomPhotoEdge {
+  # The item at the end of the edge
+  node: HotelPhoto
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input HotelsFilterInput {
+  # List of hotels classes (stars) you want to filter.
+  starsRating: [Int]
+
+  # Show only hotels having minimum total price lower than or equal to this value.
+  minPrice: Float
+
+  # Show only hotels having minimum total price higher than or equal to this value.
+  maxPrice: Float
+}
+
+# You must provide lat/lng combination OR city ID.
+input HotelsSearchInput {
+  # Latitude in float format (example: 45.4654).
+  latitude: Float
+
+  # Longitude in float format (example: 9.1859).
+  longitude: Float
+
+  # Opaque ID of the city.
+  cityId: String
+  checkin: Date!
+  checkout: Date!
+  roomsConfiguration: [RoomsConfiguration!]!
+}
+
+type Identity {
+  # The ID of an object
+  id: ID!
+
+  # Internal database ID.
+  databaseId: String @deprecated(reason: "Use id field instead.")
+
+  # Raw input by user, use "login" if you want normalized email.
+  email: String
+  emailVerified: Boolean
+  firstName: String
+  lastName: String
+
+  # Concatenation of first and last name with fallback to the login field.
+  fullName: String
+
+  # Use this in API calls. It is email but normalized.
+  login: String
+}
+
+# Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
+type Leg {
+  # The ID of an object
+  id: ID!
+  airline: Airline
+  arrival: RouteStop
+  departure: RouteStop
+
+  # Leg duration in minutes.
+  duration: Int
+  flightNumber: Int
+  recheckRequired: Boolean
+}
+
+# Language tag in the format of the RFC 5646.
+enum Locale {
+  bg_BG
+  ca_ES
+  cs_CZ
+  da_DK
+  de_DE
+  de_AT
+  de_CH
+  el_GR
+  en_GB
+  en_AU
+  en_CA
+  en_EE
+  en_HK
+  en_IN
+  en_IE
+  en_MY
+  en_NZ
+  en_SG
+  en_ZA
+  en_PH
+  en_US
+  es_ES
+  es_AR
+  es_CL
+  es_CO
+  es_EC
+  es_PE
+  es_MX
+  fr_FR
+  fr_BE
+  fr_CA
+  hr_HR
+  id_ID
+  is_IS
+  it_IT
+  ja_JP
+  lt_LT
+  he_IL
+  hu_HU
+  nl_NL
+  no_NO
+  pl_PL
+  pt_PT
+  pt_BR
+  ro_RO
+  ru_RU
+  ru_BY
+  ru_KZ
+  sk_SK
+  sr_RS
+  fi_FI
+  sv_SE
+  th_TH
+  tr_TR
+  vi_VN
+  uk_UA
+  ar_SA
+  ar_BH
+  ar_JO
+  ar_KW
+  ar_OM
+  ar_QA
+  ar_AE
+  ko_KR
+  zh_CN
+  zh_TW
+}
+
+type Location {
+  # 3-letter IATA code of airport or internal city code.
+  locationId: String
+  name: String
+  slug: String
+  timezone: String
+  location: Coordinates
+
+  # Airport, city or country.
+  type: String
+  city: LocationArea
+  subdivision: LocationArea
+  country: LocationArea
+}
+
+type LocationArea {
+  locationId: String
+  name: String
+  slug: String
+}
+
+# A connection to a list of items.
+type LocationConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [LocationEdge]
+}
+
+# An edge in a connection.
+type LocationEdge {
+  # The item at the end of the edge
+  node: Location
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input LocationInput {
+  location: String
+  radius: RadiusInput
+}
+
+input LocationsOptionsInput {
+  locale: Locale
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+input PassengersInput {
+  adults: Int!
+}
+
+type Price {
+  amount: Float
+
+  # An ISO-4217 currency code.
+  currency: String
+}
+
+input RadiusInput {
+  # Latitude of the center of the circle.
+  lat: Float!
+
+  # Longitude of the center of the circle.
+  lng: Float!
+
+  # Distance in kilometers.
+  radius: Int!
+}
+
+input RoomsChildrenConfiguration {
+  age: Int
+}
+
+input RoomsConfiguration {
+  adultsCount: Int!
+  children: [RoomsChildrenConfiguration]
+}
+
+# Root Mutation.
+type RootMutation {
+  login(email: String!, password: String!): User
+}
+
+# Root Query
+type RootQuery {
+  # Search for your flight bookings.
+  allBookings(after: String, first: Int, before: String, last: Int): BookingConnection
+
+  # Search for scheduled flights.
+  allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
+
+  # Search for all available hotels in one location. It's necessary to send
+  # checkin and checkout dates as well as rooms configuration to get availability info.
+  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
+
+  # Search for single available hotel by its ID. It's necessary to send checkin
+  # and checkout dates as well as rooms configuration to get availability info.
+  availableHotel(search: AvailableHotelSearchInput!): HotelAvailability
+
+  # Search for airports, cities, countries. You can search by location name,
+  # radius on the map or rectangle on the map. If you do not specify one of these
+  # search inputs then the alphabetical dump of all locations is returned.
+  allLocations(
+    # Search location by name.
+    search: String
+
+    # Search location by radius.
+    radius: RadiusInput
+
+    # Search location by area.
+    area: AreaInput
+    options: LocationsOptionsInput
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): LocationConnection
+
+  # Flight booking by ID.
+  booking(id: ID!): Booking
+
+  # Current user information.
+  currentUser: Identity
+
+  # Single hotel by ID.
+  hotel(id: ID!): Hotel
+
+  # All cities where you can find the hotels. This query can be used for suggestions of relevant cities (search for example).
+  hotelCities(
+    # First few letters. Note that search doesn't work with prefix shorter than 3 characters.
+    prefix: String!
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): HotelCityConnection
+}
+
+type RouteStop {
+  airport: Location
+  time: DateTime
+  localTime: DateTime
+}
+
+input StopoversInput {
+  # Minimum number of hours of stopover duration.
+  from: Int
+
+  # Maximum number of hours of stopover duration.
+  to: Int
+}
+
+type User {
+  token: String
+  isLoggedIn: Boolean
+  identity: Identity
+}

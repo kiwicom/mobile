@@ -2,11 +2,15 @@
   "name": "reactNativeApp",
   "version": "0.0.1",
   "private": true,
+  "workspaces": [
+    "app/*"
+  ],
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "ios": "react-native run-ios",
-    "android": "react-native run-android"
+    "android": "react-native run-android",
+    "postinstall": "node ./scripts/configureApplication.js"
   },
   "dependencies": {
     "react": "16.2.0",
@@ -16,7 +20,8 @@
     "babel-jest": "22.0.4",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.0.4",
-    "react-test-renderer": "16.2.0"
+    "react-test-renderer": "16.2.0",
+    "react-native-dotenv": "^0.1.0"
   },
   "jest": {
     "preset": "react-native"

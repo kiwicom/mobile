@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`passes props to the original Image component 1`] = `
+<ImageProgress
+  errorContainerStyle={
+    Object {
+      "alignItems": "center",
+      "bottom": 0,
+      "justifyContent": "center",
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+  indicatorContainerStyle={
+    Object {
+      "alignItems": "center",
+      "bottom": 0,
+      "justifyContent": "center",
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+  resizeMode="cover"
+  source={
+    Object {
+      "uri": "http://image.png",
+    }
+  }
+  style={
+    Array [
+      Object {
+        "borderRadius": 2,
+        "height": 75,
+        "width": 50,
+      },
+      Object {
+        "overflow": "hidden",
+      },
+    ]
+  }
+  threshold={50}
+/>
+`;
+
+exports[`returns MissingImage component for invalid URI 1`] = `
+<missingImage
+  source={
+    Object {
+      "uri": null,
+    }
+  }
+/>
+`;
+
+exports[`returns MissingImage component for invalid URI 2`] = `
+<missingImage
+  source={
+    Object {
+      "uri": undefined,
+    }
+  }
+/>
+`;
