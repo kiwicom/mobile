@@ -1,7 +1,3 @@
-Try it in [Expo](https://expo.io/):
-
-![Expo QR code](https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=exp://exp.host/@mrtnzlml/code-review-master)
-
 [![CircleCI](https://circleci.com/gh/kiwicom/react-native-app/tree/master.svg?style=svg)](https://circleci.com/gh/kiwicom/react-native-app/tree/master)
 
 ## Table of Contents
@@ -27,7 +23,7 @@ yarn install
 
 If you have Xcode just run `yarn ios` and you are ready to go. Similarly for Android (`yarn android`).
 
-To start the application simple run `yarn start`. This will change in the future (after Expo detach). During development you may need to fetch new files into monorepo workspace. In this case just run:
+To start the application simple run `yarn start`. During development you may need to fetch new files into monorepo workspace. In this case just run:
 
 ```
 yarn upgrade @kiwicom
@@ -196,13 +192,3 @@ idx(props, _ => _.user.friends[0].friends)
 #### Nice to have
 
 - Jest code coverage (Instanbul) doesn't work with Facebook IDX: https://github.com/facebookincubator/idx/issues/19 (possible solution: https://github.com/facebook/jest/issues/3549#issuecomment-347915603)
-
-## Troubleshooting
-
-Expo client throws (even in emulator):
-
-```
-This experience uses an unsupported version of Expo (SDK 23.0.0). You may need to update Expo.
-```
-
-In this case please delete the Expo app (yes, even in the emulator) and run `yarn ios` again. The Expo client will update automatically.
