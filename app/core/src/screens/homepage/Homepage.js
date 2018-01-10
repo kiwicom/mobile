@@ -22,7 +22,6 @@ function Section({ children }: { children: React.Node }) {
 
 export default class Homepage extends React.Component<Props, {}> {
   goToAllHotelsPage = () => this.props.navigation.navigate('AllHotels');
-  goToAllBookingsPage = () => this.props.navigation.navigate('AllBookings');
 
   render = () => {
     return (
@@ -30,9 +29,6 @@ export default class Homepage extends React.Component<Props, {}> {
         <FlightsSearchOverlay navigation={this.props.navigation} />
         <Section>
           <Button title="Hotels" onPress={this.goToAllHotelsPage} />
-        </Section>
-        <Section>
-          <Button title="Bookings" onPress={this.goToAllBookingsPage} />
         </Section>
         <Section>
           <Logout />
