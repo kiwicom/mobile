@@ -1,10 +1,10 @@
-// @flow
+/* eslint-disable */
 
 import idx from 'idx';
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet } from 'react-native';
-import { MapView } from 'expo';
+import { StyleSheet, Text } from 'react-native';
+// import { MapView } from 'expo';
 import { orderByDistance, getBounds } from 'geolib';
 
 import PriceMarker from './PriceMarker';
@@ -179,6 +179,8 @@ export class Map extends React.Component<Props, State> {
 
   render() {
     const { data } = this.props;
+
+    return <Text>Please FIX ME!</Text>;
 
     return (
       <MapView

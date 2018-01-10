@@ -2,7 +2,7 @@
 
 exports[`StarsCheckbox render checked 1`] = `
 <TouchableWithoutFeedback
-  onPress={[Function]}
+  onPress={[MockFunction]}
 >
   <View
     style={
@@ -62,7 +62,7 @@ exports[`StarsCheckbox render checked 1`] = `
 
 exports[`StarsCheckbox render text instead of stars 1`] = `
 <TouchableWithoutFeedback
-  onPress={[Function]}
+  onPress={[MockFunction]}
 >
   <View
     style={
@@ -106,7 +106,7 @@ exports[`StarsCheckbox render text instead of stars 1`] = `
 
 exports[`StarsCheckbox render unchecked with 1 star 1`] = `
 <TouchableWithoutFeedback
-  onPress={[Function]}
+  onPress={[MockFunction]}
 >
   <View
     style={
@@ -151,7 +151,7 @@ exports[`StarsCheckbox render unchecked with 1 star 1`] = `
 
 exports[`StarsCheckbox render unchecked with 3 stars 1`] = `
 <TouchableWithoutFeedback
-  onPress={[Function]}
+  onPress={[MockFunction]}
 >
   <View
     style={

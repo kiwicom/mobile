@@ -4,8 +4,8 @@ exports[`StarsPopup should render popup 1`] = `
 <ButtonPopup
   buttonTitle="Save"
   isVisible={true}
-  onClose={[Function]}
-  onSave={[Function]}
+  onClose={[MockFunction]}
+  onSave={[MockFunction]}
 >
   <Text
     accessible={true}

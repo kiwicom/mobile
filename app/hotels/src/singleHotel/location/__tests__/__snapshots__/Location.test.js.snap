@@ -61,21 +61,13 @@ exports[`renders without crashing 1`] = `
       }
     }
   >
-    <StretchedImage
-      source={1}
-    />
-    <TouchableOpacity
-      activeOpacity={0.2}
-      style={
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        }
-      }
-    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Please FIX ME!
+    </Text>
   </View>
 </View>
 `;
@@ -141,21 +133,13 @@ exports[`renders without crashing with missing data 1`] = `
       }
     }
   >
-    <StretchedImage
-      source={1}
-    />
-    <TouchableOpacity
-      activeOpacity={0.2}
-      style={
-        Object {
-          "bottom": 0,
-          "left": 0,
-          "position": "absolute",
-          "right": 0,
-          "top": 0,
-        }
-      }
-    />
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Please FIX ME!
+    </Text>
   </View>
 </View>
 `;
