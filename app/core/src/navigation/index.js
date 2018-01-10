@@ -14,10 +14,8 @@ import BookingsStack from './BookingsStack';
 import HomepageStack from './HomepageStack';
 import HotelsStack from './HotelsStack';
 import { Color } from '../../../common';
-import SearchReducer from '../services/redux/SearchReducer';
 import UserReducer from '../services/redux/UserReducer';
 
-injectAsyncReducer(store, 'search', SearchReducer);
 injectAsyncReducer(store, 'user', UserReducer);
 
 const Navigation = StackNavigator(

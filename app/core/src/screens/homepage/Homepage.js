@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { Button, Layout } from '@kiwicom/react-native-app-common';
 
 import Logout from '../../components/authentication/Logout';
-import FlightsSearchOverlay from './search/FlightsSearchOverlay';
 import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
@@ -27,7 +26,6 @@ export default class Homepage extends React.Component<Props, {}> {
   render = () => {
     return (
       <Layout>
-        <FlightsSearchOverlay navigation={this.props.navigation} />
         <Section>
           <Button title="Hotels" onPress={this.goToAllHotelsPage} />
         </Section>
