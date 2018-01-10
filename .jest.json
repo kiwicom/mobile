@@ -1,14 +1,10 @@
 {
   "collectCoverage": false,
-  "preset": "jest-expo",
+  "preset": "react-native",
   "verbose": false,
   "globals": {
     "__DEV__": false
   },
-  "transform": {
-    "^.+\\.js$": "babel-jest"
-  },
-  "testPathIgnorePatterns": ["/node_modules/", "__tests__/__mocks__", "<rootDir>/rnApp/"],
-  "transformIgnorePatterns": ["/node_modules/(?!@kiwicom)/"],
-  "modulePathIgnorePatterns": ["<rootDir>/rnApp/"]
+  "testPathIgnorePatterns": ["/node_modules/", "__tests__/__mocks__"],
+  "transformIgnorePatterns": ["/node_modules/(?!@kiwicom)/"]
 }

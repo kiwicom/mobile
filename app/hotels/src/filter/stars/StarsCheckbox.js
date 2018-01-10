@@ -9,6 +9,7 @@ type Props = {|
   stars?: number,
   isChecked?: boolean,
   text?: string,
+  // $FlowFixMeProps
   style?: Object,
 |};
 

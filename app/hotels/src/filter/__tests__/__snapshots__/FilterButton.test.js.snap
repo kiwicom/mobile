@@ -15,7 +15,7 @@ exports[`Filter button render active button 1`] = `
         "name": "attach-money",
       }
     }
-    onPress={[Function]}
+    onPress={[MockFunction]}
     styles={
       Object {
         "button": Object {
@@ -47,7 +47,7 @@ exports[`Filter button render default button 1`] = `
         "name": "attach-money",
       }
     }
-    onPress={[Function]}
+    onPress={[MockFunction]}
     styles={
       Object {
         "button": Object {

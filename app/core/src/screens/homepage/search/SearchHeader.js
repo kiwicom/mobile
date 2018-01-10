@@ -48,6 +48,7 @@ export default class SearchHeader extends React.Component<Props, State> {
 
   animate = (attributes: $Keys<AnimatedState>[]) =>
     attributes.forEach(attribute => {
+      // $FlowFixMe
       Animated.timing(this.state[attribute], {
         toValue: this.state.expanded
           ? expandedValues[attribute]
