@@ -65,10 +65,24 @@ Array [
     >
       <Text
         accessible={true}
-        allowFontScaling={true}
+        allowFontScaling={false}
         ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#757575",
+              "fontSize": 20,
+            },
+            undefined,
+            Object {
+              "fontFamily": "Material Icons",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+          ]
+        }
       >
-        ??
+        
       </Text>
     </View>
   </View>,
