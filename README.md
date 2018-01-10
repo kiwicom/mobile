@@ -16,17 +16,22 @@
 
 ## Installation and Run
 
+> Note: we currently support only macOS.
+
+All necessary information are described in the official [React Native documentation](http://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies). Basically you need to install Node and Watchman:
+
+```
+brew install node
+brew install watchman
+```
+
+Install Xcode and Android Studio. After that install all the necessary JavaScript dependencies:
+
 ```
 yarn install
 ```
 
-If you have Xcode just run `yarn ios` and you are ready to go. Similarly for Android (`yarn android`).
-
-To start the application simple run `yarn start`. During development you may need to fetch new files into monorepo workspace. In this case just run:
-
-```
-yarn upgrade @kiwicom
-```
+And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application.
 
 ## Environment
 
@@ -57,6 +62,7 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 
 ```
 .
+├── android/                    - native code for Android
 ├── app/
 │   ├── common/                 - @kiwicom/react-native-app-common
 │   │── core/                   - @kiwicom/react-native-app-core (core package)
@@ -66,9 +72,8 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 │   │       └── screens/           - main screens (usually Relay QueryRenderer roots)
 │   ├── hotels/                 - @kiwicom/react-native-app-hotels
 │   └── relay/                  - @kiwicom/react-native-app-relay
+├── ios/                        - native code for iOS
 ├── scripts/                    - support scripts for the whole monorepo
-├── App.js                      - bootstrap component
-├── app.json                    - application settings for Expo
 └── schema.graphql              - GraphQL schema of the backend server
 ```
 
@@ -79,7 +84,7 @@ In case you need additional dependency for the package, you should add it to the
 This application uses GraphQL API as a data source. You can find GraphQL schema in `schema.graphql` file. This schema is used by Relay Compiler and Relay Babel plugin to generate and validate queries for backend server. GraphQL API itself is evolving over time so you may need to update our snapshot. You can do it easily using this command:
 
 ```
-yarn graphql:update
+yarn graphql
 ```
 
 Additional useful tools:
