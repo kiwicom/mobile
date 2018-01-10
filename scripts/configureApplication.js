@@ -44,11 +44,3 @@ SENTRY_DSN=${vault.SENTRY_DSN}
 `;
 
 fs.writeFileSync(path.join(__dirname, '..', '.env'), envTemplate);
-
-const expoConfigPath = path.join(__dirname, '..', 'app.json');
-const expoConfig = JSON.parse(fs.readFileSync(expoConfigPath).toString());
-
-expoConfig.expo.android.config.googleMaps.apiKey =
-  '** GOOGLE MAPS API KEY HERE **'; // TODO
-
-fs.writeFileSync(expoConfigPath, JSON.stringify(expoConfig, null, 2) + '\n');
