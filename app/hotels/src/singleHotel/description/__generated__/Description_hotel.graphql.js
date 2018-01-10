@@ -7,14 +7,7 @@
 import type { ConcreteFragment } from 'relay-runtime';
 export type Description_hotel = {|
   +summary: ?string;
-  +facilities: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string;
-        +name: ?string;
-      |};
-    |}>;
-  |};
+  +facilities: ?{| |};
 |};
 
 
@@ -40,40 +33,9 @@ const node: ConcreteFragment = {
       "plural": false,
       "selections": [
         {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "HotelFacilityEdge",
-          "name": "edges",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "args": null,
-              "concreteType": "HotelFacility",
-              "name": "node",
-              "plural": false,
-              "selections": [
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "id",
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "args": null,
-                  "name": "name",
-                  "storageKey": null
-                }
-              ],
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "Facilities_facilities",
+          "args": null
         }
       ],
       "storageKey": null
