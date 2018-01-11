@@ -2,17 +2,16 @@
 
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
-import { AllHotelsMap } from '@kiwicom/react-native-app-hotels';
 
-import type { Navigation } from '../../types/Navigation';
+import AllHotelsMap from '../map/AllHotelsMap';
 import type {
   HotelsReducerState,
   HotelsReducerActions,
   HotelsSearchParametersType,
-} from '../../../../hotels/src/HotelsReducer'; // FIXME: this wil be fixed with hotels package separation
+} from '../HotelsReducer';
 
 type ContainerProps = {|
-  navigation: Navigation,
+  navigation: Object, // FIXME: navigation type is still part of the core package
 |};
 
 type StateProps = {|

@@ -4,6 +4,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-persist": "^5.3.4"
