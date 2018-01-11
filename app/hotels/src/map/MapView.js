@@ -45,18 +45,27 @@ const styles = StyleSheet.create({
 
 export class Map extends React.Component<Props, State> {
   map: typeof MapView | null;
+  markers: {| number: React.Ref<MapView.Marker> |};
 
   constructor(props: Props) {
     super(props);
 
+    this.markers = {};
     this.state = {
       region: this.getRegion(props),
     };
   }
 
+  componentDidMount = () => {
+    const { selectedIndex } = this.props;
+    // it's necessary to call showCallout to bring selected marker to foreground
+    this.markers[selectedIndex] && this.markers[selectedIndex].showCallout();
+  };
+
   componentWillReceiveProps = (nextProps: Props) => {
     if (this.props.selectedIndex !== nextProps.selectedIndex) {
       this.animateToCoordinate(nextProps.selectedIndex);
+      this.markers[nextProps.selectedIndex] && this.markers[nextProps.selectedIndex].showCallout();
     }
   };
 
@@ -131,6 +140,8 @@ export class Map extends React.Component<Props, State> {
     };
   };
 
+  storeMarkerReference = (index) => (ref) => this.markers[index] = ref;
+
   storeMapReference = (map: React.Ref<typeof MapView> | null) => {
     this.map = map;
   };
@@ -171,6 +182,7 @@ export class Map extends React.Component<Props, State> {
         identifier={id}
         coordinate={coordinate}
         onPress={this.onMarkerPress}
+        ref={this.storeMarkerReference(index)}
       >
         <PriceMarker data={price} isSelected={index === selectedIndex} />
       </MapView.Marker>
