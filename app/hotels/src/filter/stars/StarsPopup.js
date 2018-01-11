@@ -7,80 +7,71 @@ import { ButtonPopup, Color } from '@kiwicom/react-native-app-common';
 import StarsCheckbox from './StarsCheckbox';
 
 type Props = {|
+  stars: number[],
   onClose: () => void,
-  onSave: () => void,
+  onSave: (number[]) => void,
   isVisible: boolean,
 |};
 
 type State = {|
-  stars: { [string]: boolean },
+  stars: number[],
 |};
 
 export default class StarsPopup extends React.Component<Props, State> {
   state = {
-    stars: {
-      five: false,
-      four: false,
-      three: false,
-      two: false,
-      one: false,
-      unrated: false,
-    },
+    stars: this.props.stars,
   };
 
-  handleCheckboxOnPress = (option: string) => () =>
-    this.setState(state => ({
-      stars: {
-        ...state.stars,
-        [option]: !state.stars[option],
-      },
-    }));
+  componentWillReceiveProps = ({ stars }: Props) => this.setState({ stars });
+
+  handleCheckboxOnPress = (option: number) => () =>
+    this.setState(state => {
+      let stars = [...state.stars];
+      if (stars.indexOf(option) >= 0) {
+        stars = stars.filter(star => star !== option);
+      } else {
+        stars.push(option);
+      }
+      return { stars };
+    });
+
+  onSave = () => this.props.onSave(this.state.stars);
+
+  renderCheckboxes = (stars: number[]) => {
+    const checkboxes = [];
+    for (let i = 5; i > 0; i--) {
+      checkboxes.push(
+        <StarsCheckbox
+          key={i}
+          stars={i}
+          isChecked={stars.indexOf(i) >= 0}
+          style={styles.delimiter}
+          onPress={this.handleCheckboxOnPress(i)}
+        />,
+      );
+    }
+    checkboxes.push(
+      <StarsCheckbox
+        key={0}
+        text="Unrated"
+        isChecked={stars.indexOf(0) >= 0}
+        onPress={this.handleCheckboxOnPress(0)}
+      />,
+    );
+    return checkboxes;
+  };
 
   render() {
     const { stars } = this.state;
     return (
       <ButtonPopup
         buttonTitle="Save"
-        onSave={this.props.onSave}
+        onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >
         <Text style={styles.title}>Hotel stars</Text>
-        <StarsCheckbox
-          stars={5}
-          isChecked={stars.five}
-          style={styles.delimiter}
-          onPress={this.handleCheckboxOnPress('five')}
-        />
-        <StarsCheckbox
-          stars={4}
-          isChecked={stars.four}
-          style={styles.delimiter}
-          onPress={this.handleCheckboxOnPress('four')}
-        />
-        <StarsCheckbox
-          stars={3}
-          isChecked={stars.three}
-          style={styles.delimiter}
-          onPress={this.handleCheckboxOnPress('three')}
-        />
-        <StarsCheckbox
-          stars={2}
-          isChecked={stars.two}
-          style={styles.delimiter}
-          onPress={this.handleCheckboxOnPress('two')}
-        />
-        <StarsCheckbox
-          stars={1}
-          isChecked={stars.one}
-          style={styles.delimiter}
-          onPress={this.handleCheckboxOnPress('one')}
-        />
-        <StarsCheckbox
-          text="Unrated"
-          isChecked={stars.unrated}
-          onPress={this.handleCheckboxOnPress('unrated')}
-        />
+        {this.renderCheckboxes(stars)}
       </ButtonPopup>
     );
   }

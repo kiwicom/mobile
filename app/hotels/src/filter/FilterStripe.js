@@ -27,7 +27,7 @@ type Props = {|
 |};
 
 export default function FilterStripe(props: Props) {
-  const { minPrice, maxPrice } = props.filter;
+  const { starsRating, minPrice, maxPrice } = props.filter;
   return (
     <View style={styles.view}>
       <ScrollView
@@ -35,7 +35,7 @@ export default function FilterStripe(props: Props) {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
-        <StarsFilter onChange={props.onChange} />
+        <StarsFilter stars={starsRating} onChange={props.onChange} />
         <PriceFilter
           onChange={props.onChange}
           start={minPrice}

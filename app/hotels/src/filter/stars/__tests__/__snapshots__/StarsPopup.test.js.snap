@@ -5,7 +5,7 @@ exports[`StarsPopup should render popup 1`] = `
   buttonTitle="Save"
   isVisible={true}
   onClose={[MockFunction]}
-  onSave={[MockFunction]}
+  onSave={[Function]}
 >
   <Text
     accessible={true}
@@ -21,7 +21,7 @@ exports[`StarsPopup should render popup 1`] = `
     Hotel stars
   </Text>
   <StarsCheckbox
-    isChecked={false}
+    isChecked={true}
     onPress={[Function]}
     stars={5}
     style={

@@ -34,6 +34,7 @@ const InitialHotelsState: HotelsReducerState = {
     },
   },
   filterParams: {
+    starsRating: [],
     minPrice: null,
     maxPrice: null,
   },

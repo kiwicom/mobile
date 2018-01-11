@@ -6,6 +6,7 @@ Object {
   "filterParams": Object {
     "maxPrice": 30,
     "minPrice": 20,
+    "starsRating": Array [],
   },
   "location": "",
   "searchParams": Object {
@@ -25,6 +26,7 @@ Object {
   "filterParams": Object {
     "maxPrice": null,
     "minPrice": null,
+    "starsRating": Array [],
   },
   "location": "",
   "searchParams": Object {
