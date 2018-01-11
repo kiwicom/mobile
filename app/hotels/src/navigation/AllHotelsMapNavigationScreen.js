@@ -30,20 +30,23 @@ type DispatchProps = {|
 
 type Props = ContainerProps & StateProps & DispatchProps;
 
-function AllHotelsMapNavigationScreen(props: Props) {
-  function goToHotel() {
-    props.navigation.navigate('SingleHotel');
-  }
+class AllHotelsMapNavigationScreen extends React.Component<Props> {
+  goToHotel = searchParams =>
+    this.props.navigation.navigate('SingleHotel', searchParams);
 
-  return (
-    <AllHotelsMap
-      onGoToSingleHotel={goToHotel}
-      onFilterChange={props.onFilterChange}
-      search={props.search}
-      cityId={props.cityId}
-      filter={props.filter}
-    />
-  );
+  render = () => {
+    const { search, filter, cityId, onFilterChange } = this.props;
+
+    return (
+      <AllHotelsMap
+        onGoToSingleHotel={this.goToHotel}
+        onFilterChange={onFilterChange}
+        search={search}
+        cityId={cityId}
+        filter={filter}
+      />
+    );
+  };
 }
 
 const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({

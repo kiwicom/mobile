@@ -18,6 +18,7 @@ type Props = {|
   data: HotelSwipeListData,
   selectedIndex: number,
   onSnapToItem: (index: number) => void,
+  onOpenSingleHotel: (hotelId: string) => void,
 |};
 
 type State = {|
@@ -83,7 +84,15 @@ class HotelSwipeList extends React.Component<Props, State> {
   };
 
   renderItem = ({ item }: { item: Object, index: number }) => {
-    return <HotelSwipeItem width={this.getCardItemWidth()} data={item.node} />;
+    const { onOpenSingleHotel } = this.props;
+
+    return (
+      <HotelSwipeItem
+        width={this.getCardItemWidth()}
+        data={item.node}
+        onPress={onOpenSingleHotel}
+      />
+    );
   };
 
   render = () => {
