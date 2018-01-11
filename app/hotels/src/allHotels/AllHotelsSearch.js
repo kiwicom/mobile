@@ -1,13 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import {
   Layout,
   FullPageLoading,
-  CenteredView,
+  GeneralError,
 } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 
@@ -37,8 +36,6 @@ type Props = {|
   onLocationChange: (location: string) => void,
   onCityIdChange: (cityId: string | null) => void,
 |};
-
-const MIN_LOCATION_LENGTH = 3;
 
 export class AllHotelsSearch extends React.Component<Props> {
   getCityIdFromData = (data: AllHotelsSearchData): string | null => {
@@ -96,13 +93,7 @@ export class AllHotelsSearch extends React.Component<Props> {
         <FilterStripe filter={filter} onChange={onFilterChange} />
         {isLoading && <FullPageLoading />}
         {!(isLoading || this.getCityIdFromData(data)) && (
-          <CenteredView>
-            <Text>
-              {location.length >= MIN_LOCATION_LENGTH
-                ? 'No relevant city was found.'
-                : 'Enter city name of your destination.'}
-            </Text>
-          </CenteredView>
+          <GeneralError errorMessage="No relevant city was found." />
         )}
         {this.isReadyToSearch() && (
           <PublicApiRenderer

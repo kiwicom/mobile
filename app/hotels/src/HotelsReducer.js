@@ -24,7 +24,7 @@ export type HotelsReducerActions =
 
 const InitialHotelsState: HotelsReducerState = {
   cityId: null,
-  location: 'Prague',
+  location: '',
   searchParams: {
     checkin: null,
     checkout: null,
