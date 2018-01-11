@@ -22,13 +22,19 @@ target 'reactNativeApp' do
     'RCTText',
     'RCTVibration',
     'RCTWebSocket',
-    'BatchedBridge'
+    'BatchedBridge',
+    'CxxBridge',
   ]
 
   pod 'react-native-maps', path: rn_maps_path
 
   pod 'GoogleMaps'  # Remove this line if you don't want to support Google Maps on iOS
   pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support Google Maps on iOS
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'GLog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 end
 
 post_install do |installer|
