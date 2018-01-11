@@ -1,8 +1,10 @@
 // @flow
 
 import * as React from 'react';
-// import { Svg } from 'expo';
-import { Animated, Text } from 'react-native';
+import Svg, { Circle as SvgCircle } from 'react-native-svg';
+import { Animated } from 'react-native';
+
+import Color from '../Color';
 
 type State = {
   [string]: Animated.Value,
@@ -52,75 +54,73 @@ export default class Loader extends React.Component<{||}, State> {
   };
 
   render = () => {
-    return <Text>Loading</Text>;
-
-    // const Circle = Animated.createAnimatedComponent(Svg.Circle);
-    // return (
-    //   <Svg viewBox="0 0 105 105" width="20" height="20">
-    //     <Circle
-    //       cx="12.5"
-    //       cy="12.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot1}
-    //     />
-    //     <Circle
-    //       cx="12.5"
-    //       cy="52.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot2}
-    //     />
-    //     <Circle
-    //       cx="52.5"
-    //       cy="12.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot3}
-    //     />
-    //     <Circle
-    //       cx="52.5"
-    //       cy="52.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot4}
-    //     />
-    //     <Circle
-    //       cx="92.5"
-    //       cy="12.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot5}
-    //     />
-    //     <Circle
-    //       cx="92.5"
-    //       cy="52.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot6}
-    //     />
-    //     <Circle
-    //       cx="12.5"
-    //       cy="92.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot7}
-    //     />
-    //     <Circle
-    //       cx="52.5"
-    //       cy="92.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot8}
-    //     />
-    //     <Circle
-    //       cx="92.5"
-    //       cy="92.5"
-    //       r="12.5"
-    //       fill={Color.brand}
-    //       fillOpacity={this.state.dot9}
-    //     />
-    //   </Svg>
-    // );
+    const Circle = Animated.createAnimatedComponent(SvgCircle);
+    return (
+      <Svg viewBox="0 0 105 105" width="20" height="20">
+        <Circle
+          cx="12.5"
+          cy="12.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot1}
+        />
+        <Circle
+          cx="12.5"
+          cy="52.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot2}
+        />
+        <Circle
+          cx="52.5"
+          cy="12.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot3}
+        />
+        <Circle
+          cx="52.5"
+          cy="52.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot4}
+        />
+        <Circle
+          cx="92.5"
+          cy="12.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot5}
+        />
+        <Circle
+          cx="92.5"
+          cy="52.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot6}
+        />
+        <Circle
+          cx="12.5"
+          cy="92.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot7}
+        />
+        <Circle
+          cx="52.5"
+          cy="92.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot8}
+        />
+        <Circle
+          cx="92.5"
+          cy="92.5"
+          r="12.5"
+          fill={Color.brand}
+          fillOpacity={this.state.dot9}
+        />
+      </Svg>
+    );
   };
 }
