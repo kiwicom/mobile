@@ -12,6 +12,7 @@ const defaults = {
 const defaultProps = {
   location: '',
   filter: {
+    starsRating: [],
     minPrice: null,
     maxPrice: null,
   },
