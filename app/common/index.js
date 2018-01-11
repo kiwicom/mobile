@@ -15,6 +15,7 @@ export { default as Date } from './src/datetime/Date';
 export { default as DateTime } from './src/datetime/DateTime';
 
 export { default as GeneralError } from './src/errors/GeneralError';
+export { default as ErrorMessage } from './src/errors/ErrorMessage';
 export { default as PartialFailure } from './src/errors/PartialFailure';
 
 export { default as DatePicker } from './src/forms/DatePicker';
