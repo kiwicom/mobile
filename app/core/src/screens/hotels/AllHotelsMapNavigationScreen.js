@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect } from '@kiwicom/react-native-app-redux';
 import { AllHotelsMap } from '@kiwicom/react-native-app-hotels';
 
 import type { Navigation } from '../../types/Navigation';

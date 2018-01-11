@@ -1,6 +1,7 @@
 // @flow
 
 import { createStore, type Store, type Reducer } from 'redux';
+import { connect } from 'react-redux';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 
@@ -31,4 +32,4 @@ const persistor = persistStore(store);
 
 store.asyncReducers = {};
 
-export { persistor, store };
+export { persistor, store, connect };
