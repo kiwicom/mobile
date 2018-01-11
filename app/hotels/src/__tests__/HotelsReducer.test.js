@@ -12,6 +12,7 @@ const defaultSearchParams = {
 };
 
 const defaultFilterParams = {
+  starsRating: [],
   minPrice: null,
   maxPrice: null,
 };

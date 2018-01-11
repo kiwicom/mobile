@@ -10,7 +10,12 @@ describe('StarsPopup', () => {
     const renderer = new ShallowRenderer();
     expect(
       renderer.render(
-        <StarsPopup isVisible={true} onSave={jest.fn()} onClose={jest.fn()} />,
+        <StarsPopup
+          stars={[5]}
+          isVisible={true}
+          onSave={jest.fn()}
+          onClose={jest.fn()}
+        />,
       ),
     ).toMatchSnapshot();
   });
