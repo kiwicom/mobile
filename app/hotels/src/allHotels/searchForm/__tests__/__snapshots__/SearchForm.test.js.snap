@@ -20,7 +20,7 @@ exports[`SearchForm Render all inputs 1`] = `
       iconName="location-city"
       onChangeText={[Function]}
       placeholder="Where do you go?"
-      value="Prague"
+      value="Pra"
     />
   </View>
   <View
@@ -32,7 +32,7 @@ exports[`SearchForm Render all inputs 1`] = `
     }
   >
     <DatePicker
-      date="08/01/2018"
+      date={1970-01-01T00:00:00.001Z}
       format="DD/MM/YYYY"
       onDateChange={[Function]}
       placeholder="Start date"
@@ -44,7 +44,7 @@ exports[`SearchForm Render all inputs 1`] = `
       }
     />
     <DatePicker
-      date="14/01/2018"
+      date={1970-01-01T00:00:00.002Z}
       format="DD/MM/YYYY"
       onDateChange={[Function]}
       placeholder="End date"

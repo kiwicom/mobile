@@ -7,6 +7,7 @@ import createEnvironment from './src/Environment';
 
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
+export { default as SimpleQueryRenderer } from './src/SimpleQueryRenderer';
 
 type CommitMutationConfig = {|
   // please extend this type if needed
