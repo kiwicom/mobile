@@ -13,6 +13,7 @@ describe('HotelSwipeItem', () => {
 
   it('renders review', () => {
     const props = {
+      onPress: jest.fn(),
       width: 250,
       data: {
         price: {
@@ -20,6 +21,7 @@ describe('HotelSwipeItem', () => {
           currency: 'EUR',
         },
         hotel: {
+          id: 'id-123',
           name: 'Hotel v Olomouci',
           mainPhoto: {
             thumbnailUrl: 'http://example.com/image.jpg',
@@ -42,6 +44,7 @@ describe('HotelSwipeItem', () => {
 
   it('renders "no reviews" when no reviews are available', () => {
     const props = {
+      onPress: jest.fn(),
       width: 250,
       data: {
         price: {
@@ -49,6 +52,7 @@ describe('HotelSwipeItem', () => {
           currency: 'EUR',
         },
         hotel: {
+          id: 'id-123',
           name: 'Hotel v Olomouci',
           mainPhoto: {
             thumbnailUrl: 'http://example.com/image.jpg',
