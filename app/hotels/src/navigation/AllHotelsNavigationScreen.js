@@ -3,18 +3,17 @@
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
 import { TouchableOpacity } from 'react-native';
-import { AllHotels } from '@kiwicom/react-native-app-hotels';
 import { Icon } from '@kiwicom/react-native-app-common';
 
-import type { Navigation } from '../../types/Navigation';
+import AllHotels from '../allHotels/AllHotels';
 import type {
   HotelsReducerState,
   HotelsReducerActions,
   HotelsSearchParametersType,
-} from '../../../../hotels/src/HotelsReducer'; // FIXME: this wil be fixed with hotels package separation
+} from '../HotelsReducer';
 
 type ContainerProps = {|
-  navigation: Navigation,
+  navigation: Object, // FIXME: navigation type is still part of the core package
 |};
 
 type StateProps = {|

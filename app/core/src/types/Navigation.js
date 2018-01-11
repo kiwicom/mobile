@@ -2,18 +2,12 @@
 
 type NavigationStateParameters = Object;
 
+type CoreStackNavigatorRouteNames = 'Homepage' | 'HotelsPackage';
 type HomepageStackNavigatorRouteNames = 'Home';
-type HotelsStackNavigatorRouteNames =
-  | 'AllHotels'
-  | 'AllHotelsMap'
-  | 'GalleryGrid'
-  | 'GalleryStripe'
-  | 'Payment'
-  | 'SingleHotel';
 
 type RouteNames =
-  | HomepageStackNavigatorRouteNames
-  | HotelsStackNavigatorRouteNames;
+  | CoreStackNavigatorRouteNames
+  | HomepageStackNavigatorRouteNames;
 
 /**
  * @see https://reactnavigation.org/docs/navigators/navigation-prop
