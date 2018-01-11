@@ -22,6 +22,7 @@ All necessary information are described in the official [React Native documentat
 
 ```
 brew install node watchman
+gem install cocoapods
 ```
 
 Install Xcode and Android Studio. After that install all the necessary dependencies:
