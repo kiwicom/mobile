@@ -15,7 +15,10 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from '../filter/FilterParametersType';
-import type { AvailableHotelSearchInput } from '../singleHotel';
+import {
+  type AvailableHotelSearchInput,
+  handleOpenSingleHotel,
+} from '../singleHotel';
 
 type Props = {|
   location: string,
@@ -46,22 +49,9 @@ export default class AllHotels extends React.Component<Props> {
   };
 
   handleOpenSingleHotel = (hotelId: string) => {
-    const searchProps = this.props.search;
-    if (searchProps.checkin && searchProps.checkout) {
-      this.props.openSingleHotel({
-        hotelId,
-        checkin: searchProps.checkin,
-        checkout: searchProps.checkout,
-        roomsConfiguration: [
-          {
-            adultsCount: searchProps.roomsConfiguration.adultsCount,
-            children: searchProps.roomsConfiguration.children.map(childAge => ({
-              age: childAge.age,
-            })),
-          },
-        ],
-      });
-    }
+    const { search, openSingleHotel } = this.props;
+
+    handleOpenSingleHotel(hotelId, search, openSingleHotel);
   };
 
   renderInnerComponent = (rendererProps: { error: Object, props: Object }) => {

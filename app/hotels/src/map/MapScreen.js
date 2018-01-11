@@ -11,6 +11,7 @@ import type { MapScreen as MapScreenData } from './__generated__/MapScreen.graph
 
 type Props = {|
   data: MapScreenData,
+  onOpenSingleHotel: (hotelId: string) => void,
 |};
 
 type State = {|
@@ -78,6 +79,7 @@ class MapScreen extends React.Component<Props, State> {
         <HotelSwipeList
           data={hotels}
           selectedIndex={selectedHotelIndex}
+          onOpenSingleHotel={this.props.onOpenSingleHotel}
           onSnapToItem={this.onSnapToItem}
         />
       </View>

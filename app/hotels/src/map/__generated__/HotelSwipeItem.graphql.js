@@ -11,6 +11,7 @@ export type HotelSwipeItem = {|
     +currency: ?string;
   |};
   +hotel: ?{|
+    +id: string;
     +name: ?string;
     +mainPhoto: ?{|
       +thumbnailUrl: ?string;
@@ -66,6 +67,13 @@ const node: ConcreteFragment = {
       "name": "hotel",
       "plural": false,
       "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "id",
+          "storageKey": null
+        },
         {
           "kind": "ScalarField",
           "alias": null,

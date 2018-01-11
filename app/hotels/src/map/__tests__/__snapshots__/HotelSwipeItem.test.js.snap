@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HotelSwipeItem renders "no reviews" when no reviews are available 1`] = `
-<View
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
   style={
     Array [
       Object {
@@ -81,11 +83,13 @@ exports[`HotelSwipeItem renders "no reviews" when no reviews are available 1`] =
       />
     </Text>
   </View>
-</View>
+</TouchableOpacity>
 `;
 
 exports[`HotelSwipeItem renders review 1`] = `
-<View
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
   style={
     Array [
       Object {
@@ -171,5 +175,5 @@ exports[`HotelSwipeItem renders review 1`] = `
       />
     </Text>
   </View>
-</View>
+</TouchableOpacity>
 `;
