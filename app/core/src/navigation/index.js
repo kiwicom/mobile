@@ -2,50 +2,49 @@
 
 import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
-import { PersistGate } from 'redux-persist/es/integration/react';
-import { Provider } from 'react-redux';
-import {
-  persistor,
-  store,
-  injectAsyncReducer,
-} from '@kiwicom/react-native-app-redux';
+import { ReduxContext } from '@kiwicom/react-native-app-redux';
+import HotelsStandalonePackage from '@kiwicom/react-native-app-hotels';
 
+import Config from '../../config/application';
 import HomepageStack from './HomepageStack';
-import HotelsStack from './HotelsStack';
-import { Color } from '../../../common';
 import UserReducer from '../services/redux/UserReducer';
-
-injectAsyncReducer(store, 'user', UserReducer);
 
 const Navigation = StackNavigator(
   {
-    ...HomepageStack,
-    ...HotelsStack,
+    Homepage: {
+      screen: HomepageStack,
+    },
+    HotelsPackage: {
+      screen: function HotelsPackageWrapper() {
+        const affiliate = String(Config.affiliate.bookingCom);
+        return (
+          <HotelsStandalonePackage
+            bookingComAffiliate={affiliate}
+            language="en"
+            currency="EUR"
+          />
+        );
+      },
+    },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Homepage',
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: Color.brand,
-        borderBottomWidth: 0,
-      },
-      headerTitleStyle: {
-        color: '#fff',
-      },
-      headerTintColor: '#fff', // back arrow
-    },
-    cardStyle: {
-      backgroundColor: '#eee',
+      header: null,
     },
   },
 );
 
 export default class Application extends React.Component<{||}> {
-  render = () => (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
+  render = () => {
+    const hotelsReducers = {
+      user: UserReducer,
+    };
+
+    return (
+      <ReduxContext reducers={hotelsReducers}>
         <Navigation />
-      </PersistGate>
-    </Provider>
-  );
+      </ReduxContext>
+    );
+  };
 }
