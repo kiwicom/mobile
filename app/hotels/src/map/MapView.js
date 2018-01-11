@@ -1,9 +1,9 @@
-/* eslint-disable */
+// @flow
 
 import idx from 'idx';
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { orderByDistance, getBounds } from 'geolib';
 
