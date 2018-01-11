@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { connect } from '@kiwicom/react-native-app-redux';
 import { TouchableOpacity } from 'react-native';
 import { AllHotels } from '@kiwicom/react-native-app-hotels';
 import { Icon } from '@kiwicom/react-native-app-common';

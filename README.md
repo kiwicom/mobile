@@ -110,7 +110,13 @@ import HotelsReducer from './src/HotelsReducer';
 injectAsyncReducer(store, 'hotels', HotelsReducer);
 ```
 
-We currently do not officially support calling actions on reducers outside of one package. This means that you should always work with actions and reducers from `HotelReducer`. This should be in most of the scenarios good enough.
+We currently **do not** officially support calling actions on reducers outside of one package. This means that you should always work with actions and reducers from `HotelReducer`. This should be in most of the scenarios good enough. You must use `connect` function from `@kiwicom/react-native-app-redux` package in order to connect React component to the Redux store:
+
+```js
+import { connect } from '@kiwicom/react-native-app-redux';
+
+export default connect(select, actions)(ComponentWithoutStore);
+```
 
 ## Offline first
 
