@@ -81,6 +81,7 @@ class SearchForm extends React.Component<Props> {
             placeholder="Start date"
             format={DISPLAY_DATE_FORMAT}
             date={moment(search.checkin, DATA_DATE_FORMAT).toDate()}
+            minDate={new Date()}
             onDateChange={this.handleCheckinChange}
             style={styles.datePicker}
           />
@@ -88,6 +89,9 @@ class SearchForm extends React.Component<Props> {
             placeholder="End date"
             format={DISPLAY_DATE_FORMAT}
             date={moment(search.checkout, DATA_DATE_FORMAT).toDate()}
+            minDate={moment()
+              .add(1, 'day')
+              .toDate()}
             onDateChange={this.handleCheckoutChange}
             style={styles.datePicker}
           />
