@@ -7,8 +7,10 @@ import {
   Layout,
   FullPageLoading,
   GeneralError,
+  ErrorMessage,
 } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
+import moment from 'moment';
 
 import SearchForm from './searchForm/SearchForm';
 import FilterStripe from '../filter/FilterStripe';
@@ -37,7 +39,15 @@ type Props = {|
   onCityIdChange: (cityId: string | null) => void,
 |};
 
-export class AllHotelsSearch extends React.Component<Props> {
+type State = {|
+  errorMessage: string | null,
+|};
+
+export class AllHotelsSearch extends React.Component<Props, State> {
+  state = {
+    errorMessage: null,
+  };
+
   getCityIdFromData = (data: AllHotelsSearchData): string | null => {
     const cityId = idx(data, _ => _.edges[0].node.id);
 
@@ -50,6 +60,8 @@ export class AllHotelsSearch extends React.Component<Props> {
     if (cityId !== this.getCityIdFromData(this.props.data)) {
       this.props.onCityIdChange(cityId);
     }
+
+    this.validateDates(nextProps.search.checkin, nextProps.search.checkout);
   };
 
   isReadyToSearch = (): boolean => {
@@ -58,8 +70,32 @@ export class AllHotelsSearch extends React.Component<Props> {
     return (
       Boolean(this.getCityIdFromData(data)) &&
       s.checkin !== null &&
-      s.checkout !== null
+      s.checkout !== null &&
+      this.state.errorMessage === null
     );
+  };
+
+  validateDates = (checkin: Date | null, checkout: Date | null) => {
+    if (checkin === null || checkout === null) {
+      return;
+    }
+    const diff = moment(checkout).diff(checkin, 'days');
+    // Check-out should not be before check-in
+    if (diff < 0) {
+      this.setState({
+        errorMessage:
+          'Pick check-out date after check-in date to get any result',
+      });
+    } else if (1 > diff || diff > 30) {
+      // Check-out has to be 1 up to 30 days after check-in
+      this.setState({
+        errorMessage: 'Pick check-out that is 1 up to 30 days after check-in',
+      });
+    } else {
+      this.setState({
+        errorMessage: null,
+      });
+    }
   };
 
   renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => (
@@ -91,6 +127,9 @@ export class AllHotelsSearch extends React.Component<Props> {
           data={null}
         />
         <FilterStripe filter={filter} onChange={onFilterChange} />
+        {this.state.errorMessage && (
+          <ErrorMessage content={this.state.errorMessage} />
+        )}
         {isLoading && <FullPageLoading />}
         {!(isLoading || this.getCityIdFromData(data)) && (
           <GeneralError errorMessage="No relevant city was found." />
