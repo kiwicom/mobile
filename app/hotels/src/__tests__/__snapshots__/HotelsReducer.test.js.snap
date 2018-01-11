@@ -2,11 +2,11 @@
 
 exports[`HotelsReducer setSearchFilters it should update search filters for list of hotels 1`] = `
 Object {
+  "cityId": null,
+  "location": "",
   "searchParams": Object {
     "checkin": 1970-01-01T00:00:00.001Z,
     "checkout": null,
-    "latitude": 50.5,
-    "longitude": null,
     "roomsConfiguration": Object {
       "adultsCount": 1,
       "children": Array [],
