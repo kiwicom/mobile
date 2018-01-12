@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
@@ -31,7 +32,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   slider: {
-    padding: 10,
+    paddingTop: 5,
+    paddingHorizontal: 10,
+    paddingBottom: 10,
+  },
+  handler: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#edeff2',
+    alignSelf: 'center',
+    width: 100,
+    marginTop: 3,
   },
 });
 
@@ -113,6 +123,7 @@ class HotelSwipeList extends React.Component<Props, State> {
         onSwipeDown={this.onSwipeDown}
         config={swipeConfig}
       >
+        <View style={styles.handler} />
         <Carousel
           data={data}
           renderItem={this.renderItem}
