@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 import icon from './gallery-icon.png';
 
@@ -28,19 +28,13 @@ const styles = StyleSheet.create({
 
 type Props = {|
   count: number,
-  onClick: () => void,
 |};
 
-export default function GalleryButton({ count, onClick }: Props) {
+export default function GalleryButton({ count }: Props) {
   return (
-    <TouchableOpacity
-      onPress={onClick}
-      style={styles.container}
-      accessible={true}
-      accessibilityLabel="Photo Gallery"
-    >
+    <View style={styles.container}>
       <Image source={icon} style={styles.icon} />
       <Text style={styles.count}>{count}</Text>
-    </TouchableOpacity>
+    </View>
   );
 }
