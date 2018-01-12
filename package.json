@@ -11,7 +11,7 @@
     "ios": "yarn react-native run-ios",
     "lint": "yarn eslint app --report-unused-disable-directives",
     "relay": "yarn babel-node ./app/relay/scripts/RelayCompiler.js --src ./app --schema ./schema.graphql",
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "echo \"This command doesn't work anymore, use 'yarn ios' instead.\"",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./scripts/test.sh",
     "postinstall": "node ./scripts/configureApplication.js"
