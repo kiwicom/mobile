@@ -26,6 +26,7 @@ export { default as AgePicker } from './src/forms/AgePicker';
 export { default as NetworkImage } from './src/image/NetworkImage';
 
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
+export { default as IconLoading } from './src/loaders/IconLoading';
 
 export { default as DropMarker } from './src/map/DropMarker';
 

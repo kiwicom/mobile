@@ -13,6 +13,7 @@ exports[`passes props to the original Image component 1`] = `
       "top": 0,
     }
   }
+  indicator={[Function]}
   indicatorContainerStyle={
     Object {
       "alignItems": "center",

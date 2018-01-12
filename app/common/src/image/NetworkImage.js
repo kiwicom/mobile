@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Image from 'react-native-image-progress';
+import { IconLoading } from '@kiwicom/react-native-app-common';
 
 import MissingImage from './MissingImage';
 
@@ -16,6 +17,7 @@ export default function NetworkImage(imageProps: Object) {
 
   const newProps = {
     ...imageProps,
+    indicator: IconLoading,
     style: [
       imageProps.style,
       {
