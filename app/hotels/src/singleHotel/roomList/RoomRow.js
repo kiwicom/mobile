@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#30363d',
   },
+  roomPicker: {
+    marginTop: 10,
+  },
 });
 
 type ContainerProps = {|
@@ -114,14 +117,16 @@ export class RoomRow extends React.Component<Props> {
         </View>
         {price &&
           currency && (
-            <RoomPicker
-              price={price}
-              currency={currency}
-              selectedCount={selectedCount}
-              selectableCount={selectableCount}
-              increment={this.select}
-              decrement={this.deselect}
-            />
+            <View style={styles.roomPicker}>
+              <RoomPicker
+                price={price}
+                currency={currency}
+                selectedCount={selectedCount}
+                selectableCount={selectableCount}
+                increment={this.select}
+                decrement={this.deselect}
+              />
+            </View>
           )}
       </View>
     );
