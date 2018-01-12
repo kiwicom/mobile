@@ -7,8 +7,9 @@ import { NetworkImage } from '@kiwicom/react-native-app-common';
 import ReadMore from 'react-native-read-more-text';
 import { createFragmentContainer, graphql } from 'react-relay';
 
-import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
 import RoomPicker from '../roomPicker/RoomPicker';
+import BeddingInfo from './BeddingInfo';
+import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
 
 const styles = StyleSheet.create({
   container: {
@@ -99,6 +100,7 @@ export class RoomRow extends React.Component<Props> {
             style={styles.thumbnail}
           />
           <View style={styles.details}>
+            <BeddingInfo room={idx(availableRoom, _ => _.room)} />
             <Text style={styles.title}>{title}</Text>
             {description != null && (
               <View>
@@ -136,11 +138,6 @@ export default (createFragmentContainer(
           title
           text
         }
-        type
-        bedding {
-          type
-          amount
-        }
         photos {
           edges {
             node {
@@ -148,6 +145,7 @@ export default (createFragmentContainer(
             }
           }
         }
+        ...BeddingInfo_room
       }
       minimalPrice {
         amount
