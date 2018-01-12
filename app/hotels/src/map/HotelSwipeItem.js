@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
 const getReview = review => {
   if (review && review.count) {
     const reviewWord = review.count > 1 ? 'reviews' : 'review';
-    const delimiter = review.score || review.description ? ' · ' : '';
+    const delimiter =
+      Number.isFinite(review.score) || review.description ? ' · ' : '';
 
     return (
       <Text style={styles.metainfo}>
