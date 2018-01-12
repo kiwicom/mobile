@@ -12,11 +12,6 @@ export type RoomRow_availableRoom = {|
       +title: ?string;
       +text: ?string;
     |};
-    +type: ?string;
-    +bedding: ?$ReadOnlyArray<?{|
-      +type: ?string;
-      +amount: ?number;
-    |}>;
     +photos: ?{|
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
@@ -83,38 +78,6 @@ const node: ConcreteFragment = {
           "storageKey": null
         },
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "type",
-          "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "HotelRoomBedding",
-          "name": "bedding",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "type",
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "amount",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        },
-        {
           "kind": "LinkedField",
           "alias": null,
           "args": null,
@@ -153,6 +116,11 @@ const node: ConcreteFragment = {
             }
           ],
           "storageKey": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "BeddingInfo_room",
+          "args": null
         }
       ],
       "storageKey": null

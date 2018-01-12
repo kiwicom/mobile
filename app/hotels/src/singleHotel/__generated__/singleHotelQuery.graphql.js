@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c0b9f51fed9f7d69584a3d38a1fef282
+ * @relayHash 33a7a836bb97cf97ea296d8b666762f8
  */
 
 /* eslint-disable */
@@ -102,11 +102,6 @@ fragment RoomRow_availableRoom on HotelRoomAvailability {
       title
       text
     }
-    type
-    bedding {
-      type
-      amount
-    }
     photos {
       edges {
         node {
@@ -115,6 +110,7 @@ fragment RoomRow_availableRoom on HotelRoomAvailability {
         }
       }
     }
+    ...BeddingInfo_room
     id
   }
   minimalPrice {
@@ -124,6 +120,15 @@ fragment RoomRow_availableRoom on HotelRoomAvailability {
   incrementalPrice {
     amount
     currency
+  }
+}
+
+fragment BeddingInfo_room on HotelRoom {
+  type
+  maxPersons
+  bedding {
+    type
+    amount
   }
 }
 
@@ -534,38 +539,6 @@ const node: ConcreteBatch = {
                         "storageKey": null
                       },
                       {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "args": null,
-                        "name": "type",
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "args": null,
-                        "concreteType": "HotelRoomBedding",
-                        "name": "bedding",
-                        "plural": true,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "args": null,
-                            "name": "type",
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "args": null,
-                            "name": "amount",
-                            "storageKey": null
-                          }
-                        ],
-                        "storageKey": null
-                      },
-                      {
                         "kind": "LinkedField",
                         "alias": null,
                         "args": null,
@@ -607,6 +580,45 @@ const node: ConcreteBatch = {
                                 "storageKey": null
                               }
                             ],
+                            "storageKey": null
+                          }
+                        ],
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "type",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
+                        "name": "maxPersons",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "args": null,
+                        "concreteType": "HotelRoomBedding",
+                        "name": "bedding",
+                        "plural": true,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "type",
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "args": null,
+                            "name": "amount",
                             "storageKey": null
                           }
                         ],
@@ -689,7 +701,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...Location_hotel\n    ...Description_hotel\n    ...BookNow_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    ...BookNow_availableRooms\n    id\n  }\n}\n\nfragment Header_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment BookNow_hotel on Hotel {\n  originalId\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment BookNow_availableRooms on HotelRoomAvailability {\n  originalId\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailability {\n  originalId\n  room {\n    description {\n      title\n      text\n    }\n    type\n    bedding {\n      type\n      amount\n    }\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          id\n        }\n      }\n    }\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n"
+  "text": "query singleHotelQuery(\n  $search: AvailableHotelSearchInput!\n) {\n  availableHotel(search: $search) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...Location_hotel\n    ...Description_hotel\n    ...BookNow_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    ...BookNow_availableRooms\n    id\n  }\n}\n\nfragment Header_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment BookNow_hotel on Hotel {\n  originalId\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment BookNow_availableRooms on HotelRoomAvailability {\n  originalId\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailability {\n  originalId\n  room {\n    description {\n      title\n      text\n    }\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          id\n        }\n      }\n    }\n    ...BeddingInfo_room\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment BeddingInfo_room on HotelRoom {\n  type\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n"
 };
 
 module.exports = node;

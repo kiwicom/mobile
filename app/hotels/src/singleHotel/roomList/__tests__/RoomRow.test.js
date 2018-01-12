@@ -20,7 +20,6 @@ it('renders without crashing', () => {
   };
 
   renderer.render(<RoomRow {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renders without crashing with missing data', () => {
@@ -32,5 +31,4 @@ it('renders without crashing with missing data', () => {
   };
 
   renderer.render(<RoomRow {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
