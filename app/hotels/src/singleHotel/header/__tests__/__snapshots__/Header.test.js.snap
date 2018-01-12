@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<View>
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
+>
   <NetworkImage
     source={
       Object {
@@ -75,11 +78,14 @@ exports[`renders without crashing 1`] = `
       </Text>
     </View>
   </View>
-</View>
+</TouchableOpacity>
 `;
 
 exports[`renders without crashing with missing data 1`] = `
-<View>
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
+>
   <NetworkImage
     source={
       Object {
@@ -153,5 +159,5 @@ exports[`renders without crashing with missing data 1`] = `
       </Text>
     </View>
   </View>
-</View>
+</TouchableOpacity>
 `;

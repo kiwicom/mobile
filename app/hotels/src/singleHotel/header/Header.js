@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { NetworkImage, StretchedImage } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -80,7 +80,7 @@ export class Header extends React.Component<Props> {
     const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
     const photosCount = idx(hotel, _ => _.photos.edges.length);
     return (
-      <View>
+      <TouchableOpacity onPress={this.openGallery}>
         <NetworkImage style={styles.picture} source={{ uri: mainPhotoUrl }} />
         <View style={styles.nameAndRatingContainer}>
           <StretchedImage source={gradient} />
@@ -97,10 +97,10 @@ export class Header extends React.Component<Props> {
         </View>
         {photosCount && (
           <View style={styles.galleryButton}>
-            <GalleryButton onClick={this.openGallery} count={photosCount} />
+            <GalleryButton count={photosCount} />
           </View>
         )}
-      </View>
+      </TouchableOpacity>
     );
   };
 }
