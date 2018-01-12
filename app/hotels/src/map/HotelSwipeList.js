@@ -43,6 +43,13 @@ const styles = StyleSheet.create({
     width: 100,
     marginTop: 3,
   },
+  handler: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#edeff2',
+    alignSelf: 'center',
+    width: 100,
+    marginTop: 3,
+  },
 });
 
 const SNAP_WIDTH = 0.8;
