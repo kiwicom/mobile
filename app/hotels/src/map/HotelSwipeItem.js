@@ -19,24 +19,28 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 5,
+    width: 60,
+    height: 60,
+    borderRadius: 3,
     marginRight: 10,
   },
   description: {
     flex: 1,
+    justifyContent: 'space-between',
+    marginVertical: 3,
   },
   hotelName: {
-    fontSize: 18,
+    fontSize: 16,
   },
   metainfo: {
     color: Color.grey.$700,
     opacity: 0.8,
+    fontSize: 12,
   },
   price: {
     color: Color.brand,
     fontWeight: 'bold',
+    fontSize: 12,
   },
 });
 
