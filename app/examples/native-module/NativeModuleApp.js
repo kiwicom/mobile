@@ -32,7 +32,7 @@ class NativeModuleApp extends Component<{||}, State> {
   };
 
   eventListener = (reminder: string) => {
-    Alert.alert('Swift sendt me this message', reminder);
+    Alert.alert('Swift send me this message', reminder);
   };
 
   onClick = () => {
@@ -51,7 +51,7 @@ class NativeModuleApp extends Component<{||}, State> {
     if (nativeMessage) {
       return (
         <Text style={{ color: 'blue' }}>
-          Native sendt this from a callback: {nativeMessage}
+          Native send this from a callback: {nativeMessage}
         </Text>
       );
     }
