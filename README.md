@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [Installation and Run](#installation-and-run)
+* [Building](#building)
 * [Environment](#environment)
 * [Testing](#testing)
 * [Project structure](#project-structure)
@@ -18,20 +19,41 @@
 
 > Note: we currently support only macOS.
 
-All necessary information are described in the official [React Native documentation](http://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies). Basically you need to install Node and Watchman:
+All necessary information are described in the official [React Native documentation](http://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies). Basically you need to install macOS dependencies:
 
 ```
-brew install node watchman
+brew install node watchman yarn
 gem install cocoapods
 ```
 
-Install Xcode and Android Studio. After that install all the necessary dependencies:
+Install Xcode and Android Studio. After that clone this repository and install all the necessary dependencies:
 
 ```
+git clone git@github.com:kiwicom/react-native-app.git
+cd react-native-app
 yarn install && ( cd ios ; pod install )
 ```
 
 And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application. Similarly for Android (`yarn android`) but you have to open Android emulator first.
+
+## Building
+
+**We currently do not have automated way of builds distribution.**
+
+Command `yarn ios` create build with `*.app` file in the `ios/build` folder. However, this command should be used only for development and for this reason the build itself does not contain bundled JS code. You must first start packager (`yarn start`) in order to use this build.
+
+The easier way how to build application with bundled JS code is using this command:
+
+```
+yarn ios --configuration=Release
+```
+
+This will do basically the same with few exceptions:
+
+1. build (`app/build/Build/Products/Release-*/*.app`) already contains bundled JS code therefore you don't need packager
+2. this build is in production mode and you cannot use dev menu or reload the app
+
+To test this build just drag and drop the `*.app` file to the simulator window.
 
 ## Environment
 
