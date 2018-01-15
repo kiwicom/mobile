@@ -41,6 +41,11 @@
 		37652379D39242419FA27C10 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8424F9229D5B4102A9CE2833 /* Octicons.ttf */; };
 		397C666BB6134DC799C5B446 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3414D4CA31484BB2A1838BA2 /* Feather.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		632D8B7A200748C00062B850 /* MyNativeModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D8B79200748C00062B850 /* MyNativeModuleManager.swift */; };
+		632D8BA0200749270062B850 /* MyNativeModuleManagerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 632D8B9F200749270062B850 /* MyNativeModuleManagerBridge.m */; };
+		63B81A122008AB1500D869F1 /* SampleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B81A112008AB1500D869F1 /* SampleView.m */; };
+		63B81A142008AB5500D869F1 /* SampleViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B81A132008AB5500D869F1 /* SampleViewManager.swift */; };
+		63B81A162008AB9B00D869F1 /* SampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B81A152008AB9B00D869F1 /* SampleView.swift */; };
 		75C41AF4C9FA4E43A6250CE4 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C2C517A4EB94704AF1EF8F5 /* Zocial.ttf */; };
 		77339AC2AC2400176AFBDD2B /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 845F78B06BF7EB5092946247 /* libPods-reactNativeApp.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -251,20 +256,6 @@
 			remoteGlobalIDString = 2D2A28201D9B03D100D4039D;
 			remoteInfo = "RCTAnimation-tvOS";
 		};
-		63A98A42200602CE001DA42E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBF21BDC1FC498900052F4D5;
-			remoteInfo = jsinspector;
-		};
-		63A98A44200602CE001DA42E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EBF21BFA1FC4989A0052F4D5;
-			remoteInfo = "jsinspector-tvOS";
-		};
 		63A98A46200602CE001DA42E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 146833FF1AC3E56700842450 /* React.xcodeproj */;
@@ -368,6 +359,13 @@
 		4C2C517A4EB94704AF1EF8F5 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		62FD0D9D3482737469FB3DF4 /* Pods-reactNativeApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp-tvOSTests/Pods-reactNativeApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		632D8B78200748BF0062B850 /* reactNativeApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "reactNativeApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		632D8B79200748C00062B850 /* MyNativeModuleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNativeModuleManager.swift; sourceTree = "<group>"; };
+		632D8B9F200749270062B850 /* MyNativeModuleManagerBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyNativeModuleManagerBridge.m; sourceTree = "<group>"; };
+		63B81A112008AB1500D869F1 /* SampleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleView.m; sourceTree = "<group>"; };
+		63B81A132008AB5500D869F1 /* SampleViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewManager.swift; sourceTree = "<group>"; };
+		63B81A152008AB9B00D869F1 /* SampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleView.swift; sourceTree = "<group>"; };
+		63B81A182008BC1D00D869F1 /* SampleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleView.h; sourceTree = "<group>"; };
 		65EBFD20293F44E2BB561E43 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		6A7FE7DE275843F4958A8EE2 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		6AF1376E8FD74940BA923782 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
@@ -528,6 +526,8 @@
 		13B07FAE1A68108700A75B9A /* reactNativeApp */ = {
 			isa = PBXGroup;
 			children = (
+				63B81A102008AADD00D869F1 /* SampleView */,
+				63B819AC2008A58900D869F1 /* MyNativeModule */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -535,6 +535,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				632D8B78200748BF0062B850 /* reactNativeApp-Bridging-Header.h */,
 			);
 			name = reactNativeApp;
 			sourceTree = "<group>";
@@ -550,8 +551,6 @@
 				3DAD3EAB1DF850E9000B6D8A /* libcxxreact.a */,
 				3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */,
 				3DAD3EAF1DF850E9000B6D8A /* libjschelpers.a */,
-				63A98A43200602CE001DA42E /* libjsinspector.a */,
-				63A98A45200602CE001DA42E /* libjsinspector-tvOS.a */,
 				63A98A47200602CE001DA42E /* libthird-party.a */,
 				63A98A49200602CE001DA42E /* libthird-party.a */,
 				63A98A4B200602CE001DA42E /* libdouble-conversion.a */,
@@ -609,6 +608,26 @@
 				63A98A56200602CF001DA42E /* libRNVectorIcons.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		63B819AC2008A58900D869F1 /* MyNativeModule */ = {
+			isa = PBXGroup;
+			children = (
+				632D8B79200748C00062B850 /* MyNativeModuleManager.swift */,
+				632D8B9F200749270062B850 /* MyNativeModuleManagerBridge.m */,
+			);
+			name = MyNativeModule;
+			sourceTree = "<group>";
+		};
+		63B81A102008AADD00D869F1 /* SampleView */ = {
+			isa = PBXGroup;
+			children = (
+				63B81A112008AB1500D869F1 /* SampleView.m */,
+				63B81A132008AB5500D869F1 /* SampleViewManager.swift */,
+				63B81A152008AB9B00D869F1 /* SampleView.swift */,
+				63B81A182008BC1D00D869F1 /* SampleView.h */,
+			);
+			name = SampleView;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -799,7 +818,12 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 67KSN6DZAP;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 67KSN6DZAP;
+						LastSwiftMigration = 0920;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1068,20 +1092,6 @@
 			fileType = archive.ar;
 			path = libRCTAnimation.a;
 			remoteRef = 5E9157341DD0AC6500FF2AA8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		63A98A43200602CE001DA42E /* libjsinspector.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libjsinspector.a;
-			remoteRef = 63A98A42200602CE001DA42E /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		63A98A45200602CE001DA42E /* libjsinspector-tvOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsinspector-tvOS.a";
-			remoteRef = 63A98A44200602CE001DA42E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		63A98A47200602CE001DA42E /* libthird-party.a */ = {
@@ -1392,7 +1402,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B81A122008AB1500D869F1 /* SampleView.m in Sources */,
+				632D8B7A200748C00062B850 /* MyNativeModuleManager.swift in Sources */,
+				63B81A162008AB9B00D869F1 /* SampleView.swift in Sources */,
+				632D8BA0200749270062B850 /* MyNativeModuleManagerBridge.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				63B81A142008AB5500D869F1 /* SampleViewManager.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1445,7 +1460,9 @@
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 67KSN6DZAP;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1473,8 +1490,10 @@
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 67KSN6DZAP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1500,8 +1519,10 @@
 			baseConfigurationReference = D9EB95B82ECBF86CAF3AF472 /* Pods-reactNativeApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 67KSN6DZAP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1513,7 +1534,11 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.reactNativeApp;
 				PRODUCT_NAME = reactNativeApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "reactNativeApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1523,7 +1548,9 @@
 			baseConfigurationReference = F1CBA12F9C74CC3D03C0D84C /* Pods-reactNativeApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 67KSN6DZAP;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1535,7 +1562,10 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.reactNativeApp;
 				PRODUCT_NAME = reactNativeApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "reactNativeApp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
