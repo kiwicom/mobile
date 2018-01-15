@@ -35,9 +35,11 @@ type MarkerPressEvent = {|
 |};
 
 type LatLng = {|
-  latitude: number,
   longitude: number,
+  latitude: number,
 |};
+
+const NO_OF_MARKERS_IN_REGION = 15;
 
 const styles = StyleSheet.create({
   map: StyleSheet.absoluteFillObject,
@@ -104,7 +106,9 @@ export class Map extends React.Component<Props, State> {
       (distances[lowMiddle].distance + distances[highMiddle].distance) / 2;
     const validDistances =
       distances.length > 2
-        ? distances.filter(({ distance }) => median * 1.5 > distance)
+        ? distances
+            .filter(({ distance }) => median * 1.5 > distance)
+            .slice(0, NO_OF_MARKERS_IN_REGION)
         : distances;
 
     const coordsByDistance = validDistances
