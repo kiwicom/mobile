@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Animated } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
@@ -24,19 +24,22 @@ type Props = {|
 
 type State = {|
   availableWidth: number,
-  open: boolean,
 |};
 
 const SNAP_WIDTH = 0.8;
 const OPEN_HEIGHT = 150;
 const CLOSED_HEIGHT = 80;
 const MAX_WIDTH = 668;
+const HEIGHT_DIFF = OPEN_HEIGHT - CLOSED_HEIGHT;
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     maxWidth: MAX_WIDTH,
     overflow: 'hidden',
+  },
+  sliderWrapper: {
+    height: CLOSED_HEIGHT,
   },
   slider: {
     paddingTop: 5,
@@ -53,12 +56,20 @@ const styles = StyleSheet.create({
 });
 
 class HotelSwipeList extends React.Component<Props, State> {
+  swipeMovement: typeof Animated.Value;
+  height: typeof Animated.AnimatedInterpolation;
+
   constructor(props: Props) {
     super(props);
+    this.swipeMovement = new Animated.Value(HEIGHT_DIFF);
+    this.height = this.swipeMovement.interpolate({
+      inputRange: [-HEIGHT_DIFF, HEIGHT_DIFF],
+      outputRange: [OPEN_HEIGHT, CLOSED_HEIGHT],
+      extrapolate: 'clamp',
+    });
 
     this.state = {
       availableWidth: Dimensions.get('screen').width,
-      open: false,
     };
   }
 
@@ -70,16 +81,16 @@ class HotelSwipeList extends React.Component<Props, State> {
     Dimensions.removeEventListener('change', this.onDimensionsChanged);
   };
 
+  onDimensionsChanged = ({ screen: { width } }: OnDimensionsChange) => {
+    this.setState({ availableWidth: width });
+  };
+
   onSwipeUp = () => {
-    this.setState({ open: true });
+    Animated.spring(this.swipeMovement, { toValue: -HEIGHT_DIFF }).start();
   };
 
   onSwipeDown = () => {
-    this.setState({ open: false });
-  };
-
-  onDimensionsChanged = ({ screen: { width } }: OnDimensionsChange) => {
-    this.setState({ availableWidth: width });
+    Animated.spring(this.swipeMovement, { toValue: HEIGHT_DIFF }).start();
   };
 
   getWidth = () => {
@@ -110,38 +121,36 @@ class HotelSwipeList extends React.Component<Props, State> {
 
   render = () => {
     const { data, selectedIndex, onSnapToItem } = this.props;
-    const { open } = this.state;
     const swipeConfig = {
-      velocityThreshold: 0.3,
       directionalOffsetThreshold: 40,
     };
 
     return (
       <VerticalSwipeResponder
-        style={[
-          styles.container,
-          { height: open ? OPEN_HEIGHT : CLOSED_HEIGHT },
-        ]}
+        style={[styles.container, { height: this.height }]}
+        onSwipeMove={Animated.event([{ dy: this.swipeMovement }])}
         onSwipeUp={this.onSwipeUp}
         onSwipeDown={this.onSwipeDown}
         config={swipeConfig}
       >
         <View style={styles.handler} />
-        <Carousel
-          data={data}
-          renderItem={this.renderItem}
-          sliderWidth={this.getWidth()}
-          itemWidth={this.getCardItemWidth()}
-          firstItem={selectedIndex}
-          inactiveSlideScale={1}
-          inactiveSlideOpacity={0.5}
-          decelerationRate="fast"
-          activeSlideAlignment="start"
-          containerCustomStyle={styles.slider}
-          removeClippedSubviews={false}
-          onSnapToItem={onSnapToItem}
-        />
-        {open && <Address data={this.getSelectedAddress()} />}
+        <View style={styles.sliderWrapper}>
+          <Carousel
+            data={data}
+            renderItem={this.renderItem}
+            sliderWidth={this.getWidth()}
+            itemWidth={this.getCardItemWidth()}
+            firstItem={selectedIndex}
+            inactiveSlideScale={1}
+            inactiveSlideOpacity={0.5}
+            decelerationRate="fast"
+            activeSlideAlignment="start"
+            containerCustomStyle={styles.slider}
+            removeClippedSubviews={false}
+            onSnapToItem={onSnapToItem}
+          />
+        </View>
+        <Address data={this.getSelectedAddress()} />
       </VerticalSwipeResponder>
     );
   };
