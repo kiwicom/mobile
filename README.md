@@ -55,6 +55,16 @@ This will do basically the same with few exceptions:
 
 To test this build just drag and drop the `*.app` file to the simulator window.
 
+### Building JS bundles and assets
+
+JS bundles and static assets can be build with this command:
+
+```
+yarn build
+```
+
+You can find generated builds in the folder `.build/android` and `.build/ios`.
+
 ## Environment
 
 All sensitive environment variables are stored in `.env` file. You should setup these variables if you want 100% of all functions.
