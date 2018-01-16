@@ -1,5 +1,7 @@
 # Application
 #
+.build/android/*
+.build/ios/*
 .env
 
 # OSX
