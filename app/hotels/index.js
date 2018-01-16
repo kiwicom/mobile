@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { AppRegistry } from 'react-native';
 import { ReduxContext } from '@kiwicom/react-native-app-redux';
 
 import HotelsReducer from './src/HotelsReducer';
@@ -23,3 +24,5 @@ export default function HotelsStandalonePackage(props: Props) {
     </ReduxContext>
   );
 }
+
+AppRegistry.registerComponent('KiwiHotels', () => HotelsStandalonePackage);
