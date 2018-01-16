@@ -27,9 +27,16 @@ type State = {|
   open: boolean,
 |};
 
+const SNAP_WIDTH = 0.8;
+const OPEN_HEIGHT = 150;
+const CLOSED_HEIGHT = 80;
+const MAX_WIDTH = 668;
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
+    maxWidth: MAX_WIDTH,
+    overflow: 'hidden',
   },
   slider: {
     paddingTop: 5,
@@ -44,10 +51,6 @@ const styles = StyleSheet.create({
     marginTop: 3,
   },
 });
-
-const SNAP_WIDTH = 0.8;
-const OPEN_HEIGHT = 150;
-const CLOSED_HEIGHT = 80;
 
 class HotelSwipeList extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -80,7 +83,7 @@ class HotelSwipeList extends React.Component<Props, State> {
   };
 
   getWidth = () => {
-    return this.state.availableWidth;
+    return Math.min(this.state.availableWidth, MAX_WIDTH);
   };
 
   getCardItemWidth = () => {
