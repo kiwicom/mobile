@@ -1,20 +1,28 @@
 // @flow
 
 import * as React from 'react';
-import { View, PanResponder } from 'react-native';
+import { Animated, PanResponder } from 'react-native';
 
 import type { GestureState, PanResponderEvent } from '../../types/Events';
 
 type SwipeConfig = {|
   velocityThreshold: number,
   directionalOffsetThreshold: number,
+  swipeVerticalThreshold: number,
+|};
+
+type SwipeConfigProp = {|
+  velocityThreshold?: number,
+  directionalOffsetThreshold?: number,
+  swipeVerticalThreshold?: number,
 |};
 
 type Props = {|
-  config?: SwipeConfig,
+  config?: SwipeConfigProp,
   // $FlowFixMeProps
   style?: Object | Object[],
   children?: React.Node,
+  onSwipeMove?: (gestureState?: GestureState) => void,
   onSwipeUp?: (gestureState?: GestureState) => void,
   onSwipeDown?: (gestureState?: GestureState) => void,
 |};
@@ -26,9 +34,10 @@ export const swipeDirections = {
   SWIPE_RIGHT: 'SWIPE_RIGHT',
 };
 
-const swipeConfig = {
+const swipeConfig: SwipeConfig = {
   velocityThreshold: 0.3,
   directionalOffsetThreshold: 80,
+  swipeVerticalThreshold: 10,
 };
 
 function isValidSwipe(
@@ -70,6 +79,7 @@ class VerticalSwipeResponder extends React.Component<Props> {
       //stop JS beautify collapse
       onStartShouldSetPanResponder: shouldSetResponder,
       onMoveShouldSetPanResponder: shouldSetResponder,
+      onPanResponderMove: this.handlePanResponderMove.bind(this),
       onPanResponderRelease: responderEnd,
       onPanResponderTerminate: responderEnd,
     });
@@ -88,6 +98,15 @@ class VerticalSwipeResponder extends React.Component<Props> {
 
   gestureIsClick(gestureState: GestureState) {
     return Math.abs(gestureState.dx) < 5 && Math.abs(gestureState.dy) < 5;
+  }
+
+  handlePanResponderMove(e: PanResponderEvent, gestureState: GestureState) {
+    const { onSwipeMove } = this.props;
+    const { swipeVerticalThreshold } = this.swipeConfig;
+
+    if (Math.abs(gestureState.dy) > swipeVerticalThreshold) {
+      onSwipeMove && onSwipeMove(gestureState);
+    }
   }
 
   handlePanResponderEnd(evt: PanResponderEvent, gestureState: GestureState) {
@@ -131,7 +150,7 @@ class VerticalSwipeResponder extends React.Component<Props> {
   }
 
   render() {
-    return <View {...this.props} {...this.panResponder.panHandlers} />;
+    return <Animated.View {...this.props} {...this.panResponder.panHandlers} />;
   }
 }
 
