@@ -7,3 +7,5 @@ const render = () => <HotelsStandalonePackage
   currency="EUR"
 />
 ```
+
+This package is exported with name `KiwiHotels` into native code.
