@@ -49,7 +49,7 @@ export class AllHotelsSearch extends React.Component<Props> {
   componentWillReceiveProps = (nextProps: Props) => {
     const cityId = this.getCityIdFromData(nextProps.data);
 
-    if (cityId !== this.getCityIdFromData(this.props.data)) {
+    if (cityId && cityId !== this.getCityIdFromData(this.props.data)) {
       this.props.onCityIdChange(cityId);
     }
   };
