@@ -1,10 +1,12 @@
 // @flow
 
 import * as React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 
 import MapScreen from './MapScreen';
+import FilterStripe from '../filter/FilterStripe';
 import type { AllHotelsMapQueryResponse } from './__generated__/AllHotelsMapQuery.graphql';
 import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
 import type {
@@ -15,6 +17,12 @@ import {
   type AvailableHotelSearchInput,
   handleOpenSingleHotel,
 } from '../singleHotel';
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+  },
+});
 
 type Props = {|
   cityId: string | null,
@@ -34,35 +42,40 @@ class AllHotelsMap extends React.Component<Props> {
   renderInnerComponent = (props: AllHotelsMapQueryResponse) => (
     <MapScreen
       data={props.allAvailableHotels}
+      filter={this.props.filter}
+      onFilterChange={this.props.onFilterChange}
       onOpenSingleHotel={this.handleOpenSingleHotel}
     />
   );
 
   render = () => {
-    const { cityId, search, filter } = this.props;
+    const { cityId, search, filter, onFilterChange } = this.props;
 
     return (
-      <PublicApiRenderer
-        query={graphql`
-          query AllHotelsMapQuery(
-            $search: HotelsSearchInput!
-            $filter: HotelsFilterInput
-          ) {
-            allAvailableHotels(search: $search, filter: $filter) {
-              ...MapScreen
+      <View style={styles.container}>
+        <FilterStripe filter={filter} onChange={onFilterChange} />
+        <PublicApiRenderer
+          query={graphql`
+            query AllHotelsMapQuery(
+              $search: HotelsSearchInput!
+              $filter: HotelsFilterInput
+            ) {
+              allAvailableHotels(search: $search, filter: $filter) {
+                ...MapScreen
+              }
             }
-          }
-        `}
-        variables={{
-          search: {
-            cityId,
-            ...search,
-          },
-          filter,
-        }}
-        render={this.renderInnerComponent}
-        cacheConfig={{ force: true }}
-      />
+          `}
+          variables={{
+            search: {
+              cityId,
+              ...search,
+            },
+            filter,
+          }}
+          render={this.renderInnerComponent}
+          cacheConfig={{ force: true }}
+        />
+      </View>
     );
   };
 }
