@@ -19,14 +19,15 @@ type Props = {|
  * you pass additional reducers to be registered.
  */
 export default class ReduxContext extends React.Component<Props> {
-  componentWillMount = () => {
-    // it's too late to register new reducers in componentDidMount
-    // they must be connected before rendering phase
+  constructor(props: Props) {
+    super(props);
+
+    // reducers must be connected before rendering phase
     Object.entries(this.props.reducers).map(([reducerName, reducerItself]) => {
       return (Store.asyncReducers[reducerName] = reducerItself);
     });
     Store.replaceReducer(createCombinedReducer(Store.asyncReducers));
-  };
+  }
 
   getChildContext() {
     return {
