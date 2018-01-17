@@ -2,7 +2,11 @@
 
 import { HotelReviewScore } from '../HotelReviewScore';
 
-const HRS = new HotelReviewScore({ hotel: { review: undefined } });
+let HRS;
+
+beforeEach(() => {
+  HRS = new HotelReviewScore({ hotel: { review: undefined } });
+});
 
 describe('formatScore', () => {
   it('returns correctly formatted score', () => {
@@ -25,5 +29,21 @@ describe('calculateColor', () => {
     expect(HRS.calculateColor(7)).toBe(ORANGE);
     expect(HRS.calculateColor(10)).toBe(GREEN);
     expect(HRS.calculateColor(11)).toBeUndefined();
+  });
+});
+
+describe('render', () => {
+  it('returns null of falsy score values', () => {
+    HRS = new HotelReviewScore({ hotel: { review: { score: 0 } } });
+    expect(HRS.render()).toBe(null);
+
+    HRS = new HotelReviewScore({ hotel: { review: { score: null } } });
+    expect(HRS.render()).toBe(null);
+
+    HRS = new HotelReviewScore({ hotel: { review: { score: undefined } } });
+    expect(HRS.render()).toBe(null);
+
+    HRS = new HotelReviewScore({ hotel: { review: { score: 1 } } });
+    expect(HRS.render()).toBeInstanceOf(Object); // actual component
   });
 });
