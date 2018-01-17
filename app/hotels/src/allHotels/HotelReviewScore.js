@@ -50,7 +50,10 @@ export class HotelReviewScore extends React.Component<Props> {
   };
 
   render = () => {
-    const reviewScore = idx(this.props, _ => _.hotel.review.score) || 0;
+    const reviewScore = idx(this.props, _ => _.hotel.review.score) || null;
+    if (reviewScore === null) {
+      return null;
+    }
 
     return (
       <View style={style.wrapper}>
