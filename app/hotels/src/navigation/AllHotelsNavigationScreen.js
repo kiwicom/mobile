@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
-import { TouchableOpacity, StyleSheet } from 'react-native';
-import { Icon } from '@kiwicom/react-native-app-common';
+import { TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Icon, Device } from '@kiwicom/react-native-app-common';
 
 import AllHotels from '../allHotels/AllHotels';
+import AllHotelsMap from '../map/AllHotelsMap';
 import type {
   OnChangeSearchParams,
   SearchParams,
@@ -25,6 +26,7 @@ type ContainerProps = {|
 |};
 
 type StateProps = {|
+  cityId: string | null,
   search: SearchParams,
   location: string,
   filter: FilterParams,
@@ -57,11 +59,11 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
 
     return {
       headerTitle: 'Hotels',
-      headerRight: (
+      headerRight: !Device.isTablet() ? (
         <TouchableOpacity style={style.headerButton} onPress={goToAllHotelsMap}>
           <Icon name="map" size={30} color="#fff" />
         </TouchableOpacity>
-      ),
+      ) : null,
       headerLeft: (
         <TouchableOpacity
           style={style.headerButton}
@@ -76,36 +78,51 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
   openSingleHotel = searchParams =>
     this.props.navigation.navigate('SingleHotel', searchParams);
 
-  render = () => {
-    const {
-      search,
-      location,
-      filter,
-      onSearchChange,
-      onFilterChange,
-      onLocationChange,
-      onCityIdChange,
-      currency,
-    } = this.props;
+  renderHotels = () => (
+    <AllHotels
+      currency={this.props.currency}
+      search={this.props.search}
+      location={this.props.location}
+      filter={this.props.filter}
+      openSingleHotel={this.openSingleHotel}
+      onSearchChange={this.props.onSearchChange}
+      onFilterChange={this.props.onFilterChange}
+      onLocationChange={this.props.onLocationChange}
+      onCityIdChange={this.props.onCityIdChange}
+    />
+  );
 
-    return (
-      <AllHotels
-        currency={currency}
-        search={search}
-        location={location}
-        filter={filter}
-        openSingleHotel={this.openSingleHotel}
-        onSearchChange={onSearchChange}
-        onFilterChange={onFilterChange}
-        onLocationChange={onLocationChange}
-        onCityIdChange={onCityIdChange}
-      />
-    );
-  };
+  renderHotelsWithMap = () => (
+    <View style={styles.wrapper}>
+      {this.renderHotels()}
+      <View style={styles.map}>
+        <AllHotelsMap
+          onGoToSingleHotel={this.openSingleHotel}
+          onFilterChange={this.props.onFilterChange}
+          currency={this.props.currency}
+          search={this.props.search}
+          cityId={this.props.cityId}
+          filter={this.props.filter}
+        />
+      </View>
+    </View>
+  );
+
+  render = () =>
+    Device.isTablet() ? this.renderHotelsWithMap() : this.renderHotels();
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  map: { width: '55%' },
+});
 
 const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
   search: hotels.searchParams,
+  cityId: hotels.cityId,
   location: hotels.location,
   filter: hotels.filterParams,
 });

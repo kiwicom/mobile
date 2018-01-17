@@ -7,6 +7,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
   VerticalSwipeResponder,
+  Device,
   type OnDimensionsChange,
 } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
@@ -29,13 +30,15 @@ type State = {|
 const SNAP_WIDTH = 0.8;
 const OPEN_HEIGHT = 150;
 const CLOSED_HEIGHT = 80;
-const MAX_WIDTH = 668;
 const HEIGHT_DIFF = OPEN_HEIGHT - CLOSED_HEIGHT;
+const IS_TABLET = Device.isTablet();
+const getMaxWidth = () =>
+  // Tablet shows map with 55% width of the screen
+  IS_TABLET ? Dimensions.get('screen').width * 0.55 : 668;
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    maxWidth: MAX_WIDTH,
     overflow: 'hidden',
   },
   sliderWrapper: {
@@ -94,7 +97,7 @@ class HotelSwipeList extends React.Component<Props, State> {
   };
 
   getWidth = () => {
-    return Math.min(this.state.availableWidth, MAX_WIDTH);
+    return Math.min(this.state.availableWidth, getMaxWidth());
   };
 
   getCardItemWidth = () => {
@@ -127,7 +130,10 @@ class HotelSwipeList extends React.Component<Props, State> {
 
     return (
       <VerticalSwipeResponder
-        style={[styles.container, { height: this.height }]}
+        style={[
+          styles.container,
+          { maxWidth: getMaxWidth(), height: this.height },
+        ]}
         onSwipeMove={Animated.event([{ dy: this.swipeMovement }])}
         onSwipeUp={this.onSwipeUp}
         onSwipeDown={this.onSwipeDown}

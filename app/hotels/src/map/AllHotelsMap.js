@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import { Device } from '@kiwicom/react-native-app-common';
 
 import MapScreen from './MapScreen';
 import FilterStripe from '../filter/FilterStripe';
@@ -53,11 +54,13 @@ class AllHotelsMap extends React.Component<Props> {
 
     return (
       <View style={styles.container}>
-        <FilterStripe
-          filter={filter}
-          onChange={onFilterChange}
-          currency={currency}
-        />
+        {!Device.isTablet() && (
+          <FilterStripe
+            filter={filter}
+            onChange={onFilterChange}
+            currency={currency}
+          />
+        )}
         <PublicApiRenderer
           query={graphql`
             query AllHotelsMapQuery(
