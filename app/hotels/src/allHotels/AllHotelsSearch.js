@@ -32,6 +32,7 @@ type Props = {|
   search: SearchParams,
   filter: FilterParams,
   isLoading: boolean,
+  currency: string,
   openSingleHotel: (hotelId: string) => void,
   onSearchChange: OnChangeSearchParams => void,
   onFilterChange: OnChangeFilterParams => void,
@@ -115,6 +116,7 @@ export class AllHotelsSearch extends React.Component<Props, State> {
       location,
       data,
       isLoading,
+      currency,
     } = this.props;
 
     return (
@@ -126,7 +128,11 @@ export class AllHotelsSearch extends React.Component<Props, State> {
           location={location}
           data={null}
         />
-        <FilterStripe filter={filter} onChange={onFilterChange} />
+        <FilterStripe
+          filter={filter}
+          onChange={onFilterChange}
+          currency={currency}
+        />
         {this.state.errorMessage && (
           <ErrorMessage content={this.state.errorMessage} />
         )}
@@ -140,10 +146,12 @@ export class AllHotelsSearch extends React.Component<Props, State> {
               query AllHotelsSearchQuery(
                 $search: HotelsSearchInput!
                 $filter: HotelsFilterInput!
+                $options: AvailableHotelOptionsInput
               ) {
                 allHotels: allAvailableHotels(
                   search: $search
                   filter: $filter
+                  options: $options
                 ) {
                   ...AllHotelsSearchList
                 }
@@ -155,6 +163,7 @@ export class AllHotelsSearch extends React.Component<Props, State> {
                 cityId: this.getCityIdFromData(data),
               },
               filter,
+              options: { currency },
             }}
             render={this.renderInnerComponent}
             cacheConfig={{

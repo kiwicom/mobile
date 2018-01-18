@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 93ca77f66cd48df398728408858be5c1
+ * @relayHash f59b528742d1045e5b61f2c0bc35d768
  */
 
 /* eslint-disable */
@@ -14,8 +14,9 @@ export type AllHotelsMapQueryResponse = {|
 query AllHotelsMapQuery(
   $search: HotelsSearchInput!
   $filter: HotelsFilterInput
+  $options: AvailableHotelOptionsInput
 ) {
-  allAvailableHotels(search: $search, filter: $filter) {
+  allAvailableHotels(search: $search, filter: $filter, options: $options) {
     ...MapScreen
   }
 }
@@ -108,6 +109,12 @@ const node: ConcreteBatch = {
         "name": "filter",
         "type": "HotelsFilterInput",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "options",
+        "type": "AvailableHotelOptionsInput",
+        "defaultValue": null
       }
     ],
     "kind": "Fragment",
@@ -123,6 +130,12 @@ const node: ConcreteBatch = {
             "name": "filter",
             "variableName": "filter",
             "type": "HotelsFilterInput"
+          },
+          {
+            "kind": "Variable",
+            "name": "options",
+            "variableName": "options",
+            "type": "AvailableHotelOptionsInput"
           },
           {
             "kind": "Variable",
@@ -163,6 +176,12 @@ const node: ConcreteBatch = {
         "name": "filter",
         "type": "HotelsFilterInput",
         "defaultValue": null
+      },
+      {
+        "kind": "LocalArgument",
+        "name": "options",
+        "type": "AvailableHotelOptionsInput",
+        "defaultValue": null
       }
     ],
     "kind": "Root",
@@ -178,6 +197,12 @@ const node: ConcreteBatch = {
             "name": "filter",
             "variableName": "filter",
             "type": "HotelsFilterInput"
+          },
+          {
+            "kind": "Variable",
+            "name": "options",
+            "variableName": "options",
+            "type": "AvailableHotelOptionsInput"
           },
           {
             "kind": "Variable",
@@ -423,7 +448,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsMapQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput\n) {\n  allAvailableHotels(search: $search, filter: $filter) {\n    ...MapScreen\n  }\n}\n\nfragment MapScreen on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n    }\n    ...MapView\n    ...HotelSwipeList\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment Address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n"
+  "text": "query AllHotelsMapQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput\n  $options: AvailableHotelOptionsInput\n) {\n  allAvailableHotels(search: $search, filter: $filter, options: $options) {\n    ...MapScreen\n  }\n}\n\nfragment MapScreen on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n    }\n    ...MapView\n    ...HotelSwipeList\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment Address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n"
 };
 
 module.exports = node;

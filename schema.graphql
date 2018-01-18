@@ -47,6 +47,11 @@ input AreaInput {
   bottomRight: CoordinatesInput!
 }
 
+input AvailableHotelOptionsInput {
+  # Three-letters ISO 4217 currency code, e.g. EUR or USD
+  currency: Currency
+}
+
 input AvailableHotelSearchInput {
   # Opaque hotel ID.
   hotelId: ID!
@@ -884,11 +889,11 @@ type RootQuery {
 
   # Search for all available hotels in one location. It's necessary to send
   # checkin and checkout dates as well as rooms configuration to get availability info.
-  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
+  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
 
   # Search for single available hotel by its ID. It's necessary to send checkin
   # and checkout dates as well as rooms configuration to get availability info.
-  availableHotel(search: AvailableHotelSearchInput!): HotelAvailability
+  availableHotel(search: AvailableHotelSearchInput!, options: AvailableHotelOptionsInput): HotelAvailability
 
   # Search for airports, cities, countries. You can search by location name,
   # radius on the map or rectangle on the map. If you do not specify one of these
@@ -918,10 +923,14 @@ type RootQuery {
   # Single hotel by ID.
   hotel(id: ID!): Hotel
 
-  # All cities where you can find the hotels. This query can be used for suggestions of relevant cities (search for example).
+  #
+  #     All cities where you can find the hotels. This query can be used for
+  #     suggestions of relevant cities (search for example). Cities can be filtered
+  #     by prefix with typo tolerance. Items are sorted by prefix matching and a
+  #     number of hotels (desc). When the prefix is omitted top cities are returned.
   hotelCities(
-    # First few letters. Note that search doesn't work with prefix shorter than 3 characters.
-    prefix: String!
+    # First few letters.
+    prefix: String
     after: String
     first: Int
     before: String

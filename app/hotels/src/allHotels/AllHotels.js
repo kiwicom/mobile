@@ -24,6 +24,7 @@ type Props = {|
   location: string,
   search: SearchParams,
   filter: FilterParams,
+  currency: string,
   openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
   onSearchChange: OnChangeSearchParams => void,
   onFilterChange: OnChangeFilterParams => void,
@@ -63,6 +64,7 @@ export default class AllHotels extends React.Component<Props> {
       location,
       onLocationChange,
       onCityIdChange,
+      currency,
     } = this.props;
     const data = idx(rendererProps, _ => _.props.city) || null;
     const isLoading =
@@ -74,6 +76,7 @@ export default class AllHotels extends React.Component<Props> {
         search={search}
         filter={filter}
         location={location}
+        currency={currency}
         isLoading={isLoading}
         onSearchChange={onSearchChange}
         onFilterChange={onFilterChange}

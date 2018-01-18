@@ -18,6 +18,7 @@ const defaultProps = {
   },
   data: { edges: [] },
   isLoading: false,
+  currency: 'EUR',
   openSingleHotel: jest.fn(),
   onSearchChange: jest.fn(),
   onFilterChange: jest.fn(),

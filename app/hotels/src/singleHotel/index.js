@@ -23,6 +23,7 @@ export type AvailableHotelSearchInput = {|
 |};
 
 type ContainerProps = {|
+  currency: string,
   search: AvailableHotelSearchInput,
   onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
   onGoToPayment: ({
@@ -65,12 +66,15 @@ export default class SingleHotelContainer extends React.Component<
   );
 
   render() {
-    const { search } = this.props;
+    const { search, currency } = this.props;
     return (
       <PublicApiRenderer
         query={graphql`
-          query singleHotelQuery($search: AvailableHotelSearchInput!) {
-            availableHotel(search: $search) {
+          query singleHotelQuery(
+            $search: AvailableHotelSearchInput!
+            $options: AvailableHotelOptionsInput
+          ) {
+            availableHotel(search: $search, options: $options) {
               ...HotelDetailScreen_availableHotel
             }
           }
@@ -81,6 +85,7 @@ export default class SingleHotelContainer extends React.Component<
             checkin: moment(search.checkin).format('YYYY-MM-DD'),
             checkout: moment(search.checkout).format('YYYY-MM-DD'),
           },
+          options: { currency },
         }}
         render={this.renderInnerComponent}
       />
