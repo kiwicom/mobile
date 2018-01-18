@@ -9,21 +9,30 @@ import Config from '../../config/application';
 import HomepageStack from './HomepageStack';
 import UserReducer from '../services/redux/UserReducer';
 
+type Props = {|
+  navigation: Object, // FIXME: navigation type is still part of the core package
+|};
+
 const Navigation = StackNavigator(
   {
     Homepage: {
       screen: HomepageStack,
     },
     HotelsPackage: {
-      screen: function HotelsPackageWrapper() {
-        const affiliate = String(Config.affiliate.bookingCom);
-        return (
-          <HotelsStandalonePackage
-            bookingComAffiliate={affiliate}
-            language="en"
-            currency="EUR"
-          />
-        );
+      screen: class HotelsPackageWrapper extends React.Component<Props> {
+        goToHomepage = () => this.props.navigation.goBack();
+
+        render = () => {
+          const affiliate = String(Config.affiliate.bookingCom);
+          return (
+            <HotelsStandalonePackage
+              bookingComAffiliate={affiliate}
+              language="en"
+              currency="EUR"
+              onBackClicked={this.goToHomepage}
+            />
+          );
+        };
       },
     },
   },

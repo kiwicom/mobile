@@ -40,11 +40,10 @@ type SingleHotelProps = Props & AvailableHotelSearchInput;
 export default StackNavigator(
   {
     AllHotels: {
-      screen: AllHotelsNavigationScreen,
-      // TODO: fake back button
+      screen: withMappedProps(AllHotelsNavigationScreen),
     },
     AllHotelsMap: {
-      screen: AllHotelsMapNavigationScreen,
+      screen: withMappedProps(AllHotelsMapNavigationScreen),
       navigationOptions: {
         headerTitle: 'Map',
       },

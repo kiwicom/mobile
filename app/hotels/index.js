@@ -11,6 +11,7 @@ type Props = {|
   bookingComAffiliate: string,
   language: string,
   currency: string,
+  onBackClicked: () => void,
 |};
 
 export default function HotelsStandalonePackage(props: Props) {
