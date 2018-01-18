@@ -16,6 +16,7 @@ import type {
 
 type ContainerProps = {|
   navigation: Object, // FIXME: navigation type is still part of the core package
+  currency: string,
 |};
 
 type StateProps = {|
@@ -35,7 +36,7 @@ class AllHotelsMapNavigationScreen extends React.Component<Props> {
     this.props.navigation.navigate('SingleHotel', searchParams);
 
   render = () => {
-    const { search, filter, cityId, onFilterChange } = this.props;
+    const { search, filter, cityId, onFilterChange, currency } = this.props;
 
     return (
       <AllHotelsMap
@@ -44,6 +45,7 @@ class AllHotelsMapNavigationScreen extends React.Component<Props> {
         search={search}
         cityId={cityId}
         filter={filter}
+        currency={currency}
       />
     );
   };

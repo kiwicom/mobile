@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
+  currency: string,
   cityId: string | null,
   search: SearchParams,
   filter: FilterParams,
@@ -49,18 +50,27 @@ class AllHotelsMap extends React.Component<Props> {
   );
 
   render = () => {
-    const { cityId, search, filter, onFilterChange } = this.props;
+    const { cityId, search, filter, onFilterChange, currency } = this.props;
 
     return (
       <View style={styles.container}>
-        <FilterStripe filter={filter} onChange={onFilterChange} />
+        <FilterStripe
+          filter={filter}
+          onChange={onFilterChange}
+          currency={currency}
+        />
         <PublicApiRenderer
           query={graphql`
             query AllHotelsMapQuery(
               $search: HotelsSearchInput!
               $filter: HotelsFilterInput
+              $options: AvailableHotelOptionsInput
             ) {
-              allAvailableHotels(search: $search, filter: $filter) {
+              allAvailableHotels(
+                search: $search
+                filter: $filter
+                options: $options
+              ) {
                 ...MapScreen
               }
             }
@@ -71,6 +81,7 @@ class AllHotelsMap extends React.Component<Props> {
               ...search,
             },
             filter,
+            options: { currency },
           }}
           render={this.renderInnerComponent}
           cacheConfig={{ force: true }}

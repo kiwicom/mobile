@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 15c134f4ac2b150f4df79fefffbc64f8
+ * @relayHash ef474d82a78206722181529e1f20df60
  */
 
 /* eslint-disable */
@@ -56,7 +56,7 @@ const node: ConcreteBatch = {
             "kind": "Variable",
             "name": "prefix",
             "variableName": "prefix",
-            "type": "String!"
+            "type": "String"
           }
         ],
         "concreteType": "HotelCityConnection",
@@ -105,7 +105,7 @@ const node: ConcreteBatch = {
             "kind": "Variable",
             "name": "prefix",
             "variableName": "prefix",
-            "type": "String!"
+            "type": "String"
           }
         ],
         "concreteType": "HotelCityConnection",

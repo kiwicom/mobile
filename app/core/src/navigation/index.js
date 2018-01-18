@@ -28,7 +28,7 @@ const Navigation = StackNavigator(
             <HotelsStandalonePackage
               bookingComAffiliate={affiliate}
               language="en"
-              currency="EUR"
+              currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
               onBackClicked={this.goToHomepage}
             />
           );
