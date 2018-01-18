@@ -21,6 +21,7 @@ import type {
 
 type ContainerProps = {|
   navigation: Object, // FIXME: navigation type is still part of the core package
+  currency: string,
 |};
 
 type StateProps = {|
@@ -75,18 +76,32 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
   openSingleHotel = searchParams =>
     this.props.navigation.navigate('SingleHotel', searchParams);
 
-  render = () => (
-    <AllHotels
-      search={this.props.search}
-      location={this.props.location}
-      filter={this.props.filter}
-      openSingleHotel={this.openSingleHotel}
-      onSearchChange={this.props.onSearchChange}
-      onFilterChange={this.props.onFilterChange}
-      onLocationChange={this.props.onLocationChange}
-      onCityIdChange={this.props.onCityIdChange}
-    />
-  );
+  render = () => {
+    const {
+      search,
+      location,
+      filter,
+      onSearchChange,
+      onFilterChange,
+      onLocationChange,
+      onCityIdChange,
+      currency,
+    } = this.props;
+
+    return (
+      <AllHotels
+        currency={currency}
+        search={search}
+        location={location}
+        filter={filter}
+        openSingleHotel={this.openSingleHotel}
+        onSearchChange={onSearchChange}
+        onFilterChange={onFilterChange}
+        onLocationChange={onLocationChange}
+        onCityIdChange={onCityIdChange}
+      />
+    );
+  };
 }
 
 const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({

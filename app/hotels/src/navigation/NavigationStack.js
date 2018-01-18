@@ -72,6 +72,7 @@ export default StackNavigator(
           <SingleHotel
             onGoToHotelGallery={goToGalleryGrid}
             onGoToPayment={goToPayment}
+            currency={props.currency}
             search={{
               hotelId: props.hotelId,
               checkin: new Date(props.checkin),

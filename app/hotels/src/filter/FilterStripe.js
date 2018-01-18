@@ -24,6 +24,7 @@ const styles = {
 type Props = {|
   onChange: OnChangeFilterParams => void,
   filter: FilterParams,
+  currency: string,
 |};
 
 export default function FilterStripe(props: Props) {
@@ -40,7 +41,7 @@ export default function FilterStripe(props: Props) {
           onChange={props.onChange}
           start={minPrice}
           end={maxPrice}
-          currency="EUR"
+          currency={props.currency}
         />
       </ScrollView>
     </View>
