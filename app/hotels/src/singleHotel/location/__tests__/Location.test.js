@@ -9,21 +9,21 @@ const renderer = new ShallowRenderer();
 it('renders without crashing', () => {
   const props = {
     openGallery() {},
+    onGoToMap() {},
     hotel: ({
       hotel: 'asdf',
     }: Object),
   };
 
   renderer.render(<Location {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renders without crashing with missing data', () => {
   const props = {
     openGallery() {},
+    onGoToMap() {},
     hotel: undefined,
   };
 
   renderer.render(<Location {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
