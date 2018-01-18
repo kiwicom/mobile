@@ -9,18 +9,7 @@ import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
-
-export type AvailableHotelSearchInput = {|
-  hotelId: string,
-  checkin: Date,
-  checkout: Date,
-  roomsConfiguration: Array<{|
-    adultsCount: number,
-    children: Array<{|
-      age: number,
-    |}>,
-  |}>,
-|};
+import type { AvailableHotelSearchInput } from './AvailableHotelSearchInput';
 
 type ContainerProps = {|
   currency: string,
@@ -30,6 +19,7 @@ type ContainerProps = {|
     hotelId: number,
     rooms: Array<{| id: string, count: number |}>,
   }) => void,
+  onGoToMap: () => void,
 |};
 
 export const handleOpenSingleHotel = (
@@ -61,6 +51,7 @@ export default class SingleHotelContainer extends React.Component<
     <HotelDetailScreen
       openGallery={this.props.onGoToHotelGallery}
       onGoToPayment={this.props.onGoToPayment}
+      onGoToMap={this.props.onGoToMap}
       availableHotel={availableHotel}
     />
   );
