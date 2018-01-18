@@ -11,8 +11,10 @@ import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel } from './__generated__/Location_hotel.graphql';
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     backgroundColor: '#ffffff',
+  },
+  container: {
     height: 100,
     flexDirection: 'row',
   },
@@ -40,6 +42,7 @@ const styles = StyleSheet.create({
 
 type ContainerProps = {|
   hotel: any,
+  onGoToMap: () => void,
 |};
 
 type Props = {
@@ -47,46 +50,47 @@ type Props = {
   hotel: ?Location_hotel,
 };
 
-export function Location({ hotel }: Props) {
+export function Location({ hotel, onGoToMap }: Props) {
   const address = idx(hotel, _ => _.address);
   const coordinates = idx(hotel, _ => _.coordinates);
   const latitude = idx(coordinates, _ => _.lat);
   const longitude = idx(coordinates, _ => _.lng);
   return (
-    <View style={styles.container}>
-      <View style={styles.leftColumn}>
-        <Text style={[styles.addressLine, styles.streetLine]}>
-          {idx(address, _ => _.street)}
-        </Text>
-        <Text style={[styles.addressLine, styles.cityLine]}>
-          {idx(address, _ => _.city)}
-        </Text>
-      </View>
-      <View style={styles.rightColumn}>
-        {typeof latitude === 'number' &&
-          typeof longitude === 'number' && (
-            <MapView
-              region={{
-                latitude: latitude + 0.001, // move center little bit down
-                longitude: longitude - 0.005, // move center little bit right
-                latitudeDelta: 0.01,
-                longitudeDelta: 0.01,
-              }}
-              style={StyleSheet.absoluteFillObject}
-            >
-              <MapView.Marker
-                coordinate={{
-                  latitude,
-                  longitude,
+    <View style={styles.background}>
+      <TouchableOpacity style={styles.container} onPress={onGoToMap}>
+        <View style={styles.leftColumn}>
+          <Text style={[styles.addressLine, styles.streetLine]}>
+            {idx(address, _ => _.street)}
+          </Text>
+          <Text style={[styles.addressLine, styles.cityLine]}>
+            {idx(address, _ => _.city)}
+          </Text>
+        </View>
+        <View style={styles.rightColumn}>
+          {typeof latitude === 'number' &&
+            typeof longitude === 'number' && (
+              <MapView
+                region={{
+                  latitude: latitude + 0.001, // move center little bit down
+                  longitude: longitude - 0.005, // move center little bit right
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
                 }}
+                style={StyleSheet.absoluteFillObject}
               >
-                <DropMarker size={30} />
-              </MapView.Marker>
-            </MapView>
-          )}
-        <StretchedImage source={gradient} />
-        <TouchableOpacity style={styles.mapOverlay} />
-      </View>
+                <MapView.Marker
+                  coordinate={{
+                    latitude,
+                    longitude,
+                  }}
+                >
+                  <DropMarker size={30} />
+                </MapView.Marker>
+              </MapView>
+            )}
+          <StretchedImage source={gradient} />
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -22,6 +22,7 @@ type Props = {|
     hotelId: number,
     rooms: Array<{| id: string, count: number |}>,
   }) => void,
+  onGoToMap: () => void,
 |};
 
 type State = {|
@@ -59,7 +60,12 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   };
 
   render() {
-    const { openGallery, availableHotel, onGoToPayment } = this.props;
+    const {
+      openGallery,
+      availableHotel,
+      onGoToPayment,
+      onGoToMap,
+    } = this.props;
     const { selected } = this.state;
     if (!availableHotel) {
       return <GeneralError errorMessage="Hotel not found" />;
@@ -68,7 +74,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
       <Layout>
         <ScrollView>
           <Header openGallery={openGallery} hotel={availableHotel.hotel} />
-          <Location hotel={availableHotel.hotel} />
+          <Location hotel={availableHotel.hotel} onGoToMap={onGoToMap} />
           <Description hotel={availableHotel.hotel} />
           <RoomList
             data={availableHotel.availableRooms}

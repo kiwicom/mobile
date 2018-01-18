@@ -5,13 +5,14 @@ import { StackNavigator } from 'react-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import { Color } from '@kiwicom/react-native-app-common';
 
-import SingleHotel from '../singleHotel';
 import GalleryGrid from '../gallery/GalleryGrid';
 import Payment from '../singleHotel/PaymentScreen';
 import AllHotelsNavigationScreen from './AllHotelsNavigationScreen';
 import AllHotelsMapNavigationScreen from './AllHotelsMapNavigationScreen';
+import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
+import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
 
-type Props = {|
+export type NavigationProps = {|
   navigation: Object, // FIXME: navigation type is still part of the core package
   bookingComAffiliate: string,
   language: string,
@@ -22,20 +23,6 @@ type InjectorProps = {|
   navigation: Object, // FIXME: navigation type is still part of the core package
   WrappedComponent: React.ElementType,
 |};
-
-type AvailableHotelSearchInput = {|
-  hotelId: string,
-  checkin: Date,
-  checkout: Date,
-  roomsConfiguration: Array<{|
-    adultsCount: number,
-    children: Array<{|
-      age: number,
-    |}>,
-  |}>,
-|};
-
-type SingleHotelProps = Props & AvailableHotelSearchInput;
 
 export default StackNavigator(
   {
@@ -49,41 +36,15 @@ export default StackNavigator(
       },
     },
     SingleHotel: {
-      screen: withMappedProps(function SingleHotelNavigationScreen(
-        props: SingleHotelProps,
-      ) {
-        function goToGalleryGrid(hotelName, images) {
-          props.navigation.navigate('GalleryGrid', {
-            hotelName,
-            images,
-          });
-        }
-        function goToPayment(parameters) {
-          props.navigation.navigate('Payment', {
-            ...parameters,
-            checkin: new Date(props.checkin),
-            checkout: new Date(props.checkout),
-            affiliateId: props.bookingComAffiliate,
-            language: props.language,
-            currency: props.currency,
-          });
-        }
-        return (
-          <SingleHotel
-            onGoToHotelGallery={goToGalleryGrid}
-            onGoToPayment={goToPayment}
-            currency={props.currency}
-            search={{
-              hotelId: props.hotelId,
-              checkin: new Date(props.checkin),
-              checkout: new Date(props.checkout),
-              roomsConfiguration: props.roomsConfiguration,
-            }}
-          />
-        );
-      }),
+      screen: SingleHotelNavigationScreen,
       navigationOptions: {
         headerTitle: 'Detail',
+      },
+    },
+    SingleHotelMap: {
+      screen: SingleHotelMapNavigationScreen,
+      navigationOptions: {
+        headerTitle: 'Map',
       },
     },
     GalleryGrid: {

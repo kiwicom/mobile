@@ -13,10 +13,8 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from '../filter/FilterParametersType';
-import {
-  type AvailableHotelSearchInput,
-  handleOpenSingleHotel,
-} from '../singleHotel';
+import { handleOpenSingleHotel } from '../singleHotel';
+import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 
 const styles = StyleSheet.create({
   container: {
