@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { Icon } from '@kiwicom/react-native-app-common';
 
 import AllHotels from '../allHotels/AllHotels';
@@ -36,7 +36,11 @@ type DispatchProps = {|
   onCityIdChange: (string | null) => void,
 |};
 
-type Props = ContainerProps & StateProps & DispatchProps;
+type NavigationProps = {|
+  onBackClicked: () => void,
+|};
+
+type Props = ContainerProps & StateProps & DispatchProps & NavigationProps;
 
 class AllHotelsNavigationScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
@@ -47,11 +51,16 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     return {
       headerTitle: 'Hotels',
       headerRight: (
-        <TouchableOpacity
-          style={{ marginHorizontal: 10 }}
-          onPress={goToAllHotelsMap}
-        >
+        <TouchableOpacity style={style.headerButton} onPress={goToAllHotelsMap}>
           <Icon name="map" size={30} color="#fff" />
+        </TouchableOpacity>
+      ),
+      headerLeft: (
+        <TouchableOpacity
+          style={style.headerButton}
+          onPress={props.onBackClicked}
+        >
+          <Icon name="chevron-left" size={30} color="#fff" />
         </TouchableOpacity>
       ),
     };
@@ -106,3 +115,9 @@ const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
 export default (connect(select, actions)(
   AllHotelsNavigationScreen,
 ): React.ComponentType<ContainerProps>);
+
+const style = StyleSheet.create({
+  headerButton: {
+    marginHorizontal: 10,
+  },
+});
