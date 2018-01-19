@@ -25,6 +25,7 @@ export { default as Slider } from './src/forms/Slider';
 export { default as AgePicker } from './src/forms/AgePicker';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
+export { default as StretchedImage } from './src/image/StretchedImage';
 
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as IconLoading } from './src/loaders/IconLoading';
@@ -45,14 +46,15 @@ export { default as BarPopup } from './src/popup/BarPopup';
 
 export { default as Stars } from './src/rating/Stars';
 
+export { default as Logger } from './src/services/Logger';
+export { default as CurrencyFormatter } from './src/services/CurrencyFormatter';
+
 export { default as Color } from './src/Color';
 export { default as Device } from './src/Device';
 export { default as Icon } from './src/Icon';
 export { default as Modal } from './src/Modal';
 export { default as Price } from './src/Price';
 export { default as WebView } from './src/WebView';
-
-export { default as StretchedImage } from './src/image/StretchedImage';
 
 // Flow types:
 
