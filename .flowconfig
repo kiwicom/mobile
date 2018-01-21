@@ -35,7 +35,7 @@
 <PROJECT_ROOT>/node_modules/react-native/Libraries/CameraRoll/.*
 <PROJECT_ROOT>/node_modules/react-native/Libraries/Components/.*
 <PROJECT_ROOT>/node_modules/react-native/Libraries/Share/.*
-<PROJECT_ROOT>/node_modules/react-native/Libraries/StyleSheet/.*
+<PROJECT_ROOT>/node_modules/react-native/Libraries/StyleSheet/StyleSheetValidation.js
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js

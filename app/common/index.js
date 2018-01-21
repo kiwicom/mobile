@@ -18,11 +18,12 @@ export { default as GeneralError } from './src/errors/GeneralError';
 export { default as ErrorMessage } from './src/errors/ErrorMessage';
 export { default as PartialFailure } from './src/errors/PartialFailure';
 
+export { default as AgePicker } from './src/forms/AgePicker';
+export { default as Checkbox } from './src/forms/Checkbox';
 export { default as DatePicker } from './src/forms/DatePicker';
-export { default as TextInput } from './src/forms/TextInput';
 export { default as NumberControl } from './src/forms/NumberControl';
 export { default as Slider } from './src/forms/Slider';
-export { default as AgePicker } from './src/forms/AgePicker';
+export { default as TextInput } from './src/forms/TextInput';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 export { default as StretchedImage } from './src/image/StretchedImage';
@@ -65,3 +66,5 @@ export type {
   GestureState,
   PanResponderEvent,
 } from './types/Events';
+
+export type { StylePropType } from './types/Styles';
