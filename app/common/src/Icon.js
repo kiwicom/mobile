@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { Color } from '@kiwicom/react-native-app-common';
+
+import Color from './Color';
 
 type Props = {|
   name: string,
