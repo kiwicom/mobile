@@ -162,7 +162,15 @@ export class AllHotelsSearch extends React.Component<Props, State> {
                 ...search,
                 cityId: this.getCityIdFromData(data),
               },
-              filter,
+              filter: {
+                ...filter,
+                hotelFacilities: filter.hotelFacilities.length
+                  ? filter.hotelFacilities.reduce((facilities, facility) => {
+                      facilities[facility] = true;
+                      return facilities;
+                    }, {})
+                  : null,
+              },
               options: { currency },
             }}
             render={this.renderInnerComponent}

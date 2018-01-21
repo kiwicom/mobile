@@ -24,11 +24,4 @@ describe('StarsCheckbox', () => {
     );
     expect(renderer.render(starsCheckbox)).toMatchSnapshot();
   });
-
-  it('render text instead of stars', () => {
-    const starsCheckbox = (
-      <StarsCheckbox text="Some text" onPress={jest.fn()} />
-    );
-    expect(renderer.render(starsCheckbox)).toMatchSnapshot();
-  });
 });

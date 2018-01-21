@@ -15,6 +15,7 @@ const defaultProps = {
     starsRating: [],
     minPrice: null,
     maxPrice: null,
+    hotelFacilities: [],
   },
   data: { edges: [] },
   isLoading: false,

@@ -37,6 +37,7 @@ const InitialHotelsState: HotelsReducerState = {
     starsRating: [],
     minPrice: null,
     maxPrice: null,
+    hotelFacilities: [],
   },
 };
 
