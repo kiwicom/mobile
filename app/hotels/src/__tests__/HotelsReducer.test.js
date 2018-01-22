@@ -1,6 +1,6 @@
 // @flow
 
-import HotelsReducer from '../HotelsReducer';
+import HotelsReducer, { defaultFilterParams } from '../HotelsReducer';
 
 const defaultSearchParams = {
   checkin: null,
@@ -9,13 +9,6 @@ const defaultSearchParams = {
     adultsCount: 1,
     children: [],
   },
-};
-
-const defaultFilterParams = {
-  starsRating: [],
-  minPrice: null,
-  maxPrice: null,
-  hotelFacilities: [],
 };
 
 describe('HotelsReducer', () => {

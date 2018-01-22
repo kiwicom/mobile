@@ -13,12 +13,12 @@ const styles = {
 
 type Props = {
   title: string,
+  isActive: boolean,
+  onPress: () => void,
   icon?: {|
     name: string,
     color?: string,
   |},
-  isActive: boolean,
-  onPress: () => void,
 };
 
 export default function FilterButton(props: Props) {
