@@ -14,7 +14,7 @@ type Props = {|
   startValue: number,
   endValue?: number,
   step?: number,
-  // snapped?: boolean, FIXME https://github.com/ptomasroos/react-native-multi-slider/issues/49
+  snapped?: boolean,
   style?: Object,
 |};
 
@@ -43,6 +43,7 @@ export default class Slider extends React.Component<Props, State> {
           values={values}
           min={this.props.min}
           max={this.props.max}
+          snapped={this.props.snapped}
           allowOverlap
           selectedStyle={styles.selected}
           sliderLength={this.state.width - 2 * SLIDER_PADDING}
