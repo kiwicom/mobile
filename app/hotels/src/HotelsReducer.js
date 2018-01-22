@@ -28,6 +28,7 @@ export const defaultFilterParams = {
   maxPrice: null,
   freeCancellation: false,
   hotelFacilities: [],
+  minScore: null,
 };
 
 const InitialHotelsState: HotelsReducerState = {

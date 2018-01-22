@@ -7,6 +7,7 @@ import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
 import HotelFacilitiesFilter from './hotelFacilities/HotelFacilitiesFilter';
+import ScoreFilter from './score/ScoreFilter';
 import type {
   FilterParams,
   OnChangeFilterParams,
@@ -36,6 +37,7 @@ export default function FilterStripe(props: Props) {
     maxPrice,
     freeCancellation,
     hotelFacilities,
+    minScore,
   } = props.filter;
 
   return (
@@ -52,13 +54,14 @@ export default function FilterStripe(props: Props) {
           end={maxPrice}
           currency={props.currency}
         />
-        <FreeCancellationFilter
-          onChange={props.onChange}
-          isActive={freeCancellation}
-        />
+        <ScoreFilter onChange={props.onChange} minScore={minScore} />
         <HotelFacilitiesFilter
           onChange={props.onChange}
           facilities={hotelFacilities}
+        />
+        <FreeCancellationFilter
+          onChange={props.onChange}
+          isActive={freeCancellation}
         />
       </ScrollView>
     </View>

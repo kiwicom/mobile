@@ -6,6 +6,7 @@ export type FilterParams = {
   maxPrice: number | null,
   freeCancellation: boolean,
   hotelFacilities: string[],
+  minScore: number | null,
 };
 
 export type OnChangeFilterParams = {
@@ -14,4 +15,5 @@ export type OnChangeFilterParams = {
   maxPrice?: ?number,
   freeCancellation?: boolean,
   hotelFacilities?: string[],
+  minScore?: ?number,
 };
