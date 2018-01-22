@@ -4,6 +4,7 @@ exports[`HotelsReducer setSearch it should update filters for list of hotels 1`]
 Object {
   "cityId": null,
   "filterParams": Object {
+    "freeCancellation": false,
     "maxPrice": 30,
     "minPrice": 20,
     "starsRating": Array [],
@@ -24,6 +25,7 @@ exports[`HotelsReducer setSearch it should update search filters for list of hot
 Object {
   "cityId": null,
   "filterParams": Object {
+    "freeCancellation": false,
     "maxPrice": null,
     "minPrice": null,
     "starsRating": Array [],

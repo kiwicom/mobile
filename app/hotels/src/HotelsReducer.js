@@ -22,6 +22,13 @@ export type HotelsReducerActions =
   | {| type: 'setLocation', location: string |}
   | {| type: 'setCityId', cityId: string | null |};
 
+export const defaultFilterParams = {
+  starsRating: [],
+  minPrice: null,
+  maxPrice: null,
+  freeCancellation: false,
+};
+
 const InitialHotelsState: HotelsReducerState = {
   cityId: null,
   location: '',
@@ -33,11 +40,7 @@ const InitialHotelsState: HotelsReducerState = {
       children: [],
     },
   },
-  filterParams: {
-    starsRating: [],
-    minPrice: null,
-    maxPrice: null,
-  },
+  filterParams: defaultFilterParams,
 };
 
 export default (

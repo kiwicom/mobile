@@ -1,6 +1,7 @@
 // @flow
 
 import { AllHotelsSearch } from '../AllHotelsSearch';
+import { defaultFilterParams } from '../../HotelsReducer';
 
 const defaults = {
   roomsConfiguration: {
@@ -11,11 +12,7 @@ const defaults = {
 
 const defaultProps = {
   location: '',
-  filter: {
-    starsRating: [],
-    minPrice: null,
-    maxPrice: null,
-  },
+  filter: defaultFilterParams,
   data: { edges: [] },
   isLoading: false,
   currency: 'EUR',
