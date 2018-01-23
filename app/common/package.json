@@ -4,7 +4,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@ptomasroos/react-native-multi-slider": "ptomasroos/react-native-multi-slider",
+    "@ptomasroos/react-native-multi-slider": "https://github.com/ptomasroos/react-native-multi-slider.git#2f83b6b8b700c0e6ace77c74b8af8a7d2ad83ba0",
     "react-native-image-progress": "^1.0.1",
     "react-native-modal": "^4.1.1",
     "react-native-svg": "5.5.1",
