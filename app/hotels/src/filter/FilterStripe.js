@@ -5,6 +5,7 @@ import { ScrollView, View } from 'react-native';
 
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
+import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
 import type {
   FilterParams,
   OnChangeFilterParams,
@@ -28,7 +29,7 @@ type Props = {|
 |};
 
 export default function FilterStripe(props: Props) {
-  const { starsRating, minPrice, maxPrice } = props.filter;
+  const { starsRating, minPrice, maxPrice, freeCancellation } = props.filter;
   return (
     <View style={styles.view}>
       <ScrollView
@@ -42,6 +43,10 @@ export default function FilterStripe(props: Props) {
           start={minPrice}
           end={maxPrice}
           currency={props.currency}
+        />
+        <FreeCancellationFilter
+          onChange={props.onChange}
+          isActive={freeCancellation}
         />
       </ScrollView>
     </View>
