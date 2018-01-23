@@ -9,6 +9,7 @@ type Props = {|
   children: React.Node,
   isVisible: boolean,
   onClose: () => void,
+  doScroll?: boolean,
 |};
 
 export default class Popup extends React.Component<Props> {
@@ -22,7 +23,9 @@ export default class Popup extends React.Component<Props> {
       onBackdropPress={this.onClose}
     >
       <View style={styles.body}>
-        <ScrollView>{this.props.children}</ScrollView>
+        <ScrollView scrollEnabled={this.props.doScroll !== false}>
+          {this.props.children}
+        </ScrollView>
       </View>
     </Modal>
   );
