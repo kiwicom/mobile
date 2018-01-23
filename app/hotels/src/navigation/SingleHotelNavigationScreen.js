@@ -35,6 +35,7 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
       checkin: new Date(this.props.checkin),
       checkout: new Date(this.props.checkout),
       roomsConfiguration: this.props.roomsConfiguration,
+      currency: this.props.currency,
     });
   };
   render() {
