@@ -120,9 +120,9 @@
   dependencies:
     cross-spawn "^5.1.0"
 
-"@ptomasroos/react-native-multi-slider@ptomasroos/react-native-multi-slider":
+"@ptomasroos/react-native-multi-slider@https://github.com/ptomasroos/react-native-multi-slider.git#2f83b6b8b700c0e6ace77c74b8af8a7d2ad83ba0":
   version "0.0.10"
-  resolved "https://codeload.github.com/ptomasroos/react-native-multi-slider/tar.gz/7398724080f8b49d121743cac89bc95304fc4483"
+  resolved "https://github.com/ptomasroos/react-native-multi-slider.git#2f83b6b8b700c0e6ace77c74b8af8a7d2ad83ba0"
 
 "@segment/loosely-validate-event@^1.1.2":
   version "1.1.2"
