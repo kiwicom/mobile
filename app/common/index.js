@@ -54,6 +54,9 @@ export { default as WebView } from './src/WebView';
 
 export { default as StretchedImage } from './src/image/StretchedImage';
 
+export { default as Logger } from './src/services/Logger';
+export { default as CurrencyFormatter } from './src/services/CurrencyFormatter';
+
 // Flow types:
 
 export type {
