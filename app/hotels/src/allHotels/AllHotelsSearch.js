@@ -25,6 +25,7 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from '../filter/FilterParametersType';
+import formatDateForApi from '../formatDateForApi';
 
 type Props = {|
   location: string,
@@ -160,6 +161,8 @@ export class AllHotelsSearch extends React.Component<Props, State> {
             variables={{
               search: {
                 ...search,
+                checkin: formatDateForApi(search.checkin),
+                checkout: formatDateForApi(search.checkout),
                 cityId: this.getCityIdFromData(data),
               },
               filter: {
