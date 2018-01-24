@@ -39,11 +39,11 @@ export default class AllHotels extends React.Component<Props> {
       checkin: moment()
         .add(1, 'week')
         .startOf('isoWeek')
-        .format('YYYY-MM-DD'),
+        .toDate(),
       checkout: moment()
         .add(1, 'week')
         .endOf('isoWeek')
-        .format('YYYY-MM-DD'),
+        .toDate(),
     });
   };
 

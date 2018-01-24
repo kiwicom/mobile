@@ -22,8 +22,8 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
   goToPayment = (parameters: Object) => {
     this.props.navigation.navigate('Payment', {
       ...parameters,
-      checkin: new Date(this.props.checkin),
-      checkout: new Date(this.props.checkout),
+      checkin: this.props.checkin,
+      checkout: this.props.checkout,
       affiliateId: this.props.bookingComAffiliate,
       language: this.props.language,
       currency: this.props.currency,
@@ -32,8 +32,8 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
   goToMap = () => {
     this.props.navigation.navigate('SingleHotelMap', {
       hotelId: this.props.hotelId,
-      checkin: new Date(this.props.checkin),
-      checkout: new Date(this.props.checkout),
+      checkin: this.props.checkin,
+      checkout: this.props.checkout,
       roomsConfiguration: this.props.roomsConfiguration,
       currency: this.props.currency,
     });
@@ -47,8 +47,8 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
         currency={this.props.currency}
         search={{
           hotelId: this.props.hotelId,
-          checkin: new Date(this.props.checkin),
-          checkout: new Date(this.props.checkout),
+          checkin: this.props.checkin,
+          checkout: this.props.checkout,
           roomsConfiguration: this.props.roomsConfiguration,
         }}
       />

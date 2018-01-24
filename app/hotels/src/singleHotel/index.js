@@ -3,13 +3,13 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import moment from 'moment';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
 import type { AvailableHotelSearchInput } from './AvailableHotelSearchInput';
+import formatDateForApi from '../formatDateForApi';
 
 type ContainerProps = {|
   currency: string,
@@ -73,8 +73,8 @@ export default class SingleHotelContainer extends React.Component<
         variables={{
           search: {
             ...search,
-            checkin: moment(search.checkin).format('YYYY-MM-DD'),
-            checkout: moment(search.checkout).format('YYYY-MM-DD'),
+            checkin: formatDateForApi(search.checkin),
+            checkout: formatDateForApi(search.checkout),
           },
           options: { currency },
         }}

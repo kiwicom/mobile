@@ -17,8 +17,8 @@ class SingleHotelMapNavigationScreen extends React.Component<Props> {
       <SingleHotelMap
         search={{
           hotelId: this.props.hotelId,
-          checkin: new Date(this.props.checkin),
-          checkout: new Date(this.props.checkout),
+          checkin: this.props.checkin,
+          checkout: this.props.checkout,
           roomsConfiguration: this.props.roomsConfiguration,
         }}
         currency={this.props.currency}

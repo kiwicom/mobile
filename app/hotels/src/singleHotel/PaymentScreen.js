@@ -6,6 +6,8 @@ import { WebView } from '@kiwicom/react-native-app-common';
 import moment from 'moment';
 import querystring from 'querystring';
 
+import formatDateForApi from '../formatDateForApi';
+
 export type PaymentParameters = {
   hotelId: number,
   checkin: Date,
@@ -24,7 +26,7 @@ export default function PaymentScreen(props: PaymentParameters) {
 }
 
 export function createURI(pp: PaymentParameters): string {
-  const checkinQuery = moment(pp.checkin).format('YYYY-MM-DD'); // Booking.com
+  const checkinQuery = formatDateForApi(pp.checkin);
   const intervalQuery = moment(pp.checkout.getTime()).diff(
     moment(pp.checkin.getTime()),
     'days',

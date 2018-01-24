@@ -4,11 +4,11 @@ import * as React from 'react';
 import idx from 'idx';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import moment from 'moment';
 
 import type { AvailableHotelSearchInput } from '../AvailableHotelSearchInput';
 import MapView from './MapView';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
+import formatDateForApi from '../../formatDateForApi';
 
 type ContainerProps = {|
   currency: string,
@@ -43,8 +43,8 @@ export default class SingleHotelMapScreen extends React.Component<
         variables={{
           search: {
             ...search,
-            checkin: moment(search.checkin).format('YYYY-MM-DD'),
-            checkout: moment(search.checkout).format('YYYY-MM-DD'),
+            checkin: formatDateForApi(search.checkin),
+            checkout: formatDateForApi(search.checkout),
           },
           options: { currency },
         }}
