@@ -12,7 +12,6 @@
  *   type: 'Hotels',
  *   step: 'searchForm',
  *   hasActiveBooking: false,
- *   implementation: 'react',
  * });
  * ```
  *
@@ -35,9 +34,12 @@ function LogEvent(
   event: EventType,
   category: CategoryType,
   parameters?: Object,
-  value?: number,
 ) {
-  console.log('debug: ', event, category, parameters, value); //eslint-disable-line
+  const extendedParameters = {
+    implementation: 'react',
+    ...parameters,
+  };
+  console.log('debug: ', event, category, extendedParameters); //eslint-disable-line
 }
 
 export default {

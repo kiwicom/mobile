@@ -1,7 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { TextInput, DatePicker, Color } from '@kiwicom/react-native-app-common';
+import {
+  TextInput,
+  DatePicker,
+  Color,
+  Logger,
+} from '@kiwicom/react-native-app-common';
 import { View, StyleSheet } from 'react-native';
 import moment from 'moment';
 
@@ -40,6 +45,13 @@ type Props = {
 };
 
 class SearchForm extends React.Component<Props> {
+  componentDidMount = () => {
+    Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
+      type: 'Hotels',
+      step: 'searchForm',
+    });
+  };
+
   handleDestinationChange = (location: string) => {
     this.props.onLocationChange(location);
   };

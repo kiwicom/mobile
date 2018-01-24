@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ScrollView } from 'react-native';
-import { GeneralError, Layout } from '@kiwicom/react-native-app-common';
+import { GeneralError, Layout, Logger } from '@kiwicom/react-native-app-common';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
@@ -34,6 +34,13 @@ type State = {|
 export class HotelDetailScreen extends React.Component<Props, State> {
   state = {
     selected: {},
+  };
+
+  componentDidMount = () => {
+    Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
+      type: 'Hotels',
+      step: 'details',
+    });
   };
 
   incrementSelectedCount = (availabilityOriginalId: string, amount: number) => {
