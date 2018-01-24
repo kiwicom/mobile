@@ -13,7 +13,6 @@ import type {
 } from './SearchParametersType';
 
 const DISPLAY_DATE_FORMAT = 'DD/MM/YYYY';
-const DATA_DATE_FORMAT = 'YYYY-MM-DD';
 
 const styles = StyleSheet.create({
   form: {
@@ -52,9 +51,7 @@ class SearchForm extends React.Component<Props> {
     this.handleDateChange(date, 'checkout');
 
   handleDateChange = (datestring: string, type: 'checkin' | 'checkout') => {
-    const date = moment(datestring, DISPLAY_DATE_FORMAT).format(
-      DATA_DATE_FORMAT,
-    );
+    const date = moment(datestring, DISPLAY_DATE_FORMAT).toDate();
 
     this.props.onChange({ [type]: date });
   };
@@ -80,7 +77,7 @@ class SearchForm extends React.Component<Props> {
           <DatePicker
             placeholder="Start date"
             format={DISPLAY_DATE_FORMAT}
-            date={moment(search.checkin, DATA_DATE_FORMAT).toDate()}
+            date={search.checkin}
             minDate={new Date()}
             onDateChange={this.handleCheckinChange}
             style={styles.datePicker}
@@ -88,7 +85,7 @@ class SearchForm extends React.Component<Props> {
           <DatePicker
             placeholder="End date"
             format={DISPLAY_DATE_FORMAT}
-            date={moment(search.checkout, DATA_DATE_FORMAT).toDate()}
+            date={search.checkout}
             minDate={moment()
               .add(1, 'day')
               .toDate()}
