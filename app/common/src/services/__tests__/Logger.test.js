@@ -14,7 +14,6 @@ it('works', () => {
       type: 'Hotels',
       step: 'searchForm',
       hasActiveBooking: false,
-      implementation: 'react',
     }),
   ).toBeUndefined();
   expect(logs).toMatchSnapshot();
