@@ -18,6 +18,8 @@ import type {
 } from './SearchParametersType';
 
 const DISPLAY_DATE_FORMAT = 'DD/MM/YYYY';
+const MIN_NO_OF_NIGHTS = 1;
+const MAX_NO_OF_NIGHTS = 30;
 
 const styles = StyleSheet.create({
   form: {
@@ -36,6 +38,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 });
+
+type DateInputType = 'checkin' | 'checkout';
 
 type Props = {
   location: string,
@@ -62,14 +66,54 @@ class SearchForm extends React.Component<Props> {
   handleCheckoutChange = (date: string) =>
     this.handleDateChange(date, 'checkout');
 
-  handleDateChange = (datestring: string, type: 'checkin' | 'checkout') => {
-    const date = moment(datestring, DISPLAY_DATE_FORMAT).toDate();
+  handleDateChange = (datestring: string, type: DateInputType) => {
+    const date = moment(datestring, DISPLAY_DATE_FORMAT);
+    const checkin =
+      type === 'checkin' ? date : moment(this.props.search.checkin);
+    const checkout =
+      type === 'checkout' ? date : moment(this.props.search.checkout);
+    const dates = this.getValidDates(checkin, checkout, type);
 
-    this.props.onChange({ [type]: date });
+    if (dates) {
+      this.props.onChange(dates);
+    }
   };
 
   handleGuestsChange = (roomsConfiguration: RoomConfigurationType) => {
     this.props.onChange({ roomsConfiguration });
+  };
+
+  getValidDates = (
+    checkin: moment,
+    checkout: moment,
+    typeBeingChanged: DateInputType,
+  ) => {
+    if (checkin === null || checkout === null) {
+      return null;
+    }
+    const diff = moment(checkout).diff(checkin, 'days');
+    if (diff < MIN_NO_OF_NIGHTS || diff > MAX_NO_OF_NIGHTS) {
+      if (typeBeingChanged === 'checkout') {
+        return {
+          checkin: moment(checkout)
+            .subtract(1, 'day')
+            .toDate(),
+          checkout: checkout.toDate(),
+        };
+      } else if (typeBeingChanged === 'checkin') {
+        return {
+          checkin: checkin.toDate(),
+          checkout: moment(checkin)
+            .add(1, 'day')
+            .toDate(),
+        };
+      }
+    }
+
+    return {
+      checkin: checkin.toDate(),
+      checkout: checkout.toDate(),
+    };
   };
 
   render = () => {
