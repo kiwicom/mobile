@@ -15,6 +15,7 @@ const defaultFilterParams = {
   starsRating: [],
   minPrice: null,
   maxPrice: null,
+  hotelFacilities: [],
 };
 
 describe('HotelsReducer', () => {

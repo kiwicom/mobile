@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
-import { ButtonPopup, Color } from '@kiwicom/react-native-app-common';
+import { ButtonPopup, Color, Checkbox } from '@kiwicom/react-native-app-common';
 
 import StarsCheckbox from './StarsCheckbox';
 
@@ -51,12 +51,13 @@ export default class StarsPopup extends React.Component<Props, State> {
       );
     }
     checkboxes.push(
-      <StarsCheckbox
+      <Checkbox
         key={0}
-        text="Unrated"
         isChecked={stars.indexOf(0) >= 0}
         onPress={this.handleCheckboxOnPress(0)}
-      />,
+      >
+        <Text style={styles.unrated}>Unrated</Text>
+      </Checkbox>,
     );
     return checkboxes;
   };
@@ -85,5 +86,10 @@ const styles = StyleSheet.create({
   delimiter: {
     borderBottomWidth: 1,
     borderBottomColor: Color.grey.$300,
+  },
+  unrated: {
+    marginLeft: 3,
+    fontSize: 16,
+    fontWeight: '300',
   },
 });

@@ -75,10 +75,24 @@ exports[`StarsPopup should render popup 1`] = `
       }
     }
   />
-  <StarsCheckbox
+  <Checkbox
     isChecked={false}
     onPress={[Function]}
-    text="Unrated"
-  />
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "fontSize": 16,
+          "fontWeight": "300",
+          "marginLeft": 3,
+        }
+      }
+    >
+      Unrated
+    </Text>
+  </Checkbox>
 </ButtonPopup>
 `;

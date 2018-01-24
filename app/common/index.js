@@ -23,6 +23,7 @@ export { default as TextInput } from './src/forms/TextInput';
 export { default as NumberControl } from './src/forms/NumberControl';
 export { default as Slider } from './src/forms/Slider';
 export { default as AgePicker } from './src/forms/AgePicker';
+export { default as Checkbox } from './src/forms/Checkbox';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 export { default as StretchedImage } from './src/image/StretchedImage';
