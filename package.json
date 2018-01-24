@@ -39,7 +39,6 @@
     "node-fetch": "^1.7.3",
     "prettier": "^1.7.4",
     "react-native-dotenv": "^0.1.0",
-    "react-native-scripts": "1.8.0",
     "react-test-renderer": "16.2.0"
   }
 }
