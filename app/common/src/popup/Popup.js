@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 
 import Modal from '../Modal';
+import Device from '../Device';
 
 type Props = {|
   children: React.Node,
@@ -22,7 +23,9 @@ export default class Popup extends React.Component<Props> {
       onBackdropPress={this.onClose}
     >
       <View style={styles.body}>
-        <ScrollView>{this.props.children}</ScrollView>
+        <ScrollView contentContainerStyle={styles.content}>
+          {this.props.children}
+        </ScrollView>
       </View>
     </Modal>
   );
@@ -34,7 +37,11 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   body: {
+    alignItems: Device.isTablet() ? 'center' : 'stretch',
+  },
+  content: {
     opacity: 1,
+    width: Device.isTablet() ? Device.getLandscapeThreshold() / 2 : 'auto',
     backgroundColor: '#fff',
   },
 });
