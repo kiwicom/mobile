@@ -57,6 +57,7 @@ export default class PhotosStrip extends React.Component<Props> {
 const styles = StyleSheet.create({
   headerWrapper: {
     position: 'absolute',
+    marginTop: 10,
   },
   onCloseWrapper: {
     position: 'absolute',
