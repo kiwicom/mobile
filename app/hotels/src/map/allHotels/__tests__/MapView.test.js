@@ -1,6 +1,6 @@
 // @flow
 
-import { Map } from './../MapView';
+import { Map } from '../MapView';
 
 const data = coordinates => ({
   node: {
