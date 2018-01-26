@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
+import { connect } from '@kiwicom/react-native-app-redux';
 
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
@@ -12,6 +13,7 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from './FilterParametersType';
+import type { CurrentSearchStats } from './CurrentSearchStatsType';
 
 const styles = {
   view: {
@@ -28,13 +30,14 @@ type Props = {|
   onChange: OnChangeFilterParams => void,
   filter: FilterParams,
   currency: string,
+  currentSearchStats: CurrentSearchStats,
 |};
 
 /**
  * This filter holds all available hotel filters. Active (selected) filters are
  * rendered first.
  */
-export default function FilterStripe(props: Props) {
+function FilterStripe(props: Props) {
   const {
     starsRating,
     minPrice,
@@ -56,7 +59,12 @@ export default function FilterStripe(props: Props) {
       ),
     },
     {
-      isActive: PriceFilter.isActive(minPrice, maxPrice),
+      isActive: PriceFilter.isActive(
+        minPrice,
+        maxPrice,
+        props.currentSearchStats.priceMin,
+        props.currentSearchStats.priceMax,
+      ),
       Component: (
         <PriceFilter
           key="price"
@@ -116,3 +124,9 @@ export default function FilterStripe(props: Props) {
     </View>
   );
 }
+
+const mapStateToProps = state => ({
+  currentSearchStats: state.hotels.currentSearchStats,
+});
+
+export default connect(mapStateToProps)(FilterStripe);
