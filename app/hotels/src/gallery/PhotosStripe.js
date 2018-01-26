@@ -18,7 +18,7 @@ type Props = {|
   onClose: () => void,
 |};
 
-export default class PhotosStrip extends React.Component<Props> {
+export default class PhotosStripe extends React.Component<Props> {
   renderPagination = (index: number, total: number) => {
     const { width } = Dimensions.get('window');
 
@@ -57,6 +57,7 @@ export default class PhotosStrip extends React.Component<Props> {
 const styles = StyleSheet.create({
   headerWrapper: {
     position: 'absolute',
+    marginTop: 10,
   },
   onCloseWrapper: {
     position: 'absolute',
