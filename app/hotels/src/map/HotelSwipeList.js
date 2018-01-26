@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View, Animated } from 'react-native';
+import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
-  VerticalSwipeResponder,
+  BottomSheet,
   Device,
   type OnDimensionsChange,
 } from '@kiwicom/react-native-app-common';
@@ -24,24 +24,14 @@ type Props = {|
 |};
 
 type State = {|
-  availableWidth: number,
+  screenWidth: number,
 |};
 
 const SNAP_WIDTH = 0.8;
 const OPEN_HEIGHT = 150;
 const CLOSED_HEIGHT = 80;
-const HEIGHT_DIFF = OPEN_HEIGHT - CLOSED_HEIGHT;
-const IS_TABLET = Device.isTablet();
-
-const getMaxWidth = () => {
-  return IS_TABLET ? Dimensions.get('screen').width * 0.55 : 668;
-};
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    overflow: 'hidden',
-  },
   sliderWrapper: {
     height: CLOSED_HEIGHT,
   },
@@ -60,20 +50,14 @@ const styles = StyleSheet.create({
 });
 
 class HotelSwipeList extends React.Component<Props, State> {
-  swipeMovement: typeof Animated.Value;
-  height: typeof Animated.AnimatedInterpolation;
+  isTablet: boolean;
 
   constructor(props: Props) {
     super(props);
-    this.swipeMovement = new Animated.Value(HEIGHT_DIFF);
-    this.height = this.swipeMovement.interpolate({
-      inputRange: [-HEIGHT_DIFF, HEIGHT_DIFF],
-      outputRange: [OPEN_HEIGHT, CLOSED_HEIGHT],
-      extrapolate: 'clamp',
-    });
+    this.isTablet = Device.isTablet();
 
     this.state = {
-      availableWidth: Dimensions.get('screen').width,
+      screenWidth: Dimensions.get('screen').width,
     };
   }
 
@@ -86,19 +70,14 @@ class HotelSwipeList extends React.Component<Props, State> {
   };
 
   onDimensionsChanged = ({ screen: { width } }: OnDimensionsChange) => {
-    this.setState({ availableWidth: width });
-  };
-
-  onSwipeUp = () => {
-    Animated.spring(this.swipeMovement, { toValue: -HEIGHT_DIFF }).start();
-  };
-
-  onSwipeDown = () => {
-    Animated.spring(this.swipeMovement, { toValue: HEIGHT_DIFF }).start();
+    this.setState({ screenWidth: width });
   };
 
   getWidth = () => {
-    return Math.min(this.state.availableWidth, getMaxWidth());
+    return Math.min(
+      this.state.screenWidth,
+      this.isTablet ? this.state.screenWidth * 0.55 : 668,
+    );
   };
 
   getCardItemWidth = () => {
@@ -125,40 +104,30 @@ class HotelSwipeList extends React.Component<Props, State> {
 
   render = () => {
     const { data, selectedIndex, onSnapToItem } = this.props;
-    const swipeConfig = {
-      directionalOffsetThreshold: 40,
-    };
 
     return (
-      <VerticalSwipeResponder
-        style={[
-          styles.container,
-          { maxWidth: getMaxWidth(), height: this.height },
-        ]}
-        onSwipeMove={Animated.event([{ dy: this.swipeMovement }])}
-        onSwipeUp={this.onSwipeUp}
-        onSwipeDown={this.onSwipeDown}
-        config={swipeConfig}
-      >
-        <View style={styles.handler} />
-        <View style={styles.sliderWrapper}>
-          <Carousel
-            data={data}
-            renderItem={this.renderItem}
-            sliderWidth={this.getWidth()}
-            itemWidth={this.getCardItemWidth()}
-            firstItem={selectedIndex}
-            inactiveSlideScale={1}
-            inactiveSlideOpacity={0.5}
-            decelerationRate="fast"
-            activeSlideAlignment="start"
-            containerCustomStyle={styles.slider}
-            removeClippedSubviews={false}
-            onSnapToItem={onSnapToItem}
-          />
-        </View>
-        <Address data={this.getSelectedAddress()} />
-      </VerticalSwipeResponder>
+      <View style={{ maxWidth: this.getWidth() }}>
+        <BottomSheet openHeight={OPEN_HEIGHT} closedHeight={CLOSED_HEIGHT}>
+          <View style={styles.handler} />
+          <View style={styles.sliderWrapper}>
+            <Carousel
+              data={data}
+              renderItem={this.renderItem}
+              sliderWidth={this.getWidth()}
+              itemWidth={this.getCardItemWidth()}
+              firstItem={selectedIndex}
+              inactiveSlideScale={1}
+              inactiveSlideOpacity={0.5}
+              decelerationRate="fast"
+              activeSlideAlignment="start"
+              containerCustomStyle={styles.slider}
+              removeClippedSubviews={false}
+              onSnapToItem={onSnapToItem}
+            />
+          </View>
+          <Address data={this.getSelectedAddress()} />
+        </BottomSheet>
+      </View>
     );
   };
 }
