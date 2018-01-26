@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
 
-import AllHotelsMap from '../map/AllHotelsMap';
+import AllHotelsMap from '../map/allHotels/AllHotelsMap';
 import type {
   HotelsReducerState,
   HotelsReducerActions,
