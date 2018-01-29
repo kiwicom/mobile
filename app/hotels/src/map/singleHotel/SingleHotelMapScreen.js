@@ -5,7 +5,7 @@ import idx from 'idx';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 
-import type { AvailableHotelSearchInput } from '../AvailableHotelSearchInput';
+import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import MapView from './MapView';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
 import { sanitizeDate } from '../../GraphQLSanitizers';
