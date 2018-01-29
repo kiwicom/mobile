@@ -15,6 +15,7 @@ import idx from 'idx';
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from './Address';
 import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
+import { getWidth, openHeight, closedHeight } from '../bottomSheetDimensions';
 
 type Props = {|
   data: HotelSwipeListData,
@@ -28,12 +29,10 @@ type State = {|
 |};
 
 const SNAP_WIDTH = 0.8;
-const OPEN_HEIGHT = 150;
-const CLOSED_HEIGHT = 80;
 
 const styles = StyleSheet.create({
   sliderWrapper: {
-    height: CLOSED_HEIGHT,
+    height: closedHeight,
   },
   slider: {
     paddingTop: 5,
@@ -73,12 +72,7 @@ class HotelSwipeList extends React.Component<Props, State> {
     this.setState({ screenWidth: width });
   };
 
-  getWidth = () => {
-    return Math.min(
-      this.state.screenWidth,
-      this.isTablet ? this.state.screenWidth * 0.55 : 668,
-    );
-  };
+  getWidth = () => getWidth(this.state.screenWidth, this.isTablet);
 
   getCardItemWidth = () => {
     return this.getWidth() * SNAP_WIDTH;
@@ -107,7 +101,7 @@ class HotelSwipeList extends React.Component<Props, State> {
 
     return (
       <View style={{ maxWidth: this.getWidth() }}>
-        <BottomSheet openHeight={OPEN_HEIGHT} closedHeight={CLOSED_HEIGHT}>
+        <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
           <View style={styles.handler} />
           <View style={styles.sliderWrapper}>
             <Carousel
