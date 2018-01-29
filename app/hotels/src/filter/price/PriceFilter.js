@@ -10,26 +10,43 @@ import type { OnChangeFilterParams } from '../FilterParametersType';
 export const MIN_PRICE = 0;
 export const MAX_PRICE = 300;
 
-type Props = {|
+type Props = {
   start: number | null,
   end: number | null,
   currency: string,
   onChange: OnChangeFilterParams => void,
-|};
+};
 
 type State = {|
   isPopupOpen: boolean,
 |};
 
 export default class PriceFilter extends React.Component<Props, State> {
+  static isActive = (start: number | null, end: number | null) => {
+    const startEdge = start || MIN_PRICE;
+    const endEdge = end || MAX_PRICE;
+
+    return startEdge !== MIN_PRICE || endEdge !== MAX_PRICE;
+  };
+
+  mounted = true;
   state = {
     isPopupOpen: false,
   };
 
-  handlePopupToggle = () =>
+  componentWillUnmount = () => {
+    this.mounted = false;
+  };
+
+  handlePopupToggle = () => {
+    if (!this.mounted) {
+      return;
+    }
+
     this.setState(state => ({
       isPopupOpen: !state.isPopupOpen,
     }));
+  };
 
   handleSave = ({
     minPrice,
@@ -75,7 +92,7 @@ export default class PriceFilter extends React.Component<Props, State> {
         <FilterButton
           title={this.getTitle(start, end, min, max, currency)}
           icon={{ name: 'attach-money', color: '#fff' }}
-          isActive={min !== start || max !== end}
+          isActive={this.constructor.isActive(start, end)}
           onPress={this.handlePopupToggle}
         />
         <PricePopup

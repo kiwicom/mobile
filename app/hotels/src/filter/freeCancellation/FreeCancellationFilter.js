@@ -11,13 +11,15 @@ type Props = {|
 |};
 
 export default class FreeCancellationFilter extends React.Component<Props> {
+  static isActive = (isActive: boolean) => isActive;
+
   onChange = () =>
     this.props.onChange({ freeCancellation: !this.props.isActive });
 
   render = () => (
     <FilterButton
       title="free cancellation"
-      isActive={this.props.isActive}
+      isActive={this.constructor.isActive(this.props.isActive)}
       onPress={this.onChange}
     />
   );

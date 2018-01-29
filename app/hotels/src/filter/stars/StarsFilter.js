@@ -7,24 +7,38 @@ import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 
-type Props = {|
-  stars: number[],
+type Stars = number[];
+
+type Props = {
+  stars: Stars,
   onChange: OnChangeFilterParams => void,
-|};
+};
 
 type State = {|
   isPopupOpen: boolean,
 |};
 
 export default class StarsFilter extends React.Component<Props, State> {
+  static isActive = (stars: Stars): boolean => stars.length > 0;
+
+  mounted = true;
   state = {
     isPopupOpen: false,
   };
 
-  handlePopupToggle = () =>
+  componentWillUnmount = () => {
+    this.mounted = false;
+  };
+
+  handlePopupToggle = () => {
+    if (!this.mounted) {
+      return;
+    }
+
     this.setState(state => ({
       isPopupOpen: !state.isPopupOpen,
     }));
+  };
 
   handleSave = (stars: number[]) => this.props.onChange({ starsRating: stars });
 
@@ -45,7 +59,7 @@ export default class StarsFilter extends React.Component<Props, State> {
         <FilterButton
           title={this.getTitle(this.props.stars)}
           icon={{ name: 'star', color: '#fff' }}
-          isActive={this.props.stars.length > 0}
+          isActive={this.constructor.isActive(this.props.stars)}
           onPress={this.handlePopupToggle}
         />
         <StarsPopup
