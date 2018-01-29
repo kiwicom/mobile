@@ -24,10 +24,7 @@ const POPUP_PADDING = 20;
 export default class ButtonPopup extends React.Component<Props> {
   onClose = () => this.props.onClose();
 
-  onSave = async () => {
-    await this.props.onSave();
-    this.onClose();
-  };
+  onSave = () => this.props.onSave();
 
   render = () => (
     <Popup

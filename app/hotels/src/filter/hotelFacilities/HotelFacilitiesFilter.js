@@ -24,13 +24,23 @@ export default class HotelFacilitiesFilter extends React.Component<
     isPopupOpen: false,
   };
 
-  handlePopupToggle = () =>
-    this.setState(state => ({
-      isPopupOpen: !state.isPopupOpen,
-    }));
+  static isActive = (facilities: string[]): boolean => facilities.length > 0;
+
+  openPopup = () =>
+    this.setState({
+      isPopupOpen: true,
+    });
+
+  closePopup = (callback?: Function) =>
+    this.setState(
+      {
+        isPopupOpen: false,
+      },
+      callback,
+    );
 
   handleSave = (hotelFacilities: string[]) =>
-    this.props.onChange({ hotelFacilities });
+    this.closePopup(() => this.props.onChange({ hotelFacilities }));
 
   getTitle = (facilities: string[]) =>
     `hotel facilities${facilities.length ? ` (${facilities.length})` : ''}`;
@@ -39,12 +49,12 @@ export default class HotelFacilitiesFilter extends React.Component<
     <View>
       <FilterButton
         title={this.getTitle(this.props.facilities)}
-        isActive={this.props.facilities.length > 0}
-        onPress={this.handlePopupToggle}
+        isActive={this.constructor.isActive(this.props.facilities)}
+        onPress={this.openPopup}
       />
       <HotelFacilitiesPopup
         isVisible={this.state.isPopupOpen}
-        onClose={this.handlePopupToggle}
+        onClose={this.closePopup}
         onSave={this.handleSave}
         facilities={this.props.facilities}
       />

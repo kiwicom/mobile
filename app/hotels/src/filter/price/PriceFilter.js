@@ -26,10 +26,25 @@ export default class PriceFilter extends React.Component<Props, State> {
     isPopupOpen: false,
   };
 
-  handlePopupToggle = () =>
-    this.setState(state => ({
-      isPopupOpen: !state.isPopupOpen,
-    }));
+  static isActive = (start: number | null, end: number | null) => {
+    const startEdge = start || MIN_PRICE;
+    const endEdge = end || MAX_PRICE;
+
+    return startEdge !== MIN_PRICE || endEdge !== MAX_PRICE;
+  };
+
+  openPopup = () =>
+    this.setState({
+      isPopupOpen: true,
+    });
+
+  closePopup = (callback?: Function) =>
+    this.setState(
+      {
+        isPopupOpen: false,
+      },
+      callback,
+    );
 
   handleSave = ({
     minPrice,
@@ -42,7 +57,7 @@ export default class PriceFilter extends React.Component<Props, State> {
       minPrice: minPrice !== MIN_PRICE ? minPrice : null,
       maxPrice: maxPrice !== MAX_PRICE ? maxPrice : null,
     };
-    this.props.onChange(filter);
+    this.closePopup(() => this.props.onChange(filter));
   };
 
   getTitle = (
@@ -75,12 +90,12 @@ export default class PriceFilter extends React.Component<Props, State> {
         <FilterButton
           title={this.getTitle(start, end, min, max, currency)}
           icon={{ name: 'attach-money', color: '#fff' }}
-          isActive={min !== start || max !== end}
-          onPress={this.handlePopupToggle}
+          isActive={this.constructor.isActive(start, end)}
+          onPress={this.openPopup}
         />
         <PricePopup
           isVisible={this.state.isPopupOpen}
-          onClose={this.handlePopupToggle}
+          onClose={this.closePopup}
           onSave={this.handleSave}
           min={min}
           max={max}
