@@ -54,12 +54,16 @@ export default class GuestsPopup extends React.Component<Props, State> {
    * Save only with filled children ages.
    * Show info message on missing age.
    */
-  handleSave = async () => {
+  handleSave = () => {
     if (this.isMissingAge(this.state.guests.children)) {
-      await this.setState({ isMissingAge: false });
-      this.props.onChange(((this.state.guests: any): RoomConfigurationType));
+      this.setState({ isMissingAge: false }, () =>
+        this.props.onChange(
+          // eslint-disable-next-line react/no-access-state-in-setstate
+          ((this.state.guests: any): RoomConfigurationType),
+        ),
+      );
     } else {
-      await this.setState({ isMissingAge: true });
+      this.setState({ isMissingAge: true });
     }
   };
 

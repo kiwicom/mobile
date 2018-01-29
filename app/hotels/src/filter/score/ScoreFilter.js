@@ -28,12 +28,23 @@ export default class ScoreFilter extends React.Component<Props, State> {
     isPopupOpen: false,
   };
 
-  handlePopupToggle = () =>
-    this.setState(state => ({
-      isPopupOpen: !state.isPopupOpen,
-    }));
+  static isActive = (minScore: number | null): boolean => minScore !== null;
 
-  handleSave = (minScore: number | null) => this.props.onChange({ minScore });
+  openPopup = () =>
+    this.setState({
+      isPopupOpen: true,
+    });
+
+  closePopup = (callback?: Function) =>
+    this.setState(
+      {
+        isPopupOpen: false,
+      },
+      callback,
+    );
+
+  handleSave = (minScore: number | null) =>
+    this.closePopup(() => this.props.onChange({ minScore }));
 
   getTitle = (minScore: number | null) =>
     minScore ? ratingLabels[minScore] : 'rating';
@@ -45,12 +56,12 @@ export default class ScoreFilter extends React.Component<Props, State> {
         <FilterButton
           title={this.getTitle(minScore)}
           icon={{ name: 'thumb-up', color: '#fff' }}
-          isActive={minScore !== null}
-          onPress={this.handlePopupToggle}
+          isActive={this.constructor.isActive(minScore)}
+          onPress={this.openPopup}
         />
         <ScorePopup
           isVisible={this.state.isPopupOpen}
-          onClose={this.handlePopupToggle}
+          onClose={this.closePopup}
           onSave={this.handleSave}
           minScore={minScore}
         />

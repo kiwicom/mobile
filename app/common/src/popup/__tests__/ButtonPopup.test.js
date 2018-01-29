@@ -36,7 +36,7 @@ describe('ButtonPopup', () => {
     expect(shallowRenderer.getRenderOutput()).toMatchSnapshot();
   });
 
-  it('save button should call onSave and onClose', async () => {
+  it('save button should call onSave', async () => {
     const onSave = jest.fn();
     const onClose = jest.fn();
     const testRenderer = renderPopup(onSave, onClose);
@@ -44,7 +44,7 @@ describe('ButtonPopup', () => {
     await testInstance.findByType(TouchableOpacity).props.onPress();
 
     expect(onSave).toBeCalled();
-    expect(onClose).toBeCalled();
+    expect(onClose).not.toBeCalled();
   });
 
   it('press out of modal should call onClose', async () => {
