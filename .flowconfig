@@ -63,14 +63,14 @@ module.file_ext=.jsx
 module.file_ext=.json
 module.file_ext=.native.js
 
-suppress_type=$FlowIssue
+; This option lets you alias 'any' with a given string - useful for explaining why you’re using 'any'
+; Please, do not use "fix me" suppress types and comments
 suppress_type=$FlowFixMe
 suppress_type=$FlowFixMeProps
 suppress_type=$FlowFixMeState
 
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(<VERSION>\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
-suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(<VERSION>\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue: https://github.com/facebook/flow/issues/[0-9]+
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
 unsafe.enable_getters_and_setters=true

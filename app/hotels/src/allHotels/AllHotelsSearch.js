@@ -91,7 +91,6 @@ export class AllHotelsSearch extends React.Component<Props> {
           onLocationChange={onLocationChange}
           search={search}
           location={location}
-          data={null}
         />
         <FilterStripe
           filter={filter}
