@@ -31,31 +31,10 @@ exports[`SearchForm Render all inputs 1`] = `
       }
     }
   >
-    <DatePicker
-      date={1970-01-01T00:00:00.001Z}
-      format="DD/MM/YYYY"
-      minDate={2018-01-01T00:00:00.000Z}
-      onDateChange={[Function]}
-      placeholder="Start date"
-      style={
-        Object {
-          "flex": 1,
-          "marginRight": 10,
-        }
-      }
-    />
-    <DatePicker
-      date={1970-01-01T00:00:00.002Z}
-      format="DD/MM/YYYY"
-      minDate={2018-01-02T00:00:00.000Z}
-      onDateChange={[Function]}
-      placeholder="End date"
-      style={
-        Object {
-          "flex": 1,
-          "marginRight": 10,
-        }
-      }
+    <DateInput
+      checkin={1970-01-01T00:00:00.001Z}
+      checkout={1970-01-01T00:00:00.002Z}
+      onChange={[MockFunction]}
     />
     <Guests
       guests={

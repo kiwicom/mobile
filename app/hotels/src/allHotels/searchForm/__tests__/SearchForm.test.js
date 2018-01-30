@@ -37,6 +37,7 @@ describe('SearchForm', () => {
 
     const onLocationChange = jest.fn();
     const testRenderer = renderer.create(
+      // $FlowIssue: https://github.com/facebook/flow/issues/2405
       <SearchForm {...defaultProps} onLocationChange={onLocationChange} />,
     );
     const testInstance = testRenderer.root;
@@ -50,6 +51,7 @@ describe('SearchForm', () => {
 
     const onChange = jest.fn();
     const testRenderer = renderer.create(
+      // $FlowIssue: https://github.com/facebook/flow/issues/2405
       <SearchForm {...defaultProps} onChange={onChange} />,
     );
     const testInstance = testRenderer.root;
@@ -65,6 +67,7 @@ describe('SearchForm', () => {
 
     const onChange = jest.fn();
     const testRenderer = renderer.create(
+      // $FlowIssue: https://github.com/facebook/flow/issues/2405
       <SearchForm {...defaultProps} onChange={onChange} />,
     );
     const testInstance = testRenderer.root;
@@ -77,6 +80,7 @@ describe('SearchForm', () => {
 
   it('Render all inputs', async () => {
     const renderer = new ShallowRenderer();
+    // $FlowIssue: https://github.com/facebook/flow/issues/2405
     expect(renderer.render(<SearchForm {...defaultProps} />)).toMatchSnapshot();
   });
 });
