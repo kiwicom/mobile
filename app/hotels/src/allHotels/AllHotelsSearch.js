@@ -23,7 +23,7 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from '../filter/FilterParametersType';
-import formatDateForApi from '../formatDateForApi';
+import { sanitizeHotelFacilities, sanitizeDate } from '../GraphQLSanitizers';
 
 type Props = {|
   location: string,
@@ -122,18 +122,15 @@ export class AllHotelsSearch extends React.Component<Props> {
             variables={{
               search: {
                 ...search,
-                checkin: formatDateForApi(search.checkin),
-                checkout: formatDateForApi(search.checkout),
+                checkin: sanitizeDate(search.checkin),
+                checkout: sanitizeDate(search.checkout),
                 cityId: this.getCityIdFromData(data),
               },
               filter: {
                 ...filter,
-                hotelFacilities: filter.hotelFacilities.length
-                  ? filter.hotelFacilities.reduce((facilities, facility) => {
-                      facilities[facility] = true;
-                      return facilities;
-                    }, {})
-                  : null,
+                hotelFacilities: sanitizeHotelFacilities(
+                  filter.hotelFacilities,
+                ),
               },
               options: { currency },
             }}

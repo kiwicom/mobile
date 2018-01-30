@@ -9,7 +9,7 @@ import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
 import type { AvailableHotelSearchInput } from './AvailableHotelSearchInput';
-import formatDateForApi from '../formatDateForApi';
+import { sanitizeDate } from '../GraphQLSanitizers';
 
 type ContainerProps = {|
   currency: string,
@@ -73,8 +73,8 @@ export default class SingleHotelContainer extends React.Component<
         variables={{
           search: {
             ...search,
-            checkin: formatDateForApi(search.checkin),
-            checkout: formatDateForApi(search.checkout),
+            checkin: sanitizeDate(search.checkin),
+            checkout: sanitizeDate(search.checkout),
           },
           options: { currency },
         }}
