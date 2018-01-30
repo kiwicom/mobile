@@ -1,15 +1,21 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, View, Text } from 'react-native';
 import { Color, Icon } from '@kiwicom/react-native-app-common';
 
-import type { Address as AddressData } from './__generated__/Address.graphql';
+import type { Address_address } from './__generated__/Address_address.graphql';
 
-type Props = {|
-  data: AddressData,
+type ContainerProps = {|
+  address: any,
 |};
+
+type Props = {
+  ...ContainerProps,
+  address: ?Address_address,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +40,7 @@ const styles = StyleSheet.create({
 
 class Address extends React.Component<Props> {
   render = () => {
-    const { data: address } = this.props;
+    const { address } = this.props;
 
     return (
       <View style={styles.container}>
@@ -44,7 +50,8 @@ class Address extends React.Component<Props> {
         <View style={styles.content}>
           <Text style={styles.header}>Address</Text>
           <Text numberOfLines={2}>
-            {address.street}, {address.city} {address.zip}
+            {idx(address, _ => _.street)}, {idx(address, _ => _.city)}{' '}
+            {idx(address, _ => _.zip)}
           </Text>
         </View>
       </View>
@@ -52,13 +59,13 @@ class Address extends React.Component<Props> {
   };
 }
 
-export default createFragmentContainer(
+export default (createFragmentContainer(
   Address,
   graphql`
-    fragment Address on Address {
+    fragment Address_address on Address {
       street
       city
       zip
     }
   `,
-);
+): React.ComponentType<ContainerProps>);

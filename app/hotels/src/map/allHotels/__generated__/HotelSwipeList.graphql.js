@@ -61,7 +61,7 @@ const node: ConcreteFragment = {
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "Address",
+                  "name": "Address_address",
                   "args": null
                 }
               ],

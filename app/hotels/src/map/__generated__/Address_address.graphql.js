@@ -5,7 +5,7 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type Address = {|
+export type Address_address = {|
   +street: ?string;
   +city: ?string;
   +zip: ?string;
@@ -16,7 +16,7 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "Address",
+  "name": "Address_address",
   "selections": [
     {
       "kind": "ScalarField",
