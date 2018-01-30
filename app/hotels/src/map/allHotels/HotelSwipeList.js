@@ -13,7 +13,7 @@ import {
 import idx from 'idx';
 
 import HotelSwipeItem from './HotelSwipeItem';
-import Address from './Address';
+import Address from '../Address';
 import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
 import { getWidth, openHeight, closedHeight } from '../bottomSheetDimensions';
 
@@ -119,7 +119,7 @@ class HotelSwipeList extends React.Component<Props, State> {
               onSnapToItem={onSnapToItem}
             />
           </View>
-          <Address data={this.getSelectedAddress()} />
+          <Address address={this.getSelectedAddress()} />
         </BottomSheet>
       </View>
     );
@@ -135,7 +135,7 @@ export default createFragmentContainer(
         ...HotelSwipeItem
         hotel {
           address {
-            ...Address
+            ...Address_address
           }
         }
       }
