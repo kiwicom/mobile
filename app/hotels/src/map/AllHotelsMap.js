@@ -16,7 +16,7 @@ import type {
 } from '../filter/FilterParametersType';
 import { handleOpenSingleHotel } from '../singleHotel';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
-import formatDateForApi from '../formatDateForApi';
+import { sanitizeHotelFacilities, sanitizeDate } from '../GraphQLSanitizers';
 
 const styles = StyleSheet.create({
   container: {
@@ -81,10 +81,13 @@ class AllHotelsMap extends React.Component<Props> {
             search: {
               cityId,
               ...search,
-              checkin: formatDateForApi(search.checkin),
-              checkout: formatDateForApi(search.checkout),
+              checkin: sanitizeDate(search.checkin),
+              checkout: sanitizeDate(search.checkout),
             },
-            filter,
+            filter: {
+              ...filter,
+              hotelFacilities: sanitizeHotelFacilities(filter.hotelFacilities),
+            },
             options: { currency },
           }}
           render={this.renderInnerComponent}

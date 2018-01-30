@@ -8,7 +8,7 @@ import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import type { AvailableHotelSearchInput } from '../AvailableHotelSearchInput';
 import MapView from './MapView';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
-import formatDateForApi from '../../formatDateForApi';
+import { sanitizeDate } from '../../GraphQLSanitizers';
 
 type ContainerProps = {|
   currency: string,
@@ -43,8 +43,8 @@ export default class SingleHotelMapScreen extends React.Component<
         variables={{
           search: {
             ...search,
-            checkin: formatDateForApi(search.checkin),
-            checkout: formatDateForApi(search.checkout),
+            checkin: sanitizeDate(search.checkin),
+            checkout: sanitizeDate(search.checkout),
           },
           options: { currency },
         }}
