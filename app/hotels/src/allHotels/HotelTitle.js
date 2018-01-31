@@ -6,6 +6,7 @@ import { createFragmentContainer, graphql } from 'react-relay';
 import { Text, View, StyleSheet } from 'react-native';
 import { Color, Price, Stars } from '@kiwicom/react-native-app-common';
 
+import Distance from './HotelDistance';
 import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';
 
 type Props = {|
@@ -50,6 +51,7 @@ function HotelTitle({ data }: Props) {
           <Stars rating={hotelStars} />
         </Text>
       </Text>
+      <Distance hotel={data && data.hotel} />
       <Price
         amount={price.amount}
         currency={price.currency}
@@ -68,6 +70,7 @@ export default createFragmentContainer(
         currency
       }
       hotel {
+        ...HotelDistance_hotel
         name
         rating {
           stars
