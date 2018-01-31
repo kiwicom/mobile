@@ -39,6 +39,60 @@ export default function FilterStripe(props: Props) {
     hotelFacilities,
     minScore,
   } = props.filter;
+  const filters = [
+    {
+      isActive: StarsFilter.isActive(starsRating),
+      Component: (
+        <StarsFilter
+          key="stars"
+          stars={starsRating}
+          onChange={props.onChange}
+        />
+      ),
+    },
+    {
+      isActive: PriceFilter.isActive(minPrice, maxPrice),
+      Component: (
+        <PriceFilter
+          key="price"
+          currency={props.currency}
+          start={minPrice}
+          end={maxPrice}
+          onChange={props.onChange}
+        />
+      ),
+    },
+    {
+      isActive: ScoreFilter.isActive(minScore),
+      Component: (
+        <ScoreFilter
+          key="score"
+          minScore={minScore}
+          onChange={props.onChange}
+        />
+      ),
+    },
+    {
+      isActive: HotelFacilitiesFilter.isActive(hotelFacilities),
+      Component: (
+        <HotelFacilitiesFilter
+          key="facilities"
+          onChange={props.onChange}
+          facilities={hotelFacilities}
+        />
+      ),
+    },
+    {
+      isActive: FreeCancellationFilter.isActive(freeCancellation),
+      Component: (
+        <FreeCancellationFilter
+          key="cancellation"
+          onChange={props.onChange}
+          isActive={freeCancellation}
+        />
+      ),
+    },
+  ];
 
   return (
     <View style={styles.view}>
@@ -47,22 +101,12 @@ export default function FilterStripe(props: Props) {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
-        <StarsFilter stars={starsRating} onChange={props.onChange} />
-        <PriceFilter
-          onChange={props.onChange}
-          start={minPrice}
-          end={maxPrice}
-          currency={props.currency}
-        />
-        <ScoreFilter onChange={props.onChange} minScore={minScore} />
-        <HotelFacilitiesFilter
-          onChange={props.onChange}
-          facilities={hotelFacilities}
-        />
-        <FreeCancellationFilter
-          onChange={props.onChange}
-          isActive={freeCancellation}
-        />
+        {filters
+          .filter(({ isActive }) => isActive)
+          .map(({ Component }) => Component)}
+        {filters
+          .filter(({ isActive }) => !isActive)
+          .map(({ Component }) => Component)}
       </ScrollView>
     </View>
   );

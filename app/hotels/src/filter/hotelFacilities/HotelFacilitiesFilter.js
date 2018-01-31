@@ -20,14 +20,26 @@ export default class HotelFacilitiesFilter extends React.Component<
   Props,
   State,
 > {
+  static isActive = (facilities: string[]): boolean => facilities.length > 0;
+
+  mounted = true;
   state = {
     isPopupOpen: false,
   };
 
-  handlePopupToggle = () =>
+  componentWillUnmount = () => {
+    this.mounted = false;
+  };
+
+  handlePopupToggle = () => {
+    if (!this.mounted) {
+      return;
+    }
+
     this.setState(state => ({
       isPopupOpen: !state.isPopupOpen,
     }));
+  };
 
   handleSave = (hotelFacilities: string[]) =>
     this.props.onChange({ hotelFacilities });
@@ -39,7 +51,7 @@ export default class HotelFacilitiesFilter extends React.Component<
     <View>
       <FilterButton
         title={this.getTitle(this.props.facilities)}
-        isActive={this.props.facilities.length > 0}
+        isActive={this.constructor.isActive(this.props.facilities)}
         onPress={this.handlePopupToggle}
       />
       <HotelFacilitiesPopup
