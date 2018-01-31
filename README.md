@@ -15,6 +15,7 @@
 * [Best practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
 * [Known issues](#known-issues)
+* [Fastlane](#fastlane)
 
 ## Installation and Run
 
@@ -253,3 +254,29 @@ idx(props, _ => _.user.friends[0].friends)
 #### Nice to have
 
 - Jest code coverage (Instanbul) doesn't work with Facebook IDX: https://github.com/facebookincubator/idx/issues/19 (possible solution: https://github.com/facebook/jest/issues/3549#issuecomment-347915603)
+
+## Fastlane
+
+Fastlane is a tool for building, codesigning and uploading to appstore, google play and beta testing environments (currently we have support for ios only)
+
+### Install instructions
+Make sure you have the latest version of the Xcode command line tools installed:
+
+```
+xcode-select --install
+```
+
+Install _fastlane_ using
+```
+[sudo] gem install fastlane -NV
+```
+or alternatively using `brew cask install fastlane`
+
+### Environment variables
+Place an .env file in the same folder as the Fastfile and add `APPLE_ID=your@apple.id`
+
+If you do not have this .env file, you will be prompted for your username 3 times.
+
+### Run instructions
+navigate to ./ios and do:
+`fastlane beta`

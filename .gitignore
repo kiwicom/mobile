@@ -29,6 +29,9 @@ DerivedData
 project.xcworkspace
 ios/Pods
 Podfile.lock
+*.cer
+*.mobileprovision
+*.dSYM.zip
 
 # Android/IntelliJ
 #
