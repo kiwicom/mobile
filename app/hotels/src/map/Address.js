@@ -9,7 +9,7 @@ import { Color, Icon } from '@kiwicom/react-native-app-common';
 import type { Address_address } from './__generated__/Address_address.graphql';
 
 type ContainerProps = {|
-  address: any,
+  address: $FlowFixMeProps,
 |};
 
 type Props = {

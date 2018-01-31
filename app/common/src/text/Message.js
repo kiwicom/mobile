@@ -10,7 +10,7 @@ type Props = {|
   type: 'error',
 |};
 
-export default function LargeText(props: Props): React.Node {
+export default function Message(props: Props): React.Node {
   return <Text style={styles[props.type]}>{props.children}</Text>;
 }
 
