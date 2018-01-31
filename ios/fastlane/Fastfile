@@ -1,0 +1,39 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and deploy to TestFlight"
+  lane :beta do |options|
+
+    get_certificates(
+      username: ENV["APPLE_ID"]
+    )
+
+    get_provisioning_profile(
+      username: ENV["APPLE_ID"],
+      app_identifier: "com.kiwi.reactNative"
+    )
+
+    build_ios_app(
+      scheme: "reactNativeApp",
+      workspace: "reactNativeApp.xcworkspace",
+      include_bitcode: true
+    )
+
+    increment_build_number
+
+    upload_to_testflight(
+      username: ENV["APPLE_ID"],
+    )
+  end
+end
