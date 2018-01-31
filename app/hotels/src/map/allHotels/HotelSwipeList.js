@@ -16,6 +16,7 @@ import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';
 import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
 import { getWidth, openHeight, closedHeight } from '../bottomSheetDimensions';
+import BottomSheetHandle from '../BottomSheetHandle';
 
 type Props = {|
   data: HotelSwipeListData,
@@ -38,13 +39,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingHorizontal: 10,
     paddingBottom: 10,
-  },
-  handler: {
-    borderBottomWidth: 2,
-    borderBottomColor: '#edeff2',
-    alignSelf: 'center',
-    width: 100,
-    marginTop: 3,
   },
 });
 
@@ -102,7 +96,7 @@ class HotelSwipeList extends React.Component<Props, State> {
     return (
       <View style={{ maxWidth: this.getWidth() }}>
         <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
-          <View style={styles.handler} />
+          <BottomSheetHandle />
           <View style={styles.sliderWrapper}>
             <Carousel
               data={data}
