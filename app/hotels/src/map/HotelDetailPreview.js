@@ -9,7 +9,7 @@ import idx from 'idx';
 import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
 
 type ContainerProps = {|
-  availability: any,
+  availability: $FlowFixMeProps,
 |};
 
 type Props = {

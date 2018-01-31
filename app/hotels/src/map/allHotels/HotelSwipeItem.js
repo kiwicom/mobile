@@ -11,7 +11,7 @@ import type { HotelSwipeItem as HotelSwipeItemData } from './__generated__/Hotel
 type ContainerProps = {|
   width: number,
   onPress: (hotelId: string) => void,
-  data: any,
+  data: $FlowFixMeProps,
 |};
 
 type Props = {

@@ -2,6 +2,8 @@
 
 export { default as AdaptableBadge } from './src/badge/AdaptableBadge';
 
+export { default as BottomSheet } from './src/bottomSheet/BottomSheet';
+
 export { default as Button } from './src/buttons/Button';
 export { default as GoogleButton } from './src/buttons/GoogleButton';
 export {
@@ -55,7 +57,6 @@ export { default as Icon } from './src/Icon';
 export { default as Modal } from './src/Modal';
 export { default as Price } from './src/Price';
 export { default as WebView } from './src/WebView';
-export { default as BottomSheet } from './src/bottomSheet/BottomSheet';
 
 // Flow types:
 
