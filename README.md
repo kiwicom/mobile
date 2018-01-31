@@ -7,6 +7,8 @@ This is not an actual mobile application. This repository contains only React Na
 * [Installation and Run](#installation-and-run)
 * [Testing](#testing)
 * [Building](#building)
+  * [Fastline installation](#fastline-installation)
+  * [Fastline run instructions](#fastline-run-instructions)
 * [Environment](#environment)
 * [Project structure](#project-structure)
 * [Best practices](#best-practices)
@@ -17,6 +19,8 @@ This is not an actual mobile application. This repository contains only React Na
   * [Working with GraphQL API](#working-with-graphql-api)
   * [Working with Redux](#working-with-redux)
 * [Known issues](#known-issues)
+  * [Important to fix before production ready state](#important-to-fix-before-production-ready-state)
+  * [Improvements necessary for production usage](#improvements-necessary-for-production-usage)
 
 ## Installation and Run
 
@@ -58,32 +62,21 @@ It basically consists of code linting, type checking, complete testing and Graph
 
 ## Building
 
-**We currently do not have automated way of builds distribution.**
+We use Fastlane as a tool for building, codesigning and uploading to App Store, Google Play and beta testing environments (currently we have support for iOS only via TestFlight).
 
-Command `yarn ios` create build with `*.app` file in the `ios/build` folder. However, this command should be used only for development and for this reason the build itself does not contain bundled JS code. You must first start packager (`yarn start`) in order to use this build.
+### Fastline installation
 
-The easier way how to build application with bundled JS code is using this command:
+First please read the [installation instructions](https://docs.fastlane.tools/#getting-started) in the official docs. It's also necessary to setup environment variables. Place an `.env` file in the same folder as the Fastfile (`ios/fastline/.env`) and add `APPLE_ID=your@apple.id`.
 
-```
-yarn ios --configuration=Release
-```
+### Fastline run instructions
 
-This will do basically the same with few exceptions:
-
-1. build (`app/build/Build/Products/Release-*/*.app`) already contains bundled JS code therefore you don't need packager
-2. this build is in production mode and you cannot use dev menu or reload the app
-
-To test this build just drag and drop the `*.app` file to the simulator window.
-
-### Building JS bundles and assets
-
-JS bundles and static assets can be build with this command:
+In order to build and deploy this project to the TestFlight just navigate to the `ios` folder and run `fastlane beta`. Alternatively from root directory:
 
 ```
-yarn build
+( cd ios ; fastlane beta )
 ```
 
-You can find generated builds in the folder `.build/android` and `.build/ios`.
+This new build has to be distributed to the (external) testers. To do so just go to iTunes Connect, select the right application > TestFlight > iOS builds > select build number > Groups (+) > select the group of testers > next, next, next...
 
 ## Environment
 
@@ -158,7 +151,7 @@ Most common scenario (somewhere between). In this case we are able to fetch at l
 
 We are showing little warning in this case. How to handle nullable fields really depends on the situation. Sometimes it's OK to leave it empty instead of for example hotel rating (★★★), sometimes it's necessary to display error message or sad picture in case of completely missing hotels. It depends. We are always trying to render as much as possible.
 
-## Offline first
+### Offline first
 
 This application is mainly for travelers so being offline is still quite a big deal. We are storing by default every response from GraphQL API. However, this is not always appropriate. Especially not during search (flight, hotel). In this situations you need to pass `force:true` configuration:
 
@@ -247,10 +240,10 @@ export default connect(select, actions)(ComponentWithoutStore);
 
 ## Known issues
 
-#### Important to fix before production ready state
+### Important to fix before production ready state
 
 - `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852, fixed by https://github.com/facebook/relay/commit/a17b462b3ff7355df4858a42ddda75f58c161302 (not released yet)
 
-#### Improvements necessary for production usage
+### Improvements necessary for production usage
 
 - persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
