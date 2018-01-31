@@ -59,6 +59,11 @@ const node: ConcreteFragment = {
       "plural": false,
       "selections": [
         {
+          "kind": "FragmentSpread",
+          "name": "HotelDistance_hotel",
+          "args": null
+        },
+        {
           "kind": "ScalarField",
           "alias": null,
           "args": null,

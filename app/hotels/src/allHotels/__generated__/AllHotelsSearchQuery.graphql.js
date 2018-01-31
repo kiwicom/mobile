@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6a82c6786971b3a98c984f0c02ecd7b5
+ * @relayHash ab02be83d325e9a7a84852d1cf48cf14
  */
 
 /* eslint-disable */
@@ -48,6 +48,7 @@ fragment HotelTitle on HotelAvailability {
     currency
   }
   hotel {
+    ...HotelDistance_hotel
     name
     rating {
       stars
@@ -60,6 +61,10 @@ fragment HotelReviewScore_hotel on Hotel {
   review {
     score
   }
+}
+
+fragment HotelDistance_hotel on Hotel {
+  distanceFromCenter
 }
 */
 
@@ -243,6 +248,13 @@ const node: ConcreteBatch = {
                         "kind": "ScalarField",
                         "alias": null,
                         "args": null,
+                        "name": "distanceFromCenter",
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "args": null,
                         "name": "name",
                         "storageKey": null
                       },
@@ -328,7 +340,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n) {\n  allHotels: allAvailableHotels(search: $search, filter: $filter, options: $options) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n) {\n  allHotels: allAvailableHotels(search: $search, filter: $filter, options: $options) {\n    ...AllHotelsSearchList\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n      ...AllHotelsSearchRow\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n"
 };
 
 module.exports = node;

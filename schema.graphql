@@ -447,6 +447,9 @@ type Hotel {
 
   # All available photos of the hotel.
   photos(after: String, first: Int, before: String, last: Int): HotelPhotoConnection
+
+  # Hotel distance from the center in Km.
+  distanceFromCenter: Float
 }
 
 # Information about hotel availability during selected time period.
@@ -467,6 +470,7 @@ type HotelAvailabilityConnection {
 
   # A list of edges.
   edges: [HotelAvailabilityEdge]
+  stats: HotelAvailabilityStats
 }
 
 # An edge in a connection.
@@ -476,6 +480,12 @@ type HotelAvailabilityEdge {
 
   # A cursor for use in pagination
   cursor: String!
+}
+
+# Overall statistics related to all hotels matching search & filter criteria
+type HotelAvailabilityStats {
+  priceMax: Float
+  priceMin: Float
 }
 
 type HotelCity {
@@ -504,6 +514,41 @@ type HotelCityEdge {
 
   # A cursor for use in pagination
   cursor: String!
+}
+
+input HotelFacilitiesInput {
+  # Show only hotels having airport shuttle as a service.
+  airportShuttle: Boolean
+
+  # Show only hotels having family rooms.
+  familyRooms: Boolean
+
+  # Show only hotels having facilities for disabled.
+  facilitiesForDisabled: Boolean
+
+  # Show only hotels having fitness room.
+  fitnessCenter: Boolean
+
+  # Show only hotels having any parking.
+  parking: Boolean
+
+  # Show only hotels having free parking.
+  freeParking: Boolean
+
+  # Show only hotels having valet parking.
+  valetParking: Boolean
+
+  # Show only hotels having indoor swimming pool.
+  indoorPool: Boolean
+
+  # Show only hotels having pets allowed.
+  petsAllowed: Boolean
+
+  # Show only hotels having spa.
+  spa: Boolean
+
+  # Show only hotels having wifi.
+  wifi: Boolean
 }
 
 type HotelFacility {
@@ -659,6 +704,15 @@ input HotelsFilterInput {
 
   # Show only hotels having minimum total price higher than or equal to this value.
   maxPrice: Float
+
+  # Show only hotels having specified hotel facilities
+  hotelFacilities: HotelFacilitiesInput
+
+  # Show only hotels having minimum review score higher than or equal to this value. Score must be between 1 and 10.
+  minScore: Int
+
+  # Show only hotels having free cancellation.
+  freeCancellation: Boolean
 }
 
 # You must provide lat/lng combination OR city ID.
@@ -923,11 +977,10 @@ type RootQuery {
   # Single hotel by ID.
   hotel(id: ID!): Hotel
 
-  #
-  #     All cities where you can find the hotels. This query can be used for
-  #     suggestions of relevant cities (search for example). Cities can be filtered
-  #     by prefix with typo tolerance. Items are sorted by prefix matching and a
-  #     number of hotels (desc). When the prefix is omitted top cities are returned.
+  # All cities where you can find the hotels. This query can be used for
+  # suggestions of relevant cities (search for example). Cities can be filtered
+  # by prefix with typo tolerance. Items are sorted by prefix matching and a
+  # number of hotels (desc). When the prefix is omitted top cities are returned.
   hotelCities(
     # First few letters.
     prefix: String
