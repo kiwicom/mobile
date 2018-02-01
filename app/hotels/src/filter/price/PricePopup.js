@@ -42,26 +42,11 @@ export default class PricePopup extends React.Component<Props, State> {
       maxPrice: this.state.price.end,
     });
 
-  renderLabel = (
-    start: number,
-    end: number,
-    min: number,
-    max: number,
-    currency: string,
-  ) => {
-    if (start === min && end === max) {
-      return <Text>any price</Text>;
-    }
-
+  renderLabel = () => {
+    const { start, end } = this.state.price;
+    const { currency } = this.props;
     const endPrice = <Price amount={end} currency={currency} />;
-    if (start === min) {
-      return <Text>maximum {endPrice}</Text>;
-    }
-
     const startPrice = <Price amount={start} currency={currency} />;
-    if (end === max) {
-      return <Text>minimum {startPrice}</Text>;
-    }
 
     return (
       <Text>
@@ -72,9 +57,9 @@ export default class PricePopup extends React.Component<Props, State> {
 
   render() {
     const { start, end } = this.state.price;
-    const { min, max, currency } = this.props;
+    const { min, max } = this.props;
 
-    const label = this.renderLabel(start, end, min, max, currency);
+    const label = this.renderLabel();
     return (
       <ButtonPopup
         buttonTitle="Save"
@@ -83,7 +68,7 @@ export default class PricePopup extends React.Component<Props, State> {
         isVisible={this.props.isVisible}
         doScroll={false}
       >
-        <Text>Price: {label}</Text>
+        <Text>Price per night: {label}</Text>
         <Slider
           startValue={start}
           endValue={end}

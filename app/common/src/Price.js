@@ -20,7 +20,7 @@ type Props = {|
  * all prices should be wrapped in this component so the future changes are easy.
  */
 export default function Price(props: Props) {
-  const amount = props.amount ? CurrencyFormatter(props.amount) : '';
+  const amount = props.amount != null ? CurrencyFormatter(props.amount) : '';
   return (
     <Text style={props.style}>
       <Text style={props.amountStyle}>{amount}</Text>{' '}

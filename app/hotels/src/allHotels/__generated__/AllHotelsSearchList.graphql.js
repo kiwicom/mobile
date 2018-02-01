@@ -11,6 +11,10 @@ export type AllHotelsSearchList = {|
       +id: string;
     |};
   |}>;
+  +stats: ?{|
+    +priceMax: ?number;
+    +priceMin: ?number;
+  |};
 |};
 
 
@@ -49,6 +53,31 @@ const node: ConcreteFragment = {
               "args": null
             }
           ],
+          "storageKey": null
+        }
+      ],
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "args": null,
+      "concreteType": "HotelAvailabilityStats",
+      "name": "stats",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "priceMax",
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "priceMin",
           "storageKey": null
         }
       ],

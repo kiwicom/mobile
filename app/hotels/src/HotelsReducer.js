@@ -8,19 +8,22 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from './filter/FilterParametersType';
+import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
 
 export type HotelsReducerState = {
   cityId: string | null,
   location: string,
   searchParams: SearchParams,
   filterParams: FilterParams,
+  currentSearchStats: CurrentSearchStats,
 };
 
 export type HotelsReducerActions =
   | {| type: 'setSearch', search: OnChangeSearchParams |}
   | {| type: 'setFilter', filter: OnChangeFilterParams |}
   | {| type: 'setLocation', location: string |}
-  | {| type: 'setCityId', cityId: string | null |};
+  | {| type: 'setCityId', cityId: string | null |}
+  | {| type: 'setCurrentSearchStats', currentSearchStats: CurrentSearchStats |};
 
 export const defaultFilterParams = {
   starsRating: [],
@@ -43,6 +46,10 @@ const InitialHotelsState: HotelsReducerState = {
     },
   },
   filterParams: defaultFilterParams,
+  currentSearchStats: {
+    priceMax: 10000,
+    priceMin: 0,
+  },
 };
 
 export default (
@@ -75,6 +82,11 @@ export default (
       return {
         ...state,
         cityId: action.cityId,
+      };
+    case 'setCurrentSearchStats':
+      return {
+        ...state,
+        currentSearchStats: { ...action.currentSearchStats },
       };
     default:
       return state;
