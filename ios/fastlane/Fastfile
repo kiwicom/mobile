@@ -34,6 +34,7 @@ platform :ios do
 
     upload_to_testflight(
       username: ENV["APPLE_ID"],
+      skip_waiting_for_build_processing: true,
     )
   end
 end
