@@ -6,7 +6,7 @@ import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Icon, Device } from '@kiwicom/react-native-app-common';
 
 import AllHotels from '../allHotels/AllHotels';
-import AllHotelsMap from '../map/AllHotelsMap';
+import AllHotelsMap from '../map/allHotels/AllHotelsMap';
 import type {
   OnChangeSearchParams,
   SearchParams,

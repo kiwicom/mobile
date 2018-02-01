@@ -2,21 +2,25 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { NetworkImage, Color, Price } from '@kiwicom/react-native-app-common';
 import idx from 'idx';
 
-import type { HotelSwipeItem as HotelSwipeItemData } from './__generated__/HotelSwipeItem.graphql';
+import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
+
+type ContainerProps = {|
+  availability: any,
+|};
 
 type Props = {
-  width: number,
-  data: HotelSwipeItemData,
-  onPress: (hotelId: string) => void,
+  ...ContainerProps,
+  availability: ?HotelDetailPreview_availability,
 };
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    height: 60,
   },
   image: {
     width: 60,
@@ -62,28 +66,16 @@ const getReview = review => {
   return <Text style={styles.metainfo}>No reviews</Text>;
 };
 
-export class HotelSwipeItem extends React.Component<Props> {
-  handlePress = () => {
-    const { data: hotel } = this.props;
-    const id = idx(hotel, _ => _.hotel.id);
-
-    if (id) {
-      this.props.onPress(id);
-    }
-  };
-
+export class HotelDetailPreview extends React.Component<Props> {
   render = () => {
-    const { width, data: hotel } = this.props;
-    const name = idx(hotel, _ => _.hotel.name);
-    const price = idx(hotel, _ => _.price) || {};
-    const image = idx(hotel, _ => _.hotel.mainPhoto.thumbnailUrl);
-    const review = idx(hotel, _ => _.hotel.review);
+    const { availability } = this.props;
+    const name = idx(availability, _ => _.hotel.name);
+    const price = idx(availability, _ => _.price) || {};
+    const image = idx(availability, _ => _.hotel.mainPhoto.thumbnailUrl);
+    const review = idx(availability, _ => _.hotel.review);
 
     return (
-      <TouchableOpacity
-        style={[styles.container, { width }]}
-        onPress={this.handlePress}
-      >
+      <View style={[styles.container]}>
         <View>
           <NetworkImage
             style={styles.image}
@@ -106,15 +98,15 @@ export class HotelSwipeItem extends React.Component<Props> {
               )}
           </Text>
         </View>
-      </TouchableOpacity>
+      </View>
     );
   };
 }
 
-export default createFragmentContainer(
-  HotelSwipeItem,
+export default (createFragmentContainer(
+  HotelDetailPreview,
   graphql`
-    fragment HotelSwipeItem on HotelAvailability {
+    fragment HotelDetailPreview_availability on HotelAvailability {
       price {
         amount
         currency
@@ -136,4 +128,4 @@ export default createFragmentContainer(
       }
     }
   `,
-);
+): React.ComponentType<ContainerProps>);

@@ -5,7 +5,7 @@
 /* eslint-disable */
 
 import type { ConcreteFragment } from 'relay-runtime';
-export type HotelSwipeItem = {|
+export type HotelDetailPreview_availability = {|
   +price: ?{|
     +amount: ?number;
     +currency: ?string;
@@ -32,7 +32,7 @@ const node: ConcreteFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "HotelSwipeItem",
+  "name": "HotelDetailPreview_availability",
   "selections": [
     {
       "kind": "LinkedField",

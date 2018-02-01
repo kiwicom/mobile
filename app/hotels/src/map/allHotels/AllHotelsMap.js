@@ -7,16 +7,16 @@ import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import { Device } from '@kiwicom/react-native-app-common';
 
 import MapScreen from './MapScreen';
-import FilterStripe from '../filter/FilterStripe';
+import FilterStripe from '../../filter/FilterStripe';
 import type { AllHotelsMapQueryResponse } from './__generated__/AllHotelsMapQuery.graphql';
-import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
+import type { SearchParams } from '../../allHotels/searchForm/SearchParametersType';
 import type {
   FilterParams,
   OnChangeFilterParams,
-} from '../filter/FilterParametersType';
-import { handleOpenSingleHotel } from '../singleHotel';
-import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
-import { sanitizeHotelFacilities, sanitizeDate } from '../GraphQLSanitizers';
+} from '../../filter/FilterParametersType';
+import { handleOpenSingleHotel } from '../../singleHotel';
+import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
+import { sanitizeHotelFacilities, sanitizeDate } from '../../GraphQLSanitizers';
 
 const styles = StyleSheet.create({
   container: {

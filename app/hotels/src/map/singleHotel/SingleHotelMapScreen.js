@@ -2,18 +2,27 @@
 
 import * as React from 'react';
 import idx from 'idx';
+import { StyleSheet, View } from 'react-native';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 
-import type { AvailableHotelSearchInput } from '../AvailableHotelSearchInput';
+import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import MapView from './MapView';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
 import { sanitizeDate } from '../../GraphQLSanitizers';
+import AdditionalInfo from './AdditionalInfo';
 
 type ContainerProps = {|
   currency: string,
   search: AvailableHotelSearchInput,
 |};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+});
 
 export default class SingleHotelMapScreen extends React.Component<
   ContainerProps,
@@ -21,7 +30,10 @@ export default class SingleHotelMapScreen extends React.Component<
   renderInnerComponent = ({
     availableHotel,
   }: SingleHotelMapScreenQueryResponse) => (
-    <MapView hotel={idx(availableHotel, _ => _.hotel)} />
+    <View style={styles.container}>
+      <MapView hotel={idx(availableHotel, _ => _.hotel)} />
+      <AdditionalInfo data={availableHotel} />
+    </View>
   );
 
   render() {
@@ -37,6 +49,7 @@ export default class SingleHotelMapScreen extends React.Component<
               hotel {
                 ...MapView_hotel
               }
+              ...AdditionalInfo
             }
           }
         `}
