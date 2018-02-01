@@ -24,6 +24,7 @@
 .*/node_modules/babel-plugin-relay/.+
 .*/node_modules/react-navigation/.+
 .*/node_modules/react-relay/lib/.+
+.*/node_modules/redux-persist/lib/.+
 .*/node_modules/relay-compiler/lib/.+
 .*/node_modules/relay-runtime/lib/.+
 .*/node_modules/reqwest/.+
@@ -52,6 +53,7 @@ munge_underscores=true
 
 module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> 'RelativeImageStub'
 module.name_mapper='^react-navigation$' -> 'emptyObject'
+module.name_mapper='^redux-persist$' -> 'emptyObject'
 
 ; app/relay/scripts/RelayCompiler.js:
 module.name_mapper='^relay-compiler/lib/GraphQLWatchmanClient$' -> 'emptyObject'
