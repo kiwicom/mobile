@@ -32,11 +32,7 @@
 [include]
 
 [untyped]
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Animated/.*
-<PROJECT_ROOT>/node_modules/react-native/Libraries/CameraRoll/.*
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Components/.*
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Share/.*
-<PROJECT_ROOT>/node_modules/react-native/Libraries/StyleSheet/StyleSheetValidation.js
+<PROJECT_ROOT>/node_modules/react-native/Libraries/.+
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
@@ -75,7 +71,5 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(<VERSION>\\)? *\\(si
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue: https://github.com/facebook/flow/issues/[0-9]+
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
-unsafe.enable_getters_and_setters=true
-
 [version]
-^0.61.0
+^0.64.0
