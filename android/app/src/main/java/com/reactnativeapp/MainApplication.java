@@ -10,6 +10,7 @@ import com.facebook.soloader.SoLoader;
 import com.kiwi.mynativemodule.MyNativeModulePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.trinerdis.skypicker.logging.RNLoggingPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,10 +25,11 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
-            return Arrays.<ReactPackage>asList(
+            return Arrays.asList(
                     new MainReactPackage(),
                     new VectorIconsPackage(),
                     new MapsPackage(),
+                    new RNLoggingPackage(),
                     new MyNativeModulePackage()
             );
         }
