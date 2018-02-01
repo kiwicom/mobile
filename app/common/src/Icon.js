@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import type { StylePropType } from '@kiwicom/react-native-app-common';
 
 import Color from './Color';
 
@@ -9,8 +10,7 @@ type Props = {|
   name: string,
   size: number,
   color?: string,
-  // $FlowFixMeProps
-  style?: Object,
+  style?: StylePropType,
 |};
 
 const defaults = {

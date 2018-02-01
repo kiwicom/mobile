@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Icon } from '@kiwicom/react-native-app-common';
-import { TextInput as OriginalTextInput, View } from 'react-native';
+import { TextInput as OriginalTextInput, View, StyleSheet } from 'react-native';
 
 export const styles = {
   input: {
@@ -30,15 +30,16 @@ type Props = {
 };
 
 export default function TextInput(props: Props) {
+  const stylesheetStyles = StyleSheet.create(styles);
   return (
-    <View style={styles.wrapper}>
+    <View style={stylesheetStyles.wrapper}>
       {props.iconName && (
-        <Icon name={props.iconName} size={20} style={styles.icon} />
+        <Icon name={props.iconName} size={20} style={stylesheetStyles.icon} />
       )}
       <OriginalTextInput
         underlineColorAndroid="transparent"
         {...props}
-        style={styles.input}
+        style={stylesheetStyles.input}
       />
     </View>
   );
