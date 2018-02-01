@@ -74,7 +74,7 @@ export default class HotelFacilitiesPopup extends React.Component<
           style={i < facilitiesListKeys.length - 1 && styles.delimiter}
         >
           <View style={styles.checkbox}>
-            <Icon name={facility.icon} size={20} style={{ marginRight: 10 }} />
+            <Icon name={facility.icon} size={20} style={styles.facilityIcon} />
             <Text>{facility.text}</Text>
           </View>
         </Checkbox>,
@@ -110,5 +110,8 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     flexDirection: 'row',
+  },
+  facilityIcon: {
+    marginRight: 10,
   },
 });
