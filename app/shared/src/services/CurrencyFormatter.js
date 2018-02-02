@@ -14,5 +14,6 @@
  * See also in https://confluence.kiwi.com/display/MOB/Semi+native+hotels#Seminativehotels-Currencyratesandformatters
  */
 export default function CurrencyFormatter(price: number) {
-  return price.toString();
+  const roundedPrice = Math.round(price * 100) / 100;
+  return roundedPrice.toString();
 }

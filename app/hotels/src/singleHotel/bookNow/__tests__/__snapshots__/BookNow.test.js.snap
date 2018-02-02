@@ -32,10 +32,9 @@ exports[`renders without crashing 1`] = `
   >
     Book Now
   </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  <Price
+    amount={100}
+    currency="EUR"
     style={
       Object {
         "color": "white",
@@ -43,11 +42,7 @@ exports[`renders without crashing 1`] = `
         "textAlign": "center",
       }
     }
-  >
-    100
-     
-    EUR
-  </Text>
+  />
 </TouchableOpacity>
 `;
 

@@ -18,3 +18,9 @@ it('renders null values correctly', () => {
     renderer.render(<Price amount={null} currency={null} />),
   ).toMatchSnapshot();
 });
+
+it('rounds amount to 2 decimal places', () => {
+  expect(
+    renderer.render(<Price amount={72.8499999} currency={null} />),
+  ).toMatchSnapshot();
+});
