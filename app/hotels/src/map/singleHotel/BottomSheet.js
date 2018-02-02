@@ -7,7 +7,7 @@ import {
   BottomSheet as CommonBottomSheet,
   Device,
   type OnDimensionsChange,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 
 import { getWidth, openHeight, closedHeight } from '../bottomSheetDimensions';
 

@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 import PlaygroundRenderer from './PlaygroundRenderer';
 // Import component tests you want to show in the Playground here:
-import AdaptableBadge from './common/src/badge/__tests__/AdaptableBadge.test'; // eslint-disable-line
+import AdaptableBadge from './shared/src/badge/__tests__/AdaptableBadge.test'; // eslint-disable-line
 
 const PlaygroundSection = props => (
   <View

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextInput, Color, Logger } from '@kiwicom/react-native-app-common';
+import { TextInput, Color, Logger } from '@kiwicom/react-native-app-shared';
 import { View, StyleSheet } from 'react-native';
 
 import DateInput from './DateInput';

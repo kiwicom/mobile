@@ -9,7 +9,7 @@ import {
   BottomSheet,
   Device,
   type OnDimensionsChange,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
 import HotelSwipeItem from './HotelSwipeItem';

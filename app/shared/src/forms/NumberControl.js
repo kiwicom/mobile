@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Icon } from '@kiwicom/react-native-app-common';
+import { Icon } from '@kiwicom/react-native-app-shared';
 import { View, StyleSheet, Text } from 'react-native';
 
 import IncrementDecrementButtons from '../buttons/IncrementDecrementButtons';

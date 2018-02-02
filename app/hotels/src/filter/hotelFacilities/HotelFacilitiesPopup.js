@@ -7,7 +7,7 @@ import {
   Color,
   Checkbox,
   Icon,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   facilities: string[],

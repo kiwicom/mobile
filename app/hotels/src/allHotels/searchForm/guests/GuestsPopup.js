@@ -6,7 +6,7 @@ import {
   ButtonPopup,
   NumberControl,
   Message,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 
 import ChildrenAgesControl from './ChildrenAgesControl';
 import type { RoomConfigurationType } from '../SearchParametersType';

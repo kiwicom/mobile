@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Price } from '@kiwicom/react-native-app-common';
+import { Price } from '@kiwicom/react-native-app-shared';
 
 import NoneSelected from './NoneSelected';
 

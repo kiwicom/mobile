@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Device } from '@kiwicom/react-native-app-common';
+import { Device } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   children: React.Node,

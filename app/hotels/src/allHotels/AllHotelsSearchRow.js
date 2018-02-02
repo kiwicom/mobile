@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { View, StyleSheet } from 'react-native';
-import { SimpleCard, NetworkImage } from '@kiwicom/react-native-app-common';
+import { SimpleCard, NetworkImage } from '@kiwicom/react-native-app-shared';
 
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from './HotelReviewScore';

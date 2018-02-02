@@ -3,7 +3,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { IncrementDecrementButtons } from '@kiwicom/react-native-app-common';
+import { IncrementDecrementButtons } from '@kiwicom/react-native-app-shared';
 
 import Guests from '../Guests';
 import type { RoomConfigurationType } from '../../SearchParametersType';

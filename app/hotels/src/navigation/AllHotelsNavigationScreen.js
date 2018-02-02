@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
 import { TouchableOpacity, View, StyleSheet } from 'react-native';
-import { Icon, Device } from '@kiwicom/react-native-app-common';
+import { Icon, Device } from '@kiwicom/react-native-app-shared';
 
 import AllHotels from '../allHotels/AllHotels';
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';

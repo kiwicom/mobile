@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
-import { Color } from '@kiwicom/react-native-app-common';
+import { Color } from '@kiwicom/react-native-app-shared';
 
 import GalleryGrid from '../gallery/GalleryGrid';
 import Payment from '../singleHotel/PaymentScreen';

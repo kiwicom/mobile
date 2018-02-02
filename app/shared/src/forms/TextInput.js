@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Icon } from '@kiwicom/react-native-app-common';
+import { Icon } from '@kiwicom/react-native-app-shared';
 import { TextInput as OriginalTextInput, View, StyleSheet } from 'react-native';
 
 export const styles = {

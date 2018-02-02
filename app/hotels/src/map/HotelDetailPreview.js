@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, View, Text } from 'react-native';
-import { NetworkImage, Color, Price } from '@kiwicom/react-native-app-common';
+import { NetworkImage, Color, Price } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
 import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';

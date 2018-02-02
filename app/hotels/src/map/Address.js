@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, View, Text } from 'react-native';
-import { Color, Icon } from '@kiwicom/react-native-app-common';
+import { Color, Icon } from '@kiwicom/react-native-app-shared';
 
 import type { Address_address } from './__generated__/Address_address.graphql';
 

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import moment from 'moment';
-import { DatePicker } from '@kiwicom/react-native-app-common';
+import { DatePicker } from '@kiwicom/react-native-app-shared';
 
 import type { OnChangeSearchParams } from './SearchParametersType';
 

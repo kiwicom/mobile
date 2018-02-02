@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { Icon } from '@kiwicom/react-native-app-common';
+import { Icon } from '@kiwicom/react-native-app-shared';
 
 import Color from '../Color';
 

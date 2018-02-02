@@ -7,7 +7,7 @@ import {
   Stars,
   Checkbox,
   type StylePropType,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   onPress: () => void,

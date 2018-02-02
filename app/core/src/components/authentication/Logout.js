@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
-import { LinkButton } from '@kiwicom/react-native-app-common';
+import { LinkButton } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   onLogout: () => void,

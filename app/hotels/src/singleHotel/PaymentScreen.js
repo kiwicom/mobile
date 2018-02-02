@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import { WebView } from '@kiwicom/react-native-app-common';
+import { WebView } from '@kiwicom/react-native-app-shared';
 import moment from 'moment';
 import querystring from 'querystring';
 
