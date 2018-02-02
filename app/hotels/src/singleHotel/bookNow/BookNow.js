@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Color } from '@kiwicom/react-native-app-shared';
+import { Color, Price } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
 import countBookingPrice from './countBookingPrice';
@@ -76,9 +76,11 @@ export class BookNow extends React.Component<Props> {
           onPress={this.handleGoToPayment}
         >
           <Text style={styles.cta}>Book Now</Text>
-          <Text style={styles.price}>
-            {price.amount} {price.currency}
-          </Text>
+          <Price
+            style={styles.price}
+            amount={price.amount}
+            currency={price.currency}
+          />
         </TouchableOpacity>
       )
     );
