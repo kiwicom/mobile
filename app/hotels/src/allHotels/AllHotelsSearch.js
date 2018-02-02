@@ -7,7 +7,7 @@ import {
   Layout,
   FullPageLoading,
   GeneralError,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
 import SearchForm from './searchForm/SearchForm';

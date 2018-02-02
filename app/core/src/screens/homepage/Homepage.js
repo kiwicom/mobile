@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, Layout } from '@kiwicom/react-native-app-common';
+import { Button, Layout } from '@kiwicom/react-native-app-shared';
 
 import Logout from '../../components/authentication/Logout';
 import type { Navigation } from '../../types/Navigation';

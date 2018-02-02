@@ -6,7 +6,7 @@
  * of use:
  *
  * ```
- * import { CurrencyFormatter } from '@kiwicom/react-native-app-common';
+ * import { CurrencyFormatter } from '@kiwicom/react-native-app-shared';
  *
  * CurrencyFormatter(250);
  * ```

@@ -6,7 +6,7 @@ import {
   GeneralError,
   Modal,
   type OnLayout,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 
 import GalleryGridTile from './GalleryGridTile';
 import PhotosStripe from './PhotosStripe';

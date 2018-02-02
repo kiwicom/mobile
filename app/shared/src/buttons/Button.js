@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Icon } from '@kiwicom/react-native-app-common';
+import { Icon } from '@kiwicom/react-native-app-shared';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import defaultsDeep from 'lodash/defaultsDeep';
 

@@ -6,7 +6,7 @@ import { connect } from '@kiwicom/react-native-app-redux';
 import {
   IconLoading,
   type StylePropType,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 
 import MissingImage from './MissingImage';
 

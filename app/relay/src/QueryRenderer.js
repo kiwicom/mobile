@@ -6,7 +6,7 @@ import {
   FullPageLoading,
   GeneralError,
   PartialFailure,
-} from '@kiwicom/react-native-app-common';
+} from '@kiwicom/react-native-app-shared';
 
 import createEnvironment from './Environment';
 import type { QueryRendererProps } from '../index';

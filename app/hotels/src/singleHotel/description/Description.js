@@ -5,7 +5,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Color } from '@kiwicom/react-native-app-common';
+import { Color } from '@kiwicom/react-native-app-shared';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 import Facilities from './Facilities';

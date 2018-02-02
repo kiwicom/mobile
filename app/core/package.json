@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@kiwicom/react-native-app-common": "^0",
+    "@kiwicom/react-native-app-shared": "^0",
     "@kiwicom/react-native-app-hotels": "^0",
     "@kiwicom/react-native-app-redux": "^0",
     "@kiwicom/react-native-app-relay": "^0",

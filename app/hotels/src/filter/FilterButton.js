@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, Color } from '@kiwicom/react-native-app-common';
+import { Button, Color } from '@kiwicom/react-native-app-shared';
 
 const styles = {
   default: {

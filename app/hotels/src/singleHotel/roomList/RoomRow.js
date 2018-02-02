@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import idx from 'idx';
-import { NetworkImage } from '@kiwicom/react-native-app-common';
+import { NetworkImage } from '@kiwicom/react-native-app-shared';
 import ReadMore from 'react-native-read-more-text';
 import { createFragmentContainer, graphql } from 'react-relay';
 

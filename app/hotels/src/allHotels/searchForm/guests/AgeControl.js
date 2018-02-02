@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
-import { Color, AgePicker, Icon } from '@kiwicom/react-native-app-common';
+import { Color, AgePicker, Icon } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   label: string,

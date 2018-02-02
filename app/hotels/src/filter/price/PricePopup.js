@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text } from 'react-native';
-import { ButtonPopup, Slider, Price } from '@kiwicom/react-native-app-common';
+import { ButtonPopup, Slider, Price } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   onClose: () => void,

@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { View, StyleSheet } from 'react-native';
-import { Color, AdaptableBadge } from '@kiwicom/react-native-app-common';
+import { Color, AdaptableBadge } from '@kiwicom/react-native-app-shared';
 
 import type { HotelReviewScore_hotel } from './__generated__/HotelReviewScore_hotel.graphql';
 

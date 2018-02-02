@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ScrollView } from 'react-native';
-import { GeneralError, Layout, Logger } from '@kiwicom/react-native-app-common';
+import { GeneralError, Layout, Logger } from '@kiwicom/react-native-app-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 

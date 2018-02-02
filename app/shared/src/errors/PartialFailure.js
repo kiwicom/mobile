@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Color, Icon } from '@kiwicom/react-native-app-common';
+import { Color, Icon } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   children: React.Node,

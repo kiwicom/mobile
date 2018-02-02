@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
-import type { OnLayout } from '@kiwicom/react-native-app-common';
+import type { OnLayout } from '@kiwicom/react-native-app-shared';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 
 import Color from '../Color';

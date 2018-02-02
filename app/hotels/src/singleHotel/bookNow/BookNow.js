@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Color } from '@kiwicom/react-native-app-common';
+import { Color } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
 import countBookingPrice from './countBookingPrice';

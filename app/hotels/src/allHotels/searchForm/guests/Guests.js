@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button, Color } from '@kiwicom/react-native-app-common';
+import { Button, Color } from '@kiwicom/react-native-app-shared';
 
 import GuestsPopup from './GuestsPopup';
 import type { RoomConfigurationType } from '../SearchParametersType';

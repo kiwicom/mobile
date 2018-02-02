@@ -9,7 +9,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { NetworkImage } from '@kiwicom/react-native-app-common';
+import { NetworkImage } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   hotelName: string,

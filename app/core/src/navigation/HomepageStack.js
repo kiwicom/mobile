@@ -2,7 +2,7 @@
 
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import { StackNavigator } from 'react-navigation';
-import { Color } from '@kiwicom/react-native-app-common';
+import { Color } from '@kiwicom/react-native-app-shared';
 
 import Homepage from '../screens/homepage/Homepage';
 

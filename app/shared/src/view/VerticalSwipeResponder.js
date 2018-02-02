@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Animated, PanResponder } from 'react-native';
-import type { StylePropType } from '@kiwicom/react-native-app-common';
+import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
 import type { GestureState, PanResponderEvent } from '../../types/Events';
 

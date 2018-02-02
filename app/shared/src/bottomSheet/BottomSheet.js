@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Animated } from 'react-native';
 import { StyleSheet } from 'react-native';
-import { VerticalSwipeResponder } from '@kiwicom/react-native-app-common';
+import { VerticalSwipeResponder } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   children: React.Node,

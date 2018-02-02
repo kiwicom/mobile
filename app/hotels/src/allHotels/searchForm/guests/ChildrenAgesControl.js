@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Color } from '@kiwicom/react-native-app-common';
+import { Color } from '@kiwicom/react-native-app-shared';
 
 import AgeControl from './AgeControl';
 import type { ChildAge } from './GuestsTypes';

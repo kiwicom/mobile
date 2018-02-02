@@ -6,7 +6,7 @@
  * of use:
  *
  * ```
- * import { Logger } from '@kiwicom/react-native-app-common';
+ * import { Logger } from '@kiwicom/react-native-app-shared';
  *
  * Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
  *   type: 'Hotels',

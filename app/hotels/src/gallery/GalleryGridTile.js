@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { NetworkImage } from '@kiwicom/react-native-app-common';
+import { NetworkImage } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   onTilePress: (imageIndex: number) => void,
