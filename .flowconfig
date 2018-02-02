@@ -69,7 +69,7 @@ suppress_type=$FlowFixMeState
 
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(<VERSION>\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue: https://github.com/facebook/flow/issues/[0-9]+
-suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError: .+
 
 [version]
 ^0.64.0

@@ -30,6 +30,7 @@ const Navigation = StackNavigator(
               language="en"
               currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
               onBackClicked={this.goToHomepage}
+              dataSaverEnabled={false}
             />
           );
         };

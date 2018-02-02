@@ -5,7 +5,7 @@ exports[`renders with marginRight if not last in the row 1`] = `
   activeOpacity={0.2}
   onPress={[Function]}
 >
-  <NetworkImage
+  <Connect(NetworkImage)
     resizeMode="cover"
     source={
       Object {
@@ -29,7 +29,7 @@ exports[`renders without marginRight if last in the row 1`] = `
   activeOpacity={0.2}
   onPress={[Function]}
 >
-  <NetworkImage
+  <Connect(NetworkImage)
     resizeMode="cover"
     source={
       Object {

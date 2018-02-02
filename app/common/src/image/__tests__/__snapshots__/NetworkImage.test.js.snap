@@ -66,3 +66,57 @@ exports[`returns MissingImage component for invalid URI 2`] = `
   }
 />
 `;
+
+exports[`returns MissingImage component when data saver enabled 1`] = `
+<missingImage
+  dataSaverEnabled={true}
+  source={
+    Object {
+      "uri": "http://image.png",
+    }
+  }
+/>
+`;
+
+exports[`returns MissingImage component when data saver enabled 2`] = `
+<ImageProgress
+  dataSaverEnabled={false}
+  errorContainerStyle={
+    Object {
+      "alignItems": "center",
+      "bottom": 0,
+      "justifyContent": "center",
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+  indicator={[Function]}
+  indicatorContainerStyle={
+    Object {
+      "alignItems": "center",
+      "bottom": 0,
+      "justifyContent": "center",
+      "left": 0,
+      "position": "absolute",
+      "right": 0,
+      "top": 0,
+    }
+  }
+  source={
+    Object {
+      "uri": "http://image.png",
+    }
+  }
+  style={
+    Array [
+      undefined,
+      Object {
+        "overflow": "hidden",
+      },
+    ]
+  }
+  threshold={50}
+/>
+`;

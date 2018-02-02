@@ -6,6 +6,7 @@ const render = () => <HotelsStandalonePackage
   language="en"
   currency="EUR"
   onBackClicked={() => goToHomepage()}
+  dataSaverEnabled={false}
 />
 ```
 
