@@ -4,6 +4,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
+    "@kiwicom/react-native-app-config": "^0",
     "@kiwicom/react-native-app-common": "^0",
     "@kiwicom/react-native-app-redux": "^0",
     "geolib": "2.0.24",

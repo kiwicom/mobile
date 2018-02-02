@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import NetworkImage from '../NetworkImage';
+import { NetworkImage } from '../NetworkImage';
 
 const renderer = new ShallowRenderer();
 
@@ -23,5 +23,23 @@ it('returns MissingImage component for invalid URI', () => {
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 
   renderer.render(<NetworkImage source={{ uri: undefined }} />);
+  expect(renderer.getRenderOutput()).toMatchSnapshot();
+});
+
+it('returns MissingImage component when data saver enabled', () => {
+  renderer.render(
+    <NetworkImage
+      dataSaverEnabled={true}
+      source={{ uri: 'http://image.png' }}
+    />,
+  );
+  expect(renderer.getRenderOutput()).toMatchSnapshot();
+
+  renderer.render(
+    <NetworkImage
+      dataSaverEnabled={false}
+      source={{ uri: 'http://image.png' }}
+    />,
+  );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

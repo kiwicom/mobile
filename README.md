@@ -95,6 +95,7 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── android/                    - native code for Android
 ├── app/
 │   ├── common/                 - @kiwicom/react-native-app-common
+│   ├── config/                 - @kiwicom/react-native-app-config
 │   │── core/                   - @kiwicom/react-native-app-core (core package)
 │   │   ├── config/                - application (module) configuration
 │   │   └── src/                   - source files

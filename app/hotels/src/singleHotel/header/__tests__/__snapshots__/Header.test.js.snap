@@ -5,7 +5,7 @@ exports[`renders without crashing 1`] = `
   activeOpacity={0.2}
   onPress={[Function]}
 >
-  <NetworkImage
+  <Connect(NetworkImage)
     source={
       Object {
         "uri": undefined,
@@ -86,7 +86,7 @@ exports[`renders without crashing with missing data 1`] = `
   activeOpacity={0.2}
   onPress={[Function]}
 >
-  <NetworkImage
+  <Connect(NetworkImage)
     source={
       Object {
         "uri": undefined,
