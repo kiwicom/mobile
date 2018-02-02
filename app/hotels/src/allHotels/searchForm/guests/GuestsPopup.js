@@ -141,7 +141,7 @@ export default class GuestsPopup extends React.Component<Props, State> {
         />
         {isMissingAge && (
           <View style={styles.message}>
-            <Message type="error">Fill children ages.</Message>
+            <Message type="error">Please fill children ages first.</Message>
           </View>
         )}
       </ButtonPopup>
