@@ -62,13 +62,20 @@ It basically consists of code linting, type checking, complete testing and Graph
 
 ## Building
 
-We use Fastlane as a tool for building, codesigning and uploading to App Store, Google Play and beta testing environments (currently we have support for iOS only via TestFlight).
+We use Fastlane as a tool for building, codesigning and uploading to App Store, Google Play and beta testing environments.
 
-### Fastline installation
+### Fastlane installation
 
 First please read the [installation instructions](https://docs.fastlane.tools/#getting-started) in the official docs. It's also necessary to setup environment variables. Place an `.env` file in the same folder as the Fastfile (`ios/fastline/.env`) and add `APPLE_ID=your@apple.id`.
 
-### Fastline run instructions
+Then you need to clone the git repository `react-native-app-certificates`. Ask `Trond Bergquist` or `Martin Zlamal` for access.
+
+Copy the kiwi-rn-hotels.keystore file into `(android/app)` directory. 
+Create a new password in the keychain (cmd + space -> keychain Access.app). The name should be `android_keystore` and account `rn_hotels`; The password will be stored in the vault. Ask for access.
+
+Double click the `dist_cert.p12` file. The password for the file will be stored in the vault.
+
+### Fastlane run instructions
 
 In order to build and deploy this project to the TestFlight just navigate to the `ios` folder and run `fastlane beta`. Alternatively from root directory:
 
@@ -77,6 +84,14 @@ In order to build and deploy this project to the TestFlight just navigate to the
 ```
 
 This new build has to be distributed to the (external) testers. To do so just go to iTunes Connect, select the right application > TestFlight > iOS builds > select build number > Groups (+) > select the group of testers > next, next, next...
+
+On android, navigate to the android folder and run `fastlane beta`. Alternatively from root directory:
+
+```
+( cd android ; fastlane beta )
+```
+
+The newly build apk will be found in `android/app/build/outputs/apk/app-release.apk`
 
 ## Environment
 
