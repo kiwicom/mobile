@@ -5,21 +5,22 @@ import { StyleSheet, View, Image } from 'react-native';
 
 import brandImage from './bookingLogo.png';
 
-type Props = {||};
-
 const styles = StyleSheet.create({
-  brandLabel: {
-    height: 71,
+  wrapper: {
+    height: 70,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image: {
+    height: 15,
+  },
 });
 
-class BrandLabel extends React.Component<Props> {
+class BrandLabel extends React.Component<{||}> {
   render = () => {
     return (
-      <View style={styles.brandLabel}>
-        <Image source={brandImage} />
+      <View style={styles.wrapper}>
+        <Image style={styles.image} resizeMode="contain" source={brandImage} />
       </View>
     );
   };
