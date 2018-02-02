@@ -30,7 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
                     new MainReactPackage(),
                     new SvgPackage(),
                     new VectorIconsPackage(),
-                    //  new MapsPackage(),
+                    new MapsPackage(),
                     new RNLoggingPackage(),
                     new MyNativeModulePackage()
             );

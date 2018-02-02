@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">reactNativeApp</string>
-    <string name="facebook_app_id">894605627319646</string>
+    <string name="facebook_app_id">Your Facebook App ID Here</string>
+    <string name="google_maps_key">Your Google maps API Key Here</string>
 </resources>

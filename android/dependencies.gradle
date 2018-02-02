@@ -1,11 +1,11 @@
 ext {
     gradlePluginVersion = "3.0.1"
 
-    compileSdkVersionVar = 26
-    targetSdkVersionVar = 26
-    buildToolsVersionVar = "26.0.2"
+    compileSdkVersionVar = 27
+    targetSdkVersionVar = 27
+    buildToolsVersionVar = "27.0.2"
 
     reactNativeVersion = "0.51.0"
     supportVersion = "26.1.0"
-    playServicesVersion = "11.6.0"
+    playServicesVersion = "11.8.0"
 }
