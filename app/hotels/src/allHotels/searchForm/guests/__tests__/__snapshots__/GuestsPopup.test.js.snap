@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GuestsPopup Renders correctly 1`] = `
+<ButtonPopup
+  buttonTitle="Save"
+  isVisible={true}
+  onClose={[Function]}
+  onSave={[Function]}
+  style={
+    Object {
+      "content": Object {
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+      },
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "padding": 20,
+        "paddingBottom": 0,
+      }
+    }
+  >
+    <NumberControl
+      icon="person"
+      label="Adult"
+      max={30}
+      min={1}
+      number={3}
+      onChange={[Function]}
+      style={
+        Object {
+          "marginBottom": 20,
+        }
+      }
+    />
+    <NumberControl
+      icon="child-friendly"
+      label="Infant"
+      max={10}
+      min={0}
+      number={0}
+      onChange={[Function]}
+      style={
+        Object {
+          "marginBottom": 0,
+        }
+      }
+    />
+  </View>
+  <ChildrenAgesControl
+    childrenAges={Array []}
+    onChange={[Function]}
+  />
+</ButtonPopup>
+`;

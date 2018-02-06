@@ -46,8 +46,7 @@ export default class GuestsPopup extends React.Component<Props, State> {
   };
 
   isMissingAge = (children: ChildAge[]) => {
-    const childrenWithAge = children.filter(childAge => childAge.age !== null);
-    return childrenWithAge.length === children.length;
+    return children.some(child => child.age === null);
   };
 
   /**
@@ -56,14 +55,15 @@ export default class GuestsPopup extends React.Component<Props, State> {
    */
   handleSave = () => {
     if (this.isMissingAge(this.state.guests.children)) {
-      this.setState({ isMissingAge: false }, () =>
+      this.setState({ isMissingAge: true });
+    } else {
+      this.setState({ isMissingAge: false }, () => {
         this.props.onChange(
           // eslint-disable-next-line react/no-access-state-in-setstate
           ((this.state.guests: any): RoomConfigurationType),
-        ),
-      );
-    } else {
-      this.setState({ isMissingAge: true });
+        );
+        this.props.onClose();
+      });
     }
   };
 
@@ -85,22 +85,21 @@ export default class GuestsPopup extends React.Component<Props, State> {
       // Decremented
       children.pop();
     }
-    this.setState(({ guests, isMissingAge }) => ({
+    this.setState(({ guests }) => ({
       guests: {
         adultsCount: guests.adultsCount,
         children,
       },
-      isMissingAge: isMissingAge ? !this.isMissingAge(children) : isMissingAge,
     }));
   };
 
   handleChildrenAgesChange = (children: ChildAge[]) =>
-    this.setState(({ guests, isMissingAge }) => ({
+    this.setState(({ guests }) => ({
       guests: {
         adultsCount: guests.adultsCount,
         children,
       },
-      isMissingAge: isMissingAge ? !this.isMissingAge(children) : isMissingAge,
+      isMissingAge: this.isMissingAge(children),
     }));
 
   render = () => {
