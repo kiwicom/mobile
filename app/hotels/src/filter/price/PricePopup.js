@@ -66,7 +66,6 @@ export default class PricePopup extends React.Component<Props, State> {
         onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
-        doScroll={false}
       >
         <Text>Price per night: {label}</Text>
         <Slider
