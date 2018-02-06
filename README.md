@@ -62,7 +62,13 @@ It basically consists of code linting, type checking, complete testing and Graph
 
 ## Building
 
-We use Fastlane as a tool for building, codesigning and uploading to App Store, Google Play and beta testing environments.
+We use Fastlane as a tool for building, codesigning and uploading to App Store, Google Play and beta testing environments. If you want to build just a JS bundle files simply run following command:
+
+```
+yarn build
+```
+
+You'll then find output files in the `.build` directory (for Android and iOS).
 
 ### Fastlane installation
 
