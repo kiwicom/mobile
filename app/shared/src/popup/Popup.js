@@ -10,7 +10,6 @@ type Props = {|
   children: React.Node,
   isVisible: boolean,
   onClose: () => void,
-  doScroll?: boolean,
 |};
 
 export default class Popup extends React.Component<Props> {
@@ -24,12 +23,14 @@ export default class Popup extends React.Component<Props> {
       onBackdropPress={this.onClose}
     >
       <View style={styles.body}>
-        <ScrollView
-          contentContainerStyle={styles.content}
-          scrollEnabled={this.props.doScroll !== false}
-        >
-          {this.props.children}
-        </ScrollView>
+        <View style={styles.contentContainer}>
+          <ScrollView
+            contentContainerStyle={styles.content}
+            alwaysBounceVertical={false}
+          >
+            {this.props.children}
+          </ScrollView>
+        </View>
       </View>
     </Modal>
   );
@@ -43,9 +44,11 @@ const styles = StyleSheet.create({
   body: {
     alignItems: Device.isTablet() ? 'center' : 'stretch',
   },
+  contentContainer: {
+    backgroundColor: '#fff',
+  },
   content: {
     opacity: 1,
     width: Device.isTablet() ? Device.getLandscapeThreshold() / 2 : 'auto',
-    backgroundColor: '#fff',
   },
 });
