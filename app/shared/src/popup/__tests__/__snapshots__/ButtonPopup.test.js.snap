@@ -2,7 +2,6 @@
 
 exports[`ButtonPopup render popup with child 1`] = `
 <Popup
-  doScroll={undefined}
   isVisible={true}
   onClose={[Function]}
 >

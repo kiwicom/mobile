@@ -27,11 +27,7 @@ export default class BarPopup extends React.Component<Props> {
   };
 
   render = () => (
-    <Popup
-      isVisible={this.props.isVisible}
-      onClose={this.onClose}
-      doScroll={false}
-    >
+    <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
       <View style={styles.bar}>
         <LinkButton title="Cancel" onPress={this.onClose} />
         <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />

@@ -12,7 +12,6 @@ type Props = {|
   isVisible: boolean,
   onClose: Function,
   onSave: Function,
-  doScroll?: boolean,
   style?: Object,
 |};
 
@@ -27,11 +26,7 @@ export default class ButtonPopup extends React.Component<Props> {
   onSave = () => this.props.onSave();
 
   render = () => (
-    <Popup
-      isVisible={this.props.isVisible}
-      onClose={this.onClose}
-      doScroll={this.props.doScroll}
-    >
+    <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
       <View
         style={[styles.content, this.props.style && this.props.style.content]}
       >
