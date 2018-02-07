@@ -12,6 +12,7 @@ type Stars = number[];
 type Props = {|
   stars: Stars,
   onChange: OnChangeFilterParams => void,
+  isActive: boolean,
 |};
 
 type State = {|
@@ -22,8 +23,6 @@ export default class StarsFilter extends React.Component<Props, State> {
   state = {
     isPopupOpen: false,
   };
-
-  static isActive = (stars: Stars): boolean => stars.length > 0;
 
   openPopup = () =>
     this.setState({
@@ -45,6 +44,14 @@ export default class StarsFilter extends React.Component<Props, State> {
       }),
     );
 
+  filterButtonClicked = () => {
+    if (this.props.isActive) {
+      this.handleSave([]);
+    } else {
+      this.openPopup();
+    }
+  };
+
   getTitle = (propsStars: number[]) => {
     // sort() tries to modify read only props in RN, works with clone
     const stars = [...propsStars];
@@ -62,8 +69,8 @@ export default class StarsFilter extends React.Component<Props, State> {
         <FilterButton
           title={this.getTitle(this.props.stars)}
           icon={{ name: 'star', color: '#fff' }}
-          isActive={this.constructor.isActive(this.props.stars)}
-          onPress={this.openPopup}
+          isActive={this.props.isActive}
+          onPress={this.filterButtonClicked}
         />
         <StarsPopup
           stars={this.props.stars}
