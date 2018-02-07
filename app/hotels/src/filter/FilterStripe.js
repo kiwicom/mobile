@@ -19,6 +19,7 @@ const styles = {
   view: {
     width: '100%',
     backgroundColor: '#fff',
+    elevation: 3, // Android
   },
   scrollView: {
     paddingHorizontal: 6,
