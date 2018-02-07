@@ -5,6 +5,7 @@ import { AppRegistry } from 'react-native';
 import { ReduxContext } from '@kiwicom/react-native-app-redux';
 import { ConfigReducer } from '@kiwicom/react-native-app-config';
 
+import FiltersReducer from './src/filter/FiltersReducer';
 import HotelsReducer from './src/HotelsReducer';
 import HotelsStack from './src/navigation/NavigationStack';
 
@@ -29,6 +30,7 @@ export default function HotelsStandalonePackage(props: Props) {
   const reducers = {
     config: UpdatedConfigReducer,
     hotels: HotelsReducer,
+    filters: FiltersReducer,
   };
 
   return (

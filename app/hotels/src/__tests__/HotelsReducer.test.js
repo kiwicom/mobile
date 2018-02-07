@@ -1,6 +1,6 @@
 // @flow
 
-import HotelsReducer, { defaultFilterParams } from '../HotelsReducer';
+import HotelsReducer from '../HotelsReducer';
 
 const defaultSearchParams = {
   checkin: null,
@@ -23,7 +23,6 @@ describe('HotelsReducer', () => {
         cityId: null,
         location: '',
         searchParams: defaultSearchParams,
-        filterParams: defaultFilterParams,
         currentSearchStats: defaultCurrentSearchStats,
       };
       const action = {
@@ -31,25 +30,6 @@ describe('HotelsReducer', () => {
         search: {
           ...defaultSearchParams,
           checkin: new Date(1),
-        },
-      };
-
-      expect(HotelsReducer(state, action)).toMatchSnapshot();
-    });
-
-    it('it should update filters for list of hotels', () => {
-      const state = {
-        cityId: null,
-        location: '',
-        searchParams: defaultSearchParams,
-        filterParams: defaultFilterParams,
-        currentSearchStats: defaultCurrentSearchStats,
-      };
-      const action = {
-        type: 'setFilter',
-        filter: {
-          minPrice: 20,
-          maxPrice: 30,
         },
       };
 
@@ -63,7 +43,6 @@ describe('HotelsReducer', () => {
         cityId: null,
         location: '',
         searchParams: defaultSearchParams,
-        filterParams: defaultFilterParams,
         currentSearchStats: defaultCurrentSearchStats,
       };
       const action = {

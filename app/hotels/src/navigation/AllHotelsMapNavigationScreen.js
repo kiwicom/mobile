@@ -4,10 +4,11 @@ import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
 
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
+import type { HotelsReducerState } from '../HotelsReducer';
 import type {
-  HotelsReducerState,
-  HotelsReducerActions,
-} from '../HotelsReducer';
+  FilterReducerActions,
+  FilterReducerState,
+} from '../filter/FiltersReducer';
 import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
 import type {
   FilterParams,
@@ -51,16 +52,22 @@ class AllHotelsMapNavigationScreen extends React.Component<Props> {
   };
 }
 
-const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
+const select = ({
+  hotels,
+  filters,
+}: {
+  hotels: HotelsReducerState,
+  filters: FilterReducerState,
+}): StateProps => ({
   search: hotels.searchParams,
   cityId: hotels.cityId,
-  filter: hotels.filterParams,
+  filter: filters.filterParams,
 });
 
-const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
+const actions = (dispatch: FilterReducerActions => void): DispatchProps => ({
   onFilterChange: filter =>
     dispatch({
-      type: 'setFilter',
+      type: 'filtersReducer/FILTER_CHANGED',
       filter,
     }),
 });

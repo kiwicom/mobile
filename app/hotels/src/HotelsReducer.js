@@ -4,35 +4,20 @@ import type {
   OnChangeSearchParams,
   SearchParams,
 } from './allHotels/searchForm/SearchParametersType';
-import type {
-  FilterParams,
-  OnChangeFilterParams,
-} from './filter/FilterParametersType';
 import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
 
 export type HotelsReducerState = {
   cityId: string | null,
   location: string,
   searchParams: SearchParams,
-  filterParams: FilterParams,
   currentSearchStats: CurrentSearchStats,
 };
 
 export type HotelsReducerActions =
   | {| type: 'setSearch', search: OnChangeSearchParams |}
-  | {| type: 'setFilter', filter: OnChangeFilterParams |}
   | {| type: 'setLocation', location: string |}
   | {| type: 'setCityId', cityId: string | null |}
   | {| type: 'setCurrentSearchStats', currentSearchStats: CurrentSearchStats |};
-
-export const defaultFilterParams = {
-  starsRating: [],
-  minPrice: null,
-  maxPrice: null,
-  freeCancellation: false,
-  hotelFacilities: [],
-  minScore: null,
-};
 
 const InitialHotelsState: HotelsReducerState = {
   cityId: null,
@@ -45,7 +30,6 @@ const InitialHotelsState: HotelsReducerState = {
       children: [],
     },
   },
-  filterParams: defaultFilterParams,
   currentSearchStats: {
     priceMax: 10000,
     priceMin: 0,
@@ -63,14 +47,6 @@ export default (
         searchParams: {
           ...state.searchParams,
           ...action.search,
-        },
-      };
-    case 'setFilter':
-      return {
-        ...state,
-        filterParams: {
-          ...state.filterParams,
-          ...action.filter,
         },
       };
     case 'setLocation':

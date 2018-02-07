@@ -9,11 +9,14 @@ import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
 import HotelFacilitiesFilter from './hotelFacilities/HotelFacilitiesFilter';
 import ScoreFilter from './score/ScoreFilter';
+import type { FilterReducerState } from './FiltersReducer.js';
+import type { CurrentSearchStats } from './CurrentSearchStatsType';
 import type {
+  ActiveFilters,
   FilterParams,
   OnChangeFilterParams,
 } from './FilterParametersType';
-import type { CurrentSearchStats } from './CurrentSearchStatsType';
+import type { HotelsReducerState } from '../HotelsReducer';
 
 const styles = {
   view: {
@@ -31,6 +34,7 @@ type Props = {|
   filter: FilterParams,
   currency: string,
   currentSearchStats: CurrentSearchStats,
+  activeFilters: ActiveFilters,
 |};
 
 /**
@@ -49,22 +53,18 @@ function FilterStripe(props: Props) {
 
   const filters = [
     {
-      isActive: StarsFilter.isActive(starsRating),
+      isActive: props.activeFilters.isStarsFilterActive,
       Component: (
         <StarsFilter
           key="stars"
           stars={starsRating}
           onChange={props.onChange}
+          isActive={props.activeFilters.isStarsFilterActive}
         />
       ),
     },
     {
-      isActive: PriceFilter.isActive(
-        minPrice,
-        maxPrice,
-        props.currentSearchStats.priceMin,
-        props.currentSearchStats.priceMax,
-      ),
+      isActive: props.activeFilters.isPriceFilterActive,
       Component: (
         <PriceFilter
           key="price"
@@ -72,31 +72,34 @@ function FilterStripe(props: Props) {
           start={minPrice}
           end={maxPrice}
           onChange={props.onChange}
+          isActive={props.activeFilters.isPriceFilterActive}
         />
       ),
     },
     {
-      isActive: ScoreFilter.isActive(minScore),
+      isActive: props.activeFilters.isMinScoreActive,
       Component: (
         <ScoreFilter
           key="score"
           minScore={minScore}
           onChange={props.onChange}
+          isActive={props.activeFilters.isMinScoreActive}
         />
       ),
     },
     {
-      isActive: HotelFacilitiesFilter.isActive(hotelFacilities),
+      isActive: props.activeFilters.isHotelFacilitiesActive,
       Component: (
         <HotelFacilitiesFilter
           key="facilities"
           onChange={props.onChange}
           facilities={hotelFacilities}
+          isActive={props.activeFilters.isHotelFacilitiesActive}
         />
       ),
     },
     {
-      isActive: FreeCancellationFilter.isActive(freeCancellation),
+      isActive: freeCancellation,
       Component: (
         <FreeCancellationFilter
           key="cancellation"
@@ -125,8 +128,15 @@ function FilterStripe(props: Props) {
   );
 }
 
-const mapStateToProps = state => ({
-  currentSearchStats: state.hotels.currentSearchStats,
+const select = ({
+  hotels,
+  filters,
+}: {
+  hotels: HotelsReducerState,
+  filters: FilterReducerState,
+}) => ({
+  currentSearchStats: hotels.currentSearchStats,
+  activeFilters: filters.activeFilters,
 });
 
-export default connect(mapStateToProps)(FilterStripe);
+export default connect(select)(FilterStripe);
