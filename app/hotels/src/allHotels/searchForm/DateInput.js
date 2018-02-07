@@ -15,9 +15,20 @@ type Props = {|
 
 type DateInputType = 'checkin' | 'checkout';
 
-const DISPLAY_DATE_FORMAT = 'DD/MM/YYYY';
-const MIN_NO_OF_NIGHTS = 1;
-const MAX_NO_OF_NIGHTS = 30;
+export const DISPLAY_DATE_FORMAT = 'DD/MM/YYYY';
+
+export const checkinAndCheckoutToDate = (
+  checkin: moment,
+  checkout: moment,
+) => ({
+  checkin: checkin.toDate(),
+  checkout: checkout.toDate(),
+});
+const isCheckinLaterThanCheckout = (diff: number) => diff < 0;
+const isCheckoutMoreThan30DaysFromCheckin = (diff: number) => diff > 30;
+const isCheckoutEqualToCheckin = (diff: number) => diff === 0;
+const getDiffFromCheckoutToCheckin = (checkout: moment, checkin: moment) =>
+  moment(checkout).diff(checkin, 'days');
 
 const styles = StyleSheet.create({
   container: {
@@ -32,54 +43,50 @@ const styles = StyleSheet.create({
 });
 
 export default class DateInput extends React.Component<Props> {
-  handleCheckinChange = (date: string) =>
-    this.handleDateChange(date, 'checkin');
+  handleCheckinChange = (date: string) => {
+    const { checkin, checkout } = this.getCheckinAndCheckoutDatesAsMoment(
+      date,
+      'checkin',
+    );
+    const diff = getDiffFromCheckoutToCheckin(checkout, checkin);
 
-  handleCheckoutChange = (date: string) =>
-    this.handleDateChange(date, 'checkout');
-
-  handleDateChange = (datestring: string, type: DateInputType) => {
-    const date = moment(datestring, DISPLAY_DATE_FORMAT);
-    const checkin = type === 'checkin' ? date : moment(this.props.checkin);
-    const checkout = type === 'checkout' ? date : moment(this.props.checkout);
-    const dates = this.getValidDates(checkin, checkout, type);
-
-    if (dates) {
-      this.props.onChange(dates);
+    if (isCheckinLaterThanCheckout(diff) || isCheckoutEqualToCheckin(diff)) {
+      this.handleDateChange(checkin, moment(checkin).add(1, 'days'));
+    } else if (isCheckoutMoreThan30DaysFromCheckin(diff)) {
+      this.handleDateChange(checkin, moment(checkin).add(30, 'days'));
+    } else {
+      this.handleDateChange(checkin, checkout);
     }
   };
 
-  getValidDates = (
-    checkin: moment,
-    checkout: moment,
-    typeBeingChanged: DateInputType,
-  ) => {
-    if (checkin === null || checkout === null) {
-      return null;
-    }
-    const diff = moment(checkout).diff(checkin, 'days');
-    if (diff < MIN_NO_OF_NIGHTS || diff > MAX_NO_OF_NIGHTS) {
-      if (typeBeingChanged === 'checkout') {
-        return {
-          checkin: moment(checkout)
-            .subtract(1, 'day')
-            .toDate(),
-          checkout: checkout.toDate(),
-        };
-      } else if (typeBeingChanged === 'checkin') {
-        return {
-          checkin: checkin.toDate(),
-          checkout: moment(checkin)
-            .add(1, 'day')
-            .toDate(),
-        };
-      }
-    }
+  handleCheckoutChange = (date: string) => {
+    const { checkin, checkout } = this.getCheckinAndCheckoutDatesAsMoment(
+      date,
+      'checkout',
+    );
+    const diff = getDiffFromCheckoutToCheckin(checkout, checkin);
 
-    return {
-      checkin: checkin.toDate(),
-      checkout: checkout.toDate(),
-    };
+    if (isCheckinLaterThanCheckout(diff) || isCheckoutEqualToCheckin(diff)) {
+      this.handleDateChange(moment(checkout).subtract(1, 'days'), checkout);
+    } else if (isCheckoutMoreThan30DaysFromCheckin(diff)) {
+      this.handleDateChange(moment(checkout).subtract(30, 'days'), checkout);
+    } else {
+      this.handleDateChange(checkin, checkout);
+    }
+  };
+
+  handleDateChange = (checkin: moment, checkout: moment) => {
+    this.props.onChange(checkinAndCheckoutToDate(checkin, checkout));
+  };
+
+  getCheckinAndCheckoutDatesAsMoment = (
+    datestring: string,
+    type: DateInputType,
+  ) => {
+    const date = moment(datestring, DISPLAY_DATE_FORMAT);
+    const checkin = type === 'checkin' ? date : moment(this.props.checkin);
+    const checkout = type === 'checkout' ? date : moment(this.props.checkout);
+    return { checkin, checkout };
   };
 
   render() {
