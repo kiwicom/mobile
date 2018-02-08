@@ -1,11 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
 
 import { BookNow } from '../BookNow';
-
-const renderer = new ShallowRenderer();
+import PlaygroundRenderer from '../../../../../PlaygroundRenderer';
 
 it('renders without crashing', () => {
   const props = {
@@ -29,8 +27,7 @@ it('renders without crashing', () => {
     },
   };
 
-  renderer.render(<BookNow {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
+  PlaygroundRenderer.render(<BookNow {...props} />);
 });
 
 it('renders without crashing with missing data', () => {
@@ -41,6 +38,5 @@ it('renders without crashing with missing data', () => {
     hotel: undefined,
   };
 
-  renderer.render(<BookNow {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
+  PlaygroundRenderer.render(<BookNow {...props} />);
 });
