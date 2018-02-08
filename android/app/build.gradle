@@ -94,15 +94,16 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion compileSdkVersionVar
+    buildToolsVersion buildToolsVersionVar
 
     defaultConfig {
         applicationId "com.reactnativeapp"
         minSdkVersion 16
-        targetSdkVersion 26
+        targetSdkVersion targetSdkVersionVar
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -121,6 +122,11 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -137,13 +143,17 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-svg')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-maps')
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
-    compile "com.facebook.react:react-native:+"  // From node_modules
-    implementation "com.trinerdis.skypicker:react-native-bridge:0.1-SNAPSHOT"
+    implementation project(':react-native-svg')
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-maps')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "com.facebook.react:react-native:$reactNativeVersion"  // From node_modules
+    implementation "com.android.support:multidex:1.0.2"
+    implementation "com.trinerdis.skypicker:react-native-native-modules:0.2-SNAPSHOT"
+    implementation "com.trinerdis.skypicker:logging:0.2-SNAPSHOT"
+    implementation("com.google.android.gms:play-services-base:$playServicesVersion")
+    implementation("com.google.android.gms:play-services-maps:$playServicesVersion")
 }
 
 // Run this once to be able to run the application with BUCK
