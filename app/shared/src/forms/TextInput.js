@@ -38,6 +38,7 @@ export default function TextInput(props: Props) {
       )}
       <OriginalTextInput
         underlineColorAndroid="transparent"
+        autoCorrect={false}
         {...props}
         style={stylesheetStyles.input}
       />
