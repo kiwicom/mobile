@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { TouchableOpacity } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 import idx from 'idx';
 
 import HotelDetailPreview from '../HotelDetailPreview';
@@ -33,9 +33,11 @@ export class HotelSwipeItem extends React.Component<Props> {
     const { width, data } = this.props;
 
     return (
-      <TouchableOpacity style={{ width }} onPress={this.handlePress}>
-        <HotelDetailPreview availability={data} />
-      </TouchableOpacity>
+      <TouchableWithoutFeedback onPress={this.handlePress}>
+        <View style={{ width }}>
+          <HotelDetailPreview availability={data} />
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
 }
