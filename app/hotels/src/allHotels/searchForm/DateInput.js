@@ -94,11 +94,18 @@ export default class DateInput extends React.Component<Props> {
 
     return (
       <View style={styles.container}>
+        {/* 
+          Booking.com API has a max 360 days in the future requirement for checkout
+          Max allowed checkin should then be 359 days in the future
+        */}
         <DatePicker
           placeholder="Start date"
           format={DISPLAY_DATE_FORMAT}
           date={props.checkin}
           minDate={new Date()}
+          maxDate={moment()
+            .add(359, 'days')
+            .toDate()}
           onDateChange={this.handleCheckinChange}
           style={styles.datePicker}
         />
@@ -108,6 +115,9 @@ export default class DateInput extends React.Component<Props> {
           date={props.checkout}
           minDate={moment()
             .add(1, 'day')
+            .toDate()}
+          maxDate={moment()
+            .add(360, 'days')
             .toDate()}
           onDateChange={this.handleCheckoutChange}
           style={styles.datePicker}
