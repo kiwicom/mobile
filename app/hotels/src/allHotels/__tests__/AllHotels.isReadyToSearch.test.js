@@ -1,7 +1,7 @@
 // @flow
 
 import { AllHotelsSearch } from '../AllHotelsSearch';
-import { defaultFilterParams } from '../../HotelsReducer';
+import { defaultFilterParams } from '../../filter/FiltersReducer';
 
 const defaults = {
   roomsConfiguration: {

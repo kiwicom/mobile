@@ -7,41 +7,6 @@ Object {
     "priceMax": 3999,
     "priceMin": 200,
   },
-  "filterParams": Object {
-    "freeCancellation": false,
-    "hotelFacilities": Array [],
-    "maxPrice": null,
-    "minPrice": null,
-    "minScore": null,
-    "starsRating": Array [],
-  },
-  "location": "",
-  "searchParams": Object {
-    "checkin": null,
-    "checkout": null,
-    "roomsConfiguration": Object {
-      "adultsCount": 1,
-      "children": Array [],
-    },
-  },
-}
-`;
-
-exports[`HotelsReducer setSearch it should update filters for list of hotels 1`] = `
-Object {
-  "cityId": null,
-  "currentSearchStats": Object {
-    "priceMax": 9007199254740991,
-    "priceMin": 0,
-  },
-  "filterParams": Object {
-    "freeCancellation": false,
-    "hotelFacilities": Array [],
-    "maxPrice": 30,
-    "minPrice": 20,
-    "minScore": null,
-    "starsRating": Array [],
-  },
   "location": "",
   "searchParams": Object {
     "checkin": null,
@@ -60,14 +25,6 @@ Object {
   "currentSearchStats": Object {
     "priceMax": 9007199254740991,
     "priceMin": 0,
-  },
-  "filterParams": Object {
-    "freeCancellation": false,
-    "hotelFacilities": Array [],
-    "maxPrice": null,
-    "minPrice": null,
-    "minScore": null,
-    "starsRating": Array [],
   },
   "location": "",
   "searchParams": Object {

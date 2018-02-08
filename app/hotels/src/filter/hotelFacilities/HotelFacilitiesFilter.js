@@ -10,6 +10,7 @@ import type { OnChangeFilterParams } from '../FilterParametersType';
 type Props = {|
   facilities: string[],
   onChange: OnChangeFilterParams => void,
+  isActive: boolean,
 |};
 
 type State = {|
@@ -24,8 +25,6 @@ export default class HotelFacilitiesFilter extends React.Component<
     isPopupOpen: false,
   };
 
-  static isActive = (facilities: string[]): boolean => facilities.length > 0;
-
   openPopup = () =>
     this.setState({
       isPopupOpen: true,
@@ -39,6 +38,14 @@ export default class HotelFacilitiesFilter extends React.Component<
       callback,
     );
 
+  filterButtonClicked = () => {
+    if (this.props.isActive) {
+      this.handleSave([]);
+    } else {
+      this.openPopup();
+    }
+  };
+
   handleSave = (hotelFacilities: string[]) =>
     this.closePopup(() => this.props.onChange({ hotelFacilities }));
 
@@ -49,8 +56,8 @@ export default class HotelFacilitiesFilter extends React.Component<
     <View>
       <FilterButton
         title={this.getTitle(this.props.facilities)}
-        isActive={this.constructor.isActive(this.props.facilities)}
-        onPress={this.openPopup}
+        isActive={this.props.isActive}
+        onPress={this.filterButtonClicked}
       />
       <HotelFacilitiesPopup
         isVisible={this.state.isPopupOpen}
