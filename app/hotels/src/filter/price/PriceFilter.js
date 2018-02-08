@@ -15,6 +15,7 @@ type Props = {|
   currency: string,
   onChange: OnChangeFilterParams => void,
   currentSearchStats: CurrentSearchStats,
+  isActive: boolean,
 |};
 
 type State = {|
@@ -26,15 +27,15 @@ class PriceFilter extends React.Component<Props, State> {
     isPopupOpen: false,
   };
 
-  static isActive = (
-    start: number,
-    end: number,
-    priceMin: number,
-    priceMax: number,
-  ) => {
-    const isFilterSet = start !== null || end !== null;
-    const isFilterEqualToSearchStats = start === priceMin && end === priceMax;
-    return isFilterSet && !isFilterEqualToSearchStats;
+  filterButtonClicked = () => {
+    if (this.props.isActive) {
+      this.props.onChange({
+        minPrice: null,
+        maxPrice: null,
+      });
+    } else {
+      this.openPopup();
+    }
   };
 
   openPopup = () =>
@@ -86,7 +87,7 @@ class PriceFilter extends React.Component<Props, State> {
   };
 
   render() {
-    const { currentSearchStats: { priceMin, priceMax } } = this.props;
+    const { currentSearchStats: { priceMin, priceMax }, isActive } = this.props;
     const start = this.props.start || priceMin;
     const end = this.props.end || priceMax;
     const currency = this.props.currency;
@@ -95,8 +96,8 @@ class PriceFilter extends React.Component<Props, State> {
         <FilterButton
           title={this.getTitle(start, end, priceMin, priceMax, currency)}
           icon={{ name: 'attach-money', color: '#fff' }}
-          isActive={this.constructor.isActive(start, end, priceMin, priceMax)}
-          onPress={this.openPopup}
+          isActive={isActive}
+          onPress={this.filterButtonClicked}
         />
         <PricePopup
           isVisible={this.state.isPopupOpen}

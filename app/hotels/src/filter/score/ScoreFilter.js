@@ -10,6 +10,7 @@ import type { OnChangeFilterParams } from '../FilterParametersType';
 type Props = {|
   minScore: number | null,
   onChange: OnChangeFilterParams => void,
+  isActive: boolean,
 |};
 
 type State = {|
@@ -28,8 +29,6 @@ export default class ScoreFilter extends React.Component<Props, State> {
     isPopupOpen: false,
   };
 
-  static isActive = (minScore: number | null): boolean => minScore !== null;
-
   openPopup = () =>
     this.setState({
       isPopupOpen: true,
@@ -43,6 +42,14 @@ export default class ScoreFilter extends React.Component<Props, State> {
       callback,
     );
 
+  filterButtonClicked = () => {
+    if (this.props.isActive) {
+      this.handleSave(null);
+    } else {
+      this.openPopup();
+    }
+  };
+
   handleSave = (minScore: number | null) =>
     this.closePopup(() => this.props.onChange({ minScore }));
 
@@ -50,14 +57,14 @@ export default class ScoreFilter extends React.Component<Props, State> {
     minScore ? ratingLabels[minScore] : 'rating';
 
   render() {
-    const { minScore } = this.props;
+    const { minScore, isActive } = this.props;
     return (
       <View>
         <FilterButton
           title={this.getTitle(minScore)}
           icon={{ name: 'thumb-up', color: '#fff' }}
-          isActive={this.constructor.isActive(minScore)}
-          onPress={this.openPopup}
+          isActive={isActive}
+          onPress={this.filterButtonClicked}
         />
         <ScorePopup
           isVisible={this.state.isPopupOpen}

@@ -20,6 +20,10 @@ import type {
   HotelsReducerActions,
   HotelsReducerState,
 } from '../HotelsReducer';
+import type {
+  FilterReducerState,
+  FilterReducerActions,
+} from '../filter/FiltersReducer';
 
 type ContainerProps = {|
   navigation: Object, // FIXME: navigation type is still part of the core package
@@ -118,14 +122,22 @@ const styles = StyleSheet.create({
   map: { width: '55%' },
 });
 
-const select = ({ hotels }: { hotels: HotelsReducerState }): StateProps => ({
+const select = ({
+  hotels,
+  filters,
+}: {
+  hotels: HotelsReducerState,
+  filters: FilterReducerState,
+}): StateProps => ({
   search: hotels.searchParams,
   cityId: hotels.cityId,
   location: hotels.location,
-  filter: hotels.filterParams,
+  filter: filters.filterParams,
 });
 
-const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
+type DispatchType = HotelsReducerActions | FilterReducerActions;
+
+const actions = (dispatch: DispatchType => void): DispatchProps => ({
   onSearchChange: search =>
     dispatch({
       type: 'setSearch',
@@ -133,7 +145,7 @@ const actions = (dispatch: HotelsReducerActions => void): DispatchProps => ({
     }),
   onFilterChange: filter =>
     dispatch({
-      type: 'setFilter',
+      type: 'filtersReducer/FILTER_CHANGED',
       filter,
     }),
   onLocationChange: (location: string) =>
