@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 
 import Button from './Button';
 import Color from '../Color';
@@ -54,7 +54,7 @@ function createStyles(disableDecrement: boolean, disableIncrement: boolean) {
   };
   const buttonText = {
     flex: 1,
-    lineHeight: 24,
+    lineHeight: Platform.OS === 'ios' ? 24 : 20,
     color: Color.brand,
     fontSize: 28,
     fontWeight: '300',
