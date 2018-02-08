@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TouchableOpacity } from 'react-native';
-import { NetworkImage } from '@kiwicom/react-native-app-shared';
+import { NetworkImage, TouchableItem } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   onTilePress: (imageIndex: number) => void,
@@ -27,13 +26,13 @@ export default class GalleryGridTile extends React.Component<Props> {
     }
 
     return (
-      <TouchableOpacity onPress={this.handleTilePress}>
+      <TouchableItem onPress={this.handleTilePress}>
         <NetworkImage
           source={{ uri: this.props.imageUrl }}
           style={style}
           resizeMode="cover"
         />
-      </TouchableOpacity>
+      </TouchableItem>
     );
   };
 }

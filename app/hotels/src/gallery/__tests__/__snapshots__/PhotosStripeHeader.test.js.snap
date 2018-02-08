@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders header with title 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <TouchableItem
+    borderless={false}
+    onPress={[Function]}
+    pressColor="rgba(0, 0, 0, .32)"
+    style={
+      Object {
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 40,
+          "marginTop": -10,
+          "textAlign": "center",
+        }
+      }
+    >
+      ×
+    </Text>
+  </TouchableItem>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "white",
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "textShadowColor": "#000",
+          "textShadowOffset": Object {
+            "height": 1,
+            "width": 1,
+          },
+          "textShadowRadius": 2,
+        }
+      }
+    >
+      Hotel Name
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "grey",
+          "fontSize": 12,
+          "textAlign": "center",
+        }
+      }
+    >
+      2
+       of 
+      42
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "width": 50,
+      }
+    }
+  />
+</View>
+`;
+
+exports[`renders header with very long title 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <TouchableItem
+    borderless={false}
+    onPress={[Function]}
+    pressColor="rgba(0, 0, 0, .32)"
+    style={
+      Object {
+        "width": 50,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "white",
+          "fontSize": 40,
+          "marginTop": -10,
+          "textAlign": "center",
+        }
+      }
+    >
+      ×
+    </Text>
+  </TouchableItem>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "white",
+          "fontWeight": "bold",
+          "textAlign": "center",
+          "textShadowColor": "#000",
+          "textShadowOffset": Object {
+            "height": 1,
+            "width": 1,
+          },
+          "textShadowRadius": 2,
+        }
+      }
+    >
+      Hotel Name So Long That It Will Not Fit One Line And Needs To Be Wrapped
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={
+        Object {
+          "color": "grey",
+          "fontSize": 12,
+          "textAlign": "center",
+        }
+      }
+    >
+      2
+       of 
+      42
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "width": 50,
+      }
+    }
+  />
+</View>
+`;

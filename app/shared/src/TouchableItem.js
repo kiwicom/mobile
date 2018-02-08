@@ -5,13 +5,17 @@ import {
   Platform,
   TouchableNativeFeedback,
   TouchableOpacity,
+  View,
 } from 'react-native';
+
+import { type StylePropType } from '../types/Styles';
 
 type Props = {
   // not exact: additional props allowed for TouchableOpacity and TouchableNativeFeedback
   children: React.Node,
   borderless?: boolean,
   pressColor?: string,
+  style?: StylePropType,
 };
 
 const ANDROID_VERSION_LOLLIPOP = 21;
@@ -48,16 +52,18 @@ export default class TouchableItem extends React.Component<Props> {
       Platform.OS === 'android' &&
       Platform.Version >= ANDROID_VERSION_LOLLIPOP
     ) {
+      const { style, ...rest } = this.props;
       return (
         <TouchableNativeFeedback
           useForeground={TouchableNativeFeedback.canUseNativeForeground()}
-          {...this.props}
+          {...rest}
+          style={null}
           background={TouchableNativeFeedback.Ripple(
             this.props.pressColor,
             this.props.borderless,
           )}
         >
-          {React.Children.only(this.props.children)}
+          <View style={style}>{React.Children.only(this.props.children)}</View>
         </TouchableNativeFeedback>
       );
     }
