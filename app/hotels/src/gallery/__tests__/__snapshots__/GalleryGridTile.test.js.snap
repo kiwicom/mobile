@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders with marginRight if not last in the row 1`] = `
-<TouchableOpacity
-  activeOpacity={0.2}
+<TouchableItem
+  borderless={false}
   onPress={[Function]}
+  pressColor="rgba(0, 0, 0, .32)"
 >
   <Connect(NetworkImage)
     resizeMode="cover"
@@ -21,13 +22,14 @@ exports[`renders with marginRight if not last in the row 1`] = `
       }
     }
   />
-</TouchableOpacity>
+</TouchableItem>
 `;
 
 exports[`renders without marginRight if last in the row 1`] = `
-<TouchableOpacity
-  activeOpacity={0.2}
+<TouchableItem
+  borderless={false}
   onPress={[Function]}
+  pressColor="rgba(0, 0, 0, .32)"
 >
   <Connect(NetworkImage)
     resizeMode="cover"
@@ -44,5 +46,5 @@ exports[`renders without marginRight if last in the row 1`] = `
       }
     }
   />
-</TouchableOpacity>
+</TouchableItem>
 `;

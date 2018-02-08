@@ -1,15 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Dimensions,
-  TouchableWithoutFeedback,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { NetworkImage } from '@kiwicom/react-native-app-shared';
+
+import PhotosStripeHeader from './PhotosStripeHeader';
 
 type Props = {|
   hotelName: string,
@@ -20,21 +16,14 @@ type Props = {|
 
 export default class PhotosStripe extends React.Component<Props> {
   renderPagination = (index: number, total: number) => {
-    const { width } = Dimensions.get('window');
-
     return (
-      <View style={styles.headerWrapper}>
-        <View style={[styles.titleWrapper, { width }]}>
-          <Text style={styles.title}>{this.props.hotelName}</Text>
-          <Text style={styles.subTitle}>
-            {index + 1} of {total}
-          </Text>
-        </View>
-        <TouchableWithoutFeedback onPress={this.props.onClose}>
-          <View style={styles.onCloseWrapper}>
-            <Text style={styles.onClose}>&times;</Text>
-          </View>
-        </TouchableWithoutFeedback>
+      <View style={{ position: 'absolute', top: 20, width: '100%' }}>
+        <PhotosStripeHeader
+          photoNumber={index + 1}
+          totalPhotos={total}
+          hotelName={this.props.hotelName}
+          onClose={this.props.onClose}
+        />
       </View>
     );
   };
@@ -45,7 +34,7 @@ export default class PhotosStripe extends React.Component<Props> {
         <View style={styles.slide} key={imageUrl}>
           <NetworkImage
             source={{ uri: imageUrl }}
-            style={{ flex: 1 }}
+            style={styles.networkImage}
             resizeMode="contain"
           />
         </View>
@@ -55,41 +44,13 @@ export default class PhotosStripe extends React.Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  headerWrapper: {
-    position: 'absolute',
-    marginTop: 10,
-  },
-  onCloseWrapper: {
-    position: 'absolute',
-    top: 5,
-    left: 20,
-  },
-  onClose: {
-    color: 'white',
-    fontSize: 40,
-  },
-  titleWrapper: {
-    position: 'absolute',
-    alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 15,
-  },
-  title: {
-    color: 'white',
-    fontWeight: 'bold',
-    textShadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    textShadowColor: '#000',
-    textShadowRadius: 2,
-  },
-  subTitle: {
-    color: 'grey',
-    fontSize: 12,
-  },
   slide: {
     flex: 1,
     backgroundColor: '#000',
+  },
+  networkImage: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
 });
