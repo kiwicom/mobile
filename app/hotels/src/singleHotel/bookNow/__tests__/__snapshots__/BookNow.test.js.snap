@@ -1,49 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<TouchableOpacity
-  activeOpacity={0.2}
-  onPress={[Function]}
+<View
   style={
     Object {
       "backgroundColor": "#0097a9",
       "bottom": 0,
       "flex": 1,
       "left": 0,
-      "paddingBottom": 12,
-      "paddingTop": 14,
       "position": "absolute",
       "right": 0,
     }
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Object {
-        "color": "white",
-        "fontSize": 16,
-        "fontWeight": "800",
-        "textAlign": "center",
-      }
-    }
+  <TouchableItem
+    activeOpacity={0.6}
+    borderless={false}
+    onPress={[Function]}
+    pressColor="rgba(0, 0, 0, .32)"
   >
-    Book Now
-  </Text>
-  <Price
-    amount={100}
-    currency="EUR"
-    style={
-      Object {
-        "color": "white",
-        "fontSize": 12,
-        "textAlign": "center",
+    <View
+      style={
+        Object {
+          "paddingVertical": 14,
+        }
       }
-    }
-  />
-</TouchableOpacity>
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 16,
+            "fontWeight": "800",
+            "textAlign": "center",
+          }
+        }
+      >
+        Book Now
+      </Text>
+      <Price
+        amount={100}
+        currency="EUR"
+        style={
+          Object {
+            "color": "white",
+            "fontSize": 12,
+            "textAlign": "center",
+          }
+        }
+      />
+    </View>
+  </TouchableItem>
+</View>
 `;
 
 exports[`renders without crashing with missing data 1`] = `null`;

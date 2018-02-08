@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Color, Price } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Text, View } from 'react-native';
+import { Color, Price, TouchableItem } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
 import countBookingPrice from './countBookingPrice';
@@ -12,23 +12,24 @@ import type { BookNow_availableRooms } from './__generated__/BookNow_availableRo
 import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
 
 const styles = StyleSheet.create({
-  button: {
+  buttonWrapper: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    paddingTop: 14,
-    paddingBottom: 12,
     flex: 1,
     backgroundColor: Color.brand,
   },
-  cta: {
+  buttonInnerWrapper: {
+    paddingVertical: 14,
+  },
+  buttonTitle: {
     fontSize: 16,
     fontWeight: '800',
     color: 'white',
     textAlign: 'center',
   },
-  price: {
+  buttonPrice: {
     fontSize: 12,
     color: 'white',
     textAlign: 'center',
@@ -71,17 +72,18 @@ export class BookNow extends React.Component<Props> {
     );
     return (
       price && (
-        <TouchableOpacity
-          style={styles.button}
-          onPress={this.handleGoToPayment}
-        >
-          <Text style={styles.cta}>Book Now</Text>
-          <Price
-            style={styles.price}
-            amount={price.amount}
-            currency={price.currency}
-          />
-        </TouchableOpacity>
+        <View style={styles.buttonWrapper}>
+          <TouchableItem onPress={this.handleGoToPayment} activeOpacity={0.6}>
+            <View style={styles.buttonInnerWrapper}>
+              <Text style={styles.buttonTitle}>Book Now</Text>
+              <Price
+                style={styles.buttonPrice}
+                amount={price.amount}
+                currency={price.currency}
+              />
+            </View>
+          </TouchableItem>
+        </View>
       )
     );
   }
