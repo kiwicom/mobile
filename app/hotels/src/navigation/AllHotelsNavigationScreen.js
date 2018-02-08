@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
+import { HeaderBackButton } from 'react-navigation';
 import { connect } from '@kiwicom/react-native-app-redux';
-import { TouchableOpacity, View, StyleSheet } from 'react-native';
-import { Icon, Device } from '@kiwicom/react-native-app-shared';
+import { View, StyleSheet } from 'react-native';
+import { Device, HeaderRightButton } from '@kiwicom/react-native-app-shared';
 
 import AllHotels from '../allHotels/AllHotels';
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
@@ -45,33 +46,30 @@ type NavigationProps = {|
 
 type Props = ContainerProps & StateProps & DispatchProps & NavigationProps;
 
-const style = StyleSheet.create({
-  headerButton: {
-    marginHorizontal: 10,
-  },
-});
-
 class AllHotelsNavigationScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
     function goToAllHotelsMap() {
       props.navigation.navigate('AllHotelsMap');
     }
 
+    function renderHeaderLeft() {
+      return (
+        <HeaderBackButton tintColor="#fff" onPress={props.onBackClicked} />
+      );
+    }
+
+    function renderHeaderRight() {
+      if (Device.isTablet()) {
+        return null;
+      }
+
+      return <HeaderRightButton onPress={goToAllHotelsMap} />;
+    }
+
     return {
+      headerLeft: renderHeaderLeft(),
       headerTitle: 'Hotels',
-      headerRight: !Device.isTablet() ? (
-        <TouchableOpacity style={style.headerButton} onPress={goToAllHotelsMap}>
-          <Icon name="map" size={30} color="#fff" />
-        </TouchableOpacity>
-      ) : null,
-      headerLeft: (
-        <TouchableOpacity
-          style={style.headerButton}
-          onPress={props.onBackClicked}
-        >
-          <Icon name="chevron-left" size={30} color="#fff" />
-        </TouchableOpacity>
-      ),
+      headerRight: renderHeaderRight(),
     };
   };
 
