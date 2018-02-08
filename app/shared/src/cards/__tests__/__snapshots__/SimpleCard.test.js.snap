@@ -12,7 +12,13 @@ exports[`renders airy density 1`] = `
     }
   }
 >
-  CHILDREN
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    CHILDREN
+  </Text>
 </View>
 `;
 
@@ -28,14 +34,21 @@ exports[`renders as expected 1`] = `
     }
   }
 >
-  CHILDREN
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    CHILDREN
+  </Text>
 </View>
 `;
 
 exports[`renders as expected with onPress callback 1`] = `
-<TouchableOpacity
-  activeOpacity={0.2}
+<TouchableItem
+  borderless={false}
   onPress={[Function]}
+  pressColor="rgba(0, 0, 0, .32)"
 >
   <View
     style={
@@ -48,9 +61,15 @@ exports[`renders as expected with onPress callback 1`] = `
       }
     }
   >
-    CHILDREN
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      CHILDREN
+    </Text>
   </View>
-</TouchableOpacity>
+</TouchableItem>
 `;
 
 exports[`renders without separator 1`] = `
@@ -63,6 +82,12 @@ exports[`renders without separator 1`] = `
     }
   }
 >
-  CHILDREN
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    CHILDREN
+  </Text>
 </View>
 `;

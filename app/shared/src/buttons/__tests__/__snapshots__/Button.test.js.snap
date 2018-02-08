@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button with custom title 1`] = `
+<TouchableItem
+  activeOpacity={0.6}
+  borderless={false}
+  onPress={[Function]}
+  pressColor="rgba(0, 0, 0, .32)"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#0097a9",
+            "borderRadius": 2,
+            "flexGrow": 1,
+            "justifyContent": "center",
+            "padding": 10,
+          },
+          undefined,
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#fff",
+              "fontWeight": "bold",
+            },
+            undefined,
+          ]
+        }
+      >
+        My Button!
+      </Text>
+    </View>
+  </View>
+</TouchableItem>
+`;

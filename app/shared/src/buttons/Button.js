@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { Icon } from '@kiwicom/react-native-app-shared';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import defaultsDeep from 'lodash/defaultsDeep';
 
 import Color from '../Color';
+import TouchableItem from '../TouchableItem';
 
 export type Props = {
   title: string,
@@ -41,9 +42,9 @@ export default function Button(props: Props) {
 
   if (props.onPress) {
     return (
-      <TouchableOpacity onPress={props.onPress} activeOpacity={0.6}>
+      <TouchableItem onPress={props.onPress} activeOpacity={0.6}>
         {buttonView}
-      </TouchableOpacity>
+      </TouchableItem>
     );
   } else {
     return buttonView;
