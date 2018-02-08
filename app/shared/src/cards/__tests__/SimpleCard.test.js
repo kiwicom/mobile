@@ -1,33 +1,41 @@
 // @flow
 
 import * as React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { Text } from 'react-native';
 
+import PlaygroundRenderer from '../../../../PlaygroundRenderer';
 import SimpleCard from '../SimpleCard';
 
-const renderer = new ShallowRenderer();
 function onPressVoidCallback() {}
 
 it('renders as expected', () => {
-  expect(renderer.render(<SimpleCard>CHILDREN</SimpleCard>)).toMatchSnapshot();
+  PlaygroundRenderer.render(
+    <SimpleCard>
+      <Text>CHILDREN</Text>
+    </SimpleCard>,
+  );
 });
 
 it('renders as expected with onPress callback', () => {
-  expect(
-    renderer.render(
-      <SimpleCard onPress={onPressVoidCallback}>CHILDREN</SimpleCard>,
-    ),
-  ).toMatchSnapshot();
+  PlaygroundRenderer.render(
+    <SimpleCard onPress={onPressVoidCallback}>
+      <Text>CHILDREN</Text>
+    </SimpleCard>,
+  );
 });
 
 it('renders airy density', () => {
-  expect(
-    renderer.render(<SimpleCard density="airy">CHILDREN</SimpleCard>),
-  ).toMatchSnapshot();
+  PlaygroundRenderer.render(
+    <SimpleCard density="airy">
+      <Text>CHILDREN</Text>
+    </SimpleCard>,
+  );
 });
 
 it('renders without separator', () => {
-  expect(
-    renderer.render(<SimpleCard separator={false}>CHILDREN</SimpleCard>),
-  ).toMatchSnapshot();
+  PlaygroundRenderer.render(
+    <SimpleCard separator={false}>
+      <Text>CHILDREN</Text>
+    </SimpleCard>,
+  );
 });
