@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/react-native-app-config": "^0",
-    "@kiwicom/react-native-app-shared": "^0",
     "@kiwicom/react-native-app-redux": "^0",
+    "@kiwicom/react-native-app-shared": "^0",
     "geolib": "2.0.24",
     "idx": "2.2.0",
     "lodash": "^4.17.4",
