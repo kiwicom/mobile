@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { Icon } from '@kiwicom/react-native-app-shared';
-import { TextInput as OriginalTextInput, View, StyleSheet } from 'react-native';
+import {
+  TextInput as OriginalTextInput,
+  View,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 
 export const styles = {
   input: {
@@ -17,6 +22,10 @@ export const styles = {
     backgroundColor: '#fff',
     marginBottom: 5,
     flexDirection: 'row',
+    borderRadius: Platform.select({
+      ios: 0,
+      android: 2,
+    }),
   },
   icon: {
     marginLeft: 10,
