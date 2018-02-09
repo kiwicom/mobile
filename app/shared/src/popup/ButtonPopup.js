@@ -32,11 +32,9 @@ export default class ButtonPopup extends React.Component<Props> {
       >
         {this.props.children}
       </View>
-      <Button
-        title={this.props.buttonTitle}
-        styles={{ button: styles.button }}
-        onPress={this.onSave}
-      />
+      <View style={styles.button}>
+        <Button title={this.props.buttonTitle} onPress={this.onSave} />
+      </View>
     </Popup>
   );
 }

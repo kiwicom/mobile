@@ -11,7 +11,9 @@ exports[`renders button with custom title 1`] = `
     style={
       Array [
         Object {
+          "borderRadius": 2,
           "flexDirection": "row",
+          "height": 40,
         },
         undefined,
       ]
@@ -27,6 +29,7 @@ exports[`renders button with custom title 1`] = `
             "flexGrow": 1,
             "justifyContent": "center",
             "padding": 10,
+            "paddingLeft": 0,
           },
           undefined,
         ]

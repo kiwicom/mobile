@@ -34,11 +34,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    height: 40,
   },
   datePicker: {
     flex: 1,
-    marginRight: 10,
+    minWidth: 110, // minimum required for 'DD/MM/YYYY'
   },
 });
 

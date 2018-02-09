@@ -24,17 +24,18 @@ exports[`ButtonPopup render popup with child 1`] = `
       Child
     </Text>
   </View>
-  <Button
-    onPress={[Function]}
-    styles={
+  <View
+    style={
       Object {
-        "button": Object {
-          "margin": 20,
-          "marginTop": 20,
-        },
+        "margin": 20,
+        "marginTop": 20,
       }
     }
-    title="Save"
-  />
+  >
+    <Button
+      onPress={[Function]}
+      title="Save"
+    />
+  </View>
 </Popup>
 `;

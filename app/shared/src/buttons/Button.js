@@ -59,12 +59,15 @@ function createStyles(iconAvailable) {
   const defaultStyles: Object = {
     buttonWrapper: {
       flexDirection: 'row',
+      borderRadius: 2,
+      height: 40,
     },
     button: {
       flexGrow: 1,
       justifyContent: 'center',
       alignItems: 'center',
       padding: 10,
+      paddingLeft: 0,
       borderRadius: 2,
       backgroundColor: Color.brand,
     },
@@ -74,11 +77,12 @@ function createStyles(iconAvailable) {
       fontSize: 15,
     },
     icon: {
-      backgroundColor: Color.brand,
       justifyContent: 'center',
       padding: 5,
+      paddingLeft: 7,
       borderTopLeftRadius: 2,
       borderBottomLeftRadius: 2,
+      backgroundColor: Color.brand,
     },
   };
   if (iconAvailable) {

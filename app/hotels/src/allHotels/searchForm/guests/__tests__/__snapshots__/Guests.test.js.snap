@@ -15,20 +15,19 @@ exports[`Guests Render all inputs 1`] = `
         "button": Object {
           "backgroundColor": "#fff",
           "borderRadius": 0,
-          "height": 40,
-          "paddingLeft": 0,
-          "width": 85,
         },
         "buttonText": Object {
           "color": "#212121",
           "fontWeight": "normal",
         },
+        "buttonWrapper": Object {
+          "elevation": 3,
+          "margin": 3,
+        },
         "icon": Object {
           "backgroundColor": "#fff",
           "borderBottomLeftRadius": 0,
           "borderTopLeftRadius": 0,
-          "paddingLeft": 10,
-          "paddingRight": 0,
         },
       }
     }
