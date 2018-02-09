@@ -9,25 +9,16 @@ exports[`SearchForm Render all inputs 1`] = `
     }
   }
 >
-  <View
-    style={
-      Object {
-        "marginBottom": 6,
-      }
-    }
-  >
-    <TextInput
-      iconName="location-city"
-      onChangeText={[Function]}
-      placeholder="Where do you go?"
-      value="Pra"
-    />
-  </View>
+  <TextInput
+    iconName="location-city"
+    onChangeText={[Function]}
+    placeholder="Where do you go?"
+    value="Pra"
+  />
   <View
     style={
       Object {
         "flexDirection": "row",
-        "height": 40,
       }
     }
   >

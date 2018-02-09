@@ -17,12 +17,8 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: Color.brandSecondary,
   },
-  destination: {
-    marginBottom: 6,
-  },
   row: {
     flexDirection: 'row',
-    height: 40,
   },
 });
 
@@ -54,14 +50,12 @@ export default class SearchForm extends React.Component<Props> {
 
     return (
       <View style={styles.form}>
-        <View style={styles.destination}>
-          <TextInput
-            value={location}
-            onChangeText={this.handleDestinationChange}
-            placeholder="Where do you go?"
-            iconName="location-city"
-          />
-        </View>
+        <TextInput
+          value={location}
+          onChangeText={this.handleDestinationChange}
+          placeholder="Where do you go?"
+          iconName="location-city"
+        />
         <View style={styles.row}>
           <DateInput
             checkin={search.checkin}

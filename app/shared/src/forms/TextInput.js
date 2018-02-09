@@ -1,13 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Icon } from '@kiwicom/react-native-app-shared';
-import {
-  TextInput as OriginalTextInput,
-  View,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import { Icon, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { TextInput as OriginalTextInput, View } from 'react-native';
 
 export const styles = {
   input: {
@@ -19,13 +14,16 @@ export const styles = {
   },
   wrapper: {
     height: 40,
-    backgroundColor: '#fff',
-    marginBottom: 5,
     flexDirection: 'row',
-    borderRadius: Platform.select({
-      ios: 0,
-      android: 2,
-    }),
+    backgroundColor: '#fff',
+    elevation: 3, // Android only
+    margin: 3, // needed in order to see elevation on Android devices
+    android: {
+      borderRadius: 2,
+    },
+    ios: {
+      borderRadius: 0,
+    },
   },
   icon: {
     marginLeft: 10,

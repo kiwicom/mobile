@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
-import { Button, Color } from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
+import { Button, Color, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import GuestsPopup from './GuestsPopup';
 import type { RoomConfigurationType } from '../SearchParametersType';
@@ -56,31 +56,32 @@ export default class Guests extends React.Component<Props, State> {
 }
 
 const buttonStyles = StyleSheet.create({
+  buttonWrapper: {
+    elevation: 3, // Android only
+    margin: 3, // needed in order to see elevation on Android devices
+  },
   button: {
-    width: 85,
     backgroundColor: '#fff',
-    borderRadius: Platform.select({
-      ios: 0,
-      android: 2,
-    }),
-    height: 40,
-    paddingLeft: 0,
+    android: {
+      borderRadius: 2,
+    },
+    ios: {
+      borderRadius: 0,
+    },
   },
   buttonText: {
     color: Color.grey.$900,
     fontWeight: 'normal',
   },
   icon: {
-    paddingLeft: 10,
-    paddingRight: 0,
     backgroundColor: '#fff',
-    borderTopLeftRadius: Platform.select({
-      ios: 0,
-      android: 2,
-    }),
-    borderBottomLeftRadius: Platform.select({
-      ios: 0,
-      android: 2,
-    }),
+    android: {
+      borderTopLeftRadius: 2,
+      borderBottomLeftRadius: 2,
+    },
+    ios: {
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
   },
 });
