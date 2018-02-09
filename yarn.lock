@@ -62,9 +62,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@ptomasroos/react-native-multi-slider@https://github.com/ptomasroos/react-native-multi-slider.git#2f83b6b8b700c0e6ace77c74b8af8a7d2ad83ba0":
-  version "0.0.10"
-  resolved "https://github.com/ptomasroos/react-native-multi-slider.git#2f83b6b8b700c0e6ace77c74b8af8a7d2ad83ba0"
+"@ptomasroos/react-native-multi-slider@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@ptomasroos/react-native-multi-slider/-/react-native-multi-slider-0.0.12.tgz#db2f2c4006a347e293ad06c6fbb16f75bea7c8c3"
 
 "@types/node@*":
   version "9.3.0"

@@ -56,6 +56,7 @@ export default class Slider extends React.Component<Props, State> {
           unselectedStyle={styles.unselected}
           trackStyle={styles.track}
           markerStyle={styles.marker}
+          pressedMarkerStyle={styles.marker}
           containerStyle={[styles.container, this.props.style]}
           onValuesChange={this.props.onChange}
         />
@@ -75,12 +76,14 @@ const styles = StyleSheet.create({
     width: 30,
     borderRadius: 15,
     backgroundColor: '#fff',
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: Color.grey.$400,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
+    elevation: 3, // Android
+    margin: 5, // necessary to see the Android elevation properly
   },
   container: {
     justifyContent: 'center',
