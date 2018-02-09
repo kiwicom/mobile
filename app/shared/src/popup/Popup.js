@@ -22,15 +22,13 @@ export default class Popup extends React.Component<Props> {
       backdropOpacity={0.5}
       onBackdropPress={this.onClose}
     >
-      <View style={styles.body}>
-        <View style={styles.contentContainer}>
-          <ScrollView
-            contentContainerStyle={styles.content}
-            alwaysBounceVertical={false}
-          >
-            {this.props.children}
-          </ScrollView>
-        </View>
+      <View style={styles.contentContainer}>
+        <ScrollView
+          contentContainerStyle={styles.content}
+          alwaysBounceVertical={false}
+        >
+          {this.props.children}
+        </ScrollView>
       </View>
     </Modal>
   );
@@ -41,14 +39,14 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
-  body: {
-    alignItems: Device.isTablet() ? 'center' : 'stretch',
-  },
   contentContainer: {
     backgroundColor: '#fff',
+    alignSelf: 'center',
+    width: Device.isTablet()
+      ? Device.getLandscapeThreshold() / 2
+      : Device.getLandscapeThreshold(),
   },
   content: {
     opacity: 1,
-    width: Device.isTablet() ? Device.getLandscapeThreshold() / 2 : 'auto',
   },
 });
