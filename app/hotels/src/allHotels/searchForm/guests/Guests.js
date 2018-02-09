@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import { Button, Color } from '@kiwicom/react-native-app-shared';
 
 import GuestsPopup from './GuestsPopup';
@@ -59,7 +59,10 @@ const buttonStyles = StyleSheet.create({
   button: {
     width: 85,
     backgroundColor: '#fff',
-    borderRadius: 0,
+    borderRadius: Platform.select({
+      ios: 0,
+      android: 2,
+    }),
     height: 40,
     paddingLeft: 0,
   },
@@ -71,7 +74,13 @@ const buttonStyles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 0,
     backgroundColor: '#fff',
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
+    borderTopLeftRadius: Platform.select({
+      ios: 0,
+      android: 2,
+    }),
+    borderBottomLeftRadius: Platform.select({
+      ios: 0,
+      android: 2,
+    }),
   },
 });
