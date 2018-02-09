@@ -71,6 +71,7 @@ function createStyles(iconAvailable) {
     buttonText: {
       fontWeight: 'bold',
       color: '#fff',
+      fontSize: 15,
     },
     icon: {
       backgroundColor: Color.brand,
