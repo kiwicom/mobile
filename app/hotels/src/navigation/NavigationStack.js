@@ -3,7 +3,10 @@
 import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
-import { Color } from '@kiwicom/react-native-app-shared';
+import {
+  StackNavigatorOptions,
+  type NavigationType,
+} from '@kiwicom/react-native-app-navigation';
 
 import GalleryGrid from '../gallery/GalleryGrid';
 import Payment from '../singleHotel/PaymentScreen';
@@ -13,14 +16,14 @@ import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
 
 export type NavigationProps = {|
-  navigation: Object, // FIXME: navigation type is still part of the core package
+  navigation: NavigationType,
   bookingComAffiliate: string,
   language: string,
   currency: string,
 |};
 
 type InjectorProps = {|
-  navigation: Object, // FIXME: navigation type is still part of the core package
+  navigation: NavigationType,
   WrappedComponent: React.ElementType,
 |};
 
@@ -82,19 +85,7 @@ export default StackNavigator(
     },
   },
   {
+    ...StackNavigatorOptions,
     initialRouteName: 'AllHotels',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: Color.brand,
-        borderBottomWidth: 0,
-      },
-      headerTitleStyle: {
-        color: '#fff',
-      },
-      headerTintColor: '#fff', // back arrow
-    },
-    cardStyle: {
-      backgroundColor: '#eee',
-    },
   },
 );

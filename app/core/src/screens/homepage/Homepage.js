@@ -3,12 +3,12 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Button, Layout } from '@kiwicom/react-native-app-shared';
+import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import Logout from '../../components/authentication/Logout';
-import type { Navigation } from '../../types/Navigation';
 
 type Props = {|
-  navigation: Navigation,
+  navigation: NavigationType,
 |};
 
 function Section({ children }: { children: React.Node }) {

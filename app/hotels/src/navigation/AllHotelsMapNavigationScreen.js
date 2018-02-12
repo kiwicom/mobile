@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { connect } from '@kiwicom/react-native-app-redux';
+import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
 import type { HotelsReducerState } from '../HotelsReducer';
@@ -16,7 +17,7 @@ import type {
 } from '../filter/FilterParametersType';
 
 type ContainerProps = {|
-  navigation: Object, // FIXME: navigation type is still part of the core package
+  navigation: NavigationType,
   currency: string,
 |};
 

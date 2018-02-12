@@ -1,6 +1,6 @@
 // @flow
 
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 function renewDimensions() {
   try {
@@ -23,14 +23,21 @@ export default {
     const { height, width } = renewDimensions();
     return width >= height;
   },
-  getLandscapeThreshold() {
-    const { height, width } = renewDimensions();
-    return Math.min(height, width);
-  },
   isTablet() {
     const { width, height } = renewDimensions();
     const min = Math.min(width, height);
     const max = Math.max(width, height);
     return max / min <= WIDE_DEVICE_THRESHOLD;
+  },
+  getLandscapeThreshold() {
+    const { height, width } = renewDimensions();
+    return Math.min(height, width);
+  },
+  getToolbarHeight() {
+    // note: toolbar is not statusbar
+    return Platform.select({
+      android: 56,
+      ios: 64,
+    });
   },
 };

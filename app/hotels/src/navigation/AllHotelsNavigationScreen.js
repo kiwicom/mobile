@@ -5,6 +5,7 @@ import { HeaderBackButton } from 'react-navigation';
 import { connect } from '@kiwicom/react-native-app-redux';
 import { View, StyleSheet } from 'react-native';
 import { Device, HeaderRightButton } from '@kiwicom/react-native-app-shared';
+import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import AllHotels from '../allHotels/AllHotels';
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
@@ -26,7 +27,7 @@ import type {
 } from '../filter/FiltersReducer';
 
 type ContainerProps = {|
-  navigation: Object, // FIXME: navigation type is still part of the core package
+  navigation: NavigationType,
   currency: string,
 |};
 

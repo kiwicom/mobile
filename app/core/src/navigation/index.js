@@ -4,13 +4,14 @@ import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
 import { ReduxContext } from '@kiwicom/react-native-app-redux';
 import HotelsStandalonePackage from '@kiwicom/react-native-app-hotels';
+import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import Config from '../../config/application';
 import HomepageStack from './HomepageStack';
 import UserReducer from '../services/redux/UserReducer';
 
 type Props = {|
-  navigation: Object, // FIXME: navigation type is still part of the core package
+  navigation: NavigationType,
 |};
 
 const Navigation = StackNavigator(
