@@ -42,7 +42,7 @@ export class AllHotelsSearchList extends React.Component<Props> {
       );
     } else {
       return (
-        <ScrollView>
+        <ScrollView style={{ paddingVertical: 3 }}>
           {hotels.map(edge => {
             if (edge) {
               const { node: hotel } = edge;

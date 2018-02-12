@@ -23,7 +23,9 @@ export default new class PlaygroundRenderer {
 
   render(component: React.Node) {
     if (process.env.NODE_ENV === 'test') {
-      expect(this.renderer.render(component)).toMatchSnapshot();
+      expect(
+        this.renderer.render(React.Children.only(component)),
+      ).toMatchSnapshot();
     } else {
       this.components.push(component);
     }

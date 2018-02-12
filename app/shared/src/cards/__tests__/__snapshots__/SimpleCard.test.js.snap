@@ -1,93 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders airy density 1`] = `
-<View
-  style={
-    Object {
-      "backgroundColor": "#fff",
-      "borderBottomColor": "#eee",
-      "borderBottomWidth": 1,
-      "paddingHorizontal": 0,
-      "paddingVertical": 20,
-    }
-  }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    CHILDREN
-  </Text>
-</View>
-`;
-
 exports[`renders as expected 1`] = `
-<View
-  style={
-    Object {
-      "backgroundColor": "#fff",
-      "borderBottomColor": "#eee",
-      "borderBottomWidth": 1,
-      "paddingHorizontal": 0,
-      "paddingVertical": 10,
-    }
-  }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    CHILDREN
-  </Text>
+<View>
+  <SimpleCard>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Default card A
+    </Text>
+  </SimpleCard>
+  <SimpleCard>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Default card B
+    </Text>
+  </SimpleCard>
 </View>
 `;
 
 exports[`renders as expected with onPress callback 1`] = `
-<TouchableItem
-  borderless={false}
-  onPress={[Function]}
-  pressColor="rgba(0, 0, 0, .32)"
->
-  <View
-    style={
-      Object {
-        "backgroundColor": "#fff",
-        "borderBottomColor": "#eee",
-        "borderBottomWidth": 1,
-        "paddingHorizontal": 0,
-        "paddingVertical": 10,
-      }
-    }
+<View>
+  <SimpleCard
+    onPress={[Function]}
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
     >
-      CHILDREN
+      Clickable card
     </Text>
-  </View>
-</TouchableItem>
-`;
-
-exports[`renders without separator 1`] = `
-<View
-  style={
-    Object {
-      "backgroundColor": "#fff",
-      "paddingHorizontal": 0,
-      "paddingVertical": 10,
-    }
-  }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
+  </SimpleCard>
+  <SimpleCard
+    onPress={[Function]}
   >
-    CHILDREN
-  </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      Clickable card
+    </Text>
+  </SimpleCard>
 </View>
 `;
