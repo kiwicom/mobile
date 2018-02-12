@@ -1,20 +1,20 @@
 /**
  * @flow
- * @relayHash bc9ca3e0d47b5fbb01a7d4250d453fe7
+ * @relayHash 4dd06d63c67408a3929c6d319ad74a37
  */
 
 /* eslint-disable */
 
 import type { ConcreteBatch } from 'relay-runtime';
-export type AllHotelsSearchQueryResponse = {| |};
+export type AllHotelsSearchListQueryResponse = {| |};
 
 /*
-query AllHotelsSearchQuery(
+query AllHotelsSearchListQuery(
   $search: HotelsSearchInput!
   $filter: HotelsFilterInput!
   $options: AvailableHotelOptionsInput
-  $first: Int
   $after: String
+  $first: Int
 ) {
   ...AllHotelsSearchList_data
 }
@@ -103,20 +103,20 @@ const node: ConcreteBatch = {
       },
       {
         "kind": "LocalArgument",
-        "name": "first",
-        "type": "Int",
+        "name": "after",
+        "type": "String",
         "defaultValue": null
       },
       {
         "kind": "LocalArgument",
-        "name": "after",
-        "type": "String",
+        "name": "first",
+        "type": "Int",
         "defaultValue": null
       }
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "AllHotelsSearchQuery",
+    "name": "AllHotelsSearchListQuery",
     "selections": [
       {
         "kind": "FragmentSpread",
@@ -129,7 +129,7 @@ const node: ConcreteBatch = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "AllHotelsSearchQuery",
+  "name": "AllHotelsSearchListQuery",
   "query": {
     "argumentDefinitions": [
       {
@@ -152,19 +152,19 @@ const node: ConcreteBatch = {
       },
       {
         "kind": "LocalArgument",
-        "name": "first",
-        "type": "Int",
+        "name": "after",
+        "type": "String",
         "defaultValue": null
       },
       {
         "kind": "LocalArgument",
-        "name": "after",
-        "type": "String",
+        "name": "first",
+        "type": "Int",
         "defaultValue": null
       }
     ],
     "kind": "Root",
-    "name": "AllHotelsSearchQuery",
+    "name": "AllHotelsSearchListQuery",
     "operation": "query",
     "selections": [
       {
@@ -480,7 +480,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...AllHotelsSearchList_data\n}\n\nfragment AllHotelsSearchList_data on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        __typename\n        id\n        ...AllHotelsSearchRow\n      }\n      cursor\n    }\n    stats {\n      priceMax\n      priceMin\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n"
+  "text": "query AllHotelsSearchListQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $after: String\n  $first: Int\n) {\n  ...AllHotelsSearchList_data\n}\n\nfragment AllHotelsSearchList_data on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        __typename\n        id\n        ...AllHotelsSearchRow\n      }\n      cursor\n    }\n    stats {\n      priceMax\n      priceMin\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n"
 };
 
 module.exports = node;
