@@ -1,20 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import { Device } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   children: React.Node,
 |};
 
-/**
- * This is base Layout component with default width. It can expand up to
- * portrait mode width. This means that the content is centered in
- * landscape mode.
- */
-export default function Layout({ children }: Props) {
-  const defaultStyle = StyleSheet.create({
+const createStyles = () => {
+  const styles: Object = {
     outerWrapper: {
       flex: 1,
       flexDirection: 'row',
@@ -22,12 +17,29 @@ export default function Layout({ children }: Props) {
     },
     innerWrapper: {
       flex: 1,
-      maxWidth: Math.max(Device.getLandscapeThreshold(), 750), // do it only for big devices (not mobile)
     },
-  });
+  };
 
+  if (Device.isTablet()) {
+    styles.innerWrapper.maxWidth = Device.getLandscapeThreshold();
+  }
+  return StyleSheet.create(styles);
+};
+
+/**
+ * This is base Layout component with default width. It can expand up to
+ * portrait mode width. This means that the content is centered in
+ * landscape mode.
+ */
+export default function Layout({ children }: Props) {
+  const defaultStyle = createStyles();
   return (
     <View style={defaultStyle.outerWrapper}>
+      <StatusBar
+        animated={true}
+        translucent={true}
+        backgroundColor="rgba(0, 0, 0, 0.3)"
+      />
       <View style={defaultStyle.innerWrapper}>{children}</View>
     </View>
   );

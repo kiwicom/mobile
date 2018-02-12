@@ -4,13 +4,9 @@
   "private": true,
   "dependencies": {
     "@kiwicom/react-native-app-hotels": "^0",
+    "@kiwicom/react-native-app-navigation": "^0",
     "@kiwicom/react-native-app-redux": "^0",
     "@kiwicom/react-native-app-relay": "^0",
-    "@kiwicom/react-native-app-shared": "^0",
-    "idx": "^2.2.0",
-    "json-stable-stringify": "^1.0.1",
-    "react-native-datepicker": "^1.6.0",
-    "react-navigation": "^1.0.0-beta.19",
-    "react-navigation-props-mapper": "^0.1.2"
+    "@kiwicom/react-native-app-shared": "^0"
   }
 }

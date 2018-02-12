@@ -2,7 +2,7 @@
 
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import { StackNavigator } from 'react-navigation';
-import { Color } from '@kiwicom/react-native-app-shared';
+import { StackNavigatorOptions } from '@kiwicom/react-native-app-navigation';
 
 import Homepage from '../screens/homepage/Homepage';
 
@@ -16,19 +16,7 @@ export default StackNavigator(
     },
   },
   {
+    ...StackNavigatorOptions,
     initialRouteName: 'Home',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: Color.brand,
-        borderBottomWidth: 0,
-      },
-      headerTitleStyle: {
-        color: '#fff',
-      },
-      headerTintColor: '#fff', // back arrow
-    },
-    cardStyle: {
-      backgroundColor: '#eee',
-    },
   },
 );
