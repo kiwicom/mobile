@@ -17,14 +17,14 @@ type Props = {|
 
 const style = StyleSheet.create({
   imageWrapper: {
-    paddingHorizontal: 10,
+    paddingRight: 10,
   },
   image: {
     width: 50,
     height: 60,
     borderRadius: 2,
   },
-  hotelWrapper: {
+  row: {
     flex: 1,
     flexDirection: 'row',
   },
@@ -43,21 +43,19 @@ class AllHotelsSearchRow extends React.Component<Props> {
     const thumbnailUrl = idx(data, _ => _.hotel.mainPhoto.thumbnailUrl);
 
     return (
-      <SimpleCard
-        separator={false}
-        onPress={this.onGoToSingleHotel}
-        additionalStyles={{ marginTop: 5, flex: 1, flexDirection: 'row' }}
-      >
-        <View style={style.imageWrapper}>
-          <NetworkImage
-            style={style.image}
-            resizeMode="cover"
-            source={{ uri: thumbnailUrl }}
-          />
-        </View>
-        <View style={style.hotelWrapper}>
-          <HotelTitle data={data} />
-          <HotelReviewScore hotel={data.hotel} />
+      <SimpleCard onPress={this.onGoToSingleHotel}>
+        <View style={style.row}>
+          <View style={style.imageWrapper}>
+            <NetworkImage
+              style={style.image}
+              resizeMode="cover"
+              source={{ uri: thumbnailUrl }}
+            />
+          </View>
+          <View style={style.row}>
+            <HotelTitle data={data} />
+            <HotelReviewScore hotel={data.hotel} />
+          </View>
         </View>
       </SimpleCard>
     );

@@ -25,7 +25,13 @@ exports[`renders a "not found" message when no hotel is found 1`] = `
 `;
 
 exports[`renders found hotels 1`] = `
-<ScrollViewMock>
+<ScrollViewMock
+  style={
+    Object {
+      "paddingVertical": 3,
+    }
+  }
+>
   <Relay(AllHotelsSearchRow)
     data={
       Object {

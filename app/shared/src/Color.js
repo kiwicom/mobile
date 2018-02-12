@@ -5,6 +5,7 @@
  */
 const ColorPalette = {
   red: {
+    $50: '#ffebee',
     $100: '#ffcdd2',
     $200: '#ef9a9a',
     $300: '#e57373',
@@ -17,6 +18,7 @@ const ColorPalette = {
   },
 
   green: {
+    $50: '#e8f5e9',
     $100: '#c8e6c9',
     $200: '#a5d6a7',
     $300: '#81c784',
@@ -29,6 +31,7 @@ const ColorPalette = {
   },
 
   orange: {
+    $50: '#ff9800',
     $100: '#ffe0b2',
     $200: '#ffcc80',
     $300: '#ffb74d',
@@ -41,6 +44,7 @@ const ColorPalette = {
   },
 
   grey: {
+    $50: '#fafafa',
     $100: '#f5f5f5',
     $200: '#eeeeee',
     $300: '#e0e0e0',
@@ -51,6 +55,22 @@ const ColorPalette = {
     $800: '#424242',
     $900: '#212121',
   },
+
+  blueGrey: {
+    $50: '#eceff1',
+    $100: '#cfd8dc',
+    $200: '#b0bec5',
+    $300: '#90a4ae',
+    $400: '#78909c',
+    $500: '#607d8b',
+    $600: '#546e7a',
+    $700: '#455a64',
+    $800: '#37474f',
+    $900: '#263238',
+  },
+
+  black: '#000000',
+  white: '#ffffff',
 };
 
 export default {

@@ -8,6 +8,8 @@ exports[`renders text 1`] = `
         "alignSelf": "flex-start",
         "backgroundColor": "#9e9e9e",
         "borderRadius": 2,
+        "marginBottom": 5,
+        "marginRight": 5,
         "paddingHorizontal": 5,
         "paddingVertical": 2,
       },
@@ -20,9 +22,12 @@ exports[`renders text 1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Object {
-        "color": "#fff",
-      }
+      Array [
+        Object {
+          "color": "#fff",
+        },
+        Object {},
+      ]
     }
   >
     default badge
@@ -38,6 +43,8 @@ exports[`renders text with color 1`] = `
         "alignSelf": "flex-start",
         "backgroundColor": "#9e9e9e",
         "borderRadius": 2,
+        "marginBottom": 5,
+        "marginRight": 5,
         "paddingHorizontal": 5,
         "paddingVertical": 2,
       },
@@ -52,9 +59,12 @@ exports[`renders text with color 1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Object {
-        "color": "#fff",
-      }
+      Array [
+        Object {
+          "color": "#fff",
+        },
+        Object {},
+      ]
     }
   >
     badge with color
@@ -70,6 +80,8 @@ exports[`renders very long texts 1`] = `
         "alignSelf": "flex-start",
         "backgroundColor": "#9e9e9e",
         "borderRadius": 2,
+        "marginBottom": 5,
+        "marginRight": 5,
         "paddingHorizontal": 5,
         "paddingVertical": 2,
       },
@@ -82,9 +94,12 @@ exports[`renders very long texts 1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Object {
-        "color": "#fff",
-      }
+      Array [
+        Object {
+          "color": "#fff",
+        },
+        Object {},
+      ]
     }
   >
     very very very very very long badge (adaptable width)

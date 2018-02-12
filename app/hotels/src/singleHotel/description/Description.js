@@ -1,24 +1,27 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Color } from '@kiwicom/react-native-app-shared';
+import {
+  Color,
+  SimpleCard,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 import Facilities from './Facilities';
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 15,
-    backgroundColor: '#ffffff',
-    borderTopColor: '#edeff2',
-    borderTopWidth: 1,
-  },
-  description: {
-    paddingVertical: 15,
+  simpleCardWrapper: {
+    android: {
+      marginTop: 10,
+    },
+    ios: {
+      marginTop: -2,
+    },
   },
   linkView: {
     flexDirection: 'row',
@@ -62,8 +65,8 @@ type Props = {
 
 export function Description({ hotel }: Props) {
   return (
-    <View style={styles.container}>
-      <View style={styles.description}>
+    <View style={styles.simpleCardWrapper}>
+      <SimpleCard>
         <ReadMore
           numberOfLines={5}
           renderTruncatedFooter={renderTruncatedFooter}
@@ -71,8 +74,8 @@ export function Description({ hotel }: Props) {
         >
           <Text>{idx(hotel, _ => _.summary)}</Text>
         </ReadMore>
-      </View>
-      <Facilities facilities={idx(hotel, _ => _.facilities)} />
+        <Facilities facilities={idx(hotel, _ => _.facilities)} />
+      </SimpleCard>
     </View>
   );
 }

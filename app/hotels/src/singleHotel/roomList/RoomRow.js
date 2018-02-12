@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import idx from 'idx';
-import { NetworkImage } from '@kiwicom/react-native-app-shared';
+import { NetworkImage, SimpleCard } from '@kiwicom/react-native-app-shared';
 import ReadMore from 'react-native-read-more-text';
 import { createFragmentContainer, graphql } from 'react-relay';
 
@@ -12,11 +12,6 @@ import BeddingInfo from './BeddingInfo';
 import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    padding: 15,
-    marginBottom: 10,
-  },
   row: {
     flexDirection: 'row',
   },
@@ -96,7 +91,7 @@ export class RoomRow extends React.Component<Props> {
     const selectedCount = idx(this.props.selected, _ => _[originalId]) || 0;
 
     return (
-      <View style={styles.container}>
+      <SimpleCard>
         <View style={styles.row}>
           <NetworkImage
             source={{ uri: thumbnailUrl }}
@@ -128,7 +123,7 @@ export class RoomRow extends React.Component<Props> {
               />
             </View>
           )}
-      </View>
+      </SimpleCard>
     );
   };
 }
