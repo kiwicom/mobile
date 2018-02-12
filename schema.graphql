@@ -847,6 +847,11 @@ type Location {
   city: LocationArea
   subdivision: LocationArea
   country: LocationArea
+  isActive: Boolean
+  stationsCount: Int
+  airportsCount: Int
+  alternativeNames: [String]
+  autonomousTerritory: LocationArea
 }
 
 type LocationArea {
@@ -879,7 +884,21 @@ input LocationInput {
 }
 
 input LocationsOptionsInput {
+  # Language tag in the format of the RFC 5646.
   locale: Locale
+
+  # Desired location type the response should only include.
+  locationType: LocationType
+}
+
+# Type of location
+enum LocationType {
+  airport
+  autonomous_territory
+  city
+  country
+  station
+  subdivision
 }
 
 # Information about pagination in a connection.
@@ -943,7 +962,7 @@ type RootQuery {
 
   # Search for all available hotels in one location. It's necessary to send
   # checkin and checkout dates as well as rooms configuration to get availability info.
-  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int, before: String, last: Int): HotelAvailabilityConnection
+  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection
 
   # Search for single available hotel by its ID. It's necessary to send checkin
   # and checkout dates as well as rooms configuration to get availability info.

@@ -27,3 +27,29 @@ export type QueryRendererProps = {|
     force: boolean,
   |},
 |};
+
+type RerunParam = {
+  param: string,
+  import: string,
+  max_runs: number,
+};
+
+type RefetchOptions = {
+  force?: boolean,
+  rerunParamExperimental?: RerunParam,
+};
+
+export type RelayPaginationProp = {|
+  hasMore: () => boolean,
+  isLoading: () => boolean,
+  loadMore: (
+    pageSize: number,
+    callback: (error: ?Error) => void,
+    options?: RefetchOptions,
+  ) => void,
+  refetchConnection: (
+    totalCount: number,
+    callback: (error: ?Error) => void,
+    refetchVariables: ?any,
+  ) => void,
+|};
