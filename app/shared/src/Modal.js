@@ -15,7 +15,10 @@ type Props = {
 export default function Modal(props: Props) {
   return (
     <ReactModal
+      // NOTE: do not use native driver (see: https://github.com/react-native-community/react-native-modal/issues/92)
       supportedOrientations={['portrait', 'landscape']} // iOS only
+      animationInTiming={150}
+      animationOutTiming={150}
       {...props}
     />
   );
