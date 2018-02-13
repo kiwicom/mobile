@@ -29,13 +29,35 @@ export default class BarPopup extends React.Component<Props> {
   render = () => (
     <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
       <View style={styles.bar}>
-        <LinkButton title="Cancel" onPress={this.onClose} />
-        <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
+        <LinkButton
+          title="Cancel"
+          onPress={this.onClose}
+          styles={cancelLinkButtonStyles}
+        />
+        <LinkButton
+          title={this.props.buttonTitle}
+          onPress={this.onSave}
+          styles={saveLinkButtonStyles}
+        />
       </View>
       {this.props.children}
     </Popup>
   );
 }
+
+const saveLinkButtonStyles = StyleSheet.create({
+  buttonWrapper: {
+    paddingRight: 10,
+    paddingLeft: 50,
+  },
+});
+
+const cancelLinkButtonStyles = StyleSheet.create({
+  buttonWrapper: {
+    paddingRight: 50,
+    paddingLeft: 10,
+  },
+});
 
 const styles = StyleSheet.create({
   bar: {
