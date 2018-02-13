@@ -1,7 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  Platform,
+} from 'react-native';
 import { Color, AgePicker, Icon } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
@@ -35,7 +41,14 @@ export default class AgeControl extends React.Component<Props, State> {
             <Text>{label}</Text>
             <View style={styles.ageView}>
               <Text style={styles.age}>{age}</Text>
-              <Icon name="chevron-right" size={26} style={styles.icon} />
+              {Platform.select({
+                android: (
+                  <Icon name="mode-edit" size={20} style={styles.icon} />
+                ),
+                ios: (
+                  <Icon name="chevron-right" size={26} style={styles.icon} />
+                ),
+              })}
             </View>
           </View>
         </TouchableWithoutFeedback>
