@@ -42,91 +42,97 @@ type Props = {|
  * This filter holds all available hotel filters. Active (selected) filters are
  * rendered first.
  */
-function FilterStripe(props: Props) {
-  const {
-    starsRating,
-    minPrice,
-    maxPrice,
-    freeCancellation,
-    hotelFacilities,
-    minScore,
-  } = props.filter;
+class FilterStripe extends React.Component<Props> {
+  scrollViewRef: React.ElementRef<typeof ScrollView>;
 
-  const filters = [
-    {
-      isActive: props.activeFilters.isStarsFilterActive,
-      Component: (
-        <StarsFilter
-          key="stars"
-          stars={starsRating}
-          onChange={props.onChange}
-          isActive={props.activeFilters.isStarsFilterActive}
-        />
-      ),
-    },
-    {
-      isActive: props.activeFilters.isPriceFilterActive,
-      Component: (
-        <PriceFilter
-          key="price"
-          currency={props.currency}
-          start={minPrice}
-          end={maxPrice}
-          onChange={props.onChange}
-          isActive={props.activeFilters.isPriceFilterActive}
-        />
-      ),
-    },
-    {
-      isActive: props.activeFilters.isMinScoreActive,
-      Component: (
-        <ScoreFilter
-          key="score"
-          minScore={minScore}
-          onChange={props.onChange}
-          isActive={props.activeFilters.isMinScoreActive}
-        />
-      ),
-    },
-    {
-      isActive: props.activeFilters.isHotelFacilitiesActive,
-      Component: (
-        <HotelFacilitiesFilter
-          key="facilities"
-          onChange={props.onChange}
-          facilities={hotelFacilities}
-          isActive={props.activeFilters.isHotelFacilitiesActive}
-        />
-      ),
-    },
-    {
-      isActive: freeCancellation,
-      Component: (
-        <FreeCancellationFilter
-          key="cancellation"
-          onChange={props.onChange}
-          isActive={freeCancellation}
-        />
-      ),
-    },
-  ];
+  componentWillReceiveProps = () => {
+    // FIXME: this (vv) should be called only during filter activation (FilterStripe refactoring needed)
+    this.scrollViewRef.scrollTo({
+      x: 0,
+      y: 0,
+      animated: true,
+    });
+  };
 
-  return (
-    <View style={styles.view}>
-      <ScrollView
-        contentContainerStyle={styles.scrollView}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      >
-        {filters
-          .filter(({ isActive }) => isActive)
-          .map(({ Component }) => Component)}
-        {filters
-          .filter(({ isActive }) => !isActive)
-          .map(({ Component }) => Component)}
-      </ScrollView>
-    </View>
-  );
+  storeScrollViewRef = ref => (this.scrollViewRef = ref);
+
+  render = () => {
+    const filters = [
+      {
+        isActive: this.props.activeFilters.isStarsFilterActive,
+        Component: (
+          <StarsFilter
+            key="stars"
+            stars={this.props.filter.starsRating}
+            onChange={this.props.onChange}
+            isActive={this.props.activeFilters.isStarsFilterActive}
+          />
+        ),
+      },
+      {
+        isActive: this.props.activeFilters.isPriceFilterActive,
+        Component: (
+          <PriceFilter
+            key="price"
+            currency={this.props.currency}
+            start={this.props.filter.minPrice}
+            end={this.props.filter.maxPrice}
+            onChange={this.props.onChange}
+            isActive={this.props.activeFilters.isPriceFilterActive}
+          />
+        ),
+      },
+      {
+        isActive: this.props.activeFilters.isMinScoreActive,
+        Component: (
+          <ScoreFilter
+            key="score"
+            minScore={this.props.filter.minScore}
+            onChange={this.props.onChange}
+            isActive={this.props.activeFilters.isMinScoreActive}
+          />
+        ),
+      },
+      {
+        isActive: this.props.activeFilters.isHotelFacilitiesActive,
+        Component: (
+          <HotelFacilitiesFilter
+            key="facilities"
+            onChange={this.props.onChange}
+            facilities={this.props.filter.hotelFacilities}
+            isActive={this.props.activeFilters.isHotelFacilitiesActive}
+          />
+        ),
+      },
+      {
+        isActive: this.props.filter.freeCancellation,
+        Component: (
+          <FreeCancellationFilter
+            key="cancellation"
+            onChange={this.props.onChange}
+            isActive={this.props.filter.freeCancellation}
+          />
+        ),
+      },
+    ];
+
+    const activeFilters = filters.filter(({ isActive }) => isActive);
+    const inactiveFilters = filters.filter(({ isActive }) => !isActive);
+
+    return (
+      <View style={styles.view}>
+        <ScrollView
+          ref={this.storeScrollViewRef}
+          contentContainerStyle={styles.scrollView}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
+          {activeFilters.map(({ Component }) => Component)}
+          {inactiveFilters.map(({ Component }) => Component)}
+        </ScrollView>
+      </View>
+    );
+  };
 }
 
 const select = ({
