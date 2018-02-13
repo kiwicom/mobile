@@ -1,7 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Platform,
+} from 'react-native';
 
 import Color from '../Color';
 import Icon from '../Icon';
@@ -21,7 +26,14 @@ export default function Checkbox(props: Props) {
         <View style={styles.label}>{props.children}</View>
         {props.isChecked && (
           <View style={styles.check}>
-            <Icon name="check" size={26} color={Color.brand} />
+            <Icon
+              name="check"
+              size={Platform.select({
+                android: 25, // solves checkbox row jumping on Android devices
+                ios: 26,
+              })}
+              color={Color.brand}
+            />
           </View>
         )}
       </View>
