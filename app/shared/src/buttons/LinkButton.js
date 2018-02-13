@@ -7,7 +7,9 @@ import Button, { type Props as ButtonProps } from './Button';
 import Color from '../Color';
 
 export default function LinkButton(buttonProps: ButtonProps) {
-  return <Button {...buttonProps} styles={styles} />;
+  return (
+    <Button {...buttonProps} styles={{ ...styles, ...buttonProps.styles }} />
+  );
 }
 
 const styles = StyleSheet.create({
