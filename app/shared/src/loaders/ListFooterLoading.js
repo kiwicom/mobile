@@ -1,12 +1,13 @@
 // @flow
+
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import IconLoading from './IconLoading';
 
-type Props = {
+type Props = {|
   isLoading: boolean,
-};
+|};
 
 const styles = StyleSheet.create({
   loadingView: {
