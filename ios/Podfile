@@ -1,15 +1,14 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
-target 'reactNativeApp' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
+workspace 'reactNativeApp.xcworkspace'
 
-  # Pods for reactNativeApp
-  rn_path = '../node_modules/react-native'
-  rn_maps_path = '../node_modules/react-native-maps'
+# Pods for reactNativeApp
+rn_path = '../node_modules/react-native'
+rn_maps_path = '../node_modules/react-native-maps'
 
-  pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
+def react_common(rn_path) 
+
   pod 'React', path: rn_path, subspecs: [
     'Core',
     'RCTActionSheet',
@@ -26,15 +25,20 @@ target 'reactNativeApp' do
     'CxxBridge',
   ]
 
+end 
+
+target 'reactNativeApp' do
+  
+  react_common(rn_path)
+
+  pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
   pod 'react-native-maps', path: rn_maps_path
-
-  pod 'GoogleMaps'  # Remove this line if you don't want to support Google Maps on iOS
-  pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support Google Maps on iOS
-
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
+  pod 'RNLogging', :path => '../node_modules/react-native-native-modules'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'GLog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+
 end
 
 post_install do |installer|
@@ -48,26 +52,8 @@ post_install do |installer|
       target.remove_from_project
     end
   end
-  
-  target 'reactNativeApp-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 
   target 'reactNativeAppTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end
-
-target 'reactNativeApp-tvOS' do
-  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
-  # use_frameworks!
-
-  # Pods for reactNativeApp-tvOS
-
-  target 'reactNativeApp-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
