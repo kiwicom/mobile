@@ -31,6 +31,7 @@ export { default as StretchedImage } from './src/image/StretchedImage';
 
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as IconLoading } from './src/loaders/IconLoading';
+export { default as ListFooterLoading } from './src/loaders/ListFooterLoading';
 
 export { default as DropMarker } from './src/map/DropMarker';
 

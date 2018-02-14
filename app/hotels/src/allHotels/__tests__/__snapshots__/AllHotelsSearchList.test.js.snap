@@ -25,28 +25,46 @@ exports[`renders a "not found" message when no hotel is found 1`] = `
 `;
 
 exports[`renders found hotels 1`] = `
-<ScrollViewMock
+<View
   style={
     Object {
+      "flex": 1,
       "paddingVertical": 3,
     }
   }
 >
-  <Relay(AllHotelsSearchRow)
-    data={
-      Object {
-        "id": "hotel1",
-      }
+  <FlatList
+    ListFooterComponent={
+      <ListFooterLoading
+        isLoading={false}
+      />
     }
-    openSingleHotel={[Function]}
-  />
-  <Relay(AllHotelsSearchRow)
     data={
-      Object {
-        "id": "hotel2",
-      }
+      Array [
+        Object {
+          "node": Object {
+            "id": "hotel1",
+          },
+        },
+        Object {
+          "node": Object {
+            "id": "hotel2",
+          },
+        },
+      ]
     }
-    openSingleHotel={[Function]}
+    disableVirtualization={false}
+    horizontal={false}
+    initialNumToRender={10}
+    keyExtractor={[Function]}
+    maxToRenderPerBatch={10}
+    numColumns={1}
+    onEndReached={[Function]}
+    onEndReachedThreshold={2}
+    renderItem={[Function]}
+    scrollEventThrottle={50}
+    updateCellsBatchingPeriod={50}
+    windowSize={21}
   />
-</ScrollViewMock>
+</View>
 `;
