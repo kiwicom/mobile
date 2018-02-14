@@ -28,16 +28,16 @@ export type QueryRendererProps = {|
   |},
 |};
 
-type RerunParam = {
+type RerunParam = {|
   param: string,
   import: string,
   max_runs: number,
-};
+|};
 
-type RefetchOptions = {
+type RefetchOptions = {|
   force?: boolean,
   rerunParamExperimental?: RerunParam,
-};
+|};
 
 export type RelayPaginationProp = {|
   hasMore: () => boolean,
