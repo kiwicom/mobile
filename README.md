@@ -43,6 +43,8 @@ yarn install && ( cd ios ; pod install )
 
 And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application. Similarly for Android (`yarn android`) but you have to open Android emulator first.
 
+You need to make sure that your android emulator image supports google play store. [Look for this symbol](https://stackoverflow.com/questions/38593738/is-google-play-store-supported-in-avd-emulators#answer-43197403)
+
 ## Testing
 
 You will usually need only this during development:
