@@ -71,12 +71,12 @@ export function Location({ hotel, onGoToMap }: Props) {
             typeof longitude === 'number' && (
               <MapView
                 region={{
-                  latitude: latitude + 0.001, // move center little bit down
+                  latitude: latitude,
                   longitude: longitude - 0.005, // move center little bit right
                   latitudeDelta: 0.01,
                   longitudeDelta: 0.01,
                 }}
-                style={StyleSheet.absoluteFillObject}
+                style={[StyleSheet.absoluteFillObject, { bottom: -25 }]}
               >
                 <MapView.Marker
                   coordinate={{
