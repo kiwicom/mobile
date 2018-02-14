@@ -20,10 +20,10 @@ type Props = {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    borderTopColor: '#edeff2',
+    borderTopColor: Color.grey.$200,
     borderTopWidth: 1,
     marginHorizontal: 10,
-    height: 70,
+    height: 65,
   },
   mapIcon: {
     alignSelf: 'center',
