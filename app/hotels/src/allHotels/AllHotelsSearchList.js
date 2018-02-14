@@ -2,38 +2,86 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { createFragmentContainer, graphql } from 'react-relay';
-import { ScrollView, Text } from 'react-native';
-import { CenteredView, Logger } from '@kiwicom/react-native-app-shared';
+import { createPaginationContainer, graphql } from 'react-relay';
+import { Text, FlatList, View, StyleSheet } from 'react-native';
+import {
+  CenteredView,
+  Logger,
+  ListFooterLoading,
+} from '@kiwicom/react-native-app-shared';
 import { connect } from '@kiwicom/react-native-app-redux';
+import type { RelayPaginationProp } from '@kiwicom/react-native-app-relay';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
-import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
+import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList_data.graphql';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
+import { HOTELS_PER_LOAD } from './AllHotelsSearch';
 
 type Props = {|
   openSingleHotel: (id: string) => void,
   data: AllHotelsSearchListProps,
   setCurrentSearchStats: (currentSearchStats: Object) => void,
+  relay: RelayPaginationProp,
 |};
 
-export class AllHotelsSearchList extends React.Component<Props> {
+type Hotel = {|
+  node: {
+    id: String,
+  },
+|};
+
+type State = {|
+  isLoading: boolean,
+|};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical: 3,
+  },
+});
+
+export class AllHotelsSearchList extends React.Component<Props, State> {
+  state = {
+    isLoading: false,
+  };
+
   componentDidMount = () => {
     Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
       type: 'Hotels',
       step: 'results',
     });
 
-    const currentSearchStats = idx(this.props, _ => _.data.stats);
+    const currentSearchStats = idx(
+      this.props,
+      _ => _.data.allAvailableHotels.stats,
+    );
 
     if (currentSearchStats && currentSearchStats.priceMax) {
       this.props.setCurrentSearchStats(currentSearchStats);
     }
   };
 
-  render = () => {
-    const hotels = idx(this.props, _ => _.data.edges) || [];
+  loadMore = () => {
+    if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
+      this.setState({ isLoading: true });
+      this.props.relay.loadMore(HOTELS_PER_LOAD, () => {
+        this.setState({ isLoading: false });
+      });
+    }
+  };
 
+  keyExtractor = (hotel: Hotel) => hotel.node.id;
+
+  renderListItem = ({ item }: { item: Hotel }) => (
+    <AllHotelsSearchRow
+      data={item.node}
+      openSingleHotel={this.props.openSingleHotel}
+    />
+  );
+
+  render = () => {
+    const hotels = idx(this.props, _ => _.data.allAvailableHotels.edges) || [];
     if (hotels.length === 0) {
       return (
         <CenteredView>
@@ -42,26 +90,23 @@ export class AllHotelsSearchList extends React.Component<Props> {
       );
     } else {
       return (
-        <ScrollView style={{ paddingVertical: 3 }}>
-          {hotels.map(edge => {
-            if (edge) {
-              const { node: hotel } = edge;
-              return (
-                <AllHotelsSearchRow
-                  data={hotel}
-                  openSingleHotel={this.props.openSingleHotel}
-                  key={hotel && hotel.id}
-                />
-              );
+        <View style={styles.container}>
+          <FlatList
+            data={hotels}
+            renderItem={this.renderListItem}
+            keyExtractor={this.keyExtractor}
+            onEndReached={this.loadMore}
+            ListFooterComponent={
+              <ListFooterLoading isLoading={this.state.isLoading} />
             }
-          })}
-        </ScrollView>
+          />
+        </View>
       );
     }
   };
 }
 
-const mapDispatchToProps = dispatch => ({
+const actions = dispatch => ({
   setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) =>
     dispatch({
       type: 'setCurrentSearchStats',
@@ -69,20 +114,59 @@ const mapDispatchToProps = dispatch => ({
     }),
 });
 
-export default createFragmentContainer(
-  connect(null, mapDispatchToProps)(AllHotelsSearchList),
-  graphql`
-    fragment AllHotelsSearchList on HotelAvailabilityConnection {
-      edges {
-        node {
-          id
-          ...AllHotelsSearchRow
+export default createPaginationContainer(
+  connect(null, actions)(AllHotelsSearchList),
+  {
+    data: graphql`
+      fragment AllHotelsSearchList_data on RootQuery {
+        allAvailableHotels(
+          search: $search
+          filter: $filter
+          options: $options
+          first: $first
+          after: $after
+        ) @connection(key: "AllHotels_allAvailableHotels") {
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+          }
+          edges {
+            node {
+              id
+              ...AllHotelsSearchRow
+            }
+          }
+          stats {
+            priceMax
+            priceMin
+          }
         }
       }
-      stats {
-        priceMax
-        priceMin
+    `,
+  },
+  {
+    getVariables(props, { count, cursor }, fragmentVariables) {
+      const { search, filter, options } = fragmentVariables;
+      return {
+        first: count,
+        after: cursor,
+        search,
+        filter,
+        options,
+      };
+    },
+    query: graphql`
+      query AllHotelsSearchListQuery(
+        $search: HotelsSearchInput!
+        $filter: HotelsFilterInput!
+        $options: AvailableHotelOptionsInput
+        $after: String
+        $first: Int
+      ) {
+        ...AllHotelsSearchList_data
       }
-    }
-  `,
+    `,
+  },
 );

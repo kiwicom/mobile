@@ -25,6 +25,8 @@ import type {
 } from '../filter/FilterParametersType';
 import { sanitizeHotelFacilities, sanitizeDate } from '../GraphQLSanitizers';
 
+export const HOTELS_PER_LOAD = 50;
+
 type Props = {|
   location: string,
   data: AllHotelsSearchData,
@@ -64,12 +66,14 @@ export class AllHotelsSearch extends React.Component<Props> {
     );
   };
 
-  renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => (
-    <AllHotelsSearchList
-      data={propsFromRenderer.allHotels}
-      openSingleHotel={this.props.openSingleHotel}
-    />
-  );
+  renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => {
+    return (
+      <AllHotelsSearchList
+        data={propsFromRenderer}
+        openSingleHotel={this.props.openSingleHotel}
+      />
+    );
+  };
 
   render() {
     const {
@@ -108,14 +112,10 @@ export class AllHotelsSearch extends React.Component<Props> {
                 $search: HotelsSearchInput!
                 $filter: HotelsFilterInput!
                 $options: AvailableHotelOptionsInput
+                $first: Int
+                $after: String
               ) {
-                allHotels: allAvailableHotels(
-                  search: $search
-                  filter: $filter
-                  options: $options
-                ) {
-                  ...AllHotelsSearchList
-                }
+                ...AllHotelsSearchList_data
               }
             `}
             variables={{
@@ -131,6 +131,7 @@ export class AllHotelsSearch extends React.Component<Props> {
                   filter.hotelFacilities,
                 ),
               },
+              first: HOTELS_PER_LOAD,
               options: { currency },
             }}
             render={this.renderInnerComponent}
