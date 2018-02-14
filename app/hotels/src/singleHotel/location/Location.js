@@ -76,7 +76,7 @@ export function Location({ hotel, onGoToMap }: Props) {
                   latitudeDelta: 0.01,
                   longitudeDelta: 0.01,
                 }}
-                style={StyleSheet.absoluteFillObject}
+                style={[StyleSheet.absoluteFillObject, { bottom: -25 }]}
               >
                 <MapView.Marker
                   coordinate={{
