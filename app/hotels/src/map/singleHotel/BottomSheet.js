@@ -49,7 +49,7 @@ export default class BottomSheet extends React.Component<Props, State> {
     const { children } = this.props;
 
     return (
-      <View style={{ width: this.getWidth() }}>
+      <View style={{ width: this.getWidth(), alignSelf: 'center' }}>
         <CommonBottomSheet openHeight={openHeight} closedHeight={closedHeight}>
           {children}
         </CommonBottomSheet>
