@@ -24,6 +24,9 @@ type Props = {
 export default function FilterButton(props: Props) {
   const { title, isActive, icon, onPress } = props;
   const buttonStyles = {
+    buttonWrapper: {
+      backgroundColor: Color.brand,
+    },
     button: {
       backgroundColor: isActive ? Color.grey.$800 : Color.brand,
       paddingLeft: isActive || !icon ? 10 : 0,
