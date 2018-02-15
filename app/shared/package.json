@@ -9,7 +9,6 @@
     "react-native-datepicker": "^1.6.0",
     "react-native-image-progress": "^1.0.1",
     "react-native-modal": "^4.1.1",
-    "react-native-svg": "5.5.1",
     "react-native-vector-icons": "^4.5.0"
   }
 }
