@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
-import { Icon } from '@kiwicom/react-native-app-shared';
+import { Icon, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import Color from '../Color';
 
@@ -13,9 +12,12 @@ type Props = {|
 const createStyles = (size: number) =>
   StyleSheet.create({
     icon: {
-      position: 'absolute',
-      left: -size / 2,
-      top: -size,
+      ios: {
+        position: 'absolute',
+        left: -size / 2,
+        top: -size,
+      },
+      android: {},
     },
   });
 
