@@ -43,6 +43,10 @@ yarn install && ( cd ios ; pod install )
 
 And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application. Similarly for Android (`yarn android`) but you have to open Android emulator first.
 
+You need to make sure that your Android emulator image supports Google Play Store. [Look for this symbol](https://stackoverflow.com/a/43197403/3135248):
+
+![](./.docs/assets/android-emulator-play-store.png)
+
 ## Testing
 
 You will usually need only this during development:
@@ -269,3 +273,11 @@ export default connect(select, actions)(ComponentWithoutStore);
 ### Improvements necessary for production usage
 
 - persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
+
+
+```
+E/Google Maps Android API: Google Maps Android API v2 only supports devices with OpenGL ES 2.0 and above
+
+                           [ 02-14 14:26:13.325  8212: 8326 D/         ]
+                           HostConnection::get() New Host Connection established 0x849f6a40, tid 8326
+```
