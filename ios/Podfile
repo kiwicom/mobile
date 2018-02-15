@@ -33,7 +33,6 @@ target 'reactNativeApp' do
 
   pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
   pod 'react-native-maps', path: rn_maps_path
-  pod 'RNSVG', :path => '../node_modules/react-native-svg'
   pod 'RNLogging', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'GLog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
