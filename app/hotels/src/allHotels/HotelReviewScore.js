@@ -16,7 +16,6 @@ const style = StyleSheet.create({
   wrapper: {
     justifyContent: 'flex-end',
     alignSelf: 'center',
-    paddingHorizontal: 10,
   },
 });
 
@@ -42,10 +41,10 @@ export class HotelReviewScore extends React.Component<Props> {
       return Color.red.$500;
     }
     if (score >= 3 === score <= 7) {
-      return Color.orange.$500;
+      return '#eb9d08';
     }
     if (score > 7 === score <= 10) {
-      return Color.green.$500;
+      return '#31a11e';
     }
   };
 

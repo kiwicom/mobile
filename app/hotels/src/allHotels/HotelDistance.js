@@ -14,6 +14,7 @@ type Props = {|
 
 const style = StyleSheet.create({
   text: {
+    fontSize: 13,
     color: Color.grey.$600,
   },
 });

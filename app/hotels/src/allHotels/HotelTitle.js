@@ -20,14 +20,20 @@ const style = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
+    fontSize: 15,
+    color: '#30363d',
   },
   rating: {
-    fontSize: 12,
+    fontSize: 13,
     color: Color.grey.$600,
+  },
+  distance: {
+    marginVertical: 3,
   },
   price: {
     fontWeight: 'bold',
     color: Color.brand,
+    fontSize: 13,
   },
 });
 
@@ -51,7 +57,9 @@ function HotelTitle({ data }: Props) {
           <Stars rating={hotelStars} />
         </Text>
       </Text>
-      <Distance hotel={data && data.hotel} />
+      <View style={style.distance}>
+        <Distance hotel={data && data.hotel} />
+      </View>
       <Price
         amount={price.amount}
         currency={price.currency}
