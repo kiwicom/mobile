@@ -17,11 +17,12 @@ type Props = {|
 
 const style = StyleSheet.create({
   imageWrapper: {
-    paddingRight: 10,
+    paddingLeft: 4,
+    paddingRight: 13,
   },
   image: {
     width: 50,
-    height: 60,
+    height: 80,
     borderRadius: 2,
   },
   row: {

@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
   },
   hotelName: {
     fontSize: 16,
+    color: '#30363d',
   },
   metainfo: {
     color: Color.grey.$700,
