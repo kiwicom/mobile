@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import {
   Color,
+  Text,
   SimpleCard,
   StyleSheet,
 } from '@kiwicom/react-native-app-shared';

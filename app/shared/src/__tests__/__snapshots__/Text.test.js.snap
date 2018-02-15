@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with additional style properties 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      Object {
+        "fontWeight": "bold",
+      },
+    ]
+  }
+>
+  IOS
+</Text>
+`;
+
+exports[`renders with the default properties for iOS 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  IOS
+</Text>
+`;
