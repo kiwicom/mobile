@@ -119,16 +119,14 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── .github/                    - GitHub templates (for PR, issues, contributing)
 ├── android/                    - native code for Android
 ├── app/
-│   ├── common/                 - @kiwicom/react-native-app-common
 │   ├── config/                 - @kiwicom/react-native-app-config
 │   │── core/                   - @kiwicom/react-native-app-core (core package)
-│   │   ├── config/                - application (module) configuration
-│   │   └── src/                   - source files
-│   │       └── screens/           - main screens (usually Relay QueryRenderer roots)
 │   ├── examples/               - examples of RN vs. native code interoperability
 │   ├── hotels/                 - @kiwicom/react-native-app-hotels
+│   ├── navigation/             - @kiwicom/react-native-app-navigation
 │   ├── redux/                  - @kiwicom/react-native-app-redux
 │   └── relay/                  - @kiwicom/react-native-app-relay
+│   └── shared/                 - @kiwicom/react-native-app-shared (formerly common)
 ├── ios/                        - native code for iOS
 ├── scripts/                    - support scripts for the whole monorepo
 └── schema.graphql              - GraphQL schema of the backend server
@@ -273,11 +271,3 @@ export default connect(select, actions)(ComponentWithoutStore);
 ### Improvements necessary for production usage
 
 - persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
-
-
-```
-E/Google Maps Android API: Google Maps Android API v2 only supports devices with OpenGL ES 2.0 and above
-
-                           [ 02-14 14:26:13.325  8212: 8326 D/         ]
-                           HostConnection::get() New Host Connection established 0x849f6a40, tid 8326
-```
