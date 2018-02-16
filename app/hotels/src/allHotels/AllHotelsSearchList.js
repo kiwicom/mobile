@@ -47,10 +47,7 @@ export class AllHotelsSearchList extends React.Component<Props, State> {
   };
 
   componentDidMount = () => {
-    Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
-      type: 'Hotels',
-      step: 'results',
-    });
+    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_RESULTS);
 
     const currentSearchStats = idx(
       this.props,

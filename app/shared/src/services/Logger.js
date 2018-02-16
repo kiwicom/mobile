@@ -1,49 +1,37 @@
 // @flow
 
-/**
- * This module will be replaced by code that calls native modules when native
- * guys provides us native code This code can be used as a mock later Example
- * of use:
- *
- * ```
- * import { Logger } from '@kiwicom/react-native-app-shared';
- *
- * Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
- *   type: 'Hotels',
- *   step: 'searchForm',
- *   hasActiveBooking: false,
- * });
- * ```
- *
- * See also in https://confluence.kiwi.com/display/MOB/Semi+native+hotels#Seminativehotels-Logging
- */
+import { NativeModules } from 'react-native';
 
-const Event = {
-  Displayed: 1,
-  Purchased: 2,
+const LoggingModule = NativeModules.RNLoggingModule;
+
+const {
+  ANCILLARY_STEP_DETAILS,
+  ANCILLARY_STEP_PAYMENT,
+  ANCILLARY_STEP_RESULTS,
+  ANCILLARY_STEP_SEARCH_FORM,
+} = LoggingModule;
+
+const Type = {
+  ANCILLARY_STEP_DETAILS,
+  ANCILLARY_STEP_PAYMENT,
+  ANCILLARY_STEP_RESULTS,
+  ANCILLARY_STEP_SEARCH_FORM,
 };
 
-const Category = {
-  Ancillary: 1,
-};
+type LogType = $Keys<typeof Type>;
 
-type EventType = $Values<typeof Event>;
-type CategoryType = $Values<typeof Category>;
+function ancillaryDisplayed(type: LogType) {
+  // second paramater will be removed in the future
+  LoggingModule.ancillaryDisplayed(type, false);
+}
 
-function LogEvent(
-  event: EventType,
-  category: CategoryType,
-  parameters?: Object,
-) {
-  const extendedParameters = {
-    implementation: 'react',
-    ...parameters,
-  };
-  console.log('debug: ', event, category, extendedParameters); //eslint-disable-line
+function ancillaryPurchased(type: LogType) {
+  // second paramater will be removed in the future
+  LoggingModule.ancillaryPurchased(type, false);
 }
 
 export default {
-  Event,
-  Category,
-  LogEvent,
+  Type,
+  ancillaryDisplayed,
+  ancillaryPurchased,
 };

@@ -1,20 +1,26 @@
 // @flow
+import { NativeModules } from 'react-native';
 
 import Logger from '../Logger';
 
-let logs;
-beforeEach(() => {
-  logs = [];
-  jest.spyOn(console, 'log').mockImplementation((...args) => logs.push(args));
-});
+describe('Logger', () => {
+  it('should call RnLoggingModule ancillaryDisplayed', () => {
+    expect(
+      Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS),
+    ).toBeUndefined();
+    expect(NativeModules.RNLoggingModule.ancillaryDisplayed).toBeCalledWith(
+      Logger.Type.ANCILLARY_STEP_DETAILS,
+      false,
+    );
+  });
 
-it('works', () => {
-  expect(
-    Logger.LogEvent(Logger.Event.Purchased, Logger.Category.Ancillary, {
-      type: 'Hotels',
-      step: 'searchForm',
-      hasActiveBooking: false,
-    }),
-  ).toBeUndefined();
-  expect(logs).toMatchSnapshot();
+  it('should call RnLoggingModule ancillaryPurchased', () => {
+    expect(
+      Logger.ancillaryPurchased(Logger.Type.ANCILLARY_STEP_PAYMENT),
+    ).toBeUndefined();
+    expect(NativeModules.RNLoggingModule.ancillaryPurchased).toBeCalledWith(
+      Logger.Type.ANCILLARY_STEP_PAYMENT,
+      false,
+    );
+  });
 });
