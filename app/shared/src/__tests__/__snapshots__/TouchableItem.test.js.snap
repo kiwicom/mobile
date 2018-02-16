@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`throws error for multiple children 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  borderless={false}
+  pressColor="rgba(0, 0, 0, .32)"
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+  >
+    this is OK
+  </Text>
+</TouchableOpacity>
+`;
+
+exports[`throws error for multiple children 2`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  borderless={false}
+  pressColor="rgba(0, 0, 0, .32)"
+>
+  <View>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      line 1
+    </Text>
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+    >
+      line 2
+    </Text>
+  </View>
+</TouchableOpacity>
+`;
+
+exports[`throws error for multiple children 3`] = `"React.Children.only expected to receive a single React element child."`;
