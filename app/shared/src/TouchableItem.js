@@ -68,8 +68,13 @@ export default class TouchableItem extends React.Component<Props> {
       );
     }
 
+    // React.Children.only is only necessary for TouchableNativeFeedback
+    // but since we are building for both platforms it is here as well
+    // to discover this mistake as soon as possible
     return (
-      <TouchableOpacity {...this.props}>{this.props.children}</TouchableOpacity>
+      <TouchableOpacity {...this.props}>
+        {React.Children.only(this.props.children)}
+      </TouchableOpacity>
     );
   };
 }
