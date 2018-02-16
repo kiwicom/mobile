@@ -1,5 +1,7 @@
 // @flow
 
+import './NativeModulesMocks/RNLoggingModule';
+
 beforeEach(() => {
   /**
    * Jest will swallow all `console.log` methods used in our code
