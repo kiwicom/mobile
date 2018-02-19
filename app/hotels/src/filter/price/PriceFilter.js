@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { connect } from '@kiwicom/react-native-app-redux';
+import { Icon, Color } from '@kiwicom/react-native-app-shared';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
@@ -95,7 +96,7 @@ class PriceFilter extends React.Component<Props, State> {
       <View>
         <FilterButton
           title={this.getTitle(start, end, priceMin, priceMax, currency)}
-          icon={{ name: 'attach-money', color: '#fff' }}
+          icon={<Icon name="attach-money" size={17} color={Color.white} />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />

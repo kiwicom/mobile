@@ -3,8 +3,12 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { View, StyleSheet } from 'react-native';
-import { SimpleCard, NetworkImage } from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
+import {
+  SimpleCard,
+  NetworkImage,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
 
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from './HotelReviewScore';
@@ -17,13 +21,17 @@ type Props = {|
 
 const style = StyleSheet.create({
   imageWrapper: {
-    paddingLeft: 4,
-    paddingRight: 13,
+    paddingRight: 10,
   },
   image: {
     width: 50,
-    height: 80,
     borderRadius: 2,
+    android: {
+      height: 80,
+    },
+    ios: {
+      height: 70,
+    },
   },
   row: {
     flex: 1,

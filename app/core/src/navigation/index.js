@@ -39,7 +39,7 @@ const Navigation = StackNavigator(
     },
   },
   {
-    initialRouteName: 'Homepage',
+    initialRouteName: 'HotelsPackage', // FIXME!
     navigationOptions: {
       header: null,
     },

@@ -22,6 +22,12 @@ const styles = StyleSheet.create({
     color: Color.brand,
     fontWeight: '800',
   },
+  adaptableBadge: {
+    backgroundColor: Color.blueGrey.$50,
+  },
+  adaptableBadgeText: {
+    color: '#79818a',
+  },
 });
 
 type ContainerProps = {|
@@ -64,8 +70,8 @@ export class Facilities extends React.Component<Props, State> {
               <AdaptableBadge
                 key={facility.id}
                 text={facility.name || ''}
-                color={Color.blueGrey.$50}
-                textColor="#79818a"
+                style={styles.adaptableBadge}
+                textStyle={styles.adaptableBadgeText}
               />
             )
           );

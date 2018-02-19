@@ -2,7 +2,13 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, Color, StyleSheet } from '@kiwicom/react-native-app-shared';
+import {
+  TouchableItem,
+  Color,
+  StyleSheet,
+  Icon,
+  Text,
+} from '@kiwicom/react-native-app-shared';
 
 import GuestsPopup from './GuestsPopup';
 import type { RoomConfigurationType } from '../SearchParametersType';
@@ -35,15 +41,17 @@ export default class Guests extends React.Component<Props, State> {
     const title = `${guestsCount} Guest${guestsCount !== 1 ? 's' : ''}`;
     return (
       <View>
-        <Button
-          onPress={this.handlePopupToggle}
-          title={title}
-          styles={buttonStyles}
-          icon={{
-            name: 'people',
-            color: Color.grey.$600,
-          }}
-        />
+        <TouchableItem onPress={this.handlePopupToggle} activeOpacity={0.6}>
+          <View style={buttonStyles.buttonWrapper}>
+            <Icon
+              name="people"
+              size={20}
+              color={Color.grey.$600}
+              style={buttonStyles.icon}
+            />
+            <Text>{title}</Text>
+          </View>
+        </TouchableItem>
         <GuestsPopup
           guests={guests}
           onChange={this.handleChange}
@@ -57,31 +65,21 @@ export default class Guests extends React.Component<Props, State> {
 
 const buttonStyles = StyleSheet.create({
   buttonWrapper: {
-    elevation: 3, // Android only
-    margin: 3, // needed in order to see elevation on Android devices
-  },
-  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 12,
+    elevation: 1, // Android only
     backgroundColor: '#fff',
     android: {
-      borderRadius: 2,
+      borderRadius: 3,
+      height: 48,
     },
     ios: {
       borderRadius: 0,
+      height: 47,
     },
-  },
-  buttonText: {
-    color: Color.grey.$900,
-    fontWeight: 'normal',
   },
   icon: {
-    backgroundColor: '#fff',
-    android: {
-      borderTopLeftRadius: 2,
-      borderBottomLeftRadius: 2,
-    },
-    ios: {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
+    marginRight: 5,
   },
 });

@@ -13,7 +13,7 @@ exports[`renders button with custom title 1`] = `
         Object {
           "borderRadius": 2,
           "flexDirection": "row",
-          "height": 40,
+          "height": 36,
         },
         undefined,
       ]
@@ -28,7 +28,7 @@ exports[`renders button with custom title 1`] = `
             "borderRadius": 2,
             "flexGrow": 1,
             "justifyContent": "center",
-            "padding": 10,
+            "padding": 11,
             "paddingLeft": 0,
           },
           undefined,
@@ -43,8 +43,8 @@ exports[`renders button with custom title 1`] = `
           Array [
             Object {
               "color": "#fff",
-              "fontSize": 15,
-              "fontWeight": "bold",
+              "fontSize": 14,
+              "fontWeight": "500",
             },
             undefined,
           ]

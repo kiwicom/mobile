@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import { Icon } from '@kiwicom/react-native-app-shared';
 
 import FilterButton from '../FilterButton';
 
@@ -16,7 +17,7 @@ describe('Filter button', () => {
       title: 'title',
       filter: 'filter',
       onPress: jest.fn(),
-      icon: { name: 'attach-money' },
+      icon: <Icon name="attach-money" size={20} />,
       isActive: false,
     };
     renderer.render(<FilterButton {...props} />);
@@ -28,7 +29,7 @@ describe('Filter button', () => {
       title: 'title',
       filter: 'filter',
       onPress: jest.fn(),
-      icon: { name: 'attach-money' },
+      icon: <Icon name="attach-money" size={20} />,
       isActive: true,
     };
     renderer.render(<FilterButton {...props} />);

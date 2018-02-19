@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import moment from 'moment';
-import { DatePicker } from '@kiwicom/react-native-app-shared';
+import { DatePicker, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import type { OnChangeSearchParams } from './SearchParametersType';
 
@@ -32,11 +32,21 @@ const getDiffFromCheckoutToCheckin = (checkout: moment, checkin: moment) =>
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     flexDirection: 'row',
   },
-  datePicker: {
-    flex: 1,
+  leftDatePickerWrapper: {
+    flexGrow: 1,
+    minWidth: 110, // minimum required for 'DD/MM/YYYY'
+    android: {
+      marginRight: 8,
+    },
+    ios: {
+      marginRight: 10,
+    },
+  },
+  rightDatePickerWrapper: {
+    flexGrow: 1,
     minWidth: 110, // minimum required for 'DD/MM/YYYY'
   },
 });
@@ -97,30 +107,32 @@ export default class DateInput extends React.Component<Props> {
           Booking.com API has a max 360 days in the future requirement for checkout
           Max allowed checkin should then be 359 days in the future
         */}
-        <DatePicker
-          placeholder="Start date"
-          format={DISPLAY_DATE_FORMAT}
-          date={props.checkin}
-          minDate={new Date()}
-          maxDate={moment()
-            .add(359, 'days')
-            .toDate()}
-          onDateChange={this.handleCheckinChange}
-          style={styles.datePicker}
-        />
-        <DatePicker
-          placeholder="End date"
-          format={DISPLAY_DATE_FORMAT}
-          date={props.checkout}
-          minDate={moment()
-            .add(1, 'day')
-            .toDate()}
-          maxDate={moment()
-            .add(360, 'days')
-            .toDate()}
-          onDateChange={this.handleCheckoutChange}
-          style={styles.datePicker}
-        />
+        <View style={styles.leftDatePickerWrapper}>
+          <DatePicker
+            placeholder="Start date"
+            format={DISPLAY_DATE_FORMAT}
+            date={props.checkin}
+            minDate={new Date()}
+            maxDate={moment()
+              .add(359, 'days')
+              .toDate()}
+            onDateChange={this.handleCheckinChange}
+          />
+        </View>
+        <View style={styles.rightDatePickerWrapper}>
+          <DatePicker
+            placeholder="End date"
+            format={DISPLAY_DATE_FORMAT}
+            date={props.checkout}
+            minDate={moment()
+              .add(1, 'day')
+              .toDate()}
+            maxDate={moment()
+              .add(360, 'days')
+              .toDate()}
+            onDateChange={this.handleCheckoutChange}
+          />
+        </View>
       </View>
     );
   }

@@ -3,8 +3,13 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Text, View, StyleSheet } from 'react-native';
-import { Color, Price, Stars } from '@kiwicom/react-native-app-shared';
+import { Text, View } from 'react-native';
+import {
+  Color,
+  Price,
+  Stars,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
 
 import Distance from './HotelDistance';
 import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';
@@ -15,25 +20,41 @@ type Props = {|
 
 const style = StyleSheet.create({
   wrapper: {
-    flexDirection: 'column',
     flex: 1,
+    flexDirection: 'column',
+    alignSelf: 'center',
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 15,
     color: '#30363d',
+    android: {
+      fontSize: 15,
+    },
+    ios: {
+      fontSize: 14,
+    },
   },
   rating: {
-    fontSize: 13,
     color: Color.grey.$600,
+    android: {
+      fontSize: 13,
+    },
+    ios: {
+      fontSize: 12,
+    },
   },
   distance: {
-    marginVertical: 3,
+    marginVertical: 4,
   },
   price: {
     fontWeight: 'bold',
     color: Color.brand,
-    fontSize: 13,
+    android: {
+      fontSize: 13,
+    },
+    ios: {
+      fontSize: 12,
+    },
   },
 });
 

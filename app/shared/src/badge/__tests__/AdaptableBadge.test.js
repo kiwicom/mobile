@@ -11,7 +11,12 @@ it('renders text', () => {
 
 it('renders text with color', () => {
   PlaygroundRenderer.render(
-    <AdaptableBadge text="badge with color" color="red" />,
+    <AdaptableBadge
+      text="badge with color"
+      style={{
+        backgroundColor: 'red',
+      }}
+    />,
   );
 });
 

@@ -2,13 +2,14 @@
 
 import * as React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { type StylePropType } from '@kiwicom/react-native-app-shared';
 
 import Color from '../Color';
 
 type Props = {|
   text: string,
-  color?: ?string,
-  textColor?: ?string,
+  style?: StylePropType,
+  textStyle?: StylePropType,
 |};
 
 const style = StyleSheet.create({
@@ -40,25 +41,10 @@ const style = StyleSheet.create({
  * | UNVERIFIED with very long text to make it clear |
  * `-------------------------------------------------`
  */
-export default class AdaptableBadge extends React.Component<Props> {
-  render = () => {
-    const additionalContainerStyles = {};
-    const additionalTextStyles = {};
-
-    if (this.props.color) {
-      additionalContainerStyles.backgroundColor = this.props.color;
-    }
-
-    if (this.props.textColor) {
-      additionalTextStyles.color = this.props.textColor;
-    }
-
-    return (
-      <View style={[style.container, additionalContainerStyles]}>
-        <Text style={[style.text, additionalTextStyles]}>
-          {this.props.text}
-        </Text>
-      </View>
-    );
-  };
+export default function AdaptableBadge(props: Props) {
+  return (
+    <View style={[style.container, props.style]}>
+      <Text style={[style.text, props.textStyle]}>{props.text}</Text>
+    </View>
+  );
 }

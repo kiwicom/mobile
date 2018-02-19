@@ -10,16 +10,16 @@ beforeEach(() => {
 
 describe('formatScore', () => {
   it('returns correctly formatted score', () => {
-    expect(HRS.formatScore(1)).toBe('1.0');
-    expect(HRS.formatScore(1.0)).toBe('1.0');
-    expect(HRS.formatScore(1.2)).toBe('1.2');
-    expect(HRS.formatScore(1.25)).toBe('1.3');
+    expect(HRS.formatScore(1)).toBe('1,0');
+    expect(HRS.formatScore(1.0)).toBe('1,0');
+    expect(HRS.formatScore(1.2)).toBe('1,2');
+    expect(HRS.formatScore(1.25)).toBe('1,3');
   });
 });
 
 describe('calculateColor', () => {
   it('returns correct score color', () => {
-    const RED = '#f44336';
+    const RED = '#d0021b';
     const ORANGE = '#eb9d08';
     const GREEN = '#31a11e';
 

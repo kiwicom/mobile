@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import { Icon, Color } from '@kiwicom/react-native-app-shared';
 
 import ScorePopup from './ScorePopup';
 import FilterButton from '../FilterButton';
@@ -62,7 +63,7 @@ export default class ScoreFilter extends React.Component<Props, State> {
       <View>
         <FilterButton
           title={this.getTitle(minScore)}
-          icon={{ name: 'thumb-up', color: '#fff' }}
+          icon={<Icon name="thumb-up" size={13} color={Color.white} />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />

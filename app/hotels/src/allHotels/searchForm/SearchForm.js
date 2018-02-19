@@ -1,8 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { TextInput, Color, Logger } from '@kiwicom/react-native-app-shared';
-import { View, StyleSheet } from 'react-native';
+import {
+  TextInput,
+  Color,
+  Logger,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
 
 import DateInput from './DateInput';
 import Guests from './guests/Guests';
@@ -14,11 +19,31 @@ import type {
 
 const styles = StyleSheet.create({
   form: {
-    padding: 10,
     backgroundColor: Color.brandSecondary,
+    android: {
+      padding: 16,
+    },
+    ios: {
+      padding: 10,
+    },
   },
-  row: {
+  lastRow: {
     flexDirection: 'row',
+    android: {
+      marginTop: 8,
+    },
+    ios: {
+      marginTop: 10,
+    },
+  },
+  dateInput: {
+    flex: 1,
+    android: {
+      marginRight: 8,
+    },
+    ios: {
+      marginRight: 10,
+    },
   },
 });
 
@@ -56,12 +81,14 @@ export default class SearchForm extends React.Component<Props> {
           placeholder="Where do you go?"
           iconName="location-city"
         />
-        <View style={styles.row}>
-          <DateInput
-            checkin={search.checkin}
-            checkout={search.checkout}
-            onChange={onChange}
-          />
+        <View style={styles.lastRow}>
+          <View style={styles.dateInput}>
+            <DateInput
+              checkin={search.checkin}
+              checkout={search.checkout}
+              onChange={onChange}
+            />
+          </View>
           <Guests
             guests={search.roomsConfiguration}
             onChange={this.handleGuestsChange}

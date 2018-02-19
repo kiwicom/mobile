@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import { Icon, Color } from '@kiwicom/react-native-app-shared';
 
 import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';
@@ -68,7 +69,7 @@ export default class StarsFilter extends React.Component<Props, State> {
       <View>
         <FilterButton
           title={this.getTitle(this.props.stars)}
-          icon={{ name: 'star', color: '#fff' }}
+          icon={<Icon name="star" size={16} color={Color.white} />}
           isActive={this.props.isActive}
           onPress={this.filterButtonClicked}
         />
