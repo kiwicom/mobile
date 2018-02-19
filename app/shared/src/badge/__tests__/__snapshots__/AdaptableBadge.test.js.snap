@@ -13,7 +13,7 @@ exports[`renders text 1`] = `
         "paddingHorizontal": 5,
         "paddingVertical": 2,
       },
-      Object {},
+      undefined,
     ]
   }
 >
@@ -26,7 +26,7 @@ exports[`renders text 1`] = `
         Object {
           "color": "#fff",
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -63,7 +63,7 @@ exports[`renders text with color 1`] = `
         Object {
           "color": "#fff",
         },
-        Object {},
+        undefined,
       ]
     }
   >
@@ -85,7 +85,7 @@ exports[`renders very long texts 1`] = `
         "paddingHorizontal": 5,
         "paddingVertical": 2,
       },
-      Object {},
+      undefined,
     ]
   }
 >
@@ -98,7 +98,7 @@ exports[`renders very long texts 1`] = `
         Object {
           "color": "#fff",
         },
-        Object {},
+        undefined,
       ]
     }
   >

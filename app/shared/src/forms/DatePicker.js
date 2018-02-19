@@ -2,58 +2,78 @@
 
 import * as React from 'react';
 import OriginalDatePicker from 'react-native-datepicker';
-import defaultsDeep from 'lodash/defaultsDeep';
+import { View } from 'react-native';
 
-import { styles } from './TextInput';
 import StyleSheet from '../PlatformStyleSheet';
 
 const customStyles = StyleSheet.create({
   // date input wrapper (View)
   dateInput: {
-    flex: styles.input.flex,
-    height: styles.wrapper.height,
     borderWidth: 0,
-    padding: styles.input.padding,
-    backgroundColor: styles.input.backgroundColor,
+    padding: 10,
+    backgroundColor: 'transparent',
   },
   // text inside of the date input wrapper (Text)
   dateText: {
-    color: styles.input.color,
-    fontSize: styles.input.fontSize,
+    color: '#30363d',
+    android: {
+      fontSize: 16,
+    },
+    ios: {
+      fontSize: 14,
+    },
   },
   // touchable area around the 'dateInput' (View)
   dateTouchBody: {
-    flexDirection: 'row',
-    height: 40,
+    // flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-    elevation: 3, // Android only
-    margin: 3, // needed in order to see elevation on Android
     android: {
-      borderRadius: 2,
+      borderRadius: 3,
+      height: 48,
     },
     ios: {
       borderRadius: 0,
+      height: 47,
+    },
+  },
+  originalDatePickerWrapper: {
+    elevation: 1,
+    android: {
+      borderRadius: 3,
+      height: 48,
+    },
+    ios: {
+      borderRadius: 0,
+      height: 47,
     },
   },
 });
 
-const defaultProps = {
-  mode: 'date',
-  placeholder: 'select date',
-  format: 'YYYY-MM-DD',
-  confirmBtnText: 'Select date',
-  cancelBtnText: 'Cancel',
-  showIcon: false,
-  duration: 100,
-  style: {
-    // styles for 'TouchableComponent' around date picker
-    width: null, // removes default width
-  },
-  customStyles,
-};
+export default class DatePicker extends React.Component<{}> {
+  static defaultProps = {
+    mode: 'date',
+    placeholder: 'select date',
+    format: 'YYYY-MM-DD',
+    confirmBtnText: 'Select date',
+    cancelBtnText: 'Cancel',
+    showIcon: false,
+    duration: 100,
+    customStyles,
+  };
 
-export default function DatePicker(props: Object) {
-  return <OriginalDatePicker {...defaultsDeep({}, props, defaultProps)} />;
+  render = () => {
+    return (
+      <View style={customStyles.originalDatePickerWrapper}>
+        <OriginalDatePicker
+          {...this.props}
+          style={{
+            // styles for 'TouchableComponent' around date picker
+            width: null, // removes default width
+          }}
+        />
+      </View>
+    );
+  };
 }

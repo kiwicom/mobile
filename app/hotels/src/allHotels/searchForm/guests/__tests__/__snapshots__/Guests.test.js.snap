@@ -2,37 +2,40 @@
 
 exports[`Guests Render all inputs 1`] = `
 <View>
-  <Button
-    icon={
-      Object {
-        "color": "#757575",
-        "name": "people",
-      }
-    }
+  <TouchableItem
+    activeOpacity={0.6}
+    borderless={false}
     onPress={[Function]}
-    styles={
-      Object {
-        "button": Object {
+    pressColor="rgba(0, 0, 0, .32)"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
           "backgroundColor": "#fff",
           "borderRadius": 0,
-        },
-        "buttonText": Object {
-          "color": "#212121",
-          "fontWeight": "normal",
-        },
-        "buttonWrapper": Object {
-          "elevation": 3,
-          "margin": 3,
-        },
-        "icon": Object {
-          "backgroundColor": "#fff",
-          "borderBottomLeftRadius": 0,
-          "borderTopLeftRadius": 0,
-        },
+          "elevation": 1,
+          "flexDirection": "row",
+          "height": 47,
+          "padding": 12,
+        }
       }
-    }
-    title="3 Guests"
-  />
+    >
+      <Icon
+        color="#757575"
+        name="people"
+        size={20}
+        style={
+          Object {
+            "marginRight": 5,
+          }
+        }
+      />
+      <Text>
+        3 Guests
+      </Text>
+    </View>
+  </TouchableItem>
   <GuestsPopup
     guests={
       Object {

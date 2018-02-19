@@ -3,8 +3,8 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { View, StyleSheet } from 'react-native';
-import { Color, AdaptableBadge } from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
+import { AdaptableBadge, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import type { HotelReviewScore_hotel } from './__generated__/HotelReviewScore_hotel.graphql';
 
@@ -17,6 +17,22 @@ const style = StyleSheet.create({
     justifyContent: 'flex-end',
     alignSelf: 'center',
   },
+  adaptableBadge: {
+    android: {
+      paddingHorizontal: 8,
+    },
+    ios: {
+      paddingHorizontal: 10,
+    },
+  },
+  adaptableBadgeText: {
+    android: {
+      fontWeight: 'bold',
+    },
+    ios: {
+      fontWeight: '600',
+    },
+  },
 });
 
 export class HotelReviewScore extends React.Component<Props> {
@@ -24,7 +40,9 @@ export class HotelReviewScore extends React.Component<Props> {
    * One decimal point with trailing zero.
    */
   formatScore = (score: number): string =>
-    parseFloat(Math.round(score * 10) / 10).toFixed(1);
+    parseFloat(Math.round(score * 10) / 10)
+      .toFixed(1)
+      .replace('.', ',');
 
   /**
    * Score interval is <0;10> and color ranges are:
@@ -38,7 +56,7 @@ export class HotelReviewScore extends React.Component<Props> {
    */
   calculateColor = (score: number): ?string => {
     if (score >= 0 === score < 3) {
-      return Color.red.$500;
+      return '#d0021b';
     }
     if (score >= 3 === score <= 7) {
       return '#eb9d08';
@@ -58,7 +76,13 @@ export class HotelReviewScore extends React.Component<Props> {
       <View style={style.wrapper}>
         <AdaptableBadge
           text={this.formatScore(reviewScore)}
-          color={this.calculateColor(reviewScore)}
+          style={[
+            style.adaptableBadge,
+            {
+              backgroundColor: this.calculateColor(reviewScore),
+            },
+          ]}
+          textStyle={style.adaptableBadgeText}
         />
       </View>
     );

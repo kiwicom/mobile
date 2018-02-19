@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from '@kiwicom/react-native-app-redux';
+import { StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
@@ -18,17 +19,23 @@ import type {
 } from './FilterParametersType';
 import type { HotelsReducerState } from '../HotelsReducer';
 
-const styles = {
+const styles = StyleSheet.create({
   view: {
     width: '100%',
     backgroundColor: '#fff',
-    elevation: 3, // Android
+    elevation: 1, // Android
   },
   scrollView: {
-    paddingHorizontal: 6,
-    paddingVertical: 3,
+    android: {
+      paddingHorizontal: 13,
+      paddingVertical: 5,
+    },
+    ios: {
+      paddingHorizontal: 7,
+      paddingVertical: 4,
+    },
   },
-};
+});
 
 type Props = {|
   onChange: OnChangeFilterParams => void,

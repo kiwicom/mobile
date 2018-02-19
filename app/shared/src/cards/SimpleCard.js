@@ -14,9 +14,9 @@ const createStyle = () => {
 
   if (Platform.OS === 'android') {
     additionalWrapperStyles = {
-      marginHorizontal: 10,
-      elevation: 2,
-      borderRadius: 2,
+      marginHorizontal: 8,
+      elevation: 1,
+      borderRadius: 3,
     };
   }
 

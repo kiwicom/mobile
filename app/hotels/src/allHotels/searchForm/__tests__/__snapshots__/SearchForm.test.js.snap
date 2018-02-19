@@ -19,14 +19,24 @@ exports[`SearchForm Render all inputs 1`] = `
     style={
       Object {
         "flexDirection": "row",
+        "marginTop": 10,
       }
     }
   >
-    <DateInput
-      checkin={1970-01-01T00:00:00.001Z}
-      checkout={1970-01-01T00:00:00.002Z}
-      onChange={[MockFunction]}
-    />
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "marginRight": 10,
+        }
+      }
+    >
+      <DateInput
+        checkin={1970-01-01T00:00:00.001Z}
+        checkout={1970-01-01T00:00:00.002Z}
+        onChange={[MockFunction]}
+      />
+    </View>
     <Guests
       guests={
         Object {

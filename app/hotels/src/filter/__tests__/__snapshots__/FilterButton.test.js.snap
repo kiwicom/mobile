@@ -11,9 +11,10 @@ exports[`Filter button render active button 1`] = `
 >
   <Button
     icon={
-      Object {
-        "name": "attach-money",
-      }
+      <Icon
+        name="attach-money"
+        size={20}
+      />
     }
     onPress={[MockFunction]}
     styles={
@@ -46,9 +47,10 @@ exports[`Filter button render default button 1`] = `
 >
   <Button
     icon={
-      Object {
-        "name": "attach-money",
-      }
+      <Icon
+        name="attach-money"
+        size={20}
+      />
     }
     onPress={[MockFunction]}
     styles={
