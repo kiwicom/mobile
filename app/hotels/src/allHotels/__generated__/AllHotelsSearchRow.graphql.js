@@ -9,7 +9,7 @@ export type AllHotelsSearchRow = {|
   +hotel: ?{|
     +id: string;
     +mainPhoto: ?{|
-      +thumbnailUrl: ?string;
+      +lowResUrl: ?string;
     |};
   |};
 |};
@@ -53,7 +53,7 @@ const node: ConcreteFragment = {
               "kind": "ScalarField",
               "alias": null,
               "args": null,
-              "name": "thumbnailUrl",
+              "name": "lowResUrl",
               "storageKey": null
             }
           ],

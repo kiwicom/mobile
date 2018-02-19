@@ -49,7 +49,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
 
   render = () => {
     const { data } = this.props;
-    const thumbnailUrl = idx(data, _ => _.hotel.mainPhoto.thumbnailUrl);
+    const lowResUrl = idx(data, _ => _.hotel.mainPhoto.lowResUrl);
 
     return (
       <SimpleCard onPress={this.onGoToSingleHotel}>
@@ -58,7 +58,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
             <NetworkImage
               style={style.image}
               resizeMode="cover"
-              source={{ uri: thumbnailUrl }}
+              source={{ uri: lowResUrl }}
             />
           </View>
           <View style={style.row}>
@@ -79,7 +79,7 @@ export default createFragmentContainer(
       hotel {
         id
         mainPhoto {
-          thumbnailUrl
+          lowResUrl
         }
         ...HotelReviewScore_hotel
       }
