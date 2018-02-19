@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bc9ca3e0d47b5fbb01a7d4250d453fe7
+ * @relayHash dec777b467869e1ee7dd60bd87c9958f
  */
 
 /* eslint-disable */
@@ -47,7 +47,7 @@ fragment AllHotelsSearchRow on HotelAvailability {
   hotel {
     id
     mainPhoto {
-      thumbnailUrl
+      lowResUrl
       id
     }
     ...HotelReviewScore_hotel
@@ -359,7 +359,7 @@ const node: ConcreteBatch = {
                             "kind": "ScalarField",
                             "alias": null,
                             "args": null,
-                            "name": "thumbnailUrl",
+                            "name": "lowResUrl",
                             "storageKey": null
                           },
                           {
@@ -480,7 +480,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...AllHotelsSearchList_data\n}\n\nfragment AllHotelsSearchList_data on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        __typename\n        id\n        ...AllHotelsSearchRow\n      }\n      cursor\n    }\n    stats {\n      priceMax\n      priceMin\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n"
+  "text": "query AllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...AllHotelsSearchList_data\n}\n\nfragment AllHotelsSearchList_data on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        __typename\n        id\n        ...AllHotelsSearchRow\n      }\n      cursor\n    }\n    stats {\n      priceMax\n      priceMin\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      lowResUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n"
 };
 
 module.exports = node;
