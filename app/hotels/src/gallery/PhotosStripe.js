@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { NetworkImage } from '@kiwicom/react-native-app-shared';
 
@@ -14,7 +14,25 @@ type Props = {|
   onClose: () => void,
 |};
 
-export default class PhotosStripe extends React.Component<Props> {
+type State = {|
+  key: number,
+|};
+
+/* 
+  Need to trigger a re-render on android to show photo
+  https://github.com/leecade/react-native-swiper/issues/227
+*/
+export default class PhotosStripe extends React.Component<Props, State> {
+  state = {
+    key: Math.random(),
+  };
+
+  componentDidMount = () => {
+    if (Platform.OS === 'android') {
+      setTimeout(() => this.setState({ key: Math.random() }));
+    }
+  };
+
   renderPagination = (index: number, total: number) => {
     return (
       <View style={{ position: 'absolute', top: 20, width: '100%' }}>
@@ -29,7 +47,11 @@ export default class PhotosStripe extends React.Component<Props> {
   };
 
   render = () => (
-    <Swiper renderPagination={this.renderPagination} index={this.props.index}>
+    <Swiper
+      renderPagination={this.renderPagination}
+      index={this.props.index}
+      key={this.state.key}
+    >
       {this.props.imageUrls.map(imageUrl => (
         <View style={styles.slide} key={imageUrl}>
           <NetworkImage
