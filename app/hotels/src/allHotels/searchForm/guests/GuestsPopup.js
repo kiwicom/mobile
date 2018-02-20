@@ -78,11 +78,12 @@ export default class GuestsPopup extends React.Component<Props, State> {
       // Decremented
       children.pop();
     }
-    this.setState(({ guests }) => ({
+    this.setState(({ guests, isMissingAge }) => ({
       guests: {
         adultsCount: guests.adultsCount,
         children,
       },
+      isMissingAge: children.length ? isMissingAge : false,
     }));
   };
 
