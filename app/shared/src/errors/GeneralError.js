@@ -8,10 +8,19 @@ import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
+  // error message visible by user
   errorMessage: string,
+
+  // error message used for internal purposes (logging)
+  privateErrorInformation?: Object,
 |};
 
-export default function GeneralError({ errorMessage }: Props) {
+export default function GeneralError({
+  errorMessage,
+  privateErrorInformation,
+}: Props) {
+  console.error(privateErrorInformation);
+
   return (
     <CenteredView>
       <Text style={styleSheet.text}>{errorMessage}</Text>
