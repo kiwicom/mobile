@@ -16,6 +16,8 @@ export type Props = {
     buttonText?: Object,
     icon?: Object,
   |},
+
+  // deprecated (will be replaced by ButtonGroup component, see IncrementDecrementButtons implementation)
   icon?: React.Element<typeof Icon>,
 };
 

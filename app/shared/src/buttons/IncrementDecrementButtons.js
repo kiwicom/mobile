@@ -1,86 +1,106 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, Text } from 'react-native';
 
-import Button from './Button';
 import Color from '../Color';
+import TouchableItem from '../TouchableItem';
+import StyleSheet from '../PlatformStyleSheet';
 
-type Props = {|
+const Button = ({
+  text,
+  touchable,
+  onPress,
+}: {|
+  text: string,
+  touchable: boolean,
+  onPress: () => void,
+|}) => {
+  const inner = (
+    <View style={styleSheet.button}>
+      <Text
+        textAnchor="middle"
+        style={[
+          styleSheet.buttonText,
+          {
+            opacity: touchable ? 1 : 0.5,
+          },
+        ]}
+      >
+        {text}
+      </Text>
+    </View>
+  );
+
+  if (touchable) {
+    return (
+      <TouchableItem activeOpacity={0.6} onPress={onPress}>
+        {inner}
+      </TouchableItem>
+    );
+  }
+
+  return inner;
+};
+
+export default function IncrementDecrementButtons(props: {|
   onIncrement: () => void,
   onDecrement: () => void,
   number: number,
   min?: number,
   max?: number,
-|};
-
-export default function IncrementDecrementButtons(props: Props) {
+|}) {
   const disableDecrement = props.number === props.min;
   const disableIncrement = props.number === props.max;
-  const styles = createStyles(disableDecrement, disableIncrement);
 
   return (
-    <View style={styles.buttonsGroup}>
+    <View style={styleSheet.buttonsGroup}>
+      <View style={styleSheet.buttonLeft}>
+        <Button
+          text="–"
+          touchable={!disableDecrement}
+          onPress={props.onDecrement}
+        />
+      </View>
       <Button
-        title="−" // minus sign, not hyphen
-        onPress={!disableDecrement ? props.onDecrement : undefined}
-        styles={{
-          button: styles.decrementButton,
-          buttonText: styles.decrementButtonText,
-        }}
-      />
-      <Button
-        title="+"
-        onPress={!disableIncrement ? props.onIncrement : undefined}
-        styles={{
-          button: styles.incrementButton,
-          buttonText: styles.incrementButtonText,
-        }}
+        text="+"
+        touchable={!disableIncrement}
+        onPress={props.onIncrement}
       />
     </View>
   );
 }
 
-function createStyles(disableDecrement: boolean, disableIncrement: boolean) {
-  const buttonStyle = {
+const styleSheet = StyleSheet.create({
+  buttonsGroup: {
+    flexDirection: 'row',
     borderWidth: 1,
     borderColor: Color.brand,
-    backgroundColor: '#fff',
-    height: 26,
-    width: 40,
-    borderRadius: 3,
-    padding: 2,
-    flexGrow: 0,
-  };
-  const buttonText = {
+    height: 29,
+    width: 94, // 47 * 2 (see button)
+    borderRadius: 4,
+    backgroundColor: Color.white,
+  },
+  button: {
     flex: 1,
-    lineHeight: Platform.OS === 'ios' ? 24 : 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 47, // 94 / 2 (see buttonsGroup)
+  },
+  buttonLeft: {
+    alignItems: 'center',
+    borderRightWidth: 1,
+    borderColor: Color.brand,
+  },
+  buttonText: {
     color: Color.brand,
-    fontSize: 28,
-    fontWeight: '300',
-  };
-  return StyleSheet.create({
-    buttonsGroup: {
-      flexDirection: 'row',
+    fontSize: 25,
+    // this helps to vertically align "+" and "-" on both platforms
+    android: {
+      lineHeight: 16,
     },
-    incrementButton: {
-      ...buttonStyle,
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
+    ios: {
+      lineHeight: 25,
     },
-    decrementButton: {
-      ...buttonStyle,
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-      borderRightWidth: 0,
-    },
-    incrementButtonText: {
-      ...buttonText,
-      opacity: disableIncrement ? 0.55 : 1,
-    },
-    decrementButtonText: {
-      ...buttonText,
-      opacity: disableDecrement ? 0.55 : 1,
-    },
-  });
-}
+  },
+});
