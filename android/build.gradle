@@ -8,7 +8,6 @@ buildscript {
         // https://stackoverflow.com/a/47456492/3135248
         google()
         jcenter()
-        google()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradlePluginVersion"
