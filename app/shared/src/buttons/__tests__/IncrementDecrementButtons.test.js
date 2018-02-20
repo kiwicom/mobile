@@ -4,7 +4,7 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 
 import IncrementDecrementButtons from '../IncrementDecrementButtons';
-import Button from '../Button';
+import TouchableItem from '../../TouchableItem';
 
 const renderButtons = (
   onIncrement: Function,
@@ -29,7 +29,7 @@ describe('IncrementDecrementButtons', () => {
     const testRenderer = renderButtons(onIncrement, onDecrement, 2);
     const testInstance = testRenderer.root;
 
-    testInstance.findAllByType(Button)[1].props.onPress();
+    testInstance.findAllByType(TouchableItem)[1].props.onPress();
 
     expect(onIncrement).toBeCalled();
     expect(onDecrement).not.toBeCalled();
@@ -41,7 +41,7 @@ describe('IncrementDecrementButtons', () => {
     const testRenderer = renderButtons(onIncrement, onDecrement, 2);
     const testInstance = testRenderer.root;
 
-    testInstance.findAllByType(Button)[0].props.onPress();
+    testInstance.findAllByType(TouchableItem)[0].props.onPress();
 
     expect(onDecrement).toBeCalled();
     expect(onIncrement).not.toBeCalled();
@@ -53,8 +53,9 @@ describe('IncrementDecrementButtons', () => {
     const testRenderer = renderButtons(onIncrement, onDecrement, 1);
     const testInstance = testRenderer.root;
 
-    expect(testInstance.findAllByType(Button)[0].props.onPress).toBeUndefined();
-    expect(testInstance.findAllByType(Button)[1].props.onPress).toBe(
+    // find a single descendant test instance with the provided type
+    // if there is not exactly one test instance with the provided type, it will throw an error
+    expect(testInstance.findByType(TouchableItem).props.onPress).toBe(
       onIncrement,
     );
   });
@@ -65,8 +66,9 @@ describe('IncrementDecrementButtons', () => {
     const testRenderer = renderButtons(onIncrement, onDecrement, 3);
     const testInstance = testRenderer.root;
 
-    expect(testInstance.findAllByType(Button)[1].props.onPress).toBeUndefined();
-    expect(testInstance.findAllByType(Button)[0].props.onPress).toBe(
+    // find a single descendant test instance with the provided type
+    // if there is not exactly one test instance with the provided type, it will throw an error
+    expect(testInstance.findByType(TouchableItem).props.onPress).toBe(
       onDecrement,
     );
   });
