@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import ReactNative from 'react-native';
-import {
-  StyleSheet,
-  type StylePropType,
-} from '@kiwicom/react-native-app-shared';
+
+import StyleSheet from './PlatformStyleSheet';
+import type { StylePropType } from '../types/Styles';
 
 type Props = {|
   children: React.Node,
@@ -20,10 +19,8 @@ export default function Text({ children, style }: Props) {
   );
 }
 
-/**
- * These values are from the official design. Don't touch it.
- */
 const styles = StyleSheet.create({
+  // These values are from the official design. Don't touch it please.
   nativeText: {
     fontWeight: 'normal',
     color: '#30363d',

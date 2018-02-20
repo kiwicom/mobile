@@ -16,9 +16,18 @@ exports[`renders as expected 1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#f44336",
-        }
+        Array [
+          Object {
+            "color": "#30363d",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "lineHeight": 20,
+          },
+          Object {
+            "color": "#f44336",
+            "textAlign": "center",
+          },
+        ]
       }
     >
       Error Message
