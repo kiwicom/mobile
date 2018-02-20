@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { Animated } from 'react-native';
-import { StyleSheet } from 'react-native';
 import { VerticalSwipeResponder } from '@kiwicom/react-native-app-shared';
+
+import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   children: React.Node,
@@ -15,6 +16,14 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     overflow: 'hidden',
+    android: {
+      borderTopRightRadius: 3,
+      borderTopLeftRadius: 3,
+      marginTop: 1,
+      marginLeft: 1,
+      marginRight: 1,
+      elevation: 1,
+    },
   },
 });
 
