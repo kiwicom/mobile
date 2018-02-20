@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`returns general error component for network failure 1`] = `
+<GeneralError
+  errorMessage="No internet connection, please check your internet settings or try it later."
+/>
+`;
+
+exports[`returns general error for other errors 1`] = `
+<GeneralError
+  errorMessage="custom message"
+/>
+`;
+
+exports[`returns loader if no props and no errors 1`] = `<FullPageLoading />`;

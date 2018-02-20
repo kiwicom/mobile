@@ -28,10 +28,17 @@ export default class QueryRenderer extends React.Component<Props> {
     error,
     props,
   }: {
-    error: Object,
-    props: Object,
+    error?: Object,
+    props?: Object,
   }) => {
     if (error) {
+      if (error.message === 'Network request failed') {
+        // See: https://github.com/github/fetch/blob/fcc4e1b48cfb5a2b1625fcd6eac06d954b00ccb6/fetch.js#L438-L444
+        return (
+          <GeneralError errorMessage="No internet connection, please check your internet settings or try it later." />
+        );
+      }
+
       // total failure (data == null, errors != null)
       return <GeneralError errorMessage={error.message} />;
     }

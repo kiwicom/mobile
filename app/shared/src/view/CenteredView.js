@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
+import StyleSheet from '../PlatformStyleSheet';
+
 type Props = {|
   children: React.Node,
 |};
@@ -13,14 +15,16 @@ type Props = {|
  */
 export default function CenteredView({ children }: Props) {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <View style={styleSheet.view}>
       <View>{children}</View>
     </View>
   );
 }
+
+const styleSheet = StyleSheet.create({
+  view: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
