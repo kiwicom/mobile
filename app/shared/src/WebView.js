@@ -16,24 +16,12 @@ type Props = {
 export default class WebView extends React.Component<Props> {
   renderLoading = () => <FullPageLoading />;
 
-  renderError = (
-    // types 'any' are hardcoded in RN WebView
-    errorDomain: any,
-    errorCode: any,
-    errorDescription: any,
-  ) => {
-    return (
-      <GeneralError
-        // this message is most probably not true:
-        errorMessage="No internet connection, please check your internet settings or try it later."
-        privateErrorInformation={{
-          errorDomain,
-          errorCode,
-          errorDescription,
-        }}
-      />
-    );
-  };
+  renderError = () => (
+    <GeneralError
+      // this message is most probably not true:
+      errorMessage="No internet connection, please check your internet settings or try it later."
+    />
+  );
 
   render = () => (
     <NativeWebView
