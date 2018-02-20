@@ -37,7 +37,7 @@ export default class PhotosStripe extends React.Component<Props, State> {
 
   renderPagination = (index: number, total: number) => {
     return (
-      <View style={{ position: 'absolute', top: 20, width: '100%' }}>
+      <View style={styles.paginationWrapper}>
         <PhotosStripeHeader
           photoNumber={index + 1}
           totalPhotos={total}
@@ -68,13 +68,16 @@ export default class PhotosStripe extends React.Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
+  paginationWrapper: {
+    position: 'absolute',
+    top: 40,
+    width: '100%',
+  },
   slide: {
     flex: 1,
     backgroundColor: '#000',
   },
   networkImage: {
     flex: 1,
-    width: '100%',
-    height: '100%',
   },
 });
