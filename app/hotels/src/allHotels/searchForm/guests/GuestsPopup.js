@@ -38,13 +38,6 @@ export default class GuestsPopup extends React.Component<Props, State> {
       guests: ((guests: any): UnsavedRoomConfigurationType),
     });
 
-  onClose = () => {
-    const isMissingAge = this.state.isMissingAge;
-    if (!isMissingAge) {
-      this.props.onClose();
-    }
-  };
-
   isMissingAge = (children: ChildAge[]) => {
     return children.some(child => child.age === null);
   };
@@ -108,7 +101,7 @@ export default class GuestsPopup extends React.Component<Props, State> {
       <ButtonPopup
         buttonTitle="Save"
         onSave={this.handleSave}
-        onClose={this.onClose}
+        onClose={this.props.onClose}
         isVisible={this.props.isVisible}
         style={{ content: styles.content }}
       >

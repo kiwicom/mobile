@@ -4,7 +4,7 @@ exports[`GuestsPopup Renders correctly 1`] = `
 <ButtonPopup
   buttonTitle="Save"
   isVisible={true}
-  onClose={[Function]}
+  onClose={[MockFunction]}
   onSave={[Function]}
   style={
     Object {
