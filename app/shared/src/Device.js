@@ -11,9 +11,6 @@ function renewDimensions() {
   }
 }
 
-// Tablets have often dimensions ratio 3:2-4:3, phones have often ratio 16:9
-const WIDE_DEVICE_THRESHOLD = 1.6; // 16:10 is max acceptable for screen rotation
-
 export default {
   isPortrait() {
     const { height, width } = renewDimensions();
@@ -24,10 +21,17 @@ export default {
     return width >= height;
   },
   isTablet() {
+    if (Platform.OS === 'ios' && Platform.isPad) {
+      return true;
+    }
+
     const { width, height } = renewDimensions();
     const min = Math.min(width, height);
     const max = Math.max(width, height);
-    return max / min <= WIDE_DEVICE_THRESHOLD;
+
+    // everything below 16:10 is considered to be a tablet (~3:2, ~4:3)
+    // everything above 16:10 is considered to be a phone (~16:9)
+    return max / min <= 1.6;
   },
   getLandscapeThreshold() {
     const { height, width } = renewDimensions();
