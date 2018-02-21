@@ -54,7 +54,10 @@ type Props = ContainerProps & StateProps & DispatchProps & NavigationProps;
 class AllHotelsNavigationScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
     function goToAllHotelsMap() {
-      props.navigation.navigate('AllHotelsMap');
+      props.navigation.navigate({
+        routeName: 'AllHotelsMap',
+        key: 'key-AllHotelsMap',
+      });
     }
 
     function renderHeaderLeft() {
@@ -79,7 +82,11 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
   };
 
   openSingleHotel = searchParams =>
-    this.props.navigation.navigate('SingleHotel', searchParams);
+    this.props.navigation.navigate({
+      routeName: 'SingleHotel',
+      key: 'key-SingleHotel',
+      params: searchParams,
+    });
 
   renderHotels = () => (
     <AllHotels

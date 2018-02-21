@@ -22,10 +22,11 @@ type RouteNames =
  * @see https://reactnavigation.org/docs/navigators/navigation-prop
  */
 export type Navigation = {
-  navigate: (
+  navigate: ({
     routeName: RouteNames,
-    parameters?: NavigationStateParameters,
-  ) => void,
+    key: string, // should be unique
+    params?: NavigationStateParameters,
+  }) => void,
   state: {
     params: NavigationStateParameters,
   },
