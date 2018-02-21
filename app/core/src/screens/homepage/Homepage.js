@@ -20,7 +20,11 @@ function Section({ children }: { children: React.Node }) {
 }
 
 export default class Homepage extends React.Component<Props, {}> {
-  goToAllHotelsPage = () => this.props.navigation.navigate('HotelsPackage');
+  goToAllHotelsPage = () =>
+    this.props.navigation.navigate({
+      routeName: 'HotelsPackage',
+      key: 'key-HotelsPackage',
+    });
 
   render = () => {
     return (

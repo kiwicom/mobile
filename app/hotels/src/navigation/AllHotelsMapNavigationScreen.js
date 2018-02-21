@@ -35,7 +35,11 @@ type Props = ContainerProps & StateProps & DispatchProps;
 
 class AllHotelsMapNavigationScreen extends React.Component<Props> {
   goToHotel = searchParams =>
-    this.props.navigation.navigate('SingleHotel', searchParams);
+    this.props.navigation.navigate({
+      routeName: 'SingleHotel',
+      key: 'key-SingleHotel',
+      params: searchParams,
+    });
 
   render = () => {
     const { search, filter, cityId, onFilterChange, currency } = this.props;
