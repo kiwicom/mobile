@@ -37,7 +37,7 @@ export default class PhotosStripe extends React.Component<Props, State> {
 
   renderPagination = (index: number, total: number) => {
     return (
-      <View style={{ position: 'absolute', top: 20, width: '100%' }}>
+      <View style={{ position: 'absolute', top: 40, width: '100%' }}>
         <PhotosStripeHeader
           photoNumber={index + 1}
           totalPhotos={total}
@@ -74,7 +74,5 @@ const styles = StyleSheet.create({
   },
   networkImage: {
     flex: 1,
-    width: '100%',
-    height: '100%',
   },
 });
