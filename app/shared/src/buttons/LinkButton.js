@@ -1,22 +1,37 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
-import Button, { type Props as ButtonProps } from './Button';
 import Color from '../Color';
+import TouchableItem from '../TouchableItem';
+import StyleSheet from '../PlatformStyleSheet';
+import Text from '../Text';
 
-export default function LinkButton(buttonProps: ButtonProps) {
+type Props = {|
+  title: string,
+  onPress: Function,
+|};
+
+export default function LinkButton(props: Props) {
   return (
-    <Button {...buttonProps} styles={{ ...styles, ...buttonProps.styles }} />
+    <TouchableItem accessibilityComponentType="button" onPress={props.onPress}>
+      <View style={styleSheet.view}>
+        <Text style={styleSheet.text}>{props.title}</Text>
+      </View>
+    </TouchableItem>
   );
 }
 
-const styles = StyleSheet.create({
-  button: {
+const styleSheet = StyleSheet.create({
+  view: {
     backgroundColor: 'transparent',
   },
-  buttonText: {
+  text: {
     color: Color.brand,
+    textAlign: 'center',
+    fontWeight: '500',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
 });

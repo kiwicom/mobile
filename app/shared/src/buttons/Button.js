@@ -7,7 +7,7 @@ import { View, Text } from 'react-native';
 import Color from '../Color';
 import TouchableItem from '../TouchableItem';
 
-export type Props = {
+type Props = {|
   title: string,
   onPress?: Function,
   styles?: {|
@@ -19,7 +19,7 @@ export type Props = {
 
   // deprecated (will be replaced by ButtonGroup component, see IncrementDecrementButtons implementation)
   icon?: React.Element<typeof Icon>,
-};
+|};
 
 export default function Button(props: Props) {
   const styles = createStyles(props.icon);
