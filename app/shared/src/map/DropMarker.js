@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { Icon, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import Color from '../Color';
+import StyleSheet from '../PlatformStyleSheet';
+import Icon from '../Icon';
 
 type Props = {|
   size?: number,

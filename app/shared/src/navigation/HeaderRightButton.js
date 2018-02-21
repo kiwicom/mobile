@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { View, Platform, StyleSheet } from 'react-native';
-import { Icon } from '@kiwicom/react-native-app-shared';
+import { View, Platform } from 'react-native';
 
+import StyleSheet from '../PlatformStyleSheet';
 import TouchableItem from '../TouchableItem';
+import Icon from '../Icon';
 
 type Props = {|
   onPress?: () => void,

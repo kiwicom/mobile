@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { type StylePropType } from '@kiwicom/react-native-app-shared';
+import { View, Text } from 'react-native';
+import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
 import Color from '../Color';
+import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   text: string,

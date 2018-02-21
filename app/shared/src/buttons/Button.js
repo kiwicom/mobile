@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Icon, StyleSheet } from '@kiwicom/react-native-app-shared';
 import { View, Text } from 'react-native';
 
 import Color from '../Color';
 import TouchableItem from '../TouchableItem';
+import StyleSheet from '../PlatformStyleSheet';
+import Icon from '../Icon';
 
 type Props = {|
   title: string,

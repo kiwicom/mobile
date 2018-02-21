@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { Icon } from '@kiwicom/react-native-app-shared';
 import { TextInput as OriginalTextInput, View } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
+import Icon from '../Icon';
 
 const styles = StyleSheet.create({
   input: {

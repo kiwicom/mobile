@@ -1,8 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Color, Icon } from '@kiwicom/react-native-app-shared';
+import { Text, View, TouchableOpacity } from 'react-native';
+
+import StyleSheet from '../PlatformStyleSheet';
+import Color from '../Color';
+import Icon from '../Icon';
 
 type Props = {|
   children: React.Node,

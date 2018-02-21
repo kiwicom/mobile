@@ -3,12 +3,10 @@
 import * as React from 'react';
 import Image from 'react-native-image-progress';
 import { connect } from '@kiwicom/react-native-app-redux';
-import {
-  IconLoading,
-  type StylePropType,
-} from '@kiwicom/react-native-app-shared';
+import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
 import MissingImage from './MissingImage';
+import IconLoading from '../loaders/IconLoading';
 
 type Props = {
   // not exact - accepts all additional props from 'Image' component
