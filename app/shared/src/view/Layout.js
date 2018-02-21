@@ -21,7 +21,7 @@ const createStyles = () => {
   };
 
   if (Device.isTablet()) {
-    styles.innerWrapper.maxWidth = Device.getLandscapeThreshold();
+    styles.innerWrapper.maxWidth = 668; // according to the graphic design
   }
   return StyleSheet.create(styles);
 };
