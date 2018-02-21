@@ -1,10 +1,12 @@
+/* eslint-disable prettier/prettier */
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import Popup from './Popup';
 import Color from '../Color';
+import StyleSheet from '../PlatformStyleSheet';
 import LinkButton from '../buttons/LinkButton';
 
 type Props = {|
@@ -32,7 +34,9 @@ export default class BarPopup extends React.Component<Props> {
         <LinkButton title="Cancel" onPress={this.onClose} />
         <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
       </View>
-      {this.props.children}
+      <View style={styles.children}>
+        {this.props.children}
+      </View>
     </Popup>
   );
 }
@@ -43,4 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: Color.grey.$100,
   },
+  children: {
+    padding: 10,
+  }
 });
