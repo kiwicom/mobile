@@ -37,10 +37,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   };
 
   componentDidMount = () => {
-    Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
-      type: 'Hotels',
-      step: 'details',
-    });
+    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS);
   };
 
   incrementSelectedCount = (availabilityOriginalId: string, amount: number) => {

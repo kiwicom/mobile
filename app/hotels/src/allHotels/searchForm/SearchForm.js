@@ -56,10 +56,7 @@ type Props = {|
 
 export default class SearchForm extends React.Component<Props> {
   componentDidMount = () => {
-    Logger.LogEvent(Logger.Event.Displayed, Logger.Category.Ancillary, {
-      type: 'Hotels',
-      step: 'searchForm',
-    });
+    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_SEARCH_FORM);
   };
 
   handleDestinationChange = (location: string) => {
