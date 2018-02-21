@@ -1,8 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet, StatusBar } from 'react-native';
-import { Device } from '@kiwicom/react-native-app-shared';
+import { View, StatusBar } from 'react-native';
+
+import StyleSheet from '../PlatformStyleSheet';
+import Device from '../Device';
 
 type Props = {|
   children: React.Node,

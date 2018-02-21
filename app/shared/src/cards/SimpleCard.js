@@ -2,7 +2,9 @@
 
 import * as React from 'react';
 import { View, Platform } from 'react-native';
-import { TouchableItem, StyleSheet } from '@kiwicom/react-native-app-shared';
+
+import StyleSheet from '../PlatformStyleSheet';
+import TouchableItem from '../TouchableItem';
 
 type Props = {|
   children: React.Node,
