@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, View } from 'react-native';
-import { Color, Price } from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
+import { Color, Price, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import type { PriceMarker as PriceMarkerData } from './__generated__/PriceMarker.graphql';
 

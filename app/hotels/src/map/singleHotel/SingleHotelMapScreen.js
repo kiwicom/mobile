@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import { StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import MapView from './MapView';

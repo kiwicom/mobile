@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
+import { StyleSheet } from '@kiwicom/react-native-app-shared';
 
 const styles = StyleSheet.create({
   handle: {

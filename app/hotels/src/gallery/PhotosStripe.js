@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View, Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { NetworkImage } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, NetworkImage } from '@kiwicom/react-native-app-shared';
 
 import PhotosStripeHeader from './PhotosStripeHeader';
 

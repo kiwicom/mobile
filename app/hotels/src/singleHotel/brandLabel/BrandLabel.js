@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { View, Image } from 'react-native';
+import { StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import brandImage from './bookingLogo.png';
 

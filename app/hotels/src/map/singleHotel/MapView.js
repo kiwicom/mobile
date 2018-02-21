@@ -3,9 +3,8 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet } from 'react-native';
 import NativeMapView from 'react-native-maps';
-import { DropMarker } from '@kiwicom/react-native-app-shared';
+import { DropMarker, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import type { MapView_hotel } from './__generated__/MapView_hotel.graphql';
 

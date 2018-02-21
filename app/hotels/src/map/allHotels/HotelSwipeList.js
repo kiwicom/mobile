@@ -3,11 +3,12 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
   BottomSheet,
   Device,
+  StyleSheet,
   type OnDimensionsChange,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';

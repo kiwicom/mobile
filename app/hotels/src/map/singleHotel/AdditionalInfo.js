@@ -3,7 +3,8 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
+import { StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import BottomSheet from './BottomSheet';
 import HotelDetailPreview from '../HotelDetailPreview';

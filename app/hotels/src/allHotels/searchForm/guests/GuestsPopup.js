@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import {
   ButtonPopup,
   NumberControl,
   Message,
+  StyleSheet,
 } from '@kiwicom/react-native-app-shared';
 
 import ChildrenAgesControl from './ChildrenAgesControl';

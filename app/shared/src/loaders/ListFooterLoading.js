@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import IconLoading from './IconLoading';
+import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   isLoading: boolean,

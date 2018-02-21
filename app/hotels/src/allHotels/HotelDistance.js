@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
 import idx from 'idx';
-import { Color } from '@kiwicom/react-native-app-shared';
+import { Color, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import type { HotelDistance_hotel } from './__generated__/HotelDistance_hotel.graphql';
 

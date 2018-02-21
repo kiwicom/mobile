@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
 import Popup from './Popup';
 import Button from '../buttons/Button';
+import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   buttonTitle: string,

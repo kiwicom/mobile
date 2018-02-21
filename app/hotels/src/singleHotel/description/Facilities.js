@@ -1,10 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Color, AdaptableBadge } from '@kiwicom/react-native-app-shared';
+import {
+  StyleSheet,
+  Color,
+  AdaptableBadge,
+} from '@kiwicom/react-native-app-shared';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
 

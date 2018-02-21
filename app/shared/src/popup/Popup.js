@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import Modal from '../Modal';
 import Device from '../Device';
+import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   children: React.Node,

@@ -1,13 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Platform,
-} from 'react-native';
+import { View, TouchableWithoutFeedback, Platform } from 'react-native';
 
+import StyleSheet from '../PlatformStyleSheet';
 import Color from '../Color';
 import Icon from '../Icon';
 import type { StylePropType } from '../../types/Styles';

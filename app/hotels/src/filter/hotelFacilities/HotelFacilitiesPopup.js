@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, View } from 'react-native';
 import {
   ButtonPopup,
   Color,
   Checkbox,
   Icon,
+  StyleSheet,
 } from '@kiwicom/react-native-app-shared';
 
 type Props = {|

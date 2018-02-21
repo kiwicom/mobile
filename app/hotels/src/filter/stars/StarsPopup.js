@@ -1,8 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { ButtonPopup, Color, Checkbox } from '@kiwicom/react-native-app-shared';
+import { Text } from 'react-native';
+import {
+  StyleSheet,
+  ButtonPopup,
+  Color,
+  Checkbox,
+} from '@kiwicom/react-native-app-shared';
 
 import StarsCheckbox from './StarsCheckbox';
 
