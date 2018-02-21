@@ -51,11 +51,19 @@ type DispatchProps = {|
 
 type NavigationProps = {|
   onBackClicked: () => void,
+  isTablet: boolean,
 |};
 
 type Props = ContainerProps & StateProps & DispatchProps & NavigationProps;
+type State = {|
+  isTablet: boolean,
+|};
 
-class AllHotelsNavigationScreen extends React.Component<Props> {
+class AllHotelsNavigationScreen extends React.Component<Props, State> {
+  state = {
+    isTablet: false,
+  };
+
   static navigationOptions = (props: Props) => {
     function goToAllHotelsMap() {
       props.navigation.navigate({
@@ -71,7 +79,7 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     }
 
     function renderHeaderRight() {
-      if (Device.isTablet()) {
+      if (props.isTablet) {
         return null;
       }
 
@@ -91,6 +99,14 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
       key: 'key-SingleHotel',
       params: searchParams,
     });
+
+  onLayout = event => {
+    const { width, height } = event.nativeEvent.layout;
+    Device.setDimensions({ width, height });
+    const isTablet = Device.isTablet();
+    this.setState({ isTablet });
+    this.props.navigation.setParams({ isTablet });
+  };
 
   renderHotels = () => (
     <AllHotels
@@ -122,11 +138,17 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     </View>
   );
 
-  render = () =>
-    Device.isTablet() ? this.renderHotelsWithMap() : this.renderHotels();
+  render = () => (
+    <View style={styles.container} onLayout={this.onLayout}>
+      {this.state.isTablet ? this.renderHotelsWithMap() : this.renderHotels()}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   wrapper: {
     flex: 1,
     flexDirection: 'row',
