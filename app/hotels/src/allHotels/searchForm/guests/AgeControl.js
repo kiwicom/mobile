@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
+import { View, Text, TouchableWithoutFeedback, Platform } from 'react-native';
 import {
-  View,
   StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  Platform,
-} from 'react-native';
-import { Color, AgePicker, Icon } from '@kiwicom/react-native-app-shared';
+  Color,
+  AgePicker,
+  Icon,
+} from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   label: string,

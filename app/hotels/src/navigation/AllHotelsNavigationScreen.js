@@ -3,8 +3,12 @@
 import * as React from 'react';
 import { HeaderBackButton } from 'react-navigation';
 import { connect } from '@kiwicom/react-native-app-redux';
-import { View, StyleSheet } from 'react-native';
-import { Device, HeaderRightButton } from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
+import {
+  StyleSheet,
+  Device,
+  HeaderRightButton,
+} from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import AllHotels from '../allHotels/AllHotels';

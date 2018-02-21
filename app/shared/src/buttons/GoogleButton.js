@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
 
+import StyleSheet from '../PlatformStyleSheet';
 import Button from './Button';
 
 type Props = {|

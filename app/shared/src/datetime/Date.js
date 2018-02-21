@@ -1,7 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text } from 'react-native';
+
+import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   dateTime: ?string,

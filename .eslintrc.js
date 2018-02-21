@@ -29,6 +29,19 @@ module.exports = {
   rules: {
     'no-console': [ERROR, { allow: ['warn', 'error'] }],
     'no-underscore-dangle': [ERROR, { enforceInMethodNames: true }],
+    'no-restricted-imports': [
+      ERROR,
+      {
+        paths: [
+          {
+            name: 'react-native',
+            importNames: ['StyleSheet'],
+            message:
+              "Please use '@kiwicom/react-native-app-shared' package instead.",
+          },
+        ],
+      },
+    ],
     'import/order': [
       ERROR,
       {

@@ -3,9 +3,9 @@
 import idx from 'idx';
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import { orderByDistance, getBounds } from 'geolib';
+import { StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import PriceMarker from './PriceMarker';
 import type { MapView as MapViewData } from './__generated__/MapView.graphql';

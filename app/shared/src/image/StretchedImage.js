@@ -1,7 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
+
+import StyleSheet from '../PlatformStyleSheet';
 
 const styles = StyleSheet.create({
   image: {

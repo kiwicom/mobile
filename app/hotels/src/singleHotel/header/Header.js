@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { NetworkImage, StretchedImage } from '@kiwicom/react-native-app-shared';
+import { View, Text, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  NetworkImage,
+  StretchedImage,
+} from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 

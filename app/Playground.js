@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, Text } from 'react-native';
+import { StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import PlaygroundRenderer from './PlaygroundRenderer';
 // Import component tests you want to show in the Playground here:

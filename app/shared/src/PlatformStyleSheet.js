@@ -1,6 +1,8 @@
 // @flow
 
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet, Platform } from 'react-native'; // eslint-disable-line no-restricted-imports
+
+import type { StylePropType } from '../index';
 
 /**
  * This StyleSheet allows to define platform differences easily:
@@ -18,7 +20,11 @@ import { StyleSheet, Platform } from 'react-native';
  * })
  */
 export default {
-  create(styles: Object): { [name: string]: number } {
+  absoluteFill: StyleSheet.absoluteFill,
+  absoluteFillObject: StyleSheet.absoluteFillObject,
+  flatten: StyleSheet.flatten,
+
+  create(styles: StylePropType): StylePropType {
     const platformStyles = {};
     Object.keys(styles).forEach(name => {
       let { ios, android, ...style } = { ...styles[name] };
