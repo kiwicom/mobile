@@ -12,7 +12,6 @@ describe('Logger', () => {
 
     expect(NativeModules.RNLoggingModule.ancillaryDisplayed).toBeCalledWith(
       Logger.Type.ANCILLARY_STEP_DETAILS,
-      false,
     );
   });
 
@@ -23,7 +22,6 @@ describe('Logger', () => {
 
     expect(NativeModules.RNLoggingModule.ancillaryPurchased).toBeCalledWith(
       Logger.Type.ANCILLARY_STEP_PAYMENT,
-      false,
     );
   });
 });

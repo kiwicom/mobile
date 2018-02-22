@@ -62,9 +62,9 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@kiwicom/react-native-native-modules@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@kiwicom/react-native-native-modules/-/react-native-native-modules-0.1.5.tgz#9190c414b11edccfe5d6d64a97e793060d66ce65"
+"@kiwicom/react-native-native-modules@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@kiwicom/react-native-native-modules/-/react-native-native-modules-0.1.9.tgz#4d430a558bfae72f7b45a6b44c5dc4a5fc53b5f1"
   dependencies:
     react "^16.2.0"
     react-native "^0.51.0"
