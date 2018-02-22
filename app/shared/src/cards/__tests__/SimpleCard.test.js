@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import PlaygroundRenderer from '../../../../PlaygroundRenderer';
 import SimpleCard from '../SimpleCard';
+import Text from '../../Text';
 
 function onPressVoidCallback() {}
 

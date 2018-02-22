@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
-import { StyleSheet, TouchableItem } from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  TouchableItem,
+} from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   photoNumber: number,

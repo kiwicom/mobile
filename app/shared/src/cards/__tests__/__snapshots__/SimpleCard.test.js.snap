@@ -3,20 +3,12 @@
 exports[`renders as expected 1`] = `
 <View>
   <SimpleCard>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Default card A
     </Text>
   </SimpleCard>
   <SimpleCard>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Default card B
     </Text>
   </SimpleCard>
@@ -28,22 +20,14 @@ exports[`renders as expected with onPress callback 1`] = `
   <SimpleCard
     onPress={[Function]}
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Clickable card
     </Text>
   </SimpleCard>
   <SimpleCard
     onPress={[Function]}
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Clickable card
     </Text>
   </SimpleCard>

@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import {
   StyleSheet,
   Color,
   Price,
+  Text,
   TouchableItem,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';

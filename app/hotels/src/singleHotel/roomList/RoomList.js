@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';

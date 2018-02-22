@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
+import Text from '../Text';
 import TouchableItem from '../TouchableItem';
 
 const renderer = new ShallowRenderer();

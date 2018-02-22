@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import idx from 'idx';
 import {
   NetworkImage,
   SimpleCard,
   StyleSheet,
+  Text,
 } from '@kiwicom/react-native-app-shared';
 import ReadMore from 'react-native-read-more-text';
 import { createFragmentContainer, graphql } from 'react-relay';

@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import MapView from 'react-native-maps';
 import {
   StyleSheet,
   StretchedImage,
   DropMarker,
+  Text,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';

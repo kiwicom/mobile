@@ -1,8 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
+import Text from '../Text';
 import Color from '../Color';
 import TouchableItem from '../TouchableItem';
 import StyleSheet from '../PlatformStyleSheet';
@@ -19,7 +20,6 @@ const Button = ({
   const inner = (
     <View style={styleSheet.button}>
       <Text
-        textAnchor="middle"
         style={[
           styleSheet.buttonText,
           {

@@ -20,9 +20,6 @@ exports[`renders header with title 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -43,9 +40,6 @@ exports[`renders header with title 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -63,9 +57,6 @@ exports[`renders header with title 1`] = `
       Hotel Name
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "grey",
@@ -109,9 +100,6 @@ exports[`renders header with very long title 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -132,9 +120,6 @@ exports[`renders header with very long title 1`] = `
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "white",
@@ -152,9 +137,6 @@ exports[`renders header with very long title 1`] = `
       Hotel Name So Long That It Will Not Fit One Line And Needs To Be Wrapped
     </Text>
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "color": "grey",

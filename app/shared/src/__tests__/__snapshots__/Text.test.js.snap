@@ -116,3 +116,30 @@ exports[`supports nested styles 1`] = `
   </Text>
 </Text>
 `;
+
+exports[`works with nullable child 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      undefined,
+    ]
+  }
+>
+  text
+   
+   
+  text
+   
+   
+  text
+</Text>
+`;
