@@ -21,7 +21,8 @@ exports[`renders as expected 1`] = `
             "color": "#30363d",
             "fontSize": 14,
             "fontWeight": "normal",
-            "lineHeight": 20,
+            "letterSpacing": -0.15,
+            "lineHeight": 19,
           },
           Object {
             "color": "#f44336",

@@ -30,9 +30,11 @@ const style = StyleSheet.create({
     color: '#30363d',
     android: {
       fontSize: 15,
+      lineHeight: 18,
     },
     ios: {
       fontSize: 14,
+      lineHeight: 16,
     },
   },
   rating: {
@@ -45,16 +47,19 @@ const style = StyleSheet.create({
     },
   },
   distance: {
-    marginVertical: 4,
+    marginVertical: 6,
   },
   price: {
     fontWeight: 'bold',
     color: Color.brand,
+    letterSpacing: 0,
     android: {
       fontSize: 13,
+      lineHeight: 12,
     },
     ios: {
       fontSize: 12,
+      lineHeight: 12,
     },
   },
 });
