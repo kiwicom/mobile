@@ -43,3 +43,76 @@ exports[`renders with the default properties for iOS 1`] = `
   IOS
 </Text>
 `;
+
+exports[`supports multiple nested strings 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      Object {
+        "color": "red",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    First part and 
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "red",
+      }
+    }
+  >
+    second part
+  </Text>
+</Text>
+`;
+
+exports[`supports nested styles 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      Object {
+        "fontWeight": "bold",
+      },
+    ]
+  }
+>
+  I am bold 
+  <Text
+    style={
+      Object {
+        "color": "red",
+        "fontWeight": "bold",
+      }
+    }
+  >
+    and red
+  </Text>
+</Text>
+`;

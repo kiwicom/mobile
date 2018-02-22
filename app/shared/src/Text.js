@@ -11,10 +11,37 @@ type Props = {|
   style?: StylePropType,
 |};
 
-export default function Text({ children, style }: Props) {
+/**
+ * This is wrapper around native `Text` component. It adds default text styles
+ * and supports native style inheritance.
+ */
+export default function Text(props: Props) {
+  const childrenWithInheritedStyles = React.Children.map(
+    props.children,
+    child => {
+      const childStyles = child.props ? child.props.style : {};
+
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {
+          style: StyleSheet.flatten([props.style, childStyles]),
+        });
+      }
+
+      return child;
+    },
+  );
+
+  // Note - this won't work correctly because it doesn't work with style inheritance (see tests):
+  // See: https://facebook.github.io/react-native/docs/text.html#limited-style-inheritance
+  //
+  // return (
+  //   <ReactNative.Text {...props} style={[styles.default, props.style]}>
+  //     {props.children}
+  //   </ReactNative.Text>
+  // );
   return (
-    <ReactNative.Text style={[styles.nativeText, style]}>
-      {children}
+    <ReactNative.Text {...props} style={[styles.nativeText, props.style]}>
+      {childrenWithInheritedStyles}
     </ReactNative.Text>
   );
 }
