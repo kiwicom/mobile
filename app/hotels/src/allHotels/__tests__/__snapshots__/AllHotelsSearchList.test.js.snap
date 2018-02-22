@@ -2,11 +2,7 @@
 
 exports[`renders a "not found" message when data is missing 1`] = `
 <CenteredView>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     No hotels found
   </Text>
 </CenteredView>
@@ -14,11 +10,7 @@ exports[`renders a "not found" message when data is missing 1`] = `
 
 exports[`renders a "not found" message when no hotel is found 1`] = `
 <CenteredView>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     No hotels found
   </Text>
 </CenteredView>

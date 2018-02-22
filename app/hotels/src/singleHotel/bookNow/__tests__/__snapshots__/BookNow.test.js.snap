@@ -27,9 +27,6 @@ exports[`renders without crashing 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "color": "white",

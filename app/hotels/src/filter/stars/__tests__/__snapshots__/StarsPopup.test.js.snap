@@ -8,9 +8,6 @@ exports[`StarsPopup should render popup 1`] = `
   onSave={[Function]}
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "color": "#424242",
@@ -80,9 +77,6 @@ exports[`StarsPopup should render popup 1`] = `
     onPress={[Function]}
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "fontSize": 16,

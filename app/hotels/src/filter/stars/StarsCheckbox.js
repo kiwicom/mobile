@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from 'react-native';
 import {
   Color,
   Stars,
   Checkbox,
   StyleSheet,
+  Text,
   type StylePropType,
 } from '@kiwicom/react-native-app-shared';
 

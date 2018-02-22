@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
 import formatBeddingInfo from './formatBeddingInfo';

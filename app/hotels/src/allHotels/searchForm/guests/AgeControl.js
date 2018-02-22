@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text, TouchableWithoutFeedback, Platform } from 'react-native';
+import { View, TouchableWithoutFeedback, Platform } from 'react-native';
 import {
   StyleSheet,
   Color,
   AgePicker,
   Icon,
+  Text,
 } from '@kiwicom/react-native-app-shared';
 
 type Props = {|

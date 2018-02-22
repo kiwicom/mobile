@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
-import { Price, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { View, TouchableOpacity } from 'react-native';
+import { Price, Text, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import NoneSelected from './NoneSelected';
 

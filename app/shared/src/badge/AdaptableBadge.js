@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
+import Text from '../Text';
 import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 

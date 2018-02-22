@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { Price, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { TouchableOpacity } from 'react-native';
+import { Text, Price, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 const styles = StyleSheet.create({
   container: {

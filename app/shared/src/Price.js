@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from 'react-native';
 
+import Text from './Text';
 import CurrencyFormatter from './services/CurrencyFormatter';
 import type { StylePropType } from '../types/Styles';
 

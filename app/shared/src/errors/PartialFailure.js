@@ -1,8 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
+import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 import Color from '../Color';
 import Icon from '../Icon';

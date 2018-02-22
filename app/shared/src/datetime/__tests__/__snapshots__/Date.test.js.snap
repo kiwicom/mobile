@@ -6,9 +6,17 @@ exports[`formats date 1`] = `
   allowFontScaling={true}
   ellipsizeMode="tail"
   style={
-    Object {
-      "color": "#888",
-    }
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      Object {
+        "color": "#888",
+      },
+    ]
   }
 >
   2017-11-17

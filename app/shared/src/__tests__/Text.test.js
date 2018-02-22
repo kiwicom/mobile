@@ -43,3 +43,15 @@ it('supports multiple nested strings', () => {
     ),
   ).toMatchSnapshot();
 });
+
+it('works with nullable child', () => {
+  // this happens when for example API returns null and we are trying
+  // to render it inside of string
+  expect(
+    renderer.render(
+      <Text>
+        {'text'} {null} {'text'} {undefined} {'text'}
+      </Text>,
+    ),
+  ).toMatchSnapshot();
+});

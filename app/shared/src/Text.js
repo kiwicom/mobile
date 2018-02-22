@@ -9,6 +9,7 @@ import type { StylePropType } from '../types/Styles';
 type Props = {|
   children: React.Node,
   style?: StylePropType,
+  numberOfLines?: number,
 |};
 
 /**
@@ -19,9 +20,8 @@ export default function Text(props: Props) {
   const childrenWithInheritedStyles = React.Children.map(
     props.children,
     child => {
-      const childStyles = child.props ? child.props.style : {};
-
       if (React.isValidElement(child)) {
+        const childStyles = child.props ? child.props.style : {};
         return React.cloneElement(child, {
           style: StyleSheet.flatten([props.style, childStyles]),
         });

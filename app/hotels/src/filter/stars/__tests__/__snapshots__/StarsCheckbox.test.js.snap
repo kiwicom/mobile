@@ -7,9 +7,6 @@ exports[`StarsCheckbox render checked 1`] = `
   style={undefined}
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "color": "#0097a9",
@@ -31,9 +28,6 @@ exports[`StarsCheckbox render unchecked with 1 star 1`] = `
   style={undefined}
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "color": "#0097a9",
@@ -55,9 +49,6 @@ exports[`StarsCheckbox render unchecked with 3 stars 1`] = `
   style={undefined}
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "color": "#0097a9",

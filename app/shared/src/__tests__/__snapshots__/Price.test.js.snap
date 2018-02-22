@@ -2,24 +2,15 @@
 
 exports[`renders null values correctly 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={undefined}
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={undefined}
   >
     
   </Text>
    
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={undefined}
   />
 </Text>
@@ -27,24 +18,15 @@ exports[`renders null values correctly 1`] = `
 
 exports[`renders zeros correctly 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={undefined}
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={undefined}
   >
     0
   </Text>
    
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={undefined}
   >
     CZK
@@ -54,24 +36,15 @@ exports[`renders zeros correctly 1`] = `
 
 exports[`rounds amount to 2 decimal places 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={undefined}
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={undefined}
   >
     72.85
   </Text>
    
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={undefined}
   />
 </Text>

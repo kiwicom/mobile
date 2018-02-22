@@ -44,9 +44,6 @@ exports[`renders without crashing 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "backgroundColor": "transparent",
@@ -59,9 +56,6 @@ exports[`renders without crashing 1`] = `
         }
       />
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "backgroundColor": "transparent",
@@ -125,9 +119,6 @@ exports[`renders without crashing with missing data 1`] = `
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "backgroundColor": "transparent",
@@ -140,9 +131,6 @@ exports[`renders without crashing with missing data 1`] = `
         }
       />
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "backgroundColor": "transparent",

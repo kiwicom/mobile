@@ -3,12 +3,13 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createPaginationContainer, graphql } from 'react-relay';
-import { Text, FlatList, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import {
   CenteredView,
   Logger,
   ListFooterLoading,
   StyleSheet,
+  Text,
 } from '@kiwicom/react-native-app-shared';
 import { connect } from '@kiwicom/react-native-app-redux';
 import type { RelayPaginationProp } from '@kiwicom/react-native-app-relay';

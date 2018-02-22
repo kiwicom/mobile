@@ -6,11 +6,7 @@ exports[`throws error for multiple children 1`] = `
   borderless={false}
   pressColor="rgba(0, 0, 0, .32)"
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     this is OK
   </Text>
 </TouchableOpacity>
@@ -23,18 +19,10 @@ exports[`throws error for multiple children 2`] = `
   pressColor="rgba(0, 0, 0, .32)"
 >
   <View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       line 1
     </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       line 2
     </Text>
   </View>

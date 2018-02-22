@@ -16,11 +16,7 @@ exports[`ButtonPopup render popup with child 1`] = `
       ]
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Child
     </Text>
   </View>

@@ -5,11 +5,33 @@ exports[`formatRating concats stars, review score and review description 1`] = `
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      undefined,
+    ]
+  }
 >
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "lineHeight": 20,
+        },
+        undefined,
+      ]
+    }
   >
     ★★★
   </Text>
@@ -23,11 +45,33 @@ exports[`formatRating omits the dash when review is missing 1`] = `
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      undefined,
+    ]
+  }
 >
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "lineHeight": 20,
+        },
+        undefined,
+      ]
+    }
   >
     ★★★★★
   </Text>
@@ -41,11 +85,33 @@ exports[`formatRating omits the dash when stars are missing 1`] = `
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "lineHeight": 20,
+      },
+      undefined,
+    ]
+  }
 >
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "lineHeight": 20,
+        },
+        undefined,
+      ]
+    }
   >
     
   </Text>

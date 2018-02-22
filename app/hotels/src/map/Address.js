@@ -3,8 +3,13 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { View, Text } from 'react-native';
-import { Color, Icon, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { View } from 'react-native';
+import {
+  Color,
+  Icon,
+  StyleSheet,
+  Text,
+} from '@kiwicom/react-native-app-shared';
 
 import type { Address_address } from './__generated__/Address_address.graphql';
 

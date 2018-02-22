@@ -3,8 +3,9 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import renderer from 'react-test-renderer';
-import { Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 
+import Text from '../../Text';
 import ButtonPopup from '../ButtonPopup';
 
 const shallowRenderer = new ShallowRenderer();

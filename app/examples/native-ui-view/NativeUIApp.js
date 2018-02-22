@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+// eslint-disable-next-line no-restricted-imports
 import { View, Text } from 'react-native';
 
 import SampleView from './SampleView/SampleView';

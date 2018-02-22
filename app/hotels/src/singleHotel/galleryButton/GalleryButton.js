@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Image, Text, View } from 'react-native';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { Image, View } from 'react-native';
+import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
 
 import icon from './gallery-icon.png';
 
