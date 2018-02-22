@@ -21,13 +21,11 @@ const Type = {
 type LogType = $Keys<typeof Type>;
 
 function ancillaryDisplayed(type: LogType) {
-  // second paramater will be removed in the future
-  LoggingModule.ancillaryDisplayed(type, false);
+  LoggingModule.ancillaryDisplayed(type);
 }
 
 function ancillaryPurchased(type: LogType) {
-  // second paramater will be removed in the future
-  LoggingModule.ancillaryPurchased(type, false);
+  LoggingModule.ancillaryPurchased(type);
 }
 
 export default {
