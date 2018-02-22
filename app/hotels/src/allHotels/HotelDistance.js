@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
-import { Color, StyleSheet, Text } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
 
 import type { HotelDistance_hotel } from './__generated__/HotelDistance_hotel.graphql';
 
@@ -13,8 +13,15 @@ type Props = {|
 
 const style = StyleSheet.create({
   text: {
-    fontSize: 13,
-    color: Color.grey.$600,
+    lineHeight: 12,
+    letterSpacing: 0.2,
+    color: '#79818a',
+    android: {
+      fontSize: 13,
+    },
+    ios: {
+      fontSize: 12,
+    },
   },
 });
 

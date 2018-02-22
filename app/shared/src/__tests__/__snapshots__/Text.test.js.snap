@@ -11,7 +11,8 @@ exports[`renders with additional style properties 1`] = `
         "color": "#30363d",
         "fontSize": 14,
         "fontWeight": "normal",
-        "lineHeight": 20,
+        "letterSpacing": -0.15,
+        "lineHeight": 19,
       },
       Object {
         "fontWeight": "bold",
@@ -34,7 +35,8 @@ exports[`renders with the default properties for iOS 1`] = `
         "color": "#30363d",
         "fontSize": 14,
         "fontWeight": "normal",
-        "lineHeight": 20,
+        "letterSpacing": -0.15,
+        "lineHeight": 19,
       },
       undefined,
     ]
@@ -55,7 +57,8 @@ exports[`supports multiple nested strings 1`] = `
         "color": "#30363d",
         "fontSize": 14,
         "fontWeight": "normal",
-        "lineHeight": 20,
+        "letterSpacing": -0.15,
+        "lineHeight": 19,
       },
       Object {
         "color": "red",
@@ -95,7 +98,8 @@ exports[`supports nested styles 1`] = `
         "color": "#30363d",
         "fontSize": 14,
         "fontWeight": "normal",
-        "lineHeight": 20,
+        "letterSpacing": -0.15,
+        "lineHeight": 19,
       },
       Object {
         "fontWeight": "bold",
@@ -128,7 +132,8 @@ exports[`works with nullable child 1`] = `
         "color": "#30363d",
         "fontSize": 14,
         "fontWeight": "normal",
-        "lineHeight": 20,
+        "letterSpacing": -0.15,
+        "lineHeight": 19,
       },
       undefined,
     ]
