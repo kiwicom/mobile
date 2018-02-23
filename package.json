@@ -16,7 +16,8 @@
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./scripts/test.sh",
     "postinstall": "node ./scripts/configureApplication.js",
-    "pod-install": "node ./scripts/podInstall.js"
+    "pod-install": "node ./scripts/podInstall.js",
+    "release-hotels": "npm login && node ./scripts/releaseHotels.js"
   },
   "dependencies": {
     "react": "16.0.0",
