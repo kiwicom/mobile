@@ -10,6 +10,7 @@ import com.facebook.soloader.SoLoader;
 import com.kiwi.mynativemodule.MyNativeModulePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.trinerdis.skypicker.colors.RNColorsPackage;
 import com.trinerdis.skypicker.logging.RNLoggingPackage;
 import com.trinerdis.skypicker.translation.*;
 
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication, Re
                     new MapsPackage(),
                     new RNLoggingPackage(),
                     translationPackage,
+                    new RNColorsPackage(),
                     new MyNativeModulePackage()
             );
         }

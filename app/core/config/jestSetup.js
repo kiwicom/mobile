@@ -2,6 +2,7 @@
 
 import './NativeModulesMocks/RNLoggingModule';
 import './NativeModulesMocks/RNTranslationManager';
+import './NativeModulesMocks/RNColors';
 
 beforeEach(() => {
   /**

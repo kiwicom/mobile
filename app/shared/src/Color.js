@@ -1,5 +1,7 @@
 // @flow
 
+import { NativeModules } from 'react-native';
+
 /**
  * @see https://material.io/guidelines/style/color.html#color-color-palette
  */
@@ -76,12 +78,6 @@ const ColorPalette = {
 export default {
   // brand colors
   // https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
-  brand: '#0097a9',
-  brandSecondary: '#0cb3c7',
-
-  // complimentary brand colors
-  buttercup: '#eb9d08',
-  sun: '#fbad18',
-
+  ...NativeModules.RNColors,
   ...ColorPalette,
 };

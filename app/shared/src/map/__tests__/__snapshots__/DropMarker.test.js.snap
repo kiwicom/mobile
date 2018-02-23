@@ -2,7 +2,7 @@
 
 exports[`calculates the offsets base on icon size 1`] = `
 <Icon
-  color="#0097a9"
+  color="#0097A9"
   name="place"
   size={50}
   style={
@@ -17,7 +17,7 @@ exports[`calculates the offsets base on icon size 1`] = `
 
 exports[`calculates the offsets base on icon size 2`] = `
 <Icon
-  color="#0097a9"
+  color="#0097A9"
   name="place"
   size={100}
   style={
