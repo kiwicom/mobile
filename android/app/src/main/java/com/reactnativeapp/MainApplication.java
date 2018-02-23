@@ -11,12 +11,16 @@ import com.kiwi.mynativemodule.MyNativeModulePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.trinerdis.skypicker.logging.RNLoggingPackage;
+import com.trinerdis.skypicker.translation.*;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends Application implements ReactApplication, ResourceStringCallback {
 
+    RNTranslationManagerPackage translationPackage = new RNTranslationManagerPackage(this);
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
         public boolean getUseDeveloperSupport() {
@@ -30,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
                     new VectorIconsPackage(),
                     new MapsPackage(),
                     new RNLoggingPackage(),
+                    translationPackage,
                     new MyNativeModulePackage()
             );
         }
@@ -49,5 +54,11 @@ public class MainApplication extends Application implements ReactApplication {
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
+    }
+
+    @NotNull
+    @Override
+    public String getTranslation(@NotNull String key) {
+        return key;
     }
 }

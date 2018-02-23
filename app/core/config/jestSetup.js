@@ -1,6 +1,7 @@
 // @flow
 
 import './NativeModulesMocks/RNLoggingModule';
+import './NativeModulesMocks/RNTranslationManager';
 
 beforeEach(() => {
   /**
