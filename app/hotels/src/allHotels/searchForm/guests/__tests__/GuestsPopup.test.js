@@ -79,4 +79,16 @@ describe('GuestsPopup', () => {
 
     expect(testInstance.state.isMissingAge).toEqual(false);
   });
+
+  it('should not produce an error when setting age of a child', () => {
+    const onClose = jest.fn();
+    const testRenderer = renderGuestsPopup(onClose);
+    const testInstance = testRenderer.getInstance();
+    testInstance.handleChildrenChange(1);
+    testInstance.handleChildrenChange(1);
+
+    testInstance.handleChildrenAgesChange([{ age: 2 }, { age: null }]);
+
+    expect(testInstance.state.isMissingAge).toEqual(false);
+  });
 });
