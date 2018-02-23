@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
 import StyleSheet from './PlatformStyleSheet';
@@ -12,39 +13,81 @@ type Props = {|
   numberOfLines?: number,
 |};
 
+type State = {|
+  nativeText: StylePropType,
+|};
+
 /**
- * This is wrapper around native `Text` component. It adds default text styles
- * and supports native style inheritance.
+ * React Native has the concept of style inheritance, but limited to text subtrees.
+ * In this case, the second part will be both bold and red:
+ *
+ * ```
+ * <Text style={{fontWeight: 'bold'}}>
+ *   I am bold
+ *   <Text style={{color: 'red'}}>and red</Text>
+ * </Text>
+ * ```
+ *
+ * It's roughly translated to this (`NSAttributedString` or `SpannableString`):
+ *
+ * ```
+ * "I am bold and red"
+ * 0-9: bold
+ * 9-17: bold, red
+ * ```
  */
-export default function Text(props: Props) {
-  const childrenWithInheritedStyles = React.Children.map(
-    props.children,
-    child => {
-      if (React.isValidElement(child)) {
-        const childStyles = child.props ? child.props.style : {};
-        return React.cloneElement(child, {
-          style: StyleSheet.flatten([props.style, childStyles]),
-        });
-      }
+export default class Text extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      nativeText: styles.nativeText,
+    };
+  }
 
-      return child;
-    },
-  );
+  componentDidMount = () => {
+    if (this.context.defaultTextStyles === undefined) {
+      // only the styles of the first Text component in the subtree are merged
+      // with the default values
+      this.setState(prevState => ({
+        nativeText: StyleSheet.flatten([
+          prevState.nativeText,
+          this.props.style,
+        ]),
+      }));
+    } else {
+      // other Text component deeper in the subtree works only with the style
+      // properties (they are being merged with context - see below)
+      this.setState({
+        nativeText: this.props.style,
+      });
+    }
+  };
 
-  // Note - this won't work correctly because it doesn't work with style inheritance (see tests):
-  // See: https://facebook.github.io/react-native/docs/text.html#limited-style-inheritance
-  //
-  // return (
-  //   <ReactNative.Text {...props} style={[styles.default, props.style]}>
-  //     {props.children}
-  //   </ReactNative.Text>
-  // );
-  return (
-    <ReactNative.Text {...props} style={[styles.nativeText, props.style]}>
-      {childrenWithInheritedStyles}
-    </ReactNative.Text>
-  );
+  getChildContext() {
+    return {
+      defaultTextStyles: this.state.nativeText,
+    };
+  }
+
+  render = () => {
+    return (
+      <ReactNative.Text
+        {...this.props}
+        style={[this.context.defaultTextStyles, this.state.nativeText]}
+      >
+        {this.props.children}
+      </ReactNative.Text>
+    );
+  };
 }
+
+Text.childContextTypes = {
+  defaultTextStyles: PropTypes.any,
+};
+
+Text.contextTypes = {
+  defaultTextStyles: PropTypes.any,
+};
 
 const styles = StyleSheet.create({
   // These values are from the official design. Don't touch it please.

@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 40,
+    lineHeight: 40,
     marginTop: -10,
   },
   titleWrapper: {

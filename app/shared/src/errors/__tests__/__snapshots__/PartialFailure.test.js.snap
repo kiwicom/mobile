@@ -36,6 +36,7 @@ Array [
         ellipsizeMode="tail"
         style={
           Array [
+            undefined,
             Object {
               "color": "#30363d",
               "fontSize": 14,
@@ -43,7 +44,6 @@ Array [
               "letterSpacing": -0.15,
               "lineHeight": 19,
             },
-            undefined,
           ]
         }
       >

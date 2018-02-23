@@ -17,15 +17,13 @@ exports[`renders as expected 1`] = `
       ellipsizeMode="tail"
       style={
         Array [
+          undefined,
           Object {
-            "color": "#30363d",
+            "color": "#f44336",
             "fontSize": 14,
             "fontWeight": "normal",
             "letterSpacing": -0.15,
             "lineHeight": 19,
-          },
-          Object {
-            "color": "#f44336",
             "textAlign": "center",
           },
         ]
