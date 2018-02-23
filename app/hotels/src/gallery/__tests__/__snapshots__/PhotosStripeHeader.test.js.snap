@@ -24,6 +24,7 @@ exports[`renders header with title 1`] = `
         Object {
           "color": "white",
           "fontSize": 40,
+          "lineHeight": 40,
           "marginTop": -10,
           "textAlign": "center",
         }
@@ -104,6 +105,7 @@ exports[`renders header with very long title 1`] = `
         Object {
           "color": "white",
           "fontSize": 40,
+          "lineHeight": 40,
           "marginTop": -10,
           "textAlign": "center",
         }

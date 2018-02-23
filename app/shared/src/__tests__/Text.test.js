@@ -1,25 +1,24 @@
 // @flow
 
 import * as React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import Renderer from 'react-test-renderer';
 
 import Text from '../Text';
-
-const renderer = new ShallowRenderer();
+// import Stars from '../../../shared/src/rating/Stars';
 
 it('renders with the default properties for iOS', () => {
-  expect(renderer.render(<Text>IOS</Text>)).toMatchSnapshot();
+  expect(Renderer.create(<Text>IOS</Text>)).toMatchSnapshot();
 });
 
 it('renders with additional style properties', () => {
   expect(
-    renderer.render(<Text style={{ fontWeight: 'bold' }}>IOS</Text>),
+    Renderer.create(<Text style={{ fontWeight: 'bold' }}>IOS</Text>),
   ).toMatchSnapshot();
 });
 
 it('supports nested styles', () => {
   expect(
-    renderer.render(
+    Renderer.create(
       <Text style={{ fontWeight: 'bold' }}>
         I am bold <Text style={{ color: 'red' }}>and red</Text>
       </Text>,
@@ -29,7 +28,7 @@ it('supports nested styles', () => {
 
 it('supports multiple nested strings', () => {
   expect(
-    renderer.render(
+    Renderer.create(
       <Text
         style={{
           // this style is going to be inherited so every child text
@@ -48,9 +47,34 @@ it('works with nullable child', () => {
   // this happens when for example API returns null and we are trying
   // to render it inside of string
   expect(
-    renderer.render(
+    Renderer.create(
       <Text>
         {'text'} {null} {'text'} {undefined} {'text'}
+      </Text>,
+    ),
+  ).toMatchSnapshot();
+});
+
+it('works applies the styles recursively', () => {
+  const Fence = ({ children }) => children;
+  expect(
+    Renderer.create(
+      <Text style={{ fontWeight: 'bold' }}>
+        <Fence>
+          <Text style={{ color: 'red' }}>bold and red</Text>
+        </Fence>
+      </Text>,
+    ),
+  ).toMatchSnapshot();
+});
+
+it('works even with the distant Text nodes', () => {
+  const Fence = () => <Text>should be bold as well</Text>;
+
+  expect(
+    Renderer.create(
+      <Text style={{ fontWeight: 'bold' }}>
+        <Fence />
       </Text>,
     ),
   ).toMatchSnapshot();

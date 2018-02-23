@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   count: {
     backgroundColor: 'transparent',
     fontSize: 12,
+    lineHeight: 14,
     fontWeight: '600',
     color: '#ffffff',
     marginLeft: 5,

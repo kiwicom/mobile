@@ -7,15 +7,13 @@ exports[`formats date 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
+      undefined,
       Object {
-        "color": "#30363d",
+        "color": "#888",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
         "lineHeight": 19,
-      },
-      Object {
-        "color": "#888",
       },
     ]
   }
