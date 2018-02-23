@@ -43,6 +43,13 @@ export default class GuestsPopup extends React.Component<Props, State> {
     return children.some(child => child.age === null);
   };
 
+  onClose = () => {
+    this.setState({
+      isMissingAge: false,
+    });
+    this.props.onClose();
+  };
+
   /**
    * Save only with filled children ages.
    * Show info message on missing age.
@@ -56,7 +63,7 @@ export default class GuestsPopup extends React.Component<Props, State> {
           // eslint-disable-next-line react/no-access-state-in-setstate
           ((this.state.guests: any): RoomConfigurationType),
         );
-        this.props.onClose();
+        this.onClose();
       });
     }
   };
@@ -79,23 +86,27 @@ export default class GuestsPopup extends React.Component<Props, State> {
       // Decremented
       children.pop();
     }
+
     this.setState(({ guests, isMissingAge }) => ({
       guests: {
         adultsCount: guests.adultsCount,
         children,
       },
-      isMissingAge: children.length ? isMissingAge : false,
+      // Adding children should never produce an error, but it can remove an error
+      isMissingAge: this.isMissingAge(children) ? isMissingAge : false,
     }));
   };
 
-  handleChildrenAgesChange = (children: ChildAge[]) =>
-    this.setState(({ guests }) => ({
+  handleChildrenAgesChange = (children: ChildAge[]) => {
+    this.setState(({ guests, isMissingAge }) => ({
       guests: {
         adultsCount: guests.adultsCount,
         children,
       },
-      isMissingAge: this.isMissingAge(children),
+      // Adding children age should never produce an error, but it can remove an error
+      isMissingAge: this.isMissingAge(children) ? isMissingAge : false,
     }));
+  };
 
   render = () => {
     const { guests, isMissingAge } = this.state;
@@ -103,7 +114,7 @@ export default class GuestsPopup extends React.Component<Props, State> {
       <ButtonPopup
         buttonTitle="Save"
         onSave={this.handleSave}
-        onClose={this.props.onClose}
+        onClose={this.onClose}
         isVisible={this.props.isVisible}
         style={{ content: styles.content }}
       >
