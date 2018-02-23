@@ -55,6 +55,7 @@ export { default as Stars } from './src/rating/Stars';
 
 export { default as Logger } from './src/services/Logger';
 export { default as CurrencyFormatter } from './src/services/CurrencyFormatter';
+export { default as Translate } from './src/translations/Translate';
 
 export { default as Color } from './src/Color';
 export { default as Device } from './src/Device';
