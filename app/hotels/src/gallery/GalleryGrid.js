@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { FlatList, Dimensions } from 'react-native';
-import { GeneralError, Modal } from '@kiwicom/react-native-app-shared';
+import { FlatList } from 'react-native';
+import { GeneralError, Modal, Device } from '@kiwicom/react-native-app-shared';
 
 import GalleryGridTile from './GalleryGridTile';
 import PhotosStripe from './PhotosStripe';
@@ -47,7 +47,11 @@ export default class GalleryGrid extends React.Component<Props, State> {
    * images are loaded which is too late (works good on iOS).
    */
   componentDidMount = () => {
-    const { width } = Dimensions.get('window');
+    this.calculateTileWidth();
+  };
+
+  calculateTileWidth = () => {
+    const { width } = Device.getDimensions();
     this.setState({
       tileWidth: (width - tileGap * (tilesInRow - 1)) / tilesInRow,
     });
@@ -84,6 +88,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
           extraData={this.state}
           renderItem={this.renderItem}
           numColumns={tilesInRow}
+          onLayout={this.calculateTileWidth}
         />,
         <Modal
           key="stripe"

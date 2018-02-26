@@ -16,23 +16,28 @@ type Props = {|
 export default class Popup extends React.Component<Props> {
   onClose = () => this.props.onClose();
 
-  render = () => (
-    <Modal
-      isVisible={this.props.isVisible}
-      style={styles.modal}
-      backdropOpacity={0.5}
-      onBackdropPress={this.onClose}
-    >
-      <View style={styles.contentContainer}>
-        <ScrollView
-          contentContainerStyle={styles.content}
-          alwaysBounceVertical={false}
-        >
-          {this.props.children}
-        </ScrollView>
-      </View>
-    </Modal>
-  );
+  render = () => {
+    const width = Device.isTablet()
+      ? Device.getLandscapeThreshold() / 2
+      : Device.getLandscapeThreshold();
+    return (
+      <Modal
+        isVisible={this.props.isVisible}
+        style={styles.modal}
+        backdropOpacity={0.5}
+        onBackdropPress={this.onClose}
+      >
+        <View style={[styles.contentContainer, { width }]}>
+          <ScrollView
+            contentContainerStyle={styles.content}
+            alwaysBounceVertical={false}
+          >
+            {this.props.children}
+          </ScrollView>
+        </View>
+      </Modal>
+    );
+  };
 }
 
 const styles = StyleSheet.create({
@@ -43,9 +48,6 @@ const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor: '#fff',
     alignSelf: 'center',
-    width: Device.isTablet()
-      ? Device.getLandscapeThreshold() / 2
-      : Device.getLandscapeThreshold(),
   },
   content: {
     opacity: 1,

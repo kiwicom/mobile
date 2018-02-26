@@ -6,7 +6,6 @@ import { Dimensions } from 'react-native';
 import {
   BottomSheet as CommonBottomSheet,
   Device,
-  type OnDimensionsChange,
 } from '@kiwicom/react-native-app-shared';
 
 import { getWidth, openHeight, closedHeight } from '../bottomSheetDimensions';
@@ -27,7 +26,7 @@ export default class BottomSheet extends React.Component<Props, State> {
     this.isTablet = Device.isTablet();
 
     this.state = {
-      screenWidth: Dimensions.get('screen').width,
+      screenWidth: Device.getDimensions().width,
     };
   }
 
@@ -39,11 +38,12 @@ export default class BottomSheet extends React.Component<Props, State> {
     Dimensions.removeEventListener('change', this.onDimensionsChanged);
   };
 
-  onDimensionsChanged = ({ screen: { width } }: OnDimensionsChange) => {
+  onDimensionsChanged = () => {
+    const { width } = Device.getDimensions();
     this.setState({ screenWidth: width });
   };
 
-  getWidth = () => getWidth(this.state.screenWidth, this.isTablet);
+  getWidth = () => getWidth(Device.getDimensions().width, Device.isTablet());
 
   render = () => {
     const { children } = this.props;
