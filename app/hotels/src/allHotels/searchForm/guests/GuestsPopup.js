@@ -129,11 +129,11 @@ export default class GuestsPopup extends React.Component<Props, State> {
             onChange={this.handleAdultChange}
           />
           <NumberControl
-            label="Infant"
+            label="Children"
             number={guests.children.length}
             min={0}
             max={10}
-            icon="child-friendly"
+            icon="child-care"
             onChange={this.handleChildrenChange}
             style={{
               marginBottom: guests.children.length > 0 ? POPUP_PADDING : 0,
