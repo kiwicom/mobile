@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { FlatList, Dimensions } from 'react-native';
-import { GeneralError, Modal } from '@kiwicom/react-native-app-shared';
+import {
+  GeneralError,
+  Modal,
+  type OnLayout,
+} from '@kiwicom/react-native-app-shared';
 
 import GalleryGridTile from './GalleryGridTile';
 import PhotosStripe from './PhotosStripe';
@@ -44,10 +48,20 @@ export default class GalleryGrid extends React.Component<Props, State> {
    * without additional paddings (this is how it's designed).
    *
    * Event `onLayout` attached to the `FlatList` is called after all
-   * images are loaded which is too late (works good on iOS).
+   * images are loaded which is too late (works good on iOS). But it's
+   * still needed for portrait <-> layout changes.
    */
   componentDidMount = () => {
     const { width } = Dimensions.get('window');
+    this.updateTileWidth(width);
+  };
+
+  calculateTileWidth = (event: OnLayout) => {
+    const width = event.nativeEvent.layout.width;
+    this.updateTileWidth(width);
+  };
+
+  updateTileWidth = (width: number) => {
     this.setState({
       tileWidth: (width - tileGap * (tilesInRow - 1)) / tilesInRow,
     });
@@ -84,6 +98,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
           extraData={this.state}
           renderItem={this.renderItem}
           numColumns={tilesInRow}
+          onLayout={this.calculateTileWidth}
         />,
         <Modal
           key="stripe"
