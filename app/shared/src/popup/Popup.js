@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
+import { AdaptableLayout } from '@kiwicom/react-native-app-shared';
 
 import Modal from '../Modal';
-import Device from '../Device';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
@@ -16,23 +16,36 @@ type Props = {|
 export default class Popup extends React.Component<Props> {
   onClose = () => this.props.onClose();
 
-  render = () => (
-    <Modal
-      isVisible={this.props.isVisible}
-      style={styles.modal}
-      backdropOpacity={0.5}
-      onBackdropPress={this.onClose}
-    >
-      <View style={styles.contentContainer}>
-        <ScrollView
-          contentContainerStyle={styles.content}
-          alwaysBounceVertical={false}
-        >
-          {this.props.children}
-        </ScrollView>
-      </View>
-    </Modal>
-  );
+  render = () => {
+    const modalChild = (
+      <ScrollView
+        contentContainerStyle={styles.content}
+        alwaysBounceVertical={false}
+      >
+        {this.props.children}
+      </ScrollView>
+    );
+
+    return (
+      <Modal
+        isVisible={this.props.isVisible}
+        style={styles.modal}
+        backdropOpacity={0.5}
+        onBackdropPress={this.onClose}
+      >
+        <AdaptableLayout
+          renderOnWide={
+            <View style={[styles.contentContainer, { width: '75%' }]}>
+              {modalChild}
+            </View>
+          }
+          renderOnNarrow={
+            <View style={styles.contentContainer}>{modalChild}</View>
+          }
+        />
+      </Modal>
+    );
+  };
 }
 
 const styles = StyleSheet.create({
@@ -43,9 +56,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     backgroundColor: '#fff',
     alignSelf: 'center',
-    width: Device.isTablet()
-      ? Device.getLandscapeThreshold() / 2
-      : Device.getLandscapeThreshold(),
+    width: '100%',
   },
   content: {
     opacity: 1,

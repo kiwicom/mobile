@@ -35,7 +35,11 @@ module.exports = {
         paths: [
           {
             name: 'react-native',
-            importNames: ['StyleSheet', 'Text'],
+            importNames: [
+              'Dimensions', // Device
+              'StyleSheet', // StyleSheet
+              'Text' // Text
+            ],
             message:
               "Please use '@kiwicom/react-native-app-shared' package instead.",
           },
