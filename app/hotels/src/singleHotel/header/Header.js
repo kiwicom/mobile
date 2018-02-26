@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
   hotelName: {
     backgroundColor: 'transparent',
     fontSize: 18,
+    lineHeight: 22,
     fontWeight: '600',
-    lineHeight: 18,
     letterSpacing: -0.45,
     color: '#ffffff',
   },
