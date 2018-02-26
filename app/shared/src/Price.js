@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 
+import CurrencyFormatter from './currency/CurrencyFormatter';
 import Text from './Text';
-import CurrencyFormatter from './services/CurrencyFormatter';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
@@ -20,7 +20,10 @@ type Props = {|
  * all prices should be wrapped in this component so the future changes are easy.
  */
 export default function Price(props: Props) {
-  const amount = props.amount != null ? CurrencyFormatter(props.amount) : '';
+  const amount =
+    props.amount != null
+      ? CurrencyFormatter(props.amount, props.currency || '')
+      : '';
   return (
     <Text style={props.style}>
       <Text style={props.amountStyle}>{amount}</Text>{' '}
