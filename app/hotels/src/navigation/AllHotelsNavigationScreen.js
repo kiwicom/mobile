@@ -6,8 +6,8 @@ import { connect } from '@kiwicom/react-native-app-redux';
 import { View } from 'react-native';
 import {
   StyleSheet,
-  Device,
   HeaderRightButton,
+  AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
@@ -71,11 +71,11 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     }
 
     function renderHeaderRight() {
-      if (Device.isTablet()) {
-        return null;
-      }
-
-      return <HeaderRightButton onPress={goToAllHotelsMap} />;
+      return (
+        <AdaptableLayout
+          renderOnNarrow={<HeaderRightButton onPress={goToAllHotelsMap} />}
+        />
+      );
     }
 
     return {
@@ -122,8 +122,14 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     </View>
   );
 
-  render = () =>
-    Device.isTablet() ? this.renderHotelsWithMap() : this.renderHotels();
+  render = () => {
+    return (
+      <AdaptableLayout
+        renderOnWide={this.renderHotelsWithMap()}
+        renderOnNarrow={this.renderHotels()}
+      />
+    );
+  };
 }
 
 const styles = StyleSheet.create({
@@ -131,7 +137,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
   },
-  map: { width: '55%' },
+  map: {
+    width: '55%',
+  },
 });
 
 const select = ({

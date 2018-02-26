@@ -3,20 +3,19 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {
   BottomSheet,
   Device,
   StyleSheet,
-  type OnDimensionsChange,
+  AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';
 import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
-import { getWidth, openHeight, closedHeight } from '../bottomSheetDimensions';
+import { openHeight, closedHeight } from '../bottomSheetDimensions';
 import BottomSheetHandle from '../BottomSheetHandle';
 
 type Props = {|
@@ -44,33 +43,8 @@ const styles = StyleSheet.create({
 });
 
 class HotelSwipeList extends React.Component<Props, State> {
-  isTablet: boolean;
-
-  constructor(props: Props) {
-    super(props);
-    this.isTablet = Device.isTablet();
-
-    this.state = {
-      screenWidth: Dimensions.get('screen').width,
-    };
-  }
-
-  componentDidMount = () => {
-    Dimensions.addEventListener('change', this.onDimensionsChanged);
-  };
-
-  componentWillUnmount = () => {
-    Dimensions.removeEventListener('change', this.onDimensionsChanged);
-  };
-
-  onDimensionsChanged = ({ screen: { width } }: OnDimensionsChange) => {
-    this.setState({ screenWidth: width });
-  };
-
-  getWidth = () => getWidth(this.state.screenWidth, this.isTablet);
-
   getCardItemWidth = () => {
-    return this.getWidth() * SNAP_WIDTH;
+    return Device.getWideDeviceThreshold() * SNAP_WIDTH;
   };
 
   getSelectedAddress = () => {
@@ -94,29 +68,40 @@ class HotelSwipeList extends React.Component<Props, State> {
   render = () => {
     const { data, selectedIndex, onSnapToItem } = this.props;
 
+    const child = (
+      <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
+        <BottomSheetHandle />
+        <View style={styles.sliderWrapper}>
+          <Carousel
+            data={data}
+            renderItem={this.renderItem}
+            sliderWidth={Device.getWideDeviceThreshold()}
+            itemWidth={this.getCardItemWidth()}
+            firstItem={selectedIndex}
+            inactiveSlideScale={1}
+            inactiveSlideOpacity={0.5}
+            decelerationRate="fast"
+            activeSlideAlignment="start"
+            containerCustomStyle={styles.slider}
+            removeClippedSubviews={false}
+            onSnapToItem={onSnapToItem}
+          />
+        </View>
+        <Address address={this.getSelectedAddress()} />
+      </BottomSheet>
+    );
+
     return (
-      <View style={{ maxWidth: this.getWidth() }}>
-        <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
-          <BottomSheetHandle />
-          <View style={styles.sliderWrapper}>
-            <Carousel
-              data={data}
-              renderItem={this.renderItem}
-              sliderWidth={this.getWidth()}
-              itemWidth={this.getCardItemWidth()}
-              firstItem={selectedIndex}
-              inactiveSlideScale={1}
-              inactiveSlideOpacity={0.5}
-              decelerationRate="fast"
-              activeSlideAlignment="start"
-              containerCustomStyle={styles.slider}
-              removeClippedSubviews={false}
-              onSnapToItem={onSnapToItem}
-            />
+      <AdaptableLayout
+        renderOnWide={
+          <View
+            style={{ width: '100%', maxWidth: Device.getWideDeviceThreshold() }}
+          >
+            {child}
           </View>
-          <Address address={this.getSelectedAddress()} />
-        </BottomSheet>
-      </View>
+        }
+        renderOnNarrow={<View style={{ width: '100%' }}>{child}</View>}
+      />
     );
   };
 }
