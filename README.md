@@ -152,16 +152,15 @@ The native developers have prepared some native modules that we can use in our c
 - Run `yarn pod-install`
 - Navigate to `android/app/src/main/java/com/reactnativeapp/MainApplication.java` and add the new package to the `getPackages` method, `new RNLoggingPackage()`
 
-
 ### Logging module
 
 It exposes two methods 
 - ancillaryDisplayed
 - ancillaryPurchased
 
-
 And 4 types:
-```
+
+```js
 const Type = {
   ANCILLARY_STEP_DETAILS,
   ANCILLARY_STEP_PAYMENT,
@@ -170,8 +169,9 @@ const Type = {
 };
 ```
 
-Usage: 
-```
+Usage:
+
+```js
 import { Logger } from '@kiwicom/react-native-app-shared';
 
 Logger.ancillaryDisplayed(Logger.type.ANCILLARY_STEP_DETAILS);
@@ -185,7 +185,7 @@ It exposes one method
 
 Usage:
 
-```
+```js
 import { Translate } from '@kiwicom/react-native-app-shared';
 
 const someString = Translate('translation.key.to.translate');
@@ -195,7 +195,7 @@ const someString = Translate('translation.key.to.translate');
 
 Colors defined in native code base and exposed through `app/shared/src/Color.js`
 
-```
+```js
 NativeModules.RNColors = {
   backgroundGray: '#EDEFF2',
   brand: '#0097A9',
@@ -209,7 +209,8 @@ NativeModules.RNColors = {
 ```
 
 Usage:
-```
+
+```js
 import { Color } from '@kiwicom/react-native-app-shared';
 
 const color = Color.brand;
@@ -220,8 +221,9 @@ const color = Color.brand;
 It exposes one method
 - formatAmount
 
-Usage: 
-```
+Usage:
+
+```js
 import { CurrencyFormatter } from '@kiwicom/react-native-app-shared';
 
 const priceInEuros = 500.34;
