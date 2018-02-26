@@ -1,5 +1,6 @@
 // @flow
 
+import './NativeModulesMocks/DeviceInfo';
 import './NativeModulesMocks/RNLoggingModule';
 import './NativeModulesMocks/RNTranslationManager';
 import './NativeModulesMocks/RNColors';
@@ -22,8 +23,4 @@ beforeEach(() => {
    */
   // $FlowExpectedError: cannot overwrite console object
   console.log = jest.fn(); // eslint-disable-line no-console
-  // $FlowExpectedError: cannot overwrite console object
-  console.error = jest.fn(error => {
-    throw new Error(error);
-  });
 });

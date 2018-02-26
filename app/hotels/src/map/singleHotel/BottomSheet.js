@@ -2,58 +2,42 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Dimensions } from 'react-native';
 import {
   BottomSheet as CommonBottomSheet,
   Device,
-  type OnDimensionsChange,
+  AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 
-import { getWidth, openHeight, closedHeight } from '../bottomSheetDimensions';
+import { openHeight, closedHeight } from '../bottomSheetDimensions';
 
 type Props = {|
   children: React.Node,
 |};
 
-type State = {|
-  screenWidth: number,
-|};
-
-export default class BottomSheet extends React.Component<Props, State> {
-  isTablet: boolean;
-
-  constructor(props: Props) {
-    super(props);
-    this.isTablet = Device.isTablet();
-
-    this.state = {
-      screenWidth: Dimensions.get('screen').width,
-    };
-  }
-
-  componentDidMount = () => {
-    Dimensions.addEventListener('change', this.onDimensionsChanged);
-  };
-
-  componentWillUnmount = () => {
-    Dimensions.removeEventListener('change', this.onDimensionsChanged);
-  };
-
-  onDimensionsChanged = ({ screen: { width } }: OnDimensionsChange) => {
-    this.setState({ screenWidth: width });
-  };
-
-  getWidth = () => getWidth(this.state.screenWidth, this.isTablet);
-
+export default class BottomSheet extends React.Component<Props> {
   render = () => {
-    const { children } = this.props;
+    const content = (
+      <CommonBottomSheet openHeight={openHeight} closedHeight={closedHeight}>
+        {this.props.children}
+      </CommonBottomSheet>
+    );
 
     return (
-      <View style={{ width: this.getWidth(), alignSelf: 'center' }}>
-        <CommonBottomSheet openHeight={openHeight} closedHeight={closedHeight}>
-          {children}
-        </CommonBottomSheet>
-      </View>
+      <AdaptableLayout
+        renderOnWide={
+          <View
+            style={{
+              width: Device.getWideDeviceThreshold(),
+              alignSelf: 'center',
+            }}
+          >
+            {content}
+          </View>
+        }
+        renderOnNarrow={
+          <View style={{ width: '100%', alignSelf: 'center' }}>{content}</View>
+        }
+      />
     );
   };
 }

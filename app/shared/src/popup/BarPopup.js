@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 // @flow
 
 import * as React from 'react';
@@ -34,9 +33,7 @@ export default class BarPopup extends React.Component<Props> {
         <LinkButton title="Cancel" onPress={this.onClose} />
         <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
       </View>
-      <View style={styles.children}>
-        {this.props.children}
-      </View>
+      <View style={styles.children}>{this.props.children}</View>
     </Popup>
   );
 }
@@ -49,5 +46,5 @@ const styles = StyleSheet.create({
   },
   children: {
     padding: 10,
-  }
+  },
 });

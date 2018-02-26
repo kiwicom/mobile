@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { FlatList, Dimensions } from 'react-native';
+import { FlatList } from 'react-native';
 import {
   GeneralError,
   Modal,
+  Device,
   type OnLayout,
 } from '@kiwicom/react-native-app-shared';
 
@@ -52,8 +53,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
    * still needed for portrait <-> layout changes.
    */
   componentDidMount = () => {
-    const { width } = Dimensions.get('window');
-    this.updateTileWidth(width);
+    this.updateTileWidth(Device.getWideDeviceThreshold());
   };
 
   calculateTileWidth = (event: OnLayout) => {

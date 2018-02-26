@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import { Device, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, AdaptableLayout } from '@kiwicom/react-native-app-shared';
 
 import MapScreen from './MapScreen';
 import FilterStripe from '../../filter/FilterStripe';
@@ -33,7 +33,7 @@ type Props = {|
   onGoToSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
 |};
 
-class AllHotelsMap extends React.Component<Props> {
+export default class AllHotelsMap extends React.Component<Props> {
   handleOpenSingleHotel = (hotelId: string) => {
     const { search, onGoToSingleHotel } = this.props;
 
@@ -54,13 +54,15 @@ class AllHotelsMap extends React.Component<Props> {
 
     return (
       <View style={styles.container}>
-        {!Device.isTablet() && (
-          <FilterStripe
-            filter={filter}
-            onChange={onFilterChange}
-            currency={currency}
-          />
-        )}
+        <AdaptableLayout
+          renderOnNarrow={
+            <FilterStripe
+              filter={filter}
+              onChange={onFilterChange}
+              currency={currency}
+            />
+          }
+        />
         <PublicApiRenderer
           query={graphql`
             query AllHotelsMapQuery(
@@ -97,5 +99,3 @@ class AllHotelsMap extends React.Component<Props> {
     );
   };
 }
-
-export default AllHotelsMap;
