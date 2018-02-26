@@ -11,6 +11,12 @@ This is not an actual mobile application. This repository contains only React Na
   * [Fastline run instructions](#fastline-run-instructions)
 * [Environment](#environment)
 * [Project structure](#project-structure)
+* [Native modules](#native-modules)
+  * [Adding a new native module](#adding-a-new-native-module)
+  * [Logging module](#logging-module)
+  * [Translation module](#translation-module)
+  * [Color module](#color-module)
+  * [Currency module](#currency-module)
 * [Best practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
   * [Error handling](#error-handling)
@@ -133,6 +139,95 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ```
 
 In case you need additional dependency for the package, you should add it to the `package.json` of the workspace (for example `app/hotels/package.json`). Root `package.json` is only for global dependencies related to the whole monorepo (testing tools, linters and so on).
+
+## Native modules
+
+The native developers have prepared some native modules that we can use in our code. They are available through an npm package called `@kiwicom/react-native-native-modules`
+
+### Adding a new native module
+
+- Navigate to `app/shared/package.json` and bump the version to latest version.
+- Navigate to `ios/Podfile` and add the new package like this:
+  - `pod 'RNLogging', :path => '../node_modules/@kiwicom/react-native-native-modules'`
+- Run `yarn pod-install`
+- Navigate to `android/app/src/main/java/com/reactnativeapp/MainApplication.java` and add the new package to the `getPackages` method, `new RNLoggingPackage()`
+
+
+### Logging module
+
+It exposes two methods 
+- ancillaryDisplayed
+- ancillaryPurchased
+
+
+And 4 types:
+```
+const Type = {
+  ANCILLARY_STEP_DETAILS,
+  ANCILLARY_STEP_PAYMENT,
+  ANCILLARY_STEP_RESULTS,
+  ANCILLARY_STEP_SEARCH_FORM,
+};
+```
+
+Usage: 
+```
+import { Logger } from '@kiwicom/react-native-app-shared';
+
+Logger.ancillaryDisplayed(Logger.type.ANCILLARY_STEP_DETAILS);
+Logger.ancillaryPurchased(Logger.type.ANCILLARY_STEP_RESULTS);
+```
+
+### Translation module
+
+It exposes one method
+- translate
+
+Usage:
+
+```
+import { Translate } from '@kiwicom/react-native-app-shared';
+
+const someString = Translate('translation.key.to.translate');
+```
+
+### Color module
+
+Colors defined in native code base and exposed through `app/shared/src/Color.js`
+
+```
+NativeModules.RNColors = {
+  backgroundGray: '#EDEFF2',
+  brand: '#0097A9',
+  brandSecondary: '#0CB3C7',
+  buttercup: '#EB9D08',
+  sun: '#FBAD18',
+  textDark: '#30363D',
+  textLight: '#79818A',
+  textMedium: '#596066',
+};
+```
+
+Usage:
+```
+import { Color } from '@kiwicom/react-native-app-shared';
+
+const color = Color.brand;
+```
+
+### Currency module
+
+It exposes one method
+- formatAmount
+
+Usage: 
+```
+import { CurrencyFormatter } from '@kiwicom/react-native-app-shared';
+
+const priceInEuros = 500.34;
+const currencyCode = 'NOK';
+const priceInNOK = CurrencyFormatter(priceInEuros, currencyCode);
+```
 
 ## Best practices
 
