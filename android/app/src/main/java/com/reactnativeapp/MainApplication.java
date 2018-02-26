@@ -11,6 +11,8 @@ import com.kiwi.mynativemodule.MyNativeModulePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.trinerdis.skypicker.colors.RNColorsPackage;
+import com.trinerdis.skypicker.currency.CurrencyChangeCallback;
+import com.trinerdis.skypicker.currency.RNCurrencyManagerPackage;
 import com.trinerdis.skypicker.logging.RNLoggingPackage;
 import com.trinerdis.skypicker.translation.*;
 
@@ -19,9 +21,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication, ResourceStringCallback {
+public class MainApplication extends Application implements ReactApplication, ResourceStringCallback, CurrencyChangeCallback {
 
     RNTranslationManagerPackage translationPackage = new RNTranslationManagerPackage(this);
+    RNCurrencyManagerPackage currencyPackage = new RNCurrencyManagerPackage(this);
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
         public boolean getUseDeveloperSupport() {
@@ -37,6 +40,7 @@ public class MainApplication extends Application implements ReactApplication, Re
                     new RNLoggingPackage(),
                     translationPackage,
                     new RNColorsPackage(),
+                    currencyPackage,
                     new MyNativeModulePackage()
             );
         }
@@ -62,5 +66,11 @@ public class MainApplication extends Application implements ReactApplication, Re
     @Override
     public String getTranslation(@NotNull String key) {
         return key;
+    }
+
+    @NotNull
+    @Override
+    public double getFormatCurrency(double amountInEur, @NotNull String currency) {
+        return amountInEur;
     }
 }
