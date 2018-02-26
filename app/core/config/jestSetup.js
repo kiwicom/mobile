@@ -3,6 +3,7 @@
 import './NativeModulesMocks/RNLoggingModule';
 import './NativeModulesMocks/RNTranslationManager';
 import './NativeModulesMocks/RNColors';
+import './NativeModulesMocks/RNCurrencyManager';
 
 beforeEach(() => {
   /**
