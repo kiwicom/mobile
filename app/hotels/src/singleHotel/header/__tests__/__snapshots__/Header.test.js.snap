@@ -51,7 +51,7 @@ exports[`renders without crashing 1`] = `
             "fontSize": 18,
             "fontWeight": "600",
             "letterSpacing": -0.45,
-            "lineHeight": 18,
+            "lineHeight": 22,
           }
         }
       />
@@ -126,7 +126,7 @@ exports[`renders without crashing with missing data 1`] = `
             "fontSize": 18,
             "fontWeight": "600",
             "letterSpacing": -0.45,
-            "lineHeight": 18,
+            "lineHeight": 22,
           }
         }
       />
