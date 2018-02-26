@@ -38,8 +38,8 @@ exports[`GuestsPopup Renders correctly 1`] = `
       }
     />
     <NumberControl
-      icon="child-friendly"
-      label="Infant"
+      icon="child-care"
+      label="Children"
       max={10}
       min={0}
       number={0}
