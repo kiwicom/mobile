@@ -8,6 +8,7 @@ import { ConfigReducer } from '@kiwicom/react-native-app-config';
 import FiltersReducer from './src/filter/FiltersReducer';
 import HotelsReducer from './src/HotelsReducer';
 import HotelsStack from './src/navigation/NavigationStack';
+import type { Coordinates } from './src/CoordinatesType';
 
 type Props = {|
   bookingComAffiliate: string,
@@ -15,6 +16,7 @@ type Props = {|
   currency: string,
   dataSaverEnabled: boolean,
   onBackClicked: () => void,
+  coordinates: Coordinates | null,
 |};
 
 export default function HotelsStandalonePackage(props: Props) {
