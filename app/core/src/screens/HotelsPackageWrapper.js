@@ -9,6 +9,10 @@ import Config from '../../config/application';
 
 type Props = {|
   navigation: NavigationType,
+  coordinates: null | {|
+    latitude: number,
+    longitude: number,
+  |},
 |};
 
 export default class HotelsPackageWrapper extends React.Component<Props> {
@@ -24,6 +28,8 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
 
   render = () => {
     const affiliate = String(Config.affiliate.bookingCom);
+    const coordinates = this.props.coordinates;
+
     return (
       <HotelsStandalonePackage
         bookingComAffiliate={affiliate}
@@ -31,6 +37,7 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
         currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
         onBackClicked={this.handleNavigation}
         dataSaverEnabled={false}
+        coordinates={coordinates}
       />
     );
   };

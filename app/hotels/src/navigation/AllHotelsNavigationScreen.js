@@ -29,10 +29,12 @@ import type {
   FilterReducerState,
   FilterReducerActions,
 } from '../filter/FiltersReducer';
+import type { Coordinates } from '../CoordinatesType';
 
 type ContainerProps = {|
   navigation: NavigationType,
   currency: string,
+  coordinates: Coordinates | null,
 |};
 
 type StateProps = {|
@@ -103,6 +105,7 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
       onFilterChange={this.props.onFilterChange}
       onLocationChange={this.props.onLocationChange}
       onCityIdChange={this.props.onCityIdChange}
+      coordinates={this.props.coordinates}
     />
   );
 

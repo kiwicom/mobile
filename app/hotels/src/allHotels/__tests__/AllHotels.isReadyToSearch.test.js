@@ -21,6 +21,7 @@ const defaultProps = {
   onFilterChange: jest.fn(),
   onLocationChange: jest.fn(),
   onCityIdChange: jest.fn(),
+  coordinates: null,
 };
 
 describe('AllHotelsSearch.isReadyToSearch', () => {

@@ -7,6 +7,12 @@ const render = () => <HotelsStandalonePackage
   currency="EUR"
   onBackClicked={() => goToHomepage()}
   dataSaverEnabled={false}
+
+  // coordinates of the user's location or `null`
+  coordinates={{
+    latitude: 51.5,
+    longitude: 0,
+  }}
 />
 ```
 
