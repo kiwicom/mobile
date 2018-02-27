@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { StackNavigator } from 'react-navigation';
+import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import { ReduxContext } from '@kiwicom/react-native-app-redux';
 
 import HomepageStack from './HomepageStack';
@@ -14,7 +15,7 @@ const Navigation = StackNavigator(
       screen: HomepageStack,
     },
     HotelsPackage: {
-      screen: HotelsPackageWrapper,
+      screen: withMappedProps(HotelsPackageWrapper),
     },
   },
   {

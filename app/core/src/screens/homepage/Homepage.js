@@ -26,11 +26,27 @@ export default class Homepage extends React.Component<Props, {}> {
       key: 'key-HotelsPackage',
     });
 
+  goToOslo = () => {
+    this.props.navigation.navigate({
+      routeName: 'HotelsPackage',
+      key: 'key-HotelsPackage',
+      params: {
+        coordinates: {
+          latitude: 59.9139,
+          longitude: 10.7522,
+        },
+      },
+    });
+  };
+
   render = () => {
     return (
       <Layout>
         <Section>
           <Button title="Hotels" onPress={this.goToAllHotelsPage} />
+        </Section>
+        <Section>
+          <Button title="Hotels in Oslo" onPress={this.goToOslo} />
         </Section>
         <Section>
           <Logout />

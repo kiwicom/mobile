@@ -17,6 +17,7 @@ import type {
 } from '../filter/FilterParametersType';
 import { handleOpenSingleHotel } from '../singleHotel';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
+import type { Coordinates } from '../CoordinatesType';
 
 type Props = {|
   location: string,
@@ -28,6 +29,7 @@ type Props = {|
   onFilterChange: OnChangeFilterParams => void,
   onLocationChange: (location: string) => void,
   onCityIdChange: (cityId: string | null) => void,
+  coordinates: Coordinates | null,
 |};
 
 export default class AllHotels extends React.Component<Props> {
@@ -81,6 +83,7 @@ export default class AllHotels extends React.Component<Props> {
         onLocationChange={onLocationChange}
         onCityIdChange={onCityIdChange}
         openSingleHotel={this.handleOpenSingleHotel}
+        coordinates={this.props.coordinates}
       />
     );
   };
