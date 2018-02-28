@@ -13,6 +13,7 @@ const createNavigationOptions = () => {
       color: '#fff',
     },
     headerTintColor: '#fff', // back arrow
+    headerBackTitle: null,
   };
 
   if (Platform.OS === 'android') {
