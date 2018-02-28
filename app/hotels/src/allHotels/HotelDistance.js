@@ -13,14 +13,15 @@ type Props = {|
 
 const style = StyleSheet.create({
   text: {
-    lineHeight: 12,
     letterSpacing: 0.2,
     color: '#79818a',
     android: {
       fontSize: 13,
+      lineHeight: 15,
     },
     ios: {
       fontSize: 12,
+      lineHeight: 12,
     },
   },
 });

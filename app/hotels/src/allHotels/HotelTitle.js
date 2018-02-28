@@ -55,7 +55,7 @@ const style = StyleSheet.create({
     letterSpacing: 0,
     android: {
       fontSize: 13,
-      lineHeight: 12,
+      lineHeight: 13,
     },
     ios: {
       fontSize: 12,
