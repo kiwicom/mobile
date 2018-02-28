@@ -21,10 +21,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication, ResourceStringCallback, CurrencyChangeCallback {
+public class MainApplication extends Application implements ReactApplication {
 
-    RNTranslationManagerPackage translationPackage = new RNTranslationManagerPackage(this);
-    RNCurrencyManagerPackage currencyPackage = new RNCurrencyManagerPackage(this);
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
         public boolean getUseDeveloperSupport() {
@@ -38,9 +36,9 @@ public class MainApplication extends Application implements ReactApplication, Re
                     new VectorIconsPackage(),
                     new MapsPackage(),
                     new RNLoggingPackage(),
-                    translationPackage,
+                    new RNTranslationManagerPackage(),
                     new RNColorsPackage(),
-                    currencyPackage,
+                    new RNCurrencyManagerPackage(),
                     new MyNativeModulePackage()
             );
         }
@@ -60,17 +58,5 @@ public class MainApplication extends Application implements ReactApplication, Re
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
-    }
-
-    @NotNull
-    @Override
-    public String getTranslation(@NotNull String key) {
-        return key;
-    }
-
-    @NotNull
-    @Override
-    public double getFormatCurrency(double amountInEur, @NotNull String currency) {
-        return amountInEur;
     }
 }

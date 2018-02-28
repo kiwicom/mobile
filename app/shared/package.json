@@ -4,7 +4,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@kiwicom/react-native-native-modules": "^0.1.14",
+    "@kiwicom/react-native-native-modules": "^0.1.15",
     "@ptomasroos/react-native-multi-slider": "^0.0.12",
     "react-native-datepicker": "^1.6.0",
     "react-native-image-progress": "^1.0.1",
