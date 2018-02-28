@@ -18,8 +18,8 @@ type State = {|
 |};
 
 /**
- * React Native has the concept of style inheritance, but limited to text subtrees.
- * In this case, the second part will be both bold and red:
+ * React Native has the concept of style inheritance, but limited to text
+ * subtrees. In this case, the second part will be both bold and red:
  *
  * ```
  * <Text style={{fontWeight: 'bold'}}>
@@ -35,14 +35,14 @@ type State = {|
  * 0-9: bold
  * 9-17: bold, red
  * ```
+ *
+ * Known issues:
+ * @see https://github.com/facebook/react-native/issues/10712
  */
 export default class Text extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      nativeText: styles.nativeText,
-    };
-  }
+  state = {
+    nativeText: styles.nativeText,
+  };
 
   componentDidMount = () => {
     if (this.context.defaultTextStyles === undefined) {
@@ -63,22 +63,18 @@ export default class Text extends React.Component<Props, State> {
     }
   };
 
-  getChildContext() {
-    return {
-      defaultTextStyles: this.state.nativeText,
-    };
-  }
+  getChildContext = () => ({
+    defaultTextStyles: this.state.nativeText,
+  });
 
-  render = () => {
-    return (
-      <ReactNative.Text
-        {...this.props}
-        style={[this.context.defaultTextStyles, this.state.nativeText]}
-      >
-        {this.props.children}
-      </ReactNative.Text>
-    );
-  };
+  render = () => (
+    <ReactNative.Text
+      {...this.props}
+      style={[this.context.defaultTextStyles, this.state.nativeText]}
+    >
+      {this.props.children}
+    </ReactNative.Text>
+  );
 }
 
 Text.childContextTypes = {
