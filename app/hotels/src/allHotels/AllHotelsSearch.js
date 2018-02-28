@@ -24,6 +24,7 @@ import type {
   OnChangeFilterParams,
 } from '../filter/FilterParametersType';
 import { sanitizeHotelFacilities, sanitizeDate } from '../GraphQLSanitizers';
+import type { Coordinates } from '../CoordinatesType';
 
 export const HOTELS_PER_LOAD = 50;
 
@@ -39,6 +40,7 @@ type Props = {|
   onFilterChange: OnChangeFilterParams => void,
   onLocationChange: (location: string) => void,
   onCityIdChange: (cityId: string | null) => void,
+  coordinates: Coordinates | null,
 |};
 
 export class AllHotelsSearch extends React.Component<Props> {
