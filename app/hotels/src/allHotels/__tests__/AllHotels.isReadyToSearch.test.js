@@ -69,4 +69,22 @@ describe('AllHotelsSearch.isReadyToSearch', () => {
 
     expect(component.isReadyToSearch()).toBe(false);
   });
+
+  it('does work with dates, no location and with coordinats', () => {
+    const props = {
+      ...defaultProps,
+      coordinates: {
+        latitude: 2,
+        longitude: 8,
+      },
+      search: {
+        ...defaults,
+        checkin: new Date(1),
+        checkout: new Date(2),
+      },
+    };
+    const component = new AllHotelsSearch(props);
+
+    expect(component.isReadyToSearch()).toBe(true);
+  });
 });

@@ -58,6 +58,7 @@ input AvailableHotelSearchInput {
   checkin: Date!
   checkout: Date!
   roomsConfiguration: [RoomsConfiguration!]!
+  language: Language
 }
 
 type Baggage {
@@ -727,6 +728,7 @@ input HotelsSearchInput {
   cityId: String
   checkin: Date!
   checkout: Date!
+  language: Language
   roomsConfiguration: [RoomsConfiguration!]!
 }
 
@@ -748,6 +750,55 @@ type Identity {
 
   # Use this in API calls. It is email but normalized.
   login: String
+}
+
+enum Language {
+  ar
+  bg
+  ca
+  cs
+  da
+  de
+  el
+  en
+  engb
+  enus
+  es
+  esar
+  et
+  fi
+  fr
+  he
+  hr
+  hu
+  id
+  is
+  it
+  ja
+  ko
+  lt
+  lv
+  ms
+  nl
+  no
+  pl
+  pt
+  ptbr
+  ptpt
+  ro
+  ru
+  sk
+  sl
+  sr
+  sv
+  th
+  tl
+  tr
+  uk
+  vi
+  zh
+  zhcn
+  zhtw
 }
 
 # Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
@@ -994,7 +1045,7 @@ type RootQuery {
   currentUser: Identity
 
   # Single hotel by ID.
-  hotel(id: ID!): Hotel
+  hotel(id: ID!, language: Language): Hotel
 
   # All cities where you can find the hotels. This query can be used for
   # suggestions of relevant cities (search for example). Cities can be filtered
