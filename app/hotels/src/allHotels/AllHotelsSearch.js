@@ -9,6 +9,7 @@ import {
   GeneralError,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
+import isUndefined from 'lodash/isUndefined';
 
 import SearchForm from './searchForm/SearchForm';
 import FilterStripe from '../filter/FilterStripe';
@@ -58,13 +59,49 @@ export class AllHotelsSearch extends React.Component<Props> {
     }
   };
 
-  isReadyToSearch = (): boolean => {
-    const { search: s, data } = this.props;
+  hasCoordinates = () => {
+    const latitude = idx(this.props, _ => _.coordinates.latitude);
+    const longitude = idx(this.props, _ => _.coordinates.longitude);
 
     return (
-      Boolean(this.getCityIdFromData(data)) &&
-      s.checkin !== null &&
-      s.checkout !== null
+      latitude !== null &&
+      isUndefined(latitude) === false &&
+      longitude !== null &&
+      isUndefined(longitude) === false
+    );
+  };
+
+  getSearchQueryParams = () => {
+    const { search, coordinates, data } = this.props;
+    let params = {
+      ...search,
+      checkin: sanitizeDate(search.checkin),
+      checkout: sanitizeDate(search.checkout),
+    };
+    const cityId = idx(data, _ => _.edges[0].node.id);
+
+    /**
+     * If props.location is not equal to '' then user is searching
+     * and we should ignore coordinates
+     */
+    if (this.hasCoordinates() && this.props.location === '') {
+      params.latitude = idx(coordinates, _ => _.latitude);
+      params.longitude = idx(coordinates, _ => _.longitude);
+    } else if (cityId) {
+      params.cityId = cityId;
+    }
+
+    return params;
+  };
+
+  isReadyToSearch = (): boolean => {
+    const { search, data } = this.props;
+    const canQueryWithCoordinats =
+      this.props.location === '' && this.hasCoordinates();
+    return (
+      (canQueryWithCoordinats || Boolean(this.getCityIdFromData(data))) &&
+      search.checkin !== null &&
+      search.checkout !== null
     );
   };
 
@@ -121,12 +158,7 @@ export class AllHotelsSearch extends React.Component<Props> {
               }
             `}
             variables={{
-              search: {
-                ...search,
-                checkin: sanitizeDate(search.checkin),
-                checkout: sanitizeDate(search.checkout),
-                cityId: this.getCityIdFromData(data),
-              },
+              search: this.getSearchQueryParams(),
               filter: {
                 ...filter,
                 hotelFacilities: sanitizeHotelFacilities(
