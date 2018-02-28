@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import OriginalDatePicker from 'react-native-datepicker';
 import { View } from 'react-native';
+import OriginalDatePicker from 'react-native-datepicker';
 
 import StyleSheet from '../PlatformStyleSheet';
 
@@ -25,9 +25,6 @@ const customStyles = StyleSheet.create({
   },
   // touchable area around the 'dateInput' (View)
   dateTouchBody: {
-    // flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#fff',
     android: {
       borderRadius: 3,
