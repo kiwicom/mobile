@@ -14,16 +14,24 @@ type State = {|
 |};
 
 export default class AdaptableLayout extends React.Component<Props, State> {
+  unsubscribeDimensionListener: Function = () => {};
+
   state = {
     wideLayout: Device.isWideLayout(),
   };
 
   componentDidMount = () => {
-    Device.subscribeToDimensionChanges(({ width }) => {
-      this.setState({
-        wideLayout: width > Device.getWideDeviceThreshold(),
-      });
-    });
+    this.unsubscribeDimensionListener = Device.subscribeToDimensionChanges(
+      ({ width }) => {
+        this.setState({
+          wideLayout: width > Device.getWideDeviceThreshold(),
+        });
+      },
+    );
+  };
+
+  componentWillUnmount = () => {
+    this.unsubscribeDimensionListener();
   };
 
   render = () => {
