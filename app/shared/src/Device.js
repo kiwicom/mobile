@@ -19,7 +19,7 @@ function renewDimensions(): DimensionsType {
   return dimensions;
 }
 
-const events = [];
+const dimensionChangeListeners = [];
 
 /**
  * Node: there are no `getWidth` or `getHeight`. These dimensions are changing
@@ -34,12 +34,14 @@ export default {
    * @see: https://github.com/facebook/react-native/issues/16152
    */
   emitDimensionChanges(height: number, width: number) {
+    // store new dimensions to the memory so they persist
     dimensions = {
       height,
       width,
     };
 
-    events.forEach(event => {
+    // invoke listeners with new dimensions
+    dimensionChangeListeners.forEach(event => {
       event({ height, width });
     });
   },
@@ -48,8 +50,15 @@ export default {
    * Dimensions may change (landscape <-> portrait, multitasking). Subscribe to
    * this event if you want to be notified about these changes.
    */
-  subscribeToDimensionChanges(handler: (dimensions: DimensionsType) => void) {
-    events.push(handler);
+  subscribeToDimensionChanges(
+    handler: (dimensions: DimensionsType) => void,
+  ): () => void {
+    dimensionChangeListeners.push(handler);
+
+    return function unsubscribe() {
+      const index = dimensionChangeListeners.indexOf(handler);
+      dimensionChangeListeners.splice(index, 1);
+    };
   },
 
   /**
