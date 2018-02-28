@@ -15,10 +15,12 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from '../filter/FilterParametersType';
+import type { Coordinates } from '../CoordinatesType';
 
 type ContainerProps = {|
   navigation: NavigationType,
   currency: string,
+  coordinates: Coordinates | null,
 |};
 
 type StateProps = {|
@@ -52,6 +54,7 @@ class AllHotelsMapNavigationScreen extends React.Component<Props> {
         cityId={cityId}
         filter={filter}
         currency={currency}
+        coordinates={this.props.coordinates}
       />
     );
   };
