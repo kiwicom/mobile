@@ -4,38 +4,41 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 import { NativeModules } from 'react-native';
 
-import HotelsPackageWrapper from '../HotelsPackageWrapper';
+import HotelsPackage from '../';
 
-const getProps = (goBack: Function) => ({
-  navigation: {
-    goBack,
-  },
+const getProps = (onBackClicked: Function) => ({
+  onBackClicked,
+  bookingComAffiliate: '',
+  language: '',
+  currency: '',
+  dataSaverEnabled: false,
+  coordinates: null,
 });
 
-describe('HotelsPackageWrapper', () => {
+describe('HotelsPackage', () => {
   it('should call props.navigation.goBack if NativeModules.RNNavigationModule is not defined', () => {
-    const goBack = jest.fn();
+    const onBackClicked = jest.fn();
     const testRenderer = renderer.create(
       // $FlowIssue: https://github.com/facebook/flow/issues/2405
-      <HotelsPackageWrapper {...getProps(goBack)} />,
+      <HotelsPackage {...getProps(onBackClicked)} />,
     );
 
-    testRenderer.root.instance.handleNavigation();
-    expect(goBack).toBeCalled();
+    testRenderer.root.instance.onBackClicked();
+    expect(onBackClicked).toBeCalled();
   });
 
   it('should call NativeModules.RNNavigationModule.leaveHotels if it is defined', () => {
-    const goBack = jest.fn();
+    const onBackClicked = jest.fn();
     NativeModules.RNNavigationModule = {
       leaveHotels: jest.fn(),
     };
     const testRenderer = renderer.create(
       // $FlowIssue: https://github.com/facebook/flow/issues/2405
-      <HotelsPackageWrapper {...getProps(goBack)} />,
+      <HotelsPackage {...getProps(onBackClicked)} />,
     );
 
-    testRenderer.root.instance.handleNavigation();
-    expect(goBack).not.toBeCalled();
+    testRenderer.root.instance.onBackClicked();
+    expect(onBackClicked).not.toBeCalled();
     expect(NativeModules.RNNavigationModule.leaveHotels).toHaveBeenCalled();
   });
 });

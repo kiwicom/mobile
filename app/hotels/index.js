@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { AppRegistry, View } from 'react-native';
+import { AppRegistry, View, NativeModules } from 'react-native';
 import { ReduxContext } from '@kiwicom/react-native-app-redux';
 import { ConfigReducer } from '@kiwicom/react-native-app-config';
 import { Device, type OnLayout } from '@kiwicom/react-native-app-shared';
@@ -26,6 +26,14 @@ export default class HotelsStandalonePackage extends React.Component<Props> {
     Device.emitDimensionChanges(height, width);
   };
 
+  onBackClicked = () => {
+    if (NativeModules.RNNavigationModule) {
+      NativeModules.RNNavigationModule.leaveHotels();
+    } else {
+      this.props.onBackClicked();
+    }
+  };
+
   render = () => {
     // This reducer is just a wrapper around 'ConfigReducer'. It basically sets
     // default reducer values based on the 'props'.
@@ -42,10 +50,15 @@ export default class HotelsStandalonePackage extends React.Component<Props> {
       filters: FiltersReducer,
     };
 
+    const screenProps = {
+      ...this.props,
+      onBackClicked: this.onBackClicked,
+    };
+
     return (
       <ReduxContext reducers={reducers}>
         <View style={{ flex: 1 }} onLayout={this.emitDimensionChanges}>
-          <HotelsStack screenProps={this.props} />
+          <HotelsStack screenProps={screenProps} />
         </View>
       </ReduxContext>
     );
