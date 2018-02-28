@@ -120,6 +120,7 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
           search={this.props.search}
           cityId={this.props.cityId}
           filter={this.props.filter}
+          coordinates={this.props.coordinates}
         />
       </View>
     </View>
