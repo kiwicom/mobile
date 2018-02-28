@@ -27,22 +27,12 @@ const styles = StyleSheet.create({
       padding: 10,
     },
   },
-  lastRow: {
-    flexDirection: 'row',
+  row: {
     android: {
       marginTop: 8,
     },
     ios: {
       marginTop: 10,
-    },
-  },
-  dateInput: {
-    flex: 1,
-    android: {
-      marginRight: 8,
-    },
-    ios: {
-      marginRight: 10,
     },
   },
 });
@@ -78,14 +68,14 @@ export default class SearchForm extends React.Component<Props> {
           placeholder="Where do you go?"
           iconName="location-city"
         />
-        <View style={styles.lastRow}>
-          <View style={styles.dateInput}>
-            <DateInput
-              checkin={search.checkin}
-              checkout={search.checkout}
-              onChange={onChange}
-            />
-          </View>
+        <View style={styles.row}>
+          <DateInput
+            checkin={search.checkin}
+            checkout={search.checkout}
+            onChange={onChange}
+          />
+        </View>
+        <View style={styles.row}>
           <Guests
             guests={search.roomsConfiguration}
             onChange={this.handleGuestsChange}
