@@ -17,6 +17,7 @@ import type {
 import { handleOpenSingleHotel } from '../../singleHotel';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import { sanitizeHotelFacilities, sanitizeDate } from '../../GraphQLSanitizers';
+import type { Coordinates } from '../../CoordinatesType';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +32,7 @@ type Props = {|
   filter: FilterParams,
   onFilterChange: OnChangeFilterParams => void,
   onGoToSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  coordinates: Coordinates | null,
 |};
 
 export default class AllHotelsMap extends React.Component<Props> {
