@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { BackHandler, Platform } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
 import { connect } from '@kiwicom/react-native-app-redux';
 import { View } from 'react-native';
@@ -57,7 +58,8 @@ type NavigationProps = {|
 
 type Props = ContainerProps & StateProps & DispatchProps & NavigationProps;
 
-class AllHotelsNavigationScreen extends React.Component<Props> {
+export class AllHotelsNavigationScreen extends React.Component<Props> {
+  backButtonListner = null;
   static navigationOptions = (props: Props) => {
     function goToAllHotelsMap() {
       props.navigation.navigate({
@@ -87,7 +89,19 @@ class AllHotelsNavigationScreen extends React.Component<Props> {
     };
   };
 
-  openSingleHotel = searchParams =>
+  componentDidMount = () => {
+    if (Platform.OS === 'android' && this.backButtonListner === null) {
+      this.backButtonListner = BackHandler.addEventListener(
+        'hardwareBackPress',
+        () => {
+          this.props.onBackClicked();
+          return true;
+        },
+      );
+    }
+  };
+
+  openSingleHotel = (searchParams: any) =>
     this.props.navigation.navigate({
       routeName: 'SingleHotel',
       key: 'key-SingleHotel',
