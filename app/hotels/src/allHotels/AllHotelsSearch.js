@@ -9,7 +9,6 @@ import {
   GeneralError,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
-import isUndefined from 'lodash/isUndefined';
 
 import SearchForm from './searchForm/SearchForm';
 import FilterStripe from '../filter/FilterStripe';
@@ -24,8 +23,12 @@ import type {
   FilterParams,
   OnChangeFilterParams,
 } from '../filter/FilterParametersType';
-import { sanitizeHotelFacilities, sanitizeDate } from '../GraphQLSanitizers';
+import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
 import type { Coordinates } from '../CoordinatesType';
+import {
+  hasCoordinates,
+  getSearchQueryParams,
+} from '../search/SearchQueryHelpers';
 
 export const HOTELS_PER_LOAD = 50;
 
@@ -59,45 +62,10 @@ export class AllHotelsSearch extends React.Component<Props> {
     }
   };
 
-  hasCoordinates = () => {
-    const latitude = idx(this.props, _ => _.coordinates.latitude);
-    const longitude = idx(this.props, _ => _.coordinates.longitude);
-
-    return (
-      latitude !== null &&
-      isUndefined(latitude) === false &&
-      longitude !== null &&
-      isUndefined(longitude) === false
-    );
-  };
-
-  getSearchQueryParams = () => {
-    const { search, coordinates, data } = this.props;
-    let params = {
-      ...search,
-      checkin: sanitizeDate(search.checkin),
-      checkout: sanitizeDate(search.checkout),
-    };
-    const cityId = idx(data, _ => _.edges[0].node.id);
-
-    /**
-     * If props.location is not equal to '' then user is searching
-     * and we should ignore coordinates
-     */
-    if (this.hasCoordinates() && this.props.location === '') {
-      params.latitude = idx(coordinates, _ => _.latitude);
-      params.longitude = idx(coordinates, _ => _.longitude);
-    } else if (cityId) {
-      params.cityId = cityId;
-    }
-
-    return params;
-  };
-
   isReadyToSearch = (): boolean => {
-    const { search, data } = this.props;
+    const { search, data, coordinates } = this.props;
     const canQueryWithCoordinats =
-      this.props.location === '' && this.hasCoordinates();
+      this.props.location === '' && hasCoordinates(coordinates);
     return (
       (canQueryWithCoordinats || Boolean(this.getCityIdFromData(data))) &&
       search.checkin !== null &&
@@ -125,8 +93,9 @@ export class AllHotelsSearch extends React.Component<Props> {
       data,
       isLoading,
       currency,
+      coordinates,
     } = this.props;
-
+    const cityId = idx(this.props, _ => _.data.edges[0].node.id) || null;
     return (
       <Layout>
         <SearchForm
@@ -158,7 +127,12 @@ export class AllHotelsSearch extends React.Component<Props> {
               }
             `}
             variables={{
-              search: this.getSearchQueryParams(),
+              search: getSearchQueryParams(
+                search,
+                coordinates,
+                cityId,
+                location,
+              ),
               filter: {
                 ...filter,
                 hotelFacilities: sanitizeHotelFacilities(

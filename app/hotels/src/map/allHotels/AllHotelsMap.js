@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import { StyleSheet, AdaptableLayout } from '@kiwicom/react-native-app-shared';
+import { connect } from '@kiwicom/react-native-app-redux';
 
 import MapScreen from './MapScreen';
 import FilterStripe from '../../filter/FilterStripe';
@@ -16,8 +17,10 @@ import type {
 } from '../../filter/FilterParametersType';
 import { handleOpenSingleHotel } from '../../singleHotel';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
-import { sanitizeHotelFacilities, sanitizeDate } from '../../GraphQLSanitizers';
+import { sanitizeHotelFacilities } from '../../GraphQLSanitizers';
 import type { Coordinates } from '../../CoordinatesType';
+import { getSearchQueryParams } from '../../search/SearchQueryHelpers';
+import type { HotelsReducerState } from '../../HotelsReducer';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
+type ContainerProps = {|
   currency: string,
   cityId: string | null,
   search: SearchParams,
@@ -35,7 +38,13 @@ type Props = {|
   coordinates: Coordinates | null,
 |};
 
-export default class AllHotelsMap extends React.Component<Props> {
+type StateProps = {|
+  location: string,
+|};
+
+type Props = ContainerProps & StateProps;
+
+class AllHotelsMap extends React.Component<Props> {
   handleOpenSingleHotel = (hotelId: string) => {
     const { search, onGoToSingleHotel } = this.props;
 
@@ -52,7 +61,15 @@ export default class AllHotelsMap extends React.Component<Props> {
   );
 
   render = () => {
-    const { cityId, search, filter, onFilterChange, currency } = this.props;
+    const {
+      cityId,
+      search,
+      filter,
+      onFilterChange,
+      currency,
+      coordinates,
+      location,
+    } = this.props;
 
     return (
       <View style={styles.container}>
@@ -82,12 +99,7 @@ export default class AllHotelsMap extends React.Component<Props> {
             }
           `}
           variables={{
-            search: {
-              cityId,
-              ...search,
-              checkin: sanitizeDate(search.checkin),
-              checkout: sanitizeDate(search.checkout),
-            },
+            search: getSearchQueryParams(search, coordinates, cityId, location),
             filter: {
               ...filter,
               hotelFacilities: sanitizeHotelFacilities(filter.hotelFacilities),
@@ -101,3 +113,9 @@ export default class AllHotelsMap extends React.Component<Props> {
     );
   };
 }
+
+const select = ({ hotels }: { hotels: HotelsReducerState }) => ({
+  location: hotels.location,
+});
+
+export default connect(select)(AllHotelsMap);
