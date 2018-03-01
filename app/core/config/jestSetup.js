@@ -1,10 +1,15 @@
 // @flow
 
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
 import './NativeModulesMocks/DeviceInfo';
 import './NativeModulesMocks/RNLoggingModule';
 import './NativeModulesMocks/RNTranslationManager';
 import './NativeModulesMocks/RNColors';
 import './NativeModulesMocks/RNCurrencyManager';
+
+configure({ adapter: new Adapter() });
 
 beforeEach(() => {
   /**
