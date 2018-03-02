@@ -27,7 +27,7 @@ describe('SearchQueryHelpers', () => {
 
     it('returns false if latitude is not defined', () => {
       expect(
-        // $FlowExpectedError: Expect error since it breaks with flow type
+        // $FlowExpectedError: Itentionally passing latitude: undefined
         hasCoordinates({
           longitude: 12.12312,
         }),
@@ -35,7 +35,7 @@ describe('SearchQueryHelpers', () => {
     });
     it('returns false if longitude is not defined', () => {
       expect(
-        // $FlowExpectedError: Expect error since it breaks with flow type
+        // $FlowExpectedError: Itentionally passing longitude: undefined
         hasCoordinates({
           latitude: 12.12312,
         }),
@@ -56,7 +56,7 @@ describe('SearchQueryHelpers', () => {
     });
 
     it('returns false if coordinates are undefined', () => {
-      // $FlowExpectedError: Expect error since it breaks with flow type
+      // $FlowExpectedError: Itentionally passing undefined
       expect(hasCoordinates(undefined)).toBe(false);
     });
   });
