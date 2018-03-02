@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
 
 type ContainerProps = {|
   availableRoom: ?Object,
-  select: (availabilityId: string) => void,
-  deselect: (availabilityId: string) => void,
+  select: (availabilityId: string, maxPersons: number) => void,
+  deselect: (availabilityId: string, maxPersons: number) => void,
   selected: {
     [string]: number,
   },
@@ -65,19 +65,23 @@ type Props = {
 
 export class RoomRow extends React.Component<Props> {
   select = () => {
-    const { availableRoom, select } = this.props;
-    const originalId = idx(availableRoom, _ => _.originalId);
-    if (originalId) {
-      select(originalId);
+    const { originalId, maxPersons } = this.getOriginalIdAndMaxPersons();
+    if (originalId && maxPersons) {
+      this.props.select(originalId, maxPersons);
     }
   };
 
   deselect = () => {
-    const { availableRoom, deselect } = this.props;
-    const originalId = idx(availableRoom, _ => _.originalId);
-    if (originalId) {
-      deselect(originalId);
+    const { originalId, maxPersons } = this.getOriginalIdAndMaxPersons();
+    if (originalId && maxPersons) {
+      this.props.deselect(originalId, maxPersons);
     }
+  };
+
+  getOriginalIdAndMaxPersons = () => {
+    const originalId = idx(this.props, _ => _.availableRoom.originalId);
+    const maxPersons = idx(this.props, _ => _.availableRoom.room.maxPersons);
+    return { originalId, maxPersons };
   };
 
   render = () => {
@@ -150,6 +154,7 @@ export default (createFragmentContainer(
             }
           }
         }
+        maxPersons
         ...BeddingInfo_room
       }
       minimalPrice {

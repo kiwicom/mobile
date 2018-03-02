@@ -19,6 +19,7 @@ export type RoomRow_availableRoom = {|
         |};
       |}>;
     |};
+    +maxPersons: ?number;
   |};
   +minimalPrice: ?{|
     +amount: ?number;
@@ -115,6 +116,13 @@ const node: ConcreteFragment = {
               "storageKey": null
             }
           ],
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "args": null,
+          "name": "maxPersons",
           "storageKey": null
         },
         {
