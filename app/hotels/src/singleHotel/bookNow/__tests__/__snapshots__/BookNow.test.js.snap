@@ -19,36 +19,30 @@ exports[`renders without crashing 1`] = `
     onPress={[Function]}
     pressColor="rgba(0, 0, 0, .32)"
   >
-    <View
-      style={
+    <BookNowText
+      buttonPriceStyle={
         Object {
-          "paddingVertical": 14,
+          "color": "white",
+          "fontSize": 12,
+          "textAlign": "center",
         }
       }
-    >
-      <ButtonText
-        style={
-          Object {
-            "color": "white",
-            "fontSize": 16,
-            "fontWeight": "800",
-            "textAlign": "center",
+      numberOfRooms={1}
+      personCount={2}
+      price={
+        <Price
+          amount={100}
+          currency="EUR"
+          style={
+            Object {
+              "color": "white",
+              "fontSize": 12,
+              "textAlign": "center",
+            }
           }
-        }
-        text="Book Now"
-      />
-      <Price
-        amount={100}
-        currency="EUR"
-        style={
-          Object {
-            "color": "white",
-            "fontSize": 12,
-            "textAlign": "center",
-          }
-        }
-      />
-    </View>
+        />
+      }
+    />
   </TouchableItem>
 </View>
 `;

@@ -25,6 +25,8 @@ it('renders without crashing', () => {
     hotel: {
       originalId: 'abc',
     },
+    personCount: 2,
+    numberOfRooms: 1,
   };
 
   PlaygroundRenderer.render(<BookNow {...props} />);
@@ -36,6 +38,8 @@ it('renders without crashing with missing data', () => {
     selected: {},
     availableRooms: undefined,
     hotel: undefined,
+    personCount: 2,
+    numberOfRooms: 1,
   };
 
   PlaygroundRenderer.render(<BookNow {...props} />);

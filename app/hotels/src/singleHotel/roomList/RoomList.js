@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
 
 type ContainerProps = {|
   data: any,
-  select: (availabilityId: string) => void,
-  deselect: (availabilityId: string) => void,
+  select: (availabilityId: string, maxPersons: number) => void,
+  deselect: (availabilityId: string, maxPersons: number) => void,
   selected: {
     [string]: number,
   },

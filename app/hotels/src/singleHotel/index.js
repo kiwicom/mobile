@@ -53,6 +53,7 @@ export default class SingleHotelContainer extends React.Component<
       onGoToPayment={this.props.onGoToPayment}
       onGoToMap={this.props.onGoToMap}
       availableHotel={availableHotel}
+      roomsConfiguration={this.props.search.roomsConfiguration}
     />
   );
 
