@@ -9,6 +9,7 @@ import {
   StyleSheet,
   HeaderRightButton,
   AdaptableLayout,
+  DismissKeyboardView,
 } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
@@ -142,10 +143,12 @@ export class AllHotelsNavigationScreen extends React.Component<Props> {
 
   render = () => {
     return (
-      <AdaptableLayout
-        renderOnWide={this.renderHotelsWithMap()}
-        renderOnNarrow={this.renderHotels()}
-      />
+      <DismissKeyboardView>
+        <AdaptableLayout
+          renderOnWide={this.renderHotelsWithMap()}
+          renderOnNarrow={this.renderHotels()}
+        />
+      </DismissKeyboardView>
     );
   };
 }
