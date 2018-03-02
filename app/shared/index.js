@@ -67,6 +67,7 @@ export { default as Price } from './src/Price';
 export { default as Text } from './src/Text';
 export { default as TouchableItem } from './src/TouchableItem';
 export { default as WebView } from './src/WebView';
+export { default as DismissKeyboardView } from './src/DismissKeyboardView';
 
 // Flow types:
 
