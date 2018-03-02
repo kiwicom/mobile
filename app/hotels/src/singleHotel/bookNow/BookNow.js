@@ -6,12 +6,12 @@ import { View } from 'react-native';
 import {
   StyleSheet,
   Color,
-  Price,
   TouchableItem,
-  ButtonText,
+  Price,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
+import BookNowText from './BookNowText';
 import countBookingPrice from './countBookingPrice';
 import convertRooms from './convertRooms';
 import type { BookNow_availableRooms } from './__generated__/BookNow_availableRooms.graphql';
@@ -25,15 +25,6 @@ const styles = StyleSheet.create({
     right: 0,
     flex: 1,
     backgroundColor: Color.brand,
-  },
-  buttonInnerWrapper: {
-    paddingVertical: 14,
-  },
-  buttonTitle: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: 'white',
-    textAlign: 'center',
   },
   buttonPrice: {
     fontSize: 12,
@@ -52,6 +43,8 @@ type ContainerProps = {|
   },
   availableRooms: any,
   hotel: any,
+  numberOfRooms: number,
+  personCount: number,
 |};
 
 type Props = {
@@ -80,14 +73,18 @@ export class BookNow extends React.Component<Props> {
       price && (
         <View style={styles.buttonWrapper}>
           <TouchableItem onPress={this.handleGoToPayment} activeOpacity={0.6}>
-            <View style={styles.buttonInnerWrapper}>
-              <ButtonText style={styles.buttonTitle} text="Book Now" />
-              <Price
-                style={styles.buttonPrice}
-                amount={price.amount}
-                currency={price.currency}
-              />
-            </View>
+            <BookNowText
+              price={
+                <Price
+                  style={styles.buttonPrice}
+                  amount={price.amount}
+                  currency={price.currency}
+                />
+              }
+              buttonPriceStyle={styles.buttonPrice}
+              numberOfRooms={this.props.numberOfRooms}
+              personCount={this.props.personCount}
+            />
           </TouchableItem>
         </View>
       )

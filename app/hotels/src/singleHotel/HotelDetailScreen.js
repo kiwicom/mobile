@@ -14,6 +14,7 @@ import type { Image } from '../gallery/GalleryGrid';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import BookNow from './bookNow/BookNow';
 import BrandLabel from './brandLabel/BrandLabel';
+import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 
 type Props = {|
   openGallery: (hotelName: string, images: Image[]) => void,
@@ -23,24 +24,31 @@ type Props = {|
     rooms: Array<{| id: string, count: number |}>,
   }) => void,
   onGoToMap: () => void,
+  roomsConfiguration: RoomsConfiguration,
 |};
 
 type State = {|
   selected: {
     [string]: number, // originalId: count
   },
+  maxPersons: number,
 |};
 
 export class HotelDetailScreen extends React.Component<Props, State> {
   state = {
     selected: {},
+    maxPersons: 0,
   };
 
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS);
   };
 
-  incrementSelectedCount = (availabilityOriginalId: string, amount: number) => {
+  updateSelectedCount = (
+    availabilityOriginalId: string,
+    amount: number,
+    maxPersons: number,
+  ) => {
     this.setState(state => {
       const previousCount =
         idx(state, _ => _.selected[availabilityOriginalId]) || 0;
@@ -51,16 +59,35 @@ export class HotelDetailScreen extends React.Component<Props, State> {
           ...state.selected,
           [availabilityOriginalId]: previousCount + amount,
         },
+        maxPersons: state.maxPersons + maxPersons,
       };
     });
   };
 
-  selectRoom = (availabilityOriginalId: string) => {
-    this.incrementSelectedCount(availabilityOriginalId, 1);
+  selectRoom = (availabilityOriginalId: string, maxPersons: number) => {
+    this.updateSelectedCount(availabilityOriginalId, 1, maxPersons);
   };
 
-  deselectRoom = (availabilityOriginalId: string) => {
-    this.incrementSelectedCount(availabilityOriginalId, -1);
+  deselectRoom = (availabilityOriginalId: string, maxPersons: number) => {
+    this.updateSelectedCount(availabilityOriginalId, -1, -maxPersons);
+  };
+
+  getNumberOfRooms = () =>
+    Object.keys(this.state.selected).reduce((sum, currentItem) => {
+      return this.state.selected[currentItem] + sum;
+    }, 0);
+
+  getPersonCount = () => {
+    const roomsConfiguration = idx(
+      this.props,
+      _ => _.roomsConfiguration[0],
+    ) || { adultsCount: 0, children: [] };
+    const guestTotal =
+      roomsConfiguration.adultsCount + roomsConfiguration.children.length;
+
+    return this.state.maxPersons > guestTotal
+      ? guestTotal
+      : this.state.maxPersons;
   };
 
   render() {
@@ -74,6 +101,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
     if (!availableHotel) {
       return <GeneralError errorMessage="Hotel not found" />;
     }
+
     return (
       <Layout>
         <ScrollView>
@@ -93,6 +121,8 @@ export class HotelDetailScreen extends React.Component<Props, State> {
           selected={selected}
           availableRooms={availableHotel.availableRooms}
           hotel={availableHotel.hotel}
+          personCount={this.getPersonCount()}
+          numberOfRooms={this.getNumberOfRooms()}
         />
       </Layout>
     );
