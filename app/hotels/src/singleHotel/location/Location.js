@@ -81,6 +81,7 @@ export function Location({ hotel, onGoToMap }: Props) {
                   latitudeDelta: 0.01,
                   longitudeDelta: 0.01,
                 }}
+                scrollEnabled={false}
                 style={[StyleSheet.absoluteFillObject, { bottom: -25 }]}
               >
                 <MapView.Marker
