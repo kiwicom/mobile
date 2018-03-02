@@ -1,37 +1,22 @@
 // @flow
 
-import * as React from 'react';
 import { Platform, BackHandler } from 'react-native';
-import { shallow } from 'enzyme';
 
-import { AllHotelsNavigationScreen } from '../AllHotelsNavigationScreen';
-
-const props = {
-  navigation: {},
-  currency: 'EUR',
-  coordinates: null,
-  onSearchChange: jest.fn(),
-  onFilterChange: jest.fn(),
-  onLocationChange: jest.fn(),
-  onCityIdChange: jest.fn(),
-};
-
-const renderNavigationScreen = (onBackClicked: Function) => {
-  const renderProps = {
-    ...props,
-    onBackClicked,
-  };
-  // $FlowIssue: https://github.com/facebook/flow/issues/2405
-  return shallow(<AllHotelsNavigationScreen {...renderProps} />);
-};
+import {
+  registerBackButtonListener,
+  resetBackButtonListener,
+} from '../AllHotelsNavigationScreen';
 
 describe('AllHotelsNavigationScreen', () => {
+  afterEach(() => {
+    resetBackButtonListener();
+  });
   it('registers an event listener if platform is android', () => {
     const onBackClicked = jest.fn();
     Platform.OS = 'android';
     BackHandler.addEventListener = jest.fn(() => 1);
-    const wrapper = renderNavigationScreen(onBackClicked);
-    wrapper.instance().componentDidMount();
+
+    registerBackButtonListener(onBackClicked);
 
     expect(BackHandler.addEventListener).toHaveBeenCalled();
   });
@@ -40,8 +25,8 @@ describe('AllHotelsNavigationScreen', () => {
     const onBackClicked = jest.fn();
     Platform.OS = 'ios';
     BackHandler.addEventListener = jest.fn(() => 1);
-    const wrapper = renderNavigationScreen(onBackClicked);
-    wrapper.instance().componentDidMount();
+
+    registerBackButtonListener(onBackClicked);
 
     expect(BackHandler.addEventListener).not.toHaveBeenCalled();
   });
@@ -50,9 +35,9 @@ describe('AllHotelsNavigationScreen', () => {
     const onBackClicked = jest.fn();
     Platform.OS = 'android';
     BackHandler.addEventListener = jest.fn(() => 1);
-    const wrapper = renderNavigationScreen(onBackClicked);
-    wrapper.instance().componentDidMount();
-    wrapper.instance().componentDidMount();
+
+    registerBackButtonListener(onBackClicked);
+    registerBackButtonListener(onBackClicked);
 
     expect(BackHandler.addEventListener).toHaveBeenCalledTimes(1);
   });

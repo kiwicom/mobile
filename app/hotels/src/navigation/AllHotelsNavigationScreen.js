@@ -59,8 +59,26 @@ type NavigationProps = {|
 
 type Props = ContainerProps & StateProps & DispatchProps & NavigationProps;
 
-export class AllHotelsNavigationScreen extends React.Component<Props> {
+let backButtonListner = null;
+
+export const registerBackButtonListener = (onBackClicked: Function) => {
+  if (Platform.OS === 'android' && backButtonListner === null) {
+    backButtonListner = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        onBackClicked();
+        return true;
+      },
+    );
+  }
+};
+
+// Needed for test purposes
+export const resetBackButtonListener = () => {
   backButtonListner = null;
+};
+
+export class AllHotelsNavigationScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
     function goToAllHotelsMap() {
       props.navigation.navigate({
@@ -91,15 +109,7 @@ export class AllHotelsNavigationScreen extends React.Component<Props> {
   };
 
   componentDidMount = () => {
-    if (Platform.OS === 'android' && this.backButtonListner === null) {
-      this.backButtonListner = BackHandler.addEventListener(
-        'hardwareBackPress',
-        () => {
-          this.props.onBackClicked();
-          return true;
-        },
-      );
-    }
+    registerBackButtonListener(this.props.onBackClicked);
   };
 
   openSingleHotel = (searchParams: any) =>
