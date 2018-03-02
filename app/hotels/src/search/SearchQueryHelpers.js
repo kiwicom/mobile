@@ -1,7 +1,6 @@
 // @flow
 
 import idx from 'idx';
-import isUndefined from 'lodash/isUndefined';
 
 import type { Coordinates } from '../CoordinatesType';
 import { sanitizeDate } from '../GraphQLSanitizers';
@@ -10,12 +9,7 @@ export const hasCoordinates = (coordinates: Coordinates | null): boolean => {
   const latitude = idx(coordinates, _ => _.latitude);
   const longitude = idx(coordinates, _ => _.longitude);
 
-  return (
-    latitude !== null &&
-    isUndefined(latitude) === false &&
-    longitude !== null &&
-    isUndefined(longitude) === false
-  );
+  return latitude != null && longitude != null;
 };
 
 export const getSearchQueryParams = (
