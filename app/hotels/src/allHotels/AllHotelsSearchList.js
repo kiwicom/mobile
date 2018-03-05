@@ -91,6 +91,7 @@ export class AllHotelsSearchList extends React.Component<Props, State> {
       return (
         <View style={styles.container}>
           <FlatList
+            scrollEnabled={false} // the whole page is scrollable
             data={hotels}
             renderItem={this.renderListItem}
             keyExtractor={this.keyExtractor}
