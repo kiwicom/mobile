@@ -85,6 +85,7 @@ export default StackNavigator(
       screen: withMappedProps(Payment),
       navigationOptions: {
         mode: 'modal',
+        headerTitle: 'Hotel',
       },
     },
   },
