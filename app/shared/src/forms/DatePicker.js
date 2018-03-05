@@ -5,13 +5,16 @@ import { View } from 'react-native';
 import OriginalDatePicker from 'react-native-datepicker';
 
 import StyleSheet from '../PlatformStyleSheet';
+import Icon from '../Icon';
 
 const customStyles = StyleSheet.create({
   // date input wrapper (View)
   dateInput: {
     borderWidth: 0,
     padding: 10,
+    paddingLeft: 40,
     backgroundColor: 'transparent',
+    alignItems: 'flex-start',
   },
   // text inside of the date input wrapper (Text)
   dateText: {
@@ -22,6 +25,11 @@ const customStyles = StyleSheet.create({
     ios: {
       fontSize: 14,
     },
+  },
+  dateIcon: {
+    position: 'absolute',
+    left: 0,
+    marginLeft: 10,
   },
   // touchable area around the 'dateInput' (View)
   dateTouchBody: {
@@ -55,7 +63,12 @@ export default class DatePicker extends React.Component<{}> {
     format: 'YYYY-MM-DD',
     confirmBtnText: 'Select date',
     cancelBtnText: 'Cancel',
-    showIcon: false,
+    showIcon: true,
+    iconComponent: (
+      <View style={customStyles.dateIcon}>
+        <Icon name="date-range" size={20} />
+      </View>
+    ),
     duration: 100,
     customStyles,
   };

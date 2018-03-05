@@ -80,6 +80,6 @@ const buttonStyles = StyleSheet.create({
     },
   },
   icon: {
-    marginRight: 5,
+    marginRight: 8,
   },
 });
