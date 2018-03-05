@@ -11,6 +11,10 @@ const createNavigationOptions = () => {
     },
     headerTitleStyle: {
       color: '#fff',
+      fontSize: Platform.select({
+        android: 18,
+        ios: 17,
+      }),
     },
     headerTintColor: '#fff', // back arrow
     headerBackTitle: null,
