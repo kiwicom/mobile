@@ -1,59 +1,46 @@
 // @flow
 
-import * as React from 'react';
 import { Platform, BackHandler } from 'react-native';
-import { shallow } from 'enzyme';
 
 import { AllHotelsNavigationScreen } from '../AllHotelsNavigationScreen';
 
-const props = {
-  navigation: {},
-  currency: 'EUR',
-  coordinates: null,
-  onSearchChange: jest.fn(),
-  onFilterChange: jest.fn(),
-  onLocationChange: jest.fn(),
-  onCityIdChange: jest.fn(),
-};
+let Component;
+let originalPlatform;
 
-const renderNavigationScreen = (onBackClicked: Function) => {
-  const renderProps = {
-    ...props,
-    onBackClicked,
-  };
-  // $FlowIssue: https://github.com/facebook/flow/issues/2405
-  return shallow(<AllHotelsNavigationScreen {...renderProps} />);
-};
+beforeEach(() => {
+  // $FlowExpectedError: this test works only with 'onBackClicked' thus ignoring all other props
+  Component = new AllHotelsNavigationScreen({
+    onBackClicked: jest.fn(),
+  });
+  originalPlatform = Platform.OS;
+});
+
+afterEach(() => (Platform.OS = originalPlatform));
 
 describe('AllHotelsNavigationScreen', () => {
-  it('registers an event listener if platform is android', () => {
-    const onBackClicked = jest.fn();
+  it('registers an event listener if platform is Android', () => {
     Platform.OS = 'android';
-    BackHandler.addEventListener = jest.fn(() => 1);
-    const wrapper = renderNavigationScreen(onBackClicked);
-    wrapper.instance().componentDidMount();
 
+    BackHandler.addEventListener = jest.fn(() => true);
+    Component.componentDidMount();
     expect(BackHandler.addEventListener).toHaveBeenCalled();
   });
 
-  it('does not register an event listener if platform is ios', () => {
-    const onBackClicked = jest.fn();
+  it('does not register an event listener if platform is iOS', () => {
     Platform.OS = 'ios';
-    BackHandler.addEventListener = jest.fn(() => 1);
-    const wrapper = renderNavigationScreen(onBackClicked);
-    wrapper.instance().componentDidMount();
 
+    BackHandler.addEventListener = jest.fn(() => true);
+    Component.componentDidMount();
     expect(BackHandler.addEventListener).not.toHaveBeenCalled();
   });
 
   it('does not register an event listener if one already is registered', () => {
-    const onBackClicked = jest.fn();
     Platform.OS = 'android';
-    BackHandler.addEventListener = jest.fn(() => 1);
-    const wrapper = renderNavigationScreen(onBackClicked);
-    wrapper.instance().componentDidMount();
-    wrapper.instance().componentDidMount();
 
+    BackHandler.addEventListener = jest.fn(() => true);
+    Component.componentDidMount();
+    Component.componentDidMount();
+    Component.componentDidMount();
     expect(BackHandler.addEventListener).toHaveBeenCalledTimes(1);
   });
 });
