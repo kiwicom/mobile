@@ -15,7 +15,7 @@ type Props = {|
 
 type DateInputType = 'checkin' | 'checkout';
 
-export const DISPLAY_DATE_FORMAT = 'DD/MM/YYYY';
+export const DISPLAY_DATE_FORMAT = 'MMM DD';
 
 export const checkinAndCheckoutToDate = (
   checkin: moment,
