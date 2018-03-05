@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import {
@@ -99,58 +98,56 @@ export class AllHotelsSearch extends React.Component<Props> {
     const cityId = idx(this.props, _ => _.data.edges[0].node.id) || null;
     return (
       <Layout>
-        <ScrollView bounces={false}>
-          <SearchForm
-            onChange={onSearchChange}
-            onLocationChange={onLocationChange}
-            search={search}
-            location={location}
-          />
-          <FilterStripe
-            filter={filter}
-            onChange={onFilterChange}
-            currency={currency}
-          />
-          {isLoading && <FullPageLoading />}
-          {!(isLoading || this.getCityIdFromData(data)) && (
-            <GeneralError errorMessage="No relevant city was found." />
-          )}
-          {this.isReadyToSearch() && (
-            <PublicApiRenderer
-              query={graphql`
-                query AllHotelsSearchQuery(
-                  $search: HotelsSearchInput!
-                  $filter: HotelsFilterInput!
-                  $options: AvailableHotelOptionsInput
-                  $first: Int
-                  $after: String
-                ) {
-                  ...AllHotelsSearchList_data
-                }
-              `}
-              variables={{
-                search: getSearchQueryParams(
-                  search,
-                  coordinates,
-                  cityId,
-                  location,
+        <SearchForm
+          onChange={onSearchChange}
+          onLocationChange={onLocationChange}
+          search={search}
+          location={location}
+        />
+        <FilterStripe
+          filter={filter}
+          onChange={onFilterChange}
+          currency={currency}
+        />
+        {isLoading && <FullPageLoading />}
+        {!(isLoading || this.getCityIdFromData(data)) && (
+          <GeneralError errorMessage="No relevant city was found." />
+        )}
+        {this.isReadyToSearch() && (
+          <PublicApiRenderer
+            query={graphql`
+              query AllHotelsSearchQuery(
+                $search: HotelsSearchInput!
+                $filter: HotelsFilterInput!
+                $options: AvailableHotelOptionsInput
+                $first: Int
+                $after: String
+              ) {
+                ...AllHotelsSearchList_data
+              }
+            `}
+            variables={{
+              search: getSearchQueryParams(
+                search,
+                coordinates,
+                cityId,
+                location,
+              ),
+              filter: {
+                ...filter,
+                hotelFacilities: sanitizeHotelFacilities(
+                  filter.hotelFacilities,
                 ),
-                filter: {
-                  ...filter,
-                  hotelFacilities: sanitizeHotelFacilities(
-                    filter.hotelFacilities,
-                  ),
-                },
-                first: HOTELS_PER_LOAD,
-                options: { currency },
-              }}
-              render={this.renderInnerComponent}
-              cacheConfig={{
-                force: true,
-              }}
-            />
-          )}
-        </ScrollView>
+              },
+              first: HOTELS_PER_LOAD,
+              options: { currency },
+            }}
+            render={this.renderInnerComponent}
+            cacheConfig={{
+              force: true,
+            }}
+          />
+        )}
       </Layout>
     );
   }
