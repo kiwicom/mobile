@@ -54,7 +54,6 @@ exports[`renders found hotels 1`] = `
     onEndReached={[Function]}
     onEndReachedThreshold={2}
     renderItem={[Function]}
-    scrollEnabled={false}
     scrollEventThrottle={50}
     updateCellsBatchingPeriod={50}
     windowSize={21}
