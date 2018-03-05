@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#0097a9',
     width: 60,
-    paddingVertical: 10,
+    paddingVertical: 16,
     alignItems: 'center',
   },
   minusButton: {
