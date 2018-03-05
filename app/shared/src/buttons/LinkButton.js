@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import Color from '../Color';
 import TouchableItem from '../TouchableItem';
 import StyleSheet from '../PlatformStyleSheet';
-import Text from '../Text';
+import ButtonText from './ButtonText';
 
 type Props = {|
   title: string,
@@ -17,7 +17,7 @@ export default function LinkButton(props: Props) {
   return (
     <TouchableItem accessibilityComponentType="button" onPress={props.onPress}>
       <View style={styleSheet.view}>
-        <Text style={styleSheet.text}>{props.title}</Text>
+        <ButtonText style={styleSheet.text} text={props.title} />
       </View>
     </TouchableItem>
   );

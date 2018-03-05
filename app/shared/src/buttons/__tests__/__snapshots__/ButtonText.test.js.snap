@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonText should not be uppercased on ios 1`] = `
+<Text
+  style={undefined}
+>
+  Button text
+</Text>
+`;
+
+exports[`ButtonText should uppercase text on android 1`] = `
+<Text
+  style={undefined}
+>
+  BUTTON TEXT
+</Text>
+`;

@@ -7,8 +7,8 @@ import {
   StyleSheet,
   Color,
   Price,
-  Text,
   TouchableItem,
+  ButtonText,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
@@ -81,7 +81,7 @@ export class BookNow extends React.Component<Props> {
         <View style={styles.buttonWrapper}>
           <TouchableItem onPress={this.handleGoToPayment} activeOpacity={0.6}>
             <View style={styles.buttonInnerWrapper}>
-              <Text style={styles.buttonTitle}>Book Now</Text>
+              <ButtonText style={styles.buttonTitle} text="Book Now" />
               <Price
                 style={styles.buttonPrice}
                 amount={price.amount}
