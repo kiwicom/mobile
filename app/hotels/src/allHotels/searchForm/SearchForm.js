@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
   form: {
     backgroundColor: Color.brandSecondary,
     android: {
-      padding: 16,
+      padding: 14,
+      paddingTop: 16,
     },
     ios: {
       padding: 10,
