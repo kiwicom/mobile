@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
-import Text from '../Text';
 import Color from '../Color';
 import TouchableItem from '../TouchableItem';
 import StyleSheet from '../PlatformStyleSheet';
 import Icon from '../Icon';
+import ButtonText from './ButtonText';
 
 type Props = {|
   title: string,
@@ -33,9 +33,10 @@ export default function Button(props: Props) {
         <View style={[styles.icon, additionalStyles.icon]}>{props.icon}</View>
       )}
       <View style={[styles.button, additionalStyles.button]}>
-        <Text style={[styles.buttonText, additionalStyles.buttonText]}>
-          {props.title}
-        </Text>
+        <ButtonText
+          style={[styles.buttonText, additionalStyles.buttonText]}
+          text={props.title}
+        />
       </View>
     </View>
   );

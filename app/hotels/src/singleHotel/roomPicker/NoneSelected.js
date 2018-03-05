@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Text, Price, StyleSheet } from '@kiwicom/react-native-app-shared';
+import {
+  Price,
+  StyleSheet,
+  ButtonText,
+} from '@kiwicom/react-native-app-shared';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +32,7 @@ type Props = {|
 export default function NoneSelected({ price, currency, onSelect }: Props) {
   return (
     <TouchableOpacity style={styles.container} onPress={onSelect}>
-      <Text style={styles.texts}>Select</Text>
+      <ButtonText style={styles.texts} text="Select" />
       <Price amount={price} currency={currency} style={styles.texts} />
     </TouchableOpacity>
   );
