@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { TouchableWithoutFeedback, Keyboard, View } from 'react-native';
 
-import StyleSheet from './PlatformStyleSheet';
+import StyleSheet from '../PlatformStyleSheet';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,7 +11,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const DismissKeyboardView = ({ children }: { children: React.Node }) => (
+type Props = {|
+  children: React.Node,
+|};
+
+const DismissKeyboardView = ({ children }: Props) => (
   <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
     <View style={styles.container}>{children}</View>
   </TouchableWithoutFeedback>

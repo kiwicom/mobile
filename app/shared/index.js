@@ -44,6 +44,7 @@ export { default as Message } from './src/text/Message';
 
 export { default as AdaptableLayout } from './src/view/AdaptableLayout';
 export { default as CenteredView } from './src/view/CenteredView';
+export { default as DismissKeyboardView } from './src/view/DismissKeyboardView';
 export { default as Layout } from './src/view/Layout';
 export {
   default as VerticalSwipeResponder,
@@ -67,7 +68,6 @@ export { default as Price } from './src/Price';
 export { default as Text } from './src/Text';
 export { default as TouchableItem } from './src/TouchableItem';
 export { default as WebView } from './src/WebView';
-export { default as DismissKeyboardView } from './src/DismissKeyboardView';
 
 // Flow types:
 
