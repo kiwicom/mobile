@@ -37,21 +37,29 @@ const styles = StyleSheet.create({
   description: {
     flex: 1,
     justifyContent: 'space-between',
-    marginVertical: 3,
   },
   hotelName: {
     fontSize: 16,
     color: '#30363d',
+    android: {
+      lineHeight: 17,
+    },
   },
   metainfo: {
     color: Color.grey.$700,
     opacity: 0.8,
     fontSize: 12,
+    android: {
+      lineHeight: 13,
+    },
   },
   price: {
     color: Color.brand,
     fontWeight: 'bold',
     fontSize: 12,
+    android: {
+      lineHeight: 13,
+    },
   },
 });
 
