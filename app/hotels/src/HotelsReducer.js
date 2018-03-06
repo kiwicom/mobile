@@ -1,5 +1,7 @@
 // @flow
 
+import moment from 'moment/moment';
+
 import type {
   OnChangeSearchParams,
   SearchParams,
@@ -23,8 +25,14 @@ const InitialHotelsState: HotelsReducerState = {
   cityId: null,
   location: '',
   searchParams: {
-    checkin: null,
-    checkout: null,
+    checkin: moment()
+      .add(1, 'week')
+      .startOf('isoWeek')
+      .toDate(),
+    checkout: moment()
+      .add(1, 'week')
+      .endOf('isoWeek')
+      .toDate(),
     roomsConfiguration: {
       adultsCount: 1,
       children: [],

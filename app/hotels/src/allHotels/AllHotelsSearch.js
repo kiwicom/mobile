@@ -1,167 +1,117 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import {
-  Layout,
-  FullPageLoading,
-  GeneralError,
-} from '@kiwicom/react-native-app-shared';
-import idx from 'idx';
+import { connect } from '@kiwicom/react-native-app-redux';
 
-import SearchForm from './searchForm/SearchForm';
-import FilterStripe from '../filter/FilterStripe';
 import AllHotelsSearchList from './AllHotelsSearchList';
-import type { AllHotelsSearch as AllHotelsSearchData } from './__generated__/AllHotelsSearch.graphql';
-import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
-import type {
-  SearchParams,
-  OnChangeSearchParams,
-} from './searchForm/SearchParametersType';
-import type {
-  FilterParams,
-  OnChangeFilterParams,
-} from '../filter/FilterParametersType';
+import { handleOpenSingleHotel } from '../singleHotel';
 import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
+import { getSearchQueryParams } from '../search/SearchQueryHelpers';
+import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 import type { Coordinates } from '../CoordinatesType';
-import {
-  hasCoordinates,
-  getSearchQueryParams,
-} from '../search/SearchQueryHelpers';
-
-export const HOTELS_PER_LOAD = 50;
+import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
+import type { FilterParams } from '../filter/FilterParametersType';
+import type { SearchParams } from './searchForm/SearchParametersType';
+import type { FilterReducerState } from '../filter/FiltersReducer';
+import type { HotelsReducerState } from '../HotelsReducer';
 
 type Props = {|
-  location: string,
-  data: AllHotelsSearchData,
   search: SearchParams,
-  filter: FilterParams,
-  isLoading: boolean,
-  currency: string,
-  openSingleHotel: (hotelId: string) => void,
-  onSearchChange: OnChangeSearchParams => void,
-  onFilterChange: OnChangeFilterParams => void,
-  onLocationChange: (location: string) => void,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
   onCityIdChange: (cityId: string | null) => void,
-  coordinates: Coordinates | null, // TODO: use this in the search
+  cityId: string,
+  coordinates: Coordinates | null,
+  location: string,
+  filter: FilterParams,
+  currency: string,
 |};
 
-export class AllHotelsSearch extends React.Component<Props> {
-  getCityIdFromData = (data: AllHotelsSearchData): string | null => {
-    const cityId = idx(data, _ => _.edges[0].node.id);
-
-    return cityId ? cityId : null;
-  };
-
-  componentWillReceiveProps = (nextProps: Props) => {
-    const cityId = this.getCityIdFromData(nextProps.data);
-
-    if (cityId && cityId !== this.getCityIdFromData(this.props.data)) {
-      this.props.onCityIdChange(cityId);
-    }
-  };
-
-  isReadyToSearch = (): boolean => {
-    const { search, data, coordinates } = this.props;
-    const canQueryWithCoordinats =
-      this.props.location === '' && hasCoordinates(coordinates);
-    return (
-      (canQueryWithCoordinats || Boolean(this.getCityIdFromData(data))) &&
-      search.checkin !== null &&
-      search.checkout !== null
+class AllHotelsSearch extends React.Component<Props> {
+  handleOpenSingleHotel = (hotelId: string) => {
+    handleOpenSingleHotel(
+      hotelId,
+      this.props.search,
+      this.props.openSingleHotel,
     );
   };
 
-  renderInnerComponent = (propsFromRenderer: AllHotelsSearchQueryResponse) => {
+  renderAllHotelsSearchList = (
+    propsFromRenderer: AllHotelsSearchQueryResponse,
+  ) => {
     return (
       <AllHotelsSearchList
         data={propsFromRenderer}
-        openSingleHotel={this.props.openSingleHotel}
+        openSingleHotel={this.handleOpenSingleHotel}
       />
     );
   };
 
-  render() {
-    const {
-      search,
-      filter,
-      onLocationChange,
-      onSearchChange,
-      onFilterChange,
-      location,
-      data,
-      isLoading,
-      currency,
-      coordinates,
-    } = this.props;
-    const cityId = idx(this.props, _ => _.data.edges[0].node.id) || null;
+  componentDidMount = () => {
+    // new cityId needs to be propagated to the other pages (map for example)
+    this.props.onCityIdChange(this.props.cityId);
+  };
+
+  render = () => {
     return (
-      <Layout>
-        <SearchForm
-          onChange={onSearchChange}
-          onLocationChange={onLocationChange}
-          search={search}
-          location={location}
-        />
-        <FilterStripe
-          filter={filter}
-          onChange={onFilterChange}
-          currency={currency}
-        />
-        {isLoading && <FullPageLoading />}
-        {!(isLoading || this.getCityIdFromData(data)) && (
-          <GeneralError errorMessage="No relevant city was found." />
-        )}
-        {this.isReadyToSearch() && (
-          <PublicApiRenderer
-            query={graphql`
-              query AllHotelsSearchQuery(
-                $search: HotelsSearchInput!
-                $filter: HotelsFilterInput!
-                $options: AvailableHotelOptionsInput
-                $first: Int
-                $after: String
-              ) {
-                ...AllHotelsSearchList_data
-              }
-            `}
-            variables={{
-              search: getSearchQueryParams(
-                search,
-                coordinates,
-                cityId,
-                location,
-              ),
-              filter: {
-                ...filter,
-                hotelFacilities: sanitizeHotelFacilities(
-                  filter.hotelFacilities,
-                ),
-              },
-              first: HOTELS_PER_LOAD,
-              options: { currency },
-            }}
-            render={this.renderInnerComponent}
-            cacheConfig={{
-              force: true,
-            }}
-          />
-        )}
-      </Layout>
+      <PublicApiRenderer
+        query={graphql`
+          query AllHotelsSearchQuery(
+            $search: HotelsSearchInput!
+            $filter: HotelsFilterInput!
+            $options: AvailableHotelOptionsInput
+            $first: Int
+            $after: String
+          ) {
+            ...AllHotelsSearchList_data
+          }
+        `}
+        variables={{
+          search: getSearchQueryParams(
+            this.props.search,
+            this.props.coordinates,
+            this.props.cityId,
+            this.props.location,
+          ),
+          filter: {
+            ...this.props.filter,
+            hotelFacilities: sanitizeHotelFacilities(
+              this.props.filter.hotelFacilities,
+            ),
+          },
+          first: 50,
+          options: {
+            currency: this.props.currency,
+          },
+        }}
+        render={this.renderAllHotelsSearchList}
+        cacheConfig={{
+          force: true,
+        }}
+      />
     );
-  }
+  };
 }
 
-export default createFragmentContainer(
-  AllHotelsSearch,
-  graphql`
-    fragment AllHotelsSearch on HotelCityConnection {
-      edges {
-        node {
-          id
-        }
-      }
-    }
-  `,
-);
+const select = ({
+  hotels,
+  filters,
+}: {
+  hotels: HotelsReducerState,
+  filters: FilterReducerState,
+}) => ({
+  location: hotels.location,
+  search: hotels.searchParams,
+  filter: filters.filterParams,
+});
+
+const actions = dispatch => ({
+  onCityIdChange: (cityId: string | null) =>
+    dispatch({
+      type: 'setCityId',
+      cityId,
+    }),
+});
+
+export default connect(select, actions)(AllHotelsSearch);
