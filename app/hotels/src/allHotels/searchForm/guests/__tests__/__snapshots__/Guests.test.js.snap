@@ -31,9 +31,10 @@ exports[`Guests Render all inputs 1`] = `
           }
         }
       />
-      <Text>
-        3 Guests
-      </Text>
+      <ButtonTitle
+        adultsCount={3}
+        childrenCount={0}
+      />
     </View>
   </TouchableItem>
   <GuestsPopup
