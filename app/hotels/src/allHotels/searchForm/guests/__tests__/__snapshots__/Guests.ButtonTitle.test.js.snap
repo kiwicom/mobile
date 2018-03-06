@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly with more adults 1`] = `
+<Text>
+  <Text>
+    5 Adults
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#bdbdbd",
+      }
+    }
+  >
+     ⋅ 0 Children
+  </Text>
+</Text>
+`;
+
+exports[`renders correctly with more adults and children 1`] = `
+<Text>
+  <Text>
+    5 Adults
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#bdbdbd",
+      }
+    }
+  >
+     ⋅ 3 Children
+  </Text>
+</Text>
+`;
+
+exports[`renders correctly with one adult and zero children 1`] = `
+<Text>
+  <Text>
+    1 Adult
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#bdbdbd",
+      }
+    }
+  >
+     ⋅ 0 Children
+  </Text>
+</Text>
+`;
+
+exports[`renders correctly with one child and zero adults 1`] = `
+<Text>
+  <Text>
+    0 Adults
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#bdbdbd",
+      }
+    }
+  >
+     ⋅ 1 Child
+  </Text>
+</Text>
+`;
