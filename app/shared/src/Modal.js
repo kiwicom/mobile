@@ -6,6 +6,7 @@ import ReactModal from 'react-native-modal';
 type Props = {
   // not exact - additional properties allowed
   children: React.Node,
+  onRequestClose: Function,
 };
 
 /**
