@@ -22,6 +22,26 @@ type State = {|
   isPopupOpen: boolean,
 |};
 
+export const ButtonTitle = ({
+  adultsCount,
+  childrenCount,
+}: {
+  adultsCount: number,
+  childrenCount: number,
+}) => {
+  const childrenStyle = {
+    color: Color.grey.$400,
+  };
+  return (
+    <Text>
+      <Text>{`${adultsCount} Adult${adultsCount === 1 ? '' : 's'}`}</Text>
+      <Text style={childrenStyle}>
+        {` ⋅ ${childrenCount} Child${childrenCount === 1 ? '' : 'ren'}`}
+      </Text>
+    </Text>
+  );
+};
+
 export default class Guests extends React.Component<Props, State> {
   state = {
     isPopupOpen: false,
@@ -37,8 +57,7 @@ export default class Guests extends React.Component<Props, State> {
   render = () => {
     const { isPopupOpen } = this.state;
     const { guests } = this.props;
-    const guestsCount = guests.adultsCount + guests.children.length;
-    const title = `${guestsCount} Guest${guestsCount !== 1 ? 's' : ''}`;
+
     return (
       <View>
         <TouchableItem onPress={this.handlePopupToggle} activeOpacity={0.6}>
@@ -49,7 +68,10 @@ export default class Guests extends React.Component<Props, State> {
               color={Color.grey.$600}
               style={buttonStyles.icon}
             />
-            <Text>{title}</Text>
+            <ButtonTitle
+              adultsCount={guests.adultsCount}
+              childrenCount={guests.children.length}
+            />
           </View>
         </TouchableItem>
         <GuestsPopup
