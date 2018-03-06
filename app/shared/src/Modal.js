@@ -3,16 +3,28 @@
 import * as React from 'react';
 import ReactModal from 'react-native-modal';
 
-type Props = {
-  // not exact - additional properties allowed
+import type { StylePropType } from '../index';
+
+// props not exact - additional properties allowed
+type Props = {|
   children: React.Node,
-};
+  style: StylePropType,
+  isVisible: boolean,
+
+  // This function will be invoked when for example user presses back HW
+  // button on Android. You should call here function to close this window.
+  onRequestClose: () => void,
+
+  backdropColor?: string,
+  backdropOpacity?: number,
+  onBackdropPress?: () => void,
+|};
 
 /**
  * This is just a wrapper with default setting so it's going to be easy to
  * replace in in the future (if necessary).
  */
-export default function Modal(props: Props) {
+function Modal(props: Props) {
   return (
     <ReactModal
       supportedOrientations={['portrait', 'landscape']} // iOS only
@@ -24,3 +36,9 @@ export default function Modal(props: Props) {
     />
   );
 }
+
+Modal.defaultProps = {
+  backdropOpacity: 0.5,
+};
+
+export default Modal;

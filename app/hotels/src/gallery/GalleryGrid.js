@@ -106,6 +106,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
           backdropColor="black"
           backdropOpacity={1}
           style={{ margin: 0 }}
+          onRequestClose={this.closeStripe}
         >
           <PhotosStripe
             hotelName={this.props.hotelName}
