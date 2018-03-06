@@ -1,28 +1,30 @@
 /**
  * @flow
- * @relayHash ef474d82a78206722181529e1f20df60
+ * @relayHash 0a34ba081e1846d87d8646100bda4d0f
  */
 
 /* eslint-disable */
 
 import type { ConcreteBatch } from 'relay-runtime';
-export type AllHotelsQueryResponse = {|
-  +city: ?{| |};
+export type AllHotels_cityLookup_QueryResponse = {|
+  +city: ?{|
+    +edges: ?$ReadOnlyArray<?{|
+      +node: ?{|
+        +id: string;
+      |};
+    |}>;
+  |};
 |};
 
 /*
-query AllHotelsQuery(
+query AllHotels_cityLookup_Query(
   $prefix: String!
 ) {
   city: hotelCities(prefix: $prefix, first: 1) {
-    ...AllHotelsSearch
-  }
-}
-
-fragment AllHotelsSearch on HotelCityConnection {
-  edges {
-    node {
-      id
+    edges {
+      node {
+        id
+      }
     }
   }
 }
@@ -40,7 +42,7 @@ const node: ConcreteBatch = {
     ],
     "kind": "Fragment",
     "metadata": null,
-    "name": "AllHotelsQuery",
+    "name": "AllHotels_cityLookup_Query",
     "selections": [
       {
         "kind": "LinkedField",
@@ -64,9 +66,33 @@ const node: ConcreteBatch = {
         "plural": false,
         "selections": [
           {
-            "kind": "FragmentSpread",
-            "name": "AllHotelsSearch",
-            "args": null
+            "kind": "LinkedField",
+            "alias": null,
+            "args": null,
+            "concreteType": "HotelCityEdge",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "args": null,
+                "concreteType": "HotelCity",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "args": null,
+                    "name": "id",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
           }
         ],
         "storageKey": null
@@ -77,7 +103,7 @@ const node: ConcreteBatch = {
   "id": null,
   "kind": "Batch",
   "metadata": {},
-  "name": "AllHotelsQuery",
+  "name": "AllHotels_cityLookup_Query",
   "query": {
     "argumentDefinitions": [
       {
@@ -88,7 +114,7 @@ const node: ConcreteBatch = {
       }
     ],
     "kind": "Root",
-    "name": "AllHotelsQuery",
+    "name": "AllHotels_cityLookup_Query",
     "operation": "query",
     "selections": [
       {
@@ -146,7 +172,7 @@ const node: ConcreteBatch = {
       }
     ]
   },
-  "text": "query AllHotelsQuery(\n  $prefix: String!\n) {\n  city: hotelCities(prefix: $prefix, first: 1) {\n    ...AllHotelsSearch\n  }\n}\n\nfragment AllHotelsSearch on HotelCityConnection {\n  edges {\n    node {\n      id\n    }\n  }\n}\n"
+  "text": "query AllHotels_cityLookup_Query(\n  $prefix: String!\n) {\n  city: hotelCities(prefix: $prefix, first: 1) {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n"
 };
 
 module.exports = node;

@@ -1,62 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders a "not found" message when data is missing 1`] = `
-<CenteredView>
-  <Text>
-    No hotels found
-  </Text>
-</CenteredView>
+<GeneralError
+  errorMessage="No hotels found."
+/>
 `;
 
 exports[`renders a "not found" message when no hotel is found 1`] = `
-<CenteredView>
-  <Text>
-    No hotels found
-  </Text>
-</CenteredView>
+<GeneralError
+  errorMessage="No hotels found."
+/>
 `;
 
 exports[`renders found hotels 1`] = `
-<View
-  style={
-    Object {
-      "flex": 1,
-      "paddingVertical": 3,
-    }
-  }
->
-  <FlatList
-    ListFooterComponent={
-      <ListFooterLoading
-        isLoading={false}
-      />
-    }
+<View>
+  <Relay(AllHotelsSearchRow)
     data={
-      Array [
-        Object {
-          "node": Object {
-            "id": "hotel1",
-          },
-        },
-        Object {
-          "node": Object {
-            "id": "hotel2",
-          },
-        },
-      ]
+      Object {
+        "id": "hotel1",
+      }
     }
-    disableVirtualization={false}
-    horizontal={false}
-    initialNumToRender={10}
-    keyExtractor={[Function]}
-    maxToRenderPerBatch={10}
-    numColumns={1}
-    onEndReached={[Function]}
-    onEndReachedThreshold={2}
-    renderItem={[Function]}
-    scrollEventThrottle={50}
-    updateCellsBatchingPeriod={50}
-    windowSize={21}
+    openSingleHotel={[Function]}
+  />
+  <Relay(AllHotelsSearchRow)
+    data={
+      Object {
+        "id": "hotel2",
+      }
+    }
+    openSingleHotel={[Function]}
+  />
+  <LinkButton
+    onPress={[Function]}
+    title="Load more..."
   />
 </View>
 `;

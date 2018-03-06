@@ -3,13 +3,12 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createPaginationContainer, graphql } from 'react-relay';
-import { FlatList, View } from 'react-native';
+import { View } from 'react-native';
 import {
-  CenteredView,
   Logger,
-  ListFooterLoading,
-  StyleSheet,
-  Text,
+  IconLoading,
+  LinkButton,
+  GeneralError,
 } from '@kiwicom/react-native-app-shared';
 import { connect } from '@kiwicom/react-native-app-redux';
 import type { RelayPaginationProp } from '@kiwicom/react-native-app-relay';
@@ -17,7 +16,6 @@ import type { RelayPaginationProp } from '@kiwicom/react-native-app-relay';
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList_data.graphql';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
-import { HOTELS_PER_LOAD } from './AllHotelsSearch';
 
 type Props = {|
   openSingleHotel: (id: string) => void,
@@ -26,22 +24,9 @@ type Props = {|
   relay: RelayPaginationProp,
 |};
 
-type Hotel = {|
-  node: {
-    id: String,
-  },
-|};
-
 type State = {|
   isLoading: boolean,
 |};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 3,
-  },
-});
 
 export class AllHotelsSearchList extends React.Component<Props, State> {
   state = {
@@ -63,45 +48,47 @@ export class AllHotelsSearchList extends React.Component<Props, State> {
 
   loadMore = () => {
     if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
-      this.setState({ isLoading: true });
-      this.props.relay.loadMore(HOTELS_PER_LOAD, () => {
-        this.setState({ isLoading: false });
-      });
+      this.setState(
+        {
+          isLoading: true,
+        },
+        () => {
+          this.props.relay.loadMore(50, () => {
+            this.setState({
+              isLoading: false,
+            });
+          });
+        },
+      );
     }
   };
 
-  keyExtractor = (hotel: Hotel) => hotel.node.id;
-
-  renderListItem = ({ item }: { item: Hotel }) => (
-    <AllHotelsSearchRow
-      data={item.node}
-      openSingleHotel={this.props.openSingleHotel}
-    />
-  );
-
   render = () => {
+    // Note: it's not possible to use FlatList here because it's wrapped
+    // with ScrollView and it causes performance issues.
+
     const hotels = idx(this.props, _ => _.data.allAvailableHotels.edges) || [];
+
     if (hotels.length === 0) {
-      return (
-        <CenteredView>
-          <Text>No hotels found</Text>
-        </CenteredView>
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          <FlatList
-            data={hotels}
-            renderItem={this.renderListItem}
-            keyExtractor={this.keyExtractor}
-            onEndReached={this.loadMore}
-            ListFooterComponent={
-              <ListFooterLoading isLoading={this.state.isLoading} />
-            }
-          />
-        </View>
-      );
+      return <GeneralError errorMessage="No hotels found." />;
     }
+
+    return (
+      <View>
+        {hotels.map(hotel => (
+          <AllHotelsSearchRow
+            key={hotel.node.id}
+            data={hotel.node}
+            openSingleHotel={this.props.openSingleHotel}
+          />
+        ))}
+        {this.state.isLoading ? (
+          <IconLoading />
+        ) : (
+          <LinkButton title="Load more..." onPress={this.loadMore} />
+        )}
+      </View>
+    );
   };
 }
 
