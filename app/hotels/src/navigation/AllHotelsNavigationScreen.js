@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { BackHandler, Platform } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
-import { connect } from '@kiwicom/react-native-app-redux';
 import { View } from 'react-native';
 import {
   StyleSheet,
@@ -15,22 +14,6 @@ import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import AllHotels from '../allHotels/AllHotels';
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
-import type {
-  OnChangeSearchParams,
-  SearchParams,
-} from '../allHotels/searchForm/SearchParametersType';
-import type {
-  FilterParams,
-  OnChangeFilterParams,
-} from '../filter/FilterParametersType';
-import type {
-  HotelsReducerActions,
-  HotelsReducerState,
-} from '../HotelsReducer';
-import type {
-  FilterReducerState,
-  FilterReducerActions,
-} from '../filter/FiltersReducer';
 import type { Coordinates } from '../CoordinatesType';
 
 type ContainerProps = {|
@@ -39,27 +22,13 @@ type ContainerProps = {|
   coordinates: Coordinates | null,
 |};
 
-type StateProps = {|
-  cityId: string | null,
-  search: SearchParams,
-  location: string,
-  filter: FilterParams,
-|};
-
-type DispatchProps = {|
-  onSearchChange: OnChangeSearchParams => void,
-  onFilterChange: OnChangeFilterParams => void,
-  onLocationChange: string => void,
-  onCityIdChange: (string | null) => void,
-|};
-
 type NavigationProps = {|
   onBackClicked: () => void,
 |};
 
-type Props = ContainerProps & StateProps & DispatchProps & NavigationProps;
+type Props = ContainerProps & NavigationProps;
 
-export class AllHotelsNavigationScreen extends React.Component<Props> {
+export default class AllHotelsNavigationScreen extends React.Component<Props> {
   backButtonListener = null;
 
   static navigationOptions = (props: Props) => {
@@ -113,14 +82,7 @@ export class AllHotelsNavigationScreen extends React.Component<Props> {
   renderHotels = () => (
     <AllHotels
       currency={this.props.currency}
-      search={this.props.search}
-      location={this.props.location}
-      filter={this.props.filter}
       openSingleHotel={this.openSingleHotel}
-      onSearchChange={this.props.onSearchChange}
-      onFilterChange={this.props.onFilterChange}
-      onLocationChange={this.props.onLocationChange}
-      onCityIdChange={this.props.onCityIdChange}
       coordinates={this.props.coordinates}
     />
   );
@@ -130,12 +92,8 @@ export class AllHotelsNavigationScreen extends React.Component<Props> {
       {this.renderHotels()}
       <View style={styles.map}>
         <AllHotelsMap
-          onGoToSingleHotel={this.openSingleHotel}
-          onFilterChange={this.props.onFilterChange}
           currency={this.props.currency}
-          search={this.props.search}
-          cityId={this.props.cityId}
-          filter={this.props.filter}
+          onGoToSingleHotel={this.openSingleHotel}
           coordinates={this.props.coordinates}
         />
       </View>
@@ -163,45 +121,3 @@ const styles = StyleSheet.create({
     width: '55%',
   },
 });
-
-const select = ({
-  hotels,
-  filters,
-}: {
-  hotels: HotelsReducerState,
-  filters: FilterReducerState,
-}): StateProps => ({
-  search: hotels.searchParams,
-  cityId: hotels.cityId,
-  location: hotels.location,
-  filter: filters.filterParams,
-});
-
-type DispatchType = HotelsReducerActions | FilterReducerActions;
-
-const actions = (dispatch: DispatchType => void): DispatchProps => ({
-  onSearchChange: search =>
-    dispatch({
-      type: 'setSearch',
-      search,
-    }),
-  onFilterChange: filter =>
-    dispatch({
-      type: 'filtersReducer/FILTER_CHANGED',
-      filter,
-    }),
-  onLocationChange: (location: string) =>
-    dispatch({
-      type: 'setLocation',
-      location,
-    }),
-  onCityIdChange: (cityId: string | null) =>
-    dispatch({
-      type: 'setCityId',
-      cityId,
-    }),
-});
-
-export default (connect(select, actions)(
-  AllHotelsNavigationScreen,
-): React.ComponentType<ContainerProps>);

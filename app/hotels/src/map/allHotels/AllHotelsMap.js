@@ -21,6 +21,7 @@ import { sanitizeHotelFacilities } from '../../GraphQLSanitizers';
 import type { Coordinates } from '../../CoordinatesType';
 import { getSearchQueryParams } from '../../search/SearchQueryHelpers';
 import type { HotelsReducerState } from '../../HotelsReducer';
+import type { FilterReducerState } from '../../filter/FiltersReducer';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,27 +29,24 @@ const styles = StyleSheet.create({
   },
 });
 
-type ContainerProps = {|
-  currency: string,
-  cityId: string | null,
+type Props = {|
+  location: string,
   search: SearchParams,
+  cityId: string | null,
   filter: FilterParams,
+  currency: string,
   onFilterChange: OnChangeFilterParams => void,
   onGoToSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
   coordinates: Coordinates | null,
 |};
 
-type StateProps = {|
-  location: string,
-|};
-
-type Props = ContainerProps & StateProps;
-
 class AllHotelsMap extends React.Component<Props> {
   handleOpenSingleHotel = (hotelId: string) => {
-    const { search, onGoToSingleHotel } = this.props;
-
-    handleOpenSingleHotel(hotelId, search, onGoToSingleHotel);
+    handleOpenSingleHotel(
+      hotelId,
+      this.props.search,
+      this.props.onGoToSingleHotel,
+    );
   };
 
   renderInnerComponent = (props: AllHotelsMapQueryResponse) => (
@@ -114,8 +112,25 @@ class AllHotelsMap extends React.Component<Props> {
   };
 }
 
-const select = ({ hotels }: { hotels: HotelsReducerState }) => ({
+const select = ({
+  hotels,
+  filters,
+}: {
+  hotels: HotelsReducerState,
+  filters: FilterReducerState,
+}) => ({
   location: hotels.location,
+  search: hotels.searchParams,
+  cityId: hotels.cityId,
+  filter: filters.filterParams,
 });
 
-export default connect(select)(AllHotelsMap);
+const actions = dispatch => ({
+  onFilterChange: filter =>
+    dispatch({
+      type: 'filtersReducer/FILTER_CHANGED',
+      filter,
+    }),
+});
+
+export default connect(select, actions)(AllHotelsMap);

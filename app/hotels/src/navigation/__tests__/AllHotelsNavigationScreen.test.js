@@ -2,7 +2,7 @@
 
 import { Platform, BackHandler } from 'react-native';
 
-import { AllHotelsNavigationScreen } from '../AllHotelsNavigationScreen';
+import AllHotelsNavigationScreen from '../AllHotelsNavigationScreen';
 
 let Component;
 let originalPlatform;
