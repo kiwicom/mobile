@@ -22,10 +22,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  currency: {
-    color: Color.grey.$700,
-    fontSize: 12,
-  },
   arrowBorder: {
     backgroundColor: 'transparent',
     borderColor: 'transparent',
@@ -51,9 +47,6 @@ const selectedStyles = StyleSheet.create({
   price: {
     color: '#fff',
   },
-  currency: {
-    color: '#fff',
-  },
   arrow: {
     borderTopColor: Color.brand,
   },
@@ -74,10 +67,6 @@ const PriceMarker = (props: Props) => {
     styles.price,
     isSelected && selectedStyles.price,
   ]);
-  const currencyStyles = StyleSheet.flatten([
-    styles.currency,
-    props.isSelected && selectedStyles.currency,
-  ]);
 
   return (
     <View>
@@ -88,8 +77,7 @@ const PriceMarker = (props: Props) => {
             <Price
               amount={price.amount}
               currency={price.currency}
-              amountStyle={priceStyles}
-              currencyStyle={currencyStyles}
+              style={priceStyles}
             />
           )}
       </View>

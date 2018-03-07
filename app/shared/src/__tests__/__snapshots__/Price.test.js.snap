@@ -1,51 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders null values correctly 1`] = `
+exports[`Price renders null values correctly 1`] = `
 <Text
   style={undefined}
 >
-  <Text
-    style={undefined}
-  >
-    
-  </Text>
-   
-  <Text
-    style={undefined}
-  />
+  
 </Text>
 `;
 
-exports[`renders zeros correctly 1`] = `
+exports[`Price renders null values correctly 2`] = `
 <Text
   style={undefined}
 >
-  <Text
-    style={undefined}
-  >
-    0
-  </Text>
-   
-  <Text
-    style={undefined}
-  >
-    CZK
-  </Text>
+  
 </Text>
 `;
 
-exports[`rounds amount to 2 decimal places 1`] = `
+exports[`Price renders null values correctly 3`] = `
 <Text
   style={undefined}
 >
-  <Text
-    style={undefined}
-  >
-    72.85
-  </Text>
-   
-  <Text
-    style={undefined}
-  />
+  
 </Text>
 `;
