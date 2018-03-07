@@ -39,12 +39,8 @@ const style = StyleSheet.create({
   },
   rating: {
     color: Color.grey.$600,
-    android: {
-      fontSize: 13,
-    },
-    ios: {
-      fontSize: 12,
-    },
+    fontSize: 9,
+    lineHeight: 9,
   },
   distance: {
     marginVertical: 6,
