@@ -27,6 +27,8 @@ This is not an actual mobile application. This repository contains only React Na
 * [Known issues](#known-issues)
   * [Important to fix before production ready state](#important-to-fix-before-production-ready-state)
   * [Improvements necessary for production usage](#improvements-necessary-for-production-usage)
+* [Troubleshooting](#troubleshooting)
+  * ['config.h' file not found](#configh-file-not-found)
 
 ## Installation and Run
 
@@ -368,3 +370,33 @@ export default connect(select, actions)(ComponentWithoutStore);
 ### Improvements necessary for production usage
 
 - persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
+
+## Troubleshooting
+
+### 'config.h' file not found
+
+#### Symptoms:
+
+Application throws following error during application start (`yarn ios` for example). The same happens with Xcode:
+
+```
+▸ Compiling vlog_is_on.cc
+
+❌  /Users/mrtnzlml/Work/kiwi-opensource/react-native-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/mutex.h:105:10: 'config.h' file not found
+
+#include "config.h"           // to figure out pthreads support'config.h' file not found
+         ^~~~~~~~~~
+
+
+** BUILD FAILED **
+```
+
+#### Solution:
+
+Try to run this command:
+
+```
+rm -rf node_modules/ && yarn cache clean && yarn install
+```
+
+For more information please visit this issue: https://github.com/facebook/react-native/issues/14382
