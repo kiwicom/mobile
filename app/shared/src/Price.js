@@ -10,8 +10,6 @@ type Props = {|
   amount: number | null, // may be null (compatible with GraphQL query failure)
   currency: string | null, // may be null (compatible with GraphQL query failure)
   style?: StylePropType,
-  amountStyle?: StylePropType,
-  currencyStyle?: StylePropType,
 |};
 
 /**
@@ -21,13 +19,8 @@ type Props = {|
  */
 export default function Price(props: Props) {
   const amount =
-    props.amount != null
-      ? CurrencyFormatter(props.amount, props.currency || '')
+    props.amount != null && props.currency != null
+      ? CurrencyFormatter(props.amount, props.currency)
       : '';
-  return (
-    <Text style={props.style}>
-      <Text style={props.amountStyle}>{amount}</Text>{' '}
-      <Text style={props.currencyStyle}>{props.currency}</Text>
-    </Text>
-  );
+  return <Text style={props.style}>{amount}</Text>;
 }

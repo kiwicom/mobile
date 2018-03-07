@@ -12,9 +12,4 @@ describe('CurrencyFormatter', () => {
       'USD',
     );
   });
-  it('Formats decimals correctly', () => {
-    expect(CurrencyFormatter(10, 'NOK')).toBe(10);
-    expect(CurrencyFormatter(12.3, 'NOK')).toBe(12.3);
-    expect(CurrencyFormatter(72.8499999, 'NOK')).toBe(72.85);
-  });
 });
