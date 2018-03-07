@@ -26,8 +26,8 @@ const createStyle = () => {
     wrapper: {
       backgroundColor: '#fff',
       marginVertical: 3,
-      paddingVertical: 12,
-      paddingHorizontal: 12,
+      paddingVertical: 10,
+      paddingHorizontal: 10,
       ...additionalWrapperStyles,
     },
   });

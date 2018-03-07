@@ -20,8 +20,6 @@ const style = StyleSheet.create({
     borderRadius: 2,
     paddingVertical: 2,
     paddingHorizontal: 5,
-    marginRight: 5,
-    marginBottom: 5,
     backgroundColor: Color.grey.$500,
   },
   text: {

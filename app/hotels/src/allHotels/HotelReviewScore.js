@@ -3,7 +3,6 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { View } from 'react-native';
 import { AdaptableBadge, StyleSheet } from '@kiwicom/react-native-app-shared';
 
 import type { HotelReviewScore_hotel } from './__generated__/HotelReviewScore_hotel.graphql';
@@ -13,10 +12,6 @@ type Props = {|
 |};
 
 const style = StyleSheet.create({
-  wrapper: {
-    justifyContent: 'flex-end',
-    alignSelf: 'center',
-  },
   adaptableBadge: {
     android: {
       paddingHorizontal: 8,
@@ -73,18 +68,16 @@ export class HotelReviewScore extends React.Component<Props> {
     }
 
     return (
-      <View style={style.wrapper}>
-        <AdaptableBadge
-          text={this.formatScore(reviewScore)}
-          style={[
-            style.adaptableBadge,
-            {
-              backgroundColor: this.calculateColor(reviewScore),
-            },
-          ]}
-          textStyle={style.adaptableBadgeText}
-        />
-      </View>
+      <AdaptableBadge
+        text={this.formatScore(reviewScore)}
+        style={[
+          style.adaptableBadge,
+          {
+            backgroundColor: this.calculateColor(reviewScore),
+          },
+        ]}
+        textStyle={style.adaptableBadgeText}
+      />
     );
   };
 }
