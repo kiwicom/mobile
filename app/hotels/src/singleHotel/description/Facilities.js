@@ -29,6 +29,8 @@ const styles = StyleSheet.create({
   },
   adaptableBadge: {
     backgroundColor: Color.blueGrey.$50,
+    marginRight: 5,
+    marginBottom: 5,
   },
   adaptableBadgeText: {
     color: '#79818a',

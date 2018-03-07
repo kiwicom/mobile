@@ -20,11 +20,6 @@ type Props = {|
 |};
 
 const style = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    flexDirection: 'column',
-    alignSelf: 'center',
-  },
   title: {
     fontWeight: 'bold',
     color: '#30363d',
@@ -73,7 +68,7 @@ function HotelTitle({ data }: Props) {
   };
 
   return (
-    <View style={style.wrapper}>
+    <View>
       <Text>
         <Text style={style.title}>{hotelName}</Text>{' '}
         <Text style={style.rating}>

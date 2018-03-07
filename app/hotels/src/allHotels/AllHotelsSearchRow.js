@@ -20,6 +20,10 @@ type Props = {|
 |};
 
 const style = StyleSheet.create({
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+  },
   imageWrapper: {
     paddingRight: 10,
   },
@@ -33,9 +37,12 @@ const style = StyleSheet.create({
       height: 70,
     },
   },
-  row: {
+  hotelTitle: {
     flex: 1,
-    flexDirection: 'row',
+  },
+  hotelReviewScore: {
+    marginLeft: 10,
+    alignSelf: 'center',
   },
 });
 
@@ -62,8 +69,12 @@ class AllHotelsSearchRow extends React.Component<Props> {
             />
           </View>
           <View style={style.row}>
-            <HotelTitle data={data} />
-            <HotelReviewScore hotel={data.hotel} />
+            <View style={style.hotelTitle}>
+              <HotelTitle data={data} />
+            </View>
+            <View style={style.hotelReviewScore}>
+              <HotelReviewScore hotel={data.hotel} />
+            </View>
           </View>
         </View>
       </SimpleCard>
