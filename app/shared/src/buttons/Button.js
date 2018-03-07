@@ -77,6 +77,9 @@ function createStyles(iconAvailable) {
       fontWeight: '500',
       color: '#fff',
       fontSize: 14,
+      android: {
+        lineHeight: 14,
+      },
     },
     icon: {
       justifyContent: 'center',
