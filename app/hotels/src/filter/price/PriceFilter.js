@@ -96,7 +96,7 @@ class PriceFilter extends React.Component<Props, State> {
       <View>
         <FilterButton
           title={this.getTitle(start, end, priceMin, priceMax, currency)}
-          icon={<Icon name="attach-money" size={17} color={Color.white} />}
+          icon={<Icon name="attach-money" size={18} color={Color.white} />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />

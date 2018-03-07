@@ -63,7 +63,7 @@ export default class ScoreFilter extends React.Component<Props, State> {
       <View>
         <FilterButton
           title={this.getTitle(minScore)}
-          icon={<Icon name="thumb-up" size={13} color={Color.white} />}
+          icon={<Icon name="thumb-up" size={18} color={Color.white} />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />
