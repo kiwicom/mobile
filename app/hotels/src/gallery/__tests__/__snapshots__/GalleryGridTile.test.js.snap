@@ -2,9 +2,9 @@
 
 exports[`renders with marginRight if not last in the row 1`] = `
 <TouchableItem
-  borderless={false}
+  borderlessRipple={false}
   onPress={[Function]}
-  pressColor="rgba(0, 0, 0, .32)"
+  rippleColor="rgba(0, 0, 0, .32)"
 >
   <Connect(NetworkImage)
     resizeMode="cover"
@@ -27,9 +27,9 @@ exports[`renders with marginRight if not last in the row 1`] = `
 
 exports[`renders without marginRight if last in the row 1`] = `
 <TouchableItem
-  borderless={false}
+  borderlessRipple={false}
   onPress={[Function]}
-  pressColor="rgba(0, 0, 0, .32)"
+  rippleColor="rgba(0, 0, 0, .32)"
 >
   <Connect(NetworkImage)
     resizeMode="cover"
