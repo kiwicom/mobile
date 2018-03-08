@@ -31,6 +31,14 @@ const styles = StyleSheet.create({
     color: Color.brand,
     fontWeight: '800',
   },
+  summary: {
+    android: {
+      lineHeight: 21,
+    },
+    ios: {
+      lineHeight: 19,
+    },
+  },
 });
 
 const Link = ({
@@ -73,7 +81,7 @@ export function Description({ hotel }: Props) {
           renderTruncatedFooter={renderTruncatedFooter}
           renderRevealedFooter={renderRevealedFooter}
         >
-          <Text>{idx(hotel, _ => _.summary)}</Text>
+          <Text style={styles.summary}>{idx(hotel, _ => _.summary)}</Text>
         </ReadMore>
         <Facilities facilities={idx(hotel, _ => _.facilities)} />
       </SimpleCard>

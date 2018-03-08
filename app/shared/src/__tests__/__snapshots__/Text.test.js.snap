@@ -13,7 +13,6 @@ exports[`renders with additional style properties 1`] = `
         "fontSize": 14,
         "fontWeight": "bold",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -35,7 +34,6 @@ exports[`renders with the default properties for iOS 1`] = `
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -57,7 +55,6 @@ exports[`supports multiple nested strings 1`] = `
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -73,7 +70,6 @@ exports[`supports multiple nested strings 1`] = `
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         undefined,
       ]
@@ -92,7 +88,6 @@ exports[`supports multiple nested strings 1`] = `
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         undefined,
       ]
@@ -116,7 +111,6 @@ exports[`supports nested styles 1`] = `
         "fontSize": 14,
         "fontWeight": "bold",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -133,7 +127,6 @@ exports[`supports nested styles 1`] = `
           "fontSize": 14,
           "fontWeight": "bold",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         Object {
           "color": "red",
@@ -159,7 +152,6 @@ exports[`works applies the styles recursively 1`] = `
         "fontSize": 14,
         "fontWeight": "bold",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -175,7 +167,6 @@ exports[`works applies the styles recursively 1`] = `
           "fontSize": 14,
           "fontWeight": "bold",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         Object {
           "color": "red",
@@ -201,7 +192,6 @@ exports[`works even with the distant Text nodes 1`] = `
         "fontSize": 14,
         "fontWeight": "bold",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -217,7 +207,6 @@ exports[`works even with the distant Text nodes 1`] = `
           "fontSize": 14,
           "fontWeight": "bold",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         undefined,
       ]
@@ -241,7 +230,6 @@ exports[`works with nullable child 1`] = `
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }

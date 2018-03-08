@@ -21,13 +21,10 @@ type Props = {|
 
 const style = StyleSheet.create({
   row: {
-    flex: 1,
     flexDirection: 'row',
   },
-  imageWrapper: {
-    paddingRight: 10,
-  },
   image: {
+    marginRight: 10,
     width: 50,
     borderRadius: 2,
     android: {
@@ -37,12 +34,16 @@ const style = StyleSheet.create({
       height: 70,
     },
   },
+  hotelTitleWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   hotelTitle: {
     flex: 1,
   },
   hotelReviewScore: {
     marginLeft: 10,
-    alignSelf: 'center',
   },
 });
 
@@ -61,14 +62,13 @@ class AllHotelsSearchRow extends React.Component<Props> {
     return (
       <SimpleCard onPress={this.onGoToSingleHotel}>
         <View style={style.row}>
-          <View style={style.imageWrapper}>
-            <NetworkImage
-              style={style.image}
-              resizeMode="cover"
-              source={{ uri: lowResUrl }}
-            />
-          </View>
-          <View style={style.row}>
+          <NetworkImage
+            style={style.image}
+            resizeMode="cover"
+            source={{ uri: lowResUrl }}
+          />
+
+          <View style={style.hotelTitleWrapper}>
             <View style={style.hotelTitle}>
               <HotelTitle data={data} />
             </View>
