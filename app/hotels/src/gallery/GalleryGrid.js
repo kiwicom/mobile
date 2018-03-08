@@ -53,7 +53,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
    * still needed for portrait <-> layout changes.
    */
   componentDidMount = () => {
-    this.updateTileWidth(Device.getWideDeviceThreshold());
+    this.updateTileWidth(Device.getDimensions().width);
   };
 
   calculateTileWidth = (event: OnLayout) => {
