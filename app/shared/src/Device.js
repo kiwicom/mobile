@@ -22,7 +22,7 @@ function renewDimensions(): DimensionsType {
 const dimensionChangeListeners = [];
 
 /**
- * Node: there are no `getWidth` or `getHeight`. These dimensions are changing
+ * Note: getDimensions should only be used in componentDidMount. Dimensions are changing
  * during the application lifecycle so you have to use `AdaptableLayout`
  * component or subscribe to these changes.
  */
@@ -116,5 +116,12 @@ export default {
       android: 56,
       ios: 64,
     });
+  },
+  /**
+   * WARNING: this won't update with device change.
+   * Should only be used in componentDidMount.
+   */
+  getDimensions() {
+    return renewDimensions();
   },
 };
