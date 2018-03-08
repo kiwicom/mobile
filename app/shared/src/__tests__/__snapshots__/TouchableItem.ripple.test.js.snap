@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TouchableItem with ripple effect disables foreground in borderless mode 1`] = `
+<DummyTouchableNativeFeedback
+  background={undefined}
+  borderlessRipple={true}
+  rippleColor="rgba(0, 0, 0, .32)"
+  style={null}
+  useForeground={false}
+>
+  <View
+    style={undefined}
+  >
+    <Text>
+      line
+    </Text>
+  </View>
+</DummyTouchableNativeFeedback>
+`;
+
+exports[`TouchableItem with ripple effect renders with foreground 1`] = `
+<DummyTouchableNativeFeedback
+  background={undefined}
+  borderlessRipple={false}
+  rippleColor="rgba(0, 0, 0, .32)"
+  style={null}
+  useForeground={true}
+>
+  <View
+    style={undefined}
+  >
+    <Text>
+      line
+    </Text>
+  </View>
+</DummyTouchableNativeFeedback>
+`;
+
+exports[`TouchableItem with ripple effect renders with ripple color 1`] = `
+<DummyTouchableNativeFeedback
+  background={undefined}
+  borderlessRipple={false}
+  rippleColor="red"
+  style={null}
+  useForeground={true}
+>
+  <View
+    style={undefined}
+  >
+    <Text>
+      line
+    </Text>
+  </View>
+</DummyTouchableNativeFeedback>
+`;

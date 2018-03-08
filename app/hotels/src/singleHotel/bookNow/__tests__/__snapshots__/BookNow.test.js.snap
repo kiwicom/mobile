@@ -15,9 +15,9 @@ exports[`renders without crashing 1`] = `
 >
   <TouchableItem
     activeOpacity={0.6}
-    borderless={false}
+    borderlessRipple={false}
     onPress={[Function]}
-    pressColor="rgba(0, 0, 0, .32)"
+    rippleColor="rgba(0, 0, 0, .32)"
   >
     <BookNowText
       buttonPriceStyle={
