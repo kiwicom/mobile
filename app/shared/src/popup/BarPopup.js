@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: Color.grey.$100,
+    paddingHorizontal: 4,
   },
   children: {
     padding: 10,
