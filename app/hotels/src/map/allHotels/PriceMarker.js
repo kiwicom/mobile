@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   },
   price: {
     color: '#000',
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   arrowBorder: {
