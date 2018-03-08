@@ -46,7 +46,7 @@ export default function createEnvironment(
     }
 
     // TODO: fetch persisted queries instead (based on operation.id)
-    const jsonPayload = await (await fetch('https://graphql.kiwi.com/', {
+    const jsonPayload = await (await fetch('https://beta-graphql.kiwi.com/', {
       method: 'POST',
       headers: networkHeaders,
       body: JSON.stringify({
