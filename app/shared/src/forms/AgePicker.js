@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { Picker } from 'react-native';
+import { Picker, View } from 'react-native';
 
 import BarPopup from '../popup/BarPopup';
+import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   isVisible: boolean,
@@ -17,6 +18,12 @@ type Props = {|
 type State = {|
   selectedValue: number | null,
 |};
+
+const styles = StyleSheet.create({
+  pickerContainer: {
+    paddingHorizontal: 2,
+  },
+});
 
 export default class AgePicker extends React.Component<Props, State> {
   state = {
@@ -51,12 +58,14 @@ export default class AgePicker extends React.Component<Props, State> {
         onClose={this.props.onClose}
         onSave={this.onSave}
       >
-        <Picker
-          selectedValue={this.state.selectedValue}
-          onValueChange={this.handleValueChange}
-        >
-          {this.renderItems(min || min === 0 ? min : 1, max)}
-        </Picker>
+        <View style={styles.pickerContainer}>
+          <Picker
+            selectedValue={this.state.selectedValue}
+            onValueChange={this.handleValueChange}
+          >
+            {this.renderItems(min || min === 0 ? min : 1, max)}
+          </Picker>
+        </View>
       </BarPopup>
     );
   }
