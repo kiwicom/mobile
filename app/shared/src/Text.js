@@ -92,12 +92,10 @@ const styles = StyleSheet.create({
     color: '#30363d',
     android: {
       fontSize: 15,
-      lineHeight: 21,
       letterSpacing: 0,
     },
     ios: {
       fontSize: 14,
-      lineHeight: 19,
       letterSpacing: -0.15,
     },
   },

@@ -36,6 +36,13 @@ const style = StyleSheet.create({
     color: Color.grey.$600,
     fontSize: 9,
     lineHeight: 9,
+    alignSelf: 'flex-end',
+    android: {
+      paddingBottom: 3,
+    },
+    ios: {
+      paddingBottom: 1,
+    },
   },
   distance: {
     marginVertical: 6,
@@ -69,12 +76,12 @@ function HotelTitle({ data }: Props) {
 
   return (
     <View>
-      <Text>
-        <Text style={style.title}>{hotelName}</Text>{' '}
+      <View style={{ flexDirection: 'row' }}>
+        <Text style={style.title}>{hotelName} </Text>
         <Text style={style.rating}>
           <Stars rating={hotelStars} />
         </Text>
-      </Text>
+      </View>
       <View style={style.distance}>
         <Distance hotel={data && data.hotel} />
       </View>

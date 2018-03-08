@@ -13,7 +13,6 @@ exports[`formatRating concats stars, review score and review description 1`] = `
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -29,7 +28,6 @@ exports[`formatRating concats stars, review score and review description 1`] = `
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         undefined,
       ]
@@ -55,7 +53,6 @@ exports[`formatRating omits the dash when review is missing 1`] = `
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -71,7 +68,6 @@ exports[`formatRating omits the dash when review is missing 1`] = `
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         undefined,
       ]
@@ -97,7 +93,6 @@ exports[`formatRating omits the dash when stars are missing 1`] = `
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
-        "lineHeight": 19,
       },
     ]
   }
@@ -113,7 +108,6 @@ exports[`formatRating omits the dash when stars are missing 1`] = `
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
-          "lineHeight": 19,
         },
         undefined,
       ]
