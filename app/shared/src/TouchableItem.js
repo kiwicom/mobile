@@ -16,6 +16,7 @@ type Props = {
   borderless?: boolean,
   pressColor?: string,
   style?: StylePropType,
+  useForeground?: boolean,
 };
 
 const ANDROID_VERSION_LOLLIPOP = 21;
@@ -52,10 +53,14 @@ export default class TouchableItem extends React.Component<Props> {
       Platform.OS === 'android' &&
       Platform.Version >= ANDROID_VERSION_LOLLIPOP
     ) {
-      const { style, ...rest } = this.props;
+      const { style, useForeground, ...rest } = this.props;
+      const useForegroundProp =
+        useForeground != null
+          ? useForeground
+          : TouchableNativeFeedback.canUseNativeForeground();
       return (
         <TouchableNativeFeedback
-          useForeground={TouchableNativeFeedback.canUseNativeForeground()}
+          useForeground={useForegroundProp}
           {...rest}
           style={null}
           background={TouchableNativeFeedback.Ripple(
