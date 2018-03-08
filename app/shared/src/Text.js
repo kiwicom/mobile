@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     android: {
       fontSize: 15,
       letterSpacing: 0,
+      fontFamily: 'Roboto-Regular',
     },
     ios: {
       fontSize: 14,
