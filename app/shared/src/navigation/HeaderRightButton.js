@@ -31,6 +31,7 @@ export default class HeaderRightButton extends React.PureComponent<Props> {
         pressColor={pressColorAndroid}
         style={styles.container}
         borderless
+        useForeground={false}
       >
         <View style={styles.container}>
           <Icon style={styles.icon} name="map" size={24} color={tintColor} />
