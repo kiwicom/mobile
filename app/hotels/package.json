@@ -15,7 +15,8 @@
     "react-native-maps": "^0.19.0",
     "react-native-read-more-text": "^1.0.0",
     "react-native-snap-carousel": "3.4.0",
-    "react-native-swiper": "^1.5.13"
+    "react-native-swiper": "^1.5.13",
+    "react-native-tooltips": "^0.0.4"
   },
   "devDependencies": {
     "mockdate": "^2.0.2"
