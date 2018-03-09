@@ -6,7 +6,7 @@ import { View, TouchableOpacity } from 'react-native';
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 import Color from '../Color';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 
 type Props = {|
   children: React.Node,

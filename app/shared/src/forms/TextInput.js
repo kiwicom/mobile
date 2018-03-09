@@ -4,7 +4,7 @@ import * as React from 'react';
 import { TextInput as OriginalTextInput, View } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 
 const styles = StyleSheet.create({
   input: {

@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import OriginalDatePicker from 'react-native-datepicker';
 
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 
 const customStyles = StyleSheet.create({
   // date input wrapper (View)
@@ -56,7 +56,11 @@ const customStyles = StyleSheet.create({
   },
 });
 
-export default class DatePicker extends React.Component<{}> {
+type Props = {
+  iconComponent: React.Node,
+};
+
+export default class DatePicker extends React.Component<Props> {
   static defaultProps = {
     mode: 'date',
     placeholder: 'select date',
@@ -64,20 +68,26 @@ export default class DatePicker extends React.Component<{}> {
     confirmBtnText: 'Select date',
     cancelBtnText: 'Cancel',
     showIcon: true,
-    iconComponent: (
-      <View style={customStyles.dateIcon}>
-        <Icon name="date-range" size={20} />
-      </View>
-    ),
     duration: 100,
     customStyles,
   };
 
   render = () => {
+    const iconComponent = (
+      <View style={customStyles.dateIcon}>
+        {this.props.iconComponent === undefined ? (
+          <Icon name="date-range" size={20} />
+        ) : (
+          this.props.iconComponent
+        )}
+      </View>
+    );
+
     return (
       <View style={customStyles.originalDatePickerWrapper}>
         <OriginalDatePicker
           {...this.props}
+          iconComponent={iconComponent}
           style={{
             // styles for 'TouchableComponent' around date picker
             width: null, // removes default width

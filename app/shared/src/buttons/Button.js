@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import Color from '../Color';
 import TouchableItem from '../TouchableItem';
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 import ButtonText from './ButtonText';
 
 type Props = {|
