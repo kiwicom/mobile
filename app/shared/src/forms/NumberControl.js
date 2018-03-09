@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import Text from '../Text';
 import IncrementDecrementButtons from '../buttons/IncrementDecrementButtons';
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 
 type Props = {|
   label: string,

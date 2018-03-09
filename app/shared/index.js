@@ -27,6 +27,9 @@ export { default as NumberControl } from './src/forms/NumberControl';
 export { default as Slider } from './src/forms/Slider';
 export { default as TextInput } from './src/forms/TextInput';
 
+export { default as Icon } from './src/icons/Icon';
+export { default as TextIcon } from './src/icons/TextIcon';
+
 export { default as NetworkImage } from './src/image/NetworkImage';
 export { default as StretchedImage } from './src/image/StretchedImage';
 
@@ -61,7 +64,6 @@ export { default as Translate } from './src/translations/Translate';
 
 export { default as Color } from './src/Color';
 export { default as Device } from './src/Device';
-export { default as Icon } from './src/Icon';
 export { default as Modal } from './src/Modal';
 export { default as StyleSheet } from './src/PlatformStyleSheet';
 export { default as Price } from './src/Price';

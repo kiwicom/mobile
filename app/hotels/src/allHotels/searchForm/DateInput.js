@@ -3,7 +3,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import moment from 'moment';
-import { DatePicker, StyleSheet } from '@kiwicom/react-native-app-shared';
+import {
+  DatePicker,
+  StyleSheet,
+  TextIcon,
+} from '@kiwicom/react-native-app-shared';
 
 import type { OnChangeSearchParams } from './SearchParametersType';
 
@@ -117,6 +121,7 @@ export default class DateInput extends React.Component<Props> {
               .add(359, 'days')
               .toDate()}
             onDateChange={this.handleCheckinChange}
+            iconComponent={<TextIcon>&#xe0a3;</TextIcon>}
           />
         </View>
         <View style={styles.rightDatePickerWrapper}>
@@ -131,6 +136,7 @@ export default class DateInput extends React.Component<Props> {
               .add(360, 'days')
               .toDate()}
             onDateChange={this.handleCheckoutChange}
+            iconComponent={<TextIcon>&#xe0a2;</TextIcon>}
           />
         </View>
       </View>

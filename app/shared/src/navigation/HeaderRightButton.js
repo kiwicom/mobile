@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
 import TouchableItem from '../TouchableItem';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 
 type Props = {|
   onPress?: () => void,
