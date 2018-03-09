@@ -24,11 +24,13 @@ import GeneralError from '../../../shared/src/errors/GeneralError';
 import type { HotelsReducerState } from '../HotelsReducer';
 import type { FilterReducerState } from '../filter/FiltersReducer';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
+import type { Coordinates } from '../CoordinatesType';
 
 type Props = {|
   onSearchChange: OnChangeSearchParams => void,
   onLocationChange: (location: string) => void,
   search: SearchParams,
+  coordinates: Coordinates | null,
   location: string,
   filter: FilterParams,
   onFilterChange: OnChangeFilterParams => void,
@@ -51,6 +53,7 @@ class AllHotels extends React.Component<Props> {
     return (
       <AllHotelsSearch
         {...rendererProps}
+        coordinates={this.props.coordinates}
         openSingleHotel={this.props.openSingleHotel}
         cityId={cityId}
       />
