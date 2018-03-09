@@ -17,7 +17,7 @@
     "test-ci": "./scripts/test.sh",
     "postinstall": "node ./scripts/configureApplication.js",
     "pod-install": "node ./scripts/podInstall.js",
-    "release-hotels": "npm login && node ./scripts/releaseHotels.js"
+    "release-hotels": "node ./scripts/releaseHotels.js"
   },
   "dependencies": {
     "react": "16.0.0",
@@ -42,5 +42,10 @@
     "prettier": "^1.7.4",
     "react-native-dotenv": "^0.1.0",
     "react-test-renderer": "16.2.0"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }

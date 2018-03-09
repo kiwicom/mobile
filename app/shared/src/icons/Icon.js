@@ -4,7 +4,7 @@ import * as React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
-import Color from './Color';
+import Color from '../Color';
 
 type Props = {|
   name: string,
@@ -13,15 +13,16 @@ type Props = {|
   style?: StylePropType,
 |};
 
-const defaults = {
-  color: Color.grey.$600,
-};
-
 /**
  * Currently only supported package is "MaterialIcons".
  * @see https://material.io/icons/
  */
-export default function Icon(props: Props) {
-  const newProps = { ...defaults, ...props };
-  return <MaterialIcons {...newProps} />;
+function Icon(props: Props) {
+  return <MaterialIcons {...props} />;
 }
+
+Icon.defaultProps = {
+  color: Color.grey.$600,
+};
+
+export default Icon;

@@ -5,7 +5,7 @@ import { View, TouchableWithoutFeedback, Platform } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
 import Color from '../Color';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 import type { StylePropType } from '../../types/Styles';
 
 type Props = {|

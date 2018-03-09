@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -43,6 +42,7 @@
 		C4335F84A20948F88F4CD79A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98F714366E244DE8B544759B /* FontAwesome.ttf */; };
 		C50B0BB283211BB62AA8FF32 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 16EAB856784FBCBC6D76F019 /* libPods-reactNativeApp.a */; };
 		F45C9E5DB87C4C498DE6F585 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04C74FA2AC954AC1B9D83B19 /* Foundation.ttf */; };
+		C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +375,7 @@
 		F1A00C5D775FF8FB81389806 /* libPods-reactNativeApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactNativeApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1CBA12F9C74CC3D03C0D84C /* Pods-reactNativeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp.release.xcconfig"; sourceTree = "<group>"; };
 		F7AB8E7F9E22C6A014F0E1B6 /* libPods-reactNativeApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactNativeApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF458A69A33B4401B9E9FCDA /* spfont.ttf */ = {isa = PBXFileReference; name = "spfont.ttf"; path = "../assets/fonts/spfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -676,6 +677,7 @@
 				8424F9229D5B4102A9CE2833 /* Octicons.ttf */,
 				823BCF189E434331AFBB03D2 /* SimpleLineIcons.ttf */,
 				4C2C517A4EB94704AF1EF8F5 /* Zocial.ttf */,
+				BF458A69A33B4401B9E9FCDA /* spfont.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -748,7 +750,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = G44VYF3687;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1106,6 +1108,7 @@
 				37652379D39242419FA27C10 /* Octicons.ttf in Resources */,
 				BC8FBC3349D54446850D3273 /* SimpleLineIcons.ttf in Resources */,
 				75C41AF4C9FA4E43A6250CE4 /* Zocial.ttf in Resources */,
+				C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
