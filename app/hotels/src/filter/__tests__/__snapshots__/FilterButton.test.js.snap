@@ -12,6 +12,7 @@ exports[`Filter button render active button 1`] = `
   <Button
     icon={
       <Icon
+        color="#757575"
         name="attach-money"
         size={20}
       />
@@ -48,6 +49,7 @@ exports[`Filter button render default button 1`] = `
   <Button
     icon={
       <Icon
+        color="#757575"
         name="attach-money"
         size={20}
       />

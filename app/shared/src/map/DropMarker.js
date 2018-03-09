@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../Icon';
+import Icon from '../icons/Icon';
 
 type Props = {|
   size?: number,
