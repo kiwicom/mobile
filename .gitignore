@@ -39,6 +39,8 @@ local.properties
 *.iml
 android/app/bin/
 .project
+.classpath
+.settings
 
 # node.js
 #

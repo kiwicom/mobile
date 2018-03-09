@@ -1,12 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { BackHandler, Platform } from 'react-native';
+import { BackHandler, Platform, View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
-import { View } from 'react-native';
 import {
   StyleSheet,
-  HeaderRightButton,
   AdaptableLayout,
   DismissKeyboardView,
 } from '@kiwicom/react-native-app-shared';
@@ -14,6 +12,7 @@ import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import AllHotels from '../allHotels/AllHotels';
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
+import MapHeaderButton from './MapHeaderButton';
 import type { Coordinates } from '../CoordinatesType';
 
 type ContainerProps = {|
@@ -48,7 +47,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
     function renderHeaderRight() {
       return (
         <AdaptableLayout
-          renderOnNarrow={<HeaderRightButton onPress={goToAllHotelsMap} />}
+          renderOnNarrow={<MapHeaderButton onPress={goToAllHotelsMap} />}
         />
       );
     }
