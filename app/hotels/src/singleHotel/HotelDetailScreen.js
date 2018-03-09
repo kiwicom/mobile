@@ -102,8 +102,8 @@ export class HotelDetailScreen extends React.Component<Props, State> {
       return <GeneralError errorMessage="Hotel not found" />;
     }
 
-    return (
-      <Layout>
+    return [
+      <Layout key="detailLayout">
         <ScrollView>
           <Header openGallery={openGallery} hotel={availableHotel.hotel} />
           <Location hotel={availableHotel.hotel} onGoToMap={onGoToMap} />
@@ -116,16 +116,17 @@ export class HotelDetailScreen extends React.Component<Props, State> {
           />
           <BrandLabel />
         </ScrollView>
-        <BookNow
-          onGoToPayment={onGoToPayment}
-          selected={selected}
-          availableRooms={availableHotel.availableRooms}
-          hotel={availableHotel.hotel}
-          personCount={this.getPersonCount()}
-          numberOfRooms={this.getNumberOfRooms()}
-        />
-      </Layout>
-    );
+      </Layout>,
+      <BookNow
+        key="floatingBookNow"
+        onGoToPayment={onGoToPayment}
+        selected={selected}
+        availableRooms={availableHotel.availableRooms}
+        hotel={availableHotel.hotel}
+        personCount={this.getPersonCount()}
+        numberOfRooms={this.getNumberOfRooms()}
+      />,
+    ];
   }
 }
 
