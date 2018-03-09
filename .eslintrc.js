@@ -28,6 +28,7 @@ module.exports = {
   ],
   rules: {
     'no-console': [ERROR, { allow: ['warn', 'error'] }],
+    'no-duplicate-imports': ERROR,
     'no-underscore-dangle': [ERROR, { enforceInMethodNames: true }],
     'no-restricted-imports': [
       ERROR,
