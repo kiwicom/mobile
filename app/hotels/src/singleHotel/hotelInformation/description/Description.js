@@ -10,6 +10,7 @@ import {
   Text,
   SimpleCard,
   StyleSheet,
+  AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
@@ -23,6 +24,9 @@ const styles = StyleSheet.create({
     ios: {
       marginTop: -2,
     },
+  },
+  simpleCardWideWrapper: {
+    marginTop: 10,
   },
   linkView: {
     flexDirection: 'row',
@@ -38,6 +42,11 @@ const styles = StyleSheet.create({
     ios: {
       lineHeight: 19,
     },
+  },
+  wideCardChildrenWrapper: {
+    marginVertical: 3,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
   },
 });
 
@@ -65,28 +74,63 @@ const renderRevealedFooter = (handlePress: () => void) => (
 
 type ContainerProps = {|
   hotel: any,
+  locationView?: any,
 |};
 
 type Props = {
   ...ContainerProps,
   hotel: ?Description_hotel,
+  locationView?: React.Node,
 };
 
-export function Description({ hotel }: Props) {
-  return (
-    <View style={styles.simpleCardWrapper}>
-      <SimpleCard>
+export class Description extends React.Component<Props> {
+  renderCardChildren = (isWide: boolean) => (
+    <View>
+      {this.props.locationView}
+      <View style={isWide ? styles.wideCardChildrenWrapper : null}>
         <ReadMore
           numberOfLines={5}
           renderTruncatedFooter={renderTruncatedFooter}
           renderRevealedFooter={renderRevealedFooter}
         >
-          <Text style={styles.summary}>{idx(hotel, _ => _.summary)}</Text>
+          <Text style={styles.summary}>
+            {idx(this.props, _ => _.hotel.summary)}
+          </Text>
         </ReadMore>
-        <Facilities facilities={idx(hotel, _ => _.facilities)} />
-      </SimpleCard>
+        <Facilities facilities={idx(this.props, _ => _.hotel.facilities)} />
+      </View>
     </View>
   );
+
+  renderBaseComponent = () => {
+    return (
+      <View style={styles.simpleCardWrapper}>
+        <SimpleCard>{this.renderCardChildren(false)}</SimpleCard>
+      </View>
+    );
+  };
+
+  render = () => {
+    const baseComponent = this.renderBaseComponent();
+    return (
+      <AdaptableLayout
+        renderOnNarrow={baseComponent}
+        renderOnWide={
+          <View style={styles.simpleCardWideWrapper}>
+            <SimpleCard
+              style={{
+                marginVertical: 0,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+              }}
+            >
+              {this.renderCardChildren(true)}
+            </SimpleCard>
+          </View>
+        }
+      />
+    );
+  };
 }
 
 export default (createFragmentContainer(
