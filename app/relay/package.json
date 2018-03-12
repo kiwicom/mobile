@@ -1,7 +1,7 @@
 {
   "name": "@kiwicom/react-native-app-relay",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
   "main": "index.js",
   "dependencies": {
     "json-stable-stringify": "^1.0.1",
