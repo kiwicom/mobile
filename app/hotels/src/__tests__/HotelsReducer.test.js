@@ -3,8 +3,8 @@
 import HotelsReducer from '../HotelsReducer';
 
 const defaultSearchParams = {
-  checkin: null,
-  checkout: null,
+  checkin: new Date(3),
+  checkout: new Date(4),
   roomsConfiguration: {
     adultsCount: 1,
     children: [],
@@ -30,6 +30,7 @@ describe('HotelsReducer', () => {
         search: {
           ...defaultSearchParams,
           checkin: new Date(1),
+          checkout: new Date(2),
         },
       };
 
