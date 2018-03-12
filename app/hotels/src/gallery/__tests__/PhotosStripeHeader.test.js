@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
+import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
 
-import PlaygroundRenderer from '../../../../PlaygroundRenderer';
 import PhotosStripeHeader from '../PhotosStripeHeader';
 
 const VoidAction = () => {};

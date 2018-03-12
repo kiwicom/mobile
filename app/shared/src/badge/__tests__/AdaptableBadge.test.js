@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
+import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
 
-import PlaygroundRenderer from '../../../../PlaygroundRenderer';
 import AdaptableBadge from '../AdaptableBadge';
 
 it('renders text', () => {

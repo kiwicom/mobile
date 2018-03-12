@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
+import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
 
 import { BookNow } from '../BookNow';
-import PlaygroundRenderer from '../../../../../PlaygroundRenderer';
 
 it('renders without crashing', () => {
   const props = {
