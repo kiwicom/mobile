@@ -9,8 +9,8 @@ Object {
   },
   "location": "",
   "searchParams": Object {
-    "checkin": null,
-    "checkout": null,
+    "checkin": 1970-01-01T00:00:00.003Z,
+    "checkout": 1970-01-01T00:00:00.004Z,
     "roomsConfiguration": Object {
       "adultsCount": 1,
       "children": Array [],
@@ -29,7 +29,7 @@ Object {
   "location": "",
   "searchParams": Object {
     "checkin": 1970-01-01T00:00:00.001Z,
-    "checkout": null,
+    "checkout": 1970-01-01T00:00:00.002Z,
     "roomsConfiguration": Object {
       "adultsCount": 1,
       "children": Array [],
