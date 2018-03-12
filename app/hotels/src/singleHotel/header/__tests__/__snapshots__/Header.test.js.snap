@@ -1,151 +1,315 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<TouchableOpacity
-  activeOpacity={0.2}
-  onPress={[Function]}
->
-  <Connect(NetworkImage)
-    source={
-      Object {
-        "uri": undefined,
-      }
-    }
-    style={
-      Object {
-        "height": 150,
-      }
-    }
-  />
-  <View
-    style={
-      Object {
-        "alignItems": "flex-end",
-        "flexDirection": "row",
-        "height": 150,
-        "marginTop": -150,
-      }
-    }
-  >
-    <StretchedImage
-      source={
-        Object {
-          "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
-        }
-      }
-    />
-    <View
-      style={
-        Object {
-          "marginBottom": 10,
-          "marginLeft": 15,
-          "marginRight": 15,
-        }
-      }
+<AdaptableLayout
+  renderOnNarrow={
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
     >
-      <Text
+      <Connect(NetworkImage)
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "#ffffff",
-            "fontSize": 18,
-            "fontWeight": "600",
-            "letterSpacing": -0.45,
-            "lineHeight": 22,
+            "height": 150,
           }
         }
       />
-      <Text
+      <View
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "#ffffff",
-            "fontSize": 12,
+            "alignItems": "flex-end",
+            "flexDirection": "row",
+            "height": 150,
+            "marginTop": -150,
           }
         }
       >
-        <Rating
-          description={undefined}
-          score={undefined}
-          stars={undefined}
+        <StretchedImage
+          source={
+            Object {
+              "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
+            }
+          }
         />
-      </Text>
+        <View
+          style={
+            Object {
+              "marginBottom": 10,
+              "marginLeft": 15,
+              "marginRight": 15,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#ffffff",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "letterSpacing": -0.45,
+                "lineHeight": 22,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#ffffff",
+                "fontSize": 12,
+              }
+            }
+          >
+            <Rating
+              description={undefined}
+              score={undefined}
+              stars={undefined}
+            />
+          </Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  }
+  renderOnWide={
+    <View
+      style={Object {}}
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+      >
+        <Connect(NetworkImage)
+          source={
+            Object {
+              "uri": undefined,
+            }
+          }
+          style={
+            Object {
+              "height": 150,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "height": 150,
+              "marginTop": -150,
+            }
+          }
+        >
+          <StretchedImage
+            source={
+              Object {
+                "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "marginBottom": 10,
+                "marginLeft": 15,
+                "marginRight": 15,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "#ffffff",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.45,
+                  "lineHeight": 22,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "#ffffff",
+                  "fontSize": 12,
+                }
+              }
+            >
+              <Rating
+                description={undefined}
+                score={undefined}
+                stars={undefined}
+              />
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     </View>
-  </View>
-</TouchableOpacity>
+  }
+/>
 `;
 
 exports[`renders without crashing with missing data 1`] = `
-<TouchableOpacity
-  activeOpacity={0.2}
-  onPress={[Function]}
->
-  <Connect(NetworkImage)
-    source={
-      Object {
-        "uri": undefined,
-      }
-    }
-    style={
-      Object {
-        "height": 150,
-      }
-    }
-  />
-  <View
-    style={
-      Object {
-        "alignItems": "flex-end",
-        "flexDirection": "row",
-        "height": 150,
-        "marginTop": -150,
-      }
-    }
-  >
-    <StretchedImage
-      source={
-        Object {
-          "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
-        }
-      }
-    />
-    <View
-      style={
-        Object {
-          "marginBottom": 10,
-          "marginLeft": 15,
-          "marginRight": 15,
-        }
-      }
+<AdaptableLayout
+  renderOnNarrow={
+    <TouchableOpacity
+      activeOpacity={0.2}
+      onPress={[Function]}
     >
-      <Text
+      <Connect(NetworkImage)
+        source={
+          Object {
+            "uri": undefined,
+          }
+        }
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "#ffffff",
-            "fontSize": 18,
-            "fontWeight": "600",
-            "letterSpacing": -0.45,
-            "lineHeight": 22,
+            "height": 150,
           }
         }
       />
-      <Text
+      <View
         style={
           Object {
-            "backgroundColor": "transparent",
-            "color": "#ffffff",
-            "fontSize": 12,
+            "alignItems": "flex-end",
+            "flexDirection": "row",
+            "height": 150,
+            "marginTop": -150,
           }
         }
       >
-        <Rating
-          description={undefined}
-          score={undefined}
-          stars={undefined}
+        <StretchedImage
+          source={
+            Object {
+              "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
+            }
+          }
         />
-      </Text>
+        <View
+          style={
+            Object {
+              "marginBottom": 10,
+              "marginLeft": 15,
+              "marginRight": 15,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#ffffff",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "letterSpacing": -0.45,
+                "lineHeight": 22,
+              }
+            }
+          />
+          <Text
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#ffffff",
+                "fontSize": 12,
+              }
+            }
+          >
+            <Rating
+              description={undefined}
+              score={undefined}
+              stars={undefined}
+            />
+          </Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  }
+  renderOnWide={
+    <View
+      style={Object {}}
+    >
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+      >
+        <Connect(NetworkImage)
+          source={
+            Object {
+              "uri": undefined,
+            }
+          }
+          style={
+            Object {
+              "height": 150,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "alignItems": "flex-end",
+              "flexDirection": "row",
+              "height": 150,
+              "marginTop": -150,
+            }
+          }
+        >
+          <StretchedImage
+            source={
+              Object {
+                "testUri": "../../../app/hotels/src/singleHotel/header/black-to-alpha-vertical.png",
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "marginBottom": 10,
+                "marginLeft": 15,
+                "marginRight": 15,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "#ffffff",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "letterSpacing": -0.45,
+                  "lineHeight": 22,
+                }
+              }
+            />
+            <Text
+              style={
+                Object {
+                  "backgroundColor": "transparent",
+                  "color": "#ffffff",
+                  "fontSize": 12,
+                }
+              }
+            >
+              <Rating
+                description={undefined}
+                score={undefined}
+                stars={undefined}
+              />
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
     </View>
-  </View>
-</TouchableOpacity>
+  }
+/>
 `;
