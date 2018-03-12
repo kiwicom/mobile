@@ -19,6 +19,7 @@
     "react-native-tooltips": "^0.0.4"
   },
   "devDependencies": {
+    "@kiwicom/react-native-app-playground": "^0",
     "mockdate": "^2.0.2"
   }
 }

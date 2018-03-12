@@ -10,5 +10,8 @@
     "react-native-image-progress": "^1.0.1",
     "react-native-modal": "^5.1.0",
     "react-native-vector-icons": "^4.5.0"
+  },
+  "devDependencies": {
+    "@kiwicom/react-native-app-playground": "^0"
   }
 }
