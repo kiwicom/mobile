@@ -1,7 +1,7 @@
 {
   "name": "@kiwicom/react-native-app-redux",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
   "main": "index.js",
   "dependencies": {
     "prop-types": "^15.6.0",
