@@ -8,6 +8,7 @@ import {
   StretchedImage,
   Text,
   TouchableItem,
+  AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -53,6 +54,11 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#ffffff',
   },
+  tabletContainer: {
+    android: {
+      paddingHorizontal: 8,
+    },
+  },
 });
 
 type ContainerProps = {|
@@ -81,7 +87,7 @@ export class Header extends React.Component<Props> {
     }
   };
 
-  render = () => {
+  renderHeader = () => {
     const { hotel } = this.props;
     const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
     const photosCount = idx(hotel, _ => _.photos.edges.length);
@@ -109,6 +115,16 @@ export class Header extends React.Component<Props> {
           )}
         </View>
       </TouchableItem>
+    );
+  };
+
+  render = () => {
+    const header = this.renderHeader();
+    return (
+      <AdaptableLayout
+        renderOnNarrow={header}
+        renderOnWide={<View style={styles.tabletContainer}>{header}</View>}
+      />
     );
   };
 }

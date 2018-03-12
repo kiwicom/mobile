@@ -8,6 +8,7 @@ import {
   SimpleCard,
   StyleSheet,
   Text,
+  AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 import ReadMore from 'react-native-read-more-text';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -47,6 +48,9 @@ const styles = StyleSheet.create({
   roomPicker: {
     marginTop: 10,
   },
+  widePadding: {
+    paddingHorizontal: 5,
+  },
 });
 
 type ContainerProps = {|
@@ -84,7 +88,7 @@ export class RoomRow extends React.Component<Props> {
     return { originalId, maxPersons };
   };
 
-  render = () => {
+  renderRow = (isWide: boolean) => {
     const availableRoom = this.props.availableRoom;
     const title = idx(availableRoom, _ => _.room.description.title) || 'Room';
     const description = idx(availableRoom, _ => _.room.description.text);
@@ -101,7 +105,7 @@ export class RoomRow extends React.Component<Props> {
 
     return (
       <SimpleCard>
-        <View style={styles.row}>
+        <View style={[styles.row, isWide ? styles.widePadding : null]}>
           <NetworkImage
             source={{ uri: thumbnailUrl }}
             style={styles.thumbnail}
@@ -121,7 +125,9 @@ export class RoomRow extends React.Component<Props> {
         </View>
         {price &&
           currency && (
-            <View style={styles.roomPicker}>
+            <View
+              style={[styles.roomPicker, isWide ? styles.widePadding : null]}
+            >
               <RoomPicker
                 price={price}
                 currency={currency}
@@ -135,6 +141,13 @@ export class RoomRow extends React.Component<Props> {
       </SimpleCard>
     );
   };
+
+  render = () => (
+    <AdaptableLayout
+      renderOnNarrow={this.renderRow(false)}
+      renderOnWide={this.renderRow(true)}
+    />
+  );
 }
 
 export default (createFragmentContainer(
