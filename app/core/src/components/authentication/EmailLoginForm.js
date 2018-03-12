@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { TextInput, Button } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import LoginMutation, { type Callback } from './mutation/Login';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
@@ -69,9 +70,12 @@ export default class EmailLoginForm extends React.Component<Props, State> {
         secureTextEntry={true}
       />
       {this.state.loading ? (
-        <Button title="Logging in..." />
+        <Button title={<Translation id="Core.Authentication.Login" />} />
       ) : (
-        <Button onPress={this.handleFormSubmit} title="Login!" />
+        <Button
+          onPress={this.handleFormSubmit}
+          title={<Translation id="Core.Authentication.LoggingIn" />}
+        />
       )}
     </View>
   );

@@ -3,6 +3,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Icon, Color } from '@kiwicom/react-native-app-shared';
+import Translation, {
+  DummyTranslation,
+  TranslationFragment,
+  type TranslationType,
+} from '@kiwicom/react-native-app-translations';
 
 import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';
@@ -53,15 +58,33 @@ export default class StarsFilter extends React.Component<Props, State> {
     }
   };
 
-  getTitle = (propsStars: number[]) => {
+  getTitle = (propsStars: number[]): TranslationType => {
     // sort() tries to modify read only props in RN, works with clone
     const stars = [...propsStars];
-    return stars.length
-      ? stars
-          .sort()
-          .map(star => (star === 0 ? 'unrated' : star))
-          .join(',')
-      : 'stars';
+
+    if (stars.length === 0) {
+      return <Translation id="HotelsSearch.Filter.StarsFilter.Stars" />;
+    }
+
+    return (
+      <TranslationFragment>
+        {stars.includes(0) && (
+          <TranslationFragment>
+            <Translation
+              id="HotelsSearch.Filter.StarsFilter.Unrated"
+              key="unratedTranslation"
+            />
+            {stars.length > 1 && <DummyTranslation id="," />}
+          </TranslationFragment>
+        )}
+        <DummyTranslation
+          id={stars
+            .sort()
+            .filter(star => star > 0)
+            .join(',')}
+        />
+      </TranslationFragment>
+    );
   };
 
   render() {

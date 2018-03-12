@@ -23,6 +23,7 @@ This is not an actual mobile application. This repository contains only React Na
   * [Working with Playground](#working-with-playground)
   * [Working with GraphQL API](#working-with-graphql-api)
   * [Working with Redux](#working-with-redux)
+  * [Working with translations](#working-with-translations)
 * [Known issues](#known-issues)
   * [Important to fix before production ready state](#important-to-fix-before-production-ready-state)
   * [Improvements necessary for production usage](#improvements-necessary-for-production-usage)
@@ -330,6 +331,43 @@ import { connect } from '@kiwicom/react-native-app-redux';
 
 export default connect(select, actions)(ComponentWithoutStore);
 ```
+
+### Working with translations
+
+Current implementation is little bit dodgy because we have to use native code (requirement from native team). The underlying implementation is basically this:
+
+```swift
+- (NSString *)translate:(NSString *)key {
+    return key;
+}
+```
+
+So it returns key back. However, this happens only in development environment and it should return real translation in production (we cannot test or use it in development). For this reason we have custom fallback vocabulary and we touch this repository if underlying code returns unchanged key.
+
+You always have to use the following component:
+
+```js
+<Translation id="Core.Authentication.Login" />
+```
+
+These components should be enforced everywhere we need to use translations (button titles, children of the `Text` component). However, there are situations where we need to use the translation (because of the enforcement) but there is nothing to translate. In this case just use this dummy component:
+
+```js
+<DummyTranslation id="★★★★★" />
+```
+
+It comply with the translations interface but it returns the ID directly back without even trying to translate it.
+
+There are also situations where we need to return multiple translations but this is little bit more tricky because it's not possible to nest (or concat) multiple translations. You can use `TranslationFragment` component for this:
+
+```js
+<TranslationFragment>
+  <DummyTranslation id="★★★★★" />
+  <Translation id="SingleHotel.Rating.Stars" />
+</TranslationFragment>
+```
+
+This fragment also comply with Flow types and it has similar behaviour with `React.Fragment` from React 16.2+...
 
 ## Known issues
 

@@ -37,7 +37,11 @@ exports[`ButtonPopup render popup with child 1`] = `
           },
         }
       }
-      title="Save"
+      title={
+        <DummyTranslation
+          id="Save"
+        />
+      }
     />
   </View>
 </Popup>

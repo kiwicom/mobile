@@ -26,7 +26,11 @@ exports[`renders the buttons in the playground 2`] = `
 >
   <LinkButton
     onPress={[Function]}
-    title="Load more..."
+    title={
+      <Translation
+        id="HotelsSearch.LoadMode"
+      />
+    }
   />
 </View>
 `;

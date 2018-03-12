@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Picker, View } from 'react-native';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import BarPopup from '../popup/BarPopup';
 import StyleSheet from '../PlatformStyleSheet';
@@ -53,7 +54,7 @@ export default class AgePicker extends React.Component<Props, State> {
     const { min, max } = this.props;
     return (
       <BarPopup
-        buttonTitle="Done"
+        buttonTitle={<Translation id="Shared.AgePicker.Done" />}
         isVisible={this.props.isVisible}
         onClose={this.props.onClose}
         onSave={this.onSave}

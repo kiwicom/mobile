@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import type { TranslationType } from '@kiwicom/react-native-app-translations';
 
 import Color from '../Color';
 import Touchable from '../Touchable';
@@ -10,7 +11,7 @@ import Icon from '../icons/Icon';
 import ButtonText from './ButtonText';
 
 type Props = {|
-  title: string,
+  title: TranslationType,
   onPress?: Function,
   styles?: {|
     buttonWrapper?: Object,

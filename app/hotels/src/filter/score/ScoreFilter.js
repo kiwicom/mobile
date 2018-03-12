@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Icon, Color } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import ScorePopup from './ScorePopup';
 import FilterButton from '../FilterButton';
@@ -19,10 +20,10 @@ type State = {|
 |};
 
 const ratingLabels = {
-  '6': 'pleasant 6+',
-  '7': 'good 7+',
-  '8': 'very good 8+',
-  '9': 'superb 9+',
+  '6': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.6" />,
+  '7': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.7" />,
+  '8': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.8" />,
+  '9': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.9" />,
 };
 
 export default class ScoreFilter extends React.Component<Props, State> {
@@ -55,7 +56,11 @@ export default class ScoreFilter extends React.Component<Props, State> {
     this.closePopup(() => this.props.onChange({ minScore }));
 
   getTitle = (minScore: number | null) =>
-    minScore ? ratingLabels[minScore] : 'rating';
+    minScore ? (
+      ratingLabels[minScore]
+    ) : (
+      <Translation id="HotelsSearch.Filter.ScoreFilter.Rating" />
+    );
 
   render() {
     const { minScore, isActive } = this.props;

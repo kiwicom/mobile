@@ -2,6 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import Translations, {
+  TranslationFragment,
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 import HotelFacilitiesPopup from './HotelFacilitiesPopup';
 import FilterButton from '../FilterButton';
@@ -49,8 +53,14 @@ export default class HotelFacilitiesFilter extends React.Component<
   handleSave = (hotelFacilities: string[]) =>
     this.closePopup(() => this.props.onChange({ hotelFacilities }));
 
-  getTitle = (facilities: string[]) =>
-    `hotel facilities${facilities.length ? ` (${facilities.length})` : ''}`;
+  getTitle = (facilities: string[]) => (
+    <TranslationFragment>
+      <Translations id="HotelsSearch.Filter.HotelFacilitiesFilter.Title" />
+      <DummyTranslation
+        id={facilities.length ? ` (${facilities.length})` : ''}
+      />
+    </TranslationFragment>
+  );
 
   render = () => (
     <View>
