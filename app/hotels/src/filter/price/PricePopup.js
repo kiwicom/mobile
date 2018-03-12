@@ -7,6 +7,7 @@ import {
   Slider,
   Price,
 } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   onClose: () => void,
@@ -66,7 +67,7 @@ export default class PricePopup extends React.Component<Props, State> {
     const label = this.renderLabel();
     return (
       <ButtonPopup
-        buttonTitle="Save"
+        buttonTitle={<Translation id="HotelsSearch.Filter.PricePopup.Save" />}
         onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}

@@ -37,7 +37,11 @@ exports[`ButtonPopup playground renders in playground 1`] = `
           },
         }
       }
-      title="Save"
+      title={
+        <DummyTranslation
+          id="Save"
+        />
+      }
     />
   </View>
 </Popup>

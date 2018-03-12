@@ -2,7 +2,11 @@
 
 exports[`StarsPopup should render popup 1`] = `
 <ButtonPopup
-  buttonTitle="Save"
+  buttonTitle={
+    <Translation
+      id="HotelsSearch.Filter.StarsPopup.Save"
+    />
+  }
   isVisible={true}
   onClose={[Function]}
   onSave={[Function]}

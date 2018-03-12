@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Button, Layout } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Logout from '../../components/authentication/Logout';
 
@@ -56,13 +57,22 @@ export default class Homepage extends React.Component<Props, {}> {
     return (
       <Layout>
         <Section>
-          <Button title="Hotels" onPress={this.goToAllHotelsPage} />
+          <Button
+            title={<Translation id="Homepage.Hotels" />}
+            onPress={this.goToAllHotelsPage}
+          />
         </Section>
         <Section>
-          <Button title="Hotels in Oslo" onPress={this.goToOslo} />
+          <Button
+            title={<Translation id="Homepage.HotelsOslo" />}
+            onPress={this.goToOslo}
+          />
         </Section>
         <Section>
-          <Button title="Hotels in Lima" onPress={this.goToLima} />
+          <Button
+            title={<Translation id="Homepage.HotelsLima" />}
+            onPress={this.goToLima}
+          />
         </Section>
         <Section>
           <Logout />

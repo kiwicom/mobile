@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Text, ButtonPopup, Slider } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   onClose: () => void,
@@ -32,11 +33,11 @@ export default class ScorePopup extends React.Component<Props, State> {
 
   renderLabel = (sliderValue: number) => {
     const labels = [
-      'any',
-      'pleasant 6+',
-      'good 7+',
-      'very good 8+',
-      'superb 9+',
+      <Translation key="any" id="HotelsSearch.Filter.ScoreFilter.Rating.Any" />,
+      <Translation key="6" id="HotelsSearch.Filter.ScoreFilter.Rating.6" />,
+      <Translation key="7" id="HotelsSearch.Filter.ScoreFilter.Rating.7" />,
+      <Translation key="8" id="HotelsSearch.Filter.ScoreFilter.Rating.8" />,
+      <Translation key="9" id="HotelsSearch.Filter.ScoreFilter.Rating.9" />,
     ];
     return <Text>Rating: {labels[sliderValue]}</Text>;
   };
@@ -49,7 +50,7 @@ export default class ScorePopup extends React.Component<Props, State> {
 
   render = () => (
     <ButtonPopup
-      buttonTitle="Save"
+      buttonTitle={<Translation id="HotelsSearch.Filter.ScorePopup.Save" />}
       onSave={this.onSave}
       onClose={this.props.onClose}
       isVisible={this.props.isVisible}

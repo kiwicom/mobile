@@ -4,6 +4,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { connect } from '@kiwicom/react-native-app-redux';
 import { Icon, Color } from '@kiwicom/react-native-app-shared';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
@@ -76,15 +79,15 @@ class PriceFilter extends React.Component<Props, State> {
     currency: string,
   ) => {
     if (start === min && end === max) {
-      return 'price';
+      return <Translation id="HotelsSearch.Filter.PriceFilter.Price" />;
     }
     if (start === min) {
-      return `< ${end} ${currency}`;
+      return <DummyTranslation id={`< ${end} ${currency}`} />;
     }
     if (end === max) {
-      return `> ${start} ${currency}`;
+      return <DummyTranslation id={`> ${start} ${currency}`} />;
     }
-    return `${start} - ${end} ${currency}`;
+    return <DummyTranslation id={`${start} - ${end} ${currency}`} />;
   };
 
   render() {

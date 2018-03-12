@@ -8,6 +8,7 @@ import {
   Message,
   StyleSheet,
 } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import ChildrenAgesControl from './ChildrenAgesControl';
 import type { RoomConfigurationType } from '../SearchParametersType';
@@ -112,7 +113,8 @@ export default class GuestsPopup extends React.Component<Props, State> {
     const { guests, isMissingAge } = this.state;
     return (
       <ButtonPopup
-        buttonTitle="Save"
+        testID="guestsPopupSaveButton"
+        buttonTitle={<Translation id="HotelsSearch.Filter.GuestsPopup.Save" />}
         onSave={this.handleSave}
         onClose={this.onClose}
         isVisible={this.props.isVisible}

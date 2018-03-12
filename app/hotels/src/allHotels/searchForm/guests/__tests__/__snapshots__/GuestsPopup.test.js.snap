@@ -2,7 +2,11 @@
 
 exports[`GuestsPopup Renders correctly 1`] = `
 <ButtonPopup
-  buttonTitle="Save"
+  buttonTitle={
+    <Translation
+      id="HotelsSearch.Filter.GuestsPopup.Save"
+    />
+  }
   isVisible={true}
   onClose={[Function]}
   onSave={[Function]}
@@ -15,6 +19,7 @@ exports[`GuestsPopup Renders correctly 1`] = `
       },
     }
   }
+  testID="guestsPopupSaveButton"
 >
   <View
     style={

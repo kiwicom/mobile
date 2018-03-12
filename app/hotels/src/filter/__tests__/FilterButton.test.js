@@ -3,6 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { Icon } from '@kiwicom/react-native-app-shared';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import FilterButton from '../FilterButton';
 
@@ -14,7 +15,7 @@ beforeEach(() => {
 describe('Filter button', () => {
   it('render default button', async () => {
     const props = {
-      title: 'title',
+      title: <DummyTranslation id="title" />,
       filter: 'filter',
       onPress: jest.fn(),
       icon: <Icon name="attach-money" size={20} />,
@@ -26,7 +27,7 @@ describe('Filter button', () => {
 
   it('render active button', async () => {
     const props = {
-      title: 'title',
+      title: <DummyTranslation id="title" />,
       filter: 'filter',
       onPress: jest.fn(),
       icon: <Icon name="attach-money" size={20} />,

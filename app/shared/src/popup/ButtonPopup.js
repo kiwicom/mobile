@@ -2,18 +2,20 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import type { TranslationType } from '@kiwicom/react-native-app-translations';
 
 import Popup from './Popup';
 import Button from '../buttons/Button';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  buttonTitle: string,
+  buttonTitle: TranslationType,
   children: React.Node,
   isVisible: boolean,
   onClose: Function,
   onSave: Function,
   style?: Object,
+  testID?: string,
 |};
 
 const POPUP_PADDING = 20;
