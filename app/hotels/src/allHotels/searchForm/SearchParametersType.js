@@ -9,13 +9,13 @@ export type RoomConfigurationType = {|
 |};
 
 export type SearchParams = {
-  checkin: Date | null,
-  checkout: Date | null,
+  checkin: Date,
+  checkout: Date,
   roomsConfiguration: RoomConfigurationType,
 };
 
 export type OnChangeSearchParams = {
-  checkin?: Date | null,
-  checkout?: Date | null,
+  checkin?: Date,
+  checkout?: Date,
   roomConfiguration?: RoomConfigurationType,
 };
