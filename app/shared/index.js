@@ -5,7 +5,6 @@ export { default as AdaptableBadge } from './src/badge/AdaptableBadge';
 export { default as BottomSheet } from './src/bottomSheet/BottomSheet';
 
 export { default as Button } from './src/buttons/Button';
-export { default as GoogleButton } from './src/buttons/GoogleButton';
 export {
   default as IncrementDecrementButtons,
 } from './src/buttons/IncrementDecrementButtons';
