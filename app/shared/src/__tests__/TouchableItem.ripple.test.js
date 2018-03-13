@@ -18,12 +18,13 @@ jest.mock('Platform', () => ({
 }));
 
 const renderer = new ShallowRenderer();
+const VoidAction = () => {};
 
 describe('TouchableItem with ripple effect', () => {
   it('renders with foreground', () => {
     expect(
       renderer.render(
-        <TouchableItem>
+        <TouchableItem onPress={VoidAction}>
           <Text>line</Text>
         </TouchableItem>,
       ),
@@ -33,7 +34,7 @@ describe('TouchableItem with ripple effect', () => {
   it('renders with ripple color', () => {
     expect(
       renderer.render(
-        <TouchableItem rippleColor="red">
+        <TouchableItem rippleColor="red" onPress={VoidAction}>
           <Text>line</Text>
         </TouchableItem>,
       ),
@@ -43,7 +44,7 @@ describe('TouchableItem with ripple effect', () => {
   it('disables foreground in borderless mode', () => {
     expect(
       renderer.render(
-        <TouchableItem borderlessRipple={true}>
+        <TouchableItem borderlessRipple={true} onPress={VoidAction}>
           <Text>line</Text>
         </TouchableItem>,
       ),

@@ -8,8 +8,7 @@ import TouchableItem from '../TouchableItem';
 import Icon from '../icons/Icon';
 
 type Props = {|
-  onPress?: () => void,
-  pressColorAndroid?: string,
+  onPress: () => void,
   tintColor?: string,
   onLongPress?: (React.ElementRef<typeof TouchableItem>) => void,
 |};
@@ -27,7 +26,6 @@ export default class HeaderRightButton extends React.PureComponent<
   };
 
   static defaultProps = {
-    pressColorAndroid: 'rgba(0, 0, 0, .32)',
     tintColor: '#fff',
   };
 
@@ -44,7 +42,7 @@ export default class HeaderRightButton extends React.PureComponent<
   };
 
   render = () => {
-    const { onPress, pressColorAndroid, tintColor } = this.props;
+    const { onPress, tintColor } = this.props;
 
     return (
       <TouchableItem
@@ -52,7 +50,6 @@ export default class HeaderRightButton extends React.PureComponent<
         accessibilityTraits="button"
         delayPressIn={0}
         onPress={onPress}
-        pressColor={pressColorAndroid}
         style={styles.container}
         borderlessRipple={true}
         onLongPress={this.onLongPress}

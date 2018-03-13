@@ -33,11 +33,7 @@ const Button = ({
   );
 
   if (touchable) {
-    return (
-      <TouchableItem activeOpacity={0.6} onPress={onPress}>
-        {inner}
-      </TouchableItem>
-    );
+    return <TouchableItem onPress={onPress}>{inner}</TouchableItem>;
   }
 
   return inner;
