@@ -1,14 +1,19 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
-import { GeneralError, Layout, Logger } from '@kiwicom/react-native-app-shared';
+import { ScrollView, View } from 'react-native';
+import {
+  GeneralError,
+  Layout,
+  Logger,
+  AdaptableLayout,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
 import Header from './header/Header';
-import Location from './location/Location';
-import Description from './description/Description';
+import HotelInformation from './hotelInformation/HotelInformation';
 import RoomList from './roomList/RoomList';
 import type { Image } from '../gallery/GalleryGrid';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
@@ -33,6 +38,12 @@ type State = {|
   },
   maxPersons: number,
 |};
+
+const styles = StyleSheet.create({
+  marginView: {
+    marginBottom: 15,
+  },
+});
 
 export class HotelDetailScreen extends React.Component<Props, State> {
   state = {
@@ -105,9 +116,12 @@ export class HotelDetailScreen extends React.Component<Props, State> {
     return [
       <Layout key="detailLayout">
         <ScrollView>
+          <AdaptableLayout renderOnWide={<View style={styles.marginView} />} />
           <Header openGallery={openGallery} hotel={availableHotel.hotel} />
-          <Location hotel={availableHotel.hotel} onGoToMap={onGoToMap} />
-          <Description hotel={availableHotel.hotel} />
+          <HotelInformation
+            hotel={availableHotel.hotel}
+            onGoToMap={onGoToMap}
+          />
           <RoomList
             data={availableHotel.availableRooms}
             select={this.selectRoom}
@@ -136,9 +150,8 @@ export default createFragmentContainer(
     fragment HotelDetailScreen_availableHotel on HotelAvailability {
       hotel {
         ...Header_hotel
-        ...Location_hotel
-        ...Description_hotel
         ...BookNow_hotel
+        ...HotelInformation_hotel
       }
       availableRooms {
         ...RoomList

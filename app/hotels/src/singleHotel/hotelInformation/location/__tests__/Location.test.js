@@ -10,6 +10,7 @@ it('renders without crashing', () => {
   const props = {
     openGallery() {},
     onGoToMap() {},
+    isWide: false,
     hotel: ({
       hotel: 'asdf',
     }: Object),
@@ -22,6 +23,7 @@ it('renders without crashing with missing data', () => {
   const props = {
     openGallery() {},
     onGoToMap() {},
+    isWide: false,
     hotel: undefined,
   };
 
