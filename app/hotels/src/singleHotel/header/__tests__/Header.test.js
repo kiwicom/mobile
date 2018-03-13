@@ -5,25 +5,24 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { Header } from '../Header';
 
 const renderer = new ShallowRenderer();
+const VoidAction = () => {};
 
 it('renders without crashing', () => {
-  const props = {
-    openGallery() {},
-    hotel: ({
-      hotel: 'asdf',
-    }: Object),
-  };
-
-  renderer.render(<Header {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
+  expect(
+    renderer.render(
+      <Header
+        openGallery={VoidAction}
+        // $FlowExpectedError: we are intentionally passing broken hotel object (invalid Props)
+        hotel={{
+          hotel: 'asdf',
+        }}
+      />,
+    ),
+  ).toBeTruthy();
 });
 
 it('renders without crashing with missing data', () => {
-  const props = {
-    openGallery() {},
-    hotel: undefined,
-  };
-
-  renderer.render(<Header {...props} />);
-  expect(renderer.getRenderOutput()).toMatchSnapshot();
+  expect(
+    renderer.render(<Header openGallery={VoidAction} hotel={undefined} />),
+  ).toBeTruthy();
 });
