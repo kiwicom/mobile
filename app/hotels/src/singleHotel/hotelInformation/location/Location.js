@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
   background: {
     backgroundColor: '#ffffff',
   },
+  wideContainer: {
+    borderRadius: 2,
+  },
   container: {
     height: 100,
     flexDirection: 'row',
@@ -43,11 +46,17 @@ const styles = StyleSheet.create({
   cityLine: {
     color: '#79818a',
   },
+  mapBottom: {
+    android: {
+      bottom: -25,
+    },
+  },
 });
 
 type ContainerProps = {|
   hotel: any,
   onGoToMap: () => void,
+  isWide: boolean,
 |};
 
 type Props = {
@@ -55,13 +64,13 @@ type Props = {
   hotel: ?Location_hotel,
 };
 
-export function Location({ hotel, onGoToMap }: Props) {
+export function Location({ hotel, onGoToMap, isWide }: Props) {
   const address = idx(hotel, _ => _.address);
   const coordinates = idx(hotel, _ => _.coordinates);
   const latitude = idx(coordinates, _ => _.lat);
   const longitude = idx(coordinates, _ => _.lng);
   return (
-    <View style={styles.background}>
+    <View style={[styles.background, isWide ? styles.wideContainer : null]}>
       <TouchableOpacity style={styles.container} onPress={onGoToMap}>
         <View style={styles.leftColumn}>
           <Text style={[styles.addressLine, styles.streetLine]}>
@@ -82,7 +91,7 @@ export function Location({ hotel, onGoToMap }: Props) {
                   longitudeDelta: 0.01,
                 }}
                 scrollEnabled={false}
-                style={[StyleSheet.absoluteFillObject, { bottom: -25 }]}
+                style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
               >
                 <MapView.Marker
                   coordinate={{

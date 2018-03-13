@@ -32,17 +32,12 @@ const node: ConcreteFragment = {
         },
         {
           "kind": "FragmentSpread",
-          "name": "Location_hotel",
-          "args": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "Description_hotel",
-          "args": null
-        },
-        {
-          "kind": "FragmentSpread",
           "name": "BookNow_hotel",
+          "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "HotelInformation_hotel",
           "args": null
         }
       ],
