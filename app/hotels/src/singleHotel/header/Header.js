@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 import {
   StyleSheet,
   NetworkImage,
   StretchedImage,
   Text,
+  TouchableItem,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -85,27 +86,29 @@ export class Header extends React.Component<Props> {
     const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
     const photosCount = idx(hotel, _ => _.photos.edges.length);
     return (
-      <TouchableOpacity onPress={this.openGallery}>
-        <NetworkImage style={styles.picture} source={{ uri: mainPhotoUrl }} />
-        <View style={styles.nameAndRatingContainer}>
-          <StretchedImage source={gradient} />
-          <View style={styles.nameAndRating}>
-            <Text style={styles.hotelName}>{idx(hotel, _ => _.name)}</Text>
-            <Text style={styles.rating}>
-              <Rating
-                stars={idx(hotel, _ => _.rating.stars)}
-                score={idx(hotel, _ => _.review.score)}
-                description={idx(hotel, _ => _.review.description)}
-              />
-            </Text>
+      <TouchableItem onPress={this.openGallery}>
+        <View>
+          <NetworkImage style={styles.picture} source={{ uri: mainPhotoUrl }} />
+          <View style={styles.nameAndRatingContainer}>
+            <StretchedImage source={gradient} />
+            <View style={styles.nameAndRating}>
+              <Text style={styles.hotelName}>{idx(hotel, _ => _.name)}</Text>
+              <Text style={styles.rating}>
+                <Rating
+                  stars={idx(hotel, _ => _.rating.stars)}
+                  score={idx(hotel, _ => _.review.score)}
+                  description={idx(hotel, _ => _.review.description)}
+                />
+              </Text>
+            </View>
           </View>
+          {photosCount && (
+            <View style={styles.galleryButton}>
+              <GalleryButton count={photosCount} />
+            </View>
+          )}
         </View>
-        {photosCount && (
-          <View style={styles.galleryButton}>
-            <GalleryButton count={photosCount} />
-          </View>
-        )}
-      </TouchableOpacity>
+      </TouchableItem>
     );
   };
 }
