@@ -4,6 +4,7 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "@kiwicom/react-native-app-accessibility": "^0",
     "@kiwicom/react-native-native-modules": "^0.1.21",
     "@ptomasroos/react-native-multi-slider": "^0.0.12",
     "react-native-datepicker": "^1.6.0",

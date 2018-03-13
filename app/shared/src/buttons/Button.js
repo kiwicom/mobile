@@ -42,11 +42,7 @@ export default function Button(props: Props) {
   );
 
   if (props.onPress) {
-    return (
-      <TouchableItem onPress={props.onPress} activeOpacity={0.6}>
-        {buttonView}
-      </TouchableItem>
-    );
+    return <TouchableItem onPress={props.onPress}>{buttonView}</TouchableItem>;
   } else {
     return buttonView;
   }

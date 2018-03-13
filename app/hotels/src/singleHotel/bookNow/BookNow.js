@@ -72,7 +72,7 @@ export class BookNow extends React.Component<Props> {
     return (
       price && (
         <View style={styles.buttonWrapper}>
-          <TouchableItem onPress={this.handleGoToPayment} activeOpacity={0.6}>
+          <TouchableItem onPress={this.handleGoToPayment}>
             <BookNowText
               price={
                 <Price
