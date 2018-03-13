@@ -14,6 +14,7 @@ import { type StylePropType } from '../types/Styles';
 type Props = {|
   children: React.Node,
   onPress: () => void,
+  disabled: boolean,
   style?: StylePropType,
   onLongPress?: () => void,
   delayPressIn?: number,
@@ -33,6 +34,7 @@ export default class TouchableItem extends React.Component<Props> {
   static defaultProps = {
     borderlessRipple: false,
     rippleColor: 'rgba(0, 0, 0, .32)',
+    disabled: false,
   };
 
   /**

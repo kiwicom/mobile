@@ -15,6 +15,7 @@ exports[`renders without crashing 1`] = `
 >
   <TouchableItem
     borderlessRipple={false}
+    disabled={false}
     onPress={[Function]}
     rippleColor="rgba(0, 0, 0, .32)"
   >

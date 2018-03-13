@@ -1,56 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import { Price, Text, StyleSheet } from '@kiwicom/react-native-app-shared';
-
-import NoneSelected from './NoneSelected';
-
-const styles = StyleSheet.create({
-  container: {
-    borderRadius: 3,
-    backgroundColor: 'rgba(0, 151, 169, 0.2)',
-    flexDirection: 'row',
-  },
-  button: {
-    backgroundColor: '#0097a9',
-    width: 60,
-    paddingVertical: 16,
-    alignItems: 'center',
-  },
-  minusButton: {
-    borderTopLeftRadius: 3,
-    borderBottomLeftRadius: 3,
-  },
-  plusButton: {
-    borderTopRightRadius: 3,
-    borderBottomRightRadius: 3,
-  },
-  disabledButton: {
-    opacity: 0.2,
-  },
-  buttonText: {
-    backgroundColor: 'transparent',
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#ffffff',
-  },
-  priceAndCount: {
-    flexGrow: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  count: {
-    fontSize: 14,
-    color: '#0097a9',
-    fontWeight: '800',
-  },
-  price: {
-    fontSize: 14,
-    color: '#0097a9',
-  },
-});
+import { View } from 'react-native';
+import {
+  Price,
+  Text,
+  StyleSheet,
+  TouchableItem,
+  ButtonText,
+} from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   price: number,
@@ -71,34 +29,110 @@ export default function RoomPicker({
 }: Props) {
   if (selectedCount === 0) {
     return (
-      <NoneSelected price={price} currency={currency} onSelect={increment} />
+      <TouchableItem
+        style={[
+          styles.container,
+          styles.borderRadiusLeft,
+          styles.borderRadiusRight,
+        ]}
+        onPress={increment}
+      >
+        <View style={styles.row}>
+          <ButtonText style={styles.text} text="Select" />
+          <View style={styles.row} />
+          <Price amount={price} currency={currency} style={styles.text} />
+        </View>
+      </TouchableItem>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={[styles.button, styles.minusButton]}
-        onPress={decrement}
-      >
-        <Text style={styles.buttonText}>-</Text>
-      </TouchableOpacity>
-      <View style={styles.priceAndCount}>
-        <Text style={styles.count}>{selectedCount} × </Text>
-        <Price amount={price} currency={currency} style={styles.price} />
+    <View style={styles.row}>
+      <MinusButton onPress={decrement} />
+
+      <View style={[styles.container, styles.row, styles.priceAndCount]}>
+        <Text style={[styles.text, styles.count]}>{selectedCount} × </Text>
+        <Price amount={price} currency={currency} style={styles.text} />
       </View>
-      {selectedCount < selectableCount ? (
-        <TouchableOpacity
-          style={[styles.button, styles.plusButton]}
-          onPress={increment}
-        >
-          <Text style={styles.buttonText}>+</Text>
-        </TouchableOpacity>
-      ) : (
-        <View style={[styles.button, styles.plusButton, styles.disabledButton]}>
-          <Text style={styles.buttonText}>+</Text>
-        </View>
-      )}
+
+      <PlusButton
+        onPress={increment}
+        disabled={selectedCount >= selectableCount}
+      />
     </View>
   );
 }
+
+const MinusButton = ({ onPress }) => {
+  return (
+    <TouchableItem
+      style={[styles.button, styles.borderRadiusLeft]}
+      onPress={onPress}
+    >
+      <Text style={styles.buttonText}>-</Text>
+    </TouchableItem>
+  );
+};
+
+const PlusButton = ({ disabled, onPress }) => {
+  let disabledStyle;
+  if (disabled === true) {
+    disabledStyle = styles.disabledButton;
+  }
+
+  return (
+    <TouchableItem
+      style={[styles.button, styles.borderRadiusRight, disabledStyle]}
+      onPress={onPress}
+      disabled={disabled}
+    >
+      <Text style={styles.buttonText}>+</Text>
+    </TouchableItem>
+  );
+};
+
+const radius = 3;
+const styles = StyleSheet.create({
+  row: {
+    flexGrow: 1,
+    flexDirection: 'row',
+  },
+  container: {
+    backgroundColor: 'rgba(0, 151, 169, 0.13)',
+    height: 44,
+    paddingHorizontal: 10,
+    paddingVertical: 14,
+  },
+  text: {
+    color: '#0097a9',
+    fontSize: 14,
+  },
+  button: {
+    backgroundColor: '#0097a9',
+    width: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  disabledButton: {
+    opacity: 0.2,
+  },
+  buttonText: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#ffffff',
+  },
+  priceAndCount: {
+    justifyContent: 'center',
+  },
+  count: {
+    fontWeight: 'bold',
+  },
+  borderRadiusLeft: {
+    borderTopLeftRadius: radius,
+    borderBottomLeftRadius: radius,
+  },
+  borderRadiusRight: {
+    borderTopRightRadius: radius,
+    borderBottomRightRadius: radius,
+  },
+});
