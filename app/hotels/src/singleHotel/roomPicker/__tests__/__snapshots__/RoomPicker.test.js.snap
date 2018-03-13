@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as expected 1`] = `
+<TouchableItem
+  borderlessRipple={false}
+  disabled={false}
+  onPress={[Function]}
+  rippleColor="rgba(0, 0, 0, .32)"
+  style={
+    Array [
+      Object {
+        "backgroundColor": "rgba(0, 151, 169, 0.13)",
+        "height": 44,
+        "paddingHorizontal": 10,
+        "paddingVertical": 14,
+      },
+      Object {
+        "borderBottomLeftRadius": 3,
+        "borderTopLeftRadius": 3,
+      },
+      Object {
+        "borderBottomRightRadius": 3,
+        "borderTopRightRadius": 3,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "flexGrow": 1,
+      }
+    }
+  >
+    <ButtonText
+      style={
+        Object {
+          "color": "#0097a9",
+          "fontSize": 14,
+        }
+      }
+      text="Select"
+    />
+    <View
+      style={
+        Object {
+          "flexDirection": "row",
+          "flexGrow": 1,
+        }
+      }
+    />
+    <Price
+      amount={100}
+      currency="CZK"
+      style={
+        Object {
+          "color": "#0097a9",
+          "fontSize": 14,
+        }
+      }
+    />
+  </View>
+</TouchableItem>
+`;
+
+exports[`renders as expected 2`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "flexGrow": 1,
+    }
+  }
+>
+  <MinusButton
+    onPress={[Function]}
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0, 151, 169, 0.13)",
+          "height": 44,
+          "paddingHorizontal": 10,
+          "paddingVertical": 14,
+        },
+        Object {
+          "flexDirection": "row",
+          "flexGrow": 1,
+        },
+        Object {
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#0097a9",
+            "fontSize": 14,
+          },
+          Object {
+            "fontWeight": "bold",
+          },
+        ]
+      }
+    >
+      1
+       × 
+    </Text>
+    <Price
+      amount={100}
+      currency="CZK"
+      style={
+        Object {
+          "color": "#0097a9",
+          "fontSize": 14,
+        }
+      }
+    />
+  </View>
+  <PlusButton
+    disabled={false}
+    onPress={[Function]}
+  />
+</View>
+`;
+
+exports[`renders as expected 3`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "flexGrow": 1,
+    }
+  }
+>
+  <MinusButton
+    onPress={[Function]}
+  />
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(0, 151, 169, 0.13)",
+          "height": 44,
+          "paddingHorizontal": 10,
+          "paddingVertical": 14,
+        },
+        Object {
+          "flexDirection": "row",
+          "flexGrow": 1,
+        },
+        Object {
+          "justifyContent": "center",
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#0097a9",
+            "fontSize": 14,
+          },
+          Object {
+            "fontWeight": "bold",
+          },
+        ]
+      }
+    >
+      2
+       × 
+    </Text>
+    <Price
+      amount={100}
+      currency="CZK"
+      style={
+        Object {
+          "color": "#0097a9",
+          "fontSize": 14,
+        }
+      }
+    />
+  </View>
+  <PlusButton
+    disabled={true}
+    onPress={[Function]}
+  />
+</View>
+`;

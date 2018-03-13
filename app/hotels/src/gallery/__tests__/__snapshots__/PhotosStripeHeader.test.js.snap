@@ -11,6 +11,7 @@ exports[`renders header with title 1`] = `
 >
   <TouchableItem
     borderlessRipple={false}
+    disabled={false}
     onPress={[Function]}
     rippleColor="rgba(0, 0, 0, .32)"
     style={
@@ -92,6 +93,7 @@ exports[`renders header with very long title 1`] = `
 >
   <TouchableItem
     borderlessRipple={false}
+    disabled={false}
     onPress={[Function]}
     rippleColor="rgba(0, 0, 0, .32)"
     style={

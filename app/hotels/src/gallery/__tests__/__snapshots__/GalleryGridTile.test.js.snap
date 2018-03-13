@@ -3,6 +3,7 @@
 exports[`renders with marginRight if not last in the row 1`] = `
 <TouchableItem
   borderlessRipple={false}
+  disabled={false}
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
@@ -28,6 +29,7 @@ exports[`renders with marginRight if not last in the row 1`] = `
 exports[`renders without marginRight if last in the row 1`] = `
 <TouchableItem
   borderlessRipple={false}
+  disabled={false}
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
