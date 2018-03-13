@@ -2,8 +2,9 @@
 
 exports[`TouchableItem with children throws error for multiple children 1`] = `
 <TouchableOpacity
-  activeOpacity={0.2}
+  activeOpacity={0.5}
   borderlessRipple={false}
+  onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
   <Text>
@@ -14,8 +15,9 @@ exports[`TouchableItem with children throws error for multiple children 1`] = `
 
 exports[`TouchableItem with children throws error for multiple children 2`] = `
 <TouchableOpacity
-  activeOpacity={0.2}
+  activeOpacity={0.5}
   borderlessRipple={false}
+  onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
   <View>

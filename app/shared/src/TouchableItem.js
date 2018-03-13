@@ -7,19 +7,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import type { AccessibilityProps } from '@kiwicom/react-native-app-accessibility';
 
 import { type StylePropType } from '../types/Styles';
 
-// Props are not exact: all additional props allowed for TouchableOpacity and
-// TouchableNativeFeedback
-type Props = {
+type Props = {|
   children: React.Node,
+  onPress: () => void,
   style?: StylePropType,
-
+  onLongPress?: () => void,
+  delayPressIn?: number,
   // Should the ripple render outside of the view bounds?
   borderlessRipple?: boolean,
   rippleColor?: string,
-};
+  ...AccessibilityProps,
+|};
 
 /**
  * TouchableItem renders a touchable that looks native on both iOS and Android.
@@ -71,6 +73,10 @@ export default class TouchableItem extends React.Component<Props> {
       );
     }
 
-    return <TouchableOpacity {...this.props}>{children}</TouchableOpacity>;
+    return (
+      <TouchableOpacity activeOpacity={0.5} {...this.props}>
+        {children}
+      </TouchableOpacity>
+    );
   };
 }

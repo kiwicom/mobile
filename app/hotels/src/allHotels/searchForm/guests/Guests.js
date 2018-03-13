@@ -60,7 +60,7 @@ export default class Guests extends React.Component<Props, State> {
 
     return (
       <View>
-        <TouchableItem onPress={this.handlePopupToggle} activeOpacity={0.6}>
+        <TouchableItem onPress={this.handlePopupToggle}>
           <View style={buttonStyles.buttonWrapper}>
             <Icon
               name="people"

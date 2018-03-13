@@ -3,7 +3,6 @@
 exports[`Guests Render all inputs 1`] = `
 <View>
   <TouchableItem
-    activeOpacity={0.6}
     borderlessRipple={false}
     onPress={[Function]}
     rippleColor="rgba(0, 0, 0, .32)"
