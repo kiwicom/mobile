@@ -5,13 +5,15 @@ import { View, Platform } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
 import TouchableItem from '../TouchableItem';
+import type { StylePropType } from '../../types/Styles';
 
 type Props = {|
   children: React.Node,
   onPress?: Function,
+  style?: StylePropType,
 |};
 
-const createStyle = () => {
+const createStyle = (extraStyles: StylePropType = {}) => {
   let additionalWrapperStyles = {};
 
   if (Platform.OS === 'android') {
@@ -29,12 +31,13 @@ const createStyle = () => {
       paddingVertical: 10,
       paddingHorizontal: 10,
       ...additionalWrapperStyles,
+      ...extraStyles,
     },
   });
 };
 
 export default function SimpleCard(props: Props) {
-  const style = createStyle();
+  const style = createStyle(props.style);
 
   if (props.onPress) {
     return (
