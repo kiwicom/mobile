@@ -3,6 +3,7 @@
 exports[`renders button with custom title 1`] = `
 <TouchableItem
   borderlessRipple={false}
+  disabled={false}
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
