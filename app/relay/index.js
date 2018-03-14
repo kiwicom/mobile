@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Relay from 'react-relay';
 
-import createEnvironment from './src/Environment';
+import PublicEnvironment from './src/PublicEnvironment';
 
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
@@ -16,7 +16,7 @@ type CommitMutationConfig = {|
 |};
 
 export const commitMutation = (config: CommitMutationConfig) =>
-  Relay.commitMutation(createEnvironment(() => {}), config);
+  Relay.commitMutation(PublicEnvironment.getEnvironment(() => {}), config);
 
 export type QueryRendererProps = {|
   query: string,
