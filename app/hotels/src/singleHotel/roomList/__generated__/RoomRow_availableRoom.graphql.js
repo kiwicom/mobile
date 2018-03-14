@@ -8,10 +8,6 @@ import type { ConcreteFragment } from 'relay-runtime';
 export type RoomRow_availableRoom = {|
   +originalId: ?string;
   +room: ?{|
-    +description: ?{|
-      +title: ?string;
-      +text: ?string;
-    |};
     +photos: ?{|
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
@@ -46,6 +42,11 @@ const node: ConcreteFragment = {
       "storageKey": null
     },
     {
+      "kind": "FragmentSpread",
+      "name": "RoomBadges_availableRoom",
+      "args": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "args": null,
@@ -54,29 +55,14 @@ const node: ConcreteFragment = {
       "plural": false,
       "selections": [
         {
-          "kind": "LinkedField",
-          "alias": null,
-          "args": null,
-          "concreteType": "HotelRoomDescription",
-          "name": "description",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "title",
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "args": null,
-              "name": "text",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "RoomRowTitle_room",
+          "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "RoomDescription_room",
+          "args": null
         },
         {
           "kind": "LinkedField",

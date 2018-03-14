@@ -12,6 +12,7 @@ type Props = {|
   text: string,
   style?: StylePropType,
   textStyle?: StylePropType,
+  icon?: React.Node,
 |};
 
 const style = StyleSheet.create({
@@ -21,6 +22,8 @@ const style = StyleSheet.create({
     paddingVertical: 2,
     paddingHorizontal: 5,
     backgroundColor: Color.grey.$500,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   text: {
     color: '#fff',
@@ -44,6 +47,7 @@ const style = StyleSheet.create({
 export default function AdaptableBadge(props: Props) {
   return (
     <View style={[style.container, props.style]}>
+      {props.icon}
       <Text style={[style.text, props.textStyle]}>{props.text}</Text>
     </View>
   );
