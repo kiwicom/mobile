@@ -8,7 +8,8 @@ import {
   PartialFailure,
 } from '@kiwicom/react-native-app-shared';
 
-import createEnvironment from './Environment';
+import PublicEnvironment from './PublicEnvironment';
+import PrivateEnvironment from './PrivateEnvironment';
 import type { QueryRendererProps } from '../index';
 
 type Props = {|
@@ -19,10 +20,20 @@ type Props = {|
 export default class QueryRenderer extends React.Component<Props> {
   partialError: Object;
 
-  createEnvironment = () =>
-    createEnvironment(partialError => {
-      this.partialError = partialError;
-    }, this.props.accessToken || '');
+  createEnvironment = () => {
+    if (!this.props.accessToken) {
+      return PublicEnvironment.getEnvironment(this.partialErrorHandler);
+    }
+
+    return PrivateEnvironment.getEnvironment(
+      this.partialErrorHandler,
+      this.props.accessToken || '',
+    );
+  };
+
+  partialErrorHandler = (partialError: Object) => {
+    this.partialError = partialError;
+  };
 
   renderRelayContainer = ({
     error,
