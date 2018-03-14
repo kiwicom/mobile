@@ -11,8 +11,8 @@ import {
 } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
-  price: number,
-  currency: string,
+  price: number | null,
+  currency: string | null,
   selectedCount: number,
   selectableCount: number,
   increment: () => void,
@@ -27,6 +27,9 @@ export default function RoomPicker({
   increment,
   decrement,
 }: Props) {
+  if (price == null && currency == null) {
+    return null;
+  }
   if (selectedCount === 0) {
     return (
       <TouchableItem

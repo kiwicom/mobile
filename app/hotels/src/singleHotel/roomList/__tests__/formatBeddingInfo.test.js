@@ -14,7 +14,7 @@ it('formats bedding information', () => {
         },
       ],
     }),
-  ).toEqual('Single Room · 1 Person · 1 Single Bed(s)');
+  ).toMatchSnapshot();
 });
 
 it('pluralizes persons', () => {
@@ -29,7 +29,7 @@ it('pluralizes persons', () => {
         },
       ],
     }),
-  ).toEqual('Double Room · 2 Persons · 2 Single Bed(s)');
+  ).toMatchSnapshot();
 });
 
 it('provides all bedding options', () => {
@@ -48,9 +48,7 @@ it('provides all bedding options', () => {
         },
       ],
     }),
-  ).toEqual(
-    'Double or Twin Room · 2 Persons · 2 Single Bed(s) or 1 Twin Bed(s)',
-  );
+  ).toMatchSnapshot();
 });
 
 it("doesn't crash on empty input", () => {
@@ -61,5 +59,5 @@ it("doesn't crash on empty input", () => {
       maxPersons: 2,
       bedding: null,
     }),
-  ).toEqual('Some Room · 2 Persons');
+  ).toMatchSnapshot();
 });

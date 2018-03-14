@@ -635,6 +635,9 @@ type HotelRoom {
   # All available photos of the hotel room.
   photos(after: String, first: Int, before: String, last: Int): HotelRoomPhotoConnection
   description: HotelRoomDescription
+
+  # The hotelroom size in square meters
+  roomSize: Float
 }
 
 type HotelRoomAvailability {
@@ -647,6 +650,12 @@ type HotelRoomAvailability {
   # Base price for the room in this configuration.
   minimalPrice: Price
   incrementalPrice: [Price]
+
+  # Is the hotelroom refundable
+  isRefundable: Boolean
+
+  # Is breakfast included in the hotelroom
+  isBreakfastIncluded: Boolean
   room: HotelRoom
 }
 
@@ -903,6 +912,7 @@ type Location {
   airportsCount: Int
   alternativeNames: [String]
   autonomousTerritory: LocationArea
+  rank: Int
 }
 
 type LocationArea {
@@ -1038,6 +1048,20 @@ type RootQuery {
     last: Int
   ): LocationConnection
 
+  # Single location by ID.
+  location(id: String!, locale: Locale): Location
+
+  # All locations in certain location. For example all airports in London
+  allSubLocations(
+    # Location ID
+    id: String!
+    options: LocationsOptionsInput
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): LocationConnection
+
   # Flight booking by ID.
   booking(id: ID!): Booking
 
@@ -1054,6 +1078,9 @@ type RootQuery {
   hotelCities(
     # First few letters.
     prefix: String
+
+    # Search for cities around a given position.
+    position: CoordinatesInput
     after: String
     first: Int
     before: String
