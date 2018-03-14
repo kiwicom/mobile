@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
+import { TouchableItem } from '@kiwicom/react-native-app-shared';
 
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
@@ -35,14 +36,14 @@ export default class PartialFailure extends React.Component<Props, State> {
     if (dismissed) {
       return [
         children,
-        <TouchableOpacity
+        <TouchableItem
           key="dismissed"
           style={style.dismissed}
           accessibilityLabel="Show warning"
           onPress={this.toggle}
         >
           <Icon name="warning" size={20} />
-        </TouchableOpacity>,
+        </TouchableItem>,
       ];
     } else {
       return [
@@ -53,12 +54,12 @@ export default class PartialFailure extends React.Component<Props, State> {
               Some parts of the page may be missing due to partial server error.
             </Text>
           </View>
-          <TouchableOpacity
+          <TouchableItem
             accessibilityLabel="Hide warning"
             onPress={this.toggle}
           >
             <Icon name="close" size={20} />
-          </TouchableOpacity>
+          </TouchableItem>
         </View>,
       ];
     }

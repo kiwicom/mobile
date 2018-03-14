@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import {
@@ -9,6 +9,7 @@ import {
   Color,
   AdaptableBadge,
   Text,
+  TouchableItem,
 } from '@kiwicom/react-native-app-shared';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
@@ -84,13 +85,13 @@ export class Facilities extends React.Component<Props, State> {
           );
         })}
         {fullList.length > shortlist.length && (
-          <TouchableOpacity onPress={this.toggle}>
+          <TouchableItem onPress={this.toggle}>
             <Text style={styles.lessMoreButton}>
               {collapsed
                 ? `+${fullList.length - shortlist.length} More`
                 : 'Show less'}
             </Text>
-          </TouchableOpacity>
+          </TouchableItem>
         )}
       </View>
     );

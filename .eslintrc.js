@@ -37,9 +37,13 @@ module.exports = {
           {
             name: 'react-native',
             importNames: [
+              'Button', // Button
               'Dimensions', // Device
               'StyleSheet', // StyleSheet
-              'Text' // Text
+              'Text', // Text
+              'TouchableHighlight', // TouchableItem
+              'TouchableNativeFeedback', // TouchableItem
+              'TouchableOpacity', // TouchableItem
             ],
             message:
               "Please use '@kiwicom/react-native-app-shared' package instead.",

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import renderer from 'react-test-renderer';
-import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
+import { TouchableItem } from '@kiwicom/react-native-app-shared';
 
 import Text from '../../Text';
 import ButtonPopup from '../ButtonPopup';
@@ -42,20 +42,9 @@ describe('ButtonPopup', () => {
     const onClose = jest.fn();
     const testRenderer = renderPopup(onSave, onClose);
     const testInstance = testRenderer.root;
-    await testInstance.findByType(TouchableOpacity).props.onPress();
+    await testInstance.findByType(TouchableItem).props.onPress();
 
     expect(onSave).toBeCalled();
     expect(onClose).not.toBeCalled();
-  });
-
-  it('press out of modal should call onClose', async () => {
-    const onSave = jest.fn();
-    const onClose = jest.fn();
-    const testRenderer = renderPopup(onSave, onClose);
-    const testInstance = testRenderer.root;
-    await testInstance.findByType(TouchableWithoutFeedback).props.onPress();
-
-    expect(onSave).not.toBeCalled();
-    expect(onClose).toBeCalled();
   });
 });
