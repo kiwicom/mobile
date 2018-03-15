@@ -56,6 +56,7 @@ class AllHotels extends React.Component<Props> {
         coordinates={this.props.coordinates}
         openSingleHotel={this.props.openSingleHotel}
         cityId={cityId}
+        currency={this.props.currency}
       />
     );
   };
