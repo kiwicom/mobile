@@ -37,16 +37,16 @@ describe('PrivateEnvironment', () => {
 
     expect(() => {
       PrivateEnvironment.getEnvironment(errorHandler, token1);
-    }).toThrowError('Can not create private environment without token.');
+    }).toThrowError('Cannot create private environment without token.');
 
     expect(() => {
       // $FlowExpectedError: Intentionally testing what happens if null is passed
       PrivateEnvironment.getEnvironment(errorHandler, token2);
-    }).toThrowError('Can not create private environment without token.');
+    }).toThrowError('Cannot create private environment without token.');
 
     expect(() => {
       PrivateEnvironment.getEnvironment(errorHandler, token3);
-    }).toThrowError('Can not create private environment without token.');
+    }).toThrowError('Cannot create private environment without token.');
 
     expect(createEnvironment).not.toHaveBeenCalled();
   });
