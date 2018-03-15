@@ -1,9 +1,14 @@
 // @flow
 
 import idx from 'idx';
+import moment from 'moment';
 
-import type { Coordinates } from '../CoordinatesType';
 import { sanitizeDate } from '../GraphQLSanitizers';
+import type { Coordinates } from '../CoordinatesType';
+import type {
+  SearchParams,
+  OnChangeSearchParams,
+} from '../allHotels/searchForm/SearchParametersType';
 
 export const hasCoordinates = (coordinates: Coordinates | null): boolean => {
   const latitude = idx(coordinates, _ => _.latitude);
@@ -13,7 +18,7 @@ export const hasCoordinates = (coordinates: Coordinates | null): boolean => {
 };
 
 export const getSearchQueryParams = (
-  search: Object,
+  search: SearchParams,
   coordinates: Coordinates | null,
   cityId: string | null,
   location: string,
@@ -36,4 +41,19 @@ export const getSearchQueryParams = (
   }
 
   return params;
+};
+
+export const updateCheckinDateIfBeforeToday = (
+  search: SearchParams,
+  onSearchChange: OnChangeSearchParams => void,
+) => {
+  if (moment(search.checkin).startOf('day') < moment().startOf('day')) {
+    onSearchChange({
+      ...search,
+      checkin: new Date(),
+      checkout: moment()
+        .add(6, 'days')
+        .toDate(),
+    });
+  }
 };

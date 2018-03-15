@@ -1,6 +1,12 @@
 // @flow
 
-import { getSearchQueryParams, hasCoordinates } from '../SearchQueryHelpers';
+import moment from 'moment';
+
+import {
+  getSearchQueryParams,
+  hasCoordinates,
+  updateCheckinDateIfBeforeToday,
+} from '../SearchQueryHelpers';
 import { sanitizeDate } from '../../GraphQLSanitizers';
 
 const defaultSearch = {
@@ -73,6 +79,7 @@ describe('SearchQueryHelpers', () => {
         roomsConfiguration: { adultsCount: 1, children: [] },
       });
     });
+
     it('ignores coordinates if location is set', () => {
       expect(
         getSearchQueryParams(defaultSearch, defaultCoordinates, 'oslo', 'oslo'),
@@ -82,6 +89,48 @@ describe('SearchQueryHelpers', () => {
         cityId: 'oslo',
         roomsConfiguration: { adultsCount: 1, children: [] },
       });
+    });
+  });
+
+  describe('updateCheckinDateIfBeforeToday', () => {
+    it('should not call onSearchChange if date is equal to today', () => {
+      const search = {
+        checkin: new Date(),
+        checkout: new Date(),
+        roomsConfiguration: { adultsCount: 1, children: [] },
+      };
+      const onSearchChange = jest.fn();
+
+      updateCheckinDateIfBeforeToday(search, onSearchChange);
+      expect(onSearchChange).not.toHaveBeenCalled();
+    });
+
+    it('should not call onSearchChange if date is greater than today', () => {
+      const search = {
+        checkin: moment()
+          .add(1, 'day')
+          .toDate(),
+        checkout: new Date(),
+        roomsConfiguration: { adultsCount: 1, children: [] },
+      };
+      const onSearchChange = jest.fn();
+
+      updateCheckinDateIfBeforeToday(search, onSearchChange);
+      expect(onSearchChange).not.toHaveBeenCalled();
+    });
+
+    it('should call onSearchChange if date is less than today', () => {
+      const search = {
+        checkin: moment()
+          .subtract(3, 'days')
+          .toDate(),
+        checkout: new Date(),
+        roomsConfiguration: { adultsCount: 1, children: [] },
+      };
+      const onSearchChange = jest.fn();
+
+      updateCheckinDateIfBeforeToday(search, onSearchChange);
+      expect(onSearchChange).toHaveBeenCalled();
     });
   });
 });
