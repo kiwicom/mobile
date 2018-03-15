@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native';
 import idx from 'idx';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import { Layout } from '@kiwicom/react-native-app-shared';
+import { Layout, AppStateChange } from '@kiwicom/react-native-app-shared';
 import { connect } from '@kiwicom/react-native-app-redux';
 
 import AllHotelsSearch from './AllHotelsSearch';
@@ -25,6 +25,7 @@ import type { HotelsReducerState } from '../HotelsReducer';
 import type { FilterReducerState } from '../filter/FiltersReducer';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 import type { Coordinates } from '../CoordinatesType';
+import { updateCheckinDateIfBeforeToday } from '../search/SearchQueryHelpers';
 
 type Props = {|
   onSearchChange: OnChangeSearchParams => void,
@@ -43,6 +44,17 @@ type Props = {|
  * hotels. This is why we use two nested query renderers.
  */
 class AllHotels extends React.Component<Props> {
+  componentDidMount = () => {
+    this.validateCheckinDate();
+  };
+
+  validateCheckinDate = () => {
+    updateCheckinDateIfBeforeToday(
+      this.props.search,
+      this.props.onSearchChange,
+    );
+  };
+
   renderAllHotelsSearchPublicRenderer = (
     rendererProps: AllHotels_cityLookup_QueryResponse,
   ) => {
@@ -62,38 +74,43 @@ class AllHotels extends React.Component<Props> {
   };
 
   render = () => (
-    <Layout>
-      <ScrollView bounces={false} contentContainerStyle={{ flexGrow: 1 }}>
-        <SearchForm
-          onChange={this.props.onSearchChange}
-          onLocationChange={this.props.onLocationChange}
-          search={this.props.search}
-          location={this.props.location}
-        />
-        <FilterStripe
-          filter={this.props.filter}
-          onChange={this.props.onFilterChange}
-          currency={this.props.currency}
-        />
-        <PublicApiRenderer
-          query={graphql`
-            query AllHotels_cityLookup_Query($prefix: String!) {
-              city: hotelCities(prefix: $prefix, first: 1) {
-                edges {
-                  node {
-                    id
+    <AppStateChange
+      states={['active']}
+      onStateChange={this.validateCheckinDate}
+    >
+      <Layout>
+        <ScrollView bounces={false} contentContainerStyle={{ flexGrow: 1 }}>
+          <SearchForm
+            onChange={this.props.onSearchChange}
+            onLocationChange={this.props.onLocationChange}
+            search={this.props.search}
+            location={this.props.location}
+          />
+          <FilterStripe
+            filter={this.props.filter}
+            onChange={this.props.onFilterChange}
+            currency={this.props.currency}
+          />
+          <PublicApiRenderer
+            query={graphql`
+              query AllHotels_cityLookup_Query($prefix: String!) {
+                city: hotelCities(prefix: $prefix, first: 1) {
+                  edges {
+                    node {
+                      id
+                    }
                   }
                 }
               }
-            }
-          `}
-          render={this.renderAllHotelsSearchPublicRenderer}
-          variables={{
-            prefix: this.props.location,
-          }}
-        />
-      </ScrollView>
-    </Layout>
+            `}
+            render={this.renderAllHotelsSearchPublicRenderer}
+            variables={{
+              prefix: this.props.location,
+            }}
+          />
+        </ScrollView>
+      </Layout>
+    </AppStateChange>
   );
 }
 
