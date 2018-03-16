@@ -115,7 +115,7 @@ export default class DateInput extends React.Component<Props> {
           <DatePicker
             placeholder="Start date"
             format={DISPLAY_DATE_FORMAT}
-            date={new Date(props.checkin)}
+            date={props.checkin}
             minDate={new Date()}
             maxDate={moment()
               .add(359, 'days')
@@ -128,7 +128,7 @@ export default class DateInput extends React.Component<Props> {
           <DatePicker
             placeholder="End date"
             format={DISPLAY_DATE_FORMAT}
-            date={new Date(props.checkout)}
+            date={props.checkout}
             minDate={moment()
               .add(1, 'day')
               .toDate()}
