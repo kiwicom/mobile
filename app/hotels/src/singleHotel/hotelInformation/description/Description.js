@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import ReadMore from 'react-native-read-more-text';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -11,6 +11,7 @@ import {
   SimpleCard,
   StyleSheet,
   AdaptableLayout,
+  TouchableItem,
 } from '@kiwicom/react-native-app-shared';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
@@ -58,9 +59,9 @@ const Link = ({
   handlePress: () => void,
 |}) => (
   <View style={styles.linkView}>
-    <TouchableOpacity onPress={handlePress}>
+    <TouchableItem onPress={handlePress}>
       <Text style={styles.linkText}>{label}</Text>
-    </TouchableOpacity>
+    </TouchableItem>
   </View>
 );
 

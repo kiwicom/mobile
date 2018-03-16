@@ -1,13 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { View } from 'react-native';
 import MapView from 'react-native-maps';
 import {
   StyleSheet,
   StretchedImage,
   DropMarker,
   Text,
+  TouchableItem,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -71,41 +72,43 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
   const longitude = idx(coordinates, _ => _.lng);
   return (
     <View style={[styles.background, isWide ? styles.wideContainer : null]}>
-      <TouchableOpacity style={styles.container} onPress={onGoToMap}>
-        <View style={styles.leftColumn}>
-          <Text style={[styles.addressLine, styles.streetLine]}>
-            {idx(address, _ => _.street)}
-          </Text>
-          <Text style={[styles.addressLine, styles.cityLine]}>
-            {idx(address, _ => _.city)}
-          </Text>
-        </View>
-        <View style={styles.rightColumn}>
-          {typeof latitude === 'number' &&
-            typeof longitude === 'number' && (
-              <MapView
-                region={{
-                  latitude: latitude,
-                  longitude: longitude - 0.005, // move center little bit right
-                  latitudeDelta: 0.01,
-                  longitudeDelta: 0.01,
-                }}
-                scrollEnabled={false}
-                style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
-              >
-                <MapView.Marker
-                  coordinate={{
-                    latitude,
-                    longitude,
+      <TouchableItem onPress={onGoToMap}>
+        <View style={styles.container}>
+          <View style={styles.leftColumn}>
+            <Text style={[styles.addressLine, styles.streetLine]}>
+              {idx(address, _ => _.street)}
+            </Text>
+            <Text style={[styles.addressLine, styles.cityLine]}>
+              {idx(address, _ => _.city)}
+            </Text>
+          </View>
+          <View style={styles.rightColumn}>
+            {typeof latitude === 'number' &&
+              typeof longitude === 'number' && (
+                <MapView
+                  region={{
+                    latitude: latitude,
+                    longitude: longitude - 0.005, // move center little bit right
+                    latitudeDelta: 0.01,
+                    longitudeDelta: 0.01,
                   }}
+                  scrollEnabled={false}
+                  style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
                 >
-                  <DropMarker size={30} />
-                </MapView.Marker>
-              </MapView>
-            )}
-          <StretchedImage source={gradient} />
+                  <MapView.Marker
+                    coordinate={{
+                      latitude,
+                      longitude,
+                    }}
+                  >
+                    <DropMarker size={30} />
+                  </MapView.Marker>
+                </MapView>
+              )}
+            <StretchedImage source={gradient} />
+          </View>
         </View>
-      </TouchableOpacity>
+      </TouchableItem>
     </View>
   );
 }
