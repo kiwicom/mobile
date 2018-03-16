@@ -4,11 +4,14 @@ import { createStore, type Reducer } from 'redux';
 import { persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 
+import transforms from './PersistTransform';
+
 export function createCombinedReducer(asyncReducers?: { [string]: Reducer }) {
   return persistCombineReducers(
     {
       key: 'root',
       storage,
+      transforms,
     },
     {
       __empty: () => null, // there must be at least one (fake) reducer
