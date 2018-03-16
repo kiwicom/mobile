@@ -50,7 +50,7 @@ export function createURI(pp: PaymentParameters): string {
       ...roomsQuery,
       rt_pos_selected: '', // ???
       aid: pp.affiliateId,
-      label: `kiwi-${Platform.OS}`,
+      label: `kiwi-${Platform.OS}-react`,
       lang: pp.language,
       selected_currency: pp.currency,
     })
