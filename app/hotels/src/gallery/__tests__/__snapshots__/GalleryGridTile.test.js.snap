@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders with marginRight if not last in the row 1`] = `
-<TouchableItem
+<Touchable
   borderlessRipple={false}
   disabled={false}
   onPress={[Function]}
@@ -23,11 +23,11 @@ exports[`renders with marginRight if not last in the row 1`] = `
       }
     }
   />
-</TouchableItem>
+</Touchable>
 `;
 
 exports[`renders without marginRight if last in the row 1`] = `
-<TouchableItem
+<Touchable
   borderlessRipple={false}
   disabled={false}
   onPress={[Function]}
@@ -48,5 +48,5 @@ exports[`renders without marginRight if last in the row 1`] = `
       }
     }
   />
-</TouchableItem>
+</Touchable>
 `;

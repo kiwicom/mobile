@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 
 import Color from '../Color';
-import TouchableItem from '../TouchableItem';
+import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
 import Icon from '../icons/Icon';
 import ButtonText from './ButtonText';
@@ -42,7 +42,7 @@ export default function Button(props: Props) {
   );
 
   if (props.onPress) {
-    return <TouchableItem onPress={props.onPress}>{buttonView}</TouchableItem>;
+    return <Touchable onPress={props.onPress}>{buttonView}</Touchable>;
   } else {
     return buttonView;
   }

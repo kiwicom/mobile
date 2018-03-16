@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import {
-  TouchableItem,
+  Touchable,
   Color,
   StyleSheet,
   Icon,
@@ -60,7 +60,7 @@ export default class Guests extends React.Component<Props, State> {
 
     return (
       <View>
-        <TouchableItem onPress={this.handlePopupToggle}>
+        <Touchable onPress={this.handlePopupToggle}>
           <View style={buttonStyles.buttonWrapper}>
             <Icon
               name="people"
@@ -73,7 +73,7 @@ export default class Guests extends React.Component<Props, State> {
               childrenCount={guests.children.length}
             />
           </View>
-        </TouchableItem>
+        </Touchable>
         <GuestsPopup
           guests={guests}
           onChange={this.handleChange}

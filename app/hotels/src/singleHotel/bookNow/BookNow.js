@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import {
   StyleSheet,
   Color,
-  TouchableItem,
+  Touchable,
   Price,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
@@ -72,7 +72,7 @@ export class BookNow extends React.Component<Props> {
     return (
       price && (
         <View style={styles.buttonWrapper}>
-          <TouchableItem onPress={this.handleGoToPayment}>
+          <Touchable onPress={this.handleGoToPayment}>
             <BookNowText
               price={
                 <Price
@@ -85,7 +85,7 @@ export class BookNow extends React.Component<Props> {
               numberOfRooms={this.props.numberOfRooms}
               personCount={this.props.personCount}
             />
-          </TouchableItem>
+          </Touchable>
         </View>
       )
     );

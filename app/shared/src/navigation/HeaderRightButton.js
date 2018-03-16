@@ -4,17 +4,17 @@ import * as React from 'react';
 import { View } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
-import TouchableItem from '../TouchableItem';
+import Touchable from '../Touchable';
 import Icon from '../icons/Icon';
 
 type Props = {|
   onPress: () => void,
   tintColor?: string,
-  onLongPress?: (React.ElementRef<typeof TouchableItem>) => void,
+  onLongPress?: (React.ElementRef<typeof Touchable>) => void,
 |};
 
 type State = {|
-  reference: React.ElementRef<typeof TouchableItem> | null,
+  reference: React.ElementRef<typeof Touchable> | null,
 |};
 
 export default class HeaderRightButton extends React.PureComponent<
@@ -29,9 +29,7 @@ export default class HeaderRightButton extends React.PureComponent<
     tintColor: '#fff',
   };
 
-  storeReference = (
-    reference: React.ElementRef<typeof TouchableItem> | null,
-  ) => {
+  storeReference = (reference: React.ElementRef<typeof Touchable> | null) => {
     this.setState({ reference });
   };
 
@@ -45,7 +43,7 @@ export default class HeaderRightButton extends React.PureComponent<
     const { onPress, tintColor } = this.props;
 
     return (
-      <TouchableItem
+      <Touchable
         accessibilityComponentType="button"
         accessibilityTraits="button"
         delayPressIn={0}
@@ -58,7 +56,7 @@ export default class HeaderRightButton extends React.PureComponent<
         <View style={styles.container}>
           <Icon style={styles.icon} name="map" size={24} color={tintColor} />
         </View>
-      </TouchableItem>
+      </Touchable>
     );
   };
 }

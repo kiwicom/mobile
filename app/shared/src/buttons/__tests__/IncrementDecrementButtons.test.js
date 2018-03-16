@@ -4,7 +4,7 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 
 import IncrementDecrementButtons from '../IncrementDecrementButtons';
-import TouchableItem from '../../TouchableItem';
+import Touchable from '../../Touchable';
 
 const renderButtons = (
   onIncrement: Function,
@@ -29,7 +29,7 @@ describe('IncrementDecrementButtons', () => {
     const testRenderer = renderButtons(onIncrement, onDecrement, 2);
     const testInstance = testRenderer.root;
 
-    testInstance.findAllByType(TouchableItem)[1].props.onPress();
+    testInstance.findAllByType(Touchable)[1].props.onPress();
 
     expect(onIncrement).toBeCalled();
     expect(onDecrement).not.toBeCalled();
@@ -41,7 +41,7 @@ describe('IncrementDecrementButtons', () => {
     const testRenderer = renderButtons(onIncrement, onDecrement, 2);
     const testInstance = testRenderer.root;
 
-    testInstance.findAllByType(TouchableItem)[0].props.onPress();
+    testInstance.findAllByType(Touchable)[0].props.onPress();
 
     expect(onDecrement).toBeCalled();
     expect(onIncrement).not.toBeCalled();
@@ -55,9 +55,7 @@ describe('IncrementDecrementButtons', () => {
 
     // find a single descendant test instance with the provided type
     // if there is not exactly one test instance with the provided type, it will throw an error
-    expect(testInstance.findByType(TouchableItem).props.onPress).toBe(
-      onIncrement,
-    );
+    expect(testInstance.findByType(Touchable).props.onPress).toBe(onIncrement);
   });
 
   it('should not increment over max', () => {
@@ -68,8 +66,6 @@ describe('IncrementDecrementButtons', () => {
 
     // find a single descendant test instance with the provided type
     // if there is not exactly one test instance with the provided type, it will throw an error
-    expect(testInstance.findByType(TouchableItem).props.onPress).toBe(
-      onDecrement,
-    );
+    expect(testInstance.findByType(Touchable).props.onPress).toBe(onDecrement);
   });
 });
