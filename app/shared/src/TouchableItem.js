@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+// eslint-disable-next-line no-restricted-imports
 import {
   Platform,
   TouchableNativeFeedback,
@@ -29,6 +30,8 @@ type Props = {|
  * It provides an abstraction on top of TouchableNativeFeedback and
  * TouchableOpacity. On iOS you can pass the props of TouchableOpacity, on
  * Android pass the props of TouchableNativeFeedback.
+ *
+ * TODO: rename to just `Touchable`
  */
 export default class TouchableItem extends React.Component<Props> {
   static defaultProps = {
