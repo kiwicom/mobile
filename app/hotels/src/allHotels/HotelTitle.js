@@ -77,9 +77,11 @@ function HotelTitle({ data }: Props) {
   return (
     <View>
       <View style={{ flexDirection: 'row' }}>
-        <Text style={style.title}>{hotelName} </Text>
-        <Text style={style.rating}>
-          <Stars rating={hotelStars} />
+        <Text style={style.title}>
+          {hotelName}{' '}
+          <Text style={style.rating}>
+            <Stars rating={hotelStars} />
+          </Text>
         </Text>
       </View>
       <View style={style.distance}>
