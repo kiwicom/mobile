@@ -8,7 +8,7 @@ import {
   StretchedImage,
   DropMarker,
   Text,
-  TouchableItem,
+  Touchable,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -72,7 +72,7 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
   const longitude = idx(coordinates, _ => _.lng);
   return (
     <View style={[styles.background, isWide ? styles.wideContainer : null]}>
-      <TouchableItem onPress={onGoToMap}>
+      <Touchable onPress={onGoToMap}>
         <View style={styles.container}>
           <View style={styles.leftColumn}>
             <Text style={[styles.addressLine, styles.streetLine]}>
@@ -108,7 +108,7 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
             <StretchedImage source={gradient} />
           </View>
         </View>
-      </TouchableItem>
+      </Touchable>
     </View>
   );
 }

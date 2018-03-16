@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View, Platform } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
-import TouchableItem from '../TouchableItem';
+import Touchable from '../Touchable';
 import type { StylePropType } from '../../types/Styles';
 
 type Props = {|
@@ -41,9 +41,9 @@ export default function SimpleCard(props: Props) {
 
   if (props.onPress) {
     return (
-      <TouchableItem style={style.wrapper} onPress={props.onPress}>
+      <Touchable style={style.wrapper} onPress={props.onPress}>
         {props.children}
-      </TouchableItem>
+      </Touchable>
     );
   }
 

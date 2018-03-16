@@ -7,7 +7,7 @@ import {
   NetworkImage,
   StretchedImage,
   Text,
-  TouchableItem,
+  Touchable,
   AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
@@ -92,7 +92,7 @@ export class Header extends React.Component<Props> {
     const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
     const photosCount = idx(hotel, _ => _.photos.edges.length);
     return (
-      <TouchableItem onPress={this.openGallery}>
+      <Touchable onPress={this.openGallery}>
         <View>
           <NetworkImage style={styles.picture} source={{ uri: mainPhotoUrl }} />
           <View style={styles.nameAndRatingContainer}>
@@ -114,7 +114,7 @@ export class Header extends React.Component<Props> {
             </View>
           )}
         </View>
-      </TouchableItem>
+      </Touchable>
     );
   };
 

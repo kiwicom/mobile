@@ -6,7 +6,7 @@ import {
   Price,
   Text,
   StyleSheet,
-  TouchableItem,
+  Touchable,
   ButtonText,
 } from '@kiwicom/react-native-app-shared';
 
@@ -32,7 +32,7 @@ export default function RoomPicker({
   }
   if (selectedCount === 0) {
     return (
-      <TouchableItem
+      <Touchable
         style={[
           styles.container,
           styles.borderRadiusLeft,
@@ -45,7 +45,7 @@ export default function RoomPicker({
           <View style={styles.row} />
           <Price amount={price} currency={currency} style={styles.text} />
         </View>
-      </TouchableItem>
+      </Touchable>
     );
   }
 
@@ -68,12 +68,12 @@ export default function RoomPicker({
 
 const MinusButton = ({ onPress }) => {
   return (
-    <TouchableItem
+    <Touchable
       style={[styles.button, styles.borderRadiusLeft]}
       onPress={onPress}
     >
       <Text style={styles.buttonText}>-</Text>
-    </TouchableItem>
+    </Touchable>
   );
 };
 
@@ -84,13 +84,13 @@ const PlusButton = ({ disabled, onPress }) => {
   }
 
   return (
-    <TouchableItem
+    <Touchable
       style={[styles.button, styles.borderRadiusRight, disabledStyle]}
       onPress={onPress}
       disabled={disabled}
     >
       <Text style={styles.buttonText}>+</Text>
-    </TouchableItem>
+    </Touchable>
   );
 };
 

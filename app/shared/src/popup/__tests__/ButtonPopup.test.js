@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import renderer from 'react-test-renderer';
-import { TouchableItem } from '@kiwicom/react-native-app-shared';
+import { Touchable } from '@kiwicom/react-native-app-shared';
 
 import Text from '../../Text';
 import ButtonPopup from '../ButtonPopup';
@@ -42,7 +42,7 @@ describe('ButtonPopup', () => {
     const onClose = jest.fn();
     const testRenderer = renderPopup(onSave, onClose);
     const testInstance = testRenderer.root;
-    await testInstance.findByType(TouchableItem).props.onPress();
+    await testInstance.findByType(Touchable).props.onPress();
 
     expect(onSave).toBeCalled();
     expect(onClose).not.toBeCalled();

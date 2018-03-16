@@ -5,41 +5,41 @@ import { View } from 'react-native';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 import Text from '../Text';
-import TouchableItem from '../TouchableItem';
+import Touchable from '../Touchable';
 
 const renderer = new ShallowRenderer();
 const VoidAction = () => {};
 
-describe('TouchableItem with children', () => {
+describe('Touchable with children', () => {
   it('throws error for multiple children', () => {
     // this is fine - only one child
     expect(
       renderer.render(
-        <TouchableItem onPress={VoidAction}>
+        <Touchable onPress={VoidAction}>
           <Text>this is OK</Text>
-        </TouchableItem>,
+        </Touchable>,
       ),
     ).toMatchSnapshot();
 
     // this is fine - only one child
     expect(
       renderer.render(
-        <TouchableItem onPress={VoidAction}>
+        <Touchable onPress={VoidAction}>
           <View>
             <Text>line 1</Text>
             <Text>line 2</Text>
           </View>
-        </TouchableItem>,
+        </Touchable>,
       ),
     ).toMatchSnapshot();
 
     // this is not fine - two children
     expect(() =>
       renderer.render(
-        <TouchableItem onPress={VoidAction}>
+        <Touchable onPress={VoidAction}>
           <Text>line 1</Text>
           <Text>line 2</Text>
-        </TouchableItem>,
+        </Touchable>,
       ),
     ).toThrowErrorMatchingSnapshot();
   });

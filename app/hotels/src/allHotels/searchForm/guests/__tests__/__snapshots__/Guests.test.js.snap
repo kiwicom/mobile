@@ -2,7 +2,7 @@
 
 exports[`Guests Render all inputs 1`] = `
 <View>
-  <TouchableItem
+  <Touchable
     borderlessRipple={false}
     disabled={false}
     onPress={[Function]}
@@ -36,7 +36,7 @@ exports[`Guests Render all inputs 1`] = `
         childrenCount={0}
       />
     </View>
-  </TouchableItem>
+  </Touchable>
   <GuestsPopup
     guests={
       Object {
