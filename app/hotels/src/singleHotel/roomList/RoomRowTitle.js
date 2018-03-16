@@ -52,12 +52,28 @@ export function RoomRowTitle(props: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title} </Text>
-      <TextIcon style={styles.icon}>&#xe0a6;</TextIcon>
-      <Text style={styles.sizeText}> {roomSize}m</Text>
-      <Text style={styles.supText}>2</Text>
+      <RoomSize roomSize={roomSize} />
     </View>
   );
 }
+
+const RoomSize = ({ roomSize }: { roomSize: ?number }) => {
+  if (roomSize === null) {
+    return null;
+  }
+  return [
+    <TextIcon key="size-icon" style={styles.icon}>
+      &#xe0a6;
+    </TextIcon>,
+    <Text key="room-size" style={styles.sizeText}>
+      {' '}
+      {roomSize}m
+    </Text>,
+    <Text key="sup" style={styles.supText}>
+      2
+    </Text>,
+  ];
+};
 
 export default (createFragmentContainer(
   RoomRowTitle,
