@@ -9,7 +9,7 @@ import {
   Color,
   AdaptableBadge,
   Text,
-  TouchableItem,
+  Touchable,
 } from '@kiwicom/react-native-app-shared';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
@@ -85,13 +85,13 @@ export class Facilities extends React.Component<Props, State> {
           );
         })}
         {fullList.length > shortlist.length && (
-          <TouchableItem onPress={this.toggle}>
+          <Touchable onPress={this.toggle}>
             <Text style={styles.lessMoreButton}>
               {collapsed
                 ? `+${fullList.length - shortlist.length} More`
                 : 'Show less'}
             </Text>
-          </TouchableItem>
+          </Touchable>
         )}
       </View>
     );

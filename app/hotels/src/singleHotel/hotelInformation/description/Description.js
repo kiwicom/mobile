@@ -11,7 +11,7 @@ import {
   SimpleCard,
   StyleSheet,
   AdaptableLayout,
-  TouchableItem,
+  Touchable,
 } from '@kiwicom/react-native-app-shared';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
@@ -59,9 +59,9 @@ const Link = ({
   handlePress: () => void,
 |}) => (
   <View style={styles.linkView}>
-    <TouchableItem onPress={handlePress}>
+    <Touchable onPress={handlePress}>
       <Text style={styles.linkText}>{label}</Text>
-    </TouchableItem>
+    </Touchable>
   </View>
 );
 

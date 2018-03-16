@@ -9,7 +9,7 @@ exports[`renders header with title 1`] = `
     }
   }
 >
-  <TouchableItem
+  <Touchable
     borderlessRipple={false}
     disabled={false}
     onPress={[Function]}
@@ -33,7 +33,7 @@ exports[`renders header with title 1`] = `
     >
       ×
     </Text>
-  </TouchableItem>
+  </Touchable>
   <View
     style={
       Object {
@@ -91,7 +91,7 @@ exports[`renders header with very long title 1`] = `
     }
   }
 >
-  <TouchableItem
+  <Touchable
     borderlessRipple={false}
     disabled={false}
     onPress={[Function]}
@@ -115,7 +115,7 @@ exports[`renders header with very long title 1`] = `
     >
       ×
     </Text>
-  </TouchableItem>
+  </Touchable>
   <View
     style={
       Object {

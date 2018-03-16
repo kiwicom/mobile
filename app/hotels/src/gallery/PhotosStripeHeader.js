@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Text,
-  StyleSheet,
-  TouchableItem,
-} from '@kiwicom/react-native-app-shared';
+import { Text, StyleSheet, Touchable } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
   photoNumber: number,
@@ -18,12 +14,9 @@ type Props = {|
 export default class PhotosStripeHeader extends React.Component<Props> {
   render = () => (
     <View style={styles.wrapper}>
-      <TouchableItem
-        style={styles.closeButtonWrapper}
-        onPress={this.props.onClose}
-      >
+      <Touchable style={styles.closeButtonWrapper} onPress={this.props.onClose}>
         <Text style={styles.closeButton}>&times;</Text>
-      </TouchableItem>
+      </Touchable>
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>{this.props.hotelName}</Text>
         <Text style={styles.subTitle}>

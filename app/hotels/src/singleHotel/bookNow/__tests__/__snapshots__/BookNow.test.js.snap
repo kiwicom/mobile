@@ -13,7 +13,7 @@ exports[`renders without crashing 1`] = `
     }
   }
 >
-  <TouchableItem
+  <Touchable
     borderlessRipple={false}
     disabled={false}
     onPress={[Function]}
@@ -43,7 +43,7 @@ exports[`renders without crashing 1`] = `
         />
       }
     />
-  </TouchableItem>
+  </Touchable>
 </View>
 `;
 

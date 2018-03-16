@@ -41,9 +41,9 @@ module.exports = {
               'Dimensions', // Device
               'StyleSheet', // StyleSheet
               'Text', // Text
-              'TouchableHighlight', // TouchableItem
-              'TouchableNativeFeedback', // TouchableItem
-              'TouchableOpacity', // TouchableItem
+              'TouchableHighlight', // Touchable
+              'TouchableNativeFeedback', // Touchable
+              'TouchableOpacity', // Touchable
             ],
             message:
               "Please use '@kiwicom/react-native-app-shared' package instead.",

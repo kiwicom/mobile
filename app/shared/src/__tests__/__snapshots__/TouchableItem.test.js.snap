@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TouchableItem with children throws error for multiple children 1`] = `
+exports[`Touchable with children throws error for multiple children 1`] = `
 <TouchableOpacity
   activeOpacity={0.5}
   borderlessRipple={false}
@@ -14,7 +14,7 @@ exports[`TouchableItem with children throws error for multiple children 1`] = `
 </TouchableOpacity>
 `;
 
-exports[`TouchableItem with children throws error for multiple children 2`] = `
+exports[`Touchable with children throws error for multiple children 2`] = `
 <TouchableOpacity
   activeOpacity={0.5}
   borderlessRipple={false}
@@ -33,4 +33,4 @@ exports[`TouchableItem with children throws error for multiple children 2`] = `
 </TouchableOpacity>
 `;
 
-exports[`TouchableItem with children throws error for multiple children 3`] = `"React.Children.only expected to receive a single React element child."`;
+exports[`Touchable with children throws error for multiple children 3`] = `"React.Children.only expected to receive a single React element child."`;

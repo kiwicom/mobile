@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 import Text from '../Text';
 import Color from '../Color';
-import TouchableItem from '../TouchableItem';
+import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
 
 const Button = ({
@@ -33,7 +33,7 @@ const Button = ({
   );
 
   if (touchable) {
-    return <TouchableItem onPress={onPress}>{inner}</TouchableItem>;
+    return <Touchable onPress={onPress}>{inner}</Touchable>;
   }
 
   return inner;

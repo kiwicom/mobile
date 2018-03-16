@@ -67,7 +67,7 @@ export { default as Modal } from './src/Modal';
 export { default as StyleSheet } from './src/PlatformStyleSheet';
 export { default as Price } from './src/Price';
 export { default as Text } from './src/Text';
-export { default as TouchableItem } from './src/TouchableItem';
+export { default as Touchable } from './src/Touchable';
 export { default as WebView } from './src/WebView';
 
 // Flow types:

@@ -4,7 +4,7 @@ import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 import Text from '../Text';
-import TouchableItem from '../TouchableItem';
+import Touchable from '../Touchable';
 
 jest.mock('TouchableNativeFeedback', () => {
   const mock = jest.genMockFromModule('TouchableNativeFeedback');
@@ -20,13 +20,13 @@ jest.mock('Platform', () => ({
 const renderer = new ShallowRenderer();
 const VoidAction = () => {};
 
-describe('TouchableItem with ripple effect', () => {
+describe('Touchable with ripple effect', () => {
   it('renders with foreground', () => {
     expect(
       renderer.render(
-        <TouchableItem onPress={VoidAction}>
+        <Touchable onPress={VoidAction}>
           <Text>line</Text>
-        </TouchableItem>,
+        </Touchable>,
       ),
     ).toMatchSnapshot();
   });
@@ -34,9 +34,9 @@ describe('TouchableItem with ripple effect', () => {
   it('renders with ripple color', () => {
     expect(
       renderer.render(
-        <TouchableItem rippleColor="red" onPress={VoidAction}>
+        <Touchable rippleColor="red" onPress={VoidAction}>
           <Text>line</Text>
-        </TouchableItem>,
+        </Touchable>,
       ),
     ).toMatchSnapshot();
   });
@@ -44,9 +44,9 @@ describe('TouchableItem with ripple effect', () => {
   it('disables foreground in borderless mode', () => {
     expect(
       renderer.render(
-        <TouchableItem borderlessRipple={true} onPress={VoidAction}>
+        <Touchable borderlessRipple={true} onPress={VoidAction}>
           <Text>line</Text>
-        </TouchableItem>,
+        </Touchable>,
       ),
     ).toMatchSnapshot();
   });
