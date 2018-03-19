@@ -30,9 +30,5 @@ exports[`renders found hotels 1`] = `
     }
     openSingleHotel={[Function]}
   />
-  <LinkButton
-    onPress={[Function]}
-    title="Load more..."
-  />
 </View>
 `;
