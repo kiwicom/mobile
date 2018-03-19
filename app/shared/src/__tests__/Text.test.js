@@ -19,6 +19,8 @@ it('renders with additional style properties', () => {
 });
 
 it('supports nested styles', () => {
+  // WARNING: nested texts are deprecated - see https://github.com/facebook/react-native/issues/10775#issuecomment-370573892
+
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>
       bold text <Text style={{ color: 'red' }}>and bold-red text</Text>
@@ -28,6 +30,8 @@ it('supports nested styles', () => {
 });
 
 it('supports multiple nested strings', () => {
+  // WARNING: nested texts are deprecated - see https://github.com/facebook/react-native/issues/10775#issuecomment-370573892
+
   PlaygroundRenderer.render(
     <Text
       style={{

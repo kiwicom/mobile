@@ -45,27 +45,33 @@ export default class Text extends React.Component<Props, State> {
   };
 
   componentDidMount = () => {
-    if (this.context.defaultTextStyles === undefined) {
-      // only the styles of the first Text component in the subtree are merged
-      // with the default values
-      this.setState(prevState => ({
-        nativeText: StyleSheet.flatten([
-          prevState.nativeText,
-          this.props.style,
-        ]),
-      }));
-    } else {
-      // other Text component deeper in the subtree works only with the style
-      // properties (they are being merged with context - see below)
-      this.setState({
-        nativeText: this.props.style,
-      });
-    }
+    this.setNativeStyles(this.props.style);
+  };
+
+  componentWillReceiveProps = (nextProps: Props) => {
+    this.setNativeStyles(nextProps.style);
   };
 
   getChildContext = () => ({
     defaultTextStyles: this.state.nativeText,
   });
+
+  setNativeStyles = (style: StylePropType) => {
+    if (this.context.defaultTextStyles === undefined) {
+      // only the styles of the first Text component in the subtree are merged
+      // with the default values
+      this.setState(prevState => ({
+        nativeText: StyleSheet.flatten([prevState.nativeText, style]),
+      }));
+    } else {
+      // other Text component deeper in the subtree works only with the style
+      // properties because they are being merged with context already
+      // containing previous and default styles
+      this.setState({
+        nativeText: style,
+      });
+    }
+  };
 
   render = () => (
     <ReactNative.Text
