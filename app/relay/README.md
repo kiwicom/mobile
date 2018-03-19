@@ -4,9 +4,6 @@ This package allows you to render Kiwi.com Frontend GraphQL queries and mutation
 <PublicApiRenderer
   query={graphql`...`}
   render={(propsFromRenderer: Object) => <Component />}
-  cacheConfig={{
-    force: true, // do not cache the request (default: false)
-  }}
 />
 ```
 

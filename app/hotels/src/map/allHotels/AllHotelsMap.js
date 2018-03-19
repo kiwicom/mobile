@@ -138,7 +138,6 @@ class AllHotelsMap extends React.Component<Props> {
               options: { currency },
             }}
             render={this.renderInnerComponent}
-            cacheConfig={{ force: true }}
           />
         </View>
       </AppStateChange>

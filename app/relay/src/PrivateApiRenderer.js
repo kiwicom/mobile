@@ -16,7 +16,6 @@ export default function PrivateApiRenderer(props: Props) {
       query={props.query}
       variables={props.variables}
       render={props.render}
-      cacheConfig={props.cacheConfig}
       accessToken={props.accessToken}
     />
   );
