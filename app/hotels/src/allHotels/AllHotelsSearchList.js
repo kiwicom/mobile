@@ -4,16 +4,12 @@ import * as React from 'react';
 import idx from 'idx';
 import { createPaginationContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
-import {
-  Logger,
-  IconLoading,
-  LinkButton,
-  GeneralError,
-} from '@kiwicom/react-native-app-shared';
+import { Logger, GeneralError } from '@kiwicom/react-native-app-shared';
 import { connect } from '@kiwicom/react-native-app-redux';
 import type { RelayPaginationProp } from '@kiwicom/react-native-app-relay';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
+import LoadMoreButton from './LoadMoreButton';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList_data.graphql';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 
@@ -82,10 +78,11 @@ export class AllHotelsSearchList extends React.Component<Props, State> {
             openSingleHotel={this.props.openSingleHotel}
           />
         ))}
-        {this.state.isLoading ? (
-          <IconLoading />
-        ) : (
-          <LinkButton title="Load more..." onPress={this.loadMore} />
+        {this.props.relay.hasMore() && (
+          <LoadMoreButton
+            isLoading={this.state.isLoading}
+            onPress={this.loadMore}
+          />
         )}
       </View>
     );
