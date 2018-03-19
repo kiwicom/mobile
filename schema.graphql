@@ -1041,6 +1041,9 @@ type RootQuery {
 
     # Search location by area.
     area: AreaInput
+
+    # Combination of slug and radius. e.g. bratislava-slovakia-169km
+    slugRadius: String
     options: LocationsOptionsInput
     after: String
     first: Int
