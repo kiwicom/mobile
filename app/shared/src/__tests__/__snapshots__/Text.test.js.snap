@@ -17,7 +17,7 @@ exports[`renders with additional style properties 1`] = `
     ]
   }
 >
-  IOS
+  bold text
 </Text>
 `;
 
@@ -38,7 +38,7 @@ exports[`renders with the default properties for iOS 1`] = `
     ]
   }
 >
-  IOS
+  normal text
 </Text>
 `;
 
@@ -75,7 +75,7 @@ exports[`supports multiple nested strings 1`] = `
       ]
     }
   >
-    First part and 
+    red normal text 
   </Text>
   <Text
     accessible={true}
@@ -93,7 +93,7 @@ exports[`supports multiple nested strings 1`] = `
       ]
     }
   >
-    second part
+    and red normal text
   </Text>
 </Text>
 `;
@@ -115,7 +115,7 @@ exports[`supports nested styles 1`] = `
     ]
   }
 >
-  I am bold 
+  bold text 
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -134,7 +134,7 @@ exports[`supports nested styles 1`] = `
       ]
     }
   >
-    and red
+    and bold-red text
   </Text>
 </Text>
 `;
@@ -174,7 +174,7 @@ exports[`works applies the styles recursively 1`] = `
       ]
     }
   >
-    bold and red
+    bold and red text
   </Text>
 </Text>
 `;
@@ -212,7 +212,7 @@ exports[`works even with the distant Text nodes 1`] = `
       ]
     }
   >
-    should be bold as well
+    bold default text
   </Text>
 </Text>
 `;
@@ -234,12 +234,12 @@ exports[`works with nullable child 1`] = `
     ]
   }
 >
-  text
+  default
    
    
-  text
+  default
    
    
-  text
+  default
 </Text>
 `;
