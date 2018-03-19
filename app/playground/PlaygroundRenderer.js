@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ShallowTestRenderer from 'react-test-renderer/shallow';
+import DeepTestRenderer from 'react-test-renderer';
 import { it } from 'global';
 
 if (it === undefined && process.env.NODE_ENV !== 'test') {
@@ -15,17 +16,23 @@ if (it === undefined && process.env.NODE_ENV !== 'test') {
 
 export default new class PlaygroundRenderer {
   components = [];
-  renderer: ShallowTestRenderer;
+  shallowRenderer: ShallowTestRenderer;
 
   constructor() {
-    this.renderer = new ShallowTestRenderer();
+    this.shallowRenderer = new ShallowTestRenderer();
   }
 
-  render(component: React.Node) {
+  render(component: React.Node, deeply: boolean = false) {
     if (process.env.NODE_ENV === 'test') {
-      expect(
-        this.renderer.render(React.Children.only(component)),
-      ).toMatchSnapshot();
+      if (deeply === true) {
+        expect(
+          DeepTestRenderer.create(React.Children.only(component)),
+        ).toMatchSnapshot();
+      } else {
+        expect(
+          this.shallowRenderer.render(React.Children.only(component)),
+        ).toMatchSnapshot();
+      }
     } else {
       this.components.push(component);
     }
