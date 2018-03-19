@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the buttons in the playground 1`] = `
+<View
+  style={
+    Object {
+      "height": 50,
+      "justifyContent": "center",
+    }
+  }
+>
+  <IconLoading
+    size="small"
+  />
+</View>
+`;
+
+exports[`renders the buttons in the playground 2`] = `
+<View
+  style={
+    Object {
+      "height": 50,
+      "justifyContent": "center",
+    }
+  }
+>
+  <LinkButton
+    onPress={[Function]}
+    title="Load more..."
+  />
+</View>
+`;
