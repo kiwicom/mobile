@@ -22,30 +22,12 @@ export type QueryRendererProps = {|
   query: string,
   render: (props: Object) => React.Node,
   variables?: Object,
-  cacheConfig?: {|
-    force: boolean,
-  |},
-|};
-
-type RerunParam = {|
-  param: string,
-  import: string,
-  max_runs: number,
-|};
-
-type RefetchOptions = {|
-  force?: boolean,
-  rerunParamExperimental?: RerunParam,
 |};
 
 export type RelayPaginationProp = {|
   hasMore: () => boolean,
   isLoading: () => boolean,
-  loadMore: (
-    pageSize: number,
-    callback: (error: ?Error) => void,
-    options?: RefetchOptions,
-  ) => void,
+  loadMore: (pageSize: number, callback: (error: ?Error) => void) => void,
   refetchConnection: (
     totalCount: number,
     callback: (error: ?Error) => void,

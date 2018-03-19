@@ -2,10 +2,6 @@
 
 import { Environment, Network, RecordSource, Store } from 'relay-runtime';
 
-import RelayQueryResponseCache from './RelayQueryResponseCache';
-
-const cache = new RelayQueryResponseCache();
-
 type GraphQLError = {|
   message: string,
   locations?: {|
@@ -31,22 +27,12 @@ export default function createEnvironment(
     networkHeaders.authorization = accessToken;
   }
 
-  const fetchQuery = async (operation, variables, cacheConfig) => {
-    const query = operation.text;
-
-    if (cacheConfig.force === true) {
-      await cache.remove(query, variables);
-    } else {
-      // refetch is not forced so try to find it in cache
-      const value = await cache.get(query, variables);
-      if (value !== null) {
-        // cache hit, yay
-        return value;
-      }
-    }
-
+  const fetchQuery = async (
+    operation,
+    variables,
+  ): Promise<{| data: Object, errors?: $ReadOnlyArray<Object> |}> => {
     // TODO: fetch persisted queries instead (based on operation.id)
-    const jsonPayload = await (await fetch('https://graphql.kiwi.com/', {
+    return await (await fetch('https://graphql.kiwi.com/', {
       method: 'POST',
       headers: networkHeaders,
       body: JSON.stringify({
@@ -54,12 +40,6 @@ export default function createEnvironment(
         variables,
       }),
     })).json();
-
-    if (!jsonPayload.errors) {
-      // always save the valid response (probably not needed during cache "force")
-      await cache.set(query, variables, jsonPayload);
-    }
-    return jsonPayload;
   };
 
   return new PartialErrorsEnvironment(
