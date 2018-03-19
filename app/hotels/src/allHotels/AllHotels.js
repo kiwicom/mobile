@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Keyboard } from 'react-native';
 import idx from 'idx';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
@@ -79,7 +79,11 @@ class AllHotels extends React.Component<Props> {
       onStateChange={this.validateCheckinDate}
     >
       <Layout>
-        <ScrollView bounces={false} contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView
+          bounces={false}
+          contentContainerStyle={{ flexGrow: 1 }}
+          onScroll={Keyboard.dismiss}
+        >
           <SearchForm
             onChange={this.props.onSearchChange}
             onLocationChange={this.props.onLocationChange}
