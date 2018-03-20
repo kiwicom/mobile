@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   },
   roomDetails: {
     flex: 1,
-    marginVertical: 10,
+    marginTop: 10,
+    marginBottom: 20,
   },
   widePadding: {
     paddingHorizontal: 5,
