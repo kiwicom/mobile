@@ -57,6 +57,7 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
         onGoToPayment={this.goToPayment}
         onGoToMap={this.goToMap}
         currency={this.props.currency}
+        language={this.props.language}
         search={{
           hotelId: this.props.hotelId,
           checkin: this.props.checkin,
