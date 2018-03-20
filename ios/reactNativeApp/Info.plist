@@ -54,6 +54,7 @@
 		<string>Zocial.ttf</string>
 		<string>spfont.ttf</string>
 		<string>Roboto-Regular.ttf</string>
+		<string>SFProText-Semibold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoomBadges renders 1`] = `
+Array [
+  <AdaptableBadge
+    icon={
+      <TextIcon
+        style={
+          Object {
+            "alignSelf": "flex-end",
+            "color": "rgb(49, 161, 30)",
+            "fontSize": 10,
+            "marginRight": 5,
+          }
+        }
+      >
+        
+      </TextIcon>
+    }
+    style={
+      Object {
+        "backgroundColor": "rgba(49, 161, 30, 0.15)",
+        "marginTop": 5,
+      }
+    }
+    text="Breakfast included"
+    textStyle={
+      Object {
+        "color": "rgb(49, 161, 30)",
+        "fontFamily": "SFProText-Semibold",
+        "fontSize": 10,
+      }
+    }
+  />,
+  <AdaptableBadge
+    icon={
+      <TextIcon
+        style={
+          Object {
+            "alignSelf": "flex-end",
+            "color": "rgb(49, 161, 30)",
+            "fontSize": 10,
+            "marginRight": 5,
+          }
+        }
+      >
+        '
+      </TextIcon>
+    }
+    style={
+      Object {
+        "backgroundColor": "rgba(49, 161, 30, 0.15)",
+        "marginTop": 5,
+      }
+    }
+    text="Free cancellation"
+    textStyle={
+      Object {
+        "color": "rgb(49, 161, 30)",
+        "fontFamily": "SFProText-Semibold",
+        "fontSize": 10,
+      }
+    }
+  />,
+]
+`;
