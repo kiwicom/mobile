@@ -27,9 +27,12 @@ const styles = StyleSheet.create({
   },
   badgeText: {
     color: 'rgb(49, 161, 30)',
+    fontSize: 10,
+    fontFamily: 'SFProText-Semibold',
   },
   iconStyle: {
     color: 'rgb(49, 161, 30)',
+    fontSize: 10,
     ios: {
       alignSelf: 'flex-end',
     },
@@ -40,7 +43,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const RoomBadges = (props: Props) => {
+export const RoomBadges = (props: Props) => {
   const isBreakfastIncluded = idx(
     props.availableRoom,
     _ => _.isBreakfastIncluded,
