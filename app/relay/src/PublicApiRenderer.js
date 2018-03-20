@@ -11,7 +11,6 @@ export default function PublicApiRenderer(props: QueryRendererProps) {
       query={props.query}
       variables={props.variables}
       render={props.render}
-      cacheConfig={props.cacheConfig}
     />
   );
 }
