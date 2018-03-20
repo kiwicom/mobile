@@ -20,7 +20,6 @@ This is not an actual mobile application. This repository contains only React Na
 * [Best practices](#best-practices)
   * [Accessing arbitrarily nested, possibly nullable properties on a JavaScript object](#accessing-arbitrarily-nested-possibly-nullable-properties-on-a-javascript-object)
   * [Error handling](#error-handling)
-  * [Offline first](#offline-first)
   * [Working with Playground](#working-with-playground)
   * [Working with GraphQL API](#working-with-graphql-api)
   * [Working with Redux](#working-with-redux)
@@ -273,35 +272,6 @@ This is fatal error. Server was not able to get data and it's probably not opera
 Most common scenario (somewhere between). In this case we are able to fetch at least something but it failed partially so there are errors and we can expect some nullable fields. This may be just missing prices but also completely missing data. It's very different to point 2.
 
 We are showing little warning in this case. How to handle nullable fields really depends on the situation. Sometimes it's OK to leave it empty instead of for example hotel rating (★★★), sometimes it's necessary to display error message or sad picture in case of completely missing hotels. It depends. We are always trying to render as much as possible.
-
-### Offline first
-
-This application is mainly for travelers so being offline is still quite a big deal. We are storing by default every response from GraphQL API. However, this is not always appropriate. Especially not during search (flight, hotel). In this situations you need to pass `force:true` configuration:
-
-```js
-<PublicApiRenderer
-  query={qraphql`...`}
-  render={props => <Component />}
-  cacheConfig={{
-    force: true, // always refetch the query (do not touch the cache)
-  }}
-/>
-```
-
-In case of refetch container:
-
-```js
-this.setState({ refreshing: true }, () => {
-  this.props.relay.refetch(
-    v => v,
-    null,
-    () => { this.setState({ refreshing: false }); },
-    {
-      force: true, // always refetch the query (do not touch the cache)
-    },
-  );
-});
-```
 
 ### Working with Playground
 

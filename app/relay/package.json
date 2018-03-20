@@ -4,7 +4,6 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "json-stable-stringify": "^1.0.1",
     "react-relay": "^1.4.1"
   },
   "devDependencies": {

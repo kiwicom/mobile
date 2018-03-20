@@ -86,9 +86,6 @@ class AllHotelsSearch extends React.Component<Props> {
           },
         }}
         render={this.renderAllHotelsSearchList}
-        cacheConfig={{
-          force: true,
-        }}
       />
     );
   };

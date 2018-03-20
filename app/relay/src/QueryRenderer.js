@@ -80,7 +80,6 @@ export default class QueryRenderer extends React.Component<Props> {
         query={this.props.query}
         variables={this.props.variables}
         render={this.renderRelayContainer}
-        cacheConfig={this.props.cacheConfig}
       />
     );
   };
