@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     color: '#79818a',
     padding: 15,
     paddingTop: 22,
-    paddingBottom: 12,
+    paddingBottom: 7,
   },
 });
 

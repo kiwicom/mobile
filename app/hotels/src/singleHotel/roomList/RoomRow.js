@@ -90,7 +90,7 @@ export class RoomRow extends React.Component<Props> {
     const selectedCount = idx(this.props.selected, _ => _[originalId]) || 0;
     const room = idx(availableRoom, _ => _.room);
     return (
-      <SimpleCard>
+      <SimpleCard style={{ marginVertical: 5 }}>
         <View style={isWide ? styles.widePadding : null}>
           <View style={styles.row}>
             <NetworkImage
