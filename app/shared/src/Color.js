@@ -75,9 +75,27 @@ const ColorPalette = {
   white: '#ffffff',
 };
 
+const {
+  brand,
+  brandSecondary,
+  buttercup,
+  sun,
+  backgroundGray,
+  textDark,
+  textMedium,
+  textLight,
+} = NativeModules.RNColors;
+
 export default {
   // brand colors
   // https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
-  ...NativeModules.RNColors,
+  brand,
+  brandSecondary,
+  buttercup,
+  sun,
+  backgroundGray,
+  textDark,
+  textMedium,
+  textLight,
   ...ColorPalette,
 };
