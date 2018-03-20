@@ -70,6 +70,7 @@ export { default as Text } from './src/Text';
 export { default as Touchable } from './src/Touchable';
 export { default as WebView } from './src/WebView';
 export { default as AppStateChange } from './src/AppStateChange';
+export { default as ReadMore } from './src/ReadMore';
 
 // Flow types:
 
