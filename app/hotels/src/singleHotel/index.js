@@ -13,6 +13,7 @@ import { sanitizeDate } from '../GraphQLSanitizers';
 
 type ContainerProps = {|
   currency: string,
+  language: string,
   search: AvailableHotelSearchInput,
   onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
   onGoToPayment: ({
@@ -58,7 +59,7 @@ export default class SingleHotelContainer extends React.Component<
   );
 
   render() {
-    const { search, currency } = this.props;
+    const { search, currency, language } = this.props;
     return (
       <PublicApiRenderer
         query={graphql`
@@ -76,6 +77,7 @@ export default class SingleHotelContainer extends React.Component<
             ...search,
             checkin: sanitizeDate(search.checkin),
             checkout: sanitizeDate(search.checkout),
+            language,
           },
           options: { currency },
         }}
