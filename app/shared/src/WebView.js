@@ -25,6 +25,7 @@ export default class WebView extends React.Component<Props> {
 
   render = () => (
     <NativeWebView
+      bounces={false}
       startInLoadingState={true}
       renderLoading={this.renderLoading}
       renderError={this.renderError}
