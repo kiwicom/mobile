@@ -86,9 +86,10 @@ const {
   textLight,
 } = NativeModules.RNColors;
 
+/**
+ * @see https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
+ */
 export default {
-  // brand colors
-  // https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
   brand,
   brandSecondary,
   buttercup,
@@ -97,5 +98,6 @@ export default {
   textDark,
   textMedium,
   textLight,
+
   ...ColorPalette,
 };
