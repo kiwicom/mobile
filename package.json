@@ -17,7 +17,8 @@
     "test-ci": "./scripts/test.sh",
     "postinstall": "node ./scripts/configureApplication.js",
     "pod-install": "node ./scripts/podInstall.js",
-    "release-hotels": "node ./scripts/releaseHotels.js"
+    "release-hotels": "node ./scripts/releaseHotels.js",
+    "playground": "node ./scripts/activatePlayground.js"
   },
   "dependencies": {
     "react": "16.0.0",
