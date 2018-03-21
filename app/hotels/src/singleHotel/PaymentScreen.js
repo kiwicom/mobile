@@ -8,7 +8,7 @@ import querystring from 'querystring';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
 
-export type PaymentParameters = {
+export type PaymentParameters = {|
   hotelId: number,
   checkin: Date,
   checkout: Date,
@@ -19,7 +19,7 @@ export type PaymentParameters = {
   affiliateId: string,
   language: string,
   currency: string,
-};
+|};
 
 export default function PaymentScreen(props: PaymentParameters) {
   return <WebView source={{ uri: createURI(props) }} />;
