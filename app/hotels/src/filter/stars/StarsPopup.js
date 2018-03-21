@@ -85,16 +85,16 @@ export default class StarsPopup extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   title: {
-    color: Color.grey.$800,
+    color: Color.textLight,
     paddingBottom: 5,
+    fontSize: 12,
   },
   delimiter: {
     borderBottomWidth: 1,
-    borderBottomColor: Color.grey.$300,
+    borderBottomColor: Color.backgroundGray,
   },
   unrated: {
     marginLeft: 3,
     fontSize: 16,
-    fontWeight: '300',
   },
 });

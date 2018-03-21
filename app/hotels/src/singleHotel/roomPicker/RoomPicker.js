@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Touchable,
   ButtonText,
+  Color,
 } from '@kiwicom/react-native-app-shared';
 
 type Props = {|
@@ -107,11 +108,11 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
   },
   text: {
-    color: '#0097a9',
+    color: Color.brand,
     fontSize: 14,
   },
   button: {
-    backgroundColor: '#0097a9',
+    backgroundColor: Color.brand,
     width: 60,
     justifyContent: 'center',
     alignItems: 'center',

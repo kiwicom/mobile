@@ -3,7 +3,11 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { AdaptableBadge, StyleSheet } from '@kiwicom/react-native-app-shared';
+import {
+  AdaptableBadge,
+  StyleSheet,
+  Color,
+} from '@kiwicom/react-native-app-shared';
 
 import type { HotelReviewScore_hotel } from './__generated__/HotelReviewScore_hotel.graphql';
 
@@ -54,7 +58,7 @@ export class HotelReviewScore extends React.Component<Props> {
       return '#d0021b';
     }
     if (score >= 3 === score <= 7) {
-      return '#eb9d08';
+      return Color.buttercup;
     }
     if (score > 7 === score <= 10) {
       return '#31a11e';

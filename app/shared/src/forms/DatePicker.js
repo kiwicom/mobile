@@ -19,7 +19,7 @@ const customStyles = StyleSheet.create({
   },
   // text inside of the date input wrapper (Text)
   dateText: {
-    color: '#30363d',
+    color: Color.textDark,
     android: {
       fontSize: 16,
     },

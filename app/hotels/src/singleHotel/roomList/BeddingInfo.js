@@ -8,6 +8,7 @@ import {
   Text,
   TextIcon,
   Icon,
+  Color,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 
@@ -22,10 +23,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     lineHeight: 15,
-    color: '#79818a',
+    color: Color.textLight,
   },
   icon: {
-    color: '#79818a',
+    color: Color.textLight,
     fontSize: 12,
     marginRight: 2,
     android: {

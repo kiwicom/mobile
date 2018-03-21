@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, TextIcon, StyleSheet } from '@kiwicom/react-native-app-shared';
+import {
+  Text,
+  TextIcon,
+  StyleSheet,
+  Color,
+} from '@kiwicom/react-native-app-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 
@@ -15,11 +20,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    color: '#30363d',
+    color: Color.textDark,
   },
   icon: {
     fontSize: 13,
-    color: '#79818a',
+    color: Color.textLight,
     ios: {
       alignSelf: 'flex-end',
     },
@@ -29,11 +34,11 @@ const styles = StyleSheet.create({
   },
   sizeText: {
     fontSize: 14,
-    color: '#79818a',
+    color: Color.textLight,
   },
   supText: {
     fontSize: 8,
-    color: '#79818a',
+    color: Color.textLight,
   },
 });
 

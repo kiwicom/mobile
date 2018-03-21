@@ -9,6 +9,7 @@ import {
   DropMarker,
   Text,
   Touchable,
+  Color,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -42,10 +43,10 @@ const styles = StyleSheet.create({
     letterSpacing: -0.15,
   },
   streetLine: {
-    color: '#30363d',
+    color: Color.textDark,
   },
   cityLine: {
-    color: '#79818a',
+    color: Color.textLight,
   },
   mapBottom: {
     android: {
