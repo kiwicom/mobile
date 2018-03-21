@@ -27,7 +27,7 @@ export default class ChildrenAgesControl extends React.Component<Props> {
       onChange={this.handleAgeChange(index)}
       style={{
         borderBottomWidth: this.props.childrenAges.length - 1 === index ? 0 : 1,
-        borderBottomColor: '#ccc',
+        borderBottomColor: Color.backgroundGray,
       }}
     />
   );
