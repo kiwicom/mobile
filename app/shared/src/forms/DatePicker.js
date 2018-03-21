@@ -6,6 +6,7 @@ import OriginalDatePicker from 'react-native-datepicker';
 
 import StyleSheet from '../PlatformStyleSheet';
 import Icon from '../icons/Icon';
+import Color from '../Color';
 
 const customStyles = StyleSheet.create({
   // date input wrapper (View)
@@ -42,6 +43,14 @@ const customStyles = StyleSheet.create({
       borderRadius: 0,
       height: 47,
     },
+  },
+  // Confirm button text styling
+  btnTextConfirm: {
+    color: Color.brand,
+  },
+  // Cancel button text styling
+  btnTextCancel: {
+    color: Color.brand,
   },
   originalDatePickerWrapper: {
     elevation: 1,
