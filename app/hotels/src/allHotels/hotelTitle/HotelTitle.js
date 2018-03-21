@@ -4,15 +4,10 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
-import {
-  Color,
-  Price,
-  Stars,
-  Text,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
+import { Color, Price, StyleSheet } from '@kiwicom/react-native-app-shared';
 
-import Distance from './HotelDistance';
+import Distance from '../HotelDistance';
+import Title from './Title';
 import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';
 
 type Props = {|
@@ -20,30 +15,6 @@ type Props = {|
 |};
 
 const style = StyleSheet.create({
-  title: {
-    fontWeight: 'bold',
-    color: Color.textDark,
-    android: {
-      fontSize: 15,
-      lineHeight: 18,
-    },
-    ios: {
-      fontSize: 14,
-      lineHeight: 16,
-    },
-  },
-  rating: {
-    color: Color.grey.$600,
-    fontSize: 9,
-    lineHeight: 9,
-    alignSelf: 'flex-end',
-    android: {
-      paddingBottom: 3,
-    },
-    ios: {
-      paddingBottom: 1,
-    },
-  },
   distance: {
     marginVertical: 6,
   },
@@ -76,12 +47,7 @@ function HotelTitle({ data }: Props) {
 
   return (
     <View>
-      <Text style={style.title}>
-        {hotelName}{' '}
-        <Text style={style.rating}>
-          <Stars rating={hotelStars} />
-        </Text>
-      </Text>
+      <Title hotelName={hotelName} hotelStars={hotelStars} />
       <View style={style.distance}>
         <Distance hotel={data && data.hotel} />
       </View>

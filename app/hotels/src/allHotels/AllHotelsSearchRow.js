@@ -10,7 +10,7 @@ import {
   StyleSheet,
 } from '@kiwicom/react-native-app-shared';
 
-import HotelTitle from './HotelTitle';
+import HotelTitle from './hotelTitle/HotelTitle';
 import HotelReviewScore from './HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
 
