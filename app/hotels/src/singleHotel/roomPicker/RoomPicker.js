@@ -10,6 +10,7 @@ import {
   ButtonText,
   Color,
 } from '@kiwicom/react-native-app-shared';
+import Translate from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   price: number | null,
@@ -42,7 +43,10 @@ export default function RoomPicker({
         onPress={increment}
       >
         <View style={styles.row}>
-          <ButtonText style={styles.text} text="Select" />
+          <ButtonText
+            style={styles.text}
+            text={<Translate id="SingleHotel.RoomPicker.Select" />}
+          />
           <View style={styles.row} />
           <Price amount={price} currency={currency} style={styles.text} />
         </View>
