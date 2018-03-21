@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
 
 import StyleSheet from './PlatformStyleSheet';
+import Color from './Color';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
   // These values are from the official design. Don't touch it please.
   nativeText: {
     fontWeight: 'normal',
-    color: '#30363d',
+    color: Color.textDark,
     android: {
       fontSize: 15,
       letterSpacing: 0,

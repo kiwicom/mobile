@@ -2,12 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Color } from '@kiwicom/react-native-app-shared';
 
 const styles = StyleSheet.create({
   handle: {
     borderBottomWidth: 2,
-    borderBottomColor: '#edeff2',
+    borderBottomColor: Color.backgroundGray,
     alignSelf: 'center',
     width: 100,
     marginTop: 3,

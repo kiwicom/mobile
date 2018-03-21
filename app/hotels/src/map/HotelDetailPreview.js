@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   hotelName: {
     fontSize: 16,
-    color: '#30363d',
+    color: Color.textDark,
     android: {
       lineHeight: 17,
     },

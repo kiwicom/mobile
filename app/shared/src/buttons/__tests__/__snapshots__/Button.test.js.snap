@@ -24,7 +24,7 @@ exports[`renders button with custom title 1`] = `
         Array [
           Object {
             "alignItems": "center",
-            "backgroundColor": "#0097A9",
+            "backgroundColor": "#0097a9",
             "borderRadius": 2,
             "flexGrow": 1,
             "justifyContent": "center",
