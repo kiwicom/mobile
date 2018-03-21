@@ -34,7 +34,13 @@ export default class ButtonPopup extends React.Component<Props> {
         {this.props.children}
       </View>
       <View style={styles.button}>
-        <Button title={this.props.buttonTitle} onPress={this.onSave} />
+        <Button
+          title={this.props.buttonTitle}
+          onPress={this.onSave}
+          styles={{
+            buttonWrapper: styles.buttonWrapper,
+          }}
+        />
       </View>
     </Popup>
   );
@@ -48,5 +54,8 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     margin: POPUP_PADDING,
+  },
+  buttonWrapper: {
+    height: 44,
   },
 });
