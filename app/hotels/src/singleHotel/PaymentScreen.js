@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import { WebView } from '@kiwicom/react-native-app-shared';
+import { WebView, Logger } from '@kiwicom/react-native-app-shared';
 import moment from 'moment';
 import querystring from 'querystring';
 
@@ -21,8 +21,18 @@ export type PaymentParameters = {|
   currency: string,
 |};
 
-export default function PaymentScreen(props: PaymentParameters) {
-  return <WebView source={{ uri: createURI(props) }} />;
+export default class PaymentScreen extends React.Component<PaymentParameters> {
+  componentDidMount = () => {
+    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_PAYMENT);
+  };
+
+  render = () => (
+    <WebView
+      source={{
+        uri: createURI(this.props),
+      }}
+    />
+  );
 }
 
 export function createURI(pp: PaymentParameters): string {
