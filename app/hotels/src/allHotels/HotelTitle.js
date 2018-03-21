@@ -25,24 +25,14 @@ const style = StyleSheet.create({
     color: Color.textDark,
     android: {
       fontSize: 15,
-      lineHeight: 18,
     },
     ios: {
       fontSize: 14,
-      lineHeight: 16,
     },
   },
   rating: {
     color: Color.grey.$600,
     fontSize: 9,
-    lineHeight: 9,
-    alignSelf: 'flex-end',
-    android: {
-      paddingBottom: 3,
-    },
-    ios: {
-      paddingBottom: 1,
-    },
   },
   distance: {
     marginVertical: 6,
@@ -82,6 +72,7 @@ function HotelTitle({ data }: Props) {
           <Stars rating={hotelStars} />
         </Text>
       </Text>
+
       <View style={style.distance}>
         <Distance hotel={data && data.hotel} />
       </View>
