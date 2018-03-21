@@ -5,11 +5,12 @@ import { TextInput as OriginalTextInput, View } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
 import Icon from '../icons/Icon';
+import Color from '../Color';
 
 const styles = StyleSheet.create({
   input: {
     flex: 1,
-    color: '#30363d',
+    color: Color.textDark,
     backgroundColor: 'transparent',
     padding: 10,
     android: {

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Text, Color } from '@kiwicom/react-native-app-shared';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
@@ -11,7 +11,7 @@ import type { RoomList as RoomListType } from './__generated__/RoomList.graphql'
 const styles = StyleSheet.create({
   title: {
     fontSize: 14,
-    color: '#79818a',
+    color: Color.textLight,
     padding: 15,
     paddingTop: 22,
     paddingBottom: 7,

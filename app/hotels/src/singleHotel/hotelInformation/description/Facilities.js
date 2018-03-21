@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   adaptableBadgeText: {
-    color: '#79818a',
+    color: Color.textLight,
   },
 });
 
