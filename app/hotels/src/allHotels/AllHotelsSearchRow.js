@@ -45,6 +45,10 @@ const style = StyleSheet.create({
   hotelReviewScore: {
     marginLeft: 10,
   },
+  cardStyle: {
+    marginVertical: 0,
+    marginTop: 5,
+  },
 });
 
 class AllHotelsSearchRow extends React.Component<Props> {
@@ -60,7 +64,10 @@ class AllHotelsSearchRow extends React.Component<Props> {
     const lowResUrl = idx(data, _ => _.hotel.mainPhoto.lowResUrl);
 
     return (
-      <SimpleCard onPress={this.onGoToSingleHotel}>
+      <SimpleCard
+        onPress={this.onGoToSingleHotel}
+        style={StyleSheet.flatten(style.cardStyle)}
+      >
         <View style={style.row}>
           <NetworkImage
             style={style.image}
