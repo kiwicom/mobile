@@ -7,7 +7,7 @@ import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
 import PlaygroundRenderer from './PlaygroundRenderer';
 // Import component tests you want to show in the Playground here:
 // eslint-disable-next-line
-import _ from '../hotels/src/singleHotel/roomList/__tests__/RoomBadges.test';
+import _ from '../shared/src/popup/__tests__/ButtonPopupPlayground.test';
 
 const PlaygroundSection = props => (
   <View style={styles.section}>

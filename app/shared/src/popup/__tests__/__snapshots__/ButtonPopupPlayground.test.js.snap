@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ButtonPopup render popup with child 1`] = `
+exports[`ButtonPopup playground renders in playground 1`] = `
 <Popup
   isVisible={true}
   onClose={[Function]}
