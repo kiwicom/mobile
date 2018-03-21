@@ -48,6 +48,11 @@ module.exports = {
             message:
               "Please use '@kiwicom/react-native-app-shared' package instead.",
           },
+          {
+            name: 'react-native-read-more-text', // ReadMore
+            message:
+              "Please use '@kiwicom/react-native-app-shared' package instead.",
+          }
         ],
       },
     ],
