@@ -1,22 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
 
 import StarsPopup from '../StarsPopup';
 
 describe('StarsPopup', () => {
-  it('should render popup', async () => {
-    const renderer = new ShallowRenderer();
-    expect(
-      renderer.render(
-        <StarsPopup
-          stars={[5]}
-          isVisible={true}
-          onSave={jest.fn()}
-          onClose={jest.fn()}
-        />,
-      ),
-    ).toMatchSnapshot();
+  it('should render popup', () => {
+    function noop() {}
+    PlaygroundRenderer.render(
+      <StarsPopup stars={[5]} isVisible={true} onSave={noop} onClose={noop} />,
+    );
   });
 });

@@ -22,7 +22,7 @@ type Props = {|
 const style = StyleSheet.create({
   title: {
     fontWeight: 'bold',
-    color: '#30363d',
+    color: Color.textDark,
     android: {
       fontSize: 15,
       lineHeight: 18,

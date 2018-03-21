@@ -18,10 +18,10 @@ exports[`DatePicker renders 1`] = `
     customStyles={
       Object {
         "btnTextCancel": Object {
-          "color": "#0097A9",
+          "color": "#0097a9",
         },
         "btnTextConfirm": Object {
-          "color": "#0097A9",
+          "color": "#0097a9",
         },
         "dateIcon": Object {
           "left": 0,

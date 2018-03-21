@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
-import { Text, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { Text, StyleSheet, Color } from '@kiwicom/react-native-app-shared';
 import ReadMore from 'react-native-read-more-text';
 
 import type { RoomDescription_room as RoomDescriptionType } from './__generated__/RoomDescription_room.graphql';
@@ -21,12 +21,12 @@ type Props = {|
 const styles = StyleSheet.create({
   delimiter: {
     height: 1,
-    backgroundColor: '#edeff2',
+    backgroundColor: Color.backgroundGray,
     marginVertical: 6,
   },
   description: {
     fontSize: 12,
-    color: '#30363d',
+    color: Color.textDark,
   },
 });
 

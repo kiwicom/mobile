@@ -4,13 +4,14 @@ exports[`StarsPopup should render popup 1`] = `
 <ButtonPopup
   buttonTitle="Save"
   isVisible={true}
-  onClose={[MockFunction]}
+  onClose={[Function]}
   onSave={[Function]}
 >
   <Text
     style={
       Object {
-        "color": "#424242",
+        "color": "#79818a",
+        "fontSize": 12,
         "paddingBottom": 5,
       }
     }
@@ -23,7 +24,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={5}
     style={
       Object {
-        "borderBottomColor": "#e0e0e0",
+        "borderBottomColor": "#edeff2",
         "borderBottomWidth": 1,
       }
     }
@@ -34,7 +35,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={4}
     style={
       Object {
-        "borderBottomColor": "#e0e0e0",
+        "borderBottomColor": "#edeff2",
         "borderBottomWidth": 1,
       }
     }
@@ -45,7 +46,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={3}
     style={
       Object {
-        "borderBottomColor": "#e0e0e0",
+        "borderBottomColor": "#edeff2",
         "borderBottomWidth": 1,
       }
     }
@@ -56,7 +57,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={2}
     style={
       Object {
-        "borderBottomColor": "#e0e0e0",
+        "borderBottomColor": "#edeff2",
         "borderBottomWidth": 1,
       }
     }
@@ -67,7 +68,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={1}
     style={
       Object {
-        "borderBottomColor": "#e0e0e0",
+        "borderBottomColor": "#edeff2",
         "borderBottomWidth": 1,
       }
     }
@@ -80,7 +81,6 @@ exports[`StarsPopup should render popup 1`] = `
       style={
         Object {
           "fontSize": 16,
-          "fontWeight": "300",
           "marginLeft": 3,
         }
       }

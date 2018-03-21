@@ -3,12 +3,12 @@
 import { NativeModules } from 'react-native';
 
 NativeModules.RNColors = {
-  backgroundGray: '#EDEFF2',
-  brand: '#0097A9',
-  brandSecondary: '#0CB3C7',
-  buttercup: '#EB9D08',
-  sun: '#FBAD18',
-  textDark: '#30363D',
-  textLight: '#79818A',
+  backgroundGray: '#edeff2',
+  brand: '#0097a9',
+  brandSecondary: '#0cb3c7',
+  buttercup: '#eb9d08',
+  sun: '#fbad18',
+  textDark: '#30363d',
+  textLight: '#79818a',
   textMedium: '#596066',
 };
