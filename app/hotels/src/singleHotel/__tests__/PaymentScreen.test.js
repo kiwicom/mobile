@@ -50,20 +50,18 @@ it('creates correct URL', () => {
   expect(
     renderer.render(
       <PaymentScreen
-        {...{
-          hotelId: 2,
-          checkin: new Date(2 * ONE_DAY),
-          checkout: new Date(16 * ONE_DAY), // 14 days later
-          rooms: [
-            {
-              id: '7709411_91461863_1_1_0',
-              count: 5,
-            },
-          ],
-          affiliateId: '321',
-          language: 'cs',
-          currency: 'JPY',
-        }}
+        hotelId={2}
+        checkin={new Date(2 * ONE_DAY)}
+        checkout={new Date(16 * ONE_DAY)} // 14 days later
+        rooms={[
+          {
+            id: '7709411_91461863_1_1_0',
+            count: 5,
+          },
+        ]}
+        affiliateId="321"
+        language="cs"
+        currency="JPY"
       />,
     ),
   ).toMatchSnapshot();
