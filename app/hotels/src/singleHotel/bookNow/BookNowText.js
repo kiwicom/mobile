@@ -7,6 +7,7 @@ import {
   ButtonText,
   type StylePropType,
 } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 const styles = StyleSheet.create({
   priceWrapper: {
@@ -32,16 +33,25 @@ type Props = {|
 |};
 
 export default function BookNowText(props: Props) {
-  const roomsIsPlural = props.numberOfRooms > 1;
-  const personsIsPlural = props.personCount > 1;
-  const personsAndRoomsText = `${props.personCount} person${
-    personsIsPlural ? 's' : ''
-  } · ${props.numberOfRooms} room${roomsIsPlural ? 's' : ''} · `;
   return (
     <View style={styles.buttonInnerWrapper}>
-      <ButtonText style={styles.buttonTitle} text="Book Now" />
+      <ButtonText
+        style={styles.buttonTitle}
+        text={<Translation id="SingleHotel.BookNow" />}
+      />
       <View style={styles.priceWrapper}>
-        <ButtonText style={props.buttonPriceStyle} text={personsAndRoomsText} />
+        <ButtonText
+          style={props.buttonPriceStyle}
+          text={
+            <Translation
+              id="SingleHotel.BookNow.Description"
+              values={{
+                personCount: props.personCount,
+                numberOfRooms: props.numberOfRooms,
+              }}
+            />
+          }
+        />
         {props.price}
       </View>
     </View>

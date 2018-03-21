@@ -8,6 +8,7 @@ import {
   Checkbox,
   Text,
 } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import StarsCheckbox from './StarsCheckbox';
 
@@ -71,7 +72,7 @@ export default class StarsPopup extends React.Component<Props, State> {
     const { stars } = this.state;
     return (
       <ButtonPopup
-        buttonTitle="Save"
+        buttonTitle={<Translation id="HotelsSearch.Filter.StarsPopup.Save" />}
         onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}

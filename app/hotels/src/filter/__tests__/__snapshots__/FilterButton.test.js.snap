@@ -32,7 +32,11 @@ exports[`Filter button render active button 1`] = `
         },
       }
     }
-    title="title"
+    title={
+      <DummyTranslation
+        id="title"
+      />
+    }
   />
 </View>
 `;
@@ -69,7 +73,11 @@ exports[`Filter button render default button 1`] = `
         },
       }
     }
-    title="title"
+    title={
+      <DummyTranslation
+        id="title"
+      />
+    }
   />
 </View>
 `;

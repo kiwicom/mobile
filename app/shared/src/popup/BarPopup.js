@@ -2,6 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import Translation, {
+  type TranslationType,
+} from '@kiwicom/react-native-app-translations';
 
 import Popup from './Popup';
 import Color from '../Color';
@@ -9,7 +12,7 @@ import StyleSheet from '../PlatformStyleSheet';
 import LinkButton from '../buttons/LinkButton';
 
 type Props = {|
-  buttonTitle: string,
+  buttonTitle: TranslationType,
   children: React.Node,
   isVisible: boolean,
   onClose: Function,
@@ -30,7 +33,10 @@ export default class BarPopup extends React.Component<Props> {
   render = () => (
     <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
       <View style={styles.bar}>
-        <LinkButton title="Cancel" onPress={this.onClose} />
+        <LinkButton
+          title={<Translation id="Shared.BarPopup.Cancel" />}
+          onPress={this.onClose}
+        />
         <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
       </View>
       <View style={styles.children}>{this.props.children}</View>

@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
 } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   facilities: string[],
@@ -89,7 +90,9 @@ export default class HotelFacilitiesPopup extends React.Component<
     const { facilities } = this.state;
     return (
       <ButtonPopup
-        buttonTitle="Save"
+        buttonTitle={
+          <Translation id="HotelsSearch.Filter.HotelFacilitiesPopup.Save" />
+        }
         onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}

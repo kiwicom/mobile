@@ -44,7 +44,9 @@ describe('Guests', () => {
     await buttons.props.onIncrement();
 
     // Save guests count
-    await testInstance.findByProps({ title: 'Save' }).props.onPress();
+    await testInstance
+      .findByProps({ testID: 'guestsPopupSaveButton' })
+      .props.onSave();
 
     expect(onSave).toBeCalledWith({ adultsCount: 3, children: [] });
   });

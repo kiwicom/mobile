@@ -7,6 +7,7 @@ import {
   LinkButton,
   StyleSheet,
 } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   isLoading: boolean,
@@ -29,7 +30,10 @@ export default function LoadMoreButton({ isLoading, onPress }: Props) {
       {isLoading ? (
         <IconLoading />
       ) : (
-        <LinkButton title="Load more..." onPress={onPress} />
+        <LinkButton
+          title={<Translation id="HotelsSearch.LoadMode" />}
+          onPress={onPress}
+        />
       )}
     </View>
   );

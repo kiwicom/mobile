@@ -40,7 +40,11 @@ exports[`renders as expected 1`] = `
           "fontSize": 14,
         }
       }
-      text="Select"
+      text={
+        <Translation
+          id="SingleHotel.RoomPicker.Select"
+        />
+      }
     />
     <View
       style={

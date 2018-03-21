@@ -46,7 +46,11 @@ exports[`renders button with custom title 1`] = `
             undefined,
           ]
         }
-        text="My Button!"
+        text={
+          <DummyTranslation
+            id="My Button!"
+          />
+        }
       />
     </View>
   </View>

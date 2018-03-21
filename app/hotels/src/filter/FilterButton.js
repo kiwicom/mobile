@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Button, Color, Icon } from '@kiwicom/react-native-app-shared';
+import type { TranslationType } from '@kiwicom/react-native-app-translations';
 
 const styles = {
   default: {
@@ -12,7 +13,7 @@ const styles = {
 };
 
 type Props = {
-  title: string,
+  title: TranslationType,
   isActive: boolean,
   onPress: () => void,
   icon?: React.Element<typeof Icon>,
