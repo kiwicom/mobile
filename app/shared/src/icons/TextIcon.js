@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
 import Color from '../Color';
@@ -8,7 +9,7 @@ import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  children: React.Node,
+  children: string,
   style?: StylePropType,
 |};
 
@@ -30,7 +31,11 @@ const styleSheet = StyleSheet.create({
  * We currently support only one font family: "spfont".
  */
 function TextIcon(props: Props) {
-  return <Text style={[styleSheet.icon, props.style]}>{props.children}</Text>;
+  return (
+    <Text style={[styleSheet.icon, props.style]}>
+      <DummyTranslation id={props.children} />
+    </Text>
+  );
 }
 
 TextIcon.defaultProps = {

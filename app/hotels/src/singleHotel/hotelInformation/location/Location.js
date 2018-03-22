@@ -13,6 +13,7 @@ import {
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel } from './__generated__/Location_hotel.graphql';
@@ -77,10 +78,10 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
         <View style={styles.container}>
           <View style={styles.leftColumn}>
             <Text style={[styles.addressLine, styles.streetLine]}>
-              {idx(address, _ => _.street)}
+              <DummyTranslation id={idx(address, _ => _.street)} />
             </Text>
             <Text style={[styles.addressLine, styles.cityLine]}>
-              {idx(address, _ => _.city)}
+              <DummyTranslation id={idx(address, _ => _.city)} />
             </Text>
           </View>
           <View style={styles.rightColumn}>

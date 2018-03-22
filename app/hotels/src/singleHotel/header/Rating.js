@@ -1,7 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Stars, Text } from '@kiwicom/react-native-app-shared';
+import { Stars } from '@kiwicom/react-native-app-shared';
+import {
+  TranslationFragment,
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   stars?: ?number,
@@ -15,10 +19,10 @@ export default function Rating({ stars, score, description }: Props) {
   const starsDelimiter = stars && (score || description) ? ' - ' : '';
 
   return (
-    <Text>
+    <TranslationFragment>
       <Stars rating={stars || 0} />
-      {starsDelimiter}
-      {review}
-    </Text>
+      <DummyTranslation id={starsDelimiter} />
+      <DummyTranslation id={review} />
+    </TranslationFragment>
   );
 }

@@ -12,6 +12,7 @@ import {
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 import Rating from './Rating';
@@ -98,7 +99,9 @@ export class Header extends React.Component<Props> {
           <View style={styles.nameAndRatingContainer}>
             <StretchedImage source={gradient} />
             <View style={styles.nameAndRating}>
-              <Text style={styles.hotelName}>{idx(hotel, _ => _.name)}</Text>
+              <Text style={styles.hotelName}>
+                <DummyTranslation id={idx(hotel, _ => _.name)} />
+              </Text>
               <Text style={styles.rating}>
                 <Rating
                   stars={idx(hotel, _ => _.rating.stars)}

@@ -10,7 +10,9 @@ import {
   ButtonText,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translate from '@kiwicom/react-native-app-translations';
+import Translate, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   price: number | null,
@@ -59,7 +61,9 @@ export default function RoomPicker({
       <MinusButton onPress={decrement} />
 
       <View style={[styles.container, styles.row, styles.priceAndCount]}>
-        <Text style={[styles.text, styles.count]}>{selectedCount} × </Text>
+        <Text style={[styles.text, styles.count]}>
+          <DummyTranslation id={`${selectedCount} × `} />
+        </Text>
         <Price amount={price} currency={currency} style={styles.text} />
       </View>
 
@@ -77,7 +81,9 @@ const MinusButton = ({ onPress }) => {
       style={[styles.button, styles.borderRadiusLeft]}
       onPress={onPress}
     >
-      <Text style={styles.buttonText}>-</Text>
+      <Text style={styles.buttonText}>
+        <DummyTranslation id="-" />
+      </Text>
     </Touchable>
   );
 };
@@ -94,7 +100,9 @@ const PlusButton = ({ disabled, onPress }) => {
       onPress={onPress}
       disabled={disabled}
     >
-      <Text style={styles.buttonText}>+</Text>
+      <Text style={styles.buttonText}>
+        <DummyTranslation id="+" />
+      </Text>
     </Touchable>
   );
 };

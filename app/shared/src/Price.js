@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import CurrencyFormatter from './currency/CurrencyFormatter';
 import Text from './Text';
@@ -22,5 +23,10 @@ export default function Price(props: Props) {
     props.amount != null && props.currency != null
       ? CurrencyFormatter(props.amount, props.currency)
       : '';
-  return <Text style={props.style}>{amount}</Text>;
+
+  return (
+    <Text style={props.style}>
+      <DummyTranslation id={amount} />
+    </Text>
+  );
 }

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Image, View } from 'react-native';
 import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import icon from './gallery-icon.png';
 
@@ -36,7 +37,9 @@ export default function GalleryButton({ count }: Props) {
   return (
     <View style={styles.container}>
       <Image source={icon} style={styles.icon} />
-      <Text style={styles.count}>{count}</Text>
+      <Text style={styles.count}>
+        <DummyTranslation id={count} />
+      </Text>
     </View>
   );
 }

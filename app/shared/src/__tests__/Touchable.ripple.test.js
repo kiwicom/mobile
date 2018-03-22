@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
-import Text from '../Text';
 import Touchable from '../Touchable';
 
 jest.mock('TouchableNativeFeedback', () => {
@@ -12,10 +12,13 @@ jest.mock('TouchableNativeFeedback', () => {
   mock.Ripple = jest.fn();
   return mock;
 });
-jest.mock('Platform', () => ({
-  OS: 'android',
-  Version: 22,
-}));
+
+jest.mock('Platform', () => {
+  const mock = jest.genMockFromModule('Platform');
+  mock.OS = 'android';
+  mock.Version = 22;
+  return mock;
+});
 
 const renderer = new ShallowRenderer();
 const VoidAction = () => {};
@@ -25,7 +28,7 @@ describe('Touchable with ripple effect', () => {
     expect(
       renderer.render(
         <Touchable onPress={VoidAction}>
-          <Text>line</Text>
+          <DummyTranslation id="line" />
         </Touchable>,
       ),
     ).toMatchSnapshot();
@@ -35,7 +38,7 @@ describe('Touchable with ripple effect', () => {
     expect(
       renderer.render(
         <Touchable rippleColor="red" onPress={VoidAction}>
-          <Text>line</Text>
+          <DummyTranslation id="line" />
         </Touchable>,
       ),
     ).toMatchSnapshot();
@@ -45,7 +48,7 @@ describe('Touchable with ripple effect', () => {
     expect(
       renderer.render(
         <Touchable borderlessRipple={true} onPress={VoidAction}>
-          <Text>line</Text>
+          <DummyTranslation id="line" />
         </Touchable>,
       ),
     ).toMatchSnapshot();
