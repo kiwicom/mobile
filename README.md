@@ -408,3 +408,13 @@ rm -rf node_modules/ && yarn cache clean && yarn install
 ```
 
 For more information please visit this issue: https://github.com/facebook/react-native/issues/14382
+
+### Cannot resolve module '@kiwicom/react-native-app-<module>'
+
+#### Symptoms:
+
+Flow can't find newly added workspace
+
+#### Solution
+
+`yarn && yarn flow stop && yarn flow`

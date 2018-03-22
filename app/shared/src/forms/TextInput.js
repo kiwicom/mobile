@@ -6,6 +6,7 @@ import { TextInput as OriginalTextInput, View } from 'react-native';
 import StyleSheet from '../PlatformStyleSheet';
 import Icon from '../icons/Icon';
 import Color from '../Color';
+import type { StylePropType } from '../../types/Styles';
 
 const styles = StyleSheet.create({
   input: {
@@ -42,6 +43,7 @@ const styles = StyleSheet.create({
 // not exact - additional properties allowed
 type Props = {
   iconName?: string, // only Material icons allowed here
+  style?: StylePropType,
 };
 
 export default function TextInput(props: Props) {
@@ -54,7 +56,7 @@ export default function TextInput(props: Props) {
         underlineColorAndroid="transparent"
         autoCorrect={false}
         {...props}
-        style={styles.input}
+        style={[styles.input, props.style]}
       />
     </View>
   );

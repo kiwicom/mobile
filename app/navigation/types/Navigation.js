@@ -10,7 +10,8 @@ type HotelsStackNavigatorNames =
   | 'GalleryStripe'
   | 'Payment'
   | 'SingleHotel'
-  | 'SingleHotelMap';
+  | 'SingleHotelMap'
+  | 'LocationPicker';
 type HomepageStackNavigatorRouteNames = 'Home';
 
 type RouteNames =
