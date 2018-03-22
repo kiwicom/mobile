@@ -30,10 +30,13 @@ const Translations = {
   'Homepage.HotelsOslo': 'Hotels in Oslo',
   'Homepage.HotelsLima': 'Hotels in Lima',
 
+  'Hotels.Map.NoReviews': 'No reviews',
+
   'SingleHotel.RoomPicker.Select': 'Select',
   'SingleHotel.BookNow': 'Book Now',
   'SingleHotel.BookNow.Description':
     'Persons: __1_personCount__ · Rooms: __2_numberOfRooms__  · ',
+  'SingleHotel.RoomList.Rooms': 'Rooms',
 
   'HotelsSearch.LoadMode': 'Load more...',
   'HotelsSearch.Filter.StarsPopup.Save': 'Save',

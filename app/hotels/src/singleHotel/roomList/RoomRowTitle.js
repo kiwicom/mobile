@@ -8,6 +8,7 @@ import {
   Color,
 } from '@kiwicom/react-native-app-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 import idx from 'idx';
 
 import type { RoomRowTitle_room as RoomRowTitleType } from './__generated__/RoomRowTitle_room.graphql';
@@ -37,12 +38,14 @@ type Props = {|
 |};
 
 export function RoomRowTitle(props: Props) {
-  const title = idx(props.room, _ => _.description.title);
+  const title = idx(props.room, _ => _.description.title) || '';
   const roomSize = idx(props.room, _ => _.roomSize);
 
   return (
     <Text>
-      <Text style={styles.title}>{title} </Text>
+      <Text style={styles.title}>
+        <DummyTranslation id={`${title} `} />
+      </Text>
       <RoomSize roomSize={roomSize} />
     </Text>
   );

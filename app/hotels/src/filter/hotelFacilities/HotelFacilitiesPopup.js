@@ -10,7 +10,9 @@ import {
   StyleSheet,
   Text,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   facilities: string[],
@@ -78,7 +80,7 @@ export default class HotelFacilitiesPopup extends React.Component<
         >
           <View style={styles.checkbox}>
             <Icon name={facility.icon} size={20} style={styles.facilityIcon} />
-            <Text>{facility.text}</Text>
+            <DummyTranslation id={facility.text} />
           </View>
         </Checkbox>,
       );

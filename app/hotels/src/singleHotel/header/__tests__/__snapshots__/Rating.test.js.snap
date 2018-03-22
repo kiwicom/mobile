@@ -1,121 +1,178 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`formatRating concats stars, review score and review description 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  style={
-    Array [
-      undefined,
-      Object {
-        "color": "#30363d",
-        "fontSize": 14,
-        "fontWeight": "normal",
-        "letterSpacing": -0.15,
-      },
-    ]
-  }
->
+Array [
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
       Array [
+        undefined,
         Object {
           "color": "#30363d",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
         },
-        undefined,
       ]
     }
   >
     ★★★
-  </Text>
-   - 
-  8.6 Good Enough
-</Text>
-`;
-
-exports[`formatRating omits the dash when review is missing 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  style={
-    Array [
-      undefined,
-      Object {
-        "color": "#30363d",
-        "fontSize": 14,
-        "fontWeight": "normal",
-        "letterSpacing": -0.15,
-      },
-    ]
-  }
->
+  </Text>,
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
       Array [
+        undefined,
         Object {
           "color": "#30363d",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
         },
+      ]
+    }
+  >
+     - 
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
         undefined,
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+      ]
+    }
+  >
+    8.6 Good Enough
+  </Text>,
+]
+`;
+
+exports[`formatRating omits the dash when review is missing 1`] = `
+Array [
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
       ]
     }
   >
     ★★★★★
-  </Text>
-  
-  
-</Text>
-`;
-
-exports[`formatRating omits the dash when stars are missing 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  style={
-    Array [
-      undefined,
-      Object {
-        "color": "#30363d",
-        "fontSize": 14,
-        "fontWeight": "normal",
-        "letterSpacing": -0.15,
-      },
-    ]
-  }
->
+  </Text>,
   <Text
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
       Array [
+        undefined,
         Object {
           "color": "#30363d",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
         },
-        undefined,
       ]
     }
   >
     
-  </Text>
-  
-  8.6 Good Enough
-</Text>
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+      ]
+    }
+  >
+    
+  </Text>,
+]
+`;
+
+exports[`formatRating omits the dash when stars are missing 1`] = `
+Array [
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+      ]
+    }
+  >
+    
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+      ]
+    }
+  >
+    
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+      ]
+    }
+  >
+    8.6 Good Enough
+  </Text>,
+]
 `;

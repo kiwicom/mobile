@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
 import Text from '../Text';
@@ -48,7 +49,9 @@ export default function AdaptableBadge(props: Props) {
   return (
     <View style={[style.container, props.style]}>
       {props.icon}
-      <Text style={[style.text, props.textStyle]}>{props.text}</Text>
+      <Text style={[style.text, props.textStyle]}>
+        <DummyTranslation id={props.text} />
+      </Text>
     </View>
   );
 }

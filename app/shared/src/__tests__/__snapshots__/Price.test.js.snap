@@ -4,7 +4,9 @@ exports[`Price renders null values correctly 1`] = `
 <Text
   style={undefined}
 >
-  
+  <DummyTranslation
+    id=""
+  />
 </Text>
 `;
 
@@ -12,7 +14,9 @@ exports[`Price renders null values correctly 2`] = `
 <Text
   style={undefined}
 >
-  
+  <DummyTranslation
+    id=""
+  />
 </Text>
 `;
 
@@ -20,6 +24,8 @@ exports[`Price renders null values correctly 3`] = `
 <Text
   style={undefined}
 >
-  
+  <DummyTranslation
+    id=""
+  />
 </Text>
 `;
