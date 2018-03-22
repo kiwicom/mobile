@@ -5,8 +5,9 @@ import { StackNavigator } from 'react-navigation';
 import { StackNavigatorOptions } from '@kiwicom/react-native-app-navigation';
 
 import Homepage from '../screens/homepage/Homepage';
+import LocationPicker from '../../../hotels/src/allHotels/searchForm/locationPicker/LocationPickerScreen';
 
-export default StackNavigator(
+const HomeStack = StackNavigator(
   {
     Home: {
       screen: withMappedProps(Homepage),
@@ -18,5 +19,22 @@ export default StackNavigator(
   {
     ...StackNavigatorOptions,
     initialRouteName: 'Home',
+    headerMode: 'none',
+  },
+);
+
+export default StackNavigator(
+  {
+    Main: {
+      screen: HomeStack,
+    },
+    LocationPicker: {
+      screen: withMappedProps(LocationPicker),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'Main',
+    mode: 'modal',
   },
 );

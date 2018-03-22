@@ -29,6 +29,7 @@ const Translations = {
   'Homepage.Hotels': 'Hotels',
   'Homepage.HotelsOslo': 'Hotels in Oslo',
   'Homepage.HotelsLima': 'Hotels in Lima',
+  'Homepage.LocationPicker': 'Location picker',
 
   'Hotels.Map.NoReviews': 'No reviews',
 

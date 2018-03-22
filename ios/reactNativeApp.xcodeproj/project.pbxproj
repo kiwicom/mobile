@@ -45,6 +45,7 @@
 		C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 		37478C9C708E472FBA98598C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */; };
 		9166DECF75BC4B9699DA0CBA /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */; };
+		F17C18C1FCB544E795B06AE7 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 463A493B8DDC4A86A32B73D4 /* SFProText-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -380,6 +381,7 @@
 		BF458A69A33B4401B9E9FCDA /* spfont.ttf */ = {isa = PBXFileReference; name = "spfont.ttf"; path = "../assets/fonts/spfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; name = "SFProText-Semibold.ttf"; path = "../assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		463A493B8DDC4A86A32B73D4 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; name = "SFProText-Regular.ttf"; path = "../assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -684,6 +686,7 @@
 				BF458A69A33B4401B9E9FCDA /* spfont.ttf */,
 				21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */,
 				146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */,
+				463A493B8DDC4A86A32B73D4 /* SFProText-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1117,6 +1120,7 @@
 				C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */,
 				37478C9C708E472FBA98598C /* Roboto-Regular.ttf in Resources */,
 				9166DECF75BC4B9699DA0CBA /* SFProText-Semibold.ttf in Resources */,
+				F17C18C1FCB544E795B06AE7 /* SFProText-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
