@@ -15,6 +15,8 @@ type Props = {|
 const styleSheet = StyleSheet.create({
   icon: {
     fontFamily: 'spfont',
+    includeFontPadding: false,
+    textAlignVertical: 'center',
   },
 });
 

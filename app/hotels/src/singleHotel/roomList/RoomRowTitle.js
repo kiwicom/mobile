@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import {
   Text,
   TextIcon,
@@ -14,30 +13,16 @@ import idx from 'idx';
 import type { RoomRowTitle_room as RoomRowTitleType } from './__generated__/RoomRowTitle_room.graphql';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
   title: {
     fontSize: 14,
     color: Color.textDark,
   },
   icon: {
-    fontSize: 13,
+    fontSize: 10,
     color: Color.textLight,
-    ios: {
-      alignSelf: 'flex-end',
-    },
-    android: {
-      alignSelf: 'center',
-    },
   },
   sizeText: {
-    fontSize: 14,
-    color: Color.textLight,
-  },
-  supText: {
-    fontSize: 8,
+    fontSize: 12,
     color: Color.textLight,
   },
 });
@@ -54,11 +39,12 @@ type Props = {|
 export function RoomRowTitle(props: Props) {
   const title = idx(props.room, _ => _.description.title);
   const roomSize = idx(props.room, _ => _.roomSize);
+
   return (
-    <View style={styles.container}>
+    <Text>
       <Text style={styles.title}>{title} </Text>
       <RoomSize roomSize={roomSize} />
-    </View>
+    </Text>
   );
 }
 
@@ -66,18 +52,13 @@ const RoomSize = ({ roomSize }: { roomSize: ?number }) => {
   if (roomSize === null) {
     return null;
   }
-  return [
-    <TextIcon key="size-icon" style={styles.icon}>
-      &#xe0a6;
-    </TextIcon>,
-    <Text key="room-size" style={styles.sizeText}>
-      {' '}
-      {roomSize}m
-    </Text>,
-    <Text key="sup" style={styles.supText}>
-      2
-    </Text>,
-  ];
+
+  return (
+    <Text>
+      <TextIcon style={styles.icon}>&#xe0a6;</TextIcon>
+      <Text style={styles.sizeText}>&nbsp;{roomSize}m²</Text>
+    </Text>
+  );
 };
 
 export default (createFragmentContainer(
