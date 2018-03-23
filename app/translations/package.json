@@ -2,5 +2,9 @@
   "name": "@kiwicom/react-native-app-translations",
   "version": "0.0.0",
   "private": false,
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "moment": "^2.21.0",
+    "react-native-device-info": "^0.21.2"
+  }
 }
