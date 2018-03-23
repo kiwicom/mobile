@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import PlaygroundRenderer from './PlaygroundRenderer';
 // Import component tests you want to show in the Playground here:
@@ -11,7 +12,9 @@ import _ from '../hotels/src/singleHotel/roomList/__tests__/RoomDescription.test
 
 const PlaygroundSection = props => (
   <View style={styles.section}>
-    <Text style={styles.sectionText}>SAMPLE #{props.index + 1}</Text>
+    <Text style={styles.sectionText}>
+      <DummyTranslation id={`SAMPLE #${props.index + 1}`} />
+    </Text>
     {props.children}
   </View>
 );

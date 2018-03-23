@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import Text from '../Text';
 
@@ -13,7 +14,9 @@ it('renders with the default properties for iOS', () => {
 
 it('renders with additional style properties', () => {
   PlaygroundRenderer.render(
-    <Text style={{ fontWeight: 'bold' }}>bold text</Text>,
+    <Text style={{ fontWeight: 'bold' }}>
+      <DummyTranslation id="bold text" />
+    </Text>,
     DEEP_RENDER,
   );
 });
@@ -23,7 +26,10 @@ it('supports nested styles', () => {
 
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>
-      bold text <Text style={{ color: 'red' }}>and bold-red text</Text>
+      <DummyTranslation id="bold text " />
+      <Text style={{ color: 'red' }}>
+        <DummyTranslation id="and bold-red text" />
+      </Text>
     </Text>,
     DEEP_RENDER,
   );
@@ -40,8 +46,12 @@ it('supports multiple nested strings', () => {
         color: 'red',
       }}
     >
-      <Text>red normal text </Text>
-      <Text>and red normal text</Text>
+      <Text>
+        <DummyTranslation id="red normal text " />
+      </Text>
+      <Text>
+        <DummyTranslation id="and red normal text" />
+      </Text>
     </Text>,
     DEEP_RENDER,
   );
@@ -63,7 +73,9 @@ it('works applies the styles recursively', () => {
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>
       <Fence>
-        <Text style={{ color: 'red' }}>bold and red text</Text>
+        <Text style={{ color: 'red' }}>
+          <DummyTranslation id="bold and red text" />
+        </Text>
       </Fence>
     </Text>,
     DEEP_RENDER,
@@ -71,7 +83,11 @@ it('works applies the styles recursively', () => {
 });
 
 it('works even with the distant Text nodes', () => {
-  const Fence = () => <Text>bold default text</Text>;
+  const Fence = () => (
+    <Text>
+      <DummyTranslation id="bold default text" />
+    </Text>
+  );
 
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>
