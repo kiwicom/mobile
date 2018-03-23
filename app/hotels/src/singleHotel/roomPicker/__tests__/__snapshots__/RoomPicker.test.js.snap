@@ -112,8 +112,9 @@ exports[`renders as expected 2`] = `
         ]
       }
     >
-      1
-       × 
+      <DummyTranslation
+        id="1 × "
+      />
     </Text>
     <Price
       amount={100}
@@ -177,8 +178,9 @@ exports[`renders as expected 3`] = `
         ]
       }
     >
-      2
-       × 
+      <DummyTranslation
+        id="2 × "
+      />
     </Text>
     <Price
       amount={100}

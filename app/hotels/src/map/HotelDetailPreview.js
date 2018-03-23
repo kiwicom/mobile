@@ -10,6 +10,9 @@ import {
   Price,
   Text,
 } from '@kiwicom/react-native-app-shared';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 import idx from 'idx';
 
 import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
@@ -78,7 +81,11 @@ const getReview = review => {
     );
   }
 
-  return <Text style={styles.metainfo}>No reviews</Text>;
+  return (
+    <Text style={styles.metainfo}>
+      <Translation id="Hotels.Map.NoReviews" />
+    </Text>
+  );
 };
 
 export class HotelDetailPreview extends React.Component<Props> {
@@ -102,7 +109,7 @@ export class HotelDetailPreview extends React.Component<Props> {
         </View>
         <View style={styles.description}>
           <Text style={styles.hotelName} numberOfLines={1}>
-            {name}
+            <DummyTranslation id={name} />
           </Text>
           {getReview(review)}
           <Text style={styles.price}>

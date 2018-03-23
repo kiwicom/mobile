@@ -13,9 +13,9 @@ exports[`Touchable with ripple effect disables foreground in borderless mode 1`]
   <View
     style={undefined}
   >
-    <Text>
-      line
-    </Text>
+    <DummyTranslation
+      id="line"
+    />
   </View>
 </DummyTouchableNativeFeedback>
 `;
@@ -33,9 +33,9 @@ exports[`Touchable with ripple effect renders with foreground 1`] = `
   <View
     style={undefined}
   >
-    <Text>
-      line
-    </Text>
+    <DummyTranslation
+      id="line"
+    />
   </View>
 </DummyTouchableNativeFeedback>
 `;
@@ -53,9 +53,9 @@ exports[`Touchable with ripple effect renders with ripple color 1`] = `
   <View
     style={undefined}
   >
-    <Text>
-      line
-    </Text>
+    <DummyTranslation
+      id="line"
+    />
   </View>
 </DummyTouchableNativeFeedback>
 `;

@@ -27,7 +27,9 @@ exports[`renders text 1`] = `
       ]
     }
   >
-    default badge
+    <DummyTranslation
+      id="default badge"
+    />
   </Text>
 </View>
 `;
@@ -61,7 +63,9 @@ exports[`renders text with color 1`] = `
       ]
     }
   >
-    badge with color
+    <DummyTranslation
+      id="badge with color"
+    />
   </Text>
 </View>
 `;
@@ -93,7 +97,9 @@ exports[`renders very long texts 1`] = `
       ]
     }
   >
-    very very very very very long badge (adaptable width)
+    <DummyTranslation
+      id="very very very very very long badge (adaptable width)"
+    />
   </Text>
 </View>
 `;
