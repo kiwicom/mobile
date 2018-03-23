@@ -28,7 +28,25 @@ exports[`renders as expected 1`] = `
         ]
       }
     >
-      Error Message
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#f44336",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "letterSpacing": -0.15,
+              "textAlign": "center",
+            },
+            undefined,
+          ]
+        }
+      >
+        Error Message
+      </Text>
     </Text>
   </View>
 </View>

@@ -41,9 +41,6 @@ export {
   default as HeaderRightButton,
 } from './src/navigation/HeaderRightButton';
 
-export { default as Large } from './src/text/Large';
-export { default as Message } from './src/text/Message';
-
 export { default as AdaptableLayout } from './src/view/AdaptableLayout';
 export { default as CenteredView } from './src/view/CenteredView';
 export { default as DismissKeyboardView } from './src/view/DismissKeyboardView';

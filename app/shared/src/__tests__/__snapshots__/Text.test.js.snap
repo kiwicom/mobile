@@ -55,7 +55,24 @@ exports[`renders with the default properties for iOS 1`] = `
     ]
   }
 >
-  normal text
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    normal text
+  </Text>
 </Text>
 `;
 
