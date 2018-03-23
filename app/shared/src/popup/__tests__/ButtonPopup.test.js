@@ -6,7 +6,6 @@ import renderer from 'react-test-renderer';
 import { Touchable } from '@kiwicom/react-native-app-shared';
 import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
-import Text from '../../Text';
 import ButtonPopup from '../ButtonPopup';
 
 const shallowRenderer = new ShallowRenderer();
@@ -19,7 +18,7 @@ const renderPopup = (onSave, onClose) =>
       onSave={onSave}
       onClose={onClose}
     >
-      <Text>Child</Text>
+      <DummyTranslation id="Child" />
     </ButtonPopup>,
   );
 
@@ -32,7 +31,7 @@ describe('ButtonPopup', () => {
         onSave={jest.fn()}
         onClose={jest.fn()}
       >
-        <Text>Child</Text>
+        <DummyTranslation id="Child" />
       </ButtonPopup>,
     );
     expect(shallowRenderer.getRenderOutput()).toMatchSnapshot();

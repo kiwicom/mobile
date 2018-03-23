@@ -26,6 +26,9 @@
  * TODO: better parameters structure (native code is not replacing it anyway)
  */
 const Translations = {
+  'PartialFailure.Error':
+    'Some parts of the page may be missing due to partial server error.',
+
   'Homepage.Hotels': 'Hotels',
   'Homepage.HotelsOslo': 'Hotels in Oslo',
   'Homepage.HotelsLima': 'Hotels in Lima',
@@ -55,6 +58,8 @@ const Translations = {
   'HotelsSearch.Filter.HotelFacilitiesPopup.Save': 'Save',
   'HotelsSearch.Filter.HotelFacilitiesFilter.Title': 'hotel facilities',
   'HotelsSearch.Filter.GuestsPopup.Save': 'Save',
+  'HotelsSearch.Filter.GuestsPopup.Children.ErrorAge':
+    'Please fill children ages first.',
   'HotelsSearch.Filter.FreeCancellation': 'free cancellation',
 
   // shared component

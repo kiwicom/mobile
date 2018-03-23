@@ -9,7 +9,12 @@ import Text from '../Text';
 const DEEP_RENDER = true;
 
 it('renders with the default properties for iOS', () => {
-  PlaygroundRenderer.render(<Text>normal text</Text>, DEEP_RENDER);
+  PlaygroundRenderer.render(
+    <Text>
+      <DummyTranslation id="normal text" />
+    </Text>,
+    DEEP_RENDER,
+  );
 });
 
 it('renders with additional style properties', () => {
@@ -69,7 +74,7 @@ it('works with nullable child', () => {
 });
 
 it('works applies the styles recursively', () => {
-  const Fence = ({ children }) => children;
+  const Fence = ({ children }: {| children: React.Node |}) => children;
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>
       <Fence>

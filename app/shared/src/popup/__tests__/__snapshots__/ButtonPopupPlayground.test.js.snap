@@ -16,9 +16,9 @@ exports[`ButtonPopup playground renders in playground 1`] = `
       ]
     }
   >
-    <Text>
-      Child
-    </Text>
+    <DummyTranslation
+      id="Child"
+    />
   </View>
   <View
     style={
