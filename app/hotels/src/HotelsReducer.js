@@ -1,6 +1,6 @@
 // @flow
 
-import moment from 'moment/moment';
+import { DateFormatter } from '@kiwicom/react-native-app-translations';
 
 import type {
   OnChangeSearchParams,
@@ -25,11 +25,11 @@ const InitialHotelsState: HotelsReducerState = {
   cityId: null,
   location: '',
   searchParams: {
-    checkin: moment()
+    checkin: DateFormatter()
       .add(1, 'week')
       .startOf('isoWeek')
       .toDate(),
-    checkout: moment()
+    checkout: DateFormatter()
       .add(1, 'week')
       .endOf('isoWeek')
       .toDate(),

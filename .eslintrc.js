@@ -33,6 +33,7 @@ module.exports = {
     'no-restricted-imports': [
       ERROR,
       {
+        patterns: ["moment"], // DateFormatter
         paths: [
           {
             name: 'react-native',
@@ -52,7 +53,7 @@ module.exports = {
             name: 'react-native-read-more-text', // ReadMore
             message:
               "Please use '@kiwicom/react-native-app-shared' package instead.",
-          }
+          },
         ],
       },
     ],
