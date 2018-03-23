@@ -2,10 +2,8 @@
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider } from 'react-redux';
 import { type Reducer } from 'redux';
-import { persistStore } from 'redux-persist';
 
 import Store, { createCombinedReducer } from './Store';
 
@@ -36,21 +34,16 @@ export default class ReduxContext extends React.Component<Props> {
   }
 
   /**
-   * It prepares Redux provider and store persistor. These HOC components
-   * are created only once in the components tree which means that you can
-   * nest ReduxContext components.
+   * It prepares Redux provider. These HOC components are created only
+   * once in the components tree which means that you can nest
+   * ReduxContext components.
    */
   render = () => {
     if (this.context.reduxProviderMounted === true) {
       return this.props.children;
     }
 
-    const Persistor = persistStore(Store);
-    return (
-      <Provider store={Store}>
-        <PersistGate persistor={Persistor}>{this.props.children}</PersistGate>
-      </Provider>
-    );
+    return <Provider store={Store}>{this.props.children}</Provider>;
   };
 }
 
