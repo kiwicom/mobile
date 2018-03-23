@@ -12,6 +12,7 @@ import type { SuggestionList_data } from './__generated__/SuggestionList_data.gr
 type Props = {|
   data: SuggestionList_data,
   onCitySelected: (cityId: string, cityName: ?string) => void,
+  storeFirstLocation: (cityId: string, cityName: ?string) => void,
   search: string,
 |};
 
@@ -29,6 +30,14 @@ const styles = StyleSheet.create({
 });
 
 export class SuggestionList extends React.Component<Props> {
+  componentDidMount = () => {
+    const city = idx(this.props.data, _ => _.hotelCities.edges[0].node);
+
+    if (city) {
+      this.props.storeFirstLocation(city.id, city.name);
+    }
+  };
+
   keyExtractor = (item: ListItemType) => {
     const city = idx(item, _ => _.node) || {};
     return city.id;
