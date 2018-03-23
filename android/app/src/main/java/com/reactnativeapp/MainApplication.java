@@ -3,7 +3,6 @@ package com.reactnativeapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.reactlibrary.RNTooltipsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -15,6 +14,7 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.trinerdis.skypicker.colors.RNColorsPackage;
 import com.trinerdis.skypicker.currency.CurrencyChangeCallback;
 import com.trinerdis.skypicker.currency.RNCurrencyManagerPackage;
+import com.trinerdis.skypicker.device.RNDeviceInfoPackage;
 import com.trinerdis.skypicker.logging.RNLoggingPackage;
 import com.trinerdis.skypicker.translation.*;
 
@@ -35,7 +35,6 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
-                    new RNDeviceInfo(),
                     new RNTooltipsPackage(),
                     new VectorIconsPackage(),
                     new MapsPackage(),
@@ -43,7 +42,8 @@ public class MainApplication extends Application implements ReactApplication {
                     new RNTranslationManagerPackage(),
                     new RNColorsPackage(),
                     new RNCurrencyManagerPackage(),
-                    new MyNativeModulePackage()
+                    new MyNativeModulePackage(),
+                    new RNDeviceInfoPackage()
             );
         }
 
