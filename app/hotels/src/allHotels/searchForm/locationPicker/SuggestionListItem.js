@@ -43,25 +43,42 @@ export default class SuggestionListItem extends React.Component<Props> {
     this.props.onCitySelected(id, name);
   };
 
-  splitText = () => {
-    const { search } = this.props;
-    const name = idx(this.props, _ => _.city.name) || '';
-    const searchLength = search.length;
-    const matchStart = name.indexOf(search);
+  /**
+   * Returns array in this format:
+   *
+   * [
+   *   'string before the highlight',
+   *   'string to be highlighted',
+   *   'string after the highligh'
+   * ]
+   *
+   * It always returns at least empty strings so even this is a valid
+   * response:
+   *
+   * ['', '', '']
+   */
+  getHighlightedStringChunks = (): [string, string, string] => {
+    const fullText = idx(this.props, _ => _.city.name) || '';
+    const stringToHighlight = this.props.search;
 
-    if (!name || matchStart < 0) {
-      return { before: '', match: '', after: name };
+    const matchResult = fullText.match(
+      new RegExp(
+        `([\\s\\S]*?)(${stringToHighlight})([\\s\\S]*)`,
+        'i', // case insensitive
+      ),
+    );
+
+    if (matchResult == null) {
+      return [fullText, '', ''];
     }
 
-    return {
-      before: name.substr(0, matchStart),
-      match: name.substring(matchStart, matchStart + searchLength),
-      after: name.substring(matchStart + searchLength),
-    };
+    const [, before, match, after] = matchResult;
+    return [before, match, after];
   };
 
   render = () => {
-    const { before, match, after } = this.splitText();
+    const [before, match, after] = this.getHighlightedStringChunks();
+
     return (
       <Touchable onPress={this.onPress}>
         <View style={styles.row}>
