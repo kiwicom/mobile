@@ -28,6 +28,29 @@ type Airline {
   isLowCost: Boolean
 }
 
+type AllFAQs {
+  # Results of allFAQs search
+  results: Results
+}
+
+# A connection to a list of items.
+type AllFAQsConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [AllFAQsEdge]
+}
+
+# An edge in a connection.
+type AllFAQsEdge {
+  # The item at the end of the edge
+  node: AllFAQs
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
 type AllowedBaggage {
   # Extra and overweight baggage.
   additionalBaggage: [AdditionalBaggage]
@@ -122,6 +145,17 @@ enum BookingStatus {
   DELETED
   CLOSED
   EXPIRED
+}
+
+type Categories {
+  # Id of the category
+  id: Int
+
+  # Name of the category
+  name: String
+
+  # Items that belong to the category
+  items: [Items]
 }
 
 type Coordinates {
@@ -761,6 +795,20 @@ type Identity {
   login: String
 }
 
+type Items {
+  # Id of the item
+  id: Int
+
+  # Title of the item
+  title: String
+
+  # Icon type of the item
+  icon: String
+
+  # Color of the item
+  style: String
+}
+
 enum Language {
   ar
   bg
@@ -999,6 +1047,26 @@ input RadiusInput {
   radius: Int!
 }
 
+type Results {
+  # Id of the article
+  id: Int
+
+  # Title of the article
+  title: String
+
+  # Content of the article
+  content: String
+
+  # Upvotes about the utility of the article
+  upvotes: Int
+
+  # Downvotes about the utility of the article
+  downvotes: Int
+
+  # Category to which the article belongs
+  categories: [Categories]
+}
+
 input RoomsChildrenConfiguration {
   age: Int
 }
@@ -1089,6 +1157,19 @@ type RootQuery {
     before: String
     last: Int
   ): HotelCityConnection
+
+  # Search for Frequently Asked Questions
+  allFAQs(
+    # Keyword for the search
+    search: String
+
+    # Language in which the search is made and the answer is returned
+    language: Language
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): AllFAQsConnection
 }
 
 type RouteStop {
