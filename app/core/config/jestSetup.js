@@ -5,6 +5,7 @@ import './NativeModulesMocks/RNLoggingModule';
 import './NativeModulesMocks/RNTranslationManager';
 import './NativeModulesMocks/RNColors';
 import './NativeModulesMocks/RNCurrencyManager';
+import './NativeModulesMocks/RNDeviceInfo';
 
 // Need to mock this, or tests using moment will fail
 jest.mock('react-native-device-info');

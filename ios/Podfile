@@ -37,11 +37,11 @@ target 'reactNativeApp' do
   pod 'RNTranslationManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNColors', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNCurrencyManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
+  pod 'RNDeviceInfo', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'GLog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
 end
 
