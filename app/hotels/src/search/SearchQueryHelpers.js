@@ -1,7 +1,7 @@
 // @flow
 
 import idx from 'idx';
-import moment from 'moment';
+import { DateFormatter } from '@kiwicom/react-native-app-translations';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
 import type { Coordinates } from '../CoordinatesType';
@@ -47,11 +47,14 @@ export const updateCheckinDateIfBeforeToday = (
   search: SearchParams,
   onSearchChange: OnChangeSearchParams => void,
 ) => {
-  if (moment(search.checkin).startOf('day') < moment().startOf('day')) {
+  if (
+    DateFormatter(search.checkin).startOf('day') <
+    DateFormatter().startOf('day')
+  ) {
     onSearchChange({
       ...search,
       checkin: new Date(),
-      checkout: moment()
+      checkout: DateFormatter()
         .add(6, 'days')
         .toDate(),
     });

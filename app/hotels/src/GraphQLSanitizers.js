@@ -1,9 +1,9 @@
 // @flow
 
-import moment from 'moment';
+import { DateFormatter } from '@kiwicom/react-native-app-translations';
 
 export const sanitizeDate = (input: ?Date): ?string =>
-  input && moment(input).format('YYYY-MM-DD');
+  input && DateFormatter(input).format('YYYY-MM-DD');
 
 export const sanitizeHotelFacilities = (hotelFacilities: string[]) =>
   hotelFacilities.length

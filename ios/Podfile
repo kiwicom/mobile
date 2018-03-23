@@ -41,6 +41,8 @@ target 'reactNativeApp' do
   pod 'GLog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
 end
 
 post_install do |installer|

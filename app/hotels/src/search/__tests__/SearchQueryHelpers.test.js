@@ -1,6 +1,6 @@
 // @flow
 
-import moment from 'moment';
+import { DateFormatter } from '@kiwicom/react-native-app-translations';
 
 import {
   getSearchQueryParams,
@@ -107,7 +107,7 @@ describe('SearchQueryHelpers', () => {
 
     it('should not call onSearchChange if date is greater than today', () => {
       const search = {
-        checkin: moment()
+        checkin: DateFormatter()
           .add(1, 'day')
           .toDate(),
         checkout: new Date(),
@@ -121,7 +121,7 @@ describe('SearchQueryHelpers', () => {
 
     it('should call onSearchChange if date is less than today', () => {
       const search = {
-        checkin: moment()
+        checkin: DateFormatter()
           .subtract(3, 'days')
           .toDate(),
         checkout: new Date(),
