@@ -31,7 +31,9 @@ exports[`renders header with title 1`] = `
         }
       }
     >
-      ×
+      <DummyTranslation
+        id="×"
+      />
     </Text>
   </Touchable>
   <View
@@ -113,7 +115,9 @@ exports[`renders header with very long title 1`] = `
         }
       }
     >
-      ×
+      <DummyTranslation
+        id="×"
+      />
     </Text>
   </Touchable>
   <View

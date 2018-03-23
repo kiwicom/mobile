@@ -16,9 +16,9 @@ exports[`ButtonPopup render popup with child 1`] = `
       ]
     }
   >
-    <Text>
-      Child
-    </Text>
+    <DummyTranslation
+      id="Child"
+    />
   </View>
   <View
     style={

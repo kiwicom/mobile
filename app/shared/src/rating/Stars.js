@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-
-import Text from '../Text';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   // number of stars
@@ -10,5 +9,5 @@ type Props = {|
 |};
 
 export default function Stars({ rating }: Props) {
-  return <Text>{'★'.repeat(rating || 0)}</Text>;
+  return <DummyTranslation id={'★'.repeat(rating || 0)} />;
 }

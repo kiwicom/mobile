@@ -2,9 +2,24 @@
 
 exports[`renders failure and its children 1`] = `
 Array [
-  <div>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        undefined,
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+      ]
+    }
+  >
     Some content
-  </div>,
+  </Text>,
   <View
     style={
       Object {
