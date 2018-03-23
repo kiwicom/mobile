@@ -5,11 +5,11 @@ import { View } from 'react-native';
 import {
   ButtonPopup,
   NumberControl,
-  Message,
   StyleSheet,
 } from '@kiwicom/react-native-app-shared';
 import Translation from '@kiwicom/react-native-app-translations';
 
+import ErrorMessage from './ErrorMessage';
 import ChildrenAgesControl from './ChildrenAgesControl';
 import type { RoomConfigurationType } from '../SearchParametersType';
 import type {
@@ -148,7 +148,9 @@ export default class GuestsPopup extends React.Component<Props, State> {
         />
         {isMissingAge && (
           <View style={styles.message}>
-            <Message type="error">Please fill children ages first.</Message>
+            <ErrorMessage>
+              <Translation id="HotelsSearch.Filter.GuestsPopup.Children.ErrorAge" />
+            </ErrorMessage>
           </View>
         )}
       </ButtonPopup>

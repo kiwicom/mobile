@@ -4,7 +4,6 @@ import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
 import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
-import Text from '../../Text';
 import ButtonPopup from '../ButtonPopup';
 
 const noop = () => {};
@@ -18,7 +17,7 @@ describe('ButtonPopup playground', () => {
         onSave={noop}
         onClose={noop}
       >
-        <Text>Child</Text>
+        <DummyTranslation id="Child" />
       </ButtonPopup>,
     );
   });

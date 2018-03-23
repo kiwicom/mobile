@@ -52,14 +52,16 @@ export function RoomRowTitle(props: Props) {
 }
 
 const RoomSize = ({ roomSize }: { roomSize: ?number }) => {
-  if (roomSize === null) {
+  if (roomSize == null) {
     return null;
   }
 
   return (
     <Text>
       <TextIcon style={styles.icon}>&#xe0a6;</TextIcon>
-      <Text style={styles.sizeText}>&nbsp;{roomSize}m²</Text>
+      <Text style={styles.sizeText}>
+        <DummyTranslation id={`&nbsp;${roomSize}m²`} />
+      </Text>
     </Text>
   );
 };

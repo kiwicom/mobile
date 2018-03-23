@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Touchable } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
-import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 import Color from '../Color';
 import Icon from '../icons/Icon';
@@ -50,9 +50,7 @@ export default class PartialFailure extends React.Component<Props, State> {
         children,
         <View key="warning" style={style.container}>
           <View style={style.message}>
-            <Text>
-              Some parts of the page may be missing due to partial server error.
-            </Text>
+            <Translation id="PartialFailure.Error" />
           </View>
           <Touchable accessibilityLabel="Hide warning" onPress={this.toggle}>
             <Icon name="close" size={20} />

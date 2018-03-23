@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import CenteredView from '../view/CenteredView';
 import Color from '../Color';
@@ -15,7 +16,9 @@ type Props = {|
 export default function GeneralError({ errorMessage }: Props) {
   return (
     <CenteredView>
-      <Text style={styleSheet.text}>{errorMessage}</Text>
+      <Text style={styleSheet.text}>
+        <DummyTranslation id={errorMessage} />
+      </Text>
     </CenteredView>
   );
 }

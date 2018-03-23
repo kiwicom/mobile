@@ -70,6 +70,10 @@ export default class Translation extends React.Component<Props> {
             : undefined
         }
       >
+        {/*
+          $FlowExpectedError: we do not allow to use 'string' in the 'Text'
+          components but translations are exceptions.
+        */}
         {this.transformText(
           this.replaceValues(translatedString, this.props.values),
           this.props.textTransform,
