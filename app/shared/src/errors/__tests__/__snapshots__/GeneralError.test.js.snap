@@ -17,12 +17,14 @@ exports[`renders as expected 1`] = `
       ellipsizeMode="tail"
       style={
         Array [
-          undefined,
           Object {
-            "color": "#f44336",
+            "color": "#30363d",
             "fontSize": 14,
             "fontWeight": "normal",
             "letterSpacing": -0.15,
+          },
+          Object {
+            "color": "#f44336",
             "textAlign": "center",
           },
         ]
@@ -32,18 +34,7 @@ exports[`renders as expected 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
-        style={
-          Array [
-            Object {
-              "color": "#f44336",
-              "fontSize": 14,
-              "fontWeight": "normal",
-              "letterSpacing": -0.15,
-              "textAlign": "center",
-            },
-            undefined,
-          ]
-        }
+        style={undefined}
       >
         Error Message
       </Text>
