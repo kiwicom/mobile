@@ -57,4 +57,20 @@ describe('HotelsReducer', () => {
       expect(HotelsReducer(state, action)).toMatchSnapshot();
     });
   });
+
+  it('handles setLocationAndCityId', () => {
+    const state = {
+      cityId: null,
+      location: '',
+      searchParams: defaultSearchParams,
+      currentSearchStats: defaultCurrentSearchStats,
+    };
+    const action = {
+      type: 'setLocationAndCityId',
+      location: 'Rome',
+      cityId: 'rome',
+    };
+
+    expect(HotelsReducer(state, action)).toMatchSnapshot();
+  });
 });
