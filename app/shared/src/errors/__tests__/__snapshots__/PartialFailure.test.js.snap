@@ -8,13 +8,13 @@ Array [
     ellipsizeMode="tail"
     style={
       Array [
-        undefined,
         Object {
           "color": "#30363d",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
         },
+        undefined,
       ]
     }
   >
@@ -51,13 +51,13 @@ Array [
         ellipsizeMode="tail"
         style={
           Array [
-            undefined,
             Object {
               "color": "#30363d",
               "fontSize": 14,
               "fontWeight": "normal",
               "letterSpacing": -0.15,
             },
+            undefined,
           ]
         }
       >
