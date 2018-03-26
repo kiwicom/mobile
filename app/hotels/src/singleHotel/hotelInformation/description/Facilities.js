@@ -11,6 +11,10 @@ import {
   Text,
   Touchable,
 } from '@kiwicom/react-native-app-shared';
+import Translation, {
+  DummyTranslation,
+  TranslationFragment,
+} from '@kiwicom/react-native-app-translations';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
 
@@ -87,9 +91,16 @@ export class Facilities extends React.Component<Props, State> {
         {fullList.length > shortlist.length && (
           <Touchable onPress={this.toggle}>
             <Text style={styles.lessMoreButton}>
-              {collapsed
-                ? `+${fullList.length - shortlist.length} More`
-                : 'Show less'}
+              {collapsed ? (
+                <TranslationFragment>
+                  <DummyTranslation
+                    id={`+${fullList.length - shortlist.length} `}
+                  />
+                  <Translation id="SingleHotel.Description.Facilities.ShowMore" />
+                </TranslationFragment>
+              ) : (
+                <Translation id="SingleHotel.Description.Facilities.ShowLess" />
+              )}
             </Text>
           </Touchable>
         )}

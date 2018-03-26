@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Color,
 } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,7 +26,9 @@ export default function YourLocation() {
   return (
     <View style={styles.container}>
       <Icon name="gps-fixed" size={20} color={Color.brand} />
-      <Text style={styles.text}>Your location</Text>
+      <Text style={styles.text}>
+        <Translation id="HotelsSearch.LocationPicker.YourLocation" />
+      </Text>
     </View>
   );
 }

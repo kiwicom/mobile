@@ -68,15 +68,22 @@ const styles = StyleSheet.create({
 
 const getReview = review => {
   if (review && review.count) {
-    const reviewWord = review.count > 1 ? 'reviews' : 'review';
+    const reviewScore = review.score || 0;
+    const reviewDescription = review.description || '';
+    const reviewCount = review.count || 0;
+
     const delimiter =
       Number.isFinite(review.score) || review.description ? ' · ' : '';
 
     return (
       <Text style={styles.metainfo}>
-        {review.score} {review.description}
-        {delimiter}
-        {review.count} {reviewWord}
+        <DummyTranslation id={`${reviewScore} ${reviewDescription}`} />
+        <DummyTranslation id={delimiter} />
+        <DummyTranslation id={`${reviewCount} `} />
+        <Translation
+          id="Hotels.Map.MultipleReviews"
+          values={{ numberOfReviews: review.count }}
+        />
       </Text>
     );
   }
@@ -112,13 +119,13 @@ export class HotelDetailPreview extends React.Component<Props> {
             <DummyTranslation id={name} />
           </Text>
           {getReview(review)}
-          <Text style={styles.price}>
-            {price &&
-              price.currency &&
-              price.amount && (
+          {price &&
+            price.currency &&
+            price.amount && (
+              <Text style={styles.price}>
                 <Price currency={price.currency} amount={price.amount} />
-              )}
-          </Text>
+              </Text>
+            )}
         </View>
       </View>
     );

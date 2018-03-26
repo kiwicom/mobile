@@ -62,17 +62,6 @@ it('supports multiple nested strings', () => {
   );
 });
 
-it('works with nullable child', () => {
-  // this happens when for example API returns null and we are trying
-  // to render it inside of string
-  PlaygroundRenderer.render(
-    <Text>
-      {'default'} {null} {'default'} {undefined} {'default'}
-    </Text>,
-    DEEP_RENDER,
-  );
-});
-
 it('works applies the styles recursively', () => {
   const Fence = ({ children }: {| children: React.Node |}) => children;
   PlaygroundRenderer.render(
