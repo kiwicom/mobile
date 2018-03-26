@@ -3,7 +3,9 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Text, StyleSheet, Touchable } from '@kiwicom/react-native-app-shared';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   photoNumber: number,
@@ -21,9 +23,17 @@ export default class PhotosStripeHeader extends React.Component<Props> {
         </Text>
       </Touchable>
       <View style={styles.titleWrapper}>
-        <Text style={styles.title}>{this.props.hotelName}</Text>
+        <Text style={styles.title}>
+          <DummyTranslation id={this.props.hotelName} />
+        </Text>
         <Text style={styles.subTitle}>
-          {this.props.photoNumber} of {this.props.totalPhotos}
+          <Translation
+            id="Hotels.Gallery.Pagination"
+            values={{
+              photoNumber: this.props.photoNumber,
+              totalPhotos: this.props.totalPhotos,
+            }}
+          />
         </Text>
       </View>
       <View style={styles.voidRight} />

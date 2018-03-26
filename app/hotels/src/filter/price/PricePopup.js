@@ -7,7 +7,9 @@ import {
   Slider,
   Price,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   onClose: () => void,
@@ -55,7 +57,9 @@ export default class PricePopup extends React.Component<Props, State> {
 
     return (
       <Text>
-        {startPrice} - {endPrice}
+        {startPrice}
+        <DummyTranslation id=" - " />
+        {endPrice}
       </Text>
     );
   };
@@ -72,7 +76,11 @@ export default class PricePopup extends React.Component<Props, State> {
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >
-        <Text>Price per night: {label}</Text>
+        <Text>
+          <Translation id="HotelsSearch.Filter.PricePopup.Title" />
+          <DummyTranslation id=" " />
+          {label}
+        </Text>
         <Slider
           startValue={start}
           endValue={end}

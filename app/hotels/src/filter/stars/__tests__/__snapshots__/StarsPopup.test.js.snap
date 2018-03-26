@@ -20,7 +20,9 @@ exports[`StarsPopup should render popup 1`] = `
       }
     }
   >
-    Hotel stars
+    <Translation
+      id="HotelsSearch.Filter.StarsPopup.Title"
+    />
   </Text>
   <StarsCheckbox
     isChecked={true}
@@ -89,7 +91,9 @@ exports[`StarsPopup should render popup 1`] = `
         }
       }
     >
-      Unrated
+      <Translation
+        id="HotelsSearch.Filter.StarsPopup.Unrated"
+      />
     </Text>
   </Checkbox>
 </ButtonPopup>

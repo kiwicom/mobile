@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, Layout, Text } from '@kiwicom/react-native-app-shared';
+import { Button, Layout } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
-import Translation from '@kiwicom/react-native-app-translations';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import Logout from '../../components/authentication/Logout';
 
@@ -82,29 +82,29 @@ export default class Homepage extends React.Component<Props, State> {
       <Layout>
         <Section>
           <Button
-            title={<Translation id="Homepage.Hotels" />}
+            title={<DummyTranslation id="Hotels" />}
             onPress={this.goToAllHotelsPage}
           />
         </Section>
         <Section>
           <Button
-            title={<Translation id="Homepage.HotelsOslo" />}
+            title={<DummyTranslation id="Hotels in Oslo" />}
             onPress={this.goToOslo}
           />
         </Section>
         <Section>
           <Button
-            title={<Translation id="Homepage.HotelsLima" />}
+            title={<DummyTranslation id="Hotels in Lima" />}
             onPress={this.goToLima}
           />
         </Section>
         <Section>
           <Button
-            title={<Translation id="Homepage.LocationPicker" />}
+            title={<DummyTranslation id="Location picker" />}
             onPress={this.openLocations}
           />
-          <Text>Current cityId: {this.state.cityId}</Text>
-          <Text>Current cityName: {this.state.cityName}</Text>
+          <DummyTranslation id={`Current cityId: ${this.state.cityId}`} />
+          <DummyTranslation id={`Current cityName: ${this.state.cityName}`} />
         </Section>
         <Section>
           <Logout />

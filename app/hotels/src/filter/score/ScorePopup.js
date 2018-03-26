@@ -2,7 +2,9 @@
 
 import * as React from 'react';
 import { Text, ButtonPopup, Slider } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   onClose: () => void,
@@ -39,7 +41,13 @@ export default class ScorePopup extends React.Component<Props, State> {
       <Translation key="8" id="HotelsSearch.Filter.ScoreFilter.Rating.8" />,
       <Translation key="9" id="HotelsSearch.Filter.ScoreFilter.Rating.9" />,
     ];
-    return <Text>Rating: {labels[sliderValue]}</Text>;
+    return (
+      <Text>
+        <Translation id="HotelsSearch.Filter.ScorePopup.Title" />
+        <DummyTranslation id=" " />
+        {labels[sliderValue]}
+      </Text>
+    );
   };
 
   convertScoreToSliderValue = (minScore: number | null) =>
