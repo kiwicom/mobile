@@ -61,6 +61,8 @@ const Translations = {
   'HotelsSearch.Filter.GuestsPopup.Children.ErrorAge':
     'Please fill children ages first.',
   'HotelsSearch.Filter.FreeCancellation': 'free cancellation',
+  'HotelsSearch.LocationPicker.cancel': 'Cancel',
+  'HotelsSearch.LocationPicker.confirm': 'Confirm',
 
   // shared component
   'Shared.AgePicker.Done': 'Done',

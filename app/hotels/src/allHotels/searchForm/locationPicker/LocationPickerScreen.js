@@ -11,6 +11,7 @@ import {
 } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import Translation from '@kiwicom/react-native-app-translations';
 import { graphql } from 'react-relay';
 
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
@@ -106,7 +107,7 @@ export default class LocationPicker extends React.Component<Props, State> {
           style={styles.cancelButton}
         >
           <Text style={[styles.headerButtonText, styles.confirmButtonText]}>
-            Cancel
+            <Translation id="HotelsSearch.LocationPicker.cancel" />
           </Text>
         </Touchable>
       );
@@ -119,7 +120,9 @@ export default class LocationPicker extends React.Component<Props, State> {
           style={styles.confirmButton}
           borderlessRipple
         >
-          <Text style={styles.headerButtonText}>Confirm</Text>
+          <Text style={styles.headerButtonText}>
+            <Translation id="HotelsSearch.LocationPicker.confirm" />
+          </Text>
         </Touchable>
       );
     }
