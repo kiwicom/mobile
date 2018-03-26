@@ -1,0 +1,318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Slider renders 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "paddingHorizontal": 20,
+    }
+  }
+>
+  <MultiSlider
+    allowOverlap={true}
+    containerStyle={
+      Array [
+        Object {
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+    customMarker={[Function]}
+    enabledOne={true}
+    enabledTwo={true}
+    markerOffsetX={0}
+    markerOffsetY={0}
+    markerStyle={
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#bdbdbd",
+        "borderRadius": 15,
+        "borderWidth": 1,
+        "elevation": 1,
+        "height": 30,
+        "margin": 3,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 2,
+        "width": 30,
+      }
+    }
+    max={50}
+    min={1}
+    onToggleOne={undefined}
+    onToggleTwo={undefined}
+    onValuesChange={[Function]}
+    onValuesChangeFinish={[Function]}
+    onValuesChangeStart={[Function]}
+    pressedMarkerStyle={
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#bdbdbd",
+        "borderRadius": 15,
+        "borderWidth": 1,
+        "elevation": 1,
+        "height": 30,
+        "margin": 3,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 2,
+        "width": 30,
+      }
+    }
+    selectedStyle={
+      Object {
+        "backgroundColor": "#fbad18",
+      }
+    }
+    sliderLength={-40}
+    snapped={false}
+    step={1}
+    touchDimensions={
+      Object {
+        "borderRadius": 0,
+        "height": 30,
+        "slipDisplacement": 500,
+        "width": 30,
+      }
+    }
+    trackStyle={
+      Object {
+        "borderRadius": 5,
+        "height": 2,
+      }
+    }
+    unselectedStyle={
+      Object {
+        "backgroundColor": "#bdbdbd",
+      }
+    }
+    values={
+      Array [
+        1,
+        50,
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Slider renders correcly with all values equal 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "paddingHorizontal": 20,
+    }
+  }
+>
+  <MultiSlider
+    allowOverlap={true}
+    containerStyle={
+      Array [
+        Object {
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+    customMarker={[Function]}
+    enabledOne={false}
+    enabledTwo={false}
+    markerOffsetX={0}
+    markerOffsetY={0}
+    markerStyle={
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#bdbdbd",
+        "borderRadius": 15,
+        "borderWidth": 1,
+        "elevation": 1,
+        "height": 30,
+        "margin": 3,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 2,
+        "width": 30,
+      }
+    }
+    max={501}
+    min={499}
+    onToggleOne={undefined}
+    onToggleTwo={undefined}
+    onValuesChange={[Function]}
+    onValuesChangeFinish={[Function]}
+    onValuesChangeStart={[Function]}
+    pressedMarkerStyle={
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#bdbdbd",
+        "borderRadius": 15,
+        "borderWidth": 1,
+        "elevation": 1,
+        "height": 30,
+        "margin": 3,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 2,
+        "width": 30,
+      }
+    }
+    selectedStyle={
+      Object {
+        "backgroundColor": "#fbad18",
+      }
+    }
+    sliderLength={-40}
+    snapped={false}
+    step={1}
+    touchDimensions={
+      Object {
+        "borderRadius": 0,
+        "height": 30,
+        "slipDisplacement": 500,
+        "width": 30,
+      }
+    }
+    trackStyle={
+      Object {
+        "borderRadius": 5,
+        "height": 2,
+      }
+    }
+    unselectedStyle={
+      Object {
+        "backgroundColor": "#bdbdbd",
+      }
+    }
+    values={
+      Array [
+        500,
+        500,
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Slider renders with endValue undefined 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "paddingHorizontal": 20,
+    }
+  }
+>
+  <MultiSlider
+    allowOverlap={true}
+    containerStyle={
+      Array [
+        Object {
+          "justifyContent": "center",
+        },
+        undefined,
+      ]
+    }
+    customMarker={[Function]}
+    enabledOne={true}
+    enabledTwo={true}
+    markerOffsetX={0}
+    markerOffsetY={0}
+    markerStyle={
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#bdbdbd",
+        "borderRadius": 15,
+        "borderWidth": 1,
+        "elevation": 1,
+        "height": 30,
+        "margin": 3,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 2,
+        "width": 30,
+      }
+    }
+    max={50}
+    min={1}
+    onToggleOne={undefined}
+    onToggleTwo={undefined}
+    onValuesChange={[Function]}
+    onValuesChangeFinish={[Function]}
+    onValuesChangeStart={[Function]}
+    pressedMarkerStyle={
+      Object {
+        "backgroundColor": "#fff",
+        "borderColor": "#bdbdbd",
+        "borderRadius": 15,
+        "borderWidth": 1,
+        "elevation": 1,
+        "height": 30,
+        "margin": 3,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 3,
+          "width": 0,
+        },
+        "shadowOpacity": 0.3,
+        "shadowRadius": 2,
+        "width": 30,
+      }
+    }
+    selectedStyle={
+      Object {
+        "backgroundColor": "#fbad18",
+      }
+    }
+    sliderLength={-40}
+    snapped={false}
+    step={1}
+    touchDimensions={
+      Object {
+        "borderRadius": 0,
+        "height": 30,
+        "slipDisplacement": 500,
+        "width": 30,
+      }
+    }
+    trackStyle={
+      Object {
+        "borderRadius": 5,
+        "height": 2,
+      }
+    }
+    unselectedStyle={
+      Object {
+        "backgroundColor": "#bdbdbd",
+      }
+    }
+    values={
+      Array [
+        1,
+      ]
+    }
+  />
+</View>
+`;
