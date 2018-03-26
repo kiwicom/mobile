@@ -14,6 +14,7 @@ import AllHotelsNavigationScreen from './AllHotelsNavigationScreen';
 import AllHotelsMapNavigationScreen from './AllHotelsMapNavigationScreen';
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
+import LocationPicker from '../allHotels/searchForm/locationPicker/LocationPickerScreen';
 
 export type NavigationProps = {|
   navigation: NavigationType,
@@ -27,10 +28,27 @@ type InjectorProps = {|
   WrappedComponent: React.ElementType,
 |};
 
+const AllHotelsStack = StackNavigator(
+  {
+    Main: {
+      screen: withMappedProps(AllHotelsNavigationScreen),
+    },
+    LocationPicker: {
+      screen: LocationPicker,
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'Main',
+    mode: 'modal',
+    headerMode: 'none',
+  },
+);
+
 export default StackNavigator(
   {
     AllHotels: {
-      screen: withMappedProps(AllHotelsNavigationScreen),
+      screen: AllHotelsStack,
     },
     AllHotelsMap: {
       screen: withMappedProps(AllHotelsMapNavigationScreen),

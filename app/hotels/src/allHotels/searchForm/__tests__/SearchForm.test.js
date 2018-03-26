@@ -3,7 +3,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { TextInput, DatePicker } from '@kiwicom/react-native-app-shared';
+import { DatePicker } from '@kiwicom/react-native-app-shared';
 import MockDate from 'mockdate';
 
 import SearchForm from '../SearchForm';
@@ -28,24 +28,10 @@ const defaultProps = {
   location: 'Pra',
   search: searchParams,
   onChange: jest.fn(),
-  onLocationChange: jest.fn(),
+  openLocationPicker: jest.fn(),
 };
 
 describe('SearchForm', () => {
-  it('Destination change triggers onChange', async () => {
-    expect.assertions(1);
-
-    const onLocationChange = jest.fn();
-    const testRenderer = renderer.create(
-      // $FlowIssue: https://github.com/facebook/flow/issues/2405
-      <SearchForm {...defaultProps} onLocationChange={onLocationChange} />,
-    );
-    const testInstance = testRenderer.root;
-    await testInstance.findByType(TextInput).props.onChangeText('Prague');
-
-    expect(onLocationChange).toBeCalled();
-  });
-
   it('Checkin change triggers onChange', async () => {
     expect.assertions(1);
 

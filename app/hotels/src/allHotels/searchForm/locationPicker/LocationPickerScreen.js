@@ -11,14 +11,17 @@ import {
 } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import { connect } from '@kiwicom/react-native-app-redux';
 import Translation from '@kiwicom/react-native-app-translations';
 import { graphql } from 'react-relay';
+import idx from 'idx';
 
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
 import SuggestionList from './SuggestionList';
 
 type Props = {|
   navigation: NavigationType,
+  onCitySelected: (cityId: string, cityName: string) => void,
 |};
 
 type NavigationProps = {|
@@ -29,7 +32,6 @@ type NavigationProps = {|
 
 type State = {|
   search: string,
-  cityId: string,
 |};
 
 const styles = StyleSheet.create({
@@ -76,27 +78,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class LocationPicker extends React.Component<Props, State> {
+export class LocationPicker extends React.Component<Props, State> {
   state = {
     search: '',
-    cityId: '',
   };
 
-  static navigationOptions = ({
-    navigation,
-    cityId,
-    cityName,
-  }: NavigationProps) => {
+  static navigationOptions = ({ navigation }: NavigationProps) => {
     function goBack() {
       navigation.goBack();
-    }
-
-    function confirmClicked() {
-      // Using navigation.navigate({ params }) actually renders the screen inside the modal
-      // Solution is go back and pass an on select function from parent
-      // https://github.com/react-navigation/react-navigation/issues/288#issuecomment-315684617
-      goBack();
-      navigation.state.params.onSelect(cityId, cityName);
     }
 
     function headerLeft() {
@@ -113,41 +102,25 @@ export default class LocationPicker extends React.Component<Props, State> {
       );
     }
 
-    function headerRight() {
-      return (
-        <Touchable
-          onPress={confirmClicked}
-          style={styles.confirmButton}
-          borderlessRipple
-        >
-          <Text style={styles.headerButtonText}>
-            <Translation id="HotelsSearch.LocationPicker.Confirm" />
-          </Text>
-        </Touchable>
-      );
-    }
-
     return {
       headerLeft: headerLeft(),
       title: 'Where',
-      headerRight: headerRight(),
     };
   };
 
   componentDidMount = () => {
-    this.props.navigation.setParams({ cityId: '' });
+    const location =
+      idx(this.props.navigation, _ => _.state.params.location) || '';
+    this.setState({ search: location });
   };
 
   onTextChange = (search: string) => {
-    // Resetting cityId and cityName when typing
-    // If user selects Rome, starts typing, we should disable input until user makes new selection
-    this.setState({ search, cityId: '' });
-    this.props.navigation.setParams({ cityId: '', cityName: '' });
+    this.setState({ search });
   };
 
   onCitySelected = (cityId: string, cityName: string) => {
-    this.setState({ search: cityName, cityId });
-    this.props.navigation.setParams({ cityId, cityName });
+    this.props.onCitySelected(cityId, cityName);
+    this.props.navigation.goBack();
   };
 
   renderSuggestions = (rendererProps: LocationSuggestions) => {
@@ -170,6 +143,7 @@ export default class LocationPicker extends React.Component<Props, State> {
             placeholder="Where"
             style={styles.input}
             placeholderTextColor={Color.textLight}
+            autoFocus
           />
         </View>
         {!this.state.cityId && (
@@ -187,3 +161,14 @@ export default class LocationPicker extends React.Component<Props, State> {
     );
   };
 }
+
+const action = dispatch => ({
+  onCitySelected: (cityId: string, cityName: string) =>
+    dispatch({
+      type: 'setLocationAndCityId',
+      cityId,
+      location: cityName,
+    }),
+});
+
+export default connect(null, action)(LocationPicker);

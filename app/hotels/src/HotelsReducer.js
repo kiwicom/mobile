@@ -19,6 +19,7 @@ export type HotelsReducerActions =
   | {| type: 'setSearch', search: OnChangeSearchParams |}
   | {| type: 'setLocation', location: string |}
   | {| type: 'setCityId', cityId: string | null |}
+  | {| type: 'setLocationAndCityId', cityId: string, location: string |}
   | {| type: 'setCurrentSearchStats', currentSearchStats: CurrentSearchStats |};
 
 const InitialHotelsState: HotelsReducerState = {
@@ -71,6 +72,12 @@ export default (
       return {
         ...state,
         currentSearchStats: { ...action.currentSearchStats },
+      };
+    case 'setLocationAndCityId':
+      return {
+        ...state,
+        location: action.location,
+        cityId: action.cityId,
       };
     default:
       return state;
