@@ -34,7 +34,7 @@ public class MainActivity extends ReactActivity {
         DeviceInfo deviceInfo = new DeviceInfo();
 
         EventSender.defaultInitialize(
-                getApplication(), deviceInfo, new String[]{}, visitorId, BuildConfig.DEBUG
+                getApplication(), deviceInfo, new String[]{}, visitorId, "123456", BuildConfig.DEBUG
         );
     }
 }
