@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, StyleSheet, Text } from '@kiwicom/react-native-app-shared';
+import { Color, StyleSheet } from '@kiwicom/react-native-app-shared';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import AgeControl from './AgeControl';
 import type { ChildAge } from './GuestsTypes';
@@ -43,7 +44,7 @@ export default class ChildrenAgesControl extends React.Component<Props> {
       <View>
         {items.length > 0 && (
           <View style={styles.header}>
-            <Text>Age of child at check-out</Text>
+            <Translation id="HotelsSearch.Filter.GuestsPopup.ChildrenAgeTitle" />
           </View>
         )}
         <View style={styles.list}>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: Color.grey.$100,
     padding: POPUP_PADDING / 2,
-    paddingLeft: POPUP_PADDING,
+    paddingHorizontal: POPUP_PADDING,
   },
   list: {
     paddingLeft: POPUP_PADDING,

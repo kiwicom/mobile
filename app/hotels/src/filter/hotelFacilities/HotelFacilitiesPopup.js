@@ -99,7 +99,9 @@ export default class HotelFacilitiesPopup extends React.Component<
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >
-        <Text style={styles.title}>Hotel facilities</Text>
+        <Text style={styles.title}>
+          <Translation id="HotelsSearch.Filter.HotelFacilitiesPopup.Title" />
+        </Text>
         {this.renderCheckboxes(facilities)}
       </ButtonPopup>
     );

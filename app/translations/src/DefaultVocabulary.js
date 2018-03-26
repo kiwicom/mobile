@@ -29,24 +29,29 @@ const Translations = {
   'PartialFailure.Error':
     'Some parts of the page may be missing due to partial server error.',
 
-  'Homepage.Hotels': 'Hotels',
-  'Homepage.HotelsOslo': 'Hotels in Oslo',
-  'Homepage.HotelsLima': 'Hotels in Lima',
-  'Homepage.LocationPicker': 'Location picker',
-
+  'Hotels.Map.MultipleReviews': 'Number of reviews: __numberOfReviews__',
   'Hotels.Map.NoReviews': 'No reviews',
+  'Hotels.Map.Address': 'Address',
+
+  'Hotels.Gallery.Pagination': '__1_photoNumber__ of __2_totalPhotos__',
 
   'SingleHotel.RoomPicker.Select': 'Select',
   'SingleHotel.BookNow': 'Book Now',
   'SingleHotel.BookNow.Description':
     'Persons: __1_personCount__ · Rooms: __2_numberOfRooms__  · ',
   'SingleHotel.RoomList.Rooms': 'Rooms',
+  'SingleHotel.BeddingInfo.Guests': '__numberOfGuests__  Guest(s)',
+  'SingleHotel.Description.Facilities.ShowMore': 'More',
+  'SingleHotel.Description.Facilities.ShowLess': 'Show less',
 
   'HotelsSearch.LoadMode': 'Load more...',
   'HotelsSearch.Filter.StarsPopup.Save': 'Save',
+  'HotelsSearch.Filter.StarsPopup.Title': 'Hotel stars',
+  'HotelsSearch.Filter.StarsPopup.Unrated': 'Unrated',
   'HotelsSearch.Filter.StarsFilter.Stars': 'stars',
   'HotelsSearch.Filter.StarsFilter.Unrated': 'unrated',
   'HotelsSearch.Filter.ScorePopup.Save': 'Save',
+  'HotelsSearch.Filter.ScorePopup.Title': 'Rating:',
   'HotelsSearch.Filter.ScoreFilter.Rating': 'rating',
   'HotelsSearch.Filter.ScoreFilter.Rating.Any': 'any',
   'HotelsSearch.Filter.ScoreFilter.Rating.6': 'pleasant 6+',
@@ -54,15 +59,22 @@ const Translations = {
   'HotelsSearch.Filter.ScoreFilter.Rating.8': 'very good 8+',
   'HotelsSearch.Filter.ScoreFilter.Rating.9': 'superb 9+',
   'HotelsSearch.Filter.PricePopup.Save': 'Save',
+  'HotelsSearch.Filter.PricePopup.Title': 'Price per night:',
   'HotelsSearch.Filter.PriceFilter.Price': 'price',
   'HotelsSearch.Filter.HotelFacilitiesPopup.Save': 'Save',
+  'HotelsSearch.Filter.HotelFacilitiesPopup.Title': 'Hotel facilities',
   'HotelsSearch.Filter.HotelFacilitiesFilter.Title': 'hotel facilities',
   'HotelsSearch.Filter.GuestsPopup.Save': 'Save',
+  'HotelsSearch.Filter.GuestsPopup.ChildrenAgeTitle':
+    'Age of child at check-out',
   'HotelsSearch.Filter.GuestsPopup.Children.ErrorAge':
     'Please fill children ages first.',
   'HotelsSearch.Filter.FreeCancellation': 'free cancellation',
-  'HotelsSearch.LocationPicker.cancel': 'Cancel',
-  'HotelsSearch.LocationPicker.confirm': 'Confirm',
+  'HotelsSearch.LocationPicker.Cancel': 'Cancel',
+  'HotelsSearch.LocationPicker.Confirm': 'Confirm',
+  'HotelsSearch.LocationPicker.YourLocation': 'Confirm',
+  'HotelsSearch.Guests.Adults': 'Adults:',
+  'HotelsSearch.Guests.Children': 'Children:',
 
   // shared component
   'Shared.AgePicker.Done': 'Done',

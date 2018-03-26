@@ -331,30 +331,3 @@ exports[`works even with the distant Text nodes 1`] = `
   </Text>
 </Text>
 `;
-
-exports[`works with nullable child 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  style={
-    Array [
-      undefined,
-      Object {
-        "color": "#30363d",
-        "fontSize": 14,
-        "fontWeight": "normal",
-        "letterSpacing": -0.15,
-      },
-    ]
-  }
->
-  default
-   
-   
-  default
-   
-   
-  default
-</Text>
-`;

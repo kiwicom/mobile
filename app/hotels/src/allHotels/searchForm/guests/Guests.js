@@ -9,6 +9,9 @@ import {
   Icon,
   Text,
 } from '@kiwicom/react-native-app-shared';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 import GuestsPopup from './GuestsPopup';
 import type { RoomConfigurationType } from '../SearchParametersType';
@@ -34,9 +37,12 @@ export const ButtonTitle = ({
   };
   return (
     <Text>
-      <Text>{`${adultsCount} Adult${adultsCount === 1 ? '' : 's'}`}</Text>
+      <Translation id="HotelsSearch.Guests.Adults" />
+      <DummyTranslation id={` ${adultsCount}`} />
       <Text style={childrenStyle}>
-        {` ⋅ ${childrenCount} Child${childrenCount === 1 ? '' : 'ren'}`}
+        <DummyTranslation id=" ⋅ " />
+        <Translation id="HotelsSearch.Guests.Children" />
+        <DummyTranslation id={` ${childrenCount}`} />
       </Text>
     </Text>
   );

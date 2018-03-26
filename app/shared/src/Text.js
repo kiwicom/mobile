@@ -11,11 +11,11 @@ import type { StylePropType } from '../types/Styles';
 // basically every component (but never strings - they must be translated)
 // the idea is that you should always use component as a children so you'll
 // eventually end up with Translation or DummyTranslation
-// TODO: type ChildrenType = React.Element<any>;
+type ChildrenType = React.Element<any>;
 
 type Props = {|
   // FIXME: we cannot accept View in the children because it's not supported on Android
-  children: React.Node, //ChildrenType | React.ChildrenArray<ChildrenType>,
+  children: ChildrenType | React.ChildrenArray<ChildrenType>,
   style?: StylePropType,
   numberOfLines?: number,
 |};

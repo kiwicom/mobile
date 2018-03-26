@@ -4,6 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 import { StyleSheet, Text, Color } from '@kiwicom/react-native-app-shared';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import type { HotelDistance_hotel } from './__generated__/HotelDistance_hotel.graphql';
 
@@ -37,7 +38,7 @@ function HotelDistance({ hotel }: Props) {
 
   return (
     <Text style={style.text}>
-      {getDistanceText(distance, CITY_CENTER_RADIUS)}
+      <DummyTranslation id={getDistanceText(distance, CITY_CENTER_RADIUS)} />
     </Text>
   );
 }

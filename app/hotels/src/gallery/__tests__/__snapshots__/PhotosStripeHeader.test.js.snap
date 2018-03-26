@@ -58,7 +58,9 @@ exports[`renders header with title 1`] = `
         }
       }
     >
-      Hotel Name
+      <DummyTranslation
+        id="Hotel Name"
+      />
     </Text>
     <Text
       style={
@@ -69,9 +71,15 @@ exports[`renders header with title 1`] = `
         }
       }
     >
-      2
-       of 
-      42
+      <Translation
+        id="Hotels.Gallery.Pagination"
+        values={
+          Object {
+            "photoNumber": 2,
+            "totalPhotos": 42,
+          }
+        }
+      />
     </Text>
   </View>
   <View
@@ -142,7 +150,9 @@ exports[`renders header with very long title 1`] = `
         }
       }
     >
-      Hotel Name So Long That It Will Not Fit One Line And Needs To Be Wrapped
+      <DummyTranslation
+        id="Hotel Name So Long That It Will Not Fit One Line And Needs To Be Wrapped"
+      />
     </Text>
     <Text
       style={
@@ -153,9 +163,15 @@ exports[`renders header with very long title 1`] = `
         }
       }
     >
-      2
-       of 
-      42
+      <Translation
+        id="Hotels.Gallery.Pagination"
+        values={
+          Object {
+            "photoNumber": 2,
+            "totalPhotos": 42,
+          }
+        }
+      />
     </Text>
   </View>
   <View

@@ -11,6 +11,7 @@ import {
   Text,
   StyleSheet,
 } from '@kiwicom/react-native-app-shared';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import Distance from './HotelDistance';
 import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';
@@ -53,7 +54,7 @@ const style = StyleSheet.create({
 });
 
 function HotelTitle({ data }: Props) {
-  const hotelName = idx(data, _ => _.hotel.name);
+  const hotelName = idx(data, _ => _.hotel.name) || '';
   const hotelStars = idx(data, _ => _.hotel.rating.stars);
   const price = {
     ...{
@@ -67,7 +68,7 @@ function HotelTitle({ data }: Props) {
   return (
     <View>
       <Text style={style.title}>
-        {hotelName}{' '}
+        <DummyTranslation id={`${hotelName} `} />
         <Text style={style.rating}>
           <Stars rating={hotelStars} />
         </Text>
