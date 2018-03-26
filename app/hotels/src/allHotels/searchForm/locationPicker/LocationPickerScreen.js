@@ -107,7 +107,7 @@ export default class LocationPicker extends React.Component<Props, State> {
           style={styles.cancelButton}
         >
           <Text style={[styles.headerButtonText, styles.confirmButtonText]}>
-            <Translation id="HotelsSearch.LocationPicker.cancel" />
+            <Translation id="HotelsSearch.LocationPicker.Cancel" />
           </Text>
         </Touchable>
       );
@@ -121,7 +121,7 @@ export default class LocationPicker extends React.Component<Props, State> {
           borderlessRipple
         >
           <Text style={styles.headerButtonText}>
-            <Translation id="HotelsSearch.LocationPicker.confirm" />
+            <Translation id="HotelsSearch.LocationPicker.Confirm" />
           </Text>
         </Touchable>
       );

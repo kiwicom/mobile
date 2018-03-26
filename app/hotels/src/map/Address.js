@@ -10,6 +10,9 @@ import {
   StyleSheet,
   Text,
 } from '@kiwicom/react-native-app-shared';
+import Translation, {
+  DummyTranslation,
+} from '@kiwicom/react-native-app-translations';
 
 import type { Address_address } from './__generated__/Address_address.graphql';
 
@@ -45,7 +48,9 @@ const styles = StyleSheet.create({
 
 class Address extends React.Component<Props> {
   render = () => {
-    const { address } = this.props;
+    const street = idx(this.props, _ => _.address.street) || '';
+    const city = idx(this.props, _ => _.address.city) || '';
+    const zip = idx(this.props, _ => _.address.zip) || '';
 
     return (
       <View style={styles.container}>
@@ -53,10 +58,11 @@ class Address extends React.Component<Props> {
           <Icon name="map" size={24} color={Color.brand} />
         </View>
         <View style={styles.content}>
-          <Text style={styles.header}>Address</Text>
+          <Text style={styles.header}>
+            <Translation id="Hotels.Map.Address" />
+          </Text>
           <Text numberOfLines={2}>
-            {idx(address, _ => _.street)}, {idx(address, _ => _.city)}{' '}
-            {idx(address, _ => _.zip)}
+            <DummyTranslation id={`${street}, ${city} ${zip}`} />
           </Text>
         </View>
       </View>

@@ -62,7 +62,9 @@ export default class StarsPopup extends React.Component<Props, State> {
         isChecked={stars.indexOf(0) >= 0}
         onPress={this.handleCheckboxOnPress(0)}
       >
-        <Text style={styles.unrated}>Unrated</Text>
+        <Text style={styles.unrated}>
+          <Translation id="HotelsSearch.Filter.StarsPopup.Unrated" />
+        </Text>
       </Checkbox>,
     );
     return checkboxes;
@@ -77,7 +79,9 @@ export default class StarsPopup extends React.Component<Props, State> {
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >
-        <Text style={styles.title}>Hotel stars</Text>
+        <Text style={styles.title}>
+          <Translation id="HotelsSearch.Filter.StarsPopup.Title" />
+        </Text>
         {this.renderCheckboxes(stars)}
       </ButtonPopup>
     );

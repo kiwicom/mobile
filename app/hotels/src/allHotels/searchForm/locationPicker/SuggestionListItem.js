@@ -7,6 +7,7 @@ import {
   Color,
   Touchable,
 } from '@kiwicom/react-native-app-shared';
+import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 import { View } from 'react-native';
 import idx from 'idx';
 
@@ -82,9 +83,15 @@ export default class SuggestionListItem extends React.Component<Props> {
     return (
       <Touchable onPress={this.onPress}>
         <View style={styles.row}>
-          <Text style={styles.cityText}>{before}</Text>
-          <Text style={[styles.cityText, styles.matchText]}>{match}</Text>
-          <Text style={styles.cityText}>{after}</Text>
+          <Text style={styles.cityText}>
+            <DummyTranslation id={before} />
+          </Text>
+          <Text style={[styles.cityText, styles.matchText]}>
+            <DummyTranslation id={match} />
+          </Text>
+          <Text style={styles.cityText}>
+            <DummyTranslation id={after} />
+          </Text>
         </View>
       </Touchable>
     );
