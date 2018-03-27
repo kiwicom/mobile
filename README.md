@@ -371,7 +371,13 @@ This fragment also comply with Flow types and it has similar behaviour with `Rea
 
 #### PhraseApp
 
-We use [PhraseApp](https://phraseapp.com/) for managing translations. All keys and relevant screenshots are deployed automatically (**not ready yet**).
+We use [PhraseApp](https://phraseapp.com/) for managing translations. All keys and relevant screenshots are deployed automatically (the deployment script must be executed manually though):
+
+```
+yarn babel-node app/translations/src/Deployer.js
+```
+
+_(we need to improve it - this is just PoC)_
 
 How to create screenshots? Open iOS simulator and press `Ctrl+S` (save). It will save the screenshot of current page so you can work with it later. It's usually good idea to mark where is the translated string on the screen. You should convert your new screenshots to JPG to make them smaller before commiting them to the Git (macOS):
 
