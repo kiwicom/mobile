@@ -177,7 +177,7 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportVersion"
     implementation "com.facebook.react:react-native:$reactNativeVersion"  // From node_modules
     implementation "com.android.support:multidex:1.0.2"
-    implementation "com.trinerdis.skypicker:logging:0.2-SNAPSHOT"
+    implementation "com.trinerdis.skypicker:logging:0.2.1-SNAPSHOT"
     implementation("com.google.android.gms:play-services-base:$playServicesVersion")
     implementation("com.google.android.gms:play-services-maps:$playServicesVersion")
 }
