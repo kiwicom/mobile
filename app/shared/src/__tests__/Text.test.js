@@ -62,7 +62,7 @@ it('supports multiple nested strings', () => {
   );
 });
 
-it('works applies the styles recursively', () => {
+it('applies the styles recursively', () => {
   const Fence = ({ children }: {| children: React.Node |}) => children;
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>

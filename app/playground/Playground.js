@@ -8,7 +8,7 @@ import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 import PlaygroundRenderer from './PlaygroundRenderer';
 // Import component tests you want to show in the Playground here:
 // eslint-disable-next-line
-import _ from '../shared/src/forms/__tests__/Slider.test.js';
+import _ from '../shared/src/__tests__/Text.test';
 
 const PlaygroundSection = props => (
   <View style={styles.section}>

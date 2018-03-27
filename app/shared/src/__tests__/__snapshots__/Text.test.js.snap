@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders with additional style properties 1`] = `
+exports[`applies the styles recursively 1`] = `
 <Text
   accessible={true}
   allowFontScaling={true}
   ellipsizeMode="tail"
   style={
     Array [
-      undefined,
       Object {
         "color": "#30363d",
         "fontSize": 14,
-        "fontWeight": "bold",
+        "fontWeight": "normal",
         "letterSpacing": -0.15,
+      },
+      Object {
+        "fontWeight": "bold",
       },
     ]
   }
@@ -22,16 +24,47 @@ exports[`renders with additional style properties 1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Array [
-        Object {
-          "color": "#30363d",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "letterSpacing": -0.15,
-        },
-        undefined,
-      ]
+      Object {
+        "color": "red",
+      }
     }
+  >
+    <Text
+      accessible={true}
+      allowFontScaling={true}
+      ellipsizeMode="tail"
+      style={undefined}
+    >
+      bold and red text
+    </Text>
+  </Text>
+</Text>
+`;
+
+exports[`renders with additional style properties 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "letterSpacing": -0.15,
+      },
+      Object {
+        "fontWeight": "bold",
+      },
+    ]
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={undefined}
   >
     bold text
   </Text>
@@ -45,13 +78,13 @@ exports[`renders with the default properties for iOS 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
-      undefined,
       Object {
         "color": "#30363d",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
       },
+      undefined,
     ]
   }
 >
@@ -59,17 +92,7 @@ exports[`renders with the default properties for iOS 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "color": "#30363d",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
-        },
-        undefined,
-      ]
-    }
+    style={undefined}
   >
     normal text
   </Text>
@@ -83,12 +106,14 @@ exports[`supports multiple nested strings 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
-      undefined,
       Object {
-        "color": "red",
+        "color": "#30363d",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
+      },
+      Object {
+        "color": "red",
       },
     ]
   }
@@ -97,28 +122,13 @@ exports[`supports multiple nested strings 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "color": "red",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
-        },
-        undefined,
-      ]
-    }
+    style={undefined}
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={
-        Array [
-          undefined,
-          undefined,
-        ]
-      }
+      style={undefined}
     >
       red normal text 
     </Text>
@@ -127,28 +137,13 @@ exports[`supports multiple nested strings 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "color": "red",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
-        },
-        undefined,
-      ]
-    }
+    style={undefined}
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={
-        Array [
-          undefined,
-          undefined,
-        ]
-      }
+      style={undefined}
     >
       and red normal text
     </Text>
@@ -163,12 +158,14 @@ exports[`supports nested styles 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
-      undefined,
       Object {
         "color": "#30363d",
         "fontSize": 14,
-        "fontWeight": "bold",
+        "fontWeight": "normal",
         "letterSpacing": -0.15,
+      },
+      Object {
+        "fontWeight": "bold",
       },
     ]
   }
@@ -177,17 +174,7 @@ exports[`supports nested styles 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "color": "#30363d",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "letterSpacing": -0.15,
-        },
-        undefined,
-      ]
-    }
+    style={undefined}
   >
     bold text 
   </Text>
@@ -196,87 +183,18 @@ exports[`supports nested styles 1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Array [
-        Object {
-          "color": "#30363d",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "letterSpacing": -0.15,
-        },
-        Object {
-          "color": "red",
-        },
-      ]
+      Object {
+        "color": "red",
+      }
     }
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "color": "red",
-          },
-          undefined,
-        ]
-      }
+      style={undefined}
     >
       and bold-red text
-    </Text>
-  </Text>
-</Text>
-`;
-
-exports[`works applies the styles recursively 1`] = `
-<Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
-  style={
-    Array [
-      undefined,
-      Object {
-        "color": "#30363d",
-        "fontSize": 14,
-        "fontWeight": "bold",
-        "letterSpacing": -0.15,
-      },
-    ]
-  }
->
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "color": "#30363d",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "letterSpacing": -0.15,
-        },
-        Object {
-          "color": "red",
-        },
-      ]
-    }
-  >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Array [
-          Object {
-            "color": "red",
-          },
-          undefined,
-        ]
-      }
-    >
-      bold and red text
     </Text>
   </Text>
 </Text>
@@ -289,12 +207,14 @@ exports[`works even with the distant Text nodes 1`] = `
   ellipsizeMode="tail"
   style={
     Array [
-      undefined,
       Object {
         "color": "#30363d",
         "fontSize": 14,
-        "fontWeight": "bold",
+        "fontWeight": "normal",
         "letterSpacing": -0.15,
+      },
+      Object {
+        "fontWeight": "bold",
       },
     ]
   }
@@ -303,28 +223,13 @@ exports[`works even with the distant Text nodes 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={
-      Array [
-        Object {
-          "color": "#30363d",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "letterSpacing": -0.15,
-        },
-        undefined,
-      ]
-    }
+    style={undefined}
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={
-        Array [
-          undefined,
-          undefined,
-        ]
-      }
+      style={undefined}
     >
       bold default text
     </Text>
