@@ -60,7 +60,8 @@ const RoomSize = ({ roomSize }: { roomSize: ?number }) => {
     <Text>
       <TextIcon style={styles.icon}>&#xe0a6;</TextIcon>
       <Text style={styles.sizeText}>
-        <DummyTranslation id={`&nbsp;${roomSize}m²`} />
+        {/* \u00A0 is &nbsp; */}
+        <DummyTranslation id={`\u00A0${roomSize}m²`} />
       </Text>
     </Text>
   );
