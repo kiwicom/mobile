@@ -4,7 +4,6 @@ import * as React from 'react';
 import { View } from 'react-native';
 import idx from 'idx';
 import {
-  NetworkImage,
   SimpleCard,
   StyleSheet,
   AdaptableLayout,
@@ -12,20 +11,20 @@ import {
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import RoomPicker from '../roomPicker/RoomPicker';
+import RoomImage from './RoomImage';
 import BeddingInfo from './BeddingInfo';
 import RoomRowTitle from './RoomRowTitle';
 import RoomDescription from './RoomDescription';
 import RoomBadges from './RoomBadges';
 import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
+import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 
 const styles = StyleSheet.create({
+  card: {
+    marginVertical: 5,
+  },
   row: {
     flexDirection: 'row',
-  },
-  thumbnail: {
-    width: 60,
-    height: 80,
-    borderRadius: 2,
   },
   details: {
     flex: 1,
@@ -49,6 +48,7 @@ type ContainerProps = {|
   selected: {
     [string]: number,
   },
+  openGallery: (roomTitle: string, images: GalleryGridImage[]) => void,
 |};
 
 type Props = {
@@ -77,12 +77,26 @@ export class RoomRow extends React.Component<Props> {
     return { originalId, maxPersons };
   };
 
+  openGallery = () => {
+    const { availableRoom } = this.props;
+    const photoEdges = idx(availableRoom, _ => _.room.photos.edges) || [];
+    const photos = photoEdges.map(photo => ({
+      key: idx(photo, _ => _.node.id) || '',
+      highRes: idx(photo, _ => _.node.highResUrl) || '',
+      lowRes: idx(photo, _ => _.node.lowResUrl) || '',
+    }));
+
+    const roomTitle = idx(availableRoom, _ => _.room.description.title) || '';
+    this.props.openGallery(roomTitle, photos);
+  };
+
   renderRow = (isWide: boolean) => {
     const availableRoom = this.props.availableRoom;
     const thumbnailUrl = idx(
       availableRoom,
       _ => _.room.photos.edges[0].node.thumbnailUrl,
     );
+    const photoCount = idx(availableRoom, _ => _.room.photos.edges.length) || 0;
     const price = idx(availableRoom, _ => _.minimalPrice.amount) || null;
     const currency = idx(availableRoom, _ => _.minimalPrice.currency) || null;
     const selectableCount =
@@ -91,12 +105,13 @@ export class RoomRow extends React.Component<Props> {
     const selectedCount = idx(this.props.selected, _ => _[originalId]) || 0;
     const room = idx(availableRoom, _ => _.room);
     return (
-      <SimpleCard style={{ marginVertical: 5 }}>
+      <SimpleCard style={StyleSheet.flatten(styles.card)}>
         <View style={isWide ? styles.widePadding : null}>
           <View style={styles.row}>
-            <NetworkImage
-              source={{ uri: thumbnailUrl }}
-              style={styles.thumbnail}
+            <RoomImage
+              openGallery={this.openGallery}
+              thumbnailUrl={thumbnailUrl}
+              photoCount={photoCount}
             />
             <View style={styles.details}>
               <RoomRowTitle room={room} />
@@ -135,12 +150,18 @@ export default (createFragmentContainer(
       originalId
       ...RoomBadges_availableRoom
       room {
+        description {
+          title
+        }
         ...RoomRowTitle_room
         ...RoomDescription_room
         photos {
           edges {
             node {
               thumbnailUrl
+              highResUrl
+              lowResUrl
+              id
             }
           }
         }

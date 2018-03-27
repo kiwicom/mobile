@@ -17,6 +17,7 @@ it('renders without crashing', () => {
       minimalPrice: null,
       incrementalPrice: [],
     },
+    openGallery() {},
   };
 
   renderer.render(<RoomRow {...props} />);
@@ -28,6 +29,7 @@ it('renders without crashing with missing data', () => {
     deselect() {},
     selected: {},
     availableRoom: undefined,
+    openGallery() {},
   };
 
   renderer.render(<RoomRow {...props} />);

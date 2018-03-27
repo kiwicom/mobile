@@ -127,6 +127,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
             select={this.selectRoom}
             deselect={this.deselectRoom}
             selected={selected}
+            openGallery={openGallery}
           />
           <BrandLabel />
         </ScrollView>
