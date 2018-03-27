@@ -60,10 +60,7 @@ export default class GuestsPopup extends React.Component<Props, State> {
       this.setState({ isMissingAge: true });
     } else {
       this.setState({ isMissingAge: false }, () => {
-        this.props.onChange(
-          // eslint-disable-next-line react/no-access-state-in-setstate
-          ((this.state.guests: any): RoomConfigurationType),
-        );
+        this.props.onChange(((this.state.guests: any): RoomConfigurationType));
         this.onClose();
       });
     }
