@@ -4,6 +4,7 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "@kiwicom/react-native-app-translations": "^0",
     "react-navigation": "^v1.0.3",
     "react-navigation-props-mapper": "^0.1.2"
   }
