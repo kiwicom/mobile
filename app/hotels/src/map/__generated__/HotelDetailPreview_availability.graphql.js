@@ -4,156 +4,163 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type HotelDetailPreview_availability$ref: FragmentReference;
 export type HotelDetailPreview_availability = {|
   +price: ?{|
-    +amount: ?number;
-    +currency: ?string;
-  |};
+    +amount: ?number,
+    +currency: ?string,
+  |},
   +hotel: ?{|
-    +id: string;
-    +name: ?string;
+    +id: string,
+    +name: ?string,
     +mainPhoto: ?{|
-      +thumbnailUrl: ?string;
-    |};
+      +thumbnailUrl: ?string,
+    |},
     +rating: ?{|
-      +stars: ?number;
-    |};
+      +stars: ?number,
+    |},
     +review: ?{|
-      +score: ?number;
-      +description: ?string;
-      +count: ?number;
-    |};
-  |};
+      +score: ?number,
+      +description: ?string,
+      +count: ?number,
+    |},
+  |},
+  +$refType: HotelDetailPreview_availability$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "HotelDetailPreview_availability",
+  "type": "HotelAvailability",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "price",
+      "storageKey": null,
       "args": null,
       "concreteType": "Price",
-      "name": "price",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "amount",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "currency",
+          "args": null,
           "storageKey": null
         }
-      ],
-      "storageKey": null
+      ]
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "hotel",
+      "storageKey": null,
       "args": null,
       "concreteType": "Hotel",
-      "name": "hotel",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "id",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "name",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "mainPhoto",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelPhoto",
-          "name": "mainPhoto",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "thumbnailUrl",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "rating",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelRating",
-          "name": "rating",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "stars",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "review",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelReview",
-          "name": "review",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "score",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "description",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "count",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailability"
+  ]
 };
-
+(node/*: any*/).hash = '4da52edc3d61c591746c2e2a4ec71914';
 module.exports = node;

@@ -12,6 +12,7 @@ it('renders without crashing', () => {
       a: 1,
     },
     availableRooms: [
+      // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
       {
         originalId: 'a',
         incrementalPrice: [
@@ -22,6 +23,7 @@ it('renders without crashing', () => {
         ],
       },
     ],
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     hotel: {
       originalId: 'abc',
     },

@@ -4,47 +4,59 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type HotelSwipeList$ref = any;
+type MapView$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type MapScreen$ref: FragmentReference;
 export type MapScreen = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
-      +id: string;
-    |};
-  |}>;
+      +id: string,
+    |},
+    +$fragmentRefs: (MapView$ref & HotelSwipeList$ref),
+  |}>,
+  +$refType: MapScreen$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "MapScreen",
+  "type": "HotelAvailabilityConnection",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "edges",
+      "storageKey": null,
       "args": null,
       "concreteType": "HotelAvailabilityEdge",
-      "name": "edges",
       "plural": true,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "node",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelAvailability",
-          "name": "node",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "id",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "FragmentSpread",
@@ -56,11 +68,9 @@ const node: ConcreteFragment = {
           "name": "HotelSwipeList",
           "args": null
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailabilityConnection"
+  ]
 };
-
+(node/*: any*/).hash = '9b4ab0921dbdfea4c94e65439a617823';
 module.exports = node;

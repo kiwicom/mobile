@@ -2,9 +2,11 @@
 
 import { Map } from '../MapView';
 
+// $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
 const data = coordinates => ({
   node: {
     id: '1',
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     price: {},
     hotel: {
       coordinates,

@@ -4,35 +4,42 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type PriceMarker$ref: FragmentReference;
 export type PriceMarker = {|
-  +amount: ?number;
-  +currency: ?string;
+  +amount: ?number,
+  +currency: ?string,
+  +$refType: PriceMarker$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "PriceMarker",
+  "type": "Price",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "amount",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "currency",
+      "args": null,
       "storageKey": null
     }
-  ],
-  "type": "Price"
+  ]
 };
-
+(node/*: any*/).hash = 'aaf5bff6b1121a40da4aee6ed74635d1';
 module.exports = node;

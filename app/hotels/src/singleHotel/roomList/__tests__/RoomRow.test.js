@@ -11,6 +11,7 @@ it('renders without crashing', () => {
     select() {},
     deselect() {},
     selected: {},
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     availableRoom: {
       originalId: 'bfmlpsvz',
       room: null,

@@ -4,58 +4,69 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type HotelDistance_hotel$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type HotelTitle$ref: FragmentReference;
 export type HotelTitle = {|
   +price: ?{|
-    +amount: ?number;
-    +currency: ?string;
-  |};
+    +amount: ?number,
+    +currency: ?string,
+  |},
   +hotel: ?{|
-    +name: ?string;
+    +name: ?string,
     +rating: ?{|
-      +stars: ?number;
-    |};
-  |};
+      +stars: ?number,
+    |},
+    +$fragmentRefs: HotelDistance_hotel$ref,
+  |},
+  +$refType: HotelTitle$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "HotelTitle",
+  "type": "HotelAvailability",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "price",
+      "storageKey": null,
       "args": null,
       "concreteType": "Price",
-      "name": "price",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "amount",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "currency",
+          "args": null,
           "storageKey": null
         }
-      ],
-      "storageKey": null
+      ]
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "hotel",
+      "storageKey": null,
       "args": null,
       "concreteType": "Hotel",
-      "name": "hotel",
       "plural": false,
       "selections": [
         {
@@ -66,33 +77,31 @@ const node: ConcreteFragment = {
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "name",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "rating",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelRating",
-          "name": "rating",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "stars",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailability"
+  ]
 };
-
+(node/*: any*/).hash = '631e3e5504362108d74c734ddfd09b09';
 module.exports = node;

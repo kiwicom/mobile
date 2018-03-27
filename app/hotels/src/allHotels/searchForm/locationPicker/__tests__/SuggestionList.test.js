@@ -5,6 +5,7 @@ import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
 
 import { SuggestionList } from '../SuggestionList';
 
+// $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
 const data = {
   hotelCities: {
     edges: [],
