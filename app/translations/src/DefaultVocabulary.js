@@ -29,6 +29,13 @@ const Translations = {
   'PartialFailure.Error':
     'Some parts of the page may be missing due to partial server error.',
 
+  'Hotels.Navigation.Title.AllHotels': 'Hotels',
+  'Hotels.Navigation.Title.AllHotelsMap': 'Map',
+  'Hotels.Navigation.Title.SingleHotel': 'Detail',
+  'Hotels.Navigation.Title.SingleHotelMap': 'Map',
+  'Hotels.Navigation.Title.GalleryGrid': 'Photos',
+  'Hotels.Navigation.Title.Payment': 'Hotel',
+
   'Hotels.Map.MultipleReviews': 'Number of reviews: __numberOfReviews__',
   'Hotels.Map.NoReviews': 'No reviews',
   'Hotels.Map.Address': 'Address',

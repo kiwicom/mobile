@@ -1,20 +1,21 @@
 // @flow
 
+import * as React from 'react';
 import { Platform, StatusBar } from 'react-native';
-import { Color, Device } from '@kiwicom/react-native-app-shared';
+import ReactNavigation from 'react-navigation';
+import {
+  Color,
+  Device,
+  Text,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
+import type { TranslationType } from '@kiwicom/react-native-app-translations';
 
 const createNavigationOptions = () => {
   const navigationOptions: Object = {
     headerStyle: {
       backgroundColor: Color.brand,
       borderBottomWidth: 0,
-    },
-    headerTitleStyle: {
-      color: '#fff',
-      fontSize: Platform.select({
-        android: 18,
-        ios: 17,
-      }),
     },
     headerTintColor: '#fff', // back arrow
     headerBackTitle: null,
@@ -26,6 +27,43 @@ const createNavigationOptions = () => {
       StatusBar.currentHeight + Device.getToolbarHeight();
   }
   return navigationOptions;
+};
+
+export const HeaderTitle = ({ children }: {| children: TranslationType |}) => {
+  const styleSheet = StyleSheet.create({
+    title: {
+      color: '#fff',
+      android: {
+        fontSize: 18,
+      },
+      ios: {
+        fontSize: 17,
+      },
+    },
+  });
+
+  return <Text style={styleSheet.title}>{children}</Text>;
+};
+
+export const StackNavigator = (
+  RouteConfigs: {
+    [string]: {|
+      screen: mixed,
+      navigationOptions?: {|
+        headerTitle: React.Element<typeof HeaderTitle>,
+        mode?: 'modal',
+      |},
+    |},
+  },
+  StackNavigatorConfig: {|
+    initialRouteName: string,
+    navigationOptions: Object,
+    cardStyle?: Object,
+    mode?: 'modal',
+    headerMode?: 'none',
+  |},
+) => {
+  return ReactNavigation.StackNavigator(RouteConfigs, StackNavigatorConfig);
 };
 
 export const StackNavigatorOptions = {
