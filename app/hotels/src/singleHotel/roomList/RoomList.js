@@ -8,6 +8,7 @@ import Translation from '@kiwicom/react-native-app-translations';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
+import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 
 const styles = StyleSheet.create({
   title: {
@@ -26,6 +27,7 @@ type ContainerProps = {|
   selected: {
     [string]: number,
   },
+  openGallery: (roomTitle: string, images: GalleryGridImage[]) => void,
 |};
 
 type Props = {
@@ -35,7 +37,7 @@ type Props = {
 
 class RoomList extends React.Component<Props> {
   render() {
-    const { data, select, deselect, selected } = this.props;
+    const { data, select, deselect, selected, openGallery } = this.props;
     return (
       <View>
         <View>
@@ -51,6 +53,7 @@ class RoomList extends React.Component<Props> {
               select={select}
               deselect={deselect}
               selected={selected}
+              openGallery={openGallery}
             />
           ))}
       </View>
