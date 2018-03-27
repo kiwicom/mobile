@@ -142,11 +142,14 @@ export default class LocationPicker extends React.Component<Props, State> {
     // Resetting cityId and cityName when typing
     // If user selects Rome, starts typing, we should disable input until user makes new selection
     this.setState({ search, cityId: '' });
-    this.props.navigation.setParams({ cityId: '', cityName: '' });
   };
 
   onCitySelected = (cityId: string, cityName: string) => {
     this.setState({ search: cityName, cityId });
+    this.passPropsToNavigationHeader(cityId, cityName);
+  };
+
+  passPropsToNavigationHeader = (cityId: string, cityName: string) => {
     this.props.navigation.setParams({ cityId, cityName });
   };
 
@@ -156,6 +159,7 @@ export default class LocationPicker extends React.Component<Props, State> {
         data={rendererProps}
         onCitySelected={this.onCitySelected}
         search={this.state.search}
+        storeFirstLocation={this.passPropsToNavigationHeader}
       />
     );
   };
