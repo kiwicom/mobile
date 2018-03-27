@@ -9,7 +9,10 @@ import {
   Color,
   TextInput,
 } from '@kiwicom/react-native-app-shared';
-import { type NavigationType } from '@kiwicom/react-native-app-navigation';
+import {
+  type NavigationType,
+  HeaderTitle,
+} from '@kiwicom/react-native-app-navigation';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
 import { connect } from '@kiwicom/react-native-app-redux';
 import Translation from '@kiwicom/react-native-app-translations';
@@ -17,7 +20,7 @@ import { graphql } from 'react-relay';
 import idx from 'idx';
 
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
-import SuggestionList from './SuggestionList';
+import SuggestionList from '../allHotels/searchForm/locationPicker/SuggestionList';
 
 type Props = {|
   navigation: NavigationType,
@@ -97,7 +100,11 @@ export class LocationPicker extends React.Component<Props, State> {
 
     return {
       headerLeft: headerLeft(),
-      title: 'Where',
+      title: (
+        <HeaderTitle>
+          <Translation id="HotelsSearch.LocationPicker.Header" />
+        </HeaderTitle>
+      ),
     };
   };
 

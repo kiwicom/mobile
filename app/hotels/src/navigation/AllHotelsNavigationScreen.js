@@ -85,6 +85,13 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
     });
   };
 
+  openGuestsModal = () => {
+    this.props.navigation.navigate({
+      routeName: 'GuestsModal',
+      key: 'key-GuestsModal',
+    });
+  };
+
   openSingleHotel = (searchParams: any) =>
     this.props.navigation.navigate({
       routeName: 'SingleHotel',
@@ -98,6 +105,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       openSingleHotel={this.openSingleHotel}
       coordinates={this.props.coordinates}
       openLocationPicker={this.openLocationPicker}
+      openGuestsModal={this.openGuestsModal}
     />
   );
 

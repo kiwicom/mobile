@@ -40,7 +40,7 @@ exports[`SearchForm Render all inputs 1`] = `
           "children": Array [],
         }
       }
-      onChange={[Function]}
+      openGuestsModal={undefined}
     />
   </View>
 </View>
