@@ -1,12 +1,23 @@
 /**
  * @flow
- * @relayHash afea8ca070d3c4750774d75ed9fb4162
+ * @relayHash dd5df08a537a0d727eb591d91fe111f0
  */
 
 /* eslint-disable */
 
-import type { ConcreteBatch } from 'relay-runtime';
-export type LocationPickerScreen_cities_QueryResponse = {| |};
+'use strict';
+
+/*::
+import type { ConcreteRequest } from 'relay-runtime';
+type SuggestionList_data$ref = any;
+export type LocationPickerScreen_cities_QueryVariables = {|
+  prefix: string,
+|};
+export type LocationPickerScreen_cities_QueryResponse = {|
+  +$fragmentRefs: SuggestionList_data$ref,
+|};
+*/
+
 
 /*
 query LocationPickerScreen_cities_Query(
@@ -19,9 +30,9 @@ fragment SuggestionList_data_3WHZd4 on RootQuery {
   hotelCities(prefix: $prefix, first: 50) {
     edges {
       node {
-        __typename
         id
         name
+        __typename
       }
       cursor
     }
@@ -33,19 +44,28 @@ fragment SuggestionList_data_3WHZd4 on RootQuery {
 }
 */
 
-const node: ConcreteBatch = {
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "prefix",
+    "type": "String!",
+    "defaultValue": null
+  }
+];
+return {
+  "kind": "Request",
+  "operationKind": "query",
+  "name": "LocationPickerScreen_cities_Query",
+  "id": null,
+  "text": "query LocationPickerScreen_cities_Query(\n  $prefix: String!\n) {\n  ...SuggestionList_data_3WHZd4\n}\n\nfragment SuggestionList_data_3WHZd4 on RootQuery {\n  hotelCities(prefix: $prefix, first: 50) {\n    edges {\n      node {\n        id\n        name\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n",
+  "metadata": {},
   "fragment": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "prefix",
-        "type": "String!",
-        "defaultValue": null
-      }
-    ],
     "kind": "Fragment",
-    "metadata": null,
     "name": "LocationPickerScreen_cities_Query",
+    "type": "RootQuery",
+    "metadata": null,
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "FragmentSpread",
@@ -59,29 +79,18 @@ const node: ConcreteBatch = {
           }
         ]
       }
-    ],
-    "type": "RootQuery"
+    ]
   },
-  "id": null,
-  "kind": "Batch",
-  "metadata": {},
-  "name": "LocationPickerScreen_cities_Query",
-  "query": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "prefix",
-        "type": "String!",
-        "defaultValue": null
-      }
-    ],
-    "kind": "Root",
+  "operation": {
+    "kind": "Operation",
     "name": "LocationPickerScreen_cities_Query",
-    "operation": "query",
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
+        "name": "hotelCities",
+        "storageKey": null,
         "args": [
           {
             "kind": "Literal",
@@ -97,90 +106,89 @@ const node: ConcreteBatch = {
           }
         ],
         "concreteType": "HotelCityConnection",
-        "name": "hotelCities",
         "plural": false,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "edges",
+            "storageKey": null,
             "args": null,
             "concreteType": "HotelCityEdge",
-            "name": "edges",
             "plural": true,
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
+                "name": "node",
+                "storageKey": null,
                 "args": null,
                 "concreteType": "HotelCity",
-                "name": "node",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
-                    "name": "__typename",
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
                     "name": "id",
+                    "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "name",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "__typename",
+                    "args": null,
                     "storageKey": null
                   }
-                ],
-                "storageKey": null
+                ]
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "args": null,
                 "name": "cursor",
+                "args": null,
                 "storageKey": null
               }
-            ],
-            "storageKey": null
+            ]
           },
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "pageInfo",
+            "storageKey": null,
             "args": null,
             "concreteType": "PageInfo",
-            "name": "pageInfo",
             "plural": false,
             "selections": [
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "args": null,
                 "name": "endCursor",
+                "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "args": null,
                 "name": "hasNextPage",
+                "args": null,
                 "storageKey": null
               }
-            ],
-            "storageKey": null
+            ]
           }
-        ],
-        "storageKey": null
+        ]
       },
       {
         "kind": "LinkedHandle",
         "alias": null,
+        "name": "hotelCities",
         "args": [
           {
             "kind": "Literal",
@@ -196,15 +204,14 @@ const node: ConcreteBatch = {
           }
         ],
         "handle": "connection",
-        "name": "hotelCities",
         "key": "SuggestionList_hotelCities",
         "filters": [
           "prefix"
         ]
       }
     ]
-  },
-  "text": "query LocationPickerScreen_cities_Query(\n  $prefix: String!\n) {\n  ...SuggestionList_data_3WHZd4\n}\n\nfragment SuggestionList_data_3WHZd4 on RootQuery {\n  hotelCities(prefix: $prefix, first: 50) {\n    edges {\n      node {\n        __typename\n        id\n        name\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n"
+  }
 };
-
+})();
+(node/*: any*/).hash = '1eb719b4c2b6d8157c0f806579c2c99e';
 module.exports = node;

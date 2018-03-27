@@ -1,16 +1,45 @@
 /**
  * @flow
- * @relayHash 2b47f6e9e03d2062d57007c2cce8aefc
+ * @relayHash eb52ec3ff4412138de845bd6063df5df
  */
 
 /* eslint-disable */
 
-import type { ConcreteBatch } from 'relay-runtime';
+'use strict';
+
+/*::
+import type { ConcreteRequest } from 'relay-runtime';
+type AdditionalInfo$ref = any;
+type MapView_hotel$ref = any;
+export type Currency = ('AED' | 'AFN' | 'ALL' | 'AMD' | 'ANG' | 'AOA' | 'ARS' | 'AUD' | 'AWG' | 'AZN' | 'BAM' | 'BBD' | 'BDT' | 'BGN' | 'BHD' | 'BIF' | 'BMD' | 'BND' | 'BOB' | 'BRL' | 'BSD' | 'BTC' | 'BTN' | 'BWP' | 'BYN' | 'BYR' | 'BZD' | 'CAD' | 'CDF' | 'CHF' | 'CLF' | 'CLP' | 'CNY' | 'COP' | 'CRC' | 'CUC' | 'CUP' | 'CVE' | 'CZK' | 'DJF' | 'DKK' | 'DOP' | 'DZD' | 'EEK' | 'EGP' | 'ERN' | 'ETB' | 'EUR' | 'FJD' | 'FKP' | 'GBP' | 'GEL' | 'GGP' | 'GHS' | 'GIP' | 'GMD' | 'GNF' | 'GTQ' | 'GYD' | 'HKD' | 'HNL' | 'HRK' | 'HTG' | 'HUF' | 'IDR' | 'ILS' | 'IMP' | 'INR' | 'IQD' | 'IRR' | 'ISK' | 'JEP' | 'JMD' | 'JOD' | 'JPY' | 'KES' | 'KGS' | 'KHR' | 'KMF' | 'KPW' | 'KRW' | 'KWD' | 'KYD' | 'KZT' | 'LAK' | 'LBP' | 'LKR' | 'LRD' | 'LSL' | 'LTL' | 'LVL' | 'LYD' | 'MAD' | 'MDL' | 'MGA' | 'MKD' | 'MMK' | 'MNT' | 'MOP' | 'MRO' | 'MTL' | 'MUR' | 'MVR' | 'MWK' | 'MXN' | 'MYR' | 'MZN' | 'NAD' | 'NGN' | 'NIO' | 'NOK' | 'NPR' | 'NZD' | 'OMR' | 'PAB' | 'PEN' | 'PGK' | 'PHP' | 'PKR' | 'PLN' | 'PYG' | 'QAR' | 'QUN' | 'RON' | 'RSD' | 'RUB' | 'RWF' | 'SAR' | 'SBD' | 'SCR' | 'SDG' | 'SEK' | 'SGD' | 'SHP' | 'SLL' | 'SOS' | 'SRD' | 'STD' | 'SVC' | 'SYP' | 'SZL' | 'THB' | 'TJS' | 'TMT' | 'TND' | 'TOP' | 'TRY' | 'TTD' | 'TWD' | 'TZS' | 'UAH' | 'UGX' | 'USD' | 'UYU' | 'UZS' | 'VEF' | 'VND' | 'VUV' | 'WST' | 'XAF' | 'XAG' | 'XAU' | 'XCD' | 'XDR' | 'XOF' | 'XPD' | 'XPF' | 'XPT' | 'YER' | 'ZAR' | 'ZMK' | 'ZMW' | 'ZWL' | '%future added value');
+export type Language = ('ar' | 'bg' | 'ca' | 'cs' | 'da' | 'de' | 'el' | 'en' | 'engb' | 'enus' | 'es' | 'esar' | 'et' | 'fi' | 'fr' | 'he' | 'hr' | 'hu' | 'id' | 'is' | 'it' | 'ja' | 'ko' | 'lt' | 'lv' | 'ms' | 'nl' | 'no' | 'pl' | 'pt' | 'ptbr' | 'ptpt' | 'ro' | 'ru' | 'sk' | 'sl' | 'sr' | 'sv' | 'th' | 'tl' | 'tr' | 'uk' | 'vi' | 'zh' | 'zhcn' | 'zhtw' | '%future added value');
+export type SingleHotelMapScreenQueryVariables = {|
+  search: {
+    hotelId: string,
+    checkin: any,
+    checkout: any,
+    roomsConfiguration: $ReadOnlyArray<{
+      adultsCount: number,
+      children?: ?$ReadOnlyArray<?{
+        age?: ?number,
+      }>,
+    }>,
+    language?: ?Language,
+  },
+  options?: ?{
+    currency?: ?Currency,
+  },
+|};
 export type SingleHotelMapScreenQueryResponse = {|
   +availableHotel: ?{|
-    +hotel: ?{| |};
-  |};
+    +hotel: ?{|
+      +$fragmentRefs: MapView_hotel$ref,
+    |},
+    +$fragmentRefs: AdditionalInfo$ref,
+  |},
 |};
+*/
+
 
 /*
 query SingleHotelMapScreenQuery(
@@ -74,53 +103,72 @@ fragment Address_address on Address {
 }
 */
 
-const node: ConcreteBatch = {
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "search",
+    "type": "AvailableHotelSearchInput!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "options",
+    "type": "AvailableHotelOptionsInput",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "options",
+    "variableName": "options",
+    "type": "AvailableHotelOptionsInput"
+  },
+  {
+    "kind": "Variable",
+    "name": "search",
+    "variableName": "search",
+    "type": "AvailableHotelSearchInput!"
+  }
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
+  "kind": "Request",
+  "operationKind": "query",
+  "name": "SingleHotelMapScreenQuery",
+  "id": null,
+  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    hotel {\n      ...MapView_hotel\n      id\n    }\n    ...AdditionalInfo\n    id\n  }\n}\n\nfragment MapView_hotel on Hotel {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    address {\n      ...Address_address\n    }\n    id\n  }\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+  "metadata": {},
   "fragment": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "search",
-        "type": "AvailableHotelSearchInput!",
-        "defaultValue": null
-      },
-      {
-        "kind": "LocalArgument",
-        "name": "options",
-        "type": "AvailableHotelOptionsInput",
-        "defaultValue": null
-      }
-    ],
     "kind": "Fragment",
-    "metadata": null,
     "name": "SingleHotelMapScreenQuery",
+    "type": "RootQuery",
+    "metadata": null,
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "options",
-            "variableName": "options",
-            "type": "AvailableHotelOptionsInput"
-          },
-          {
-            "kind": "Variable",
-            "name": "search",
-            "variableName": "search",
-            "type": "AvailableHotelSearchInput!"
-          }
-        ],
-        "concreteType": "HotelAvailability",
         "name": "availableHotel",
+        "storageKey": null,
+        "args": v1,
+        "concreteType": "HotelAvailability",
         "plural": false,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "hotel",
+            "storageKey": null,
             "args": null,
             "concreteType": "Hotel",
-            "name": "hotel",
             "plural": false,
             "selections": [
               {
@@ -128,259 +176,207 @@ const node: ConcreteBatch = {
                 "name": "MapView_hotel",
                 "args": null
               }
-            ],
-            "storageKey": null
+            ]
           },
           {
             "kind": "FragmentSpread",
             "name": "AdditionalInfo",
             "args": null
           }
-        ],
-        "storageKey": null
+        ]
       }
-    ],
-    "type": "RootQuery"
+    ]
   },
-  "id": null,
-  "kind": "Batch",
-  "metadata": {},
-  "name": "SingleHotelMapScreenQuery",
-  "query": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "search",
-        "type": "AvailableHotelSearchInput!",
-        "defaultValue": null
-      },
-      {
-        "kind": "LocalArgument",
-        "name": "options",
-        "type": "AvailableHotelOptionsInput",
-        "defaultValue": null
-      }
-    ],
-    "kind": "Root",
+  "operation": {
+    "kind": "Operation",
     "name": "SingleHotelMapScreenQuery",
-    "operation": "query",
+    "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "options",
-            "variableName": "options",
-            "type": "AvailableHotelOptionsInput"
-          },
-          {
-            "kind": "Variable",
-            "name": "search",
-            "variableName": "search",
-            "type": "AvailableHotelSearchInput!"
-          }
-        ],
-        "concreteType": "HotelAvailability",
         "name": "availableHotel",
+        "storageKey": null,
+        "args": v1,
+        "concreteType": "HotelAvailability",
         "plural": false,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "hotel",
+            "storageKey": null,
             "args": null,
             "concreteType": "Hotel",
-            "name": "hotel",
             "plural": false,
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
+                "name": "coordinates",
+                "storageKey": null,
                 "args": null,
                 "concreteType": "Coordinates",
-                "name": "coordinates",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "lat",
+                    "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "lng",
+                    "args": null,
                     "storageKey": null
                   }
-                ],
-                "storageKey": null
+                ]
               },
+              v2,
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "args": null,
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "args": null,
                 "name": "name",
+                "args": null,
                 "storageKey": null
               },
               {
                 "kind": "LinkedField",
                 "alias": null,
+                "name": "mainPhoto",
+                "storageKey": null,
                 "args": null,
                 "concreteType": "HotelPhoto",
-                "name": "mainPhoto",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "thumbnailUrl",
+                    "args": null,
                     "storageKey": null
                   },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
+                  v2
+                ]
               },
               {
                 "kind": "LinkedField",
                 "alias": null,
+                "name": "rating",
+                "storageKey": null,
                 "args": null,
                 "concreteType": "HotelRating",
-                "name": "rating",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "stars",
+                    "args": null,
                     "storageKey": null
                   }
-                ],
-                "storageKey": null
+                ]
               },
               {
                 "kind": "LinkedField",
                 "alias": null,
+                "name": "review",
+                "storageKey": null,
                 "args": null,
                 "concreteType": "HotelReview",
-                "name": "review",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "score",
+                    "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "description",
+                    "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "count",
+                    "args": null,
                     "storageKey": null
                   }
-                ],
-                "storageKey": null
+                ]
               },
               {
                 "kind": "LinkedField",
                 "alias": null,
+                "name": "address",
+                "storageKey": null,
                 "args": null,
                 "concreteType": "Address",
-                "name": "address",
                 "plural": false,
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "street",
+                    "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "city",
+                    "args": null,
                     "storageKey": null
                   },
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "args": null,
                     "name": "zip",
+                    "args": null,
                     "storageKey": null
                   }
-                ],
-                "storageKey": null
+                ]
               }
-            ],
-            "storageKey": null
+            ]
           },
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "price",
+            "storageKey": null,
             "args": null,
             "concreteType": "Price",
-            "name": "price",
             "plural": false,
             "selections": [
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "args": null,
                 "name": "amount",
+                "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "args": null,
                 "name": "currency",
+                "args": null,
                 "storageKey": null
               }
-            ],
-            "storageKey": null
+            ]
           },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "args": null,
-            "name": "id",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
+          v2
+        ]
       }
     ]
-  },
-  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    hotel {\n      ...MapView_hotel\n      id\n    }\n    ...AdditionalInfo\n    id\n  }\n}\n\nfragment MapView_hotel on Hotel {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    address {\n      ...Address_address\n    }\n    id\n  }\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n"
+  }
 };
-
+})();
+(node/*: any*/).hash = '98d1dc98cd2b3fa571422d30bdde8086';
 module.exports = node;

@@ -4,43 +4,50 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type Address_address$ref: FragmentReference;
 export type Address_address = {|
-  +street: ?string;
-  +city: ?string;
-  +zip: ?string;
+  +street: ?string,
+  +city: ?string,
+  +zip: ?string,
+  +$refType: Address_address$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "Address_address",
+  "type": "Address",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "street",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "city",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "zip",
+      "args": null,
       "storageKey": null
     }
-  ],
-  "type": "Address"
+  ]
 };
-
+(node/*: any*/).hash = '93a5ea870c5396c97c18f687add95e40';
 module.exports = node;

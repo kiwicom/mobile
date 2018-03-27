@@ -5,6 +5,7 @@ import { HotelReviewScore } from '../HotelReviewScore';
 let HRS;
 
 beforeEach(() => {
+  // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
   HRS = new HotelReviewScore({ hotel: { review: undefined } });
 });
 
@@ -34,15 +35,19 @@ describe('calculateColor', () => {
 
 describe('render', () => {
   it('returns null of falsy score values', () => {
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ hotel: { review: { score: 0 } } });
     expect(HRS.render()).toBe(null);
 
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ hotel: { review: { score: null } } });
     expect(HRS.render()).toBe(null);
 
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ hotel: { review: { score: undefined } } });
     expect(HRS.render()).toBe(null);
 
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ hotel: { review: { score: 1 } } });
     expect(HRS.render()).toBeInstanceOf(Object); // actual component
   });

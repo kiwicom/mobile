@@ -1,20 +1,28 @@
 /**
  * @flow
- * @relayHash 0a34ba081e1846d87d8646100bda4d0f
+ * @relayHash b77093cfb5584f47c5df8a8f9e468f20
  */
 
 /* eslint-disable */
 
-import type { ConcreteBatch } from 'relay-runtime';
+'use strict';
+
+/*::
+import type { ConcreteRequest } from 'relay-runtime';
+export type AllHotels_cityLookup_QueryVariables = {|
+  prefix: string,
+|};
 export type AllHotels_cityLookup_QueryResponse = {|
   +city: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +id: string;
-      |};
-    |}>;
-  |};
+        +id: string,
+      |},
+    |}>,
+  |},
 |};
+*/
+
 
 /*
 query AllHotels_cityLookup_Query(
@@ -30,149 +38,92 @@ query AllHotels_cityLookup_Query(
 }
 */
 
-const node: ConcreteBatch = {
-  "fragment": {
-    "argumentDefinitions": [
+const node/*: ConcreteRequest*/ = (function(){
+var v0 = [
+  {
+    "kind": "LocalArgument",
+    "name": "prefix",
+    "type": "String!",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
+    "kind": "LinkedField",
+    "alias": "city",
+    "name": "hotelCities",
+    "storageKey": null,
+    "args": [
       {
-        "kind": "LocalArgument",
+        "kind": "Literal",
+        "name": "first",
+        "value": 1,
+        "type": "Int"
+      },
+      {
+        "kind": "Variable",
         "name": "prefix",
-        "type": "String!",
-        "defaultValue": null
+        "variableName": "prefix",
+        "type": "String"
       }
     ],
-    "kind": "Fragment",
-    "metadata": null,
-    "name": "AllHotels_cityLookup_Query",
+    "concreteType": "HotelCityConnection",
+    "plural": false,
     "selections": [
       {
         "kind": "LinkedField",
-        "alias": "city",
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "first",
-            "value": 1,
-            "type": "Int"
-          },
-          {
-            "kind": "Variable",
-            "name": "prefix",
-            "variableName": "prefix",
-            "type": "String"
-          }
-        ],
-        "concreteType": "HotelCityConnection",
-        "name": "hotelCities",
-        "plural": false,
+        "alias": null,
+        "name": "edges",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "HotelCityEdge",
+        "plural": true,
         "selections": [
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "node",
+            "storageKey": null,
             "args": null,
-            "concreteType": "HotelCityEdge",
-            "name": "edges",
-            "plural": true,
+            "concreteType": "HotelCity",
+            "plural": false,
             "selections": [
               {
-                "kind": "LinkedField",
+                "kind": "ScalarField",
                 "alias": null,
+                "name": "id",
                 "args": null,
-                "concreteType": "HotelCity",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
-                    "storageKey": null
-                  }
-                ],
                 "storageKey": null
               }
-            ],
-            "storageKey": null
+            ]
           }
-        ],
-        "storageKey": null
-      }
-    ],
-    "type": "RootQuery"
-  },
-  "id": null,
-  "kind": "Batch",
-  "metadata": {},
-  "name": "AllHotels_cityLookup_Query",
-  "query": {
-    "argumentDefinitions": [
-      {
-        "kind": "LocalArgument",
-        "name": "prefix",
-        "type": "String!",
-        "defaultValue": null
-      }
-    ],
-    "kind": "Root",
-    "name": "AllHotels_cityLookup_Query",
-    "operation": "query",
-    "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": "city",
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "first",
-            "value": 1,
-            "type": "Int"
-          },
-          {
-            "kind": "Variable",
-            "name": "prefix",
-            "variableName": "prefix",
-            "type": "String"
-          }
-        ],
-        "concreteType": "HotelCityConnection",
-        "name": "hotelCities",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "args": null,
-            "concreteType": "HotelCityEdge",
-            "name": "edges",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "args": null,
-                "concreteType": "HotelCity",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "args": null,
-                    "name": "id",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
+        ]
       }
     ]
+  }
+];
+return {
+  "kind": "Request",
+  "operationKind": "query",
+  "name": "AllHotels_cityLookup_Query",
+  "id": null,
+  "text": "query AllHotels_cityLookup_Query(\n  $prefix: String!\n) {\n  city: hotelCities(prefix: $prefix, first: 1) {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n",
+  "metadata": {},
+  "fragment": {
+    "kind": "Fragment",
+    "name": "AllHotels_cityLookup_Query",
+    "type": "RootQuery",
+    "metadata": null,
+    "argumentDefinitions": v0,
+    "selections": v1
   },
-  "text": "query AllHotels_cityLookup_Query(\n  $prefix: String!\n) {\n  city: hotelCities(prefix: $prefix, first: 1) {\n    edges {\n      node {\n        id\n      }\n    }\n  }\n}\n"
+  "operation": {
+    "kind": "Operation",
+    "name": "AllHotels_cityLookup_Query",
+    "argumentDefinitions": v0,
+    "selections": v1
+  }
 };
-
+})();
+(node/*: any*/).hash = '81a181ab2d4659a1f1011bf3a3017802';
 module.exports = node;

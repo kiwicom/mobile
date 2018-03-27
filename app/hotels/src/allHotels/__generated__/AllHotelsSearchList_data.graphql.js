@@ -4,29 +4,53 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type AllHotelsSearchRow$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type AllHotelsSearchList_data$ref: FragmentReference;
 export type AllHotelsSearchList_data = {|
   +allAvailableHotels: ?{|
     +pageInfo: {|
-      +hasNextPage: boolean;
-      +hasPreviousPage: boolean;
-      +startCursor: ?string;
-      +endCursor: ?string;
-    |};
+      +hasNextPage: boolean,
+      +hasPreviousPage: boolean,
+      +startCursor: ?string,
+      +endCursor: ?string,
+    |},
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +id: string;
-      |};
-    |}>;
+        +id: string,
+        +$fragmentRefs: AllHotelsSearchRow$ref,
+      |},
+    |}>,
     +stats: ?{|
-      +priceMax: ?number;
-      +priceMin: ?number;
-    |};
-  |};
+      +priceMax: ?number,
+      +priceMin: ?number,
+    |},
+  |},
+  +$refType: AllHotelsSearchList_data$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
+const node/*: ConcreteFragment*/ = {
+  "kind": "Fragment",
+  "name": "AllHotelsSearchList_data",
+  "type": "RootQuery",
+  "metadata": {
+    "connection": [
+      {
+        "count": "first",
+        "cursor": "after",
+        "direction": "forward",
+        "path": [
+          "allAvailableHotels"
+        ]
+      }
+    ]
+  },
   "argumentDefinitions": [
     {
       "kind": "RootArgument",
@@ -54,24 +78,12 @@ const node: ConcreteFragment = {
       "type": "String"
     }
   ],
-  "kind": "Fragment",
-  "metadata": {
-    "connection": [
-      {
-        "count": "first",
-        "cursor": "after",
-        "direction": "forward",
-        "path": [
-          "allAvailableHotels"
-        ]
-      }
-    ]
-  },
-  "name": "AllHotelsSearchList_data",
   "selections": [
     {
       "kind": "LinkedField",
       "alias": "allAvailableHotels",
+      "name": "__AllHotels_allAvailableHotels_connection",
+      "storageKey": null,
       "args": [
         {
           "kind": "Variable",
@@ -93,69 +105,70 @@ const node: ConcreteFragment = {
         }
       ],
       "concreteType": "HotelAvailabilityConnection",
-      "name": "__AllHotels_allAvailableHotels_connection",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
           "args": null,
           "concreteType": "PageInfo",
-          "name": "pageInfo",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "hasNextPage",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "hasPreviousPage",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "startCursor",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "endCursor",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "edges",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelAvailabilityEdge",
-          "name": "edges",
           "plural": true,
           "selections": [
             {
               "kind": "LinkedField",
               "alias": null,
+              "name": "node",
+              "storageKey": null,
               "args": null,
               "concreteType": "HotelAvailability",
-              "name": "node",
               "plural": false,
               "selections": [
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "args": null,
                   "name": "id",
+                  "args": null,
                   "storageKey": null
                 },
                 {
@@ -166,53 +179,49 @@ const node: ConcreteFragment = {
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "args": null,
                   "name": "__typename",
+                  "args": null,
                   "storageKey": null
                 }
-              ],
-              "storageKey": null
+              ]
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "cursor",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "stats",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelAvailabilityStats",
-          "name": "stats",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "priceMax",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "priceMin",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "RootQuery"
+  ]
 };
-
+(node/*: any*/).hash = '99fe3b8292a859d58f85a6a7a3267e3f';
 module.exports = node;

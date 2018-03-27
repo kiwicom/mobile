@@ -3,6 +3,7 @@
 import countBookingPrice from '../countBookingPrice';
 
 const availableRooms = [
+  // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
   {
     originalId: 'aaa',
     incrementalPrice: [
@@ -16,6 +17,7 @@ const availableRooms = [
       },
     ],
   },
+  // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
   {
     originalId: 'bbb',
     incrementalPrice: [
@@ -50,10 +52,12 @@ it('returns sum of selected rooms', () => {
 
 it('takes a currency from the first selected room', () => {
   const czechRooms = [
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     {
       originalId: 'aaa',
       incrementalPrice: [],
     },
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     {
       originalId: 'bbb',
       incrementalPrice: [

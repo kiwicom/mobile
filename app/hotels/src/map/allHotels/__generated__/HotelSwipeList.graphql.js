@@ -4,38 +4,52 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Address_address$ref = any;
+type HotelSwipeItem$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type HotelSwipeList$ref: FragmentReference;
 export type HotelSwipeList = $ReadOnlyArray<{|
   +node: ?{|
-    +id: string;
+    +id: string,
     +hotel: ?{|
-      +address: ?{| |};
-    |};
-  |};
+      +address: ?{|
+        +$fragmentRefs: Address_address$ref,
+      |},
+    |},
+    +$fragmentRefs: HotelSwipeItem$ref,
+  |},
+  +$refType: HotelSwipeList$ref,
 |}>;
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
+  "name": "HotelSwipeList",
+  "type": "HotelAvailabilityEdge",
   "metadata": {
     "plural": true
   },
-  "name": "HotelSwipeList",
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "node",
+      "storageKey": null,
       "args": null,
       "concreteType": "HotelAvailability",
-      "name": "node",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "id",
+          "args": null,
           "storageKey": null
         },
         {
@@ -46,17 +60,19 @@ const node: ConcreteFragment = {
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "hotel",
+          "storageKey": null,
           "args": null,
           "concreteType": "Hotel",
-          "name": "hotel",
           "plural": false,
           "selections": [
             {
               "kind": "LinkedField",
               "alias": null,
+              "name": "address",
+              "storageKey": null,
               "args": null,
               "concreteType": "Address",
-              "name": "address",
               "plural": false,
               "selections": [
                 {
@@ -64,17 +80,13 @@ const node: ConcreteFragment = {
                   "name": "Address_address",
                   "args": null
                 }
-              ],
-              "storageKey": null
+              ]
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailabilityEdge"
+  ]
 };
-
+(node/*: any*/).hash = '53be9466d23014954274bec697d36701';
 module.exports = node;
