@@ -1,12 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  TextInput,
-  Color,
-  Logger,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
+import { Color, Logger, StyleSheet } from '@kiwicom/react-native-app-shared';
 import { View } from 'react-native';
 
 import DateInput from './DateInput';
@@ -16,6 +11,7 @@ import type {
   SearchParams,
   OnChangeSearchParams,
 } from './SearchParametersType';
+import LocationButton from './LocationButton';
 
 const styles = StyleSheet.create({
   form: {
@@ -42,7 +38,7 @@ type Props = {|
   location: string,
   search: SearchParams,
   onChange: (search: OnChangeSearchParams) => void,
-  onLocationChange: (location: string) => void,
+  openLocationPicker: () => void,
 |};
 
 export default class SearchForm extends React.Component<Props> {
@@ -50,25 +46,16 @@ export default class SearchForm extends React.Component<Props> {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_SEARCH_FORM);
   };
 
-  handleDestinationChange = (location: string) => {
-    this.props.onLocationChange(location);
-  };
-
   handleGuestsChange = (roomsConfiguration: RoomConfigurationType) => {
     this.props.onChange({ roomsConfiguration });
   };
 
   render = () => {
-    const { search, location, onChange } = this.props;
+    const { search, location, onChange, openLocationPicker } = this.props;
 
     return (
       <View style={styles.form}>
-        <TextInput
-          value={location}
-          onChangeText={this.handleDestinationChange}
-          placeholder="Where do you go?"
-          iconName="location-city"
-        />
+        <LocationButton onPress={openLocationPicker} location={location} />
         <View style={styles.row}>
           <DateInput
             checkin={search.checkin}

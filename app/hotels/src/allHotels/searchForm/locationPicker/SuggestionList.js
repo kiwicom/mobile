@@ -57,6 +57,7 @@ export class SuggestionList extends React.Component<Props> {
       keyExtractor={this.keyExtractor}
       ListHeaderComponent={<View style={styles.listHeader} />}
       onScroll={Keyboard.dismiss}
+      keyboardShouldPersistTaps="handled"
     />
   );
 }

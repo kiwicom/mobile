@@ -45,6 +45,7 @@ const Translations = {
   'SingleHotel.Description.Facilities.ShowLess': 'Show less',
 
   'HotelsSearch.LoadMode': 'Load more...',
+  'HotelsSearch.LocationButton.Placeholder': 'Where do you go?',
   'HotelsSearch.Filter.StarsPopup.Save': 'Save',
   'HotelsSearch.Filter.StarsPopup.Title': 'Hotel stars',
   'HotelsSearch.Filter.StarsPopup.Unrated': 'Unrated',
@@ -71,7 +72,6 @@ const Translations = {
     'Please fill children ages first.',
   'HotelsSearch.Filter.FreeCancellation': 'free cancellation',
   'HotelsSearch.LocationPicker.Cancel': 'Cancel',
-  'HotelsSearch.LocationPicker.Confirm': 'Confirm',
   'HotelsSearch.LocationPicker.YourLocation': 'Confirm',
   'HotelsSearch.Guests.Adults': 'Adults:',
   'HotelsSearch.Guests.Children': 'Children:',
