@@ -8,10 +8,16 @@ import type { ConcreteFragment } from 'relay-runtime';
 export type RoomRow_availableRoom = {|
   +originalId: ?string;
   +room: ?{|
+    +description: ?{|
+      +title: ?string;
+    |};
     +photos: ?{|
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
           +thumbnailUrl: ?string;
+          +highResUrl: ?string;
+          +lowResUrl: ?string;
+          +id: string;
         |};
       |}>;
     |};
@@ -55,6 +61,24 @@ const node: ConcreteFragment = {
       "plural": false,
       "selections": [
         {
+          "kind": "LinkedField",
+          "alias": null,
+          "args": null,
+          "concreteType": "HotelRoomDescription",
+          "name": "description",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "args": null,
+              "name": "title",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        },
+        {
           "kind": "FragmentSpread",
           "name": "RoomRowTitle_room",
           "args": null
@@ -93,6 +117,27 @@ const node: ConcreteFragment = {
                       "alias": null,
                       "args": null,
                       "name": "thumbnailUrl",
+                      "storageKey": null
+                    },
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "args": null,
+                      "name": "highResUrl",
+                      "storageKey": null
+                    },
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "args": null,
+                      "name": "lowResUrl",
+                      "storageKey": null
+                    },
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "args": null,
+                      "name": "id",
                       "storageKey": null
                     }
                   ],

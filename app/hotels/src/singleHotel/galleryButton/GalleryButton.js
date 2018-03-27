@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { Image, View } from 'react-native';
-import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
+import {
+  StyleSheet,
+  Text,
+  type StylePropType,
+} from '@kiwicom/react-native-app-shared';
+import idx from 'idx';
 import { DummyTranslation } from '@kiwicom/react-native-app-translations';
 
 import icon from './gallery-icon.png';
@@ -31,13 +36,21 @@ const styles = StyleSheet.create({
 
 type Props = {|
   count: number,
+  style?: {
+    container?: StylePropType,
+    icon?: StylePropType,
+    text?: StylePropType,
+  },
 |};
 
-export default function GalleryButton({ count }: Props) {
+export default function GalleryButton({ count, style }: Props) {
+  const containerStyle = idx(style, _ => _.container) || null;
+  const iconStyle = idx(style, _ => _.icon) || null;
+  const textStyle = idx(style, _ => _.text) || null;
   return (
-    <View style={styles.container}>
-      <Image source={icon} style={styles.icon} />
-      <Text style={styles.count}>
+    <View style={[styles.container, containerStyle]}>
+      <Image source={icon} style={[styles.icon, iconStyle]} />
+      <Text style={[styles.count, textStyle]}>
         <DummyTranslation id={count} />
       </Text>
     </View>
