@@ -79,10 +79,9 @@ const getReview = review => {
       <Text style={styles.metainfo}>
         <DummyTranslation id={`${reviewScore} ${reviewDescription}`} />
         <DummyTranslation id={delimiter} />
-        <DummyTranslation id={`${reviewCount} `} />
         <Translation
           id="Hotels.Map.MultipleReviews"
-          values={{ numberOfReviews: review.count }}
+          values={{ numberOfReviews: reviewCount }}
         />
       </Text>
     );
