@@ -30,14 +30,15 @@ import { updateCheckinDateIfBeforeToday } from '../search/SearchQueryHelpers';
 type Props = {|
   onSearchChange: OnChangeSearchParams => void,
   onLocationChange: (location: string) => void,
+  onFilterChange: OnChangeFilterParams => void,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  openLocationPicker: (location: string | null) => void,
+  openGuestsModal: () => void,
   search: SearchParams,
   coordinates: Coordinates | null,
   location: string,
   filter: FilterParams,
-  onFilterChange: OnChangeFilterParams => void,
   currency: string,
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  openLocationPicker: (location: string | null) => void,
   cityId: string | null,
 |};
 
@@ -95,6 +96,7 @@ class AllHotels extends React.Component<Props> {
             search={this.props.search}
             location={this.props.location}
             openLocationPicker={this.openLocationPicker}
+            openGuestsModal={this.props.openGuestsModal}
           />
           <FilterStripe
             filter={this.props.filter}

@@ -1,52 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Guests Render all inputs 1`] = `
-<View>
-  <Touchable
-    borderlessRipple={false}
-    disabled={false}
-    onPress={[Function]}
-    rippleColor="rgba(0, 0, 0, .32)"
-  >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#fff",
-          "borderRadius": 0,
-          "elevation": 1,
-          "flexDirection": "row",
-          "height": 47,
-          "padding": 12,
-        }
-      }
-    >
-      <Icon
-        color="#757575"
-        name="people"
-        size={20}
-        style={
-          Object {
-            "marginRight": 8,
-          }
-        }
-      />
-      <ButtonTitle
-        adultsCount={3}
-        childrenCount={0}
-      />
-    </View>
-  </Touchable>
-  <GuestsPopup
-    guests={
+<Touchable
+  borderlessRipple={false}
+  disabled={false}
+  onPress={[MockFunction]}
+  rippleColor="rgba(0, 0, 0, .32)"
+>
+  <View
+    style={
       Object {
-        "adultsCount": 3,
-        "children": Array [],
+        "alignItems": "center",
+        "backgroundColor": "#fff",
+        "borderRadius": 0,
+        "elevation": 1,
+        "flexDirection": "row",
+        "height": 47,
+        "padding": 12,
       }
     }
-    isVisible={false}
-    onChange={[Function]}
-    onClose={[Function]}
-  />
-</View>
+  >
+    <Icon
+      color="#757575"
+      name="people"
+      size={20}
+      style={
+        Object {
+          "marginRight": 8,
+        }
+      }
+    />
+    <ButtonTitle
+      adultsCount={3}
+      childrenCount={0}
+    />
+  </View>
+</Touchable>
 `;

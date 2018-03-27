@@ -13,16 +13,11 @@ import Translation, {
   DummyTranslation,
 } from '@kiwicom/react-native-app-translations';
 
-import GuestsPopup from './GuestsPopup';
 import type { RoomConfigurationType } from '../SearchParametersType';
 
 type Props = {|
   guests: RoomConfigurationType,
-  onChange: (guests: RoomConfigurationType) => void,
-|};
-
-type State = {|
-  isPopupOpen: boolean,
+  openGuestsModal: () => void,
 |};
 
 export const ButtonTitle = ({
@@ -48,47 +43,23 @@ export const ButtonTitle = ({
   );
 };
 
-export default class Guests extends React.Component<Props, State> {
-  state = {
-    isPopupOpen: false,
-  };
-
-  handlePopupToggle = () =>
-    this.setState(prevState => ({
-      isPopupOpen: !prevState.isPopupOpen,
-    }));
-
-  handleChange = (guests: RoomConfigurationType) => this.props.onChange(guests);
-
-  render = () => {
-    const { isPopupOpen } = this.state;
-    const { guests } = this.props;
-
-    return (
-      <View>
-        <Touchable onPress={this.handlePopupToggle}>
-          <View style={buttonStyles.buttonWrapper}>
-            <Icon
-              name="people"
-              size={20}
-              color={Color.grey.$600}
-              style={buttonStyles.icon}
-            />
-            <ButtonTitle
-              adultsCount={guests.adultsCount}
-              childrenCount={guests.children.length}
-            />
-          </View>
-        </Touchable>
-        <GuestsPopup
-          guests={guests}
-          onChange={this.handleChange}
-          onClose={this.handlePopupToggle}
-          isVisible={isPopupOpen}
+export default function Guests({ guests, openGuestsModal }: Props) {
+  return (
+    <Touchable onPress={openGuestsModal}>
+      <View style={buttonStyles.buttonWrapper}>
+        <Icon
+          name="people"
+          size={20}
+          color={Color.grey.$600}
+          style={buttonStyles.icon}
+        />
+        <ButtonTitle
+          adultsCount={guests.adultsCount}
+          childrenCount={guests.children.length}
         />
       </View>
-    );
-  };
+    </Touchable>
+  );
 }
 
 const buttonStyles = StyleSheet.create({

@@ -39,6 +39,7 @@ type Props = {|
   search: SearchParams,
   onChange: (search: OnChangeSearchParams) => void,
   openLocationPicker: () => void,
+  openGuestsModal: () => void,
 |};
 
 export default class SearchForm extends React.Component<Props> {
@@ -66,7 +67,7 @@ export default class SearchForm extends React.Component<Props> {
         <View style={styles.row}>
           <Guests
             guests={search.roomsConfiguration}
-            onChange={this.handleGuestsChange}
+            openGuestsModal={this.props.openGuestsModal}
           />
         </View>
       </View>

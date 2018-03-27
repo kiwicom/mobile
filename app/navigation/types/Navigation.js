@@ -11,7 +11,8 @@ type HotelsStackNavigatorNames =
   | 'Payment'
   | 'SingleHotel'
   | 'SingleHotelMap'
-  | 'LocationPicker';
+  | 'LocationPicker'
+  | 'GuestsModal';
 type HomepageStackNavigatorRouteNames = 'Home';
 
 type RouteNames =

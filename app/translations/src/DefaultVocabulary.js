@@ -72,16 +72,18 @@ const Translations = {
   'HotelsSearch.Filter.HotelFacilitiesPopup.Save': 'Save',
   'HotelsSearch.Filter.HotelFacilitiesPopup.Title': 'Hotel facilities',
   'HotelsSearch.Filter.HotelFacilitiesFilter.Title': 'hotel facilities',
-  'HotelsSearch.Filter.GuestsPopup.Save': 'Save',
-  'HotelsSearch.Filter.GuestsPopup.ChildrenAgeTitle':
-    'Age of child at check-out',
-  'HotelsSearch.Filter.GuestsPopup.Children.ErrorAge':
-    'Please fill children ages first.',
   'HotelsSearch.Filter.FreeCancellation': 'free cancellation',
   'HotelsSearch.LocationPicker.Cancel': 'Cancel',
   'HotelsSearch.LocationPicker.YourLocation': 'Confirm',
+  'HotelsSearch.LocationPicker.Header': 'Where',
   'HotelsSearch.Guests.Adults': 'Adults:',
   'HotelsSearch.Guests.Children': 'Children:',
+  'HotelsSearch.GuestsModal.Close': 'Close',
+  'HotelsSearch.GuestsModal.Save': 'Save',
+  'HotelsSearch.GuestsModal.ChildAgeTitle': 'Age of child at check-out',
+  'HotelsSearch.GuestsModal.Children.ErrorAge':
+    'Please fill children ages first.',
+  'HotelsSearch.GuestsModal.Header': 'Guests',
 
   // shared component
   'Shared.AgePicker.Done': 'Done',

@@ -16,7 +16,8 @@ import AllHotelsNavigationScreen from './AllHotelsNavigationScreen';
 import AllHotelsMapNavigationScreen from './AllHotelsMapNavigationScreen';
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
-import LocationPicker from '../allHotels/searchForm/locationPicker/LocationPickerScreen';
+import LocationPicker from './LocationPickerScreen';
+import GuestsModalScreen from './GuestsModalScreen';
 
 export type NavigationProps = {|
   navigation: NavigationType,
@@ -37,6 +38,9 @@ const AllHotelsStack = StackNavigator(
     },
     LocationPicker: {
       screen: LocationPicker,
+    },
+    GuestsModal: {
+      screen: GuestsModalScreen,
     },
   },
   {
