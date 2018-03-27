@@ -40,7 +40,7 @@
     "jest": "22.4.3",
     "metro-bundler": "^0.22.1",
     "node-fetch": "^2.1.2",
-    "prettier": "^1.7.4",
+    "prettier": "^1.11.1",
     "react-native-dotenv": "^0.1.0",
     "react-test-renderer": "16.2.0"
   },
