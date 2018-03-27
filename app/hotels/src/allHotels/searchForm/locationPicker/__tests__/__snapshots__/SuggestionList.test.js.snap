@@ -319,6 +319,7 @@ exports[`SuggestionList renders 1`] = `
   horizontal={false}
   initialNumToRender={10}
   keyExtractor={[Function]}
+  keyboardShouldPersistTaps="handled"
   maxToRenderPerBatch={10}
   numColumns={1}
   onEndReachedThreshold={2}

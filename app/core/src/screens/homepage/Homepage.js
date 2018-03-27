@@ -12,11 +12,6 @@ type Props = {|
   navigation: NavigationType,
 |};
 
-type State = {|
-  cityId: string,
-  cityName: string,
-|};
-
 function Section({ children }: { children: React.Node }) {
   const sectionStyle = {
     margin: 10,
@@ -25,16 +20,7 @@ function Section({ children }: { children: React.Node }) {
   return <View style={sectionStyle}>{children}</View>;
 }
 
-export default class Homepage extends React.Component<Props, State> {
-  state = {
-    cityId: '',
-    cityName: '',
-  };
-
-  onLocationSelected = (cityId: string, cityName: string) => {
-    this.setState({ cityId, cityName });
-  };
-
+export default class Homepage extends React.Component<Props> {
   goToAllHotelsPage = () =>
     this.props.navigation.navigate({
       routeName: 'HotelsPackage',
@@ -67,16 +53,6 @@ export default class Homepage extends React.Component<Props, State> {
     });
   };
 
-  openLocations = () => {
-    this.props.navigation.navigate({
-      routeName: 'LocationPicker',
-      key: 'key-HotelsPackage',
-      params: {
-        onSelect: this.onLocationSelected,
-      },
-    });
-  };
-
   render = () => {
     return (
       <Layout>
@@ -97,14 +73,6 @@ export default class Homepage extends React.Component<Props, State> {
             title={<DummyTranslation id="Hotels in Lima" />}
             onPress={this.goToLima}
           />
-        </Section>
-        <Section>
-          <Button
-            title={<DummyTranslation id="Location picker" />}
-            onPress={this.openLocations}
-          />
-          <DummyTranslation id={`Current cityId: ${this.state.cityId}`} />
-          <DummyTranslation id={`Current cityName: ${this.state.cityName}`} />
         </Section>
         <Section>
           <Logout />

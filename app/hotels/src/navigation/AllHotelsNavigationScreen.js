@@ -3,11 +3,7 @@
 import * as React from 'react';
 import { BackHandler, Platform, View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
-import {
-  StyleSheet,
-  AdaptableLayout,
-  DismissKeyboardView,
-} from '@kiwicom/react-native-app-shared';
+import { StyleSheet, AdaptableLayout } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 
 import AllHotels from '../allHotels/AllHotels';
@@ -71,6 +67,16 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
     }
   };
 
+  openLocationPicker = (location: string | null) => {
+    this.props.navigation.navigate({
+      routeName: 'LocationPicker',
+      key: 'key-LocationPicker',
+      params: {
+        location,
+      },
+    });
+  };
+
   openSingleHotel = (searchParams: any) =>
     this.props.navigation.navigate({
       routeName: 'SingleHotel',
@@ -83,6 +89,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       currency={this.props.currency}
       openSingleHotel={this.openSingleHotel}
       coordinates={this.props.coordinates}
+      openLocationPicker={this.openLocationPicker}
     />
   );
 
@@ -101,12 +108,10 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
 
   render = () => {
     return (
-      <DismissKeyboardView>
-        <AdaptableLayout
-          renderOnWide={this.renderHotelsWithMap()}
-          renderOnNarrow={this.renderHotels()}
-        />
-      </DismissKeyboardView>
+      <AdaptableLayout
+        renderOnWide={this.renderHotelsWithMap()}
+        renderOnNarrow={this.renderHotels()}
+      />
     );
   };
 }

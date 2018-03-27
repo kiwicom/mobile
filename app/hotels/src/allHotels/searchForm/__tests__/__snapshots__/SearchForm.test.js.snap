@@ -9,11 +9,9 @@ exports[`SearchForm Render all inputs 1`] = `
     }
   }
 >
-  <TextInput
-    iconName="location-city"
-    onChangeText={[Function]}
-    placeholder="Where do you go?"
-    value="Pra"
+  <LocationButton
+    location="Pra"
+    onPress={[MockFunction]}
   />
   <View
     style={
