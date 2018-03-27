@@ -20,10 +20,6 @@ type Props = {|
   numberOfLines?: number,
 |};
 
-type State = {|
-  nativeText: StylePropType,
-|};
-
 /**
  * React Native has the concept of style inheritance, but limited to text
  * subtrees. In this case, the second part will be both bold and red:
@@ -43,64 +39,44 @@ type State = {|
  * 9-17: bold, red
  * ```
  *
+ * This style inheritance works for deeply nested 'Text' components as well.
+ *
  * Known issues:
  * @see https://github.com/facebook/react-native/issues/10712
  */
-export default class Text extends React.Component<Props, State> {
-  state = {
-    nativeText: styles.nativeText,
+export default class Text extends React.Component<Props> {
+  static childContextTypes = {
+    isNested: PropTypes.bool,
   };
 
-  componentDidMount = () => {
-    this.setNativeStyles(this.props.style);
-  };
-
-  componentWillReceiveProps = (nextProps: Props) => {
-    this.setNativeStyles(nextProps.style);
+  static contextTypes = {
+    isNested: PropTypes.bool,
   };
 
   getChildContext = () => ({
-    defaultTextStyles: this.state.nativeText,
+    isNested: true,
   });
 
-  setNativeStyles = (style: StylePropType) => {
-    if (this.context.defaultTextStyles === undefined) {
-      // only the styles of the first Text component in the subtree are merged
-      // with the default values
-      this.setState(prevState => ({
-        nativeText: StyleSheet.flatten([prevState.nativeText, style]),
-      }));
-    } else {
-      // other Text component deeper in the subtree works only with the style
-      // properties because they are being merged with context already
-      // containing previous and default styles
-      this.setState({
-        nativeText: style,
-      });
-    }
-  };
+  render = () => {
+    let style = this.props.style;
 
-  render = () => (
-    <ReactNative.Text
-      {...this.props}
-      style={[this.context.defaultTextStyles, this.state.nativeText]}
-    >
-      {this.props.children}
-    </ReactNative.Text>
-  );
+    if (this.context.isNested === undefined) {
+      // default styling must be applied only on the root Text component
+      // `undefined` style in nested Text components indicates style inheritance
+      style = [styleSheet.defaultTextStyle, this.props.style];
+    }
+
+    return (
+      <ReactNative.Text {...this.props} style={style}>
+        {this.props.children}
+      </ReactNative.Text>
+    );
+  };
 }
 
-Text.childContextTypes = {
-  defaultTextStyles: PropTypes.any,
-};
-
-Text.contextTypes = {
-  defaultTextStyles: PropTypes.any,
-};
-
-const styles = StyleSheet.create({
+const styleSheet = StyleSheet.create({
   // These values are from the official design. Don't touch it please.
-  nativeText: {
+  defaultTextStyle: {
     fontWeight: 'normal',
     color: Color.textDark,
     android: {
