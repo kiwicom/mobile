@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Color, StyleSheet } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
 
 import AgeControl from './AgeControl';
 import type { ChildAge } from './GuestsTypes';
@@ -20,18 +19,19 @@ export default class ChildrenAgesControl extends React.Component<Props> {
     this.props.onChange(childrenAges);
   };
 
-  renderItem = (item: ChildAge, index: number) => (
-    <AgeControl
-      key={index}
-      label={`Child ${index + 1}`}
-      age={item.age}
-      onChange={this.handleAgeChange(index)}
-      style={{
-        borderBottomWidth: this.props.childrenAges.length - 1 === index ? 0 : 1,
-        borderBottomColor: Color.backgroundGray,
-      }}
-    />
-  );
+  renderItem = (item: ChildAge, index: number) => {
+    const isLastItem = index === this.props.childrenAges.length - 1;
+    return (
+      <View key={index} style={isLastItem ? null : styles.ageControlContainer}>
+        <AgeControl
+          label={`Child ${index + 1}`}
+          age={item.age}
+          onChange={this.handleAgeChange(index)}
+          style={styles.ageControl}
+        />
+      </View>
+    );
+  };
 
   render() {
     const { childrenAges } = this.props;
@@ -41,12 +41,7 @@ export default class ChildrenAgesControl extends React.Component<Props> {
     }
 
     return (
-      <View>
-        {items.length > 0 && (
-          <View style={styles.header}>
-            <Translation id="HotelsSearch.Filter.GuestsPopup.ChildrenAgeTitle" />
-          </View>
-        )}
+      <View style={styles.container}>
         <View style={styles.list}>
           {items.map((item, index) => this.renderItem(item, index))}
         </View>
@@ -55,16 +50,18 @@ export default class ChildrenAgesControl extends React.Component<Props> {
   }
 }
 
-const POPUP_PADDING = 20;
-
 const styles = StyleSheet.create({
-  header: {
-    backgroundColor: Color.grey.$100,
-    padding: POPUP_PADDING / 2,
-    paddingHorizontal: POPUP_PADDING,
+  container: {
+    backgroundColor: Color.white,
   },
   list: {
-    paddingLeft: POPUP_PADDING,
-    paddingRight: POPUP_PADDING,
+    paddingLeft: 15,
+  },
+  ageControlContainer: {
+    borderBottomColor: Color.backgroundGray,
+    borderBottomWidth: 1,
+  },
+  ageControl: {
+    paddingRight: 15,
   },
 });

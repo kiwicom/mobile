@@ -4,68 +4,83 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import GuestsPopup from '../GuestsPopup';
-import type { RoomConfigurationType } from '../../SearchParametersType';
+import { GuestsModalScreen } from '../GuestsModalScreen';
+import type { RoomConfigurationType } from '../../allHotels/searchForm/SearchParametersType';
 
-const shallowRenderGuestsPopup = (onClose: Function) => {
+const navigation = {
+  navigate: jest.fn(),
+  setParams: jest.fn(),
+  goBack: jest.fn(),
+  state: {
+    params: {},
+  },
+};
+
+const shallowRenderGuestsPopup = (searchChange: Function) => {
   const renderer = new ShallowRenderer();
   const guests: RoomConfigurationType = {
     adultsCount: 3,
     children: [],
   };
   return renderer.render(
-    <GuestsPopup
-      onClose={onClose}
-      isVisible
-      onChange={jest.fn()}
+    <GuestsModalScreen
+      searchChange={searchChange}
+      navigation={navigation}
       guests={guests}
     />,
   );
 };
 
-const renderGuestsPopup = (onClose: Function) => {
+const renderGuestsPopup = (searchChange: Function) => {
   const guests: RoomConfigurationType = {
     adultsCount: 1,
     children: [],
   };
   return renderer.create(
-    <GuestsPopup
-      onClose={onClose}
-      isVisible
-      onChange={jest.fn()}
+    <GuestsModalScreen
+      searchChange={searchChange}
+      navigation={navigation}
       guests={guests}
     />,
   );
 };
 
-describe('GuestsPopup', () => {
+afterEach(() => {
+  jest.resetAllMocks();
+});
+
+describe('GuestsModalScreen', () => {
   it('Renders correctly', () => {
     const renderer = shallowRenderGuestsPopup(jest.fn());
     expect(renderer).toMatchSnapshot();
   });
 
-  it('should call onClose from handleSave when child age is not missing', async () => {
-    const onClose = jest.fn();
-    const testRenderer = renderGuestsPopup(onClose);
+  it('should call searchChange and navigatin.goBack from onSave when child age is not missing', () => {
+    const searchChange = jest.fn();
+    const testRenderer = renderGuestsPopup(searchChange);
     const testInstance = testRenderer.root;
 
-    testInstance.instance.handleSave();
+    testInstance.instance.onSave();
 
-    expect(onClose).toHaveBeenCalled();
+    expect(searchChange).toHaveBeenCalled();
+    expect(navigation.goBack).toHaveBeenCalled();
   });
 
-  it('should not call onClose from handleSave when child age is missing', async () => {
-    const onClose = jest.fn();
-    const testRenderer = renderGuestsPopup(onClose);
+  it('should not call searchChange nor go back from onSave when child age is missing', () => {
+    const setTimeout = global.setTimeout;
+    global.setTimeout = jest.fn();
+    const searchChange = jest.fn();
+    const testRenderer = renderGuestsPopup(searchChange);
     const testInstance = testRenderer.root;
-
     const isAgeMissingMock = jest.fn();
     isAgeMissingMock.mockReturnValue(true);
     testInstance.instance.isMissingAge = isAgeMissingMock;
 
-    testInstance.instance.handleSave();
+    testInstance.instance.onSave();
 
-    expect(onClose).not.toHaveBeenCalled();
+    expect(searchChange).not.toHaveBeenCalled();
+    expect(navigation.goBack).not.toHaveBeenCalled();
+    global.setTimeout = setTimeout;
   });
 
   it('should remove error when children is set to 0', () => {
@@ -81,8 +96,8 @@ describe('GuestsPopup', () => {
   });
 
   it('should not produce an error when setting age of a child', () => {
-    const onClose = jest.fn();
-    const testRenderer = renderGuestsPopup(onClose);
+    const searchChange = jest.fn();
+    const testRenderer = renderGuestsPopup(searchChange);
     const testInstance = testRenderer.getInstance();
     testInstance.handleChildrenChange(1);
     testInstance.handleChildrenChange(1);

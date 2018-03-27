@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GuestsModalScreen Renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "paddingTop": 20,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "paddingLeft": 15,
+      }
+    }
+  >
+    <GuestsNumberControl
+      adultsCount={0}
+      childCount={0}
+      handleAdultChange={[Function]}
+      handleChildrenChange={[Function]}
+    />
+  </View>
+</View>
+`;
