@@ -24,6 +24,7 @@ This is not an actual mobile application. This repository contains only React Na
   * [Working with GraphQL API](#working-with-graphql-api)
   * [Working with Redux](#working-with-redux)
   * [Working with translations](#working-with-translations)
+  * [Upgrading dependencies](#upgrading-dependencies)
 * [Known issues](#known-issues)
   * [Important to fix before production ready state](#important-to-fix-before-production-ready-state)
   * [Improvements necessary for production usage](#improvements-necessary-for-production-usage)
@@ -368,6 +369,15 @@ There are also situations where we need to return multiple translations but this
 ```
 
 This fragment also comply with Flow types and it has similar behaviour with `React.Fragment` from React 16.2+...
+
+### Upgrading dependencies
+
+Check all dependencies with `outdated` Yarn command. This will tell you how behind we actually are. Try not to upgrade everything at once since there may be breaking changes (even though it's non-breaking upgrade). The second command will help you significantly with upgrading these dependencies across our workspace repository:
+
+```
+yarn outdated
+yarn upgrade-interactive --latest
+```
 
 ## Known issues
 
