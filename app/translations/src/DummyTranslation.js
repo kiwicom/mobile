@@ -3,8 +3,13 @@
 import * as React from 'react';
 import { Text } from '@kiwicom/react-native-app-shared';
 
+import CaseTransform, {
+  type SupportedTransformationsType,
+} from './transformations/CaseTransform';
+
 type Props = {|
   id: ?string | ?number,
+  textTransform?: SupportedTransformationsType,
 |};
 
 /**
@@ -30,7 +35,7 @@ export default class DummyTranslation extends React.Component<Props> {
         $FlowExpectedError: we do not allow to use 'string' in the 'Text'
         components but translations are exceptions.
       */}
-      {this.props.id}
+      {CaseTransform(this.props.id, this.props.textTransform)}
     </Text>
   );
 }

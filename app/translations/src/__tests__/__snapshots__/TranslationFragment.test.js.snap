@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`passes all props down to the children 1`] = `
+Array [
+  <DummyTranslation
+    id={1}
+    textTransform="uppercase"
+  />,
+  <DummyTranslation
+    id={2}
+    textTransform="uppercase"
+  />,
+]
+`;
+
+exports[`throws error for undefined children 1`] = `"'TranslationFragment' cannot be used without children."`;
+
+exports[`works without additional props 1`] = `
+Array [
+  <DummyTranslation
+    id={1}
+  />,
+]
+`;

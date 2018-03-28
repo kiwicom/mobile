@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 
+import type { SupportedTransformationsType } from './transformations/CaseTransform';
+
 /**
  * Allows to concat multiple translations because it's not possible to nest
  * them. Usage:
@@ -17,6 +19,18 @@ import * as React from 'react';
  */
 export default class TranslationFragment extends React.Component<{|
   children: React.Node,
+  textTransform?: SupportedTransformationsType,
 |}> {
-  render = () => this.props.children;
+  render = () => {
+    if (this.props.children === undefined) {
+      throw new Error("'TranslationFragment' cannot be used without children.");
+    }
+
+    return React.Children.map(this.props.children, child =>
+      React.cloneElement(child, {
+        ...this.props,
+        children: null,
+      }),
+    );
+  };
 }
