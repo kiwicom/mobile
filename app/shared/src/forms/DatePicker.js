@@ -10,6 +10,7 @@ import Color from '../Color';
 
 const customStyles = StyleSheet.create({
   // date input wrapper (View)
+  // eslint-disable-next-line react-native/no-unused-styles
   dateInput: {
     borderWidth: 0,
     padding: 10,
@@ -18,6 +19,7 @@ const customStyles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   // text inside of the date input wrapper (Text)
+  // eslint-disable-next-line react-native/no-unused-styles
   dateText: {
     color: Color.textDark,
     android: {
@@ -33,6 +35,7 @@ const customStyles = StyleSheet.create({
     marginLeft: 10,
   },
   // touchable area around the 'dateInput' (View)
+  // eslint-disable-next-line react-native/no-unused-styles
   dateTouchBody: {
     backgroundColor: '#fff',
     android: {
@@ -45,10 +48,12 @@ const customStyles = StyleSheet.create({
     },
   },
   // Confirm button text styling
+  // eslint-disable-next-line react-native/no-unused-styles
   btnTextConfirm: {
     color: Color.brand,
   },
   // Cancel button text styling
+  // eslint-disable-next-line react-native/no-unused-styles
   btnTextCancel: {
     color: Color.brand,
   },

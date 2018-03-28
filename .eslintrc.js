@@ -1,4 +1,5 @@
 const OFF = 0;
+const WARNING = 1;
 const ERROR = 2;
 
 module.exports = {
@@ -17,7 +18,13 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['import', 'prettier', 'react', 'flowtype'],
+  plugins: [
+    'import',
+    'prettier',
+    'react',
+    'react-native',
+    'flowtype',
+  ],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -74,6 +81,8 @@ module.exports = {
     'react/jsx-no-bind': ERROR,
     'react/no-access-state-in-setstate': ERROR,
     'react/prop-types': OFF, // we use Flow instead,
+    'react-native/no-unused-styles': ERROR,
+    'react-native/no-inline-styles': WARNING,
     'flowtype/require-valid-file-annotation': [ERROR, 'always'],
   },
 };

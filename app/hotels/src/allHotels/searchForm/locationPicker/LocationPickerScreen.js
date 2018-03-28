@@ -54,13 +54,6 @@ const styles = StyleSheet.create({
       fontWeight: '600',
     },
   },
-  confirmButton: {
-    padding: 8,
-    paddingRight: 10,
-  },
-  disabled: {
-    opacity: 0.4,
-  },
   container: {
     flex: 1,
   },

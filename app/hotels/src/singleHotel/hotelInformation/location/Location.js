@@ -37,7 +37,6 @@ const styles = StyleSheet.create({
   rightColumn: {
     flex: 1,
   },
-  mapOverlay: StyleSheet.absoluteFillObject,
   addressLine: {
     fontSize: 14,
     lineHeight: 19,
