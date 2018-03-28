@@ -5,8 +5,9 @@ import { NativeModules } from 'react-native';
 import { Text } from '@kiwicom/react-native-app-shared';
 
 import DefaultVocabulary, { type TranslationKeys } from './DefaultVocabulary';
-
-type SupportedTransformationsType = 'lowercase' | 'uppercase';
+import CaseTransform, {
+  type SupportedTransformationsType,
+} from './transformations/CaseTransform';
 
 type Props = {|
   id: TranslationKeys,
@@ -17,20 +18,6 @@ type Props = {|
 export default class Translation extends React.Component<Props> {
   // use this property to highlight translations for screenshoting or debugging
   highlightTranslations = false;
-
-  transformText = (
-    text: string,
-    transformation?: SupportedTransformationsType,
-  ): string => {
-    switch (transformation) {
-      case 'uppercase':
-        return text.toUpperCase();
-      case 'lowercase':
-        return text.toLowerCase();
-      default:
-        return text;
-    }
-  };
 
   replaceValues = (text: string, values?: Object): string => {
     const VARIABLE_REGEX = /__([0-9]+_)?([a-zA-Z-_]+)__/g;
@@ -74,7 +61,7 @@ export default class Translation extends React.Component<Props> {
           $FlowExpectedError: we do not allow to use 'string' in the 'Text'
           components but translations are exceptions.
         */}
-        {this.transformText(
+        {CaseTransform(
           this.replaceValues(translatedString, this.props.values),
           this.props.textTransform,
         )}
