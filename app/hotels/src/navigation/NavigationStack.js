@@ -1,12 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { StackNavigator } from 'react-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
+  HeaderTitle,
+  StackNavigator,
   StackNavigatorOptions,
   type NavigationType,
 } from '@kiwicom/react-native-app-navigation';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import GalleryGrid from '../gallery/GalleryGrid';
 import Payment from '../singleHotel/PaymentScreen';
@@ -53,19 +55,31 @@ export default StackNavigator(
     AllHotelsMap: {
       screen: withMappedProps(AllHotelsMapNavigationScreen),
       navigationOptions: {
-        headerTitle: 'Map',
+        headerTitle: (
+          <HeaderTitle>
+            <Translation id="Hotels.Navigation.Title.AllHotelsMap" />
+          </HeaderTitle>
+        ),
       },
     },
     SingleHotel: {
       screen: SingleHotelNavigationScreen,
       navigationOptions: {
-        headerTitle: 'Detail',
+        headerTitle: (
+          <HeaderTitle>
+            <Translation id="Hotels.Navigation.Title.SingleHotel" />
+          </HeaderTitle>
+        ),
       },
     },
     SingleHotelMap: {
       screen: SingleHotelMapNavigationScreen,
       navigationOptions: {
-        headerTitle: 'Map',
+        headerTitle: (
+          <HeaderTitle>
+            <Translation id="Hotels.Navigation.Title.SingleHotelMap" />
+          </HeaderTitle>
+        ),
       },
     },
     GalleryGrid: {
@@ -96,14 +110,22 @@ export default StackNavigator(
         },
       ),
       navigationOptions: {
-        headerTitle: 'Photos',
+        headerTitle: (
+          <HeaderTitle>
+            <Translation id="Hotels.Navigation.Title.GalleryGrid" />
+          </HeaderTitle>
+        ),
       },
     },
     Payment: {
       screen: withMappedProps(Payment),
       navigationOptions: {
         mode: 'modal',
-        headerTitle: 'Hotel',
+        headerTitle: (
+          <HeaderTitle>
+            <Translation id="Hotels.Navigation.Title.Payment" />
+          </HeaderTitle>
+        ),
       },
     },
   },
