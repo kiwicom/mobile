@@ -146,17 +146,15 @@ export class LocationPicker extends React.Component<Props, State> {
             autoFocus
           />
         </View>
-        {!this.state.cityId && (
-          <PublicApiRenderer
-            query={graphql`
-              query LocationPickerScreen_cities_Query($prefix: String!) {
-                ...SuggestionList_data @arguments(prefix: $prefix)
-              }
-            `}
-            render={this.renderSuggestions}
-            variables={{ prefix: this.state.search }}
-          />
-        )}
+        <PublicApiRenderer
+          query={graphql`
+            query LocationPickerScreen_cities_Query($prefix: String!) {
+              ...SuggestionList_data @arguments(prefix: $prefix)
+            }
+          `}
+          render={this.renderSuggestions}
+          variables={{ prefix: this.state.search }}
+        />
       </View>
     );
   };
