@@ -4,7 +4,6 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "moment": "^2.21.0",
-    "react-native-device-info": "^0.21.2"
+    "moment": "^2.21.0"
   }
 }
