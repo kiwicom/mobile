@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { StackNavigator } from 'react-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import { ReduxContext } from '@kiwicom/react-native-app-redux';
+import { StackNavigator } from '@kiwicom/react-native-app-navigation';
 
 import HomepageStack from './HomepageStack';
 import UserReducer from '../services/redux/UserReducer';

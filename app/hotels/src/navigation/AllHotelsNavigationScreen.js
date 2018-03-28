@@ -4,7 +4,11 @@ import * as React from 'react';
 import { BackHandler, Platform, View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
 import { StyleSheet, AdaptableLayout } from '@kiwicom/react-native-app-shared';
-import { type NavigationType } from '@kiwicom/react-native-app-navigation';
+import Translation from '@kiwicom/react-native-app-translations';
+import {
+  HeaderTitle,
+  type NavigationType,
+} from '@kiwicom/react-native-app-navigation';
 
 import AllHotels from '../allHotels/AllHotels';
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
@@ -50,7 +54,11 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
 
     return {
       headerLeft: renderHeaderLeft(),
-      headerTitle: 'Hotels',
+      headerTitle: (
+        <HeaderTitle>
+          <Translation id="Hotels.Navigation.Title.AllHotels" />
+        </HeaderTitle>
+      ),
       headerRight: renderHeaderRight(),
     };
   };
