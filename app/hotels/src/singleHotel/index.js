@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import { MapLocaleToLanguageQuery } from '@kiwicom/react-native-app-translations';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';
@@ -77,7 +78,7 @@ export default class SingleHotelContainer extends React.Component<
             ...search,
             checkin: sanitizeDate(search.checkin),
             checkout: sanitizeDate(search.checkout),
-            language,
+            language: MapLocaleToLanguageQuery(language),
           },
           options: { currency },
         }}

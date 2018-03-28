@@ -6,8 +6,14 @@ import Translation from './src/Translation';
 import DummyTranslation from './src/DummyTranslation';
 import TranslationFragment from './src/TranslationFragment';
 import DateFormatter from './src/DateFormatter';
+import MapLocaleToLanguageQuery from './src/MapLocaleToLanguageQuery';
 
-export { DummyTranslation, TranslationFragment, DateFormatter };
+export {
+  DummyTranslation,
+  TranslationFragment,
+  DateFormatter,
+  MapLocaleToLanguageQuery,
+};
 export default Translation;
 
 export type TranslationType =
