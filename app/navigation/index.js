@@ -50,7 +50,8 @@ export const StackNavigator = (
     [string]: {|
       screen: mixed,
       navigationOptions?: {|
-        headerTitle: React.Element<typeof HeaderTitle>,
+        headerTitle: React.Element<typeof HeaderTitle> | null,
+        headerStyle?: Object,
         mode?: 'modal',
       |},
     |},
