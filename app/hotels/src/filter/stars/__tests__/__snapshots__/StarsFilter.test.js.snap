@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StarsFilter renders 1`] = `
+<View>
+  <FilterButton
+    icon={
+      <Icon
+        color="#ffffff"
+        name="star"
+        size={18}
+      />
+    }
+    isActive={false}
+    onPress={[Function]}
+    title={
+      <Translation
+        id="HotelsSearch.Filter.StarsFilter.Stars"
+      />
+    }
+  />
+  <StarsPopup
+    isVisible={false}
+    onClose={[Function]}
+    onSave={[Function]}
+    stars={Array []}
+  />
+</View>
+`;

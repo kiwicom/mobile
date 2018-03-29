@@ -2,15 +2,13 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, Color, Icon } from '@kiwicom/react-native-app-shared';
+import {
+  Button,
+  Color,
+  Icon,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
 import type { TranslationType } from '@kiwicom/react-native-app-translations';
-
-const styles = {
-  default: {
-    padding: 3,
-    paddingHorizontal: 3,
-  },
-};
 
 type Props = {
   title: TranslationType,
@@ -18,6 +16,23 @@ type Props = {
   onPress: () => void,
   icon?: React.Element<typeof Icon>,
 };
+
+const styles = StyleSheet.create({
+  default: {
+    padding: 3,
+    paddingHorizontal: 3,
+  },
+  buttonText: {
+    ios: {
+      paddingTop: 9,
+      paddingBottom: 11,
+    },
+    android: {
+      paddingTop: 12,
+      paddingBottom: 8,
+    },
+  },
+});
 
 export default function FilterButton(props: Props) {
   const { title, isActive, icon, onPress } = props;
@@ -32,6 +47,7 @@ export default function FilterButton(props: Props) {
     icon: {
       backgroundColor: isActive ? Color.grey.$700 : Color.brand,
     },
+    buttonText: styles.buttonText,
   };
   return (
     <View style={styles.default}>

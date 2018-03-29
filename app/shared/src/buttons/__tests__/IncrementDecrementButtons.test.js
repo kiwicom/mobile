@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
+import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
 
 import IncrementDecrementButtons from '../IncrementDecrementButtons';
 import Touchable from '../../Touchable';
@@ -23,6 +24,19 @@ const renderButtons = (
 };
 
 describe('IncrementDecrementButtons', () => {
+  it('renders', () => {
+    const onIncrement = jest.fn();
+    const onDecrement = jest.fn();
+    PlaygroundRenderer.render(
+      <IncrementDecrementButtons
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+        number={1}
+        min={1}
+        max={3}
+      />,
+    );
+  });
   it('should increment', () => {
     const onIncrement = jest.fn();
     const onDecrement = jest.fn();

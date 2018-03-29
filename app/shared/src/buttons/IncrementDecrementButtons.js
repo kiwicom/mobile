@@ -8,24 +8,26 @@ import Text from '../Text';
 import Color from '../Color';
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
+import type { StylePropType } from '../../types/Styles';
 
 const Button = ({
   text,
   touchable,
   onPress,
+  style,
 }: {|
   text: string,
   touchable: boolean,
   onPress: () => void,
+  style?: StylePropType,
 |}) => {
   const inner = (
     <View style={styleSheet.button}>
       <Text
         style={[
           styleSheet.buttonText,
-          {
-            opacity: touchable ? 1 : 0.5,
-          },
+          touchable ? styleSheet.touchable : styleSheet.disabled,
+          style,
         ]}
       >
         <DummyTranslation id={text} />
@@ -57,6 +59,7 @@ export default function IncrementDecrementButtons(props: {|
           text="–"
           touchable={!disableDecrement}
           onPress={props.onDecrement}
+          style={styleSheet.minusText}
         />
       </View>
       <Button
@@ -88,16 +91,30 @@ const styleSheet = StyleSheet.create({
     alignItems: 'center',
     borderRightWidth: 1,
     borderColor: Color.brand,
+    paddingBottom: 0,
   },
   buttonText: {
     color: Color.brand,
     fontSize: 25,
-    // this helps to vertically align "+" and "-" on both platforms
+    ios: {
+      paddingBottom: 33,
+    },
     android: {
-      lineHeight: 16,
+      paddingBottom: 3,
+    },
+  },
+  minusText: {
+    android: {
+      paddingBottom: 1,
     },
     ios: {
-      lineHeight: 25,
+      paddingBottom: 32,
     },
+  },
+  touchable: {
+    opacity: 1,
+  },
+  disabled: {
+    opacity: 0.5,
   },
 });

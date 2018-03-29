@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     ios: {
       marginLeft: 22,
       marginRight: 10,
-      marginVertical: 12,
+      paddingVertical: 12,
     },
     android: {
       margin: 16,
