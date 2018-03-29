@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, StatusBar, Platform } from 'react-native';
 import {
   StyleSheet,
   NetworkImage,
@@ -9,6 +9,7 @@ import {
   Text,
   Touchable,
   AdaptableLayout,
+  Device,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -20,7 +21,10 @@ import gradient from './black-to-alpha-vertical.png';
 import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 import type { Header_hotel } from './__generated__/Header_hotel.graphql';
 
-const height = 150;
+const height = Platform.select({
+  android: Device.isWideLayout() ? 150 : 200,
+  ios: 150,
+});
 
 const styles = StyleSheet.create({
   picture: {
@@ -28,8 +32,13 @@ const styles = StyleSheet.create({
   },
   galleryButton: {
     position: 'absolute',
-    top: 10,
     right: 10,
+    android: {
+      top: Device.isWideLayout() ? 10 : StatusBar.currentHeight + 16,
+    },
+    ios: {
+      top: 10,
+    },
   },
   nameAndRatingContainer: {
     height: height,
