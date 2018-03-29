@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { StatusBar, Platform } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   HeaderTitle,
@@ -9,6 +10,7 @@ import {
   type NavigationType,
 } from '@kiwicom/react-native-app-navigation';
 import Translation from '@kiwicom/react-native-app-translations';
+import { Device } from '@kiwicom/react-native-app-shared';
 
 import GalleryGrid from '../gallery/GalleryGrid';
 import Payment from '../singleHotel/PaymentScreen';
@@ -51,6 +53,23 @@ const AllHotelsStack = StackNavigator(
   },
 );
 
+const createTransparentHeaderStyle = () => {
+  if (Platform.OS === 'ios' || Device.isWideLayout()) {
+    // normal header on iOS and wide Android
+    return {};
+  }
+
+  return {
+    headerStyle: {
+      position: 'absolute',
+      backgroundColor: 'transparent',
+      top: StatusBar.currentHeight,
+      left: 0,
+      right: 0,
+    },
+  };
+};
+
 export default StackNavigator(
   {
     AllHotels: {
@@ -69,11 +88,13 @@ export default StackNavigator(
     SingleHotel: {
       screen: SingleHotelNavigationScreen,
       navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="Hotels.Navigation.Title.SingleHotel" />
-          </HeaderTitle>
-        ),
+        headerTitle:
+          Device.isNarrowLayout() && Platform.OS === 'android' ? null : (
+            <HeaderTitle>
+              <Translation id="Hotels.Navigation.Title.SingleHotel" />
+            </HeaderTitle>
+          ),
+        ...createTransparentHeaderStyle(),
       },
     },
     SingleHotelMap: {
