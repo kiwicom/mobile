@@ -58,14 +58,8 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
 
   constructor(props: Props) {
     super(props);
-    this.swipeConfig = Object.assign(swipeConfig, props.config);
-  }
 
-  componentWillReceiveProps = (props: Props) => {
     this.swipeConfig = Object.assign(swipeConfig, props.config);
-  };
-
-  componentWillMount = () => {
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: this.handleShouldSetPanResponder,
       onMoveShouldSetPanResponder: this.handleShouldSetPanResponder,
@@ -73,6 +67,10 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
       onPanResponderRelease: this.handlePanResponderEnd,
       onPanResponderTerminate: this.handlePanResponderEnd,
     });
+  }
+
+  componentWillReceiveProps = (props: Props) => {
+    this.swipeConfig = Object.assign(swipeConfig, props.config);
   };
 
   handleShouldSetPanResponder = (
