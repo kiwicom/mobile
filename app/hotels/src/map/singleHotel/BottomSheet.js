@@ -6,9 +6,21 @@ import {
   BottomSheet as CommonBottomSheet,
   Device,
   AdaptableLayout,
+  StyleSheet,
 } from '@kiwicom/react-native-app-shared';
 
 import { openHeight, closedHeight } from '../bottomSheetDimensions';
+
+const styles = StyleSheet.create({
+  wideContainer: {
+    width: Device.getWideDeviceThreshold(),
+    alignSelf: 'center',
+  },
+  narrowContainer: {
+    width: '100%',
+    alignSelf: 'center',
+  },
+});
 
 type Props = {|
   children: React.Node,
@@ -24,19 +36,8 @@ export default class BottomSheet extends React.Component<Props> {
 
     return (
       <AdaptableLayout
-        renderOnWide={
-          <View
-            style={{
-              width: Device.getWideDeviceThreshold(),
-              alignSelf: 'center',
-            }}
-          >
-            {content}
-          </View>
-        }
-        renderOnNarrow={
-          <View style={{ width: '100%', alignSelf: 'center' }}>{content}</View>
-        }
+        renderOnWide={<View style={styles.wideContainer}>{content}</View>}
+        renderOnNarrow={<View style={styles.narrowContainer}>{content}</View>}
       />
     );
   };

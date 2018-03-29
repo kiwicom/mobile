@@ -36,7 +36,9 @@ export default class Popup extends React.Component<Props> {
       >
         <AdaptableLayout
           renderOnWide={
-            <View style={[styles.contentContainer, { width: '75%' }]}>
+            <View
+              style={[styles.contentContainer, styles.wideContentContainer]}
+            >
               {modalChild}
             </View>
           }
@@ -58,6 +60,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignSelf: 'center',
     width: '100%',
+  },
+  wideContentContainer: {
+    width: '75%',
   },
   content: {
     opacity: 1,

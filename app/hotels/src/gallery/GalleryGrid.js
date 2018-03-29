@@ -7,6 +7,7 @@ import {
   Modal,
   Device,
   type OnLayout,
+  StyleSheet,
 } from '@kiwicom/react-native-app-shared';
 
 import GalleryGridTile from './GalleryGridTile';
@@ -14,6 +15,12 @@ import PhotosStripe from './PhotosStripe';
 
 const tileGap = 2;
 const tilesInRow = 3;
+
+const styles = StyleSheet.create({
+  modal: {
+    margin: 0,
+  },
+});
 
 export type Image = {
   key: string,
@@ -105,7 +112,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
           isVisible={this.state.stripeVisible}
           backdropColor="black"
           backdropOpacity={1}
-          style={{ margin: 0 }}
+          style={styles.modal}
           onRequestClose={this.closeStripe}
         >
           <PhotosStripe
