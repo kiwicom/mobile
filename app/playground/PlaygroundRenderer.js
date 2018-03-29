@@ -5,13 +5,24 @@ import ShallowTestRenderer from 'react-test-renderer/shallow';
 import DeepTestRenderer from 'react-test-renderer';
 import { it } from 'global';
 
+const expectObject = {
+  toBe: () => {},
+  toBeCalled: () => {},
+};
+
 if (it === undefined && process.env.NODE_ENV !== 'test') {
   global.it = (testName, testCallback) => testCallback();
   global.describe = (describeName, describeCallback) => describeCallback();
   global.expect = () => ({
-    toBe: () => {},
+    ...expectObject,
+    not: {
+      ...expectObject,
+    },
     // TODO: add mocked methods as needed
   });
+  global.jest = {
+    fn: () => () => {},
+  };
 }
 
 export default new class PlaygroundRenderer {

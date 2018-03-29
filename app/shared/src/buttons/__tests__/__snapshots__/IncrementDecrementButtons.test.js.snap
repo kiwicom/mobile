@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IncrementDecrementButtons renders 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ffffff",
+      "borderColor": "#0097a9",
+      "borderRadius": 4,
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "height": 29,
+      "width": 94,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "borderColor": "#0097a9",
+        "borderRightWidth": 1,
+        "paddingBottom": 0,
+      }
+    }
+  >
+    <Button
+      onPress={[MockFunction]}
+      style={
+        Object {
+          "paddingBottom": 32,
+        }
+      }
+      text="–"
+      touchable={false}
+    />
+  </View>
+  <Button
+    onPress={[MockFunction]}
+    text="+"
+    touchable={true}
+  />
+</View>
+`;

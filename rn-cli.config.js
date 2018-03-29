@@ -15,6 +15,9 @@ const sharedBlacklist = [
   /website\/node_modules\/.*/,
   /heapCapture\/bundle\.js/,
   /\.build[/\\].*/,
+  // See https://github.com/oblador/react-native-vector-icons/issues/626#issuecomment-357405396
+  // Fixes error with react-native-vector-icons
+  /react-native\/local-cli\/core\/__fixtures__.*/,
   // /.*\/__tests__\/.*/,
 ];
 
