@@ -4,12 +4,22 @@ import * as React from 'react';
 import { AppRegistry, View, NativeModules } from 'react-native';
 import { ReduxContext } from '@kiwicom/react-native-app-redux';
 import { ConfigReducer } from '@kiwicom/react-native-app-config';
-import { Device, type OnLayout } from '@kiwicom/react-native-app-shared';
+import {
+  Device,
+  type OnLayout,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
 
 import FiltersReducer from './src/filter/FiltersReducer';
 import HotelsReducer from './src/HotelsReducer';
 import HotelsStack from './src/navigation/NavigationStack';
 import type { Coordinates } from './src/CoordinatesType';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 type Props = {|
   bookingComAffiliate: string,
@@ -57,7 +67,7 @@ export default class HotelsStandalonePackage extends React.Component<Props> {
 
     return (
       <ReduxContext reducers={reducers}>
-        <View style={{ flex: 1 }} onLayout={this.emitDimensionChanges}>
+        <View style={styles.container} onLayout={this.emitDimensionChanges}>
           <HotelsStack screenProps={screenProps} />
         </View>
       </ReduxContext>

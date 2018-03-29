@@ -70,6 +70,12 @@ const customStyles = StyleSheet.create({
   },
 });
 
+const styles = StyleSheet.create({
+  originalDatePicker: {
+    width: null,
+  },
+});
+
 type Props = {
   iconComponent: React.Node,
 };
@@ -102,10 +108,7 @@ export default class DatePicker extends React.Component<Props> {
         <OriginalDatePicker
           {...this.props}
           iconComponent={iconComponent}
-          style={{
-            // styles for 'TouchableComponent' around date picker
-            width: null, // removes default width
-          }}
+          style={styles.originalDatePicker}
         />
       </View>
     );

@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingBottom: 10,
   },
+  fullWidth: {
+    width: '100%',
+  },
+  wide: {
+    maxWidth: Device.getWideDeviceThreshold(),
+  },
 });
 
 class HotelSwipeList extends React.Component<Props, State> {
@@ -94,13 +100,9 @@ class HotelSwipeList extends React.Component<Props, State> {
     return (
       <AdaptableLayout
         renderOnWide={
-          <View
-            style={{ width: '100%', maxWidth: Device.getWideDeviceThreshold() }}
-          >
-            {child}
-          </View>
+          <View style={[styles.fullWidth, styles.wide]}>{child}</View>
         }
-        renderOnNarrow={<View style={{ width: '100%' }}>{child}</View>}
+        renderOnNarrow={<View style={styles.fullWidth}>{child}</View>}
       />
     );
   };
