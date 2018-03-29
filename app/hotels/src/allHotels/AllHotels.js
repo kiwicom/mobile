@@ -5,7 +5,11 @@ import { ScrollView, Keyboard } from 'react-native';
 import idx from 'idx';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import { Layout, AppStateChange } from '@kiwicom/react-native-app-shared';
+import {
+  Layout,
+  AppStateChange,
+  StyleSheet,
+} from '@kiwicom/react-native-app-shared';
 import { connect } from '@kiwicom/react-native-app-redux';
 
 import AllHotelsSearch from './AllHotelsSearch';
@@ -26,6 +30,12 @@ import type { FilterReducerState } from '../filter/FiltersReducer';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 import type { Coordinates } from '../CoordinatesType';
 import { updateCheckinDateIfBeforeToday } from '../search/SearchQueryHelpers';
+
+const styles = StyleSheet.create({
+  scrollViewContainer: {
+    flexGrow: 1,
+  },
+});
 
 type Props = {|
   onSearchChange: OnChangeSearchParams => void,
@@ -88,7 +98,7 @@ class AllHotels extends React.Component<Props> {
       <Layout>
         <ScrollView
           bounces={false}
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={styles.scrollViewContainer}
           onScroll={Keyboard.dismiss}
         >
           <SearchForm
