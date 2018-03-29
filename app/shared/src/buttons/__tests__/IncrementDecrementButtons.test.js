@@ -37,6 +37,7 @@ describe('IncrementDecrementButtons', () => {
       />,
     );
   });
+
   it('should increment', () => {
     const onIncrement = jest.fn();
     const onDecrement = jest.fn();
