@@ -37,7 +37,7 @@
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-native": "^3.2.1",
-    "flow-bin": "^0.68.0",
+    "flow-bin": "^0.69.0",
     "jest": "22.4.3",
     "metro-bundler": "^0.22.1",
     "node-fetch": "^2.1.2",
