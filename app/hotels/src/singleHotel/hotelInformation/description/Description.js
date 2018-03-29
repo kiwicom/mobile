@@ -41,6 +41,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 16,
   },
+  card: {
+    marginVertical: 0,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+  },
 });
 
 type ContainerProps = {|
@@ -88,13 +93,7 @@ export class Description extends React.Component<Props> {
         renderOnNarrow={baseComponent}
         renderOnWide={
           <View style={styles.simpleCardWideWrapper}>
-            <SimpleCard
-              style={{
-                marginVertical: 0,
-                paddingVertical: 0,
-                paddingHorizontal: 0,
-              }}
-            >
+            <SimpleCard style={StyleSheet.flatten(styles.card)}>
               {this.renderCardChildren(true)}
             </SimpleCard>
           </View>
