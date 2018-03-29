@@ -8,17 +8,13 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.kiwi.mynativemodule.MyNativeModulePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.trinerdis.skypicker.colors.RNColorsPackage;
-import com.trinerdis.skypicker.currency.CurrencyChangeCallback;
 import com.trinerdis.skypicker.currency.RNCurrencyManagerPackage;
 import com.trinerdis.skypicker.device.RNDeviceInfoPackage;
 import com.trinerdis.skypicker.logging.RNLoggingPackage;
 import com.trinerdis.skypicker.translation.*;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,7 +38,6 @@ public class MainApplication extends Application implements ReactApplication {
                     new RNTranslationManagerPackage(),
                     new RNColorsPackage(),
                     new RNCurrencyManagerPackage(),
-                    new MyNativeModulePackage(),
                     new RNDeviceInfoPackage()
             );
         }

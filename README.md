@@ -130,7 +130,6 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── app/
 │   ├── config/                 - @kiwicom/react-native-app-config
 │   │── core/                   - @kiwicom/react-native-app-core (core package)
-│   ├── examples/               - examples of RN vs. native code interoperability
 │   ├── hotels/                 - @kiwicom/react-native-app-hotels
 │   ├── navigation/             - @kiwicom/react-native-app-navigation
 │   ├── redux/                  - @kiwicom/react-native-app-redux
