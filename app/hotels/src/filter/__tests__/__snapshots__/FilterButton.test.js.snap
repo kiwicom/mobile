@@ -24,6 +24,10 @@ exports[`Filter button render active button 1`] = `
           "backgroundColor": "#424242",
           "paddingLeft": 10,
         },
+        "buttonText": Object {
+          "paddingBottom": 11,
+          "paddingTop": 9,
+        },
         "buttonWrapper": Object {
           "backgroundColor": "#0097a9",
         },
@@ -64,6 +68,10 @@ exports[`Filter button render default button 1`] = `
         "button": Object {
           "backgroundColor": "#0097a9",
           "paddingLeft": 0,
+        },
+        "buttonText": Object {
+          "paddingBottom": 11,
+          "paddingTop": 9,
         },
         "buttonWrapper": Object {
           "backgroundColor": "#0097a9",

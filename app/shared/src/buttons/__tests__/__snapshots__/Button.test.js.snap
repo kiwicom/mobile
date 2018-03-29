@@ -28,8 +28,8 @@ exports[`renders button with custom title 1`] = `
             "borderRadius": 2,
             "flexGrow": 1,
             "justifyContent": "center",
-            "padding": 11,
             "paddingLeft": 0,
+            "paddingRight": 11,
           },
           undefined,
         ]

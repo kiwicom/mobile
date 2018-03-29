@@ -6,7 +6,7 @@
   "dependencies": {
     "@kiwicom/react-native-app-accessibility": "^0",
     "@kiwicom/react-native-app-translations": "^0",
-    "@kiwicom/react-native-native-modules": "^0.1.22",
+    "@kiwicom/react-native-native-modules": "^0.1.24",
     "@ptomasroos/react-native-multi-slider": "^0.0.12",
     "react-native-datepicker": "^1.6.0",
     "react-native-image-progress": "^1.1.0",

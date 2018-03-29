@@ -21,7 +21,6 @@ def react_common(rn_path)
     'RCTText',
     'RCTVibration',
     'RCTWebSocket',
-    'BatchedBridge',
     'CxxBridge',
   ]
 
@@ -39,9 +38,11 @@ target 'reactNativeApp' do
   pod 'RNCurrencyManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNDeviceInfo', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
-  pod 'GLog', :podspec => '../node_modules/react-native/third-party-podspecs/GLog.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 end
 
