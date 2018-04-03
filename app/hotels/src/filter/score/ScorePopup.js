@@ -69,7 +69,7 @@ export default class ScorePopup extends React.Component<Props, State> {
         min={0}
         max={4}
         onChange={this.handleScoreChanged}
-        snapped
+        snapped={true}
       />
     </ButtonPopup>
   );

@@ -86,6 +86,7 @@ module.exports = {
       ERROR,
       { singleQuote: true, trailingComma: 'all', jsxBracketSameLine: false },
     ],
+    'react/jsx-boolean-value': [ERROR, 'always'],
     'react/jsx-no-bind': ERROR,
     'react/no-access-state-in-setstate': ERROR,
     'react/prop-types': OFF, // we use Flow instead,

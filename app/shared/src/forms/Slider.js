@@ -73,7 +73,7 @@ export default class Slider extends React.Component<Props, State> {
           min={min}
           max={max}
           snapped={this.props.snapped}
-          allowOverlap
+          allowOverlap={true}
           selectedStyle={styles.selected}
           sliderLength={this.state.width - 2 * SLIDER_PADDING}
           touchDimensions={{
