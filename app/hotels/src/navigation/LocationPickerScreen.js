@@ -87,7 +87,7 @@ export class LocationPicker extends React.Component<Props, State> {
     function headerLeft() {
       return (
         <Touchable
-          borderlessRipple
+          borderlessRipple={true}
           onPress={goBack}
           style={styles.cancelButton}
         >
@@ -143,7 +143,7 @@ export class LocationPicker extends React.Component<Props, State> {
             placeholder="Where"
             style={styles.input}
             placeholderTextColor={Color.textLight}
-            autoFocus
+            autoFocus={true}
           />
         </View>
         <PublicApiRenderer
