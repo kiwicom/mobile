@@ -32,13 +32,6 @@ class MapScreen extends React.Component<Props, State> {
     selectedHotelIndex: 0,
   };
 
-  componentWillReceiveProps = (nextProps: Props) => {
-    if (this.props.data !== nextProps.data) {
-      // TODO keep correct index if node with the same id is still present
-      this.setState({ selectedHotelIndex: 0 });
-    }
-  };
-
   getHotels = () => {
     return idx(this.props, _ => _.data.edges) || [];
   };

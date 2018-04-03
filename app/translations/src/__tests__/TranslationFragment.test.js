@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
+import testRenderer from 'react-test-renderer';
 
 import TranslationFragment from '../TranslationFragment';
 import DummyTranslation from '../DummyTranslation';
@@ -34,4 +35,27 @@ it('throws error for undefined children', () => {
     // $FlowExpectedError: Flow doesn't allow empty children either
     renderer.render(<TranslationFragment />),
   ).toThrowErrorMatchingSnapshot();
+});
+
+it('works with conditionals', () => {
+  const int = 1;
+  expect(
+    testRenderer.create(
+      <TranslationFragment>
+        {int === 0 && <DummyTranslation id="I should not render" />}
+        <DummyTranslation id="I should render" />
+      </TranslationFragment>,
+    ),
+  ).toMatchSnapshot();
+});
+
+it('works with string as child', () => {
+  expect(
+    testRenderer.create(
+      <TranslationFragment>
+        this is a string
+        <DummyTranslation id="I should render" />
+      </TranslationFragment>,
+    ),
+  ).toMatchSnapshot();
 });

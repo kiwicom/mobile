@@ -31,8 +31,9 @@ export default class AgePicker extends React.Component<Props, State> {
     selectedValue: null,
   };
 
-  componentWillReceiveProps = ({ selectedValue }: Props) =>
-    this.setState({ selectedValue });
+  static getDerivedStateFromProps = ({ selectedValue }: Props) => ({
+    selectedValue,
+  });
 
   handleValueChange = (selectedValue: number | null) =>
     this.setState({ selectedValue });

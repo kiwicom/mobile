@@ -15,6 +15,51 @@ Array [
 
 exports[`throws error for undefined children 1`] = `"'TranslationFragment' cannot be used without children."`;
 
+exports[`works with conditionals 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "letterSpacing": -0.15,
+      },
+      undefined,
+    ]
+  }
+>
+  I should render
+</Text>
+`;
+
+exports[`works with string as child 1`] = `
+Array [
+  "this is a string",
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    I should render
+  </Text>,
+]
+`;
+
 exports[`works without additional props 1`] = `
 Array [
   <DummyTranslation
