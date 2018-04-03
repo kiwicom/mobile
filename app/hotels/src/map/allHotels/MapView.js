@@ -64,13 +64,10 @@ export class Map extends React.Component<Props, State> {
     this.markers[selectedIndex] && this.markers[selectedIndex].showCallout();
   };
 
-  UNSAFE_componentWillReceiveProps = (nextProps: Props) => {
-    // TODO: refactor, not quite sure how to do this in static method
-    if (this.props.selectedIndex !== nextProps.selectedIndex) {
-      this.animateToCoordinate(nextProps.selectedIndex);
-      this.markers[nextProps.selectedIndex] &&
-        this.markers[nextProps.selectedIndex].showCallout();
-    }
+  componentDidUpdate = () => {
+    this.animateToCoordinate(this.props.selectedIndex);
+    this.markers[this.props.selectedIndex] &&
+      this.markers[this.props.selectedIndex].showCallout();
   };
 
   getCoordinate = (hotel: Object): LatLng | null => {
