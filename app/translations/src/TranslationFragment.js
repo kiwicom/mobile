@@ -25,12 +25,14 @@ export default class TranslationFragment extends React.Component<{|
     if (this.props.children === undefined) {
       throw new Error("'TranslationFragment' cannot be used without children.");
     }
-
-    return React.Children.map(this.props.children, child =>
-      React.cloneElement(child, {
-        ...this.props,
-        children: null,
-      }),
-    );
+    return React.Children.map(this.props.children, child => {
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, {
+          ...this.props,
+          children: null,
+        });
+      }
+      return child;
+    });
   };
 }

@@ -28,7 +28,7 @@ export default class StarsPopup extends React.Component<Props, State> {
     stars: this.props.stars,
   };
 
-  componentWillReceiveProps = ({ stars }: Props) => this.setState({ stars });
+  static getDerivedStateFromProps = ({ stars }: Props) => ({ stars });
 
   handleCheckboxOnPress = (option: number) => () =>
     this.setState(state => {

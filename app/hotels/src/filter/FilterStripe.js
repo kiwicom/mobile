@@ -52,8 +52,8 @@ type Props = {|
 class FilterStripe extends React.Component<Props> {
   scrollViewRef: React.ElementRef<typeof ScrollView>;
 
-  componentWillReceiveProps = () => {
-    // FIXME: this (vv) should be called only during filter activation (FilterStripe refactoring needed)
+  onChange = (params: OnChangeFilterParams) => {
+    this.props.onChange(params);
     this.scrollViewRef.scrollTo({
       x: 0,
       y: 0,
@@ -71,7 +71,7 @@ class FilterStripe extends React.Component<Props> {
           <StarsFilter
             key="stars"
             stars={this.props.filter.starsRating}
-            onChange={this.props.onChange}
+            onChange={this.onChange}
             isActive={this.props.activeFilters.isStarsFilterActive}
           />
         ),
@@ -84,7 +84,7 @@ class FilterStripe extends React.Component<Props> {
             currency={this.props.currency}
             start={this.props.filter.minPrice}
             end={this.props.filter.maxPrice}
-            onChange={this.props.onChange}
+            onChange={this.onChange}
             isActive={this.props.activeFilters.isPriceFilterActive}
           />
         ),
@@ -95,7 +95,7 @@ class FilterStripe extends React.Component<Props> {
           <ScoreFilter
             key="score"
             minScore={this.props.filter.minScore}
-            onChange={this.props.onChange}
+            onChange={this.onChange}
             isActive={this.props.activeFilters.isMinScoreActive}
           />
         ),
@@ -105,7 +105,7 @@ class FilterStripe extends React.Component<Props> {
         Component: (
           <HotelFacilitiesFilter
             key="facilities"
-            onChange={this.props.onChange}
+            onChange={this.onChange}
             facilities={this.props.filter.hotelFacilities}
             isActive={this.props.activeFilters.isHotelFacilitiesActive}
           />
@@ -116,7 +116,7 @@ class FilterStripe extends React.Component<Props> {
         Component: (
           <FreeCancellationFilter
             key="cancellation"
-            onChange={this.props.onChange}
+            onChange={this.onChange}
             isActive={this.props.filter.freeCancellation}
           />
         ),
