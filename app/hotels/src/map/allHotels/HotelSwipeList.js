@@ -11,6 +11,7 @@ import {
   AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
+import Translations from '@kiwicom/react-native-app-translations';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';
@@ -45,6 +46,10 @@ const styles = StyleSheet.create({
   },
   wide: {
     maxWidth: Device.getWideDeviceThreshold(),
+  },
+  noResultsContainer: {
+    alignItems: 'center',
+    marginTop: 10,
   },
 });
 
@@ -87,24 +92,32 @@ class HotelSwipeList extends React.Component<Props, State> {
     const child = (
       <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
         <BottomSheetHandle />
-        <View style={styles.sliderWrapper}>
-          <Carousel
-            ref={this.storeRef}
-            data={data}
-            renderItem={this.renderItem}
-            sliderWidth={Device.getWideDeviceThreshold()}
-            itemWidth={this.getCardItemWidth()}
-            inactiveSlideScale={1}
-            inactiveSlideOpacity={0.5}
-            decelerationRate="fast"
-            activeSlideAlignment="start"
-            containerCustomStyle={styles.slider}
-            removeClippedSubviews={false}
-            onSnapToItem={onSnapToItem}
-            useScrollView={true}
-          />
-        </View>
-        <Address address={this.getSelectedAddress()} />
+        {data.length ? (
+          <React.Fragment>
+            <View style={styles.sliderWrapper}>
+              <Carousel
+                ref={this.storeRef}
+                data={data}
+                renderItem={this.renderItem}
+                sliderWidth={Device.getWideDeviceThreshold()}
+                itemWidth={this.getCardItemWidth()}
+                inactiveSlideScale={1}
+                inactiveSlideOpacity={0.5}
+                decelerationRate="fast"
+                activeSlideAlignment="start"
+                containerCustomStyle={styles.slider}
+                removeClippedSubviews={false}
+                onSnapToItem={onSnapToItem}
+                useScrollView={true}
+              />
+            </View>
+            <Address address={this.getSelectedAddress()} />
+          </React.Fragment>
+        ) : (
+          <View style={styles.noResultsContainer}>
+            <Translations id="Hotels.Map.NoResults" />
+          </View>
+        )}
       </BottomSheet>
     );
 

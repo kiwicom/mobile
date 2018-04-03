@@ -39,6 +39,8 @@ const Translations = {
   'Hotels.Map.MultipleReviews': 'Number of reviews: __numberOfReviews__',
   'Hotels.Map.NoReviews': 'No reviews',
   'Hotels.Map.Address': 'Address',
+  'Hotels.Map.NoResults':
+    'No results found, please try with a different filter',
 
   'Hotels.Gallery.Pagination': '__1_photoNumber__ of __2_totalPhotos__',
 
