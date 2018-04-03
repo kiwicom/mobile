@@ -101,7 +101,7 @@ export class GuestsModalScreen extends React.Component<Props, State> {
     return {
       headerLeft: (
         <Touchable
-          borderlessRipple
+          borderlessRipple={true}
           onPress={goBack}
           style={styles.headerButton}
         >
@@ -117,7 +117,7 @@ export class GuestsModalScreen extends React.Component<Props, State> {
       ),
       headerRight: (
         <Touchable
-          borderlessRipple
+          borderlessRipple={true}
           onPress={onSave}
           style={styles.headerButton}
         >
