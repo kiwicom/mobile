@@ -49,6 +49,12 @@ const styles = StyleSheet.create({
 });
 
 class HotelSwipeList extends React.Component<Props, State> {
+  carouselRef: React.ElementRef<typeof Carousel>;
+
+  componentDidUpdate = () => {
+    this.carouselRef.snapToItem(this.props.selectedIndex, false);
+  };
+
   getCardItemWidth = () => {
     return Device.getWideDeviceThreshold() * SNAP_WIDTH;
   };
@@ -71,19 +77,23 @@ class HotelSwipeList extends React.Component<Props, State> {
     );
   };
 
+  storeRef = (ref: React.ElementRef<typeof Carousel>) => {
+    this.carouselRef = ref;
+  };
+
   render = () => {
-    const { data, selectedIndex, onSnapToItem } = this.props;
+    const { data, onSnapToItem } = this.props;
 
     const child = (
       <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
         <BottomSheetHandle />
         <View style={styles.sliderWrapper}>
           <Carousel
+            ref={this.storeRef}
             data={data}
             renderItem={this.renderItem}
             sliderWidth={Device.getWideDeviceThreshold()}
             itemWidth={this.getCardItemWidth()}
-            firstItem={selectedIndex}
             inactiveSlideScale={1}
             inactiveSlideOpacity={0.5}
             decelerationRate="fast"
@@ -91,6 +101,7 @@ class HotelSwipeList extends React.Component<Props, State> {
             containerCustomStyle={styles.slider}
             removeClippedSubviews={false}
             onSnapToItem={onSnapToItem}
+            useScrollView={true}
           />
         </View>
         <Address address={this.getSelectedAddress()} />
