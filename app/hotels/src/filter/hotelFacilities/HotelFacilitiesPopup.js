@@ -50,8 +50,7 @@ export default class HotelFacilitiesPopup extends React.Component<
     facilities: this.props.facilities,
   };
 
-  componentWillReceiveProps = ({ facilities }: Props) =>
-    this.setState({ facilities });
+  static getDerivedStateFromProps = ({ facilities }: Props) => ({ facilities });
 
   handleCheckboxOnPress = (option: string) => () =>
     this.setState(state => {
