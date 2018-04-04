@@ -39,7 +39,7 @@ const Link = ({
   style?: StylePropType,
 |}) => (
   <View style={styles.linkView}>
-    <Touchable onPress={handlePress}>
+    <Touchable onPress={handlePress} noRipple={true}>
       <Text style={[styles.linkText, style]}>
         <DummyTranslation id={label} />
       </Text>

@@ -53,4 +53,15 @@ describe('Touchable with ripple effect', () => {
       ),
     ).toMatchSnapshot();
   });
+
+  it('is possible to turn ripple effect off', () => {
+    expect(
+      renderer.render(
+        // this should render TouchableOpacity
+        <Touchable noRipple={true} onPress={VoidAction}>
+          <DummyTranslation id="line" />
+        </Touchable>,
+      ),
+    ).toMatchSnapshot();
+  });
 });

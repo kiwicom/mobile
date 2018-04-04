@@ -19,6 +19,9 @@ type Props = {|
   style?: StylePropType,
   onLongPress?: () => void,
   delayPressIn?: number,
+  // This will disable ripple effect completely and it will fallback to the
+  // opacity behavior.
+  noRipple?: boolean,
   // Should the ripple render outside of the view bounds?
   borderlessRipple?: boolean,
   rippleColor?: string,
@@ -43,6 +46,9 @@ export default class Touchable extends React.Component<Props> {
    * therefore only enable it on Android Lollipop and above.
    */
   supportsRippleEffect = () => {
+    if (this.props.noRipple === true) {
+      return false;
+    }
     return Platform.OS === 'android' && Platform.Version >= 21;
   };
 

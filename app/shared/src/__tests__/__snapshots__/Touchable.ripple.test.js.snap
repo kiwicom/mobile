@@ -20,6 +20,21 @@ exports[`Touchable with ripple effect disables foreground in borderless mode 1`]
 </DummyTouchableNativeFeedback>
 `;
 
+exports[`Touchable with ripple effect is possible to turn ripple effect off 1`] = `
+<TouchableOpacity
+  activeOpacity={0.5}
+  borderlessRipple={false}
+  disabled={false}
+  noRipple={true}
+  onPress={[Function]}
+  rippleColor="rgba(0, 0, 0, .32)"
+>
+  <DummyTranslation
+    id="line"
+  />
+</TouchableOpacity>
+`;
+
 exports[`Touchable with ripple effect renders with foreground 1`] = `
 <DummyTouchableNativeFeedback
   background={undefined}
