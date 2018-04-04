@@ -47,10 +47,20 @@ const customStyles = StyleSheet.create({
       height: 47,
     },
   },
+  // eslint-disable-next-line react-native/no-unused-styles
+  btnConfirm: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
   // Confirm button text styling
   // eslint-disable-next-line react-native/no-unused-styles
   btnTextConfirm: {
     color: Color.brand,
+  },
+  // eslint-disable-next-line react-native/no-unused-styles
+  btnCancel: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
   // Cancel button text styling
   // eslint-disable-next-line react-native/no-unused-styles
