@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/react-native-native-modules": "^0.1.24",
-    "react-native": "0.54.0-rc.3",
-    "react-native-maps": "^0.20.1",
+    "react-native": "^0.54.0",
+    "react-native-maps": "^0.21.0",
     "react-native-vector-icons": "^4.5.0",
     "react-native-tooltips": "^0.0.4"
   }
