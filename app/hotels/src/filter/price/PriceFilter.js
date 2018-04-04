@@ -94,7 +94,7 @@ class PriceFilter extends React.Component<Props, State> {
     const { currentSearchStats: { priceMin, priceMax }, isActive } = this.props;
     const start = this.props.start || priceMin;
     const end = this.props.end || priceMax;
-    const currency = this.props.currency;
+    const currency = 'EUR'; // Currently only EUR supported. Should be improved in future release
     return (
       <View>
         <FilterButton
