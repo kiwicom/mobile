@@ -17,6 +17,14 @@ exports[`DatePicker renders 1`] = `
     confirmBtnText="Select date"
     customStyles={
       Object {
+        "btnCancel": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
+        "btnConfirm": Object {
+          "paddingHorizontal": 20,
+          "paddingVertical": 10,
+        },
         "btnTextCancel": Object {
           "color": "#0097a9",
         },
