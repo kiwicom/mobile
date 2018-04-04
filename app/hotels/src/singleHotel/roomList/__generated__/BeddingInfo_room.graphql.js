@@ -4,64 +4,68 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type BeddingInfo_room$ref: FragmentReference;
 export type BeddingInfo_room = {|
-  +type: ?string;
-  +maxPersons: ?number;
+  +type: ?string,
+  +maxPersons: ?number,
   +bedding: ?$ReadOnlyArray<?{|
-    +type: ?string;
-    +amount: ?number;
-  |}>;
+    +type: ?string,
+    +amount: ?number,
+  |}>,
+  +$refType: BeddingInfo_room$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "type",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
-  "metadata": null,
   "name": "BeddingInfo_room",
+  "type": "HotelRoom",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
+    v0,
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
-      "name": "type",
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "args": null,
       "name": "maxPersons",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "bedding",
+      "storageKey": null,
       "args": null,
       "concreteType": "HotelRoomBedding",
-      "name": "bedding",
       "plural": true,
       "selections": [
+        v0,
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
-          "name": "type",
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
           "name": "amount",
+          "args": null,
           "storageKey": null
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelRoom"
+  ]
 };
-
+})();
+(node/*: any*/).hash = 'bae4050720f373f37ddf8934d58ba3b1';
 module.exports = node;

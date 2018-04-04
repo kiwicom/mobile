@@ -7,6 +7,7 @@ import { RoomDescription } from '../RoomDescription';
 
 describe('RoomDescription', () => {
   it('renders', () => {
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     const room = {
       description: {
         text:

@@ -4,6 +4,7 @@ import formatBeddingInfo from '../formatBeddingInfo';
 
 it('formats bedding information', () => {
   expect(
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     formatBeddingInfo({
       type: 'Single Room',
       maxPersons: 1,
@@ -19,6 +20,7 @@ it('formats bedding information', () => {
 
 it('pluralizes persons', () => {
   expect(
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     formatBeddingInfo({
       type: 'Double Room',
       maxPersons: 2,
@@ -34,6 +36,7 @@ it('pluralizes persons', () => {
 
 it('provides all bedding options', () => {
   expect(
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     formatBeddingInfo({
       type: 'Double or Twin Room',
       maxPersons: 2,
@@ -54,6 +57,7 @@ it('provides all bedding options', () => {
 it("doesn't crash on empty input", () => {
   expect(formatBeddingInfo(null)).toEqual('');
   expect(
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     formatBeddingInfo({
       type: 'Some Room',
       maxPersons: 2,

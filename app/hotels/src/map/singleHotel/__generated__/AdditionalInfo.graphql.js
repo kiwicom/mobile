@@ -4,19 +4,32 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Address_address$ref = any;
+type HotelDetailPreview_availability$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type AdditionalInfo$ref: FragmentReference;
 export type AdditionalInfo = {|
   +hotel: ?{|
-    +address: ?{| |};
-  |};
+    +address: ?{|
+      +$fragmentRefs: Address_address$ref,
+    |},
+  |},
+  +$fragmentRefs: HotelDetailPreview_availability$ref,
+  +$refType: AdditionalInfo$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "AdditionalInfo",
+  "type": "HotelAvailability",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "FragmentSpread",
@@ -26,17 +39,19 @@ const node: ConcreteFragment = {
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "hotel",
+      "storageKey": null,
       "args": null,
       "concreteType": "Hotel",
-      "name": "hotel",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "address",
+          "storageKey": null,
           "args": null,
           "concreteType": "Address",
-          "name": "address",
           "plural": false,
           "selections": [
             {
@@ -44,14 +59,11 @@ const node: ConcreteFragment = {
               "name": "Address_address",
               "args": null
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailability"
+  ]
 };
-
+(node/*: any*/).hash = '4eadebdbcac36d96c597258610f41048';
 module.exports = node;

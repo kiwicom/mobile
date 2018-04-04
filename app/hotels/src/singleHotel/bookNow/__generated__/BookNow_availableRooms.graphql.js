@@ -4,58 +4,65 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type BookNow_availableRooms$ref: FragmentReference;
 export type BookNow_availableRooms = $ReadOnlyArray<{|
-  +originalId: ?string;
+  +originalId: ?string,
   +incrementalPrice: ?$ReadOnlyArray<?{|
-    +amount: ?number;
-    +currency: ?string;
-  |}>;
+    +amount: ?number,
+    +currency: ?string,
+  |}>,
+  +$refType: BookNow_availableRooms$ref,
 |}>;
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
+  "name": "BookNow_availableRooms",
+  "type": "HotelRoomAvailability",
   "metadata": {
     "plural": true
   },
-  "name": "BookNow_availableRooms",
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "originalId",
+      "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "incrementalPrice",
+      "storageKey": null,
       "args": null,
       "concreteType": "Price",
-      "name": "incrementalPrice",
       "plural": true,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "amount",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "currency",
+          "args": null,
           "storageKey": null
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelRoomAvailability"
+  ]
 };
-
+(node/*: any*/).hash = '20da5274c235be9074e40e81b1647de0';
 module.exports = node;
