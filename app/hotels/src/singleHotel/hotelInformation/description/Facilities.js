@@ -89,7 +89,7 @@ export class Facilities extends React.Component<Props, State> {
           );
         })}
         {fullList.length > shortlist.length && (
-          <Touchable onPress={this.toggle}>
+          <Touchable onPress={this.toggle} noRipple={true}>
             <Text style={styles.lessMoreButton}>
               {collapsed ? (
                 <TranslationFragment>
