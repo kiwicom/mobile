@@ -6,12 +6,12 @@ schema {
 type AdditionalBaggage {
   price: Price
 
-  # Number of baggage.
+  """Number of baggage."""
   quantity: Int
 }
 
 type Address {
-  # Contains street and number.
+  """Contains street and number."""
   street: String
   city: String
   zip: String
@@ -20,63 +20,95 @@ type Address {
 type Airline {
   name: String
 
-  # 2-letter IATA code of airline.
+  """2-letter IATA code of airline."""
   code: String
   logoUrl: String
 
-  # Airline is low cost carrier.
+  """Airline is low cost carrier."""
   isLowCost: Boolean
 }
 
+type AllFAQCategories {
+  """The ID of an object"""
+  id: ID!
+
+  """Title of the FAQ category"""
+  title: String
+
+  """List of subcategories"""
+  subcategories: [AllFAQCategories]
+
+  """List of FAQ articles"""
+  FAQs: [FAQArticle]
+}
+
+"""A connection to a list of items."""
+type AllFAQCategoriesConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AllFAQCategoriesEdge]
+}
+
+"""An edge in a connection."""
+type AllFAQCategoriesEdge {
+  """The item at the end of the edge"""
+  node: AllFAQCategories
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 type AllFAQs {
-  # Results of allFAQs search
+  """Results of allFAQs search"""
   results: Results
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type AllFAQsConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [AllFAQsEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type AllFAQsEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: AllFAQs
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
 type AllowedBaggage {
-  # Extra and overweight baggage.
+  """Extra and overweight baggage."""
   additionalBaggage: [AdditionalBaggage]
 
-  # Small carry-on luggage.
+  """Small carry-on luggage."""
   cabin: [Baggage]
 
-  # Baggage checked online.
+  """Baggage checked online."""
   checked: [Baggage]
 }
 
 input AreaInput {
-  # Top left coordinates of the area.
+  """Top left coordinates of the area."""
   topLeft: CoordinatesInput!
 
-  # Bottom right coordinates of the area.
+  """Bottom right coordinates of the area."""
   bottomRight: CoordinatesInput!
 }
 
 input AvailableHotelOptionsInput {
-  # Three-letters ISO 4217 currency code, e.g. EUR or USD
+  """Three-letters ISO 4217 currency code, e.g. EUR or USD"""
   currency: Currency
 }
 
 input AvailableHotelSearchInput {
-  # Opaque hotel ID.
+  """Opaque hotel ID."""
   hotelId: ID!
   checkin: Date!
   checkout: Date!
@@ -93,46 +125,48 @@ type Baggage {
 }
 
 type Booking {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Internal database ID.
+  """Internal database ID."""
   databaseId: Int @deprecated(reason: "Use id field instead.")
   allowedBaggage: AllowedBaggage
   arrival: RouteStop
 
-  # Static assets related to this booking.
+  """Static assets related to this booking."""
   assets: BookingAssets
   departure: RouteStop
 
-  # Flight segments, e.g. stopover, change of aircraft, etc.
+  """Flight segments, e.g. stopover, change of aircraft, etc."""
   legs: [Leg]
   status: BookingStatus
 }
 
 type BookingAssets {
-  # URL of the electronic ticket. Ticket may not be available yet (returns null).
+  """
+  URL of the electronic ticket. Ticket may not be available yet (returns null).
+  """
   ticketUrl: String
 
-  # URL of the invoice.
+  """URL of the invoice."""
   invoiceUrl: String
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type BookingConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [BookingEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type BookingEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: Booking
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
@@ -148,29 +182,29 @@ enum BookingStatus {
 }
 
 type Categories {
-  # Id of the category
+  """Id of the category"""
   id: Int
 
-  # Name of the category
+  """Name of the category"""
   name: String
 
-  # Items that belong to the category
+  """Items that belong to the category"""
   items: [Items]
 }
 
 type Coordinates {
-  # Latitude.
+  """Latitude."""
   lat: Float
 
-  # Longitude.
+  """Longitude."""
   lng: Float
 }
 
 input CoordinatesInput {
-  # Latitude.
+  """Latitude."""
   lat: Float!
 
-  # Longitude.
+  """Longitude."""
   lng: Float!
 }
 
@@ -350,26 +384,34 @@ enum Currency {
   XAU
 }
 
-# A date string, such as 2007-12-03, compliant with the `full-date` format
-# outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
-# representation of dates and times using the Gregorian calendar.
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format
+outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
+representation of dates and times using the Gregorian calendar.
+"""
 scalar Date
 
-# You always have to setup exact date OR range from-to.
+"""You always have to setup exact date OR range from-to."""
 input DateInput {
-  # Exact date (cannot be used in combination with from-to fields).
+  """Exact date (cannot be used in combination with from-to fields)."""
   exact: Date
 
-  # Start of the date range (cannot be used in combination with exact date).
+  """
+  Start of the date range (cannot be used in combination with exact date).
+  """
   from: Date
 
-  # End of the date range (cannot be used in combination with exact date).
+  """
+  End of the date range (cannot be used in combination with exact date).
+  """
   to: Date
 }
 
-# A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
-# `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
-# 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
+`date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
+8601 standard for representation of dates and times using the Gregorian calendar.
+"""
 scalar DateTime
 
 input DurationInput {
@@ -377,43 +419,63 @@ input DurationInput {
   maxFlightDuration: Int
 }
 
-type Flight {
-  # The ID of an object
+type FAQArticle {
+  """The ID of an object"""
   id: ID!
 
-  # List of all Airlines involved.
+  """Title of the article"""
+  title: String
+
+  """Perex of the article"""
+  perex: String
+
+  """Content of the article"""
+  content: String
+
+  """Upvotes about the utility of the article"""
+  upvotes: Int
+
+  """Downvotes about the utility of the article"""
+  downvotes: Int
+}
+
+type Flight {
+  """The ID of an object"""
+  id: ID!
+
+  """List of all Airlines involved."""
   airlines: [Airline]
   departure: RouteStop
   arrival: RouteStop
 
-  # Flight duration in minutes.
+  """Flight duration in minutes."""
   duration: Int
 
-  # Flight segments, e.g. stopover, change of aircraft, etc.
+  """Flight segments, e.g. stopover, change of aircraft, etc."""
   legs: [Leg]
 
-  # Total flight price.
+  """Total flight price."""
   price: Price
 
-  # URL to the Kiwi.com for booking the flight.
+  """URL to the Kiwi.com for booking the flight."""
   bookingUrl: String
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type FlightConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [FlightEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type FlightEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: Flight
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
@@ -423,272 +485,278 @@ input FlightsFiltersInput {
 }
 
 input FlightsOptionsInput {
-  # An ISO-4217 currency code.
+  """An ISO-4217 currency code."""
   currency: Currency
   locale: Locale
 }
 
 input FlightsSearchInput {
-  # From where you want to fly?
+  """From where you want to fly?"""
   from: [LocationInput!]!
 
-  # To where you want to fly?
+  """To where you want to fly?"""
   to: [LocationInput!]!
 
-  # When do you want to leave?
+  """When do you want to leave?"""
   date: DateInput!
 
-  # When do you want to return?
+  """When do you want to return?"""
   returnDate: DateInput
   passengers: PassengersInput
 }
 
-# General information about the hotel.
+"""General information about the hotel."""
 type Hotel {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Original (low level ID of the hotel). You are probably looking for "id" field.
-  originalId: String @deprecated(reason: "Use field \\\"id\\\" instead. This field is used only because of compatibility reasons with old APIs.")
+  """
+  Original (low level ID of the hotel). You are probably looking for "id" field.
+  """
+  originalId: String @deprecated(reason: "Use field \"id\" instead. This field is used only because of compatibility reasons with old APIs.")
 
-  # Name of the hotel.
+  """Name of the hotel."""
   name: String
   cityName: String
 
-  # URL to our whitelabel page of this hotel.
+  """URL to our whitelabel page of this hotel."""
   whitelabelUrl: String
 
-  # Main description (summary) of the hotel.
+  """Main description (summary) of the hotel."""
   summary: String
 
-  # Main photo of the hotel.
+  """Main photo of the hotel."""
   mainPhoto: HotelPhoto
 
-  # Location of the hotel.
+  """Location of the hotel."""
   coordinates: Coordinates
   address: Address
 
-  # The star rating of the hotel.
+  """The star rating of the hotel."""
   rating: HotelRating
 
-  # Hotel review from hotel visitors.
+  """Hotel review from hotel visitors."""
   review: HotelReview
 
-  # All facilities available in the hotel.
+  """All facilities available in the hotel."""
   facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection
 
-  # All rooms available in the hotel.
+  """All rooms available in the hotel."""
   rooms(after: String, first: Int, before: String, last: Int): HotelRoomConnection
 
-  # All available photos of the hotel.
+  """All available photos of the hotel."""
   photos(after: String, first: Int, before: String, last: Int): HotelPhotoConnection
 
-  # Hotel distance from the center in Km.
+  """Hotel distance from the center in Km."""
   distanceFromCenter: Float
 }
 
-# Information about hotel availability during selected time period.
+"""Information about hotel availability during selected time period."""
 type HotelAvailability {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
   price: Price
   availableRooms: [HotelRoomAvailability]
   hotel: Hotel
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type HotelAvailabilityConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [HotelAvailabilityEdge]
   stats: HotelAvailabilityStats
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type HotelAvailabilityEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: HotelAvailability
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
-# Overall statistics related to all hotels matching search & filter criteria
+"""
+Overall statistics related to all hotels matching search & filter criteria
+"""
 type HotelAvailabilityStats {
   priceMax: Float
   priceMin: Float
 }
 
 type HotelCity {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Name of the hotel.
+  """Name of the hotel."""
   name: String
   location: Coordinates
   numberOfHotels: Int
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type HotelCityConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [HotelCityEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type HotelCityEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: HotelCity
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
 input HotelFacilitiesInput {
-  # Show only hotels having airport shuttle as a service.
+  """Show only hotels having airport shuttle as a service."""
   airportShuttle: Boolean
 
-  # Show only hotels having family rooms.
+  """Show only hotels having family rooms."""
   familyRooms: Boolean
 
-  # Show only hotels having facilities for disabled.
+  """Show only hotels having facilities for disabled."""
   facilitiesForDisabled: Boolean
 
-  # Show only hotels having fitness room.
+  """Show only hotels having fitness room."""
   fitnessCenter: Boolean
 
-  # Show only hotels having any parking.
+  """Show only hotels having any parking."""
   parking: Boolean
 
-  # Show only hotels having free parking.
+  """Show only hotels having free parking."""
   freeParking: Boolean
 
-  # Show only hotels having valet parking.
+  """Show only hotels having valet parking."""
   valetParking: Boolean
 
-  # Show only hotels having indoor swimming pool.
+  """Show only hotels having indoor swimming pool."""
   indoorPool: Boolean
 
-  # Show only hotels having pets allowed.
+  """Show only hotels having pets allowed."""
   petsAllowed: Boolean
 
-  # Show only hotels having spa.
+  """Show only hotels having spa."""
   spa: Boolean
 
-  # Show only hotels having wifi.
+  """Show only hotels having wifi."""
   wifi: Boolean
 }
 
 type HotelFacility {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Name of the facility.
+  """Name of the facility."""
   name: String
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type HotelFacilityConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [HotelFacilityEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type HotelFacilityEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: HotelFacility
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
 type HotelPhoto {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
   lowResUrl: String
   highResUrl: String
   thumbnailUrl: String
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type HotelPhotoConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [HotelPhotoEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type HotelPhotoEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: HotelPhoto
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
 type HotelRating {
-  # Star rating is always in the interval 1-5 inclusive.
+  """Star rating is always in the interval 1-5 inclusive."""
   stars: Int
 
-  # Name of the stars category.
+  """Name of the stars category."""
   categoryName: String
 }
 
 type HotelReview {
-  # The review score of the hotel, in the range 1-10 inclusive.
+  """The review score of the hotel, in the range 1-10 inclusive."""
   score: Float
 
-  # The review score of the hotel in words.
+  """The review score of the hotel in words."""
   description: String
 
-  # The number of reviews of the hotel.
+  """The number of reviews of the hotel."""
   count: Int
 }
 
 type HotelRoom {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Type of the hotel room.
+  """Type of the hotel room."""
   type: String
   maxPersons: Int
   bedding: [HotelRoomBedding]
 
-  # All available photos of the hotel room.
+  """All available photos of the hotel room."""
   photos(after: String, first: Int, before: String, last: Int): HotelRoomPhotoConnection
   description: HotelRoomDescription
 
-  # The hotelroom size in square meters
+  """The hotelroom size in square meters"""
   roomSize: Float
 }
 
 type HotelRoomAvailability {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Original block ID used to open Booking.com page.
-  originalId: String @deprecated(reason: "Use \\\"id\\\" field whenever possible.")
+  """Original block ID used to open Booking.com page."""
+  originalId: String @deprecated(reason: "Use \"id\" field whenever possible.")
 
-  # Base price for the room in this configuration.
+  """Base price for the room in this configuration."""
   minimalPrice: Price
   incrementalPrice: [Price]
 
-  # Is the hotelroom refundable
+  """Is the hotelroom refundable"""
   isRefundable: Boolean
 
-  # Is breakfast included in the hotelroom
+  """Is breakfast included in the hotelroom"""
   isBreakfastIncluded: Boolean
   room: HotelRoom
 }
@@ -698,12 +766,12 @@ type HotelRoomBedding {
   amount: Int
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type HotelRoomConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [HotelRoomEdge]
 }
 
@@ -712,62 +780,68 @@ type HotelRoomDescription {
   text: String
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type HotelRoomEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: HotelRoom
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type HotelRoomPhotoConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [HotelRoomPhotoEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type HotelRoomPhotoEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: HotelPhoto
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
 input HotelsFilterInput {
-  # List of hotels classes (stars) you want to filter.
+  """List of hotels classes (stars) you want to filter."""
   starsRating: [Int]
 
-  # Show only hotels having minimum total price lower than or equal to this value.
+  """
+  Show only hotels having minimum total price lower than or equal to this value.
+  """
   minPrice: Float
 
-  # Show only hotels having minimum total price higher than or equal to this value.
+  """
+  Show only hotels having minimum total price higher than or equal to this value.
+  """
   maxPrice: Float
 
-  # Show only hotels having specified hotel facilities
+  """Show only hotels having specified hotel facilities"""
   hotelFacilities: HotelFacilitiesInput
 
-  # Show only hotels having minimum review score higher than or equal to this value. Score must be between 1 and 10.
+  """
+  Show only hotels having minimum review score higher than or equal to this value. Score must be between 1 and 10.
+  """
   minScore: Int
 
-  # Show only hotels having free cancellation.
+  """Show only hotels having free cancellation."""
   freeCancellation: Boolean
 }
 
-# You must provide lat/lng combination OR city ID.
+"""You must provide lat/lng combination OR city ID."""
 input HotelsSearchInput {
-  # Latitude in float format (example: 45.4654).
+  """Latitude in float format (example: 45.4654)."""
   latitude: Float
 
-  # Longitude in float format (example: 9.1859).
+  """Longitude in float format (example: 9.1859)."""
   longitude: Float
 
-  # Opaque ID of the city.
+  """Opaque ID of the city."""
   cityId: String
   checkin: Date!
   checkout: Date!
@@ -776,36 +850,38 @@ input HotelsSearchInput {
 }
 
 type Identity {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
 
-  # Internal database ID.
+  """Internal database ID."""
   databaseId: String @deprecated(reason: "Use id field instead.")
 
-  # Raw input by user, use "login" if you want normalized email.
+  """Raw input by user, use "login" if you want normalized email."""
   email: String
   emailVerified: Boolean
   firstName: String
   lastName: String
 
-  # Concatenation of first and last name with fallback to the login field.
+  """
+  Concatenation of first and last name with fallback to the login field.
+  """
   fullName: String
 
-  # Use this in API calls. It is email but normalized.
+  """Use this in API calls. It is email but normalized."""
   login: String
 }
 
 type Items {
-  # Id of the item
+  """Id of the item"""
   id: Int
 
-  # Title of the item
+  """Title of the item"""
   title: String
 
-  # Icon type of the item
+  """Icon type of the item"""
   icon: String
 
-  # Color of the item
+  """Color of the item"""
   style: String
 }
 
@@ -858,21 +934,23 @@ enum Language {
   zhtw
 }
 
-# Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
+"""
+Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
+"""
 type Leg {
-  # The ID of an object
+  """The ID of an object"""
   id: ID!
   airline: Airline
   arrival: RouteStop
   departure: RouteStop
 
-  # Leg duration in minutes.
+  """Leg duration in minutes."""
   duration: Int
   flightNumber: Int
   recheckRequired: Boolean
 }
 
-# Language tag in the format of the RFC 5646.
+"""Language tag in the format of the RFC 5646."""
 enum Locale {
   bg_BG
   ca_ES
@@ -943,14 +1021,14 @@ enum Locale {
 }
 
 type Location {
-  # 3-letter IATA code of airport or internal city code.
+  """3-letter IATA code of airport or internal city code."""
   locationId: String
   name: String
   slug: String
   timezone: String
   location: Coordinates
 
-  # Airport, city or country.
+  """Airport, city or country."""
   type: String
   city: LocationArea
   subdivision: LocationArea
@@ -969,21 +1047,21 @@ type LocationArea {
   slug: String
 }
 
-# A connection to a list of items.
+"""A connection to a list of items."""
 type LocationConnection {
-  # Information to aid in pagination.
+  """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  # A list of edges.
+  """A list of edges."""
   edges: [LocationEdge]
 }
 
-# An edge in a connection.
+"""An edge in a connection."""
 type LocationEdge {
-  # The item at the end of the edge
+  """The item at the end of the edge"""
   node: Location
 
-  # A cursor for use in pagination
+  """A cursor for use in pagination"""
   cursor: String!
 }
 
@@ -993,14 +1071,14 @@ input LocationInput {
 }
 
 input LocationsOptionsInput {
-  # Language tag in the format of the RFC 5646.
+  """Language tag in the format of the RFC 5646."""
   locale: Locale
 
-  # Desired location type the response should only include.
+  """Desired location type the response should only include."""
   locationType: LocationType
 }
 
-# Type of location
+"""Type of location"""
 enum LocationType {
   airport
   autonomous_territory
@@ -1010,18 +1088,18 @@ enum LocationType {
   subdivision
 }
 
-# Information about pagination in a connection.
+"""Information about pagination in a connection."""
 type PageInfo {
-  # When paginating forwards, are there more items?
+  """When paginating forwards, are there more items?"""
   hasNextPage: Boolean!
 
-  # When paginating backwards, are there more items?
+  """When paginating backwards, are there more items?"""
   hasPreviousPage: Boolean!
 
-  # When paginating backwards, the cursor to continue.
+  """When paginating backwards, the cursor to continue."""
   startCursor: String
 
-  # When paginating forwards, the cursor to continue.
+  """When paginating forwards, the cursor to continue."""
   endCursor: String
 }
 
@@ -1032,38 +1110,38 @@ input PassengersInput {
 type Price {
   amount: Float
 
-  # An ISO-4217 currency code.
+  """An ISO-4217 currency code."""
   currency: String
 }
 
 input RadiusInput {
-  # Latitude of the center of the circle.
+  """Latitude of the center of the circle."""
   lat: Float!
 
-  # Longitude of the center of the circle.
+  """Longitude of the center of the circle."""
   lng: Float!
 
-  # Distance in kilometers.
+  """Distance in kilometers."""
   radius: Int!
 }
 
 type Results {
-  # Id of the article
+  """Id of the article"""
   id: Int
 
-  # Title of the article
+  """Title of the article"""
   title: String
 
-  # Content of the article
+  """Content of the article"""
   content: String
 
-  # Upvotes about the utility of the article
+  """Upvotes about the utility of the article"""
   upvotes: Int
 
-  # Downvotes about the utility of the article
+  """Downvotes about the utility of the article"""
   downvotes: Int
 
-  # Category to which the article belongs
+  """Category to which the article belongs"""
   categories: [Categories]
 }
 
@@ -1076,41 +1154,47 @@ input RoomsConfiguration {
   children: [RoomsChildrenConfiguration]
 }
 
-# Root Mutation.
+"""Root Mutation."""
 type RootMutation {
   login(email: String!, password: String!): User
 }
 
-# Root Query
+"""Root Query"""
 type RootQuery {
-  # Search for your flight bookings.
+  """Search for your flight bookings."""
   allBookings(after: String, first: Int, before: String, last: Int): BookingConnection
 
-  # Search for scheduled flights.
+  """Search for scheduled flights."""
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
 
-  # Search for all available hotels in one location. It's necessary to send
-  # checkin and checkout dates as well as rooms configuration to get availability info.
+  """
+  Search for all available hotels in one location. It's necessary to send
+  checkin and checkout dates as well as rooms configuration to get availability info.
+  """
   allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection
 
-  # Search for single available hotel by its ID. It's necessary to send checkin
-  # and checkout dates as well as rooms configuration to get availability info.
+  """
+  Search for single available hotel by its ID. It's necessary to send checkin
+  and checkout dates as well as rooms configuration to get availability info.
+  """
   availableHotel(search: AvailableHotelSearchInput!, options: AvailableHotelOptionsInput): HotelAvailability
 
-  # Search for airports, cities, countries. You can search by location name,
-  # radius on the map or rectangle on the map. If you do not specify one of these
-  # search inputs then the alphabetical dump of all locations is returned.
+  """
+  Search for airports, cities, countries. You can search by location name,
+  radius on the map or rectangle on the map. If you do not specify one of these
+  search inputs then the alphabetical dump of all locations is returned.
+  """
   allLocations(
-    # Search location by name.
+    """Search location by name."""
     search: String
 
-    # Search location by radius.
+    """Search location by radius."""
     radius: RadiusInput
 
-    # Search location by area.
+    """Search location by area."""
     area: AreaInput
 
-    # Combination of slug and radius. e.g. bratislava-slovakia-169km
+    """Combination of slug and radius. e.g. bratislava-slovakia-169km"""
     slugRadius: String
     options: LocationsOptionsInput
     after: String
@@ -1119,12 +1203,12 @@ type RootQuery {
     last: Int
   ): LocationConnection
 
-  # Single location by ID.
+  """Single location by ID."""
   location(id: String!, locale: Locale): Location
 
-  # All locations in certain location. For example all airports in London
+  """All locations in certain location. For example all airports in London"""
   allSubLocations(
-    # Location ID
+    """Location ID"""
     id: String!
     options: LocationsOptionsInput
     after: String
@@ -1133,24 +1217,26 @@ type RootQuery {
     last: Int
   ): LocationConnection
 
-  # Flight booking by ID.
+  """Flight booking by ID."""
   booking(id: ID!): Booking
 
-  # Current user information.
+  """Current user information."""
   currentUser: Identity
 
-  # Single hotel by ID.
+  """Single hotel by ID."""
   hotel(id: ID!, language: Language): Hotel
 
-  # All cities where you can find the hotels. This query can be used for
-  # suggestions of relevant cities (search for example). Cities can be filtered
-  # by prefix with typo tolerance. Items are sorted by prefix matching and a
-  # number of hotels (desc). When the prefix is omitted top cities are returned.
+  """
+  All cities where you can find the hotels. This query can be used for
+  suggestions of relevant cities (search for example). Cities can be filtered
+  by prefix with typo tolerance. Items are sorted by prefix matching and a
+  number of hotels (desc). When the prefix is omitted top cities are returned.
+  """
   hotelCities(
-    # First few letters.
+    """First few letters."""
     prefix: String
 
-    # Search for cities around a given position.
+    """Search for cities around a given position."""
     position: CoordinatesInput
     after: String
     first: Int
@@ -1158,18 +1244,30 @@ type RootQuery {
     last: Int
   ): HotelCityConnection
 
-  # Search for Frequently Asked Questions
+  """Search for Frequently Asked Questions"""
   allFAQs(
-    # Keyword for the search
+    """Keyword for the search"""
     search: String
 
-    # Language in which the search is made and the answer is returned
+    """Language in which the search is made and the answer is returned"""
     language: Language
     after: String
     first: Int
     before: String
     last: Int
   ): AllFAQsConnection
+
+  """Retrieve list of FAQ categories."""
+  allFAQCategories(
+    """
+    Language in which the titles and perexes of FAQ categories are returned.
+    """
+    language: Language
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): AllFAQCategoriesConnection
 }
 
 type RouteStop {
@@ -1179,10 +1277,10 @@ type RouteStop {
 }
 
 input StopoversInput {
-  # Minimum number of hours of stopover duration.
+  """Minimum number of hours of stopover duration."""
   from: Int
 
-  # Maximum number of hours of stopover duration.
+  """Maximum number of hours of stopover duration."""
   to: Int
 }
 
