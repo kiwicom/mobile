@@ -69,9 +69,8 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
     });
   }
 
-  UNSAFE_componentWillReceiveProps = (props: Props) => {
-    // TODO: Refactor, not sure how to do this in static component
-    this.swipeConfig = Object.assign(swipeConfig, props.config);
+  componentDidUpdate = () => {
+    this.swipeConfig = Object.assign(swipeConfig, this.props.config);
   };
 
   handleShouldSetPanResponder = (
