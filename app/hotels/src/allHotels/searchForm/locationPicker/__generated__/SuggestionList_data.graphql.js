@@ -4,29 +4,30 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type SuggestionList_data$ref: FragmentReference;
 export type SuggestionList_data = {|
   +hotelCities: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +id: string;
-        +name: ?string;
-      |};
-    |}>;
-  |};
+        +id: string,
+        +name: ?string,
+      |},
+    |}>,
+  |},
+  +$refType: SuggestionList_data$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [
-    {
-      "kind": "LocalArgument",
-      "name": "prefix",
-      "type": "String",
-      "defaultValue": null
-    }
-  ],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
+  "name": "SuggestionList_data",
+  "type": "RootQuery",
   "metadata": {
     "connection": [
       {
@@ -39,11 +40,20 @@ const node: ConcreteFragment = {
       }
     ]
   },
-  "name": "SuggestionList_data",
+  "argumentDefinitions": [
+    {
+      "kind": "LocalArgument",
+      "name": "prefix",
+      "type": "String",
+      "defaultValue": null
+    }
+  ],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": "hotelCities",
+      "name": "__SuggestionList_hotelCities_connection",
+      "storageKey": null,
       "args": [
         {
           "kind": "Variable",
@@ -53,89 +63,86 @@ const node: ConcreteFragment = {
         }
       ],
       "concreteType": "HotelCityConnection",
-      "name": "__SuggestionList_hotelCities_connection",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "edges",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelCityEdge",
-          "name": "edges",
           "plural": true,
           "selections": [
             {
               "kind": "LinkedField",
               "alias": null,
+              "name": "node",
+              "storageKey": null,
               "args": null,
               "concreteType": "HotelCity",
-              "name": "node",
               "plural": false,
               "selections": [
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "args": null,
                   "name": "id",
+                  "args": null,
                   "storageKey": null
                 },
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "args": null,
                   "name": "name",
+                  "args": null,
                   "storageKey": null
                 },
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "args": null,
                   "name": "__typename",
+                  "args": null,
                   "storageKey": null
                 }
-              ],
-              "storageKey": null
+              ]
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "cursor",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
           "args": null,
           "concreteType": "PageInfo",
-          "name": "pageInfo",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "endCursor",
+              "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "hasNextPage",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "RootQuery"
+  ]
 };
-
+(node/*: any*/).hash = '846f15ca05895f9b3e8f5eec3ba8f185';
 module.exports = node;

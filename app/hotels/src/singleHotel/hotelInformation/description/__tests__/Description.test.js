@@ -8,8 +8,10 @@ const renderer = new ShallowRenderer();
 
 it('renders without crashing', () => {
   const props = {
+    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     hotel: {
       summary: 'Hotel description',
+      // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
       facilities: {},
     },
   };

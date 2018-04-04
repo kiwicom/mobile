@@ -4,47 +4,78 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BeddingInfo_room$ref = any;
+type RoomBadges_availableRoom$ref = any;
+type RoomDescription_room$ref = any;
+type RoomRowTitle_room$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type RoomRow_availableRoom$ref: FragmentReference;
 export type RoomRow_availableRoom = {|
-  +originalId: ?string;
+  +originalId: ?string,
   +room: ?{|
     +description: ?{|
-      +title: ?string;
-    |};
+      +title: ?string,
+    |},
     +photos: ?{|
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
-          +thumbnailUrl: ?string;
-          +highResUrl: ?string;
-          +lowResUrl: ?string;
-          +id: string;
-        |};
-      |}>;
-    |};
-    +maxPersons: ?number;
-  |};
+          +thumbnailUrl: ?string,
+          +highResUrl: ?string,
+          +lowResUrl: ?string,
+          +id: string,
+        |},
+      |}>,
+    |},
+    +maxPersons: ?number,
+    +$fragmentRefs: (RoomRowTitle_room$ref & RoomDescription_room$ref & BeddingInfo_room$ref),
+  |},
   +minimalPrice: ?{|
-    +amount: ?number;
-    +currency: ?string;
-  |};
+    +amount: ?number,
+    +currency: ?string,
+  |},
   +incrementalPrice: ?$ReadOnlyArray<?{|
-    +amount: ?number;
-    +currency: ?string;
-  |}>;
+    +amount: ?number,
+    +currency: ?string,
+  |}>,
+  +$fragmentRefs: RoomBadges_availableRoom$ref,
+  +$refType: RoomRow_availableRoom$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "amount",
+    "args": null,
+    "storageKey": null
+  },
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "currency",
+    "args": null,
+    "storageKey": null
+  }
+];
+return {
   "kind": "Fragment",
-  "metadata": null,
   "name": "RoomRow_availableRoom",
+  "type": "HotelRoomAvailability",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "originalId",
+      "args": null,
       "storageKey": null
     },
     {
@@ -55,28 +86,29 @@ const node: ConcreteFragment = {
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "room",
+      "storageKey": null,
       "args": null,
       "concreteType": "HotelRoom",
-      "name": "room",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "description",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelRoomDescription",
-          "name": "description",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "title",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "FragmentSpread",
@@ -91,69 +123,69 @@ const node: ConcreteFragment = {
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "photos",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelRoomPhotoConnection",
-          "name": "photos",
           "plural": false,
           "selections": [
             {
               "kind": "LinkedField",
               "alias": null,
+              "name": "edges",
+              "storageKey": null,
               "args": null,
               "concreteType": "HotelRoomPhotoEdge",
-              "name": "edges",
               "plural": true,
               "selections": [
                 {
                   "kind": "LinkedField",
                   "alias": null,
+                  "name": "node",
+                  "storageKey": null,
                   "args": null,
                   "concreteType": "HotelPhoto",
-                  "name": "node",
                   "plural": false,
                   "selections": [
                     {
                       "kind": "ScalarField",
                       "alias": null,
-                      "args": null,
                       "name": "thumbnailUrl",
+                      "args": null,
                       "storageKey": null
                     },
                     {
                       "kind": "ScalarField",
                       "alias": null,
-                      "args": null,
                       "name": "highResUrl",
+                      "args": null,
                       "storageKey": null
                     },
                     {
                       "kind": "ScalarField",
                       "alias": null,
-                      "args": null,
                       "name": "lowResUrl",
+                      "args": null,
                       "storageKey": null
                     },
                     {
                       "kind": "ScalarField",
                       "alias": null,
-                      "args": null,
                       "name": "id",
+                      "args": null,
                       "storageKey": null
                     }
-                  ],
-                  "storageKey": null
+                  ]
                 }
-              ],
-              "storageKey": null
+              ]
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "maxPersons",
+          "args": null,
           "storageKey": null
         },
         {
@@ -161,61 +193,30 @@ const node: ConcreteFragment = {
           "name": "BeddingInfo_room",
           "args": null
         }
-      ],
-      "storageKey": null
+      ]
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "args": null,
-      "concreteType": "Price",
       "name": "minimalPrice",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Price",
       "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "amount",
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "currency",
-          "storageKey": null
-        }
-      ],
-      "storageKey": null
+      "selections": v0
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "incrementalPrice",
+      "storageKey": null,
       "args": null,
       "concreteType": "Price",
-      "name": "incrementalPrice",
       "plural": true,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "amount",
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "args": null,
-          "name": "currency",
-          "storageKey": null
-        }
-      ],
-      "storageKey": null
+      "selections": v0
     }
-  ],
-  "type": "HotelRoomAvailability"
+  ]
 };
-
+})();
+(node/*: any*/).hash = '000bcc1f464c21f719de10a01c45a9ac';
 module.exports = node;

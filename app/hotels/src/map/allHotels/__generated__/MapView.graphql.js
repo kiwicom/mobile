@@ -4,50 +4,63 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type PriceMarker$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type MapView$ref: FragmentReference;
 export type MapView = $ReadOnlyArray<{|
   +node: ?{|
-    +id: string;
-    +price: ?{| |};
+    +id: string,
+    +price: ?{|
+      +$fragmentRefs: PriceMarker$ref,
+    |},
     +hotel: ?{|
       +coordinates: ?{|
-        +lat: ?number;
-        +lng: ?number;
-      |};
-    |};
-  |};
+        +lat: ?number,
+        +lng: ?number,
+      |},
+    |},
+  |},
+  +$refType: MapView$ref,
 |}>;
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
+  "name": "MapView",
+  "type": "HotelAvailabilityEdge",
   "metadata": {
     "plural": true
   },
-  "name": "MapView",
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "node",
+      "storageKey": null,
       "args": null,
       "concreteType": "HotelAvailability",
-      "name": "node",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "id",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "price",
+          "storageKey": null,
           "args": null,
           "concreteType": "Price",
-          "name": "price",
           "plural": false,
           "selections": [
             {
@@ -55,50 +68,47 @@ const node: ConcreteFragment = {
               "name": "PriceMarker",
               "args": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "hotel",
+          "storageKey": null,
           "args": null,
           "concreteType": "Hotel",
-          "name": "hotel",
           "plural": false,
           "selections": [
             {
               "kind": "LinkedField",
               "alias": null,
+              "name": "coordinates",
+              "storageKey": null,
               "args": null,
               "concreteType": "Coordinates",
-              "name": "coordinates",
               "plural": false,
               "selections": [
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "args": null,
                   "name": "lat",
+                  "args": null,
                   "storageKey": null
                 },
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "args": null,
                   "name": "lng",
+                  "args": null,
                   "storageKey": null
                 }
-              ],
-              "storageKey": null
+              ]
             }
-          ],
-          "storageKey": null
+          ]
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailabilityEdge"
+  ]
 };
-
+(node/*: any*/).hash = 'f065bba4ce55930453baf873f16fc063';
 module.exports = node;

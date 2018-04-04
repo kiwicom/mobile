@@ -11,7 +11,7 @@
     "graphql": "node ./scripts/getSchema.js",
     "ios": "yarn react-native run-ios",
     "lint": "yarn eslint app --report-unused-disable-directives",
-    "relay": "yarn babel-node ./app/relay/scripts/RelayCompiler.js --src ./app --schema ./schema.graphql",
+    "relay": "yarn relay-compiler --src ./app --schema ./schema.graphql",
     "start": "yarn react-native start",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
     "test-ci": "./scripts/test.sh",

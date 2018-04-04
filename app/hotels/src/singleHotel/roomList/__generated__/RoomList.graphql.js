@@ -4,25 +4,35 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type RoomRow_availableRoom$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type RoomList$ref: FragmentReference;
 export type RoomList = $ReadOnlyArray<{|
-  +id: string;
+  +id: string,
+  +$fragmentRefs: RoomRow_availableRoom$ref,
+  +$refType: RoomList$ref,
 |}>;
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
+  "name": "RoomList",
+  "type": "HotelRoomAvailability",
   "metadata": {
     "plural": true
   },
-  "name": "RoomList",
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "args": null,
       "name": "id",
+      "args": null,
       "storageKey": null
     },
     {
@@ -30,8 +40,7 @@ const node: ConcreteFragment = {
       "name": "RoomRow_availableRoom",
       "args": null
     }
-  ],
-  "type": "HotelRoomAvailability"
+  ]
 };
-
+(node/*: any*/).hash = 'b8d84e7d3cff94502e4fcb20914d2ac9';
 module.exports = node;

@@ -4,25 +4,43 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BookNow_availableRooms$ref = any;
+type BookNow_hotel$ref = any;
+type Header_hotel$ref = any;
+type HotelInformation_hotel$ref = any;
+type RoomList$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type HotelDetailScreen_availableHotel$ref: FragmentReference;
 export type HotelDetailScreen_availableHotel = {|
-  +hotel: ?{| |};
-  +availableRooms: ?$ReadOnlyArray<?{| |}>;
+  +hotel: ?{|
+    +$fragmentRefs: (Header_hotel$ref & BookNow_hotel$ref & HotelInformation_hotel$ref),
+  |},
+  +availableRooms: ?$ReadOnlyArray<?{|
+    +$fragmentRefs: (RoomList$ref & BookNow_availableRooms$ref),
+  |}>,
+  +$refType: HotelDetailScreen_availableHotel$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "HotelDetailScreen_availableHotel",
+  "type": "HotelAvailability",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "hotel",
+      "storageKey": null,
       "args": null,
       "concreteType": "Hotel",
-      "name": "hotel",
       "plural": false,
       "selections": [
         {
@@ -40,15 +58,15 @@ const node: ConcreteFragment = {
           "name": "HotelInformation_hotel",
           "args": null
         }
-      ],
-      "storageKey": null
+      ]
     },
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "availableRooms",
+      "storageKey": null,
       "args": null,
       "concreteType": "HotelRoomAvailability",
-      "name": "availableRooms",
       "plural": true,
       "selections": [
         {
@@ -61,11 +79,9 @@ const node: ConcreteFragment = {
           "name": "BookNow_availableRooms",
           "args": null
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailability"
+  ]
 };
-
+(node/*: any*/).hash = 'bb740e85b1d4abf7b6ea3f2f85d361a8';
 module.exports = node;

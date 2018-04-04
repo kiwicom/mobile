@@ -4,22 +4,34 @@
 
 /* eslint-disable */
 
+'use strict';
+
+/*::
 import type { ConcreteFragment } from 'relay-runtime';
+type HotelReviewScore_hotel$ref = any;
+type HotelTitle$ref = any;
+import type { FragmentReference } from 'relay-runtime';
+declare export opaque type AllHotelsSearchRow$ref: FragmentReference;
 export type AllHotelsSearchRow = {|
   +hotel: ?{|
-    +id: string;
+    +id: string,
     +mainPhoto: ?{|
-      +lowResUrl: ?string;
-    |};
-  |};
+      +lowResUrl: ?string,
+    |},
+    +$fragmentRefs: HotelReviewScore_hotel$ref,
+  |},
+  +$fragmentRefs: HotelTitle$ref,
+  +$refType: AllHotelsSearchRow$ref,
 |};
+*/
 
 
-const node: ConcreteFragment = {
-  "argumentDefinitions": [],
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "metadata": null,
   "name": "AllHotelsSearchRow",
+  "type": "HotelAvailability",
+  "metadata": null,
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "FragmentSpread",
@@ -29,46 +41,45 @@ const node: ConcreteFragment = {
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "hotel",
+      "storageKey": null,
       "args": null,
       "concreteType": "Hotel",
-      "name": "hotel",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "args": null,
           "name": "id",
+          "args": null,
           "storageKey": null
         },
         {
           "kind": "LinkedField",
           "alias": null,
+          "name": "mainPhoto",
+          "storageKey": null,
           "args": null,
           "concreteType": "HotelPhoto",
-          "name": "mainPhoto",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "args": null,
               "name": "lowResUrl",
+              "args": null,
               "storageKey": null
             }
-          ],
-          "storageKey": null
+          ]
         },
         {
           "kind": "FragmentSpread",
           "name": "HotelReviewScore_hotel",
           "args": null
         }
-      ],
-      "storageKey": null
+      ]
     }
-  ],
-  "type": "HotelAvailability"
+  ]
 };
-
+(node/*: any*/).hash = '496e31541877dc1edf949b5b6c5a869a';
 module.exports = node;
