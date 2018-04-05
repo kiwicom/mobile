@@ -17,3 +17,27 @@ const render = () => <HotelsStandalonePackage
 ```
 
 This package is exported with name `KiwiHotels` into native code.
+
+``` js
+import { SingleHotelStandAlonePackage } from '@kiwicom/react-native-app-hotels';
+
+const roomsConfiguration = [{ 
+  adultsCount: 1, 
+  children: [{ age: 1}],
+}];
+
+const render = () => <SingleHotelStandAlonePackage
+  bookingComAffiliate="123456"
+  language="en"
+  currency="EUR"
+  onBackClicked={() => goToHomepage()}
+  dataSaverEnabled={false}
+  checkin="2018-05-01"
+  checkout="2018-05-05" 
+  roomsConfiguration={roomsConfiguration}
+  hotelId="fq34rffa3="
+/>
+```
+
+This package is exported with name `SingleHotel` into native code.
+

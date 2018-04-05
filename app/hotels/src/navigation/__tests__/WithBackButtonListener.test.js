@@ -2,22 +2,23 @@
 
 import { Platform, BackHandler } from 'react-native';
 
-import AllHotelsNavigationScreen from '../AllHotelsNavigationScreen';
+import WithBackButtonListener from '../WithBackButtonListener';
 
 let Component;
 let originalPlatform;
 
 beforeEach(() => {
-  // $FlowExpectedError: this test works only with 'onBackClicked' thus ignoring all other props
-  Component = new AllHotelsNavigationScreen({
-    onBackClicked: jest.fn(),
+  Component = new WithBackButtonListener({
+    onClick: jest.fn(),
+    extraCondition: true,
+    children: null,
   });
   originalPlatform = Platform.OS;
 });
 
 afterEach(() => (Platform.OS = originalPlatform));
 
-describe('AllHotelsNavigationScreen', () => {
+describe('WithBackButtonListener', () => {
   it('registers an event listener if platform is Android', () => {
     Platform.OS = 'android';
 
