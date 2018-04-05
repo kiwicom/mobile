@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`overwrites the previous textTransform property 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "#30363d",
+        "fontSize": 14,
+        "fontWeight": "normal",
+        "letterSpacing": -0.15,
+      },
+      undefined,
+    ]
+  }
+>
+  THIS SHOULD BE UPPERCASED
+</Text>
+`;
+
 exports[`passes all props down to the children 1`] = `
 Array [
   <DummyTranslation
@@ -14,6 +35,47 @@ Array [
 `;
 
 exports[`throws error for undefined children 1`] = `"'TranslationFragment' cannot be used without children."`;
+
+exports[`transforms only translations friendly components 1`] = `
+Array [
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    THIS IS GOING TO BE UPPERCASED
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    this is going to stay lowercased
+  </Text>,
+]
+`;
 
 exports[`works with conditionals 1`] = `
 <Text
@@ -34,6 +96,83 @@ exports[`works with conditionals 1`] = `
 >
   I should render
 </Text>
+`;
+
+exports[`works with nested fragments 1`] = `
+Array [
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    level aaa.1
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    level bbb.1
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    level bbb.2
+  </Text>,
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#30363d",
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "letterSpacing": -0.15,
+        },
+        undefined,
+      ]
+    }
+  >
+    level aaa.2
+  </Text>,
+]
 `;
 
 exports[`works with string as child 1`] = `

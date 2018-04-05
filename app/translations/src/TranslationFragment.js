@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 
+import Translation from './Translation';
+import DummyTranslation from './DummyTranslation';
 import type { SupportedTransformationsType } from './transformations/CaseTransform';
 
 /**
@@ -15,24 +17,53 @@ import type { SupportedTransformationsType } from './transformations/CaseTransfo
  * </TranslationFragment>
  * ```
  *
- * `TranslationFragment` can later be used in place of dummy or normal translation.
+ * `TranslationFragment` can later be used in place of dummy or normal
+ * translation. This fragment can have additional properties. These props
+ * are being propagated to the translations children only:
+ *
+ * ```js
+ * <TranslationFragment textTransform="uppercase">
+ *   <DummyTranslation id="this is going to be uppercased" />
+ *   <Text>this is going to stay lowercased</Text>
+ * </TranslationFragment>
+ * ```
+ *
+ * `TranslationFragment` components is possible to nest.
  */
 export default class TranslationFragment extends React.Component<{|
   children: React.Node,
   textTransform?: SupportedTransformationsType,
 |}> {
+  isTranslationComponent = (child: ?React.Element<any>): boolean => {
+    if (!child) {
+      return false;
+    }
+    return (
+      child.type === Translation ||
+      child.type === DummyTranslation ||
+      child.type === TranslationFragment
+    );
+  };
+
   render = () => {
     if (this.props.children === undefined) {
       throw new Error("'TranslationFragment' cannot be used without children.");
     }
+
     return React.Children.map(this.props.children, child => {
-      if (React.isValidElement(child)) {
-        return React.cloneElement(child, {
-          ...this.props,
-          children: null,
-        });
+      // Additional fragments props are going to be applied also on translations
+      // children. Other children components are returned "as is".
+      if (!this.isTranslationComponent(child)) {
+        return child;
       }
-      return child;
+
+      if (this.props.textTransform === undefined) {
+        return child;
+      }
+
+      return React.cloneElement(child, {
+        textTransform: child.props.textTransform || this.props.textTransform,
+      });
     });
   };
 }
