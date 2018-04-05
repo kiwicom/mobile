@@ -53,6 +53,13 @@ export default class Homepage extends React.Component<Props> {
     });
   };
 
+  goToSingleHotel = () => {
+    this.props.navigation.navigate({
+      routeName: 'SingleHotelPackage',
+      key: 'key-SingleHotelPackage',
+    });
+  };
+
   render = () => {
     return (
       <Layout>
@@ -72,6 +79,12 @@ export default class Homepage extends React.Component<Props> {
           <Button
             title={<DummyTranslation id="Hotels in Lima" />}
             onPress={this.goToLima}
+          />
+        </Section>
+        <Section>
+          <Button
+            title={<DummyTranslation id="Go to single hotel" />}
+            onPress={this.goToSingleHotel}
           />
         </Section>
         <Section>
