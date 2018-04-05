@@ -35,7 +35,7 @@ type InjectorProps = {|
 
 const AllHotelsStack = StackNavigator(
   {
-    Main: {
+    AllHotelsMain: {
       screen: withMappedProps(AllHotelsNavigationScreen),
     },
     LocationPicker: {
@@ -47,9 +47,8 @@ const AllHotelsStack = StackNavigator(
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'Main',
+    initialRouteName: 'AllHotelsMain',
     mode: 'modal',
-    headerMode: 'none',
   },
 );
 
@@ -70,21 +69,8 @@ const createTransparentHeaderStyle = () => {
   };
 };
 
-export default StackNavigator(
+export const SingleHotelStack = StackNavigator(
   {
-    AllHotels: {
-      screen: AllHotelsStack,
-    },
-    AllHotelsMap: {
-      screen: withMappedProps(AllHotelsMapNavigationScreen),
-      navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="Hotels.Navigation.Title.AllHotelsMap" />
-          </HeaderTitle>
-        ),
-      },
-    },
     SingleHotel: {
       screen: SingleHotelNavigationScreen,
       navigationOptions: {
@@ -156,6 +142,32 @@ export default StackNavigator(
   },
   {
     ...StackNavigatorOptions,
+    initialRouteName: 'SingleHotel',
+  },
+);
+
+export default StackNavigator(
+  {
+    AllHotels: {
+      screen: AllHotelsStack,
+    },
+    AllHotelsMap: {
+      screen: withMappedProps(AllHotelsMapNavigationScreen),
+      navigationOptions: {
+        headerTitle: (
+          <HeaderTitle>
+            <Translation id="Hotels.Navigation.Title.AllHotelsMap" />
+          </HeaderTitle>
+        ),
+      },
+    },
+    SingleHotel: {
+      screen: SingleHotelStack,
+    },
+  },
+  {
+    ...StackNavigatorOptions,
     initialRouteName: 'AllHotels',
+    headerMode: 'none',
   },
 );

@@ -8,6 +8,7 @@ import { StackNavigator } from '@kiwicom/react-native-app-navigation';
 import HomepageStack from './HomepageStack';
 import UserReducer from '../services/redux/UserReducer';
 import HotelsPackageWrapper from '../screens/HotelsPackageWrapper';
+import SingleHotelsPackageWrapper from '../screens/SingleHotelPackageWrapper';
 
 const Navigation = StackNavigator(
   {
@@ -16,6 +17,9 @@ const Navigation = StackNavigator(
     },
     HotelsPackage: {
       screen: withMappedProps(HotelsPackageWrapper),
+    },
+    SingleHotelPackage: {
+      screen: withMappedProps(SingleHotelsPackageWrapper),
     },
   },
   {

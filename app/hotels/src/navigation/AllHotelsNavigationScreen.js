@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { BackHandler, Platform, View } from 'react-native';
+import { View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
 import { StyleSheet, AdaptableLayout } from '@kiwicom/react-native-app-shared';
 import Translation from '@kiwicom/react-native-app-translations';
@@ -14,6 +14,7 @@ import AllHotels from '../allHotels/AllHotels';
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
 import MapHeaderButton from './MapHeaderButton';
 import type { Coordinates } from '../CoordinatesType';
+import WithBackButtonListener from './WithBackButtonListener';
 
 type ContainerProps = {|
   navigation: NavigationType,
@@ -28,8 +29,6 @@ type NavigationProps = {|
 type Props = ContainerProps & NavigationProps;
 
 export default class AllHotelsNavigationScreen extends React.Component<Props> {
-  backButtonListener = null;
-
   static navigationOptions = (props: Props) => {
     function goToAllHotelsMap() {
       props.navigation.navigate({
@@ -63,16 +62,9 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
     };
   };
 
-  componentDidMount = () => {
-    if (Platform.OS === 'android' && this.backButtonListener === null) {
-      this.backButtonListener = BackHandler.addEventListener(
-        'hardwareBackPress',
-        () => {
-          this.props.onBackClicked();
-          return true;
-        },
-      );
-    }
+  onAndroidBackClicked = () => {
+    this.props.onBackClicked();
+    return true;
   };
 
   openLocationPicker = (location: string | null) => {
@@ -124,10 +116,12 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
 
   render = () => {
     return (
-      <AdaptableLayout
-        renderOnWide={this.renderHotelsWithMap()}
-        renderOnNarrow={this.renderHotels()}
-      />
+      <WithBackButtonListener onClick={this.onAndroidBackClicked}>
+        <AdaptableLayout
+          renderOnWide={this.renderHotelsWithMap()}
+          renderOnNarrow={this.renderHotels()}
+        />
+      </WithBackButtonListener>
     );
   };
 }

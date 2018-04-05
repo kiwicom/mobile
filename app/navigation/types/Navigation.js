@@ -3,7 +3,10 @@
 type NavigationStateParameters = Object;
 
 // FIXME: this is related to the packages and not navigation
-type CoreStackNavigatorRouteNames = 'Homepage' | 'HotelsPackage';
+type CoreStackNavigatorRouteNames =
+  | 'Homepage'
+  | 'HotelsPackage'
+  | 'SingleHotelPackage';
 type HotelsStackNavigatorNames =
   | 'AllHotelsMap'
   | 'GalleryGrid'
@@ -33,5 +36,5 @@ export type Navigation = {
     params: NavigationStateParameters,
   },
   setParams: (newParameters: NavigationStateParameters) => void,
-  goBack: () => void,
+  goBack: (key?: string | null) => void,
 };
