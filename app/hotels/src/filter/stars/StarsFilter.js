@@ -70,10 +70,7 @@ export default class StarsFilter extends React.Component<Props, State> {
       <TranslationFragment>
         {stars.includes(0) && (
           <TranslationFragment>
-            <Translation
-              id="HotelsSearch.Filter.StarsFilter.Unrated"
-              key="unratedTranslation"
-            />
+            <Translation id="HotelsSearch.Filter.StarsFilter.Unrated" />
             {stars.length > 1 && <DummyTranslation id="," />}
           </TranslationFragment>
         )}

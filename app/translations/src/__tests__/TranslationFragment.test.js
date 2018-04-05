@@ -3,6 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import testRenderer from 'react-test-renderer';
+import { Text } from '@kiwicom/react-native-app-shared';
 
 import TranslationFragment from '../TranslationFragment';
 import DummyTranslation from '../DummyTranslation';
@@ -38,11 +39,10 @@ it('throws error for undefined children', () => {
 });
 
 it('works with conditionals', () => {
-  const int = 1;
   expect(
     testRenderer.create(
       <TranslationFragment>
-        {int === 0 && <DummyTranslation id="I should not render" />}
+        {false && <DummyTranslation id="I should NOT render" />}
         <DummyTranslation id="I should render" />
       </TranslationFragment>,
     ),
@@ -55,6 +55,46 @@ it('works with string as child', () => {
       <TranslationFragment>
         this is a string
         <DummyTranslation id="I should render" />
+      </TranslationFragment>,
+    ),
+  ).toMatchSnapshot();
+});
+
+it('works with nested fragments', () => {
+  expect(
+    testRenderer.create(
+      <TranslationFragment textTransform="lowercase">
+        <DummyTranslation id="level AAA.1" />
+        <TranslationFragment>
+          {/* these translations (vv) are going to be lowercased as well */}
+          <DummyTranslation id="level BBB.1" />
+          <DummyTranslation id="level BBB.2" />
+        </TranslationFragment>
+        <DummyTranslation id="level AAA.2" />
+      </TranslationFragment>,
+    ),
+  ).toMatchSnapshot();
+});
+
+it('overwrites the previous textTransform property', () => {
+  expect(
+    testRenderer.create(
+      <TranslationFragment textTransform="lowercase">
+        <TranslationFragment textTransform="uppercase">
+          <DummyTranslation id="this should be uppercased" />
+        </TranslationFragment>
+      </TranslationFragment>,
+    ),
+  ).toMatchSnapshot();
+});
+
+it('transforms only translations friendly components', () => {
+  expect(
+    testRenderer.create(
+      <TranslationFragment textTransform="uppercase">
+        <DummyTranslation id="this is going to be uppercased" />
+        {/* $FlowExpectedError: string is not allowed in the Text but I want to test it */}
+        <Text>this is going to stay lowercased</Text>
       </TranslationFragment>,
     ),
   ).toMatchSnapshot();
