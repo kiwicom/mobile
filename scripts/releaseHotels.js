@@ -36,6 +36,9 @@ exec(
 exec('cp -Rv assets/fonts .build/ios/assets/fonts');
 exec('cp -Rv assets/fonts .build/android/assets/fonts');
 
+// Copy README file.
+exec(`cp ${hotelPath}/README.md ${buildPath}`);
+
 // Publish on NPM.
 exec('npm login');
 exec('npm version patch', {
