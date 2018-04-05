@@ -369,6 +369,19 @@ There are also situations where we need to return multiple translations but this
 
 This fragment also comply with Flow types and it has similar behaviour with `React.Fragment` from React 16.2+...
 
+#### PhraseApp
+
+We use [PhraseApp](https://phraseapp.com/) for managing translations. All keys and relevant screenshots are deployed automatically (**not ready yet**).
+
+How to create screenshots? Open iOS simulator and press `Ctrl+S` (save). It will save the screenshot of current page so you can work with it later. It's usually good idea to mark where is the translated string on the screen. You should convert your new screenshots to JPG to make them smaller before commiting them to the Git (macOS):
+
+```
+mkdir jpegs
+sips --resampleHeightWidthMax 640 --setProperty format jpeg ./*.png --out jpegs
+```
+
+We use [Git LFS](https://git-lfs.github.com/) for storing these images. You can read even more about it [here](https://github.com/git-lfs/git-lfs/wiki/Tutorial).
+
 ### Upgrading dependencies
 
 Check all dependencies with `outdated` Yarn command. This will tell you how behind we actually are. Try not to upgrade everything at once since there may be breaking changes (even though it's non-breaking upgrade). The second command will help you significantly with upgrading these dependencies across our workspace repository:
