@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RoomDescription renders 1`] = `
-<View>
-  <View
+<Component>
+  <Component
     style={
       Object {
         "backgroundColor": "#edeff2",
@@ -36,5 +36,5 @@ exports[`RoomDescription renders 1`] = `
       />
     </Text>
   </ReadMore>
-</View>
+</Component>
 `;

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Slider renders 1`] = `
-<View
+<Component
   onLayout={[Function]}
   style={
     Object {
@@ -103,11 +103,11 @@ exports[`Slider renders 1`] = `
       ]
     }
   />
-</View>
+</Component>
 `;
 
 exports[`Slider renders correctly with all values equal 1`] = `
-<View
+<Component
   onLayout={[Function]}
   style={
     Object {
@@ -209,11 +209,11 @@ exports[`Slider renders correctly with all values equal 1`] = `
       ]
     }
   />
-</View>
+</Component>
 `;
 
 exports[`Slider renders with endValue undefined 1`] = `
-<View
+<Component
   onLayout={[Function]}
   style={
     Object {
@@ -314,5 +314,5 @@ exports[`Slider renders with endValue undefined 1`] = `
       ]
     }
   />
-</View>
+</Component>
 `;
