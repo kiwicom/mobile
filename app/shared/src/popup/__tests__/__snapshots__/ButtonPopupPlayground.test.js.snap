@@ -5,7 +5,7 @@ exports[`ButtonPopup playground renders in playground 1`] = `
   isVisible={true}
   onClose={[Function]}
 >
-  <View
+  <Component
     style={
       Array [
         Object {
@@ -19,8 +19,8 @@ exports[`ButtonPopup playground renders in playground 1`] = `
     <DummyTranslation
       id="Child"
     />
-  </View>
-  <View
+  </Component>
+  <Component
     style={
       Object {
         "margin": 20,
@@ -43,6 +43,6 @@ exports[`ButtonPopup playground renders in playground 1`] = `
         />
       }
     />
-  </View>
+  </Component>
 </Popup>
 `;

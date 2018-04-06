@@ -25,7 +25,7 @@ exports[`renders as expected 1`] = `
     ]
   }
 >
-  <View
+  <Component
     style={
       Object {
         "flexDirection": "row",
@@ -46,7 +46,7 @@ exports[`renders as expected 1`] = `
         />
       }
     />
-    <View
+    <Component
       style={
         Object {
           "flexDirection": "row",
@@ -64,12 +64,12 @@ exports[`renders as expected 1`] = `
         }
       }
     />
-  </View>
+  </Component>
 </Touchable>
 `;
 
 exports[`renders as expected 2`] = `
-<View
+<Component
   style={
     Object {
       "flexDirection": "row",
@@ -80,7 +80,7 @@ exports[`renders as expected 2`] = `
   <MinusButton
     onPress={[Function]}
   />
-  <View
+  <Component
     style={
       Array [
         Object {
@@ -126,16 +126,16 @@ exports[`renders as expected 2`] = `
         }
       }
     />
-  </View>
+  </Component>
   <PlusButton
     disabled={false}
     onPress={[Function]}
   />
-</View>
+</Component>
 `;
 
 exports[`renders as expected 3`] = `
-<View
+<Component
   style={
     Object {
       "flexDirection": "row",
@@ -146,7 +146,7 @@ exports[`renders as expected 3`] = `
   <MinusButton
     onPress={[Function]}
   />
-  <View
+  <Component
     style={
       Array [
         Object {
@@ -192,10 +192,10 @@ exports[`renders as expected 3`] = `
         }
       }
     />
-  </View>
+  </Component>
   <PlusButton
     disabled={true}
     onPress={[Function]}
   />
-</View>
+</Component>
 `;

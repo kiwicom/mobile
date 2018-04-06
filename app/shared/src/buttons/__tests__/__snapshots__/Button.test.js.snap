@@ -7,7 +7,7 @@ exports[`renders button with custom title 1`] = `
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
-  <View
+  <Component
     style={
       Array [
         Object {
@@ -19,7 +19,7 @@ exports[`renders button with custom title 1`] = `
       ]
     }
   >
-    <View
+    <Component
       style={
         Array [
           Object {
@@ -52,7 +52,7 @@ exports[`renders button with custom title 1`] = `
           />
         }
       />
-    </View>
-  </View>
+    </Component>
+  </Component>
 </Touchable>
 `;

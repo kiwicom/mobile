@@ -7,7 +7,7 @@ exports[`Guests Render all inputs 1`] = `
   onPress={[MockFunction]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
-  <View
+  <Component
     style={
       Object {
         "alignItems": "center",
@@ -34,6 +34,6 @@ exports[`Guests Render all inputs 1`] = `
       adultsCount={3}
       childrenCount={0}
     />
-  </View>
+  </Component>
 </Touchable>
 `;
