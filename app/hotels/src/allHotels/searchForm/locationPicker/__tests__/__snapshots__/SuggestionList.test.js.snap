@@ -3,7 +3,7 @@
 exports[`SuggestionList renders 1`] = `
 <FlatList
   ListHeaderComponent={
-    <View
+    <Component
       style={
         Object {
           "marginTop": 20,
