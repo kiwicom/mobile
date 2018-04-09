@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works with optional pass through parameter 1`] = `
+<Text
+  style={undefined}
+>
+  undefined
+</Text>
+`;
+
+exports[`works with pass through translations 1`] = `
+<Text
+  style={undefined}
+>
+  This text should be returned as is.
+</Text>
+`;
+
+exports[`works with pass through translations and text transformations 1`] = `
+<Text
+  style={undefined}
+>
+  THIS TEXT SHOULD BE RETURNED IN UPPERCASE.
+</Text>
+`;

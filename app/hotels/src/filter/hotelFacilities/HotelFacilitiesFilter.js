@@ -2,9 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import Translations, {
+import Translation, {
   TranslationFragment,
-  DummyTranslation,
 } from '@kiwicom/react-native-app-translations';
 
 import HotelFacilitiesPopup from './HotelFacilitiesPopup';
@@ -55,9 +54,9 @@ export default class HotelFacilitiesFilter extends React.Component<
 
   getTitle = (facilities: string[]) => (
     <TranslationFragment>
-      <Translations id="HotelsSearch.Filter.HotelFacilitiesFilter.Title" />
-      <DummyTranslation
-        id={facilities.length ? ` (${facilities.length})` : ''}
+      <Translation id="HotelsSearch.Filter.HotelFacilitiesFilter.Title" />
+      <Translation
+        passThrough={facilities.length ? ` (${facilities.length})` : ''}
       />
     </TranslationFragment>
   );

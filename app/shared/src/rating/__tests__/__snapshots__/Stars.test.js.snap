@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`works with failed rating prop 1`] = `
-<DummyTranslation
-  id=""
+<Translation
+  passThrough=""
 />
 `;
 
 exports[`works with failed rating prop 2`] = `
-<DummyTranslation
-  id=""
+<Translation
+  passThrough=""
 />
 `;
 
 exports[`works with rating prop 1`] = `
-<DummyTranslation
-  id="★★★"
+<Translation
+  passThrough="★★★"
 />
 `;
 
 exports[`works with rating prop 2`] = `
-<DummyTranslation
-  id="★★★★★★★★★★"
+<Translation
+  passThrough="★★★★★★★★★★"
 />
 `;

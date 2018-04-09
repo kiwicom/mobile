@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import ReadMore from '../ReadMore';
 
@@ -13,7 +13,7 @@ describe('ReadMore', () => {
   it('renders', () => {
     PlaygroundRenderer.render(
       <ReadMore numberOfLines={4} truncatedText="Show more" revealedText="Hide">
-        <DummyTranslation id={loremIpsum} />
+        <Translation passThrough={loremIpsum} />
       </ReadMore>,
     );
   });
@@ -26,7 +26,7 @@ describe('ReadMore', () => {
         revealedText="Hide"
         style={{ color: 'pink', fontWeight: '600' }}
       >
-        <DummyTranslation id={loremIpsum} />
+        <Translation passThrough={loremIpsum} />
       </ReadMore>,
     );
   });

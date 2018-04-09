@@ -3,13 +3,13 @@
 exports[`renders as expected 1`] = `
 <View>
   <SimpleCard>
-    <DummyTranslation
-      id="Default card A"
+    <Translation
+      passThrough="Default card A"
     />
   </SimpleCard>
   <SimpleCard>
-    <DummyTranslation
-      id="Default card B"
+    <Translation
+      passThrough="Default card B"
     />
   </SimpleCard>
 </View>
@@ -20,15 +20,15 @@ exports[`renders as expected with onPress callback 1`] = `
   <SimpleCard
     onPress={[Function]}
   >
-    <DummyTranslation
-      id="Clickable card"
+    <Translation
+      passThrough="Clickable card"
     />
   </SimpleCard>
   <SimpleCard
     onPress={[Function]}
   >
-    <DummyTranslation
-      id="Clickable card"
+    <Translation
+      passThrough="Clickable card"
     />
   </SimpleCard>
 </View>

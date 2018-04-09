@@ -10,7 +10,7 @@ import type { StylePropType } from '../types/Styles';
 
 // basically every component (but never strings - they must be translated)
 // the idea is that you should always use component as a children so you'll
-// eventually end up with Translation or DummyTranslation
+// eventually end up with the Translation component
 type ChildrenType = React.Element<any>;
 
 type Props = {|

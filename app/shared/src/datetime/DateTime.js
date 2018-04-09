@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  DummyTranslation,
+import Translation, {
   DateFormatter,
 } from '@kiwicom/react-native-app-translations';
 
@@ -17,5 +16,5 @@ export default function DateComponent({ dateTime }: Props): React.Node {
 
   const date = DateFormatter(dateTime);
   // Month name, day of month, day of week, year, time, i.e. Thu, Sep 4, 1986 8:30 PM(Adapts to user device locale).
-  return <DummyTranslation id={date.format('llll')} />;
+  return <Translation passThrough={date.format('llll')} />;
 }

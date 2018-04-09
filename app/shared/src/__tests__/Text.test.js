@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Text from '../Text';
 
@@ -11,7 +11,7 @@ const DEEP_RENDER = true;
 it('renders with the default properties for iOS', () => {
   PlaygroundRenderer.render(
     <Text>
-      <DummyTranslation id="normal text" />
+      <Translation passThrough="normal text" />
     </Text>,
     DEEP_RENDER,
   );
@@ -20,7 +20,7 @@ it('renders with the default properties for iOS', () => {
 it('renders with additional style properties', () => {
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>
-      <DummyTranslation id="bold text" />
+      <Translation passThrough="bold text" />
     </Text>,
     DEEP_RENDER,
   );
@@ -31,9 +31,9 @@ it('supports nested styles', () => {
 
   PlaygroundRenderer.render(
     <Text style={{ fontWeight: 'bold' }}>
-      <DummyTranslation id="bold text " />
+      <Translation passThrough="bold text " />
       <Text style={{ color: 'red' }}>
-        <DummyTranslation id="and bold-red text" />
+        <Translation passThrough="and bold-red text" />
       </Text>
     </Text>,
     DEEP_RENDER,
@@ -52,10 +52,10 @@ it('supports multiple nested strings', () => {
       }}
     >
       <Text>
-        <DummyTranslation id="red normal text " />
+        <Translation passThrough="red normal text " />
       </Text>
       <Text>
-        <DummyTranslation id="and red normal text" />
+        <Translation passThrough="and red normal text" />
       </Text>
     </Text>,
     DEEP_RENDER,
@@ -68,7 +68,7 @@ it('applies the styles recursively', () => {
     <Text style={{ fontWeight: 'bold' }}>
       <Fence>
         <Text style={{ color: 'red' }}>
-          <DummyTranslation id="bold and red text" />
+          <Translation passThrough="bold and red text" />
         </Text>
       </Fence>
     </Text>,
@@ -79,7 +79,7 @@ it('applies the styles recursively', () => {
 it('works even with the distant Text nodes', () => {
   const Fence = () => (
     <Text>
-      <DummyTranslation id="bold default text" />
+      <Translation passThrough="bold default text" />
     </Text>
   );
 

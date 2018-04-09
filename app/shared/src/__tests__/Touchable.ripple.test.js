@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Touchable from '../Touchable';
 
@@ -28,7 +28,7 @@ describe('Touchable with ripple effect', () => {
     expect(
       renderer.render(
         <Touchable onPress={VoidAction}>
-          <DummyTranslation id="line" />
+          <Translation passThrough="line" />
         </Touchable>,
       ),
     ).toMatchSnapshot();
@@ -38,7 +38,7 @@ describe('Touchable with ripple effect', () => {
     expect(
       renderer.render(
         <Touchable rippleColor="red" onPress={VoidAction}>
-          <DummyTranslation id="line" />
+          <Translation passThrough="line" />
         </Touchable>,
       ),
     ).toMatchSnapshot();
@@ -48,7 +48,7 @@ describe('Touchable with ripple effect', () => {
     expect(
       renderer.render(
         <Touchable borderlessRipple={true} onPress={VoidAction}>
-          <DummyTranslation id="line" />
+          <Translation passThrough="line" />
         </Touchable>,
       ),
     ).toMatchSnapshot();
@@ -59,7 +59,7 @@ describe('Touchable with ripple effect', () => {
       renderer.render(
         // this should render TouchableOpacity
         <Touchable noRipple={true} onPress={VoidAction}>
-          <DummyTranslation id="line" />
+          <Translation passThrough="line" />
         </Touchable>,
       ),
     ).toMatchSnapshot();

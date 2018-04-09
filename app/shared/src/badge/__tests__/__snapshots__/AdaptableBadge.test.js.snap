@@ -27,8 +27,8 @@ exports[`renders text 1`] = `
       ]
     }
   >
-    <DummyTranslation
-      id="default badge"
+    <Translation
+      passThrough="default badge"
     />
   </Text>
 </Component>
@@ -63,8 +63,8 @@ exports[`renders text with color 1`] = `
       ]
     }
   >
-    <DummyTranslation
-      id="badge with color"
+    <Translation
+      passThrough="badge with color"
     />
   </Text>
 </Component>
@@ -97,8 +97,8 @@ exports[`renders very long texts 1`] = `
       ]
     }
   >
-    <DummyTranslation
-      id="very very very very very long badge (adaptable width)"
+    <Translation
+      passThrough="very very very very very long badge (adaptable width)"
     />
   </Text>
 </Component>

@@ -7,7 +7,7 @@ import {
   StackNavigator,
   StackNavigatorOptions,
 } from '@kiwicom/react-native-app-navigation';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Homepage from '../screens/homepage/Homepage';
 
@@ -18,7 +18,7 @@ export default StackNavigator(
       navigationOptions: {
         headerTitle: (
           <HeaderTitle>
-            <DummyTranslation id="Welcome" />
+            <Translation passThrough="Welcome" />
           </HeaderTitle>
         ),
       },

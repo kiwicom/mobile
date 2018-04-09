@@ -10,9 +10,7 @@ import {
   StyleSheet,
   Text,
 } from '@kiwicom/react-native-app-shared';
-import Translation, {
-  DummyTranslation,
-} from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import type { Address_address } from './__generated__/Address_address.graphql';
 
@@ -62,7 +60,7 @@ class Address extends React.Component<Props> {
             <Translation id="Hotels.Map.Address" />
           </Text>
           <Text numberOfLines={2}>
-            <DummyTranslation id={`${street}, ${city} ${zip}`} />
+            <Translation passThrough={`${street}, ${city} ${zip}`} />
           </Text>
         </View>
       </View>
