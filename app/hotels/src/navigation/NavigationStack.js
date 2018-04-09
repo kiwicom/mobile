@@ -146,11 +146,8 @@ export const SingleHotelStack = StackNavigator(
   },
 );
 
-export default StackNavigator(
+const AllHotelsMapStack = StackNavigator(
   {
-    AllHotels: {
-      screen: AllHotelsStack,
-    },
     AllHotelsMap: {
       screen: withMappedProps(AllHotelsMapNavigationScreen),
       navigationOptions: {
@@ -160,6 +157,21 @@ export default StackNavigator(
           </HeaderTitle>
         ),
       },
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'AllHotelsMap',
+  },
+);
+
+export default StackNavigator(
+  {
+    AllHotels: {
+      screen: AllHotelsStack,
+    },
+    AllHotelsMap: {
+      screen: AllHotelsMapStack,
     },
     SingleHotel: {
       screen: SingleHotelStack,
