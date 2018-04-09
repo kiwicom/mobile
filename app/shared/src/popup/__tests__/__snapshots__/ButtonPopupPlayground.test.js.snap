@@ -16,8 +16,8 @@ exports[`ButtonPopup playground renders in playground 1`] = `
       ]
     }
   >
-    <DummyTranslation
-      id="Child"
+    <Translation
+      passThrough="Child"
     />
   </Component>
   <Component
@@ -38,8 +38,8 @@ exports[`ButtonPopup playground renders in playground 1`] = `
         }
       }
       title={
-        <DummyTranslation
-          id="Save"
+        <Translation
+          passThrough="Save"
         />
       }
     />

@@ -7,9 +7,7 @@ import {
   Slider,
   Price,
 } from '@kiwicom/react-native-app-shared';
-import Translation, {
-  DummyTranslation,
-} from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   onClose: () => void,
@@ -62,7 +60,7 @@ export default class PricePopup extends React.Component<Props, State> {
     return (
       <Text>
         {startPrice}
-        <DummyTranslation id=" - " />
+        <Translation passThrough=" - " />
         {endPrice}
       </Text>
     );
@@ -82,7 +80,7 @@ export default class PricePopup extends React.Component<Props, State> {
       >
         <Text>
           <Translation id="HotelsSearch.Filter.PricePopup.Title" />
-          <DummyTranslation id=" " />
+          <Translation passThrough=" " />
           {label}
         </Text>
         <Slider

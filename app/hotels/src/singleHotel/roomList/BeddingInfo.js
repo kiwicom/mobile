@@ -10,9 +10,7 @@ import {
   Icon,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translation, {
-  DummyTranslation,
-} from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 import idx from 'idx';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
@@ -61,13 +59,13 @@ export class BeddingInfo extends React.Component<Props> {
         <View style={styles.row}>
           <TextIcon style={styles.icon}>&#xe0a5;</TextIcon>
           <Text style={styles.text}>
-            <DummyTranslation id={` ${info}`} />
+            <Translation passThrough={` ${info}`} />
           </Text>
         </View>
         <View style={styles.row}>
           <Icon size={14} name="person" />
           <Text style={styles.text}>
-            <DummyTranslation id={' '} />
+            <Translation passThrough={' '} />
             <Translation
               id="SingleHotel.BeddingInfo.Guests"
               values={{ numberOfGuests: maxPersons }}

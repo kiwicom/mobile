@@ -31,8 +31,8 @@ exports[`renders header with title 1`] = `
         }
       }
     >
-      <DummyTranslation
-        id="×"
+      <Translation
+        passThrough="×"
       />
     </Text>
   </Touchable>
@@ -58,8 +58,8 @@ exports[`renders header with title 1`] = `
         }
       }
     >
-      <DummyTranslation
-        id="Hotel Name"
+      <Translation
+        passThrough="Hotel Name"
       />
     </Text>
     <Text
@@ -123,8 +123,8 @@ exports[`renders header with very long title 1`] = `
         }
       }
     >
-      <DummyTranslation
-        id="×"
+      <Translation
+        passThrough="×"
       />
     </Text>
   </Touchable>
@@ -150,8 +150,8 @@ exports[`renders header with very long title 1`] = `
         }
       }
     >
-      <DummyTranslation
-        id="Hotel Name So Long That It Will Not Fit One Line And Needs To Be Wrapped"
+      <Translation
+        passThrough="Hotel Name So Long That It Will Not Fit One Line And Needs To Be Wrapped"
       />
     </Text>
     <Text

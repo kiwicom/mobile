@@ -8,8 +8,8 @@ exports[`Touchable with children throws error for multiple children 1`] = `
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
-  <DummyTranslation
-    id="this is OK"
+  <Translation
+    passThrough="this is OK"
   />
 </TouchableOpacity>
 `;
@@ -23,11 +23,11 @@ exports[`Touchable with children throws error for multiple children 2`] = `
   rippleColor="rgba(0, 0, 0, .32)"
 >
   <Component>
-    <DummyTranslation
-      id="line 1"
+    <Translation
+      passThrough="line 1"
     />
-    <DummyTranslation
-      id="line 2"
+    <Translation
+      passThrough="line 2"
     />
   </Component>
 </TouchableOpacity>

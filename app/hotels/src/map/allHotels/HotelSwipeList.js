@@ -11,7 +11,7 @@ import {
   AdaptableLayout,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
-import Translations from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';
@@ -115,7 +115,7 @@ class HotelSwipeList extends React.Component<Props, State> {
           </React.Fragment>
         ) : (
           <View style={styles.noResultsContainer}>
-            <Translations id="Hotels.Map.NoResults" />
+            <Translation id="Hotels.Map.NoResults" />
           </View>
         )}
       </BottomSheet>

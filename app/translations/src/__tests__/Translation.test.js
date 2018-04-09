@@ -54,3 +54,25 @@ it('works without value to replace', () => {
     Component.replaceValues('Your flight __number__ departs now.', {}),
   ).toBe('Your flight ? departs now.');
 });
+
+it('works with pass through translations', () => {
+  const Component = new Translation({
+    passThrough: 'This text should be returned as is.',
+  });
+  expect(Component.render()).toMatchSnapshot();
+});
+
+it('works with optional pass through parameter', () => {
+  const Component = new Translation({
+    passThrough: undefined,
+  });
+  expect(Component.render()).toMatchSnapshot();
+});
+
+it('works with pass through translations and text transformations', () => {
+  const Component = new Translation({
+    passThrough: 'This text should be returned in uppercase.',
+    textTransform: 'uppercase',
+  });
+  expect(Component.render()).toMatchSnapshot();
+});

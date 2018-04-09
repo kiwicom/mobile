@@ -23,12 +23,12 @@ exports[`overwrites the previous textTransform property 1`] = `
 
 exports[`passes all props down to the children 1`] = `
 Array [
-  <DummyTranslation
-    id={1}
+  <Translation
+    passThrough={1}
     textTransform="uppercase"
   />,
-  <DummyTranslation
-    id={2}
+  <Translation
+    passThrough={2}
     textTransform="uppercase"
   />,
 ]
@@ -201,8 +201,8 @@ Array [
 
 exports[`works without additional props 1`] = `
 Array [
-  <DummyTranslation
-    id={1}
+  <Translation
+    passThrough={1}
   />,
 ]
 `;

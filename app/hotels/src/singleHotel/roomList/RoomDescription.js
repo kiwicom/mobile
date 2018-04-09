@@ -10,7 +10,7 @@ import {
   Color,
   ReadMore,
 } from '@kiwicom/react-native-app-shared';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import type { RoomDescription_room as RoomDescriptionType } from './__generated__/RoomDescription_room.graphql';
 
@@ -54,7 +54,7 @@ export const RoomDescription = (props: Props) => {
           revealedText="Hide"
         >
           <Text style={styles.description}>
-            <DummyTranslation id={description} />
+            <Translation passThrough={description} />
           </Text>
         </ReadMore>
       </View>

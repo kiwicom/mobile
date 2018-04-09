@@ -8,7 +8,7 @@ import {
   type StylePropType,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import icon from './gallery-icon.png';
 
@@ -51,7 +51,7 @@ export default function GalleryButton({ count, style }: Props) {
     <View style={[styles.container, containerStyle]}>
       <Image source={icon} style={[styles.icon, iconStyle]} />
       <Text style={[styles.count, textStyle]}>
-        <DummyTranslation id={count} />
+        <Translation passThrough={count} />
       </Text>
     </View>
   );
