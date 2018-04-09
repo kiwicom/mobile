@@ -8,6 +8,7 @@ import {
   StyleSheet,
   Color,
   TextInput,
+  WithStorage,
 } from '@kiwicom/react-native-app-shared';
 import {
   type NavigationType,
@@ -21,10 +22,18 @@ import idx from 'idx';
 
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
 import SuggestionList from '../allHotels/searchForm/locationPicker/SuggestionList';
+import RecentSearches from '../allHotels/searchForm/locationPicker/RecentSearches';
+
+export type Location = {|
+  id: string,
+  name: string,
+|};
 
 type Props = {|
   navigation: NavigationType,
   onCitySelected: (cityId: string, cityName: string) => void,
+  storageValue: Location[],
+  saveToStorage: (value: any) => void,
 |};
 
 type NavigationProps = {|
@@ -74,6 +83,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const RECENT_SEARCH_KEY = 'KiwiHotels:RecentSearches';
+
 export class LocationPicker extends React.Component<Props, State> {
   state = {
     search: '',
@@ -121,6 +132,18 @@ export class LocationPicker extends React.Component<Props, State> {
   onCitySelected = (cityId: string, cityName: string) => {
     this.props.onCitySelected(cityId, cityName);
     this.props.navigation.goBack();
+    this.saveRecentSearches(cityId, cityName);
+  };
+
+  saveRecentSearches = (cityId: string, cityName: string) => {
+    let recentSearches = this.props.storageValue;
+
+    if (recentSearches.find(item => item.id === cityId) === undefined) {
+      recentSearches.unshift({ id: cityId, name: cityName });
+      recentSearches.slice(0, 20); // Limit recent searches to 20 locations
+
+      this.props.saveToStorage(recentSearches);
+    }
   };
 
   renderSuggestions = (rendererProps: LocationSuggestions) => {
@@ -146,15 +169,22 @@ export class LocationPicker extends React.Component<Props, State> {
             autoFocus={true}
           />
         </View>
-        <PublicApiRenderer
-          query={graphql`
-            query LocationPickerScreen_cities_Query($prefix: String!) {
-              ...SuggestionList_data @arguments(prefix: $prefix)
-            }
-          `}
-          render={this.renderSuggestions}
-          variables={{ prefix: this.state.search }}
-        />
+        {this.state.search === '' && this.props.storageValue.length > 0 ? (
+          <RecentSearches
+            locations={this.props.storageValue}
+            onCitySelected={this.onCitySelected}
+          />
+        ) : (
+          <PublicApiRenderer
+            query={graphql`
+              query LocationPickerScreen_cities_Query($prefix: String!) {
+                ...SuggestionList_data @arguments(prefix: $prefix)
+              }
+            `}
+            render={this.renderSuggestions}
+            variables={{ prefix: this.state.search }}
+          />
+        )}
       </View>
     );
   };
@@ -169,4 +199,6 @@ const action = dispatch => ({
     }),
 });
 
-export default connect(null, action)(LocationPicker);
+export default connect(null, action)(
+  WithStorage(LocationPicker, RECENT_SEARCH_KEY, []),
+);
