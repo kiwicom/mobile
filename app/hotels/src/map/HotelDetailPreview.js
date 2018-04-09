@@ -10,9 +10,7 @@ import {
   Price,
   Text,
 } from '@kiwicom/react-native-app-shared';
-import Translation, {
-  DummyTranslation,
-} from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 import idx from 'idx';
 
 import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
@@ -77,8 +75,8 @@ const getReview = review => {
 
     return (
       <Text style={styles.metainfo}>
-        <DummyTranslation id={`${reviewScore} ${reviewDescription}`} />
-        <DummyTranslation id={delimiter} />
+        <Translation passThrough={`${reviewScore} ${reviewDescription}`} />
+        <Translation passThrough={delimiter} />
         <Translation
           id="Hotels.Map.MultipleReviews"
           values={{ numberOfReviews: reviewCount }}
@@ -115,7 +113,7 @@ export class HotelDetailPreview extends React.Component<Props> {
         </View>
         <View style={styles.description}>
           <Text style={styles.hotelName} numberOfLines={1}>
-            <DummyTranslation id={name} />
+            <Translation passThrough={name} />
           </Text>
           {getReview(review)}
           {price &&

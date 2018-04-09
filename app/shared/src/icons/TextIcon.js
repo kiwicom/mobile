@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 import type { StylePropType } from '@kiwicom/react-native-app-shared';
 
 import Color from '../Color';
@@ -33,7 +33,7 @@ const styleSheet = StyleSheet.create({
 function TextIcon(props: Props) {
   return (
     <Text style={[styleSheet.icon, props.style]}>
-      <DummyTranslation id={props.children} />
+      <Translation passThrough={props.children} />
     </Text>
   );
 }

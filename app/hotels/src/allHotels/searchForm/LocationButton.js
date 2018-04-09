@@ -8,9 +8,7 @@ import {
   Icon,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translation, {
-  DummyTranslation,
-} from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 const styles = StyleSheet.create({
   locationButton: {
@@ -53,7 +51,7 @@ export default function LocationButton(props: Props) {
           style={props.location ? styles.locationText : styles.placeholderText}
         >
           {props.location ? (
-            <DummyTranslation id={props.location} />
+            <Translation passThrough={props.location} />
           ) : (
             <Translation id="HotelsSearch.LocationButton.Placeholder" />
           )}

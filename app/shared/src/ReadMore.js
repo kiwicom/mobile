@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import OriginalReadMore from 'react-native-read-more-text'; // eslint-disable-line no-restricted-imports
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Text from './Text';
 import Touchable from './Touchable';
@@ -41,7 +41,7 @@ const Link = ({
   <View style={styles.linkView}>
     <Touchable onPress={handlePress} noRipple={true}>
       <Text style={[styles.linkText, style]}>
-        <DummyTranslation id={label} />
+        <Translation passThrough={label} />
       </Text>
     </Touchable>
   </View>

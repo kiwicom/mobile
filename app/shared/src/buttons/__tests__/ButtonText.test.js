@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import ButtonText from '../ButtonText';
 
@@ -21,14 +21,14 @@ describe('ButtonText', () => {
   it('should uppercase text on android', () => {
     Platform.OS = 'android';
     renderer.render(
-      <ButtonText text={<DummyTranslation id="Button text" />} />,
+      <ButtonText text={<Translation passThrough="Button text" />} />,
     );
     expect(renderer.getRenderOutput()).toMatchSnapshot();
   });
   it('should not be uppercased on ios', () => {
     Platform.OS = 'ios';
     renderer.render(
-      <ButtonText text={<DummyTranslation id="Button text" />} />,
+      <ButtonText text={<Translation passThrough="Button text" />} />,
     );
     expect(renderer.getRenderOutput()).toMatchSnapshot();
   });

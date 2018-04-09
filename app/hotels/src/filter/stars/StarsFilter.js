@@ -4,7 +4,6 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Icon, Color } from '@kiwicom/react-native-app-shared';
 import Translation, {
-  DummyTranslation,
   TranslationFragment,
   type TranslationType,
 } from '@kiwicom/react-native-app-translations';
@@ -71,11 +70,11 @@ export default class StarsFilter extends React.Component<Props, State> {
         {stars.includes(0) && (
           <TranslationFragment>
             <Translation id="HotelsSearch.Filter.StarsFilter.Unrated" />
-            {stars.length > 1 && <DummyTranslation id="," />}
+            {stars.length > 1 && <Translation passThrough="," />}
           </TranslationFragment>
         )}
-        <DummyTranslation
-          id={stars
+        <Translation
+          passThrough={stars
             .sort()
             .filter(star => star > 0)
             .join(',')}

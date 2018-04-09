@@ -9,7 +9,7 @@ import {
   Icon,
   Text,
 } from '@kiwicom/react-native-app-shared';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   label: string,
@@ -39,10 +39,10 @@ export default class AgeControl extends React.Component<Props, State> {
       <View>
         <TouchableWithoutFeedback onPress={this.onPress}>
           <View style={[styles.wrapper, style]}>
-            <DummyTranslation id={label} />
+            <Translation passThrough={label} />
             <View style={styles.ageView}>
               <Text style={styles.age}>
-                <DummyTranslation id={age} />
+                <Translation passThrough={age} />
               </Text>
               {Platform.select({
                 android: (

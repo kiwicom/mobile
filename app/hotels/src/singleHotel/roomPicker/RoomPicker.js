@@ -10,9 +10,7 @@ import {
   ButtonText,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translate, {
-  DummyTranslation,
-} from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   price: number | null,
@@ -47,7 +45,7 @@ export default function RoomPicker({
         <View style={styles.row}>
           <ButtonText
             style={styles.text}
-            text={<Translate id="SingleHotel.RoomPicker.Select" />}
+            text={<Translation id="SingleHotel.RoomPicker.Select" />}
           />
           <View style={styles.row} />
           <Price amount={price} currency={currency} style={styles.text} />
@@ -62,7 +60,7 @@ export default function RoomPicker({
 
       <View style={[styles.container, styles.row, styles.priceAndCount]}>
         <Text style={[styles.text, styles.count]}>
-          <DummyTranslation id={`${selectedCount} × `} />
+          <Translation passThrough={`${selectedCount} × `} />
         </Text>
         <Price amount={price} currency={currency} style={styles.text} />
       </View>
@@ -82,7 +80,7 @@ const MinusButton = ({ onPress }) => {
       onPress={onPress}
     >
       <Text style={styles.buttonText}>
-        <DummyTranslation id="-" />
+        <Translation passThrough="-" />
       </Text>
     </Touchable>
   );
@@ -101,7 +99,7 @@ const PlusButton = ({ disabled, onPress }) => {
       disabled={disabled}
     >
       <Text style={styles.buttonText}>
-        <DummyTranslation id="+" />
+        <Translation passThrough="+" />
       </Text>
     </Touchable>
   );

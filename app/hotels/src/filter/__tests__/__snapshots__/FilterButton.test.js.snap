@@ -37,8 +37,8 @@ exports[`Filter button render active button 1`] = `
       }
     }
     title={
-      <DummyTranslation
-        id="title"
+      <Translation
+        passThrough="title"
       />
     }
   />
@@ -82,8 +82,8 @@ exports[`Filter button render default button 1`] = `
       }
     }
     title={
-      <DummyTranslation
-        id="title"
+      <Translation
+        passThrough="title"
       />
     }
   />

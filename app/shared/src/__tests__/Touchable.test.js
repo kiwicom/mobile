@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Touchable from '../Touchable';
 
@@ -16,7 +16,7 @@ describe('Touchable with children', () => {
     expect(
       renderer.render(
         <Touchable onPress={VoidAction}>
-          <DummyTranslation id="this is OK" />
+          <Translation passThrough="this is OK" />
         </Touchable>,
       ),
     ).toMatchSnapshot();
@@ -26,8 +26,8 @@ describe('Touchable with children', () => {
       renderer.render(
         <Touchable onPress={VoidAction}>
           <View>
-            <DummyTranslation id="line 1" />
-            <DummyTranslation id="line 2" />
+            <Translation passThrough="line 1" />
+            <Translation passThrough="line 2" />
           </View>
         </Touchable>,
       ),
@@ -37,8 +37,8 @@ describe('Touchable with children', () => {
     expect(() =>
       renderer.render(
         <Touchable onPress={VoidAction}>
-          <DummyTranslation id="line 1" />
-          <DummyTranslation id="line 2" />
+          <Translation passThrough="line 1" />
+          <Translation passThrough="line 2" />
         </Touchable>,
       ),
     ).toThrowErrorMatchingSnapshot();

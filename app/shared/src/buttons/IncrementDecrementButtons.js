@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Text from '../Text';
 import Color from '../Color';
@@ -30,7 +30,7 @@ const Button = ({
           style,
         ]}
       >
-        <DummyTranslation id={text} />
+        <Translation passThrough={text} />
       </Text>
     </View>
   );

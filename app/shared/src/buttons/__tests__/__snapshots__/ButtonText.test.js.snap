@@ -4,8 +4,8 @@ exports[`ButtonText should not be uppercased on ios 1`] = `
 <Text
   style={undefined}
 >
-  <DummyTranslation
-    id="Button text"
+  <Translation
+    passThrough="Button text"
   />
 </Text>
 `;
@@ -14,8 +14,8 @@ exports[`ButtonText should uppercase text on android 1`] = `
 <Text
   style={undefined}
 >
-  <DummyTranslation
-    id="Button text"
+  <Translation
+    passThrough="Button text"
     textTransform="uppercase"
   />
 </Text>

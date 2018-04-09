@@ -3,7 +3,6 @@
 import * as React from 'react';
 
 import Translation from './Translation';
-import DummyTranslation from './DummyTranslation';
 import type { SupportedTransformationsType } from './transformations/CaseTransform';
 
 /**
@@ -12,7 +11,7 @@ import type { SupportedTransformationsType } from './transformations/CaseTransfo
  *
  * ```js
  * <TranslationFragment>
- *   <DummyTranslation id="★★★★★" />
+ *   <Translation passThrough="★★★★★" />
  *   <Translation id="SingleHotel.Rating.Stars" />
  * </TranslationFragment>
  * ```
@@ -23,7 +22,7 @@ import type { SupportedTransformationsType } from './transformations/CaseTransfo
  *
  * ```js
  * <TranslationFragment textTransform="uppercase">
- *   <DummyTranslation id="this is going to be uppercased" />
+ *   <Translation passThrough="this is going to be uppercased" />
  *   <Text>this is going to stay lowercased</Text>
  * </TranslationFragment>
  * ```
@@ -38,11 +37,7 @@ export default class TranslationFragment extends React.Component<{|
     if (!child) {
       return false;
     }
-    return (
-      child.type === Translation ||
-      child.type === DummyTranslation ||
-      child.type === TranslationFragment
-    );
+    return child.type === Translation || child.type === TranslationFragment;
   };
 
   render = () => {
