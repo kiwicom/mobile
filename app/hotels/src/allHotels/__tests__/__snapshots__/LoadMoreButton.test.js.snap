@@ -28,7 +28,7 @@ exports[`renders the buttons in the playground 2`] = `
     onPress={[Function]}
     title={
       <Translation
-        id="HotelsSearch.LoadMode"
+        id="hotels_search.load_more"
       />
     }
   />

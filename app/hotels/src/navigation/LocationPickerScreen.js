@@ -92,7 +92,7 @@ export class LocationPicker extends React.Component<Props, State> {
           style={styles.cancelButton}
         >
           <Text style={[styles.headerButtonText, styles.confirmButtonText]}>
-            <Translation id="HotelsSearch.LocationPicker.Cancel" />
+            <Translation id="hotels_search.location_picker.cancel" />
           </Text>
         </Touchable>
       );
@@ -102,7 +102,7 @@ export class LocationPicker extends React.Component<Props, State> {
       headerLeft: headerLeft(),
       title: (
         <HeaderTitle>
-          <Translation id="HotelsSearch.LocationPicker.Header" />
+          <Translation id="hotels_search.location_picker.header" />
         </HeaderTitle>
       ),
     };

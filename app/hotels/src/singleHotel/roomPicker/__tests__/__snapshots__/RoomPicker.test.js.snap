@@ -42,7 +42,7 @@ exports[`renders as expected 1`] = `
       }
       text={
         <Translation
-          id="SingleHotel.RoomPicker.Select"
+          id="single_hotel.room_picker.select"
         />
       }
     />

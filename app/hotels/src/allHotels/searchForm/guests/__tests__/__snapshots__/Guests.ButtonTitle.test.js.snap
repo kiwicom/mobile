@@ -3,7 +3,7 @@
 exports[`renders correctly with more adults 1`] = `
 <Text>
   <Translation
-    id="HotelsSearch.Guests.Adults"
+    id="hotels_search.guests.adults"
   />
   <Translation
     passThrough=" 5"
@@ -19,7 +19,7 @@ exports[`renders correctly with more adults 1`] = `
       passThrough=" ⋅ "
     />
     <Translation
-      id="HotelsSearch.Guests.Children"
+      id="hotels_search.guests.children"
     />
     <Translation
       passThrough=" 0"
@@ -31,7 +31,7 @@ exports[`renders correctly with more adults 1`] = `
 exports[`renders correctly with more adults and children 1`] = `
 <Text>
   <Translation
-    id="HotelsSearch.Guests.Adults"
+    id="hotels_search.guests.adults"
   />
   <Translation
     passThrough=" 5"
@@ -47,7 +47,7 @@ exports[`renders correctly with more adults and children 1`] = `
       passThrough=" ⋅ "
     />
     <Translation
-      id="HotelsSearch.Guests.Children"
+      id="hotels_search.guests.children"
     />
     <Translation
       passThrough=" 3"
@@ -59,7 +59,7 @@ exports[`renders correctly with more adults and children 1`] = `
 exports[`renders correctly with one adult and zero children 1`] = `
 <Text>
   <Translation
-    id="HotelsSearch.Guests.Adults"
+    id="hotels_search.guests.adults"
   />
   <Translation
     passThrough=" 1"
@@ -75,7 +75,7 @@ exports[`renders correctly with one adult and zero children 1`] = `
       passThrough=" ⋅ "
     />
     <Translation
-      id="HotelsSearch.Guests.Children"
+      id="hotels_search.guests.children"
     />
     <Translation
       passThrough=" 0"
@@ -87,7 +87,7 @@ exports[`renders correctly with one adult and zero children 1`] = `
 exports[`renders correctly with one child and zero adults 1`] = `
 <Text>
   <Translation
-    id="HotelsSearch.Guests.Adults"
+    id="hotels_search.guests.adults"
   />
   <Translation
     passThrough=" 0"
@@ -103,7 +103,7 @@ exports[`renders correctly with one child and zero adults 1`] = `
       passThrough=" ⋅ "
     />
     <Translation
-      id="HotelsSearch.Guests.Children"
+      id="hotels_search.guests.children"
     />
     <Translation
       passThrough=" 1"

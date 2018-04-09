@@ -70,11 +70,11 @@ export default class EmailLoginForm extends React.Component<Props, State> {
         secureTextEntry={true}
       />
       {this.state.loading ? (
-        <Button title={<Translation id="Core.Authentication.Login" />} />
+        <Button title={<Translation id="core.authentication.login" />} />
       ) : (
         <Button
           onPress={this.handleFormSubmit}
-          title={<Translation id="Core.Authentication.LoggingIn" />}
+          title={<Translation id="core.authentication.logging_in" />}
         />
       )}
     </View>

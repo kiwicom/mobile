@@ -72,7 +72,7 @@ exports[`renders header with title 1`] = `
       }
     >
       <Translation
-        id="Hotels.Gallery.Pagination"
+        id="hotels.gallery.pagination"
         values={
           Object {
             "photoNumber": 2,
@@ -164,7 +164,7 @@ exports[`renders header with very long title 1`] = `
       }
     >
       <Translation
-        id="Hotels.Gallery.Pagination"
+        id="hotels.gallery.pagination"
         values={
           Object {
             "photoNumber": 2,

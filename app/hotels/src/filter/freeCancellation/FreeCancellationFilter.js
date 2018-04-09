@@ -19,7 +19,7 @@ export default class FreeCancellationFilter extends React.Component<Props> {
 
   render = () => (
     <FilterButton
-      title={<Translation id="HotelsSearch.Filter.FreeCancellation" />}
+      title={<Translation id="hotels_search.filter.free_cancellation" />}
       isActive={this.constructor.isActive(this.props.isActive)}
       onPress={this.onChange}
     />

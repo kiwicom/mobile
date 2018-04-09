@@ -77,7 +77,7 @@ export const SingleHotelStack = StackNavigator(
         headerTitle:
           Device.isNarrowLayout() && Platform.OS === 'android' ? null : (
             <HeaderTitle>
-              <Translation id="Hotels.Navigation.Title.SingleHotel" />
+              <Translation id="hotels.navigation.title.single_hotel" />
             </HeaderTitle>
           ),
         ...createTransparentHeaderStyle(),
@@ -88,7 +88,7 @@ export const SingleHotelStack = StackNavigator(
       navigationOptions: {
         headerTitle: (
           <HeaderTitle>
-            <Translation id="Hotels.Navigation.Title.SingleHotelMap" />
+            <Translation id="hotels.navigation.title.single_hotel_map" />
           </HeaderTitle>
         ),
       },
@@ -123,7 +123,7 @@ export const SingleHotelStack = StackNavigator(
       navigationOptions: {
         headerTitle: (
           <HeaderTitle>
-            <Translation id="Hotels.Navigation.Title.GalleryGrid" />
+            <Translation id="hotels.navigation.title.gallery_grid" />
           </HeaderTitle>
         ),
       },
@@ -134,7 +134,7 @@ export const SingleHotelStack = StackNavigator(
         mode: 'modal',
         headerTitle: (
           <HeaderTitle>
-            <Translation id="Hotels.Navigation.Title.Payment" />
+            <Translation id="hotels.navigation.title.payment" />
           </HeaderTitle>
         ),
       },
@@ -156,7 +156,7 @@ export default StackNavigator(
       navigationOptions: {
         headerTitle: (
           <HeaderTitle>
-            <Translation id="Hotels.Navigation.Title.AllHotelsMap" />
+            <Translation id="hotels.navigation.title.all_hotels_map" />
           </HeaderTitle>
         ),
       },

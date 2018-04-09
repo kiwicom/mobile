@@ -27,7 +27,7 @@ export default function YourLocation() {
     <View style={styles.container}>
       <Icon name="gps-fixed" size={20} color={Color.brand} />
       <Text style={styles.text}>
-        <Translation id="HotelsSearch.LocationPicker.YourLocation" />
+        <Translation id="hotels_search.location_picker.your_location" />
       </Text>
     </View>
   );

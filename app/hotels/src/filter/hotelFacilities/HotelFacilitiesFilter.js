@@ -54,7 +54,7 @@ export default class HotelFacilitiesFilter extends React.Component<
 
   getTitle = (facilities: string[]) => (
     <TranslationFragment>
-      <Translation id="HotelsSearch.Filter.HotelFacilitiesFilter.Title" />
+      <Translation id="hotels_search.filter.hotel_facilities_filter.title" />
       <Translation
         passThrough={facilities.length ? ` (${facilities.length})` : ''}
       />

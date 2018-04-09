@@ -36,15 +36,18 @@ export default class ScorePopup extends React.Component<Props, State> {
 
   renderLabel = (sliderValue: number) => {
     const labels = [
-      <Translation key="any" id="HotelsSearch.Filter.ScoreFilter.Rating.Any" />,
-      <Translation key="6" id="HotelsSearch.Filter.ScoreFilter.Rating.6" />,
-      <Translation key="7" id="HotelsSearch.Filter.ScoreFilter.Rating.7" />,
-      <Translation key="8" id="HotelsSearch.Filter.ScoreFilter.Rating.8" />,
-      <Translation key="9" id="HotelsSearch.Filter.ScoreFilter.Rating.9" />,
+      <Translation
+        key="any"
+        id="hotels_search.filter.score_filter.rating.any"
+      />,
+      <Translation key="6" id="hotels_search.filter.score_filter.rating.6" />,
+      <Translation key="7" id="hotels_search.filter.score_filter.rating.7" />,
+      <Translation key="8" id="hotels_search.filter.score_filter.rating.8" />,
+      <Translation key="9" id="hotels_search.filter.score_filter.rating.9" />,
     ];
     return (
       <Text>
-        <Translation id="HotelsSearch.Filter.ScorePopup.Title" />
+        <Translation id="hotels_search.filter.score_popup.title" />
         <Translation passThrough=" " />
         {labels[sliderValue]}
       </Text>
@@ -56,7 +59,7 @@ export default class ScorePopup extends React.Component<Props, State> {
 
   render = () => (
     <ButtonPopup
-      buttonTitle={<Translation id="HotelsSearch.Filter.ScorePopup.Save" />}
+      buttonTitle={<Translation id="hotels_search.filter.score_popup.save" />}
       onSave={this.onSave}
       onClose={this.props.onClose}
       isVisible={this.props.isVisible}

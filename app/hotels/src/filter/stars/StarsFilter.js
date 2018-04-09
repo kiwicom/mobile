@@ -62,14 +62,14 @@ export default class StarsFilter extends React.Component<Props, State> {
     const stars = [...propsStars];
 
     if (stars.length === 0) {
-      return <Translation id="HotelsSearch.Filter.StarsFilter.Stars" />;
+      return <Translation id="hotels_search.filter.stars_filter.stars" />;
     }
 
     return (
       <TranslationFragment>
         {stars.includes(0) && (
           <TranslationFragment>
-            <Translation id="HotelsSearch.Filter.StarsFilter.Unrated" />
+            <Translation id="hotels_search.filter.stars_filter.unrated" />
             {stars.length > 1 && <Translation passThrough="," />}
           </TranslationFragment>
         )}

@@ -13,7 +13,7 @@ function Logout({ onLogout }: Props) {
   return (
     <LinkButton
       onPress={onLogout}
-      title={<Translation id="Core.Authentication.Logout" />}
+      title={<Translation id="core.authentication.logout" />}
     />
   );
 }

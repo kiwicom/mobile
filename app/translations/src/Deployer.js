@@ -84,7 +84,7 @@ const createTranslation = async (keyId, translationString) => {
   const formData = new FormData();
   formData.append('locale_id', 'en'); // EN is the main language maintained automatically
   formData.append('key_id', keyId);
-  formData.append('content', translationString);
+  formData.append('content', 'mobile.' + translationString);
   return _fetch(`/translations`, formData, HttpMethod.POST);
 };
 

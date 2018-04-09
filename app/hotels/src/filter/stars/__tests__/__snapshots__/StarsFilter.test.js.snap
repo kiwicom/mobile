@@ -14,7 +14,7 @@ exports[`StarsFilter renders 1`] = `
     onPress={[Function]}
     title={
       <Translation
-        id="HotelsSearch.Filter.StarsFilter.Stars"
+        id="hotels_search.filter.stars_filter.stars"
       />
     }
   />
