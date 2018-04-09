@@ -20,10 +20,10 @@ type State = {|
 |};
 
 const ratingLabels = {
-  '6': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.6" />,
-  '7': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.7" />,
-  '8': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.8" />,
-  '9': <Translation id="HotelsSearch.Filter.ScoreFilter.Rating.9" />,
+  '6': <Translation id="hotels_search.filter.score_filter.rating.6" />,
+  '7': <Translation id="hotels_search.filter.score_filter.rating.7" />,
+  '8': <Translation id="hotels_search.filter.score_filter.rating.8" />,
+  '9': <Translation id="hotels_search.filter.score_filter.rating.9" />,
 };
 
 export default class ScoreFilter extends React.Component<Props, State> {
@@ -59,7 +59,7 @@ export default class ScoreFilter extends React.Component<Props, State> {
     minScore ? (
       ratingLabels[minScore]
     ) : (
-      <Translation id="HotelsSearch.Filter.ScoreFilter.Rating" />
+      <Translation id="hotels_search.filter.score_filter.rating" />
     );
 
   render() {

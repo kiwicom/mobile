@@ -106,13 +106,13 @@ export class GuestsModalScreen extends React.Component<Props, State> {
           style={styles.headerButton}
         >
           <Text style={styles.headerButtonText}>
-            <Translation id="HotelsSearch.GuestsModal.Close" />
+            <Translation id="hotels_search.guests_modal.close" />
           </Text>
         </Touchable>
       ),
       title: (
         <HeaderTitle>
-          <Translation id="HotelsSearch.GuestsModal.Header" />
+          <Translation id="hotels_search.guests_modal.header" />
         </HeaderTitle>
       ),
       headerRight: (
@@ -122,7 +122,7 @@ export class GuestsModalScreen extends React.Component<Props, State> {
           style={styles.headerButton}
         >
           <Text style={[styles.headerButtonText, styles.saveButtonText]}>
-            <Translation id="HotelsSearch.GuestsModal.Save" />
+            <Translation id="hotels_search.guests_modal.save" />
           </Text>
         </Touchable>
       ),
@@ -212,7 +212,7 @@ export class GuestsModalScreen extends React.Component<Props, State> {
         <View style={styles.childContainer}>
           <View style={styles.childAgeTitle}>
             <Text style={styles.childAgeTitleText}>
-              <Translation id="HotelsSearch.GuestsModal.ChildAgeTitle" />
+              <Translation id="hotels_search.guests_modal.child_age_title" />
             </Text>
           </View>
           <ScrollView
@@ -226,7 +226,7 @@ export class GuestsModalScreen extends React.Component<Props, State> {
             {this.state.isMissingAge && (
               <View style={styles.message}>
                 <ErrorMessage>
-                  <Translation id="HotelsSearch.GuestsModal.Children.ErrorAge" />
+                  <Translation id="hotels_search.guests_modal.children.error_age" />
                 </ErrorMessage>
               </View>
             )}

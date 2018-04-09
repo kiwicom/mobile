@@ -53,7 +53,7 @@ export default function LocationButton(props: Props) {
           {props.location ? (
             <Translation passThrough={props.location} />
           ) : (
-            <Translation id="HotelsSearch.LocationButton.Placeholder" />
+            <Translation id="hotels_search.location_button.placeholder" />
           )}
         </Text>
       </View>

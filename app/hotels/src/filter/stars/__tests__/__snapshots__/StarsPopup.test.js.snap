@@ -4,7 +4,7 @@ exports[`StarsPopup should render popup 1`] = `
 <ButtonPopup
   buttonTitle={
     <Translation
-      id="HotelsSearch.Filter.StarsPopup.Save"
+      id="hotels_search.filter.stars_popup.save"
     />
   }
   isVisible={true}
@@ -21,7 +21,7 @@ exports[`StarsPopup should render popup 1`] = `
     }
   >
     <Translation
-      id="HotelsSearch.Filter.StarsPopup.Title"
+      id="hotels_search.filter.stars_popup.title"
     />
   </Text>
   <StarsCheckbox
@@ -92,7 +92,7 @@ exports[`StarsPopup should render popup 1`] = `
       }
     >
       <Translation
-        id="HotelsSearch.Filter.StarsPopup.Unrated"
+        id="hotels_search.filter.stars_popup.unrated"
       />
     </Text>
   </Checkbox>

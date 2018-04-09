@@ -45,7 +45,7 @@ export default function RoomPicker({
         <View style={styles.row}>
           <ButtonText
             style={styles.text}
-            text={<Translation id="SingleHotel.RoomPicker.Select" />}
+            text={<Translation id="single_hotel.room_picker.select" />}
           />
           <View style={styles.row} />
           <Price amount={price} currency={currency} style={styles.text} />

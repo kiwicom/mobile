@@ -95,10 +95,10 @@ export class Facilities extends React.Component<Props, State> {
                   <Translation
                     passThrough={`+${fullList.length - shortlist.length} `}
                   />
-                  <Translation id="SingleHotel.Description.Facilities.ShowMore" />
+                  <Translation id="single_hotel.description.facilities.show_more" />
                 </TranslationFragment>
               ) : (
-                <Translation id="SingleHotel.Description.Facilities.ShowLess" />
+                <Translation id="single_hotel.description.facilities.show_less" />
               )}
             </Text>
           </Touchable>

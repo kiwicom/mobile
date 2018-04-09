@@ -73,13 +73,13 @@ export default class PricePopup extends React.Component<Props, State> {
     const label = this.renderLabel();
     return (
       <ButtonPopup
-        buttonTitle={<Translation id="HotelsSearch.Filter.PricePopup.Save" />}
+        buttonTitle={<Translation id="hotels_search.filter.price_popup.save" />}
         onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >
         <Text>
-          <Translation id="HotelsSearch.Filter.PricePopup.Title" />
+          <Translation id="hotels_search.filter.price_popup.title" />
           <Translation passThrough=" " />
           {label}
         </Text>

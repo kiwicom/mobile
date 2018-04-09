@@ -55,7 +55,7 @@ export default class AgePicker extends React.Component<Props, State> {
     const { min, max } = this.props;
     return (
       <BarPopup
-        buttonTitle={<Translation id="Shared.AgePicker.Done" />}
+        buttonTitle={<Translation id="shared.age_picker.done" />}
         isVisible={this.props.isVisible}
         onClose={this.props.onClose}
         onSave={this.onSave}

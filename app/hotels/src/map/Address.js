@@ -57,7 +57,7 @@ class Address extends React.Component<Props> {
         </View>
         <View style={styles.content}>
           <Text style={styles.header}>
-            <Translation id="Hotels.Map.Address" />
+            <Translation id="hotels.map.address" />
           </Text>
           <Text numberOfLines={2}>
             <Translation passThrough={`${street}, ${city} ${zip}`} />

@@ -26,7 +26,7 @@ export default class PhotosStripeHeader extends React.Component<Props> {
         </Text>
         <Text style={styles.subTitle}>
           <Translation
-            id="Hotels.Gallery.Pagination"
+            id="hotels.gallery.pagination"
             values={{
               photoNumber: this.props.photoNumber,
               totalPhotos: this.props.totalPhotos,

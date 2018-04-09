@@ -42,7 +42,7 @@ class RoomList extends React.Component<Props> {
       <View>
         <View>
           <Text style={styles.title}>
-            <Translation id="SingleHotel.RoomList.Rooms" />
+            <Translation id="single_hotel.room_list.rooms" />
           </Text>
         </View>
         {data &&

@@ -15,7 +15,7 @@ beforeEach(() => {
 it('should call NativeModules.RNTranslationManager.translate with the key parameter', () => {
   Component.render();
   expect(NativeModules.RNTranslationManager.translate).toBeCalledWith(
-    'test.key',
+    'mobile.test.key',
   );
 });
 
