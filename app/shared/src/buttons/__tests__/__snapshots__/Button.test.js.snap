@@ -47,8 +47,8 @@ exports[`renders button with custom title 1`] = `
           ]
         }
         text={
-          <DummyTranslation
-            id="My Button!"
+          <Translation
+            passThrough="My Button!"
           />
         }
       />

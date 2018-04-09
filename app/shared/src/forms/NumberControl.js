@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import Text from '../Text';
 import IncrementDecrementButtons from '../buttons/IncrementDecrementButtons';
@@ -30,10 +30,10 @@ export default class NumberControl extends React.Component<Props> {
         <Icon name={this.props.icon} size={20} style={styles.icon} />
       )}
       <Text style={styles.label}>
-        <DummyTranslation id={this.props.label} />
+        <Translation passThrough={this.props.label} />
       </Text>
       <Text style={styles.number}>
-        <DummyTranslation id={this.props.number} />
+        <Translation passThrough={this.props.number} />
       </Text>
       <IncrementDecrementButtons
         onIncrement={this.handleIncrement}

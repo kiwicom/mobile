@@ -2,9 +2,7 @@
 
 import * as React from 'react';
 import { Text, ButtonPopup, Slider } from '@kiwicom/react-native-app-shared';
-import Translation, {
-  DummyTranslation,
-} from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 type Props = {|
   onClose: () => void,
@@ -47,7 +45,7 @@ export default class ScorePopup extends React.Component<Props, State> {
     return (
       <Text>
         <Translation id="HotelsSearch.Filter.ScorePopup.Title" />
-        <DummyTranslation id=" " />
+        <Translation passThrough=" " />
         {labels[sliderValue]}
       </Text>
     );

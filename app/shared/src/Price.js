@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import CurrencyFormatter from './currency/CurrencyFormatter';
 import Text from './Text';
@@ -26,7 +26,7 @@ export default function Price(props: Props) {
 
   return (
     <Text style={props.style}>
-      <DummyTranslation id={amount} />
+      <Translation passThrough={amount} />
     </Text>
   );
 }

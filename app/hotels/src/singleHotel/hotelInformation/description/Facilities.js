@@ -12,7 +12,6 @@ import {
   Touchable,
 } from '@kiwicom/react-native-app-shared';
 import Translation, {
-  DummyTranslation,
   TranslationFragment,
 } from '@kiwicom/react-native-app-translations';
 
@@ -93,8 +92,8 @@ export class Facilities extends React.Component<Props, State> {
             <Text style={styles.lessMoreButton}>
               {collapsed ? (
                 <TranslationFragment>
-                  <DummyTranslation
-                    id={`+${fullList.length - shortlist.length} `}
+                  <Translation
+                    passThrough={`+${fullList.length - shortlist.length} `}
                   />
                   <Translation id="SingleHotel.Description.Facilities.ShowMore" />
                 </TranslationFragment>

@@ -11,7 +11,7 @@ import {
   AdaptableLayout,
   ReadMore,
 } from '@kiwicom/react-native-app-shared';
-import { DummyTranslation } from '@kiwicom/react-native-app-translations';
+import Translation from '@kiwicom/react-native-app-translations';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 import Facilities from './Facilities';
@@ -70,7 +70,7 @@ export class Description extends React.Component<Props> {
           revealedText="Show Less"
         >
           <Text style={styles.summary}>
-            <DummyTranslation id={idx(this.props, _ => _.hotel.summary)} />
+            <Translation passThrough={idx(this.props, _ => _.hotel.summary)} />
           </Text>
         </ReadMore>
         <Facilities facilities={idx(this.props, _ => _.hotel.facilities)} />

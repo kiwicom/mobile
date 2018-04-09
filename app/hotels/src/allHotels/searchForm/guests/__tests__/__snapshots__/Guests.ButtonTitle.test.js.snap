@@ -5,8 +5,8 @@ exports[`renders correctly with more adults 1`] = `
   <Translation
     id="HotelsSearch.Guests.Adults"
   />
-  <DummyTranslation
-    id=" 5"
+  <Translation
+    passThrough=" 5"
   />
   <Text
     style={
@@ -15,14 +15,14 @@ exports[`renders correctly with more adults 1`] = `
       }
     }
   >
-    <DummyTranslation
-      id=" ⋅ "
+    <Translation
+      passThrough=" ⋅ "
     />
     <Translation
       id="HotelsSearch.Guests.Children"
     />
-    <DummyTranslation
-      id=" 0"
+    <Translation
+      passThrough=" 0"
     />
   </Text>
 </Text>
@@ -33,8 +33,8 @@ exports[`renders correctly with more adults and children 1`] = `
   <Translation
     id="HotelsSearch.Guests.Adults"
   />
-  <DummyTranslation
-    id=" 5"
+  <Translation
+    passThrough=" 5"
   />
   <Text
     style={
@@ -43,14 +43,14 @@ exports[`renders correctly with more adults and children 1`] = `
       }
     }
   >
-    <DummyTranslation
-      id=" ⋅ "
+    <Translation
+      passThrough=" ⋅ "
     />
     <Translation
       id="HotelsSearch.Guests.Children"
     />
-    <DummyTranslation
-      id=" 3"
+    <Translation
+      passThrough=" 3"
     />
   </Text>
 </Text>
@@ -61,8 +61,8 @@ exports[`renders correctly with one adult and zero children 1`] = `
   <Translation
     id="HotelsSearch.Guests.Adults"
   />
-  <DummyTranslation
-    id=" 1"
+  <Translation
+    passThrough=" 1"
   />
   <Text
     style={
@@ -71,14 +71,14 @@ exports[`renders correctly with one adult and zero children 1`] = `
       }
     }
   >
-    <DummyTranslation
-      id=" ⋅ "
+    <Translation
+      passThrough=" ⋅ "
     />
     <Translation
       id="HotelsSearch.Guests.Children"
     />
-    <DummyTranslation
-      id=" 0"
+    <Translation
+      passThrough=" 0"
     />
   </Text>
 </Text>
@@ -89,8 +89,8 @@ exports[`renders correctly with one child and zero adults 1`] = `
   <Translation
     id="HotelsSearch.Guests.Adults"
   />
-  <DummyTranslation
-    id=" 0"
+  <Translation
+    passThrough=" 0"
   />
   <Text
     style={
@@ -99,14 +99,14 @@ exports[`renders correctly with one child and zero adults 1`] = `
       }
     }
   >
-    <DummyTranslation
-      id=" ⋅ "
+    <Translation
+      passThrough=" ⋅ "
     />
     <Translation
       id="HotelsSearch.Guests.Children"
     />
-    <DummyTranslation
-      id=" 1"
+    <Translation
+      passThrough=" 1"
     />
   </Text>
 </Text>

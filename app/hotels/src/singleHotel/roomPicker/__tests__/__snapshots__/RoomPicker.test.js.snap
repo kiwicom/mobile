@@ -112,8 +112,8 @@ exports[`renders as expected 2`] = `
         ]
       }
     >
-      <DummyTranslation
-        id="1 × "
+      <Translation
+        passThrough="1 × "
       />
     </Text>
     <Price
@@ -178,8 +178,8 @@ exports[`renders as expected 3`] = `
         ]
       }
     >
-      <DummyTranslation
-        id="2 × "
+      <Translation
+        passThrough="2 × "
       />
     </Text>
     <Price

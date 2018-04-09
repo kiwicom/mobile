@@ -2,9 +2,8 @@
 
 import * as React from 'react';
 import { Stars } from '@kiwicom/react-native-app-shared';
-import {
+import Translation, {
   TranslationFragment,
-  DummyTranslation,
 } from '@kiwicom/react-native-app-translations';
 
 type Props = {|
@@ -21,8 +20,8 @@ export default function Rating({ stars, score, description }: Props) {
   return (
     <TranslationFragment>
       <Stars rating={stars || 0} />
-      <DummyTranslation id={starsDelimiter} />
-      <DummyTranslation id={review} />
+      <Translation passThrough={starsDelimiter} />
+      <Translation passThrough={review} />
     </TranslationFragment>
   );
 }

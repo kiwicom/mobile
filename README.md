@@ -350,19 +350,19 @@ You always have to use the following component:
 <Translation id="Core.Authentication.Login" />
 ```
 
-These components should be enforced everywhere we need to use translations (button titles, children of the `Text` component). However, there are situations where we need to use the translation (because of the enforcement) but there is nothing to translate. In this case just use this dummy component:
+These components should be enforced everywhere we need to use translations (button titles, children of the `Text` component). However, there are situations where we need to use the translation (because of the enforcement) but there is nothing to translate. In this case just use the `passThrough` property instead of `id`:
 
 ```js
-<DummyTranslation id="★★★★★" />
+<Translation passThrough="★★★★★" />
 ```
 
-It comply with the translations interface but it returns the ID directly back without even trying to translate it.
+It comply with the translations interface but it returns the property value directly back without even trying to translate it.
 
 There are also situations where we need to return multiple translations but this is little bit more tricky because it's not possible to nest (or concat) multiple translations. You can use `TranslationFragment` component for this:
 
 ```js
 <TranslationFragment>
-  <DummyTranslation id="★★★★★" />
+  <Translation passThrough="★★★★★" />
   <Translation id="SingleHotel.Rating.Stars" />
 </TranslationFragment>
 ```
