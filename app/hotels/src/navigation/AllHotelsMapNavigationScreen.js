@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
+import { HeaderBackButton } from 'react-navigation';
 
 import AllHotelsMap from '../map/allHotels/AllHotelsMap';
 import type { Coordinates } from '../CoordinatesType';
@@ -16,6 +17,14 @@ type Props = {|
 export default class AllHotelsMapNavigationScreen extends React.Component<
   Props,
 > {
+  static navigationOptions = ({ navigation }: Props) => {
+    function goBack() {
+      navigation.goBack(null);
+    }
+    return {
+      headerLeft: <HeaderBackButton tintColor="#fff" onPress={goBack} />,
+    };
+  };
   goToHotel = (searchParams: SearchParams) =>
     this.props.navigation.navigate({
       routeName: 'SingleHotel',
