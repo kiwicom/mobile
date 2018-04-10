@@ -78,7 +78,7 @@ const getReview = review => {
         <Translation passThrough={`${reviewScore} ${reviewDescription}`} />
         <Translation passThrough={delimiter} />
         <Translation
-          id="Hotels.Map.MultipleReviews"
+          id="hotels.map.multiple_reviews"
           values={{ numberOfReviews: reviewCount }}
         />
       </Text>
@@ -87,7 +87,7 @@ const getReview = review => {
 
   return (
     <Text style={styles.metainfo}>
-      <Translation id="Hotels.Map.NoReviews" />
+      <Translation id="hotels.map.no_reviews" />
     </Text>
   );
 };

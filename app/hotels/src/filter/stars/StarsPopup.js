@@ -63,7 +63,7 @@ export default class StarsPopup extends React.Component<Props, State> {
         onPress={this.handleCheckboxOnPress(0)}
       >
         <Text style={styles.unrated}>
-          <Translation id="HotelsSearch.Filter.StarsPopup.Unrated" />
+          <Translation id="hotels_search.filter.stars_popup.unrated" />
         </Text>
       </Checkbox>,
     );
@@ -74,13 +74,13 @@ export default class StarsPopup extends React.Component<Props, State> {
     const { stars } = this.state;
     return (
       <ButtonPopup
-        buttonTitle={<Translation id="HotelsSearch.Filter.StarsPopup.Save" />}
+        buttonTitle={<Translation id="hotels_search.filter.stars_popup.save" />}
         onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >
         <Text style={styles.title}>
-          <Translation id="HotelsSearch.Filter.StarsPopup.Title" />
+          <Translation id="hotels_search.filter.stars_popup.title" />
         </Text>
         {this.renderCheckboxes(stars)}
       </ButtonPopup>

@@ -77,7 +77,7 @@ class PriceFilter extends React.Component<Props, State> {
     currency: string,
   ) => {
     if (start === min && end === max) {
-      return <Translation id="HotelsSearch.Filter.PriceFilter.Price" />;
+      return <Translation id="hotels_search.filter.price_filter.price" />;
     }
     if (start === min) {
       return <Translation passThrough={`< ${end} ${currency}`} />;

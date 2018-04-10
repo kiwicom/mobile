@@ -37,14 +37,14 @@ export default function BookNowText(props: Props) {
     <View style={styles.buttonInnerWrapper}>
       <ButtonText
         style={styles.buttonTitle}
-        text={<Translation id="SingleHotel.BookNow" />}
+        text={<Translation id="single_hotel.book_now" />}
       />
       <View style={styles.priceWrapper}>
         <ButtonText
           style={props.buttonPriceStyle}
           text={
             <Translation
-              id="SingleHotel.BookNow.Description"
+              id="single_hotel.book_now.description"
               values={{
                 personCount: props.personCount,
                 numberOfRooms: props.numberOfRooms,

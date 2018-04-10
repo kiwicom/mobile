@@ -30,11 +30,11 @@ export const ButtonTitle = ({
   };
   return (
     <Text>
-      <Translation id="HotelsSearch.Guests.Adults" />
+      <Translation id="hotels_search.guests.adults" />
       <Translation passThrough={` ${adultsCount}`} />
       <Text style={childrenStyle}>
         <Translation passThrough=" ⋅ " />
-        <Translation id="HotelsSearch.Guests.Children" />
+        <Translation id="hotels_search.guests.children" />
         <Translation passThrough={` ${childrenCount}`} />
       </Text>
     </Text>

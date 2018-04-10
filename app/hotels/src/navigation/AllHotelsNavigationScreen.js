@@ -55,7 +55,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       headerLeft: renderHeaderLeft(),
       headerTitle: (
         <HeaderTitle>
-          <Translation id="Hotels.Navigation.Title.AllHotels" />
+          <Translation id="hotels.navigation.title.all_hotels" />
         </HeaderTitle>
       ),
       headerRight: renderHeaderRight(),

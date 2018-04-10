@@ -50,7 +50,7 @@ export default class PartialFailure extends React.Component<Props, State> {
         children,
         <View key="warning" style={style.container}>
           <View style={style.message}>
-            <Translation id="PartialFailure.Error" />
+            <Translation id="partial_failure.error" />
           </View>
           <Touchable accessibilityLabel="Hide warning" onPress={this.toggle}>
             <Icon name="close" size={20} />
