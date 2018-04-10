@@ -2,6 +2,8 @@
 
 const path = require('path');
 const child_process = require('child_process');
+const fs = require('fs');
+const os = require('os');
 
 const exec = (command, options) =>
   child_process.execSync(command, {
@@ -47,3 +49,14 @@ exec('npm version patch', {
 exec('npm publish --access=public', {
   cwd: buildPath,
 });
+
+// Copy current version to hotels package.json
+const buildPackage = require('../.build/package.json');
+const hotelPackage = require('../app/hotels/package.json');
+
+hotelPackage.version = buildPackage.version;
+
+fs.writeFileSync(
+  path.join(hotelPath, 'package.json'),
+  `${JSON.stringify(hotelPackage, null, 2)}${os.EOL}`,
+);

@@ -7,6 +7,7 @@ import { DateFormatter } from '@kiwicom/react-native-app-translations';
 import querystring from 'querystring';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
+import hotelPackage from '../../package.json';
 
 export type PaymentParameters = {|
   hotelId: number,
@@ -60,7 +61,7 @@ export function createURI(pp: PaymentParameters): string {
       ...roomsQuery,
       rt_pos_selected: '', // ???
       aid: pp.affiliateId,
-      label: `kiwi-${Platform.OS}-react`,
+      label: `kiwi-${Platform.OS}-react-${hotelPackage.version}`,
       lang: pp.language,
       selected_currency: pp.currency,
     })
