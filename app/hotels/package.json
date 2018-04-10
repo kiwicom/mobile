@@ -1,6 +1,6 @@
 {
   "name": "@kiwicom/react-native-app-hotels",
-  "version": "0.0.0",
+  "version": "0.0.18",
   "private": true,
   "main": "index.js",
   "dependencies": {

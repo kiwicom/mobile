@@ -8,6 +8,10 @@ import PaymentScreen, { createURI } from '../PaymentScreen';
 const renderer = new ShallowRenderer();
 const ONE_DAY = 8.64e7; // ms
 
+jest.mock('../../../package.json', () => ({
+  version: '1.0.0',
+}));
+
 it('creates correct URL', () => {
   expect(
     createURI({
