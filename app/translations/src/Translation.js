@@ -79,9 +79,12 @@ export default class Translation extends React.Component<Props> {
     }
 
     const key = this.props.id;
-    let translatedString = NativeModules.RNTranslationManager.translate(key);
+    const nativeKey = 'mobile.' + key;
+    let translatedString = NativeModules.RNTranslationManager.translate(
+      nativeKey,
+    );
 
-    if (translatedString === key) {
+    if (translatedString === nativeKey) {
       // fallback to our dummy vocabulary because native code didn't provide translation
       translatedString = DefaultVocabulary[key];
     }

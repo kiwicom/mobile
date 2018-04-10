@@ -115,7 +115,7 @@ class HotelSwipeList extends React.Component<Props, State> {
           </React.Fragment>
         ) : (
           <View style={styles.noResultsContainer}>
-            <Translation id="Hotels.Map.NoResults" />
+            <Translation id="hotels.map.no_results" />
           </View>
         )}
       </BottomSheet>

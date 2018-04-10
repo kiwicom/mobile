@@ -67,7 +67,7 @@ export class BeddingInfo extends React.Component<Props> {
           <Text style={styles.text}>
             <Translation passThrough={' '} />
             <Translation
-              id="SingleHotel.BeddingInfo.Guests"
+              id="single_hotel.bedding_info.guests"
               values={{ numberOfGuests: maxPersons }}
             />
           </Text>

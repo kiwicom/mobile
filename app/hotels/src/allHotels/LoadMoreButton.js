@@ -31,7 +31,7 @@ export default function LoadMoreButton({ isLoading, onPress }: Props) {
         <IconLoading />
       ) : (
         <LinkButton
-          title={<Translation id="HotelsSearch.LoadMode" />}
+          title={<Translation id="hotels_search.load_more" />}
           onPress={onPress}
         />
       )}

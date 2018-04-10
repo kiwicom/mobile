@@ -90,14 +90,14 @@ export default class HotelFacilitiesPopup extends React.Component<
     return (
       <ButtonPopup
         buttonTitle={
-          <Translation id="HotelsSearch.Filter.HotelFacilitiesPopup.Save" />
+          <Translation id="hotels_search.filter.hotel_facilities_popup.save" />
         }
         onSave={this.onSave}
         onClose={this.props.onClose}
         isVisible={this.props.isVisible}
       >
         <Text style={styles.title}>
-          <Translation id="HotelsSearch.Filter.HotelFacilitiesPopup.Title" />
+          <Translation id="hotels_search.filter.hotel_facilities_popup.title" />
         </Text>
         {this.renderCheckboxes(facilities)}
       </ButtonPopup>
