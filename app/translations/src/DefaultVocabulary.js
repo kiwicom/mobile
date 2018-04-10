@@ -75,6 +75,7 @@ const Translations = {
   'hotels_search.location_button.placeholder': 'Where do you go?',
   'hotels_search.location_picker.cancel': 'Cancel',
   'hotels_search.location_picker.header': 'Where',
+  'hotels_search.location_picker.recent_search': 'Recent search',
   'hotels_search.location_picker.your_location': 'Confirm',
 
   'partial_failure.error':

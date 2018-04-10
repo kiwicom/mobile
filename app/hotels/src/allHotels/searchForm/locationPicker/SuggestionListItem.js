@@ -8,8 +8,9 @@ import {
   Touchable,
 } from '@kiwicom/react-native-app-shared';
 import Translation from '@kiwicom/react-native-app-translations';
-import { View } from 'react-native';
 import idx from 'idx';
+
+import Row from './Row';
 
 type Props = {|
   city: {
@@ -21,20 +22,13 @@ type Props = {|
 |};
 
 const styles = StyleSheet.create({
-  row: {
-    backgroundColor: Color.white,
-    marginBottom: 5,
-    paddingHorizontal: 11,
-    paddingVertical: 20,
-    flexDirection: 'row',
+  matchText: {
+    color: Color.brand,
   },
-  cityText: {
+  text: {
     fontSize: 14,
     fontWeight: '600',
     color: Color.textDark,
-  },
-  matchText: {
-    color: Color.brand,
   },
 });
 
@@ -82,17 +76,17 @@ export default class SuggestionListItem extends React.Component<Props> {
 
     return (
       <Touchable onPress={this.onPress}>
-        <View style={styles.row}>
-          <Text style={styles.cityText}>
+        <Row>
+          <Text style={styles.text}>
             <Translation passThrough={before} />
           </Text>
-          <Text style={[styles.cityText, styles.matchText]}>
+          <Text style={[styles.text, styles.matchText]}>
             <Translation passThrough={match} />
           </Text>
-          <Text style={styles.cityText}>
+          <Text style={styles.text}>
             <Translation passThrough={after} />
           </Text>
-        </View>
+        </Row>
       </Touchable>
     );
   };
