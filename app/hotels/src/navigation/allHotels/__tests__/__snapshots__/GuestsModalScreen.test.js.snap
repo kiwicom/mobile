@@ -1,28 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GuestsModalScreen Renders correctly 1`] = `
-<Component
-  style={
+<GuestsModal
+  guests={
     Object {
-      "flex": 1,
-      "paddingTop": 20,
+      "adultsCount": 0,
+      "children": Array [],
     }
   }
->
-  <Component
-    style={
-      Object {
-        "backgroundColor": "#ffffff",
-        "paddingLeft": 15,
-      }
-    }
-  >
-    <GuestsNumberControl
-      adultsCount={0}
-      childCount={0}
-      handleAdultChange={[Function]}
-      handleChildrenChange={[Function]}
-    />
-  </Component>
-</Component>
+  handleAdultChange={[Function]}
+  handleChildrenAgesChange={[Function]}
+  handleChildrenChange={[Function]}
+  isMissingAge={false}
+/>
 `;
