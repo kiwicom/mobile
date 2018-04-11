@@ -9,15 +9,20 @@ import CaseTransform, {
   type SupportedTransformationsType,
 } from './transformations/CaseTransform';
 
+type CommonProps = {|
+  testID?: string,
+  textTransform?: SupportedTransformationsType,
+|};
+
 type Props =
   | {|
       id: TranslationKeys,
       values?: Object,
-      textTransform?: SupportedTransformationsType,
+      ...CommonProps,
     |}
   | {|
       passThrough: ?string | ?number, // may be undefined because of IDX output
-      textTransform?: SupportedTransformationsType,
+      ...CommonProps,
     |};
 
 /**
