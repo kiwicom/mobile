@@ -4,10 +4,10 @@ import * as React from 'react';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 import { HeaderBackButton } from 'react-navigation';
 
-import SingleHotel from '../singleHotel';
-import type { NavigationProps } from './NavigationStack';
-import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
-import WithBackbuttonListener from './WithBackButtonListener';
+import SingleHotel from '../../singleHotel';
+import type { NavigationProps } from '../NavigationStack';
+import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
+import WithBackbuttonListener from '../WithBackButtonListener';
 
 type Props = {
   ...NavigationProps,

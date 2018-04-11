@@ -21,8 +21,8 @@ import { graphql } from 'react-relay';
 import idx from 'idx';
 
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
-import SuggestionList from '../allHotels/searchForm/locationPicker/SuggestionList';
-import RecentSearches from '../allHotels/searchForm/locationPicker/RecentSearches';
+import SuggestionList from '../../allHotels/searchForm/locationPicker/SuggestionList';
+import RecentSearches from '../../allHotels/searchForm/locationPicker/RecentSearches';
 
 export type Location = {|
   id: string,
