@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 import { GuestsModalScreen } from '../GuestsModalScreen';
-import type { RoomConfigurationType } from '../../allHotels/searchForm/SearchParametersType';
+import type { RoomConfigurationType } from '../../../allHotels/searchForm/SearchParametersType';
 
 const navigation = {
   navigate: jest.fn(),

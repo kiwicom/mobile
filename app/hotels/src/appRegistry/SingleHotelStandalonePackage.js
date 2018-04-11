@@ -4,7 +4,7 @@ import * as React from 'react';
 import { DateFormatter } from '@kiwicom/react-native-app-translations';
 
 import RootComponent from './RootComponent';
-import { SingleHotelStack } from '../navigation/NavigationStack';
+import SingleHotelStack from '../navigation/singleHotel/SingleHotelStack';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 
 type Props = {|

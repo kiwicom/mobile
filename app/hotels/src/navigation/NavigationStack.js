@@ -1,25 +1,14 @@
 // @flow
 
-import * as React from 'react';
-import { StatusBar, Platform } from 'react-native';
-import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
-  HeaderTitle,
   StackNavigator,
   StackNavigatorOptions,
   type NavigationType,
 } from '@kiwicom/react-native-app-navigation';
-import Translation from '@kiwicom/react-native-app-translations';
-import { Device } from '@kiwicom/react-native-app-shared';
 
-import GalleryGrid from '../gallery/GalleryGrid';
-import Payment from '../singleHotel/PaymentScreen';
-import AllHotelsNavigationScreen from './AllHotelsNavigationScreen';
-import AllHotelsMapNavigationScreen from './AllHotelsMapNavigationScreen';
-import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
-import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
-import LocationPicker from './LocationPickerScreen';
-import GuestsModalScreen from './GuestsModalScreen';
+import AllHotelsMapStack from './allHotelsMap/AllHotelsMapStack';
+import AllHotelsStack from './allHotels/AllHotelsStack';
+import SingleHotelStack from './singleHotel/SingleHotelStack';
 
 export type NavigationProps = {|
   navigation: NavigationType,
@@ -27,143 +16,6 @@ export type NavigationProps = {|
   language: string,
   currency: string,
 |};
-
-type InjectorProps = {|
-  navigation: NavigationType,
-  WrappedComponent: React.ElementType,
-|};
-
-const AllHotelsStack = StackNavigator(
-  {
-    AllHotelsMain: {
-      screen: withMappedProps(AllHotelsNavigationScreen),
-    },
-    LocationPicker: {
-      screen: LocationPicker,
-    },
-    GuestsModal: {
-      screen: GuestsModalScreen,
-    },
-  },
-  {
-    ...StackNavigatorOptions,
-    initialRouteName: 'AllHotelsMain',
-    mode: 'modal',
-  },
-);
-
-const createTransparentHeaderStyle = () => {
-  if (Platform.OS === 'ios' || Device.isWideLayout()) {
-    // normal header on iOS and wide Android
-    return {};
-  }
-
-  return {
-    headerStyle: {
-      position: 'absolute',
-      backgroundColor: 'transparent',
-      top: StatusBar.currentHeight,
-      left: 0,
-      right: 0,
-    },
-  };
-};
-
-export const SingleHotelStack = StackNavigator(
-  {
-    SingleHotel: {
-      screen: SingleHotelNavigationScreen,
-      navigationOptions: {
-        headerTitle:
-          Device.isNarrowLayout() && Platform.OS === 'android' ? null : (
-            <HeaderTitle>
-              <Translation id="hotels.navigation.title.single_hotel" />
-            </HeaderTitle>
-          ),
-        ...createTransparentHeaderStyle(),
-      },
-    },
-    SingleHotelMap: {
-      screen: SingleHotelMapNavigationScreen,
-      navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.single_hotel_map" />
-          </HeaderTitle>
-        ),
-      },
-    },
-    GalleryGrid: {
-      screen: withMappedProps(
-        GalleryGrid,
-        class AdditionalPropsInjecter extends React.Component<InjectorProps> {
-          goToGalleryStripe = (hotelName, highResImages, imageIndex) => {
-            this.props.navigation.navigate({
-              routeName: 'GalleryStripe',
-              key: 'key-GalleryStripe',
-              params: {
-                hotelName,
-                imageUrls: highResImages,
-                index: imageIndex,
-              },
-            });
-          };
-
-          render = () => {
-            const { WrappedComponent } = this.props;
-            return (
-              <WrappedComponent
-                {...this.props}
-                onGoToGalleryStripe={this.goToGalleryStripe}
-              />
-            );
-          };
-        },
-      ),
-      navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.gallery_grid" />
-          </HeaderTitle>
-        ),
-      },
-    },
-    Payment: {
-      screen: withMappedProps(Payment),
-      navigationOptions: {
-        mode: 'modal',
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.payment" />
-          </HeaderTitle>
-        ),
-      },
-    },
-  },
-  {
-    ...StackNavigatorOptions,
-    initialRouteName: 'SingleHotel',
-  },
-);
-
-const AllHotelsMapStack = StackNavigator(
-  {
-    AllHotelsMap: {
-      screen: withMappedProps(AllHotelsMapNavigationScreen),
-      navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.all_hotels_map" />
-          </HeaderTitle>
-        ),
-      },
-    },
-  },
-  {
-    ...StackNavigatorOptions,
-    initialRouteName: 'AllHotelsMap',
-  },
-);
 
 export default StackNavigator(
   {
