@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View, ScrollView } from 'react-native';
 import {
   type NavigationType,
   HeaderTitle,
@@ -20,13 +19,11 @@ import type {
   RoomConfigurationType as Guests,
   OnChangeSearchParams,
 } from '../../allHotels/searchForm/SearchParametersType.js';
-import ChildrenAgesControl from '../../allHotels/searchForm/guests/ChildrenAgesControl';
 import type {
   RoomConfigurationType as UnsavedRoomConfigurationType,
   ChildAge,
 } from '../../allHotels/searchForm/guests/GuestsTypes';
-import ErrorMessage from '../../allHotels/searchForm/guests/ErrorMessage';
-import GuestsNumberControls from '../../allHotels/searchForm/guests/GuestsNumberControls';
+import GuestsModal from '../../allHotels/searchForm/guests/GuestsModal';
 
 const styles = StyleSheet.create({
   headerButton: {
@@ -38,29 +35,6 @@ const styles = StyleSheet.create({
   },
   saveButtonText: {
     fontWeight: '600',
-  },
-  container: {
-    flex: 1,
-    paddingTop: 20,
-  },
-  controlContainer: {
-    paddingLeft: 15,
-    backgroundColor: Color.white,
-  },
-  childAgeTitle: {
-    paddingLeft: 15,
-    paddingVertical: 12,
-  },
-  childAgeTitleText: {
-    color: Color.textLight,
-  },
-  message: {
-    paddingTop: 10,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  childContainer: {
-    flex: 1,
   },
 });
 
@@ -80,7 +54,6 @@ type State = {|
 |};
 
 export class GuestsModalScreen extends React.Component<Props, State> {
-  scrollViewRef: React.ElementRef<typeof ScrollView>;
   state = {
     guests: {
       adultsCount: 0,
@@ -182,58 +155,21 @@ export class GuestsModalScreen extends React.Component<Props, State> {
 
   onSave = () => {
     if (this.isMissingAge(this.state.guests.children)) {
-      this.setState({ isMissingAge: true }, () => {
-        // Needs to be done async to show error
-        setTimeout(() => {
-          this.scrollViewRef.scrollToEnd({ animated: true });
-        });
-      });
+      this.setState({ isMissingAge: true });
     } else {
       this.props.searchChange({ roomsConfiguration: this.state.guests });
       this.props.navigation.goBack();
     }
   };
 
-  storeScrollViewRef = (ref: React.ElementRef<typeof ScrollView>) => {
-    this.scrollViewRef = ref;
-  };
-
   render = () => (
-    <View style={styles.container}>
-      <View style={styles.controlContainer}>
-        <GuestsNumberControls
-          adultsCount={this.state.guests.adultsCount}
-          childCount={this.state.guests.children.length}
-          handleAdultChange={this.handleAdultChange}
-          handleChildrenChange={this.handleChildrenChange}
-        />
-      </View>
-      {this.state.guests.children.length > 0 && (
-        <View style={styles.childContainer}>
-          <View style={styles.childAgeTitle}>
-            <Text style={styles.childAgeTitleText}>
-              <Translation id="hotels_search.guests_modal.child_age_title" />
-            </Text>
-          </View>
-          <ScrollView
-            alwaysBounceVertical={false}
-            ref={this.storeScrollViewRef}
-          >
-            <ChildrenAgesControl
-              childrenAges={this.state.guests.children}
-              onChange={this.handleChildrenAgesChange}
-            />
-            {this.state.isMissingAge && (
-              <View style={styles.message}>
-                <ErrorMessage>
-                  <Translation id="hotels_search.guests_modal.children.error_age" />
-                </ErrorMessage>
-              </View>
-            )}
-          </ScrollView>
-        </View>
-      )}
-    </View>
+    <GuestsModal
+      guests={this.state.guests}
+      isMissingAge={this.state.isMissingAge}
+      handleAdultChange={this.handleAdultChange}
+      handleChildrenChange={this.handleChildrenChange}
+      handleChildrenAgesChange={this.handleChildrenAgesChange}
+    />
   );
 }
 
