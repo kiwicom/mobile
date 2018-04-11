@@ -1,6 +1,6 @@
 // @flow
 
-import { LocationPicker, type Location } from '../LocationPickerScreen';
+import { LocationPicker, type Location } from '../LocationPicker';
 
 const getComponent = (
   saveToStorage: (value: any) => void,
@@ -12,7 +12,7 @@ const getComponent = (
     saveToStorage,
   });
 
-describe('LocationPickerScreen', () => {
+describe('LocationPicker', () => {
   describe('saveRecentSearches', () => {
     it('calls saveToStorage if it is not already stored', () => {
       const saveToStorage = jest.fn();
