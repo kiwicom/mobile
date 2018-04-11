@@ -1,5 +1,5 @@
 ```js
-import HotelsStandalonePackage from '@kiwicom/react-native-app-hotels';
+import { HotelsStandalonePackage } from '@kiwicom/react-native-app-hotels';
 
 const render = () => <HotelsStandalonePackage
   bookingComAffiliate="123456"
@@ -40,4 +40,3 @@ const render = () => <SingleHotelStandAlonePackage
 ```
 
 This package is exported with name `SingleHotel` into native code.
-
