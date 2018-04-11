@@ -36,13 +36,16 @@ export default class AgeControl extends React.Component<Props, State> {
   render() {
     const { age, label, style } = this.props;
     return (
-      <View>
+      <React.Fragment>
         <TouchableWithoutFeedback onPress={this.onPress}>
           <View style={[styles.wrapper, style]}>
             <Translation passThrough={label} />
             <View style={styles.ageView}>
               <Text style={styles.age}>
-                <Translation passThrough={age} />
+                <Translation
+                  testID="ageControlValue"
+                  passThrough={age === null ? 0 : age}
+                />
               </Text>
               {Platform.select({
                 android: (
@@ -63,7 +66,7 @@ export default class AgeControl extends React.Component<Props, State> {
           onChange={this.onChange}
           onClose={this.onClose}
         />
-      </View>
+      </React.Fragment>
     );
   }
 }
