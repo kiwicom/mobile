@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 
-import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
-import SingleHotelMap from '../map/singleHotel/SingleHotelMapScreen';
+import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
+import SingleHotelMap from '../../map/singleHotel/SingleHotelMapScreen';
 
 type Props = {
   ...AvailableHotelSearchInput,

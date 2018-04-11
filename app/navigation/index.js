@@ -75,6 +75,23 @@ export const StackNavigatorOptions = {
   },
 };
 
+export const createTransparentHeaderStyle = () => {
+  if (Platform.OS === 'ios' || Device.isWideLayout()) {
+    // normal header on iOS and wide Android
+    return {};
+  }
+
+  return {
+    headerStyle: {
+      position: 'absolute',
+      backgroundColor: 'transparent',
+      top: StatusBar.currentHeight,
+      left: 0,
+      right: 0,
+    },
+  };
+};
+
 // Flow types:
 
 export type { Navigation as NavigationType } from './types/Navigation';

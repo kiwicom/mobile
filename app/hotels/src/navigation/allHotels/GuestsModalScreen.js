@@ -15,18 +15,18 @@ import {
 import Translation from '@kiwicom/react-native-app-translations';
 import { connect } from '@kiwicom/react-native-app-redux';
 
-import type { HotelsReducerState } from '../HotelsReducer';
+import type { HotelsReducerState } from '../../HotelsReducer';
 import type {
   RoomConfigurationType as Guests,
   OnChangeSearchParams,
-} from '../allHotels/searchForm/SearchParametersType.js';
-import ChildrenAgesControl from '../allHotels/searchForm/guests/ChildrenAgesControl';
+} from '../../allHotels/searchForm/SearchParametersType.js';
+import ChildrenAgesControl from '../../allHotels/searchForm/guests/ChildrenAgesControl';
 import type {
   RoomConfigurationType as UnsavedRoomConfigurationType,
   ChildAge,
-} from '../allHotels/searchForm/guests/GuestsTypes';
-import ErrorMessage from '../allHotels/searchForm/guests/ErrorMessage';
-import GuestsNumberControls from '../allHotels/searchForm/guests/GuestsNumberControls';
+} from '../../allHotels/searchForm/guests/GuestsTypes';
+import ErrorMessage from '../../allHotels/searchForm/guests/ErrorMessage';
+import GuestsNumberControls from '../../allHotels/searchForm/guests/GuestsNumberControls';
 
 const styles = StyleSheet.create({
   headerButton: {

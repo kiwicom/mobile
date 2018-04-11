@@ -4,9 +4,9 @@ import * as React from 'react';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
 import { HeaderBackButton } from 'react-navigation';
 
-import AllHotelsMap from '../map/allHotels/AllHotelsMap';
-import type { Coordinates } from '../CoordinatesType';
-import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
+import AllHotelsMap from '../../map/allHotels/AllHotelsMap';
+import type { Coordinates } from '../../CoordinatesType';
+import type { SearchParams } from '../../allHotels/searchForm/SearchParametersType';
 
 type Props = {|
   navigation: NavigationType,
