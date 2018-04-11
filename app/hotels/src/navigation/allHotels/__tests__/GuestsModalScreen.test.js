@@ -7,6 +7,8 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { GuestsModalScreen } from '../GuestsModalScreen';
 import type { RoomConfigurationType } from '../../../allHotels/searchForm/SearchParametersType';
 
+jest.mock('InteractionManager');
+
 const navigation = {
   navigate: jest.fn(),
   setParams: jest.fn(),
@@ -67,8 +69,6 @@ describe('GuestsModalScreen', () => {
   });
 
   it('should not call searchChange nor go back from onSave when child age is missing', () => {
-    const setTimeout = global.setTimeout;
-    global.setTimeout = jest.fn();
     const searchChange = jest.fn();
     const testRenderer = renderGuestsPopup(searchChange);
     const testInstance = testRenderer.root;
@@ -80,7 +80,6 @@ describe('GuestsModalScreen', () => {
 
     expect(searchChange).not.toHaveBeenCalled();
     expect(navigation.goBack).not.toHaveBeenCalled();
-    global.setTimeout = setTimeout;
   });
 
   it('should remove error when children is set to 0', () => {
