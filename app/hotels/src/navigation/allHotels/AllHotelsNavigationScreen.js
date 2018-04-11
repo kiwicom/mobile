@@ -10,11 +10,11 @@ import {
   type NavigationType,
 } from '@kiwicom/react-native-app-navigation';
 
-import AllHotels from '../allHotels/AllHotels';
-import AllHotelsMap from '../map/allHotels/AllHotelsMap';
+import AllHotels from '../../allHotels/AllHotels';
+import AllHotelsMap from '../../map/allHotels/AllHotelsMap';
 import MapHeaderButton from './MapHeaderButton';
-import type { Coordinates } from '../CoordinatesType';
-import WithBackButtonListener from './WithBackButtonListener';
+import type { Coordinates } from '../../CoordinatesType';
+import WithBackButtonListener from '../WithBackButtonListener';
 
 type ContainerProps = {|
   navigation: NavigationType,
