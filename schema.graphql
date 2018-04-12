@@ -28,61 +28,6 @@ type Airline {
   isLowCost: Boolean
 }
 
-type AllFAQCategories {
-  """The ID of an object"""
-  id: ID!
-
-  """Title of the FAQ category"""
-  title: String
-
-  """List of subcategories"""
-  subcategories: [AllFAQCategories]
-
-  """List of FAQ articles"""
-  FAQs: [FAQArticle]
-}
-
-"""A connection to a list of items."""
-type AllFAQCategoriesConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [AllFAQCategoriesEdge]
-}
-
-"""An edge in a connection."""
-type AllFAQCategoriesEdge {
-  """The item at the end of the edge"""
-  node: AllFAQCategories
-
-  """A cursor for use in pagination"""
-  cursor: String!
-}
-
-type AllFAQs {
-  """Results of allFAQs search"""
-  results: Results
-}
-
-"""A connection to a list of items."""
-type AllFAQsConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [AllFAQsEdge]
-}
-
-"""An edge in a connection."""
-type AllFAQsEdge {
-  """The item at the end of the edge"""
-  node: AllFAQs
-
-  """A cursor for use in pagination"""
-  cursor: String!
-}
-
 type AllowedBaggage {
   """Extra and overweight baggage."""
   additionalBaggage: [AdditionalBaggage]
@@ -179,17 +124,6 @@ enum BookingStatus {
   DELETED
   CLOSED
   EXPIRED
-}
-
-type Categories {
-  """Id of the category"""
-  id: Int
-
-  """Name of the category"""
-  name: String
-
-  """Items that belong to the category"""
-  items: [Items]
 }
 
 type Coordinates {
@@ -437,6 +371,56 @@ type FAQArticle {
 
   """Downvotes about the utility of the article"""
   downvotes: Int
+}
+
+"""A connection to a list of items."""
+type FAQArticleConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FAQArticleEdge]
+}
+
+"""An edge in a connection."""
+type FAQArticleEdge {
+  """The item at the end of the edge"""
+  node: FAQArticle
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type FAQCategory {
+  """The ID of an object"""
+  id: ID!
+
+  """Title of the FAQ category"""
+  title: String
+
+  """List of subcategories"""
+  subcategories: [FAQCategory]
+
+  """List of FAQ articles"""
+  FAQs: [FAQArticle]
+}
+
+"""A connection to a list of items."""
+type FAQCategoryConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FAQCategoryEdge]
+}
+
+"""An edge in a connection."""
+type FAQCategoryEdge {
+  """The item at the end of the edge"""
+  node: FAQCategory
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 type Flight {
@@ -871,20 +855,6 @@ type Identity {
   login: String
 }
 
-type Items {
-  """Id of the item"""
-  id: Int
-
-  """Title of the item"""
-  title: String
-
-  """Icon type of the item"""
-  icon: String
-
-  """Color of the item"""
-  style: String
-}
-
 enum Language {
   ar
   bg
@@ -1125,26 +1095,6 @@ input RadiusInput {
   radius: Int!
 }
 
-type Results {
-  """Id of the article"""
-  id: Int
-
-  """Title of the article"""
-  title: String
-
-  """Content of the article"""
-  content: String
-
-  """Upvotes about the utility of the article"""
-  upvotes: Int
-
-  """Downvotes about the utility of the article"""
-  downvotes: Int
-
-  """Category to which the article belongs"""
-  categories: [Categories]
-}
-
 input RoomsChildrenConfiguration {
   age: Int
 }
@@ -1255,7 +1205,7 @@ type RootQuery {
     first: Int
     before: String
     last: Int
-  ): AllFAQsConnection
+  ): FAQArticleConnection
 
   """Retrieve list of FAQ categories."""
   allFAQCategories(
@@ -1267,7 +1217,27 @@ type RootQuery {
     first: Int
     before: String
     last: Int
-  ): AllFAQCategoriesConnection
+  ): FAQCategoryConnection
+
+  """Retrieve specific FAQ category and its subcategories & articles."""
+  FAQCategory(
+    """ID of FAQ category to retrieve."""
+    id: ID!
+
+    """
+    Language in which the titles and perexes of FAQ categories are returned.
+    """
+    language: Language
+  ): FAQCategory
+
+  """Retrieve single FAQ article."""
+  FAQArticle(
+    """ID of FAQ article to retrieve."""
+    id: ID!
+
+    """Language in which the text of the article is returned."""
+    language: Language
+  ): FAQArticle
 }
 
 type RouteStop {
