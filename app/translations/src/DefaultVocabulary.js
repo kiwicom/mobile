@@ -43,6 +43,7 @@ const Translations = {
   'hotels.navigation.title.single_hotel': 'Detail',
   'hotels.navigation.title.single_hotel_map': 'Map',
 
+  'hotels_search.date_picker.select_date': 'Select date',
   'hotels_search.filter.free_cancellation': 'free cancellation',
   'hotels_search.filter.hotel_facilities_filter.title': 'hotel facilities',
   'hotels_search.filter.hotel_facilities_popup.save': 'Save',
