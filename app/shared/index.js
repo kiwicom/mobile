@@ -59,6 +59,7 @@ export { default as CurrencyFormatter } from './src/currency/CurrencyFormatter';
 
 export { default as Color } from './src/Color';
 export { default as Device } from './src/Device';
+export { default as LayoutAnimation } from './src/LayoutAnimation';
 export { default as Modal } from './src/Modal';
 export { default as StyleSheet } from './src/PlatformStyleSheet';
 export { default as Price } from './src/Price';
