@@ -12,17 +12,9 @@ type SwipeConfig = {|
   swipeVerticalThreshold: number,
 |};
 
-type SwipeConfigProp = {|
-  velocityThreshold?: number,
-  directionalOffsetThreshold?: number,
-  swipeVerticalThreshold?: number,
-|};
-
 type Props = {|
-  config?: SwipeConfigProp,
+  children: React.Node,
   style?: StylePropType,
-  children?: React.Node,
-  onSwipeMove?: (gestureState?: GestureState) => void,
   onSwipeUp?: (gestureState?: GestureState) => void,
   onSwipeDown?: (gestureState?: GestureState) => void,
 |};
@@ -36,22 +28,13 @@ export const swipeDirections = {
 
 const swipeConfig: SwipeConfig = {
   velocityThreshold: 0.3,
-  directionalOffsetThreshold: 80,
+  directionalOffsetThreshold: 40,
   swipeVerticalThreshold: 10,
 };
 
-function isValidSwipe(
-  velocity,
-  velocityThreshold,
-  directionalOffset,
-  directionalOffsetThreshold,
-) {
-  return (
-    Math.abs(velocity) > velocityThreshold &&
-    Math.abs(directionalOffset) < directionalOffsetThreshold
-  );
-}
-
+/**
+ * @see https://gist.github.com/teameh/dd055d546a3bd8f85b9516840e3a45f3
+ */
 export default class VerticalSwipeResponder extends React.Component<Props> {
   swipeConfig: SwipeConfig;
   panResponder: any;
@@ -59,19 +42,14 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
 
-    this.swipeConfig = Object.assign(swipeConfig, props.config);
+    this.swipeConfig = swipeConfig;
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: this.handleShouldSetPanResponder,
       onMoveShouldSetPanResponder: this.handleShouldSetPanResponder,
-      onPanResponderMove: this.handlePanResponderMove,
       onPanResponderRelease: this.handlePanResponderEnd,
       onPanResponderTerminate: this.handlePanResponderEnd,
     });
   }
-
-  componentDidUpdate = () => {
-    this.swipeConfig = Object.assign(swipeConfig, this.props.config);
-  };
 
   handleShouldSetPanResponder = (
     evt: PanResponderEvent,
@@ -88,32 +66,14 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
     return Math.abs(gestureState.dx) < 5 && Math.abs(gestureState.dy) < 5;
   };
 
-  handlePanResponderMove = (
-    e: PanResponderEvent,
-    gestureState: GestureState,
-  ) => {
-    const { onSwipeMove } = this.props;
-    const { swipeVerticalThreshold } = this.swipeConfig;
-
-    if (Math.abs(gestureState.dy) > swipeVerticalThreshold) {
-      onSwipeMove && onSwipeMove(gestureState);
-    }
-  };
-
   handlePanResponderEnd = (
     evt: PanResponderEvent,
     gestureState: GestureState,
   ) => {
-    const swipeDirection = this.getSwipeDirection(gestureState);
-    this.triggerSwipeHandlers(swipeDirection, gestureState);
-  };
-
-  triggerSwipeHandlers = (
-    swipeDirection: string | null,
-    gestureState: GestureState,
-  ) => {
     const { onSwipeUp, onSwipeDown } = this.props;
-    if (gestureState.dy > 0) {
+    const swipeDirection = this.getSwipeDirection(gestureState);
+
+    if (swipeDirection === swipeDirections.SWIPE_DOWN) {
       onSwipeDown && onSwipeDown(gestureState);
     } else {
       onSwipeUp && onSwipeUp(gestureState);
@@ -134,13 +94,35 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
   isValidHorizontalSwipe = (gestureState: GestureState) => {
     const { vx, dy } = gestureState;
     const { velocityThreshold, directionalOffsetThreshold } = this.swipeConfig;
-    return isValidSwipe(vx, velocityThreshold, dy, directionalOffsetThreshold);
+    return this.isValidSwipe(
+      vx,
+      velocityThreshold,
+      dy,
+      directionalOffsetThreshold,
+    );
   };
 
   isValidVerticalSwipe = (gestureState: GestureState) => {
     const { vy, dx } = gestureState;
     const { velocityThreshold, directionalOffsetThreshold } = this.swipeConfig;
-    return isValidSwipe(vy, velocityThreshold, dx, directionalOffsetThreshold);
+    return this.isValidSwipe(
+      vy,
+      velocityThreshold,
+      dx,
+      directionalOffsetThreshold,
+    );
+  };
+
+  isValidSwipe = (
+    velocity: number,
+    velocityThreshold: number,
+    directionalOffset: number,
+    directionalOffsetThreshold: number,
+  ) => {
+    return (
+      Math.abs(velocity) > velocityThreshold &&
+      Math.abs(directionalOffset) < directionalOffsetThreshold
+    );
   };
 
   render = () => {

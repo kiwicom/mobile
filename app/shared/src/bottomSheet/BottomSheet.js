@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Animated } from 'react-native';
+import { LayoutAnimation } from '@kiwicom/react-native-app-shared';
 
 import StyleSheet from '../PlatformStyleSheet';
 import VerticalSwipeResponder from '../view/VerticalSwipeResponder';
@@ -10,6 +10,10 @@ type Props = {|
   children: React.Node,
   openHeight: number,
   closedHeight: number,
+|};
+
+type State = {|
+  height: number,
 |};
 
 const styles = StyleSheet.create({
@@ -27,42 +31,32 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class BottomSheet extends React.Component<Props> {
-  heightDiff: number;
-  swipeMovement: typeof Animated.Value;
-  height: typeof Animated.AnimatedInterpolation;
+export default class BottomSheet extends React.Component<Props, State> {
+  state = {
+    height: this.props.closedHeight,
+  };
 
-  constructor(props: Props) {
-    super(props);
-    this.heightDiff = props.openHeight - props.closedHeight;
-    this.swipeMovement = new Animated.Value(this.heightDiff);
-    this.height = this.swipeMovement.interpolate({
-      inputRange: [-this.heightDiff, this.heightDiff],
-      outputRange: [props.openHeight, props.closedHeight],
-      extrapolate: 'clamp',
+  animate = (value: number) => {
+    LayoutAnimation.linear();
+    this.setState({
+      height: value,
     });
-  }
+  };
 
   onSwipeUp = () => {
-    Animated.spring(this.swipeMovement, { toValue: -this.heightDiff }).start();
+    this.animate(this.props.openHeight);
   };
 
   onSwipeDown = () => {
-    Animated.spring(this.swipeMovement, { toValue: this.heightDiff }).start();
+    this.animate(this.props.closedHeight);
   };
 
   render = () => {
-    const swipeConfig = {
-      directionalOffsetThreshold: 40,
-    };
-
     return (
       <VerticalSwipeResponder
-        style={[styles.container, { height: this.height }]}
-        onSwipeMove={Animated.event([{ dy: this.swipeMovement }])}
+        style={[styles.container, { height: this.state.height }]}
         onSwipeUp={this.onSwipeUp}
         onSwipeDown={this.onSwipeDown}
-        config={swipeConfig}
       >
         {this.props.children}
       </VerticalSwipeResponder>
