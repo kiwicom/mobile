@@ -47,6 +47,7 @@ module.exports = {
             importNames: [
               'Button', // Button
               'Dimensions', // Device
+              'LayoutAnimation', // LayoutAnimation
               'StyleSheet', // StyleSheet
               'Text', // Text
               'TouchableHighlight', // Touchable
