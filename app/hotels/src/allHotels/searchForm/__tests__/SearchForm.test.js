@@ -8,6 +8,8 @@ import MockDate from 'mockdate';
 
 import SearchForm from '../SearchForm';
 
+jest.mock('DatePickerIOS');
+
 beforeEach(() => {
   MockDate.set('2018-01-01');
 });
