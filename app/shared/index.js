@@ -21,7 +21,7 @@ export { default as PartialFailure } from './src/errors/PartialFailure';
 
 export { default as AgePicker } from './src/forms/AgePicker';
 export { default as Checkbox } from './src/forms/Checkbox';
-export { default as DatePicker } from './src/forms/DatePicker';
+export { default as DatePicker } from './src/forms/datePicker/DatePicker';
 export { default as NumberControl } from './src/forms/NumberControl';
 export { default as Slider } from './src/forms/Slider';
 export { default as TextInput } from './src/forms/TextInput';
