@@ -4,10 +4,9 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 import { DateFormatter } from '@kiwicom/react-native-app-localization';
 
-import DateInput, {
-  DISPLAY_DATE_FORMAT,
-  checkinAndCheckoutToDate,
-} from '../DateInput';
+import DateInput, { checkinAndCheckoutToDate } from '../DateInput';
+
+jest.mock('DatePickerIOS');
 
 const checkin = DateFormatter()
   .startOf('day')
@@ -42,7 +41,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckinChange(newCheckinDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckinChange(newCheckinDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(
@@ -58,7 +57,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckinChange(newCheckinDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckinChange(newCheckinDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(
@@ -74,7 +73,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckinChange(newCheckinDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckinChange(newCheckinDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(
@@ -90,7 +89,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckinChange(newCheckinDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckinChange(newCheckinDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(
@@ -108,7 +107,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckoutChange(newCheckoutDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckoutChange(newCheckoutDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(
@@ -124,7 +123,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckoutChange(newCheckoutDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckoutChange(newCheckoutDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(
@@ -140,7 +139,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckoutChange(newCheckoutDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckoutChange(newCheckoutDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(
@@ -156,7 +155,7 @@ describe('DateInput', () => {
 
       renderDateInput(onChange)
         .getInstance()
-        .handleCheckoutChange(newCheckoutDate.format(DISPLAY_DATE_FORMAT));
+        .handleCheckoutChange(newCheckoutDate.toDate());
 
       expect(onChange).toHaveBeenCalledWith(
         checkinAndCheckoutToDate(

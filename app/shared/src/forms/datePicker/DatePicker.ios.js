@@ -9,15 +9,7 @@ import {
 
 import DatePickerButton from './DatePickerButton';
 import BarPopup from '../../popup/BarPopup';
-
-type Props = {|
-  date: Date,
-  onDateChange: (date: Date) => void,
-  minDate?: Date,
-  maxDate?: Date,
-  format?: string,
-  iconComponent?: React.Node,
-|};
+import type { Props } from './DatePickerProps';
 
 type State = {|
   isPickerOpen: boolean,

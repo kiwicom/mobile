@@ -4,15 +4,7 @@ import * as React from 'react';
 import { DatePickerAndroid } from 'react-native';
 
 import DatePickerButton from './DatePickerButton';
-
-type Props = {|
-  date: Date,
-  onDateChange: (date: Date) => void,
-  format?: string,
-  minDate?: Date,
-  maxDate?: Date,
-  iconComponent?: React.Node,
-|};
+import type { Props } from './DatePickerProps';
 
 export default class DatePicker extends React.Component<Props> {
   openDatePicker = () => {

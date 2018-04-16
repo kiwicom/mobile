@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 });
 
 export default class DateInput extends React.Component<Props> {
-  handleCheckinChange = (date: string) => {
+  handleCheckinChange = (date: Date) => {
     const {
       checkin,
       checkout,
@@ -74,7 +74,7 @@ export default class DateInput extends React.Component<Props> {
     }
   };
 
-  handleCheckoutChange = (date: string) => {
+  handleCheckoutChange = (date: Date) => {
     const {
       checkin,
       checkout,
@@ -101,14 +101,17 @@ export default class DateInput extends React.Component<Props> {
   };
 
   getCheckinAndCheckoutDatesAsDateFormatter = (
-    datestring: string,
+    date: Date,
     type: DateInputType,
   ) => {
-    const date = DateFormatter(datestring, DISPLAY_DATE_FORMAT);
     const checkin =
-      type === 'checkin' ? date : DateFormatter(this.props.checkin);
+      type === 'checkin'
+        ? DateFormatter(date)
+        : DateFormatter(this.props.checkin);
     const checkout =
-      type === 'checkout' ? date : DateFormatter(this.props.checkout);
+      type === 'checkout'
+        ? DateFormatter(date)
+        : DateFormatter(this.props.checkout);
     return { checkin, checkout };
   };
 
