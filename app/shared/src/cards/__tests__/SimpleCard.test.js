@@ -7,30 +7,37 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import SimpleCard from '../SimpleCard';
 
+const DEEP_RENDER = false;
+const TITLE = 'SimpleCard';
+
 function onPressVoidCallback() {}
 
 it('renders as expected', () => {
   PlaygroundRenderer.render(
     <View>
-      <SimpleCard key="A">
+      <SimpleCard>
         <Translation passThrough="Default card A" />
       </SimpleCard>
-      <SimpleCard key="B">
+      <SimpleCard>
         <Translation passThrough="Default card B" />
       </SimpleCard>
     </View>,
+    DEEP_RENDER,
+    TITLE,
   );
 });
 
 it('renders as expected with onPress callback', () => {
   PlaygroundRenderer.render(
     <View>
-      <SimpleCard key="A" onPress={onPressVoidCallback}>
+      <SimpleCard onPress={onPressVoidCallback}>
         <Translation passThrough="Clickable card" />
       </SimpleCard>
-      <SimpleCard key="B" onPress={onPressVoidCallback}>
+      <SimpleCard onPress={onPressVoidCallback}>
         <Translation passThrough="Clickable card" />
       </SimpleCard>
     </View>,
+    DEEP_RENDER,
+    TITLE,
   );
 });

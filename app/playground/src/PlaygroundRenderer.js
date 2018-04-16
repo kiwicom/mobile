@@ -26,14 +26,18 @@ if (it === undefined && process.env.NODE_ENV !== 'test') {
 }
 
 export default new class PlaygroundRenderer {
-  components = [];
+  components: Object = {};
   shallowRenderer: ShallowTestRenderer;
 
   constructor() {
     this.shallowRenderer = new ShallowTestRenderer();
   }
 
-  render(component: React.Node, deeply: boolean = false) {
+  render(
+    component: React.Element<any>,
+    deeply: boolean = false,
+    title: string = component.type.name,
+  ) {
     if (process.env.NODE_ENV === 'test') {
       if (deeply === true) {
         expect(
@@ -45,7 +49,13 @@ export default new class PlaygroundRenderer {
         ).toMatchSnapshot();
       }
     } else {
-      this.components.push(component);
+      if (this.components.hasOwnProperty(title)) {
+        this.components[title].components.push(component);
+      } else {
+        this.components[title] = {
+          components: [component],
+        };
+      }
     }
   }
 }();
