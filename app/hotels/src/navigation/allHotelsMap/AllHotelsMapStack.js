@@ -7,7 +7,7 @@ import {
   StackNavigator,
   StackNavigatorOptions,
 } from '@kiwicom/react-native-app-navigation';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import AllHotelsMapNavigationScreen from './AllHotelsMapNavigationScreen';
 

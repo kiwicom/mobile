@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Button, Layout } from '@kiwicom/react-native-app-shared';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import Logout from '../../components/authentication/Logout';
 

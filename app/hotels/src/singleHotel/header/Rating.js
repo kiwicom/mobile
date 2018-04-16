@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { Stars } from '@kiwicom/react-native-app-shared';
-import Translation, {
+import {
+  Translation,
   TranslationFragment,
-} from '@kiwicom/react-native-app-translations';
+} from '@kiwicom/react-native-app-localization';
 
 type Props = {|
   stars?: ?number,

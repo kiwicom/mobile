@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { View, ScrollView, InteractionManager } from 'react-native';
 import { Text, StyleSheet, Color } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import ChildrenAgesControl from './ChildrenAgesControl';
 import type {

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Picker, View } from 'react-native';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import BarPopup from '../popup/BarPopup';
 import StyleSheet from '../PlatformStyleSheet';

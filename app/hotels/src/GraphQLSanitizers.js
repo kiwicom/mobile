@@ -1,6 +1,6 @@
 // @flow
 
-import { DateFormatter } from '@kiwicom/react-native-app-translations';
+import { DateFormatter } from '@kiwicom/react-native-app-localization';
 
 export const sanitizeDate = (input: ?Date): ?string =>
   input && DateFormatter(input).format('YYYY-MM-DD');

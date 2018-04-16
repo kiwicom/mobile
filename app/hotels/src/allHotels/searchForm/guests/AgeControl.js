@@ -9,7 +9,7 @@ import {
   Icon,
   Text,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 type Props = {|
   label: string,

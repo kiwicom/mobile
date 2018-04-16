@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Text } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import PlaygroundRenderer from './PlaygroundRenderer';
 // Import component tests you want to show in the Playground here:

@@ -11,9 +11,10 @@ import {
   Text,
   Touchable,
 } from '@kiwicom/react-native-app-shared';
-import Translation, {
+import {
+  Translation,
   TranslationFragment,
-} from '@kiwicom/react-native-app-translations';
+} from '@kiwicom/react-native-app-localization';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
 

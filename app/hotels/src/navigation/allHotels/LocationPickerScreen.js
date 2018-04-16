@@ -11,7 +11,7 @@ import {
   type NavigationType,
   HeaderTitle,
 } from '@kiwicom/react-native-app-navigation';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 import idx from 'idx';
 
 import LocationPicker from '../../allHotels/searchForm/locationPicker/LocationPicker';

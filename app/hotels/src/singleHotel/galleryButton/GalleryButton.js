@@ -8,7 +8,7 @@ import {
   type StylePropType,
 } from '@kiwicom/react-native-app-shared';
 import idx from 'idx';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import icon from './gallery-icon.png';
 
