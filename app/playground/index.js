@@ -1,3 +1,3 @@
 // @flow
 
-export { default as PlaygroundRenderer } from './PlaygroundRenderer';
+export { default as PlaygroundRenderer } from './src/PlaygroundRenderer';
