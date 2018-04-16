@@ -2,13 +2,9 @@
 
 import * as React from 'react';
 import { View, NativeModules } from 'react-native';
-import { ReduxContext } from '@kiwicom/react-native-app-redux';
-import { ConfigReducer } from '@kiwicom/react-native-app-config';
-import {
-  Device,
-  type OnLayout,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
+import { ReduxContext } from '@kiwicom/mobile-redux';
+import { ConfigReducer } from '@kiwicom/mobile-config';
+import { Device, type OnLayout, StyleSheet } from '@kiwicom/mobile-shared';
 
 import FiltersReducer from '../filter/FiltersReducer';
 import HotelsReducer from '../HotelsReducer';

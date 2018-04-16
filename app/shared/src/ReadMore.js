@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import OriginalReadMore from 'react-native-read-more-text'; // eslint-disable-line no-restricted-imports
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import Text from './Text';
 import Touchable from './Touchable';

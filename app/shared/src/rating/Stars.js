@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   // number of stars

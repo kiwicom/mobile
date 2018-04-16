@@ -2,12 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Icon, Color } from '@kiwicom/react-native-app-shared';
+import { Icon, Color } from '@kiwicom/mobile-shared';
 import {
   Translation,
   TranslationFragment,
   type TranslationType,
-} from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-localization';
 
 import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';

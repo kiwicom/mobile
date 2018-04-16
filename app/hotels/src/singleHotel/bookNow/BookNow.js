@@ -3,12 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
-import {
-  StyleSheet,
-  Color,
-  Touchable,
-  Price,
-} from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Color, Touchable, Price } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
 import BookNowText from './BookNowText';

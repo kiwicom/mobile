@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { Icon } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Icon } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import FilterButton from '../FilterButton';
 

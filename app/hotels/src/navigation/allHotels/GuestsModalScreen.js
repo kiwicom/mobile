@@ -1,18 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import {
-  type NavigationType,
-  HeaderTitle,
-} from '@kiwicom/react-native-app-navigation';
-import {
-  Touchable,
-  Text,
-  StyleSheet,
-  Color,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
-import { connect } from '@kiwicom/react-native-app-redux';
+import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
+import { Touchable, Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
+import { connect } from '@kiwicom/mobile-redux';
 
 import type { HotelsReducerState } from '../../HotelsReducer';
 import type {

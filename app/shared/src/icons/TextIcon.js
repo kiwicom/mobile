@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/react-native-app-localization';
-import type { StylePropType } from '@kiwicom/react-native-app-shared';
+import { Translation } from '@kiwicom/mobile-localization';
+import type { StylePropType } from '@kiwicom/mobile-shared';
 
 import Color from '../Color';
 import Text from '../Text';

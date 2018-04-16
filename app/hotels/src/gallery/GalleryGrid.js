@@ -8,7 +8,7 @@ import {
   Device,
   type OnLayout,
   StyleSheet,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 
 import GalleryGridTile from './GalleryGridTile';
 import PhotosStripe from './PhotosStripe';

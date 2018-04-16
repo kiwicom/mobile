@@ -6,7 +6,7 @@ import {
   FullPageLoading,
   GeneralError,
   PartialFailure,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 
 import PublicEnvironment from './PublicEnvironment';
 import PrivateEnvironment from './PrivateEnvironment';

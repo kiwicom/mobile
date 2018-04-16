@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import Image from 'react-native-image-progress';
-import { connect } from '@kiwicom/react-native-app-redux';
-import type { StylePropType } from '@kiwicom/react-native-app-shared';
+import { connect } from '@kiwicom/mobile-redux';
+import type { StylePropType } from '@kiwicom/mobile-shared';
 
 import MissingImage from './MissingImage';
 import IconLoading from '../loaders/IconLoading';

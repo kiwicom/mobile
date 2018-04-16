@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, Platform } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { StyleSheet, NetworkImage } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, NetworkImage } from '@kiwicom/mobile-shared';
 
 import PhotosStripeHeader from './PhotosStripeHeader';
 

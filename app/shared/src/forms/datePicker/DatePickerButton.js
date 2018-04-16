@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { DateFormatter } from '@kiwicom/react-native-app-localization';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 import { View } from 'react-native';
 
 import Touchable from '../../Touchable';

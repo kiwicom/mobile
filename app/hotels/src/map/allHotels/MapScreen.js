@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import MapView from './MapView';
 import HotelSwipeList from './HotelSwipeList';

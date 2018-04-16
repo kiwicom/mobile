@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import type { StylePropType } from '@kiwicom/react-native-app-shared';
+import type { StylePropType } from '@kiwicom/mobile-shared';
 
 import Color from '../Color';
 

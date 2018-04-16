@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Text,
   type StylePropType,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 
 type Props = {|
   onPress: () => void,

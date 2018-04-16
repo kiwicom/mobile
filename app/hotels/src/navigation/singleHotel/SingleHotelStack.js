@@ -8,9 +8,9 @@ import {
   StackNavigator,
   StackNavigatorOptions,
   createTransparentHeaderStyle,
-} from '@kiwicom/react-native-app-navigation';
-import { Translation } from '@kiwicom/react-native-app-localization';
-import { Device } from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-navigation';
+import { Translation } from '@kiwicom/mobile-localization';
+import { Device } from '@kiwicom/mobile-shared';
 
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';

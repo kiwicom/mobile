@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import { WebView, Logger } from '@kiwicom/react-native-app-shared';
-import { DateFormatter } from '@kiwicom/react-native-app-localization';
+import { WebView, Logger } from '@kiwicom/mobile-shared';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
 
 import { sanitizeDate } from '../GraphQLSanitizers';

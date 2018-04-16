@@ -2,10 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Translation,
-  TranslationFragment,
-} from '@kiwicom/react-native-app-localization';
+import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 
 import HotelFacilitiesPopup from './HotelFacilitiesPopup';
 import FilterButton from '../FilterButton';

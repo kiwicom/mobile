@@ -2,10 +2,7 @@
 
 import * as React from 'react';
 import { DatePickerIOS } from 'react-native';
-import {
-  Translation,
-  GetDeviceLocale,
-} from '@kiwicom/react-native-app-localization';
+import { Translation, GetDeviceLocale } from '@kiwicom/mobile-localization';
 
 import DatePickerButton from './DatePickerButton';
 import BarPopup from '../../popup/BarPopup';

@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
-import { ReduxContext } from '@kiwicom/react-native-app-redux';
-import { StackNavigator } from '@kiwicom/react-native-app-navigation';
+import { ReduxContext } from '@kiwicom/mobile-redux';
+import { StackNavigator } from '@kiwicom/mobile-navigation';
 
 import HomepageStack from './HomepageStack';
 import UserReducer from '../services/redux/UserReducer';

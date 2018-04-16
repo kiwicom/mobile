@@ -4,9 +4,9 @@ import * as React from 'react';
 import idx from 'idx';
 import { createPaginationContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
-import { Logger, GeneralError } from '@kiwicom/react-native-app-shared';
-import { connect } from '@kiwicom/react-native-app-redux';
-import type { RelayPaginationProp } from '@kiwicom/react-native-app-relay';
+import { Logger, GeneralError } from '@kiwicom/mobile-shared';
+import { connect } from '@kiwicom/mobile-redux';
+import type { RelayPaginationProp } from '@kiwicom/mobile-relay';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import LoadMoreButton from './LoadMoreButton';

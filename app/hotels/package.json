@@ -4,9 +4,9 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "@kiwicom/react-native-app-config": "^0",
-    "@kiwicom/react-native-app-redux": "^0",
-    "@kiwicom/react-native-app-shared": "^0",
+    "@kiwicom/mobile-config": "^0",
+    "@kiwicom/mobile-redux": "^0",
+    "@kiwicom/mobile-shared": "^0",
     "geolib": "2.0.24",
     "idx": "2.2.0",
     "lodash": "^4.17.4",
@@ -18,7 +18,7 @@
     "react-native-tooltips": "^0.0.4"
   },
   "devDependencies": {
-    "@kiwicom/react-native-app-playground": "^0",
+    "@kiwicom/mobile-playground": "^0",
     "mockdate": "^2.0.2"
   }
 }

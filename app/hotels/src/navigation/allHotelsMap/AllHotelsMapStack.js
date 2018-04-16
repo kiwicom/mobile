@@ -6,8 +6,8 @@ import {
   HeaderTitle,
   StackNavigator,
   StackNavigatorOptions,
-} from '@kiwicom/react-native-app-navigation';
-import { Translation } from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-navigation';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import AllHotelsMapNavigationScreen from './AllHotelsMapNavigationScreen';
 

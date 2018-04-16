@@ -9,8 +9,8 @@ import {
   TextIcon,
   Icon,
   Color,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
