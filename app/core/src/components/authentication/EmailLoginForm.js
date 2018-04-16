@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { TextInput, Button } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { TextInput, Button } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import LoginMutation, { type Callback } from './mutation/Login';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';

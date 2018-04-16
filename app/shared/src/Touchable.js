@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import type { AccessibilityProps } from '@kiwicom/react-native-app-accessibility';
+import type { AccessibilityProps } from '@kiwicom/mobile-accessibility';
 
 import { type StylePropType } from '../types/Styles';
 

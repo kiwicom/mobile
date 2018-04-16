@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import CenteredView from '../view/CenteredView';
 import Color from '../Color';

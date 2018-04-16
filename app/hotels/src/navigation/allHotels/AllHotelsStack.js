@@ -3,7 +3,7 @@
 import {
   StackNavigator,
   StackNavigatorOptions,
-} from '@kiwicom/react-native-app-navigation';
+} from '@kiwicom/mobile-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 
 import AllHotelsNavigationScreen from './AllHotelsNavigationScreen';

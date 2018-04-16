@@ -4,14 +4,8 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
-import {
-  Color,
-  Price,
-  Stars,
-  Text,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Color, Price, Stars, Text, StyleSheet } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import Distance from './HotelDistance';
 import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';

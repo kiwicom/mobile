@@ -55,12 +55,12 @@ module.exports = {
               'TouchableOpacity', // Touchable
             ],
             message:
-              "Please use '@kiwicom/react-native-app-shared' package instead.",
+              "Please use '@kiwicom/mobile-shared' package instead.",
           },
           {
             name: 'react-native-read-more-text', // ReadMore
             message:
-              "Please use '@kiwicom/react-native-app-shared' package instead.",
+              "Please use '@kiwicom/mobile-shared' package instead.",
           },
           {
             name: 'react-navigation',
@@ -68,7 +68,7 @@ module.exports = {
               'StackNavigator', // StackNavigator
             ],
             message:
-              "Please use '@kiwicom/react-native-app-navigation' package instead.",
+              "Please use '@kiwicom/mobile-navigation' package instead.",
           },
         ],
       },

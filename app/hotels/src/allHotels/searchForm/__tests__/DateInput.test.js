@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { DateFormatter } from '@kiwicom/react-native-app-localization';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import DateInput, { checkinAndCheckoutToDate } from '../DateInput';
 

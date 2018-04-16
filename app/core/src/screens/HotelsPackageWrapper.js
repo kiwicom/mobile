@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { HotelsStandalonePackage } from '@kiwicom/react-native-app-hotels';
-import { type NavigationType } from '@kiwicom/react-native-app-navigation';
+import { type NavigationType } from '@kiwicom/mobile-navigation';
 
 import Config from '../../config/application';
 

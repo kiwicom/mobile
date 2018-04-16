@@ -9,8 +9,8 @@ import {
   Icon,
   StyleSheet,
   Text,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   facilities: string[],

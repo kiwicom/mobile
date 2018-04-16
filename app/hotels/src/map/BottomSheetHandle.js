@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 
 const styles = StyleSheet.create({
   handle: {

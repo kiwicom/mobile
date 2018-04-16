@@ -7,10 +7,10 @@ import {
   Color,
   TextInput,
   WithStorage,
-} from '@kiwicom/react-native-app-shared';
-import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+} from '@kiwicom/mobile-shared';
+import { PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { graphql } from 'react-relay';
-import { connect } from '@kiwicom/react-native-app-redux';
+import { connect } from '@kiwicom/mobile-redux';
 
 import RecentSearches from './RecentSearches';
 import SuggestionList from './SuggestionList';

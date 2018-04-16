@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import SimpleCard from '../SimpleCard';
 

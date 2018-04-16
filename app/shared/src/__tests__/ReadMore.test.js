@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import ReadMore from '../ReadMore';
 

@@ -1,17 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Text,
-  Touchable,
-  StyleSheet,
-  Color,
-} from '@kiwicom/react-native-app-shared';
-import {
-  type NavigationType,
-  HeaderTitle,
-} from '@kiwicom/react-native-app-navigation';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Text, Touchable, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
+import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import LocationPicker from '../../allHotels/searchForm/locationPicker/LocationPicker';

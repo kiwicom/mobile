@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Text, ButtonPopup, Slider } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Text, ButtonPopup, Slider } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   onClose: () => void,

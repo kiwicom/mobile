@@ -9,8 +9,8 @@ import {
   Touchable,
   ButtonText,
   Color,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   price: number | null,

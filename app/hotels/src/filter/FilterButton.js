@@ -2,13 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Button,
-  Color,
-  Icon,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
-import type { TranslationType } from '@kiwicom/react-native-app-localization';
+import { Button, Color, Icon, StyleSheet } from '@kiwicom/mobile-shared';
+import type { TranslationType } from '@kiwicom/mobile-localization';
 
 type Props = {
   title: TranslationType,

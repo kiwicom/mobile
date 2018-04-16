@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import PartialFailure from '../PartialFailure';
 

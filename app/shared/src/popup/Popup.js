@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
-import { AdaptableLayout } from '@kiwicom/react-native-app-shared';
+import { AdaptableLayout } from '@kiwicom/mobile-shared';
 
 import Modal from '../Modal';
 import StyleSheet from '../PlatformStyleSheet';

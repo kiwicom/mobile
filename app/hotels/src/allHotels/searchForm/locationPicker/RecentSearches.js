@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { View, FlatList, Keyboard } from 'react-native';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { StyleSheet } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import RecentSearchItem from './RecentSearchItem';
 

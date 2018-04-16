@@ -7,7 +7,7 @@ import {
   Device,
   AdaptableLayout,
   StyleSheet,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 
 import { openHeight, closedHeight } from '../bottomSheetDimensions';
 

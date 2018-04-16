@@ -3,11 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
-import {
-  AdaptableBadge,
-  StyleSheet,
-  TextIcon,
-} from '@kiwicom/react-native-app-shared';
+import { AdaptableBadge, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 
 import type { RoomBadges_availableRoom as RoomBadgesTypes } from './__generated__/RoomBadges_availableRoom.graphql';
 

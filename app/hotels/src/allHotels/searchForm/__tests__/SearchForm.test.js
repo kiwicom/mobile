@@ -3,7 +3,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { DatePicker } from '@kiwicom/react-native-app-shared';
+import { DatePicker } from '@kiwicom/mobile-shared';
 import MockDate from 'mockdate';
 
 import SearchForm from '../SearchForm';

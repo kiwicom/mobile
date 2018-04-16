@@ -10,10 +10,10 @@ import {
   Text,
   Touchable,
   Color,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel } from './__generated__/Location_hotel.graphql';

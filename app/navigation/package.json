@@ -1,10 +1,10 @@
 {
-  "name": "@kiwicom/react-native-app-navigation",
+  "name": "@kiwicom/mobile-navigation",
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "@kiwicom/react-native-app-localization": "^0",
+    "@kiwicom/mobile-localization": "^0",
     "react-navigation": "^1.5.11",
     "react-navigation-props-mapper": "^0.1.2"
   }

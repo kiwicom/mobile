@@ -1,11 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  StyleSheet,
-  Color,
-  type StylePropType,
-} from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Color, type StylePropType } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
 
 const styles = StyleSheet.create({

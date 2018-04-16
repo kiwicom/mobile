@@ -1,13 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Touchable,
-  StyleSheet,
-  Text,
-  Color,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Touchable, StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import Row from './Row';
 
