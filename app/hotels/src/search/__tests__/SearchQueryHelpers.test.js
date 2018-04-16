@@ -1,6 +1,6 @@
 // @flow
 
-import { DateFormatter } from '@kiwicom/react-native-app-translations';
+import { DateFormatter } from '@kiwicom/react-native-app-localization';
 
 import {
   getSearchQueryParams,

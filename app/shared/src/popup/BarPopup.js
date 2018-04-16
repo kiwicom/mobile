@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import Translation, {
+import {
+  Translation,
   type TranslationType,
-} from '@kiwicom/react-native-app-translations';
+} from '@kiwicom/react-native-app-localization';
 
 import Popup from './Popup';
 import Color from '../Color';

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { DateFormatter } from '@kiwicom/react-native-app-translations';
+import { DateFormatter } from '@kiwicom/react-native-app-localization';
 
 import DateInput, {
   DISPLAY_DATE_FORMAT,

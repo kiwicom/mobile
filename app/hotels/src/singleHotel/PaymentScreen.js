@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { WebView, Logger } from '@kiwicom/react-native-app-shared';
-import { DateFormatter } from '@kiwicom/react-native-app-translations';
+import { DateFormatter } from '@kiwicom/react-native-app-localization';
 import querystring from 'querystring';
 
 import { sanitizeDate } from '../GraphQLSanitizers';

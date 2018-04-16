@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { TextInput, Button } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import LoginMutation, { type Callback } from './mutation/Login';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';

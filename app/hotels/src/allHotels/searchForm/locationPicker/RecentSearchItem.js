@@ -7,7 +7,7 @@ import {
   Text,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translations from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import Row from './Row';
 
@@ -39,7 +39,7 @@ export default class RecentSearchItem extends React.Component<Props> {
     <Touchable onPress={this.onPress}>
       <Row>
         <Text style={styles.text}>
-          <Translations passThrough={this.props.location.name} />
+          <Translation passThrough={this.props.location.name} />
         </Text>
       </Row>
     </Touchable>

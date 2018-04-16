@@ -4,7 +4,7 @@ import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import renderer from 'react-test-renderer';
 import { Touchable } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import ButtonPopup from '../ButtonPopup';
 

@@ -3,10 +3,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Icon, Color } from '@kiwicom/react-native-app-shared';
-import Translation, {
+import {
+  Translation,
   TranslationFragment,
   type TranslationType,
-} from '@kiwicom/react-native-app-translations';
+} from '@kiwicom/react-native-app-localization';
 
 import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';

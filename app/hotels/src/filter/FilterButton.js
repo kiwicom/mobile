@@ -8,7 +8,7 @@ import {
   Icon,
   StyleSheet,
 } from '@kiwicom/react-native-app-shared';
-import type { TranslationType } from '@kiwicom/react-native-app-translations';
+import type { TranslationType } from '@kiwicom/react-native-app-localization';
 
 type Props = {
   title: TranslationType,

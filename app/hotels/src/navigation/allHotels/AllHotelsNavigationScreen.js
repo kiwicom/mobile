@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
 import { StyleSheet, AdaptableLayout } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 import {
   HeaderTitle,
   type NavigationType,
