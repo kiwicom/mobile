@@ -1,11 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { connect } from '@kiwicom/react-native-app-redux';
+import { connect } from '@kiwicom/mobile-redux';
 import {
   PrivateApiRenderer as PrivateApiRendererOriginal,
   type QueryRendererProps,
-} from '@kiwicom/react-native-app-relay';
+} from '@kiwicom/mobile-relay';
 
 import Login from '../authentication/Login';
 import type { UserReducerState } from '../../services/redux/UserReducer';

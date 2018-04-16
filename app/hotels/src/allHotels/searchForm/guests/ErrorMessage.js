@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Text, Color, StyleSheet } from '@kiwicom/react-native-app-shared';
-import { type TranslationType } from '@kiwicom/react-native-app-localization';
+import { Text, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { type TranslationType } from '@kiwicom/mobile-localization';
 
 type Props = {|
   children: TranslationType,

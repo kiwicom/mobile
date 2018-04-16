@@ -1,11 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { Stars } from '@kiwicom/react-native-app-shared';
-import {
-  Translation,
-  TranslationFragment,
-} from '@kiwicom/react-native-app-localization';
+import { Stars } from '@kiwicom/mobile-shared';
+import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 
 type Props = {|
   stars?: ?number,

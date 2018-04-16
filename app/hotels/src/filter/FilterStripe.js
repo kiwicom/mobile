@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
-import { connect } from '@kiwicom/react-native-app-redux';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { connect } from '@kiwicom/mobile-redux';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';

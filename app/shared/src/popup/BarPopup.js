@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import {
   Translation,
   type TranslationType,
-} from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-localization';
 
 import Popup from './Popup';
 import Color from '../Color';

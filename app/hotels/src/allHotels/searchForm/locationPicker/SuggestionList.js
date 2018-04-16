@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { FlatList, View, Keyboard } from 'react-native';
 import idx from 'idx';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import SuggestionListItem from './SuggestionListItem';

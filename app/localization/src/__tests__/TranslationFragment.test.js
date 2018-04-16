@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import testRenderer from 'react-test-renderer';
-import { Text } from '@kiwicom/react-native-app-shared';
+import { Text } from '@kiwicom/mobile-shared';
 
 import Translation from '../Translation';
 import TranslationFragment from '../TranslationFragment';

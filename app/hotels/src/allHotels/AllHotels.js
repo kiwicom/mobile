@@ -4,13 +4,9 @@ import * as React from 'react';
 import { ScrollView, Keyboard } from 'react-native';
 import idx from 'idx';
 import { graphql } from 'react-relay';
-import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import {
-  Layout,
-  AppStateChange,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
-import { connect } from '@kiwicom/react-native-app-redux';
+import { PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { Layout, AppStateChange, StyleSheet } from '@kiwicom/mobile-shared';
+import { connect } from '@kiwicom/mobile-redux';
 
 import AllHotelsSearch from './AllHotelsSearch';
 import SearchForm from './searchForm/SearchForm';

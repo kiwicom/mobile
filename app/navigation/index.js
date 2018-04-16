@@ -3,13 +3,8 @@
 import * as React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import ReactNavigation from 'react-navigation';
-import {
-  Color,
-  Device,
-  Text,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
-import type { TranslationType } from '@kiwicom/react-native-app-localization';
+import { Color, Device, Text, StyleSheet } from '@kiwicom/mobile-shared';
+import type { TranslationType } from '@kiwicom/mobile-localization';
 
 const createNavigationOptions = () => {
   const navigationOptions: Object = {

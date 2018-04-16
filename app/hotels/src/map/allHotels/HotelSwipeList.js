@@ -9,9 +9,9 @@ import {
   Device,
   StyleSheet,
   AdaptableLayout,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 import idx from 'idx';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';

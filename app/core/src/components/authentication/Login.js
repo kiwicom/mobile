@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { CenteredView } from '@kiwicom/react-native-app-shared';
+import { CenteredView } from '@kiwicom/mobile-shared';
 
 import EmailLoginForm from './EmailLoginForm';
 

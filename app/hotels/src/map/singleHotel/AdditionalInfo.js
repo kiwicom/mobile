@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import BottomSheet from './BottomSheet';
 import HotelDetailPreview from '../HotelDetailPreview';

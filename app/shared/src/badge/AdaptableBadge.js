@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Translation } from '@kiwicom/react-native-app-localization';
-import type { StylePropType } from '@kiwicom/react-native-app-shared';
+import { Translation } from '@kiwicom/mobile-localization';
+import type { StylePropType } from '@kiwicom/mobile-shared';
 
 import Text from '../Text';
 import Color from '../Color';

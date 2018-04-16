@@ -8,7 +8,7 @@ import {
   Logger,
   AdaptableLayout,
   StyleSheet,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 

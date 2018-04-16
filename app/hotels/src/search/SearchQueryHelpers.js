@@ -1,7 +1,7 @@
 // @flow
 
 import idx from 'idx';
-import { DateFormatter } from '@kiwicom/react-native-app-localization';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
 import type { Coordinates } from '../CoordinatesType';

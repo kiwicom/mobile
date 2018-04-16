@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
-import { Color, Price, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { Color, Price, StyleSheet } from '@kiwicom/mobile-shared';
 
 import type { PriceMarker as PriceMarkerData } from './__generated__/PriceMarker.graphql';
 

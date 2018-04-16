@@ -128,13 +128,13 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── .github/                    - GitHub templates (for PR, issues, contributing)
 ├── android/                    - native code for Android
 ├── app/
-│   ├── config/                 - @kiwicom/react-native-app-config
-│   │── core/                   - @kiwicom/react-native-app-core (core package)
+│   ├── config/                 - @kiwicom/mobile-config
+│   │── core/                   - @kiwicom/mobile-core (core package)
 │   ├── hotels/                 - @kiwicom/react-native-app-hotels
-│   ├── navigation/             - @kiwicom/react-native-app-navigation
-│   ├── redux/                  - @kiwicom/react-native-app-redux
-│   └── relay/                  - @kiwicom/react-native-app-relay
-│   └── shared/                 - @kiwicom/react-native-app-shared (formerly common)
+│   ├── navigation/             - @kiwicom/mobile-navigation
+│   ├── redux/                  - @kiwicom/mobile-redux
+│   └── relay/                  - @kiwicom/mobile-relay
+│   └── shared/                 - @kiwicom/mobile-shared (formerly common)
 ├── ios/                        - native code for iOS
 ├── scripts/                    - support scripts for the whole monorepo
 └── schema.graphql              - GraphQL schema of the backend server
@@ -174,7 +174,7 @@ const Type = {
 Usage:
 
 ```js
-import { Logger } from '@kiwicom/react-native-app-shared';
+import { Logger } from '@kiwicom/mobile-shared';
 
 Logger.ancillaryDisplayed(Logger.type.ANCILLARY_STEP_DETAILS);
 Logger.ancillaryPurchased(Logger.type.ANCILLARY_STEP_RESULTS);
@@ -188,7 +188,7 @@ It exposes one method
 Usage:
 
 ```js
-import { Translate } from '@kiwicom/react-native-app-shared';
+import { Translate } from '@kiwicom/mobile-shared';
 
 const someString = Translate('translation.key.to.translate');
 ```
@@ -213,7 +213,7 @@ NativeModules.RNColors = {
 Usage:
 
 ```js
-import { Color } from '@kiwicom/react-native-app-shared';
+import { Color } from '@kiwicom/mobile-shared';
 
 const color = Color.brand;
 ```
@@ -226,7 +226,7 @@ It exposes one method
 Usage:
 
 ```js
-import { CurrencyFormatter } from '@kiwicom/react-native-app-shared';
+import { CurrencyFormatter } from '@kiwicom/mobile-shared';
 
 const priceInEuros = 500.34;
 const currencyCode = 'NOK';
@@ -312,22 +312,22 @@ This application consists of independent packages so they can be reused or repla
 1. install Redux dependency (called in the `hotels` package scope):
 
 ```
-yarn add @kiwicom/react-native-app-redux
+yarn add @kiwicom/mobile-redux
 ```
 
 2. register reducers:
 
 ```js
-import { injectAsyncReducer, store } from '@kiwicom/react-native-app-redux';
+import { injectAsyncReducer, store } from '@kiwicom/mobile-redux';
 import HotelsReducer from './src/HotelsReducer';
 
 injectAsyncReducer(store, 'hotels', HotelsReducer);
 ```
 
-We currently **do not** officially support calling actions on reducers outside of one package. This means that you should always work with actions and reducers from `HotelReducer`. This should be in most of the scenarios good enough. You must use `connect` function from `@kiwicom/react-native-app-redux` package in order to connect React component to the Redux store:
+We currently **do not** officially support calling actions on reducers outside of one package. This means that you should always work with actions and reducers from `HotelReducer`. This should be in most of the scenarios good enough. You must use `connect` function from `@kiwicom/mobile-redux` package in order to connect React component to the Redux store:
 
 ```js
-import { connect } from '@kiwicom/react-native-app-redux';
+import { connect } from '@kiwicom/mobile-redux';
 
 export default connect(select, actions)(ComponentWithoutStore);
 ```
@@ -437,7 +437,7 @@ rm -rf node_modules/ && yarn cache clean && yarn install
 
 For more information please visit this issue: https://github.com/facebook/react-native/issues/14382
 
-### Cannot resolve module '@kiwicom/react-native-app-<module>'
+### Cannot resolve module '@kiwicom/mobile-<module>'
 
 #### Symptoms:
 

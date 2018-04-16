@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { NativeModules } from 'react-native';
-import { Text } from '@kiwicom/react-native-app-shared';
+import { Text } from '@kiwicom/mobile-shared';
 
 import DefaultVocabulary, { type TranslationKeys } from './DefaultVocabulary';
 import CaseTransform, {

@@ -4,13 +4,8 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
-import {
-  Text,
-  StyleSheet,
-  Color,
-  ReadMore,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Text, StyleSheet, Color, ReadMore } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import type { RoomDescription_room as RoomDescriptionType } from './__generated__/RoomDescription_room.graphql';
 

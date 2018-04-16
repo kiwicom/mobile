@@ -7,8 +7,8 @@ import {
   Color,
   Checkbox,
   Text,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import StarsCheckbox from './StarsCheckbox';
 

@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Touchable,
-  NetworkImage,
-  StyleSheet,
-} from '@kiwicom/react-native-app-shared';
+import { Touchable, NetworkImage, StyleSheet } from '@kiwicom/mobile-shared';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 

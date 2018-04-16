@@ -1,14 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Text,
-  TextIcon,
-  StyleSheet,
-  Color,
-} from '@kiwicom/react-native-app-shared';
+import { Text, TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import type { RoomRowTitle_room as RoomRowTitleType } from './__generated__/RoomRowTitle_room.graphql';
