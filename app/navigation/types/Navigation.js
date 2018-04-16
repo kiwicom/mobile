@@ -17,11 +17,13 @@ type HotelsStackNavigatorNames =
   | 'LocationPicker'
   | 'GuestsModal';
 type HomepageStackNavigatorRouteNames = 'Home';
+type PlaygroundNavigationRouteNames = 'Playground';
 
 type RouteNames =
   | CoreStackNavigatorRouteNames
   | HotelsStackNavigatorNames
-  | HomepageStackNavigatorRouteNames;
+  | HomepageStackNavigatorRouteNames
+  | PlaygroundNavigationRouteNames;
 
 /**
  * @see https://reactnavigation.org/docs/navigators/navigation-prop
