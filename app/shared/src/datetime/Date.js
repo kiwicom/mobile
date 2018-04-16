@@ -1,10 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Translation,
-  DateFormatter,
-} from '@kiwicom/react-native-app-localization';
+import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';

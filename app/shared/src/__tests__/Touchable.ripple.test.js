@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import Touchable from '../Touchable';
 

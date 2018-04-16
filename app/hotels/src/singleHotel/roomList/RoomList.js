@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { StyleSheet, Text, Color } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';

@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import NativeMapView from 'react-native-maps';
-import { DropMarker, StyleSheet } from '@kiwicom/react-native-app-shared';
+import { DropMarker, StyleSheet } from '@kiwicom/mobile-shared';
 
 import type { MapView_hotel } from './__generated__/MapView_hotel.graphql';
 

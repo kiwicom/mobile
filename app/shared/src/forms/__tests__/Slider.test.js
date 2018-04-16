@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
+import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 
 import Slider from '../Slider';
 

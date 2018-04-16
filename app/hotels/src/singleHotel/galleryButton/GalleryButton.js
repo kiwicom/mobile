@@ -2,13 +2,9 @@
 
 import * as React from 'react';
 import { Image, View } from 'react-native';
-import {
-  StyleSheet,
-  Text,
-  type StylePropType,
-} from '@kiwicom/react-native-app-shared';
+import { StyleSheet, Text, type StylePropType } from '@kiwicom/mobile-shared';
 import idx from 'idx';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import icon from './gallery-icon.png';
 

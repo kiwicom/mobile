@@ -4,7 +4,7 @@ import {
   StackNavigator,
   StackNavigatorOptions,
   type NavigationType,
-} from '@kiwicom/react-native-app-navigation';
+} from '@kiwicom/mobile-navigation';
 
 import AllHotelsMapStack from './allHotelsMap/AllHotelsMapStack';
 import AllHotelsStack from './allHotels/AllHotelsStack';

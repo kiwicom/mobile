@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Icon, Color } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Icon, Color } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import ScorePopup from './ScorePopup';
 import FilterButton from '../FilterButton';

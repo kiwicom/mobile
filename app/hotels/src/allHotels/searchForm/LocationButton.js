@@ -2,13 +2,8 @@
 
 import * as React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
-import {
-  Text,
-  StyleSheet,
-  Icon,
-  Color,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Text, StyleSheet, Icon, Color } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 const styles = StyleSheet.create({
   locationButton: {

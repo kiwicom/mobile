@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { AgePicker } from '@kiwicom/react-native-app-shared';
+import { AgePicker } from '@kiwicom/mobile-shared';
 
 import ChildrenAgesControl from '../ChildrenAgesControl';
 import AgeControl from '../AgeControl';

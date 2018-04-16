@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
+import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 
 import IncrementDecrementButtons from '../IncrementDecrementButtons';
 import Touchable from '../../Touchable';

@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
 import { View, ScrollView, InteractionManager } from 'react-native';
-import { Text, StyleSheet, Color } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import ChildrenAgesControl from './ChildrenAgesControl';
 import type {

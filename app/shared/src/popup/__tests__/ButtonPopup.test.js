@@ -3,8 +3,8 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import renderer from 'react-test-renderer';
-import { Touchable } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Touchable } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import ButtonPopup from '../ButtonPopup';
 

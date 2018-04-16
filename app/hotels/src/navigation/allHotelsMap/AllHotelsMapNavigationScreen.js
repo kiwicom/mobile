@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { type NavigationType } from '@kiwicom/react-native-app-navigation';
+import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
 
 import AllHotelsMap from '../../map/allHotels/AllHotelsMap';

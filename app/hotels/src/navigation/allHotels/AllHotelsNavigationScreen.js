@@ -3,12 +3,9 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
-import { StyleSheet, AdaptableLayout } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
-import {
-  HeaderTitle,
-  type NavigationType,
-} from '@kiwicom/react-native-app-navigation';
+import { StyleSheet, AdaptableLayout } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
+import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import AllHotels from '../../allHotels/AllHotels';
 import AllHotelsMap from '../../map/allHotels/AllHotelsMap';

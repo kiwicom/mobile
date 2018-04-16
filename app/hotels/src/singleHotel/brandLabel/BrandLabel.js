@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, Image } from 'react-native';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import brandImage from './bookingLogo.png';
 

@@ -10,11 +10,8 @@ import {
   AdaptableBadge,
   Text,
   Touchable,
-} from '@kiwicom/react-native-app-shared';
-import {
-  Translation,
-  TranslationFragment,
-} from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-shared';
+import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
 

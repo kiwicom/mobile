@@ -4,8 +4,8 @@ import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { graphql } from 'react-relay';
-import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import { StyleSheet } from '@kiwicom/react-native-app-shared';
+import { PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import MapView from './MapView';

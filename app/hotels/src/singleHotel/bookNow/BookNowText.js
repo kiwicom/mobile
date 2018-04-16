@@ -6,8 +6,8 @@ import {
   StyleSheet,
   ButtonText,
   type StylePropType,
-} from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+} from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 const styles = StyleSheet.create({
   priceWrapper: {

@@ -7,7 +7,7 @@ import {
   SimpleCard,
   StyleSheet,
   AdaptableLayout,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
 
 import RoomPicker from '../roomPicker/RoomPicker';

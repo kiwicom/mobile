@@ -3,13 +3,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql } from 'react-relay';
-import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
+import { PublicApiRenderer } from '@kiwicom/mobile-relay';
 import {
   StyleSheet,
   AdaptableLayout,
   AppStateChange,
-} from '@kiwicom/react-native-app-shared';
-import { connect } from '@kiwicom/react-native-app-redux';
+} from '@kiwicom/mobile-shared';
+import { connect } from '@kiwicom/mobile-redux';
 
 import MapScreen from './MapScreen';
 import FilterStripe from '../../filter/FilterStripe';

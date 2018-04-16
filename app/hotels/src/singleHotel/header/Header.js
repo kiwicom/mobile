@@ -10,10 +10,10 @@ import {
   Touchable,
   AdaptableLayout,
   Device,
-} from '@kiwicom/react-native-app-shared';
+} from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 import Rating from './Rating';

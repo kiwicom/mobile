@@ -2,12 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { DateFormatter } from '@kiwicom/react-native-app-localization';
-import {
-  DatePicker,
-  StyleSheet,
-  TextIcon,
-} from '@kiwicom/react-native-app-shared';
+import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DatePicker, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 
 import type { OnChangeSearchParams } from './SearchParametersType';
 

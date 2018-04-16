@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { NetworkImage, Touchable } from '@kiwicom/react-native-app-shared';
+import { NetworkImage, Touchable } from '@kiwicom/mobile-shared';
 
 type Props = {|
   onTilePress: (imageIndex: number) => void,

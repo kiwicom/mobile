@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { connect } from '@kiwicom/react-native-app-redux';
-import { LinkButton } from '@kiwicom/react-native-app-shared';
-import { Translation } from '@kiwicom/react-native-app-localization';
+import { connect } from '@kiwicom/mobile-redux';
+import { LinkButton } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   onLogout: () => void,
