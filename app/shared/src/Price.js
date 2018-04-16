@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import CurrencyFormatter from './currency/CurrencyFormatter';
 import Text from './Text';

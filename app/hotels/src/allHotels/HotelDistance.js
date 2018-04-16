@@ -4,7 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 import { StyleSheet, Text, Color } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import type { HotelDistance_hotel } from './__generated__/HotelDistance_hotel.graphql';
 

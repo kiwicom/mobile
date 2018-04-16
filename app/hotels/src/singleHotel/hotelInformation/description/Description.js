@@ -11,7 +11,7 @@ import {
   AdaptableLayout,
   ReadMore,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 import Facilities from './Facilities';

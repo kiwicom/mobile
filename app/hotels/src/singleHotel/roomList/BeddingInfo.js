@@ -10,7 +10,7 @@ import {
   Icon,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 import idx from 'idx';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';

@@ -8,7 +8,7 @@ import {
   Icon,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 const styles = StyleSheet.create({
   locationButton: {

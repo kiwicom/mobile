@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { connect } from '@kiwicom/react-native-app-redux';
 import { Icon, Color } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';

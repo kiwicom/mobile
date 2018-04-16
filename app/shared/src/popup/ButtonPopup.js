@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import type { TranslationType } from '@kiwicom/react-native-app-translations';
+import type { TranslationType } from '@kiwicom/react-native-app-localization';
 
 import Popup from './Popup';
 import Button from '../buttons/Button';

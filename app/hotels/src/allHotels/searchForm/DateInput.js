@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { DateFormatter } from '@kiwicom/react-native-app-translations';
+import { DateFormatter } from '@kiwicom/react-native-app-localization';
 import {
   DatePicker,
   StyleSheet,

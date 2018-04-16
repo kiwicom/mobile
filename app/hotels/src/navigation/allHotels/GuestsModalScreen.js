@@ -11,7 +11,7 @@ import {
   StyleSheet,
   Color,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 import { connect } from '@kiwicom/react-native-app-redux';
 
 import type { HotelsReducerState } from '../../HotelsReducer';

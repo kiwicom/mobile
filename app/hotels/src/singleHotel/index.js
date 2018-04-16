@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/react-native-app-relay';
-import { MapLocaleToLanguageQuery } from '@kiwicom/react-native-app-translations';
+import { MapLocaleToLanguageQuery } from '@kiwicom/react-native-app-localization';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';

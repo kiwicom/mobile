@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import Translation, {
+import {
+  Translation,
   DateFormatter,
-} from '@kiwicom/react-native-app-translations';
+} from '@kiwicom/react-native-app-localization';
 
 type Props = {|
   dateTime: ?string,

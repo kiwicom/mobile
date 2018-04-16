@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Touchable } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import StyleSheet from '../PlatformStyleSheet';
 import Color from '../Color';

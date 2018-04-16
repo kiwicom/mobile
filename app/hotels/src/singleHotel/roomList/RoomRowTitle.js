@@ -8,7 +8,7 @@ import {
   Color,
 } from '@kiwicom/react-native-app-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 import idx from 'idx';
 
 import type { RoomRowTitle_room as RoomRowTitleType } from './__generated__/RoomRowTitle_room.graphql';
