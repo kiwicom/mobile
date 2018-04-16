@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { PlaygroundRenderer } from '@kiwicom/react-native-app-playground';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import SimpleCard from '../SimpleCard';
 

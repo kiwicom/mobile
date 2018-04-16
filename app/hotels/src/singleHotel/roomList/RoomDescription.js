@@ -10,7 +10,7 @@ import {
   Color,
   ReadMore,
 } from '@kiwicom/react-native-app-shared';
-import Translation from '@kiwicom/react-native-app-translations';
+import { Translation } from '@kiwicom/react-native-app-localization';
 
 import type { RoomDescription_room as RoomDescriptionType } from './__generated__/RoomDescription_room.graphql';
 

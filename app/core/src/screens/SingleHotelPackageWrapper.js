@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { SingleHotelStandalonePackage } from '@kiwicom/react-native-app-hotels';
 import { type NavigationType } from '@kiwicom/react-native-app-navigation';
-import { DateFormatter } from '@kiwicom/react-native-app-translations';
+import { DateFormatter } from '@kiwicom/react-native-app-localization';
 
 import Config from '../../config/application';
 
