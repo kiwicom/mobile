@@ -13,20 +13,45 @@ type Props = {|
   style?: StylePropType,
 |};
 
+type State = {|
+  formattedCurrency: string,
+|};
+
 /**
  * Currently we are not doing proper formatting because we do not have enough
  * information about currencies being before/after the amount number. However,
  * all prices should be wrapped in this component so the future changes are easy.
  */
-export default function Price(props: Props) {
-  const amount =
-    props.amount != null && props.currency != null
-      ? CurrencyFormatter(props.amount, props.currency)
-      : '';
+export default class Price extends React.Component<Props, State> {
+  state = {
+    formattedCurrency: '',
+  };
 
-  return (
-    <Text style={props.style}>
-      <Translation passThrough={amount} />
-    </Text>
-  );
+  componentDidMount = () => {
+    this.formatCurrency();
+  };
+
+  componentDidUpdate = (prevProps: Props) => {
+    if (prevProps.amount !== this.props.amount) {
+      this.formatCurrency();
+    }
+  };
+
+  formatCurrency = async () => {
+    if (this.props.amount != null && this.props.currency != null) {
+      const formattedCurrency = await CurrencyFormatter(
+        this.props.amount,
+        this.props.currency,
+      );
+      this.setState({ formattedCurrency });
+    }
+  };
+
+  render = () => {
+    return (
+      <Text style={this.props.style}>
+        <Translation passThrough={this.state.formattedCurrency} />
+      </Text>
+    );
+  };
 }

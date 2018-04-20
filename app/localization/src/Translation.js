@@ -25,6 +25,10 @@ type Props =
       ...CommonProps,
     |};
 
+type State = {|
+  translatedString: string,
+|};
+
 /**
  * Regular translation using registered keys:
  *
@@ -46,9 +50,38 @@ type Props =
  * <Translation id="SingleHotel.Rating.Stars" textTransform="uppercase" />
  * ```
  */
-export default class Translation extends React.Component<Props> {
+export default class Translation extends React.Component<Props, State> {
   // use this property to highlight translations for screenshoting or debugging
   highlightTranslations = false;
+  state = {
+    translatedString: '',
+  };
+
+  componentDidMount = () => {
+    this.setTranslatedString();
+  };
+
+  setTranslatedString = async () => {
+    if (this.props.id) {
+      const key = this.props.id;
+      const nativeKey = 'mobile.' + key;
+      let translatedString = await NativeModules.RNTranslationManager.translateAsync(
+        nativeKey,
+      );
+      if (translatedString === nativeKey) {
+        // fallback to our dummy vocabulary because native code didn't provide translation
+        translatedString = DefaultVocabulary[key];
+      }
+
+      if (translatedString === undefined) {
+        // Everything failed - native translation even our fallback. This usually
+        // means we are using key that does not exist. In this case the only thing
+        // we can actually do is to use original key as a text.
+        translatedString = key;
+      }
+      this.setState({ translatedString });
+    }
+  };
 
   replaceValues = (text: string, values?: Object): string => {
     const VARIABLE_REGEX = /__([0-9]+_)?([a-zA-Z-_]+)__/g;
@@ -83,30 +116,12 @@ export default class Translation extends React.Component<Props> {
       );
     }
 
-    const key = this.props.id;
-    const nativeKey = 'mobile.' + key;
-    let translatedString = NativeModules.RNTranslationManager.translate(
-      nativeKey,
-    );
-
-    if (translatedString === nativeKey) {
-      // fallback to our dummy vocabulary because native code didn't provide translation
-      translatedString = DefaultVocabulary[key];
-    }
-
-    if (translatedString === undefined) {
-      // Everything failed - native translation even our fallback. This usually
-      // means we are using key that does not exist. In this case the only thing
-      // we can actually do is to use original key as a text.
-      translatedString = key;
-    }
-
     const values = this.props.values || {};
     return (
       <Text style={containerStyle}>
         {/* $FlowExpectedError: we do not allow to use 'string' in the 'Text' components but translations are exceptions. */}
         {CaseTransform(
-          this.replaceValues(translatedString, values),
+          this.replaceValues(this.state.translatedString, values),
           this.props.textTransform,
         )}
       </Text>

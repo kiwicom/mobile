@@ -12,9 +12,9 @@ beforeEach(() => {
   });
 });
 
-it('should call NativeModules.RNTranslationManager.translate with the key parameter', () => {
-  Component.render();
-  expect(NativeModules.RNTranslationManager.translate).toBeCalledWith(
+it('should call NativeModules.RNTranslationManager.translateAsync with the key parameter', async () => {
+  await Component.componentDidMount();
+  expect(NativeModules.RNTranslationManager.translateAsync).toBeCalledWith(
     'mobile.test.key',
   );
 });
