@@ -23,7 +23,7 @@ export const getSearchQueryParams = (
   cityId: string | null,
   location: string,
 ): Object => {
-  let params = {
+  let params: Object = {
     ...search,
     checkin: sanitizeDate(search.checkin),
     checkout: sanitizeDate(search.checkout),
