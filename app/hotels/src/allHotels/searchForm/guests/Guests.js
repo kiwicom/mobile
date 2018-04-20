@@ -25,14 +25,11 @@ export const ButtonTitle = ({
   adultsCount: number,
   childrenCount: number,
 }) => {
-  const childrenStyle = {
-    color: Color.grey.$400,
-  };
   return (
     <Text>
       <Translation id="hotels_search.guests.adults" />
       <Translation passThrough={` ${adultsCount}`} />
-      <Text style={childrenStyle}>
+      <Text style={childrenCount > 0 ? null : buttonStyles.childrenStyle}>
         <Translation passThrough=" ⋅ " />
         <Translation id="hotels_search.guests.children" />
         <Translation passThrough={` ${childrenCount}`} />
@@ -78,5 +75,8 @@ const buttonStyles = StyleSheet.create({
   },
   icon: {
     marginRight: 8,
+  },
+  childrenStyle: {
+    color: Color.grey.$400,
   },
 });

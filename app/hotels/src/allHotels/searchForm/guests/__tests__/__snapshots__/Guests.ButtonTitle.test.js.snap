@@ -37,11 +37,7 @@ exports[`renders correctly with more adults and children 1`] = `
     passThrough=" 5"
   />
   <Text
-    style={
-      Object {
-        "color": "#bdbdbd",
-      }
-    }
+    style={null}
   >
     <Translation
       passThrough=" ⋅ "
@@ -93,11 +89,7 @@ exports[`renders correctly with one child and zero adults 1`] = `
     passThrough=" 0"
   />
   <Text
-    style={
-      Object {
-        "color": "#bdbdbd",
-      }
-    }
+    style={null}
   >
     <Translation
       passThrough=" ⋅ "
