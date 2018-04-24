@@ -4,9 +4,8 @@ import * as React from 'react';
 import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
 import { Touchable, Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { connect } from '@kiwicom/mobile-redux';
 
-import type { HotelsReducerState } from '../../HotelsReducer';
+import HotelsSearchContext from '../../HotelsSearchContext';
 import type {
   RoomConfigurationType as Guests,
   OnChangeSearchParams,
@@ -30,68 +29,27 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
-  navigation: NavigationType,
+type PropsWithContext = {
+  ...Props,
   guests: Guests,
   searchChange: (search: OnChangeSearchParams) => void,
-|};
-
-type NavigationProps = {|
-  navigation: NavigationType,
-|};
+};
 
 type State = {|
   guests: UnsavedRoomConfigurationType,
   isMissingAge: boolean,
 |};
 
-export class GuestsModalScreen extends React.Component<Props, State> {
+export class GuestsModalScreen extends React.Component<
+  PropsWithContext,
+  State,
+> {
   state = {
     guests: {
       adultsCount: 0,
       children: [],
     },
     isMissingAge: false,
-  };
-
-  static navigationOptions = ({ navigation }: NavigationProps) => {
-    function goBack() {
-      navigation.goBack();
-    }
-
-    function onSave() {
-      navigation.state.params.onSave();
-    }
-
-    return {
-      headerLeft: (
-        <Touchable
-          borderlessRipple={true}
-          onPress={goBack}
-          style={styles.headerButton}
-        >
-          <Text style={styles.headerButtonText}>
-            <Translation id="hotels_search.guests_modal.close" />
-          </Text>
-        </Touchable>
-      ),
-      title: (
-        <HeaderTitle>
-          <Translation id="hotels_search.guests_modal.header" />
-        </HeaderTitle>
-      ),
-      headerRight: (
-        <Touchable
-          borderlessRipple={true}
-          onPress={onSave}
-          style={styles.headerButton}
-        >
-          <Text style={[styles.headerButtonText, styles.saveButtonText]}>
-            <Translation id="hotels_search.guests_modal.save" />
-          </Text>
-        </Touchable>
-      ),
-    };
   };
 
   componentDidMount = () => {
@@ -165,16 +123,62 @@ export class GuestsModalScreen extends React.Component<Props, State> {
   );
 }
 
-const select = ({ hotels }: { hotels: HotelsReducerState }) => ({
-  guests: hotels.searchParams.roomsConfiguration,
-});
+type Props = {|
+  navigation: NavigationType,
+|};
 
-const action = dispatch => ({
-  searchChange: (search: OnChangeSearchParams) =>
-    dispatch({
-      type: 'setSearch',
-      search,
-    }),
-});
+export default class GuestsModalScreenWithContext extends React.Component<
+  Props,
+> {
+  static navigationOptions = ({ navigation }: Props) => {
+    function goBack() {
+      navigation.goBack();
+    }
 
-export default connect(select, action)(GuestsModalScreen);
+    function onSave() {
+      navigation.state.params.onSave();
+    }
+
+    return {
+      headerLeft: (
+        <Touchable
+          borderlessRipple={true}
+          onPress={goBack}
+          style={styles.headerButton}
+        >
+          <Text style={styles.headerButtonText}>
+            <Translation id="hotels_search.guests_modal.close" />
+          </Text>
+        </Touchable>
+      ),
+      title: (
+        <HeaderTitle>
+          <Translation id="hotels_search.guests_modal.header" />
+        </HeaderTitle>
+      ),
+      headerRight: (
+        <Touchable
+          borderlessRipple={true}
+          onPress={onSave}
+          style={styles.headerButton}
+        >
+          <Text style={[styles.headerButtonText, styles.saveButtonText]}>
+            <Translation id="hotels_search.guests_modal.save" />
+          </Text>
+        </Touchable>
+      ),
+    };
+  };
+
+  render = () => (
+    <HotelsSearchContext.Consumer>
+      {({ searchParams, actions }) => (
+        <GuestsModalScreen
+          {...this.props}
+          guests={searchParams.roomsConfiguration}
+          searchChange={actions.setSearch}
+        />
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}

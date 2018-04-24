@@ -5,7 +5,6 @@
   "dependencies": {
     "@kiwicom/react-native-app-hotels": "^0",
     "@kiwicom/mobile-navigation": "^0",
-    "@kiwicom/mobile-redux": "^0",
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0"
   }

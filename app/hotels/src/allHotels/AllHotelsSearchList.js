@@ -5,26 +5,26 @@ import idx from 'idx';
 import { createPaginationContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
 import { Logger, GeneralError } from '@kiwicom/mobile-shared';
-import { connect } from '@kiwicom/mobile-redux';
 import type { RelayPaginationProp } from '@kiwicom/mobile-relay';
 
+import HotelsSearchContext from '../HotelsSearchContext';
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import LoadMoreButton from './LoadMoreButton';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList_data.graphql';
-import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 
-type Props = {|
-  openSingleHotel: (id: string) => void,
-  data: AllHotelsSearchListProps,
+type PropsWithContext = {
+  ...Props,
   setCurrentSearchStats: (currentSearchStats: Object) => void,
-  relay: RelayPaginationProp,
-|};
+};
 
 type State = {|
   isLoading: boolean,
 |};
 
-export class AllHotelsSearchList extends React.Component<Props, State> {
+export class AllHotelsSearchList extends React.Component<
+  PropsWithContext,
+  State,
+> {
   state = {
     isLoading: false,
   };
@@ -89,16 +89,27 @@ export class AllHotelsSearchList extends React.Component<Props, State> {
   };
 }
 
-const actions = dispatch => ({
-  setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) =>
-    dispatch({
-      type: 'setCurrentSearchStats',
-      currentSearchStats,
-    }),
-});
+type Props = {|
+  openSingleHotel: (id: string) => void,
+  data: AllHotelsSearchListProps,
+  relay: RelayPaginationProp,
+|};
+
+function AllHotelsSearchListWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ actions }) => (
+        <AllHotelsSearchList
+          {...props}
+          setCurrentSearchStats={actions.setCurrentSearchStats}
+        />
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}
 
 export default createPaginationContainer(
-  connect(null, actions)(AllHotelsSearchList),
+  AllHotelsSearchListWithContext,
   {
     data: graphql`
       fragment AllHotelsSearchList_data on RootQuery {

@@ -7,7 +7,6 @@ import { View } from 'react-native';
 import DateInput from './DateInput';
 import Guests from './guests/Guests';
 import type {
-  RoomConfigurationType,
   SearchParams,
   OnChangeSearchParams,
 } from './SearchParametersType';
@@ -45,10 +44,6 @@ type Props = {|
 export default class SearchForm extends React.Component<Props> {
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_SEARCH_FORM);
-  };
-
-  handleGuestsChange = (roomsConfiguration: RoomConfigurationType) => {
-    this.props.onChange({ roomsConfiguration });
   };
 
   render = () => {
