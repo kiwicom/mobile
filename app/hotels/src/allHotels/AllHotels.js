@@ -6,7 +6,6 @@ import idx from 'idx';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { Layout, AppStateChange, StyleSheet } from '@kiwicom/mobile-shared';
-import { connect } from '@kiwicom/mobile-redux';
 
 import AllHotelsSearch from './AllHotelsSearch';
 import SearchForm from './searchForm/SearchForm';
@@ -21,11 +20,11 @@ import type {
 } from '../filter/FilterParametersType';
 import type { AllHotels_cityLookup_QueryResponse } from './__generated__/AllHotels_cityLookup_Query.graphql';
 import GeneralError from '../../../shared/src/errors/GeneralError';
-import type { HotelsReducerState } from '../HotelsReducer';
-import type { FilterReducerState } from '../filter/FiltersReducer';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 import type { Coordinates } from '../CoordinatesType';
 import { updateCheckinDateIfBeforeToday } from '../search/SearchQueryHelpers';
+import HotelsSearchContext from '../HotelsSearchContext';
+import HotelsFilterContext from '../HotelsFilterContext';
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
@@ -33,35 +32,27 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
-  onSearchChange: OnChangeSearchParams => void,
-  onLocationChange: (location: string) => void,
-  onFilterChange: OnChangeFilterParams => void,
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  openLocationPicker: (location: string | null) => void,
-  openGuestsModal: () => void,
-  search: SearchParams,
-  coordinates: Coordinates | null,
+type PropsWithContext = {
+  ...Props,
   location: string,
-  filter: FilterParams,
-  currency: string,
   cityId: string | null,
-|};
+  search: SearchParams,
+  filter: FilterParams,
+  setSearch: OnChangeSearchParams => void,
+  setFilter: OnChangeFilterParams => void,
+};
 
 /**
  * We need to lookup city ID first and only after that we can search for all
  * hotels. This is why we use two nested query renderers.
  */
-class AllHotels extends React.Component<Props> {
+class AllHotels extends React.Component<PropsWithContext> {
   componentDidMount = () => {
     this.validateCheckinDate();
   };
 
   validateCheckinDate = () => {
-    updateCheckinDateIfBeforeToday(
-      this.props.search,
-      this.props.onSearchChange,
-    );
+    updateCheckinDateIfBeforeToday(this.props.search, this.props.setSearch);
   };
 
   openLocationPicker = () => {
@@ -75,6 +66,7 @@ class AllHotels extends React.Component<Props> {
     if (cityId === null) {
       return <GeneralError errorMessage="Cannot find such city." />;
     }
+
     return (
       <AllHotelsSearch
         {...rendererProps}
@@ -98,7 +90,7 @@ class AllHotels extends React.Component<Props> {
           onScroll={Keyboard.dismiss}
         >
           <SearchForm
-            onChange={this.props.onSearchChange}
+            onChange={this.props.setSearch}
             search={this.props.search}
             location={this.props.location}
             openLocationPicker={this.openLocationPicker}
@@ -106,7 +98,7 @@ class AllHotels extends React.Component<Props> {
           />
           <FilterStripe
             filter={this.props.filter}
-            onChange={this.props.onFilterChange}
+            onChange={this.props.setFilter}
             currency={this.props.currency}
           />
           {this.props.cityId ? (
@@ -141,40 +133,32 @@ class AllHotels extends React.Component<Props> {
   );
 }
 
-const select = ({
-  hotels,
-  filters,
-}: {
-  hotels: HotelsReducerState,
-  filters: FilterReducerState,
-}) => ({
-  location: hotels.location,
-  cityId: hotels.cityId,
-  search: hotels.searchParams,
-  filter: filters.filterParams,
-});
+type Props = {|
+  currency: string,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  coordinates: Coordinates | null,
+  openLocationPicker: (location: string | null) => void,
+  openGuestsModal: () => void,
+|};
 
-const actions = dispatch => ({
-  onSearchChange: search =>
-    dispatch({
-      type: 'setSearch',
-      search,
-    }),
-  onLocationChange: (location: string) =>
-    dispatch({
-      type: 'setLocation',
-      location,
-    }),
-  onCityIdChange: (cityId: string | null) =>
-    dispatch({
-      type: 'setCityId',
-      cityId,
-    }),
-  onFilterChange: filter =>
-    dispatch({
-      type: 'filtersReducer/FILTER_CHANGED',
-      filter,
-    }),
-});
-
-export default connect(select, actions)(AllHotels);
+export default function AllHotelsWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ location, cityId, searchParams, actions: { setSearch } }) => (
+        <HotelsFilterContext.Consumer>
+          {({ filterParams, actions: { setFilter } }) => (
+            <AllHotels
+              {...props}
+              location={location}
+              cityId={cityId}
+              search={searchParams}
+              filter={filterParams}
+              setSearch={setSearch}
+              setFilter={setFilter}
+            />
+          )}
+        </HotelsFilterContext.Consumer>
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}
