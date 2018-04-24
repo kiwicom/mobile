@@ -1,6 +1,14 @@
 // @flow
 
-import { Environment, Network, RecordSource, Store } from 'relay-runtime';
+import {
+  Environment,
+  Network,
+  RecordSource,
+  Store,
+  type GraphQLResponse,
+  type ConcreteOperation,
+  type Variables,
+} from 'relay-runtime';
 
 type GraphQLError = {|
   message: string,
@@ -13,6 +21,14 @@ type GraphQLError = {|
     statusCode: number,
     url: string,
   |},
+|};
+
+// Copied from https://github.com/facebook/relay/blob/master/packages/relay-runtime/network/RelayNetworkTypes.js#L58
+type ExecutePayload = {|
+  operation: ConcreteOperation,
+  variables: Variables,
+  response: GraphQLResponse,
+  isOptimistic?: boolean,
 |};
 
 export default function createEnvironment(
@@ -54,7 +70,7 @@ export default function createEnvironment(
 /**
  * This environment is workaround for: https://github.com/facebook/relay/issues/1913
  */
-class PartialErrorsEnvironment extends Environment {
+export class PartialErrorsEnvironment extends Environment {
   onPartialError: GraphQLError => void;
 
   constructor(config: Object, onPartialError: GraphQLError => void) {
@@ -62,13 +78,15 @@ class PartialErrorsEnvironment extends Environment {
     this.onPartialError = onPartialError;
   }
 
+  executePayload = (executePayload: ExecutePayload) => {
+    if (executePayload.response.errors) {
+      executePayload.response.errors.map(error => this.onPartialError(error));
+    }
+  };
+
   execute = (executeConfig: Object) => {
     return super.execute(executeConfig).do({
-      next: executePayload => {
-        if (executePayload.errors) {
-          executePayload.errors.map(error => this.onPartialError(error));
-        }
-      },
+      next: this.executePayload,
     });
   };
 }
