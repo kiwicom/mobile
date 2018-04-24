@@ -29,6 +29,7 @@ export type AllHotelsSearchList_data = {|
       +priceMax: ?number,
       +priceMin: ?number,
     |},
+    +cityName: ?string,
   |},
   +$refType: AllHotelsSearchList_data$ref,
 |};
@@ -218,10 +219,17 @@ const node/*: ConcreteFragment*/ = {
               "storageKey": null
             }
           ]
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "cityName",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
-(node/*: any*/).hash = '99fe3b8292a859d58f85a6a7a3267e3f';
+(node/*: any*/).hash = 'bce95f72d27143e7096439904684d32d';
 module.exports = node;

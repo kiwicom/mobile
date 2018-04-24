@@ -7,7 +7,7 @@ import { AllHotelsSearchList } from '../AllHotelsSearchList';
 
 const renderer = new ShallowRenderer();
 const voidCallback = () => {};
-
+const setLocation = jest.fn();
 const relay = {
   hasMore: jest.fn(),
   loadMore: jest.fn(),
@@ -43,6 +43,7 @@ it('renders found hotels', () => {
       openSingleHotel={voidCallback}
       setCurrentSearchStats={jest.fn()}
       relay={relay}
+      setLocation={setLocation}
     />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
@@ -63,6 +64,7 @@ it('renders a "not found" message when no hotel is found', () => {
       openSingleHotel={voidCallback}
       setCurrentSearchStats={jest.fn()}
       relay={relay}
+      setLocation={setLocation}
     />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
@@ -83,6 +85,7 @@ it('renders a "not found" message when data is missing', () => {
       openSingleHotel={voidCallback}
       setCurrentSearchStats={jest.fn()}
       relay={relay}
+      setLocation={setLocation}
     />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
