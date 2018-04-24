@@ -20,8 +20,7 @@ export const hasCoordinates = (coordinates: Coordinates | null): boolean => {
 export const getSearchQueryParams = (
   search: SearchParams,
   coordinates: Coordinates | null,
-  cityId: string | null,
-  location: string,
+  cityId: ?string,
 ): Object => {
   let params: Object = {
     ...search,
@@ -29,15 +28,11 @@ export const getSearchQueryParams = (
     checkout: sanitizeDate(search.checkout),
   };
 
-  /**
-   * If location is not equal to '' then user is searching
-   * and we should ignore coordinates
-   */
-  if (hasCoordinates(coordinates) && location === '') {
+  if (cityId) {
+    params.cityId = cityId;
+  } else if (hasCoordinates(coordinates)) {
     params.latitude = idx(coordinates, _ => _.latitude);
     params.longitude = idx(coordinates, _ => _.longitude);
-  } else if (cityId) {
-    params.cityId = cityId;
   }
 
   return params;
