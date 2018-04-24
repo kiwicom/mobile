@@ -13,6 +13,8 @@ type Props = {|
   dataSaverEnabled: boolean,
   onBackClicked: () => void,
   coordinates: Coordinates | null,
+  checkin?: string,
+  checkout?: string,
 |};
 
 export default class HotelsStandalonePackage extends React.Component<Props> {

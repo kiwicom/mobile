@@ -7,6 +7,7 @@ import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { Layout, AppStateChange, StyleSheet } from '@kiwicom/mobile-shared';
 import { connect } from '@kiwicom/mobile-redux';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import AllHotelsSearch from './AllHotelsSearch';
 import SearchForm from './searchForm/SearchForm';
@@ -25,7 +26,10 @@ import type { HotelsReducerState } from '../HotelsReducer';
 import type { FilterReducerState } from '../filter/FiltersReducer';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 import type { Coordinates } from '../CoordinatesType';
-import { updateCheckinDateIfBeforeToday } from '../search/SearchQueryHelpers';
+import {
+  updateCheckinDateIfBeforeToday,
+  isDateBeforeToday,
+} from '../search/SearchQueryHelpers';
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
@@ -40,21 +44,39 @@ type Props = {|
   openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
   openLocationPicker: (location: string | null) => void,
   openGuestsModal: () => void,
+  onCityIdChange: (cityId: string | null) => void,
   search: SearchParams,
   coordinates: Coordinates | null,
   location: string,
   filter: FilterParams,
   currency: string,
   cityId: string | null,
+  checkin?: string,
+  checkout?: string,
 |};
 
 /**
  * We need to lookup city ID first and only after that we can search for all
  * hotels. This is why we use two nested query renderers.
  */
-class AllHotels extends React.Component<Props> {
+export class AllHotels extends React.Component<Props> {
   componentDidMount = () => {
-    this.validateCheckinDate();
+    const { checkin, checkout, search } = this.props;
+
+    if (checkin && checkout && !isDateBeforeToday(DateFormatter(checkin))) {
+      this.props.onSearchChange({
+        ...search,
+        checkin: DateFormatter(checkin).toDate(),
+        checkout: DateFormatter(checkout).toDate(),
+      });
+    } else {
+      this.validateCheckinDate();
+    }
+  };
+
+  componentWillUnmount = () => {
+    this.props.onLocationChange('');
+    this.props.onCityIdChange(null);
   };
 
   validateCheckinDate = () => {

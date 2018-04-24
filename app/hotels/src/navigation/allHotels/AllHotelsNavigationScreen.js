@@ -17,6 +17,8 @@ type ContainerProps = {|
   navigation: NavigationType,
   currency: string,
   coordinates: Coordinates | null,
+  checkin?: string,
+  checkout?: string,
 |};
 
 type NavigationProps = {|
@@ -95,6 +97,8 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       coordinates={this.props.coordinates}
       openLocationPicker={this.openLocationPicker}
       openGuestsModal={this.openGuestsModal}
+      checkin={this.props.checkin}
+      checkout={this.props.checkout}
     />
   );
 
