@@ -15,6 +15,7 @@ import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__genera
 type PropsWithContext = {
   ...Props,
   setCurrentSearchStats: (currentSearchStats: Object) => void,
+  setLocation: (location: string) => void,
 };
 
 type State = {|
@@ -36,9 +37,14 @@ export class AllHotelsSearchList extends React.Component<
       this.props,
       _ => _.data.allAvailableHotels.stats,
     );
+    const cityName = idx(this.props.data, _ => _.allAvailableHotels.cityName);
 
     if (currentSearchStats && currentSearchStats.priceMax) {
       this.props.setCurrentSearchStats(currentSearchStats);
+    }
+
+    if (cityName) {
+      this.props.setLocation(cityName);
     }
   };
 
@@ -102,6 +108,7 @@ function AllHotelsSearchListWithContext(props: Props) {
         <AllHotelsSearchList
           {...props}
           setCurrentSearchStats={actions.setCurrentSearchStats}
+          setLocation={actions.setLocation}
         />
       )}
     </HotelsSearchContext.Consumer>
@@ -136,6 +143,7 @@ export default createPaginationContainer(
             priceMax
             priceMin
           }
+          cityName
         }
       }
     `,
