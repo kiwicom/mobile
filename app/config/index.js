@@ -1,3 +1,3 @@
 // @flow
 
-export { default as ConfigReducer } from './ConfigReducer';
+export { default as ConfigContext } from './ConfigContext';

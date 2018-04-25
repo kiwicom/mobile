@@ -1,6 +1,6 @@
 // @flow
 
-export type CurrentSearchStats = {
+export type CurrentSearchStats = {|
   priceMax: number,
   priceMin: number,
-};
+|};

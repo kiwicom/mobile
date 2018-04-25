@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import Image from 'react-native-image-progress';
-import { connect } from '@kiwicom/mobile-redux';
 import type { StylePropType } from '@kiwicom/mobile-shared';
+import { ConfigContext } from '@kiwicom/mobile-config';
 
 import MissingImage from './MissingImage';
 import IconLoading from '../loaders/IconLoading';
@@ -42,8 +42,12 @@ export const NetworkImage = function NetworkImage(imageProps: Props) {
   return <Image {...newProps} />;
 };
 
-const select = ({ config }) => ({
-  dataSaverEnabled: config.dataSaverEnabled,
-});
-
-export default connect(select)(NetworkImage);
+export default function NetworkImageWithContext(props: Props) {
+  return (
+    <ConfigContext.Consumer>
+      {({ dataSaverEnabled }) => (
+        <NetworkImage {...props} dataSaverEnabled={dataSaverEnabled} />
+      )}
+    </ConfigContext.Consumer>
+  );
+}

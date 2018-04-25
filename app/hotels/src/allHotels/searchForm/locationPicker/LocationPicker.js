@@ -10,10 +10,10 @@ import {
 } from '@kiwicom/mobile-shared';
 import { PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { graphql } from 'react-relay';
-import { connect } from '@kiwicom/mobile-redux';
 
 import RecentSearches from './RecentSearches';
 import SuggestionList from './SuggestionList';
+import HotelsSearchContext from '../../../HotelsSearchContext';
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
 
 const styles = StyleSheet.create({
@@ -41,19 +41,18 @@ export type Location = {|
   name: string,
 |};
 
-type Props = {|
+type PropsWithContext = {
+  ...Props,
+  onCitySelected: (cityId: string, cityName: string) => void,
   storageValue: Location[],
   saveToStorage: (value: any) => void,
-  onCitySelected: (cityId: string, cityName: string) => void,
-  location: ?string,
-  closeModal: () => void,
-|};
+};
 
 type State = {|
   search: string,
 |};
 
-export class LocationPicker extends React.Component<Props, State> {
+export class LocationPicker extends React.Component<PropsWithContext, State> {
   state = {
     search: '',
   };
@@ -127,15 +126,26 @@ export class LocationPicker extends React.Component<Props, State> {
   };
 }
 
-const action = dispatch => ({
-  onCitySelected: (cityId: string, cityName: string) =>
-    dispatch({
-      type: 'setLocationAndCityId',
-      cityId,
-      location: cityName,
-    }),
-});
+type Props = {|
+  location: ?string,
+  closeModal: () => void,
+|};
 
-export default connect(null, action)(
-  WithStorage(LocationPicker, RECENT_SEARCH_KEY, []),
+const LocationPickerWithStorage = WithStorage(
+  LocationPicker,
+  RECENT_SEARCH_KEY,
+  [],
 );
+
+export default function LocationPickerWithStorageAndWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ actions }) => (
+        <LocationPickerWithStorage
+          {...props}
+          onCitySelected={actions.setLocationAndCityId}
+        />
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}

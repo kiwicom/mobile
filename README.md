@@ -22,7 +22,6 @@ This is not an actual mobile application. This repository contains only React Na
   * [Error handling](#error-handling)
   * [Working with Playground](#working-with-playground)
   * [Working with GraphQL API](#working-with-graphql-api)
-  * [Working with Redux](#working-with-redux)
   * [Working with translations](#working-with-translations)
   * [Upgrading dependencies](#upgrading-dependencies)
 * [Known issues](#known-issues)
@@ -132,7 +131,6 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 │   │── core/                   - @kiwicom/mobile-core (core package)
 │   ├── hotels/                 - @kiwicom/react-native-app-hotels
 │   ├── navigation/             - @kiwicom/mobile-navigation
-│   ├── redux/                  - @kiwicom/mobile-redux
 │   └── relay/                  - @kiwicom/mobile-relay
 │   └── shared/                 - @kiwicom/mobile-shared (formerly common)
 ├── ios/                        - native code for iOS
@@ -304,33 +302,6 @@ Additional useful tools:
 
 - https://kiwi-graphiql.now.sh/ (introspection and docs)
 - https://kiwi-graphql-voyager.now.sh/ (graphical visualisation)
-
-### Working with Redux
-
-This application consists of independent packages so they can be reused or replaced in other applications (or included in iOS and Android codebase). Unfortunately, this makes Redux usage little bit complicated because Redux by default expects centralized state store but reducers for each individual package should be stored in the package itself. In order to use Redux store - all Redux reducers must be registered first. So if you want to use Redux in, let's say, `hotels` package you must first:
-
-1. install Redux dependency (called in the `hotels` package scope):
-
-```
-yarn add @kiwicom/mobile-redux
-```
-
-2. register reducers:
-
-```js
-import { injectAsyncReducer, store } from '@kiwicom/mobile-redux';
-import HotelsReducer from './src/HotelsReducer';
-
-injectAsyncReducer(store, 'hotels', HotelsReducer);
-```
-
-We currently **do not** officially support calling actions on reducers outside of one package. This means that you should always work with actions and reducers from `HotelReducer`. This should be in most of the scenarios good enough. You must use `connect` function from `@kiwicom/mobile-redux` package in order to connect React component to the Redux store:
-
-```js
-import { connect } from '@kiwicom/mobile-redux';
-
-export default connect(select, actions)(ComponentWithoutStore);
-```
 
 ### Working with translations
 

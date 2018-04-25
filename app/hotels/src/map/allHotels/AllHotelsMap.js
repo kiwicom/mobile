@@ -9,7 +9,6 @@ import {
   AdaptableLayout,
   AppStateChange,
 } from '@kiwicom/mobile-shared';
-import { connect } from '@kiwicom/mobile-redux';
 
 import MapScreen from './MapScreen';
 import FilterStripe from '../../filter/FilterStripe';
@@ -30,8 +29,8 @@ import {
   getSearchQueryParams,
   updateCheckinDateIfBeforeToday,
 } from '../../search/SearchQueryHelpers';
-import type { HotelsReducerState } from '../../HotelsReducer';
-import type { FilterReducerState } from '../../filter/FiltersReducer';
+import HotelsSearchContext from '../../HotelsSearchContext';
+import HotelsFilterContext from '../../HotelsFilterContext';
 
 const styles = StyleSheet.create({
   container: {
@@ -39,19 +38,17 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
+type PropsWithContext = {
+  ...Props,
   location: string,
   search: SearchParams,
   cityId: string | null,
   filter: FilterParams,
-  currency: string,
   onFilterChange: OnChangeFilterParams => void,
-  onGoToSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  coordinates: Coordinates | null,
   onSearchChange: OnChangeSearchParams => void,
-|};
+};
 
-class AllHotelsMap extends React.Component<Props> {
+class AllHotelsMap extends React.Component<PropsWithContext> {
   componentDidMount = () => {
     this.validateCheckinDate();
   };
@@ -145,30 +142,30 @@ class AllHotelsMap extends React.Component<Props> {
   };
 }
 
-const select = ({
-  hotels,
-  filters,
-}: {
-  hotels: HotelsReducerState,
-  filters: FilterReducerState,
-}) => ({
-  location: hotels.location,
-  search: hotels.searchParams,
-  cityId: hotels.cityId,
-  filter: filters.filterParams,
-});
+type Props = {|
+  currency: string,
+  onGoToSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  coordinates: Coordinates | null,
+|};
 
-const actions = dispatch => ({
-  onFilterChange: filter =>
-    dispatch({
-      type: 'filtersReducer/FILTER_CHANGED',
-      filter,
-    }),
-  onSearchChange: search =>
-    dispatch({
-      type: 'setSearch',
-      search,
-    }),
-});
-
-export default connect(select, actions)(AllHotelsMap);
+export default function AllHotelsMapWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ location, cityId, searchParams, actions: searchActions }) => (
+        <HotelsFilterContext.Consumer>
+          {({ filterParams, actions: filterActions }) => (
+            <AllHotelsMap
+              {...props}
+              location={location}
+              cityId={cityId}
+              search={searchParams}
+              filter={filterParams}
+              onFilterChange={filterActions.setFilter}
+              onSearchChange={searchActions.setSearch}
+            />
+          )}
+        </HotelsFilterContext.Consumer>
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}
