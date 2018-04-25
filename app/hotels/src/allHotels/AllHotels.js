@@ -22,9 +22,12 @@ import type { AllHotels_cityLookup_QueryResponse } from './__generated__/AllHote
 import GeneralError from '../../../shared/src/errors/GeneralError';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 import type { Coordinates } from '../CoordinatesType';
-import { updateCheckinDateIfBeforeToday } from '../search/SearchQueryHelpers';
 import HotelsSearchContext from '../HotelsSearchContext';
 import HotelsFilterContext from '../HotelsFilterContext';
+import {
+  updateCheckinDateIfBeforeToday,
+  isDateBeforeToday,
+} from '../search/SearchQueryHelpers';
 
 const styles = StyleSheet.create({
   scrollViewContainer: {
@@ -40,15 +43,30 @@ type PropsWithContext = {
   filter: FilterParams,
   setSearch: OnChangeSearchParams => void,
   setFilter: OnChangeFilterParams => void,
+  setCityIdAndLocation: (cityId: string | null, location: string) => void,
 };
 
 /**
  * We need to lookup city ID first and only after that we can search for all
  * hotels. This is why we use two nested query renderers.
  */
-class AllHotels extends React.Component<PropsWithContext> {
+export class AllHotels extends React.Component<PropsWithContext> {
   componentDidMount = () => {
-    this.validateCheckinDate();
+    const { checkin, checkout, search } = this.props;
+
+    if (checkin && checkout && !isDateBeforeToday(checkin)) {
+      this.props.setSearch({
+        ...search,
+        checkin: checkin,
+        checkout: checkout,
+      });
+    } else {
+      this.validateCheckinDate();
+    }
+  };
+
+  componentWillUnmount = () => {
+    this.props.setCityIdAndLocation(null, '');
   };
 
   validateCheckinDate = () => {
@@ -139,12 +157,19 @@ type Props = {|
   coordinates: Coordinates | null,
   openLocationPicker: (location: string | null) => void,
   openGuestsModal: () => void,
+  checkin: ?Date,
+  checkout: ?Date,
 |};
 
 export default function AllHotelsWithContext(props: Props) {
   return (
     <HotelsSearchContext.Consumer>
-      {({ location, cityId, searchParams, actions: { setSearch } }) => (
+      {({
+        location,
+        cityId,
+        searchParams,
+        actions: { setSearch, setCityIdAndLocation },
+      }) => (
         <HotelsFilterContext.Consumer>
           {({ filterParams, actions: { setFilter } }) => (
             <AllHotels
@@ -155,6 +180,7 @@ export default function AllHotelsWithContext(props: Props) {
               filter={filterParams}
               setSearch={setSearch}
               setFilter={setFilter}
+              setCityIdAndLocation={setCityIdAndLocation}
             />
           )}
         </HotelsFilterContext.Consumer>

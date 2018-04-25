@@ -143,7 +143,7 @@ export default function LocationPickerWithStorageAndWithContext(props: Props) {
       {({ actions }) => (
         <LocationPickerWithStorage
           {...props}
-          onCitySelected={actions.setLocationAndCityId}
+          onCitySelected={actions.setCityIdAndLocation}
         />
       )}
     </HotelsSearchContext.Consumer>
