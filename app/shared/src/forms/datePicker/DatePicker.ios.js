@@ -19,6 +19,8 @@ export default class DatePicker extends React.Component<Props, State> {
     date: new Date(),
   };
 
+  static getDerivedStateFromProps = ({ date }: Props) => ({ date });
+
   componentDidMount = () => {
     this.setState({ date: this.props.date });
   };

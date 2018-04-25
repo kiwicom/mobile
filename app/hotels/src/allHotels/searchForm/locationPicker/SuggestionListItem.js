@@ -12,7 +12,7 @@ type Props = {|
     id: string,
     name: ?string,
   },
-  onCitySelected: (cityId: string, cityName: ?string) => void,
+  onCitySelected: (cityId: string | null, cityName: ?string) => void,
   search: string,
 |};
 

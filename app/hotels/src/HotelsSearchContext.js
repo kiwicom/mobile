@@ -35,7 +35,7 @@ const InitialContextState = {
     setLocation: () => {},
     setCityId: () => {},
     setCurrentSearchStats: () => {},
-    setLocationAndCityId: () => {},
+    setCityIdAndLocation: () => {},
   },
 };
 
@@ -60,7 +60,7 @@ type State = {|
       priceMax: number,
       priceMin: number,
     |}) => void,
-    setLocationAndCityId: (string, string) => void,
+    setCityIdAndLocation: (string | null, string) => void,
   |},
 |};
 
@@ -92,7 +92,7 @@ class Provider extends React.Component<Props, State> {
     });
   };
 
-  setLocationAndCityId = (cityId: string, location: string) => {
+  setCityIdAndLocation = (cityId: string | null, location: string) => {
     this.setState({
       cityId,
       location,
@@ -106,7 +106,7 @@ class Provider extends React.Component<Props, State> {
       setLocation: this.setLocation,
       setCityId: this.setCityId,
       setCurrentSearchStats: this.setCurrentSearchStats,
-      setLocationAndCityId: this.setLocationAndCityId,
+      setCityIdAndLocation: this.setCityIdAndLocation,
     },
   };
 

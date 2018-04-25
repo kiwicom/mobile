@@ -12,6 +12,8 @@ type Props = {|
     latitude: number,
     longitude: number,
   |},
+  checkin?: string,
+  checkout?: string,
 |};
 
 export default class HotelsPackageWrapper extends React.Component<Props> {
@@ -29,6 +31,8 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
         onBackClicked={this.goToHomepage}
         dataSaverEnabled={false}
         coordinates={coordinates}
+        checkin={this.props.checkin}
+        checkout={this.props.checkout}
       />
     );
   };

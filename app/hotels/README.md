@@ -13,6 +13,9 @@ const render = () => <HotelsStandalonePackage
     latitude: 51.5,
     longitude: 0,
   }}
+   // checkin and checkout are optional props, pass with format "YYYY-MM-DD"
+  checkin="2018-12-01"
+  checkout="2018-12-05"
 />
 ```
 

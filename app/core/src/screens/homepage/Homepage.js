@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Button, Layout } from '@kiwicom/mobile-shared';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { Translation } from '@kiwicom/mobile-localization';
+import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 
 import Logout from '../../components/authentication/Logout';
 
@@ -60,6 +60,21 @@ export default class Homepage extends React.Component<Props> {
     });
   };
 
+  searchWithDates = () => {
+    this.props.navigation.navigate({
+      routeName: 'HotelsPackage',
+      key: 'key-HotelsPackage',
+      params: {
+        checkin: DateFormatter()
+          .add(30, 'days')
+          .format('YYYY-MM-DD'),
+        checkout: DateFormatter()
+          .add(36, 'days')
+          .format('YYYY-MM-DD'),
+      },
+    });
+  };
+
   render = () => {
     return (
       <Layout>
@@ -85,6 +100,14 @@ export default class Homepage extends React.Component<Props> {
           <Button
             title={<Translation passThrough="Go to single hotel" />}
             onPress={this.goToSingleHotel}
+          />
+        </Section>
+        <Section>
+          <Button
+            title={
+              <Translation passThrough="Search with checkin and checkout dates" />
+            }
+            onPress={this.searchWithDates}
           />
         </Section>
         <Section>
