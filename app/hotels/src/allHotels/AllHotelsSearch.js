@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { connect } from '@kiwicom/mobile-redux';
 
 import AllHotelsSearchList from './AllHotelsSearchList';
 import { handleOpenSingleHotel } from '../singleHotel';
@@ -14,21 +13,23 @@ import type { Coordinates } from '../CoordinatesType';
 import type { AllHotelsSearchQueryResponse } from './__generated__/AllHotelsSearchQuery.graphql';
 import type { FilterParams } from '../filter/FilterParametersType';
 import type { SearchParams } from './searchForm/SearchParametersType';
-import type { FilterReducerState } from '../filter/FiltersReducer';
-import type { HotelsReducerState } from '../HotelsReducer';
+import HotelsSearchContext from '../HotelsSearchContext';
+import HotelsFilterContext from '../HotelsFilterContext';
 
-type Props = {|
-  search: SearchParams,
+type PropsWithContext = {
+  // external:
   openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  onCityIdChange: (cityId: string | null) => void,
   cityId: string,
   coordinates: Coordinates | null,
+  currency: string,
+  // from context
+  search: SearchParams,
+  onCityIdChange: (cityId: string) => void,
   location: string,
   filter: FilterParams,
-  currency: string,
-|};
+};
 
-class AllHotelsSearch extends React.Component<Props> {
+class AllHotelsSearch extends React.Component<PropsWithContext> {
   handleOpenSingleHotel = (hotelId: string) => {
     handleOpenSingleHotel(
       hotelId,
@@ -91,24 +92,29 @@ class AllHotelsSearch extends React.Component<Props> {
   };
 }
 
-const select = ({
-  hotels,
-  filters,
-}: {
-  hotels: HotelsReducerState,
-  filters: FilterReducerState,
-}) => ({
-  location: hotels.location,
-  search: hotels.searchParams,
-  filter: filters.filterParams,
-});
+type Props = {
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  cityId: string,
+  coordinates: Coordinates | null,
+  currency: string,
+};
 
-const actions = dispatch => ({
-  onCityIdChange: (cityId: string | null) =>
-    dispatch({
-      type: 'setCityId',
-      cityId,
-    }),
-});
-
-export default connect(select, actions)(AllHotelsSearch);
+export default function AllHotelsSearchWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ location, searchParams, actions }) => (
+        <HotelsFilterContext.Consumer>
+          {({ filterParams }) => (
+            <AllHotelsSearch
+              {...props}
+              location={location}
+              search={searchParams}
+              filter={filterParams}
+              onCityIdChange={actions.setCityId}
+            />
+          )}
+        </HotelsFilterContext.Consumer>
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}

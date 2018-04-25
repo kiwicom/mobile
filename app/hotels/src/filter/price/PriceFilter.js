@@ -2,29 +2,25 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { connect } from '@kiwicom/mobile-redux';
 import { Icon, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
+import HotelsSearchContext from '../../HotelsSearchContext';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 import type { CurrentSearchStats } from '../../filter/CurrentSearchStatsType';
 
-type Props = {|
-  start: number | null,
-  end: number | null,
-  currency: string,
-  onChange: OnChangeFilterParams => void,
+type PropsWithContext = {
+  ...Props,
   currentSearchStats: CurrentSearchStats,
-  isActive: boolean,
-|};
+};
 
 type State = {|
   isPopupOpen: boolean,
 |};
 
-class PriceFilter extends React.Component<Props, State> {
+class PriceFilter extends React.Component<PropsWithContext, State> {
   state = {
     isPopupOpen: false,
   };
@@ -116,8 +112,20 @@ class PriceFilter extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => ({
-  currentSearchStats: state.hotels.currentSearchStats,
-});
+type Props = {|
+  start: number | null,
+  end: number | null,
+  currency: string,
+  onChange: OnChangeFilterParams => void,
+  isActive: boolean,
+|};
 
-export default connect(mapStateToProps)(PriceFilter);
+export default function PriceFilterWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ currentSearchStats }) => (
+        <PriceFilter {...props} currentSearchStats={currentSearchStats} />
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}

@@ -2,12 +2,11 @@
 
 import * as React from 'react';
 import { View, NativeModules } from 'react-native';
-import { ReduxContext } from '@kiwicom/mobile-redux';
-import { ConfigReducer } from '@kiwicom/mobile-config';
+import { ConfigContext } from '@kiwicom/mobile-config';
 import { Device, type OnLayout, StyleSheet } from '@kiwicom/mobile-shared';
 
-import FiltersReducer from '../filter/FiltersReducer';
-import HotelsReducer from '../HotelsReducer';
+import HotelsSearchContext from '../HotelsSearchContext';
+import HotelsFilterContext from '../HotelsFilterContext';
 
 const styles = StyleSheet.create({
   container: {
@@ -35,28 +34,15 @@ export default class RootComponent extends React.Component<Props> {
     }
   };
 
-  render = () => {
-    // This reducer is just a wrapper around 'ConfigReducer'. It basically sets
-    // default reducer values based on the 'props'.
-    const UpdatedConfigReducer = (
-      state = {
-        dataSaverEnabled: this.props.dataSaverEnabled,
-      },
-      action,
-    ) => ConfigReducer(state, action);
-
-    const reducers = {
-      config: UpdatedConfigReducer,
-      hotels: HotelsReducer,
-      filters: FiltersReducer,
-    };
-
-    return (
-      <ReduxContext reducers={reducers}>
-        <View style={styles.container} onLayout={this.emitDimensionChanges}>
-          {this.props.render(this.onBackClicked)}
-        </View>
-      </ReduxContext>
-    );
-  };
+  render = () => (
+    <ConfigContext.Provider dataSaverEnabled={this.props.dataSaverEnabled}>
+      <HotelsSearchContext.Provider>
+        <HotelsFilterContext.Provider>
+          <View style={styles.container} onLayout={this.emitDimensionChanges}>
+            {this.props.render(this.onBackClicked)}
+          </View>
+        </HotelsFilterContext.Provider>
+      </HotelsSearchContext.Provider>
+    </ConfigContext.Provider>
+  );
 }

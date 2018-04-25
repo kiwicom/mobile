@@ -6,7 +6,7 @@ import { HeaderBackButton } from 'react-navigation';
 
 import AllHotelsMap from '../../map/allHotels/AllHotelsMap';
 import type { Coordinates } from '../../CoordinatesType';
-import type { SearchParams } from '../../allHotels/searchForm/SearchParametersType';
+import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 
 type Props = {|
   navigation: NavigationType,
@@ -26,7 +26,7 @@ export default class AllHotelsMapNavigationScreen extends React.Component<
     };
   };
 
-  goToHotel = (searchParams: SearchParams) => {
+  goToHotel = (searchParams: AvailableHotelSearchInput) => {
     return this.props.navigation.navigate({
       routeName: 'SingleHotel',
       key: 'key-SingleHotel',

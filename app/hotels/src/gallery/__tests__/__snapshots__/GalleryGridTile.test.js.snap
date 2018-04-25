@@ -7,7 +7,7 @@ exports[`renders with marginRight if not last in the row 1`] = `
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
-  <Connect(NetworkImage)
+  <NetworkImageWithContext
     resizeMode="cover"
     source={
       Object {
@@ -33,7 +33,7 @@ exports[`renders without marginRight if last in the row 1`] = `
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
-  <Connect(NetworkImage)
+  <NetworkImageWithContext
     resizeMode="cover"
     source={
       Object {

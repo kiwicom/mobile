@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
-import { connect } from '@kiwicom/mobile-redux';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import StarsFilter from './stars/StarsFilter';
@@ -10,14 +9,14 @@ import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
 import HotelFacilitiesFilter from './hotelFacilities/HotelFacilitiesFilter';
 import ScoreFilter from './score/ScoreFilter';
-import type { FilterReducerState } from './FiltersReducer.js';
 import type { CurrentSearchStats } from './CurrentSearchStatsType';
 import type {
   ActiveFilters,
   FilterParams,
   OnChangeFilterParams,
 } from './FilterParametersType';
-import type { HotelsReducerState } from '../HotelsReducer';
+import HotelsSearchContext from '../HotelsSearchContext';
+import HotelsFilterContext from '../HotelsFilterContext';
 
 const styles = StyleSheet.create({
   view: {
@@ -37,19 +36,17 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
-  onChange: OnChangeFilterParams => void,
-  filter: FilterParams,
-  currency: string,
+type PropsWithContext = {
+  ...Props,
   currentSearchStats: CurrentSearchStats,
   activeFilters: ActiveFilters,
-|};
+};
 
 /**
  * This filter holds all available hotel filters. Active (selected) filters are
  * rendered first.
  */
-class FilterStripe extends React.Component<Props> {
+class FilterStripe extends React.Component<PropsWithContext> {
   scrollViewRef: React.ElementRef<typeof ScrollView>;
 
   onChange = (params: OnChangeFilterParams) => {
@@ -142,15 +139,26 @@ class FilterStripe extends React.Component<Props> {
   };
 }
 
-const select = ({
-  hotels,
-  filters,
-}: {
-  hotels: HotelsReducerState,
-  filters: FilterReducerState,
-}) => ({
-  currentSearchStats: hotels.currentSearchStats,
-  activeFilters: filters.activeFilters,
-});
+type Props = {|
+  onChange: OnChangeFilterParams => void,
+  filter: FilterParams,
+  currency: string,
+|};
 
-export default connect(select)(FilterStripe);
+export default function FilterStripeWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ currentSearchStats }) => (
+        <HotelsFilterContext.Consumer>
+          {({ activeFilters }) => (
+            <FilterStripe
+              {...props}
+              currentSearchStats={currentSearchStats}
+              activeFilters={activeFilters}
+            />
+          )}
+        </HotelsFilterContext.Consumer>
+      )}
+    </HotelsSearchContext.Consumer>
+  );
+}
