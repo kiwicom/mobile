@@ -11,7 +11,7 @@ import type { SuggestionList_data } from './__generated__/SuggestionList_data.gr
 
 type Props = {|
   data: SuggestionList_data,
-  onCitySelected: (cityId: string, cityName: ?string) => void,
+  onCitySelected: (cityId: string | null, cityName: ?string) => void,
   search: string,
 |};
 

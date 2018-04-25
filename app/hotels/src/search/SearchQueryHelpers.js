@@ -43,14 +43,14 @@ export const getSearchQueryParams = (
   return params;
 };
 
+export const isDateBeforeToday = (date: Date) =>
+  DateFormatter(date).startOf('day') < DateFormatter().startOf('day');
+
 export const updateCheckinDateIfBeforeToday = (
   search: SearchParams,
   onSearchChange: OnChangeSearchParams => void,
 ) => {
-  if (
-    DateFormatter(search.checkin).startOf('day') <
-    DateFormatter().startOf('day')
-  ) {
+  if (isDateBeforeToday(search.checkin)) {
     onSearchChange({
       ...search,
       checkin: new Date(),
