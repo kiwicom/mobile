@@ -1,6 +1,8 @@
 // @flow
 
+import * as React from 'react';
 import { NativeModules } from 'react-native';
+import renderer from 'react-test-renderer';
 
 import Translation from '../Translation';
 
@@ -12,8 +14,13 @@ beforeEach(() => {
   });
 });
 
-it('should call NativeModules.RNTranslationManager.translateAsync with the key parameter', async () => {
-  await Component.componentDidMount();
+const getComponent = (id: string = 'test.key') => {
+  // $FlowExpectedError: we are not using real key for testing purposes
+  return renderer.create(<Translation id={id} />);
+};
+
+it('should call NativeModules.RNTranslationManager.translateAsync with the key parameter', () => {
+  getComponent();
   expect(NativeModules.RNTranslationManager.translateAsync).toBeCalledWith(
     'mobile.test.key',
   );
