@@ -42,6 +42,10 @@ const Translations = {
   'hotels.navigation.title.single_hotel': 'Details',
   'hotels.navigation.title.single_hotel_map': 'Map',
 
+  'hotels_search.all_hotels.please_search':
+    'Please search for your desired destination.',
+  'hotels_search.all_hotels_map.allow_localization_or_search':
+    'Please go to settings and allow localization, or go back and search for your desired destination',
   'hotels_search.date_picker.select_date': 'Select date',
   'hotels_search.filter.free_cancellation': 'free cancellation',
   'hotels_search.filter.hotel_facilities_filter.title': 'amenities',

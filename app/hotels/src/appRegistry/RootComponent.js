@@ -3,7 +3,12 @@
 import * as React from 'react';
 import { View, NativeModules } from 'react-native';
 import { ConfigContext } from '@kiwicom/mobile-config';
-import { Device, type OnLayout, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  Device,
+  type OnLayout,
+  StyleSheet,
+  GeolocationContext,
+} from '@kiwicom/mobile-shared';
 
 import HotelsSearchContext from '../HotelsSearchContext';
 import HotelsFilterContext from '../HotelsFilterContext';
@@ -38,9 +43,11 @@ export default class RootComponent extends React.Component<Props> {
     <ConfigContext.Provider dataSaverEnabled={this.props.dataSaverEnabled}>
       <HotelsSearchContext.Provider>
         <HotelsFilterContext.Provider>
-          <View style={styles.container} onLayout={this.emitDimensionChanges}>
-            {this.props.render(this.onBackClicked)}
-          </View>
+          <GeolocationContext.Provider>
+            <View style={styles.container} onLayout={this.emitDimensionChanges}>
+              {this.props.render(this.onBackClicked)}
+            </View>
+          </GeolocationContext.Provider>
         </HotelsFilterContext.Provider>
       </HotelsSearchContext.Provider>
     </ConfigContext.Provider>
