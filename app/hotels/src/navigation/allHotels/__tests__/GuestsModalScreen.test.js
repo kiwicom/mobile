@@ -82,23 +82,23 @@ describe('GuestsModalScreen', () => {
     expect(navigation.goBack).not.toHaveBeenCalled();
   });
 
-  it('should remove error when children is set to 0', () => {
+  it('should remove error when children is set to 0', async () => {
     const onClose = jest.fn();
     const testRenderer = renderGuestsPopup(onClose);
     const testInstance = testRenderer.getInstance();
 
     testInstance.handleChildrenChange(1);
-    testInstance.setState({ isMissingAge: true });
+    await testInstance.setState({ isMissingAge: true });
     testInstance.handleChildrenChange(0);
 
     expect(testInstance.state.isMissingAge).toEqual(false);
   });
 
-  it('should not produce an error when setting age of a child', () => {
+  it('should not produce an error when setting age of a child', async () => {
     const searchChange = jest.fn();
     const testRenderer = renderGuestsPopup(searchChange);
     const testInstance = testRenderer.getInstance();
-    testInstance.handleChildrenChange(1);
+    await testInstance.handleChildrenChange(1);
     testInstance.handleChildrenChange(1);
 
     testInstance.handleChildrenAgesChange([{ age: 2 }, { age: null }]);
