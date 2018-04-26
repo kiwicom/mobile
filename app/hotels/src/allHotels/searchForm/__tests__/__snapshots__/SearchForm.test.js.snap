@@ -11,7 +11,7 @@ exports[`SearchForm Render all inputs 1`] = `
 >
   <LocationButton
     location="Pra"
-    onPress={[MockFunction]}
+    onPress={[Function]}
   />
   <Component
     style={
