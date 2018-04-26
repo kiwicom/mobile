@@ -1,11 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView, Keyboard } from 'react-native';
-import idx from 'idx';
-import { graphql } from 'react-relay';
-import { PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { Layout, AppStateChange, StyleSheet } from '@kiwicom/mobile-shared';
+import { ScrollView, Keyboard, View } from 'react-native';
+import {
+  Layout,
+  AppStateChange,
+  StyleSheet,
+  GeolocationContext,
+  IconLoading,
+} from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import AllHotelsSearch from './AllHotelsSearch';
 import SearchForm from './searchForm/SearchForm';
@@ -14,16 +18,9 @@ import type {
   SearchParams,
   OnChangeSearchParams,
 } from './searchForm/SearchParametersType';
-import type {
-  FilterParams,
-  OnChangeFilterParams,
-} from '../filter/FilterParametersType';
-import type { AllHotels_cityLookup_QueryResponse } from './__generated__/AllHotels_cityLookup_Query.graphql';
-import GeneralError from '../../../shared/src/errors/GeneralError';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
 import type { Coordinates } from '../CoordinatesType';
 import HotelsSearchContext from '../HotelsSearchContext';
-import HotelsFilterContext from '../HotelsFilterContext';
 import {
   updateCheckinDateIfBeforeToday,
   isDateBeforeToday,
@@ -33,23 +30,24 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     flexGrow: 1,
   },
+  searchForCityContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
 });
 
 type PropsWithContext = {
   ...Props,
-  location: string,
   cityId: string | null,
   search: SearchParams,
-  filter: FilterParams,
   setSearch: OnChangeSearchParams => void,
-  setFilter: OnChangeFilterParams => void,
   setCityIdAndLocation: (cityId: string | null, location: string) => void,
+  lat: number | null,
+  lng: number | null,
+  canGetUserLocation: boolean,
 };
 
-/**
- * We need to lookup city ID first and only after that we can search for all
- * hotels. This is why we use two nested query renderers.
- */
 export class AllHotels extends React.Component<PropsWithContext> {
   componentDidMount = () => {
     const { checkin, checkout, search } = this.props;
@@ -73,88 +71,68 @@ export class AllHotels extends React.Component<PropsWithContext> {
     updateCheckinDateIfBeforeToday(this.props.search, this.props.setSearch);
   };
 
-  openLocationPicker = () => {
-    this.props.openLocationPicker(this.props.location);
+  getCoordinates = () => {
+    const { coordinates, lat, lng } = this.props;
+
+    if (coordinates) {
+      return coordinates;
+    }
+    if (lat !== null && lng !== null) {
+      return {
+        latitude: lat,
+        longitude: lng,
+      };
+    }
+    return null;
   };
 
-  renderAllHotelsSearchPublicRenderer = (
-    rendererProps: AllHotels_cityLookup_QueryResponse,
-  ) => {
-    const cityId = idx(rendererProps, _ => _.city.edges[0].node.id) || null;
-    if (cityId === null) {
-      return <GeneralError errorMessage="Cannot find such city." />;
-    }
+  render = () => {
+    const coordinates = this.getCoordinates();
+    const canRenderAllHotelsSearch = this.props.cityId || coordinates;
 
     return (
-      <AllHotelsSearch
-        {...rendererProps}
-        coordinates={this.props.coordinates}
-        openSingleHotel={this.props.openSingleHotel}
-        cityId={cityId}
-        currency={this.props.currency}
-      />
+      <AppStateChange
+        states={['active']}
+        onStateChange={this.validateCheckinDate}
+      >
+        <Layout>
+          <ScrollView
+            bounces={false}
+            contentContainerStyle={styles.scrollViewContainer}
+            onScroll={Keyboard.dismiss}
+          >
+            <SearchForm
+              openLocationPicker={this.props.openLocationPicker}
+              openGuestsModal={this.props.openGuestsModal}
+            />
+            <FilterStripe currency={this.props.currency} />
+            {canRenderAllHotelsSearch ? (
+              <AllHotelsSearch
+                coordinates={coordinates}
+                openSingleHotel={this.props.openSingleHotel}
+                cityId={this.props.cityId}
+                currency={this.props.currency}
+              />
+            ) : (
+              <View style={styles.searchForCityContainer}>
+                {!this.props.canGetUserLocation ? (
+                  <Translation id="hotels_search.all_hotels.please_search" />
+                ) : (
+                  <IconLoading />
+                )}
+              </View>
+            )}
+          </ScrollView>
+        </Layout>
+      </AppStateChange>
     );
   };
-
-  render = () => (
-    <AppStateChange
-      states={['active']}
-      onStateChange={this.validateCheckinDate}
-    >
-      <Layout>
-        <ScrollView
-          bounces={false}
-          contentContainerStyle={styles.scrollViewContainer}
-          onScroll={Keyboard.dismiss}
-        >
-          <SearchForm
-            onChange={this.props.setSearch}
-            search={this.props.search}
-            location={this.props.location}
-            openLocationPicker={this.openLocationPicker}
-            openGuestsModal={this.props.openGuestsModal}
-          />
-          <FilterStripe
-            filter={this.props.filter}
-            onChange={this.props.setFilter}
-            currency={this.props.currency}
-          />
-          {this.props.cityId || this.props.coordinates ? (
-            <AllHotelsSearch
-              coordinates={this.props.coordinates}
-              openSingleHotel={this.props.openSingleHotel}
-              cityId={this.props.cityId}
-              currency={this.props.currency}
-            />
-          ) : (
-            <PublicApiRenderer
-              query={graphql`
-                query AllHotels_cityLookup_Query($prefix: String!) {
-                  city: hotelCities(prefix: $prefix, first: 1) {
-                    edges {
-                      node {
-                        id
-                      }
-                    }
-                  }
-                }
-              `}
-              render={this.renderAllHotelsSearchPublicRenderer}
-              variables={{
-                prefix: this.props.location,
-              }}
-            />
-          )}
-        </ScrollView>
-      </Layout>
-    </AppStateChange>
-  );
 }
 
 type Props = {|
   currency: string,
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
   coordinates: Coordinates | null,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
   openLocationPicker: (location: string | null) => void,
   openGuestsModal: () => void,
   checkin: ?Date,
@@ -165,25 +143,24 @@ export default function AllHotelsWithContext(props: Props) {
   return (
     <HotelsSearchContext.Consumer>
       {({
-        location,
         cityId,
         searchParams,
         actions: { setSearch, setCityIdAndLocation },
       }) => (
-        <HotelsFilterContext.Consumer>
-          {({ filterParams, actions: { setFilter } }) => (
+        <GeolocationContext.Consumer>
+          {({ lat, lng, canGetUserLocation }) => (
             <AllHotels
               {...props}
-              location={location}
               cityId={cityId}
               search={searchParams}
-              filter={filterParams}
               setSearch={setSearch}
-              setFilter={setFilter}
               setCityIdAndLocation={setCityIdAndLocation}
+              lat={lat}
+              lng={lng}
+              canGetUserLocation={canGetUserLocation}
             />
           )}
-        </HotelsFilterContext.Consumer>
+        </GeolocationContext.Consumer>
       )}
     </HotelsSearchContext.Consumer>
   );

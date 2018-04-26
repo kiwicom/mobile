@@ -69,6 +69,7 @@ export { default as WebView } from './src/WebView';
 export { default as AppStateChange } from './src/AppStateChange';
 export { default as ReadMore } from './src/ReadMore';
 export { default as WithStorage } from './src/WithStorage';
+export { default as GeolocationContext } from './src/GeolocationContext';
 
 // Flow types:
 

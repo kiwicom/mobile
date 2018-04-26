@@ -11,6 +11,7 @@ import type {
   OnChangeSearchParams,
 } from './SearchParametersType';
 import LocationButton from './LocationButton';
+import HotelsSearchContext from '../../HotelsSearchContext';
 
 const styles = StyleSheet.create({
   form: {
@@ -33,25 +34,28 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
+type PropsWithContext = {|
+  ...Props,
   location: string,
   search: SearchParams,
   onChange: (search: OnChangeSearchParams) => void,
-  openLocationPicker: () => void,
-  openGuestsModal: () => void,
 |};
 
-export default class SearchForm extends React.Component<Props> {
+export class SearchForm extends React.Component<PropsWithContext> {
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_SEARCH_FORM);
   };
 
+  openLocationPicker = () => {
+    this.props.openLocationPicker(this.props.location);
+  };
+
   render = () => {
-    const { search, location, onChange, openLocationPicker } = this.props;
+    const { search, location, onChange } = this.props;
 
     return (
       <View style={styles.form}>
-        <LocationButton onPress={openLocationPicker} location={location} />
+        <LocationButton onPress={this.openLocationPicker} location={location} />
         <View style={styles.row}>
           <DateInput
             checkin={search.checkin}
@@ -68,4 +72,25 @@ export default class SearchForm extends React.Component<Props> {
       </View>
     );
   };
+}
+
+type Props = {|
+  openLocationPicker: (location: string) => void,
+  openGuestsModal: () => void,
+|};
+
+export default function SearchFormWithContext(props: Props) {
+  return (
+    <HotelsSearchContext.Consumer>
+      {({ location, searchParams, actions: { setSearch } }) => (
+        <SearchForm
+          openGuestsModal={props.openGuestsModal}
+          openLocationPicker={props.openLocationPicker}
+          location={location}
+          search={searchParams}
+          onChange={setSearch}
+        />
+      )}
+    </HotelsSearchContext.Consumer>
+  );
 }

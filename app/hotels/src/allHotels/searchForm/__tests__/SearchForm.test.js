@@ -6,7 +6,7 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { DatePicker } from '@kiwicom/mobile-shared';
 import MockDate from 'mockdate';
 
-import SearchForm from '../SearchForm';
+import { SearchForm } from '../SearchForm';
 
 jest.mock('DatePickerIOS');
 

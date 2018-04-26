@@ -40,6 +40,8 @@ type PropsWithContext = {
   ...Props,
   currentSearchStats: CurrentSearchStats,
   activeFilters: ActiveFilters,
+  onChange: OnChangeFilterParams => void,
+  filter: FilterParams,
 };
 
 /**
@@ -140,8 +142,6 @@ class FilterStripe extends React.Component<PropsWithContext> {
 }
 
 type Props = {|
-  onChange: OnChangeFilterParams => void,
-  filter: FilterParams,
   currency: string,
 |};
 
@@ -150,9 +150,11 @@ export default function FilterStripeWithContext(props: Props) {
     <HotelsSearchContext.Consumer>
       {({ currentSearchStats }) => (
         <HotelsFilterContext.Consumer>
-          {({ activeFilters }) => (
+          {({ activeFilters, filterParams, actions: { setFilter } }) => (
             <FilterStripe
               {...props}
+              onChange={setFilter}
+              filter={filterParams}
               currentSearchStats={currentSearchStats}
               activeFilters={activeFilters}
             />
