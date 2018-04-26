@@ -19,12 +19,12 @@ import HotelsFilterContext from '../HotelsFilterContext';
 type PropsWithContext = {
   // external:
   openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  cityId: string,
+  cityId: ?string,
   coordinates: Coordinates | null,
   currency: string,
   // from context
+  onCityIdChange: (cityId: string | null) => void,
   search: SearchParams,
-  onCityIdChange: (cityId: string) => void,
   location: string,
   filter: FilterParams,
 };
@@ -51,7 +51,7 @@ class AllHotelsSearch extends React.Component<PropsWithContext> {
 
   componentDidMount = () => {
     // new cityId needs to be propagated to the other pages (map for example)
-    this.props.onCityIdChange(this.props.cityId);
+    this.props.onCityIdChange(this.props.cityId || null);
   };
 
   render = () => {
@@ -73,7 +73,6 @@ class AllHotelsSearch extends React.Component<PropsWithContext> {
             this.props.search,
             this.props.coordinates,
             this.props.cityId,
-            this.props.location,
           ),
           filter: {
             ...this.props.filter,
@@ -94,7 +93,7 @@ class AllHotelsSearch extends React.Component<PropsWithContext> {
 
 type Props = {
   openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  cityId: string,
+  cityId: ?string,
   coordinates: Coordinates | null,
   currency: string,
 };

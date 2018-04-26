@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
 
 type PropsWithContext = {
   ...Props,
-  location: string,
   search: SearchParams,
   cityId: string | null,
   filter: FilterParams,
@@ -85,7 +84,6 @@ class AllHotelsMap extends React.Component<PropsWithContext> {
       onFilterChange,
       currency,
       coordinates,
-      location,
     } = this.props;
 
     return (
@@ -120,12 +118,7 @@ class AllHotelsMap extends React.Component<PropsWithContext> {
               }
             `}
             variables={{
-              search: getSearchQueryParams(
-                search,
-                coordinates,
-                cityId,
-                location,
-              ),
+              search: getSearchQueryParams(search, coordinates, cityId),
               filter: {
                 ...filter,
                 hotelFacilities: sanitizeHotelFacilities(
@@ -151,12 +144,11 @@ type Props = {|
 export default function AllHotelsMapWithContext(props: Props) {
   return (
     <HotelsSearchContext.Consumer>
-      {({ location, cityId, searchParams, actions: searchActions }) => (
+      {({ cityId, searchParams, actions: searchActions }) => (
         <HotelsFilterContext.Consumer>
           {({ filterParams, actions: filterActions }) => (
             <AllHotelsMap
               {...props}
-              location={location}
               cityId={cityId}
               search={searchParams}
               filter={filterParams}

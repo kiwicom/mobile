@@ -119,7 +119,7 @@ export class AllHotels extends React.Component<PropsWithContext> {
             onChange={this.props.setFilter}
             currency={this.props.currency}
           />
-          {this.props.cityId ? (
+          {this.props.cityId || this.props.coordinates ? (
             <AllHotelsSearch
               coordinates={this.props.coordinates}
               openSingleHotel={this.props.openSingleHotel}

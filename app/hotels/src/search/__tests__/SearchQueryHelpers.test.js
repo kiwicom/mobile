@@ -68,10 +68,8 @@ describe('SearchQueryHelpers', () => {
   });
 
   describe('getSearchQueryParams', () => {
-    it('searches with coordinates if no location is set', () => {
-      expect(
-        getSearchQueryParams(defaultSearch, defaultCoordinates, 'oslo', ''),
-      ).toEqual({
+    it('searches with coordinates if no cityId is passed', () => {
+      expect(getSearchQueryParams(defaultSearch, defaultCoordinates)).toEqual({
         checkin: sanitizeDate(new Date(1)),
         checkout: sanitizeDate(new Date(2)),
         latitude: 3,
@@ -80,9 +78,9 @@ describe('SearchQueryHelpers', () => {
       });
     });
 
-    it('ignores coordinates if location is set', () => {
+    it('searches with cityId if cityId is passed', () => {
       expect(
-        getSearchQueryParams(defaultSearch, defaultCoordinates, 'oslo', 'oslo'),
+        getSearchQueryParams(defaultSearch, defaultCoordinates, 'oslo'),
       ).toEqual({
         checkin: sanitizeDate(new Date(1)),
         checkout: sanitizeDate(new Date(2)),
