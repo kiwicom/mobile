@@ -94,5 +94,9 @@ module.exports = {
     'react-native/no-unused-styles': ERROR,
     'react-native/no-inline-styles': WARNING,
     'flowtype/require-valid-file-annotation': [ERROR, 'always'],
+    'flowtype/newline-after-flow-annotation': [
+      ERROR,
+      'always'
+    ]
   },
 };

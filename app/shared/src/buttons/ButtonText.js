@@ -1,4 +1,5 @@
 // @flow
+
 import * as React from 'react';
 import { Platform } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
