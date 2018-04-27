@@ -1,4 +1,5 @@
 // @flow
+
 import * as React from 'react';
 import { View, ScrollView, InteractionManager } from 'react-native';
 import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
