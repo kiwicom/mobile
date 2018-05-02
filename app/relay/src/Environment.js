@@ -1,5 +1,6 @@
 // @flow
 
+import { GetDeviceLocale } from '@kiwicom/mobile-localization';
 import {
   Environment,
   Network,
@@ -38,7 +39,9 @@ export default function createEnvironment(
   const networkHeaders: Object = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
+    'Accept-Language': GetDeviceLocale().replace('-', '_'),
   };
+
   if (accessToken) {
     networkHeaders.authorization = accessToken;
   }
