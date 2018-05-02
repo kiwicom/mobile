@@ -6,6 +6,7 @@ import { AppRegistry, YellowBox } from 'react-native';
 YellowBox.ignoreWarnings([
   'Warning: isMounted(...) is deprecated in plain JavaScript React classes.',
   'Module R', // ... requires main queue setup since it overrides ...
+  'Class RCTCxxModule was not exported. Did you forget to use RCT_EXPORT_MODULE()?', // https://github.com/facebook/react-native/issues/18201
 ]);
 
 import App from './app/App';

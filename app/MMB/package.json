@@ -1,0 +1,15 @@
+{
+  "name": "@kiwicom/mobile-manage-my-booking",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-navigation": "^0"
+  },
+  "devDependencies": {
+    "@kiwicom/mobile-playground": "^0",
+    "mockdate": "^2.0.2"
+  }
+}
