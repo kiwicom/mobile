@@ -4,7 +4,8 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "react-relay": "^1.5.0"
+    "react-relay": "^1.5.0",
+    "@kiwicom/mobile-localization": "^0"
   },
   "devDependencies": {
     "babel-plugin-relay": "^1.5.0",
