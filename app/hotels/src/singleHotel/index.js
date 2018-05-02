@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { graphql } from 'react-relay';
 import { PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { MapLocaleToLanguageQuery } from '@kiwicom/mobile-localization';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import type { Image } from '../gallery/GalleryGrid';
@@ -60,7 +59,7 @@ export default class SingleHotelContainer extends React.Component<
   );
 
   render() {
-    const { search, currency, language } = this.props;
+    const { search, currency } = this.props;
     return (
       <PublicApiRenderer
         query={graphql`
@@ -78,7 +77,6 @@ export default class SingleHotelContainer extends React.Component<
             ...search,
             checkin: sanitizeDate(search.checkin),
             checkout: sanitizeDate(search.checkout),
-            language: MapLocaleToLanguageQuery(language),
           },
           options: { currency },
         }}
