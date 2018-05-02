@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   StackNavigator,
   StackNavigatorOptions,
@@ -10,9 +9,8 @@ import { Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TabNavigator } from 'react-navigation';
 
-import HomepageStack from './HomepageStack';
-import HotelsPackageWrapper from '../screens/HotelsPackageWrapper';
-import SingleHotelsPackageWrapper from '../screens/SingleHotelPackageWrapper';
+import HotelsStack from './HotelsStack';
+import MMBPackage from '../screens/MMBPackageWrapper';
 
 const VoidStack = StackNavigator(
   {
@@ -30,30 +28,10 @@ const VoidStack = StackNavigator(
   },
 );
 
-const Navigation = StackNavigator(
-  {
-    Homepage: {
-      screen: HomepageStack,
-    },
-    HotelsPackage: {
-      screen: withMappedProps(HotelsPackageWrapper),
-    },
-    SingleHotelPackage: {
-      screen: withMappedProps(SingleHotelsPackageWrapper),
-    },
-  },
-  {
-    initialRouteName: 'Homepage',
-    navigationOptions: {
-      header: null,
-    },
-  },
-);
-
 export default TabNavigator(
   {
-    Search: { screen: Navigation },
-    Bookings: { screen: VoidStack },
+    Search: { screen: HotelsStack },
+    Bookings: { screen: MMBPackage },
     Message: { screen: VoidStack },
     Profile: { screen: VoidStack },
   },
@@ -62,5 +40,6 @@ export default TabNavigator(
       activeTintColor: Color.brand,
       inactiveTintColor: 'gray',
     },
+    initialRouteName: 'Bookings',
   },
 );

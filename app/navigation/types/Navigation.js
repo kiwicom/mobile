@@ -6,7 +6,8 @@ type NavigationStateParameters = Object;
 type CoreStackNavigatorRouteNames =
   | 'Homepage'
   | 'HotelsPackage'
-  | 'SingleHotelPackage';
+  | 'SingleHotelPackage'
+  | 'MMBPackage';
 type HotelsStackNavigatorNames =
   | 'AllHotelsMap'
   | 'GalleryGrid'
