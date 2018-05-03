@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import type { NavigationType } from '@kiwicom/mobile-navigation';
+
+import Layout from '../components/Layout';
 
 type Props = {|
   navigation: NavigationType,
@@ -19,8 +20,9 @@ export default class MMBScreen extends React.Component<Props> {
   });
 
   render = () => (
-    <View>
-      <Translation passThrough="MMB Screen" />
-    </View>
+    <Layout
+      menuComponent={<Translation passThrough="MENU" />}
+      containerComponent={<Translation passThrough="CONTAINER" />}
+    />
   );
 }
