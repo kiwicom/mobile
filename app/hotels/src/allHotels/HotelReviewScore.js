@@ -4,6 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
 import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import type { HotelReviewScore_hotel } from './__generated__/HotelReviewScore_hotel.graphql';
 
@@ -69,7 +70,9 @@ export class HotelReviewScore extends React.Component<Props> {
 
     return (
       <AdaptableBadge
-        text={this.formatScore(reviewScore)}
+        translation={
+          <Translation passThrough={this.formatScore(reviewScore)} />
+        }
         style={[
           style.adaptableBadge,
           {
