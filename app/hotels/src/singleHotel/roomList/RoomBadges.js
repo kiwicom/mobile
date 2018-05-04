@@ -4,6 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
 import { AdaptableBadge, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import type { RoomBadges_availableRoom as RoomBadgesTypes } from './__generated__/RoomBadges_availableRoom.graphql';
 
@@ -53,7 +54,9 @@ export const RoomBadges = (props: Props) => {
       <AdaptableBadge
         icon={<TextIcon style={styles.iconStyle}>&#xe039;</TextIcon>}
         key="breakfast-included-badge"
-        text="Breakfast included"
+        translation={
+          <Translation id="single_hotel.room_badges.breakfast_included" />
+        }
         style={styles.badgeContainer}
         textStyle={styles.badgeText}
       />,
@@ -65,7 +68,9 @@ export const RoomBadges = (props: Props) => {
       <AdaptableBadge
         icon={<TextIcon style={styles.iconStyle}>{"'"}</TextIcon>}
         key="free-cancellation-badge"
-        text="Free cancellation"
+        translation={
+          <Translation id="single_hotel.room_badges.free_cancellation" />
+        }
         style={styles.badgeContainer}
         textStyle={styles.badgeText}
       />,

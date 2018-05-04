@@ -23,13 +23,17 @@ Array [
         "marginTop": 5,
       }
     }
-    text="Breakfast included"
     textStyle={
       Object {
         "color": "rgb(49, 161, 30)",
         "fontFamily": "SFProText-Semibold",
         "fontSize": 10,
       }
+    }
+    translation={
+      <Translation
+        id="single_hotel.room_badges.breakfast_included"
+      />
     }
   />,
   <AdaptableBadge
@@ -53,13 +57,17 @@ Array [
         "marginTop": 5,
       }
     }
-    text="Free cancellation"
     textStyle={
       Object {
         "color": "rgb(49, 161, 30)",
         "fontFamily": "SFProText-Semibold",
         "fontSize": 10,
       }
+    }
+    translation={
+      <Translation
+        id="single_hotel.room_badges.free_cancellation"
+      />
     }
   />,
 ]

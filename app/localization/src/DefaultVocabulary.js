@@ -94,6 +94,8 @@ const Translations = {
     'Guests: __1_personCount__ · Rooms: __2_numberOfRooms__  · ',
   'single_hotel.description.facilities.show_less': 'Show less',
   'single_hotel.description.facilities.show_more': 'More',
+  'single_hotel.room_badges.breakfast_included': 'Breakfast included',
+  'single_hotel.room_badges.free_cancellation': 'Free cancellation',
   'single_hotel.room_list.rooms': 'Rooms',
   'single_hotel.room_picker.select': 'Select',
 };
