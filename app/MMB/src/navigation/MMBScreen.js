@@ -5,6 +5,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import type { NavigationType } from '@kiwicom/mobile-navigation';
 
 import Layout from '../components/Layout';
+import RightMenu from '../RightMenu';
 
 type Props = {|
   navigation: NavigationType,
@@ -21,7 +22,7 @@ export default class MMBScreen extends React.Component<Props> {
 
   render = () => (
     <Layout
-      menuComponent={<Translation passThrough="MENU" />}
+      menuComponent={<RightMenu />}
       containerComponent={<Translation passThrough="CONTAINER" />}
     />
   );
