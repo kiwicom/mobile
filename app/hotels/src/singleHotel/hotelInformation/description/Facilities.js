@@ -78,7 +78,7 @@ export class Facilities extends React.Component<Props, State> {
             facility && (
               <AdaptableBadge
                 key={facility.id}
-                text={facility.name || ''}
+                translation={<Translation passThrough={facility.name} />}
                 style={styles.adaptableBadge}
                 textStyle={styles.adaptableBadgeText}
               />

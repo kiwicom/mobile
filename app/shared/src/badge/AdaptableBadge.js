@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Translation } from '@kiwicom/mobile-localization';
+import type { TranslationType } from '@kiwicom/mobile-localization';
 import type { StylePropType } from '@kiwicom/mobile-shared';
 
 import Text from '../Text';
@@ -10,7 +10,7 @@ import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  text: string,
+  translation: TranslationType,
   style?: StylePropType,
   textStyle?: StylePropType,
   icon?: React.Node,
@@ -49,9 +49,7 @@ export default function AdaptableBadge(props: Props) {
   return (
     <View style={[style.container, props.style]}>
       {props.icon}
-      <Text style={[style.text, props.textStyle]}>
-        <Translation passThrough={props.text} />
-      </Text>
+      <Text style={[style.text, props.textStyle]}>{props.translation}</Text>
     </View>
   );
 }
