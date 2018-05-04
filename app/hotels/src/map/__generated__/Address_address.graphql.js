@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type Address_address$ref: FragmentReference;
 export type Address_address = {|
   +street: ?string,
@@ -49,5 +49,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = '93a5ea870c5396c97c18f687add95e40';
 module.exports = node;

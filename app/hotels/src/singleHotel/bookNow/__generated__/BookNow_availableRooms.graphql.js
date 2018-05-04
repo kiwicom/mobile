@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type BookNow_availableRooms$ref: FragmentReference;
 export type BookNow_availableRooms = $ReadOnlyArray<{|
   +originalId: ?string,
@@ -64,5 +64,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = '20da5274c235be9074e40e81b1647de0';
 module.exports = node;

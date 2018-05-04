@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomBadges_availableRoom$ref: FragmentReference;
 export type RoomBadges_availableRoom = {|
   +isBreakfastIncluded: ?boolean,
@@ -41,5 +41,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = 'cab91ec2f2ffb1204ce18c5b4f5af605';
 module.exports = node;
