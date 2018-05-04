@@ -55,6 +55,13 @@ You need to make sure that your Android emulator image supports Google Play Stor
 
 ![](./.docs/assets/android-emulator-play-store.png)
 
+It's also possible to open other devices from command line to test tablets for example:
+
+```
+xcrun simctl list devices
+yarn ios --simulator="iPad Pro (10.5-inch)"
+```
+
 ## Testing
 
 You will usually need only this during development:
