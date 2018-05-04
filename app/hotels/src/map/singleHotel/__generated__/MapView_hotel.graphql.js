@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapView_hotel$ref: FragmentReference;
 export type MapView_hotel = {|
   +coordinates: ?{|
@@ -54,5 +54,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = 'e27f572a2b782be72991ae55531f6c5f';
 module.exports = node;
