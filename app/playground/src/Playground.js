@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
@@ -43,7 +43,7 @@ export default class Playground extends React.Component<Props> {
   };
 
   render = () => (
-    <View>
+    <ScrollView>
       {PlaygroundRenderer.components[this.props.name].components.map(
         (component, index) => {
           return (
@@ -53,7 +53,7 @@ export default class Playground extends React.Component<Props> {
           );
         },
       )}
-    </View>
+    </ScrollView>
   );
 }
 
