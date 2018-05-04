@@ -4,9 +4,9 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "@kiwicom/mobile-shared": "^0",
     "@kiwicom/mobile-localization": "^0",
-    "@kiwicom/mobile-navigation": "^0"
+    "@kiwicom/mobile-navigation": "^0",
+    "@kiwicom/mobile-shared": "^0"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
