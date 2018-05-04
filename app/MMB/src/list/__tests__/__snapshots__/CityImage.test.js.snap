@@ -1,0 +1,547 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with type multi city and status closed 1`] = `
+<Component
+  style={
+    Object {
+      "borderRadius": 4,
+      "height": 152,
+      "justifyContent": "space-between",
+      "width": "100%",
+    }
+  }
+>
+  <NetworkImageWithContext
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https:/images.kiwi.com/photos/600x330/bergen_no.jpg",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 4,
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <StretchedImage
+    source={
+      Object {
+        "testUri": "../../../app/shared/images/black-to-alpha-vertical.png",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 4,
+        "width": "100%",
+      }
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        },
+        Object {
+          "padding": 10,
+        },
+      ]
+    }
+  >
+    <ImageBadges
+      bookingId="54134543"
+      status="CLOSED"
+    />
+  </Component>
+  <Component
+    style={
+      Array [
+        Object {
+          "justifyContent": "flex-end",
+        },
+        Object {
+          "padding": 10,
+        },
+      ]
+    }
+  >
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Barcelona"
+        />
+      </Text>
+      <TravelTypeIcon
+        type="MULTICITY"
+      />
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Bergen"
+        />
+      </Text>
+    </Component>
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 12,
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Thu 01/01"
+        />
+      </Text>
+      <Component
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#ffffff",
+              },
+              Object {
+                "fontSize": 12,
+              },
+            ]
+          }
+        >
+          <Translation
+            passThrough="2"
+          />
+        </Text>
+        <Icon
+          color="#ffffff"
+          name="people"
+          size={15}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        />
+      </Component>
+    </Component>
+  </Component>
+</Component>
+`;
+
+exports[`renders with type one way ans status confirmed 1`] = `
+<Component
+  style={
+    Object {
+      "borderRadius": 4,
+      "height": 152,
+      "justifyContent": "space-between",
+      "width": "100%",
+    }
+  }
+>
+  <NetworkImageWithContext
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https:/images.kiwi.com/photos/600x330/tromso_no.jpg",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 4,
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <StretchedImage
+    source={
+      Object {
+        "testUri": "../../../app/shared/images/black-to-alpha-vertical.png",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 4,
+        "width": "100%",
+      }
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        },
+        Object {
+          "padding": 10,
+        },
+      ]
+    }
+  >
+    <ImageBadges
+      bookingId="54134543"
+      status="CONFIRMED"
+    />
+  </Component>
+  <Component
+    style={
+      Array [
+        Object {
+          "justifyContent": "flex-end",
+        },
+        Object {
+          "padding": 10,
+        },
+      ]
+    }
+  >
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Barcelona"
+        />
+      </Text>
+      <TravelTypeIcon
+        type="ONE_WAY"
+      />
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Tromsø"
+        />
+      </Text>
+    </Component>
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 12,
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Thu 01/01"
+        />
+      </Text>
+      <Component
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#ffffff",
+              },
+              Object {
+                "fontSize": 12,
+              },
+            ]
+          }
+        >
+          <Translation
+            passThrough="2"
+          />
+        </Text>
+        <Icon
+          color="#ffffff"
+          name="people"
+          size={15}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        />
+      </Component>
+    </Component>
+  </Component>
+</Component>
+`;
+
+exports[`renders with type return and status refunded 1`] = `
+<Component
+  style={
+    Object {
+      "borderRadius": 4,
+      "height": 152,
+      "justifyContent": "space-between",
+      "width": "100%",
+    }
+  }
+>
+  <NetworkImageWithContext
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https:/images.kiwi.com/photos/600x330/oslo_no.jpg",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 4,
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  />
+  <StretchedImage
+    source={
+      Object {
+        "testUri": "../../../app/shared/images/black-to-alpha-vertical.png",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 4,
+        "width": "100%",
+      }
+    }
+  />
+  <Component
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        },
+        Object {
+          "padding": 10,
+        },
+      ]
+    }
+  >
+    <ImageBadges
+      bookingId="54134543"
+      status="REFUNDED"
+    />
+  </Component>
+  <Component
+    style={
+      Array [
+        Object {
+          "justifyContent": "flex-end",
+        },
+        Object {
+          "padding": 10,
+        },
+      ]
+    }
+  >
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Barcelona"
+        />
+      </Text>
+      <TravelTypeIcon
+        type="RETURN"
+      />
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Oslo"
+        />
+      </Text>
+    </Component>
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#ffffff",
+            },
+            Object {
+              "fontSize": 12,
+            },
+          ]
+        }
+      >
+        <Translation
+          passThrough="Thu 01/01"
+        />
+      </Text>
+      <Component
+        style={
+          Object {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#ffffff",
+              },
+              Object {
+                "fontSize": 12,
+              },
+            ]
+          }
+        >
+          <Translation
+            passThrough="2"
+          />
+        </Text>
+        <Icon
+          color="#ffffff"
+          name="people"
+          size={15}
+          style={
+            Object {
+              "opacity": 1,
+            }
+          }
+        />
+      </Component>
+    </Component>
+  </Component>
+</Component>
+`;

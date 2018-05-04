@@ -71,6 +71,7 @@ export { default as ReadMore } from './src/ReadMore';
 export { default as WithStorage } from './src/WithStorage';
 export { default as GeolocationContext } from './src/GeolocationContext';
 
+export { default as BlackToAlpha } from './images/black-to-alpha-vertical.png';
 // Flow types:
 
 export type {

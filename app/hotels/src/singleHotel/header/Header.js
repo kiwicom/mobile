@@ -10,6 +10,7 @@ import {
   Touchable,
   AdaptableLayout,
   Device,
+  BlackToAlpha as gradient,
 } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from 'react-relay';
@@ -17,7 +18,6 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 import Rating from './Rating';
-import gradient from './black-to-alpha-vertical.png';
 import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 import type { Header_hotel } from './__generated__/Header_hotel.graphql';
 
