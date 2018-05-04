@@ -82,6 +82,9 @@ const Translations = {
   'hotels_search.location_picker.recent_search': 'Recent search',
   'hotels_search.location_picker.your_location': 'Confirm',
 
+  'mmb.booking_state.confirmed': 'Confirmed',
+  'mmb.booking_state.refunded': 'Refunded',
+  'mmb.booking_state.in_process': 'In process',
   'partial_failure.error':
     'Some parts of the page may be missing due to partial server error.',
 
