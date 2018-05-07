@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dd5df08a537a0d727eb591d91fe111f0
+ * @relayHash db9d1ea9df5960becd95a56eefbd0f9c
  */
 
 /* eslint-disable */
@@ -11,10 +11,10 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type SuggestionList_data$ref = any;
 export type LocationPickerScreen_cities_QueryVariables = {|
-  prefix: string,
+  prefix: string
 |};
 export type LocationPickerScreen_cities_QueryResponse = {|
-  +$fragmentRefs: SuggestionList_data$ref,
+  +$fragmentRefs: SuggestionList_data$ref
 |};
 */
 
@@ -213,5 +213,6 @@ return {
   }
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '1eb719b4c2b6d8157c0f806579c2c99e';
 module.exports = node;
