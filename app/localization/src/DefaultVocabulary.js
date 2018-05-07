@@ -118,6 +118,11 @@ const Translations = {
   'mmb.sub_menu.manage.other.open_on_web': 'Open on Web',
   'mmb.sub_menu.manage.other.refund_form': 'Refund Form',
   'mmb.sub_menu.manage.other.apply_for_refund': 'Apply for refund',
+
+  // MMB My bookings
+  'mmb.my_bookings.future_trips': 'Future trips',
+
+  'tabbar.bookings': 'Bookings',
 };
 
 export type TranslationKeys = $Keys<typeof Translations>;

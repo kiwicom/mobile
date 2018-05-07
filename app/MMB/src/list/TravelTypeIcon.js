@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
 
 type Props = {|
   type: string,
@@ -10,12 +10,18 @@ type Props = {|
 export default function TravelTypeIcon(props: Props) {
   switch (props.type) {
     case 'RETURN':
-      return <TextIcon>s</TextIcon>;
+      return <TextIcon style={styles.icon}>s</TextIcon>;
     case 'ONE_WAY':
-      return <TextIcon>&#xe0A9;</TextIcon>;
+      return <TextIcon style={styles.icon}>&#xe0A9;</TextIcon>;
     case 'MULTICITY':
-      return <TextIcon>{'>'}</TextIcon>;
+      return <TextIcon style={styles.icon}>{'>'}</TextIcon>;
     default:
       return null;
   }
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    color: Color.white,
+  },
+});
