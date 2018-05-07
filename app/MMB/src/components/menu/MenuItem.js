@@ -2,11 +2,18 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import {
+  Color,
+  TextIcon,
+  StyleSheet,
+  Text,
+  Touchable,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   title: React.Element<typeof Translation>,
+  onPress: () => void,
   icon?: React.Element<typeof TextIcon>,
   description?: React.Element<typeof Translation>,
 |};
@@ -31,21 +38,24 @@ type Props = {|
  */
 export default function MenuItem(props: Props) {
   return (
-    <View
+    <Touchable
+      onPress={props.onPress}
       style={[
         styleSheet.wrapper,
         props.description ? styleSheet.wrapperWithDescription : null,
       ]}
     >
-      {props.icon && <View style={styleSheet.icon}>{props.icon}</View>}
+      <React.Fragment>
+        {props.icon && <View style={styleSheet.icon}>{props.icon}</View>}
 
-      <View style={styleSheet.contentRow}>
-        <Text style={styleSheet.title}>{props.title}</Text>
-        {props.description && (
-          <Text style={styleSheet.description}>{props.description}</Text>
-        )}
-      </View>
-    </View>
+        <View style={styleSheet.contentRow}>
+          <Text style={styleSheet.title}>{props.title}</Text>
+          {props.description && (
+            <Text style={styleSheet.description}>{props.description}</Text>
+          )}
+        </View>
+      </React.Fragment>
+    </Touchable>
   );
 }
 

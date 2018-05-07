@@ -17,7 +17,7 @@ export default function MMBListScreen(props: Props) {
 MMBListScreen.navigationOptions = () => ({
   title: (
     <HeaderTitle>
-      <Translation id="tabbar.bookings" />
+      <Translation id="mmb.my_bookings.title.bookings" />
     </HeaderTitle>
   ),
 });

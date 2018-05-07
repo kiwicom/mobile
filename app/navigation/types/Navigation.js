@@ -8,6 +8,7 @@ type CoreStackNavigatorRouteNames =
   | 'HotelsPackage'
   | 'SingleHotelPackage'
   | 'MMBPackage';
+
 type HotelsStackNavigatorNames =
   | 'AllHotelsMap'
   | 'GalleryGrid'
@@ -17,12 +18,16 @@ type HotelsStackNavigatorNames =
   | 'SingleHotelMap'
   | 'LocationPicker'
   | 'GuestsModal';
+
+type MMBStackNavigatorNames = 'mmb.other.refund';
+
 type HomepageStackNavigatorRouteNames = 'Home';
 type PlaygroundNavigationRouteNames = 'Playground';
 
 type RouteNames =
   | CoreStackNavigatorRouteNames
   | HotelsStackNavigatorNames
+  | MMBStackNavigatorNames
   | HomepageStackNavigatorRouteNames
   | PlaygroundNavigationRouteNames;
 
