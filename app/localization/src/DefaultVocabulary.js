@@ -82,9 +82,6 @@ const Translations = {
   'hotels_search.location_picker.recent_search': 'Recent search',
   'hotels_search.location_picker.your_location': 'Confirm',
 
-  'mmb.booking_state.confirmed': 'Confirmed',
-  'mmb.booking_state.refunded': 'Refunded',
-  'mmb.booking_state.in_process': 'In process',
   'partial_failure.error':
     'Some parts of the page may be missing due to partial server error.',
 
@@ -101,6 +98,26 @@ const Translations = {
   'single_hotel.room_badges.free_cancellation': 'Free cancellation',
   'single_hotel.room_list.rooms': 'Rooms',
   'single_hotel.room_picker.select': 'Select',
+
+  // MMB package:
+  'mmb.booking_state.confirmed': 'Confirmed',
+  'mmb.booking_state.refunded': 'Refunded',
+  'mmb.booking_state.in_process': 'In process',
+
+  // MMB menu:
+  'mmb.main_menu.manage': 'Manage',
+  'mmb.main_menu.manage.help': 'Help',
+  'mmb.main_menu.manage.help.description': 'Contact us',
+  'mmb.sub_menu.help.help': 'Help',
+  'mmb.sub_menu.help.call_support': 'Call Support',
+
+  'mmb.main_menu.manage.other': 'Other',
+  'mmb.main_menu.manage.other.description':
+    'Booking cancellation, invoice, etc',
+  'mmb.sub_menu.manage.other.invoice': 'Invoice',
+  'mmb.sub_menu.manage.other.open_on_web': 'Open on Web',
+  'mmb.sub_menu.manage.other.refund_form': 'Refund Form',
+  'mmb.sub_menu.manage.other.apply_for_refund': 'Apply for refund',
 };
 
 export type TranslationKeys = $Keys<typeof Translations>;

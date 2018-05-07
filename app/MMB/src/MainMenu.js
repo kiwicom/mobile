@@ -5,28 +5,28 @@ import { ScrollView } from 'react-native';
 import { TextIcon, Color, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import MenuItem from './components/MenuItem';
-import MenuGroup from './components/MenuGroup';
+import MenuItem from './components/menu/MenuItem';
+import TitledMenuGroup from './components/menu/TitledMenuGroup';
 
-export default function RightMenu() {
-  // TODO: export translations (register them in the Localization package?)
-
+export default function MainMenu() {
   return (
     <ScrollView>
-      <MenuGroup title={<Translation passThrough="Manage" />}>
+      <TitledMenuGroup title={<Translation id="mmb.main_menu.manage" />}>
         <MenuItem
           icon={<TextIcon style={styleSheet.icon}>F</TextIcon>}
-          title={<Translation passThrough="Help" />}
-          description={<Translation passThrough="Contact us" />}
+          title={<Translation id="mmb.main_menu.manage.help" />}
+          description={
+            <Translation id="mmb.main_menu.manage.help.description" />
+          }
         />
         <MenuItem
           icon={<TextIcon style={styleSheet.icon}>&#xe07d;</TextIcon>}
-          title={<Translation passThrough="Other" />}
+          title={<Translation id="mmb.main_menu.manage.other" />}
           description={
-            <Translation passThrough="Booking cancellation, invoice, etc" />
+            <Translation id="mmb.main_menu.manage.other.description" />
           }
         />
-      </MenuGroup>
+      </TitledMenuGroup>
     </ScrollView>
   );
 }
