@@ -8,27 +8,43 @@ import { Translation } from '@kiwicom/mobile-localization';
 import MenuItem from './components/menu/MenuItem';
 import TitledMenuGroup from './components/menu/TitledMenuGroup';
 
-export default function MainMenu() {
-  return (
-    <ScrollView>
-      <TitledMenuGroup title={<Translation id="mmb.main_menu.manage" />}>
-        <MenuItem
-          icon={<TextIcon style={styleSheet.icon}>F</TextIcon>}
-          title={<Translation id="mmb.main_menu.manage.help" />}
-          description={
-            <Translation id="mmb.main_menu.manage.help.description" />
-          }
-        />
-        <MenuItem
-          icon={<TextIcon style={styleSheet.icon}>&#xe07d;</TextIcon>}
-          title={<Translation id="mmb.main_menu.manage.other" />}
-          description={
-            <Translation id="mmb.main_menu.manage.other.description" />
-          }
-        />
-      </TitledMenuGroup>
-    </ScrollView>
-  );
+type Props = {|
+  openMenu: string => void,
+|};
+
+export default class MainMenu extends React.Component<Props> {
+  handleOpenHelpSubmenu = () => {
+    this.props.openMenu('mmb.help');
+  };
+
+  handleOpenOtherSubmenu = () => {
+    this.props.openMenu('mmb.other');
+  };
+
+  render = () => {
+    return (
+      <ScrollView>
+        <TitledMenuGroup title={<Translation id="mmb.main_menu.manage" />}>
+          <MenuItem
+            onPress={this.handleOpenHelpSubmenu}
+            icon={<TextIcon style={styleSheet.icon}>F</TextIcon>}
+            title={<Translation id="mmb.main_menu.manage.help" />}
+            description={
+              <Translation id="mmb.main_menu.manage.help.description" />
+            }
+          />
+          <MenuItem
+            onPress={this.handleOpenOtherSubmenu}
+            icon={<TextIcon style={styleSheet.icon}>&#xe07d;</TextIcon>}
+            title={<Translation id="mmb.main_menu.manage.other" />}
+            description={
+              <Translation id="mmb.main_menu.manage.other.description" />
+            }
+          />
+        </TitledMenuGroup>
+      </ScrollView>
+    );
+  };
 }
 
 const styleSheet = StyleSheet.create({

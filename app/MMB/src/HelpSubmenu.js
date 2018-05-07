@@ -7,12 +7,22 @@ import { Translation } from '@kiwicom/mobile-localization';
 import MenuItem from './components/menu/MenuItem';
 import MenuGroup from './components/menu/MenuGroup';
 
-export default function MainMenu() {
+const VoidAction = () => {
+  console.warn('TODO');
+};
+
+export default function HelpSubmenu() {
   return (
     <ScrollView>
       <MenuGroup>
-        <MenuItem title={<Translation id="mmb.sub_menu.help.help" />} />
-        <MenuItem title={<Translation id="mmb.sub_menu.help.call_support" />} />
+        <MenuItem
+          title={<Translation id="mmb.sub_menu.help.help" />}
+          onPress={VoidAction}
+        />
+        <MenuItem
+          title={<Translation id="mmb.sub_menu.help.call_support" />}
+          onPress={VoidAction}
+        />
       </MenuGroup>
     </ScrollView>
   );

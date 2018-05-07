@@ -104,25 +104,27 @@ const Translations = {
   'mmb.booking_state.refunded': 'Refunded',
   'mmb.booking_state.in_process': 'In process',
 
+  'mmb.my_bookings.title.bookings': 'Bookings',
+  'mmb.my_bookings.future_trips': 'Future trips',
+
   // MMB menu:
+  'mmb.main_menu.title': 'Manage my bookings',
+
   'mmb.main_menu.manage': 'Manage',
   'mmb.main_menu.manage.help': 'Help',
   'mmb.main_menu.manage.help.description': 'Contact us',
+  'mmb.sub_menu.help.title': 'Support',
   'mmb.sub_menu.help.help': 'Help',
   'mmb.sub_menu.help.call_support': 'Call Support',
 
   'mmb.main_menu.manage.other': 'Other',
   'mmb.main_menu.manage.other.description':
     'Booking cancellation, invoice, etc',
+  'mmb.sub_menu.manage.other.title': 'Others',
   'mmb.sub_menu.manage.other.invoice': 'Invoice',
   'mmb.sub_menu.manage.other.open_on_web': 'Open on Web',
   'mmb.sub_menu.manage.other.refund_form': 'Refund Form',
   'mmb.sub_menu.manage.other.apply_for_refund': 'Apply for refund',
-
-  // MMB My bookings
-  'mmb.my_bookings.future_trips': 'Future trips',
-
-  'tabbar.bookings': 'Bookings',
 };
 
 export type TranslationKeys = $Keys<typeof Translations>;
