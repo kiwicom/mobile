@@ -6,8 +6,22 @@ import {
 } from '@kiwicom/mobile-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 
-import MMBScreen from './MMBScreen';
+import MMBScreen, { MenuComponents } from './MMBScreen';
 import MMBListScreen from './MMBListScreen';
+
+// THIS IS ONLY FOR MOBILE DEVICES!
+const Screens = {};
+Object.entries(MenuComponents).forEach(
+  // $FlowIssue: https://github.com/facebook/flow/issues/2221
+  ([routeName, { screen, headerTitle }]) => {
+    Screens[routeName] = {
+      screen: withMappedProps(screen),
+      navigationOptions: {
+        headerTitle,
+      },
+    };
+  },
+);
 
 export default StackNavigator(
   {
@@ -15,8 +29,9 @@ export default StackNavigator(
       screen: withMappedProps(MMBListScreen),
     },
     MMB: {
-      screen: MMBScreen,
+      screen: withMappedProps(MMBScreen),
     },
+    ...Screens,
   },
   {
     ...StackNavigatorOptions,
