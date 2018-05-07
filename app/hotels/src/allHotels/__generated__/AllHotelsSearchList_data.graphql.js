@@ -9,7 +9,7 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type AllHotelsSearchRow$ref = any;
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type AllHotelsSearchList_data$ref: FragmentReference;
 export type AllHotelsSearchList_data = {|
   +allAvailableHotels: ?{|
@@ -23,7 +23,7 @@ export type AllHotelsSearchList_data = {|
       +node: ?{|
         +id: string,
         +$fragmentRefs: AllHotelsSearchRow$ref,
-      |},
+      |}
     |}>,
     +stats: ?{|
       +priceMax: ?number,
@@ -231,5 +231,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = 'bce95f72d27143e7096439904684d32d';
 module.exports = node;

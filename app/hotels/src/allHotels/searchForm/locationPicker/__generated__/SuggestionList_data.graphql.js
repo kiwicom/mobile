@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type SuggestionList_data$ref: FragmentReference;
 export type SuggestionList_data = {|
   +hotelCities: ?{|
@@ -16,8 +16,8 @@ export type SuggestionList_data = {|
       +node: ?{|
         +id: string,
         +name: ?string,
-      |},
-    |}>,
+      |}
+    |}>
   |},
   +$refType: SuggestionList_data$ref,
 |};
@@ -144,5 +144,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = '846f15ca05895f9b3e8f5eec3ba8f185';
 module.exports = node;

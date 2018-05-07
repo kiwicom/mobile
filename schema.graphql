@@ -28,6 +28,11 @@ type Airline {
   isLowCost: Boolean
 }
 
+enum AllBookingsOnlyEnum {
+  FUTURE
+  PAST
+}
+
 type AllowedBaggage {
   """Extra and overweight baggage."""
   additionalBaggage: [AdditionalBaggage]
@@ -71,20 +76,25 @@ type Baggage {
 
 type Booking {
   """The ID of an object"""
-  id: ID!
+  id: ID! @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
 
   """Unique number identifying the booking in communication with support."""
-  databaseId: Int
-  allowedBaggage: AllowedBaggage
-  arrival: RouteStop
+  databaseId: Int @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
+  allowedBaggage: AllowedBaggage @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
+  arrival: RouteStop @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
 
   """Static assets related to this booking."""
-  assets: BookingAssets
-  departure: RouteStop
+  assets: BookingAssets @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
+  departure: RouteStop @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
 
   """Flight segments, e.g. stopover, change of aircraft, etc."""
-  legs: [Leg]
-  status: BookingStatus
+  legs: [Leg] @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
+  status: BookingStatus @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
+  type: BookingType
+  oneWay: BookingOneWay
+  return: BookingReturn
+  multicity: BookingMulticity
+  destinationImageUrl(dimensions: BookingDestinationImageDimensions): String
 }
 
 type BookingAssets {
@@ -106,6 +116,18 @@ type BookingConnection {
   edges: [BookingEdge]
 }
 
+enum BookingDestinationImageDimensions {
+  _1200x628
+  _1280x720
+  _220x165
+  _275x250
+  _300x165
+  _375x165
+  _600x330
+  _600x600
+  _610x251
+}
+
 """An edge in a connection."""
 type BookingEdge {
   """The item at the end of the edge"""
@@ -113,6 +135,90 @@ type BookingEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+interface BookingInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """Unique number identifying the booking in communication with support."""
+  databaseId: Int
+  status: BookingStatus
+
+  """Total price of the whole booking."""
+  price: Price
+  allowedBaggage: AllowedBaggage
+
+  """Static assets related to this booking."""
+  assets: BookingAssets
+}
+
+type BookingMulticity implements BookingInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """Unique number identifying the booking in communication with support."""
+  databaseId: Int
+  status: BookingStatus
+
+  """Total price of the whole booking."""
+  price: Price
+  allowedBaggage: AllowedBaggage
+
+  """Static assets related to this booking."""
+  assets: BookingAssets
+
+  """Initial origin."""
+  start: RouteStop
+
+  """Final destination."""
+  end: RouteStop
+
+  """List of trips in each multicity segment."""
+  trips: [Trip]
+}
+
+"""
+Booking with simple trip from origin to destination, with possible stopovers.
+"""
+type BookingOneWay implements BookingInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """Unique number identifying the booking in communication with support."""
+  databaseId: Int
+  status: BookingStatus
+
+  """Total price of the whole booking."""
+  price: Price
+  allowedBaggage: AllowedBaggage
+
+  """Static assets related to this booking."""
+  assets: BookingAssets
+  trip: Trip
+}
+
+"""Booking with return trip. A <-> B"""
+type BookingReturn implements BookingInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """Unique number identifying the booking in communication with support."""
+  databaseId: Int
+  status: BookingStatus
+
+  """Total price of the whole booking."""
+  price: Price
+  allowedBaggage: AllowedBaggage
+
+  """Static assets related to this booking."""
+  assets: BookingAssets
+
+  """Trip from origin to destination."""
+  outbound: Trip
+
+  """Return trip back from destination to origin."""
+  inbound: Trip
 }
 
 enum BookingStatus {
@@ -124,6 +230,12 @@ enum BookingStatus {
   DELETED
   CLOSED
   EXPIRED
+}
+
+enum BookingType {
+  ONE_WAY
+  RETURN
+  MULTICITY
 }
 
 type Coordinates {
@@ -318,6 +430,53 @@ enum Currency {
   XAU
 }
 
+type CurrencyDetail implements Node {
+  """The ID of an object"""
+  id: ID!
+
+  """The code of the currency as used on Kiwi.com frontend"""
+  code: String
+
+  """The name of the currency"""
+  name: String
+
+  """Format string of the currency"""
+  format: String
+
+  """Whether the format of the currency is universally accepted"""
+  uncertainFormat: Boolean
+
+  """Number of digits to round the currency to when doing conversion"""
+  round: Int
+
+  """List of affiliate IDs to enable the currency on"""
+  enabledOnAffilId: [String]
+
+  """The code of the currency used as a fallback"""
+  fallback: String
+
+  """Currency rate compared to Euro"""
+  rate: Float
+}
+
+"""A connection to a list of items."""
+type CurrencyDetailConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CurrencyDetailEdge]
+}
+
+"""An edge in a connection."""
+type CurrencyDetailEdge {
+  """The item at the end of the edge"""
+  node: CurrencyDetail
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -398,6 +557,9 @@ type FAQCategory {
   """Title of the FAQ category"""
   title: String
 
+  """Perex of the FAQ category"""
+  perex: String
+
   """List of subcategories"""
   subcategories: [FAQCategory]
 
@@ -424,6 +586,14 @@ type FAQCategoryEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+enum FAQCommentType {
+  CONFUSING
+  DOESNT_ANSWER
+  DONT_LIKE
+  NOT_ACCURATE
+  OTHER
 }
 
 type Flight {
@@ -568,7 +738,7 @@ type HotelAvailabilityConnection {
   edges: [HotelAvailabilityEdge]
   stats: HotelAvailabilityStats
 
-  """Name of the closest city when quering with latitude & longitude"""
+  """Name of the closest city"""
   cityName: String
 }
 
@@ -871,53 +1041,54 @@ type Identity {
 
 scalar IP
 
+"""Use "Accept-Language" HTTP header to specify locale."""
 enum Language {
-  ar
-  bg
-  ca
-  cs
-  da
-  de
-  el
-  en
-  engb
-  enus
-  es
-  esar
-  et
-  fi
-  fr
-  he
-  hr
-  hu
-  id
-  is
-  it
-  ja
-  ko
-  lt
-  lv
-  ms
-  nl
-  no
-  pl
-  pt
-  ptbr
-  ptpt
-  ro
-  ru
-  sk
-  sl
-  sr
-  sv
-  th
-  tl
-  tr
-  uk
-  vi
-  zh
-  zhcn
-  zhtw
+  ar @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  bg @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ca @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  cs @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  da @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  de @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  el @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  en @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  engb @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  enus @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  es @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  esar @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  et @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fi @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  fr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  he @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  hr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  hu @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  id @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  is @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  it @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ja @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ko @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  lt @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  lv @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ms @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  nl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  no @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  pl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  pt @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ptbr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ptpt @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ro @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  ru @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sk @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  sv @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  th @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  tl @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  tr @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  uk @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  vi @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zh @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zhcn @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  zhtw @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
 }
 
 """
@@ -984,6 +1155,8 @@ enum Locale {
   hu_HU @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
   nl_NL @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
   no_NO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  nb_NO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
+  nn_NO @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
   pl_PL @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
   pt_PT @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
   pt_BR @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
@@ -1062,7 +1235,9 @@ input LocationInput {
 }
 
 input LocationsOptionsInput {
-  """Language tag in the format of the RFC 5646."""
+  """
+  DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+  """
   locale: Locale
 
   """Desired location type the response should only include."""
@@ -1077,6 +1252,12 @@ enum LocationType {
   country
   station
   subdivision
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
 }
 
 """Information about pagination in a connection."""
@@ -1128,15 +1309,50 @@ input RoomsConfiguration {
 """Root Mutation."""
 type RootMutation {
   login(email: String!, password: String!): User
+  addFAQArticleComment(
+    """ID of FAQ article to receive vote."""
+    id: ID!
+
+    """Value indicating the comment type."""
+    type: FAQCommentType!
+
+    """Comment text"""
+    comment: String!
+  ): FAQArticle
 }
 
 """Root Query"""
 type RootQuery {
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+
   """Search for your flight bookings."""
-  allBookings(after: String, first: Int, before: String, last: Int): BookingConnection
+  allBookings(
+    """
+    Allows to filter only future bookings or only past bookings but not both.
+    You can skip this argument to fetch all bookings (future and past).
+    """
+    only: AllBookingsOnlyEnum
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): BookingConnection
 
   """Search for scheduled flights."""
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
+
+  """Detail of a currency as used on Kiwi.com frontend"""
+  currency(
+    """The currency code used on Kiwi.com frontend"""
+    code: String!
+  ): CurrencyDetail
+
+  """Currencies used on Kiwi.com frontend"""
+  currencies(after: String, first: Int, before: String, last: Int): CurrencyDetailConnection
 
   """Geography info by an IP address"""
   geoIP(ip: IP!): GeoIP
@@ -1178,7 +1394,14 @@ type RootQuery {
   ): LocationConnection
 
   """Single location by ID."""
-  location(id: String!, locale: Locale): Location
+  location(
+    id: String!
+
+    """
+    DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
+    """
+    locale: Locale
+  ): Location
 
   """All locations in certain location. For example all airports in London"""
   allSubLocations(
@@ -1271,6 +1494,9 @@ type RouteStop {
   airport: Location
   time: DateTime
   localTime: DateTime
+
+  """City id of the route stop"""
+  cityId: String
 }
 
 input StopoversInput {
@@ -1279,6 +1505,13 @@ input StopoversInput {
 
   """Maximum number of hours of stopover duration."""
   to: Int
+}
+
+"""Single travel from origin to destination, with possible stopovers."""
+type Trip {
+  departure: RouteStop
+  arrival: RouteStop
+  legs: [Leg]
 }
 
 type User {

@@ -12,13 +12,13 @@ type BeddingInfo_room$ref = any;
 type RoomBadges_availableRoom$ref = any;
 type RoomDescription_room$ref = any;
 type RoomRowTitle_room$ref = any;
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomRow_availableRoom$ref: FragmentReference;
 export type RoomRow_availableRoom = {|
   +originalId: ?string,
   +room: ?{|
     +description: ?{|
-      +title: ?string,
+      +title: ?string
     |},
     +photos: ?{|
       +edges: ?$ReadOnlyArray<?{|
@@ -27,11 +27,11 @@ export type RoomRow_availableRoom = {|
           +highResUrl: ?string,
           +lowResUrl: ?string,
           +id: string,
-        |},
-      |}>,
+        |}
+      |}>
     |},
     +maxPersons: ?number,
-    +$fragmentRefs: (RoomRowTitle_room$ref & RoomDescription_room$ref & BeddingInfo_room$ref),
+    +$fragmentRefs: RoomRowTitle_room$ref & RoomDescription_room$ref & BeddingInfo_room$ref,
   |},
   +minimalPrice: ?{|
     +amount: ?number,
@@ -218,5 +218,6 @@ return {
   ]
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = '000bcc1f464c21f719de10a01c45a9ac';
 module.exports = node;
