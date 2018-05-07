@@ -10,14 +10,14 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type HotelSwipeList$ref = any;
 type MapView$ref = any;
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapScreen$ref: FragmentReference;
 export type MapScreen = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
-      +id: string,
+      +id: string
     |},
-    +$fragmentRefs: (MapView$ref & HotelSwipeList$ref),
+    +$fragmentRefs: MapView$ref & HotelSwipeList$ref,
   |}>,
   +$refType: MapScreen$ref,
 |};
@@ -72,5 +72,6 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+// prettier-ignore
 (node/*: any*/).hash = '9b4ab0921dbdfea4c94e65439a617823';
 module.exports = node;
