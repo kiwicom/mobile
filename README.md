@@ -62,6 +62,11 @@ xcrun simctl list devices
 yarn ios --simulator="iPad Pro (10.5-inch)"
 ```
 
+### MMB
+
+You need to obtain a token, one way is to go to https://kiwi-graphiql.now.sh/ do the login mutation.
+Then copy the token and paste it into MMB_TOKEN in the .env file
+
 ## Testing
 
 You will usually need only this during development:

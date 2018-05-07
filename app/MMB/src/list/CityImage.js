@@ -18,12 +18,13 @@ import ImageBadges from './ImageBadges';
 
 type Props = {|
   imageUrl: string,
-  bookingId: string,
+  bookingId: ?number,
   type: string,
   departureCity: string,
   arrivalCity: string,
-  date: Date,
+  date: ?Date,
   status: string,
+  passengerCount: ?number,
 |};
 
 export default class CityImage extends React.Component<Props> {
@@ -66,7 +67,7 @@ export default class CityImage extends React.Component<Props> {
           </Text>
           <View style={styles.row}>
             <Text style={[styles.text, styles.dateText]}>
-              <Translation passThrough="2" />
+              <Translation passThrough={this.props.passengerCount} />
             </Text>
             <Icon
               name="people"
@@ -115,8 +116,9 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 12,
+    opacity: 0.7,
   },
   passengerIcon: {
-    opacity: 1,
+    opacity: 0.7,
   },
 });

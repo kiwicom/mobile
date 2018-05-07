@@ -7,6 +7,7 @@ import NavigationStack from '../navigation/NavigationStack';
 type Props = {|
   language: string,
   currency: string,
+  accessToken: string,
 |};
 
 export default class ManageMyBookingPackage extends React.Component<Props> {
