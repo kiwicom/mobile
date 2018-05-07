@@ -6,6 +6,7 @@ import { Color, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import MenuItem from './MenuItem';
+import MenuGroup from './MenuGroup';
 
 type Props = {|
   title: React.Element<typeof Translation>,
@@ -17,36 +18,25 @@ type Props = {|
  * Example:
  *
  *
- *   Trip Info
+ *   Trip Info Separator
  * .------------------------------.
  * |                              |
- * |  ICON                        |
+ * |  ICON  Title 1               |
  * |                              |
  * |        ----------------------|
  * |                              |
- * |  ICON                        |
+ * |  ICON  Title 2               |
  * |                              |
  * `------------------------------`
  */
-export default function MenuGroup(props: Props) {
-  let separator = null;
-
+export default function TitledMenuGroup(props: Props) {
   return (
     <React.Fragment>
       <View style={styleSheet.titleWrapper}>
         <Text style={styleSheet.title}>{props.title}</Text>
       </View>
 
-      {props.children.map((child, index) => {
-        const wrappedChild = (
-          <React.Fragment key={index}>
-            {separator}
-            <View>{child}</View>
-          </React.Fragment>
-        );
-        separator = <View style={styleSheet.separator} />;
-        return wrappedChild;
-      })}
+      <MenuGroup withoutIcons={false}>{props.children}</MenuGroup>
     </React.Fragment>
   );
 }
@@ -59,10 +49,5 @@ const styleSheet = StyleSheet.create({
   },
   title: {
     color: Color.textLight,
-  },
-  separator: {
-    height: 1,
-    width: 45,
-    backgroundColor: Color.white,
   },
 });
