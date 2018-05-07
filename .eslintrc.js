@@ -92,7 +92,6 @@ module.exports = {
     'react/no-access-state-in-setstate': ERROR,
     'react/prop-types': OFF, // we use Flow instead,
     'react-native/no-unused-styles': ERROR,
-    'react-native/no-inline-styles': WARNING,
     'flowtype/require-valid-file-annotation': [ERROR, 'always'],
     'flowtype/newline-after-flow-annotation': [
       ERROR,
