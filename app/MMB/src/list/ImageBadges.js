@@ -6,7 +6,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   status: string,
-  bookingId: string,
+  bookingId: ?number,
 |};
 
 export default function ImageBadges(props: Props) {

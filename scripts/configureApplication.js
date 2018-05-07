@@ -13,6 +13,7 @@ const vault = {
   AUTH_IOS_GOOGLE_CLIENTID: 'null',
   AUTH_KIWI_BACKEND: 'null',
   SENTRY_DSN: 'null',
+  MMB_TOKEN: 'null',
 };
 
 const envTemplate = `
@@ -44,6 +45,9 @@ AUTH_KIWI_BACKEND=${vault.AUTH_KIWI_BACKEND}
 # accordingly and fix all production issues.
 #
 SENTRY_DSN=${vault.SENTRY_DSN}
+
+# Token needed to vaidate requests to get all bookings
+MMB_TOKEN=${vault.MMB_TOKEN}
 `;
 
 log('Setting up ENV variables...');

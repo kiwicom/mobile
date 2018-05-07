@@ -6,7 +6,8 @@
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-navigation": "^0",
-    "@kiwicom/mobile-shared": "^0"
+    "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-relay": "^0"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
