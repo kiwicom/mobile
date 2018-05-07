@@ -95,6 +95,7 @@ type Booking {
   return: BookingReturn
   multicity: BookingMulticity
   destinationImageUrl(dimensions: BookingDestinationImageDimensions): String
+  passengerCount: Int
 }
 
 type BookingAssets {
