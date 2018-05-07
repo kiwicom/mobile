@@ -8,12 +8,12 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-import type { FragmentReference } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
 declare export opaque type Header_hotel$ref: FragmentReference;
 export type Header_hotel = {|
   +name: ?string,
   +mainPhoto: ?{|
-    +highResUrl: ?string,
+    +highResUrl: ?string
   |},
   +rating: ?{|
     +stars: ?number,
@@ -29,8 +29,8 @@ export type Header_hotel = {|
         +id: string,
         +lowResUrl: ?string,
         +highResUrl: ?string,
-      |},
-    |}>,
+      |}
+    |}>
   |},
   +$refType: Header_hotel$ref,
 |};
@@ -172,5 +172,6 @@ return {
   ]
 };
 })();
+// prettier-ignore
 (node/*: any*/).hash = 'd525c9cb8521862bbeca063836092650';
 module.exports = node;
