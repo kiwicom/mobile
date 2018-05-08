@@ -16,18 +16,13 @@ type Props = {|
 
 const OneWayFlight = (props: Props) => (
   <CityImage
+    arrival={idx(props.booking, _ => _.trip.arrival)}
+    departure={idx(props.booking, _ => _.trip.departure)}
     imageUrl={props.imageUrl}
     type={props.type}
     passengerCount={props.passengerCount}
     bookingId={idx(props.booking, _ => _.databaseId)}
     status={idx(props.booking, _ => _.status) || ''}
-    departureCity={
-      idx(props.booking, _ => _.trip.departure.airport.city.name) || ''
-    }
-    date={idx(props.booking, _ => _.trip.departure.time)}
-    arrivalCity={
-      idx(props.booking, _ => _.trip.arrival.airport.city.name) || ''
-    }
   />
 );
 
@@ -39,19 +34,10 @@ export default createFragmentContainer(
       status
       trip {
         departure {
-          time
-          airport {
-            city {
-              name
-            }
-          }
+          ...CityImage_departure
         }
         arrival {
-          airport {
-            city {
-              name
-            }
-          }
+          ...CityImage_arrival
         }
       }
     }

@@ -8,6 +8,8 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type CityImage_arrival$ref = any;
+type CityImage_departure$ref = any;
 export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "EXPIRED" | "NEW" | "PENDING" | "REFUNDED" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ReturnFlight_booking$ref: FragmentReference;
@@ -16,19 +18,10 @@ export type ReturnFlight_booking = {|
   +databaseId: ?number,
   +outbound: ?{|
     +arrival: ?{|
-      +airport: ?{|
-        +city: ?{|
-          +name: ?string
-        |}
-      |}
+      +$fragmentRefs: CityImage_arrival$ref
     |},
     +departure: ?{|
-      +time: ?any,
-      +airport: ?{|
-        +city: ?{|
-          +name: ?string
-        |}
-      |},
+      +$fragmentRefs: CityImage_departure$ref
     |},
   |},
   +$refType: ReturnFlight_booking$ref,
@@ -36,37 +29,7 @@ export type ReturnFlight_booking = {|
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
-var v0 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "airport",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "Location",
-  "plural": false,
-  "selections": [
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "city",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "LocationArea",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "name",
-          "args": null,
-          "storageKey": null
-        }
-      ]
-    }
-  ]
-};
-return {
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "ReturnFlight_booking",
   "type": "BookingReturn",
@@ -105,7 +68,11 @@ return {
           "concreteType": "RouteStop",
           "plural": false,
           "selections": [
-            v0
+            {
+              "kind": "FragmentSpread",
+              "name": "CityImage_arrival",
+              "args": null
+            }
           ]
         },
         {
@@ -118,20 +85,16 @@ return {
           "plural": false,
           "selections": [
             {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "time",
-              "args": null,
-              "storageKey": null
-            },
-            v0
+              "kind": "FragmentSpread",
+              "name": "CityImage_departure",
+              "args": null
+            }
           ]
         }
       ]
     }
   ]
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = '644665dfb7003643e2add133fec32bd7';
+(node/*: any*/).hash = 'f5834eaf7f933de33b3bb18f11e5aafa';
 module.exports = node;

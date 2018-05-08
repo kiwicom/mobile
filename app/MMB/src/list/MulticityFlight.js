@@ -16,14 +16,13 @@ type Props = {|
 
 const MulticityFlight = (props: Props) => (
   <CityImage
+    arrival={idx(props.booking, _ => _.end)}
+    departure={idx(props.booking, _ => _.start)}
     imageUrl={props.imageUrl}
     type={props.type}
     passengerCount={props.passengerCount}
     bookingId={idx(props.booking, _ => _.databaseId)}
     status={idx(props.booking, _ => _.status) || ''}
-    departureCity={idx(props.booking, _ => _.start.airport.city.name) || ''}
-    date={idx(props.booking, _ => _.start.time)}
-    arrivalCity={idx(props.booking, _ => _.end.airport.city.name) || ''}
   />
 );
 
@@ -34,19 +33,10 @@ export default createFragmentContainer(
       status
       databaseId
       end {
-        airport {
-          city {
-            name
-          }
-        }
+        ...CityImage_arrival
       }
       start {
-        time
-        airport {
-          city {
-            name
-          }
-        }
+        ...CityImage_departure
       }
     }
   `,

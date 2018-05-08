@@ -16,18 +16,13 @@ type Props = {|
 
 const ReturnFlight = (props: Props) => (
   <CityImage
+    arrival={idx(props.booking, _ => _.outbound.arrival)}
+    departure={idx(props.booking, _ => _.outbound.departure)}
     imageUrl={props.imageUrl}
     type={props.type}
     passengerCount={props.passengerCount}
     bookingId={idx(props.booking, _ => _.databaseId)}
     status={idx(props.booking, _ => _.status) || ''}
-    departureCity={
-      idx(props.booking, _ => _.outbound.departure.airport.city.name) || ''
-    }
-    date={idx(props.booking, _ => _.outbound.departure.time)}
-    arrivalCity={
-      idx(props.booking, _ => _.outbound.arrival.airport.city.name) || ''
-    }
   />
 );
 
@@ -39,19 +34,10 @@ export default createFragmentContainer(
       databaseId
       outbound {
         arrival {
-          airport {
-            city {
-              name
-            }
-          }
+          ...CityImage_arrival
         }
         departure {
-          time
-          airport {
-            city {
-              name
-            }
-          }
+          ...CityImage_departure
         }
       }
     }

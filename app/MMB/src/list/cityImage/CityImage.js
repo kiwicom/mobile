@@ -8,61 +8,64 @@ import {
   BlackToAlpha as gradient,
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { graphql, createFragmentContainer } from 'react-relay';
 
 import FromToRow from './FromToRow';
 import DateAndPassengerCount from './DateAndPassengerCount';
 import ImageBadges from './ImageBadges';
+import type { CityImage_arrival as ArrivalType } from './__generated__/CityImage_arrival.graphql';
+import type { CityImage_departure as DepartureType } from './__generated__/CityImage_departure.graphql';
 
 type Props = {|
   imageUrl: string,
   bookingId: ?number,
   type: string,
-  departureCity: string,
-  arrivalCity: string,
-  date: ?Date,
   status: string,
   passengerCount: ?number,
+  arrival: ArrivalType,
+  departure: DepartureType,
 |};
 
-export default class CityImage extends React.Component<Props> {
-  formatDate = () => {
-    const { date } = this.props;
-    return `${DateFormatter(date).format(
-      'ddd',
-    )} ${DateFormatter.getLocalizedWithoutYear(date)}`;
-  };
-
-  render = () => (
-    <View style={styles.container}>
-      <NetworkImage
-        source={{
-          uri: this.props.imageUrl,
-        }}
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <StretchedImage source={gradient} style={styles.stretchedImage} />
-      <View style={[styles.row, styles.padding]}>
-        <ImageBadges
-          status={this.props.status}
-          bookingId={this.props.bookingId}
-        />
-      </View>
-      <View style={[styles.bottomContainer, styles.padding]}>
-        <FromToRow
-          departureCity={this.props.departureCity}
-          arrivalCity={this.props.arrivalCity}
-          type={this.props.type}
-        />
-        <DateAndPassengerCount
-          formattedDate={this.formatDate()}
-          passengerCount={this.props.passengerCount}
-        />
-      </View>
+export const CityImage = (props: Props) => (
+  <View style={styles.container}>
+    <NetworkImage
+      source={{
+        uri: props.imageUrl,
+      }}
+      style={styles.image}
+      resizeMode="cover"
+    />
+    <StretchedImage source={gradient} style={styles.stretchedImage} />
+    <View style={[styles.row, styles.padding]}>
+      <ImageBadges status={props.status} bookingId={props.bookingId} />
     </View>
-  );
-}
+    <View style={[styles.bottomContainer, styles.padding]}>
+      <FromToRow
+        departure={props.departure}
+        arrival={props.arrival}
+        type={props.type}
+      />
+      <DateAndPassengerCount
+        departure={props.departure}
+        passengerCount={props.passengerCount}
+      />
+    </View>
+  </View>
+);
+
+export default createFragmentContainer(CityImage, {
+  arrival: graphql`
+    fragment CityImage_arrival on RouteStop {
+      ...FromToRow_arrival
+    }
+  `,
+  departure: graphql`
+    fragment CityImage_departure on RouteStop {
+      ...DateAndPassengerCount_departure
+      ...FromToRow_departure
+    }
+  `,
+});
 
 const styles = StyleSheet.create({
   container: {
