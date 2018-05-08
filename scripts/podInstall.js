@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 const path = require('path');
 const exec = require('child_process').execSync;

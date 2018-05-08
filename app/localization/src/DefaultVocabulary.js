@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 /**
  * This is just a dummy vocabulary used for development. It should be in

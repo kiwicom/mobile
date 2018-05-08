@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import { Dimensions, Platform } from 'react-native'; // eslint-disable-line no-restricted-imports
 

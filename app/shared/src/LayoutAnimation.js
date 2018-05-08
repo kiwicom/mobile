@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import { LayoutAnimation, NativeModules } from 'react-native'; // eslint-disable-line no-restricted-imports
 
