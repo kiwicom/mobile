@@ -24,9 +24,6 @@ This is not an actual mobile application. This repository contains only React Na
   * [Working with GraphQL API](#working-with-graphql-api)
   * [Working with translations](#working-with-translations)
   * [Upgrading dependencies](#upgrading-dependencies)
-* [Known issues](#known-issues)
-  * [Important to fix before production ready state](#important-to-fix-before-production-ready-state)
-  * [Improvements necessary for production usage](#improvements-necessary-for-production-usage)
 * [Troubleshooting](#troubleshooting)
   * ['config.h' file not found](#configh-file-not-found)
 
@@ -388,16 +385,6 @@ Check all dependencies with `outdated` Yarn command. This will tell you how behi
 yarn outdated
 yarn upgrade-interactive --latest
 ```
-
-## Known issues
-
-### Important to fix before production ready state
-
-- `PaginationContainer` fails for zero results returned: https://github.com/facebook/relay/issues/1852, fixed by https://github.com/facebook/relay/commit/a17b462b3ff7355df4858a42ddda75f58c161302 (not released yet)
-
-### Improvements necessary for production usage
-
-- persistent GraphQL queries: https://zlml.cz/persist-your-graphql-queries
 
 ## Troubleshooting
 
