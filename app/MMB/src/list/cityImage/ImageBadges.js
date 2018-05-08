@@ -5,7 +5,7 @@ import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  status: string,
+  status: ?string,
   bookingId: ?number,
 |};
 

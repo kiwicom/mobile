@@ -18,20 +18,17 @@ export type FlightList = {|
   +allBookings: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
+        +id: string,
         +destinationImageUrl: ?string,
         +type: ?BookingType,
-        +passengerCount: ?number,
         +oneWay: ?{|
-          +databaseId: ?number,
-          +$fragmentRefs: OneWayFlight_booking$ref,
+          +$fragmentRefs: OneWayFlight_booking$ref
         |},
         +return: ?{|
-          +databaseId: ?number,
-          +$fragmentRefs: ReturnFlight_booking$ref,
+          +$fragmentRefs: ReturnFlight_booking$ref
         |},
         +multicity: ?{|
-          +databaseId: ?number,
-          +$fragmentRefs: MulticityFlight_booking$ref,
+          +$fragmentRefs: MulticityFlight_booking$ref
         |},
       |}
     |}>
@@ -41,15 +38,7 @@ export type FlightList = {|
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "databaseId",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "FlightList",
   "type": "RootQuery",
@@ -86,6 +75,13 @@ return {
                 {
                   "kind": "ScalarField",
                   "alias": null,
+                  "name": "id",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
                   "name": "destinationImageUrl",
                   "args": [
                     {
@@ -105,13 +101,6 @@ return {
                   "storageKey": null
                 },
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "passengerCount",
-                  "args": null,
-                  "storageKey": null
-                },
-                {
                   "kind": "LinkedField",
                   "alias": null,
                   "name": "oneWay",
@@ -120,7 +109,6 @@ return {
                   "concreteType": "BookingOneWay",
                   "plural": false,
                   "selections": [
-                    v0,
                     {
                       "kind": "FragmentSpread",
                       "name": "OneWayFlight_booking",
@@ -137,7 +125,6 @@ return {
                   "concreteType": "BookingReturn",
                   "plural": false,
                   "selections": [
-                    v0,
                     {
                       "kind": "FragmentSpread",
                       "name": "ReturnFlight_booking",
@@ -154,7 +141,6 @@ return {
                   "concreteType": "BookingMulticity",
                   "plural": false,
                   "selections": [
-                    v0,
                     {
                       "kind": "FragmentSpread",
                       "name": "MulticityFlight_booking",
@@ -170,7 +156,6 @@ return {
     }
   ]
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = 'f6fc0651b0f798ba2d151db47d80c3de';
+(node/*: any*/).hash = '31be66121280b836a8395c814fa60aa8';
 module.exports = node;

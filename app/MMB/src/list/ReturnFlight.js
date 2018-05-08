@@ -10,19 +10,16 @@ import type { ReturnFlight_booking as ReturnFlightType } from './__generated__/R
 type Props = {|
   imageUrl: string,
   type: string,
-  passengerCount: number,
   booking: ReturnFlightType,
 |};
 
 const ReturnFlight = (props: Props) => (
   <CityImage
+    image={props.booking}
     arrival={idx(props.booking, _ => _.outbound.arrival)}
     departure={idx(props.booking, _ => _.outbound.departure)}
     imageUrl={props.imageUrl}
     type={props.type}
-    passengerCount={props.passengerCount}
-    bookingId={idx(props.booking, _ => _.databaseId)}
-    status={idx(props.booking, _ => _.status) || ''}
   />
 );
 
@@ -30,8 +27,7 @@ export default createFragmentContainer(
   ReturnFlight,
   graphql`
     fragment ReturnFlight_booking on BookingReturn {
-      status
-      databaseId
+      ...CityImage_image
       outbound {
         arrival {
           ...CityImage_arrival

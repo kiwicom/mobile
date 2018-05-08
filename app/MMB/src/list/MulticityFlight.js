@@ -10,19 +10,16 @@ import type { MulticityFlight_booking as MulticityFlightType } from './__generat
 type Props = {|
   imageUrl: string,
   type: string,
-  passengerCount: number,
   booking: MulticityFlightType,
 |};
 
 const MulticityFlight = (props: Props) => (
   <CityImage
+    image={props.booking}
     arrival={idx(props.booking, _ => _.end)}
     departure={idx(props.booking, _ => _.start)}
     imageUrl={props.imageUrl}
     type={props.type}
-    passengerCount={props.passengerCount}
-    bookingId={idx(props.booking, _ => _.databaseId)}
-    status={idx(props.booking, _ => _.status) || ''}
   />
 );
 
@@ -30,8 +27,7 @@ export default createFragmentContainer(
   MulticityFlight,
   graphql`
     fragment MulticityFlight_booking on BookingMulticity {
-      status
-      databaseId
+      ...CityImage_image
       end {
         ...CityImage_arrival
       }
