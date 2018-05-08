@@ -2,40 +2,89 @@
 
 import * as React from 'react';
 import { ScrollView } from 'react-native';
-import { TextIcon, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import MenuItem from './components/MenuItem';
 import TitledMenuGroup from './components/TitledMenuGroup';
+import MenuItem from './components/MenuItem';
 
 type Props = {|
   openMenu: string => void,
 |};
 
-export default class MainMenu extends React.Component<Props> {
+type State = {|
+  activeId: string,
+|};
+
+const VoidAction = () => {
+  console.warn('TODO');
+};
+
+export default class MainMenu extends React.Component<Props, State> {
+  state = {
+    activeId: 'mmb.main_menu.manage.help',
+  };
+
   handleOpenHelpSubmenu = () => {
-    this.props.openMenu('mmb.help');
+    this.setState(
+      {
+        activeId: 'mmb.main_menu.manage.help',
+      },
+      () => this.props.openMenu('mmb.help'),
+    );
   };
 
   handleOpenOtherSubmenu = () => {
-    this.props.openMenu('mmb.other');
+    this.setState(
+      {
+        activeId: 'mmb.main_menu.manage.other',
+      },
+      () => this.props.openMenu('mmb.other'),
+    );
   };
 
   render = () => {
+    const { activeId } = this.state;
+
     return (
       <ScrollView>
+        <TitledMenuGroup title={<Translation id="mmb.main_menu.services" />}>
+          <MenuItem
+            onPress={VoidAction}
+            isActive={activeId === 'mmb.main_menu.services.flight_services'}
+            icon={<TextIcon code="&#xe049;" />}
+            title={<Translation id="mmb.main_menu.services.flight_services" />}
+            description={
+              <Translation id="mmb.main_menu.services.flight_services.description" />
+            }
+          />
+
+          <MenuItem
+            onPress={VoidAction}
+            isActive={activeId === 'mmb.main_menu.services.trip_services'}
+            icon={<TextIcon code="&#xe08a;" />}
+            title={<Translation id="mmb.main_menu.services.trip_services" />}
+            description={
+              <Translation id="mmb.main_menu.services.trip_services.description" />
+            }
+          />
+        </TitledMenuGroup>
+
         <TitledMenuGroup title={<Translation id="mmb.main_menu.manage" />}>
           <MenuItem
             onPress={this.handleOpenHelpSubmenu}
-            icon={<TextIcon code="F" style={styleSheet.icon} />}
+            isActive={activeId === 'mmb.main_menu.manage.help'}
+            icon={<TextIcon code="F" />}
             title={<Translation id="mmb.main_menu.manage.help" />}
             description={
               <Translation id="mmb.main_menu.manage.help.description" />
             }
           />
+
           <MenuItem
             onPress={this.handleOpenOtherSubmenu}
-            icon={<TextIcon code="&#xe07d;" style={styleSheet.icon} />}
+            isActive={activeId === 'mmb.main_menu.manage.other'}
+            icon={<TextIcon code="&#xe07d;" />}
             title={<Translation id="mmb.main_menu.manage.other" />}
             description={
               <Translation id="mmb.main_menu.manage.other.description" />
@@ -46,15 +95,3 @@ export default class MainMenu extends React.Component<Props> {
     );
   };
 }
-
-const styleSheet = StyleSheet.create({
-  icon: {
-    color: Color.grey.$600,
-    android: {
-      fontSize: 15,
-    },
-    ios: {
-      fontSize: 14,
-    },
-  },
-});

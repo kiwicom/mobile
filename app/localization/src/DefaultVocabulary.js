@@ -120,6 +120,14 @@ const Translations = {
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
 
+  'mmb.main_menu.services': 'Services',
+  'mmb.main_menu.services.flight_services': 'Flight Services',
+  'mmb.main_menu.services.flight_services.description':
+    'Wi-Fi, food, sport equipment',
+  'mmb.main_menu.services.trip_services': 'Trip Services',
+  'mmb.main_menu.services.trip_services.description':
+    'Insurance, hotels, transfers',
+
   'mmb.main_menu.manage': 'Manage',
   'mmb.main_menu.manage.help': 'Help',
   'mmb.main_menu.manage.help.description': 'Contact us',
