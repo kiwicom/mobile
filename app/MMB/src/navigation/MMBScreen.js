@@ -12,10 +12,6 @@ import OtherSubmenu from '../OtherSubmenu';
 
 type Props = {|
   navigation: NavigationType,
-  screenProps: {|
-    language: string,
-    currency: string,
-  |},
 |};
 
 type State = {|

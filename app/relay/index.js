@@ -7,6 +7,7 @@ import PublicEnvironment from './src/PublicEnvironment';
 
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
+export { default as AuthContext } from './src/AuthContext';
 
 type CommitMutationConfig = {|
   // please extend this type if needed
