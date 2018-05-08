@@ -68,5 +68,13 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue: https://github.com/facebook/flow/iss
 suppress_comment=\\(.\\|\n\\)*\\$FlowRelayIssue: https://github.com/facebook/relay/issues/[0-9]+
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError: .+
 
+[strict]
+nonstrict-import
+unclear-type
+unsafe-getters-setters
+;untyped-import
+;untyped-type-import
+sketchy-null
+
 [version]
 ^0.71.0

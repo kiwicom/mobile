@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 /**
  * Styles are only reexported here to avoid importing internal RN libraries
