@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bf9de2cc379020773fa09edd041858d5
+ * @relayHash b25cd437e7929a9cb2fc182ab0e683c8
  */
 
 /* eslint-disable */
@@ -55,19 +55,10 @@ fragment OneWayFlight_booking on BookingOneWay {
   status
   trip {
     departure {
-      time
-      airport {
-        city {
-          name
-        }
-      }
+      ...CityImage_departure
     }
     arrival {
-      airport {
-        city {
-          name
-        }
-      }
+      ...CityImage_arrival
     }
   }
 }
@@ -77,19 +68,10 @@ fragment ReturnFlight_booking on BookingReturn {
   databaseId
   outbound {
     arrival {
-      airport {
-        city {
-          name
-        }
-      }
+      ...CityImage_arrival
     }
     departure {
-      time
-      airport {
-        city {
-          name
-        }
-      }
+      ...CityImage_departure
     }
   }
 }
@@ -98,18 +80,38 @@ fragment MulticityFlight_booking on BookingMulticity {
   status
   databaseId
   end {
-    airport {
-      city {
-        name
-      }
-    }
+    ...CityImage_arrival
   }
   start {
-    time
-    airport {
-      city {
-        name
-      }
+    ...CityImage_departure
+  }
+}
+
+fragment CityImage_arrival on RouteStop {
+  ...FromToRow_arrival
+}
+
+fragment CityImage_departure on RouteStop {
+  ...DateAndPassengerCount_departure
+  ...FromToRow_departure
+}
+
+fragment DateAndPassengerCount_departure on RouteStop {
+  time
+}
+
+fragment FromToRow_departure on RouteStop {
+  airport {
+    city {
+      name
+    }
+  }
+}
+
+fragment FromToRow_arrival on RouteStop {
+  airport {
+    city {
+      name
     }
   }
 }
@@ -204,7 +206,7 @@ return {
   "operationKind": "query",
   "name": "FlightsQuery",
   "id": null,
-  "text": "query FlightsQuery {\n  ...FlightList\n}\n\nfragment FlightList on RootQuery {\n  allBookings {\n    edges {\n      node {\n        destinationImageUrl(dimensions: _375x165)\n        type\n        passengerCount\n        oneWay {\n          databaseId\n          ...OneWayFlight_booking\n          id\n        }\n        return {\n          databaseId\n          ...ReturnFlight_booking\n          id\n        }\n        multicity {\n          databaseId\n          ...MulticityFlight_booking\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  databaseId\n  status\n  trip {\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  status\n  databaseId\n  outbound {\n    arrival {\n      airport {\n        city {\n          name\n        }\n      }\n    }\n    departure {\n      time\n      airport {\n        city {\n          name\n        }\n      }\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  status\n  databaseId\n  end {\n    airport {\n      city {\n        name\n      }\n    }\n  }\n  start {\n    time\n    airport {\n      city {\n        name\n      }\n    }\n  }\n}\n",
+  "text": "query FlightsQuery {\n  ...FlightList\n}\n\nfragment FlightList on RootQuery {\n  allBookings {\n    edges {\n      node {\n        destinationImageUrl(dimensions: _375x165)\n        type\n        passengerCount\n        oneWay {\n          databaseId\n          ...OneWayFlight_booking\n          id\n        }\n        return {\n          databaseId\n          ...ReturnFlight_booking\n          id\n        }\n        multicity {\n          databaseId\n          ...MulticityFlight_booking\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  databaseId\n  status\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  status\n  databaseId\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  status\n  databaseId\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
