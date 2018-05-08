@@ -11,10 +11,6 @@ type Props = {|
 
 export default class MMBPackageWrapper extends React.Component<Props> {
   render = () => (
-    <ManageMyBookingPackage
-      language="en"
-      currency="EUR"
-      accessToken={MMB_TOKEN}
-    />
+    <ManageMyBookingPackage currency="EUR" accessToken={MMB_TOKEN} />
   );
 }

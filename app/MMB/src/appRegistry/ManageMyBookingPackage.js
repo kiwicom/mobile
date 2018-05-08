@@ -1,15 +1,19 @@
 // @flow
 
 import * as React from 'react';
+import { AuthContext } from '@kiwicom/mobile-relay';
 
 import NavigationStack from '../navigation/NavigationStack';
 
 type Props = {|
-  language: string,
   currency: string,
   accessToken: string,
 |};
 
 export default class ManageMyBookingPackage extends React.Component<Props> {
-  render = () => <NavigationStack screenProps={this.props} />;
+  render = () => (
+    <AuthContext.Provider accessToken={this.props.accessToken}>
+      <NavigationStack />
+    </AuthContext.Provider>
+  );
 }

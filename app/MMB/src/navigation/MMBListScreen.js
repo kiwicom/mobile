@@ -4,14 +4,10 @@ import * as React from 'react';
 import { HeaderTitle } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import FlightList from '../list/Flights';
+import Flights from '../list/Flights';
 
-type Props = {|
-  accessToken: string,
-|};
-
-export default function MMBListScreen(props: Props) {
-  return <FlightList accessToken={props.accessToken} />;
+export default function MMBListScreen() {
+  return <Flights />;
 }
 
 MMBListScreen.navigationOptions = () => ({
