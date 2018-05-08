@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import moment from 'moment/min/moment-with-locales'; // eslint-disable-line no-restricted-imports
 

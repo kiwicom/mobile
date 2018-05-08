@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import { NativeModules } from 'react-native';
 
