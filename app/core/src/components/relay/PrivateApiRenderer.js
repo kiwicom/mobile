@@ -29,7 +29,6 @@ export default function PrivateApiRenderer(props: Props) {
       query={props.query}
       variables={props.variables}
       render={props.render}
-      accessToken={user.accessToken}
     />
   ) : (
     <Login onLogin={VoidLoginAction} />
