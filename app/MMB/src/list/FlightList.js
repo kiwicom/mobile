@@ -20,41 +20,34 @@ export class FlightList extends React.Component<Props> {
   renderItem = (item: ?Object) => {
     const type = idx(item, _ => _.node.type) || '';
     const imageUrl = idx(item, _ => _.node.destinationImageUrl);
-    const passengerCount = idx(item, _ => _.node.passengerCount);
 
     let component = null;
-    let key = Math.random();
+    let key = idx(item, _ => _.node.id);
 
     switch (type) {
       case 'ONE_WAY':
-        key = idx(item, _ => _.node.oneWay.databaseId);
         component = (
           <OneWayFlight
             type={type}
             imageUrl={imageUrl}
-            passengerCount={passengerCount}
             booking={idx(item, _ => _.node.oneWay)}
           />
         );
         break;
       case 'RETURN':
-        key = idx(item, _ => _.node.return.databaseId);
         component = (
           <ReturnFlight
             type={type}
             imageUrl={imageUrl}
-            passengerCount={passengerCount}
             booking={idx(item, _ => _.node.return)}
           />
         );
         break;
       case 'MULTICITY':
-        key = idx(item, _ => _.node.multicity.databaseId);
         component = (
           <MulticityFlight
             type={type}
             imageUrl={imageUrl}
-            passengerCount={passengerCount}
             booking={idx(item, _ => _.node.multicity)}
           />
         );
@@ -103,19 +96,16 @@ export default createRefetchContainer(
       allBookings {
         edges {
           node {
+            id
             destinationImageUrl(dimensions: _375x165)
             type
-            passengerCount
             oneWay {
-              databaseId
               ...OneWayFlight_booking
             }
             return {
-              databaseId
               ...ReturnFlight_booking
             }
             multicity {
-              databaseId
               ...MulticityFlight_booking
             }
           }
