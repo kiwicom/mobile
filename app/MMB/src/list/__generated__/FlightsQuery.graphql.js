@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b25cd437e7929a9cb2fc182ab0e683c8
+ * @relayHash a915145adad1c2172b56677d388e50b7
  */
 
 /* eslint-disable */
@@ -26,33 +26,28 @@ fragment FlightList on RootQuery {
   allBookings {
     edges {
       node {
+        id
         destinationImageUrl(dimensions: _375x165)
         type
-        passengerCount
         oneWay {
-          databaseId
           ...OneWayFlight_booking
           id
         }
         return {
-          databaseId
           ...ReturnFlight_booking
           id
         }
         multicity {
-          databaseId
           ...MulticityFlight_booking
           id
         }
-        id
       }
     }
   }
 }
 
 fragment OneWayFlight_booking on BookingOneWay {
-  databaseId
-  status
+  ...CityImage_image
   trip {
     departure {
       ...CityImage_departure
@@ -64,8 +59,7 @@ fragment OneWayFlight_booking on BookingOneWay {
 }
 
 fragment ReturnFlight_booking on BookingReturn {
-  status
-  databaseId
+  ...CityImage_image
   outbound {
     arrival {
       ...CityImage_arrival
@@ -77,14 +71,19 @@ fragment ReturnFlight_booking on BookingReturn {
 }
 
 fragment MulticityFlight_booking on BookingMulticity {
-  status
-  databaseId
+  ...CityImage_image
   end {
     ...CityImage_arrival
   }
   start {
     ...CityImage_departure
   }
+}
+
+fragment CityImage_image on BookingInterface {
+  databaseId
+  status
+  passengerCount
 }
 
 fragment CityImage_arrival on RouteStop {
@@ -121,18 +120,32 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "databaseId",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v1 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "status",
+  "name": "databaseId",
   "args": null,
   "storageKey": null
 },
 v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "status",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "passengerCount",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -161,7 +174,7 @@ v2 = {
     }
   ]
 },
-v3 = [
+v5 = [
   {
     "kind": "ScalarField",
     "alias": null,
@@ -169,9 +182,9 @@ v3 = [
     "args": null,
     "storageKey": null
   },
-  v2
+  v4
 ],
-v4 = {
+v6 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -179,12 +192,12 @@ v4 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v3
+  "selections": v5
 },
-v5 = [
-  v2
+v7 = [
+  v4
 ],
-v6 = {
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "arrival",
@@ -192,21 +205,14 @@ v6 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v5
-},
-v7 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
+  "selections": v7
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "FlightsQuery",
   "id": null,
-  "text": "query FlightsQuery {\n  ...FlightList\n}\n\nfragment FlightList on RootQuery {\n  allBookings {\n    edges {\n      node {\n        destinationImageUrl(dimensions: _375x165)\n        type\n        passengerCount\n        oneWay {\n          databaseId\n          ...OneWayFlight_booking\n          id\n        }\n        return {\n          databaseId\n          ...ReturnFlight_booking\n          id\n        }\n        multicity {\n          databaseId\n          ...MulticityFlight_booking\n          id\n        }\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  databaseId\n  status\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  status\n  databaseId\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  status\n  databaseId\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n",
+  "text": "query FlightsQuery {\n  ...FlightList\n}\n\nfragment FlightList on RootQuery {\n  allBookings {\n    edges {\n      node {\n        id\n        destinationImageUrl(dimensions: _375x165)\n        type\n        oneWay {\n          ...OneWayFlight_booking\n          id\n        }\n        return {\n          ...ReturnFlight_booking\n          id\n        }\n        multicity {\n          ...MulticityFlight_booking\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  status\n  passengerCount\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -254,6 +260,7 @@ return {
                 "concreteType": "Booking",
                 "plural": false,
                 "selections": [
+                  v0,
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -276,13 +283,6 @@ return {
                     "storageKey": null
                   },
                   {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "passengerCount",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "name": "oneWay",
@@ -291,8 +291,9 @@ return {
                     "concreteType": "BookingOneWay",
                     "plural": false,
                     "selections": [
-                      v0,
                       v1,
+                      v2,
+                      v3,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -302,11 +303,11 @@ return {
                         "concreteType": "Trip",
                         "plural": false,
                         "selections": [
-                          v4,
-                          v6
+                          v6,
+                          v8
                         ]
                       },
-                      v7
+                      v0
                     ]
                   },
                   {
@@ -318,8 +319,9 @@ return {
                     "concreteType": "BookingReturn",
                     "plural": false,
                     "selections": [
-                      v0,
                       v1,
+                      v2,
+                      v3,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -329,11 +331,11 @@ return {
                         "concreteType": "Trip",
                         "plural": false,
                         "selections": [
-                          v6,
-                          v4
+                          v8,
+                          v6
                         ]
                       },
-                      v7
+                      v0
                     ]
                   },
                   {
@@ -345,8 +347,9 @@ return {
                     "concreteType": "BookingMulticity",
                     "plural": false,
                     "selections": [
-                      v0,
                       v1,
+                      v2,
+                      v3,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -355,7 +358,7 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v5
+                        "selections": v7
                       },
                       {
                         "kind": "LinkedField",
@@ -365,12 +368,11 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v3
+                        "selections": v5
                       },
-                      v7
+                      v0
                     ]
-                  },
-                  v7
+                  }
                 ]
               }
             ]

@@ -10,18 +10,17 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type CityImage_arrival$ref = any;
 type CityImage_departure$ref = any;
-export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "EXPIRED" | "NEW" | "PENDING" | "REFUNDED" | "%future added value";
+type CityImage_image$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MulticityFlight_booking$ref: FragmentReference;
 export type MulticityFlight_booking = {|
-  +status: ?BookingStatus,
-  +databaseId: ?number,
   +end: ?{|
     +$fragmentRefs: CityImage_arrival$ref
   |},
   +start: ?{|
     +$fragmentRefs: CityImage_departure$ref
   |},
+  +$fragmentRefs: CityImage_image$ref,
   +$refType: MulticityFlight_booking$ref,
 |};
 */
@@ -35,18 +34,9 @@ const node/*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "status",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "databaseId",
-      "args": null,
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "CityImage_image",
+      "args": null
     },
     {
       "kind": "LinkedField",
@@ -83,5 +73,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '31cb75e73edef623df1791cb71514ef4';
+(node/*: any*/).hash = '33ede40bd83a6ae603e0806f4217dae5';
 module.exports = node;
