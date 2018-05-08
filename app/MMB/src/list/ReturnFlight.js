@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
 
-import CityImage from './CityImage';
+import CityImage from './cityImage/CityImage';
 import type { ReturnFlight_booking as ReturnFlightType } from './__generated__/ReturnFlight_booking.graphql';
 
 type Props = {|
