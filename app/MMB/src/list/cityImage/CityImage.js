@@ -4,16 +4,14 @@ import * as React from 'react';
 import {
   StyleSheet,
   NetworkImage,
-  Icon,
-  Color,
-  Text,
   StretchedImage,
   BlackToAlpha as gradient,
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
-import { DateFormatter, Translation } from '@kiwicom/mobile-localization';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
-import TravelTypeIcon from './TravelTypeIcon';
+import FromToRow from './FromToRow';
+import DateAndPassengerCount from './DateAndPassengerCount';
 import ImageBadges from './ImageBadges';
 
 type Props = {|
@@ -52,31 +50,15 @@ export default class CityImage extends React.Component<Props> {
         />
       </View>
       <View style={[styles.bottomContainer, styles.padding]}>
-        <View style={styles.row}>
-          <Text style={[styles.text, styles.cityText]}>
-            <Translation passThrough={this.props.departureCity} />
-          </Text>
-          <TravelTypeIcon type={this.props.type} />
-          <Text style={[styles.text, styles.cityText]}>
-            <Translation passThrough={this.props.arrivalCity} />
-          </Text>
-        </View>
-        <View style={styles.row}>
-          <Text style={[styles.text, styles.dateText]}>
-            <Translation passThrough={this.formatDate()} />
-          </Text>
-          <View style={styles.row}>
-            <Text style={[styles.text, styles.dateText]}>
-              <Translation passThrough={this.props.passengerCount} />
-            </Text>
-            <Icon
-              name="people"
-              size={15}
-              color={Color.white}
-              style={styles.passengerIcon}
-            />
-          </View>
-        </View>
+        <FromToRow
+          departureCity={this.props.departureCity}
+          arrivalCity={this.props.arrivalCity}
+          type={this.props.type}
+        />
+        <DateAndPassengerCount
+          formattedDate={this.formatDate()}
+          passengerCount={this.props.passengerCount}
+        />
       </View>
     </View>
   );
@@ -106,19 +88,5 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     justifyContent: 'flex-end',
-  },
-  text: {
-    color: Color.white,
-  },
-  cityText: {
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  dateText: {
-    fontSize: 12,
-    opacity: 0.7,
-  },
-  passengerIcon: {
-    opacity: 0.7,
   },
 });
