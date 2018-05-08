@@ -2,13 +2,14 @@
 
 import * as React from 'react';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
-import { AdaptableLayout, WebView } from '@kiwicom/mobile-shared';
+import { AdaptableLayout } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import Layout from '../components/Layout';
-import MainMenu from '../MainMenu';
-import HelpSubmenu from '../HelpSubmenu';
-import OtherSubmenu from '../OtherSubmenu';
+import Layout from '../Layout';
+import MainMenu from '../menu/MainMenu';
+import HelpSubmenu from '../menu/HelpSubmenu';
+import OtherSubmenu from '../menu/OtherSubmenu';
+import Deeplink from '../menu/Deeplink';
 
 type Props = {|
   navigation: NavigationType,
@@ -39,9 +40,14 @@ export const MenuComponents = {
       );
     },
   },
+  'mmb.other.open': {
+    screen: function OtherSubmenuOpenOnWeb() {
+      return <Deeplink bookingID="Qm9va2luZzo2NjkxNTcy" />; // TODO: valid BookingID (from props)
+    },
+  },
   'mmb.other.refund': {
-    screen: function RefundWebview() {
-      return <WebView source={{ uri: 'https://kiwi.com' }} />;
+    screen: function OtherSubmenuRefundForm() {
+      return <Deeplink to="REFUND" bookingID="Qm9va2luZzo2NjkxNTcy" />; // TODO: valid BookingID (from props)
     },
   },
 };

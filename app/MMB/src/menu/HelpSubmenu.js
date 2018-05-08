@@ -4,8 +4,8 @@ import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import MenuItem from './components/menu/MenuItem';
-import MenuGroup from './components/menu/MenuGroup';
+import MenuItem from './components/MenuItem';
+import MenuGroup from './components/MenuGroup';
 
 const VoidAction = () => {
   console.warn('TODO');

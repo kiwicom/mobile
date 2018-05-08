@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { WebView as NativeWebView } from 'react-native';
 
-import FullPageLoading from './loaders/FullPageLoading';
 import GeneralError from './errors/GeneralError';
 
 type Props = {
@@ -14,8 +13,6 @@ type Props = {
 };
 
 export default class WebView extends React.Component<Props> {
-  renderLoading = () => <FullPageLoading />;
-
   renderError = () => (
     <GeneralError
       // this message is most probably not true:
@@ -26,8 +23,7 @@ export default class WebView extends React.Component<Props> {
   render = () => (
     <NativeWebView
       bounces={false}
-      startInLoadingState={true}
-      renderLoading={this.renderLoading}
+      startInLoadingState={false} // it feels faster because we don't have to wait until the page is fully loaded
       renderError={this.renderError}
       {...this.props}
     />
