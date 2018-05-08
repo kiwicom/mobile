@@ -5,8 +5,8 @@ import { ScrollView } from 'react-native';
 import { TextIcon, Color, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import MenuItem from './components/menu/MenuItem';
-import TitledMenuGroup from './components/menu/TitledMenuGroup';
+import MenuItem from './components/MenuItem';
+import TitledMenuGroup from './components/TitledMenuGroup';
 
 type Props = {|
   openMenu: string => void,

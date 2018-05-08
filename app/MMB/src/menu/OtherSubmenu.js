@@ -5,8 +5,8 @@ import { ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 
-import MenuItem from './components/menu/MenuItem';
-import MenuGroup from './components/menu/MenuGroup';
+import MenuItem from './components/MenuItem';
+import MenuGroup from './components/MenuGroup';
 
 const VoidAction = () => {
   console.warn('TODO');
@@ -17,6 +17,13 @@ type Props = {|
 |};
 
 export default class OtherSubmenu extends React.Component<Props> {
+  handleOpenOnWeb = () => {
+    this.props.navigation.navigate({
+      routeName: 'mmb.other.open',
+      key: 'key-mmb.other.open',
+    });
+  };
+
   handleOpenRefund = () => {
     this.props.navigation.navigate({
       routeName: 'mmb.other.refund',
@@ -33,7 +40,7 @@ export default class OtherSubmenu extends React.Component<Props> {
         />
         <MenuItem
           title={<Translation id="mmb.sub_menu.manage.other.open_on_web" />}
-          onPress={VoidAction}
+          onPress={this.handleOpenOnWeb}
         />
         <MenuItem
           title={<Translation id="mmb.sub_menu.manage.other.refund_form" />}
