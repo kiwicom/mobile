@@ -106,6 +106,7 @@ const Translations = {
 
   'mmb.my_bookings.title.bookings': 'Bookings',
   'mmb.my_bookings.future_trips': 'Future trips',
+  'mmb.my_bookings.past_trips': 'Past trips',
 
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
