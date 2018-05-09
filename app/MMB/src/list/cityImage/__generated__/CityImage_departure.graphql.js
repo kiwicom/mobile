@@ -13,6 +13,7 @@ type FromToRow_departure$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type CityImage_departure$ref: FragmentReference;
 export type CityImage_departure = {|
+  +time: ?any,
   +$fragmentRefs: DateAndPassengerCount_departure$ref & FromToRow_departure$ref,
   +$refType: CityImage_departure$ref,
 |};
@@ -27,6 +28,13 @@ const node/*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "time",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "FragmentSpread",
       "name": "DateAndPassengerCount_departure",
       "args": null
@@ -39,5 +47,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2bbde91b3f316e923ace6090bc41002d';
+(node/*: any*/).hash = '0484df67fea080ba212c2db9cbd62b3b';
 module.exports = node;
