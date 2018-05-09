@@ -104,7 +104,7 @@ export default class MMBScreen extends React.Component<Props, State> {
     return (
       <Layout
         menuComponent={
-          <AdaptableLayout
+          <AdaptableLayout.Consumer
             renderOnWide={<MainMenu openMenu={this.changeContentOnTablet} />}
             renderOnNarrow={<MainMenu openMenu={this.openMenuOnMobile} />}
           />

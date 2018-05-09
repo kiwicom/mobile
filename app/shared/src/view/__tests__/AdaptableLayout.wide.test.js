@@ -19,18 +19,22 @@ const ThrowsError = () => {
 it('renders wide components', () => {
   expect(
     Renderer.create(
-      <AdaptableLayout
-        renderOnWide={<RendersCorrectly />}
-        renderOnNarrow={<ThrowsError />}
-      />,
-    ).toJSON(),
-  ).toBe('I am going to render without any problems...');
+      <AdaptableLayout.Provider>
+        <AdaptableLayout.Consumer
+          renderOnWide={<RendersCorrectly />}
+          renderOnNarrow={<ThrowsError />}
+        />
+      </AdaptableLayout.Provider>,
+    ),
+  ).toMatchSnapshot();
 });
 
-it('renders null if there is no wide layout', () => {
+it('renders empty element if there is no wide layout', () => {
   expect(
     Renderer.create(
-      <AdaptableLayout renderOnNarrow={<ThrowsError />} />,
-    ).toJSON(),
-  ).toBeNull();
+      <AdaptableLayout.Provider>
+        <AdaptableLayout.Consumer renderOnNarrow={<ThrowsError />} />
+      </AdaptableLayout.Provider>,
+    ),
+  ).toMatchSnapshot();
 });

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders empty element without props 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;
+
+exports[`throw error when called without provider 1`] = `"AdaptableLayout has been called in wrong context. You have to use \\"AdaptableLayout.Provider\\" on the root level first otherwise it won't work."`;

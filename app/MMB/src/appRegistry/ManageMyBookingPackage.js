@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { AuthContext } from '@kiwicom/mobile-relay';
+import { AdaptableLayout } from '@kiwicom/mobile-shared';
 
 import NavigationStack from '../navigation/NavigationStack';
 
@@ -12,8 +13,10 @@ type Props = {|
 
 export default class ManageMyBookingPackage extends React.Component<Props> {
   render = () => (
-    <AuthContext.Provider accessToken={this.props.accessToken}>
-      <NavigationStack />
-    </AuthContext.Provider>
+    <AdaptableLayout.Provider>
+      <AuthContext.Provider accessToken={this.props.accessToken}>
+        <NavigationStack />
+      </AuthContext.Provider>
+    </AdaptableLayout.Provider>
   );
 }
