@@ -9,6 +9,7 @@ import {
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import FromToRow from './FromToRow';
 import DateAndPassengerCount from './DateAndPassengerCount';
@@ -24,35 +25,41 @@ type Props = {|
   type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
 |};
 
-export const CityImage = (props: Props) => (
-  <View style={styles.container}>
-    <NetworkImage
-      source={{
-        uri: props.image.destinationImageUrl,
-      }}
-      style={styles.image}
-      resizeMode="cover"
-    />
-    <StretchedImage source={gradient} style={styles.stretchedImage} />
-    <View style={[styles.row, styles.padding]}>
-      <ImageBadges
-        status={props.image.status}
-        bookingId={props.image.databaseId}
+export const CityImage = (props: Props) => {
+  const isPastFlight = DateFormatter() > DateFormatter(props.departure.time);
+  return (
+    <View style={styles.container}>
+      {isPastFlight && <View style={[styles.image, styles.imageLayover]} />}
+      <NetworkImage
+        source={{
+          uri: props.image.destinationImageUrl,
+        }}
+        style={[styles.image, isPastFlight && styles.pastFlightImage]}
+        resizeMode="cover"
       />
+      {!isPastFlight && (
+        <StretchedImage source={gradient} style={styles.stretchedImage} />
+      )}
+      <View style={[styles.row, styles.padding]}>
+        <ImageBadges
+          status={props.image.status}
+          bookingId={props.image.databaseId}
+        />
+      </View>
+      <View style={[styles.bottomContainer, styles.padding]}>
+        <FromToRow
+          departure={props.departure}
+          arrival={props.arrival}
+          type={props.type}
+        />
+        <DateAndPassengerCount
+          departure={props.departure}
+          passengerCount={props.image.passengerCount}
+        />
+      </View>
     </View>
-    <View style={[styles.bottomContainer, styles.padding]}>
-      <FromToRow
-        departure={props.departure}
-        arrival={props.arrival}
-        type={props.type}
-      />
-      <DateAndPassengerCount
-        departure={props.departure}
-        passengerCount={props.image.passengerCount}
-      />
-    </View>
-  </View>
-);
+  );
+};
 
 export default createFragmentContainer(
   CityImage,
@@ -69,6 +76,7 @@ export default createFragmentContainer(
     }
 
     fragment CityImage_departure on RouteStop {
+      time
       ...DateAndPassengerCount_departure
       ...FromToRow_departure
     }
@@ -93,11 +101,17 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderRadius: 4,
   },
+  pastFlightImage: {
+    opacity: 0.35,
+  },
   stretchedImage: {
     width: '100%',
     borderRadius: 4,
   },
   bottomContainer: {
     justifyContent: 'flex-end',
+  },
+  imageLayover: {
+    backgroundColor: '#704214',
   },
 });
