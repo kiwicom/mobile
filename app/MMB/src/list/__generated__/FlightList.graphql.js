@@ -18,7 +18,6 @@ export type FlightList = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
       +id: string,
-      +destinationImageUrl: ?string,
       +type: ?BookingType,
       +oneWay: ?{|
         +$fragmentRefs: OneWayFlight_booking$ref
@@ -67,20 +66,6 @@ const node/*: ConcreteFragment*/ = {
               "name": "id",
               "args": null,
               "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "destinationImageUrl",
-              "args": [
-                {
-                  "kind": "Literal",
-                  "name": "dimensions",
-                  "value": "_375x165",
-                  "type": "BookingDestinationImageDimensions"
-                }
-              ],
-              "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
             },
             {
               "kind": "ScalarField",
@@ -144,5 +129,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2509a80326b24132cfac4696ae405ae7';
+(node/*: any*/).hash = '7e538ba8271d23e5cd389f1224732f8e';
 module.exports = node;

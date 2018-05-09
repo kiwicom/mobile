@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f7bc84e6e95f06431531b2ee614a1386
+ * @relayHash f8763ea2ca8a6b457b31f73bb33d04cf
  */
 
 /* eslint-disable */
@@ -36,7 +36,6 @@ fragment FlightList on BookingConnection {
   edges {
     node {
       id
-      destinationImageUrl(dimensions: _375x165)
       type
       oneWay {
         ...OneWayFlight_booking
@@ -92,6 +91,7 @@ fragment CityImage_image on BookingInterface {
   databaseId
   status
   passengerCount
+  destinationImageUrl(dimensions: _375x165)
 }
 
 fragment CityImage_arrival on RouteStop {
@@ -177,6 +177,20 @@ v6 = {
   "storageKey": null
 },
 v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "destinationImageUrl",
+  "args": [
+    {
+      "kind": "Literal",
+      "name": "dimensions",
+      "value": "_375x165",
+      "type": "BookingDestinationImageDimensions"
+    }
+  ],
+  "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
+},
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -205,7 +219,7 @@ v7 = {
     }
   ]
 },
-v8 = [
+v9 = [
   {
     "kind": "ScalarField",
     "alias": null,
@@ -213,9 +227,9 @@ v8 = [
     "args": null,
     "storageKey": null
   },
-  v7
+  v8
 ],
-v9 = {
+v10 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -223,12 +237,12 @@ v9 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v8
+  "selections": v9
 },
-v10 = [
-  v7
+v11 = [
+  v8
 ],
-v11 = {
+v12 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "arrival",
@@ -236,9 +250,9 @@ v11 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v10
+  "selections": v11
 },
-v12 = [
+v13 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -261,20 +275,6 @@ v12 = [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "destinationImageUrl",
-            "args": [
-              {
-                "kind": "Literal",
-                "name": "dimensions",
-                "value": "_375x165",
-                "type": "BookingDestinationImageDimensions"
-              }
-            ],
-            "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
             "name": "type",
             "args": null,
             "storageKey": null
@@ -291,6 +291,7 @@ v12 = [
               v4,
               v5,
               v6,
+              v7,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -300,8 +301,8 @@ v12 = [
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v9,
-                  v11
+                  v10,
+                  v12
                 ]
               },
               v3
@@ -319,6 +320,7 @@ v12 = [
               v4,
               v5,
               v6,
+              v7,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -328,8 +330,8 @@ v12 = [
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v11,
-                  v9
+                  v12,
+                  v10
                 ]
               },
               v3
@@ -347,6 +349,7 @@ v12 = [
               v4,
               v5,
               v6,
+              v7,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -355,7 +358,7 @@ v12 = [
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v10
+                "selections": v11
               },
               {
                 "kind": "LinkedField",
@@ -365,7 +368,7 @@ v12 = [
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v8
+                "selections": v9
               },
               v3
             ]
@@ -380,7 +383,7 @@ return {
   "operationKind": "query",
   "name": "FlightsQuery",
   "id": null,
-  "text": "query FlightsQuery {\n  future: allBookings(only: FUTURE) {\n    ...FlightList\n  }\n  past: allBookings(only: PAST) {\n    ...FlightList\n  }\n}\n\nfragment FlightList on BookingConnection {\n  edges {\n    node {\n      id\n      destinationImageUrl(dimensions: _375x165)\n      type\n      oneWay {\n        ...OneWayFlight_booking\n        id\n      }\n      return {\n        ...ReturnFlight_booking\n        id\n      }\n      multicity {\n        ...MulticityFlight_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  status\n  passengerCount\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n",
+  "text": "query FlightsQuery {\n  future: allBookings(only: FUTURE) {\n    ...FlightList\n  }\n  past: allBookings(only: PAST) {\n    ...FlightList\n  }\n}\n\nfragment FlightList on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayFlight_booking\n        id\n      }\n      return {\n        ...ReturnFlight_booking\n        id\n      }\n      multicity {\n        ...MulticityFlight_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  status\n  passengerCount\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -424,7 +427,7 @@ return {
         "args": v0,
         "concreteType": "BookingConnection",
         "plural": false,
-        "selections": v12
+        "selections": v13
       },
       {
         "kind": "LinkedField",
@@ -434,7 +437,7 @@ return {
         "args": v2,
         "concreteType": "BookingConnection",
         "plural": false,
-        "selections": v12
+        "selections": v13
       }
     ]
   }
