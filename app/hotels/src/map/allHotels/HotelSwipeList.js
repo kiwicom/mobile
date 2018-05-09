@@ -122,7 +122,7 @@ class HotelSwipeList extends React.Component<Props, State> {
     );
 
     return (
-      <AdaptableLayout
+      <AdaptableLayout.Consumer
         renderOnWide={
           <View style={[styles.fullWidth, styles.wide]}>{child}</View>
         }

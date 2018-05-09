@@ -44,7 +44,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
 
     function renderHeaderRight() {
       return (
-        <AdaptableLayout
+        <AdaptableLayout.Consumer
           renderOnNarrow={<MapHeaderButton onPress={goToAllHotelsMap} />}
         />
       );
@@ -118,7 +118,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
   render = () => {
     return (
       <WithBackButtonListener onClick={this.onAndroidBackClicked}>
-        <AdaptableLayout
+        <AdaptableLayout.Consumer
           renderOnWide={this.renderHotelsWithMap()}
           renderOnNarrow={this.renderHotels()}
         />

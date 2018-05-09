@@ -89,7 +89,7 @@ export class Description extends React.Component<Props> {
   render = () => {
     const baseComponent = this.renderBaseComponent();
     return (
-      <AdaptableLayout
+      <AdaptableLayout.Consumer
         renderOnNarrow={baseComponent}
         renderOnWide={
           <View style={styles.simpleCardWideWrapper}>

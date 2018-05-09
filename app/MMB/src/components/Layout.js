@@ -43,7 +43,7 @@ type Props = {|
  */
 export default function Layout(props: Props) {
   return (
-    <AdaptableLayout
+    <AdaptableLayout.Consumer
       renderOnNarrow={<NarrowLayout menuComponent={props.menuComponent} />}
       renderOnWide={
         <WideLayout

@@ -34,7 +34,7 @@ export default class Popup extends React.Component<Props> {
         onBackdropPress={this.onClose}
         onRequestClose={this.onClose}
       >
-        <AdaptableLayout
+        <AdaptableLayout.Consumer
           renderOnWide={
             <View
               style={[styles.contentContainer, styles.wideContentContainer]}
