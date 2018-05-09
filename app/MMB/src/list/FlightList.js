@@ -16,59 +16,35 @@ type Props = {|
 |};
 
 export class FlightList extends React.Component<Props> {
-  renderItem = (item: ?Object) => {
-    const type = idx(item, _ => _.node.type) || '';
-    const imageUrl = idx(item, _ => _.node.destinationImageUrl);
-
-    let component = null;
-    let key = idx(item, _ => _.node.id);
-
-    switch (type) {
-      case 'ONE_WAY':
-        component = (
-          <OneWayFlight
-            type={type}
-            imageUrl={imageUrl}
-            booking={idx(item, _ => _.node.oneWay)}
-          />
-        );
-        break;
-      case 'RETURN':
-        component = (
-          <ReturnFlight
-            type={type}
-            imageUrl={imageUrl}
-            booking={idx(item, _ => _.node.return)}
-          />
-        );
-        break;
-      case 'MULTICITY':
-        component = (
-          <MulticityFlight
-            type={type}
-            imageUrl={imageUrl}
-            booking={idx(item, _ => _.node.multicity)}
-          />
-        );
-        break;
-      default:
-        break;
-    }
-    return (
-      <View key={key} style={styles.itemContainer}>
-        {component}
-      </View>
-    );
-  };
-
   render = () => {
-    const flights = idx(this.props.data, _ => _.edges) || [];
+    const flights = idx(this.props, _ => _.data.edges);
 
-    if (flights.length === 0) {
+    if (!flights) {
       return null;
     }
 
-    return flights.map(this.renderItem);
+    return flights.map(flight => {
+      const key = idx(flight, _ => _.node.id);
+      const type = idx(flight, _ => _.node.type);
+      const variants: Object = {
+        ONE_WAY: <OneWayFlight booking={idx(flight, _ => _.node.oneWay)} />,
+        RETURN: <ReturnFlight booking={idx(flight, _ => _.node.return)} />,
+        MULTICITY: (
+          <MulticityFlight booking={idx(flight, _ => _.node.multicity)} />
+        ),
+      };
+
+      let Component = variants.ONE_WAY;
+      if (variants[type]) {
+        Component = variants[type];
+      }
+
+      return (
+        <View key={key} style={styles.itemContainer}>
+          {Component}
+        </View>
+      );
+    });
   };
 }
 
@@ -85,7 +61,6 @@ export default createRefetchContainer(
       edges {
         node {
           id
-          destinationImageUrl(dimensions: _375x165)
           type
           oneWay {
             ...OneWayFlight_booking

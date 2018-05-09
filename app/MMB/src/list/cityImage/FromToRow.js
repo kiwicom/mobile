@@ -14,7 +14,7 @@ import type { FromToRow_departure as DepartureType } from './__generated__/FromT
 type Props = {|
   departure: DepartureType,
   arrival: ArrivalType,
-  type: string,
+  type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
 |};
 
 export const FromToRow = (props: Props) => (

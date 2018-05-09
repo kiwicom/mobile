@@ -85,11 +85,6 @@ type Booking {
 
   """Flight segments, e.g. stopover, change of aircraft, etc."""
   legs: [Leg] @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
-  type: BookingType
-  oneWay: BookingOneWay
-  return: BookingReturn
-  multicity: BookingMulticity
-  destinationImageUrl(dimensions: BookingDestinationImageDimensions): String
 
   """The ID of an object"""
   id: ID!
@@ -105,11 +100,16 @@ type Booking {
   """Static assets related to this booking."""
   assets: BookingAssets
   passengerCount: Int
+  destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
+  type: BookingType
+  oneWay: BookingOneWay
+  return: BookingReturn
+  multicity: BookingMulticity
 }
 
 type BookingAssets {
@@ -167,6 +167,7 @@ interface BookingInterface {
   """Static assets related to this booking."""
   assets: BookingAssets
   passengerCount: Int
+  destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
@@ -189,6 +190,7 @@ type BookingMulticity implements BookingInterface {
   """Static assets related to this booking."""
   assets: BookingAssets
   passengerCount: Int
+  destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
@@ -223,6 +225,7 @@ type BookingOneWay implements BookingInterface {
   """Static assets related to this booking."""
   assets: BookingAssets
   passengerCount: Int
+  destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
@@ -247,6 +250,7 @@ type BookingReturn implements BookingInterface {
   """Static assets related to this booking."""
   assets: BookingAssets
   passengerCount: Int
+  destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.

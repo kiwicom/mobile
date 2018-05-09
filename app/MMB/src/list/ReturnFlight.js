@@ -18,8 +18,7 @@ const ReturnFlight = (props: Props) => (
     image={props.booking}
     arrival={idx(props.booking, _ => _.outbound.arrival)}
     departure={idx(props.booking, _ => _.outbound.departure)}
-    imageUrl={props.imageUrl}
-    type={props.type}
+    type="RETURN"
   />
 );
 

@@ -18,8 +18,7 @@ const OneWayFlight = (props: Props) => (
     image={props.booking}
     arrival={idx(props.booking, _ => _.trip.arrival)}
     departure={idx(props.booking, _ => _.trip.departure)}
-    imageUrl={props.imageUrl}
-    type={props.type}
+    type="ONE_WAY"
   />
 );
 
