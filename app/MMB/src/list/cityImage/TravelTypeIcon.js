@@ -4,7 +4,7 @@ import * as React from 'react';
 import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
 
 type Props = {|
-  type: string,
+  type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
 |};
 
 export default function TravelTypeIcon(props: Props) {

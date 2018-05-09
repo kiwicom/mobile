@@ -21,15 +21,14 @@ type Props = {|
   image: ImageType,
   arrival: ArrivalType,
   departure: DepartureType,
-  imageUrl: string,
-  type: string,
+  type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
 |};
 
 export const CityImage = (props: Props) => (
   <View style={styles.container}>
     <NetworkImage
       source={{
-        uri: props.imageUrl,
+        uri: props.image.destinationImageUrl,
       }}
       style={styles.image}
       resizeMode="cover"
@@ -62,6 +61,7 @@ export default createFragmentContainer(
       databaseId
       status
       passengerCount
+      destinationImageUrl(dimensions: _375x165)
     }
 
     fragment CityImage_arrival on RouteStop {

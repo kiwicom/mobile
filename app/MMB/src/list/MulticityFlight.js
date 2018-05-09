@@ -18,8 +18,7 @@ const MulticityFlight = (props: Props) => (
     image={props.booking}
     arrival={idx(props.booking, _ => _.end)}
     departure={idx(props.booking, _ => _.start)}
-    imageUrl={props.imageUrl}
-    type={props.type}
+    type="MULTICITY"
   />
 );
 
