@@ -15,24 +15,22 @@ export type BookingType = "MULTICITY" | "ONE_WAY" | "RETURN" | "%future added va
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FlightList$ref: FragmentReference;
 export type FlightList = {|
-  +allBookings: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string,
-        +destinationImageUrl: ?string,
-        +type: ?BookingType,
-        +oneWay: ?{|
-          +$fragmentRefs: OneWayFlight_booking$ref
-        |},
-        +return: ?{|
-          +$fragmentRefs: ReturnFlight_booking$ref
-        |},
-        +multicity: ?{|
-          +$fragmentRefs: MulticityFlight_booking$ref
-        |},
-      |}
-    |}>
-  |},
+  +edges: ?$ReadOnlyArray<?{|
+    +node: ?{|
+      +id: string,
+      +destinationImageUrl: ?string,
+      +type: ?BookingType,
+      +oneWay: ?{|
+        +$fragmentRefs: OneWayFlight_booking$ref
+      |},
+      +return: ?{|
+        +$fragmentRefs: ReturnFlight_booking$ref
+      |},
+      +multicity: ?{|
+        +$fragmentRefs: MulticityFlight_booking$ref
+      |},
+    |}
+  |}>,
   +$refType: FlightList$ref,
 |};
 */
@@ -41,112 +39,101 @@ export type FlightList = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "FlightList",
-  "type": "RootQuery",
+  "type": "BookingConnection",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "allBookings",
+      "name": "edges",
       "storageKey": null,
       "args": null,
-      "concreteType": "BookingConnection",
-      "plural": false,
+      "concreteType": "BookingEdge",
+      "plural": true,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "edges",
+          "name": "node",
           "storageKey": null,
           "args": null,
-          "concreteType": "BookingEdge",
-          "plural": true,
+          "concreteType": "Booking",
+          "plural": false,
           "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "id",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "destinationImageUrl",
+              "args": [
+                {
+                  "kind": "Literal",
+                  "name": "dimensions",
+                  "value": "_375x165",
+                  "type": "BookingDestinationImageDimensions"
+                }
+              ],
+              "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "type",
+              "args": null,
+              "storageKey": null
+            },
             {
               "kind": "LinkedField",
               "alias": null,
-              "name": "node",
+              "name": "oneWay",
               "storageKey": null,
               "args": null,
-              "concreteType": "Booking",
+              "concreteType": "BookingOneWay",
               "plural": false,
               "selections": [
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "id",
-                  "args": null,
-                  "storageKey": null
-                },
+                  "kind": "FragmentSpread",
+                  "name": "OneWayFlight_booking",
+                  "args": null
+                }
+              ]
+            },
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "return",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "BookingReturn",
+              "plural": false,
+              "selections": [
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "destinationImageUrl",
-                  "args": [
-                    {
-                      "kind": "Literal",
-                      "name": "dimensions",
-                      "value": "_375x165",
-                      "type": "BookingDestinationImageDimensions"
-                    }
-                  ],
-                  "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
-                },
+                  "kind": "FragmentSpread",
+                  "name": "ReturnFlight_booking",
+                  "args": null
+                }
+              ]
+            },
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "multicity",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "BookingMulticity",
+              "plural": false,
+              "selections": [
                 {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "type",
-                  "args": null,
-                  "storageKey": null
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "name": "oneWay",
-                  "storageKey": null,
-                  "args": null,
-                  "concreteType": "BookingOneWay",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "FragmentSpread",
-                      "name": "OneWayFlight_booking",
-                      "args": null
-                    }
-                  ]
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "name": "return",
-                  "storageKey": null,
-                  "args": null,
-                  "concreteType": "BookingReturn",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "FragmentSpread",
-                      "name": "ReturnFlight_booking",
-                      "args": null
-                    }
-                  ]
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "name": "multicity",
-                  "storageKey": null,
-                  "args": null,
-                  "concreteType": "BookingMulticity",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "FragmentSpread",
-                      "name": "MulticityFlight_booking",
-                      "args": null
-                    }
-                  ]
+                  "kind": "FragmentSpread",
+                  "name": "MulticityFlight_booking",
+                  "args": null
                 }
               ]
             }
@@ -157,5 +144,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '31be66121280b836a8395c814fa60aa8';
+(node/*: any*/).hash = '2509a80326b24132cfac4696ae405ae7';
 module.exports = node;
