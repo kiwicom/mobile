@@ -1,23 +1,17 @@
 // @flow
 
 import * as React from 'react';
-import { View, NativeModules } from 'react-native';
+import { NativeModules } from 'react-native';
 import { ConfigContext } from '@kiwicom/mobile-config';
 import {
   Device,
-  type OnLayout,
-  StyleSheet,
   GeolocationContext,
+  AdaptableLayout,
+  type OnLayout,
 } from '@kiwicom/mobile-shared';
 
 import HotelsSearchContext from '../HotelsSearchContext';
 import HotelsFilterContext from '../HotelsFilterContext';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 type Props = {|
   onBackClicked: () => void,
@@ -44,9 +38,9 @@ export default class RootComponent extends React.Component<Props> {
       <HotelsSearchContext.Provider>
         <HotelsFilterContext.Provider>
           <GeolocationContext.Provider>
-            <View style={styles.container} onLayout={this.emitDimensionChanges}>
+            <AdaptableLayout.Provider>
               {this.props.render(this.onBackClicked)}
-            </View>
+            </AdaptableLayout.Provider>
           </GeolocationContext.Provider>
         </HotelsFilterContext.Provider>
       </HotelsSearchContext.Provider>

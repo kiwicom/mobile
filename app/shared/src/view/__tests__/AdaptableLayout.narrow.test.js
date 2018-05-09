@@ -19,18 +19,22 @@ const ThrowsError = () => {
 it('renders narrow components', () => {
   expect(
     Renderer.create(
-      <AdaptableLayout
-        renderOnWide={<ThrowsError />}
-        renderOnNarrow={<RendersCorrectly />}
-      />,
-    ).toJSON(),
-  ).toBe('I am going to render without any problems...');
+      <AdaptableLayout.Provider>
+        <AdaptableLayout.Consumer
+          renderOnWide={<ThrowsError />}
+          renderOnNarrow={<RendersCorrectly />}
+        />
+      </AdaptableLayout.Provider>,
+    ),
+  ).toMatchSnapshot();
 });
 
-it('renders null if there is no narrow layout', () => {
+it('renders empty element if there is no narrow layout', () => {
   expect(
     Renderer.create(
-      <AdaptableLayout renderOnWide={<ThrowsError />} />,
-    ).toJSON(),
-  ).toBeNull();
+      <AdaptableLayout.Provider>
+        <AdaptableLayout.Consumer renderOnWide={<ThrowsError />} />
+      </AdaptableLayout.Provider>,
+    ),
+  ).toMatchSnapshot();
 });

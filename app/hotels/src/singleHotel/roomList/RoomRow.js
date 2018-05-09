@@ -136,7 +136,7 @@ export class RoomRow extends React.Component<Props> {
   };
 
   render = () => (
-    <AdaptableLayout
+    <AdaptableLayout.Consumer
       renderOnNarrow={this.renderRow(false)}
       renderOnWide={this.renderRow(true)}
     />
