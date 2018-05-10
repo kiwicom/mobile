@@ -27,7 +27,7 @@ export default class MainMenu extends React.Component<Props> {
         <TitledMenuGroup title={<Translation id="mmb.main_menu.manage" />}>
           <MenuItem
             onPress={this.handleOpenHelpSubmenu}
-            icon={<TextIcon style={styleSheet.icon}>F</TextIcon>}
+            icon={<TextIcon code="F" style={styleSheet.icon} />}
             title={<Translation id="mmb.main_menu.manage.help" />}
             description={
               <Translation id="mmb.main_menu.manage.help.description" />
@@ -35,7 +35,7 @@ export default class MainMenu extends React.Component<Props> {
           />
           <MenuItem
             onPress={this.handleOpenOtherSubmenu}
-            icon={<TextIcon style={styleSheet.icon}>&#xe07d;</TextIcon>}
+            icon={<TextIcon code="&#xe07d;" style={styleSheet.icon} />}
             title={<Translation id="mmb.main_menu.manage.other" />}
             description={
               <Translation id="mmb.main_menu.manage.other.description" />

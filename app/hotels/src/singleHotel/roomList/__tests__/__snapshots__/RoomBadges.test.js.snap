@@ -5,6 +5,7 @@ Array [
   <AdaptableBadge
     icon={
       <TextIcon
+        code=""
         style={
           Object {
             "alignSelf": "flex-end",
@@ -13,9 +14,7 @@ Array [
             "marginRight": 5,
           }
         }
-      >
-        
-      </TextIcon>
+      />
     }
     style={
       Object {
@@ -39,6 +38,7 @@ Array [
   <AdaptableBadge
     icon={
       <TextIcon
+        code="'"
         style={
           Object {
             "alignSelf": "flex-end",
@@ -47,9 +47,7 @@ Array [
             "marginRight": 5,
           }
         }
-      >
-        '
-      </TextIcon>
+      />
     }
     style={
       Object {
