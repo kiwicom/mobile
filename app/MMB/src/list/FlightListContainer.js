@@ -2,8 +2,13 @@
 
 import * as React from 'react';
 import { graphql, createRefetchContainer } from 'react-relay';
-import { ScrollView, RefreshControl } from 'react-native';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { ScrollView, RefreshControl, View } from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  Color,
+  AdaptableLayout,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import type { RelayRefetchProp } from '@kiwicom/mobile-relay';
 
@@ -47,11 +52,26 @@ class FlightListContainer extends React.Component<Props, State> {
         <Text style={styles.subtitle}>
           <Translation id="mmb.my_bookings.future_trips" />
         </Text>
-        <FlightList data={this.props.future} />
+        <AdaptableLayout.Consumer
+          renderOnNarrow={<FlightList data={this.props.future} />}
+          renderOnWide={
+            <View style={styles.tabletWrapper}>
+              <FlightList data={this.props.future} />
+            </View>
+          }
+        />
+
         <Text style={styles.subtitle}>
           <Translation id="mmb.my_bookings.past_trips" />
         </Text>
-        <FlightList data={this.props.past} />
+        <AdaptableLayout.Consumer
+          renderOnNarrow={<FlightList data={this.props.past} />}
+          renderOnWide={
+            <View style={styles.tabletWrapper}>
+              <FlightList data={this.props.past} />
+            </View>
+          }
+        />
       </ScrollView>
     );
   };
@@ -65,6 +85,10 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 12,
     color: Color.textLight,
+  },
+  tabletWrapper: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
 });
 
