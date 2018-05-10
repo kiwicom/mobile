@@ -35,3 +35,20 @@ export type RelayPaginationProp = {|
     refetchVariables: ?any,
   ) => void,
 |};
+
+type RefetchOptions = {|
+  force?: boolean,
+|};
+
+type Disposable = {|
+  dispose(): void,
+|};
+
+export type RelayRefetchProp = {|
+  refetch: (
+    refetchVariables: Object | null | ((fragmentVariables: Object) => Object),
+    renderVariables: ?Object,
+    callback: ?(error: ?Error) => void,
+    options?: RefetchOptions,
+  ) => Disposable,
+|};
