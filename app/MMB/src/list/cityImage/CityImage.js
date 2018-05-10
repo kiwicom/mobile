@@ -6,9 +6,13 @@ import {
   NetworkImage,
   StretchedImage,
   BlackToAlpha as gradient,
+  Touchable,
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
+import { withNavigation } from 'react-navigation';
+import type { NavigationType } from '@kiwicom/mobile-navigation';
+import idx from 'idx';
 
 import FromToRow from './FromToRow';
 import DateAndPassengerCount from './DateAndPassengerCount';
@@ -22,40 +26,55 @@ type Props = {|
   arrival: ArrivalType,
   departure: DepartureType,
   type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
+  navigation: NavigationType,
 |};
 
-export const CityImage = (props: Props) => (
-  <View style={styles.container}>
-    <NetworkImage
-      source={{
-        uri: props.image.destinationImageUrl,
-      }}
-      style={styles.image}
-      resizeMode="cover"
-    />
-    <StretchedImage source={gradient} style={styles.stretchedImage} />
-    <View style={[styles.row, styles.padding]}>
-      <ImageBadges
-        status={props.image.status}
-        bookingId={props.image.databaseId}
-      />
-    </View>
-    <View style={[styles.bottomContainer, styles.padding]}>
-      <FromToRow
-        departure={props.departure}
-        arrival={props.arrival}
-        type={props.type}
-      />
-      <DateAndPassengerCount
-        departure={props.departure}
-        passengerCount={props.image.passengerCount}
-      />
-    </View>
-  </View>
-);
+class CityImage extends React.Component<Props> {
+  goToDetail = () => {
+    this.props.navigation.navigate({
+      routeName: 'DetailScreen',
+      key: 'key-DetailScreen',
+      params: {
+        bookingId: idx(this.props.image, _ => _.databaseId),
+      },
+    });
+  };
+
+  render = () => (
+    <Touchable onPress={this.goToDetail}>
+      <View style={styles.container}>
+        <NetworkImage
+          source={{
+            uri: this.props.image.destinationImageUrl,
+          }}
+          style={styles.image}
+          resizeMode="cover"
+        />
+        <StretchedImage source={gradient} style={styles.stretchedImage} />
+        <View style={[styles.row, styles.padding]}>
+          <ImageBadges
+            status={this.props.image.status}
+            bookingId={this.props.image.databaseId}
+          />
+        </View>
+        <View style={[styles.bottomContainer, styles.padding]}>
+          <FromToRow
+            departure={this.props.departure}
+            arrival={this.props.arrival}
+            type={this.props.type}
+          />
+          <DateAndPassengerCount
+            departure={this.props.departure}
+            passengerCount={this.props.image.passengerCount}
+          />
+        </View>
+      </View>
+    </Touchable>
+  );
+}
 
 export default createFragmentContainer(
-  CityImage,
+  withNavigation(CityImage),
   graphql`
     fragment CityImage_image on BookingInterface {
       databaseId

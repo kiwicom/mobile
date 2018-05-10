@@ -19,7 +19,10 @@ type HotelsStackNavigatorNames =
   | 'LocationPicker'
   | 'GuestsModal';
 
-type MMBStackNavigatorNames = 'mmb.other.open' | 'mmb.other.refund';
+type MMBStackNavigatorNames =
+  | 'mmb.other.open'
+  | 'mmb.other.refund'
+  | 'DetailScreen';
 
 type HomepageStackNavigatorRouteNames = 'Home';
 type PlaygroundNavigationRouteNames = 'Playground';
