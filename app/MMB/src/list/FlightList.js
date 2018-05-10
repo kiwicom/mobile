@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { graphql, createRefetchContainer } from 'react-relay';
+import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createRefetchContainer(
+export default createFragmentContainer(
   FlightList,
   graphql`
     fragment FlightList on BookingConnection {

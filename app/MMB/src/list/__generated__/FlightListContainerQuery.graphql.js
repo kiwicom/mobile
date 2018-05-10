@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 733bb8d2ffda1d8e3a4f16fd4d206c2b
+ * @relayHash 820dc63bf107778d0fbd43434cdbe5af
  */
 
 /* eslint-disable */
@@ -11,8 +11,8 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type FlightListContainer_future$ref = any;
 type FlightListContainer_past$ref = any;
-export type FlightsQueryVariables = {||};
-export type FlightsQueryResponse = {|
+export type FlightListContainerQueryVariables = {||};
+export type FlightListContainerQueryResponse = {|
   +future: ?{|
     +$fragmentRefs: FlightListContainer_future$ref
   |},
@@ -24,7 +24,7 @@ export type FlightsQueryResponse = {|
 
 
 /*
-query FlightsQuery {
+query FlightListContainerQuery {
   future: allBookings(only: FUTURE) {
     ...FlightListContainer_future
   }
@@ -383,13 +383,13 @@ v12 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "FlightsQuery",
+  "name": "FlightListContainerQuery",
   "id": null,
-  "text": "query FlightsQuery {\n  future: allBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: allBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayFlight_booking\n        id\n      }\n      return {\n        ...ReturnFlight_booking\n        id\n      }\n      multicity {\n        ...MulticityFlight_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  status\n  passengerCount\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n",
+  "text": "query FlightListContainerQuery {\n  future: allBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: allBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayFlight_booking\n        id\n      }\n      return {\n        ...ReturnFlight_booking\n        id\n      }\n      multicity {\n        ...MulticityFlight_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  status\n  passengerCount\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "FlightsQuery",
+    "name": "FlightListContainerQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": [],
@@ -430,7 +430,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "FlightsQuery",
+    "name": "FlightListContainerQuery",
     "argumentDefinitions": [],
     "selections": [
       {
@@ -458,5 +458,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'abf0ee2aa0fb3ceb84523d4af9fa4e92';
+(node/*: any*/).hash = 'cc576533502f26aaf8dfc29505bf2778';
 module.exports = node;
