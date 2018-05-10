@@ -130,7 +130,7 @@ export default class DateInput extends React.Component<Props> {
               .add(359, 'days')
               .toDate()}
             onDateChange={this.handleCheckinChange}
-            iconComponent={<TextIcon>&#xe0a3;</TextIcon>}
+            iconComponent={<TextIcon code="&#xe0a3;" />}
           />
         </View>
         <View style={styles.rightDatePickerWrapper}>
@@ -145,7 +145,7 @@ export default class DateInput extends React.Component<Props> {
               .add(360, 'days')
               .toDate()}
             onDateChange={this.handleCheckoutChange}
-            iconComponent={<TextIcon>&#xe0a2;</TextIcon>}
+            iconComponent={<TextIcon code="&#xe0a2;" />}
           />
         </View>
       </View>

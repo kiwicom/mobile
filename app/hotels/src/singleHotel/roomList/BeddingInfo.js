@@ -57,7 +57,7 @@ export class BeddingInfo extends React.Component<Props> {
     return (
       <View>
         <View style={styles.row}>
-          <TextIcon style={styles.icon}>&#xe0a5;</TextIcon>
+          <TextIcon code="&#xe0a5;" style={styles.icon} />
           <Text style={styles.text}>
             <Translation passThrough={` ${info}`} />
           </Text>

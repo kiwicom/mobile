@@ -52,7 +52,7 @@ export const RoomBadges = (props: Props) => {
   if (isBreakfastIncluded) {
     badges.push(
       <AdaptableBadge
-        icon={<TextIcon style={styles.iconStyle}>&#xe039;</TextIcon>}
+        icon={<TextIcon code="&#xe039;" style={styles.iconStyle} />}
         key="breakfast-included-badge"
         translation={
           <Translation id="single_hotel.room_badges.breakfast_included" />
@@ -66,7 +66,7 @@ export const RoomBadges = (props: Props) => {
   if (isRefundable) {
     badges.push(
       <AdaptableBadge
-        icon={<TextIcon style={styles.iconStyle}>{"'"}</TextIcon>}
+        icon={<TextIcon code={"'"} style={styles.iconStyle} />}
         key="free-cancellation-badge"
         translation={
           <Translation id="single_hotel.room_badges.free_cancellation" />

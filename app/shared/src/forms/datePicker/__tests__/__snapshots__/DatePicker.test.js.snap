@@ -5,15 +5,14 @@ exports[`DatePicker renders in playground 1`] = `
   date={2018-01-01T00:00:00.000Z}
   iconComponent={
     <TextIcon
+      code=""
       style={
         Object {
           "color": "#757575",
           "fontSize": 20,
         }
       }
-    >
-      
-    </TextIcon>
+    />
   }
   onDateChange={[Function]}
 />
@@ -24,15 +23,14 @@ exports[`DatePicker works with max date 1`] = `
   date={2018-01-01T00:00:00.000Z}
   iconComponent={
     <TextIcon
+      code=""
       style={
         Object {
           "color": "#757575",
           "fontSize": 20,
         }
       }
-    >
-      
-    </TextIcon>
+    />
   }
   maxDate={2018-01-01T00:00:00.000Z}
   onDateChange={[Function]}
@@ -44,15 +42,14 @@ exports[`DatePicker works with min date 1`] = `
   date={2018-01-01T00:00:00.000Z}
   iconComponent={
     <TextIcon
+      code=""
       style={
         Object {
           "color": "#757575",
           "fontSize": 20,
         }
       }
-    >
-      
-    </TextIcon>
+    />
   }
   minDate={2018-01-01T00:00:00.000Z}
   onDateChange={[Function]}
@@ -65,15 +62,14 @@ exports[`DatePicker works with other date formats 1`] = `
   format="L"
   iconComponent={
     <TextIcon
+      code=""
       style={
         Object {
           "color": "#757575",
           "fontSize": 20,
         }
       }
-    >
-      
-    </TextIcon>
+    />
   }
   onDateChange={[Function]}
 />

@@ -10,11 +10,11 @@ type Props = {|
 export default function TravelTypeIcon(props: Props) {
   switch (props.type) {
     case 'RETURN':
-      return <TextIcon style={styles.icon}>s</TextIcon>;
+      return <TextIcon code="s" style={styles.icon} />;
     case 'ONE_WAY':
-      return <TextIcon style={styles.icon}>&#xe0A9;</TextIcon>;
+      return <TextIcon code="&#xe0A9;" style={styles.icon} />;
     case 'MULTICITY':
-      return <TextIcon style={styles.icon}>{'>'}</TextIcon>;
+      return <TextIcon code={'>'} style={styles.icon} />;
     default:
       return null;
   }
