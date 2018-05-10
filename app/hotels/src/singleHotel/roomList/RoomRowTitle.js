@@ -53,7 +53,7 @@ const RoomSize = ({ roomSize }: { roomSize: ?number }) => {
 
   return (
     <Text>
-      <TextIcon style={styles.icon}>&#xe0a6;</TextIcon>
+      <TextIcon code="&#xe0a6;" style={styles.icon} />
       <Text style={styles.sizeText}>
         {/* \u00A0 is &nbsp; */}
         <Translation passThrough={`\u00A0${roomSize}m²`} />

@@ -9,7 +9,7 @@ import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  children: string,
+  code: string,
   style?: StylePropType,
 |};
 
@@ -25,7 +25,7 @@ const styleSheet = StyleSheet.create({
  * These icons are font mobile icons from Fontastic. Usage:
  *
  * ```js
- * <TextIcon>&#xe0a3;</TextIcon>
+ * <TextIcon code="&#xe0a3;" />
  * ```
  *
  * We currently support only one font family: "spfont".
@@ -33,7 +33,7 @@ const styleSheet = StyleSheet.create({
 function TextIcon(props: Props) {
   return (
     <Text style={[styleSheet.icon, props.style]}>
-      <Translation passThrough={props.children} />
+      <Translation passThrough={props.code} />
     </Text>
   );
 }
