@@ -6,8 +6,8 @@ import {
 } from '@kiwicom/mobile-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 
-import MMBScreen, { MenuComponents } from './MMBScreen';
-import MMBListScreen from './MMBListScreen';
+import DetailScreen, { MenuComponents } from './DetailScreen';
+import ListScreen from './ListScreen';
 
 // THIS IS ONLY FOR MOBILE DEVICES!
 const Screens = {};
@@ -26,10 +26,10 @@ Object.entries(MenuComponents).forEach(
 export default StackNavigator(
   {
     MMBList: {
-      screen: withMappedProps(MMBListScreen),
+      screen: withMappedProps(ListScreen),
     },
     MMB: {
-      screen: withMappedProps(MMBScreen),
+      screen: withMappedProps(DetailScreen),
     },
     ...Screens,
   },
