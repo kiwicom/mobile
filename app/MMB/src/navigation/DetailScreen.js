@@ -52,7 +52,7 @@ export const MenuComponents = {
   },
 };
 
-export default class MMBScreen extends React.Component<Props, State> {
+export default class DetailsScreen extends React.Component<Props, State> {
   state = {
     activeContainerComponent: 'mmb.other',
   };

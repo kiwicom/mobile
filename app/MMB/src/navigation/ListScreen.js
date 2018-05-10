@@ -6,11 +6,11 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import Flights from '../list/Flights';
 
-export default function MMBListScreen() {
+export default function ListScreen() {
   return <Flights />;
 }
 
-MMBListScreen.navigationOptions = () => ({
+ListScreen.navigationOptions = () => ({
   title: (
     <HeaderTitle>
       <Translation id="mmb.my_bookings.title.bookings" />
