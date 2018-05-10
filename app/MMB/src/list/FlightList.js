@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from 'react-relay';
 import idx from 'idx';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Device, AdaptableLayout } from '@kiwicom/mobile-shared';
 
 import OneWayFlight from './OneWayFlight';
 import ReturnFlight from './ReturnFlight';
@@ -15,7 +15,22 @@ type Props = {|
   data: FlightListType,
 |};
 
-export class FlightList extends React.Component<Props> {
+type State = {|
+  isPortrait: boolean,
+|};
+
+export class FlightList extends React.Component<Props, State> {
+  state = {
+    isPortrait: true,
+  };
+
+  componentDidMount = () => this.onLayoutChange();
+
+  onLayoutChange = () => {
+    const isPortrait = Device.isPortrait();
+    this.setState({ isPortrait });
+  };
+
   render = () => {
     const flights = idx(this.props, _ => _.data.edges);
 
@@ -40,9 +55,21 @@ export class FlightList extends React.Component<Props> {
       }
 
       return (
-        <View key={key} style={styles.itemContainer}>
-          {Component}
-        </View>
+        <AdaptableLayout.Consumer
+          key={key}
+          renderOnNarrow={<View style={styles.itemContainer}>{Component}</View>}
+          renderOnWide={
+            <View
+              style={[
+                styles.itemContainer,
+                this.state.isPortrait ? styles.portrait : styles.landscape,
+              ]}
+              onLayout={this.onLayoutChange}
+            >
+              {Component}
+            </View>
+          }
+        />
       );
     });
   };
@@ -51,6 +78,14 @@ export class FlightList extends React.Component<Props> {
 const styles = StyleSheet.create({
   itemContainer: {
     marginBottom: 16,
+  },
+  portrait: {
+    width: '50%',
+    paddingRight: 15,
+  },
+  landscape: {
+    width: '33.3%',
+    paddingRight: 15,
   },
 });
 
