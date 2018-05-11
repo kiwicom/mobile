@@ -89,4 +89,5 @@ export const createTransparentHeaderStyle = () => {
 
 // Flow types:
 
+export type { RouteNames as RouteNamesType } from './types/Navigation';
 export type { Navigation as NavigationType } from './types/Navigation';

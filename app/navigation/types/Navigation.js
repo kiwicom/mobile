@@ -20,6 +20,7 @@ type HotelsStackNavigatorNames =
   | 'GuestsModal';
 
 type MMBStackNavigatorNames =
+  | 'mmb.other.invoice'
   | 'mmb.other.open'
   | 'mmb.other.refund'
   | 'DetailScreen';
@@ -27,7 +28,7 @@ type MMBStackNavigatorNames =
 type HomepageStackNavigatorRouteNames = 'Home';
 type PlaygroundNavigationRouteNames = 'Playground';
 
-type RouteNames =
+export type RouteNames =
   | CoreStackNavigatorRouteNames
   | HotelsStackNavigatorNames
   | MMBStackNavigatorNames

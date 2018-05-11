@@ -8,10 +8,10 @@ import { Translation } from '@kiwicom/mobile-localization';
 import Layout from '../Layout';
 import MainMenu from '../menu/MainMenu';
 import HelpSubmenu from '../menu/HelpSubmenu';
-import OtherSubmenu from '../menu/OtherSubmenu';
-import Deeplink from '../menu/Deeplink';
+import OtherSubmenu, { OtherSubmenuItems } from '../menu/OtherSubmenu';
 
 type Props = {|
+  bookingId: string,
   navigation: NavigationType,
 |};
 
@@ -40,16 +40,7 @@ export const MenuComponents = {
       );
     },
   },
-  'mmb.other.open': {
-    screen: function OtherSubmenuOpenOnWeb() {
-      return <Deeplink bookingID="Qm9va2luZzo2NjkxNTcy" />; // TODO: valid BookingID (from props)
-    },
-  },
-  'mmb.other.refund': {
-    screen: function OtherSubmenuRefundForm() {
-      return <Deeplink to="REFUND" bookingID="Qm9va2luZzo2NjkxNTcy" />; // TODO: valid BookingID (from props)
-    },
-  },
+  ...OtherSubmenuItems,
 };
 
 export default class DetailsScreen extends React.Component<Props, State> {
@@ -84,6 +75,9 @@ export default class DetailsScreen extends React.Component<Props, State> {
     this.props.navigation.navigate({
       routeName: key,
       key: `key-${key}`,
+      params: {
+        bookingId: this.props.bookingId,
+      },
     });
   };
 
@@ -116,7 +110,10 @@ export default class DetailsScreen extends React.Component<Props, State> {
           />
         }
         containerComponent={
-          <ContainerComponent navigation={this.props.navigation} />
+          <ContainerComponent
+            navigation={this.props.navigation}
+            bookingId={this.props.bookingId}
+          />
         }
       />
     );
