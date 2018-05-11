@@ -20,6 +20,8 @@ exports[`Slider renders 1`] = `
       ]
     }
     customMarker={[Function]}
+    customMarkerLeft={[Function]}
+    customMarkerRight={[Function]}
     enabledOne={true}
     enabledTwo={true}
     markerOffsetX={0}
@@ -126,6 +128,8 @@ exports[`Slider renders correctly with all values equal 1`] = `
       ]
     }
     customMarker={[Function]}
+    customMarkerLeft={[Function]}
+    customMarkerRight={[Function]}
     enabledOne={false}
     enabledTwo={false}
     markerOffsetX={0}
@@ -232,6 +236,8 @@ exports[`Slider renders with endValue undefined 1`] = `
       ]
     }
     customMarker={[Function]}
+    customMarkerLeft={[Function]}
+    customMarkerRight={[Function]}
     enabledOne={true}
     enabledTwo={true}
     markerOffsetX={0}
