@@ -538,9 +538,9 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@ptomasroos/react-native-multi-slider@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@ptomasroos/react-native-multi-slider/-/react-native-multi-slider-0.0.12.tgz#db2f2c4006a347e293ad06c6fbb16f75bea7c8c3"
+"@ptomasroos/react-native-multi-slider@^0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@ptomasroos/react-native-multi-slider/-/react-native-multi-slider-0.0.14.tgz#a6dcf0fa72c24e8ff21e7a7aad9a1eab440065f4"
 
 "@types/node@*":
   version "9.3.0"
