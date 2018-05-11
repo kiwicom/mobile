@@ -9,6 +9,7 @@ import {
   Text,
   Touchable,
   AdaptableLayout,
+  Icon,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -57,12 +58,20 @@ function MenuItem(props: Props) {
           </View>
         )}
 
-        <View>
+        <View style={styleSheet.middleWrapper}>
           <Text style={styleSheet.title}>{props.title}</Text>
           {props.description && (
             <Text style={styleSheet.description}>{props.description}</Text>
           )}
         </View>
+
+        <AdaptableLayout.Consumer
+          renderOnNarrow={
+            <View style={styleSheet.rightArrow}>
+              <Icon name="chevron-right" size={26} color={Color.brand} />
+            </View>
+          }
+        />
       </React.Fragment>
     </Touchable>
   );
@@ -112,6 +121,10 @@ function createStyleSheet(props: Props) {
         color: props.isActive ? Color.white : Color.grey.$600,
       },
     },
+    middleWrapper: {
+      flex: 1,
+      justifyContent: 'center',
+    },
     title: {
       fontWeight: 'bold',
       android: {
@@ -129,6 +142,9 @@ function createStyleSheet(props: Props) {
       ios: {
         color: props.isActive ? Color.white : Color.textLight,
       },
+    },
+    rightArrow: {
+      justifyContent: 'center',
     },
   });
 }
