@@ -6,6 +6,7 @@ import { createPaginationContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
 import { Logger, GeneralError } from '@kiwicom/mobile-shared';
 import type { RelayPaginationProp } from '@kiwicom/mobile-relay';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelsSearchContext from '../HotelsSearchContext';
 import AllHotelsSearchRow from './AllHotelsSearchRow';
@@ -72,7 +73,13 @@ export class AllHotelsSearchList extends React.Component<
     const hotels = idx(this.props, _ => _.data.allAvailableHotels.edges) || [];
 
     if (hotels.length === 0) {
-      return <GeneralError errorMessage="No hotels found." />;
+      return (
+        <GeneralError
+          errorMessage={
+            <Translation id="hotels_search.all_hotels_search_list.no_hotels_found" />
+          }
+        />
+      );
     }
 
     return (

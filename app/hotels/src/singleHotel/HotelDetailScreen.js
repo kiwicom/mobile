@@ -11,6 +11,7 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from 'react-relay';
 import idx from 'idx';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import Header from './header/Header';
 import HotelInformation from './hotelInformation/HotelInformation';
@@ -110,7 +111,13 @@ export class HotelDetailScreen extends React.Component<Props, State> {
     } = this.props;
     const { selected } = this.state;
     if (!availableHotel) {
-      return <GeneralError errorMessage="Hotel not found" />;
+      return (
+        <GeneralError
+          errorMessage={
+            <Translation id="single_hotel.hotel_detail_screen.hotel_not_found" />
+          }
+        />
+      );
     }
 
     return [

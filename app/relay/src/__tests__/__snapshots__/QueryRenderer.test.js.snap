@@ -2,13 +2,21 @@
 
 exports[`QueryRenderer returns general error component for network failure 1`] = `
 <GeneralError
-  errorMessage="No internet connection, please check your internet settings or try it later."
+  errorMessage={
+    <Translation
+      id="relay.query_renderer.no_connection"
+    />
+  }
 />
 `;
 
 exports[`QueryRenderer returns general error for other errors 1`] = `
 <GeneralError
-  errorMessage="custom message"
+  errorMessage={
+    <Translation
+      passThrough="custom message"
+    />
+  }
 />
 `;
 

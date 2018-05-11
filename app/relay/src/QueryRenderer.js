@@ -7,6 +7,7 @@ import {
   GeneralError,
   PartialFailure,
 } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import PublicEnvironment from './PublicEnvironment';
 import PrivateEnvironment from './PrivateEnvironment';
@@ -46,12 +47,20 @@ export default class QueryRenderer extends React.Component<Props> {
       if (error.message === 'Network request failed') {
         // See: https://github.com/github/fetch/blob/fcc4e1b48cfb5a2b1625fcd6eac06d954b00ccb6/fetch.js#L438-L444
         return (
-          <GeneralError errorMessage="No internet connection, please check your internet settings or try it later." />
+          <GeneralError
+            errorMessage={
+              <Translation id="relay.query_renderer.no_connection" />
+            }
+          />
         );
       }
 
       // total failure (data == null, errors != null)
-      return <GeneralError errorMessage={error.message} />;
+      return (
+        <GeneralError
+          errorMessage={<Translation passThrough={error.message} />}
+        />
+      );
     }
 
     if (props) {

@@ -9,6 +9,7 @@ import {
   type OnLayout,
   StyleSheet,
 } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import GalleryGridTile from './GalleryGridTile';
 import PhotosStripe from './PhotosStripe';
@@ -124,7 +125,9 @@ export default class GalleryGrid extends React.Component<Props, State> {
         </Modal>,
       ]
     ) : (
-      <GeneralError errorMessage="No images available." />
+      <GeneralError
+        errorMessage={<Translation id="hotels.gallery_grid.no_images" />}
+      />
     );
   };
 }

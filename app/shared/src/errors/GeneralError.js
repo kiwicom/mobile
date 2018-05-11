@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
+import type { TranslationType } from '@kiwicom/mobile-localization';
 
 import CenteredView from '../view/CenteredView';
 import Color from '../Color';
@@ -10,15 +10,13 @@ import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   // error message visible by user
-  errorMessage: string,
+  errorMessage: TranslationType,
 |};
 
 export default function GeneralError({ errorMessage }: Props) {
   return (
     <CenteredView>
-      <Text style={styleSheet.text}>
-        <Translation passThrough={errorMessage} />
-      </Text>
+      <Text style={styleSheet.text}>{errorMessage}</Text>
     </CenteredView>
   );
 }

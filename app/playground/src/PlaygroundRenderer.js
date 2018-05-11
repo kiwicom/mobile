@@ -8,6 +8,8 @@ import { it } from 'global';
 const expectObject = {
   toBe: () => {},
   toBeCalled: () => {},
+  toHaveBeenCalledWith: () => {},
+  toHaveBeenCalled: () => {},
 };
 
 if (it === undefined && process.env.NODE_ENV !== 'test') {
@@ -22,6 +24,7 @@ if (it === undefined && process.env.NODE_ENV !== 'test') {
   });
   global.jest = {
     fn: () => () => {},
+    mock: () => () => {},
   };
 }
 
