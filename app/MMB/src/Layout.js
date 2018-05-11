@@ -16,30 +16,35 @@ type Props = {|
  * Tablet in landscape mode
  * ========================
  *
- *  PART 1             PART 2
+ *  PART 1              PART 2
  * .-------------------.----------------------------------------.
  * |                   |      .--------------------------.      |
  * |    <- 520pt –>    | 86pt |    <- fluid layout ->    | 86pt |
  * |                   |      |                          |      |
  * |                   |      `--------------------------`      |
- * `-------------------`----------------------------------------`
+ * `-------- ~ --------`------------------ ~ -------------------`
  *
- * Tablet in portrait mode
+ * Tablet in portrait mode (width is less than 2x 520pt)
  * =======================
  *
- * ???
- * ???
+ *  PART 1              PART 2
+ * .-------------------.-------------------.
+ * |                   |                   |
+ * |     <- 50% –>     |    <- fluid ->    |
+ * |                   |                   |
+ * |                   |                   |
+ * `-------- ~ --------`-------- ~ --------`
  *
  * Mobile
  * ======
  *
- * PART 1              (no PART 2)
+ * PART 1               (there is no PART 2)
  * .-------------------.
  * |                   |
  * |    <- fluid –>    |
  * |                   |
  * |                   |
- * `-------------------`
+ * `-------- ~ --------`
  */
 export default function Layout(props: Props) {
   return (
@@ -80,6 +85,7 @@ const styleSheet = StyleSheet.create({
   },
   menuWide: {
     width: 520,
+    maxWidth: '50%',
     borderRightWidth: 1,
     borderRightColor: '#cad2dc',
   },
