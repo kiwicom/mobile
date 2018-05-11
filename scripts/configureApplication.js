@@ -46,7 +46,7 @@ AUTH_KIWI_BACKEND=${vault.AUTH_KIWI_BACKEND}
 #
 SENTRY_DSN=${vault.SENTRY_DSN}
 
-# Token needed to vaidate requests to get all bookings
+# Token needed to validate requests to get all bookings
 MMB_TOKEN=${vault.MMB_TOKEN}
 `;
 

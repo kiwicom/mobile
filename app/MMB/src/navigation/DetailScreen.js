@@ -7,7 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import Layout from '../Layout';
 import MainMenu from '../menu/MainMenu';
-import HelpSubmenu from '../menu/HelpSubmenu';
+import HelpSubmenu, { HelpSubmenuItems } from '../menu/HelpSubmenu';
 import OtherSubmenu, { OtherSubmenuItems } from '../menu/OtherSubmenu';
 
 type Props = {|
@@ -40,6 +40,7 @@ export const MenuComponents = {
       );
     },
   },
+  ...HelpSubmenuItems,
   ...OtherSubmenuItems,
 };
 
