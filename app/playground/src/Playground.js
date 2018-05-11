@@ -42,19 +42,28 @@ export default class Playground extends React.Component<Props> {
     this.props.onGoBack();
   };
 
-  render = () => (
-    <ScrollView>
-      {PlaygroundRenderer.components[this.props.name].components.map(
-        (component, index) => {
-          return (
-            <PlaygroundSection key={index} index={index}>
-              {component}
-            </PlaygroundSection>
-          );
-        },
-      )}
-    </ScrollView>
-  );
+  render = () => {
+    if (!PlaygroundRenderer.components.hasOwnProperty(this.props.name)) {
+      return (
+        <Translation
+          passThrough={`Component ${this.props.name} no longer exists`}
+        />
+      );
+    }
+    return (
+      <ScrollView>
+        {PlaygroundRenderer.components[this.props.name].components.map(
+          (component, index) => {
+            return (
+              <PlaygroundSection key={index} index={index}>
+                {component}
+              </PlaygroundSection>
+            );
+          },
+        )}
+      </ScrollView>
+    );
+  };
 }
 
 const styles = StyleSheet.create({
