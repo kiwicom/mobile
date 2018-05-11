@@ -40,6 +40,9 @@ android/app/bin/
 .classpath
 .settings
 
+# Visual studio code
+.vscode
+
 # node.js
 #
 node_modules/
