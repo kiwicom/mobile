@@ -117,6 +117,9 @@ const Translations = {
   'mmb.my_bookings.future_trips': 'Future trips',
   'mmb.my_bookings.past_trips': 'Past trips',
 
+  'mmb.invoices.not_available':
+    'Invoice file is not available yet. Please try it later.',
+
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
 

@@ -3,32 +3,42 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
-import { type NavigationType } from '@kiwicom/mobile-navigation';
+import {
+  type NavigationType,
+  type RouteNamesType,
+} from '@kiwicom/mobile-navigation';
 
 import MenuItem from './components/MenuItem';
 import MenuGroup from './components/MenuGroup';
-
-const VoidAction = () => {
-  console.warn('TODO');
-};
+import Deeplink from './Deeplink';
+import Invoice from './Invoice';
 
 type Props = {|
+  bookingId: string,
   navigation: NavigationType,
 |};
 
 export default class OtherSubmenu extends React.Component<Props> {
-  handleOpenOnWeb = () => {
+  navigate = (key: RouteNamesType) => {
     this.props.navigation.navigate({
-      routeName: 'mmb.other.open',
-      key: 'key-mmb.other.open',
+      routeName: key,
+      key: `key-${key}`,
+      params: {
+        bookingId: this.props.bookingId,
+      },
     });
   };
 
+  handleOpenInvoice = () => {
+    this.navigate('mmb.other.invoice');
+  };
+
+  handleOpenOnWeb = () => {
+    this.navigate('mmb.other.open');
+  };
+
   handleOpenRefund = () => {
-    this.props.navigation.navigate({
-      routeName: 'mmb.other.refund',
-      key: 'key-mmb.other.refund',
-    });
+    this.navigate('mmb.other.refund');
   };
 
   render = () => (
@@ -36,7 +46,7 @@ export default class OtherSubmenu extends React.Component<Props> {
       <MenuGroup>
         <MenuItem
           title={<Translation id="mmb.sub_menu.manage.other.invoice" />}
-          onPress={VoidAction}
+          onPress={this.handleOpenInvoice}
         />
         <MenuItem
           title={<Translation id="mmb.sub_menu.manage.other.open_on_web" />}
@@ -53,3 +63,25 @@ export default class OtherSubmenu extends React.Component<Props> {
     </ScrollView>
   );
 }
+
+type SubmenuProps = {|
+  bookingId: string,
+|};
+
+export const OtherSubmenuItems = {
+  'mmb.other.invoice': {
+    screen: function OtherSubmenuOpenInvoice({ bookingId }: SubmenuProps) {
+      return <Invoice bookingID={bookingId} />;
+    },
+  },
+  'mmb.other.open': {
+    screen: function OtherSubmenuOpenOnWeb({ bookingId }: SubmenuProps) {
+      return <Deeplink bookingID={bookingId} />;
+    },
+  },
+  'mmb.other.refund': {
+    screen: function OtherSubmenuRefundForm({ bookingId }: SubmenuProps) {
+      return <Deeplink to="REFUND" bookingID={bookingId} />;
+    },
+  },
+};
