@@ -6,6 +6,7 @@ import './NativeModulesMocks/RNTranslationManager';
 import './NativeModulesMocks/RNColors';
 import './NativeModulesMocks/RNCurrencyManager';
 import './NativeModulesMocks/RNDeviceInfo';
+import './NativeModulesMocks/ReactNativePdf';
 
 beforeEach(() => {
   /**

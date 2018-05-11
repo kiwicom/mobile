@@ -2,13 +2,21 @@
 
 exports[`renders a "not found" message when data is missing 1`] = `
 <GeneralError
-  errorMessage="No hotels found."
+  errorMessage={
+    <Translation
+      id="hotels_search.all_hotels_search_list.no_hotels_found"
+    />
+  }
 />
 `;
 
 exports[`renders a "not found" message when no hotel is found 1`] = `
 <GeneralError
-  errorMessage="No hotels found."
+  errorMessage={
+    <Translation
+      id="hotels_search.all_hotels_search_list.no_hotels_found"
+    />
+  }
 />
 `;
 

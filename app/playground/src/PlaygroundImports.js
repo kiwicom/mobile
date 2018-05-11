@@ -9,6 +9,7 @@ import '../../shared/src/buttons/__tests__/Button.test.js';
 import '../../shared/src/badge/__tests__/AdaptableBadge.test.js';
 import '../../shared/src/__tests__/Text.test.js';
 import '../../shared/src/__tests__/ReadMore.test.js';
+import '../../pdf/src/__tests__/PdfViewer.test.js';
 import '../../hotels/src/singleHotel/roomPicker/__tests__/RoomPicker.test.js';
 import '../../hotels/src/singleHotel/roomList/__tests__/RoomDescription.test.js';
 import '../../hotels/src/singleHotel/roomList/__tests__/RoomBadges.test.js';

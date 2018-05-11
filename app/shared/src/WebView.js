@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { WebView as NativeWebView } from 'react-native';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import GeneralError from './errors/GeneralError';
 
@@ -16,7 +17,7 @@ export default class WebView extends React.Component<Props> {
   renderError = () => (
     <GeneralError
       // this message is most probably not true:
-      errorMessage="No internet connection, please check your internet settings or try it later."
+      errorMessage={<Translation id="shared.web_view.no_internet_connection" />}
     />
   );
 

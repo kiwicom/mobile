@@ -169,6 +169,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-pdf')
+    implementation project(':react-native-fetch-blob')
     implementation project(':react-native-tooltips')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-maps')

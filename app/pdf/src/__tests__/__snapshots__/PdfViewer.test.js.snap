@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<View
+  style={
+    Object {
+      "height": 500,
+      "width": "100%",
+    }
+  }
+>
+  <PdfViewer
+    source={
+      Object {
+        "uri": "https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf",
+      }
+    }
+  />
+</View>
+`;
