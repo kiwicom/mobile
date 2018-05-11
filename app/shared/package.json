@@ -7,7 +7,7 @@
     "@kiwicom/mobile-accessibility": "^0",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/react-native-native-modules": "^0.1.25",
-    "@ptomasroos/react-native-multi-slider": "^0.0.12",
+    "@ptomasroos/react-native-multi-slider": "^0.0.14",
     "react-native-image-progress": "^1.1.0",
     "react-native-modal": "^6.0.0",
     "react-native-vector-icons": "^4.6.0"
