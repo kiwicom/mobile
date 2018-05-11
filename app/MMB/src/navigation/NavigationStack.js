@@ -25,16 +25,16 @@ Object.entries(MenuComponents).forEach(
 
 export default StackNavigator(
   {
-    MMBList: {
+    ListScreen: {
       screen: withMappedProps(ListScreen),
     },
-    MMB: {
+    DetailScreen: {
       screen: withMappedProps(DetailScreen),
     },
     ...Screens,
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'MMBList',
+    initialRouteName: 'ListScreen',
   },
 );
