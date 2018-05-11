@@ -30,6 +30,7 @@ const Translations = {
   'core.authentication.login': 'Login!',
   'core.authentication.logout': 'Logout',
 
+  'hotels.gallery_grid.no_images': 'No images available.',
   'hotels.gallery.pagination': '__1_photoNumber__ of __2_totalPhotos__',
   'hotels.map.address': 'Address',
   'hotels.map.multiple_reviews': 'Total reviews: __numberOfReviews__',
@@ -44,6 +45,7 @@ const Translations = {
 
   'hotels_search.all_hotels.please_search':
     'Please search for your desired destination.',
+  'hotels_search.all_hotels_search_list.no_hotels_found': 'No hotels found.',
   'hotels_search.all_hotels_map.allow_localization_or_search':
     'Please go to settings and allow localization, or go back and search for your desired destination',
   'hotels_search.date_picker.select_date': 'Select date',
@@ -85,8 +87,14 @@ const Translations = {
   'partial_failure.error':
     'Some parts of the page may be missing due to partial server error.',
 
+  'relay.query_renderer.no_connection':
+    'No internet connection, please check your internet settings or try it later.',
+
   'shared.age_picker.done': 'Done',
   'shared.bar_popup.cancel': 'Cancel',
+  'shared.pdf_viewer.load_failed': 'Failed to load pdf',
+  'shared.web_view.no_internet_connection':
+    'No internet connection, please check your internet settings or try it later.',
 
   'single_hotel.bedding_info.guests': 'Guests: __numberOfGuests__',
   'single_hotel.book_now': 'Book Now',
@@ -94,6 +102,7 @@ const Translations = {
     'Guests: __1_personCount__ · Rooms: __2_numberOfRooms__  · ',
   'single_hotel.description.facilities.show_less': 'Show less',
   'single_hotel.description.facilities.show_more': 'More',
+  'single_hotel.hotel_detail_screen.hotel_not_found': 'Hotel not found.',
   'single_hotel.room_badges.breakfast_included': 'Breakfast included',
   'single_hotel.room_badges.free_cancellation': 'Free cancellation',
   'single_hotel.room_list.rooms': 'Rooms',

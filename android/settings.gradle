@@ -1,4 +1,8 @@
 apply from: "dependencies.gradle"
+include ':react-native-pdf'
+project(':react-native-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pdf/android')
+include ':react-native-fetch-blob'
+project(':react-native-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fetch-blob/android')
 include ':react-native-tooltips'
 project(':react-native-tooltips').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tooltips/android')
 
