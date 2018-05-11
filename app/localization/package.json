@@ -4,7 +4,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "moment": "^2.22.0"
+    "moment": "^2.22.1"
   },
   "devDependencies": {
     "form-data": "^2.3.2",

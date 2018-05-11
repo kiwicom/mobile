@@ -5,11 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-config": "^0",
-    "@kiwicom/mobile-shared": "^0",
     "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-shared": "^0",
     "geolib": "^2.0.24",
     "idx": "^2.2.0",
-    "lodash": "^4.17.4",
     "querystring": "^0.2.0",
     "react-native-maps": "^0.21.0",
     "react-native-read-more-text": "^1.0.0",
