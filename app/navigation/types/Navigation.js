@@ -20,6 +20,8 @@ type HotelsStackNavigatorNames =
   | 'GuestsModal';
 
 type MMBStackNavigatorNames =
+  | 'mmb.help.help'
+  | 'mmb.help.support'
   | 'mmb.other.invoice'
   | 'mmb.other.open'
   | 'mmb.other.refund'
