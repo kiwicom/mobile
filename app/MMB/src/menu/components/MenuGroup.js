@@ -2,12 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { SimpleCard } from '@kiwicom/mobile-shared';
 
-import MenuItem from './MenuItem';
+import MenuGroupSeparator from './MenuGroupSeparator';
 
 type Props = {|
-  children: $ReadOnlyArray<React.Element<typeof MenuItem>>,
+  children: $ReadOnlyArray<React.Element<any>>,
   withoutIcons: boolean,
 |};
 
@@ -40,7 +40,7 @@ type Props = {|
 export default function MenuGroup(props: Props) {
   let separator = null;
 
-  return props.children.map((child, index) => {
+  const groupChildren = props.children.map((child, index) => {
     const wrappedChild = (
       <React.Fragment key={index}>
         {separator}
@@ -48,29 +48,13 @@ export default function MenuGroup(props: Props) {
       </React.Fragment>
     );
 
-    separator = (
-      <View
-        style={[
-          styleSheet.separator,
-          props.withoutIcons ? styleSheet.separatorWithoutIcons : null,
-        ]}
-      />
-    );
+    separator = <MenuGroupSeparator withoutIcons={props.withoutIcons} />;
     return wrappedChild;
   });
+
+  return <SimpleCard style={{ padding: 0 }}>{groupChildren}</SimpleCard>;
 }
 
 MenuGroup.defaultProps = {
   withoutIcons: true,
 };
-
-const styleSheet = StyleSheet.create({
-  separator: {
-    height: 1,
-    width: 45,
-    backgroundColor: Color.white,
-  },
-  separatorWithoutIcons: {
-    width: 15,
-  },
-});
