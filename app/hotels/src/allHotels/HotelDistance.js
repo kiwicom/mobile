@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
-import idx from 'idx';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import type { HotelDistance_hotel } from './__generated__/HotelDistance_hotel.graphql';
 

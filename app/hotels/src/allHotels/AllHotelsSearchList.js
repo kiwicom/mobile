@@ -2,10 +2,13 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { createPaginationContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
 import { Logger, GeneralError } from '@kiwicom/mobile-shared';
-import type { RelayPaginationProp } from '@kiwicom/mobile-relay';
+import {
+  createPaginationContainer,
+  graphql,
+  type RelayPaginationProp,
+} from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelsSearchContext from '../HotelsSearchContext';

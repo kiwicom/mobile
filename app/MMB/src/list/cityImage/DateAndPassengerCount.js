@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Text, StyleSheet, Icon, Color } from '@kiwicom/mobile-shared';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
 import type { DateAndPassengerCount_departure as DepartureType } from './__generated__/DateAndPassengerCount_departure.graphql';

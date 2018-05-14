@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Color, Price, StyleSheet } from '@kiwicom/mobile-shared';
 
 import type { PriceMarker as PriceMarkerData } from './__generated__/PriceMarker.graphql';

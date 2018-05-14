@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, createRefetchContainer } from 'react-relay';
 import { ScrollView, RefreshControl, View } from 'react-native';
 import {
   Text,
@@ -10,7 +9,11 @@ import {
   AdaptableLayout,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import type { RelayRefetchProp } from '@kiwicom/mobile-relay';
+import {
+  graphql,
+  createRefetchContainer,
+  type RelayRefetchProp,
+} from '@kiwicom/mobile-relay';
 
 import FlightList from './FlightList';
 import type { FlightListContainer_future as FutureFlightType } from './__generated__/FlightListContainer_future.graphql';

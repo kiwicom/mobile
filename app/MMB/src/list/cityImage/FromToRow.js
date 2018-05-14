@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
 import TravelTypeIcon from './TravelTypeIcon';

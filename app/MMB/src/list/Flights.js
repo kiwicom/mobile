@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { PrivateApiRenderer } from '@kiwicom/mobile-relay';
-import { graphql } from 'react-relay';
+import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 
 import type { FlightsQueryResponse } from './__generated__/FlightsQuery.graphql';
 import FlightListContainer from './FlightListContainer';

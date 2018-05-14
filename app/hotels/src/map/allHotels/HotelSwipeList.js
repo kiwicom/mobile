@@ -2,16 +2,16 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { createFragmentContainer, graphql } from 'react-relay';
 import Carousel from 'react-native-snap-carousel';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   BottomSheet,
   Device,
   StyleSheet,
   AdaptableLayout,
 } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';

@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import idx from 'idx';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   StyleSheet,
   Color,
@@ -12,6 +11,7 @@ import {
   Touchable,
 } from '@kiwicom/mobile-shared';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
 

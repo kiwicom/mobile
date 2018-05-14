@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
-import idx from 'idx';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { AdaptableBadge, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import type { RoomBadges_availableRoom as RoomBadgesTypes } from './__generated__/RoomBadges_availableRoom.graphql';
 

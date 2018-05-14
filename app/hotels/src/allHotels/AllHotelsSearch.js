@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { graphql } from 'react-relay';
-import { PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import AllHotelsSearchList from './AllHotelsSearchList';
 import { handleOpenSingleHotel } from '../singleHotel';
