@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, createFragmentContainer } from 'react-relay';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
 import CityImage from './cityImage/CityImage';

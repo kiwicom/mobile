@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { graphql } from 'react-relay';
-import { PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 import { GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import PdfViewer from '@kiwicom/mobile-pdf';

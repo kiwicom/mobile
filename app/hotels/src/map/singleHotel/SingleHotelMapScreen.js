@@ -3,8 +3,7 @@
 import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
-import { graphql } from 'react-relay';
-import { PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';

@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import idx from 'idx';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   Text,
   SimpleCard,
@@ -12,6 +11,7 @@ import {
   ReadMore,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 import Facilities from './Facilities';

@@ -9,8 +9,8 @@ import {
   Touchable,
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
-import { graphql, createFragmentContainer } from 'react-relay';
 import { withNavigation } from 'react-navigation';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import type { NavigationType } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 

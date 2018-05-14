@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { createFragmentContainer, graphql } from 'react-relay';
-import idx from 'idx';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Text, StyleSheet, Color, ReadMore } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import type { RoomDescription_room as RoomDescriptionType } from './__generated__/RoomDescription_room.graphql';
 

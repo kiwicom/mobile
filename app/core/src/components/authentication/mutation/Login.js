@@ -1,7 +1,6 @@
 // @flow
 
-import { graphql } from 'react-relay';
-import { commitMutation } from '@kiwicom/mobile-relay';
+import { graphql, commitMutation } from '@kiwicom/mobile-relay';
 
 import type {
   LoginMutationVariables,

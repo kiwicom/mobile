@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { QueryRenderer as OriginalQueryRenderer } from 'react-relay';
+import { QueryRenderer as OriginalQueryRenderer } from '@kiwicom/mobile-relay';
 import {
   FullPageLoading,
   GeneralError,

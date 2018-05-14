@@ -1,8 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { TouchableWithoutFeedback, View } from 'react-native';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
 import HotelDetailPreview from '../HotelDetailPreview';

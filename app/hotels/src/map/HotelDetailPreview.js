@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
 import {
   StyleSheet,
@@ -10,6 +9,7 @@ import {
   Price,
   Text,
 } from '@kiwicom/mobile-shared';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
