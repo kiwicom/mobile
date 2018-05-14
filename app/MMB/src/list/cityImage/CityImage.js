@@ -100,6 +100,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
     borderRadius: 4,
+    overflow: 'hidden',
   },
   padding: {
     padding: 10,
