@@ -9,7 +9,9 @@ import Layout from '../Layout';
 import MainMenu from '../menu/MainMenu';
 import HelpSubmenu, { HelpSubmenuItems } from '../menu/HelpSubmenu';
 import OtherSubmenu, { OtherSubmenuItems } from '../menu/OtherSubmenu';
-import FlightServices from '../menu/submenu/FlightServices';
+import FlightServices, {
+  FlightServicesSubmenuItems,
+} from '../menu/submenu/FlightServices';
 
 type Props = {|
   bookingId: string,
@@ -53,6 +55,7 @@ export const MenuComponents = {
   },
   ...HelpSubmenuItems,
   ...OtherSubmenuItems,
+  ...FlightServicesSubmenuItems,
 };
 
 export default class DetailsScreen extends React.Component<Props, State> {
