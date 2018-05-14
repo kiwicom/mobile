@@ -2,9 +2,9 @@
 
 import idx from 'idx';
 import * as React from 'react';
-import { createFragmentContainer, graphql } from 'react-relay';
 import MapView from 'react-native-maps';
 import { orderByDistance, getBounds } from 'geolib';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import PriceMarker from './PriceMarker';

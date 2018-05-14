@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { createFragmentContainer, graphql } from 'react-relay';
-import idx from 'idx';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
+import idx from 'idx';
 
 import MapView from './MapView';
 import HotelSwipeList from './HotelSwipeList';

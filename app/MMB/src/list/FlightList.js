@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { graphql, createFragmentContainer } from 'react-relay';
-import idx from 'idx';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Device, AdaptableLayout } from '@kiwicom/mobile-shared';
+import idx from 'idx';
 
 import OneWayFlight from './OneWayFlight';
 import ReturnFlight from './ReturnFlight';

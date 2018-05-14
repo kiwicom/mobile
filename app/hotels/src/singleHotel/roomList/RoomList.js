@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 

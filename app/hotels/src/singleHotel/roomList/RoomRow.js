@@ -8,7 +8,7 @@ import {
   StyleSheet,
   AdaptableLayout,
 } from '@kiwicom/mobile-shared';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
 import RoomPicker from '../roomPicker/RoomPicker';
 import RoomImage from './RoomImage';

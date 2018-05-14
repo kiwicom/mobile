@@ -6,6 +6,7 @@
   "dependencies": {
     "@kiwicom/mobile-config": "^0",
     "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
     "geolib": "^2.0.24",
     "idx": "^2.2.0",

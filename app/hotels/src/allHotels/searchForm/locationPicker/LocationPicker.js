@@ -8,8 +8,7 @@ import {
   TextInput,
   WithStorage,
 } from '@kiwicom/mobile-shared';
-import { PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { graphql } from 'react-relay';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import RecentSearches from './RecentSearches';
 import SuggestionList from './SuggestionList';

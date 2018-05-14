@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Text, TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 

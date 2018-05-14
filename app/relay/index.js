@@ -1,13 +1,25 @@
 // @flow
 
 import * as React from 'react';
-import Relay from 'react-relay';
+import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
 
 import PublicEnvironment from './src/PublicEnvironment';
 
+export {
+  QueryRenderer,
+  graphql,
+  createFragmentContainer,
+  createPaginationContainer,
+  createRefetchContainer,
+} from 'react-relay';
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
 export { default as AuthContext } from './src/AuthContext';
+
+export const commitMutation = (config: CommitMutationConfig) =>
+  Relay.commitMutation(PublicEnvironment.getEnvironment(() => {}), config);
+
+// Flow types:
 
 type CommitMutationConfig = {|
   // please extend this type if needed
@@ -15,9 +27,6 @@ type CommitMutationConfig = {|
   variables: Object,
   onCompleted: Function,
 |};
-
-export const commitMutation = (config: CommitMutationConfig) =>
-  Relay.commitMutation(PublicEnvironment.getEnvironment(() => {}), config);
 
 export type QueryRendererProps = {|
   query: string,

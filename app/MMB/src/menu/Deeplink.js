@@ -1,9 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { graphql } from 'react-relay';
 import { WebView } from '@kiwicom/mobile-shared';
-import { PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
 import type {

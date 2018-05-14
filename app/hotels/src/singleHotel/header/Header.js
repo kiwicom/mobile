@@ -12,9 +12,9 @@ import {
   Device,
   BlackToAlpha as gradient,
 } from '@kiwicom/mobile-shared';
-import idx from 'idx';
-import { createFragmentContainer, graphql } from 'react-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 import Rating from './Rating';

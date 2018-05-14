@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { createFragmentContainer, graphql } from 'react-relay';
 import { View } from 'react-native';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Color, Price, Stars, Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 

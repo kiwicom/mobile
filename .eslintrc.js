@@ -70,6 +70,11 @@ module.exports = {
             message:
               "Please use '@kiwicom/mobile-navigation' package instead.",
           },
+          {
+            name: 'react-relay',
+            message:
+              "Please use '@kiwicom/mobile-relay' package instead.",
+          },
         ],
       },
     ],
