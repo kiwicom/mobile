@@ -43,6 +43,15 @@ export default class MainMenu extends React.Component<Props, State> {
     );
   };
 
+  handleOpenFlightServicesSubmenu = () => {
+    this.setState(
+      {
+        activeId: 'mmb.main_menu.services.flight_services',
+      },
+      () => this.props.openMenu('mmb.flight_services'),
+    );
+  };
+
   render = () => {
     const { activeId } = this.state;
 
@@ -50,7 +59,7 @@ export default class MainMenu extends React.Component<Props, State> {
       <ScrollView>
         <TitledMenuGroup title={<Translation id="mmb.main_menu.services" />}>
           <MenuItem
-            onPress={VoidAction}
+            onPress={this.handleOpenFlightServicesSubmenu}
             isActive={activeId === 'mmb.main_menu.services.flight_services'}
             icon={<TextIcon code="&#xe049;" />}
             title={<Translation id="mmb.main_menu.services.flight_services" />}

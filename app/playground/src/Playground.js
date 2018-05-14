@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
-import { StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, AdaptableLayout } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
@@ -51,17 +51,19 @@ export default class Playground extends React.Component<Props> {
       );
     }
     return (
-      <ScrollView>
-        {PlaygroundRenderer.components[this.props.name].components.map(
-          (component, index) => {
-            return (
-              <PlaygroundSection key={index} index={index}>
-                {component}
-              </PlaygroundSection>
-            );
-          },
-        )}
-      </ScrollView>
+      <AdaptableLayout.Provider>
+        <ScrollView>
+          {PlaygroundRenderer.components[this.props.name].components.map(
+            (component, index) => {
+              return (
+                <PlaygroundSection key={index} index={index}>
+                  {component}
+                </PlaygroundSection>
+              );
+            },
+          )}
+        </ScrollView>
+      </AdaptableLayout.Provider>
     );
   };
 }
