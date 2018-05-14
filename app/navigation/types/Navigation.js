@@ -20,6 +20,12 @@ type HotelsStackNavigatorNames =
   | 'GuestsModal';
 
 type MMBStackNavigatorNames =
+  | 'mmb.flight_services.allocated_seating'
+  | 'mmb.flight_services.checked_baggage'
+  | 'mmb.flight_services.musical_equipment'
+  | 'mmb.flight_services.pets'
+  | 'mmb.flight_services.special_assistance'
+  | 'mmb.flight_services.sports_equipment'
   | 'mmb.help.help'
   | 'mmb.help.support'
   | 'mmb.other.invoice'
