@@ -9,14 +9,14 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import MenuItem from './components/MenuItem';
-import MenuGroup from './components/MenuGroup';
+import MenuItem from '../components/menu/MenuItem';
+import MenuGroup from '../components/menu/MenuGroup';
 
 type Props = {|
   navigation: NavigationType,
 |};
 
-export default class HelpSubmenu extends React.Component<Props> {
+export default class Help extends React.Component<Props> {
   navigate = (key: RouteNamesType) => {
     this.props.navigation.navigate({
       routeName: key,

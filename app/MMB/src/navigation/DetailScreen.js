@@ -5,13 +5,13 @@ import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import { AdaptableLayout } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import Layout from '../Layout';
-import MainMenu from '../menu/MainMenu';
-import HelpSubmenu, { HelpSubmenuItems } from '../menu/HelpSubmenu';
-import OtherSubmenu, { OtherSubmenuItems } from '../menu/OtherSubmenu';
+import Layout from '../components/Layout';
+import MainMenu from '../MainMenu';
+import HelpSubmenu, { HelpSubmenuItems } from '../scenes/Help';
+import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import FlightServices, {
   FlightServicesSubmenuItems,
-} from '../menu/submenu/FlightServices';
+} from '../scenes/FlightServices';
 
 type Props = {|
   bookingId: string,

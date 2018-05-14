@@ -149,8 +149,8 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 │   │── core/                   - @kiwicom/mobile-core (core package)
 │   ├── hotels/                 - @kiwicom/react-native-app-hotels
 │   ├── navigation/             - @kiwicom/mobile-navigation
-│   └── relay/                  - @kiwicom/mobile-relay
-│   └── shared/                 - @kiwicom/mobile-shared (formerly common)
+│   ├── relay/                  - @kiwicom/mobile-relay
+│   └── shared/                 - @kiwicom/mobile-shared
 ├── ios/                        - native code for iOS
 ├── scripts/                    - support scripts for the whole monorepo
 └── schema.graphql              - GraphQL schema of the backend server
