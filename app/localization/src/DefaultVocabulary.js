@@ -117,11 +117,21 @@ const Translations = {
   'mmb.my_bookings.future_trips': 'Future trips',
   'mmb.my_bookings.past_trips': 'Past trips',
 
+  // MMB Flight services
+  'mmb.flight_services.additional_baggage': 'Checked baggage',
+  'mmb.flight_services.allocated_seating': 'Seat Selection',
+  'mmb.flight_services.musical_equipment': 'Musical Equipment',
+  'mmb.flight_services.traveling_with_pets': 'Pet Passengers',
+  'mmb.flight_services.special_assistance': 'Special Assistance',
+  'mmb.flight_services.sports_equipment': 'Sports Equipment',
+  'mmb.flight_services.title': 'Services',
+
   'mmb.invoices.not_available':
     'Invoice file is not available yet. Please try it later.',
 
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
+  'mmb.flight_services': 'Flight Services',
 
   'mmb.main_menu.services': 'Services',
   'mmb.main_menu.services.flight_services': 'Flight Services',
@@ -146,6 +156,8 @@ const Translations = {
   'mmb.sub_menu.manage.other.open_on_web': 'Open on Web',
   'mmb.sub_menu.manage.other.refund_form': 'Refund Form',
   'mmb.sub_menu.manage.other.apply_for_refund': 'Apply for refund',
+
+  'mmb.trip_services.title.ordered': 'Ordered',
 };
 
 export type TranslationKeys = $Keys<typeof Translations>;
