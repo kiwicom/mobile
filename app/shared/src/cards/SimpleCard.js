@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, Platform } from 'react-native';
+import { View } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
 import Touchable from '../Touchable';
@@ -14,23 +14,17 @@ type Props = {|
 |};
 
 const createStyle = (extraStyles: StylePropType = {}) => {
-  let additionalWrapperStyles = {};
-
-  if (Platform.OS === 'android') {
-    additionalWrapperStyles = {
-      marginHorizontal: 8,
-      elevation: 1,
-      borderRadius: 3,
-    };
-  }
-
   return StyleSheet.create({
     wrapper: {
       backgroundColor: '#fff',
       marginVertical: 3,
-      paddingVertical: 10,
-      paddingHorizontal: 10,
-      ...additionalWrapperStyles,
+      padding: 10,
+      android: {
+        marginHorizontal: 8,
+        elevation: 1,
+        borderRadius: 3,
+        overflow: 'hidden',
+      },
       ...extraStyles,
     },
   });
