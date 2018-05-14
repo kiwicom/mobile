@@ -13,11 +13,18 @@ import {
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
+import MenuItemIcon from './MenuItemIcon';
+
 type Props = {|
   title: React.Element<typeof Translation>,
   onPress: () => void,
   isActive: boolean,
+
+  // icon on the left
   icon?: React.Element<typeof TextIcon>,
+
+  // icon on the right (arrow by default)
+  actionIcon?: React.Element<typeof TextIcon>,
   description?: React.Element<typeof Translation>,
 |};
 
@@ -51,11 +58,10 @@ function MenuItem(props: Props) {
     <Touchable onPress={props.onPress} style={styleSheet.wrapper}>
       <React.Fragment>
         {props.icon && (
-          <View style={styleSheet.iconWrapper}>
-            {React.cloneElement(props.icon, {
-              style: styleSheet.icon,
-            })}
-          </View>
+          <MenuItemIcon
+            iconComponent={props.icon}
+            invertColors={props.isActive}
+          />
         )}
 
         <View style={styleSheet.middleWrapper}>
@@ -65,13 +71,17 @@ function MenuItem(props: Props) {
           )}
         </View>
 
-        <AdaptableLayout.Consumer
-          renderOnNarrow={
-            <View style={styleSheet.rightArrow}>
-              <Icon name="chevron-right" size={26} color={Color.brand} />
-            </View>
-          }
-        />
+        {props.actionIcon ? (
+          <View style={styleSheet.rightArrow}>{props.actionIcon}</View>
+        ) : (
+          <AdaptableLayout.Consumer
+            renderOnNarrow={
+              <View style={styleSheet.rightArrow}>
+                <Icon name="chevron-right" size={26} color={Color.brand} />
+              </View>
+            }
+          />
+        )}
       </React.Fragment>
     </Touchable>
   );
@@ -106,19 +116,6 @@ function createStyleSheet(props: Props) {
       },
       ios: {
         backgroundColor: props.isActive ? Color.brand : Color.white,
-      },
-    },
-    iconWrapper: {
-      paddingRight: 15,
-      justifyContent: 'center',
-    },
-    icon: {
-      android: {
-        fontSize: 15,
-      },
-      ios: {
-        fontSize: 14,
-        color: props.isActive ? Color.white : Color.grey.$600,
       },
     },
     middleWrapper: {
