@@ -6,9 +6,10 @@
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-navigation": "^0",
-    "@kiwicom/mobile-shared": "^0",
     "@kiwicom/mobile-pdf": "^0",
-    "@kiwicom/mobile-relay": "^0"
+    "@kiwicom/mobile-relay": "^0",
+    "@kiwicom/mobile-shared": "^0",
+    "react-native-phone-call": "^1.0.4"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",

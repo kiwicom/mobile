@@ -7,7 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import Layout from '../components/Layout';
 import MainMenu from '../MainMenu';
-import HelpSubmenu, { HelpSubmenuItems } from '../scenes/Help';
+import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
 import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import FlightServices, {
   FlightServicesSubmenuItems,
