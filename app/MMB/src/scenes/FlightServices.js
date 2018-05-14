@@ -9,9 +9,9 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import TitledMenuGroup from '../components/TitledMenuGroup';
-import MenuItem from '../components/MenuItem';
-import Deeplink from '../Deeplink';
+import TitledMenuGroup from '../components/menu/TitledMenuGroup';
+import MenuItem from '../components/menu/MenuItem';
+import Deeplink from '../components/Deeplink';
 
 type Props = {|
   bookingId: string,
@@ -61,7 +61,6 @@ export default class FlightServices extends React.Component<Props> {
           isActive={false}
           onPress={this.handleOpenBaggage}
           icon={<TextIcon code="&#xe071;" />}
-          key="lol"
         />
         <MenuItem
           title={<Translation id="mmb.flight_services.allocated_seating" />}

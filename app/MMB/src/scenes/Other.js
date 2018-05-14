@@ -8,17 +8,17 @@ import {
   type RouteNamesType,
 } from '@kiwicom/mobile-navigation';
 
-import MenuItem from './components/MenuItem';
-import MenuGroup from './components/MenuGroup';
-import Deeplink from './Deeplink';
-import Invoice from './Invoice';
+import MenuItem from '../components/menu/MenuItem';
+import MenuGroup from '../components/menu/MenuGroup';
+import Deeplink from '../components/Deeplink';
+import Invoice from '../components/Invoice';
 
 type Props = {|
   bookingId: string,
   navigation: NavigationType,
 |};
 
-export default class OtherSubmenu extends React.Component<Props> {
+export default class Other extends React.Component<Props> {
   navigate = (key: RouteNamesType) => {
     this.props.navigation.navigate({
       routeName: key,
