@@ -1,16 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
-import { Color, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { Platform } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import MenuItem from './MenuItem';
 import MenuGroup from './MenuGroup';
+import MenuGroupTitle from './MenuGroupTitle';
 
 type Props = {|
   title: React.Element<typeof Translation>,
-  children: $ReadOnlyArray<React.Element<typeof MenuItem>>,
+  children: Array<React.Element<any>>,
 |};
 
 /**
@@ -18,7 +17,7 @@ type Props = {|
  * Example:
  *
  *
- *   Trip Info Separator
+ *   iOS Title
  * .------------------------------.
  * |                              |
  * |  ICON  Title 1               |
@@ -28,26 +27,33 @@ type Props = {|
  * |  ICON  Title 2               |
  * |                              |
  * `------------------------------`
+ *
+ *
+ * .------------------------------.
+ * |  Android Title               |
+ * |------------------------------|
+ * |                              |
+ * |  ICON  Title 1               |
+ * |                              |
+ * |------------------------------|
+ * |                              |
+ * |  ICON  Title 2               |
+ * |                              |
+ * `------------------------------`
  */
-export default function TitledMenuGroup(props: Props) {
+export default function TitledMenuGroup({ title, children }: Props) {
+  let newChildren = children;
+
+  if (Platform.OS === 'android') {
+    // we have to copy every children in order to prepend group title for Android
+    newChildren = [<MenuGroupTitle key="android-ftw" title={title} />];
+    React.Children.forEach(children, child => newChildren.push(child));
+  }
+
   return (
     <React.Fragment>
-      <View style={styleSheet.titleWrapper}>
-        <Text style={styleSheet.title}>{props.title}</Text>
-      </View>
-
-      <MenuGroup withoutIcons={false}>{props.children}</MenuGroup>
+      {Platform.OS === 'ios' && <MenuGroupTitle title={title} />}
+      <MenuGroup withoutIcons={false}>{newChildren}</MenuGroup>
     </React.Fragment>
   );
 }
-
-const styleSheet = StyleSheet.create({
-  titleWrapper: {
-    paddingTop: 22,
-    paddingBottom: 11,
-    paddingLeft: 15,
-  },
-  title: {
-    color: Color.textLight,
-  },
-});
