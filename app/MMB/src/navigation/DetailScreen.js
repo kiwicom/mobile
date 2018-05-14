@@ -9,6 +9,7 @@ import Layout from '../Layout';
 import MainMenu from '../menu/MainMenu';
 import HelpSubmenu, { HelpSubmenuItems } from '../menu/HelpSubmenu';
 import OtherSubmenu, { OtherSubmenuItems } from '../menu/OtherSubmenu';
+import FlightServices from '../menu/submenu/FlightServices';
 
 type Props = {|
   bookingId: string,
@@ -36,6 +37,16 @@ export const MenuComponents = {
       return (
         <HeaderTitle>
           <Translation id="mmb.sub_menu.manage.other.title" />
+        </HeaderTitle>
+      );
+    },
+  },
+  'mmb.flight_services': {
+    screen: FlightServices,
+    headerTitle: function FlightServicesHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.flight_services" />
         </HeaderTitle>
       );
     },

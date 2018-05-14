@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<ScrollView>
+  <TitledMenuGroup
+    title={
+      <Translation
+        id="mmb.flight_services.title"
+      />
+    }
+  >
+    <AdaptableMenuItem
+      icon={
+        <TextIcon
+          code=""
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 20,
+            }
+          }
+        />
+      }
+      isActive={false}
+      onPress={[Function]}
+      title={
+        <Translation
+          id="mmb.flight_services.additional_baggage"
+        />
+      }
+    />
+    <AdaptableMenuItem
+      icon={
+        <TextIcon
+          code=""
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 20,
+            }
+          }
+        />
+      }
+      isActive={false}
+      onPress={[Function]}
+      title={
+        <Translation
+          id="mmb.flight_services.allocated_seating"
+        />
+      }
+    />
+    <AdaptableMenuItem
+      icon={
+        <TextIcon
+          code=""
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 20,
+            }
+          }
+        />
+      }
+      isActive={false}
+      onPress={[Function]}
+      title={
+        <Translation
+          id="mmb.flight_services.sports_equipment"
+        />
+      }
+    />
+    <AdaptableMenuItem
+      icon={
+        <TextIcon
+          code=""
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 20,
+            }
+          }
+        />
+      }
+      isActive={false}
+      onPress={[Function]}
+      title={
+        <Translation
+          id="mmb.flight_services.musical_equipment"
+        />
+      }
+    />
+    <AdaptableMenuItem
+      icon={
+        <TextIcon
+          code=""
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 20,
+            }
+          }
+        />
+      }
+      isActive={false}
+      onPress={[Function]}
+      title={
+        <Translation
+          id="mmb.flight_services.special_assistance"
+        />
+      }
+    />
+    <AdaptableMenuItem
+      icon={
+        <TextIcon
+          code=""
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 20,
+            }
+          }
+        />
+      }
+      isActive={false}
+      onPress={[Function]}
+      title={
+        <Translation
+          id="mmb.flight_services.traveling_with_pets"
+        />
+      }
+    />
+  </TitledMenuGroup>
+</ScrollView>
+`;
