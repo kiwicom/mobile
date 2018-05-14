@@ -7,7 +7,7 @@ import { SimpleCard } from '@kiwicom/mobile-shared';
 import MenuGroupSeparator from './MenuGroupSeparator';
 
 type Props = {|
-  children: $ReadOnlyArray<React.Element<any>>,
+  children: React.Node,
   withoutIcons: boolean,
 |};
 
@@ -39,8 +39,11 @@ type Props = {|
  */
 export default function MenuGroup(props: Props) {
   let separator = null;
+  const children = Array.isArray(props.children)
+    ? props.children
+    : [props.children];
 
-  const groupChildren = props.children.map((child, index) => {
+  const groupChildren = children.map((child, index) => {
     const wrappedChild = (
       <React.Fragment key={index}>
         {separator}
