@@ -5539,6 +5539,10 @@ react-native-pdf@^3.0.8:
     crypto-js "^3.1.9-1"
     prop-types "^15.5.10"
 
+react-native-phone-call@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-native-phone-call/-/react-native-phone-call-1.0.4.tgz#809b7dd27452e429c9deddb4c311997702e333ba"
+
 react-native-read-more-text@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-read-more-text/-/react-native-read-more-text-1.0.0.tgz#467c1e72bb5607c6881a5f480ccad46d9bc27a43"

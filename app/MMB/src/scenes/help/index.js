@@ -9,8 +9,9 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import MenuItem from '../components/menu/MenuItem';
-import MenuGroup from '../components/menu/MenuGroup';
+import MenuItem from '../../components/menu/MenuItem';
+import MenuGroup from '../../components/menu/MenuGroup';
+import CallSupport from './CallSupport';
 
 type Props = {|
   navigation: NavigationType,
@@ -61,8 +62,6 @@ export const HelpSubmenuItems = {
     },
   },
   'mmb.help.support': {
-    screen: function HelpSubmenuSupport() {
-      return <Translation passThrough="TODO" />;
-    },
+    screen: CallSupport,
   },
 };
