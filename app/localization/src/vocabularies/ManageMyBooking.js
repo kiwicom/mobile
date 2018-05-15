@@ -18,6 +18,18 @@ export default {
   'mmb.flight_services.sports_equipment': 'Sports Equipment',
   'mmb.flight_services.title': 'Services',
 
+  // MMB Trip services
+  'mmb.trip_services.title': 'Trip services',
+  'mmb.trip_services.ordered_services': 'Ordered services',
+  'mmb.trip_services.general_services': 'General services',
+  'mmb.trip_services.general_services.insurance': 'Insurance',
+  'mmb.trip_services.local_services': 'Local services',
+  'mmb.trip_services.local_services.car_rental': 'Car rental',
+  'mmb.trip_services.local_services.hotel': 'Hotel',
+  'mmb.trip_services.local_services.lounge': 'Lounge',
+  'mmb.trip_services.local_services.parking': 'Parking',
+  'mmb.trip_services.local_services.transportation': 'Transportation',
+
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',
   'mmb.support.phone.all_numbers': 'All Numbers',
