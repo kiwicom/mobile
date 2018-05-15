@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
@@ -19,8 +19,12 @@ function StatusBar(props: Props) {
 
   return (
     <View style={styleSheet.row}>
-      <StatusBarIcon data={props.data} />
-      <Translation passThrough={`#${id || ''}`} />
+      <View style={styleSheet.icon}>
+        <StatusBarIcon data={props.data} />
+      </View>
+      <Text style={styleSheet.bid}>
+        <Translation passThrough={`#${id || ''}`} />
+      </Text>
     </View>
   );
 }
@@ -38,5 +42,11 @@ export default createFragmentContainer(
 const styleSheet = StyleSheet.create({
   row: {
     flexDirection: 'row',
+  },
+  icon: {
+    flexGrow: 1,
+  },
+  bid: {
+    color: Color.textLight,
   },
 });
