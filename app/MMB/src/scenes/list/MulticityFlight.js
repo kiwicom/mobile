@@ -11,6 +11,7 @@ type Props = {|
   imageUrl: string,
   type: string,
   booking: MulticityFlightType,
+  id: string,
 |};
 
 const MulticityFlight = (props: Props) => (
@@ -19,6 +20,7 @@ const MulticityFlight = (props: Props) => (
     arrival={idx(props.booking, _ => _.end)}
     departure={idx(props.booking, _ => _.start)}
     type="MULTICITY"
+    id={props.id}
   />
 );
 

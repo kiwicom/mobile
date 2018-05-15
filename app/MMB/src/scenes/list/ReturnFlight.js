@@ -11,6 +11,7 @@ type Props = {|
   imageUrl: string,
   type: string,
   booking: ReturnFlightType,
+  id: string,
 |};
 
 const ReturnFlight = (props: Props) => (
@@ -19,6 +20,7 @@ const ReturnFlight = (props: Props) => (
     arrival={idx(props.booking, _ => _.outbound.arrival)}
     departure={idx(props.booking, _ => _.outbound.departure)}
     type="RETURN"
+    id={props.id}
   />
 );
 

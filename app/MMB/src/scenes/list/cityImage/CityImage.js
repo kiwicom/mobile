@@ -27,6 +27,7 @@ type Props = {|
   departure: DepartureType,
   type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
   navigation: NavigationType,
+  id: string,
 |};
 
 class CityImage extends React.Component<Props> {
@@ -36,6 +37,7 @@ class CityImage extends React.Component<Props> {
       key: 'key-DetailScreen',
       params: {
         bookingId: idx(this.props.image, _ => _.databaseId),
+        id: this.props.id,
       },
     });
   };
