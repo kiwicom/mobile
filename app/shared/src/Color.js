@@ -3,7 +3,7 @@
 import { NativeModules } from 'react-native';
 
 /**
- * @see https://material.io/guidelines/style/color.html#color-color-palette
+ * @see https://material.io/design/color/the-color-system.html#tools-for-picking-colors
  */
 const ColorPalette = {
   red: {
@@ -17,6 +17,19 @@ const ColorPalette = {
     $700: '#d32f2f',
     $800: '#c62828',
     $900: '#b71c1c',
+  },
+
+  blue: {
+    $50: '#E3F2FD',
+    $100: '#BBDEFB',
+    $200: '#90CAF9',
+    $300: '#64B5F6',
+    $400: '#42A5F5',
+    $500: '#2196F3',
+    $600: '#1E88E5',
+    $700: '#1976D2',
+    $800: '#1565C0',
+    $900: '#0D47A1',
   },
 
   green: {
