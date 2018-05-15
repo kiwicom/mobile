@@ -17,6 +17,7 @@ export default {
   'mmb.flight_services.special_assistance': 'Special Assistance',
   'mmb.flight_services.sports_equipment': 'Sports Equipment',
   'mmb.flight_services.title': 'Services',
+  'mmb.flight_services.title_ordered': 'Ordered',
 
   // MMB Trip services
   'mmb.trip_services.title': 'Trip services',
