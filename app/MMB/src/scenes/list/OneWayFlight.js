@@ -11,6 +11,7 @@ type Props = {|
   imageUrl: string,
   type: string,
   booking: OneWayFlightType,
+  id: string,
 |};
 
 const OneWayFlight = (props: Props) => (
@@ -19,6 +20,7 @@ const OneWayFlight = (props: Props) => (
     arrival={idx(props.booking, _ => _.trip.arrival)}
     departure={idx(props.booking, _ => _.trip.departure)}
     type="ONE_WAY"
+    id={props.id}
   />
 );
 

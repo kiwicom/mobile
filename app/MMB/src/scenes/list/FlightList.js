@@ -42,10 +42,17 @@ export class FlightList extends React.Component<Props, State> {
       const key = idx(flight, _ => _.node.id);
       const type = idx(flight, _ => _.node.type);
       const variants: Object = {
-        ONE_WAY: <OneWayFlight booking={idx(flight, _ => _.node.oneWay)} />,
-        RETURN: <ReturnFlight booking={idx(flight, _ => _.node.return)} />,
+        ONE_WAY: (
+          <OneWayFlight booking={idx(flight, _ => _.node.oneWay)} id={key} />
+        ),
+        RETURN: (
+          <ReturnFlight booking={idx(flight, _ => _.node.return)} id={key} />
+        ),
         MULTICITY: (
-          <MulticityFlight booking={idx(flight, _ => _.node.multicity)} />
+          <MulticityFlight
+            booking={idx(flight, _ => _.node.multicity)}
+            id={key}
+          />
         ),
       };
 
