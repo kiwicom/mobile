@@ -5,11 +5,13 @@ import { ScrollView } from 'react-native';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
+import Header from './components/header/Header';
 import TitledMenuGroup from './components/menu/TitledMenuGroup';
 import MenuItem from './components/menu/MenuItem';
 
 type Props = {|
   openMenu: string => void,
+  bookingId: string,
 |};
 
 type State = {|
@@ -62,6 +64,8 @@ export default class MainMenu extends React.Component<Props, State> {
 
     return (
       <ScrollView>
+        <Header bookingId={this.props.bookingId} />
+
         <TitledMenuGroup title={<Translation id="mmb.main_menu.services" />}>
           <MenuItem
             onPress={this.handleOpenFlightServicesSubmenu}
