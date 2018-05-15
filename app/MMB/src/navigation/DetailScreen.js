@@ -131,8 +131,18 @@ export default class DetailsScreen extends React.Component<Props, State> {
       <Layout
         menuComponent={
           <AdaptableLayout.Consumer
-            renderOnWide={<MainMenu openMenu={this.changeContentOnTablet} />}
-            renderOnNarrow={<MainMenu openMenu={this.openMenuOnMobile} />}
+            renderOnWide={
+              <MainMenu
+                openMenu={this.changeContentOnTablet}
+                bookingId={this.props.bookingId}
+              />
+            }
+            renderOnNarrow={
+              <MainMenu
+                openMenu={this.openMenuOnMobile}
+                bookingId={this.props.bookingId}
+              />
+            }
           />
         }
         containerComponent={
