@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native';
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import Header from './components/header/Header';
+import PassengerMenuGroup from './menuGroups/PassengerMenuGroup';
 
 type Props = {|
   openMenu: string => void,
@@ -36,6 +37,10 @@ export default class MainMenu extends React.Component<Props, State> {
     return (
       <ScrollView>
         <Header bookingId={this.props.bookingId} />
+        <PassengerMenuGroup
+          activeId={activeId}
+          openSubmenu={this.handleOpenSubmenu}
+        />
         <ServicesMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
