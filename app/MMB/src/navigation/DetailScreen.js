@@ -12,6 +12,7 @@ import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import FlightServices, {
   FlightServicesSubmenuItems,
 } from '../scenes/FlightServices';
+import TripServices from '../scenes/TripServices';
 
 type Props = {|
   bookingId: string,
@@ -23,6 +24,26 @@ type State = {|
 |};
 
 export const MenuComponents = {
+  'mmb.flight_services': {
+    screen: FlightServices,
+    headerTitle: function FlightServicesHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.flight_services.title" />
+        </HeaderTitle>
+      );
+    },
+  },
+  'mmb.trip_services': {
+    screen: TripServices,
+    headerTitle: function TripServicesHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.trip_services.title" />
+        </HeaderTitle>
+      );
+    },
+  },
   'mmb.help': {
     screen: HelpSubmenu,
     headerTitle: function HelpSubmenuHeaderTitle() {
@@ -43,24 +64,14 @@ export const MenuComponents = {
       );
     },
   },
-  'mmb.flight_services': {
-    screen: FlightServices,
-    headerTitle: function FlightServicesHeaderTitle() {
-      return (
-        <HeaderTitle>
-          <Translation id="mmb.flight_services" />
-        </HeaderTitle>
-      );
-    },
-  },
+  ...FlightServicesSubmenuItems,
   ...HelpSubmenuItems,
   ...OtherSubmenuItems,
-  ...FlightServicesSubmenuItems,
 };
 
 export default class DetailsScreen extends React.Component<Props, State> {
   state = {
-    activeContainerComponent: 'mmb.other',
+    activeContainerComponent: 'mmb.flight_services',
   };
 
   static navigationOptions = (props: {| navigation: NavigationType |}) => {

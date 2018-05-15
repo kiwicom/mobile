@@ -9,7 +9,7 @@ import MenuGroupTitle from './MenuGroupTitle';
 
 type Props = {|
   title: React.Element<typeof Translation>,
-  children: Array<React.Element<any>>,
+  children: React.Node,
 |};
 
 /**
@@ -42,7 +42,7 @@ type Props = {|
  * `------------------------------`
  */
 export default function TitledMenuGroup({ title, children }: Props) {
-  let newChildren = children;
+  let newChildren = Array.isArray(children) ? children : [children];
 
   if (Platform.OS === 'android') {
     // we have to copy every children in order to prepend group title for Android
