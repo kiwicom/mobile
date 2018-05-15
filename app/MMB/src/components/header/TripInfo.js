@@ -3,8 +3,11 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
+import TripInfoOneWay from './TripInfoOneWay';
+import TripInfoReturn from './TripInfoReturn';
+import TripInfoMulticity from './TripInfoMulticity';
 import type { TripInfo as TripInfoType } from './__generated__/TripInfo.graphql';
 
 type Props = {|
@@ -12,9 +15,16 @@ type Props = {|
 |};
 
 function TripInfo(props: Props) {
+  const data = idx(props, _ => _.data);
+  const type = idx(data, _ => _.type);
+
   return (
     <View>
-      <Translation passThrough={JSON.stringify(props.data)} />
+      {type === 'ONE_WAY' && <TripInfoOneWay data={data && data.oneWay} />}
+      {type === 'RETURN' && <TripInfoReturn data={data && data.return} />}
+      {type === 'MULTICITY' && (
+        <TripInfoMulticity data={data && data.multicity} />
+      )}
     </View>
   );
 }
@@ -24,6 +34,15 @@ export default createFragmentContainer(
   graphql`
     fragment TripInfo on Booking {
       type
+      oneWay {
+        ...TripInfoOneWay
+      }
+      return {
+        ...TripInfoReturn
+      }
+      multicity {
+        ...TripInfoMulticity
+      }
     }
   `,
 );
