@@ -16,13 +16,27 @@ type State = {|
   activeId: string,
 |};
 
-const VoidAction = () => {
-  console.warn('TODO');
-};
-
 export default class MainMenu extends React.Component<Props, State> {
   state = {
-    activeId: 'mmb.main_menu.manage.help',
+    activeId: 'mmb.main_menu.services.flight_services',
+  };
+
+  handleOpenFlightServicesSubmenu = () => {
+    this.setState(
+      {
+        activeId: 'mmb.main_menu.services.flight_services',
+      },
+      () => this.props.openMenu('mmb.flight_services'),
+    );
+  };
+
+  handleOpenTripServicesSubmenu = () => {
+    this.setState(
+      {
+        activeId: 'mmb.main_menu.services.trip_services',
+      },
+      () => this.props.openMenu('mmb.trip_services'),
+    );
   };
 
   handleOpenHelpSubmenu = () => {
@@ -43,15 +57,6 @@ export default class MainMenu extends React.Component<Props, State> {
     );
   };
 
-  handleOpenFlightServicesSubmenu = () => {
-    this.setState(
-      {
-        activeId: 'mmb.main_menu.services.flight_services',
-      },
-      () => this.props.openMenu('mmb.flight_services'),
-    );
-  };
-
   render = () => {
     const { activeId } = this.state;
 
@@ -69,7 +74,7 @@ export default class MainMenu extends React.Component<Props, State> {
           />
 
           <MenuItem
-            onPress={VoidAction}
+            onPress={this.handleOpenTripServicesSubmenu}
             isActive={activeId === 'mmb.main_menu.services.trip_services'}
             icon={<TextIcon code="&#xe08a;" />}
             title={<Translation id="mmb.main_menu.services.trip_services" />}

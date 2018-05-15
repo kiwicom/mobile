@@ -58,37 +58,31 @@ export default class FlightServices extends React.Component<Props> {
       <TitledMenuGroup title={<Translation id="mmb.flight_services.title" />}>
         <MenuItem
           title={<Translation id="mmb.flight_services.additional_baggage" />}
-          isActive={false}
           onPress={this.handleOpenBaggage}
           icon={<TextIcon code="&#xe071;" />}
         />
         <MenuItem
           title={<Translation id="mmb.flight_services.allocated_seating" />}
-          isActive={false}
           onPress={this.handleOpenAllocatedSeating}
           icon={<TextIcon code="&#xe02a;" />}
         />
         <MenuItem
           title={<Translation id="mmb.flight_services.sports_equipment" />}
-          isActive={false}
           onPress={this.handleOpenSportsEquipment}
           icon={<TextIcon code="&#xe089;" />}
         />
         <MenuItem
           title={<Translation id="mmb.flight_services.musical_equipment" />}
-          isActive={false}
           onPress={this.handleOpenMusicalEquipment}
           icon={<TextIcon code="&#xe086;" />}
         />
         <MenuItem
           title={<Translation id="mmb.flight_services.special_assistance" />}
-          isActive={false}
           onPress={this.handleOpenSpecialAssitance}
           icon={<TextIcon code="&#xe088;" />}
         />
         <MenuItem
           title={<Translation id="mmb.flight_services.traveling_with_pets" />}
-          isActive={false}
           onPress={this.handleOpenPetPassengers}
           icon={<TextIcon code="&#xe043;" />}
         />
