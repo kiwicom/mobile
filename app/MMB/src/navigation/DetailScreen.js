@@ -24,6 +24,16 @@ type State = {|
 |};
 
 export const MenuComponents = {
+  'mmb.passenger_detail': {
+    screen: () => null, // TODO: Add component
+    headerTitle: function PassengerDetailHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.title.passengers" />
+        </HeaderTitle>
+      );
+    },
+  },
   'mmb.flight_services': {
     screen: FlightServices,
     headerTitle: function FlightServicesHeaderTitle() {

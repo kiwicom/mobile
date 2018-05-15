@@ -42,6 +42,7 @@ export default {
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
   'mmb.flight_services': 'Flight Services',
+  'mmb.title.passengers': 'Passengers',
 
   'mmb.main_menu.details': 'Details',
   'mmb.main_menu.passengers': 'Passengers',
