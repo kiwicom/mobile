@@ -12,6 +12,7 @@ export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type CityImage_image$ref: FragmentReference;
 export type CityImage_image = {|
+  +id: string,
   +databaseId: ?number,
   +status: ?BookingStatus,
   +passengerCount: ?number,
@@ -28,6 +29,13 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -66,5 +74,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2d541b3e786cc28ee352446ef34ecaa6';
+(node/*: any*/).hash = 'f1e0f31132988a025e03c8cee6526d8f';
 module.exports = node;
