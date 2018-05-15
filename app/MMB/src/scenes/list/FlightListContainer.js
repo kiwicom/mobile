@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView, RefreshControl, View } from 'react-native';
+import { View } from 'react-native';
 import {
   Text,
   StyleSheet,
   Color,
   AdaptableLayout,
+  RefreshableScrollView,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
@@ -43,14 +44,10 @@ class FlightListContainer extends React.Component<Props, State> {
 
   render = () => {
     return (
-      <ScrollView
+      <RefreshableScrollView
         contentContainerStyle={styles.container}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.isRefreshing}
-            onRefresh={this.refetch}
-          />
-        }
+        refreshing={this.state.isRefreshing}
+        onRefresh={this.refetch}
       >
         <Text style={styles.subtitle}>
           <Translation id="mmb.my_bookings.future_trips" />
@@ -63,7 +60,6 @@ class FlightListContainer extends React.Component<Props, State> {
             </View>
           }
         />
-
         <Text style={styles.subtitle}>
           <Translation id="mmb.my_bookings.past_trips" />
         </Text>
@@ -75,7 +71,7 @@ class FlightListContainer extends React.Component<Props, State> {
             </View>
           }
         />
-      </ScrollView>
+      </RefreshableScrollView>
     );
   };
 }

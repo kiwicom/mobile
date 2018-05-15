@@ -70,6 +70,7 @@ export { default as AppStateChange } from './src/AppStateChange';
 export { default as ReadMore } from './src/ReadMore';
 export { default as WithStorage } from './src/WithStorage';
 export { default as GeolocationContext } from './src/GeolocationContext';
+export { default as RefreshableScrollView } from './src/RefreshableScrollView';
 
 export { default as BlackToAlpha } from './images/black-to-alpha-vertical.png';
 // Flow types:
