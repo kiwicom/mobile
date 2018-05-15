@@ -36,6 +36,7 @@ class CityImage extends React.Component<Props> {
       key: 'key-DetailScreen',
       params: {
         bookingId: idx(this.props.image, _ => _.databaseId),
+        id: idx(this.props.image, _ => _.id),
       },
     });
   };
@@ -77,6 +78,7 @@ export default createFragmentContainer(
   withNavigation(CityImage),
   graphql`
     fragment CityImage_image on BookingInterface {
+      id
       databaseId
       status
       passengerCount
