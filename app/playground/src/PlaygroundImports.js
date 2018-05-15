@@ -20,4 +20,3 @@ import '../../hotels/src/filter/stars/__tests__/StarsFilter.test.js';
 import '../../hotels/src/allHotels/searchForm/locationPicker/__tests__/SuggestionList.test.js';
 import '../../hotels/src/allHotels/searchForm/locationPicker/__tests__/RecentSearches.test.js';
 import '../../hotels/src/allHotels/__tests__/LoadMoreButton.test.js';
-import '../../MMB/src/scenes/__tests__/FlightServices.test.js';
