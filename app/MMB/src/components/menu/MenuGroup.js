@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { SimpleCard } from '@kiwicom/mobile-shared';
 
-import MenuGroupSeparator from './MenuGroupSeparator';
+import { SeparatorFullWidth, SeparatorTrimmed } from '../Separators';
 
 type Props = {|
   children: React.Node,
@@ -51,7 +51,10 @@ export default function MenuGroup(props: Props) {
       </React.Fragment>
     );
 
-    separator = <MenuGroupSeparator withoutIcons={props.withoutIcons} />;
+    separator = Platform.select({
+      android: <SeparatorFullWidth />,
+      ios: <SeparatorTrimmed gapSize={props.withoutIcons ? 15 : 45} />,
+    });
     return wrappedChild;
   });
 
