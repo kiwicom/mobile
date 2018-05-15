@@ -12,17 +12,22 @@ type Props = {|
   activeId: string,
 |};
 
-const VoidAction = () => {
-  console.warn('TODO');
-};
-
 export default class PassengerMenuGroup extends React.Component<Props> {
+  handleOnPassengerDetailPress = () => {
+    this.props.openSubmenu(
+      'mmb.main_menu.passengers.passenger_details',
+      'mmb.passenger_detail',
+    );
+  };
+
   render = () => (
     <TitledMenuGroup title={<Translation id="mmb.main_menu.passengers" />}>
       <MenuItem
-        onPress={VoidAction} // TODO: Add handler
+        onPress={this.handleOnPassengerDetailPress}
         title={<Translation id="mmb.main_menu.details" />}
-        isActive={false} // TODO: Add logic
+        isActive={
+          this.props.activeId === 'mmb.main_menu.passengers.passenger_details'
+        }
         icon={<TextIcon code="&#xe087;" />}
       />
     </TitledMenuGroup>
