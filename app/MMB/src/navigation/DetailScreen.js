@@ -11,7 +11,7 @@ import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
 import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import FlightServices, {
   FlightServicesSubmenuItems,
-} from '../scenes/FlightServices';
+} from '../scenes/flightServices/FlightServices';
 import TripServices from '../scenes/TripServices';
 
 type Props = {|
