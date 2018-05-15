@@ -9,6 +9,16 @@ export default {
   'mmb.my_bookings.future_trips': 'Future trips',
   'mmb.my_bookings.past_trips': 'Past trips',
 
+  'mmb.status.cancelled': 'Cancelled',
+  'mmb.status.closed': 'Closed',
+  'mmb.status.confirmed': 'Confirmed',
+  'mmb.status.deleted': 'Deleted',
+  'mmb.status.expired': 'Expired',
+  'mmb.status.new': 'New',
+  'mmb.status.pending': 'Pending',
+  'mmb.status.refused': 'Refused',
+  'mmb.status.unknown': 'Unknown',
+
   // MMB Flight services
   'mmb.flight_services.additional_baggage': 'Checked baggage',
   'mmb.flight_services.allocated_seating': 'Seat Selection',

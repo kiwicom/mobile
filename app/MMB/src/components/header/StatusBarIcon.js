@@ -12,7 +12,10 @@ function StatusIcon({ title, color }) {
   return (
     <View style={styleSheet.row}>
       <View style={[styleSheet.circle, { backgroundColor: color }]} />
-      <Text style={{ color }}>{title}</Text>
+      <Text style={{ color }}>
+        <Translation passThrough=" " />
+        {title}
+      </Text>
     </View>
   );
 }
@@ -25,63 +28,63 @@ function Status({ data }: {| data: StatusBarIcon |}) {
       return (
         <StatusIcon
           color={Color.red.$500}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.cancelled" />}
         />
       );
     case 'CLOSED':
       return (
         <StatusIcon
           color={Color.red.$500}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.closed" />}
         />
       );
     case 'CONFIRMED':
       return (
         <StatusIcon
           color={Color.green.$500}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.confirmed" />}
         />
       );
     case 'DELETED':
       return (
         <StatusIcon
           color={Color.red.$500}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.deleted" />}
         />
       );
     case 'EXPIRED':
       return (
         <StatusIcon
           color={Color.red.$500}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.expired" />}
         />
       );
     case 'NEW':
       return (
         <StatusIcon
           color={Color.blue.$500}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.new" />}
         />
       );
     case 'PENDING':
       return (
         <StatusIcon
           color={Color.orange.$500}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.pending" />}
         />
       );
     case 'REFUNDED':
       return (
         <StatusIcon
           color={Color.black}
-          title={<Translation passThrough={code} />} // FIXME: translation
+          title={<Translation id="mmb.status.refused" />}
         />
       );
     default:
       return (
         <StatusIcon
           color={Color.grey.$500}
-          title={<Translation passThrough={'Unknown'} />} // FIXME: translation
+          title={<Translation id="mmb.status.unknown" />}
         />
       );
   }
@@ -99,6 +102,7 @@ export default createFragmentContainer(
 const styleSheet = StyleSheet.create({
   row: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   circle: {
     width: 10,
