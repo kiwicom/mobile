@@ -103,16 +103,24 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
     );
   };
 
+  /**
+   * A service is considered to be ordered if it is a booked service
+   * and status is not 'OPEN'.
+   */
   getOrderedAndNotOrderedServices = () => {
     const bookedServices =
       idx(this.props.bookedServices, _ => _.bookedServices) || [];
-    const categories = bookedServices.map(item => idx(item, _ => _.category));
+
+    const orderedCategories = bookedServices
+      .filter(item => idx(item, _ => _.status) !== 'OPEN')
+      .map(item => idx(item, _ => _.category));
 
     const ordered = offeredFlightServices.filter(item =>
-      categories.includes(item.key),
+      orderedCategories.includes(item.key),
     );
+
     const rest = offeredFlightServices.filter(
-      item => !categories.includes(item.key),
+      item => !orderedCategories.includes(item.key),
     );
 
     return { ordered, rest };
