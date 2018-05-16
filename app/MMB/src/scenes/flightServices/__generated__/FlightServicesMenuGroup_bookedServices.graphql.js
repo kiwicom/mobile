@@ -9,7 +9,7 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 export type BookedServiceCategory = "ALLOCATED_SEATING" | "BAGS" | "EXTRAS_BAGS" | "EXTRAS_CHANGE_FLIGHT" | "EXTRAS_OTHER" | "EXTRAS_PASSENGER_DETAILS_CHANGE" | "FLIGHTS" | "MEALS_ON_BOARD" | "MUSICAL_EQUIPMENT" | "PRICE_CHANGE" | "SPECIAL_ASSISTANCE" | "SPORTS_EQUIPMENT" | "TRAVELLING_WITH_PETS" | "UPDATE_INSURANCES" | "%future added value";
-export type BookedServiceStatus = "CLOSED" | "CONFIRMED" | "PENDING" | "%future added value";
+export type BookedServiceStatus = "CLOSED" | "CONFIRMED" | "OPEN" | "PENDING" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FlightServicesMenuGroup_bookedServices$ref: FragmentReference;
 export type FlightServicesMenuGroup_bookedServices = {|
