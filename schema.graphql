@@ -103,6 +103,7 @@ enum BookedServiceStatus {
   CONFIRMED
   CLOSED
   PENDING
+  OPEN
 }
 
 """
@@ -122,6 +123,7 @@ type Booking {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -130,6 +132,7 @@ type Booking {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
@@ -138,7 +141,6 @@ type Booking {
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
-  type: BookingType
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -190,6 +192,7 @@ interface BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -198,6 +201,7 @@ interface BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
@@ -214,6 +218,7 @@ type BookingMulticity implements BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -222,6 +227,7 @@ type BookingMulticity implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
@@ -250,6 +256,7 @@ type BookingOneWay implements BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -258,6 +265,7 @@ type BookingOneWay implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
@@ -276,6 +284,7 @@ type BookingReturn implements BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
+  type: BookingType
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -284,6 +293,7 @@ type BookingReturn implements BookingInterface {
 
   """Static assets related to this booking."""
   assets: BookingAssets
+  passengers: [Passenger]
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
@@ -1138,6 +1148,13 @@ type Identity {
   login: String
 }
 
+"""The possible insurance type values"""
+enum InsuranceType {
+  NONE
+  TRAVEL_BASIC
+  TRAVEL_PLUS
+}
+
 scalar IP
 
 """Use "Accept-Language" HTTP header to specify locale."""
@@ -1374,6 +1391,18 @@ type PageInfo {
   endCursor: String
 }
 
+"""The passengers associated with the booking"""
+type Passenger {
+  databaseId: Int
+  firstname: String
+  lastname: String
+  insuranceType: InsuranceType
+  title: String
+  birthday: DateTime
+  nationality: String
+  travelDocument: TravelDocument
+}
+
 input PassengersInput {
   adults: Int!
 }
@@ -1440,6 +1469,13 @@ type RootQuery {
     before: String
     last: Int
   ): BookingConnection
+
+  """
+  Find most relevant booking relative to current time. That is a booking with
+  the smallest difference between current time and arrival time of one of its
+  Legs. If no future booking is found, then the nearest past booking is returned.
+  """
+  nearestBooking: BookingInterface
 
   """Search for scheduled flights."""
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
@@ -1604,6 +1640,12 @@ input StopoversInput {
 
   """Maximum number of hours of stopover duration."""
   to: Int
+}
+
+"""Travel document info"""
+type TravelDocument {
+  idNumber: String
+  expiration: DateTime
 }
 
 """Single travel from origin to destination, with possible stopovers."""
