@@ -37,6 +37,7 @@ export class Passenger extends React.Component<Props> {
     if (passenger == null) {
       return null;
     }
+
     const title = idx(passenger, _ => _.title) || '';
     const fullName = idx(passenger, _ => _.fullName) || '';
     const birthday = idx(passenger, _ => _.birthday) || '';
@@ -45,6 +46,7 @@ export class Passenger extends React.Component<Props> {
     const insuranceType = startCase(
       (idx(passenger, _ => _.insuranceType) || '').toLowerCase(),
     );
+
     return (
       <SimpleCard style={styles.card}>
         <Text style={styles.name}>
@@ -58,7 +60,11 @@ export class Passenger extends React.Component<Props> {
           <Column
             title={<Translation id="mmb.passenger.birthday" />}
             value={
-              <Translation passThrough={DateFormatter(birthday).format('L')} />
+              <Translation
+                passThrough={DateFormatter(
+                  new Date(birthday),
+                ).formatToBirthday()}
+              />
             }
           />
         </Row>

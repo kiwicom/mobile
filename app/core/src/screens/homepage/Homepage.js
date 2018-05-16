@@ -4,7 +4,11 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Button, Layout } from '@kiwicom/mobile-shared';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+import {
+  Translation,
+  DateFormatter,
+  DateUtils,
+} from '@kiwicom/mobile-localization';
 
 import Logout from '../../components/authentication/Logout';
 
@@ -65,12 +69,8 @@ export default class Homepage extends React.Component<Props> {
       routeName: 'HotelsPackage',
       key: 'key-HotelsPackage',
       params: {
-        checkin: DateFormatter()
-          .add(30, 'days')
-          .format('YYYY-MM-DD'),
-        checkout: DateFormatter()
-          .add(36, 'days')
-          .format('YYYY-MM-DD'),
+        checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
+        checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
       },
     });
   };

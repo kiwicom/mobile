@@ -11,11 +11,6 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RouteStop$ref: FragmentReference;
 export type RouteStop = {|
-  +airport: ?{|
-    +city: ?{|
-      +name: ?string
-    |}
-  |},
   +localTime: ?any,
   +$refType: RouteStop$ref,
 |};
@@ -30,35 +25,6 @@ const node/*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "airport",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Location",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "city",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "LocationArea",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "name",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        }
-      ]
-    },
-    {
       "kind": "ScalarField",
       "alias": null,
       "name": "localTime",
@@ -68,5 +34,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4e7c1e80283fd827da9a58b793ad0d11';
+(node/*: any*/).hash = '3b1140cd2f168356903118cd8255a6e9';
 module.exports = node;

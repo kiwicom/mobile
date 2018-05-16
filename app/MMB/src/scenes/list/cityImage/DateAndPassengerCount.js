@@ -9,36 +9,36 @@ import idx from 'idx';
 
 import type { DateAndPassengerCount_departure as DepartureType } from './__generated__/DateAndPassengerCount_departure.graphql';
 
-const formatDate = (date: ?Date) => {
-  return `${DateFormatter(date).format(
-    'ddd',
-  )} ${DateFormatter.getLocalizedWithoutYear(date)}`;
-};
 type Props = {|
   departure: DepartureType,
   passengerCount: ?number,
 |};
 
-export const DateAndPassengerCount = (props: Props) => (
-  <View style={styles.row}>
-    <Text style={[styles.text, styles.dateText]}>
-      <Translation
-        passThrough={formatDate(idx(props.departure, _ => _.time))}
-      />
-    </Text>
+export const DateAndPassengerCount = (props: Props) => {
+  let departureDate = idx(props, _ => _.departure.time);
+  if (departureDate) {
+    departureDate = DateFormatter(new Date(departureDate)).formatToDate();
+  }
+
+  return (
     <View style={styles.row}>
       <Text style={[styles.text, styles.dateText]}>
-        <Translation passThrough={props.passengerCount} />
+        <Translation passThrough={departureDate} />
       </Text>
-      <Icon
-        name="people"
-        size={15}
-        color={Color.white}
-        style={styles.passengerIcon}
-      />
+      <View style={styles.row}>
+        <Text style={[styles.text, styles.dateText]}>
+          <Translation passThrough={props.passengerCount} />
+        </Text>
+        <Icon
+          name="people"
+          size={15}
+          color={Color.white}
+          style={styles.passengerIcon}
+        />
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 export default createFragmentContainer(
   DateAndPassengerCount,

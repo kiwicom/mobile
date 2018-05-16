@@ -43,7 +43,7 @@ exports[`renders 1`] = `
       }
       value={
         <Translation
-          passThrough="06/10/1984"
+          passThrough="5/10/1984"
         />
       }
     />

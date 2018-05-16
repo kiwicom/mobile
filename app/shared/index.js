@@ -13,9 +13,6 @@ export { default as ButtonText } from './src/buttons/ButtonText';
 
 export { default as SimpleCard } from './src/cards/SimpleCard';
 
-export { default as Date } from './src/datetime/Date';
-export { default as DateTime } from './src/datetime/DateTime';
-
 export { default as GeneralError } from './src/errors/GeneralError';
 export { default as PartialFailure } from './src/errors/PartialFailure';
 
