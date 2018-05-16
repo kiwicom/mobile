@@ -1,7 +1,7 @@
 // @flow
 
 import idx from 'idx';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
 import type { Coordinates } from '../CoordinatesType';
@@ -38,8 +38,10 @@ export const getSearchQueryParams = (
   return params;
 };
 
-export const isDateBeforeToday = (date: Date) =>
-  DateFormatter(date).startOf('day') < DateFormatter().startOf('day');
+export const isDateBeforeToday = (date: Date) => {
+  const today = new Date();
+  return date < today && date.getUTCDay() !== today.getUTCDay();
+};
 
 export const updateCheckinDateIfBeforeToday = (
   search: SearchParams,
@@ -49,9 +51,7 @@ export const updateCheckinDateIfBeforeToday = (
     onSearchChange({
       ...search,
       checkin: new Date(),
-      checkout: DateFormatter()
-        .add(6, 'days')
-        .toDate(),
+      checkout: DateUtils().addDays(6),
     });
   }
 };

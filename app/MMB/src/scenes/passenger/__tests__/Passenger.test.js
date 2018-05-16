@@ -12,7 +12,7 @@ it('renders', () => {
       passenger={{
         fullName: 'Trond Bergquist',
         title: 'Mr',
-        birthday: new Date(1984, 5, 10),
+        birthday: '1984-05-10T00:00:00.000Z',
         nationality: 'no',
         travelDocument: {
           idNumber: '123456',

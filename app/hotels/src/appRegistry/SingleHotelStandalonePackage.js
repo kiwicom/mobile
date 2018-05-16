@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import RootComponent from './RootComponent';
 import SingleHotelStack from '../navigation/singleHotel/SingleHotelStack';
@@ -27,8 +26,8 @@ export default class SingleHotelStandAlonePackage extends React.Component<
       ...this.props,
       // Better to pass strings than date object from native,
       // format YYYY-MM-DD
-      checkin: DateFormatter(this.props.checkin).toDate(),
-      checkout: DateFormatter(this.props.checkout).toDate(),
+      checkin: new Date(this.props.checkin),
+      checkout: new Date(this.props.checkout),
       onBackClicked,
       isStandAlonePackage: true,
     };

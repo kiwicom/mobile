@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import type {
   SearchParams,
@@ -13,14 +13,8 @@ const InitialContextState = {
   cityId: null,
   location: '',
   searchParams: {
-    checkin: DateFormatter()
-      .add(1, 'week')
-      .startOf('isoWeek')
-      .toDate(),
-    checkout: DateFormatter()
-      .add(1, 'week')
-      .endOf('isoWeek')
-      .toDate(),
+    checkin: DateUtils().addDays(7),
+    checkout: DateUtils().addDays(14),
     roomsConfiguration: {
       adultsCount: 1,
       children: [],

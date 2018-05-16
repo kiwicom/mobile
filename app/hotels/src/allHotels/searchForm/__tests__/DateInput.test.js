@@ -2,24 +2,22 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
-import DateInput, { checkinAndCheckoutToDate } from '../DateInput';
+import DateInput from '../DateInput';
 
 jest.mock('DatePickerIOS');
 
-const checkin = DateFormatter()
-  .startOf('day')
-  .toDate();
-const checkout = DateFormatter()
-  .startOf('day')
-  .add(6, 'days')
-  .toDate();
+const checkin = new Date();
+const checkout = DateUtils().addDays(6);
 
-const renderDateInput = (onChange: Function) =>
-  renderer.create(
-    <DateInput checkin={checkin} checkout={checkout} onChange={onChange} />,
-  );
+const getInstance = (onChange: Function) => {
+  return renderer
+    .create(
+      <DateInput checkin={checkin} checkout={checkout} onChange={onChange} />,
+    )
+    .getInstance();
+};
 
 /**
  * Scenarios:
@@ -37,132 +35,100 @@ describe('DateInput', () => {
   describe('Handle checkin change', () => {
     it('should change checkin date only if checkin date is before checkout date', () => {
       const onChange = jest.fn();
-      const newCheckinDate = DateFormatter(checkout).subtract(2, 'days');
+      const newCheckinDate = DateUtils(checkout).addDays(-2);
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckinChange(newCheckinDate.toDate());
+      getInstance(onChange).handleCheckinChange(newCheckinDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          DateFormatter(newCheckinDate),
-          DateFormatter(checkout),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin: newCheckinDate,
+        checkout,
+      });
     });
 
     it('should set checkout date = checkin date + 30 days if checkin date is more than 30 days before checkout date', () => {
       const onChange = jest.fn();
-      const newCheckinDate = DateFormatter(checkout).subtract(31, 'days');
+      const newCheckinDate = DateUtils(checkout).addDays(-31);
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckinChange(newCheckinDate.toDate());
+      getInstance(onChange).handleCheckinChange(newCheckinDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          newCheckinDate,
-          DateFormatter(newCheckinDate).add(30, 'days'),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin: newCheckinDate,
+        checkout: DateUtils(newCheckinDate).addDays(30),
+      });
     });
 
     it('should set checkout date 1 day after checkin date if checkin is later than checkout', () => {
       const onChange = jest.fn();
-      const newCheckinDate = DateFormatter(checkin).add(30, 'days');
+      const newCheckinDate = DateUtils(checkin).addDays(30);
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckinChange(newCheckinDate.toDate());
+      getInstance(onChange).handleCheckinChange(newCheckinDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          newCheckinDate,
-          DateFormatter(newCheckinDate).add(1, 'days'),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin: newCheckinDate,
+        checkout: DateUtils(newCheckinDate).addDays(1),
+      });
     });
 
     it('should set checkout date 1 day after checkin date if checkin is equal to checkout', () => {
       const onChange = jest.fn();
-      const newCheckinDate = DateFormatter(checkout);
+      const newCheckinDate = checkout;
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckinChange(newCheckinDate.toDate());
+      getInstance(onChange).handleCheckinChange(newCheckinDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          newCheckinDate,
-          DateFormatter(newCheckinDate).add(1, 'days'),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin: newCheckinDate,
+        checkout: DateUtils(newCheckinDate).addDays(1),
+      });
     });
   });
 
   describe('Handle checkout change', () => {
     it('should change checkout date only if checkout date is 1 - 30 days greater than checkin date', () => {
       const onChange = jest.fn();
-      const newCheckoutDate = DateFormatter(checkin).add(30, 'days');
+      const newCheckoutDate = DateUtils(checkin).addDays(30);
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckoutChange(newCheckoutDate.toDate());
+      getInstance(onChange).handleCheckoutChange(newCheckoutDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          DateFormatter(checkin),
-          DateFormatter(newCheckoutDate),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin,
+        checkout: newCheckoutDate,
+      });
     });
 
     it('should set checkin date = checkout date - 30 days if checkout is more that 30 days from checkin date', () => {
       const onChange = jest.fn();
-      const newCheckoutDate = DateFormatter(checkin).add(31, 'days');
+      const newCheckoutDate = DateUtils(checkin).addDays(31);
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckoutChange(newCheckoutDate.toDate());
+      getInstance(onChange).handleCheckoutChange(newCheckoutDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          DateFormatter(newCheckoutDate).subtract(30, 'days'),
-          DateFormatter(newCheckoutDate),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin: DateUtils(newCheckoutDate).addDays(-30),
+        checkout: newCheckoutDate,
+      });
     });
 
     it('should set checkin date = checkout date - 1 if checkout is set to be before checkin', () => {
       const onChange = jest.fn();
-      const newCheckoutDate = DateFormatter(checkin).subtract(1, 'days');
+      const newCheckoutDate = DateUtils(checkin).addDays(-1);
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckoutChange(newCheckoutDate.toDate());
+      getInstance(onChange).handleCheckoutChange(newCheckoutDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          DateFormatter(newCheckoutDate).subtract(1, 'days'),
-          DateFormatter(newCheckoutDate),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin: DateUtils(newCheckoutDate).addDays(-1),
+        checkout: newCheckoutDate,
+      });
     });
 
     it('should set checkin date = checkout date - 1 if checkout is set to be equal to checkin date', () => {
       const onChange = jest.fn();
-      const newCheckoutDate = DateFormatter(checkin);
+      const newCheckoutDate = checkin;
 
-      renderDateInput(onChange)
-        .getInstance()
-        .handleCheckoutChange(newCheckoutDate.toDate());
+      getInstance(onChange).handleCheckoutChange(newCheckoutDate);
 
-      expect(onChange).toHaveBeenCalledWith(
-        checkinAndCheckoutToDate(
-          DateFormatter(newCheckoutDate).subtract(1, 'days'),
-          DateFormatter(newCheckoutDate),
-        ),
-      );
+      expect(onChange).toHaveBeenCalledWith({
+        checkin: DateUtils(newCheckoutDate).addDays(-1),
+        checkout: newCheckoutDate,
+      });
     });
   });
 });
