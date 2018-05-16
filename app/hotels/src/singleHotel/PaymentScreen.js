@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { WebView, Logger } from '@kiwicom/mobile-shared';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateUtils } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
@@ -38,10 +38,7 @@ export default class PaymentScreen extends React.Component<PaymentParameters> {
 
 export function createURI(pp: PaymentParameters): string {
   const checkinQuery = sanitizeDate(pp.checkin);
-  const intervalQuery = DateFormatter(pp.checkout.getTime()).diff(
-    DateFormatter(pp.checkin.getTime()),
-    'days',
-  );
+  const intervalQuery = DateUtils.diffInDays(pp.checkout, pp.checkin);
 
   const roomsQuery = pp.rooms.reduce((acc, curVal) => {
     acc[`nr_rooms_${curVal.id}`] = curVal.count;

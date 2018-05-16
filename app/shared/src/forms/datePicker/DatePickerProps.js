@@ -8,6 +8,5 @@ export type Props = {|
   placeholder?: string,
   minDate?: Date,
   maxDate?: Date,
-  format?: string,
   iconComponent?: React.Node,
 |};

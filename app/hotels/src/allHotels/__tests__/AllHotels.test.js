@@ -1,6 +1,6 @@
 // @flow
 
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import { AllHotels } from '../AllHotels';
 
@@ -11,12 +11,8 @@ describe('AllHotels', () => {
     const Component = new AllHotels({
       search: {},
       setSearch,
-      checkin: DateFormatter()
-        .add(1, 'day')
-        .toDate(),
-      checkout: DateFormatter()
-        .add(5, 'day')
-        .toDate(),
+      checkin: DateUtils().addDays(1),
+      checkout: DateUtils().addDays(5),
     });
 
     Component.componentDidMount();
@@ -29,12 +25,8 @@ describe('AllHotels', () => {
     const Component = new AllHotels({
       search: {},
       setSearch,
-      checkin: DateFormatter()
-        .subtract(1, 'day')
-        .toDate(),
-      checkout: DateFormatter()
-        .add(5, 'day')
-        .toDate(),
+      checkin: DateUtils().addDays(-1),
+      checkout: DateUtils().addDays(5),
     });
 
     Component.componentDidMount();

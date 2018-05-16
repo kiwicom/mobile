@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { SingleHotelStandalonePackage } from '@kiwicom/react-native-app-hotels';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
 
 import Config from '../../config/application';
 
@@ -16,7 +16,6 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
 
   render = () => {
     const affiliate = String(Config.affiliate.bookingCom);
-    const dateFormat = 'YYYY-MM-DD';
     return (
       <SingleHotelStandalonePackage
         bookingComAffiliate={affiliate}
@@ -24,12 +23,8 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
         currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
         onBackClicked={this.goToHomepage}
         dataSaverEnabled={false}
-        checkin={DateFormatter()
-          .add(1, 'day')
-          .format(dateFormat)}
-        checkout={DateFormatter()
-          .add(7, 'days')
-          .format(dateFormat)}
+        checkin={DateFormatter(DateUtils().addDays(1)).formatForMachine()}
+        checkout={DateFormatter(DateUtils().addDays(7)).formatForMachine()}
         hotelId="aG90ZWw6ODAyMDQ="
         roomsConfiguration={[{ adultsCount: 1, children: [] }]}
       />

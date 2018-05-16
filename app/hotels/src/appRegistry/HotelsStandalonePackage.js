@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import RootComponent from './RootComponent';
 import HotelsStack from '../navigation/NavigationStack';
@@ -20,12 +19,8 @@ type Props = {|
 
 export default class HotelsStandalonePackage extends React.Component<Props> {
   renderInnerComponent = (onBackClicked: () => void) => {
-    const checkin = this.props.checkin
-      ? DateFormatter(this.props.checkin).toDate()
-      : null;
-    const checkout = this.props.checkout
-      ? DateFormatter(this.props.checkout).toDate()
-      : null;
+    const checkin = this.props.checkin ? new Date(this.props.checkin) : null;
+    const checkout = this.props.checkout ? new Date(this.props.checkout) : null;
     const screenProps = {
       ...this.props,
       onBackClicked,

@@ -13,27 +13,6 @@ import type {
 import LocationButton from './LocationButton';
 import HotelsSearchContext from '../../HotelsSearchContext';
 
-const styles = StyleSheet.create({
-  form: {
-    backgroundColor: Color.brandSecondary,
-    android: {
-      padding: 14,
-      paddingTop: 16,
-    },
-    ios: {
-      padding: 10,
-    },
-  },
-  row: {
-    android: {
-      marginTop: 8,
-    },
-    ios: {
-      marginTop: 10,
-    },
-  },
-});
-
 type PropsWithContext = {|
   ...Props,
   location: string,
@@ -94,3 +73,24 @@ export default function SearchFormWithContext(props: Props) {
     </HotelsSearchContext.Consumer>
   );
 }
+
+const styles = StyleSheet.create({
+  form: {
+    backgroundColor: Color.brandSecondary,
+    android: {
+      padding: 14,
+      paddingTop: 16,
+    },
+    ios: {
+      padding: 10,
+    },
+  },
+  row: {
+    android: {
+      marginTop: 8,
+    },
+    ios: {
+      marginTop: 10,
+    },
+  },
+});

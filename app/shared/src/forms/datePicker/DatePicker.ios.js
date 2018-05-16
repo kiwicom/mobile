@@ -40,20 +40,13 @@ export default class DatePicker extends React.Component<Props, State> {
   };
 
   render = () => {
-    const {
-      date,
-      format,
-      minDate,
-      maxDate,
-      iconComponent,
-      ...rest
-    } = this.props;
+    const { date, minDate, maxDate, iconComponent, ...rest } = this.props;
+
     return (
       <React.Fragment>
         <DatePickerButton
           onPress={this.togglePopup}
           date={date}
-          format={format}
           iconComponent={iconComponent}
         />
         <BarPopup

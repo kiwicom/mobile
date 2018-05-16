@@ -1,6 +1,6 @@
 // @flow
 
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import {
   getSearchQueryParams,
@@ -105,9 +105,7 @@ describe('SearchQueryHelpers', () => {
 
     it('should not call onSearchChange if date is greater than today', () => {
       const search = {
-        checkin: DateFormatter()
-          .add(1, 'day')
-          .toDate(),
+        checkin: DateUtils().addDays(1),
         checkout: new Date(),
         roomsConfiguration: { adultsCount: 1, children: [] },
       };
@@ -119,9 +117,7 @@ describe('SearchQueryHelpers', () => {
 
     it('should call onSearchChange if date is less than today', () => {
       const search = {
-        checkin: DateFormatter()
-          .subtract(3, 'days')
-          .toDate(),
+        checkin: DateUtils().addDays(-3),
         checkout: new Date(),
         roomsConfiguration: { adultsCount: 1, children: [] },
       };
