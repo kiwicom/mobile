@@ -13,6 +13,7 @@ import FlightServices, {
   FlightServicesSubmenuItems,
 } from '../scenes/flightServices/FlightServices';
 import TripServices from '../scenes/TripServices';
+import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
 
 type Props = {|
   bookingId: string,
@@ -25,7 +26,7 @@ type State = {|
 
 export const MenuComponents = {
   'mmb.passenger_detail': {
-    screen: () => null, // TODO: Add component
+    screen: PassengerDetailContainer,
     headerTitle: function PassengerDetailHeaderTitle() {
       return (
         <HeaderTitle>
