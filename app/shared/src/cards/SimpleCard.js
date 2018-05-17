@@ -13,33 +13,28 @@ type Props = {|
   style?: StylePropType,
 |};
 
-const createStyle = (extraStyles: StylePropType = {}) => {
-  return StyleSheet.create({
-    wrapper: {
-      backgroundColor: '#fff',
-      marginVertical: 3,
-      padding: 10,
-      android: {
-        marginHorizontal: 8,
-        elevation: 1,
-        borderRadius: 3,
-        overflow: 'hidden',
-      },
-      ...extraStyles,
-    },
-  });
-};
-
 export default function SimpleCard(props: Props) {
-  const style = createStyle(props.style);
-
   if (props.onPress) {
     return (
-      <Touchable style={style.wrapper} onPress={props.onPress}>
+      <Touchable style={[styles.wrapper, props.style]} onPress={props.onPress}>
         {props.children}
       </Touchable>
     );
   }
 
-  return <View style={style.wrapper}>{props.children}</View>;
+  return <View style={[styles.wrapper, props.style]}>{props.children}</View>;
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: '#fff',
+    marginVertical: 3,
+    padding: 10,
+    android: {
+      marginHorizontal: 8,
+      elevation: 1,
+      borderRadius: 3,
+      overflow: 'hidden',
+    },
+  },
+});

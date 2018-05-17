@@ -93,7 +93,7 @@ export class Description extends React.Component<Props> {
         renderOnNarrow={baseComponent}
         renderOnWide={
           <View style={styles.simpleCardWideWrapper}>
-            <SimpleCard style={StyleSheet.flatten(styles.card)}>
+            <SimpleCard style={styles.card}>
               {this.renderCardChildren(true)}
             </SimpleCard>
           </View>
