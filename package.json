@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "android": "yarn react-native run-android",
-    "build": "./scripts/build.sh",
+    "build": "./scripts/buildBundle.sh",
     "graphql": "node ./scripts/getSchema.js",
     "ios": "yarn react-native run-ios",
     "lint": "yarn eslint app --report-unused-disable-directives",
@@ -18,6 +18,7 @@
     "postinstall": "node ./scripts/configureApplication.js",
     "pod-install": "node ./scripts/podInstall.js",
     "release-hotels": "node ./scripts/releaseHotels.js",
+    "release": "node ./scripts/releaseFramework.js",
     "playground": "node ./scripts/activatePlayground.js"
   },
   "dependencies": {
