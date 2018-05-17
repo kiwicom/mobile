@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`works with broken input 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <TextIcon
+    code="e"
+    style={
+      Object {
+        "color": "#79818a",
+        "fontSize": 10,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#79818a",
+        "fontSize": 10,
+      }
+    }
+  >
+    <Translation
+      passThrough=" "
+    />
+    <Translation
+      passThrough={0}
+    />
+    <Translation
+      id="mmb.trip_info.duration.hours"
+    />
+    <Translation
+      passThrough=" "
+    />
+    <Translation
+      passThrough={0}
+    />
+    <Translation
+      id="mmb.trip_info.duration.minutes"
+    />
+  </Text>
+</Component>
+`;
+
+exports[`works with broken input 2`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <TextIcon
+    code="e"
+    style={
+      Object {
+        "color": "#79818a",
+        "fontSize": 10,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#79818a",
+        "fontSize": 10,
+      }
+    }
+  >
+    <Translation
+      passThrough=" "
+    />
+    <Translation
+      passThrough={0}
+    />
+    <Translation
+      id="mmb.trip_info.duration.hours"
+    />
+    <Translation
+      passThrough=" "
+    />
+    <Translation
+      passThrough={0}
+    />
+    <Translation
+      id="mmb.trip_info.duration.minutes"
+    />
+  </Text>
+</Component>
+`;
+
+exports[`works with broken input 3`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+    }
+  }
+>
+  <TextIcon
+    code="e"
+    style={
+      Object {
+        "color": "#79818a",
+        "fontSize": 10,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "#79818a",
+        "fontSize": 10,
+      }
+    }
+  >
+    <Translation
+      passThrough=" "
+    />
+    <Translation
+      passThrough={0}
+    />
+    <Translation
+      id="mmb.trip_info.duration.hours"
+    />
+    <Translation
+      passThrough=" "
+    />
+    <Translation
+      passThrough={0}
+    />
+    <Translation
+      id="mmb.trip_info.duration.minutes"
+    />
+  </Text>
+</Component>
+`;

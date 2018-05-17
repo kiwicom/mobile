@@ -11,6 +11,8 @@ export default {
 
   'mmb.trip_info.return.departure': 'DEPARTURE',
   'mmb.trip_info.return.return': 'RETURN',
+  'mmb.trip_info.duration.hours': 'h',
+  'mmb.trip_info.duration.minutes': 'm',
 
   'mmb.status.cancelled': 'Cancelled',
   'mmb.status.closed': 'Closed',
