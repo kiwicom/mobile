@@ -1653,6 +1653,9 @@ type TravelDocument {
 type Trip {
   departure: RouteStop
   arrival: RouteStop
+
+  """Trip duration in minutes."""
+  duration: Int
   legs: [Leg]
 }
 

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 066b9e7bc97459d190f6b46957b7026a
+ * @relayHash 5a3ac82c871c7e42ef00ee987c42aaa4
  */
 
 /* eslint-disable */
@@ -76,12 +76,17 @@ fragment TripInfoMulticity on BookingMulticity {
 }
 
 fragment TripTimes on Trip {
+  ...Duration
   departure {
     ...DateTime
   }
   arrival {
     ...DateTime
   }
+}
+
+fragment Duration on Trip {
+  duration
 }
 
 fragment DateTime on RouteStop {
@@ -121,6 +126,13 @@ v2 = [
 ],
 v3 = [
   {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "duration",
+    "args": null,
+    "storageKey": null
+  },
+  {
     "kind": "LinkedField",
     "alias": null,
     "name": "departure",
@@ -153,7 +165,7 @@ return {
   "operationKind": "query",
   "name": "HeaderQuery",
   "id": null,
-  "text": "query HeaderQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...StatusBar\n    ...TripInfo\n    id\n  }\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripTimes\n  }\n}\n\nfragment TripTimes on Trip {\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment StatusBarIcon on Booking {\n  status\n}\n",
+  "text": "query HeaderQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...StatusBar\n    ...TripInfo\n    id\n  }\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripTimes\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment StatusBarIcon on Booking {\n  status\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
