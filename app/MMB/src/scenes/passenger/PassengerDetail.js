@@ -6,11 +6,11 @@ import {
   createRefetchContainer,
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
-import { Translation } from '@kiwicom/mobile-localization';
-import { RefreshableScrollView } from '@kiwicom/mobile-shared';
+import { RefreshableScrollView, StyleSheet } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
 import type { PassengerDetail_booking as PassengersType } from './__generated__/PassengerDetail_booking.graphql';
+import Passenger from './Passenger';
 
 type Props = {|
   booking: PassengersType,
@@ -45,11 +45,12 @@ export class PassengerDetail extends React.Component<Props, State> {
       <RefreshableScrollView
         refreshing={this.state.isRefreshing}
         onRefresh={this.refetch}
+        contentContainerStyle={styles.container}
       >
         {passengers.map(passenger => (
-          <Translation
+          <Passenger
             key={idx(passenger, _ => _.databaseId)}
-            passThrough={JSON.stringify(passenger)}
+            passenger={passenger}
           />
         ))}
       </RefreshableScrollView>
@@ -64,8 +65,7 @@ export default createRefetchContainer(
       databaseId
       passengers {
         databaseId
-        firstname
-        lastname
+        ...Passenger_passenger
       }
     }
   `,
@@ -77,3 +77,9 @@ export default createRefetchContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 20,
+  },
+});

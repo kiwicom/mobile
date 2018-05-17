@@ -1396,6 +1396,7 @@ type Passenger {
   databaseId: Int
   firstname: String
   lastname: String
+  fullName: String
   insuranceType: InsuranceType
   title: String
   birthday: DateTime

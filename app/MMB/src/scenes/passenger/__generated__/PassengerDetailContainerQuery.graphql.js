@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8f3ef193296979edf4cb8378ad45e5b2
+ * @relayHash 59e87791e4154fdfaed50e6b98c4ed85
  */
 
 /* eslint-disable */
@@ -35,9 +35,19 @@ fragment PassengerDetail_booking on Booking {
   databaseId
   passengers {
     databaseId
-    firstname
-    lastname
+    ...Passenger_passenger
   }
+}
+
+fragment Passenger_passenger on Passenger {
+  fullName
+  title
+  birthday
+  nationality
+  travelDocument {
+    idNumber
+  }
+  insuranceType
 }
 */
 
@@ -70,7 +80,7 @@ return {
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  passengers {\n    databaseId\n    firstname\n    lastname\n  }\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -125,14 +135,53 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "firstname",
+                "name": "fullName",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "lastname",
+                "name": "title",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "birthday",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "nationality",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "travelDocument",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "TravelDocument",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "idNumber",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "insuranceType",
                 "args": null,
                 "storageKey": null
               }

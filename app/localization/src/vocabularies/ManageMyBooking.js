@@ -49,6 +49,12 @@ export default {
   'mmb.invoices.not_available':
     'Invoice file is not available yet. Please try it later.',
 
+  // MMB Passengers
+  'mmb.passenger.birthday': 'Date of birth',
+  'mmb.passenger.id': 'ID',
+  'mmb.passenger.insurance': 'Insurance',
+  'mmb.passenger.nationality.label': 'Nationality',
+
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
   'mmb.flight_services': 'Flight Services',

@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<SimpleCard
+  style={
+    Object {
+      "paddingBottom": 16,
+      "paddingHorizontal": 15,
+      "paddingTop": 13,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "marginBottom": 17,
+      }
+    }
+  >
+    <Translation
+      passThrough="Mr. Trond Bergquist"
+    />
+  </Text>
+  <Row>
+    <Column
+      title={
+        <Translation
+          id="mmb.passenger.nationality.label"
+        />
+      }
+      value={
+        <Translation
+          passThrough="NO"
+        />
+      }
+    />
+    <Column
+      title={
+        <Translation
+          id="mmb.passenger.birthday"
+        />
+      }
+      value={
+        <Translation
+          passThrough="06/10/1984"
+        />
+      }
+    />
+  </Row>
+  <Component
+    style={
+      Object {
+        "marginVertical": 15,
+      }
+    }
+  >
+    <SeparatorFullWidth />
+  </Component>
+  <Row>
+    <Column
+      title={
+        <Translation
+          id="mmb.passenger.id"
+        />
+      }
+      value={
+        <Translation
+          passThrough="123456"
+        />
+      }
+    />
+    <Column
+      title={
+        <Translation
+          id="mmb.passenger.insurance"
+        />
+      }
+      value={
+        <Translation
+          passThrough="Travel Plus"
+        />
+      }
+    />
+  </Row>
+</SimpleCard>
+`;
