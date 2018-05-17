@@ -8,32 +8,19 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type RouteStop$ref = any;
+type TripTimes$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TripInfoMulticity$ref: FragmentReference;
 export type TripInfoMulticity = {|
   +trips: ?$ReadOnlyArray<?{|
-    +departure: ?{|
-      +$fragmentRefs: RouteStop$ref
-    |},
-    +arrival: ?{|
-      +$fragmentRefs: RouteStop$ref
-    |},
+    +$fragmentRefs: TripTimes$ref
   |}>,
   +$refType: TripInfoMulticity$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
-var v0 = [
-  {
-    "kind": "FragmentSpread",
-    "name": "RouteStop",
-    "args": null
-  }
-];
-return {
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "TripInfoMulticity",
   "type": "BookingMulticity",
@@ -50,30 +37,14 @@ return {
       "plural": true,
       "selections": [
         {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "departure",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "plural": false,
-          "selections": v0
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "arrival",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "plural": false,
-          "selections": v0
+          "kind": "FragmentSpread",
+          "name": "TripTimes",
+          "args": null
         }
       ]
     }
   ]
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = '001eb7f378ed577673d68812823cc7ac';
+(node/*: any*/).hash = 'f8962c116c52c8bf1ed0e28736e4c9b5';
 module.exports = node;

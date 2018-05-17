@@ -2,9 +2,11 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import { Translation } from '@kiwicom/mobile-localization';
+import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
-import RouteStop from './RouteStop';
+import TripTimes from './TripTimes';
 import type { TripInfoReturn as TripInfoReturnType } from './__generated__/TripInfoReturn.graphql';
 
 type Props = {|
@@ -18,11 +20,15 @@ function TripInfoReturn(props: Props) {
 
   return (
     <React.Fragment>
-      <RouteStop data={outbound && outbound.departure} />
-      <RouteStop data={outbound && outbound.arrival} />
+      <Text style={styleSheet.title}>
+        <Translation id="mmb.trip_info.return.departure" />
+      </Text>
+      <TripTimes data={outbound} />
 
-      <RouteStop data={inbound && inbound.departure} />
-      <RouteStop data={inbound && inbound.arrival} />
+      <Text style={styleSheet.title}>
+        <Translation id="mmb.trip_info.return.return" />
+      </Text>
+      <TripTimes data={inbound} />
     </React.Fragment>
   );
 }
@@ -32,22 +38,19 @@ export default createFragmentContainer(
   graphql`
     fragment TripInfoReturn on BookingReturn {
       outbound {
-        departure {
-          ...RouteStop
-        }
-        arrival {
-          ...RouteStop
-        }
+        ...TripTimes
       }
-
       inbound {
-        departure {
-          ...RouteStop
-        }
-        arrival {
-          ...RouteStop
-        }
+        ...TripTimes
       }
     }
   `,
 );
+
+const styleSheet = StyleSheet.create({
+  title: {
+    color: Color.textLight,
+    marginTop: 11,
+    marginBottom: 2,
+  },
+});

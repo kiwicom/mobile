@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
 
-// TODO: rename to DateTime component, create shared Date and Time components (?)
-function RouteStop(props) {
+function DateTime(props) {
   const localDateTime = new Date(props.data.localTime);
 
   const date = DateFormatter(localDateTime).formatToDate();
@@ -13,18 +13,32 @@ function RouteStop(props) {
 
   return (
     <React.Fragment>
-      <Translation passThrough={JSON.stringify(props.data)} />
-      <Translation passThrough={date} />
-      <Translation passThrough={time} />
+      <Text style={styleSheet.date}>
+        <Translation passThrough={date} />
+      </Text>
+      <Text style={styleSheet.time}>
+        <Translation passThrough={time} />
+      </Text>
     </React.Fragment>
   );
 }
 
 export default createFragmentContainer(
-  RouteStop,
+  DateTime,
   graphql`
-    fragment RouteStop on RouteStop {
+    fragment DateTime on RouteStop {
       localTime
     }
   `,
 );
+
+const styleSheet = StyleSheet.create({
+  date: {
+    fontSize: 12,
+    marginVertical: 5,
+  },
+  time: {
+    fontSize: 10,
+    color: Color.textLight,
+  },
+});
