@@ -46,7 +46,7 @@ export class Passenger extends React.Component<Props> {
       (idx(passenger, _ => _.insuranceType) || '').toLowerCase(),
     );
     return (
-      <SimpleCard style={StyleSheet.flatten(styles.card)}>
+      <SimpleCard style={styles.card}>
         <Text style={styles.name}>
           <Translation passThrough={`${title}. ${fullName}`} />
         </Text>
