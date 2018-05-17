@@ -8,14 +8,14 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Passenger_passenger$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PassengerDetail_booking$ref: FragmentReference;
 export type PassengerDetail_booking = {|
   +databaseId: ?number,
   +passengers: ?$ReadOnlyArray<?{|
     +databaseId: ?number,
-    +firstname: ?string,
-    +lastname: ?string,
+    +$fragmentRefs: Passenger_passenger$ref,
   |}>,
   +$refType: PassengerDetail_booking$ref,
 |};
@@ -49,18 +49,9 @@ return {
       "selections": [
         v0,
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "firstname",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "lastname",
-          "args": null,
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "Passenger_passenger",
+          "args": null
         }
       ]
     }
@@ -68,5 +59,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f935dd6d8cdc21a1416f4eba94060891';
+(node/*: any*/).hash = 'dce4bb97dcf24b367271af5b181dbe44';
 module.exports = node;
