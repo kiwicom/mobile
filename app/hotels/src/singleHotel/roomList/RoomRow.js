@@ -105,7 +105,7 @@ export class RoomRow extends React.Component<Props> {
     const selectedCount = idx(this.props.selected, _ => _[originalId]) || 0;
     const room = idx(availableRoom, _ => _.room);
     return (
-      <SimpleCard style={StyleSheet.flatten(styles.card)}>
+      <SimpleCard style={styles.card}>
         <View style={isWide ? styles.widePadding : null}>
           <View style={styles.row}>
             <RoomImage

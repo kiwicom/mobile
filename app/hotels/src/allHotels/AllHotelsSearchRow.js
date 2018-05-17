@@ -60,10 +60,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
     const lowResUrl = idx(data, _ => _.hotel.mainPhoto.lowResUrl);
 
     return (
-      <SimpleCard
-        onPress={this.onGoToSingleHotel}
-        style={StyleSheet.flatten(style.cardStyle)}
-      >
+      <SimpleCard onPress={this.onGoToSingleHotel} style={style.cardStyle}>
         <View style={style.row}>
           <NetworkImage
             style={style.image}
