@@ -3,13 +3,8 @@ platform :ios, '9.0'
 
 workspace 'reactNativeApp.xcworkspace'
 
-# Pods for reactNativeApp
-rn_path = '../node_modules/react-native'
-rn_maps_path = '../node_modules/react-native-maps'
-
-def react_common(rn_path) 
-
-  pod 'React', path: rn_path, subspecs: [
+def react_native_pods() 
+  pod 'React', path: '../node_modules/react-native', subspecs: [
     'Core',
     'RCTActionSheet',
     'RCTAnimation',
@@ -22,16 +17,12 @@ def react_common(rn_path)
     'RCTVibration',
     'RCTWebSocket',
     'CxxBridge',
+    'DevSupport',
   ]
 
-end 
-
-target 'reactNativeApp' do
+  pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga/yoga.podspec'
+  pod 'react-native-maps', path: '../node_modules/react-native-maps'
   
-  react_common(rn_path)
-
-  pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
-  pod 'react-native-maps', path: rn_maps_path
   pod 'RNLogging', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNTranslationManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNColors', :path => '../node_modules/@kiwicom/react-native-native-modules'
@@ -41,13 +32,20 @@ target 'reactNativeApp' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
-
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
 
+end 
+
+target 'RNPlayground' do
+  react_native_pods()
+end
+
+target 'RNKiwiMobile' do
+  react_native_pods()
+
+  pod 'RNNavigator', :path => '../node_modules/@kiwicom/react-native-native-modules'
 end
 
 post_install do |installer|
@@ -57,14 +55,6 @@ post_install do |installer|
         config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
       end
     end
-    if target.name == "React"
-      target.remove_from_project
-    end
-  end
-
-  target 'reactNativeAppTests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 
 end
