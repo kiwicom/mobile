@@ -9,6 +9,9 @@ export default {
   'mmb.my_bookings.future_trips': 'Future trips',
   'mmb.my_bookings.past_trips': 'Past trips',
 
+  'mmb.trip_info.return.departure': 'DEPARTURE',
+  'mmb.trip_info.return.return': 'RETURN',
+
   'mmb.status.cancelled': 'Cancelled',
   'mmb.status.closed': 'Closed',
   'mmb.status.confirmed': 'Confirmed',

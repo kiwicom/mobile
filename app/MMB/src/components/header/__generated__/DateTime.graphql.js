@@ -9,17 +9,17 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type RouteStop$ref: FragmentReference;
-export type RouteStop = {|
+declare export opaque type DateTime$ref: FragmentReference;
+export type DateTime = {|
   +localTime: ?any,
-  +$refType: RouteStop$ref,
+  +$refType: DateTime$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "RouteStop",
+  "name": "DateTime",
   "type": "RouteStop",
   "metadata": null,
   "argumentDefinitions": [],
@@ -34,5 +34,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '3b1140cd2f168356903118cd8255a6e9';
+(node/*: any*/).hash = '5e35b6499569995b801487216effa23f';
 module.exports = node;
