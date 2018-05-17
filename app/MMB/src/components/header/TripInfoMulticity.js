@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
-import RouteStop from './RouteStop';
+import TripTimes from './TripTimes';
 import type { TripInfoMulticity as TripInfoMulticityType } from './__generated__/TripInfoMulticity.graphql';
 
 type Props = {|
@@ -14,12 +14,7 @@ type Props = {|
 function TripInfoMulticity(props: Props) {
   const trips = idx(props, _ => _.data.trips) || [];
 
-  return trips.map((trip, index) => (
-    <React.Fragment key={index}>
-      <RouteStop data={trip && trip.departure} />
-      <RouteStop data={trip && trip.arrival} />
-    </React.Fragment>
-  ));
+  return trips.map((trip, index) => <TripTimes key={index} data={trip} />);
 }
 
 export default createFragmentContainer(
@@ -27,12 +22,7 @@ export default createFragmentContainer(
   graphql`
     fragment TripInfoMulticity on BookingMulticity {
       trips {
-        departure {
-          ...RouteStop
-        }
-        arrival {
-          ...RouteStop
-        }
+        ...TripTimes
       }
     }
   `,

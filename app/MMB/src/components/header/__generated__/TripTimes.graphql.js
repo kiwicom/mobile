@@ -8,17 +8,17 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type TripTimes$ref = any;
+type DateTime$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type TripInfoReturn$ref: FragmentReference;
-export type TripInfoReturn = {|
-  +outbound: ?{|
-    +$fragmentRefs: TripTimes$ref
+declare export opaque type TripTimes$ref: FragmentReference;
+export type TripTimes = {|
+  +departure: ?{|
+    +$fragmentRefs: DateTime$ref
   |},
-  +inbound: ?{|
-    +$fragmentRefs: TripTimes$ref
+  +arrival: ?{|
+    +$fragmentRefs: DateTime$ref
   |},
-  +$refType: TripInfoReturn$ref,
+  +$refType: TripTimes$ref,
 |};
 */
 
@@ -27,34 +27,34 @@ const node/*: ConcreteFragment*/ = (function(){
 var v0 = [
   {
     "kind": "FragmentSpread",
-    "name": "TripTimes",
+    "name": "DateTime",
     "args": null
   }
 ];
 return {
   "kind": "Fragment",
-  "name": "TripInfoReturn",
-  "type": "BookingReturn",
+  "name": "TripTimes",
+  "type": "Trip",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "outbound",
+      "name": "departure",
       "storageKey": null,
       "args": null,
-      "concreteType": "Trip",
+      "concreteType": "RouteStop",
       "plural": false,
       "selections": v0
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "inbound",
+      "name": "arrival",
       "storageKey": null,
       "args": null,
-      "concreteType": "Trip",
+      "concreteType": "RouteStop",
       "plural": false,
       "selections": v0
     }
@@ -62,5 +62,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '26c56886927cc4bdf6791ddc31a78f80';
+(node/*: any*/).hash = '817f5e1ba30df6128ded69733a82c714';
 module.exports = node;
