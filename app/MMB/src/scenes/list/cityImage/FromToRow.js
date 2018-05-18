@@ -7,7 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
-import TravelTypeIcon from './TravelTypeIcon';
+import TravelTypeIcon from '../../../components/TravelTypeIcon';
 import type { FromToRow_arrival as ArrivalType } from './__generated__/FromToRow_arrival.graphql';
 import type { FromToRow_departure as DepartureType } from './__generated__/FromToRow_departure.graphql';
 
@@ -27,7 +27,7 @@ export const FromToRow = (props: Props) => (
       </Text>
     </View>
     <View style={[styles.flexItem, styles.iconWrapper]}>
-      <TravelTypeIcon type={props.type} />
+      <TravelTypeIcon type={props.type} style={styles.icon} />
     </View>
     <View style={[styles.flexItem, styles.arrivalWrapper]}>
       <Text style={[styles.text, styles.cityText]}>
@@ -77,6 +77,9 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     alignItems: 'center',
+  },
+  icon: {
+    color: Color.white,
   },
   arrivalWrapper: {
     alignItems: 'flex-end',
