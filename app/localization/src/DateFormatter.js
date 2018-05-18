@@ -2,6 +2,9 @@
 
 import getDeviceLocale from './GetDeviceLocale';
 
+import 'intl'; // Polyfill because of Android
+import 'intl/locale-data/complete';
+
 // language prop passed from native code is not accessible at this point
 const DEVICE_LOCALE = getDeviceLocale();
 
