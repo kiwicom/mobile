@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
-import StyleSheet from '../PlatformStyleSheet';
-import Touchable from '../Touchable';
-import type { StylePropType } from '../../types/Styles';
+import StyleSheet from './PlatformStyleSheet';
+import Touchable from './Touchable';
+import type { StylePropType } from '../types/Styles';
 
 type Props = {|
   children: React.Node,

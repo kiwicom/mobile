@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { LayoutAnimation } from '@kiwicom/mobile-shared';
 
-import StyleSheet from '../PlatformStyleSheet';
-import VerticalSwipeResponder from '../view/VerticalSwipeResponder';
+import StyleSheet from './PlatformStyleSheet';
+import VerticalSwipeResponder from './view/VerticalSwipeResponder';
 
 type Props = {|
   children: React.Node,

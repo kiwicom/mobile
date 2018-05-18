@@ -5,9 +5,9 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import testRenderer from 'react-test-renderer';
 
 import Price from '../Price';
-import CurrencyFormatter from '../currency/CurrencyFormatter';
+import CurrencyFormatter from '../CurrencyFormatter';
 
-jest.mock('../currency/CurrencyFormatter', () => jest.fn());
+jest.mock('../CurrencyFormatter', () => jest.fn());
 
 const renderer = new ShallowRenderer();
 

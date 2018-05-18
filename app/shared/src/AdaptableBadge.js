@@ -5,9 +5,9 @@ import { View } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 import type { StylePropType } from '@kiwicom/mobile-shared';
 
-import Text from '../Text';
-import Color from '../Color';
-import StyleSheet from '../PlatformStyleSheet';
+import Text from './Text';
+import Color from './Color';
+import StyleSheet from './PlatformStyleSheet';
 
 type Props = {|
   translation: TranslationType,
