@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
-import StyleSheet from '../PlatformStyleSheet';
-import Touchable from '../Touchable';
-import Icon from '../icons/Icon';
+import StyleSheet from './PlatformStyleSheet';
+import Touchable from './Touchable';
+import Icon from './icons/Icon';
 
 type Props = {|
   onPress: () => void,

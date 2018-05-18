@@ -3,10 +3,10 @@
 import '../../shared/src/popup/__tests__/ButtonPopupPlayground.test.js';
 import '../../shared/src/forms/datePicker/__tests__/DatePicker.test.js';
 import '../../shared/src/forms/__tests__/Slider.test.js';
-import '../../shared/src/cards/__tests__/SimpleCard.test.js';
+import '../../shared/src/__tests__/SimpleCard.test.js';
 import '../../shared/src/buttons/__tests__/IncrementDecrementButtons.test.js';
 import '../../shared/src/buttons/__tests__/Button.test.js';
-import '../../shared/src/badge/__tests__/AdaptableBadge.test.js';
+import '../../shared/src/__tests__/AdaptableBadge.test.js';
 import '../../shared/src/__tests__/Text.test.js';
 import '../../shared/src/__tests__/ReadMore.test.js';
 import '../../pdf/src/__tests__/PdfViewer.test.js';
