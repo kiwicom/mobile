@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import CurrencyFormatter from './currency/CurrencyFormatter';
+import CurrencyFormatter from './CurrencyFormatter';
 import Text from './Text';
 import type { StylePropType } from '../types/Styles';
 
