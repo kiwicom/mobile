@@ -31,10 +31,6 @@
   return @"KiwiHotels";
 }
 
-- (NSURL *)jsCodeLocation {
-  return [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios&dev=true"];
-}
-
 # pragma mark - RNKiwiCurrencyManager
 
 - (NSString *)formattedPrice:(NSNumber *)price withCurrency:(NSString *)currencyCode {
