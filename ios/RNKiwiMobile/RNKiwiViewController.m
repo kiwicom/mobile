@@ -43,7 +43,7 @@
 - (void)loadView {
   NSURL *bundleUrl = [_options respondsToSelector:@selector(jsCodeLocation)]
     ? [_options jsCodeLocation]
-    : [[NSBundle bundleForClass:[self class]] URLForResource:@"hotels.ios" withExtension:@"jsbundle"];
+    : [[NSBundle bundleForClass:[self class]] URLForResource:@"hotels" withExtension:@"jsbundle"];
   
   self.view = [[RCTRootView alloc] initWithBundleURL:bundleUrl
                                           moduleName:[_options moduleName]

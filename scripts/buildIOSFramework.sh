@@ -20,6 +20,9 @@ yarn
 # Enter iOS folder
 cd ios
 
+# Clear build
+rm -r build
+
 # Install native dependencies
 pod install
 
@@ -30,7 +33,7 @@ xcodebuild -workspace $PROJECT.xcworkspace -sdk iphoneos -scheme $TARGET -config
 xcodebuild -workspace $PROJECT.xcworkspace -sdk iphonesimulator -scheme $TARGET -configuration Release -derivedDataPath $PATH_SIMULATOR clean build -quiet
 
 # Create FAT framework
-mkdir $PATH_UNIVERSAL 
+mkdir $PATH_UNIVERSAL
 cp $PATH_IPHONE/Build/Products/Release-iphoneos/$FRAMEWORK/$TARGET $PATH_UNIVERSAL/iphoneos 
 cp $PATH_SIMULATOR/Build/Products/Release-iphonesimulator/$FRAMEWORK/$TARGET $PATH_UNIVERSAL/iphonesimulator
 lipo -create $PATH_UNIVERSAL/iphoneos $PATH_UNIVERSAL/iphonesimulator -output $PATH_UNIVERSAL/$TARGET
@@ -38,9 +41,6 @@ rm $PATH_UNIVERSAL/iphoneos
 rm $PATH_UNIVERSAL/iphonesimulator
 cp -R build/iphoneos/Build/Products/Release-iphoneos/$FRAMEWORK $PATH_UNIVERSAL/$FRAMEWORK
 mv $PATH_UNIVERSAL/$TARGET $PATH_UNIVERSAL/$FRAMEWORK/$TARGET
-
-# Extract FAT framework to the current folder"
-cp -R $PATH_UNIVERSAL/$FRAMEWORK
 
 # Open .framework folder
 open $PATH_UNIVERSAL
