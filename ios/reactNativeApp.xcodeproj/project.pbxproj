@@ -31,6 +31,8 @@
 		2711986A20B1F7E300C6292B /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 929CCF0BD6A142DEAB8DA917 /* Octicons.ttf */; };
 		2711986B20B1F7E300C6292B /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */; };
 		2711986C20B1F7E300C6292B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
+		2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */; };
 		27E931B420AD96790053AE19 /* RNKiwiMobile.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931B220AD96790053AE19 /* RNKiwiMobile.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931C020AD987C0053AE19 /* RNKiwiViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931BE20AD987C0053AE19 /* RNKiwiViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931BF20AD987C0053AE19 /* RNKiwiViewController.m */; };
@@ -47,6 +49,8 @@
 		27E931E820ADA06C0053AE19 /* RNKiwiMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931B020AD96780053AE19 /* RNKiwiMobile.framework */; };
 		37478C9C708E472FBA98598C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */; };
 		3B029E80AD3948E19D4E6814 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F477A1D455304A4EA37DF899 /* MaterialIcons.ttf */; };
+		686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 686E004A20B2E1360013512F /* RNKiwiConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 686E005020B2E24B0013512F /* RNKiwiConstants.m */; };
 		7EEEE5BA4A6944DCBDECD4C3 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 929CCF0BD6A142DEAB8DA917 /* Octicons.ttf */; };
 		9166DECF75BC4B9699DA0CBA /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */; };
 		A33D4A1D5C6845B3B939C9F8 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38EC9C92B1414019B0EAF6AF /* Foundation.ttf */; };
@@ -84,6 +88,8 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reactNativeApp/main.m; sourceTree = "<group>"; };
 		146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Semibold.ttf"; path = "../assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiSharedBridge.h; sourceTree = "<group>"; };
+		2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiSharedBridge.m; sourceTree = "<group>"; };
 		27E931B020AD96780053AE19 /* RNKiwiMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNKiwiMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E931B220AD96790053AE19 /* RNKiwiMobile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiMobile.h; sourceTree = "<group>"; };
 		27E931B320AD96790053AE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 		5377C27743964C6D8EF1FA05 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		645A06359A464CB0B63845A2 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		686E004A20B2E1360013512F /* RNKiwiConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiConstants.h; sourceTree = "<group>"; };
+		686E005020B2E24B0013512F /* RNKiwiConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiConstants.m; sourceTree = "<group>"; };
 		68A42BBB8E1C6CD26053AC72 /* Pods-RNPlayground.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.release.xcconfig"; sourceTree = "<group>"; };
 		7362EE36714587FAF8D16632 /* Pods-RNKiwiMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNKiwiMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNKiwiMobile/Pods-RNKiwiMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		83DEB0A076A11B421C735EE9 /* Pods-RNPlayground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.debug.xcconfig"; sourceTree = "<group>"; };
@@ -186,6 +194,10 @@
 			isa = PBXGroup;
 			children = (
 				27E931B220AD96790053AE19 /* RNKiwiMobile.h */,
+				686E004A20B2E1360013512F /* RNKiwiConstants.h */,
+				686E005020B2E24B0013512F /* RNKiwiConstants.m */,
+				2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */,
+				2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */,
 				27E931BE20AD987C0053AE19 /* RNKiwiViewController.h */,
 				27E931BF20AD987C0053AE19 /* RNKiwiViewController.m */,
 				27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */,
@@ -284,6 +296,8 @@
 				27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */,
 				27E931C320AD9A2A0053AE19 /* RNKiwiViewControllerFlowDelegate.h in Headers */,
 				27E931C520AD9A4B0053AE19 /* RNKiwiCurrencyManager.h in Headers */,
+				2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */,
+				686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */,
 				27E931B420AD96790053AE19 /* RNKiwiMobile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +649,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */,
+				2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */,
+				686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
