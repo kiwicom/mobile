@@ -21,7 +21,7 @@ yarn
 cd ios
 
 # Clear build
-rm -r build
+rm -rf build
 
 # Install native dependencies
 pod install
@@ -42,5 +42,5 @@ rm $PATH_UNIVERSAL/iphonesimulator
 cp -R build/iphoneos/Build/Products/Release-iphoneos/$FRAMEWORK $PATH_UNIVERSAL/$FRAMEWORK
 mv $PATH_UNIVERSAL/$TARGET $PATH_UNIVERSAL/$FRAMEWORK/$TARGET
 
-# Open .framework folder
-open $PATH_UNIVERSAL
+# Print the output file
+echo "ios/$PATH_UNIVERSAL/$FRAMEWORK"

@@ -17,6 +17,7 @@
     "test-ci": "./scripts/test.sh",
     "postinstall": "node ./scripts/configureApplication.js",
     "pod-install": "node ./scripts/podInstall.js",
+    "release-hotels": "node ./scripts/releaseHotels.js",
     "release": "node ./scripts/releaseFramework.js",
     "playground": "node ./scripts/activatePlayground.js"
   },
