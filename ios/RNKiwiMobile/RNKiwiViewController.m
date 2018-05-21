@@ -1,5 +1,6 @@
 #import "RNKiwiViewController.h"
 #import "RNKiwiOptions.h"
+#import "RNKiwiSharedBridge.h"
 
 #import <RNNavigator/RNNavigationModule.h>
 #import <RNLogging/RNLoggingModule.h>
@@ -25,7 +26,10 @@
   self = [super init];
   if (self) {
     _options = options;
+    
     [self setupReactWrappersWithObject:self];
+    
+    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:options];
   }
   
   return self;
@@ -41,14 +45,9 @@
 #pragma mark - View lifecycle
 
 - (void)loadView {
-  NSURL *bundleUrl = [_options respondsToSelector:@selector(jsCodeLocation)]
-    ? [_options jsCodeLocation]
-    : [[NSBundle bundleForClass:[self class]] URLForResource:@"hotels" withExtension:@"jsbundle"];
-  
-  self.view = [[RCTRootView alloc] initWithBundleURL:bundleUrl
-                                          moduleName:[_options moduleName]
-                                   initialProperties:[_options initialProperties]
-                                       launchOptions:nil];
+  self.view = [[RCTRootView alloc] initWithBridge:[[RNKiwiSharedBridge sharedInstance] bridgeForOptions:_options]
+                                       moduleName:[_options moduleName]
+                                initialProperties:[_options initialProperties]];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
