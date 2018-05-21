@@ -26,6 +26,9 @@ rm -rf build
 # Install native dependencies
 pod install
 
+# Needed to avoid https://github.com/facebook/react-native/issues/11710
+sed -i -e 's/RCTLogError/\/\/RCTLogError/g' ../node_modules/react-native/React/Modules/RCTStatusBarManager.m
+
 # Create iPhone framework
 xcodebuild -workspace $PROJECT.xcworkspace -sdk iphoneos -scheme $TARGET -configuration Release -derivedDataPath $PATH_IPHONE clean build -quiet
 
@@ -34,13 +37,16 @@ xcodebuild -workspace $PROJECT.xcworkspace -sdk iphonesimulator -scheme $TARGET 
 
 # Create FAT framework
 mkdir $PATH_UNIVERSAL
-cp $PATH_IPHONE/Build/Products/Release-iphoneos/$FRAMEWORK/$TARGET $PATH_UNIVERSAL/iphoneos 
+cp $PATH_IPHONE/Build/Products/Release-iphoneos/$FRAMEWORK/$TARGET $PATH_UNIVERSAL/iphoneos
 cp $PATH_SIMULATOR/Build/Products/Release-iphonesimulator/$FRAMEWORK/$TARGET $PATH_UNIVERSAL/iphonesimulator
 lipo -create $PATH_UNIVERSAL/iphoneos $PATH_UNIVERSAL/iphonesimulator -output $PATH_UNIVERSAL/$TARGET
 rm $PATH_UNIVERSAL/iphoneos
 rm $PATH_UNIVERSAL/iphonesimulator
 cp -R build/iphoneos/Build/Products/Release-iphoneos/$FRAMEWORK $PATH_UNIVERSAL/$FRAMEWORK
 mv $PATH_UNIVERSAL/$TARGET $PATH_UNIVERSAL/$FRAMEWORK/$TARGET
+
+# Revert node_modules changes
+sed -i -e 's/\/\/RCTLogError/RCTLogError/g' ../node_modules/react-native/React/Modules/RCTStatusBarManager.m
 
 # Print the output file
 echo "ios/$PATH_UNIVERSAL/$FRAMEWORK"
