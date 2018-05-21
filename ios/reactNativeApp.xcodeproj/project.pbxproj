@@ -16,6 +16,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2192F36820B30ED80076DD02 /* RNKiwiGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2192F36720B30ED80076DD02 /* RNKiwiGestureController.m */; };
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
 		2711985E20B1F7E300C6292B /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 		2711985F20B1F7E300C6292B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */; };
@@ -84,6 +85,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = reactNativeApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reactNativeApp/main.m; sourceTree = "<group>"; };
 		146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Semibold.ttf"; path = "../assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		2192F36520B30EA00076DD02 /* RNKiwiGestureController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
+		2192F36720B30ED80076DD02 /* RNKiwiGestureController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiGestureController.m; sourceTree = "<group>"; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		27E931B020AD96780053AE19 /* RNKiwiMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNKiwiMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E931B220AD96790053AE19 /* RNKiwiMobile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiMobile.h; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				27E931BF20AD987C0053AE19 /* RNKiwiViewController.m */,
 				27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */,
 				27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */,
+				2192F36520B30EA00076DD02 /* RNKiwiGestureController.h */,
+				2192F36720B30ED80076DD02 /* RNKiwiGestureController.m */,
 				27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */,
 				27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */,
 				27E931B320AD96790053AE19 /* Info.plist */,
@@ -611,6 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */,
+				2192F36820B30ED80076DD02 /* RNKiwiGestureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
