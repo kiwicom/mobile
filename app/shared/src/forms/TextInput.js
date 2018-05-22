@@ -23,14 +23,12 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    elevation: 1, // Android only
+    borderRadius: 6,
     android: {
-      borderRadius: 3,
+      elevation: 1,
       height: 48,
     },
     ios: {
-      borderRadius: 0,
       height: 47,
     },
   },

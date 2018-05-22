@@ -22,7 +22,7 @@ function Icon(props: Props) {
 }
 
 Icon.defaultProps = {
-  color: Color.grey.$600,
+  color: Color.textLight,
 };
 
 export default Icon;

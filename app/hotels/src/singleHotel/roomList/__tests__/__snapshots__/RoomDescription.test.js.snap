@@ -5,7 +5,7 @@ exports[`RoomDescription renders 1`] = `
   <Component
     style={
       Object {
-        "backgroundColor": "#edeff2",
+        "backgroundColor": "#f4f6f8",
         "height": 1,
         "marginVertical": 6,
       }
@@ -16,7 +16,7 @@ exports[`RoomDescription renders 1`] = `
     revealedText="Hide"
     style={
       Object {
-        "color": "#0097a9",
+        "color": "#00a991",
         "fontSize": 12,
         "fontWeight": "600",
       }
@@ -26,7 +26,7 @@ exports[`RoomDescription renders 1`] = `
     <Text
       style={
         Object {
-          "color": "#30363d",
+          "color": "#171b1e",
           "fontSize": 12,
         }
       }

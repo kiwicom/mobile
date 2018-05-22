@@ -9,10 +9,10 @@ import type { TranslationType } from '@kiwicom/mobile-localization';
 const createNavigationOptions = () => {
   const navigationOptions: Object = {
     headerStyle: {
-      backgroundColor: Color.brand,
+      backgroundColor: Color.white,
       borderBottomWidth: 0,
     },
-    headerTintColor: '#fff', // back arrow
+    headerTintColor: Color.brand, // back arrow
     headerBackTitle: null,
   };
 
@@ -27,7 +27,8 @@ const createNavigationOptions = () => {
 export const HeaderTitle = ({ children }: {| children: TranslationType |}) => {
   const styleSheet = StyleSheet.create({
     title: {
-      color: '#fff',
+      color: Color.textDark,
+      fontWeight: '600',
       android: {
         fontSize: 18,
       },
@@ -66,7 +67,7 @@ export const StackNavigatorOptions = {
   initialRouteName: 'Home',
   navigationOptions: createNavigationOptions(),
   cardStyle: {
-    backgroundColor: '#eee',
+    backgroundColor: Color.backgroundGray,
   },
 };
 

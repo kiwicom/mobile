@@ -55,7 +55,7 @@ export class HotelReviewScore extends React.Component<Props> {
       return '#d0021b';
     }
     if (score >= 3 === score <= 7) {
-      return Color.buttercup;
+      return Color.orange.normal;
     }
     if (score > 7 === score <= 10) {
       return '#31a11e';

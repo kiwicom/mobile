@@ -18,13 +18,13 @@ exports[`renders as expected 1`] = `
       style={
         Array [
           Object {
-            "color": "#30363d",
+            "color": "#171b1e",
             "fontSize": 14,
             "fontWeight": "normal",
             "letterSpacing": -0.15,
           },
           Object {
-            "color": "#f44336",
+            "color": "#e84646",
             "textAlign": "center",
           },
         ]

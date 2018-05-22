@@ -11,9 +11,8 @@ exports[`Guests Render all inputs 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "backgroundColor": "#fff",
-        "borderRadius": 0,
-        "elevation": 1,
+        "backgroundColor": "#e8edf1",
+        "borderRadius": 6,
         "flexDirection": "row",
         "height": 47,
         "padding": 12,

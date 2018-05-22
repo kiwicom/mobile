@@ -21,7 +21,7 @@ describe('formatScore', () => {
 describe('calculateColor', () => {
   it('returns correct score color', () => {
     const RED = '#d0021b';
-    const ORANGE = '#eb9d08';
+    const ORANGE = '#f9971e';
     const GREEN = '#31a11e';
 
     expect(HRS.calculateColor(-1)).toBeUndefined();

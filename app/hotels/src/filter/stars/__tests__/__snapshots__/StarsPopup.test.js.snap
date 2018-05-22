@@ -14,7 +14,7 @@ exports[`StarsPopup should render popup 1`] = `
   <Text
     style={
       Object {
-        "color": "#79818a",
+        "color": "#7f91a8",
         "fontSize": 12,
         "paddingBottom": 5,
       }
@@ -30,7 +30,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={5}
     style={
       Object {
-        "borderBottomColor": "#edeff2",
+        "borderBottomColor": "#f4f6f8",
         "borderBottomWidth": 1,
       }
     }
@@ -41,7 +41,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={4}
     style={
       Object {
-        "borderBottomColor": "#edeff2",
+        "borderBottomColor": "#f4f6f8",
         "borderBottomWidth": 1,
       }
     }
@@ -52,7 +52,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={3}
     style={
       Object {
-        "borderBottomColor": "#edeff2",
+        "borderBottomColor": "#f4f6f8",
         "borderBottomWidth": 1,
       }
     }
@@ -63,7 +63,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={2}
     style={
       Object {
-        "borderBottomColor": "#edeff2",
+        "borderBottomColor": "#f4f6f8",
         "borderBottomWidth": 1,
       }
     }
@@ -74,7 +74,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={1}
     style={
       Object {
-        "borderBottomColor": "#edeff2",
+        "borderBottomColor": "#f4f6f8",
         "borderBottomWidth": 1,
       }
     }
