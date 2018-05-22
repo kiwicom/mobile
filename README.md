@@ -209,31 +209,6 @@ import { Translate } from '@kiwicom/mobile-shared';
 const someString = Translate('translation.key.to.translate');
 ```
 
-### Color module
-
-Colors defined in native code base and exposed through `app/shared/src/Color.js`
-
-```js
-NativeModules.RNColors = {
-  backgroundGray: '#EDEFF2',
-  brand: '#0097A9',
-  brandSecondary: '#0CB3C7',
-  buttercup: '#EB9D08',
-  sun: '#FBAD18',
-  textDark: '#30363D',
-  textLight: '#79818A',
-  textMedium: '#596066',
-};
-```
-
-Usage:
-
-```js
-import { Color } from '@kiwicom/mobile-shared';
-
-const color = Color.brand;
-```
-
 ### Currency module
 
 It exposes one method
