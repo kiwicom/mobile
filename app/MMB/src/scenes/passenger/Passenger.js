@@ -9,6 +9,7 @@ import { View } from 'react-native';
 import startCase from 'lodash/startCase';
 
 import { SeparatorFullWidth } from '../../components/Separators';
+import VisaInformation from './visa/VisaInformation';
 import type { Passenger_passenger as PassengerType } from './__generated__/Passenger_passenger.graphql';
 
 const Row = ({ children }: {| children: React.Node |}) => (
@@ -49,38 +50,41 @@ export class Passenger extends React.Component<Props> {
 
     return (
       <SimpleCard style={styles.card}>
-        <Text style={styles.name}>
-          <Translation passThrough={`${title}. ${fullName}`} />
-        </Text>
-        <Row>
-          <Column
-            title={<Translation id="mmb.passenger.nationality.label" />}
-            value={<Translation passThrough={nationality.toUpperCase()} />}
-          />
-          <Column
-            title={<Translation id="mmb.passenger.birthday" />}
-            value={
-              <Translation
-                passThrough={DateFormatter(
-                  new Date(birthday),
-                ).formatToBirthday()}
-              />
-            }
-          />
-        </Row>
-        <View style={styles.separator}>
-          <SeparatorFullWidth />
+        <View style={styles.cardContainer}>
+          <Text style={styles.name}>
+            <Translation passThrough={`${title}. ${fullName}`} />
+          </Text>
+          <Row>
+            <Column
+              title={<Translation id="mmb.passenger.nationality.label" />}
+              value={<Translation passThrough={nationality.toUpperCase()} />}
+            />
+            <Column
+              title={<Translation id="mmb.passenger.birthday" />}
+              value={
+                <Translation
+                  passThrough={DateFormatter(
+                    new Date(birthday),
+                  ).formatToBirthday()}
+                />
+              }
+            />
+          </Row>
+          <View style={styles.separator}>
+            <SeparatorFullWidth />
+          </View>
+          <Row>
+            <Column
+              title={<Translation id="mmb.passenger.id" />}
+              value={<Translation passThrough={idNumber} />}
+            />
+            <Column
+              title={<Translation id="mmb.passenger.insurance" />}
+              value={<Translation passThrough={insuranceType} />}
+            />
+          </Row>
         </View>
-        <Row>
-          <Column
-            title={<Translation id="mmb.passenger.id" />}
-            value={<Translation passThrough={idNumber} />}
-          />
-          <Column
-            title={<Translation id="mmb.passenger.insurance" />}
-            value={<Translation passThrough={insuranceType} />}
-          />
-        </Row>
+        <VisaInformation visa={passenger} />
       </SimpleCard>
     );
   };
@@ -98,12 +102,17 @@ export default createFragmentContainer(
         idNumber
       }
       insuranceType
+      ...VisaInformation_visa
     }
   `,
 );
 
 const styles = StyleSheet.create({
   card: {
+    padding: 0,
+    marginBottom: 0,
+  },
+  cardContainer: {
     paddingHorizontal: 15,
     paddingTop: 13,
     paddingBottom: 16,
