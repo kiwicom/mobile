@@ -82,16 +82,17 @@ export { default as StretchedImage } from './src/image/StretchedImage';
 /**
  * Non-UI components (components without render output):
  */
-export { default as WithStorage } from './src/WithStorage';
-export { default as StyleSheet } from './src/PlatformStyleSheet';
 export { default as AppStateChange } from './src/AppStateChange';
 export { default as Color } from './src/Color';
 export { default as CurrencyFormatter } from './src/CurrencyFormatter';
 export { default as Device } from './src/Device';
 export { default as GeolocationContext } from './src/GeolocationContext';
-export { default as Logger } from './src/Logger';
-export { default as Touchable } from './src/Touchable';
+export { default as GestureController } from './src/GestureController';
 export { default as LayoutAnimation } from './src/LayoutAnimation';
+export { default as Logger } from './src/Logger';
+export { default as StyleSheet } from './src/PlatformStyleSheet';
+export { default as Touchable } from './src/Touchable';
+export { default as WithStorage } from './src/WithStorage';
 
 // Flow types:
 
