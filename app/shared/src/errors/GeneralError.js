@@ -23,7 +23,7 @@ export default function GeneralError({ errorMessage }: Props) {
 
 const styleSheet = StyleSheet.create({
   text: {
-    color: Color.red.$500,
+    color: Color.red.normal,
     textAlign: 'center',
   },
 });

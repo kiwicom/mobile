@@ -76,7 +76,7 @@ export default function SearchFormWithContext(props: Props) {
 
 const styles = StyleSheet.create({
   form: {
-    backgroundColor: Color.brandSecondary,
+    backgroundColor: Color.white,
     android: {
       padding: 14,
       paddingTop: 16,

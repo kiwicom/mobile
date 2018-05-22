@@ -8,7 +8,6 @@ import {
 } from '@kiwicom/mobile-localization';
 
 import Popup from './Popup';
-import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 import LinkButton from '../buttons/LinkButton';
 
@@ -49,7 +48,6 @@ const styles = StyleSheet.create({
   bar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: Color.grey.$100,
     paddingHorizontal: 4,
   },
   children: {
