@@ -35,6 +35,8 @@ const Translations = {
   'core.authentication.logging_in': 'Logging in...',
   'core.authentication.login': 'Login!',
   'core.authentication.logout': 'Logout',
+  'core.authentication.email': 'Email',
+  'core.authentication.password': 'Password',
 
   'partial_failure.error':
     'Some parts of the page may be missing due to partial server error.',

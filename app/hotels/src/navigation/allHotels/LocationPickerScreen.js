@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   headerButtonText: {
     fontSize: 17,
-    color: Color.white,
+    color: Color.brand,
     lineHeight: 20,
     ios: {
       fontFamily: 'SFProText-Regular',

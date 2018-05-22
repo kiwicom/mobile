@@ -56,6 +56,7 @@ const ColorPalette = {
 
 export default {
   brand: ColorPalette.product.normal,
+  brandLight: ColorPalette.product.light,
 
   // FIXME: rename
   inputBackground: '#e8edf1',

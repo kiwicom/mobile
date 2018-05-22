@@ -5,7 +5,7 @@ exports[`StarsFilter renders 1`] = `
   <FilterButton
     icon={
       <Icon
-        color="#ffffff"
+        color="#7f91a8"
         name="star"
         size={18}
       />

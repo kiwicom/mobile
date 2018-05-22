@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
+import { Color } from '@kiwicom/mobile-shared';
 import { HeaderBackButton } from 'react-navigation';
 
 import AllHotelsMap from '../../map/allHotels/AllHotelsMap';
@@ -22,7 +23,7 @@ export default class AllHotelsMapNavigationScreen extends React.Component<
       navigation.goBack(null);
     }
     return {
-      headerLeft: <HeaderBackButton tintColor="#fff" onPress={goBack} />,
+      headerLeft: <HeaderBackButton tintColor={Color.brand} onPress={goBack} />,
     };
   };
 

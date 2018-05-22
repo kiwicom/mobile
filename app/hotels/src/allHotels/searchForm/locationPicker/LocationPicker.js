@@ -14,6 +14,7 @@ import RecentSearches from './RecentSearches';
 import SuggestionList from './SuggestionList';
 import HotelsSearchContext from '../../../HotelsSearchContext';
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
+import Translation from '../../../../../localization/src/Translation';
 
 const RECENT_SEARCH_KEY = 'KiwiHotels:RecentSearches';
 
@@ -80,9 +81,9 @@ export class LocationPicker extends React.Component<PropsWithContext, State> {
           <TextInput
             value={this.state.search}
             onChangeText={this.onTextChange}
-            placeholder="Where"
-            style={styles.input}
-            placeholderTextColor={Color.textLight}
+            placeholder={
+              <Translation id="hotels_search.location_button.placeholder" />
+            }
             autoFocus={true}
           />
         </View>
@@ -137,13 +138,6 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     padding: 10,
-  },
-  input: {
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: '#c0c8d1',
-    paddingLeft: 11,
-    paddingBottom: 10,
-    paddingTop: 13,
+    backgroundColor: Color.white,
   },
 });
