@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
-import { StyleSheet, AdaptableLayout } from '@kiwicom/mobile-shared';
+import { StyleSheet, AdaptableLayout, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 
@@ -38,7 +38,10 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
 
     function renderHeaderLeft() {
       return (
-        <HeaderBackButton tintColor="#fff" onPress={props.onBackClicked} />
+        <HeaderBackButton
+          tintColor={Color.brand}
+          onPress={props.onBackClicked}
+        />
       );
     }
 

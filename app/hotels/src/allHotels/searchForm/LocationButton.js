@@ -8,20 +8,19 @@ import { Translation } from '@kiwicom/mobile-localization';
 const styles = StyleSheet.create({
   locationButton: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    backgroundColor: Color.inputBackground,
     alignItems: 'center',
-    elevation: 1, // Android only
+    borderRadius: 6,
     android: {
-      borderRadius: 3,
+      elevation: 1,
       height: 48,
     },
     ios: {
-      borderRadius: 0,
       height: 47,
     },
   },
   placeholderText: {
-    color: '#cbcbd0',
+    color: Color.textLight,
   },
   locationText: {
     color: Color.textDark,

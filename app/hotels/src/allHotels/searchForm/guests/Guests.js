@@ -42,12 +42,7 @@ export default function Guests({ guests, openGuestsModal }: Props) {
   return (
     <Touchable onPress={openGuestsModal}>
       <View style={buttonStyles.buttonWrapper}>
-        <Icon
-          name="people"
-          size={20}
-          color={Color.grey.$600}
-          style={buttonStyles.icon}
-        />
+        <Icon name="people" size={20} style={buttonStyles.icon} />
         <ButtonTitle
           adultsCount={guests.adultsCount}
           childrenCount={guests.children.length}

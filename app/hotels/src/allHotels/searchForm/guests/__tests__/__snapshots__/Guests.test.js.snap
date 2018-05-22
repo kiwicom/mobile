@@ -20,7 +20,7 @@ exports[`Guests Render all inputs 1`] = `
     }
   >
     <Icon
-      color="#757575"
+      color="#7f91a8"
       name="people"
       size={20}
       style={

@@ -61,12 +61,12 @@ export default class EmailLoginForm extends React.Component<Props, State> {
       <TextInput
         onChangeText={this.handleEmailChange}
         keyboardType="email-address"
-        placeholder="Email"
+        placeholder={<Translation id="core.authentication.email" />}
         value={this.state.username}
       />
       <TextInput
         onChangeText={this.handlePasswordChange}
-        placeholder="Password"
+        placeholder={<Translation id="core.authentication.password" />}
         secureTextEntry={true}
       />
       {this.state.loading ? (

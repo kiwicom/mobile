@@ -12,7 +12,7 @@ exports[`Filter button render active button 1`] = `
   <Button
     icon={
       <Icon
-        color="#7f91a8"
+        color="#ffffff"
         name="attach-money"
         size={20}
       />
@@ -21,10 +21,11 @@ exports[`Filter button render active button 1`] = `
     styles={
       Object {
         "button": Object {
-          "backgroundColor": "#424242",
+          "backgroundColor": "#00a991",
           "paddingLeft": 10,
         },
         "buttonText": Object {
+          "color": "#ffffff",
           "paddingBottom": 11,
           "paddingTop": 9,
         },
@@ -32,7 +33,7 @@ exports[`Filter button render active button 1`] = `
           "backgroundColor": "#00a991",
         },
         "icon": Object {
-          "backgroundColor": "#616161",
+          "backgroundColor": "#00a991",
         },
       }
     }
@@ -57,7 +58,7 @@ exports[`Filter button render default button 1`] = `
   <Button
     icon={
       <Icon
-        color="#7f91a8"
+        color="#00a991"
         name="attach-money"
         size={20}
       />
@@ -66,10 +67,11 @@ exports[`Filter button render default button 1`] = `
     styles={
       Object {
         "button": Object {
-          "backgroundColor": "#00a991",
+          "backgroundColor": "#9cdad3",
           "paddingLeft": 0,
         },
         "buttonText": Object {
+          "color": "#00a991",
           "paddingBottom": 11,
           "paddingTop": 9,
         },
@@ -77,7 +79,7 @@ exports[`Filter button render default button 1`] = `
           "backgroundColor": "#00a991",
         },
         "icon": Object {
-          "backgroundColor": "#00a991",
+          "backgroundColor": "#9cdad3",
         },
       }
     }

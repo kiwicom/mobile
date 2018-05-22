@@ -27,11 +27,11 @@ const styles = StyleSheet.create({
   scrollView: {
     android: {
       paddingHorizontal: 13,
-      paddingVertical: 5,
+      paddingVertical: 10,
     },
     ios: {
       paddingHorizontal: 7,
-      paddingVertical: 4,
+      paddingVertical: 9,
     },
   },
 });

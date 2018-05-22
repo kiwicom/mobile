@@ -8,7 +8,7 @@ exports[`DatePicker renders in playground 1`] = `
       code=""
       style={
         Object {
-          "color": "#757575",
+          "color": "#7f91a8",
           "fontSize": 20,
         }
       }
@@ -26,7 +26,7 @@ exports[`DatePicker works with max date 1`] = `
       code=""
       style={
         Object {
-          "color": "#757575",
+          "color": "#7f91a8",
           "fontSize": 20,
         }
       }
@@ -45,7 +45,7 @@ exports[`DatePicker works with min date 1`] = `
       code=""
       style={
         Object {
-          "color": "#757575",
+          "color": "#7f91a8",
           "fontSize": 20,
         }
       }
@@ -65,7 +65,7 @@ exports[`DatePicker works with other date formats 1`] = `
       code=""
       style={
         Object {
-          "color": "#757575",
+          "color": "#7f91a8",
           "fontSize": 20,
         }
       }

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
+import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 import Touchable from './Touchable';
 import Icon from './icons/Icon';
@@ -26,7 +27,7 @@ export default class HeaderRightButton extends React.PureComponent<
   };
 
   static defaultProps = {
-    tintColor: '#fff',
+    tintColor: Color.brand,
   };
 
   storeReference = (reference: React.ElementRef<typeof Touchable> | null) => {
