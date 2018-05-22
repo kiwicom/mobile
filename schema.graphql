@@ -128,6 +128,9 @@ type Booking {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -136,11 +139,15 @@ type Booking {
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
+
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -163,6 +170,12 @@ type BookingConnection {
 
   """A list of edges."""
   edges: [BookingEdge]
+}
+
+"""Contact details related to the booking"""
+type BookingContactDetails {
+  phone: String
+  email: String
 }
 
 enum BookingDestinationImageDimensions {
@@ -197,6 +210,9 @@ interface BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -205,11 +221,15 @@ interface BookingInterface {
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
+
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
 }
 
 type BookingMulticity implements BookingInterface {
@@ -223,6 +243,9 @@ type BookingMulticity implements BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -231,11 +254,15 @@ type BookingMulticity implements BookingInterface {
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
+
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
 
   """Initial origin."""
   start: RouteStop
@@ -261,6 +288,9 @@ type BookingOneWay implements BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -269,11 +299,15 @@ type BookingOneWay implements BookingInterface {
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
+
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
   trip: Trip
 }
 
@@ -289,6 +323,9 @@ type BookingReturn implements BookingInterface {
 
   """Total price of the whole booking."""
   price: Price
+
+  """Date of the booking creation"""
+  bookingDate: Date
   allowedBaggage: AllowedBaggage
 
   """Static assets related to this booking."""
@@ -297,11 +334,15 @@ type BookingReturn implements BookingInterface {
   passengerCount: Int
   destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
 
+  """List of carriers involved in the booking."""
+  carriers: [Carrier]
+
   """
   You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
   """
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
+  contactDetails: BookingContactDetails
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -325,6 +366,18 @@ enum BookingType {
   ONE_WAY
   RETURN
   MULTICITY
+}
+
+type Carrier {
+  """The ID of an object"""
+  id: ID!
+  name: String
+
+  """Unique code of the carrier, IATA code for airlines."""
+  code: String
+
+  """Indicates whether it is low cost carrier."""
+  isLowCost: Boolean
 }
 
 type Coordinates {
@@ -1224,6 +1277,7 @@ type Leg {
 
   """Determines whether Leg is related to return flight."""
   isReturn: Boolean
+  type: VehicleType
 }
 
 """
@@ -1402,6 +1456,9 @@ type Passenger {
   birthday: DateTime
   nationality: String
   travelDocument: TravelDocument
+
+  """Visa information for the passenger"""
+  visaInformation: Visa
 }
 
 input PassengersInput {
@@ -1663,4 +1720,22 @@ type User {
   token: String
   isLoggedIn: Boolean
   identity: Identity
+}
+
+enum VehicleType {
+  BUS
+  TRAIN
+  AIRCRAFT
+}
+
+"""Visa information for passenger"""
+type Visa {
+  """Countries where visa is required"""
+  requiredIn: [Location]
+
+  """Countries where visa might be required"""
+  warningIn: [Location]
+
+  """Countries where visa is not required"""
+  okIn: [Location]
 }

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 59e87791e4154fdfaed50e6b98c4ed85
+ * @relayHash 86e6968d53a626d4349a6c7cfbbacbae
  */
 
 /* eslint-disable */
@@ -48,6 +48,18 @@ fragment Passenger_passenger on Passenger {
     idNumber
   }
   insuranceType
+  ...VisaInformation_visa
+}
+
+fragment VisaInformation_visa on Passenger {
+  visaInformation {
+    requiredIn {
+      name
+    }
+    warningIn {
+      name
+    }
+  }
 }
 */
 
@@ -74,13 +86,22 @@ v2 = {
   "name": "databaseId",
   "args": null,
   "storageKey": null
-};
+},
+v3 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "name",
+    "args": null,
+    "storageKey": null
+  }
+];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  ...VisaInformation_visa\n}\n\nfragment VisaInformation_visa on Passenger {\n  visaInformation {\n    requiredIn {\n      name\n    }\n    warningIn {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -184,6 +205,37 @@ return {
                 "name": "insuranceType",
                 "args": null,
                 "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "visaInformation",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Visa",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "requiredIn",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Location",
+                    "plural": true,
+                    "selections": v3
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "warningIn",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Location",
+                    "plural": true,
+                    "selections": v3
+                  }
+                ]
               }
             ]
           },

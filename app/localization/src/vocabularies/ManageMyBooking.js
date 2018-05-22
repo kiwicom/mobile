@@ -60,6 +60,9 @@ export default {
   'mmb.passenger.insurance': 'Insurance',
   'mmb.passenger.nationality.label': 'Nationality',
 
+  // MMB Visa
+  'mmb.visa_state.visa_is_required': 'Visa required in',
+
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
   'mmb.flight_services': 'Flight Services',
