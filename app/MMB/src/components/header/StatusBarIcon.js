@@ -27,49 +27,49 @@ function Status({ data }: {| data: StatusBarIcon |}) {
     case 'CANCELLED':
       return (
         <StatusIcon
-          color={Color.red.$500}
+          color={Color.red.normal}
           title={<Translation id="mmb.status.cancelled" />}
         />
       );
     case 'CLOSED':
       return (
         <StatusIcon
-          color={Color.red.$500}
+          color={Color.red.normal}
           title={<Translation id="mmb.status.closed" />}
         />
       );
     case 'CONFIRMED':
       return (
         <StatusIcon
-          color={Color.green.$500}
+          color={Color.green.normal}
           title={<Translation id="mmb.status.confirmed" />}
         />
       );
     case 'DELETED':
       return (
         <StatusIcon
-          color={Color.red.$500}
+          color={Color.red.normal}
           title={<Translation id="mmb.status.deleted" />}
         />
       );
     case 'EXPIRED':
       return (
         <StatusIcon
-          color={Color.red.$500}
+          color={Color.red.normal}
           title={<Translation id="mmb.status.expired" />}
         />
       );
     case 'NEW':
       return (
         <StatusIcon
-          color={Color.blue.$500}
+          color={Color.blue.normal}
           title={<Translation id="mmb.status.new" />}
         />
       );
     case 'PENDING':
       return (
         <StatusIcon
-          color={Color.orange.$500}
+          color={Color.orange.normal}
           title={<Translation id="mmb.status.pending" />}
         />
       );

@@ -11,7 +11,7 @@ exports[`renders correctly with more adults 1`] = `
   <Text
     style={
       Object {
-        "color": "#bdbdbd",
+        "color": "#7f91a8",
       }
     }
   >
@@ -63,7 +63,7 @@ exports[`renders correctly with one adult and zero children 1`] = `
   <Text
     style={
       Object {
-        "color": "#bdbdbd",
+        "color": "#7f91a8",
       }
     }
   >

@@ -14,6 +14,6 @@ export default function Message(props: Props): React.Node {
 
 const styles = StyleSheet.create({
   error: {
-    color: Color.red.$900,
+    color: Color.red.dark,
   },
 });

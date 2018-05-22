@@ -15,24 +15,6 @@ import SuggestionList from './SuggestionList';
 import HotelsSearchContext from '../../../HotelsSearchContext';
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  textInputContainer: {
-    backgroundColor: Color.white,
-    padding: 10,
-  },
-  input: {
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: '#c0c8d1',
-    paddingLeft: 11,
-    paddingBottom: 10,
-    paddingTop: 13,
-  },
-});
-
 const RECENT_SEARCH_KEY = 'KiwiHotels:RecentSearches';
 
 export type Location = {|
@@ -148,3 +130,20 @@ export default function LocationPickerWithStorageAndWithContext(props: Props) {
     </HotelsSearchContext.Consumer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  textInputContainer: {
+    padding: 10,
+  },
+  input: {
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: '#c0c8d1',
+    paddingLeft: 11,
+    paddingBottom: 10,
+    paddingTop: 13,
+  },
+});

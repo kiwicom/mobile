@@ -62,14 +62,13 @@ const buttonStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
-    elevation: 1, // Android only
-    backgroundColor: '#fff',
+    backgroundColor: Color.inputBackground,
+    borderRadius: 6,
     android: {
-      borderRadius: 3,
+      elevation: 1,
       height: 48,
     },
     ios: {
-      borderRadius: 0,
       height: 47,
     },
   },
@@ -77,6 +76,6 @@ const buttonStyles = StyleSheet.create({
     marginRight: 8,
   },
   childrenStyle: {
-    color: Color.grey.$400,
+    color: Color.textLight,
   },
 });

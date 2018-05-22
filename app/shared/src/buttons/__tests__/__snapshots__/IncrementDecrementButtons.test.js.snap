@@ -5,7 +5,7 @@ exports[`IncrementDecrementButtons renders 1`] = `
   style={
     Object {
       "backgroundColor": "#ffffff",
-      "borderColor": "#0097a9",
+      "borderColor": "#00a991",
       "borderRadius": 4,
       "borderWidth": 1,
       "flexDirection": "row",
@@ -18,7 +18,7 @@ exports[`IncrementDecrementButtons renders 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "borderColor": "#0097a9",
+        "borderColor": "#00a991",
         "borderRightWidth": 1,
         "paddingBottom": 0,
       }

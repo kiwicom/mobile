@@ -4,7 +4,7 @@ exports[`SearchForm Render all inputs 1`] = `
 <Component
   style={
     Object {
-      "backgroundColor": "#0cb3c7",
+      "backgroundColor": "#ffffff",
       "padding": 10,
     }
   }

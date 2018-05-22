@@ -1,64 +1,25 @@
 // @flow strict
 
-/**
- * @see https://material.io/design/color/the-color-system.html#tools-for-picking-colors
- */
 const ColorPalette = {
-  red: {
-    $50: '#ffebee',
-    $100: '#ffcdd2',
-    $200: '#ef9a9a',
-    $300: '#e57373',
-    $400: '#ef5350',
-    $500: '#f44336',
-    $600: '#e53935',
-    $700: '#d32f2f',
-    $800: '#c62828',
-    $900: '#b71c1c',
+  black: '#000000',
+  white: '#ffffff',
+
+  product: {
+    normal: '#00a991',
+    dark: '#007362',
+    light: '#9cdad3',
   },
 
-  blue: {
-    $50: '#E3F2FD',
-    $100: '#BBDEFB',
-    $200: '#90CAF9',
-    $300: '#64B5F6',
-    $400: '#42A5F5',
-    $500: '#2196F3',
-    $600: '#1E88E5',
-    $700: '#1976D2',
-    $800: '#1565C0',
-    $900: '#0D47A1',
+  ink: {
+    normal: '#46515e',
+    dark: '#171b1e',
+    light: '#7f91a8',
+    lighter: '#bac7d5',
   },
 
-  green: {
-    $50: '#e8f5e9',
-    $100: '#c8e6c9',
-    $200: '#a5d6a7',
-    $300: '#81c784',
-    $400: '#66bb6a',
-    $500: '#4caf50',
-    $600: '#43a047',
-    $700: '#388e3c',
-    $800: '#2e7d32',
-    $900: '#1b5e20',
-  },
-
-  orange: {
-    $50: '#ff9800',
-    $100: '#ffe0b2',
-    $200: '#ffcc80',
-    $300: '#ffb74d',
-    $400: '#ffa726',
-    $500: '#ff9800',
-    $600: '#fb8c00',
-    $700: '#f57c00',
-    $800: '#ef6c00',
-    $900: '#e65100',
-  },
-
+  // FIXME: remove (or modify)
   grey: {
     $50: '#fafafa',
-    $100: '#f5f5f5',
     $200: '#eeeeee',
     $300: '#e0e0e0',
     $400: '#bdbdbd',
@@ -66,38 +27,44 @@ const ColorPalette = {
     $600: '#757575',
     $700: '#616161',
     $800: '#424242',
-    $900: '#212121',
   },
 
-  blueGrey: {
-    $50: '#eceff1',
-    $100: '#cfd8dc',
-    $200: '#b0bec5',
-    $300: '#90a4ae',
-    $400: '#78909c',
-    $500: '#607d8b',
-    $600: '#546e7a',
-    $700: '#455a64',
-    $800: '#37474f',
-    $900: '#263238',
+  green: {
+    normal: '#46b655',
+    dark: '#196e25',
+    light: '#c4f2ca',
   },
 
-  black: '#000000',
-  white: '#ffffff',
+  orange: {
+    normal: '#f9971e',
+    dark: '#a93610',
+    light: '#fcf1cd',
+  },
+
+  blue: {
+    normal: '#0176d2',
+    dark: '#005aa0',
+    light: '#e0f6ff',
+  },
+
+  red: {
+    normal: '#e84646',
+    dark: '#650808',
+    light: '#fae8e8',
+  },
 };
 
-/**
- * @see https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
- */
 export default {
-  brand: '#0097a9',
-  brandSecondary: '#0cb3c7',
-  buttercup: '#eb9d08',
-  sun: '#fbad18',
-  backgroundGray: '#edeff2',
-  textDark: '#30363d',
-  textMedium: '#596066',
-  textLight: '#79818a',
+  brand: ColorPalette.product.normal,
+
+  // FIXME: rename
+  inputBackground: '#e8edf1',
+  backgroundGray: '#f4f6f8',
+
+  // FIXME: rename
+  textDark: ColorPalette.ink.dark,
+  textMedium: ColorPalette.ink.normal,
+  textLight: ColorPalette.ink.light,
 
   ...ColorPalette,
 };
