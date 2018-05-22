@@ -1,6 +1,7 @@
 #import "RNKiwiViewController.h"
 #import "RNKiwiOptions.h"
 #import "RNKiwiSharedBridge.h"
+#import "RNKiwiGestureController.h"
 
 #import <RNNavigator/RNNavigationModule.h>
 #import <RNLogging/RNLoggingModule.h>
@@ -23,6 +24,7 @@
 
 - (instancetype)initWithOptions:(id<RNKiwiOptions>)options {
   self = [super init];
+  [self startObservingGestures];
   if (self) {
     _options = options;
     
@@ -55,6 +57,7 @@
   if ([self isBeingDismissed] || [self isMovingFromParentViewController]) {
     [self notifyFinish];
     [self setupReactWrappersWithObject:nil];
+    [self stopObservingGestures];
   }
 }
 
@@ -111,5 +114,37 @@
     [self.flowDelegate RNKiwiViewControllerDidFinish:self];
   }
 }
+
+#pragma mark - Gesture Controller Observers
+
+- (void)disableGestures {
+  if ([self.flowDelegate respondsToSelector:@selector(RNKiwiViewControllerDidStartControllingGestures:)]) {
+    [self.flowDelegate RNKiwiViewControllerDidStartControllingGestures:self];
+  }
+}
+
+- (void)enableGestures {
+  if ([self.flowDelegate respondsToSelector:@selector(RNKiwiViewControllerDidStopControllingGestures:)]) {
+    [self.flowDelegate RNKiwiViewControllerDidStopControllingGestures:self];
+  }
+}
+
+- (void)startObservingGestures {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(disableGestures)
+                                               name:RNKiwiDisableGestures
+                                             object:[_options moduleName]];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(enableGestures)
+                                               name:RNKiwiEnableGestures
+                                             object:[_options moduleName]];
+}
+
+- (void)stopObservingGestures {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 
 @end

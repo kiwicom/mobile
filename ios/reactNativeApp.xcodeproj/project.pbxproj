@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		012E4C1BA8444C8182992EEB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B11306CBC6D24D3C990EAC4B /* Ionicons.ttf */; };
 		038BD3170181472CA3083F7C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */; };
@@ -15,6 +16,8 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2107154420B5677200E6C96B /* RNKiwiGestureController.m */; };
+		2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107154520B5677200E6C96B /* RNKiwiGestureController.h */; };
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
 		2711985E20B1F7E300C6292B /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 		2711985F20B1F7E300C6292B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */; };
@@ -87,6 +90,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = reactNativeApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reactNativeApp/main.m; sourceTree = "<group>"; };
 		146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Semibold.ttf"; path = "../assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		2107154420B5677200E6C96B /* RNKiwiGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNKiwiGestureController.m; sourceTree = "<group>"; };
+		2107154520B5677200E6C96B /* RNKiwiGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiSharedBridge.h; sourceTree = "<group>"; };
 		2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiSharedBridge.m; sourceTree = "<group>"; };
@@ -197,6 +202,8 @@
 				686E004A20B2E1360013512F /* RNKiwiConstants.h */,
 				686E005020B2E24B0013512F /* RNKiwiConstants.m */,
 				2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */,
+				2107154520B5677200E6C96B /* RNKiwiGestureController.h */,
+				2107154420B5677200E6C96B /* RNKiwiGestureController.m */,
 				2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */,
 				27E931BE20AD987C0053AE19 /* RNKiwiViewController.h */,
 				27E931BF20AD987C0053AE19 /* RNKiwiViewController.m */,
@@ -294,6 +301,7 @@
 				27E931C920AD9AE90053AE19 /* RNKiwiOptions.h in Headers */,
 				27E931C020AD987C0053AE19 /* RNKiwiViewController.h in Headers */,
 				27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */,
+				2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */,
 				27E931C320AD9A2A0053AE19 /* RNKiwiViewControllerFlowDelegate.h in Headers */,
 				27E931C520AD9A4B0053AE19 /* RNKiwiCurrencyManager.h in Headers */,
 				2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */,
@@ -611,6 +619,7 @@
 				27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */,
 				2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */,
 				686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */,
+				2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
