@@ -29,7 +29,14 @@
 [include]
 
 [untyped]
-<PROJECT_ROOT>/node_modules/react-native/Libraries/.+
+; Be careful - do not add 'StyleSheet' here
+<PROJECT_ROOT>/node_modules/react-native/Libraries/Animated/.+
+<PROJECT_ROOT>/node_modules/react-native/Libraries/Components/.+
+<PROJECT_ROOT>/node_modules/react-native/Libraries/Experimental/.+
+<PROJECT_ROOT>/node_modules/react-native/Libraries/Image/.+
+<PROJECT_ROOT>/node_modules/react-native/Libraries/Lists/.+
+<PROJECT_ROOT>/node_modules/react-native/Libraries/ReactNative/.+
+<PROJECT_ROOT>/node_modules/react-native/Libraries/Utilities/.+
 <PROJECT_ROOT>/node_modules/graphql/.+
 
 [libs]
@@ -69,7 +76,7 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowRelayIssue: https://github.com/facebook/rel
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError: .+
 
 [strict]
-nonstrict-import
+;nonstrict-import
 unclear-type
 unsafe-getters-setters
 ;untyped-import
