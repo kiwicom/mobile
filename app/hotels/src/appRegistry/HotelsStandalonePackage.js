@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { GestureController } from '@kiwicom/mobile-shared';
 
 import RootComponent from './RootComponent';
 import HotelsStack from '../navigation/NavigationStack';
@@ -17,7 +18,25 @@ type Props = {|
   checkout?: string,
 |};
 
+type NavigationState = {|
+  key: string,
+  isTransitioning: boolean,
+  index: number,
+  routes: mixed[],
+|};
+
 export default class HotelsStandalonePackage extends React.Component<Props> {
+  onNavigationStateChange = (
+    previousState: NavigationState,
+    currentState: NavigationState,
+  ) => {
+    if (currentState.index === 0) {
+      GestureController.enableGestures('KiwiHotels');
+    } else if (currentState.index > 0) {
+      GestureController.disableGestures('KiwiHotels');
+    }
+  };
+
   renderInnerComponent = (onBackClicked: () => void) => {
     const checkin = this.props.checkin ? new Date(this.props.checkin) : null;
     const checkout = this.props.checkout ? new Date(this.props.checkout) : null;
@@ -28,7 +47,12 @@ export default class HotelsStandalonePackage extends React.Component<Props> {
       checkout,
     };
 
-    return <HotelsStack screenProps={screenProps} />;
+    return (
+      <HotelsStack
+        screenProps={screenProps}
+        onNavigationStateChange={this.onNavigationStateChange}
+      />
+    );
   };
 
   render = () => {
