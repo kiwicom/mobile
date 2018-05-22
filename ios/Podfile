@@ -25,7 +25,6 @@ def react_native_pods()
   
   pod 'RNLogging', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNTranslationManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
-  pod 'RNColors', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNCurrencyManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'RNDeviceInfo', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'

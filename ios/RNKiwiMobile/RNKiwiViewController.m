@@ -6,7 +6,6 @@
 #import <RNLogging/RNLoggingModule.h>
 #import <RNTranslationManager/RNTranslationManager.h>
 #import <RNCurrencyManager/RNCurrencyManager.h>
-#import <RNColors/RNColors.h>
 #import <RNDeviceInfo/RNDeviceInfo.h>
 
 #import <React/RCTBundleURLProvider.h>
