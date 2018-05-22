@@ -102,4 +102,8 @@ export type {
   PanResponderEvent,
 } from './types/Events';
 
-export type { StylePropType } from './types/Styles';
+export type {
+  StylePropType,
+  StyleObjectType,
+  PlatformStyleObjectType,
+} from './types/Styles';
