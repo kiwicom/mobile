@@ -1,7 +1,5 @@
 // @flow strict
 
-import { NativeModules } from 'react-native';
-
 /**
  * @see https://material.io/design/color/the-color-system.html#tools-for-picking-colors
  */
@@ -88,29 +86,18 @@ const ColorPalette = {
   white: '#ffffff',
 };
 
-const {
-  brand,
-  brandSecondary,
-  buttercup,
-  sun,
-  backgroundGray,
-  textDark,
-  textMedium,
-  textLight,
-} = NativeModules.RNColors;
-
 /**
  * @see https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf
  */
 export default {
-  brand,
-  brandSecondary,
-  buttercup,
-  sun,
-  backgroundGray,
-  textDark,
-  textMedium,
-  textLight,
+  brand: '#0097a9',
+  brandSecondary: '#0cb3c7',
+  buttercup: '#eb9d08',
+  sun: '#fbad18',
+  backgroundGray: '#edeff2',
+  textDark: '#30363d',
+  textMedium: '#596066',
+  textLight: '#79818a',
 
   ...ColorPalette,
 };
