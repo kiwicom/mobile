@@ -40,7 +40,7 @@ function TextIcon(props: Props) {
 
 TextIcon.defaultProps = {
   style: {
-    color: Color.grey.$600,
+    color: Color.textLight,
     fontSize: 20,
   },
 };

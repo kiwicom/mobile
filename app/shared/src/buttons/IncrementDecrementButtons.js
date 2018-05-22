@@ -22,11 +22,13 @@ const Button = ({
   style?: StylePropType,
 |}) => {
   const inner = (
-    <View style={styleSheet.button}>
+    <View
+      style={[styleSheet.button, touchable ? null : styleSheet.buttonDisabled]}
+    >
       <Text
         style={[
           styleSheet.buttonText,
-          touchable ? styleSheet.touchable : styleSheet.disabled,
+          touchable ? null : styleSheet.buttonTextDisabled,
           style,
         ]}
       >
@@ -75,7 +77,7 @@ const styleSheet = StyleSheet.create({
   buttonsGroup: {
     flexDirection: 'row',
     borderWidth: 1,
-    borderColor: Color.brand,
+    borderColor: Color.inputBackground,
     height: 29,
     width: 94, // 47 * 2 (see button)
     borderRadius: 4,
@@ -87,14 +89,17 @@ const styleSheet = StyleSheet.create({
     alignItems: 'center',
     width: 47, // 94 / 2 (see buttonsGroup)
   },
+  buttonDisabled: {
+    backgroundColor: Color.inputBackground,
+  },
   buttonLeft: {
     alignItems: 'center',
     borderRightWidth: 1,
-    borderColor: Color.brand,
+    borderColor: Color.inputBackground,
     paddingBottom: 0,
   },
   buttonText: {
-    color: Color.brand,
+    color: Color.textDark,
     fontSize: 25,
     ios: {
       paddingBottom: 33,
@@ -103,6 +108,9 @@ const styleSheet = StyleSheet.create({
       paddingBottom: 3,
     },
   },
+  buttonTextDisabled: {
+    color: Color.textLight,
+  },
   minusText: {
     android: {
       paddingBottom: 1,
@@ -110,11 +118,5 @@ const styleSheet = StyleSheet.create({
     ios: {
       paddingBottom: 32,
     },
-  },
-  touchable: {
-    opacity: 1,
-  },
-  disabled: {
-    opacity: 0.5,
   },
 });

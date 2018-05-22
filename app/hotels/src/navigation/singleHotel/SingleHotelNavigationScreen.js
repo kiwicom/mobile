@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 import { HeaderBackButton } from 'react-navigation';
+import { Color } from '@kiwicom/mobile-shared';
 
 import SingleHotel from '../../singleHotel';
 import type { NavigationProps } from '../NavigationStack';
@@ -23,7 +24,7 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
     }
 
     return {
-      headerLeft: <HeaderBackButton tintColor="#fff" onPress={goBack} />,
+      headerLeft: <HeaderBackButton tintColor={Color.brand} onPress={goBack} />,
     };
   };
 

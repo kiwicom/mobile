@@ -78,11 +78,10 @@ const styles = StyleSheet.create({
   form: {
     backgroundColor: Color.white,
     android: {
-      padding: 14,
-      paddingTop: 16,
+      paddingHorizontal: 14,
     },
     ios: {
-      padding: 10,
+      paddingHorizontal: 10,
     },
   },
   row: {

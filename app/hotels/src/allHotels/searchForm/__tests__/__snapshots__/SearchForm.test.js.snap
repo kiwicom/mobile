@@ -5,7 +5,7 @@ exports[`SearchForm Render all inputs 1`] = `
   style={
     Object {
       "backgroundColor": "#ffffff",
-      "padding": 10,
+      "paddingHorizontal": 10,
     }
   }
 >

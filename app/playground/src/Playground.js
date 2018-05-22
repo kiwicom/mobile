@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
-import { StyleSheet, Text, AdaptableLayout } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  Text,
+  AdaptableLayout,
+  Color,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
@@ -33,7 +38,7 @@ export default class Playground extends React.Component<Props> {
 
     return {
       title: 'Playground',
-      headerLeft: <HeaderBackButton tintColor="#fff" onPress={goBack} />,
+      headerLeft: <HeaderBackButton tintColor={Color.white} onPress={goBack} />,
     };
   };
 

@@ -24,7 +24,7 @@ type ListItemType = {|
 
 const styles = StyleSheet.create({
   listHeader: {
-    marginTop: 20,
+    marginTop: 5,
   },
 });
 

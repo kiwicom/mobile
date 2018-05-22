@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Icon, Color } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import PricePopup from './PricePopup';
@@ -96,7 +96,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
       <View>
         <FilterButton
           title={this.getTitle(start, end, priceMin, priceMax, currency)}
-          icon={<Icon name="attach-money" size={18} color={Color.white} />}
+          icon={<Icon name="attach-money" size={18} />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />

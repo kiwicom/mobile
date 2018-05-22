@@ -6,7 +6,7 @@ exports[`SuggestionList renders 1`] = `
     <Component
       style={
         Object {
-          "marginTop": 20,
+          "marginTop": 5,
         }
       }
     />
