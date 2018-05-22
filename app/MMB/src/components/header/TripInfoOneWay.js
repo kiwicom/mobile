@@ -18,7 +18,7 @@ function TripInfoOneWay(props: Props) {
   return (
     <React.Fragment>
       <TripCities data={trip} type="ONE_WAY" />
-      <TripTimes data={trip} />;
+      <TripTimes data={trip} />
     </React.Fragment>
   );
 }
