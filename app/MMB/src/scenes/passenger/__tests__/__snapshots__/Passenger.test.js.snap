@@ -4,84 +4,107 @@ exports[`renders 1`] = `
 <SimpleCard
   style={
     Object {
-      "paddingBottom": 16,
-      "paddingHorizontal": 15,
-      "paddingTop": 13,
+      "marginBottom": 0,
+      "padding": 0,
     }
   }
 >
-  <Text
-    style={
-      Object {
-        "fontSize": 16,
-        "marginBottom": 17,
-      }
-    }
-  >
-    <Translation
-      passThrough="Mr. Trond Bergquist"
-    />
-  </Text>
-  <Row>
-    <Column
-      title={
-        <Translation
-          id="mmb.passenger.nationality.label"
-        />
-      }
-      value={
-        <Translation
-          passThrough="NO"
-        />
-      }
-    />
-    <Column
-      title={
-        <Translation
-          id="mmb.passenger.birthday"
-        />
-      }
-      value={
-        <Translation
-          passThrough="5/10/1984"
-        />
-      }
-    />
-  </Row>
   <Component
     style={
       Object {
-        "marginVertical": 15,
+        "paddingBottom": 16,
+        "paddingHorizontal": 15,
+        "paddingTop": 13,
       }
     }
   >
-    <SeparatorFullWidth />
+    <Text
+      style={
+        Object {
+          "fontSize": 16,
+          "marginBottom": 17,
+        }
+      }
+    >
+      <Translation
+        passThrough="Mr. Trond Bergquist"
+      />
+    </Text>
+    <Row>
+      <Column
+        title={
+          <Translation
+            id="mmb.passenger.nationality.label"
+          />
+        }
+        value={
+          <Translation
+            passThrough="NO"
+          />
+        }
+      />
+      <Column
+        title={
+          <Translation
+            id="mmb.passenger.birthday"
+          />
+        }
+        value={
+          <Translation
+            passThrough="5/10/1984"
+          />
+        }
+      />
+    </Row>
+    <Component
+      style={
+        Object {
+          "marginVertical": 15,
+        }
+      }
+    >
+      <SeparatorFullWidth />
+    </Component>
+    <Row>
+      <Column
+        title={
+          <Translation
+            id="mmb.passenger.id"
+          />
+        }
+        value={
+          <Translation
+            passThrough="123456"
+          />
+        }
+      />
+      <Column
+        title={
+          <Translation
+            id="mmb.passenger.insurance"
+          />
+        }
+        value={
+          <Translation
+            passThrough="Travel Plus"
+          />
+        }
+      />
+    </Row>
   </Component>
-  <Row>
-    <Column
-      title={
-        <Translation
-          id="mmb.passenger.id"
-        />
+  <Relay(VisaInformation)
+    visa={
+      Object {
+        "birthday": "1984-05-10T00:00:00.000Z",
+        "fullName": "Trond Bergquist",
+        "insuranceType": "TRAVEL_PLUS",
+        "nationality": "no",
+        "title": "Mr",
+        "travelDocument": Object {
+          "idNumber": "123456",
+        },
       }
-      value={
-        <Translation
-          passThrough="123456"
-        />
-      }
-    />
-    <Column
-      title={
-        <Translation
-          id="mmb.passenger.insurance"
-        />
-      }
-      value={
-        <Translation
-          passThrough="Travel Plus"
-        />
-      }
-    />
-  </Row>
+    }
+  />
 </SimpleCard>
 `;

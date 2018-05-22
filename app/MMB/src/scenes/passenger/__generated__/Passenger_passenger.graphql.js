@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type VisaInformation_visa$ref = any;
 export type InsuranceType = "NONE" | "TRAVEL_BASIC" | "TRAVEL_PLUS" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Passenger_passenger$ref: FragmentReference;
@@ -20,6 +21,7 @@ export type Passenger_passenger = {|
     +idNumber: ?string
   |},
   +insuranceType: ?InsuranceType,
+  +$fragmentRefs: VisaInformation_visa$ref,
   +$refType: Passenger_passenger$ref,
 |};
 */
@@ -84,9 +86,14 @@ const node/*: ConcreteFragment*/ = {
       "name": "insuranceType",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "VisaInformation_visa",
+      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4dca27d44f11bc8560b322b9c0ffe11e';
+(node/*: any*/).hash = 'b2093f050c07c992a8849e420b204ea4';
 module.exports = node;
