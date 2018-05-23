@@ -28,15 +28,8 @@ exports[`ButtonPopup playground renders in playground 1`] = `
       }
     }
   >
-    <Button
+    <TextButton
       onPress={[Function]}
-      styles={
-        Object {
-          "buttonWrapper": Object {
-            "height": 44,
-          },
-        }
-      }
       title={
         <Translation
           passThrough="Save"

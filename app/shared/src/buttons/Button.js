@@ -1,95 +1,51 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
-import type { TranslationType } from '@kiwicom/mobile-localization';
 
 import Color from '../Color';
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../icons/Icon';
-import ButtonText from './ButtonText';
+import type { StylePropType } from '../../index';
 
 type Props = {|
-  title: TranslationType,
-  onPress?: Function,
-  styles?: {|
-    buttonWrapper?: Object,
-    button?: Object,
-    buttonText?: Object,
-    icon?: Object,
-  |},
-
-  // deprecated (will be replaced by ButtonGroup component, see IncrementDecrementButtons implementation)
-  icon?: React.Element<typeof Icon>,
+  children: React.Node,
+  onPress?: () => void,
+  style?: StylePropType,
 |};
 
+/**
+ * This is base component for generic button. You can pass anything to the
+ * children so you should almost never use this component directly. There
+ * are specialized components like 'TextButton' or 'LinkButton' for this.
+ */
 export default function Button(props: Props) {
-  const styles = createStyles(props.icon);
-  const additionalStyles = props.styles || {};
+  const onPressHandler = props.onPress || (() => {});
 
-  const buttonView = (
-    <View style={[styles.buttonWrapper, additionalStyles.buttonWrapper]}>
-      {props.icon && (
-        <View style={[styles.icon, additionalStyles.icon]}>{props.icon}</View>
-      )}
-      <View style={[styles.button, additionalStyles.button]}>
-        <ButtonText
-          style={[styles.buttonText, additionalStyles.buttonText]}
-          text={props.title}
-        />
-      </View>
-    </View>
+  return (
+    <Touchable
+      disabled={!props.onPress}
+      onPress={onPressHandler}
+      style={[styleSheet.buttonWrapper, props.style]}
+      accessibilityComponentType="button"
+    >
+      {props.children}
+    </Touchable>
   );
-
-  if (props.onPress) {
-    return <Touchable onPress={props.onPress}>{buttonView}</Touchable>;
-  } else {
-    return buttonView;
-  }
 }
 
-function createStyles(iconAvailable) {
-  const defaultStyles: Object = {
-    buttonWrapper: {
-      flexDirection: 'row',
-      borderRadius: 2,
-      android: {
-        height: 40,
-      },
-      ios: {
-        height: 36,
-      },
+const styleSheet = StyleSheet.create({
+  buttonWrapper: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 11,
+    borderRadius: 2,
+    backgroundColor: Color.brand,
+    android: {
+      height: 40,
     },
-    button: {
-      flexGrow: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingLeft: 0,
-      paddingRight: 11,
-      borderRadius: 2,
-      backgroundColor: Color.brand,
+    ios: {
+      height: 36,
     },
-    buttonText: {
-      fontWeight: '500',
-      color: '#fff',
-      fontSize: 14,
-      android: {
-        lineHeight: 14,
-      },
-    },
-    icon: {
-      justifyContent: 'center',
-      padding: 5,
-      paddingLeft: 7,
-      borderTopLeftRadius: 2,
-      borderBottomLeftRadius: 2,
-      backgroundColor: Color.brand,
-    },
-  };
-  if (iconAvailable) {
-    defaultStyles.button.borderTopLeftRadius = 0;
-    defaultStyles.button.borderBottomLeftRadius = 0;
-  }
-  return StyleSheet.create(defaultStyles);
-}
+  },
+});

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import {
   StyleSheet,
-  ButtonText,
+  ButtonTitle,
   type StylePropType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -35,12 +35,12 @@ type Props = {|
 export default function BookNowText(props: Props) {
   return (
     <View style={styles.buttonInnerWrapper}>
-      <ButtonText
+      <ButtonTitle
         style={styles.buttonTitle}
         text={<Translation id="single_hotel.book_now" />}
       />
       <View style={styles.priceWrapper}>
-        <ButtonText
+        <ButtonTitle
           style={props.buttonPriceStyle}
           text={
             <Translation

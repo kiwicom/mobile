@@ -1,14 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
 import renderer from 'react-test-renderer';
 import { Touchable } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import ButtonPopup from '../ButtonPopup';
-
-const shallowRenderer = new ShallowRenderer();
 
 const renderPopup = (onSave, onClose) =>
   renderer.create(
@@ -23,20 +20,6 @@ const renderPopup = (onSave, onClose) =>
   );
 
 describe('ButtonPopup', () => {
-  it('render popup with child', () => {
-    shallowRenderer.render(
-      <ButtonPopup
-        buttonTitle={<Translation passThrough="Save" />}
-        isVisible={true}
-        onSave={jest.fn()}
-        onClose={jest.fn()}
-      >
-        <Translation passThrough="Child" />
-      </ButtonPopup>,
-    );
-    expect(shallowRenderer.getRenderOutput()).toMatchSnapshot();
-  });
-
   it('save button should call onSave', async () => {
     const onSave = jest.fn();
     const onClose = jest.fn();

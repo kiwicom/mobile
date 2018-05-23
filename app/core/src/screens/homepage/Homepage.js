@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, Layout } from '@kiwicom/mobile-shared';
+import { TextButton, Layout } from '@kiwicom/mobile-shared';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import {
   Translation,
@@ -79,31 +79,31 @@ export default class Homepage extends React.Component<Props> {
     return (
       <Layout>
         <Section>
-          <Button
+          <TextButton
             title={<Translation passThrough="Hotels" />}
             onPress={this.goToAllHotelsPage}
           />
         </Section>
         <Section>
-          <Button
+          <TextButton
             title={<Translation passThrough="Hotels in Oslo" />}
             onPress={this.goToOslo}
           />
         </Section>
         <Section>
-          <Button
+          <TextButton
             title={<Translation passThrough="Hotels in Lima" />}
             onPress={this.goToLima}
           />
         </Section>
         <Section>
-          <Button
+          <TextButton
             title={<Translation passThrough="Go to single hotel" />}
             onPress={this.goToSingleHotel}
           />
         </Section>
         <Section>
-          <Button
+          <TextButton
             title={
               <Translation passThrough="Search with checkin and checkout dates" />
             }

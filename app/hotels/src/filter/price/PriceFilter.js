@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -93,7 +92,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
     const end = this.props.end || priceMax;
     const currency = 'EUR'; // Currently only EUR supported. Should be improved in future release
     return (
-      <View>
+      <React.Fragment>
         <FilterButton
           title={this.getTitle(start, end, priceMin, priceMax, currency)}
           icon={<Icon name="attach-money" size={18} />}
@@ -110,7 +109,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
           end={end}
           currency={currency}
         />
-      </View>
+      </React.Fragment>
     );
   }
 }
