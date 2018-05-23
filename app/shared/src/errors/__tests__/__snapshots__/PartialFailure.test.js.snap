@@ -26,13 +26,13 @@ Array [
         "alignItems": "center",
         "backgroundColor": "#fae8e8",
         "bottom": 0,
+        "end": 0,
         "flex": 1,
         "flexDirection": "row",
-        "left": 0,
         "paddingHorizontal": 10,
         "paddingVertical": 5,
         "position": "absolute",
-        "right": 0,
+        "start": 0,
       }
     }
   >

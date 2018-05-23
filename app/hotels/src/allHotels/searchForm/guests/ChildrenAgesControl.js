@@ -55,13 +55,13 @@ const styles = StyleSheet.create({
     backgroundColor: Color.white,
   },
   list: {
-    paddingLeft: 15,
+    paddingStart: 15,
   },
   ageControlContainer: {
     borderBottomColor: Color.backgroundGray,
     borderBottomWidth: 1,
   },
   ageControl: {
-    paddingRight: 15,
+    paddingEnd: 15,
   },
 });

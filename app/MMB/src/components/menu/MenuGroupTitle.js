@@ -20,7 +20,7 @@ export default function MenuGroupTitle(props: Props) {
 const styleSheet = StyleSheet.create({
   titleWrapper: {
     paddingBottom: 11,
-    paddingLeft: 15,
+    paddingStart: 15,
     android: {
       paddingTop: 11,
     },

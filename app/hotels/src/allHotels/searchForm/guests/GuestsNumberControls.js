@@ -4,21 +4,6 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Color, NumberControl } from '@kiwicom/mobile-shared';
 
-const styles = StyleSheet.create({
-  numberPickerContainer: {
-    paddingTop: 14,
-    paddingRight: 15,
-  },
-  separator: {
-    paddingLeft: 15,
-    borderBottomColor: Color.backgroundGray,
-    borderBottomWidth: 1,
-  },
-  numberPicker: {
-    marginBottom: 14,
-  },
-});
-
 type Props = {|
   adultsCount: number,
   childCount: number,
@@ -27,29 +12,46 @@ type Props = {|
 |};
 
 export default function GuestsNumberControl(props: Props) {
-  return [
-    <View key="adults-picker" style={styles.numberPickerContainer}>
-      <NumberControl
-        label="Adult"
-        number={props.adultsCount}
-        min={1}
-        max={30}
-        style={styles.numberPicker}
-        icon="person"
-        onChange={props.handleAdultChange}
-      />
-    </View>,
-    <View key="separator" style={styles.separator} />,
-    <View key="children-picker" style={styles.numberPickerContainer}>
-      <NumberControl
-        label="Children"
-        number={props.childCount}
-        min={0}
-        max={10}
-        icon="child-care"
-        onChange={props.handleChildrenChange}
-        style={styles.numberPicker}
-      />
-    </View>,
-  ];
+  return (
+    <React.Fragment>
+      <View style={styles.numberPickerContainer}>
+        <NumberControl
+          label="Adult"
+          number={props.adultsCount}
+          min={1}
+          max={30}
+          style={styles.numberPicker}
+          icon="person"
+          onChange={props.handleAdultChange}
+        />
+      </View>
+      <View style={styles.separator} />
+      <View style={styles.numberPickerContainer}>
+        <NumberControl
+          label="Children"
+          number={props.childCount}
+          min={0}
+          max={10}
+          icon="child-care"
+          onChange={props.handleChildrenChange}
+          style={styles.numberPicker}
+        />
+      </View>
+    </React.Fragment>
+  );
 }
+
+const styles = StyleSheet.create({
+  numberPickerContainer: {
+    paddingTop: 14,
+    paddingEnd: 15,
+  },
+  separator: {
+    paddingStart: 15,
+    borderBottomColor: Color.backgroundGray,
+    borderBottomWidth: 1,
+  },
+  numberPicker: {
+    marginBottom: 14,
+  },
+});

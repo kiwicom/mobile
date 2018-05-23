@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   date: {
     flexDirection: 'row',
-    marginLeft: 10,
+    marginStart: 10,
   },
   dateText: {
     color: Color.textDark,
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
       paddingTop: 2,
       fontSize: 14,
     },
-    marginLeft: 5,
+    marginStart: 5,
   },
 });

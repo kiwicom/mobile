@@ -87,7 +87,7 @@ exports[`StarsPopup should render popup 1`] = `
       style={
         Object {
           "fontSize": 16,
-          "marginLeft": 3,
+          "marginStart": 3,
         }
       }
     >

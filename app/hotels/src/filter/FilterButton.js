@@ -31,7 +31,7 @@ export default function FilterButton(props: Props) {
   const styleSheet = StyleSheet.create({
     buttonGroup: {
       backgroundColor: isActive ? Color.brand : Color.brandLight,
-      marginRight: 5,
+      marginEnd: 5,
     },
     buttonText: {
       color: isActive ? Color.white : Color.brandDark,
@@ -46,7 +46,7 @@ export default function FilterButton(props: Props) {
       },
     },
     icon: {
-      paddingRight: 5,
+      paddingEnd: 5,
     },
     row: {
       flexDirection: 'row',

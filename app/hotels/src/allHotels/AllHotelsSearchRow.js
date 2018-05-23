@@ -20,7 +20,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
   },
   image: {
-    marginRight: 10,
+    marginEnd: 10,
     width: 50,
     borderRadius: 2,
     android: {
@@ -39,7 +39,7 @@ const style = StyleSheet.create({
     flex: 1,
   },
   hotelReviewScore: {
-    marginLeft: 10,
+    marginStart: 10,
   },
   cardStyle: {
     marginVertical: 0,

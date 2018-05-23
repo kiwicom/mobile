@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
+import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 import Touchable from './Touchable';
 import type { StylePropType } from '../types/Styles';
@@ -27,7 +28,11 @@ export default function SimpleCard(props: Props) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#fff',
+    backgroundColor: Color.white,
+    borderStyle: 'solid',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: '#e8edf1',
     marginVertical: 3,
     padding: 10,
     android: {

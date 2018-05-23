@@ -11,7 +11,7 @@ Array [
             "alignSelf": "flex-end",
             "color": "rgb(49, 161, 30)",
             "fontSize": 10,
-            "marginRight": 5,
+            "marginEnd": 5,
           }
         }
       />
@@ -44,7 +44,7 @@ Array [
             "alignSelf": "flex-end",
             "color": "rgb(49, 161, 30)",
             "fontSize": 10,
-            "marginRight": 5,
+            "marginEnd": 5,
           }
         }
       />
