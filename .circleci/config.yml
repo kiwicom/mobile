@@ -37,6 +37,6 @@ jobs:
 
     branches:
       only:
-        - master
+        - circle-ci-release-ios
     steps:
       - run: yarn release
