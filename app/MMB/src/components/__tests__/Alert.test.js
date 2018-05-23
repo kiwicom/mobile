@@ -14,4 +14,20 @@ describe('Alert', () => {
       </Alert>,
     );
   });
+
+  it('renders success type', () => {
+    PlaygroundRenderer.render(
+      <Alert type="success" title={<Translation passThrough="Alert success" />}>
+        <Translation passThrough="Alert body" />
+      </Alert>,
+    );
+  });
+
+  it('renders warning type', () => {
+    PlaygroundRenderer.render(
+      <Alert type="warning" title={<Translation passThrough="Alert warning" />}>
+        <Translation passThrough="Alert body" />
+      </Alert>,
+    );
+  });
 });
