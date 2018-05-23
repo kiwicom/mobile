@@ -5,6 +5,7 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
 import VisaRequired from './VisaRequired';
+import VisaOk from './VisaOk';
 import type { VisaInformation_visa as VisaType } from './__generated__/VisaInformation_visa.graphql';
 
 type Props = {|
@@ -16,8 +17,7 @@ const VisaInformation = (props: Props) => {
   const notice = idx(props.visa, _ => _.visaInformation.warningIn) || [];
 
   if (requiredIn.length === 0 && notice.length === 0) {
-    // TODO: return ok;
-    return null;
+    return <VisaOk />;
   }
 
   return (
