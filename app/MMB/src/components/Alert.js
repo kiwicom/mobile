@@ -2,7 +2,13 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, StyleSheet, Icon } from '@kiwicom/mobile-shared';
+import {
+  Text,
+  StyleSheet,
+  Icon,
+  Color,
+  type StylePropType,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type CommonProps = {|
@@ -15,13 +21,18 @@ type Props = {|
   ...CommonProps,
 |};
 
-const AlertDanger = (props: CommonProps) => (
-  <View style={[styles.container, styles.containerDanger]}>
-    <View style={styles.iconContainer}>
-      <Icon name="warning" size={18} color={RED} />
-    </View>
+type RenderAlertProps = {|
+  containerStyle: StylePropType,
+  titleStyle: StylePropType,
+  icon: React.Element<typeof Icon>,
+  ...CommonProps,
+|};
+
+const RenderAlert = (props: RenderAlertProps) => (
+  <View style={[styles.container, props.containerStyle]}>
+    <View style={styles.iconContainer}>{props.icon}</View>
     <View>
-      <Text style={[styles.titleText, styles.titleDanger]}>{props.title}</Text>
+      <Text style={[styles.titleText, props.titleStyle]}>{props.title}</Text>
       <View style={styles.body}>{props.children}</View>
     </View>
   </View>
@@ -30,13 +41,45 @@ const AlertDanger = (props: CommonProps) => (
 export default function Alert(props: Props) {
   switch (props.type) {
     case 'danger':
-      return <AlertDanger title={props.title}>{props.children}</AlertDanger>;
+      return (
+        <RenderAlert
+          icon={<Icon name="warning" size={18} color={RED} />}
+          title={props.title}
+          titleStyle={styles.titleDanger}
+          containerStyle={styles.containerDanger}
+        >
+          {props.children}
+        </RenderAlert>
+      );
     case 'warning':
-      // TODO
-      return null;
+      return (
+        <RenderAlert
+          icon={<Icon name="warning" size={18} color="#eb9d08" />}
+          title={props.title}
+          titleStyle={styles.titleWarning}
+          containerStyle={styles.containerWarning}
+        >
+          {props.children}
+        </RenderAlert>
+      );
     case 'success':
-      // TODO
-      return null;
+      return (
+        <RenderAlert
+          icon={
+            <Icon
+              name="error-outline"
+              size={18}
+              color={Color.green.normal}
+              style={styles.successIcon}
+            />
+          }
+          title={props.title}
+          titleStyle={styles.titleSuccess}
+          containerStyle={styles.containerSuccess}
+        >
+          {props.children}
+        </RenderAlert>
+      );
     default:
       return null;
   }
@@ -64,5 +107,20 @@ const styles = StyleSheet.create({
   },
   body: {
     marginTop: 5,
+  },
+  successIcon: {
+    transform: [{ rotate: '180deg' }],
+  },
+  containerSuccess: {
+    backgroundColor: Color.green.light,
+  },
+  titleSuccess: {
+    color: Color.green.dark,
+  },
+  containerWarning: {
+    backgroundColor: 'rgba(235, 157, 8, 0.15)',
+  },
+  titleWarning: {
+    color: '#eb9d08',
   },
 });

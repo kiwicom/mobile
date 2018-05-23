@@ -1,15 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Alert renders danger type 1`] = `
-<AlertDanger
+<RenderAlert
+  containerStyle={
+    Object {
+      "backgroundColor": "rgba(208, 2, 27, 0.15)",
+    }
+  }
+  icon={
+    <Icon
+      color="#d0021b"
+      name="warning"
+      size={18}
+    />
+  }
   title={
     <Translation
       passThrough="Alert danger"
     />
   }
+  titleStyle={
+    Object {
+      "color": "#d0021b",
+    }
+  }
 >
   <Translation
     passThrough="Alert body"
   />
-</AlertDanger>
+</RenderAlert>
+`;
+
+exports[`Alert renders success type 1`] = `
+<RenderAlert
+  containerStyle={
+    Object {
+      "backgroundColor": "#c4f2ca",
+    }
+  }
+  icon={
+    <Icon
+      color="#46b655"
+      name="error-outline"
+      size={18}
+      style={
+        Object {
+          "transform": Array [
+            Object {
+              "rotate": "180deg",
+            },
+          ],
+        }
+      }
+    />
+  }
+  title={
+    <Translation
+      passThrough="Alert success"
+    />
+  }
+  titleStyle={
+    Object {
+      "color": "#196e25",
+    }
+  }
+>
+  <Translation
+    passThrough="Alert body"
+  />
+</RenderAlert>
+`;
+
+exports[`Alert renders warning type 1`] = `
+<RenderAlert
+  containerStyle={
+    Object {
+      "backgroundColor": "rgba(235, 157, 8, 0.15)",
+    }
+  }
+  icon={
+    <Icon
+      color="#eb9d08"
+      name="warning"
+      size={18}
+    />
+  }
+  title={
+    <Translation
+      passThrough="Alert warning"
+    />
+  }
+  titleStyle={
+    Object {
+      "color": "#eb9d08",
+    }
+  }
+>
+  <Translation
+    passThrough="Alert body"
+  />
+</RenderAlert>
 `;
