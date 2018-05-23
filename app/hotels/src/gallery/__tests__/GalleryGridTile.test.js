@@ -8,7 +8,7 @@ import Tile from '../GalleryGridTile';
 const renderer = new ShallowRenderer();
 const voidCallback = () => {};
 
-it('renders with marginRight if not last in the row', () => {
+it('renders with marginEnd if not last in the row', () => {
   renderer.render(
     <Tile
       width={10}
@@ -22,7 +22,7 @@ it('renders with marginRight if not last in the row', () => {
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
-it('renders without marginRight if last in the row', () => {
+it('renders without marginEnd if last in the row', () => {
   renderer.render(
     <Tile
       width={10}

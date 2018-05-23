@@ -70,8 +70,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     ios: {
-      marginLeft: 22,
-      marginRight: 10,
+      marginStart: 22,
+      marginEnd: 10,
       paddingVertical: 12,
     },
     android: {

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     lineHeight: 14,
     fontWeight: '600',
     color: '#ffffff',
-    marginLeft: 5,
+    marginStart: 5,
   },
 });
 

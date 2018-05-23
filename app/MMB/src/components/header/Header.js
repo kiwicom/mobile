@@ -52,7 +52,7 @@ const styleSheet = StyleSheet.create({
   wrapper: {
     backgroundColor: Color.white,
     padding: 10,
-    borderLeftWidth: 5,
+    borderStartWidth: 5,
     borderColor: Color.brand,
   },
   separator: {

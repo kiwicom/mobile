@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Color.backgroundGray,
   },
   unrated: {
-    marginLeft: 3,
+    marginStart: 3,
     fontSize: 16,
   },
 });

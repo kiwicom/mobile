@@ -118,6 +118,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   facilityIcon: {
-    marginRight: 10,
+    marginEnd: 10,
   },
 });

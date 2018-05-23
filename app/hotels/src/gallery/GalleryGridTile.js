@@ -22,7 +22,7 @@ export default class GalleryGridTile extends React.Component<Props> {
       marginBottom: 2,
     };
     if (!this.props.lastInRow) {
-      style.marginRight = this.props.gap;
+      style.marginEnd = this.props.gap;
     }
 
     return (

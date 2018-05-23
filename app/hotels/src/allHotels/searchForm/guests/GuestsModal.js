@@ -19,11 +19,11 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   controlContainer: {
-    paddingLeft: 15,
+    paddingStart: 15,
     backgroundColor: Color.white,
   },
   childAgeTitle: {
-    paddingLeft: 15,
+    paddingStart: 15,
     paddingVertical: 12,
   },
   childAgeTitleText: {

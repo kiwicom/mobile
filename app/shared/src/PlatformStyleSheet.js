@@ -21,7 +21,15 @@ import type { StyleObjectType, PlatformStyleObjectType } from '../index';
  */
 export default {
   absoluteFill: StyleSheet.absoluteFill,
-  absoluteFillObject: StyleSheet.absoluteFillObject,
+
+  absoluteFillObject: {
+    position: 'absolute',
+    start: 0,
+    end: 0,
+    top: 0,
+    bottom: 0,
+  },
+
   flatten: StyleSheet.flatten,
 
   create(styles: PlatformStyleObjectType): StyleObjectType {

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   icon: {
     color: Color.textLight,
     fontSize: 12,
-    marginRight: 2,
+    marginEnd: 2,
     android: {
       alignSelf: 'center',
     },

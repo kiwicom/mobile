@@ -102,10 +102,10 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     minWidth: 110,
     android: {
-      marginRight: 8,
+      marginEnd: 8,
     },
     ios: {
-      marginRight: 10,
+      marginEnd: 10,
     },
   },
   rightDatePickerWrapper: {
