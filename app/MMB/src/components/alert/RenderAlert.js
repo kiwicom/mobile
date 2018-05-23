@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   iconContainer: {
-    marginRight: 12,
+    marginEnd: 12,
   },
   titleText: {
     fontSize: 12,

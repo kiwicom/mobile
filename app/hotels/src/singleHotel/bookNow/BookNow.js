@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    right: 0,
+    start: 0,
+    end: 0,
     flex: 1,
     backgroundColor: Color.brand,
   },

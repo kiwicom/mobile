@@ -103,7 +103,7 @@ const styleSheet = StyleSheet.create({
     },
   },
   icon: {
-    marginLeft: 10,
+    marginStart: 10,
     alignSelf: 'center',
   },
   placeholder: {

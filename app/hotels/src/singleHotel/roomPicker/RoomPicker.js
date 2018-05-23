@@ -142,11 +142,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   borderRadiusLeft: {
-    borderTopLeftRadius: radius,
-    borderBottomLeftRadius: radius,
+    borderTopStartRadius: radius,
+    borderBottomStartRadius: radius,
   },
   borderRadiusRight: {
-    borderTopRightRadius: radius,
-    borderBottomRightRadius: radius,
+    borderTopEndRadius: radius,
+    borderBottomEndRadius: radius,
   },
 });

@@ -52,14 +52,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    marginRight: 8,
+    marginEnd: 8,
   },
   label: {
     flex: 4,
   },
   number: {
     flex: 1,
-    marginRight: 20,
+    marginEnd: 20,
     textAlign: 'right',
   },
 });

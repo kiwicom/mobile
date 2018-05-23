@@ -15,12 +15,12 @@ exports[`renders as expected 1`] = `
         "paddingVertical": 14,
       },
       Object {
-        "borderBottomLeftRadius": 3,
-        "borderTopLeftRadius": 3,
+        "borderBottomStartRadius": 3,
+        "borderTopStartRadius": 3,
       },
       Object {
-        "borderBottomRightRadius": 3,
-        "borderTopRightRadius": 3,
+        "borderBottomEndRadius": 3,
+        "borderTopEndRadius": 3,
       },
     ]
   }

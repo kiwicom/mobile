@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   adaptableBadge: {
     backgroundColor: '#eceff1',
-    marginRight: 5,
+    marginEnd: 5,
     marginBottom: 5,
   },
   adaptableBadgeText: {

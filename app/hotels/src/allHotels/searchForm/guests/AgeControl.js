@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   age: {
-    marginRight: 10,
+    marginEnd: 10,
   },
   icon: {
     color: Color.brand,

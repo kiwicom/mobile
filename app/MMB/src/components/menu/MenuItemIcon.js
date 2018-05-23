@@ -24,7 +24,7 @@ export default function MenuItemIcon(props: Props) {
 
 const styleSheet = StyleSheet.create({
   iconWrapper: {
-    paddingRight: 15,
+    paddingEnd: 15,
     justifyContent: 'center',
   },
   icon: {

@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
   },
   portrait: {
     width: '50%',
-    paddingRight: 15,
+    paddingEnd: 15,
   },
   landscape: {
     width: '33.3%',
-    paddingRight: 15,
+    paddingEnd: 15,
   },
 });
 

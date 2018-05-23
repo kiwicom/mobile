@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
   mapIcon: {
     alignSelf: 'center',
-    marginRight: 10,
+    marginEnd: 10,
   },
   header: {
     fontWeight: 'bold',

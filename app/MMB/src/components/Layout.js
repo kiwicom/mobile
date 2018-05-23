@@ -86,8 +86,8 @@ const styleSheet = StyleSheet.create({
   menuWide: {
     width: 520,
     maxWidth: '50%',
-    borderRightWidth: 1,
-    borderRightColor: '#cad2dc',
+    borderEndWidth: 1,
+    borderEndColor: '#cad2dc',
   },
   container: {
     flex: 1,

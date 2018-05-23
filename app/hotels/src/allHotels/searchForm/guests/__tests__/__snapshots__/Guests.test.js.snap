@@ -25,7 +25,7 @@ exports[`Guests Render all inputs 1`] = `
       size={20}
       style={
         Object {
-          "marginRight": 8,
+          "marginEnd": 8,
         }
       }
     />

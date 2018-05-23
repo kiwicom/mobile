@@ -6,10 +6,10 @@ exports[`renders without crashing 1`] = `
     Object {
       "backgroundColor": "#00a991",
       "bottom": 0,
+      "end": 0,
       "flex": 1,
-      "left": 0,
       "position": "absolute",
-      "right": 0,
+      "start": 0,
     }
   }
 >

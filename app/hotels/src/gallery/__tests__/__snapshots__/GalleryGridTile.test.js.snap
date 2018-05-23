@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders with marginRight if not last in the row 1`] = `
+exports[`renders with marginEnd if not last in the row 1`] = `
 <Touchable
   borderlessRipple={false}
   disabled={false}
@@ -18,7 +18,7 @@ exports[`renders with marginRight if not last in the row 1`] = `
       Object {
         "height": 10,
         "marginBottom": 2,
-        "marginRight": 5,
+        "marginEnd": 5,
         "width": 10,
       }
     }
@@ -26,7 +26,7 @@ exports[`renders with marginRight if not last in the row 1`] = `
 </Touchable>
 `;
 
-exports[`renders without marginRight if last in the row 1`] = `
+exports[`renders without marginEnd if last in the row 1`] = `
 <Touchable
   borderlessRipple={false}
   disabled={false}

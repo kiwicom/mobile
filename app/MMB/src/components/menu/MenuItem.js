@@ -111,8 +111,8 @@ function createStyleSheet(props: Props) {
       paddingHorizontal: props.description ? 13 : 15,
       android: {
         backgroundColor: Color.white,
-        borderLeftWidth: 5,
-        borderLeftColor: props.isActive ? Color.brand : Color.white,
+        borderStartWidth: 5,
+        borderStartColor: props.isActive ? Color.brand : Color.white,
       },
       ios: {
         backgroundColor: props.isActive ? Color.brand : Color.white,

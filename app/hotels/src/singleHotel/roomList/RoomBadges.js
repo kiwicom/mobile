@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     android: {
       alignSelf: 'center',
     },
-    marginRight: 5,
+    marginEnd: 5,
   },
 });
 

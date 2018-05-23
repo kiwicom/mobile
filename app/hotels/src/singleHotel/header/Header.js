@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   galleryButton: {
     position: 'absolute',
-    right: 10,
+    end: 10,
     android: {
       top: Device.isWideLayout() ? 10 : StatusBar.currentHeight + 16,
     },
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   nameAndRating: {
-    marginLeft: 15,
-    marginRight: 15,
+    marginStart: 15,
+    marginEnd: 15,
     marginBottom: 10,
   },
   hotelName: {

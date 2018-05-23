@@ -19,7 +19,7 @@ exports[`IncrementDecrementButtons renders 1`] = `
       Object {
         "alignItems": "center",
         "borderColor": "#e8edf1",
-        "borderRightWidth": 1,
+        "borderEndWidth": 1,
         "paddingBottom": 0,
       }
     }

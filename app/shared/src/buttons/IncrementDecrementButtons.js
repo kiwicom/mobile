@@ -94,7 +94,7 @@ const styleSheet = StyleSheet.create({
   },
   buttonLeft: {
     alignItems: 'center',
-    borderRightWidth: 1,
+    borderEndWidth: 1,
     borderColor: Color.inputBackground,
     paddingBottom: 0,
   },
