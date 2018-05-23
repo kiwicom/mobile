@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import {
   graphql,
   createRefetchContainer,
@@ -11,6 +12,7 @@ import idx from 'idx';
 
 import type { PassengerDetail_booking as PassengersType } from './__generated__/PassengerDetail_booking.graphql';
 import Passenger from './Passenger';
+import VisaDisclaimer from './visa/VisaDisclaimer';
 
 type Props = {|
   booking: PassengersType,
@@ -53,6 +55,9 @@ export class PassengerDetail extends React.Component<Props, State> {
             passenger={passenger}
           />
         ))}
+        <View style={styles.visaDisclaimerContainer}>
+          <VisaDisclaimer />
+        </View>
       </RefreshableScrollView>
     );
   };
@@ -81,5 +86,9 @@ export default createRefetchContainer(
 const styles = StyleSheet.create({
   container: {
     marginTop: 20,
+  },
+  visaDisclaimerContainer: {
+    marginTop: 50,
+    paddingHorizontal: 15,
   },
 });
