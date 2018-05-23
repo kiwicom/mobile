@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button with custom title 1`] = `
+<Button
+  onPress={[Function]}
+>
+  <ButtonTitle
+    style={
+      Object {
+        "color": "#ffffff",
+      }
+    }
+    text={
+      <Translation
+        passThrough="My Button!"
+      />
+    }
+  />
+</Button>
+`;

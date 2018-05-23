@@ -2,7 +2,14 @@
 
 exports[`ButtonText should not be uppercased on ios 1`] = `
 <Text
-  style={undefined}
+  style={
+    Array [
+      Object {
+        "fontWeight": "500",
+      },
+      undefined,
+    ]
+  }
 >
   <Translation
     passThrough="Button text"
@@ -12,7 +19,14 @@ exports[`ButtonText should not be uppercased on ios 1`] = `
 
 exports[`ButtonText should uppercase text on android 1`] = `
 <Text
-  style={undefined}
+  style={
+    Array [
+      Object {
+        "fontWeight": "500",
+      },
+      undefined,
+    ]
+  }
 >
   <Translation
     passThrough="Button text"

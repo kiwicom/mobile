@@ -33,7 +33,7 @@ exports[`renders as expected 1`] = `
       }
     }
   >
-    <ButtonText
+    <ButtonTitle
       style={
         Object {
           "color": "#00a991",

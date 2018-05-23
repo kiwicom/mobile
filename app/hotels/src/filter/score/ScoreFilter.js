@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -65,7 +64,7 @@ export default class ScoreFilter extends React.Component<Props, State> {
   render() {
     const { minScore, isActive } = this.props;
     return (
-      <View>
+      <React.Fragment>
         <FilterButton
           title={this.getTitle(minScore)}
           icon={<Icon name="thumb-up" size={18} />}
@@ -78,7 +77,7 @@ export default class ScoreFilter extends React.Component<Props, State> {
           onSave={this.handleSave}
           minScore={minScore}
         />
-      </View>
+      </React.Fragment>
     );
   }
 }

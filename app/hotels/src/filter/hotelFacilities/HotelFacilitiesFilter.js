@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 
 import HotelFacilitiesPopup from './HotelFacilitiesPopup';
@@ -60,7 +59,7 @@ export default class HotelFacilitiesFilter extends React.Component<
   );
 
   render = () => (
-    <View>
+    <React.Fragment>
       <FilterButton
         title={this.getTitle(this.props.facilities)}
         isActive={this.props.isActive}
@@ -72,6 +71,6 @@ export default class HotelFacilitiesFilter extends React.Component<
         onSave={this.handleSave}
         facilities={this.props.facilities}
       />
-    </View>
+    </React.Fragment>
   );
 }
