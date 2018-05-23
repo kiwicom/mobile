@@ -6,6 +6,7 @@ import idx from 'idx';
 
 import VisaRequired from './VisaRequired';
 import VisaOk from './VisaOk';
+import VisaWarning from './VisaWarning';
 import type { VisaInformation_visa as VisaType } from './__generated__/VisaInformation_visa.graphql';
 
 type Props = {|
@@ -14,17 +15,21 @@ type Props = {|
 
 const VisaInformation = (props: Props) => {
   const requiredIn = idx(props.visa, _ => _.visaInformation.requiredIn) || [];
-  const notice = idx(props.visa, _ => _.visaInformation.warningIn) || [];
+  const warningIn = idx(props.visa, _ => _.visaInformation.warningIn) || [];
 
-  if (requiredIn.length === 0 && notice.length === 0) {
+  if (requiredIn.length === 0 && warningIn.length === 0) {
     return <VisaOk />;
   }
 
   return (
-    <VisaRequired
-      countries={requiredIn.map(country => idx(country, _ => _.name) || '')}
-    />
-    // TODO: Add visa warning
+    <React.Fragment>
+      <VisaRequired
+        countries={requiredIn.map(country => idx(country, _ => _.name) || '')}
+      />
+      <VisaWarning
+        countries={warningIn.map(country => idx(country, _ => _.name) || '')}
+      />
+    </React.Fragment>
   );
 };
 
