@@ -1,5 +1,7 @@
 // @flow strict
 
+/* eslint-disable no-console */
+
 /**
  * Script for releasing a new version of the framework
  * and putting it on Github as a release
@@ -42,9 +44,12 @@ let version = child_process
     },
   )).json();
 
+  console.log(`GitHub tag ${version} was created.`);
+  console.log(`Start building FAT framework...`);
+
   // Build FAT framework
   const buildOutput = child_process
-    .execSync('scripts/buildIOSFramework.sh')
+    .execSync('scripts/buildIOSFramework.sh', { stdio: [0, 1, 2] })
     .toString()
     .split('\n');
 
@@ -59,6 +64,8 @@ let version = child_process
   child_process.execSync(
     `cd ${frameworkFolder} && zip -r ${zippedFatFramework} .`,
   );
+
+  console.log(`FAT framework was correctly zipped.`);
 
   /**
    * Github API doesn't support sending files with unknown `Content-Lenght`. That means we
@@ -81,4 +88,6 @@ let version = child_process
       body,
     },
   );
+
+  console.log(`Release ${version} successfully created.`);
 })();
