@@ -36,8 +36,8 @@ jobs:
           paths: .
 
   release:
-    docker:
-      - image: circleci/node:8
+    macos:
+      xcode: 9.3
 
     working_directory: ~/react-native-app
 
