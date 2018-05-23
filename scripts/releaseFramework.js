@@ -49,36 +49,35 @@ let version = child_process
     console.log(`Start building FAT framework...`);
 
     // Build FAT framework
-    const buildOutput = child_process
-      .execSync('scripts/buildIOSFramework.sh', { stdio: [0, 1, 2] })
-      .toString()
-      .split('\n');
+    child_process.execSync('scripts/buildIOSFramework.sh', {
+      stdio: 'inherit',
+    });
 
     // Last line is empty
-    const fatFramework = buildOutput[buildOutput.length - 2].trim();
+    const fatFramework = 'ios/build/universal/RNKiwiMobile.framework';
     const frameworkFolder = path.dirname(fatFramework);
-    const zippedFatFramework = `${fatFramework}.zip`;
+    const zippedFatFramework = `RNKiwiMobile.framework.zip`;
+
+    console.log(`FAT framework was correctly zipped.`);
 
     /**
-     * Zip file to its destination to preare for upload
+     * Zip file to its destination to prepare for upload
      */
     child_process.execSync(
       `cd ${frameworkFolder} && zip -r ${zippedFatFramework} .`,
     );
 
-    console.log(`FAT framework was correctly zipped.`);
-
     /**
      * Github API doesn't support sending files with unknown `Content-Lenght`. That means we
      * cannot send a stream.
      */
-    const body = fs.readFileSync(zippedFatFramework);
+    const body = fs.readFileSync(
+      path.join(frameworkFolder, zippedFatFramework),
+    );
     await fetch(
       `https://uploads.github.com/repos/kiwicom/mobile/releases/${
         release.id
-      }/assets?name=${path.basename(
-        zippedFatFramework,
-      )}&access_token=${githubToken}`,
+      }/assets?name=${zippedFatFramework}&access_token=${githubToken}`,
       {
         method: 'POST',
         headers: {
@@ -92,7 +91,7 @@ let version = child_process
 
     console.log(`Release ${version} successfully created.`);
   } catch (e) {
-    console.log(`releaseFramework failed.`, e);
+    console.log(`releaseFramework failed.`, e.message);
     process.exit(1);
   }
 })();
