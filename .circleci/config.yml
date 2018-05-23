@@ -30,6 +30,11 @@ jobs:
       # Run tests!
       - run: yarn test-ci
   release:
+    docker:
+      - image: circleci/node:8
+
+    working_directory: ~/react-native-app
+
     branches:
       only:
         - master
