@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 
-import Alert from '../../../components/Alert';
+import Alert from '../../../components/alert/Alert';
 
 type Props = {|
   countries: string[],

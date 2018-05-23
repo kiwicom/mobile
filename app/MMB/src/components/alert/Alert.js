@@ -1,49 +1,25 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
-import {
-  Text,
-  StyleSheet,
-  Icon,
-  Color,
-  type StylePropType,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Icon, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-type CommonProps = {|
-  title: React.Element<typeof Translation>,
-  children: React.Node,
-|};
+import RenderAlert from './RenderAlert';
 
 type Props = {|
   type: 'danger' | 'warning' | 'success',
-  ...CommonProps,
+  title: React.Element<typeof Translation>,
+  children?: React.Node,
 |};
 
-type RenderAlertProps = {|
-  containerStyle: StylePropType,
-  titleStyle: StylePropType,
-  icon: React.Element<typeof Icon>,
-  ...CommonProps,
-|};
-
-const RenderAlert = (props: RenderAlertProps) => (
-  <View style={[styles.container, props.containerStyle]}>
-    <View style={styles.iconContainer}>{props.icon}</View>
-    <View>
-      <Text style={[styles.titleText, props.titleStyle]}>{props.title}</Text>
-      <View style={styles.body}>{props.children}</View>
-    </View>
-  </View>
-);
+const ICON_SIZE = 17;
 
 export default function Alert(props: Props) {
   switch (props.type) {
     case 'danger':
       return (
         <RenderAlert
-          icon={<Icon name="warning" size={18} color={RED} />}
+          icon={<Icon name="warning" size={ICON_SIZE} color={RED} />}
           title={props.title}
           titleStyle={styles.titleDanger}
           containerStyle={styles.containerDanger}
@@ -54,7 +30,7 @@ export default function Alert(props: Props) {
     case 'warning':
       return (
         <RenderAlert
-          icon={<Icon name="warning" size={18} color="#eb9d08" />}
+          icon={<Icon name="warning" size={ICON_SIZE} color="#eb9d08" />}
           title={props.title}
           titleStyle={styles.titleWarning}
           containerStyle={styles.containerWarning}
@@ -67,8 +43,8 @@ export default function Alert(props: Props) {
         <RenderAlert
           icon={
             <Icon
+              size={ICON_SIZE}
               name="error-outline"
-              size={18}
               color={Color.green.normal}
               style={styles.successIcon}
             />
@@ -88,25 +64,8 @@ export default function Alert(props: Props) {
 const RED = '#d0021b';
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 15,
-    paddingVertical: 11,
-    flexDirection: 'row',
-  },
   containerDanger: {
     backgroundColor: 'rgba(208, 2, 27, 0.15)',
-  },
-  iconContainer: {
-    marginRight: 12,
-  },
-  titleText: {
-    fontSize: 12,
-  },
-  titleDanger: {
-    color: RED,
-  },
-  body: {
-    marginTop: 5,
   },
   successIcon: {
     transform: [{ rotate: '180deg' }],

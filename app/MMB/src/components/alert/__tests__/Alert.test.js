@@ -30,4 +30,13 @@ describe('Alert', () => {
       </Alert>,
     );
   });
+
+  it('renders alert without children', () => {
+    PlaygroundRenderer.render(
+      <Alert
+        type="success"
+        title={<Translation passThrough="Alert without children" />}
+      />,
+    );
+  });
 });

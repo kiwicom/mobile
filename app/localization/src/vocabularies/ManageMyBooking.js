@@ -61,6 +61,7 @@ export default {
   'mmb.passenger.nationality.label': 'Nationality',
 
   // MMB Visa
+  'mmb.visa_state.no_visa_required': 'Visa is not required',
   'mmb.visa_state.visa_is_required': 'Visa required in',
 
   // MMB menu:

@@ -22,4 +22,4 @@ import '../../hotels/src/allHotels/searchForm/locationPicker/__tests__/RecentSea
 import '../../hotels/src/allHotels/__tests__/LoadMoreButton.test.js';
 import '../../MMB/src/scenes/passenger/visa/__tests__/VisaRequired.test.js';
 import '../../MMB/src/scenes/passenger/__tests__/Passenger.test.js';
-import '../../MMB/src/components/__tests__/Alert.test.js';
+import '../../MMB/src/components/alert/__tests__/Alert.test.js';
