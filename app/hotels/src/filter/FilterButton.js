@@ -1,69 +1,65 @@
 // @flow
 
 import * as React from 'react';
-import { View, Platform } from 'react-native';
-import { Button, Color, Icon, StyleSheet } from '@kiwicom/mobile-shared';
+import { View } from 'react-native';
+import {
+  Button,
+  ButtonTitle,
+  Color,
+  Icon,
+  StyleSheet,
+} from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
-type Props = {
+type Props = {|
   title: TranslationType,
   isActive: boolean,
   onPress: () => void,
   icon?: React.Element<typeof Icon>,
-};
+|};
 
 export default function FilterButton(props: Props) {
   let icon = props.icon;
   const { title, isActive, onPress } = props;
-  const buttonStyles = createButtonStyles(isActive, icon);
 
   if (icon) {
     icon = React.cloneElement(icon, {
-      color: isActive ? Color.white : Color.brand,
+      color: isActive ? Color.white : Color.brandDark,
     });
   }
 
-  return (
-    <View style={filterButtonStyles.wrapper}>
-      <Button
-        title={title}
-        onPress={onPress}
-        icon={icon}
-        styles={buttonStyles}
-      />
-    </View>
-  );
-}
-
-const filterButtonStyles = StyleSheet.create({
-  wrapper: {
-    padding: 3,
-    paddingHorizontal: 3,
-  },
-});
-
-function createButtonStyles(isActive: boolean, icon) {
-  return {
-    icon: {
+  const styleSheet = StyleSheet.create({
+    buttonGroup: {
       backgroundColor: isActive ? Color.brand : Color.brandLight,
-    },
-    buttonWrapper: {
-      backgroundColor: Color.brand,
-    },
-    button: {
-      backgroundColor: isActive ? Color.brand : Color.brandLight,
-      paddingLeft: isActive || !icon ? 10 : 0,
+      marginRight: 5,
     },
     buttonText: {
-      color: isActive ? Color.white : Color.brand,
-      paddingTop: Platform.select({
-        android: 12,
-        ios: 9,
-      }),
-      paddingBottom: Platform.select({
-        android: 8,
-        ios: 11,
-      }),
+      color: isActive ? Color.white : Color.brandDark,
+      fontWeight: '500',
+      android: {
+        paddingTop: 12,
+        paddingBottom: 8,
+      },
+      ios: {
+        paddingTop: 9,
+        paddingBottom: 11,
+      },
     },
-  };
+    icon: {
+      paddingRight: 5,
+    },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+  });
+
+  return (
+    <Button onPress={onPress} style={styleSheet.buttonGroup}>
+      <View style={styleSheet.row}>
+        <View style={styleSheet.icon}>{icon}</View>
+        <ButtonTitle text={title} style={styleSheet.buttonText} />
+      </View>
+    </Button>
+  );
 }

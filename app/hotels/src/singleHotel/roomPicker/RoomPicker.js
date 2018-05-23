@@ -7,7 +7,7 @@ import {
   Text,
   StyleSheet,
   Touchable,
-  ButtonText,
+  ButtonTitle,
   Color,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -43,7 +43,7 @@ export default function RoomPicker({
         onPress={increment}
       >
         <View style={styles.row}>
-          <ButtonText
+          <ButtonTitle
             style={styles.text}
             text={<Translation id="single_hotel.room_picker.select" />}
           />

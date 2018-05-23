@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
 import Popup from './Popup';
-import Button from '../buttons/Button';
+import TextButton from '../buttons/TextButton';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
@@ -36,13 +36,7 @@ export default class ButtonPopup extends React.Component<Props> {
         {this.props.children}
       </View>
       <View style={styles.button}>
-        <Button
-          title={this.props.buttonTitle}
-          onPress={this.onSave}
-          styles={{
-            buttonWrapper: styles.buttonWrapper,
-          }}
-        />
+        <TextButton title={this.props.buttonTitle} onPress={this.onSave} />
       </View>
     </Popup>
   );
@@ -56,8 +50,5 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 20,
     margin: POPUP_PADDING,
-  },
-  buttonWrapper: {
-    height: 44,
   },
 });

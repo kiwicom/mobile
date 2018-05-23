@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
       paddingVertical: 10,
     },
     ios: {
-      paddingHorizontal: 7,
-      paddingVertical: 9,
+      paddingHorizontal: 10,
+      paddingVertical: 15,
     },
   },
 });

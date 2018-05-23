@@ -1,38 +1,34 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
 import Color from '../Color';
-import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
-import ButtonText from './ButtonText';
+import ButtonTitle from './ButtonTitle';
+import Button from './Button';
 
 type Props = {|
   title: TranslationType,
   onPress: Function,
 |};
 
+/**
+ * Button that looks like a simple link.
+ */
 export default function LinkButton(props: Props) {
   return (
-    <Touchable accessibilityComponentType="button" onPress={props.onPress}>
-      <View style={styleSheet.view}>
-        <ButtonText style={styleSheet.text} text={props.title} />
-      </View>
-    </Touchable>
+    <Button style={styleSheet.link} onPress={props.onPress}>
+      <ButtonTitle style={styleSheet.text} text={props.title} />
+    </Button>
   );
 }
 
 const styleSheet = StyleSheet.create({
-  view: {
+  link: {
     backgroundColor: 'transparent',
   },
   text: {
     color: Color.brand,
-    textAlign: 'center',
-    fontWeight: '500',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
   },
 });

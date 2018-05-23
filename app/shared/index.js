@@ -11,11 +11,12 @@
  * useless without layout components.
  */
 export { default as Button } from './src/buttons/Button';
+export { default as TextButton } from './src/buttons/TextButton';
+export { default as LinkButton } from './src/buttons/LinkButton';
+export { default as ButtonTitle } from './src/buttons/ButtonTitle';
 export {
   default as IncrementDecrementButtons,
 } from './src/buttons/IncrementDecrementButtons';
-export { default as LinkButton } from './src/buttons/LinkButton';
-export { default as ButtonText } from './src/buttons/ButtonText';
 
 export { default as AgePicker } from './src/forms/AgePicker';
 export { default as Checkbox } from './src/forms/Checkbox';

@@ -3,8 +3,8 @@
 import '../../shared/src/popup/__tests__/ButtonPopupPlayground.test.js';
 import '../../shared/src/forms/datePicker/__tests__/DatePicker.test.js';
 import '../../shared/src/forms/__tests__/Slider.test.js';
+import '../../shared/src/buttons/__tests__/TextButton.test.js';
 import '../../shared/src/buttons/__tests__/IncrementDecrementButtons.test.js';
-import '../../shared/src/buttons/__tests__/Button.test.js';
 import '../../shared/src/__tests__/Text.test.js';
 import '../../shared/src/__tests__/SimpleCard.test.js';
 import '../../shared/src/__tests__/ReadMore.test.js';

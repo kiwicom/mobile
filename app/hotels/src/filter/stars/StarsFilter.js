@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { Icon } from '@kiwicom/mobile-shared';
 import {
   Translation,
@@ -86,7 +85,7 @@ export default class StarsFilter extends React.Component<Props, State> {
 
   render() {
     return (
-      <View>
+      <React.Fragment>
         <FilterButton
           title={this.getTitle(this.props.stars)}
           icon={<Icon name="star" size={18} />}
@@ -99,7 +98,7 @@ export default class StarsFilter extends React.Component<Props, State> {
           onClose={this.closePopup}
           onSave={this.handleSave}
         />
-      </View>
+      </React.Fragment>
     );
   }
 }
