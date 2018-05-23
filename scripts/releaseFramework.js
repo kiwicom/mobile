@@ -18,14 +18,14 @@ let version = child_process
   .trim();
 
 (async () => {
+  const githubToken = process.env.GITHUB_TOKEN;
+  if (githubToken == null) throw new Error('Missing GITHUB_TOKEN');
+
   /**
    * Create Github release that points to the latest commit
    */
   const release = await (await fetch(
-    `https://api.github.com/repos/kiwicom/mobile/releases?access_token=${
-      // $FlowFixMe env.GITHUB_TOKEN will be a string
-      process.env.GITHUB_TOKEN
-    }`,
+    `https://api.github.com/repos/kiwicom/mobile/releases?access_token=${githubToken}`,
     {
       method: 'POST',
       headers: {
@@ -68,10 +68,9 @@ let version = child_process
   await fetch(
     `https://uploads.github.com/repos/kiwicom/mobile/releases/${
       release.id
-    }/assets?name=${path.basename(zippedFatFramework)}&access_token=${
-      // $FlowFixMe env.GITHUB_TOKEN will be a string
-      process.env.GITHUB_TOKEN
-    }`,
+    }/assets?name=${path.basename(
+      zippedFatFramework,
+    )}&access_token=${githubToken}`,
     {
       method: 'POST',
       headers: {
