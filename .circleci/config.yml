@@ -29,3 +29,9 @@ jobs:
 
       # Run tests!
       - run: yarn test-ci
+  release:
+    branches:
+      only:
+        - master
+    steps:
+      - run: yarn release
