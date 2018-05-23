@@ -82,4 +82,7 @@ const styles = StyleSheet.create({
   titleWarning: {
     color: '#eb9d08',
   },
+  titleDanger: {
+    color: RED,
+  },
 });

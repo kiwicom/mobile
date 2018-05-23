@@ -55,7 +55,11 @@ exports[`Alert renders danger type 1`] = `
       passThrough="Alert danger"
     />
   }
-  titleStyle={undefined}
+  titleStyle={
+    Object {
+      "color": "#d0021b",
+    }
+  }
 >
   <Translation
     passThrough="Alert body"
