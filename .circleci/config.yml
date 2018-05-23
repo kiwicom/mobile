@@ -12,6 +12,8 @@ jobs:
 
     steps:
       - checkout
+      - attach_workspace:
+           at: ~/react-native-app
 
       # Download and cache dependencies
       - restore_cache:
@@ -29,14 +31,30 @@ jobs:
 
       # Run tests!
       - run: yarn test-ci
+      - persist_to_workspace:
+          root: .
+          paths: .
+
   release:
     docker:
       - image: circleci/node:8
 
     working_directory: ~/react-native-app
 
-    branches:
-      only:
-        - circle-ci-release-ios
     steps:
+      - attach_workspace:
+           at: ~/react-native-app
       - run: yarn release
+
+workflows:
+  version: 2
+  build-and-release:
+    jobs:
+      - build
+      - release:
+          requires:
+           - build
+          filters:
+            branches:
+              only:
+                - circle-ci-release-ios
