@@ -30,9 +30,9 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: Color.white,
     borderStyle: 'solid',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: '#e8edf1',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: Color.border,
     marginVertical: 3,
     padding: 10,
     android: {

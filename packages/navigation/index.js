@@ -10,7 +10,15 @@ const createNavigationOptions = () => {
   const navigationOptions: Object = {
     headerStyle: {
       backgroundColor: Color.white,
-      borderBottomWidth: 0,
+      ...Platform.select({
+        android: {
+          borderBottomWidth: 0,
+        },
+        ios: {
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderBottomColor: Color.border,
+        },
+      }),
     },
     headerTintColor: Color.brand, // back arrow
     headerBackTitle: null,

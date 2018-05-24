@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
-import { AdaptableLayout } from '@kiwicom/mobile-shared';
 
+import AdaptableLayout from '../view/AdaptableLayout';
+import Color from '../Color';
 import Modal from '../Modal';
 import StyleSheet from '../PlatformStyleSheet';
 
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   contentContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: Color.white,
     alignSelf: 'center',
     width: '100%',
   },
