@@ -39,7 +39,14 @@ export default TabNavigator(
     tabBarOptions: {
       activeTintColor: Color.brand,
       inactiveTintColor: 'gray',
+      style: {
+        backgroundColor: Color.white, // makes Android tab bar white instead of standard blue
+      },
+      indicatorStyle: {
+        backgroundColor: Color.brand,
+      },
     },
     initialRouteName: 'Bookings',
+    tabBarPosition: 'bottom',
   },
 );
