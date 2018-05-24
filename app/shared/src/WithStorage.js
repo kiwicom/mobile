@@ -25,8 +25,8 @@ export default function withStorage(
     };
 
     async getStoredValue() {
-      const value = (await AsyncStorage.getItem(storageKey)) || initialValue;
-      const parsedValue = JSON.parse(value);
+      const value = await AsyncStorage.getItem(storageKey);
+      const parsedValue = value != null ? JSON.parse(value) : initialValue;
       this.setState({ savedValue: parsedValue });
       return parsedValue;
     }

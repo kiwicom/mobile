@@ -6,11 +6,6 @@ import renderer from 'react-test-renderer';
 
 import WithStorage from '../WithStorage';
 
-jest.mock('AsyncStorage', () => ({
-  getItem: jest.fn(() => 5),
-  setItem: jest.fn(),
-}));
-
 const WrappedComponent = () => <View />;
 
 const TestKey = 'test-key';
@@ -19,6 +14,13 @@ const getComponent = (initialValue: any = []) => {
   const Component = WithStorage(WrappedComponent, TestKey, initialValue);
   return renderer.create(<Component />);
 };
+
+beforeEach(() => {
+  jest.mock('AsyncStorage', () => ({
+    getItem: jest.fn(() => 5),
+    setItem: jest.fn(),
+  }));
+});
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -51,6 +53,22 @@ describe('WithStorage', () => {
     expect(
       component.root.findByType(WrappedComponent).props.storageValue,
     ).toEqual(5);
+  });
+
+  it('returns initialValue if there is no stored value', async () => {
+    // Clear mocks to be able to test null output
+    jest.resetModules();
+    jest.mock('AsyncStorage', () => ({
+      getItem: jest.fn(() => null),
+      setItem: jest.fn(),
+    }));
+
+    const component = getComponent({ lol: 'lol' });
+    const instance = component.getInstance();
+
+    const storedValue = await instance.getStoredValue();
+    expect(AsyncStorage.getItem).toHaveBeenCalledWith(TestKey);
+    expect(storedValue).toEqual({ lol: 'lol' });
   });
 
   it('saveValue saves the value to async store', async () => {
