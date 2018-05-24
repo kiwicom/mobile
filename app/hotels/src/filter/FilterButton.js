@@ -35,15 +35,6 @@ export default function FilterButton(props: Props) {
     },
     buttonText: {
       color: isActive ? Color.white : Color.brandDark,
-      fontWeight: '500',
-      android: {
-        paddingTop: 12,
-        paddingBottom: 8,
-      },
-      ios: {
-        paddingTop: 9,
-        paddingBottom: 11,
-      },
     },
     icon: {
       paddingEnd: 5,

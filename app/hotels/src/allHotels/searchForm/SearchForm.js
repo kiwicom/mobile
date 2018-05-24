@@ -79,9 +79,11 @@ const styles = StyleSheet.create({
     backgroundColor: Color.white,
     android: {
       paddingHorizontal: 14,
+      paddingTop: 15,
     },
     ios: {
       paddingHorizontal: 10,
+      paddingTop: 10,
     },
   },
   row: {

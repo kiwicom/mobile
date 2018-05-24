@@ -30,6 +30,8 @@ export default {
     bottom: 0,
   },
 
+  hairlineWidth: StyleSheet.hairlineWidth,
+
   flatten: StyleSheet.flatten,
 
   create(styles: PlatformStyleObjectType): StyleObjectType {
