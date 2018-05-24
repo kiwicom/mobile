@@ -6,6 +6,8 @@ import renderer from 'react-test-renderer';
 
 import Translation from '../Translation';
 
+const CancellableTranslation = require('../CancellableTranslation');
+
 let Component;
 beforeEach(() => {
   Component = new Translation({
@@ -82,4 +84,21 @@ it('works with pass through translations and text transformations', () => {
     textTransform: 'uppercase',
   });
   expect(Component.render()).toMatchSnapshot();
+});
+
+it('does not call set state if promise is rejected', async () => {
+  let originalFunction = CancellableTranslation.cancellableTranslation;
+  // $FlowExpectedError: Intentionally overwriting function to test outcome
+  CancellableTranslation.cancellableTranslation = jest.fn(() => ({
+    promise: new Promise((resolve, reject) => {
+      reject();
+    }),
+  }));
+
+  jest.spyOn(Component, 'setState');
+  await Component.setTranslatedString();
+
+  expect(Component.setState).not.toHaveBeenCalled();
+  // $FlowExpectedError: Intentionally resetting function
+  CancellableTranslation.cancellableTranslation = originalFunction;
 });
