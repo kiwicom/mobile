@@ -9,7 +9,7 @@ YellowBox.ignoreWarnings([
   'Class RCTCxxModule was not exported. Did you forget to use RCT_EXPORT_MODULE()?', // https://github.com/facebook/react-native/issues/18201
 ]);
 
-import App from './app/App';
-// import App from './app/playground/src/Navigation';
+// import App from './app/App';
+import App from './packages/playground/src/Navigation';
 
 AppRegistry.registerComponent('reactNativeApp', () => App);

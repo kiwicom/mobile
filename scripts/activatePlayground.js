@@ -10,7 +10,7 @@ const indexFilePath = path.join(__dirname, '..', 'index.js');
 const playgroundImportsFilePath = path.join(
   __dirname,
   '..',
-  'app',
+  'packages',
   'playground',
   'src',
   'PlaygroundImports.js',
@@ -28,33 +28,37 @@ YellowBox.ignoreWarnings([
 ]);
 
 // import App from './app/App';
-import App from './app/playground/src/Navigation';
+import App from './packages/playground/src/Navigation';
 
 AppRegistry.registerComponent('reactNativeApp', () => App);
 `;
 
 fs.writeFileSync(indexFilePath, indexFileContent);
 
-// conviently enough, find sync returs a promise
-findSync('PlaygroundRenderer.render', 'app')
-  .then(files => {
-    return Object.keys(files);
-  })
-  .then(playgroundTestFiles => {
-    const playgroundImportsFileContent = [
-      '// @flow',
-      '',
-      playgroundTestFiles
-        .map(
-          // Replacing app from filepath with ../.. which is the path from playgroundList component to app folder
-          item => `import '${item.replace('app', '../..')}';`,
-        )
-        .join(os.EOL),
-      '',
-    ].join(os.EOL);
+let playgroundTestFiles = [];
 
-    fs.writeFileSync(playgroundImportsFilePath, playgroundImportsFileContent);
+const appPromise = findSync('PlaygroundRenderer.render', 'app').then(files => {
+  playgroundTestFiles = playgroundTestFiles.concat(Object.keys(files));
+});
 
-    // Can also be started on android with yarn playground android
-    execSync(`yarn ${process.argv[2] || 'ios'}`, { stdio: 'inherit' });
-  });
+const packagePromise = findSync('PlaygroundRenderer.render', 'packages').then(
+  files => {
+    playgroundTestFiles = playgroundTestFiles.concat(Object.keys(files));
+  },
+);
+
+Promise.all([appPromise, packagePromise]).then(() => {
+  const playgroundImportsFileContent = [
+    '// @flow',
+    '',
+    playgroundTestFiles
+      .map(item => `import '${item.replace(/(app|packages)/, '../../../$1')}';`)
+      .join(os.EOL),
+    '',
+  ].join(os.EOL);
+
+  fs.writeFileSync(playgroundImportsFilePath, playgroundImportsFileContent);
+
+  // Can also be started on android with yarn playground android
+  execSync(`yarn ${process.argv[2] || 'ios'}`, { stdio: 'inherit' });
+});

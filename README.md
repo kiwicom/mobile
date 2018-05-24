@@ -145,13 +145,17 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 ├── .github/                    - GitHub templates (for PR, issues, contributing)
 ├── android/                    - native code for Android
 ├── app/
+│   │── core/                   - core application (not distributed)
+│   ├── hotels/                 - Hotels application (distributed)
+│   ├── MMB/                    - Manage My Booking application (distributed)
+├── ios/                        - native code for iOS
+├── packages/                   - Yarn workspaces
+│   ├── accessibility/          - @kiwicom/mobile-accessibility
 │   ├── config/                 - @kiwicom/mobile-config
-│   │── core/                   - @kiwicom/mobile-core (core package)
-│   ├── hotels/                 - @kiwicom/react-native-app-hotels
 │   ├── navigation/             - @kiwicom/mobile-navigation
 │   ├── relay/                  - @kiwicom/mobile-relay
+│   ├──  ...
 │   └── shared/                 - @kiwicom/mobile-shared
-├── ios/                        - native code for iOS
 ├── scripts/                    - support scripts for the whole monorepo
 └── schema.graphql              - GraphQL schema of the backend server
 ```
