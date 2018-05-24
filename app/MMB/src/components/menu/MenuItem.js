@@ -10,6 +10,7 @@ import {
   Touchable,
   AdaptableLayout,
   Icon,
+  type StylePropType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -17,15 +18,19 @@ import MenuItemIcon from './MenuItemIcon';
 
 type Props = {|
   title: React.Element<typeof Translation>,
-  onPress: () => void,
   isActive: boolean,
 
+  onPress?: () => void,
   // icon on the left
   icon?: React.Element<typeof TextIcon>,
 
   // icon on the right (arrow by default)
   actionIcon?: React.Element<typeof TextIcon>,
   description?: React.Element<typeof Translation>,
+
+  // style props
+  titleStyle?: StylePropType,
+  descriptionStyle?: StylePropType,
 |};
 
 /**
@@ -54,37 +59,48 @@ type Props = {|
 function MenuItem(props: Props) {
   const styleSheet = createStyleSheet(props);
 
-  return (
-    <Touchable onPress={props.onPress} style={styleSheet.wrapper}>
-      <React.Fragment>
-        {props.icon && (
-          <MenuItemIcon
-            iconComponent={props.icon}
-            invertColors={props.isActive}
-          />
-        )}
-
-        <View style={styleSheet.middleWrapper}>
-          <Text style={styleSheet.title}>{props.title}</Text>
-          {props.description && (
-            <Text style={styleSheet.description}>{props.description}</Text>
-          )}
+  const IconRight = props.actionIcon ? (
+    <View style={styleSheet.rightArrow}>{props.actionIcon}</View>
+  ) : (
+    <AdaptableLayout.Consumer
+      renderOnNarrow={
+        <View style={styleSheet.rightArrow}>
+          <Icon name="chevron-right" size={26} color={Color.brand} />
         </View>
-
-        {props.actionIcon ? (
-          <View style={styleSheet.rightArrow}>{props.actionIcon}</View>
-        ) : (
-          <AdaptableLayout.Consumer
-            renderOnNarrow={
-              <View style={styleSheet.rightArrow}>
-                <Icon name="chevron-right" size={26} color={Color.brand} />
-              </View>
-            }
-          />
-        )}
-      </React.Fragment>
-    </Touchable>
+      }
+    />
   );
+
+  const MenuItemInner = (
+    <React.Fragment>
+      {props.icon && (
+        <MenuItemIcon
+          iconComponent={props.icon}
+          invertColors={props.isActive}
+        />
+      )}
+
+      <View style={styleSheet.middleWrapper}>
+        <Text style={[styleSheet.title, props.titleStyle]}>{props.title}</Text>
+        {props.description && (
+          <Text style={[styleSheet.description, props.descriptionStyle]}>
+            {props.description}
+          </Text>
+        )}
+      </View>
+      {/* Hide icon if menu item is not clickable */}
+      {props.onPress && IconRight}
+    </React.Fragment>
+  );
+
+  if (props.onPress) {
+    return (
+      <Touchable onPress={props.onPress} style={styleSheet.wrapper}>
+        {MenuItemInner}
+      </Touchable>
+    );
+  }
+  return <View style={styleSheet.wrapper}>{MenuItemInner}</View>;
 }
 
 AdaptableMenuItem.defaultProps = {
