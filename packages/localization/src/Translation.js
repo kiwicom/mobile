@@ -1,13 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { NativeModules } from 'react-native';
 import { Text } from '@kiwicom/mobile-shared';
 
 import DefaultVocabulary, { type TranslationKeys } from './DefaultVocabulary';
 import CaseTransform, {
   type SupportedTransformationsType,
 } from './transformations/CaseTransform';
+import {
+  cancellableTranslation,
+  type TranslationPromise,
+} from './CancellableTranslation';
 
 type CommonProps = {|
   testID?: string,
@@ -53,6 +56,7 @@ type State = {|
 export default class Translation extends React.Component<Props, State> {
   // use this property to highlight translations for screenshoting or debugging
   highlightTranslations = false;
+  translatePromise: TranslationPromise | null = null;
   state = {
     translatedString: '',
   };
@@ -61,25 +65,35 @@ export default class Translation extends React.Component<Props, State> {
     this.setTranslatedString();
   };
 
+  componentWillUnmount = () => {
+    if (this.translatePromise !== null) {
+      this.translatePromise.cancel();
+    }
+  };
+
   setTranslatedString = async () => {
     if (this.props.id) {
       const key = this.props.id;
       const nativeKey = 'mobile.' + key;
-      let translatedString = await NativeModules.RNTranslationManager.translateAsync(
-        nativeKey,
-      );
-      if (translatedString === nativeKey) {
-        // fallback to our dummy vocabulary because native code didn't provide translation
-        translatedString = DefaultVocabulary[key];
-      }
+      try {
+        this.translatePromise = cancellableTranslation(nativeKey);
+        let translatedString = await this.translatePromise.promise;
+        if (translatedString === nativeKey) {
+          // fallback to our dummy vocabulary because native code didn't provide translation
+          translatedString = DefaultVocabulary[key];
+        }
 
-      if (translatedString === undefined) {
-        // Everything failed - native translation even our fallback. This usually
-        // means we are using key that does not exist. In this case the only thing
-        // we can actually do is to use original key as a text.
-        translatedString = key;
+        if (translatedString === undefined) {
+          // Everything failed - native translation even our fallback. This usually
+          // means we are using key that does not exist. In this case the only thing
+          // we can actually do is to use original key as a text.
+          translatedString = key;
+        }
+        this.setState({ translatedString });
+        this.translatePromise = null;
+      } catch (err) {
+        this.translatePromise = null;
       }
-      this.setState({ translatedString });
     }
   };
 
