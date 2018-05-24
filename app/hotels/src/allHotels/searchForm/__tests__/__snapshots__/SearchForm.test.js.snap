@@ -6,6 +6,7 @@ exports[`SearchForm Render all inputs 1`] = `
     Object {
       "backgroundColor": "#ffffff",
       "paddingHorizontal": 10,
+      "paddingTop": 10,
     }
   }
 >

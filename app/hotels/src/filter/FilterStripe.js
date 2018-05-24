@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
@@ -21,17 +21,22 @@ import HotelsFilterContext from '../HotelsFilterContext';
 const styles = StyleSheet.create({
   view: {
     width: '100%',
-    backgroundColor: '#fff',
-    elevation: 1, // Android
+    backgroundColor: Color.white,
+    android: {
+      elevation: 1,
+    },
+    ios: {
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: Color.border,
+    },
   },
   scrollView: {
+    paddingVertical: 15,
     android: {
-      paddingHorizontal: 13,
-      paddingVertical: 10,
+      paddingHorizontal: 14,
     },
     ios: {
       paddingHorizontal: 10,
-      paddingVertical: 15,
     },
   },
 });
