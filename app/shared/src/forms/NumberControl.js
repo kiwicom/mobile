@@ -10,7 +10,7 @@ import StyleSheet from '../PlatformStyleSheet';
 import Icon from '../icons/Icon';
 
 type Props = {|
-  label: string,
+  label: React.Element<typeof Translation>,
   number: number,
   min?: number,
   max?: number,
@@ -29,9 +29,7 @@ export default class NumberControl extends React.Component<Props> {
       {this.props.icon && (
         <Icon name={this.props.icon} size={20} style={styles.icon} />
       )}
-      <Text style={styles.label}>
-        <Translation passThrough={this.props.label} />
-      </Text>
+      <Text style={styles.label}>{this.props.label}</Text>
       <Text style={styles.number}>
         <Translation passThrough={this.props.number} />
       </Text>

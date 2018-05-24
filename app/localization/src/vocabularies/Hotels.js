@@ -42,6 +42,8 @@ export default {
   'hotels_search.filter.stars_popup.unrated': 'Unrated',
   'hotels_search.guests.adults': 'Adults:',
   'hotels_search.guests.children': 'Children:',
+  'hotels_search.guests_number_controls.adults': 'Adults',
+  'hotels_search.guests_number_controls.children': 'Children',
   'hotels_search.guests_modal.child_age_title': "Child's age at check-out",
   'hotels_search.guests_modal.children.error_age':
     "Please provide the child's age first.",
