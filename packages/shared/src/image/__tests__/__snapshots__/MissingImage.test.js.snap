@@ -5,7 +5,7 @@ exports[`passes props to the original Image component 1`] = `
   resizeMode="cover"
   source={
     Object {
-      "testUri": "../../../app/shared/src/image/assets/placeholders/100.png",
+      "testUri": "../../../packages/shared/src/image/assets/placeholders/100.png",
     }
   }
   style={
