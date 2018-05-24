@@ -2,30 +2,42 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
+
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:8
-
     working_directory: ~/react-native-app
-
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
       - run: yarn install
-
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "yarn.lock" }}
-
-      # Run tests!
       - run: yarn test-ci
+
+  release:
+    docker:
+      - image: pstauffer/curl:latest
+    steps:
+      - run: curl -gX POST $DEPLOY_TRIGGER_URL$CIRCLE_SHA1
+
+
+workflows:
+  version: 2
+  test-and-release:
+    jobs:
+      - test
+      - release:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
