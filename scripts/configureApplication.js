@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
 
-const log = message => console.log(`➤ ${message}`);
+const log = message => console.log(`➤ ${message}`); // eslint-disable-line no-console
 
 // TODO: fetch .env variables from Vault (or maybe just store the .env file itself in the Vault - this is painful)
 const vault = {
