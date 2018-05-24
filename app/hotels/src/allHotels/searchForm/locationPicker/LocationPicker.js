@@ -9,12 +9,12 @@ import {
   WithStorage,
 } from '@kiwicom/mobile-shared';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import RecentSearches from './RecentSearches';
 import SuggestionList from './SuggestionList';
 import HotelsSearchContext from '../../../HotelsSearchContext';
 import type { LocationPickerScreen_cities_QueryResponse as LocationSuggestions } from './__generated__/LocationPickerScreen_cities_Query.graphql';
-import Translation from '../../../../../localization/src/Translation';
 
 const RECENT_SEARCH_KEY = 'KiwiHotels:RecentSearches';
 

@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "workspaces": [
-    "app/*"
+    "app/*",
+    "packages/*"
   ],
   "scripts": {
     "android": "yarn react-native run-android",
