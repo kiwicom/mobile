@@ -1,7 +1,7 @@
 #import "ViewController.h"
 #import <RNKiwiMobile/RNKiwiMobile.h>
 
-@interface ViewController () <RNKiwiOptions, RNKiwiCurrencyManager, RNKiwiTranslationProvider>
+@interface ViewController () <RNKiwiOptions, RNKiwiCurrencyManager, RNKiwiTranslationProvider, RNKiwiViewControllerFlowDelegate>
 
 @end
 
@@ -9,6 +9,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
+  
   if (self) {
     /**
      * In order to create bridge upfront, either create an instance of RNKiwiViewController
@@ -26,20 +27,22 @@
   RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithOptions:self];
   [vc setCurrencyFormatter:self];
   [vc setTranslationProvider:self];
-  [self presentViewController:vc animated:YES completion:nil];
+  [vc setFlowDelegate:self];
+  
+  [[self navigationController] pushViewController:vc animated:YES ];
 }
 
 # pragma mark - RNKiwiOptions
 
 - (NSDictionary<NSString *, NSObject *> *)initialProperties {
   return @{
-    @"coordinates": @{
-      @"latitude" : @59.9139,
-      @"longitude": @10.7522
-    },
-    @"language": @"en",
-    @"currency": @"EUR"
-  };
+           @"coordinates": @{
+               @"latitude" : @59.9139,
+               @"longitude": @10.7522
+               },
+           @"language": @"en",
+           @"currency": @"EUR"
+           };
 }
 
 - (NSString *)moduleName {
@@ -48,6 +51,24 @@
 
 - (NSURL *)jsCodeLocation {
   return RNKiwiConstants.hotelsBundle;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  self.navigationController.navigationBar.hidden = YES;
+}
+
+# pragma mark - RNKiwiViewControllerFlowDelegate
+
+- (void)RNKiwiViewControllerDidFinish:(nonnull RNKiwiViewController *)viewController {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)RNKiwiViewControllerDidStartControllingGestures:(nonnull RNKiwiViewController *)viewController {
+  self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+- (void)RNKiwiViewControllerDidStopControllingGestures:(nonnull RNKiwiViewController *)viewController {
+  self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 # pragma mark - RNKiwiCurrencyManager
