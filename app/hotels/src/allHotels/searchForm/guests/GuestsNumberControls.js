@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Color, NumberControl } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   adultsCount: number,
@@ -16,7 +17,9 @@ export default function GuestsNumberControl(props: Props) {
     <React.Fragment>
       <View style={styles.numberPickerContainer}>
         <NumberControl
-          label="Adult"
+          label={
+            <Translation id="hotels_search.guests_number_controls.adults" />
+          }
           number={props.adultsCount}
           min={1}
           max={30}
@@ -28,7 +31,9 @@ export default function GuestsNumberControl(props: Props) {
       <View style={styles.separator} />
       <View style={styles.numberPickerContainer}>
         <NumberControl
-          label="Children"
+          label={
+            <Translation id="hotels_search.guests_number_controls.children" />
+          }
           number={props.childCount}
           min={0}
           max={10}
