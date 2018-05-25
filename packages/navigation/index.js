@@ -3,7 +3,13 @@
 import * as React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import ReactNavigation from 'react-navigation';
-import { Color, Device, Text, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  Color,
+  Device,
+  Text,
+  StyleSheet,
+  Touchable,
+} from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
 const createNavigationOptions = () => {
@@ -33,21 +39,46 @@ const createNavigationOptions = () => {
 };
 
 export const HeaderTitle = ({ children }: {| children: TranslationType |}) => {
-  const styleSheet = StyleSheet.create({
-    title: {
-      color: Color.textDark,
-      fontWeight: '600',
-      android: {
-        fontSize: 18,
-      },
-      ios: {
-        fontSize: 17,
-      },
-    },
-  });
-
   return <Text style={styleSheet.title}>{children}</Text>;
 };
+
+export const HeaderButton = ({
+  children,
+  onPress,
+}: {|
+  children: React.Element<any>,
+  onPress: () => void,
+|}) => {
+  return (
+    <Touchable
+      borderlessRipple={true}
+      onPress={onPress}
+      style={styleSheet.headerButton}
+    >
+      <Text style={styleSheet.headerButtonText}>{children}</Text>
+    </Touchable>
+  );
+};
+
+const styleSheet = StyleSheet.create({
+  title: {
+    color: Color.textDark,
+    fontWeight: '600',
+    android: {
+      fontSize: 18,
+    },
+    ios: {
+      fontSize: 17,
+    },
+  },
+  headerButton: {
+    padding: 8,
+  },
+  headerButtonText: {
+    color: Color.brand,
+    fontSize: 17,
+  },
+});
 
 export const StackNavigator = (
   RouteConfigs: {
