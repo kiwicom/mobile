@@ -1,0 +1,1 @@
+include ':app', ':rnkiwimobile', ':react-native-native-modules'

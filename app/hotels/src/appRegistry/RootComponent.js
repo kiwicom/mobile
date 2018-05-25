@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { NativeModules } from 'react-native';
 import { ConfigContext } from '@kiwicom/mobile-config';
 import {
   Device,
@@ -14,9 +13,8 @@ import HotelsSearchContext from '../HotelsSearchContext';
 import HotelsFilterContext from '../HotelsFilterContext';
 
 type Props = {|
-  onBackClicked: () => void,
   dataSaverEnabled: boolean,
-  render: (onBackClicked: () => void) => React.Element<any>,
+  children: React.Node,
 |};
 
 export default class RootComponent extends React.Component<Props> {
@@ -25,21 +23,13 @@ export default class RootComponent extends React.Component<Props> {
     Device.emitDimensionChanges(height, width);
   };
 
-  onBackClicked = () => {
-    if (NativeModules.RNNavigationModule) {
-      NativeModules.RNNavigationModule.leaveHotels();
-    } else {
-      this.props.onBackClicked();
-    }
-  };
-
   render = () => (
     <ConfigContext.Provider dataSaverEnabled={this.props.dataSaverEnabled}>
       <HotelsSearchContext.Provider>
         <HotelsFilterContext.Provider>
           <GeolocationContext.Provider>
             <AdaptableLayout.Provider>
-              {this.props.render(this.onBackClicked)}
+              {this.props.children}
             </AdaptableLayout.Provider>
           </GeolocationContext.Provider>
         </HotelsFilterContext.Provider>
