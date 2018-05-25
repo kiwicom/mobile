@@ -30,9 +30,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: Color.white,
     borderStyle: 'solid',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: Color.border,
     marginVertical: 3,
     padding: 10,
     android: {
@@ -40,6 +37,11 @@ const styles = StyleSheet.create({
       elevation: 1,
       borderRadius: 3,
       overflow: 'hidden',
+    },
+    ios: {
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderColor: Color.border,
     },
   },
 });

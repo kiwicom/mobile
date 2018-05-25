@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
+import { SimpleCard, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import MenuGroup from './MenuGroup';
@@ -53,7 +54,15 @@ export default function TitledMenuGroup({ title, children }: Props) {
   return (
     <React.Fragment>
       {Platform.OS === 'ios' && <MenuGroupTitle title={title} />}
-      <MenuGroup withoutIcons={false}>{newChildren}</MenuGroup>
+      <SimpleCard style={styles.card}>
+        <MenuGroup>{newChildren}</MenuGroup>
+      </SimpleCard>
     </React.Fragment>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    padding: 0,
+  },
+});

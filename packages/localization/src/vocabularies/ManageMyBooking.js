@@ -59,6 +59,9 @@ export default {
   'mmb.passenger.id': 'ID',
   'mmb.passenger.insurance': 'Insurance',
   'mmb.passenger.nationality.label': 'Nationality',
+  'mmb.passengers.email': 'Email',
+  'mmb.passengers.phone': 'Phone',
+  'mmb.passengers.title.contact_details': 'Contact details',
 
   // MMB Visa
   'mmb.visa_state.no_visa_required': 'Visa is not required',
