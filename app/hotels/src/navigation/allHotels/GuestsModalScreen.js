@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
-import { Touchable, Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import {
+  type NavigationType,
+  HeaderTitle,
+  HeaderButton,
+} from '@kiwicom/mobile-navigation';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelsSearchContext from '../../HotelsSearchContext';
@@ -17,13 +21,6 @@ import type {
 import GuestsModal from '../../allHotels/searchForm/guests/GuestsModal';
 
 const styles = StyleSheet.create({
-  headerButton: {
-    padding: 8,
-  },
-  headerButtonText: {
-    color: Color.white,
-    fontSize: 17,
-  },
   saveButtonText: {
     fontWeight: '600',
   },
@@ -141,15 +138,9 @@ export default class GuestsModalScreenWithContext extends React.Component<
 
     return {
       headerLeft: (
-        <Touchable
-          borderlessRipple={true}
-          onPress={goBack}
-          style={styles.headerButton}
-        >
-          <Text style={styles.headerButtonText}>
-            <Translation id="hotels_search.guests_modal.close" />
-          </Text>
-        </Touchable>
+        <HeaderButton onPress={goBack}>
+          <Translation id="hotels_search.guests_modal.close" />
+        </HeaderButton>
       ),
       title: (
         <HeaderTitle>
@@ -157,15 +148,11 @@ export default class GuestsModalScreenWithContext extends React.Component<
         </HeaderTitle>
       ),
       headerRight: (
-        <Touchable
-          borderlessRipple={true}
-          onPress={onSave}
-          style={styles.headerButton}
-        >
-          <Text style={[styles.headerButtonText, styles.saveButtonText]}>
+        <HeaderButton onPress={onSave}>
+          <Text style={styles.saveButtonText}>
             <Translation id="hotels_search.guests_modal.save" />
           </Text>
-        </Touchable>
+        </HeaderButton>
       ),
     };
   };

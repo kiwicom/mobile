@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Text, Touchable, StyleSheet, Color } from '@kiwicom/mobile-shared';
-import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  type NavigationType,
+  HeaderTitle,
+  HeaderButton,
+} from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
@@ -24,17 +28,6 @@ type NavigationProps = {|
 |};
 
 const styles = StyleSheet.create({
-  cancelButton: {
-    padding: 8,
-  },
-  headerButtonText: {
-    fontSize: 17,
-    color: Color.brand,
-    lineHeight: 20,
-    ios: {
-      fontFamily: 'SFProText-Regular',
-    },
-  },
   confirmButtonText: {
     ios: {
       fontFamily: 'SFProText-Semibold',
@@ -51,22 +44,14 @@ export default class LocationPickerScreen extends React.Component<Props> {
       navigation.goBack();
     }
 
-    function headerLeft() {
-      return (
-        <Touchable
-          borderlessRipple={true}
-          onPress={goBack}
-          style={styles.cancelButton}
-        >
-          <Text style={[styles.headerButtonText, styles.confirmButtonText]}>
+    return {
+      headerLeft: (
+        <HeaderButton onPress={goBack}>
+          <Text style={styles.confirmButtonText}>
             <Translation id="hotels_search.location_picker.cancel" />
           </Text>
-        </Touchable>
-      );
-    }
-
-    return {
-      headerLeft: headerLeft(),
+        </HeaderButton>
+      ),
       title: (
         <HeaderTitle>
           <Translation id="hotels_search.location_picker.header" />
