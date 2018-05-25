@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
-import { SimpleCard, StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { SimpleCard, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { View } from 'react-native';
 import startCase from 'lodash/startCase';
@@ -11,22 +11,8 @@ import startCase from 'lodash/startCase';
 import { SeparatorFullWidth } from '../../components/Separators';
 import VisaInformation from './visa/VisaInformation';
 import type { Passenger_passenger as PassengerType } from './__generated__/Passenger_passenger.graphql';
-
-const Row = ({ children }: {| children: React.Node |}) => (
-  <View style={styles.row}>{children}</View>
-);
-
-type ColumnProps = {|
-  title: React.Element<typeof Translation>,
-  value: React.Element<typeof Translation>,
-|};
-
-const Column = (props: ColumnProps) => (
-  <View style={styles.column}>
-    <Text style={styles.titleLight}>{props.title}</Text>
-    {props.value}
-  </View>
-);
+import Row from './Row';
+import Column from './Column';
 
 type Props = {|
   passenger: PassengerType,
@@ -121,17 +107,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 17,
   },
-  row: {
-    flexDirection: 'row',
-  },
   separator: {
     marginVertical: 15,
-  },
-  column: {
-    flex: 1,
-  },
-  titleLight: {
-    color: Color.textLight,
-    fontSize: 12,
   },
 });
