@@ -33,7 +33,6 @@ exports[`applies the styles recursively 1`] = `
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={undefined}
     >
       bold and red text
     </Text>
@@ -64,7 +63,6 @@ exports[`renders with additional style properties 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={undefined}
   >
     bold text
   </Text>
@@ -92,7 +90,6 @@ exports[`renders with the default properties for iOS 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={undefined}
   >
     normal text
   </Text>
@@ -122,13 +119,11 @@ exports[`supports multiple nested strings 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={undefined}
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={undefined}
     >
       red normal text 
     </Text>
@@ -137,13 +132,11 @@ exports[`supports multiple nested strings 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={undefined}
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={undefined}
     >
       and red normal text
     </Text>
@@ -174,7 +167,6 @@ exports[`supports nested styles 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={undefined}
   >
     bold text 
   </Text>
@@ -192,7 +184,6 @@ exports[`supports nested styles 1`] = `
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={undefined}
     >
       and bold-red text
     </Text>
@@ -223,13 +214,11 @@ exports[`works even with the distant Text nodes 1`] = `
     accessible={true}
     allowFontScaling={true}
     ellipsizeMode="tail"
-    style={undefined}
   >
     <Text
       accessible={true}
       allowFontScaling={true}
       ellipsizeMode="tail"
-      style={undefined}
     >
       bold default text
     </Text>

@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Price renders null values correctly 1`] = `
-<Text
-  style={undefined}
->
+<Text>
   <Translation
     passThrough=""
   />
@@ -11,9 +9,7 @@ exports[`Price renders null values correctly 1`] = `
 `;
 
 exports[`Price renders null values correctly 2`] = `
-<Text
-  style={undefined}
->
+<Text>
   <Translation
     passThrough=""
   />
@@ -21,9 +17,7 @@ exports[`Price renders null values correctly 2`] = `
 `;
 
 exports[`Price renders null values correctly 3`] = `
-<Text
-  style={undefined}
->
+<Text>
   <Translation
     passThrough=""
   />
