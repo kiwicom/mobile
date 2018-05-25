@@ -41,7 +41,6 @@ exports[`SearchForm Render all inputs 1`] = `
           "children": Array [],
         }
       }
-      openGuestsModal={undefined}
     />
   </Component>
 </Component>

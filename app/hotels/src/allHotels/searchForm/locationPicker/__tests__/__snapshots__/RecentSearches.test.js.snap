@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RecentSearches renders 1`] = `
-<UNDEFINED>
+<React.Fragment>
   <Component
     style={
       Object {
@@ -40,7 +40,7 @@ exports[`RecentSearches renders 1`] = `
     updateCellsBatchingPeriod={50}
     windowSize={21}
   />
-</UNDEFINED>
+</React.Fragment>
 `;
 
 exports[`RecentSearches renders correctly with no locations 1`] = `null`;

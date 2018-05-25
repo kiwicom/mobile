@@ -47,8 +47,6 @@ exports[`Slider renders 1`] = `
     }
     max={50}
     min={1}
-    onToggleOne={undefined}
-    onToggleTwo={undefined}
     onValuesChange={[Function]}
     onValuesChangeFinish={[Function]}
     onValuesChangeStart={[Function]}
@@ -155,8 +153,6 @@ exports[`Slider renders correctly with all values equal 1`] = `
     }
     max={501}
     min={499}
-    onToggleOne={undefined}
-    onToggleTwo={undefined}
     onValuesChange={[Function]}
     onValuesChangeFinish={[Function]}
     onValuesChangeStart={[Function]}
@@ -263,8 +259,6 @@ exports[`Slider renders with endValue undefined 1`] = `
     }
     max={50}
     min={1}
-    onToggleOne={undefined}
-    onToggleTwo={undefined}
     onValuesChange={[Function]}
     onValuesChangeFinish={[Function]}
     onValuesChangeStart={[Function]}
