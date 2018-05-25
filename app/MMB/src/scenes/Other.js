@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Platform } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   type NavigationType,
@@ -12,6 +12,7 @@ import MenuItem from '../components/menu/MenuItem';
 import MenuGroup from '../components/menu/MenuGroup';
 import Deeplink from '../components/Deeplink';
 import Invoice from '../components/Invoice';
+import { SeparatorFullWidth, SeparatorTrimmed } from '../components/Separators';
 
 type Props = {|
   bookingId: string,
@@ -43,7 +44,12 @@ export default class Other extends React.Component<Props> {
 
   render = () => (
     <ScrollView>
-      <MenuGroup>
+      <MenuGroup
+        customSeparator={Platform.select({
+          android: <SeparatorFullWidth />,
+          ios: <SeparatorTrimmed gapSizeStart={15} />,
+        })}
+      >
         <MenuItem
           title={<Translation id="mmb.sub_menu.manage.other.invoice" />}
           onPress={this.handleOpenInvoice}

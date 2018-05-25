@@ -2,13 +2,12 @@
 
 import * as React from 'react';
 import { View, Platform } from 'react-native';
-import { SimpleCard } from '@kiwicom/mobile-shared';
 
 import { SeparatorFullWidth, SeparatorTrimmed } from '../Separators';
 
 type Props = {|
   children: React.Node,
-  withoutIcons: boolean,
+  customSeparator?: React.Node,
 |};
 
 /**
@@ -43,7 +42,7 @@ export default function MenuGroup(props: Props) {
     ? props.children
     : [props.children];
 
-  const groupChildren = children.map((child, index) => {
+  return children.map((child, index) => {
     const wrappedChild = (
       <React.Fragment key={index}>
         {separator}
@@ -51,16 +50,12 @@ export default function MenuGroup(props: Props) {
       </React.Fragment>
     );
 
-    separator = Platform.select({
-      android: <SeparatorFullWidth />,
-      ios: <SeparatorTrimmed gapSize={props.withoutIcons ? 15 : 45} />,
-    });
+    separator =
+      props.customSeparator ||
+      Platform.select({
+        android: <SeparatorFullWidth />,
+        ios: <SeparatorTrimmed gapSizeStart={45} />,
+      });
     return wrappedChild;
   });
-
-  return <SimpleCard style={{ padding: 0 }}>{groupChildren}</SimpleCard>;
 }
-
-MenuGroup.defaultProps = {
-  withoutIcons: true,
-};

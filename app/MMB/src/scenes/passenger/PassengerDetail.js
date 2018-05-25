@@ -13,6 +13,7 @@ import idx from 'idx';
 import type { PassengerDetail_booking as PassengersType } from './__generated__/PassengerDetail_booking.graphql';
 import Passenger from './Passenger';
 import VisaDisclaimer from './visa/VisaDisclaimer';
+import ContactDetails from './contactDetails/ContactDetails';
 
 type Props = {|
   booking: PassengersType,
@@ -43,6 +44,7 @@ export class PassengerDetail extends React.Component<Props, State> {
 
   render = () => {
     const passengers = idx(this.props.booking, _ => _.passengers) || [];
+
     return (
       <RefreshableScrollView
         refreshing={this.state.isRefreshing}
@@ -55,6 +57,12 @@ export class PassengerDetail extends React.Component<Props, State> {
             passenger={passenger}
           />
         ))}
+
+        <View style={styles.contactDetailsWrapper}>
+          <ContactDetails
+            contactDetails={idx(this.props.booking, _ => _.contactDetails)}
+          />
+        </View>
         <View style={styles.visaDisclaimerContainer}>
           <VisaDisclaimer />
         </View>
@@ -68,6 +76,9 @@ export default createRefetchContainer(
   graphql`
     fragment PassengerDetail_booking on Booking {
       databaseId
+      contactDetails {
+        ...ContactDetails_contactDetails
+      }
       passengers {
         databaseId
         ...Passenger_passenger
@@ -90,5 +101,8 @@ const styles = StyleSheet.create({
   visaDisclaimerContainer: {
     marginTop: 50,
     paddingHorizontal: 15,
+  },
+  contactDetailsWrapper: {
+    marginTop: 5,
   },
 });

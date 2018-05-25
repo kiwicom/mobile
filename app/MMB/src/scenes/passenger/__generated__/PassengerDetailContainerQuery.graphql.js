@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 86e6968d53a626d4349a6c7cfbbacbae
+ * @relayHash c144d30eb06f4848b6aa94c5ae6ffbac
  */
 
 /* eslint-disable */
@@ -33,10 +33,18 @@ query PassengerDetailContainerQuery(
 
 fragment PassengerDetail_booking on Booking {
   databaseId
+  contactDetails {
+    ...ContactDetails_contactDetails
+  }
   passengers {
     databaseId
     ...Passenger_passenger
   }
+}
+
+fragment ContactDetails_contactDetails on BookingContactDetails {
+  phone
+  email
 }
 
 fragment Passenger_passenger on Passenger {
@@ -101,7 +109,7 @@ return {
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  ...VisaInformation_visa\n}\n\nfragment VisaInformation_visa on Passenger {\n  visaInformation {\n    requiredIn {\n      name\n    }\n    warningIn {\n      name\n    }\n  }\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  ...VisaInformation_visa\n}\n\nfragment VisaInformation_visa on Passenger {\n  visaInformation {\n    requiredIn {\n      name\n    }\n    warningIn {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -143,6 +151,31 @@ return {
         "plural": false,
         "selections": [
           v2,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "contactDetails",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "BookingContactDetails",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "phone",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "email",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
           {
             "kind": "LinkedField",
             "alias": null,
