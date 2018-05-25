@@ -11,6 +11,7 @@ import { TabNavigator } from 'react-navigation';
 
 import HotelsStack from './HotelsStack';
 import MMBPackage from '../screens/MMBPackageWrapper';
+import LoginScreen from '../screens/LoginScreen';
 
 const VoidStack = StackNavigator(
   {
@@ -33,7 +34,7 @@ export default TabNavigator(
     Search: { screen: HotelsStack },
     Bookings: { screen: MMBPackage },
     Message: { screen: VoidStack },
-    Profile: { screen: VoidStack },
+    Profile: { screen: LoginScreen },
   },
   {
     tabBarOptions: {
