@@ -133,7 +133,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
         onRefresh={this.refetch}
         refreshing={this.state.isLoading}
       >
-        {ordered.length && (
+        {ordered.length > 0 && (
           <TitledMenuGroup
             title={<Translation id="mmb.flight_services.title_ordered" />}
           >
@@ -148,7 +148,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
             ))}
           </TitledMenuGroup>
         )}
-        {rest.length && (
+        {rest.length > 0 && (
           <TitledMenuGroup
             title={<Translation id="mmb.flight_services.title" />}
           >
