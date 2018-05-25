@@ -11,6 +11,7 @@ import '../../../app/hotels/src/allHotels/searchForm/locationPicker/__tests__/Su
 import '../../../app/hotels/src/allHotels/searchForm/locationPicker/__tests__/RecentSearches.test.js';
 import '../../../app/hotels/src/allHotels/__tests__/LoadMoreButton.test.js';
 import '../../../app/MMB/src/scenes/passenger/visa/__tests__/VisaRequired.test.js';
+import '../../../app/MMB/src/scenes/passenger/menu/__tests__/TitledMenuGroup.test.js';
 import '../../../app/MMB/src/scenes/passenger/__tests__/Passenger.test.js';
 import '../../../app/MMB/src/components/alert/__tests__/Alert.test.js';
 import '../../../packages/shared/src/popup/__tests__/ButtonPopupPlayground.test.js';

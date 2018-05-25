@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitledMenuGroup renders 1`] = `
+<UNDEFINED>
+  <MenuGroupTitle
+    title={
+      <Translation
+        passThrough="GroupTitle!"
+      />
+    }
+  />
+  <MenuGroup>
+    <MenuItem
+      description={
+        <Translation
+          passThrough="Description!"
+        />
+      }
+      title={
+        <Translation
+          passThrough="Title!"
+        />
+      }
+    />
+    <MenuItem
+      description={
+        <Translation
+          passThrough="Description!"
+        />
+      }
+      title={
+        <Translation
+          passThrough="Title!"
+        />
+      }
+    />
+  </MenuGroup>
+</UNDEFINED>
+`;
