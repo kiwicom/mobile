@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { CenteredView } from '@kiwicom/mobile-shared';
 
 import EmailLoginForm from './EmailLoginForm';
 
@@ -15,9 +14,7 @@ export default class Login extends React.Component<Props> {
 
   render = () => {
     return (
-      <CenteredView>
-        <EmailLoginForm key="email" onSuccess={this.handleSuccessfulLogin} />
-      </CenteredView>
+      <EmailLoginForm key="email" onSuccess={this.handleSuccessfulLogin} />
     );
   };
 }

@@ -20,7 +20,7 @@ type State = {|
 
 export default class EmailLoginForm extends React.Component<Props, State> {
   state = {
-    username: 'kiwicomtester@gmail.com', // FIXME: remove
+    username: 'reactnative@kiwi.com', // FIXME: remove
     password: '',
     loading: false,
   };
