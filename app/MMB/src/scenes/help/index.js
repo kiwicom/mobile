@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Platform } from 'react-native';
 import { WebView } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
@@ -12,6 +12,10 @@ import {
 import MenuItem from '../../components/menu/MenuItem';
 import MenuGroup from '../../components/menu/MenuGroup';
 import CallSupport from './CallSupport';
+import {
+  SeparatorFullWidth,
+  SeparatorTrimmed,
+} from '../../components/Separators';
 
 type Props = {|
   navigation: NavigationType,
@@ -35,7 +39,12 @@ export default class Help extends React.Component<Props> {
 
   render = () => (
     <ScrollView>
-      <MenuGroup>
+      <MenuGroup
+        customSeparator={Platform.select({
+          android: <SeparatorFullWidth />,
+          ios: <SeparatorTrimmed gapSizeStart={15} />,
+        })}
+      >
         <MenuItem
           title={<Translation id="mmb.sub_menu.help.help" />}
           onPress={this.handleOpenHelp}

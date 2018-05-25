@@ -22,19 +22,30 @@ export function SeparatorFullWidth() {
  * |     ----------------------|
  * |                           |
  */
-export function SeparatorTrimmed({ gapSize }: {| gapSize: number |}) {
+export function SeparatorTrimmed({
+  gapSizeStart,
+  gapSizeEnd,
+}: {|
+  gapSizeStart: number,
+  gapSizeEnd?: number,
+|}) {
   return (
     <View style={styleSheet.row}>
-      <View style={[styleSheet.gap, { width: gapSize }]} />
+      <View style={[styleSheet.gap, { width: gapSizeStart }]} />
       <SeparatorFullWidth />
+      <View style={[styleSheet.gap, { width: gapSizeEnd }]} />
     </View>
   );
 }
 
+SeparatorTrimmed.defaultProps = {
+  gapSizeEnd: 0,
+};
+
 const styleSheet = StyleSheet.create({
   separator: {
+    flex: 1,
     height: 1,
-    width: '100%',
     backgroundColor: Color.backgroundGray,
   },
   row: {
