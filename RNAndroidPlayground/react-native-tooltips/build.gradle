@@ -1,0 +1,55 @@
+buildscript {
+    apply from: "../dependencies.gradle"
+
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
+    }
+}
+
+subprojects {
+    buildDir = "$rootProject.projectDir/build"
+
+    apply plugin: 'maven'
+    apply plugin: 'com.android.library'
+
+    repositories {
+        google()
+
+        maven {
+            url "$rootDir/../../node_modules/react-native/android"
+        }
+        maven {
+            url 'http://trinerdis.cz:8000/repository/snapshots/'
+        }
+    }
+
+    dependencies {
+        implementation "com.facebook.react:react-native:$reactNativeVersion"
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
+                    authentication(userName: "deployment", password: System.getenv("DEPLOYMENT_PASSWORD"))
+                }
+                pom.version = "$reactNativeTooltips-SNAPSHOT"
+                pom.artifactId = "react-native-tooltips"
+                pom.groupId = "com.trinerdis.skypicker"
+            }
+        }
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -93,6 +93,7 @@ export { default as Logger } from './src/Logger';
 export { default as StyleSheet } from './src/PlatformStyleSheet';
 export { default as Touchable } from './src/Touchable';
 export { default as WithStorage } from './src/WithStorage';
+export { default as WithNativeNavigation } from './src/WithNativeNavigation';
 
 // Flow types:
 

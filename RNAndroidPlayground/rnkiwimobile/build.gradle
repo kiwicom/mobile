@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven'
+apply from: "../dependencies.gradle"
+
+android {
+    defaultConfig {
+        minSdkVersion minSdkVersionVar
+        compileSdkVersion compileSdkVersionVar
+        targetSdkVersion targetSdkVersionVar
+
+        buildToolsVersion buildToolsVersionVar
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    sourceSets {
+        main {
+            assets {
+                srcDir "../../.build/android/assets"
+            }
+            res {
+                srcDir "../../.build/android/res"
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.facebook.react:react-native:$reactNativeVersion"
+    api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-vector-icons:$reactNativeVectorIcons-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
+
+    api("com.google.android.gms:play-services-base:$playServicesVersion")
+    api("com.google.android.gms:play-services-maps:$playServicesVersion")
+
+    api "com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT"
+
+
+    implementation "com.trinerdis.skypicker:infinario:$infinarioVersion-SNAPSHOT"
+    compileOnly "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
+
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
+                authentication(userName: "deployment", password: System.getenv("DEPLOYMENT_PASSWORD"))
+            }
+            pom {
+                groupId = "com.trinerdis.skypicker"
+                artifactId = "rnkiwimobile"
+                version = "$rnKiwiMobileVersion-SNAPSHOT"
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}

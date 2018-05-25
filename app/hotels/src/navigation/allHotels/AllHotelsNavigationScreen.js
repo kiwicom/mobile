@@ -11,7 +11,6 @@ import AllHotels from '../../allHotels/AllHotels';
 import AllHotelsMap from '../../map/allHotels/AllHotelsMap';
 import MapHeaderButton from './MapHeaderButton';
 import type { Coordinates } from '../../CoordinatesType';
-import WithBackButtonListener from '../WithBackButtonListener';
 
 type ContainerProps = {|
   navigation: NavigationType,
@@ -62,11 +61,6 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       ),
       headerRight: renderHeaderRight(),
     };
-  };
-
-  onAndroidBackClicked = () => {
-    this.props.onBackClicked();
-    return true;
   };
 
   openLocationPicker = (location: string | null) => {
@@ -120,12 +114,10 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
 
   render = () => {
     return (
-      <WithBackButtonListener onClick={this.onAndroidBackClicked}>
-        <AdaptableLayout.Consumer
-          renderOnWide={this.renderHotelsWithMap()}
-          renderOnNarrow={this.renderHotels()}
-        />
-      </WithBackButtonListener>
+      <AdaptableLayout.Consumer
+        renderOnWide={this.renderHotelsWithMap()}
+        renderOnNarrow={this.renderHotels()}
+      />
     );
   };
 }
