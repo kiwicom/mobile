@@ -34,7 +34,6 @@ exports[`renders as expected 1`] = `
         accessible={true}
         allowFontScaling={true}
         ellipsizeMode="tail"
-        style={undefined}
       >
         Error Message
       </Text>

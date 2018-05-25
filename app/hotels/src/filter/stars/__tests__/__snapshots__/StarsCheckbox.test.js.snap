@@ -4,7 +4,6 @@ exports[`StarsCheckbox render checked 1`] = `
 <Checkbox
   isChecked={true}
   onPress={[MockFunction]}
-  style={undefined}
 >
   <Text
     style={
@@ -23,9 +22,7 @@ exports[`StarsCheckbox render checked 1`] = `
 
 exports[`StarsCheckbox render unchecked with 1 star 1`] = `
 <Checkbox
-  isChecked={undefined}
   onPress={[MockFunction]}
-  style={undefined}
 >
   <Text
     style={
@@ -44,9 +41,7 @@ exports[`StarsCheckbox render unchecked with 1 star 1`] = `
 
 exports[`StarsCheckbox render unchecked with 3 stars 1`] = `
 <Checkbox
-  isChecked={undefined}
   onPress={[MockFunction]}
-  style={undefined}
 >
   <Text
     style={
