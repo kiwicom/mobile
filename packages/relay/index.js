@@ -8,7 +8,6 @@ import PublicEnvironment from './src/PublicEnvironment';
 export {
   QueryRenderer,
   graphql,
-  createFragmentContainer,
   createPaginationContainer,
   createRefetchContainer,
 } from 'react-relay';
@@ -16,8 +15,20 @@ export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
 export { default as AuthContext } from './src/AuthContext';
 
-export const commitMutation = (config: CommitMutationConfig) =>
-  Relay.commitMutation(PublicEnvironment.getEnvironment(() => {}), config);
+// just a very simple Flow types - doesn't work very well yet (better than nothing)
+export const createFragmentContainer = (
+  component: React.ComponentType<any>,
+  fragmentSpec: Object,
+): React.ComponentType<any> => {
+  return Relay.createFragmentContainer(component, fragmentSpec);
+};
+
+export const commitMutation = (config: CommitMutationConfig) => {
+  return Relay.commitMutation(
+    PublicEnvironment.getEnvironment(() => {}),
+    config,
+  );
+};
 
 // Flow types:
 
