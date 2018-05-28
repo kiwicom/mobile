@@ -4,34 +4,25 @@ exports[`renders 1`] = `
 <SimpleCard
   style={
     Object {
-      "marginBottom": 0,
       "padding": 0,
     }
   }
 >
-  <Component
-    style={
-      Object {
-        "paddingBottom": 16,
-        "paddingHorizontal": 15,
-        "paddingTop": 13,
-      }
+  <MenuGroup
+    customSeparator={
+      <SeparatorTrimmed
+        gapSizeEnd={15}
+        gapSizeStart={15}
+      />
     }
   >
-    <Text
-      style={
-        Object {
-          "fontSize": 16,
-          "marginBottom": 17,
-        }
-      }
-    >
-      <Translation
-        passThrough="Mr. Trond Bergquist"
-      />
-    </Text>
     <Row>
-      <Column
+      <PassengerMenuItem
+        name={
+          <Translation
+            passThrough="Mr. Trond Bergquist"
+          />
+        }
         title={
           <Translation
             id="mmb.passenger.nationality.label"
@@ -43,7 +34,7 @@ exports[`renders 1`] = `
           />
         }
       />
-      <Column
+      <PassengerMenuItem
         title={
           <Translation
             id="mmb.passenger.birthday"
@@ -56,17 +47,8 @@ exports[`renders 1`] = `
         }
       />
     </Row>
-    <Component
-      style={
-        Object {
-          "marginVertical": 15,
-        }
-      }
-    >
-      <SeparatorFullWidth />
-    </Component>
     <Row>
-      <Column
+      <PassengerMenuItem
         title={
           <Translation
             id="mmb.passenger.id"
@@ -78,7 +60,7 @@ exports[`renders 1`] = `
           />
         }
       />
-      <Column
+      <PassengerMenuItem
         title={
           <Translation
             id="mmb.passenger.insurance"
@@ -91,20 +73,20 @@ exports[`renders 1`] = `
         }
       />
     </Row>
-  </Component>
-  <Relay(VisaInformation)
-    visa={
-      Object {
-        "birthday": "1984-05-10T00:00:00.000Z",
-        "fullName": "Trond Bergquist",
-        "insuranceType": "TRAVEL_PLUS",
-        "nationality": "no",
-        "title": "Mr",
-        "travelDocument": Object {
-          "idNumber": "123456",
-        },
+    <Relay(VisaInformation)
+      visa={
+        Object {
+          "birthday": "1984-05-10T00:00:00.000Z",
+          "fullName": "Trond Bergquist",
+          "insuranceType": "TRAVEL_PLUS",
+          "nationality": "no",
+          "title": "Mr",
+          "travelDocument": Object {
+            "idNumber": "123456",
+          },
+        }
       }
-    }
-  />
+    />
+  </MenuGroup>
 </SimpleCard>
 `;

@@ -49,13 +49,14 @@ export class PassengerDetail extends React.Component<Props, State> {
       <RefreshableScrollView
         refreshing={this.state.isRefreshing}
         onRefresh={this.refetch}
-        contentContainerStyle={styles.container}
       >
         {passengers.map(passenger => (
-          <Passenger
+          <View
             key={idx(passenger, _ => _.databaseId)}
-            passenger={passenger}
-          />
+            style={styles.passengerContainer}
+          >
+            <Passenger passenger={passenger} />
+          </View>
         ))}
 
         <View style={styles.contactDetailsWrapper}>
@@ -95,14 +96,14 @@ export default createRefetchContainer(
 );
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-  },
   visaDisclaimerContainer: {
     marginTop: 50,
     paddingHorizontal: 15,
   },
   contactDetailsWrapper: {
     marginTop: 5,
+  },
+  passengerContainer: {
+    marginTop: 20,
   },
 });
