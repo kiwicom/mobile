@@ -14,7 +14,8 @@ export type Location = {|
   +airport: ?{|
     +city: ?{|
       +name: ?string
-    |}
+    |},
+    +countryFlagURL: ?string,
   |},
   +$refType: Location$ref,
 |};
@@ -54,11 +55,18 @@ const node/*: ConcreteFragment*/ = {
               "storageKey": null
             }
           ]
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "countryFlagURL",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '283e61eff43a718ba6384d943b7c4dcb';
+(node/*: any*/).hash = '254c1e78cb29b9d37142cf1bc0b64a57';
 module.exports = node;
