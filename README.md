@@ -26,8 +26,6 @@ This application uses our [GraphQL server](https://github.com/kiwicom/graphql) -
   * [Working with GraphQL API](#working-with-graphql-api)
   * [Working with translations](#working-with-translations)
   * [Upgrading dependencies](#upgrading-dependencies)
-* [Troubleshooting](#troubleshooting)
-  * ['config.h' file not found](#configh-file-not-found)
 
 ## Installation and Run
 
@@ -352,43 +350,3 @@ Check all dependencies with `outdated` Yarn command. This will tell you how behi
 yarn outdated
 yarn upgrade-interactive --latest
 ```
-
-## Troubleshooting
-
-### 'config.h' file not found
-
-#### Symptoms:
-
-Application throws following error during application start (`yarn ios` for example). The same happens with Xcode:
-
-```
-▸ Compiling vlog_is_on.cc
-
-❌  /Users/mrtnzlml/Work/kiwi-opensource/react-native-app/node_modules/react-native/React/../third-party/glog-0.3.4/src/base/mutex.h:105:10: 'config.h' file not found
-
-#include "config.h"           // to figure out pthreads support'config.h' file not found
-         ^~~~~~~~~~
-
-
-** BUILD FAILED **
-```
-
-#### Solution:
-
-Try to run this command:
-
-```
-rm -rf node_modules/ && yarn cache clean && yarn install
-```
-
-For more information please visit this issue: https://github.com/facebook/react-native/issues/14382
-
-### Cannot resolve module '@kiwicom/mobile-<module>'
-
-#### Symptoms:
-
-Flow can't find newly added workspace
-
-#### Solution
-
-`yarn && yarn flow stop && yarn flow`
