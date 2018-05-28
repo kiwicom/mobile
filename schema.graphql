@@ -148,6 +148,7 @@ type Booking {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -230,6 +231,7 @@ interface BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
 }
 
 type BookingMulticity implements BookingInterface {
@@ -263,6 +265,7 @@ type BookingMulticity implements BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
 
   """Initial origin."""
   start: RouteStop
@@ -308,6 +311,7 @@ type BookingOneWay implements BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
   trip: Trip
 }
 
@@ -343,6 +347,7 @@ type BookingReturn implements BookingInterface {
   directAccessURL(deeplinkTo: DirectAccessURLValues): String
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
+  isPastBooking: Boolean
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -394,6 +399,11 @@ input CoordinatesInput {
 
   """Longitude."""
   lng: Float!
+}
+
+enum CoveredBy {
+  KIWICOM
+  CARRIER
 }
 
 enum Currency {
@@ -1278,6 +1288,9 @@ type Leg {
   """Determines whether Leg is related to return flight."""
   isReturn: Boolean
   type: VehicleType
+
+  """Information about who covers the transfer"""
+  guarantee: CoveredBy
 }
 
 """
@@ -1367,6 +1380,7 @@ type Location {
   city: LocationArea
   subdivision: LocationArea
   country: LocationArea
+  countryFlagURL: String
   isActive: Boolean
   stationsCount: Int
   airportsCount: Int
