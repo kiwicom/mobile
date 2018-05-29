@@ -7,8 +7,8 @@ import type { StylePropType } from '../../types/Styles';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  source: string,
-  style?: StylePropType,
+  +source: string,
+  +style?: StylePropType,
 |};
 
 export default function StretchedImage(props: Props) {

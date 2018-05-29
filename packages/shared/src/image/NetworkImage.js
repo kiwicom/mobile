@@ -8,14 +8,16 @@ import { ConfigContext } from '@kiwicom/mobile-config';
 import MissingImage from './MissingImage';
 import IconLoading from '../loaders/IconLoading';
 
-type Props = {
-  // not exact - accepts all additional props from 'Image' component
-  source: {
-    uri: ?string,
-  },
-  style?: StylePropType,
-  dataSaverEnabled?: boolean,
-};
+type Props = {|
+  +source: {|
+    +uri: ?string,
+  |},
+  +style?: StylePropType,
+  +dataSaverEnabled?: boolean,
+  +resizeMode?:
+    | 'cover' // scales the image uniformly - image will be equal or larger
+    | 'contain', // scales the image uniformly - image will be equal or smaller
+|};
 
 /**
  * This is wrapper around original React Native image. It adds loading
