@@ -47,6 +47,7 @@ export default {
   'mmb.trip_services.local_services.lounge': 'Lounge',
   'mmb.trip_services.local_services.parking': 'Parking',
   'mmb.trip_services.local_services.transportation': 'Transportation',
+  'mmb.trip_services.lounge.popup.title': 'For which part of the trip?',
 
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',

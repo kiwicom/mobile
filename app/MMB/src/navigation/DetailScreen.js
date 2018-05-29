@@ -13,7 +13,9 @@ import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import FlightServices, {
   FlightServicesSubmenuItems,
 } from '../scenes/flightServices/FlightServices';
-import TripServices from '../scenes/TripServices';
+import TripServices, {
+  TripServicesSubmenuItems,
+} from '../scenes/tripServices/TripServices';
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
 
 export const MenuComponents = {
@@ -68,6 +70,7 @@ export const MenuComponents = {
     },
   },
   ...FlightServicesSubmenuItems,
+  ...TripServicesSubmenuItems,
   ...HelpSubmenuItems,
   ...OtherSubmenuItems,
 };

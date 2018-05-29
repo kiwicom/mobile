@@ -7,12 +7,15 @@ type BookingDetail = {|
   +bookingId: string,
   +arrivalCityId: string,
   +arrivalTime: Date,
+  +departureTime: Date,
 |};
+
 const defaultState = {
   isPastBooking: false,
   bookingId: '',
   arrivalCityId: '',
   arrivalTime: new Date(),
+  departureTime: new Date(),
   actions: {
     setBookingDetail: () => {},
   },
@@ -45,13 +48,8 @@ class Provider extends React.Component<Props, State> {
     };
   }
 
-  setBookingDetail = ({
-    isPastBooking,
-    bookingId,
-    arrivalCityId,
-    arrivalTime,
-  }: BookingDetail) => {
-    this.setState({ isPastBooking, bookingId, arrivalCityId, arrivalTime });
+  setBookingDetail = (booking: BookingDetail) => {
+    this.setState(booking);
   };
 
   render = () => (
