@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c406a37c021620f80ab6b9da12848ec4
+ * @relayHash 02b749e7ed8ebba43676f4fda531712c
  */
 
 /* eslint-disable */
@@ -155,8 +155,12 @@ fragment Location on RouteStop {
     city {
       name
     }
-    countryFlagURL
+    ...CountryFlag
   }
+}
+
+fragment CountryFlag on Location {
+  countryFlagURL
 }
 
 fragment StatusBarIcon on Booking {
@@ -281,7 +285,7 @@ return {
   "operationKind": "query",
   "name": "MainMenuContainerQuery",
   "id": null,
-  "text": "query MainMenuContainerQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...MainMenu\n    id\n  }\n}\n\nfragment MainMenu on Booking {\n  ...Header\n  ...PassengerMenuGroup\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...HeaderImage\n}\n\nfragment PassengerMenuGroup on Booking {\n  ...PassengerMenuDetail\n}\n\nfragment PassengerMenuDetail on Booking {\n  ...Visa\n  passengers {\n    databaseId\n    ...Passenger\n  }\n}\n\nfragment Visa on Booking {\n  passengers {\n    visaInformation {\n      requiredIn {\n        name\n      }\n      warningIn {\n        name\n      }\n    }\n  }\n}\n\nfragment Passenger on Passenger {\n  fullName\n  title\n  birthday\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    countryFlagURL\n  }\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
+  "text": "query MainMenuContainerQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...MainMenu\n    id\n  }\n}\n\nfragment MainMenu on Booking {\n  ...Header\n  ...PassengerMenuGroup\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...HeaderImage\n}\n\nfragment PassengerMenuGroup on Booking {\n  ...PassengerMenuDetail\n}\n\nfragment PassengerMenuDetail on Booking {\n  ...Visa\n  passengers {\n    databaseId\n    ...Passenger\n  }\n}\n\nfragment Visa on Booking {\n  passengers {\n    visaInformation {\n      requiredIn {\n        name\n      }\n      warningIn {\n        name\n      }\n    }\n  }\n}\n\nfragment Passenger on Passenger {\n  fullName\n  title\n  birthday\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

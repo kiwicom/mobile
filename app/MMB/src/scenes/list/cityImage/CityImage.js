@@ -29,6 +29,7 @@ type PropsWithContext = {|
     bookingId: string,
     arrivalCityId: string,
     arrivalTime: Date,
+    departureTime: Date,
   |}) => void,
 |};
 
@@ -38,12 +39,14 @@ class CityImage extends React.Component<PropsWithContext> {
     const isPastBooking = Boolean(idx(this.props.image, _ => _.isPastBooking));
     const arrivalCityId = idx(this.props.arrival, _ => _.cityId) || '';
     const arrivalTime = idx(this.props.arrival, _ => _.time) || '';
+    const departureTime = idx(this.props.departure, _ => _.time) || '';
 
     this.props.setBookingDetail({
       bookingId: bookingId.toString(),
       isPastBooking,
       arrivalCityId,
       arrivalTime: new Date(arrivalTime),
+      departureTime: new Date(departureTime),
     });
 
     this.props.navigation.navigate({
@@ -118,6 +121,7 @@ export default createFragmentContainer(
     fragment CityImage_departure on RouteStop {
       ...DateAndPassengerCount_departure
       ...FromToRow_departure
+      time
     }
   `,
 );

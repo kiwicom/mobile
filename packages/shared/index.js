@@ -28,8 +28,9 @@ export { default as TextInput } from './src/forms/TextInput';
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as IconLoading } from './src/loaders/IconLoading';
 
-export { default as ButtonPopup } from './src/popup/ButtonPopup';
+export { default as Popup } from './src/popup/Popup';
 export { default as BarPopup } from './src/popup/BarPopup';
+export { default as ButtonPopup } from './src/popup/ButtonPopup';
 
 export { default as Modal } from './src/Modal';
 

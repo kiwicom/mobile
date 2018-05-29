@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type CountryFlag$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Location$ref: FragmentReference;
 export type Location = {|
@@ -15,7 +16,7 @@ export type Location = {|
     +city: ?{|
       +name: ?string
     |},
-    +countryFlagURL: ?string,
+    +$fragmentRefs: CountryFlag$ref,
   |},
   +$refType: Location$ref,
 |};
@@ -57,16 +58,14 @@ const node/*: ConcreteFragment*/ = {
           ]
         },
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "countryFlagURL",
-          "args": null,
-          "storageKey": null
+          "kind": "FragmentSpread",
+          "name": "CountryFlag",
+          "args": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '254c1e78cb29b9d37142cf1bc0b64a57';
+(node/*: any*/).hash = 'b50237c12ea9c91d08df726f1601892e';
 module.exports = node;
