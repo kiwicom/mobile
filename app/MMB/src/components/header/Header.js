@@ -9,6 +9,7 @@ import idx from 'idx';
 import { SeparatorFullWidth } from '../Separators';
 import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
+import HeaderImage from './HeaderImage';
 import type { HeaderQueryResponse } from './__generated__/HeaderQuery.graphql';
 
 type Props = {|
@@ -18,15 +19,21 @@ type Props = {|
 export default class Header extends React.Component<Props> {
   renderInnerComponent = (rendererProps: HeaderQueryResponse) => {
     const booking = idx(rendererProps, _ => _.booking);
+    const isPastBooking = idx(rendererProps.booking, _ => _.isPastBooking);
 
     return (
-      <View style={styleSheet.wrapper}>
-        <StatusBar data={booking} />
-        <View style={styleSheet.separator}>
-          <SeparatorFullWidth />
+      <React.Fragment>
+        {isPastBooking ? (
+          <HeaderImage data={booking} />
+        ) : null /* TODO: Return explore city component */}
+        <View style={styleSheet.wrapper}>
+          <StatusBar data={booking} />
+          <View style={styleSheet.separator}>
+            <SeparatorFullWidth />
+          </View>
+          <TripInfo data={booking} />
         </View>
-        <TripInfo data={booking} />
-      </View>
+      </React.Fragment>
     );
   };
 
@@ -36,8 +43,10 @@ export default class Header extends React.Component<Props> {
       query={graphql`
         query HeaderQuery($bookingId: ID!) {
           booking(id: $bookingId) {
+            isPastBooking
             ...StatusBar
             ...TripInfo
+            ...HeaderImage
           }
         }
       `}
