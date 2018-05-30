@@ -53,10 +53,7 @@ class CityImage extends React.Component<Props> {
         />
         <StretchedImage source={gradient} style={styles.stretchedImage} />
         <View style={[styles.row, styles.padding]}>
-          <ImageBadges
-            status={this.props.image.status}
-            bookingId={this.props.image.databaseId}
-          />
+          <ImageBadges data={this.props.image} />
         </View>
         <View style={[styles.bottomContainer, styles.padding]}>
           <FromToRow
@@ -79,10 +76,10 @@ export default createFragmentContainer(
   graphql`
     fragment CityImage_image on BookingInterface {
       databaseId
-      status
       passengerCount
       isPastBooking
       destinationImageUrl(dimensions: _375x165)
+      ...ImageBadges
     }
 
     fragment CityImage_arrival on RouteStop {

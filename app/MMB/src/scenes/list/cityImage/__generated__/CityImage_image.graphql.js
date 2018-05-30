@@ -8,15 +8,15 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "EXPIRED" | "NEW" | "PENDING" | "REFUNDED" | "%future added value";
+type ImageBadges$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type CityImage_image$ref: FragmentReference;
 export type CityImage_image = {|
   +databaseId: ?number,
-  +status: ?BookingStatus,
   +passengerCount: ?number,
   +isPastBooking: ?boolean,
   +destinationImageUrl: ?string,
+  +$fragmentRefs: ImageBadges$ref,
   +$refType: CityImage_image$ref,
 |};
 */
@@ -33,13 +33,6 @@ const node/*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "name": "databaseId",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "status",
       "args": null,
       "storageKey": null
     },
@@ -70,9 +63,14 @@ const node/*: ConcreteFragment*/ = {
         }
       ],
       "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "ImageBadges",
+      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '79d3440308f4854156f7e73ded94492b';
+(node/*: any*/).hash = 'a77729dd29b8d52a18c166c67a7c9b2a';
 module.exports = node;

@@ -10,19 +10,20 @@
 import type { ConcreteFragment } from 'relay-runtime';
 export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "EXPIRED" | "NEW" | "PENDING" | "REFUNDED" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type StatusBarIcon$ref: FragmentReference;
-export type StatusBarIcon = {|
+declare export opaque type ImageBadges$ref: FragmentReference;
+export type ImageBadges = {|
   +status: ?BookingStatus,
+  +databaseId: ?number,
   +isPastBooking: ?boolean,
-  +$refType: StatusBarIcon$ref,
+  +$refType: ImageBadges$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "StatusBarIcon",
-  "type": "Booking",
+  "name": "ImageBadges",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -36,6 +37,13 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "databaseId",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "isPastBooking",
       "args": null,
       "storageKey": null
@@ -43,5 +51,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c96341e14beba6fb2025d4ce42a0eced';
+(node/*: any*/).hash = '96c16621f984cf482ad3edc97ba5b80b';
 module.exports = node;
