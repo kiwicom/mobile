@@ -10,10 +10,11 @@ import { SeparatorFullWidth } from '../Separators';
 import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
 import HeaderImage from './HeaderImage';
+import HeaderPlaceholder from './HeaderPlaceholder';
 import type { Header as BookingType } from './__generated__/Header.graphql';
 
 type Props = {|
-  data: BookingType,
+  +data: BookingType,
 |};
 
 const Header = (props: Props) => {
@@ -22,9 +23,7 @@ const Header = (props: Props) => {
 
   return (
     <React.Fragment>
-      {isPastBooking ? (
-        <HeaderImage data={booking} />
-      ) : null /* TODO: Return explore city component */}
+      {isPastBooking ? <HeaderImage data={booking} /> : <HeaderPlaceholder />}
       <View style={styleSheet.wrapper}>
         <StatusBar data={booking} />
         <View style={styleSheet.separator}>
