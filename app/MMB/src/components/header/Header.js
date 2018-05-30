@@ -11,12 +11,9 @@ import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
 import HeaderImage from './HeaderImage';
 import type { HeaderQueryResponse } from './__generated__/HeaderQuery.graphql';
+import BookingDetailContext from '../../context/BookingDetailContext';
 
-type Props = {|
-  bookingId: string,
-|};
-
-export default class Header extends React.Component<Props> {
+export default class Header extends React.Component<{||}> {
   renderInnerComponent = (rendererProps: HeaderQueryResponse) => {
     const booking = idx(rendererProps, _ => _.booking);
     const isPastBooking = idx(rendererProps.booking, _ => _.isPastBooking);
@@ -38,22 +35,26 @@ export default class Header extends React.Component<Props> {
   };
 
   render = () => (
-    <PrivateApiRenderer
-      render={this.renderInnerComponent}
-      query={graphql`
-        query HeaderQuery($bookingId: ID!) {
-          booking(id: $bookingId) {
-            isPastBooking
-            ...StatusBar
-            ...TripInfo
-            ...HeaderImage
-          }
-        }
-      `}
-      variables={{
-        bookingId: this.props.bookingId,
-      }}
-    />
+    <BookingDetailContext.Consumer>
+      {({ bookingId }) => (
+        <PrivateApiRenderer
+          render={this.renderInnerComponent}
+          query={graphql`
+            query HeaderQuery($bookingId: ID!) {
+              booking(id: $bookingId) {
+                isPastBooking
+                ...StatusBar
+                ...TripInfo
+                ...HeaderImage
+              }
+            }
+          `}
+          variables={{
+            bookingId: bookingId,
+          }}
+        />
+      )}
+    </BookingDetailContext.Consumer>
   );
 }
 

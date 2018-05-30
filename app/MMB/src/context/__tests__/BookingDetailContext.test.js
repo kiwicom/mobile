@@ -10,12 +10,15 @@ class ContextConsumer extends React.Component<{}> {
 }
 
 describe('BookingDetailContext', () => {
-  it('injects the isPastBooking prop to consumers', () => {
+  it('injects the props to consumers', () => {
     const wrapper = renderer.create(
-      <BookingDetailContext.Provider isPastBooking={false}>
+      <BookingDetailContext.Provider isPastBooking={false} bookingId="1234">
         <BookingDetailContext.Consumer>
-          {({ isPastBooking }) => (
-            <ContextConsumer isPastBooking={isPastBooking} />
+          {({ isPastBooking, bookingId }) => (
+            <ContextConsumer
+              isPastBooking={isPastBooking}
+              bookingId={bookingId}
+            />
           )}
         </BookingDetailContext.Consumer>
       </BookingDetailContext.Provider>,
@@ -23,5 +26,6 @@ describe('BookingDetailContext', () => {
 
     const instance = wrapper.root.findByType(ContextConsumer);
     expect(instance.props.isPastBooking).toBe(false);
+    expect(instance.props.bookingId).toBe('1234');
   });
 });
