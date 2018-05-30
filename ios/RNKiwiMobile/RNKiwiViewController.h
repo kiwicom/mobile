@@ -8,6 +8,8 @@
 
 - (nonnull instancetype)initWithOptions:(nonnull id<RNKiwiOptions>)properties;
 - (nonnull instancetype)init NS_UNAVAILABLE;
+- (BOOL)isInteractivePopGestureAllowed;
+
 
 // Delegates
 @property (nonatomic, weak, nullable) id<RNKiwiCurrencyManager> currencyFormatter;
