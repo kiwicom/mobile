@@ -15,6 +15,7 @@ export type CityImage_image = {|
   +databaseId: ?number,
   +status: ?BookingStatus,
   +passengerCount: ?number,
+  +isPastBooking: ?boolean,
   +destinationImageUrl: ?string,
   +$refType: CityImage_image$ref,
 |};
@@ -52,6 +53,13 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "isPastBooking",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "destinationImageUrl",
       "args": [
         {
@@ -66,5 +74,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2d541b3e786cc28ee352446ef34ecaa6';
+(node/*: any*/).hash = '79d3440308f4854156f7e73ded94492b';
 module.exports = node;
