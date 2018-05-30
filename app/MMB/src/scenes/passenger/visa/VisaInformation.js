@@ -8,14 +8,20 @@ import VisaRequired from './VisaRequired';
 import VisaOk from './VisaOk';
 import VisaWarning from './VisaWarning';
 import type { VisaInformation_visa as VisaType } from './__generated__/VisaInformation_visa.graphql';
+import ManageMyBookingContext from '../../../context/BookingDetailContext';
 
-type Props = {|
-  visa: VisaType,
+type PropsWithContext = {|
+  ...Props,
+  +isPastBooking: boolean,
 |};
 
-const VisaInformation = (props: Props) => {
+export const VisaInformation = (props: PropsWithContext) => {
   const requiredIn = idx(props.visa, _ => _.visaInformation.requiredIn) || [];
   const warningIn = idx(props.visa, _ => _.visaInformation.warningIn) || [];
+
+  if (props.isPastBooking) {
+    return null;
+  }
 
   if (requiredIn.length === 0 && warningIn.length === 0) {
     return <VisaOk />;
@@ -33,8 +39,20 @@ const VisaInformation = (props: Props) => {
   );
 };
 
+type Props = {|
+  +visa: VisaType,
+|};
+
+const VisaInformationWithContext = (props: Props) => (
+  <ManageMyBookingContext.Consumer>
+    {({ isPastBooking }) => (
+      <VisaInformation {...props} isPastBooking={isPastBooking} />
+    )}
+  </ManageMyBookingContext.Consumer>
+);
+
 export default createFragmentContainer(
-  VisaInformation,
+  VisaInformationWithContext,
   graphql`
     fragment VisaInformation_visa on Passenger {
       visaInformation {
