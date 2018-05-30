@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9f301f8dd06d60804d54b1cb969e20ee
+ * @relayHash 85dcbc89a490cc0ddb8da8e75af09a7b
  */
 
 /* eslint-disable */
@@ -9,32 +9,33 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type HeaderImage$ref = any;
-type StatusBar$ref = any;
-type TripInfo$ref = any;
-export type HeaderQueryVariables = {|
+type Header$ref = any;
+export type MainMenuQueryVariables = {|
   bookingId: string
 |};
-export type HeaderQueryResponse = {|
+export type MainMenuQueryResponse = {|
   +booking: ?{|
-    +isPastBooking: ?boolean,
-    +$fragmentRefs: StatusBar$ref & TripInfo$ref & HeaderImage$ref,
+    +$fragmentRefs: Header$ref
   |}
 |};
 */
 
 
 /*
-query HeaderQuery(
+query MainMenuQuery(
   $bookingId: ID!
 ) {
   booking(id: $bookingId) {
-    isPastBooking
-    ...StatusBar
-    ...TripInfo
-    ...HeaderImage
+    ...Header
     id
   }
+}
+
+fragment Header on Booking {
+  isPastBooking
+  ...StatusBar
+  ...TripInfo
+  ...HeaderImage
 }
 
 fragment StatusBar on Booking {
@@ -148,18 +149,11 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "isPastBooking",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "localTime",
   "args": null,
   "storageKey": null
 },
-v4 = [
+v3 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -196,16 +190,16 @@ v4 = [
       }
     ]
   },
-  v3
+  v2
 ],
-v5 = {
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "duration",
   "args": null,
   "storageKey": null
 },
-v6 = [
+v5 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -214,7 +208,7 @@ v6 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v4
+    "selections": v3
   },
   {
     "kind": "LinkedField",
@@ -224,30 +218,30 @@ v6 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v4
+    "selections": v3
   },
-  v5
+  v4
 ],
-v7 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v8 = [
-  v3
+v7 = [
+  v2
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "HeaderQuery",
+  "name": "MainMenuQuery",
   "id": null,
-  "text": "query HeaderQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    isPastBooking\n    ...StatusBar\n    ...TripInfo\n    ...HeaderImage\n    id\n  }\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    countryFlagURL\n  }\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
+  "text": "query MainMenuQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...Header\n    id\n  }\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...HeaderImage\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    countryFlagURL\n  }\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "HeaderQuery",
+    "name": "MainMenuQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -261,20 +255,9 @@ return {
         "concreteType": "Booking",
         "plural": false,
         "selections": [
-          v2,
           {
             "kind": "FragmentSpread",
-            "name": "StatusBar",
-            "args": null
-          },
-          {
-            "kind": "FragmentSpread",
-            "name": "TripInfo",
-            "args": null
-          },
-          {
-            "kind": "FragmentSpread",
-            "name": "HeaderImage",
+            "name": "Header",
             "args": null
           }
         ]
@@ -283,7 +266,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "HeaderQuery",
+    "name": "MainMenuQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -295,7 +278,13 @@ return {
         "concreteType": "Booking",
         "plural": false,
         "selections": [
-          v2,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "isPastBooking",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -334,9 +323,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v5
               },
-              v7
+              v6
             ]
           },
           {
@@ -356,7 +345,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v5
               },
               {
                 "kind": "LinkedField",
@@ -367,7 +356,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v5,
+                  v4,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -376,7 +365,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v8
+                    "selections": v7
                   },
                   {
                     "kind": "LinkedField",
@@ -386,11 +375,11 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v8
+                    "selections": v7
                   }
                 ]
               },
-              v7
+              v6
             ]
           },
           {
@@ -410,9 +399,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v6
+                "selections": v5
               },
-              v7
+              v6
             ]
           },
           {
@@ -429,7 +418,7 @@ return {
             ],
             "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
           },
-          v7
+          v6
         ]
       }
     ]
@@ -437,5 +426,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '04cd20645404cfab841cb6527281088d';
+(node/*: any*/).hash = 'a6adfc82add8836a63278fa8e50c8c8c';
 module.exports = node;

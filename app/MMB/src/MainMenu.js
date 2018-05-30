@@ -2,11 +2,14 @@
 
 import * as React from 'react';
 import { ScrollView } from 'react-native';
+import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import Header from './components/header/Header';
 import PassengerMenuGroup from './menuGroups/PassengerMenuGroup';
+import BookingDetailContext from './context/BookingDetailContext';
+import type { MainMenuQueryResponse } from './__generated__/MainMenuQuery.graphql';
 
 type Props = {|
   openMenu: string => void,
@@ -30,12 +33,12 @@ export default class MainMenu extends React.Component<Props, State> {
     );
   };
 
-  render = () => {
+  renderInnerComponent = (renderProps: MainMenuQueryResponse) => {
     const { activeId } = this.state;
 
     return (
       <ScrollView>
-        <Header />
+        <Header data={renderProps.booking} />
         <PassengerMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
@@ -51,4 +54,24 @@ export default class MainMenu extends React.Component<Props, State> {
       </ScrollView>
     );
   };
+
+  render = () => (
+    <BookingDetailContext.Consumer>
+      {({ bookingId }) => (
+        <PrivateApiRenderer
+          render={this.renderInnerComponent}
+          query={graphql`
+            query MainMenuQuery($bookingId: ID!) {
+              booking(id: $bookingId) {
+                ...Header
+              }
+            }
+          `}
+          variables={{
+            bookingId: bookingId,
+          }}
+        />
+      )}
+    </BookingDetailContext.Consumer>
+  );
 }

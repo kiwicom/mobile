@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
@@ -10,53 +10,43 @@ import { SeparatorFullWidth } from '../Separators';
 import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
 import HeaderImage from './HeaderImage';
-import type { HeaderQueryResponse } from './__generated__/HeaderQuery.graphql';
-import BookingDetailContext from '../../context/BookingDetailContext';
+import type { Header as BookingType } from './__generated__/Header.graphql';
 
-export default class Header extends React.Component<{||}> {
-  renderInnerComponent = (rendererProps: HeaderQueryResponse) => {
-    const booking = idx(rendererProps, _ => _.booking);
-    const isPastBooking = idx(rendererProps.booking, _ => _.isPastBooking);
+type Props = {|
+  data: BookingType,
+|};
 
-    return (
-      <React.Fragment>
-        {isPastBooking ? (
-          <HeaderImage data={booking} />
-        ) : null /* TODO: Return explore city component */}
-        <View style={styleSheet.wrapper}>
-          <StatusBar data={booking} />
-          <View style={styleSheet.separator}>
-            <SeparatorFullWidth />
-          </View>
-          <TripInfo data={booking} />
+const Header = (props: Props) => {
+  const booking = idx(props, _ => _.data);
+  const isPastBooking = idx(props.data, _ => _.isPastBooking);
+
+  return (
+    <React.Fragment>
+      {isPastBooking ? (
+        <HeaderImage data={booking} />
+      ) : null /* TODO: Return explore city component */}
+      <View style={styleSheet.wrapper}>
+        <StatusBar data={booking} />
+        <View style={styleSheet.separator}>
+          <SeparatorFullWidth />
         </View>
-      </React.Fragment>
-    );
-  };
-
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
-          render={this.renderInnerComponent}
-          query={graphql`
-            query HeaderQuery($bookingId: ID!) {
-              booking(id: $bookingId) {
-                isPastBooking
-                ...StatusBar
-                ...TripInfo
-                ...HeaderImage
-              }
-            }
-          `}
-          variables={{
-            bookingId: bookingId,
-          }}
-        />
-      )}
-    </BookingDetailContext.Consumer>
+        <TripInfo data={booking} />
+      </View>
+    </React.Fragment>
   );
-}
+};
+
+export default createFragmentContainer(
+  Header,
+  graphql`
+    fragment Header on Booking {
+      isPastBooking
+      ...StatusBar
+      ...TripInfo
+      ...HeaderImage
+    }
+  `,
+);
 
 const styleSheet = StyleSheet.create({
   wrapper: {
