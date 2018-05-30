@@ -22,6 +22,7 @@ function StatusIcon({ title, color }) {
 
 function Status({ data }: {| data: StatusBarIcon |}) {
   const code = data.status;
+  const isPastBooking = data.isPastBooking;
 
   switch (code) {
     case 'CANCELLED':
@@ -42,7 +43,13 @@ function Status({ data }: {| data: StatusBarIcon |}) {
       return (
         <StatusIcon
           color={Color.green.normal}
-          title={<Translation id="mmb.status.confirmed" />}
+          title={
+            <Translation
+              id={
+                isPastBooking ? 'mmb.status.travelled' : 'mmb.status.confirmed'
+              }
+            />
+          }
         />
       );
     case 'DELETED':
@@ -95,6 +102,7 @@ export default createFragmentContainer(
   graphql`
     fragment StatusBarIcon on Booking {
       status
+      isPastBooking
     }
   `,
 );
