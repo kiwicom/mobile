@@ -6,13 +6,14 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import TitledMenuGroup from '../components/menu/TitledMenuGroup';
 import MenuItem from '../components/menu/MenuItem';
+import BookingDetailContext from '../context/BookingDetailContext';
 
-type Props = {|
-  openSubmenu: (activeId: string, menuId: string) => void,
-  activeId: string,
+type PropsWithContext = {|
+  ...Props,
+  isPastBooking: boolean,
 |};
 
-export default class ServicesMenuGroup extends React.Component<Props> {
+export class ServicesMenuGroup extends React.Component<PropsWithContext> {
   handleOpenFlightServicesSubmenu = () => {
     this.props.openSubmenu(
       'mmb.main_menu.services.flight_services',
@@ -29,17 +30,20 @@ export default class ServicesMenuGroup extends React.Component<Props> {
 
   render = () => (
     <TitledMenuGroup title={<Translation id="mmb.main_menu.services" />}>
-      <MenuItem
-        onPress={this.handleOpenFlightServicesSubmenu}
-        isActive={
-          this.props.activeId === 'mmb.main_menu.services.flight_services'
-        }
-        icon={<TextIcon code="&#xe049;" />}
-        title={<Translation id="mmb.main_menu.services.flight_services" />}
-        description={
-          <Translation id="mmb.main_menu.services.flight_services.description" />
-        }
-      />
+      {!this.props.isPastBooking && (
+        <MenuItem
+          onPress={this.handleOpenFlightServicesSubmenu}
+          isActive={
+            this.props.activeId === 'mmb.main_menu.services.flight_services'
+          }
+          icon={<TextIcon code="&#xe049;" />}
+          title={<Translation id="mmb.main_menu.services.flight_services" />}
+          description={
+            <Translation id="mmb.main_menu.services.flight_services.description" />
+          }
+          testID="flightServices"
+        />
+      )}
 
       <MenuItem
         onPress={this.handleOpenTripServicesSubmenu}
@@ -53,5 +57,20 @@ export default class ServicesMenuGroup extends React.Component<Props> {
         }
       />
     </TitledMenuGroup>
+  );
+}
+
+type Props = {|
+  openSubmenu: (activeId: string, menuId: string) => void,
+  activeId: string,
+|};
+
+export default function ServicesMenuGroupWithContext(props: Props) {
+  return (
+    <BookingDetailContext.Consumer>
+      {({ isPastBooking }) => (
+        <ServicesMenuGroup {...props} isPastBooking={isPastBooking} />
+      )}
+    </BookingDetailContext.Consumer>
   );
 }

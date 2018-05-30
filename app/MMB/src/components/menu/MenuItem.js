@@ -26,6 +26,7 @@ type Props = {|
   // icon on the right (arrow by default)
   actionIcon?: React.Element<typeof TextIcon>,
   description?: React.Element<typeof Translation>,
+  testID?: string,
 |};
 
 /**

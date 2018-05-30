@@ -14,8 +14,10 @@ import FlightServices, {
 } from '../scenes/flightServices/FlightServices';
 import TripServices from '../scenes/TripServices';
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
+import BookingDetailContext from '../context/BookingDetailContext';
 
 type Props = {|
+  isPastBooking: boolean,
   bookingId: string,
   navigation: NavigationType,
 |};
@@ -82,7 +84,7 @@ export const MenuComponents = {
 
 export default class DetailsScreen extends React.Component<Props, State> {
   state = {
-    activeContainerComponent: 'mmb.flight_services',
+    activeContainerComponent: 'mmb.passenger_detail',
   };
 
   static navigationOptions = (props: {| navigation: NavigationType |}) => {
@@ -139,30 +141,32 @@ export default class DetailsScreen extends React.Component<Props, State> {
     ).screen;
 
     return (
-      <Layout
-        menuComponent={
-          <AdaptableLayout.Consumer
-            renderOnWide={
-              <MainMenu
-                openMenu={this.changeContentOnTablet}
-                bookingId={this.props.bookingId}
-              />
-            }
-            renderOnNarrow={
-              <MainMenu
-                openMenu={this.openMenuOnMobile}
-                bookingId={this.props.bookingId}
-              />
-            }
-          />
-        }
-        containerComponent={
-          <ContainerComponent
-            navigation={this.props.navigation}
-            bookingId={this.props.bookingId}
-          />
-        }
-      />
+      <BookingDetailContext.Provider isPastBooking={this.props.isPastBooking}>
+        <Layout
+          menuComponent={
+            <AdaptableLayout.Consumer
+              renderOnWide={
+                <MainMenu
+                  openMenu={this.changeContentOnTablet}
+                  bookingId={this.props.bookingId}
+                />
+              }
+              renderOnNarrow={
+                <MainMenu
+                  openMenu={this.openMenuOnMobile}
+                  bookingId={this.props.bookingId}
+                />
+              }
+            />
+          }
+          containerComponent={
+            <ContainerComponent
+              navigation={this.props.navigation}
+              bookingId={this.props.bookingId}
+            />
+          }
+        />
+      </BookingDetailContext.Provider>
     );
   };
 }

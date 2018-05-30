@@ -36,6 +36,7 @@ class CityImage extends React.Component<Props> {
       key: 'key-DetailScreen',
       params: {
         bookingId: idx(this.props.image, _ => _.databaseId),
+        isPastBooking: idx(this.props.image, _ => _.isPastBooking),
       },
     });
   };
@@ -80,6 +81,7 @@ export default createFragmentContainer(
       databaseId
       status
       passengerCount
+      isPastBooking
       destinationImageUrl(dimensions: _375x165)
     }
 
