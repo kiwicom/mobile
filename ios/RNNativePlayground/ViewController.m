@@ -1,7 +1,9 @@
 #import "ViewController.h"
 #import <RNKiwiMobile/RNKiwiMobile.h>
 
-@interface ViewController () <RNKiwiOptions, RNKiwiCurrencyManager, RNKiwiTranslationProvider, RNKiwiViewControllerFlowDelegate>
+@interface ViewController () <UIGestureRecognizerDelegate, RNKiwiOptions, RNKiwiCurrencyManager, RNKiwiTranslationProvider, RNKiwiViewControllerFlowDelegate>
+
+@property (nonatomic, strong) RNKiwiViewController *vc;
 
 @end
 
@@ -24,12 +26,13 @@
 }
 
 - (IBAction)showHotelsView:(id)sender {
-  RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithOptions:self];
-  [vc setCurrencyFormatter:self];
-  [vc setTranslationProvider:self];
-  [vc setFlowDelegate:self];
+  __weak typeof(self) weakSelf = self;
+  _vc = [[RNKiwiViewController alloc] initWithOptions:weakSelf];
+  [_vc setCurrencyFormatter:weakSelf];
+  [_vc setTranslationProvider:weakSelf];
+  [_vc setFlowDelegate:weakSelf];
   
-  [[self navigationController] pushViewController:vc animated:YES ];
+  [[self navigationController] pushViewController:_vc animated:YES];
 }
 
 # pragma mark - RNKiwiOptions
@@ -55,20 +58,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   self.navigationController.navigationBar.hidden = YES;
+  self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
 # pragma mark - RNKiwiViewControllerFlowDelegate
 
 - (void)RNKiwiViewControllerDidFinish:(nonnull RNKiwiViewController *)viewController {
   [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)RNKiwiViewControllerDidStartControllingGestures:(nonnull RNKiwiViewController *)viewController {
-  self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-}
-
-- (void)RNKiwiViewControllerDidStopControllingGestures:(nonnull RNKiwiViewController *)viewController {
-  self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 # pragma mark - RNKiwiCurrencyManager
@@ -82,6 +78,17 @@
 - (NSString *)localizedStringWithKey:(NSString *)key {
   // In real app it would give us the String based on localization
   return nil;
+}
+
+#pragma mark - UIGestureRecognizer
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+  
+  if (self.navigationController.interactivePopGestureRecognizer == gestureRecognizer) {
+    return [_vc isInteractivePopGestureAllowed];
+  }
+  
+  return YES;
 }
 
 @end

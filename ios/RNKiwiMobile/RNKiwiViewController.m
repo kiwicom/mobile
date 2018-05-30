@@ -15,6 +15,7 @@
 @interface RNKiwiViewController() <RNNavigationDelegate, RNLogger, RNTranslator, RNCurrencyFormatter>
 
 @property (nonatomic, strong) id<RNKiwiOptions> options;
+@property (nonatomic) BOOL isGestureAllowed;
 
 @end
 
@@ -24,12 +25,11 @@
 
 - (instancetype)initWithOptions:(id<RNKiwiOptions>)options {
   self = [super init];
-  [self startObservingGestures];
   if (self) {
     _options = options;
+    _isGestureAllowed = YES;
     
     [self setupReactWrappersWithObject:self];
-    
     [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:options];
   }
   
@@ -41,6 +41,11 @@
   [RNNavigationModule setNavigationDelegate:object];
   [RNTranslationManager setTranslator:object];
   [RNCurrencyManager setCurrencyFormatter:object];
+  if (object) {
+    [self startObservingGestures];
+  } else {
+    [self stopObservingGestures];
+  }
 }
 
 #pragma mark - View lifecycle
@@ -57,7 +62,6 @@
   if ([self isBeingDismissed] || [self isMovingFromParentViewController]) {
     [self notifyFinish];
     [self setupReactWrappersWithObject:nil];
-    [self stopObservingGestures];
   }
 }
 
@@ -117,34 +121,36 @@
 
 #pragma mark - Gesture Controller Observers
 
-- (void)disableGestures {
-  if ([self.flowDelegate respondsToSelector:@selector(RNKiwiViewControllerDidStartControllingGestures:)]) {
-    [self.flowDelegate RNKiwiViewControllerDidStartControllingGestures:self];
+- (void)disableGestures:(NSNotification *)notification {
+  if ([notification.userInfo[@"moduleName"] isEqualToString:[_options moduleName]]) {
+    _isGestureAllowed = NO;
   }
 }
 
-- (void)enableGestures {
-  if ([self.flowDelegate respondsToSelector:@selector(RNKiwiViewControllerDidStopControllingGestures:)]) {
-    [self.flowDelegate RNKiwiViewControllerDidStopControllingGestures:self];
+- (void)enableGestures:(NSNotification *)notification {
+  if ([notification.userInfo[@"moduleName"] isEqualToString:[_options moduleName]]) {
+    _isGestureAllowed = YES;
   }
 }
 
 - (void)startObservingGestures {
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(disableGestures)
+                                           selector:@selector(disableGestures:)
                                                name:RNKiwiDisableGestures
-                                             object:[_options moduleName]];
+                                             object:nil];
   
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(enableGestures)
+                                           selector:@selector(enableGestures:)
                                                name:RNKiwiEnableGestures
-                                             object:[_options moduleName]];
+                                             object:nil];
 }
 
 - (void)stopObservingGestures {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
+- (BOOL)isInteractivePopGestureAllowed {
+  return _isGestureAllowed;
+}
 
 @end
