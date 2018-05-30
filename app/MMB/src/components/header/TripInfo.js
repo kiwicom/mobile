@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
@@ -19,13 +18,13 @@ function TripInfo(props: Props) {
   const type = idx(data, _ => _.type);
 
   return (
-    <View>
+    <React.Fragment>
       {type === 'ONE_WAY' && <TripInfoOneWay data={data && data.oneWay} />}
       {type === 'RETURN' && <TripInfoReturn data={data && data.return} />}
       {type === 'MULTICITY' && (
         <TripInfoMulticity data={data && data.multicity} />
       )}
-    </View>
+    </React.Fragment>
   );
 }
 
