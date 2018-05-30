@@ -19,7 +19,7 @@ type State = {|
 
 export default class MainMenu extends React.Component<Props, State> {
   state = {
-    activeId: 'mmb.main_menu.services.flight_services',
+    activeId: 'mmb.main_menu.passengers.passenger_details',
   };
 
   handleOpenSubmenu = (activeId: string, menuId: string) => {
