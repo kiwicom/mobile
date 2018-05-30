@@ -10,7 +10,6 @@ import PassengerMenuGroup from './menuGroups/PassengerMenuGroup';
 
 type Props = {|
   openMenu: string => void,
-  bookingId: string,
 |};
 
 type State = {|
@@ -36,7 +35,7 @@ export default class MainMenu extends React.Component<Props, State> {
 
     return (
       <ScrollView>
-        <Header bookingId={this.props.bookingId} />
+        <Header />
         <PassengerMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}

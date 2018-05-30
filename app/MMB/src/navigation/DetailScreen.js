@@ -141,22 +141,15 @@ export default class DetailsScreen extends React.Component<Props, State> {
     ).screen;
 
     return (
-      <BookingDetailContext.Provider isPastBooking={this.props.isPastBooking}>
+      <BookingDetailContext.Provider
+        isPastBooking={this.props.isPastBooking}
+        bookingId={this.props.bookingId}
+      >
         <Layout
           menuComponent={
             <AdaptableLayout.Consumer
-              renderOnWide={
-                <MainMenu
-                  openMenu={this.changeContentOnTablet}
-                  bookingId={this.props.bookingId}
-                />
-              }
-              renderOnNarrow={
-                <MainMenu
-                  openMenu={this.openMenuOnMobile}
-                  bookingId={this.props.bookingId}
-                />
-              }
+              renderOnWide={<MainMenu openMenu={this.changeContentOnTablet} />}
+              renderOnNarrow={<MainMenu openMenu={this.openMenuOnMobile} />}
             />
           }
           containerComponent={
