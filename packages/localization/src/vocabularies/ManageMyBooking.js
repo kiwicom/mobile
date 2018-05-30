@@ -2,6 +2,7 @@
 
 export default {
   'mmb.booking_state.confirmed': 'Confirmed',
+  'mmb.booking_state.confirmed.travelled': 'Travelled',
   'mmb.booking_state.refunded': 'Refunded',
   'mmb.booking_state.in_process': 'In process',
 
@@ -22,6 +23,7 @@ export default {
   'mmb.status.new': 'New',
   'mmb.status.pending': 'Pending',
   'mmb.status.refused': 'Refused',
+  'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
   // MMB Flight services

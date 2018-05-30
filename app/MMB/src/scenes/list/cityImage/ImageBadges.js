@@ -3,15 +3,21 @@
 import * as React from 'react';
 import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import idx from 'idx';
+
+import type { ImageBadges as ImageBadgesType } from './__generated__/ImageBadges.graphql';
 
 type Props = {|
-  status: ?string,
-  bookingId: ?number,
+  data: ImageBadgesType,
 |};
 
-export default function ImageBadges(props: Props) {
+const ImageBadges = (props: Props) => {
   let statusBadge = null;
-  switch (props.status) {
+  const status = idx(props.data, _ => _.status) || '';
+  const isPastBooking = idx(props.data, _ => _.isPastBooking);
+
+  switch (status) {
     case 'REFUNDED':
       statusBadge = (
         <AdaptableBadge
@@ -24,7 +30,15 @@ export default function ImageBadges(props: Props) {
     case 'CONFIRMED':
       statusBadge = (
         <AdaptableBadge
-          translation={<Translation id="mmb.booking_state.confirmed" />}
+          translation={
+            <Translation
+              id={
+                isPastBooking
+                  ? 'mmb.booking_state.confirmed.travelled'
+                  : 'mmb.booking_state.confirmed'
+              }
+            />
+          }
           style={styles.confirmBadge}
           textStyle={styles.badgeText}
         />
@@ -46,13 +60,24 @@ export default function ImageBadges(props: Props) {
     <React.Fragment>
       {statusBadge}
       <AdaptableBadge
-        translation={<Translation passThrough={props.bookingId} />}
+        translation={<Translation passThrough={props.data.databaseId} />}
         style={styles.bookingIdBadge}
         textStyle={styles.badgeText}
       />
     </React.Fragment>
   );
-}
+};
+
+export default createFragmentContainer(
+  ImageBadges,
+  graphql`
+    fragment ImageBadges on BookingInterface {
+      status
+      databaseId
+      isPastBooking
+    }
+  `,
+);
 
 const styles = StyleSheet.create({
   confirmBadge: {
