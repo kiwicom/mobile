@@ -15,8 +15,7 @@ import Invoice from '../components/Invoice';
 import { SeparatorFullWidth, SeparatorTrimmed } from '../components/Separators';
 
 type Props = {|
-  bookingId: string,
-  navigation: NavigationType,
+  +navigation: NavigationType,
 |};
 
 export default class Other extends React.Component<Props> {
@@ -24,9 +23,6 @@ export default class Other extends React.Component<Props> {
     this.props.navigation.navigate({
       routeName: key,
       key: `key-${key}`,
-      params: {
-        bookingId: this.props.bookingId,
-      },
     });
   };
 
@@ -70,24 +66,20 @@ export default class Other extends React.Component<Props> {
   );
 }
 
-type SubmenuProps = {|
-  bookingId: string,
-|};
-
 export const OtherSubmenuItems = {
   'mmb.other.invoice': {
-    screen: function OtherSubmenuOpenInvoice({ bookingId }: SubmenuProps) {
-      return <Invoice bookingID={bookingId} />;
+    screen: function OtherSubmenuOpenInvoice() {
+      return <Invoice />;
     },
   },
   'mmb.other.open': {
-    screen: function OtherSubmenuOpenOnWeb({ bookingId }: SubmenuProps) {
-      return <Deeplink bookingID={bookingId} />;
+    screen: function OtherSubmenuOpenOnWeb() {
+      return <Deeplink />;
     },
   },
   'mmb.other.refund': {
-    screen: function OtherSubmenuRefundForm({ bookingId }: SubmenuProps) {
-      return <Deeplink to="REFUND" bookingID={bookingId} />;
+    screen: function OtherSubmenuRefundForm() {
+      return <Deeplink to="REFUND" />;
     },
   },
 };
