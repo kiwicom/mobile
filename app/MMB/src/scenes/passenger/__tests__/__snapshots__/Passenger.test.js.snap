@@ -73,20 +73,17 @@ exports[`renders 1`] = `
         }
       />
     </Row>
-    <Relay(VisaInformationWithContext)
-      visa={
-        Object {
-          "birthday": "1984-05-10T00:00:00.000Z",
-          "fullName": "Trond Bergquist",
-          "insuranceType": "TRAVEL_PLUS",
-          "nationality": "no",
-          "title": "Mr",
-          "travelDocument": Object {
-            "idNumber": "123456",
-          },
-        }
-      }
-    />
+    <VisaInformationWithContext
+      requiredIn={Array []}
+      warningIn={Array []}
+    >
+      <VisaRequired
+        countries={Array []}
+      />
+      <VisaWarning
+        countries={Array []}
+      />
+    </VisaInformationWithContext>
   </MenuGroup>
 </SimpleCard>
 `;

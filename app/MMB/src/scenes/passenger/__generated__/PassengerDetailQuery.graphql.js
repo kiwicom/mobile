@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 0319badcafb3be87682541923e719980
+ * @relayHash 939cda06d5e623f766e87f98d05fecb6
  */
 
 /* eslint-disable */
@@ -56,10 +56,6 @@ fragment Passenger_passenger on Passenger {
     idNumber
   }
   insuranceType
-  ...VisaInformation_visa
-}
-
-fragment VisaInformation_visa on Passenger {
   visaInformation {
     requiredIn {
       name
@@ -109,7 +105,7 @@ return {
   "operationKind": "query",
   "name": "PassengerDetailQuery",
   "id": null,
-  "text": "query PassengerDetailQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  ...VisaInformation_visa\n}\n\nfragment VisaInformation_visa on Passenger {\n  visaInformation {\n    requiredIn {\n      name\n    }\n    warningIn {\n      name\n    }\n  }\n}\n",
+  "text": "query PassengerDetailQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n    }\n    warningIn {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

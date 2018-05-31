@@ -10,6 +10,8 @@ import startCase from 'lodash/startCase';
 
 import { SeparatorTrimmed } from '../../components/Separators';
 import VisaInformation from './visa/VisaInformation';
+import VisaWarning from './visa/VisaWarning';
+import VisaRequired from './visa/VisaRequired';
 import type { Passenger_passenger as PassengerType } from './__generated__/Passenger_passenger.graphql';
 import MenuGroup from '../../components/menu/MenuGroup';
 import PassengerMenuItem from './PassengerMenuItem';
@@ -19,7 +21,7 @@ const Row = ({ children }: {| children: React.Node |}) => (
 );
 
 type Props = {|
-  passenger: PassengerType,
+  +passenger: PassengerType,
 |};
 
 export const Passenger = ({ passenger }: Props) => {
@@ -31,6 +33,11 @@ export const Passenger = ({ passenger }: Props) => {
   const insuranceType = startCase(
     (idx(passenger, _ => _.insuranceType) || '').toLowerCase(),
   );
+
+  let requiredIn = idx(passenger, _ => _.visaInformation.requiredIn) || [];
+  requiredIn = requiredIn.map(item => idx(item, _ => _.name) || '');
+  let warningIn = idx(passenger, _ => _.visaInformation.warningIn) || [];
+  warningIn = warningIn.map(item => idx(item, _ => _.name) || '');
 
   return (
     <SimpleCard style={styles.card}>
@@ -64,7 +71,10 @@ export const Passenger = ({ passenger }: Props) => {
             value={<Translation passThrough={insuranceType} />}
           />
         </Row>
-        <VisaInformation visa={passenger} />
+        <VisaInformation requiredIn={requiredIn} warningIn={warningIn}>
+          <VisaRequired countries={requiredIn} />
+          <VisaWarning countries={warningIn} />
+        </VisaInformation>
       </MenuGroup>
     </SimpleCard>
   );
@@ -82,7 +92,14 @@ export default createFragmentContainer(
         idNumber
       }
       insuranceType
-      ...VisaInformation_visa
+      visaInformation {
+        requiredIn {
+          name
+        }
+        warningIn {
+          name
+        }
+      }
     }
   `,
 );
