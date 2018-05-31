@@ -9,13 +9,9 @@ import VisaRequired from '../VisaRequired';
 import VisaWarning from '../VisaWarning';
 
 const defaultProps = {
-  visa: {
-    visaInformation: {
-      requiredIn: [],
-      warningIn: [],
-    },
-    isPastBooking: false,
-  },
+  requiredIn: [],
+  warningIn: [],
+  isPastBooking: false,
 };
 
 describe('VisaInformation', () => {
@@ -24,15 +20,20 @@ describe('VisaInformation', () => {
       ...defaultProps,
       isPastBooking: true,
     };
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
-    const wrapper = renderer.create(<VisaInformation {...props} />);
+    const wrapper = renderer.create(
+      <VisaInformation {...props}>{false}</VisaInformation>,
+    );
 
     expect(wrapper.toTree().rendered).toBe(null);
   });
 
   it('renders visa ok when requiredIn and warningIn contains no elements', () => {
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
-    const wrapper = renderer.create(<VisaInformation {...defaultProps} />);
+    const wrapper = renderer.create(
+      <VisaInformation {...defaultProps}>
+        <VisaRequired countries={[]} />
+        <VisaWarning countries={[]} />
+      </VisaInformation>,
+    );
 
     expect(wrapper.root.findByType(VisaOk)).toBeDefined();
     expect(() => {
@@ -46,15 +47,16 @@ describe('VisaInformation', () => {
   it('renders visa warning and visa required when they contain elements', () => {
     const props = {
       ...defaultProps,
-      visa: {
-        visaInformation: {
-          requiredIn: [{ name: 'Norway' }],
-          warningIn: [{ name: 'Sweden' }],
-        },
-      },
+      requiredIn: ['Norway'],
+      warningIn: ['Norway'],
     };
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
-    const wrapper = renderer.create(<VisaInformation {...props} />);
+
+    const wrapper = renderer.create(
+      <VisaInformation {...props}>
+        <VisaRequired countries={['Norway']} />
+        <VisaWarning countries={['Norway']} />
+      </VisaInformation>,
+    );
 
     expect(wrapper.root.findByType(VisaRequired)).toBeDefined();
     expect(wrapper.root.findByType(VisaWarning)).toBeDefined();
