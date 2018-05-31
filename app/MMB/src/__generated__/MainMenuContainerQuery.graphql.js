@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 85dcbc89a490cc0ddb8da8e75af09a7b
+ * @relayHash 398dc4f319d5b7aabc9f732f4720d00a
  */
 
 /* eslint-disable */
@@ -9,26 +9,30 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type Header$ref = any;
-export type MainMenuQueryVariables = {|
+type MainMenu$ref = any;
+export type MainMenuContainerQueryVariables = {|
   bookingId: string
 |};
-export type MainMenuQueryResponse = {|
+export type MainMenuContainerQueryResponse = {|
   +booking: ?{|
-    +$fragmentRefs: Header$ref
+    +$fragmentRefs: MainMenu$ref
   |}
 |};
 */
 
 
 /*
-query MainMenuQuery(
+query MainMenuContainerQuery(
   $bookingId: ID!
 ) {
   booking(id: $bookingId) {
-    ...Header
+    ...MainMenu
     id
   }
+}
+
+fragment MainMenu on Booking {
+  ...Header
 }
 
 fragment Header on Booking {
@@ -235,13 +239,13 @@ v7 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "MainMenuQuery",
+  "name": "MainMenuContainerQuery",
   "id": null,
-  "text": "query MainMenuQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...Header\n    id\n  }\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...HeaderImage\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    countryFlagURL\n  }\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
+  "text": "query MainMenuContainerQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...MainMenu\n    id\n  }\n}\n\nfragment MainMenu on Booking {\n  ...Header\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...HeaderImage\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    countryFlagURL\n  }\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "MainMenuQuery",
+    "name": "MainMenuContainerQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -257,7 +261,7 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "Header",
+            "name": "MainMenu",
             "args": null
           }
         ]
@@ -266,7 +270,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "MainMenuQuery",
+    "name": "MainMenuContainerQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -426,5 +430,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'a6adfc82add8836a63278fa8e50c8c8c';
+(node/*: any*/).hash = 'b206719ad5ef8a2ce62bf35f23d8c37e';
 module.exports = node;
