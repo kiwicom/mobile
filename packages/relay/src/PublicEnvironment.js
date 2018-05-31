@@ -2,23 +2,14 @@
 
 import createEnvironment from './Environment';
 
-class PublicEnvironment {
+export default new class PublicEnvironment {
   environment = null;
-  currentPartialErrorHandler: Object => void;
 
   constructor() {
-    this.environment = createEnvironment(this.partialErrorHandler, '');
+    this.environment = createEnvironment();
   }
 
-  partialErrorHandler = (error: Object) => {
-    this.currentPartialErrorHandler(error);
-  };
-
-  getEnvironment = (partialErrorHandler: Object => void) => {
-    this.currentPartialErrorHandler = partialErrorHandler;
+  getEnvironment = () => {
     return this.environment;
   };
-}
-
-const publicEnvironment = new PublicEnvironment();
-export default publicEnvironment;
+}();

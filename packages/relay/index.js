@@ -24,32 +24,29 @@ export const createFragmentContainer = (
 };
 
 export const commitMutation = (config: CommitMutationConfig) => {
-  return Relay.commitMutation(
-    PublicEnvironment.getEnvironment(() => {}),
-    config,
-  );
+  return Relay.commitMutation(PublicEnvironment.getEnvironment(), config);
 };
 
 // Flow types:
 
 type CommitMutationConfig = {|
   // please extend this type if needed
-  mutation: string,
-  variables: Object,
-  onCompleted: Function,
+  +mutation: string,
+  +variables: Object,
+  +onCompleted: Function,
 |};
 
 export type QueryRendererProps = {|
-  query: string,
-  render: (props: Object) => React.Node,
-  variables?: Object,
+  +query: string,
+  +render: (props: Object) => React.Node,
+  +variables?: Object,
 |};
 
 export type RelayPaginationProp = {|
-  hasMore: () => boolean,
-  isLoading: () => boolean,
-  loadMore: (pageSize: number, callback: (error: ?Error) => void) => void,
-  refetchConnection: (
+  +hasMore: () => boolean,
+  +isLoading: () => boolean,
+  +loadMore: (pageSize: number, callback: (error: ?Error) => void) => void,
+  +refetchConnection: (
     totalCount: number,
     callback: (error: ?Error) => void,
     refetchVariables: ?any,
@@ -57,15 +54,15 @@ export type RelayPaginationProp = {|
 |};
 
 type RefetchOptions = {|
-  force?: boolean,
+  +force?: boolean,
 |};
 
 type Disposable = {|
-  dispose(): void,
+  +dispose: () => void,
 |};
 
 export type RelayRefetchProp = {|
-  refetch: (
+  +refetch: (
     refetchVariables: Object | null | ((fragmentVariables: Object) => Object),
     renderVariables: ?Object,
     callback: ?(error: ?Error) => void,

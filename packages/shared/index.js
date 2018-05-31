@@ -59,7 +59,6 @@ export { default as WebView } from './src/WebView';
 export { default as SimpleCard } from './src/SimpleCard';
 
 export { default as GeneralError } from './src/errors/GeneralError';
-export { default as PartialFailure } from './src/errors/PartialFailure';
 
 export { default as ReadMore } from './src/ReadMore';
 export { default as BottomSheet } from './src/BottomSheet';
