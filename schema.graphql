@@ -149,6 +149,7 @@ type Booking {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+  availableWhitelabeledServices: WhitelabeledServices
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -232,6 +233,7 @@ interface BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+  availableWhitelabeledServices: WhitelabeledServices
 }
 
 type BookingMulticity implements BookingInterface {
@@ -266,6 +268,7 @@ type BookingMulticity implements BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+  availableWhitelabeledServices: WhitelabeledServices
 
   """Initial origin."""
   start: RouteStop
@@ -312,6 +315,7 @@ type BookingOneWay implements BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+  availableWhitelabeledServices: WhitelabeledServices
   trip: Trip
 }
 
@@ -348,6 +352,7 @@ type BookingReturn implements BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+  availableWhitelabeledServices: WhitelabeledServices
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -682,6 +687,65 @@ enum DirectAccessURLValues {
 input DurationInput {
   stopovers: StopoversInput
   maxFlightDuration: Int
+}
+
+"""Combination of flight and hotel"""
+type DynamicPackage {
+  """The ID of an object"""
+  id: ID!
+
+  """Accommodation part of the package"""
+  hotel: Hotel
+
+  """Transport part of the package"""
+  flight: Flight
+
+  """
+  URL to the whitelabel page where this dynamic package can be purchased
+  """
+  whitelabelUrl: String
+
+  """Total price"""
+  price: Price
+}
+
+"""A connection to a list of items."""
+type DynamicPackageConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DynamicPackageEdge]
+}
+
+"""An edge in a connection."""
+type DynamicPackageEdge {
+  """The item at the end of the edge"""
+  node: DynamicPackage
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+input DynamicPackagesSimpleSearchInput {
+  """Valid airport code according the IATA standard"""
+  fromAirport: String!
+
+  """Valid airport code according the IATA standard"""
+  toAirport: String!
+
+  """List of outbound flight numbers (e.g. OK123)"""
+  outboundFlights: [String!]!
+
+  """List of inbound flight numbers (e.g. OK123)"""
+  inboundFlights: [String!]!
+
+  """Departure date"""
+  date: Date!
+
+  """Return date"""
+  returnDate: Date!
+  passengers: PassengersInput!
 }
 
 type FAQArticle {
@@ -1438,6 +1502,15 @@ enum LocationType {
   subdivision
 }
 
+type LoungeService {
+  relevantAirports: [LoungeServiceRelevantAirports]
+}
+
+type LoungeServiceRelevantAirports {
+  whitelabelURL: String
+  location: Location
+}
+
 """An object with an ID"""
 interface Node {
   """The id of the object."""
@@ -1459,6 +1532,10 @@ type PageInfo {
   endCursor: String
 }
 
+type ParkingService {
+  whitelabelURL: String
+}
+
 """The passengers associated with the booking"""
 type Passenger {
   databaseId: Int
@@ -1477,6 +1554,7 @@ type Passenger {
 
 input PassengersInput {
   adults: Int!
+  infants: Int
 }
 
 type Price {
@@ -1695,6 +1773,22 @@ type RootQuery {
     """Language in which the text of the article is returned."""
     language: Language
   ): FAQArticle
+
+  """
+  All dynamic packages. Dynamic package is a combination of return flight and
+  accommodation in hotel. It saves time and also the price should be better then
+  buying flight and acommodation separately.
+  """
+  allDynamicPackages(
+    simpleSearch: DynamicPackagesSimpleSearchInput!
+
+    """An ISO-4217 currency code."""
+    currency: Currency
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): DynamicPackageConnection
 }
 
 type RouteStop {
@@ -1752,4 +1846,9 @@ type Visa {
 
   """Countries where visa is not required"""
   okIn: [Location]
+}
+
+type WhitelabeledServices {
+  lounge(departureTime: DateTime!): LoungeService
+  parking(fromDate: DateTime!, toDate: DateTime!): ParkingService
 }
