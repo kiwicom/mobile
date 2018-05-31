@@ -6,7 +6,7 @@ import { AdaptableLayout } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import Layout from '../components/Layout';
-import MainMenu from '../MainMenu';
+import MainMenuContainer from '../MainMenuContainer';
 import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
 import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import FlightServices, {
@@ -137,8 +137,12 @@ export default class DetailsScreen extends React.Component<Props, State> {
       <Layout
         menuComponent={
           <AdaptableLayout.Consumer
-            renderOnWide={<MainMenu openMenu={this.changeContentOnTablet} />}
-            renderOnNarrow={<MainMenu openMenu={this.openMenuOnMobile} />}
+            renderOnWide={
+              <MainMenuContainer openMenu={this.changeContentOnTablet} />
+            }
+            renderOnNarrow={
+              <MainMenuContainer openMenu={this.openMenuOnMobile} />
+            }
           />
         }
         containerComponent={
