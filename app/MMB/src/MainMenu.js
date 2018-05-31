@@ -2,24 +2,24 @@
 
 import * as React from 'react';
 import { ScrollView } from 'react-native';
-import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import Header from './components/header/Header';
 import PassengerMenuGroup from './menuGroups/PassengerMenuGroup';
-import BookingDetailContext from './context/BookingDetailContext';
-import type { MainMenuQueryResponse } from './__generated__/MainMenuQuery.graphql';
+import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 
 type Props = {|
-  openMenu: string => void,
+  +openMenu: string => void,
+  +data: BookingType,
 |};
 
 type State = {|
   activeId: string,
 |};
 
-export default class MainMenu extends React.Component<Props, State> {
+class MainMenu extends React.Component<Props, State> {
   state = {
     activeId: 'mmb.main_menu.passengers.passenger_details',
   };
@@ -33,12 +33,12 @@ export default class MainMenu extends React.Component<Props, State> {
     );
   };
 
-  renderInnerComponent = (renderProps: MainMenuQueryResponse) => {
+  render = () => {
     const { activeId } = this.state;
 
     return (
       <ScrollView>
-        <Header data={renderProps.booking} />
+        <Header data={this.props.data} />
         <PassengerMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
@@ -54,24 +54,13 @@ export default class MainMenu extends React.Component<Props, State> {
       </ScrollView>
     );
   };
-
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
-          render={this.renderInnerComponent}
-          query={graphql`
-            query MainMenuQuery($bookingId: ID!) {
-              booking(id: $bookingId) {
-                ...Header
-              }
-            }
-          `}
-          variables={{
-            bookingId: bookingId,
-          }}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
 }
+
+export default createFragmentContainer(
+  MainMenu,
+  graphql`
+    fragment MainMenu on Booking {
+      ...Header
+    }
+  `,
+);
