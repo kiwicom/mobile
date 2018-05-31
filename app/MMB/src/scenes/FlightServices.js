@@ -14,8 +14,7 @@ import MenuItem from '../components/menu/MenuItem';
 import Deeplink from '../components/Deeplink';
 
 type Props = {|
-  bookingId: string,
-  navigation: NavigationType,
+  +navigation: NavigationType,
 |};
 
 export default class FlightServices extends React.Component<Props> {
@@ -23,9 +22,6 @@ export default class FlightServices extends React.Component<Props> {
     this.props.navigation.navigate({
       routeName: key,
       key: `key-${key}`,
-      params: {
-        bookingId: this.props.bookingId,
-      },
     });
   };
 
@@ -91,39 +87,35 @@ export default class FlightServices extends React.Component<Props> {
   );
 }
 
-type SubmenuProps = {|
-  bookingId: string,
-|};
-
 export const FlightServicesSubmenuItems = {
   'mmb.flight_services.checked_baggage': {
-    screen: function OpenCheckedBaggage({ bookingId }: SubmenuProps) {
-      return <Deeplink to="BAGS" bookingID={bookingId} />;
+    screen: function OpenCheckedBaggage() {
+      return <Deeplink to="BAGS" />;
     },
   },
   'mmb.flight_services.allocated_seating': {
-    screen: function OpenAllocatedSeating({ bookingId }: SubmenuProps) {
-      return <Deeplink to="SEATING" bookingID={bookingId} />;
+    screen: function OpenAllocatedSeating() {
+      return <Deeplink to="SEATING" />;
     },
   },
   'mmb.flight_services.sports_equipment': {
-    screen: function OpenSportsEquipment({ bookingId }: SubmenuProps) {
-      return <Deeplink to="SPORT_EQUIPMENT" bookingID={bookingId} />;
+    screen: function OpenSportsEquipment() {
+      return <Deeplink to="SPORT_EQUIPMENT" />;
     },
   },
   'mmb.flight_services.musical_equipment': {
-    screen: function OpenMusicalEquipment({ bookingId }: SubmenuProps) {
-      return <Deeplink to="MUSICAL_EQUIPMENT" bookingID={bookingId} />;
+    screen: function OpenMusicalEquipment() {
+      return <Deeplink to="MUSICAL_EQUIPMENT" />;
     },
   },
   'mmb.flight_services.special_assistance': {
-    screen: function OpenSpecialAssistance({ bookingId }: SubmenuProps) {
-      return <Deeplink to="ASSISTANCE" bookingID={bookingId} />;
+    screen: function OpenSpecialAssistance() {
+      return <Deeplink to="ASSISTANCE" />;
     },
   },
   'mmb.flight_services.pets': {
-    screen: function OpenPetPassengers({ bookingId }: SubmenuProps) {
-      return <Deeplink to="PETS" bookingID={bookingId} />;
+    screen: function OpenPetPassengers() {
+      return <Deeplink to="PETS" />;
     },
   },
 };

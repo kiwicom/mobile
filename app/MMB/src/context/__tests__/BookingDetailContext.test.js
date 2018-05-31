@@ -9,23 +9,37 @@ class ContextConsumer extends React.Component<{}> {
   render = () => null;
 }
 
+const getWrapper = () =>
+  renderer.create(
+    <BookingDetailContext.Provider>
+      <BookingDetailContext.Consumer>
+        {({ isPastBooking, bookingId, actions: { setBookingDetail } }) => (
+          <ContextConsumer
+            isPastBooking={isPastBooking}
+            bookingId={bookingId}
+            setBookingDetail={setBookingDetail}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    </BookingDetailContext.Provider>,
+  );
+
 describe('BookingDetailContext', () => {
   it('injects the props to consumers', () => {
-    const wrapper = renderer.create(
-      <BookingDetailContext.Provider isPastBooking={false} bookingId="1234">
-        <BookingDetailContext.Consumer>
-          {({ isPastBooking, bookingId }) => (
-            <ContextConsumer
-              isPastBooking={isPastBooking}
-              bookingId={bookingId}
-            />
-          )}
-        </BookingDetailContext.Consumer>
-      </BookingDetailContext.Provider>,
-    );
+    const wrapper = getWrapper();
 
     const instance = wrapper.root.findByType(ContextConsumer);
     expect(instance.props.isPastBooking).toBe(false);
-    expect(instance.props.bookingId).toBe('1234');
+    expect(instance.props.bookingId).toBe('');
+    expect(typeof instance.props.setBookingDetail).toBe('function');
+  });
+
+  it('it setsBookingDetail', () => {
+    const wrapper = getWrapper();
+    const instance = wrapper.root.findByType(ContextConsumer);
+
+    instance.props.setBookingDetail({ isPastBooking: true, bookingId: '123' });
+    expect(instance.props.isPastBooking).toBe(true);
+    expect(instance.props.bookingId).toBe('123');
   });
 });

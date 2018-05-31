@@ -14,17 +14,6 @@ import FlightServices, {
 } from '../scenes/flightServices/FlightServices';
 import TripServices from '../scenes/TripServices';
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
-import BookingDetailContext from '../context/BookingDetailContext';
-
-type Props = {|
-  isPastBooking: boolean,
-  bookingId: string,
-  navigation: NavigationType,
-|};
-
-type State = {|
-  activeContainerComponent: string,
-|};
 
 export const MenuComponents = {
   'mmb.passenger_detail': {
@@ -82,6 +71,14 @@ export const MenuComponents = {
   ...OtherSubmenuItems,
 };
 
+type Props = {|
+  +navigation: NavigationType,
+|};
+
+type State = {|
+  activeContainerComponent: string,
+|};
+
 export default class DetailsScreen extends React.Component<Props, State> {
   state = {
     activeContainerComponent: 'mmb.passenger_detail',
@@ -114,12 +111,8 @@ export default class DetailsScreen extends React.Component<Props, State> {
     this.props.navigation.navigate({
       routeName: key,
       key: `key-${key}`,
-      params: {
-        bookingId: this.props.bookingId,
-      },
     });
   };
-
   /**
    * Just change container content for tablets. It's also necessary to change
    * the header title.
@@ -141,25 +134,17 @@ export default class DetailsScreen extends React.Component<Props, State> {
     ).screen;
 
     return (
-      <BookingDetailContext.Provider
-        isPastBooking={this.props.isPastBooking}
-        bookingId={this.props.bookingId}
-      >
-        <Layout
-          menuComponent={
-            <AdaptableLayout.Consumer
-              renderOnWide={<MainMenu openMenu={this.changeContentOnTablet} />}
-              renderOnNarrow={<MainMenu openMenu={this.openMenuOnMobile} />}
-            />
-          }
-          containerComponent={
-            <ContainerComponent
-              navigation={this.props.navigation}
-              bookingId={this.props.bookingId}
-            />
-          }
-        />
-      </BookingDetailContext.Provider>
+      <Layout
+        menuComponent={
+          <AdaptableLayout.Consumer
+            renderOnWide={<MainMenu openMenu={this.changeContentOnTablet} />}
+            renderOnNarrow={<MainMenu openMenu={this.openMenuOnMobile} />}
+          />
+        }
+        containerComponent={
+          <ContainerComponent navigation={this.props.navigation} />
+        }
+      />
     );
   };
 }

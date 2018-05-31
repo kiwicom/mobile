@@ -6,6 +6,7 @@ import { AuthContext } from '@kiwicom/mobile-relay';
 import { AdaptableLayout } from '@kiwicom/mobile-shared';
 
 import NavigationStack from './src/navigation/NavigationStack';
+import BookingDetailContext from './src/context/BookingDetailContext';
 
 type Props = {|
   currency: string,
@@ -16,7 +17,9 @@ class ManageMyBookingPackage extends React.Component<Props> {
   render = () => (
     <AdaptableLayout.Provider>
       <AuthContext.Provider accessToken={this.props.accessToken}>
-        <NavigationStack />
+        <BookingDetailContext.Provider>
+          <NavigationStack />
+        </BookingDetailContext.Provider>
       </AuthContext.Provider>
     </AdaptableLayout.Provider>
   );
