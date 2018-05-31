@@ -2,9 +2,16 @@
 
 import * as React from 'react';
 
+type BookingDetail = {|
+  +isPastBooking: boolean,
+  +bookingId: string,
+|};
 const defaultState = {
   isPastBooking: false,
   bookingId: '',
+  actions: {
+    setBookingDetail: () => {},
+  },
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
@@ -13,13 +20,13 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
 
 type Props = {|
   +children: React.Node,
-  +isPastBooking: boolean,
-  +bookingId: string,
 |};
 
 type State = {|
-  +isPastBooking: boolean,
-  +bookingId: string,
+  ...BookingDetail,
+  +actions: {|
+    +setBookingDetail: (booking: BookingDetail) => void,
+  |},
 |};
 
 class Provider extends React.Component<Props, State> {
@@ -27,10 +34,17 @@ class Provider extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isPastBooking: props.isPastBooking,
-      bookingId: props.bookingId,
+      isPastBooking: false,
+      bookingId: '',
+      actions: {
+        setBookingDetail: this.setBookingDetail,
+      },
     };
   }
+
+  setBookingDetail = ({ isPastBooking, bookingId }: BookingDetail) => {
+    this.setState({ isPastBooking, bookingId });
+  };
 
   render = () => (
     <ContextProvider value={this.state}>{this.props.children}</ContextProvider>

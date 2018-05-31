@@ -7,13 +7,10 @@ import { Translation } from '@kiwicom/mobile-localization';
 import PdfViewer from '@kiwicom/mobile-pdf';
 import idx from 'idx';
 
+import BookingDetailContext from '../context/BookingDetailContext';
 import type { InvoiceQueryResponse } from './__generated__/InvoiceQuery.graphql';
 
-type Props = {|
-  bookingID: string,
-|};
-
-export default class Invoice extends React.Component<Props> {
+export default class Invoice extends React.Component<{||}> {
   renderInnerComponent = (renderProps: InvoiceQueryResponse) => {
     const uri = idx(renderProps, _ => _.booking.assets.invoiceUrl);
 
@@ -36,20 +33,24 @@ export default class Invoice extends React.Component<Props> {
   };
 
   render = () => (
-    <PrivateApiRenderer
-      render={this.renderInnerComponent}
-      query={graphql`
-        query InvoiceQuery($bookingId: ID!) {
-          booking(id: $bookingId) {
-            assets {
-              invoiceUrl
+    <BookingDetailContext.Consumer>
+      {({ bookingId }) => (
+        <PrivateApiRenderer
+          render={this.renderInnerComponent}
+          query={graphql`
+            query InvoiceQuery($bookingId: ID!) {
+              booking(id: $bookingId) {
+                assets {
+                  invoiceUrl
+                }
+              }
             }
-          }
-        }
-      `}
-      variables={{
-        bookingId: this.props.bookingID,
-      }}
-    />
+          `}
+          variables={{
+            bookingId: bookingId,
+          }}
+        />
+      )}
+    </BookingDetailContext.Consumer>
   );
 }

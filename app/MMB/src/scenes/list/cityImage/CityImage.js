@@ -17,27 +17,31 @@ import idx from 'idx';
 import FromToRow from './FromToRow';
 import DateAndPassengerCount from './DateAndPassengerCount';
 import ImageBadges from './ImageBadges';
+import BookingDetailContext from '../../../context/BookingDetailContext';
 import type { CityImage_arrival as ArrivalType } from './__generated__/CityImage_arrival.graphql';
 import type { CityImage_departure as DepartureType } from './__generated__/CityImage_departure.graphql';
 import type { CityImage_image as ImageType } from './__generated__/CityImage_image.graphql';
 
-type Props = {|
-  image: ImageType,
-  arrival: ArrivalType,
-  departure: DepartureType,
-  type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
-  navigation: NavigationType,
+type PropsWithContext = {|
+  ...Props,
+  +setBookingDetail: (booking: {|
+    isPastBooking: boolean,
+    bookingId: string,
+  |}) => void,
 |};
 
-class CityImage extends React.Component<Props> {
+class CityImage extends React.Component<PropsWithContext> {
   goToDetail = () => {
+    const bookingId = idx(this.props.image, _ => _.databaseId) || '';
+    const isPastBooking = Boolean(idx(this.props.image, _ => _.isPastBooking));
+    this.props.setBookingDetail({
+      bookingId: bookingId.toString(),
+      isPastBooking,
+    });
+
     this.props.navigation.navigate({
       routeName: 'DetailScreen',
       key: 'key-DetailScreen',
-      params: {
-        bookingId: idx(this.props.image, _ => _.databaseId),
-        isPastBooking: idx(this.props.image, _ => _.isPastBooking),
-      },
     });
   };
 
@@ -71,8 +75,24 @@ class CityImage extends React.Component<Props> {
   );
 }
 
+type Props = {|
+  +image: ImageType,
+  +arrival: ArrivalType,
+  +departure: DepartureType,
+  +type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
+  +navigation: NavigationType,
+|};
+
+const CityImageWithContext = (props: Props) => (
+  <BookingDetailContext.Consumer>
+    {({ actions: { setBookingDetail } }) => (
+      <CityImage {...props} setBookingDetail={setBookingDetail} />
+    )}
+  </BookingDetailContext.Consumer>
+);
+
 export default createFragmentContainer(
-  withNavigation(CityImage),
+  withNavigation(CityImageWithContext),
   graphql`
     fragment CityImage_image on BookingInterface {
       databaseId

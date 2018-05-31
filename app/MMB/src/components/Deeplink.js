@@ -5,14 +5,14 @@ import { WebView } from '@kiwicom/mobile-shared';
 import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
+import BookingDetailContext from '../context/BookingDetailContext';
 import type {
   DirectAccessURLValues,
   DeeplinkQueryResponse,
 } from './__generated__/DeeplinkQuery.graphql';
 
 type Props = {|
-  bookingID: string,
-  to?: DirectAccessURLValues,
+  +to?: DirectAccessURLValues,
 |};
 
 export default class Deeplink extends React.Component<Props> {
@@ -25,22 +25,26 @@ export default class Deeplink extends React.Component<Props> {
   };
 
   render = () => (
-    <PrivateApiRenderer
-      render={this.renderInnerComponent}
-      query={graphql`
-        query DeeplinkQuery(
-          $bookingId: ID!
-          $deeplinkTo: DirectAccessURLValues
-        ) {
-          booking(id: $bookingId) {
-            directAccessURL(deeplinkTo: $deeplinkTo)
-          }
-        }
-      `}
-      variables={{
-        bookingId: this.props.bookingID,
-        deeplinkTo: this.props.to,
-      }}
-    />
+    <BookingDetailContext.Consumer>
+      {({ bookingId }) => (
+        <PrivateApiRenderer
+          render={this.renderInnerComponent}
+          query={graphql`
+            query DeeplinkQuery(
+              $bookingId: ID!
+              $deeplinkTo: DirectAccessURLValues
+            ) {
+              booking(id: $bookingId) {
+                directAccessURL(deeplinkTo: $deeplinkTo)
+              }
+            }
+          `}
+          variables={{
+            bookingId: bookingId,
+            deeplinkTo: this.props.to,
+          }}
+        />
+      )}
+    </BookingDetailContext.Consumer>
   );
 }
