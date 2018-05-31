@@ -10,6 +10,8 @@ import startCase from 'lodash/startCase';
 
 import { SeparatorTrimmed } from '../../components/Separators';
 import VisaInformation from './visa/VisaInformation';
+import VisaWarning from './visa/VisaWarning';
+import VisaRequired from './visa/VisaRequired';
 import type { Passenger_passenger as PassengerType } from './__generated__/Passenger_passenger.graphql';
 import MenuGroup from '../../components/menu/MenuGroup';
 import PassengerMenuItem from './PassengerMenuItem';
@@ -31,6 +33,9 @@ export const Passenger = ({ passenger }: Props) => {
   const insuranceType = startCase(
     (idx(passenger, _ => _.insuranceType) || '').toLowerCase(),
   );
+
+  const requiredIn = idx(passenger, _ => _.visaInformation.requiredIn) || [];
+  const warningIn = idx(passenger, _ => _.visaInformation.warningIn) || [];
 
   return (
     <SimpleCard style={styles.card}>
@@ -64,7 +69,12 @@ export const Passenger = ({ passenger }: Props) => {
             value={<Translation passThrough={insuranceType} />}
           />
         </Row>
-        <VisaInformation visa={passenger} />
+        <VisaInformation
+          requiredIn={requiredIn.map(item => idx(item, _ => _.name) || '')}
+          requiredComponent={<VisaRequired />}
+          warningIn={warningIn.map(item => idx(item, _ => _.name) || '')}
+          warningComponent={<VisaWarning />}
+        />
       </MenuGroup>
     </SimpleCard>
   );
@@ -82,7 +92,14 @@ export default createFragmentContainer(
         idNumber
       }
       insuranceType
-      ...VisaInformation_visa
+      visaInformation {
+        requiredIn {
+          name
+        }
+        warningIn {
+          name
+        }
+      }
     }
   `,
 );

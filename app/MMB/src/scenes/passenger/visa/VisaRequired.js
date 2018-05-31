@@ -7,7 +7,7 @@ import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import Alert from '../../../components/alert/Alert';
 
 type Props = {|
-  countries: string[],
+  +countries: $ReadOnlyArray<string>,
 |};
 
 export default function VisaRequired(props: Props) {
@@ -27,6 +27,10 @@ export default function VisaRequired(props: Props) {
     </Alert>
   );
 }
+
+VisaRequired.defaultProps = {
+  countries: [],
+};
 
 const styles = StyleSheet.create({
   country: {
