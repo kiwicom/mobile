@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 45e9c19bdc5c54d636d54f6b18e34778
+ * @relayHash 9554b4b5d03231ea48f1eec254a5de52
  */
 
 /* eslint-disable */
@@ -106,6 +106,8 @@ fragment CityImage_image on BookingInterface {
 
 fragment CityImage_arrival on RouteStop {
   ...FromToRow_arrival
+  cityId
+  time
 }
 
 fragment CityImage_departure on RouteStop {
@@ -207,6 +209,13 @@ v7 = {
   "storageKey": null
 },
 v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "time",
+  "args": null,
+  "storageKey": null
+},
+v9 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -235,17 +244,11 @@ v8 = {
     }
   ]
 },
-v9 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "time",
-    "args": null,
-    "storageKey": null
-  },
-  v8
+v10 = [
+  v8,
+  v9
 ],
-v10 = {
+v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "departure",
@@ -253,12 +256,20 @@ v10 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v9
+  "selections": v10
 },
-v11 = [
+v12 = [
+  v9,
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "cityId",
+    "args": null,
+    "storageKey": null
+  },
   v8
 ],
-v12 = {
+v13 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "arrival",
@@ -266,9 +277,9 @@ v12 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v11
+  "selections": v12
 },
-v13 = [
+v14 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -318,8 +329,8 @@ v13 = [
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v10,
-                  v12
+                  v11,
+                  v13
                 ]
               },
               v2
@@ -348,8 +359,8 @@ v13 = [
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v12,
-                  v10
+                  v13,
+                  v11
                 ]
               },
               v2
@@ -377,7 +388,7 @@ v13 = [
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v11
+                "selections": v12
               },
               {
                 "kind": "LinkedField",
@@ -387,7 +398,7 @@ v13 = [
                 "args": null,
                 "concreteType": "RouteStop",
                 "plural": false,
-                "selections": v9
+                "selections": v10
               },
               v2
             ]
@@ -402,7 +413,7 @@ return {
   "operationKind": "query",
   "name": "FlightListContainerQuery",
   "id": null,
-  "text": "query FlightListContainerQuery {\n  future: allBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: allBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayFlight_booking\n        id\n      }\n      return {\n        ...ReturnFlight_booking\n        id\n      }\n      multicity {\n        ...MulticityFlight_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  passengerCount\n  isPastBooking\n  destinationImageUrl(dimensions: _375x165)\n  ...ImageBadges\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment ImageBadges on BookingInterface {\n  status\n  databaseId\n  isPastBooking\n}\n",
+  "text": "query FlightListContainerQuery {\n  future: allBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: allBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayFlight_booking\n        id\n      }\n      return {\n        ...ReturnFlight_booking\n        id\n      }\n      multicity {\n        ...MulticityFlight_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  passengerCount\n  isPastBooking\n  destinationImageUrl(dimensions: _375x165)\n  ...ImageBadges\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n  cityId\n  time\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n  }\n}\n\nfragment ImageBadges on BookingInterface {\n  status\n  databaseId\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -458,7 +469,7 @@ return {
         "args": v0,
         "concreteType": "BookingConnection",
         "plural": false,
-        "selections": v13
+        "selections": v14
       },
       {
         "kind": "LinkedField",
@@ -468,7 +479,7 @@ return {
         "args": v1,
         "concreteType": "BookingConnection",
         "plural": false,
-        "selections": v13
+        "selections": v14
       }
     ]
   }

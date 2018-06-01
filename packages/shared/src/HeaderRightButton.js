@@ -3,15 +3,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
-import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 import Touchable from './Touchable';
-import Icon from './icons/Icon';
 
 type Props = {|
-  onPress: () => void,
-  tintColor?: string,
-  onLongPress?: (React.ElementRef<typeof Touchable>) => void,
+  +onPress: () => void,
+  +onLongPress?: (React.ElementRef<typeof Touchable>) => void,
+  +children?: React.Node,
 |};
 
 type State = {|
@@ -26,10 +24,6 @@ export default class HeaderRightButton extends React.PureComponent<
     reference: null,
   };
 
-  static defaultProps = {
-    tintColor: Color.brand,
-  };
-
   storeReference = (reference: React.ElementRef<typeof Touchable> | null) => {
     this.setState({ reference });
   };
@@ -41,7 +35,7 @@ export default class HeaderRightButton extends React.PureComponent<
   };
 
   render = () => {
-    const { onPress, tintColor } = this.props;
+    const { onPress } = this.props;
 
     return (
       <Touchable
@@ -55,7 +49,7 @@ export default class HeaderRightButton extends React.PureComponent<
         ref={this.storeReference}
       >
         <View style={styles.container}>
-          <Icon style={styles.icon} name="map" size={24} color={tintColor} />
+          <View style={styles.innerContainer}>{this.props.children}</View>
         </View>
       </Touchable>
     );
@@ -68,7 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'transparent',
   },
-  icon: {
+  innerContainer: {
     ios: {
       marginStart: 22,
       marginEnd: 10,
