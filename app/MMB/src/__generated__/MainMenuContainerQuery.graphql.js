@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 398dc4f319d5b7aabc9f732f4720d00a
+ * @relayHash 76e690fd06a6e3e8b2431f81a15ef78e
  */
 
 /* eslint-disable */
@@ -33,6 +33,7 @@ query MainMenuContainerQuery(
 
 fragment MainMenu on Booking {
   ...Header
+  ...PassengerMenuGroup
 }
 
 fragment Header on Booking {
@@ -40,6 +41,23 @@ fragment Header on Booking {
   ...StatusBar
   ...TripInfo
   ...HeaderImage
+}
+
+fragment PassengerMenuGroup on Booking {
+  ...PassengerMenuDetail
+}
+
+fragment PassengerMenuDetail on Booking {
+  passengers {
+    databaseId
+    ...Passenger
+  }
+}
+
+fragment Passenger on Passenger {
+  fullName
+  title
+  birthday
 }
 
 fragment StatusBar on Booking {
@@ -153,11 +171,18 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "databaseId",
+  "args": null,
+  "storageKey": null
+},
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "localTime",
   "args": null,
   "storageKey": null
 },
-v3 = [
+v4 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -194,16 +219,16 @@ v3 = [
       }
     ]
   },
-  v2
+  v3
 ],
-v4 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "duration",
   "args": null,
   "storageKey": null
 },
-v5 = [
+v6 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -212,7 +237,7 @@ v5 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v3
+    "selections": v4
   },
   {
     "kind": "LinkedField",
@@ -222,26 +247,26 @@ v5 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v3
+    "selections": v4
   },
-  v4
+  v5
 ],
-v6 = {
+v7 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v7 = [
-  v2
+v8 = [
+  v3
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "MainMenuContainerQuery",
   "id": null,
-  "text": "query MainMenuContainerQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...MainMenu\n    id\n  }\n}\n\nfragment MainMenu on Booking {\n  ...Header\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...HeaderImage\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    countryFlagURL\n  }\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
+  "text": "query MainMenuContainerQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...MainMenu\n    id\n  }\n}\n\nfragment MainMenu on Booking {\n  ...Header\n  ...PassengerMenuGroup\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...HeaderImage\n}\n\nfragment PassengerMenuGroup on Booking {\n  ...PassengerMenuDetail\n}\n\nfragment PassengerMenuDetail on Booking {\n  passengers {\n    databaseId\n    ...Passenger\n  }\n}\n\nfragment Passenger on Passenger {\n  fullName\n  title\n  birthday\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment HeaderImage on Booking {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    countryFlagURL\n  }\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -296,13 +321,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "databaseId",
-            "args": null,
-            "storageKey": null
-          },
+          v2,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -327,9 +346,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v5
+                "selections": v6
               },
-              v6
+              v7
             ]
           },
           {
@@ -349,7 +368,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v5
+                "selections": v6
               },
               {
                 "kind": "LinkedField",
@@ -360,7 +379,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v4,
+                  v5,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -369,7 +388,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v7
+                    "selections": v8
                   },
                   {
                     "kind": "LinkedField",
@@ -379,11 +398,11 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v7
+                    "selections": v8
                   }
                 ]
               },
-              v6
+              v7
             ]
           },
           {
@@ -403,9 +422,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v5
+                "selections": v6
               },
-              v6
+              v7
             ]
           },
           {
@@ -422,7 +441,40 @@ return {
             ],
             "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
           },
-          v6
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "passengers",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Passenger",
+            "plural": true,
+            "selections": [
+              v2,
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "fullName",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "title",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "birthday",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
+          v7
         ]
       }
     ]
