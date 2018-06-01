@@ -27,6 +27,8 @@ type PropsWithContext = {|
   +setBookingDetail: (booking: {|
     isPastBooking: boolean,
     bookingId: string,
+    arrivalCityId: string,
+    arrivalTime: Date,
   |}) => void,
 |};
 
@@ -34,9 +36,14 @@ class CityImage extends React.Component<PropsWithContext> {
   goToDetail = () => {
     const bookingId = idx(this.props.image, _ => _.databaseId) || '';
     const isPastBooking = Boolean(idx(this.props.image, _ => _.isPastBooking));
+    const arrivalCityId = idx(this.props.arrival, _ => _.cityId) || '';
+    const arrivalTime = idx(this.props.arrival, _ => _.time) || '';
+
     this.props.setBookingDetail({
       bookingId: bookingId.toString(),
       isPastBooking,
+      arrivalCityId,
+      arrivalTime: new Date(arrivalTime),
     });
 
     this.props.navigation.navigate({
@@ -104,6 +111,8 @@ export default createFragmentContainer(
 
     fragment CityImage_arrival on RouteStop {
       ...FromToRow_arrival
+      cityId
+      time
     }
 
     fragment CityImage_departure on RouteStop {

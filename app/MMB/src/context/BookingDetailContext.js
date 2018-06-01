@@ -5,10 +5,14 @@ import * as React from 'react';
 type BookingDetail = {|
   +isPastBooking: boolean,
   +bookingId: string,
+  +arrivalCityId: string,
+  +arrivalTime: Date,
 |};
 const defaultState = {
   isPastBooking: false,
   bookingId: '',
+  arrivalCityId: '',
+  arrivalTime: new Date(),
   actions: {
     setBookingDetail: () => {},
   },
@@ -34,16 +38,20 @@ class Provider extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isPastBooking: false,
-      bookingId: '',
+      ...defaultState,
       actions: {
         setBookingDetail: this.setBookingDetail,
       },
     };
   }
 
-  setBookingDetail = ({ isPastBooking, bookingId }: BookingDetail) => {
-    this.setState({ isPastBooking, bookingId });
+  setBookingDetail = ({
+    isPastBooking,
+    bookingId,
+    arrivalCityId,
+    arrivalTime,
+  }: BookingDetail) => {
+    this.setState({ isPastBooking, bookingId, arrivalCityId, arrivalTime });
   };
 
   render = () => (

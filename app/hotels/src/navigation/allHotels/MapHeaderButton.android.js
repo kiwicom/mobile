@@ -1,11 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { HeaderRightButton } from '@kiwicom/mobile-shared';
+import { HeaderRightButton, Color, Icon } from '@kiwicom/mobile-shared';
 import RNTooltips from 'react-native-tooltips';
 
 type Props = {|
-  onPress: () => void,
+  +onPress: () => void,
 |};
 
 type State = {|
@@ -38,23 +38,22 @@ export default class MapHeaderButton extends React.Component<Props, State> {
     });
   };
 
-  render = () => [
-    <HeaderRightButton
-      key="header-right-button"
-      onPress={this.onPress}
-      onLongPress={this.onLongPress}
-    />,
-    <RNTooltips
-      key="header-right-button-tooltip"
-      text="Open map"
-      visible={this.state.isTooltipVisible}
-      reference={this.state.buttonReference}
-      corner={100}
-      tintColor="#505c5e"
-      arrow={false}
-      textSize={16}
-      shadow={true}
-      onHide={this.onTooltipClose}
-    />,
-  ];
+  render = () => (
+    <React.Fragment>
+      <HeaderRightButton onPress={this.onPress} onLongPress={this.onLongPress}>
+        <Icon name="map" size={24} color={Color.brand} />
+      </HeaderRightButton>
+      <RNTooltips
+        text="Open map"
+        visible={this.state.isTooltipVisible}
+        reference={this.state.buttonReference}
+        corner={100}
+        tintColor="#505c5e"
+        arrow={false}
+        textSize={16}
+        shadow={true}
+        onHide={this.onTooltipClose}
+      />
+    </React.Fragment>
+  );
 }

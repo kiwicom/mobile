@@ -5,6 +5,7 @@ import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import { AdaptableLayout } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
+import HeaderShareButton from '../components/HeaderShareButton';
 import Layout from '../components/Layout';
 import MainMenuContainer from '../MainMenuContainer';
 import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
@@ -100,6 +101,7 @@ export default class DetailsScreen extends React.Component<Props, State> {
           <Translation id="mmb.main_menu.title" />
         </HeaderTitle>
       ),
+      headerRight: <HeaderShareButton />,
     };
   };
 
