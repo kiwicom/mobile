@@ -7,7 +7,7 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import Header from './components/header/Header';
-import PassengerMenuGroup from './menuGroups/PassengerMenuGroup';
+import PassengerMenuGroup from './menuGroups/passengerMenuGroup/PassengerMenuGroup';
 import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 
 type Props = {|
@@ -42,6 +42,7 @@ class MainMenu extends React.Component<Props, State> {
         <PassengerMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
+          data={this.props.data}
         />
         <ServicesMenuGroup
           activeId={activeId}
@@ -61,6 +62,7 @@ export default createFragmentContainer(
   graphql`
     fragment MainMenu on Booking {
       ...Header
+      ...PassengerMenuGroup
     }
   `,
 );

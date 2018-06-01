@@ -8,36 +8,30 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type Header$ref = any;
-type PassengerMenuGroup$ref = any;
+type PassengerMenuDetail$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type MainMenu$ref: FragmentReference;
-export type MainMenu = {|
-  +$fragmentRefs: Header$ref & PassengerMenuGroup$ref,
-  +$refType: MainMenu$ref,
+declare export opaque type PassengerMenuGroup$ref: FragmentReference;
+export type PassengerMenuGroup = {|
+  +$fragmentRefs: PassengerMenuDetail$ref,
+  +$refType: PassengerMenuGroup$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "MainMenu",
+  "name": "PassengerMenuGroup",
   "type": "Booking",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "FragmentSpread",
-      "name": "Header",
-      "args": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "PassengerMenuGroup",
+      "name": "PassengerMenuDetail",
       "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b9f1dc28e3edbee53bece271a8361276';
+(node/*: any*/).hash = '9b8e662f51415385f59647023bea3454';
 module.exports = node;
