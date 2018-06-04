@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { FlatList, View } from 'react-native';
@@ -14,9 +14,9 @@ type PlaygroundComponent = {|
 |};
 
 type Props = {|
-  navigation: NavigationType,
-  storageValue: string | null,
-  saveToStorage: (value: string | null) => Promise<void>,
+  +navigation: NavigationType,
+  +storageValue: string | null,
+  +saveToStorage: (value: string | null) => Promise<void>,
 |};
 
 export class PlaygroundList extends React.Component<Props> {
@@ -25,7 +25,7 @@ export class PlaygroundList extends React.Component<Props> {
   });
 
   componentDidUpdate = () => {
-    if (this.props.storageValue) {
+    if (this.props.storageValue !== null) {
       this.navigateToPlayground(this.props.storageValue);
     }
   };

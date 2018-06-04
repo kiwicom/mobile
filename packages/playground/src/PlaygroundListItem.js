@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
-  onPress: (name: string) => void,
-  name: string,
+  +onPress: (name: string) => void,
+  +name: string,
 |};
 
 export default class PlaygroundListItem extends React.Component<Props> {
