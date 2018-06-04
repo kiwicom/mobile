@@ -6,7 +6,7 @@ exports[`VisaRequired renders with one country in the array 1`] = `
 <Alert
   title={
     <Translation
-      id="mmb.visa_state.visa_is_required"
+      id="mmb.visa_state.visa_is_required_in"
     />
   }
   type="danger"
@@ -31,7 +31,7 @@ exports[`VisaRequired renders with several countries in the array 1`] = `
 <Alert
   title={
     <Translation
-      id="mmb.visa_state.visa_is_required"
+      id="mmb.visa_state.visa_is_required_in"
     />
   }
   type="danger"
