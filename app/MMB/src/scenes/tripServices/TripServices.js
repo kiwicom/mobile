@@ -12,6 +12,7 @@ import {
 import idx from 'idx';
 
 import LoungeMenuItem from './LoungeMenuItem';
+import ParkingMenuItem from './ParkingMenuItem';
 import TitledMenuGroup from '../../components/menu/TitledMenuGroup';
 import MenuItem from '../../components/menu/MenuItem';
 import BookingDetailContext from '../../context/BookingDetailContext';
@@ -66,10 +67,9 @@ export default class TripServices extends React.Component<Props> {
           data={availableWhitelabeledServices}
           onOpenWebview={this.openWebview}
         />
-        <MenuItem
-          title={<Translation id="mmb.trip_services.local_services.parking" />}
-          onPress={VoidAction}
-          icon={<TextIcon code="&#xe03e;" />}
+        <ParkingMenuItem
+          data={availableWhitelabeledServices}
+          onOpenWebview={this.openWebview}
         />
         <MenuItem
           title={
@@ -109,23 +109,30 @@ export default class TripServices extends React.Component<Props> {
       </TitledMenuGroup>
 
       <BookingDetailContext.Consumer>
-        {({ bookingId, departureTime }) => (
+        {({ bookingId, departureTime, arrivalTime }) => (
           <PrivateApiRenderer
             query={graphql`
               query TripServicesQuery(
-                $departureTime: DateTime!
                 $bookingId: ID!
+                $departureTime: DateTime!
+                $arrivalTime: DateTime!
               ) {
                 booking(id: $bookingId) {
                   availableWhitelabeledServices {
-                    ...LoungeMenuItem
+                    ...LoungeMenuItem @arguments(departureTime: $departureTime)
+                    ...ParkingMenuItem
+                      @arguments(
+                        departureTime: $departureTime
+                        arrivalTime: $arrivalTime
+                      )
                   }
                 }
               }
             `}
             variables={{
-              departureTime,
               bookingId,
+              departureTime,
+              arrivalTime,
             }}
             render={this.renderLocalServices}
           />

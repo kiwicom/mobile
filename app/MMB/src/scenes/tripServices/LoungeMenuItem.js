@@ -127,7 +127,8 @@ class LoungeMenuItem extends React.Component<Props, State> {
 export default createFragmentContainer(
   LoungeMenuItem,
   graphql`
-    fragment LoungeMenuItem on WhitelabeledServices {
+    fragment LoungeMenuItem on WhitelabeledServices
+      @argumentDefinitions(departureTime: { type: "DateTime!" }) {
       lounge(departureTime: $departureTime) {
         relevantAirports {
           whitelabelURL
