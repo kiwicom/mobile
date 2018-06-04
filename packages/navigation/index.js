@@ -9,6 +9,7 @@ import {
   Text,
   StyleSheet,
   Touchable,
+  type StylePropType,
 } from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
@@ -83,20 +84,22 @@ const styleSheet = StyleSheet.create({
 export const StackNavigator = (
   RouteConfigs: {
     [string]: {|
-      screen: mixed,
-      navigationOptions?: {|
-        headerTitle: React.Element<typeof HeaderTitle> | null,
-        headerStyle?: Object,
-        mode?: 'modal',
+      +screen: mixed,
+      +navigationOptions?: {|
+        +headerTitle: React.Element<typeof HeaderTitle> | null,
+        +headerStyle?: StylePropType,
+        +mode?: 'modal',
       |},
     |},
   },
   StackNavigatorConfig: {|
-    initialRouteName: string,
-    navigationOptions: Object,
-    cardStyle?: Object,
-    mode?: 'modal',
-    headerMode?: 'none',
+    +initialRouteName: string,
+    +navigationOptions: {|
+      +header: null,
+    |},
+    +cardStyle?: StylePropType,
+    +mode?: 'modal',
+    +headerMode?: 'none',
   |},
 ) => {
   return ReactNavigation.StackNavigator(RouteConfigs, StackNavigatorConfig);

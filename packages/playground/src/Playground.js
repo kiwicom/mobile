@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
@@ -15,9 +15,9 @@ import { HeaderBackButton } from 'react-navigation';
 import PlaygroundRenderer from './PlaygroundRenderer';
 
 type Props = {|
-  name: string,
-  navigation: NavigationType,
-  onGoBack: () => void,
+  +name: string,
+  +navigation: NavigationType,
+  +onGoBack: () => void,
 |};
 
 const PlaygroundSection = props => (

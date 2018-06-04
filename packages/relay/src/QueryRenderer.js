@@ -21,11 +21,12 @@ type RendererResponse = {|
 
 export default class QueryRenderer extends React.Component<Props> {
   createEnvironment = () => {
-    if (!this.props.accessToken) {
+    const accessToken = this.props.accessToken;
+    if (accessToken == null || accessToken === '') {
       return PublicEnvironment.getEnvironment();
     }
 
-    return PrivateEnvironment.getEnvironment(this.props.accessToken || '');
+    return PrivateEnvironment.getEnvironment(accessToken);
   };
 
   renderRelayContainer = ({ error, props }: RendererResponse) => {

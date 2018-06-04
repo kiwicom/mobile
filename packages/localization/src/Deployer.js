@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 /* eslint-disable no-underscore-dangle */
 
@@ -44,7 +44,7 @@ const _paginate = async (paginateFn, callbackFn, page = 1) => {
     await callbackFn(key);
   }
   if (response.length > 0) {
-    await _paginate(paginateFn, callbackFn, ++page);
+    await _paginate(paginateFn, callbackFn, page + 1);
   }
 };
 

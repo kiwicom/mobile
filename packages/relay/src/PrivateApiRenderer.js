@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 
@@ -8,7 +8,7 @@ import AuthContext from './AuthContext';
 
 type PropsWithContext = {|
   ...QueryRendererProps,
-  accessToken: string | null,
+  +accessToken: string | null,
 |};
 
 export function PrivateApiRenderer(props: PropsWithContext) {
@@ -16,6 +16,7 @@ export function PrivateApiRenderer(props: PropsWithContext) {
     // TODO: Return login
     return null;
   }
+
   return (
     <QueryRenderer
       query={props.query}
