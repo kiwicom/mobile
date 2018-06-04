@@ -5,10 +5,10 @@ import { Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation, GetDeviceLocale } from '@kiwicom/mobile-localization';
+import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
 import idx from 'idx';
 
-import MenuItem from '../../components/menu/MenuItem';
 import type { ParkingMenuItem as ParkingMenuItemType } from './__generated__/ParkingMenuItem.graphql';
 
 type Props = {|

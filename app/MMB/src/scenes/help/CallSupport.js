@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
+import { TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
 import CallMenuItem from './CallMenuItem';
-import TitledMenuGroup from '../../components/menu/TitledMenuGroup';
 
 export default function CallSupport() {
   return (

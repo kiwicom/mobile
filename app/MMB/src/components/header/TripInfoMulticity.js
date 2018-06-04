@@ -4,9 +4,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
+import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 
-import { SeparatorFullWidth } from '../Separators';
 import TripCities from './TripCities';
 import TripTimes from './TripTimes';
 import type { TripInfoMulticity as TripInfoMulticityType } from './__generated__/TripInfoMulticity.graphql';

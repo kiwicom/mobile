@@ -4,17 +4,16 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { StyleSheet, SimpleCard } from '@kiwicom/mobile-shared';
+import { MenuGroup, SeparatorTrimmed } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 import { View } from 'react-native';
 import startCase from 'lodash/startCase';
 
-import { SeparatorTrimmed } from '../../components/Separators';
 import VisaInformation from './visa/VisaInformation';
 import VisaWarning from './visa/VisaWarning';
 import VisaRequired from './visa/VisaRequired';
-import type { Passenger_passenger as PassengerType } from './__generated__/Passenger_passenger.graphql';
-import MenuGroup from '../../components/menu/MenuGroup';
 import PassengerMenuItem from './PassengerMenuItem';
+import type { Passenger_passenger as PassengerType } from './__generated__/Passenger_passenger.graphql';
 
 const Row = ({ children }: {| children: React.Node |}) => (
   <View style={styles.row}>{children}</View>

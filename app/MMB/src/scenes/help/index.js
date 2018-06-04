@@ -5,20 +5,18 @@ import { ScrollView, Platform } from 'react-native';
 import { WebView } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
+  MenuItem,
+  MenuGroup,
+  SeparatorFullWidth,
+  SeparatorTrimmed,
   type RouteNamesType,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import MenuItem from '../../components/menu/MenuItem';
-import MenuGroup from '../../components/menu/MenuGroup';
 import CallSupport from './CallSupport';
-import {
-  SeparatorFullWidth,
-  SeparatorTrimmed,
-} from '../../components/Separators';
 
 type Props = {|
-  navigation: NavigationType,
+  +navigation: NavigationType,
 |};
 
 export default class Help extends React.Component<Props> {

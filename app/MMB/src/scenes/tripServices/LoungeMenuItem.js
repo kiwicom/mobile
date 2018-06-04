@@ -5,14 +5,16 @@ import { Platform, View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Popup, TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import {
+  MenuItem,
+  MenuGroup,
+  MenuGroupTitle,
+  SeparatorTrimmed,
+} from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
 import idx from 'idx';
 
 import LocationPopupButton from './LocationPopupButton';
-import MenuItem from '../../components/menu/MenuItem';
-import MenuGroup from '../../components/menu/MenuGroup';
-import MenuGroupTitle from '../../components/menu/MenuGroupTitle';
-import { SeparatorTrimmed } from '../../components/Separators';
 import type { LoungeMenuItem as LoungeMenuItemType } from './__generated__/LoungeMenuItem.graphql';
 
 type Props = {|

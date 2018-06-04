@@ -13,6 +13,12 @@ import {
 } from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
+export { default as MenuGroup } from './src/MenuGroup';
+export { default as MenuGroupTitle } from './src/MenuGroupTitle';
+export { default as MenuItem } from './src/MenuItem';
+export { SeparatorTrimmed, SeparatorFullWidth } from './src/Separators';
+export { default as TitledMenuGroup } from './src/TitledMenuGroup';
+
 const createNavigationOptions = () => {
   const navigationOptions: Object = {
     headerStyle: {
