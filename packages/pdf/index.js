@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import PdfViewer from './src/PdfViewer';
 

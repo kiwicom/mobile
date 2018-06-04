@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 type AccessibilityTraitsValues =
   | 'none'
@@ -27,8 +27,8 @@ export type AccessibilityProps = {|
     | AccessibilityTraitsValues
     | $ReadOnlyArray<AccessibilityTraitsValues>,
   accessibilityViewIsModal?: boolean, //iOS only
-  onAccessibilityTap?: Function, // iOS only
-  onMagicTap?: Function, // iOS only
+  onAccessibilityTap?: () => void, // iOS only
+  onMagicTap?: () => void, // iOS only
   accessibilityComponentType?:  // Android only
     | 'none'
     | 'button'

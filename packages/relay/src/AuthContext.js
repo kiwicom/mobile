@@ -14,14 +14,14 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
 });
 
 type Props = {|
-  children: React.Node,
-  accessToken?: string | null,
+  +children: React.Node,
+  +accessToken?: string | null,
 |};
 
 type State = {|
   accessToken: string | null,
-  actions: {|
-    setAccessToken: (accessToken: string | null) => void,
+  +actions: {|
+    +setAccessToken: (accessToken: string | null) => void,
   |},
 |};
 
