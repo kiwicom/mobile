@@ -4,15 +4,16 @@ import * as React from 'react';
 import { ScrollView, Platform } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
+  SeparatorFullWidth,
+  SeparatorTrimmed,
+  MenuItem,
+  MenuGroup,
   type NavigationType,
   type RouteNamesType,
 } from '@kiwicom/mobile-navigation';
 
-import MenuItem from '../components/menu/MenuItem';
-import MenuGroup from '../components/menu/MenuGroup';
 import Deeplink from '../components/Deeplink';
 import Invoice from '../components/Invoice';
-import { SeparatorFullWidth, SeparatorTrimmed } from '../components/Separators';
 
 type Props = {|
   +navigation: NavigationType,

@@ -4,18 +4,17 @@ import * as React from 'react';
 import call from 'react-native-phone-call';
 import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-
-import MenuItem from '../../components/menu/MenuItem';
+import { MenuItem } from '@kiwicom/mobile-navigation';
 
 type Props = {|
-  title: React.Element<typeof Translation>,
-  description: React.Element<typeof Translation>,
+  +title: React.Element<typeof Translation>,
+  +description: React.Element<typeof Translation>,
 |};
 
 export default class CallMenuItem extends React.Component<Props> {
   call = () => {
     const args = {
-      number: '420123456789', // TODO: must be without spaces, plusses and other special symbols like "(..)"
+      number: '420123456789', // TODO: must be without spaces, pluses and other special symbols like "(..)"
       prompt: true,
     };
 

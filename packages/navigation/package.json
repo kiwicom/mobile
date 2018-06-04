@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-shared": "^0",
     "react-navigation": "^1.5.11",
     "react-navigation-props-mapper": "^0.1.2"
   }
