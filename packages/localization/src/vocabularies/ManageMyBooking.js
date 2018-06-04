@@ -36,6 +36,18 @@ export default {
   'mmb.flight_services.title': 'Services',
   'mmb.flight_services.title_ordered': 'Ordered',
 
+  // MMB Trip info
+  'mmb.title.trip_info': 'Trip info',
+  'mmb.button.tickets': 'Tickets',
+  'mmb.tickets.boarding_passes': 'Boarding Passes',
+  'mmb.menu.my_tickets': 'My Tickets',
+  'mmb.landing_page.maw.action_button.explore': 'Explore',
+  'mmb.subtitle.airport_and_destination': 'Airport and destination',
+  'mmb.timeline.title': 'Timeline',
+  'mmb.subtitle.trip_schedule': 'Trip schedule',
+  'mmb.menu.explore': 'Explore',
+  'mmb.menu.timeline': 'Timeline',
+
   // MMB Trip services
   'mmb.trip_services.title': 'Trip services',
   'mmb.trip_services.ordered_services': 'Ordered services',

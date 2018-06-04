@@ -69,6 +69,36 @@ export const MenuComponents = {
       );
     },
   },
+  'mmb.tickets': {
+    screen: () => null,
+    headerTitle: function TicketsSubmenuHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.menu.my_tickets" />
+        </HeaderTitle>
+      );
+    },
+  },
+  'mmb.explore': {
+    screen: () => null,
+    headerTitle: function ExploreSubmenuHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.menu.explore" />
+        </HeaderTitle>
+      );
+    },
+  },
+  'mmb.timeline': {
+    screen: () => null,
+    headerTitle: function TimelineSubmenuHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.menu.timeline" />
+        </HeaderTitle>
+      );
+    },
+  },
   ...FlightServicesSubmenuItems,
   ...TripServicesSubmenuItems,
   ...HelpSubmenuItems,

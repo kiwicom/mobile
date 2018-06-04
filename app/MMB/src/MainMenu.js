@@ -4,10 +4,11 @@ import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
-import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
-import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import Header from './components/header/Header';
+import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import PassengerMenuGroup from './menuGroups/passengerMenuGroup/PassengerMenuGroup';
+import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
+import TripInfoMenuGroup from './menuGroups/TripInfoMenuGroup';
 import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 
 type Props = {|
@@ -39,6 +40,10 @@ class MainMenu extends React.Component<Props, State> {
     return (
       <ScrollView>
         <Header data={this.props.data} />
+        <TripInfoMenuGroup
+          activeId={activeId}
+          openSubmenu={this.handleOpenSubmenu}
+        />
         <PassengerMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
