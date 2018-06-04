@@ -32,9 +32,10 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [
     {
-      "kind": "RootArgument",
+      "kind": "LocalArgument",
       "name": "departureTime",
-      "type": "DateTime!"
+      "type": "DateTime!",
+      "defaultValue": null
     }
   ],
   "selections": [
@@ -93,5 +94,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '500f9c84f8381ec9a5c2bea2bc9d7a0d';
+(node/*: any*/).hash = '8d5bd34e51fff1d73a7a42959648b178';
 module.exports = node;
