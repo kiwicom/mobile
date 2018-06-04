@@ -66,12 +66,14 @@ export default {
   'mmb.passengers.title.contact_details': 'Contact details',
 
   // MMB Visa
-  'mmb.visa_state.no_visa_required': 'Visa is not required',
-  'mmb.visa_state.visa_is_required': 'Visa required in:',
+
   'mmb.passengers.visa_disclaimer':
     'Kiwi.com is not responsible for any visa issue including airport transit visas. Contact the embassy or your foreign ministry to ensure that you will be able to complete your journey. Detailed visa information is also available from the IATA Travel Centre.',
-  'mmb.visa_state.visa_may_be_required': 'Visa may be required in:',
-
+  'mmb.visa_state.no_visa_required': 'Visa is not required',
+  'mmb.visa_state.visa_is_required': 'Visa is required',
+  'mmb.visa_state.visa_is_required_in': 'Visa required in:',
+  'mmb.visa_state.visa_may_be_required_in': 'Visa may be required in:',
+  'mmb.visa_state.visa_may_be_required': 'Visa may be required',
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
   'mmb.flight_services': 'Flight Services',

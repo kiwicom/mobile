@@ -17,7 +17,7 @@ export default function VisaWarning(props: Props) {
   return (
     <Alert
       type="warning"
-      title={<Translation id="mmb.visa_state.visa_may_be_required" />}
+      title={<Translation id="mmb.visa_state.visa_may_be_required_in" />}
     >
       {props.countries.map(country => (
         <Text key={country} style={styles.country}>
