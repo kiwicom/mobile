@@ -50,7 +50,6 @@ export default {
 
   // MMB Trip services
   'mmb.trip_services.title': 'Trip services',
-  'mmb.trip_services.ordered_services': 'Ordered services',
   'mmb.trip_services.general_services': 'General services',
   'mmb.trip_services.general_services.insurance': 'Insurance',
   'mmb.trip_services.local_services': 'Local services',
