@@ -3,14 +3,13 @@
 import * as React from 'react';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
-import TitledMenuGroup from '../components/menu/TitledMenuGroup';
-import MenuItem from '../components/menu/MenuItem';
 import BookingDetailContext from '../context/BookingDetailContext';
 
 type PropsWithContext = {|
   ...Props,
-  isPastBooking: boolean,
+  +isPastBooking: boolean,
 |};
 
 export class ServicesMenuGroup extends React.Component<PropsWithContext> {
@@ -61,8 +60,8 @@ export class ServicesMenuGroup extends React.Component<PropsWithContext> {
 }
 
 type Props = {|
-  openSubmenu: (activeId: string, menuId: string) => void,
-  activeId: string,
+  +openSubmenu: (activeId: string, menuId: string) => void,
+  +activeId: string,
 |};
 
 export default function ServicesMenuGroupWithContext(props: Props) {

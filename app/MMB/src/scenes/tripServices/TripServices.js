@@ -6,6 +6,8 @@ import { ScrollView } from 'react-native';
 import { TextIcon, WebView } from '@kiwicom/mobile-shared';
 import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import {
+  TitledMenuGroup,
+  MenuItem,
   type RouteNamesType,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
@@ -13,8 +15,6 @@ import idx from 'idx';
 
 import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
-import TitledMenuGroup from '../../components/menu/TitledMenuGroup';
-import MenuItem from '../../components/menu/MenuItem';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TripServicesQueryResponse } from './__generated__/TripServicesQuery.graphql';
 

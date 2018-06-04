@@ -6,6 +6,7 @@ import { TextIcon, RefreshableScrollView } from '@kiwicom/mobile-shared';
 import {
   type RouteNamesType,
   type NavigationType,
+  TitledMenuGroup,
 } from '@kiwicom/mobile-navigation';
 import { withNavigation } from 'react-navigation';
 import {
@@ -15,7 +16,6 @@ import {
 } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
-import TitledMenuGroup from '../../components/menu/TitledMenuGroup';
 import FlightServiceMenuItem from './FlightServiceMenuItem';
 import type { FlightServicesMenuGroup_bookedServices } from './__generated__/FlightServicesMenuGroup_bookedServices.graphql';
 

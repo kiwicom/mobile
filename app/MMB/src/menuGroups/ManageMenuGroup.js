@@ -3,13 +3,11 @@
 import * as React from 'react';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-
-import TitledMenuGroup from '../components/menu/TitledMenuGroup';
-import MenuItem from '../components/menu/MenuItem';
+import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
 type Props = {|
-  openSubmenu: (activeId: string, menuId: string) => void,
-  activeId: string,
+  +openSubmenu: (activeId: string, menuId: string) => void,
+  +activeId: string,
 |};
 
 export default class ManageMenuGroup extends React.Component<Props> {

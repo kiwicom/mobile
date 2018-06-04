@@ -5,12 +5,12 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { ScrollView } from 'react-native';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import {
+  TitledMenuGroup,
+  MenuItem,
   type RouteNamesType,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import TitledMenuGroup from '../components/menu/TitledMenuGroup';
-import MenuItem from '../components/menu/MenuItem';
 import Deeplink from '../components/Deeplink';
 
 type Props = {|

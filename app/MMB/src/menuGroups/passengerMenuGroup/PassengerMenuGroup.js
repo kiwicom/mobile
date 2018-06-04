@@ -4,9 +4,8 @@ import * as React from 'react';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
+import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
-import TitledMenuGroup from '../../components/menu/TitledMenuGroup';
-import MenuItem from '../../components/menu/MenuItem';
 import PassengerMenuDetail from './PassengerMenuDetail';
 import type { PassengerMenuGroup as Boooking } from './__generated__/PassengerMenuGroup.graphql';
 

@@ -4,11 +4,13 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
+import {
+  TitledMenuGroup,
+  MenuGroup,
+  SeparatorTrimmed,
+} from '@kiwicom/mobile-navigation';
 
-import TitledMenuGroup from '../../../components/menu/TitledMenuGroup';
 import ContactMenuItem from './ContactMenuItem';
-import { SeparatorTrimmed } from '../../../components/Separators';
-import MenuGroup from '../../../components/menu/MenuGroup';
 import type { ContactDetails_contactDetails as ContactDetailsType } from './__generated__/ContactDetails_contactDetails.graphql';
 
 type Props = {|
