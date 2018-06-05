@@ -2,22 +2,17 @@
 
 import * as React from 'react';
 import { Share, Platform } from 'react-native';
-import {
-  TextIcon,
-  HeaderRightButton,
-  Color,
-  StyleSheet,
-} from '@kiwicom/mobile-shared';
 import { DateFormatter, GetDeviceLocale } from '@kiwicom/mobile-localization';
 
 import BookingDetailContext from '../context/BookingDetailContext';
+import ShareButton from '../components/ShareButton';
 
 type PropsWithContext = {|
   +arrivalCityId: string,
   +arrivalTime: Date,
 |};
 
-class HeaderShareButton extends React.Component<PropsWithContext> {
+class DetailShareButton extends React.Component<PropsWithContext> {
   onPress = () => {
     const lang = GetDeviceLocale().split('-')[0] || 'en';
     const message = `https://kiwi.com/share?date=${DateFormatter(
@@ -32,21 +27,14 @@ class HeaderShareButton extends React.Component<PropsWithContext> {
     });
   };
 
-  render = () => (
-    <HeaderRightButton onPress={this.onPress}>
-      {Platform.select({
-        ios: <TextIcon code="&#xe083;" style={styles.icon} />,
-        android: <TextIcon code="&#xe068;" style={styles.icon} />,
-      })}
-    </HeaderRightButton>
-  );
+  render = () => <ShareButton onPress={this.onPress} />;
 }
 
 export default function HeaderShareButtonWithContext() {
   return (
     <BookingDetailContext.Consumer>
       {({ arrivalCityId, arrivalTime }) => (
-        <HeaderShareButton
+        <DetailShareButton
           arrivalCityId={arrivalCityId}
           arrivalTime={arrivalTime}
         />
@@ -54,11 +42,3 @@ export default function HeaderShareButtonWithContext() {
     </BookingDetailContext.Consumer>
   );
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    fontSize: 21,
-    color: Color.brand,
-    alignSelf: 'flex-start',
-  },
-});
