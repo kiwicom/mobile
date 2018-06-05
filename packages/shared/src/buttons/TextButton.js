@@ -9,8 +9,9 @@ import ButtonTitle from './ButtonTitle';
 import Button from './Button';
 
 type Props = {|
-  title: TranslationType,
-  onPress?: () => void,
+  +title: TranslationType,
+  +onPress: () => void,
+  +disabled?: boolean,
 |};
 
 /**
@@ -18,11 +19,15 @@ type Props = {|
  */
 export default function TextButton(props: Props) {
   return (
-    <Button onPress={props.onPress}>
+    <Button onPress={props.onPress} disabled={props.disabled}>
       <ButtonTitle style={styleSheet.buttonText} text={props.title} />
     </Button>
   );
 }
+
+TextButton.defaultProps = {
+  disabled: false,
+};
 
 const styleSheet = StyleSheet.create({
   buttonText: {

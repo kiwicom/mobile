@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { TextInput, TextButton } from '@kiwicom/mobile-shared';
+import { TextInput, TextButton, IconLoading } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import LoginMutation, { type Callback } from './mutation/Login';
@@ -69,14 +69,21 @@ export default class EmailLoginForm extends React.Component<Props, State> {
         placeholder={<Translation id="core.authentication.password" />}
         secureTextEntry={true}
       />
-      {this.state.loading ? (
-        <TextButton title={<Translation id="core.authentication.login" />} />
-      ) : (
-        <TextButton
-          onPress={this.handleFormSubmit}
-          title={<Translation id="core.authentication.logging_in" />}
-        />
-      )}
+
+      <TextButton
+        onPress={this.handleFormSubmit}
+        disabled={this.state.loading}
+        title={
+          <Translation
+            id={
+              this.state.loading
+                ? 'core.authentication.logging_in'
+                : 'core.authentication.login' // TODO: Does not seem to toggle when loading changes
+            }
+          />
+        }
+      />
+      {this.state.loading && <IconLoading />}
     </View>
   );
 }
