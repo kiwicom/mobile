@@ -97,7 +97,16 @@ def getPassword(String currentUser, String keyChain) {
    def stdout = new ByteArrayOutputStream()
    def stderr = new ByteArrayOutputStream()
    exec {
-       commandLine 'security', '-q', 'find-generic-password', '-a', currentUser, '-s', keyChain, '-w'
+       /**
+        * THIS IS EXPERIMENTAL
+        * 'security' is not available on Ubuntu, it seems to be native to MacOS.
+        * Just replaced the command by some available command on all *NIX systems;
+        * there should probably be a better replacement.
+        * Comment out `commandLine 'man'` and uncomment the following line to come
+        * back to original setting.
+        */
+       commandLine 'man'
+        //commandLine 'security', '-q', 'find-generic-password', '-a', currentUser, '-s', keyChain, '-w'
        standardOutput = stdout
        errorOutput = stderr
        ignoreExitValue true
@@ -151,6 +160,20 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    /**
+     * This is to address the following issue on Linux:
+     *      * What went wrong:
+     *       Execution failed for task ':app:transformNativeLibsWithStripDebugSymbolForDebug'.
+     *       > A problem occurred starting process 'command '/home/robin/Android/Sdk/ndk-bundle/toolchains/mips64el-linux-android-4.9/prebuilt/linux-x86_64/bin/mips64el-linux-android-strip'' 
+     *
+     * Following fix offered in https://stackoverflow.com/a/50393639
+     */
+
+    packagingOptions {
+    doNotStrip '*/mips/*.so'
+    doNotStrip '*/mips64/*.so'
     }
 
     // applicationVariants are e.g. debug, release
