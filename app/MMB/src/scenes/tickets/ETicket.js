@@ -13,16 +13,32 @@ import {
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { withNavigation } from 'react-navigation';
+import type {
+  NavigationType,
+  RouteNamesType,
+} from '@kiwicom/mobile-navigation';
 
 import type { ETicket as AssetsType } from './__generated__/ETicket.graphql';
 
 type Props = {|
   +data: AssetsType,
+  +navigation: NavigationType,
 |};
 
 class ETicket extends React.Component<Props> {
+  navigate = (key: RouteNamesType, params?: Object) => {
+    this.props.navigation.navigate({
+      routeName: key,
+      key: `key-${key}`,
+      params,
+    });
+  };
+
   openDocument = () => {
-    console.warn('TODO:');
+    this.navigate('mmb.tickets.e_ticket', {
+      ticketUrl: idx(this.props.data, _ => _.ticketUrl),
+    });
   };
 
   render = () => {
@@ -65,7 +81,7 @@ class ETicket extends React.Component<Props> {
 }
 
 export default createFragmentContainer(
-  ETicket,
+  withNavigation(ETicket),
   graphql`
     fragment ETicket on BookingAssets {
       ticketUrl

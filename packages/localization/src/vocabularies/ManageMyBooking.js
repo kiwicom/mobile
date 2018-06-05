@@ -45,6 +45,8 @@ export default {
   'mmb.tickets.not_available_yet': 'Not available yet',
   'mmb.tickets.open': 'Open Document',
   'mmb.tickets.e_ticket': 'E-Ticket',
+  'mmb.tickets.not_available':
+    'E-Ticket file is not available yet. Please try it later.',
 
   // MMB Trip info
   'mmb.title.trip_info': 'Trip info',
