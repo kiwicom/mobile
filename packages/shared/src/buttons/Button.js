@@ -8,9 +8,10 @@ import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../index';
 
 type Props = {|
-  children: React.Node,
-  onPress?: () => void,
-  style?: StylePropType,
+  +children: React.Node,
+  +onPress?: () => void,
+  +style?: StylePropType,
+  +disabled?: boolean,
 |};
 
 /**
@@ -23,7 +24,7 @@ export default function Button(props: Props) {
 
   return (
     <Touchable
-      disabled={!props.onPress}
+      disabled={!props.onPress || props.disabled}
       onPress={onPressHandler}
       style={[styleSheet.buttonWrapper, props.style]}
       accessibilityComponentType="button"
@@ -32,6 +33,10 @@ export default function Button(props: Props) {
     </Touchable>
   );
 }
+
+Button.defaultProps = {
+  disabled: false,
+};
 
 const styleSheet = StyleSheet.create({
   buttonWrapper: {
