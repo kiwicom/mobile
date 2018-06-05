@@ -20,8 +20,12 @@ import TripServices, {
   TripServicesSubmenuItems,
 } from '../scenes/tripServices/TripServices';
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
+import TripOverviewTablet from '../scenes/tripDetails/TripOverviewTablet';
 
 export const MenuComponents = {
+  'mmb.trip_overview': {
+    screen: TripOverviewTablet,
+  },
   'mmb.passenger_detail': {
     screen: PassengerDetailContainer,
     headerTitle: function PassengerDetailHeaderTitle() {
@@ -119,7 +123,7 @@ type State = {|
 
 export default class DetailsScreen extends React.Component<Props, State> {
   state = {
-    activeContainerComponent: 'mmb.passenger_detail',
+    activeContainerComponent: 'mmb.trip_overview',
   };
 
   static navigationOptions = (props: {| navigation: NavigationType |}) => {

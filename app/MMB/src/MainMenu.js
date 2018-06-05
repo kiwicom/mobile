@@ -9,6 +9,7 @@ import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import PassengerMenuGroup from './menuGroups/passengerMenuGroup/PassengerMenuGroup';
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import TripInfoMenuGroup from './menuGroups/TripInfoMenuGroup';
+import TripOverviewMenuItem from './scenes/tripDetails/TripOverviewMenuItem';
 import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 
 type Props = {|
@@ -22,7 +23,7 @@ type State = {|
 
 class MainMenu extends React.Component<Props, State> {
   state = {
-    activeId: 'mmb.main_menu.passengers.passenger_details',
+    activeId: 'mmb.main_menu.trip_overview',
   };
 
   handleOpenSubmenu = (activeId: string, menuId: string) => {
@@ -40,19 +41,28 @@ class MainMenu extends React.Component<Props, State> {
     return (
       <ScrollView>
         <Header data={this.props.data} />
+
+        <TripOverviewMenuItem
+          activeId={activeId}
+          openSubmenu={this.handleOpenSubmenu}
+        />
+
         <TripInfoMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
         />
+
         <PassengerMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
           data={this.props.data}
         />
+
         <ServicesMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
         />
+
         <ManageMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
