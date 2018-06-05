@@ -65,6 +65,13 @@ export default class Translation extends React.Component<Props, State> {
     this.setTranslatedString();
   };
 
+  componentDidUpdate = (prevProps: Props) => {
+    if (prevProps.id && this.props.id && prevProps.id !== this.props.id) {
+      //translationId changed
+      this.setTranslatedString();
+    }
+  };
+
   componentWillUnmount = () => {
     if (this.translatePromise !== null) {
       this.translatePromise.cancel();

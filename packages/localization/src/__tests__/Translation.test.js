@@ -102,3 +102,17 @@ it('does not call set state if promise is rejected', async () => {
   // $FlowExpectedError: Intentionally resetting function
   CancellableTranslation.cancellableTranslation = originalFunction;
 });
+
+it('asks for new translation if id changes', () => {
+  jest.spyOn(Component, 'setTranslatedString');
+  Component.componentDidUpdate({ id: 'new.id' });
+
+  expect(Component.setTranslatedString).toHaveBeenCalled();
+});
+
+it('does not ask for new translation if id does not change', () => {
+  jest.spyOn(Component, 'setTranslatedString');
+  Component.componentDidUpdate({ id: 'test.key' });
+
+  expect(Component.setTranslatedString).not.toHaveBeenCalled();
+});
