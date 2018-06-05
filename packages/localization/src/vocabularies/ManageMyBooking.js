@@ -36,6 +36,16 @@ export default {
   'mmb.flight_services.title': 'Services',
   'mmb.flight_services.title_ordered': 'Ordered',
 
+  // MMB Tickets
+
+  'mmb.tickets.available_when_booking_confirmed':
+    'Your document will be ready as soon as your booking is confirmed.',
+  'mmb.tickets.print_eticket_and_bring_to_airport':
+    'Print your e-ticket and bring it to the airport',
+  'mmb.tickets.not_available_yet': 'Not available yet',
+  'mmb.tickets.open': 'Open Document',
+  'mmb.tickets.e_ticket': 'E-Ticket',
+
   // MMB Trip info
   'mmb.title.trip_info': 'Trip info',
   'mmb.button.tickets': 'Tickets',

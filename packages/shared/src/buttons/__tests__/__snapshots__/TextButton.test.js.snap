@@ -2,6 +2,7 @@
 
 exports[`renders button with custom title 1`] = `
 <Button
+  disabled={false}
   onPress={[Function]}
 >
   <ButtonTitle

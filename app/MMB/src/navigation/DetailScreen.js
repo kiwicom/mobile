@@ -10,6 +10,7 @@ import Layout from '../components/Layout';
 import MainMenuContainer from '../MainMenuContainer';
 import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
 import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
+import TicketScene from '../scenes/tickets/TicketScene';
 import FlightServices, {
   FlightServicesSubmenuItems,
 } from '../scenes/flightServices/FlightServices';
@@ -70,7 +71,7 @@ export const MenuComponents = {
     },
   },
   'mmb.tickets': {
-    screen: () => null,
+    screen: TicketScene,
     headerTitle: function TicketsSubmenuHeaderTitle() {
       return (
         <HeaderTitle>
