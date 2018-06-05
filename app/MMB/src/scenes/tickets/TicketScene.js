@@ -8,6 +8,7 @@ import idx from 'idx';
 import ETicket from './ETicket';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TicketSceneQueryResponse } from './__generated__/TicketSceneQuery.graphql';
+import ETicketPdf from './ETicketPdf';
 
 type Props = {|
   +data: TicketSceneQueryResponse,
@@ -41,3 +42,11 @@ export default class TicketScene extends React.Component<Props> {
     </BookingDetailContext.Consumer>
   );
 }
+
+export const TicketSceneSubMenus = {
+  'mmb.tickets.e_ticket': {
+    screen: function OpenEticketPdf({ ticketUrl }: {| +ticketUrl: ?string |}) {
+      return <ETicketPdf ticketUrl={ticketUrl} />;
+    },
+  },
+};

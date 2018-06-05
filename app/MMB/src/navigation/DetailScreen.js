@@ -10,7 +10,9 @@ import Layout from '../components/Layout';
 import MainMenuContainer from '../MainMenuContainer';
 import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
 import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
-import TicketScene from '../scenes/tickets/TicketScene';
+import TicketScene, {
+  TicketSceneSubMenus,
+} from '../scenes/tickets/TicketScene';
 import FlightServices, {
   FlightServicesSubmenuItems,
 } from '../scenes/flightServices/FlightServices';
@@ -104,6 +106,7 @@ export const MenuComponents = {
   ...TripServicesSubmenuItems,
   ...HelpSubmenuItems,
   ...OtherSubmenuItems,
+  ...TicketSceneSubMenus,
 };
 
 type Props = {|
