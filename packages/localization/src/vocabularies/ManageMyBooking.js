@@ -26,6 +26,9 @@ export default {
   'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
+  // MMB Flight Overview
+  'mmb.flight_overview.title': 'Flight Overview',
+
   // MMB Flight services
   'mmb.flight_services.additional_baggage': 'Checked baggage',
   'mmb.flight_services.allocated_seating': 'Seat Selection',
@@ -37,7 +40,6 @@ export default {
   'mmb.flight_services.title_ordered': 'Ordered',
 
   // MMB Tickets
-
   'mmb.tickets.available_when_booking_confirmed':
     'Your document will be ready as soon as your booking is confirmed.',
   'mmb.tickets.print_eticket_and_bring_to_airport':
