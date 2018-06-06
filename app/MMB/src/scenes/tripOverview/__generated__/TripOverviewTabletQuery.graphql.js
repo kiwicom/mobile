@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6faea7c6af31303b68d5d35bbc805618
+ * @relayHash 58c5c57d207318f02c554ac04620603f
  */
 
 /* eslint-disable */
@@ -48,15 +48,56 @@ fragment TripOverview on Booking {
 }
 
 fragment OneWayTimeline on BookingOneWay {
-  id
+  trip {
+    ...Timeline
+  }
 }
 
 fragment ReturnTimeline on BookingReturn {
-  id
+  outbound {
+    ...Timeline
+  }
+  inbound {
+    ...Timeline
+  }
 }
 
 fragment MulticityTimeline on BookingMulticity {
-  id
+  trips {
+    ...Timeline
+  }
+}
+
+fragment Timeline on Trip {
+  legs {
+    departure {
+      ...TimelineDeparture
+    }
+    arrival {
+      ...TimelineArrival
+    }
+    id
+  }
+}
+
+fragment TimelineDeparture on RouteStop {
+  localTime
+  airport {
+    locationId
+    city {
+      name
+    }
+  }
+}
+
+fragment TimelineArrival on RouteStop {
+  localTime
+  airport {
+    locationId
+    city {
+      name
+    }
+  }
 }
 */
 
@@ -77,22 +118,98 @@ v1 = [
     "type": "ID!"
   }
 ],
-v2 = {
+v2 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "localTime",
+    "args": null,
+    "storageKey": null
+  },
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "airport",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "locationId",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "city",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "LocationArea",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
+  }
+],
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v3 = [
-  v2
+v4 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "legs",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Leg",
+    "plural": true,
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "departure",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "RouteStop",
+        "plural": false,
+        "selections": v2
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "arrival",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "RouteStop",
+        "plural": false,
+        "selections": v2
+      },
+      v3
+    ]
+  }
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  id\n}\n\nfragment ReturnTimeline on BookingReturn {\n  id\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  id\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    id\n  }\n}\n\nfragment TimelineDeparture on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment TimelineArrival on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -148,7 +265,19 @@ return {
             "args": null,
             "concreteType": "BookingOneWay",
             "plural": false,
-            "selections": v3
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "trip",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v4
+              },
+              v3
+            ]
           },
           {
             "kind": "LinkedField",
@@ -158,7 +287,29 @@ return {
             "args": null,
             "concreteType": "BookingReturn",
             "plural": false,
-            "selections": v3
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "outbound",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v4
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "inbound",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v4
+              },
+              v3
+            ]
           },
           {
             "kind": "LinkedField",
@@ -168,9 +319,21 @@ return {
             "args": null,
             "concreteType": "BookingMulticity",
             "plural": false,
-            "selections": v3
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "trips",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": true,
+                "selections": v4
+              },
+              v3
+            ]
           },
-          v2
+          v3
         ]
       }
     ]
