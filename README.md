@@ -29,7 +29,7 @@ This application uses our [GraphQL server](https://github.com/kiwicom/graphql) -
 
 ## Installation and Run
 
-> Note: we currently support only macOS.
+> Note: we currently support *only* macOS. It is however possible to run the Android application under Linux by tweaking the file `android/app/build.gradle` like in this [commit](https://github.com/kiwicom/mobile/pull/709/commits/68502a93fca7057400a562e701a98afc88214dc8).
 
 All necessary information are described in the official [React Native documentation](http://facebook.github.io/react-native/docs/getting-started.html#installing-dependencies). Basically you need to install macOS dependencies:
 
