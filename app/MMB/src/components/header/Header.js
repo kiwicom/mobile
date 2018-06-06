@@ -3,23 +3,32 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
-import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
+import {
+  StyleSheet,
+  Color,
+  AdaptableLayout,
+  Touchable,
+  TextIcon,
+} from '@kiwicom/mobile-shared';
+import { SeparatorFullWidth, MenuItem } from '@kiwicom/mobile-navigation';
+import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
 import HeaderImage from './HeaderImage';
 import HeaderPlaceholder from './HeaderPlaceholder';
-import type { Header as BookingType } from './__generated__/Header.graphql';
+import TripOverview from '../../scenes/tripOverview/TripOverview';
+import type { Header as HeaderType } from './__generated__/Header.graphql';
 
-type Props = {|
-  +data: BookingType,
+type HeaderSharedProps = {|
+  +data: ?HeaderType,
+  +children: React.Node,
 |};
 
-const Header = (props: Props) => {
+function HeaderShared(props: HeaderSharedProps) {
   const booking = idx(props, _ => _.data);
-  const isPastBooking = idx(props.data, _ => _.isPastBooking);
+  const isPastBooking = idx(booking, _ => _.isPastBooking);
 
   return (
     <React.Fragment>
@@ -29,11 +38,76 @@ const Header = (props: Props) => {
         <View style={styleSheet.separator}>
           <SeparatorFullWidth />
         </View>
-        <TripInfo data={booking} />
+        {props.children}
       </View>
     </React.Fragment>
   );
-};
+}
+
+type HeaderProps = {|
+  +data: HeaderType,
+  +openSubmenu: (activeId: string, menuId: string) => void,
+  +activeId: string,
+|};
+
+type HeaderState = {|
+  expanded: boolean,
+|};
+
+class Header extends React.Component<HeaderProps, HeaderState> {
+  state = {
+    expanded: false,
+  };
+
+  toggleExpandable = () => {
+    this.setState(prevState => ({
+      expanded: !prevState.expanded,
+    }));
+  };
+
+  handleOpenTripOverviewSubmenu = () => {
+    this.props.openSubmenu('mmb.main_menu.trip_overview', 'mmb.trip_overview');
+  };
+
+  render = () => {
+    const booking = idx(this.props, _ => _.data);
+
+    return (
+      <AdaptableLayout.Consumer
+        renderOnWide={
+          <React.Fragment>
+            <HeaderShared data={booking}>
+              <TripInfo data={booking} />
+            </HeaderShared>
+            <MenuItem
+              onPress={this.handleOpenTripOverviewSubmenu}
+              title={<Translation id="mmb.flight_overview.title" />}
+              isActive={this.props.activeId === 'mmb.main_menu.trip_overview'}
+              icon={<TextIcon code="&#xe08f;" />}
+            />
+          </React.Fragment>
+        }
+        renderOnNarrow={
+          <HeaderShared data={booking}>
+            <Touchable onPress={this.toggleExpandable}>
+              <React.Fragment>
+                <TripInfo data={booking} />
+                {this.state.expanded ? (
+                  <React.Fragment>
+                    <TextIcon code="m" />
+                    <TripOverview data={booking} />
+                  </React.Fragment>
+                ) : (
+                  <TextIcon code="l" />
+                )}
+              </React.Fragment>
+            </Touchable>
+          </HeaderShared>
+        }
+      />
+    );
+  };
+}
 
 export default createFragmentContainer(
   Header,
@@ -43,6 +117,7 @@ export default createFragmentContainer(
       ...StatusBar
       ...TripInfo
       ...HeaderImage
+      ...TripOverview
     }
   `,
 );
