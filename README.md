@@ -41,8 +41,8 @@ gem install cocoapods
 Install Xcode and Android Studio. After that clone this repository and install all the necessary dependencies:
 
 ```
-git clone git@github.com:kiwicom/react-native-app.git
-cd react-native-app
+git clone git@github.com:kiwicom/mobile.git
+cd mobile
 yarn install && yarn pod-install
 ```
 
