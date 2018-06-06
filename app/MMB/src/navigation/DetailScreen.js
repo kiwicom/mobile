@@ -20,7 +20,7 @@ import TripServices, {
   TripServicesSubmenuItems,
 } from '../scenes/tripServices/TripServices';
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
-import TripOverviewTablet from '../scenes/tripDetails/TripOverviewTablet';
+import TripOverviewTablet from '../scenes/tripOverview/TripOverviewTablet';
 
 export const MenuComponents = {
   'mmb.trip_overview': {

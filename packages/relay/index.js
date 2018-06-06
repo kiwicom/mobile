@@ -17,9 +17,9 @@ export { default as AuthContext } from './src/AuthContext';
 
 // just a very simple Flow types - doesn't work very well yet (better than nothing)
 export const createFragmentContainer = (
-  component: React.ComponentType<any>,
+  component: React.ComponentType<*>,
   fragmentSpec: Object,
-): React.ComponentType<any> => {
+): React.ComponentType<*> => {
   return Relay.createFragmentContainer(component, fragmentSpec);
 };
 
