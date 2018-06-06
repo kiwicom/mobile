@@ -5,6 +5,7 @@ import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
 import cl.json.RNSharePackage;
+import cl.json.ShareApplication;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.reactlibrary.RNTooltipsPackage;
@@ -23,7 +24,7 @@ import com.trinerdis.skypicker.translation.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends MultiDexApplication implements ReactApplication {
+public class MainApplication extends MultiDexApplication implements ShareApplication, ReactApplication {
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
@@ -64,5 +65,10 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
+    }
+
+    @Override
+    public String getFileProviderAuthority() {
+        return "com.reactnativeapp.provider";
     }
 }
