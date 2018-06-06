@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ff91ba32d53a1cc8ee9d25274869673d
+ * @relayHash 6faea7c6af31303b68d5d35bbc805618
  */
 
 /* eslint-disable */
@@ -33,6 +33,30 @@ query TripOverviewTabletQuery(
 
 fragment TripOverview on Booking {
   type
+  oneWay {
+    ...OneWayTimeline
+    id
+  }
+  return {
+    ...ReturnTimeline
+    id
+  }
+  multicity {
+    ...MulticityTimeline
+    id
+  }
+}
+
+fragment OneWayTimeline on BookingOneWay {
+  id
+}
+
+fragment ReturnTimeline on BookingReturn {
+  id
+}
+
+fragment MulticityTimeline on BookingMulticity {
+  id
 }
 */
 
@@ -52,13 +76,23 @@ v1 = [
     "variableName": "id",
     "type": "ID!"
   }
+],
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v3 = [
+  v2
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  id\n}\n\nfragment ReturnTimeline on BookingReturn {\n  id\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  id\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -107,12 +141,36 @@ return {
             "storageKey": null
           },
           {
-            "kind": "ScalarField",
+            "kind": "LinkedField",
             "alias": null,
-            "name": "id",
+            "name": "oneWay",
+            "storageKey": null,
             "args": null,
-            "storageKey": null
-          }
+            "concreteType": "BookingOneWay",
+            "plural": false,
+            "selections": v3
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "return",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "BookingReturn",
+            "plural": false,
+            "selections": v3
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "multicity",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "BookingMulticity",
+            "plural": false,
+            "selections": v3
+          },
+          v2
         ]
       }
     ]
