@@ -10,11 +10,9 @@ exports[`renders 1`] = `
   }
 >
   <PdfViewer
-    source={
-      Object {
-        "uri": "https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf",
-      }
-    }
+    cache={true}
+    expiration={Infinity}
+    uri="https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf"
   />
 </View>
 `;
