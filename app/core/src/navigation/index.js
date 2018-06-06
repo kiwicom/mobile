@@ -7,11 +7,11 @@ import {
 } from '@kiwicom/mobile-navigation';
 import { Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import ProfileScreen from '@kiwicom/mobile-profile';
 import { TabNavigator } from 'react-navigation';
 
 import HotelsStack from './HotelsStack';
 import MMBPackage from '../screens/MMBPackageWrapper';
-import LoginScreen from '../screens/LoginScreen';
 
 const VoidStack = StackNavigator(
   {
@@ -34,7 +34,7 @@ export default TabNavigator(
     Search: { screen: HotelsStack },
     Bookings: { screen: MMBPackage },
     Message: { screen: VoidStack },
-    Profile: { screen: LoginScreen },
+    Profile: { screen: ProfileScreen },
   },
   {
     tabBarOptions: {
