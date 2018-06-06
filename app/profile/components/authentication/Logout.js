@@ -4,12 +4,14 @@ import * as React from 'react';
 import { LinkButton } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-const VoidLogoutAction = () => console.warn('TODO: Logout');
+type Props = {|
+  +onLogout: () => void,
+|};
 
-export default function Logout() {
+export default function Logout(props: Props) {
   return (
     <LinkButton
-      onPress={VoidLogoutAction}
+      onPress={props.onLogout}
       title={<Translation id="core.authentication.logout" />}
     />
   );

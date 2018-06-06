@@ -9,8 +9,8 @@ import ButtonTitle from './ButtonTitle';
 import Button from './Button';
 
 type Props = {|
-  title: TranslationType,
-  onPress: Function,
+  +title: TranslationType,
+  +onPress: Function,
 |};
 
 /**
