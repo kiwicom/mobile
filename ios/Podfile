@@ -38,10 +38,6 @@ def react_native_pods()
 
 end 
 
-target 'RNPlayground' do
-  react_native_pods()
-end
-
 target 'reactNativeApp' do
   react_native_pods()
 end
