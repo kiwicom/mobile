@@ -2,16 +2,32 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { Translation } from '@kiwicom/mobile-localization';
+import { SimpleCard } from '@kiwicom/mobile-shared';
 
+import OneWayTimeline from './OneWayTimeline';
+import ReturnTimeline from './ReturnTimeline';
+import MulticityTimeline from './MulticityTimeline';
 import type { TripOverview as TripOverviewType } from './__generated__/TripOverview.graphql';
 
 type Props = {|
   +data: TripOverviewType,
 |};
 
+function getValidTimeline(data) {
+  switch (data.type) {
+    case 'ONE_WAY':
+      return <OneWayTimeline data={data.oneWay} />;
+    case 'RETURN':
+      return <ReturnTimeline data={data.return} />;
+    case 'MULTICITY':
+      return <MulticityTimeline data={data.multicity} />;
+  }
+  return null;
+}
+
 function TripOverview(props: Props) {
-  return <Translation passThrough={JSON.stringify(props.data)} />;
+  const children = getValidTimeline(props.data);
+  return <SimpleCard>{children}</SimpleCard>;
 }
 
 export default createFragmentContainer(
@@ -19,6 +35,15 @@ export default createFragmentContainer(
   graphql`
     fragment TripOverview on Booking {
       type
+      oneWay {
+        ...OneWayTimeline
+      }
+      return {
+        ...ReturnTimeline
+      }
+      multicity {
+        ...MulticityTimeline
+      }
     }
   `,
 );
