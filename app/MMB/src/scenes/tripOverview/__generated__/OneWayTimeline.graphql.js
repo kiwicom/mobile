@@ -8,10 +8,13 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Timeline$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type OneWayTimeline$ref: FragmentReference;
 export type OneWayTimeline = {|
-  +id: string,
+  +trip: ?{|
+    +$fragmentRefs: Timeline$ref
+  |},
   +$refType: OneWayTimeline$ref,
 |};
 */
@@ -25,14 +28,23 @@ const node/*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
+      "kind": "LinkedField",
       "alias": null,
-      "name": "id",
+      "name": "trip",
+      "storageKey": null,
       "args": null,
-      "storageKey": null
+      "concreteType": "Trip",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "Timeline",
+          "args": null
+        }
+      ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '6b17a94eb6ff43e458d5e7ddd4cae3c6';
+(node/*: any*/).hash = 'e841cbfe513096c6c0995e856a12a5dc';
 module.exports = node;

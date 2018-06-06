@@ -1,44 +1,63 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, FlatList } from 'react-native';
+import { View } from 'react-native';
 import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import idx from 'idx';
+
+import TimelineDeparture from './TimelineDeparture';
+import TimelineArrival from './TimelineArrival';
+import type { Timeline as TimelineDataType } from './__generated__/Timeline.graphql';
 
 const lineWidth = 2;
 const circleSize = 12;
 
 type Props = {|
-  +data: React.Node[],
+  +children: React.Node[],
+  +data: TimelineDataType,
 |};
 
-export default class Timeline extends React.Component<Props> {
-  renderItem = ({ item, index }: {| +item: React.Node, +index: boolean |}) => {
-    const isLast = this.props.data.length === index + 1;
-    const lastItemStyle = {};
+function Timeline(props: Props) {
+  const children = [];
+  const legs = idx(props, _ => _.data.legs) || [];
+
+  legs.forEach((leg, index) => {
+    if (!leg) {
+      return;
+    }
+
+    children.push(<TimelineDeparture key={index} data={leg.departure} />);
+    children.push(<TimelineArrival key={index} data={leg.arrival} />);
+  });
+
+  return children.map((child, index) => {
+    const isLast = children.length === index + 1;
+    const isOdd = index & 1;
+    const itemWrapperStyle = {};
 
     if (!isLast) {
-      lastItemStyle.borderColor = Color.ink.light;
-      lastItemStyle.borderStartWidth = lineWidth;
+      itemWrapperStyle.borderColor = Color.ink.light;
+      itemWrapperStyle.borderStartWidth = lineWidth;
+    }
+
+    if (isOdd) {
+      itemWrapperStyle.borderColor = 'red'; // FIXME: this will require bigger refactoring due to RN limitations
     }
 
     return (
-      <View style={styles.rowContainer}>
-        <View style={[styles.itemWrapper, lastItemStyle]}>
-          <View style={styles.item}>{item}</View>
+      <View key={index} style={styles.rowContainer}>
+        <View style={[styles.itemWrapper, itemWrapperStyle]}>
+          <View style={styles.item}>{child}</View>
         </View>
         <View style={styles.circle} />
       </View>
     );
-  };
-
-  render = () => (
-    <FlatList data={this.props.data} renderItem={this.renderItem} />
-  );
+  });
 }
 
-let styles = StyleSheet.create({
+const styles = StyleSheet.create({
   rowContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -64,3 +83,19 @@ let styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+export default createFragmentContainer(
+  Timeline,
+  graphql`
+    fragment Timeline on Trip {
+      legs {
+        departure {
+          ...TimelineDeparture
+        }
+        arrival {
+          ...TimelineArrival
+        }
+      }
+    }
+  `,
+);
