@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { TextInput, TextButton, IconLoading } from '@kiwicom/mobile-shared';
+import { TextInput, TextButton } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import LoginMutation, { type Callback } from './mutation/Login';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';
 
 type Props = {|
-  onSuccess: (accessToken: AccessToken) => void,
+  +onSuccess: (accessToken: AccessToken) => void,
 |};
 
 type State = {|
@@ -78,12 +78,11 @@ export default class EmailLoginForm extends React.Component<Props, State> {
             id={
               this.state.loading
                 ? 'core.authentication.logging_in'
-                : 'core.authentication.login' // TODO: Does not seem to toggle when loading changes
+                : 'core.authentication.login'
             }
           />
         }
       />
-      {this.state.loading && <IconLoading />}
     </View>
   );
 }

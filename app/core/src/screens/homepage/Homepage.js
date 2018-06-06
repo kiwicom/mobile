@@ -10,8 +10,6 @@ import {
   DateUtils,
 } from '@kiwicom/mobile-localization';
 
-import Logout from '../../components/authentication/Logout';
-
 type Props = {|
   navigation: NavigationType,
 |};
@@ -109,9 +107,6 @@ export default class Homepage extends React.Component<Props> {
             }
             onPress={this.searchWithDates}
           />
-        </Section>
-        <Section>
-          <Logout />
         </Section>
       </Layout>
     );

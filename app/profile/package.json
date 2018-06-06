@@ -1,0 +1,10 @@
+{
+  "name": "@kiwicom/mobile-profile",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-shared": "^0"
+  }
+}
