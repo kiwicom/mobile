@@ -30,7 +30,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "reactNativeApp.app"
-               BlueprintName = "RNPlayground"
+               BlueprintName = "reactNativeApp"
                ReferencedContainer = "container:reactNativeApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -72,7 +72,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "reactNativeApp.app"
-            BlueprintName = "RNPlayground"
+            BlueprintName = "reactNativeApp"
             ReferencedContainer = "container:reactNativeApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -95,7 +95,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "reactNativeApp.app"
-            BlueprintName = "RNPlayground"
+            BlueprintName = "reactNativeApp"
             ReferencedContainer = "container:reactNativeApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -114,7 +114,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "reactNativeApp.app"
-            BlueprintName = "RNPlayground"
+            BlueprintName = "reactNativeApp"
             ReferencedContainer = "container:reactNativeApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
