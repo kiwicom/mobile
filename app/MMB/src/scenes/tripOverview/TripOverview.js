@@ -1,6 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
+import { ScrollView } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { SimpleCard } from '@kiwicom/mobile-shared';
 
@@ -27,7 +28,12 @@ function getValidTimeline(data) {
 
 function TripOverview(props: Props) {
   const children = getValidTimeline(props.data);
-  return <SimpleCard>{children}</SimpleCard>;
+
+  return (
+    <ScrollView>
+      <SimpleCard>{children}</SimpleCard>
+    </ScrollView>
+  );
 }
 
 export default createFragmentContainer(

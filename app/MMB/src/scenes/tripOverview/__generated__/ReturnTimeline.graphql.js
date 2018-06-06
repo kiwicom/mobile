@@ -8,16 +8,30 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Timeline$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ReturnTimeline$ref: FragmentReference;
 export type ReturnTimeline = {|
-  +id: string,
+  +outbound: ?{|
+    +$fragmentRefs: Timeline$ref
+  |},
+  +inbound: ?{|
+    +$fragmentRefs: Timeline$ref
+  |},
   +$refType: ReturnTimeline$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = [
+  {
+    "kind": "FragmentSpread",
+    "name": "Timeline",
+    "args": null
+  }
+];
+return {
   "kind": "Fragment",
   "name": "ReturnTimeline",
   "type": "BookingReturn",
@@ -25,14 +39,28 @@ const node/*: ConcreteFragment*/ = {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
+      "kind": "LinkedField",
       "alias": null,
-      "name": "id",
+      "name": "outbound",
+      "storageKey": null,
       "args": null,
-      "storageKey": null
+      "concreteType": "Trip",
+      "plural": false,
+      "selections": v0
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "inbound",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Trip",
+      "plural": false,
+      "selections": v0
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = 'dc70e7a43fe56347b822e0347e7a660e';
+(node/*: any*/).hash = '77deb8f676be76d1054c827732712eec';
 module.exports = node;
