@@ -6,12 +6,11 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, GeneralError } from '@kiwicom/mobile-shared';
 
 type Props = {|
-  source: {|
-    uri: string,
-    cache?: boolean,
-  |},
-  onError?: () => void,
-  onLoad?: () => void,
+  +uri: string,
+  +cache?: boolean,
+  +expiration?: number,
+  +onError?: () => void,
+  +onLoad?: (numberOfPages: number, filePath: string) => void,
 |};
 
 type State = {|
@@ -23,9 +22,14 @@ export default class PdfViewer extends React.Component<Props, State> {
     hasLoadingFailed: false,
   };
 
-  onLoad = () => {
+  static defaultProps = {
+    cache: true,
+    expiration: Infinity,
+  };
+
+  onLoad = (numberOfPages: number, filePath: string) => {
     if (this.props.onLoad) {
-      this.props.onLoad();
+      this.props.onLoad(numberOfPages, filePath);
     }
   };
 
@@ -43,7 +47,11 @@ export default class PdfViewer extends React.Component<Props, State> {
           style={StyleSheet.absoluteFill}
           onError={this.onError}
           onLoadComplete={this.onLoad}
-          source={this.props.source}
+          source={{
+            uri: this.props.uri,
+            cache: this.props.cache,
+            expiration: this.props.expiration,
+          }}
         />
         {this.state.hasLoadingFailed && (
           <GeneralError

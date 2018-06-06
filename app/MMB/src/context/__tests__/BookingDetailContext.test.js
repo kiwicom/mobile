@@ -14,8 +14,12 @@ const getWrapper = () =>
   renderer.create(
     <BookingDetailContext.Provider>
       <BookingDetailContext.Consumer>
-        {({ actions: { setBookingDetail }, ...rest }) => (
-          <ContextConsumer {...rest} setBookingDetail={setBookingDetail} />
+        {({ actions: { setBookingDetail, setETicketPath }, ...rest }) => (
+          <ContextConsumer
+            {...rest}
+            setBookingDetail={setBookingDetail}
+            setETicketPath={setETicketPath}
+          />
         )}
       </BookingDetailContext.Consumer>
     </BookingDetailContext.Provider>,
@@ -50,5 +54,14 @@ describe('BookingDetailContext', () => {
     expect(instance.props.bookingId).toBe('123');
     expect(instance.props.arrivalCityId).toBe('oslo_no');
     expect(instance.props.arrivalTime).toEqual(new Date(1));
+  });
+
+  it('it sets eTicketPath', () => {
+    const wrapper = getWrapper();
+    const instance = wrapper.root.findByType(ContextConsumer);
+
+    instance.props.setETicketPath('path/is/test');
+
+    expect(instance.props.eTicketPath).toBe('path/is/test');
   });
 });

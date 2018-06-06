@@ -22,14 +22,7 @@ export default class Invoice extends React.Component<{||}> {
       );
     }
 
-    return (
-      <PdfViewer
-        source={{
-          uri,
-          cache: true, // no expiration - store as long as possible
-        }}
-      />
-    );
+    return <PdfViewer uri={uri} />;
   };
 
   render = () => (
