@@ -4,6 +4,7 @@ import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
+import cl.json.RNSharePackage;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.reactlibrary.RNTooltipsPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
+                    new RNSharePackage(),
                     new RCTPdfView(),
                     new RNFetchBlobPackage(),
                     new RNTooltipsPackage(),

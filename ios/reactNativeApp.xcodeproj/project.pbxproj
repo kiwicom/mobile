@@ -312,9 +312,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* RNPlayground */ = {
+		13B07F861A680F5B00A75B9A /* reactNativeApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RNPlayground" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "reactNativeApp" */;
 			buildPhases = (
 				865152EE6DB837951CC87114 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -328,7 +328,7 @@
 			);
 			dependencies = (
 			);
-			name = RNPlayground;
+			name = reactNativeApp;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* reactNativeApp.app */;
 			productType = "com.apple.product-type.application";
@@ -414,7 +414,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* RNPlayground */,
+				13B07F861A680F5B00A75B9A /* reactNativeApp */,
 				27E931AF20AD96780053AE19 /* RNKiwiMobile */,
 				27E931D120ADA0600053AE19 /* RNNativePlayground */,
 			);
@@ -1004,7 +1004,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "RNPlayground" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "reactNativeApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,

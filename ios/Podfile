@@ -30,6 +30,7 @@ def react_native_pods()
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'RNShare', :path => '../node_modules/react-native-share'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
@@ -38,6 +39,10 @@ def react_native_pods()
 end 
 
 target 'RNPlayground' do
+  react_native_pods()
+end
+
+target 'reactNativeApp' do
   react_native_pods()
 end
 
