@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { QueryRenderer as OriginalQueryRenderer } from '@kiwicom/mobile-relay';
+import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
 import { FullPageLoading, GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -61,7 +61,7 @@ export default class QueryRenderer extends React.Component<Props> {
 
   render = () => {
     return (
-      <OriginalQueryRenderer
+      <Relay.QueryRenderer
         environment={this.createEnvironment()}
         query={this.props.query}
         variables={this.props.variables}

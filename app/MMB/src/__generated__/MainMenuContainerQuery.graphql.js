@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 47818e53d88118e335d7468e97ffc144
+ * @relayHash 8938e6d684df16db332b42eb728c2f9f
  */
 
 /* eslint-disable */
@@ -60,9 +60,11 @@ fragment Visa on Booking {
     visaInformation {
       requiredIn {
         name
+        id
       }
       warningIn {
         name
+        id
       }
     }
   }
@@ -168,6 +170,7 @@ fragment TimelineTitle on RouteStop {
     city {
       name
     }
+    id
   }
 }
 
@@ -228,6 +231,7 @@ fragment Location on RouteStop {
       name
     }
     ...CountryFlag
+    id
   }
 }
 
@@ -272,10 +276,7 @@ v3 = {
   "args": null,
   "storageKey": null
 },
-v4 = [
-  v3
-],
-v5 = {
+v4 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "city",
@@ -283,7 +284,16 @@ v5 = {
   "args": null,
   "concreteType": "LocationArea",
   "plural": false,
-  "selections": v4
+  "selections": [
+    v3
+  ]
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
 },
 v6 = {
   "kind": "ScalarField",
@@ -302,14 +312,15 @@ v7 = [
     "concreteType": "Location",
     "plural": false,
     "selections": [
-      v5,
+      v4,
       {
         "kind": "ScalarField",
         "alias": null,
         "name": "countryFlagURL",
         "args": null,
         "storageKey": null
-      }
+      },
+      v5
     ]
   },
   v6
@@ -339,18 +350,12 @@ v9 = [
         "args": null,
         "storageKey": null
       },
+      v4,
       v5
     ]
   }
 ],
 v10 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "legs",
@@ -405,10 +410,10 @@ v11 = {
         }
       ]
     },
-    v10
+    v5
   ]
 },
-v12 = [
+v11 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -430,17 +435,21 @@ v12 = [
     "selections": v7
   },
   v8,
-  v11
+  v10
+],
+v12 = [
+  v6
 ],
 v13 = [
-  v6
+  v3,
+  v5
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "MainMenuContainerQuery",
   "id": null,
-  "text": "query MainMenuContainerQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...MainMenu\n    id\n  }\n}\n\nfragment MainMenu on Booking {\n  ...Header\n  ...PassengerMenuGroup\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...TripOverview\n}\n\nfragment PassengerMenuGroup on Booking {\n  ...PassengerMenuDetail\n}\n\nfragment PassengerMenuDetail on Booking {\n  ...Visa\n  passengers {\n    databaseId\n    ...Passenger\n  }\n}\n\nfragment Visa on Booking {\n  passengers {\n    visaInformation {\n      requiredIn {\n        name\n      }\n      warningIn {\n        name\n      }\n    }\n  }\n}\n\nfragment Passenger on Passenger {\n  fullName\n  title\n  birthday\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
+  "text": "query MainMenuContainerQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...MainMenu\n    id\n  }\n}\n\nfragment MainMenu on Booking {\n  ...Header\n  ...PassengerMenuGroup\n}\n\nfragment Header on Booking {\n  isPastBooking\n  ...StatusBar\n  ...TripInfo\n  ...TripOverview\n}\n\nfragment PassengerMenuGroup on Booking {\n  ...PassengerMenuDetail\n}\n\nfragment PassengerMenuDetail on Booking {\n  ...Visa\n  passengers {\n    databaseId\n    ...Passenger\n  }\n}\n\nfragment Visa on Booking {\n  passengers {\n    visaInformation {\n      requiredIn {\n        name\n        id\n      }\n      warningIn {\n        name\n        id\n      }\n    }\n  }\n}\n\nfragment Passenger on Passenger {\n  fullName\n  title\n  birthday\n}\n\nfragment StatusBar on Booking {\n  ...StatusBarIcon\n  databaseId\n}\n\nfragment TripInfo on Booking {\n  type\n  oneWay {\n    ...TripInfoOneWay\n    id\n  }\n  return {\n    ...TripInfoReturn\n    id\n  }\n  multicity {\n    ...TripInfoMulticity\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment StatusBarIcon on Booking {\n  status\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -520,9 +529,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v12
+                "selections": v11
               },
-              v10
+              v5
             ]
           },
           {
@@ -542,7 +551,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v12
+                "selections": v11
               },
               {
                 "kind": "LinkedField",
@@ -562,7 +571,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v13
+                    "selections": v12
                   },
                   {
                     "kind": "LinkedField",
@@ -572,12 +581,12 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v13
+                    "selections": v12
                   },
-                  v11
+                  v10
                 ]
               },
-              v10
+              v5
             ]
           },
           {
@@ -597,9 +606,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v12
+                "selections": v11
               },
-              v10
+              v5
             ]
           },
           {
@@ -628,7 +637,7 @@ return {
                     "args": null,
                     "concreteType": "Location",
                     "plural": true,
-                    "selections": v4
+                    "selections": v13
                   },
                   {
                     "kind": "LinkedField",
@@ -638,7 +647,7 @@ return {
                     "args": null,
                     "concreteType": "Location",
                     "plural": true,
-                    "selections": v4
+                    "selections": v13
                   }
                 ]
               },
@@ -666,7 +675,7 @@ return {
               }
             ]
           },
-          v10
+          v5
         ]
       }
     ]
