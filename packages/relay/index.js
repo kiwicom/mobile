@@ -6,7 +6,6 @@ import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
 import PublicEnvironment from './src/PublicEnvironment';
 
 export {
-  QueryRenderer,
   graphql,
   createPaginationContainer,
   createRefetchContainer,

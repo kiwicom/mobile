@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5b2ca5d4830f6250a2fcb44099522966
+ * @relayHash cb449d1725df94623a9e23e35149b91a
  */
 
 /* eslint-disable */
@@ -59,9 +59,11 @@ fragment Passenger_passenger on Passenger {
   visaInformation {
     requiredIn {
       name
+      id
     }
     warningIn {
       name
+      id
     }
   }
 }
@@ -91,21 +93,29 @@ v2 = {
   "args": null,
   "storageKey": null
 },
-v3 = [
+v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v4 = [
   {
     "kind": "ScalarField",
     "alias": null,
     "name": "name",
     "args": null,
     "storageKey": null
-  }
+  },
+  v3
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n    }\n    warningIn {\n      name\n    }\n  }\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -252,7 +262,7 @@ return {
                     "args": null,
                     "concreteType": "Location",
                     "plural": true,
-                    "selections": v3
+                    "selections": v4
                   },
                   {
                     "kind": "LinkedField",
@@ -262,19 +272,13 @@ return {
                     "args": null,
                     "concreteType": "Location",
                     "plural": true,
-                    "selections": v3
+                    "selections": v4
                   }
                 ]
               }
             ]
           },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
+          v3
         ]
       }
     ]

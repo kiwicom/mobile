@@ -149,6 +149,11 @@ type Booking {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
   oneWay: BookingOneWay
   return: BookingReturn
@@ -233,6 +238,11 @@ interface BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
 }
 
@@ -268,6 +278,11 @@ type BookingMulticity implements BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
 
   """Initial origin."""
@@ -315,6 +330,11 @@ type BookingOneWay implements BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
   trip: Trip
 }
@@ -352,6 +372,11 @@ type BookingReturn implements BookingInterface {
   bookedServices: [BookedService]
   contactDetails: BookingContactDetails
   isPastBooking: Boolean
+
+  """All services provided directly by Kiwi.com."""
+  availableServices: Services
+
+  """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
 
   """Trip from origin to destination."""
@@ -632,6 +657,15 @@ type CurrencyDetailEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+type CustomerSupport {
+  phoneNumbers: [CustomerSupportPhoneNumber]
+}
+
+type CustomerSupportPhoneNumber {
+  availabilityDescription: String
+  number: String
 }
 
 """
@@ -1275,6 +1309,11 @@ type Identity {
   login: String
 }
 
+type InsuranceService {
+  """Returns passengers allowed to buy a travel insurance."""
+  passengers: [Passenger]
+}
+
 """The possible insurance type values"""
 enum InsuranceType {
   NONE
@@ -1432,6 +1471,9 @@ enum Locale {
 }
 
 type Location {
+  """The ID of an object"""
+  id: ID!
+
   """3-letter IATA code of airport or internal city code."""
   locationId: String
   name: String
@@ -1575,6 +1617,10 @@ input RadiusInput {
   radius: Int!
 }
 
+type ResetPasswordResponse {
+  success: Boolean
+}
+
 input RoomsChildrenConfiguration {
   age: Int
 }
@@ -1587,6 +1633,7 @@ input RoomsConfiguration {
 """Root Mutation."""
 type RootMutation {
   login(email: String!, password: String!): User
+  resetPassword(email: String!): ResetPasswordResponse
   addFAQArticleComment(
     """ID of FAQ article to receive vote."""
     id: ID!
@@ -1789,6 +1836,9 @@ type RootQuery {
     before: String
     last: Int
   ): DynamicPackageConnection
+
+  """Customer support related data."""
+  customerSupport: CustomerSupport
 }
 
 type RouteStop {
@@ -1798,6 +1848,11 @@ type RouteStop {
 
   """City id of the route stop"""
   cityId: String
+}
+
+type Services {
+  """Travel insurance - returns "null" if not available."""
+  insurance: InsuranceService
 }
 
 input StopoversInput {
