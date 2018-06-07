@@ -134,4 +134,11 @@ export default {
   'mmb.sub_menu.manage.other.apply_for_refund': 'Apply for refund',
 
   'mmb.trip_services.title.ordered': 'Ordered',
+
+  // MMB Booking Timeline
+  'mmb.booking_timeline.today': 'Today',
+  'mmb.booking_timeline.event.booked_flight.title':
+    'Booked flight to __1_destination__',
+  'mmb.booking_timeline.event.airport_arrival.title':
+    'Arrive at __1_airport__ airport (__2_code__)',
 };
