@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 71b1ba3a4f236b9c275493fe279bac0f
+ * @relayHash e0da4d402e4e922c52d7ddba82dc903c
  */
 
 /* eslint-disable */
@@ -47,6 +47,7 @@ fragment LoungeMenuItem_WJqJd on WhitelabeledServices {
       whitelabelURL
       location {
         ...LocationPopupButton
+        id
       }
     }
   }
@@ -112,13 +113,20 @@ v3 = {
   "name": "whitelabelURL",
   "args": null,
   "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TripServicesQuery",
   "id": null,
-  "text": "query TripServicesQuery(\n  $bookingId: ID!\n  $departureTime: DateTime!\n  $arrivalTime: DateTime!\n) {\n  booking(id: $bookingId) {\n    availableWhitelabeledServices {\n      ...LoungeMenuItem_WJqJd\n      ...ParkingMenuItem_3cQ5np\n    }\n    id\n  }\n}\n\nfragment LoungeMenuItem_WJqJd on WhitelabeledServices {\n  lounge(departureTime: $departureTime) {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem_3cQ5np on WhitelabeledServices {\n  parking(fromDate: $departureTime, toDate: $arrivalTime) {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query TripServicesQuery(\n  $bookingId: ID!\n  $departureTime: DateTime!\n  $arrivalTime: DateTime!\n) {\n  booking(id: $bookingId) {\n    availableWhitelabeledServices {\n      ...LoungeMenuItem_WJqJd\n      ...ParkingMenuItem_3cQ5np\n    }\n    id\n  }\n}\n\nfragment LoungeMenuItem_WJqJd on WhitelabeledServices {\n  lounge(departureTime: $departureTime) {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem_3cQ5np on WhitelabeledServices {\n  parking(fromDate: $departureTime, toDate: $arrivalTime) {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -260,7 +268,8 @@ return {
                             "name": "countryFlagURL",
                             "args": null,
                             "storageKey": null
-                          }
+                          },
+                          v4
                         ]
                       }
                     ]
@@ -294,13 +303,7 @@ return {
               }
             ]
           },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
-          }
+          v4
         ]
       }
     ]

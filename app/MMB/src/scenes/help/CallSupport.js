@@ -4,10 +4,16 @@ import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TitledMenuGroup } from '@kiwicom/mobile-navigation';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import idx from 'idx';
 
 import CallMenuItem from './CallMenuItem';
+import type { CallSupportQueryResponse } from './__generated__/CallSupportQuery.graphql';
 
-export default function CallSupport() {
+function CallSupport(rendererProps: CallSupportQueryResponse) {
+  const phoneNumbers =
+    idx(rendererProps, _ => _.customerSupport.phoneNumbers) || [];
+
   return (
     <ScrollView>
       {/* TODO: only one number based on locale of the device */}
@@ -15,15 +21,42 @@ export default function CallSupport() {
       <TitledMenuGroup
         title={<Translation id="mmb.support.phone.all_numbers" />}
       >
-        <CallMenuItem
-          title={<Translation passThrough="English (TODO)" />} // TODO
-          description={<Translation passThrough="Mon-Fri 9am - 5 pm CEST" />} // TODO
-        />
-        <CallMenuItem
-          title={<Translation passThrough="English (TODO)" />} // TODO
-          description={<Translation passThrough="Mon-Fri 9am - 5 pm CEST" />} // TODO
-        />
+        {phoneNumbers.map((phoneNumber, index) => {
+          if (!phoneNumber) {
+            return null;
+          }
+
+          return (
+            <CallMenuItem
+              key={index}
+              title={<Translation passThrough={phoneNumber.number} />}
+              description={
+                <Translation
+                  passThrough={phoneNumber.availabilityDescription}
+                />
+              }
+            />
+          );
+        })}
       </TitledMenuGroup>
     </ScrollView>
+  );
+}
+
+export default function CallSupportQueryRenderer() {
+  return (
+    <PublicApiRenderer
+      query={graphql`
+        query CallSupportQuery {
+          customerSupport {
+            phoneNumbers {
+              number
+              availabilityDescription
+            }
+          }
+        }
+      `}
+      render={CallSupport}
+    />
   );
 }
