@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 58c5c57d207318f02c554ac04620603f
+ * @relayHash 61f00572f1e09ba5ae493eb5e387174d
  */
 
 /* eslint-disable */
@@ -71,26 +71,33 @@ fragment MulticityTimeline on BookingMulticity {
 fragment Timeline on Trip {
   legs {
     departure {
-      ...TimelineDeparture
+      ...TimelineDeparture_routeStop
     }
     arrival {
       ...TimelineArrival
     }
+    ...TimelineDeparture_legInfo
     id
   }
 }
 
-fragment TimelineDeparture on RouteStop {
-  localTime
-  airport {
-    locationId
-    city {
-      name
-    }
-  }
+fragment TimelineDeparture_routeStop on RouteStop {
+  ...TimelineTitle
 }
 
 fragment TimelineArrival on RouteStop {
+  ...TimelineTitle
+}
+
+fragment TimelineDeparture_legInfo on Leg {
+  flightNumber
+  airline {
+    name
+    logoUrl
+  }
+}
+
+fragment TimelineTitle on RouteStop {
   localTime
   airport {
     locationId
@@ -118,7 +125,14 @@ v1 = [
     "type": "ID!"
   }
 ],
-v2 = [
+v2 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v3 = [
   {
     "kind": "ScalarField",
     "alias": null,
@@ -151,26 +165,20 @@ v2 = [
         "concreteType": "LocationArea",
         "plural": false,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "name",
-            "args": null,
-            "storageKey": null
-          }
+          v2
         ]
       }
     ]
   }
 ],
-v3 = {
+v4 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v4 = [
+v5 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -188,7 +196,7 @@ v4 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v2
+        "selections": v3
       },
       {
         "kind": "LinkedField",
@@ -198,9 +206,35 @@ v4 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v2
+        "selections": v3
       },
-      v3
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "flightNumber",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "airline",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Airline",
+        "plural": false,
+        "selections": [
+          v2,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "logoUrl",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      },
+      v4
     ]
   }
 ];
@@ -209,7 +243,7 @@ return {
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    id\n  }\n}\n\nfragment TimelineDeparture on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n\nfragment TimelineArrival on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -274,9 +308,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v5
               },
-              v3
+              v4
             ]
           },
           {
@@ -296,7 +330,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v5
               },
               {
                 "kind": "LinkedField",
@@ -306,9 +340,9 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v5
               },
-              v3
+              v4
             ]
           },
           {
@@ -328,12 +362,12 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v4
+                "selections": v5
               },
-              v3
+              v4
             ]
           },
-          v3
+          v4
         ]
       }
     ]

@@ -9,8 +9,8 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type TimelineDeparture$ref: FragmentReference;
-export type TimelineDeparture = {|
+declare export opaque type TimelineTitle$ref: FragmentReference;
+export type TimelineTitle = {|
   +localTime: ?any,
   +airport: ?{|
     +locationId: ?string,
@@ -18,14 +18,14 @@ export type TimelineDeparture = {|
       +name: ?string
     |},
   |},
-  +$refType: TimelineDeparture$ref,
+  +$refType: TimelineTitle$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "TimelineDeparture",
+  "name": "TimelineTitle",
   "type": "RouteStop",
   "metadata": null,
   "argumentDefinitions": [],
@@ -76,5 +76,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'fb9df0b416006318720a6a408de094bb';
+(node/*: any*/).hash = 'dc2fca5a0d0c8b233d8197f214176260';
 module.exports = node;
