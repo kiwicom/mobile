@@ -3,33 +3,28 @@
 import * as React from 'react';
 import { GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import PdfViewer from '@kiwicom/mobile-pdf';
+import { PdfViewAndStore } from '@kiwicom/mobile-pdf';
 
 import BookingDetailContext from '../../../context/BookingDetailContext';
 
 type PropsWithContext = {|
   ...Props,
-  +setETicketPath: (path: string) => void,
+  +bookingId: string,
 |};
 
-class ETicketPdf extends React.Component<PropsWithContext> {
-  onPdfLoaded = (pages: number, path: string) => {
-    this.props.setETicketPath(path);
-  };
+const ETicketPdf = ({ ticketUrl, bookingId }: PropsWithContext) => {
+  if (!ticketUrl) {
+    return (
+      <GeneralError
+        errorMessage={<Translation id="mmb.tickets.not_available" />}
+      />
+    );
+  }
 
-  render = () => {
-    const { ticketUrl } = this.props;
-    if (!ticketUrl) {
-      return (
-        <GeneralError
-          errorMessage={<Translation id="mmb.tickets.not_available" />}
-        />
-      );
-    }
-
-    return <PdfViewer uri={ticketUrl} onLoad={this.onPdfLoaded} />;
-  };
-}
+  return (
+    <PdfViewAndStore fileName={`/eTickets/${bookingId}.pdf`} url={ticketUrl} />
+  );
+};
 
 type Props = {|
   +ticketUrl: ?string,
@@ -38,9 +33,7 @@ type Props = {|
 export default function ETicketPdfWithContext(props: Props) {
   return (
     <BookingDetailContext.Consumer>
-      {({ actions: { setETicketPath } }) => (
-        <ETicketPdf {...props} setETicketPath={setETicketPath} />
-      )}
+      {({ bookingId }) => <ETicketPdf {...props} bookingId={bookingId} />}
     </BookingDetailContext.Consumer>
   );
 }

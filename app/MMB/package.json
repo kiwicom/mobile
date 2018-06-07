@@ -9,6 +9,7 @@
     "@kiwicom/mobile-pdf": "^0",
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-assets": "^0",
     "lodash": "^4.17.10",
     "react-native-dash": "^0.0.8",
     "react-native-phone-call": "^1.0.4",
