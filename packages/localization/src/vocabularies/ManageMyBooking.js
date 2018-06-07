@@ -26,8 +26,10 @@ export default {
   'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
-  // MMB Flight Overview
+  // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
+  'mmb.flight_overview.timeline.carrier': 'Carrier:',
+  'mmb.flight_overview.timeline.flight_no': 'Flight number:',
 
   // MMB Flight services
   'mmb.flight_services.additional_baggage': 'Checked baggage',
