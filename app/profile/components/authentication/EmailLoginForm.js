@@ -62,7 +62,7 @@ export default class EmailLoginForm extends React.Component<Props, State> {
         onChangeText={this.handleEmailChange}
         keyboardType="email-address"
         placeholder={<Translation id="core.authentication.email" />}
-        value={this.state.username}
+        defaultValue={this.state.username}
       />
       <TextInput
         onChangeText={this.handlePasswordChange}
