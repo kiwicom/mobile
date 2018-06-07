@@ -1,14 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
-import ETicket from './ETicket';
+import ETicketPdf from './ETicketPdf';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TicketSceneQueryResponse } from './__generated__/TicketSceneQuery.graphql';
-import ETicketPdf from './ETicketPdf';
+import ETicketRefetch from './ETicketRefetch';
 
 type Props = {|
   +data: TicketSceneQueryResponse,
@@ -16,10 +14,7 @@ type Props = {|
 
 export default class TicketScene extends React.Component<Props> {
   renderInner = (renderProps: TicketSceneQueryResponse) => (
-    <View style={{ paddingTop: 20 }}>
-      {/* Using inline style because this view is temporary, will be replaced by scroll view and refetch possabilities */}
-      <ETicket data={idx(renderProps.booking, _ => _.assets)} />
-    </View>
+    <ETicketRefetch data={renderProps.booking} />
   );
 
   render = () => (
@@ -29,9 +24,7 @@ export default class TicketScene extends React.Component<Props> {
           query={graphql`
             query TicketSceneQuery($bookingId: ID!) {
               booking(id: $bookingId) {
-                assets {
-                  ...ETicket
-                }
+                ...ETicketRefetch
               }
             }
           `}
