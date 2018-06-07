@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 204e9e21234f20679187720fa05720c1
+ * @relayHash 5850c6cd94bcff3e0752958452901eca
  */
 
 /* eslint-disable */
@@ -10,10 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type ETicketRefetch$ref = any;
-export type TicketSceneQueryVariables = {|
-  bookingId: string
+export type ETicketRefetchQueryVariables = {|
+  id: string
 |};
-export type TicketSceneQueryResponse = {|
+export type ETicketRefetchQueryResponse = {|
   +booking: ?{|
     +$fragmentRefs: ETicketRefetch$ref
   |}
@@ -22,10 +22,10 @@ export type TicketSceneQueryResponse = {|
 
 
 /*
-query TicketSceneQuery(
-  $bookingId: ID!
+query ETicketRefetchQuery(
+  $id: ID!
 ) {
-  booking(id: $bookingId) {
+  booking(id: $id) {
     ...ETicketRefetch
     id
   }
@@ -47,7 +47,7 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "bookingId",
+    "name": "id",
     "type": "ID!",
     "defaultValue": null
   }
@@ -56,20 +56,20 @@ v1 = [
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "bookingId",
+    "variableName": "id",
     "type": "ID!"
   }
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "TicketSceneQuery",
+  "name": "ETicketRefetchQuery",
   "id": null,
-  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  booking(id: $bookingId) {\n    ...ETicketRefetch\n    id\n  }\n}\n\nfragment ETicketRefetch on Booking {\n  databaseId\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
+  "text": "query ETicketRefetchQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...ETicketRefetch\n    id\n  }\n}\n\nfragment ETicketRefetch on Booking {\n  databaseId\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "TicketSceneQuery",
+    "name": "ETicketRefetchQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -94,7 +94,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "TicketSceneQuery",
+    "name": "ETicketRefetchQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -145,5 +145,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '36cc3559c1df2b023b1d1406200d470d';
+(node/*: any*/).hash = '2bbd4df5965308e9a6f1d323f0da2613';
 module.exports = node;
