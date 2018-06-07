@@ -25,9 +25,9 @@ export type Location = {|
 
 type PropsWithContext = {
   ...Props,
-  onCitySelected: (cityId: string, cityName: string) => void,
-  storageValue: Location[],
-  saveToStorage: (value: any) => void,
+  +onCitySelected: (cityId: string, cityName: string) => void,
+  +storageValue: Location[],
+  +saveToStorage: (value: any) => void,
 };
 
 type State = {|
@@ -79,7 +79,7 @@ export class LocationPicker extends React.Component<PropsWithContext, State> {
       <View style={styles.container}>
         <View style={styles.textInputContainer}>
           <TextInput
-            value={this.state.search}
+            defaultValue={this.state.search}
             onChangeText={this.onTextChange}
             placeholder={
               <Translation id="hotels_search.location_button.placeholder" />
@@ -109,8 +109,8 @@ export class LocationPicker extends React.Component<PropsWithContext, State> {
 }
 
 type Props = {|
-  location: ?string,
-  closeModal: () => void,
+  +location: ?string,
+  +closeModal: () => void,
 |};
 
 const LocationPickerWithStorage = WithStorage(
