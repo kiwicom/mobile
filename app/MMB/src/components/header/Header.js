@@ -16,8 +16,6 @@ import idx from 'idx';
 
 import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
-import HeaderImage from './HeaderImage';
-import HeaderPlaceholder from './HeaderPlaceholder';
 import TripOverview from '../../scenes/tripOverview/TripOverview';
 import type { Header as HeaderType } from './__generated__/Header.graphql';
 
@@ -28,11 +26,9 @@ type HeaderSharedProps = {|
 
 function HeaderShared(props: HeaderSharedProps) {
   const booking = idx(props, _ => _.data);
-  const isPastBooking = idx(booking, _ => _.isPastBooking);
 
   return (
     <React.Fragment>
-      {isPastBooking ? <HeaderImage data={booking} /> : <HeaderPlaceholder />}
       <View style={styleSheet.wrapper}>
         <StatusBar data={booking} />
         <View style={styleSheet.separator}>
@@ -116,7 +112,6 @@ export default createFragmentContainer(
       isPastBooking
       ...StatusBar
       ...TripInfo
-      ...HeaderImage
       ...TripOverview
     }
   `,
