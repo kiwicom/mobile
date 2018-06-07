@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		012E4C1BA8444C8182992EEB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B11306CBC6D24D3C990EAC4B /* Ionicons.ttf */; };
 		038BD3170181472CA3083F7C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */; };
@@ -15,6 +16,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		196AE49557919C763304B087 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
 		2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2107154420B5677200E6C96B /* RNKiwiGestureController.m */; };
 		2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107154520B5677200E6C96B /* RNKiwiGestureController.h */; };
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
@@ -59,8 +61,6 @@
 		A96754F560094312A0F7CAB7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB92C0158EB3448ABD260167 /* Entypo.ttf */; };
 		B025D45E10CE4ED9A975D6DF /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 645A06359A464CB0B63845A2 /* MaterialCommunityIcons.ttf */; };
 		C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
-		C867FEDA0A17D2EFC80A6CAE /* libPods-RNPlayground.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931CA20AD9EE70053AE19 /* libPods-RNPlayground.a */; };
-		E3EC13CA3A4FECD34081137D /* libPods-RNPlayground.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A42E4EC96B6B81F2DFC8C869 /* libPods-RNPlayground.a */; };
 		F17C18C1FCB544E795B06AE7 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 463A493B8DDC4A86A32B73D4 /* SFProText-Regular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -143,8 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3EC13CA3A4FECD34081137D /* libPods-RNPlayground.a in Frameworks */,
-				C867FEDA0A17D2EFC80A6CAE /* libPods-RNPlayground.a in Frameworks */,
+				196AE49557919C763304B087 /* libPods-reactNativeApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +537,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RNPlayground-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-reactNativeApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -569,7 +568,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
@@ -598,7 +597,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F8960549D42B99529D418B2F /* [CP] Copy Pods Resources */ = {
@@ -705,7 +704,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83DEB0A076A11B421C735EE9 /* Pods-RNPlayground.debug.xcconfig */;
+			baseConfigurationReference = D9EB95B82ECBF86CAF3AF472 /* Pods-reactNativeApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -735,7 +734,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68A42BBB8E1C6CD26053AC72 /* Pods-RNPlayground.release.xcconfig */;
+			baseConfigurationReference = F1CBA12F9C74CC3D03C0D84C /* Pods-reactNativeApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
