@@ -16,10 +16,8 @@ const defaultState = {
   arrivalCityId: '',
   arrivalTime: new Date(),
   departureTime: new Date(),
-  eTicketPath: null,
   actions: {
     setBookingDetail: () => {},
-    setETicketPath: () => {},
   },
 };
 
@@ -33,10 +31,8 @@ type Props = {|
 
 type State = {|
   ...BookingDetail,
-  +eTicketPath: null | string,
   +actions: {|
     +setBookingDetail: (booking: BookingDetail) => void,
-    +setETicketPath: (path: string) => void,
   |},
 |};
 
@@ -46,17 +42,11 @@ class Provider extends React.Component<Props, State> {
 
     this.state = {
       ...defaultState,
-      eTicketPath: null,
       actions: {
         setBookingDetail: this.setBookingDetail,
-        setETicketPath: this.setETicketPath,
       },
     };
   }
-
-  setETicketPath = (eTicketPath: string | null) => {
-    this.setState({ eTicketPath });
-  };
 
   setBookingDetail = (booking: BookingDetail) => {
     this.setState(booking);
