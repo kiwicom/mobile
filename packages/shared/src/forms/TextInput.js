@@ -5,18 +5,16 @@ import { TextInput as OriginalTextInput, View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../icons/Icon';
 import Color from '../Color';
 import Text from '../Text';
 
 type Props = {|
-  placeholder?: React.Element<typeof Translation>,
-  value?: string,
-  autoFocus?: boolean,
-  iconName?: string, // only Material icons allowed here
-  onChangeText?: (text: string) => void,
-  keyboardType?: 'email-address',
-  secureTextEntry?: boolean,
+  +placeholder?: React.Element<typeof Translation>,
+  +defaultValue?: string,
+  +autoFocus?: boolean,
+  +onChangeText?: (text: string) => void,
+  +keyboardType?: 'email-address',
+  +secureTextEntry?: boolean,
 |};
 
 type State = {|
@@ -27,15 +25,10 @@ export default class TextInput extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      displayPlaceholder: props.value == null || props.value === '',
+      displayPlaceholder:
+        props.defaultValue == null || props.defaultValue === '',
     };
   }
-
-  static getDerivedStateFromProps = (nextProps: Props) => {
-    return {
-      displayPlaceholder: nextProps.value == null || nextProps.value === '',
-    };
-  };
 
   handlePlaceholder = (text: string) => {
     this.setState(
@@ -52,12 +45,7 @@ export default class TextInput extends React.Component<Props, State> {
 
   render = () => (
     <View style={styleSheet.wrapper}>
-      {this.props.iconName && (
-        <Icon name={this.props.iconName} size={20} style={styleSheet.icon} />
-      )}
-
       <OriginalTextInput
-        placeholderTextColor={Color.textLight}
         underlineColorAndroid="transparent"
         autoCorrect={false}
         {...this.props}
@@ -68,7 +56,10 @@ export default class TextInput extends React.Component<Props, State> {
 
       {this.props.placeholder &&
         this.state.displayPlaceholder && (
-          <Text style={[styleSheet.text, styleSheet.placeholder]}>
+          <Text
+            style={[styleSheet.text, styleSheet.placeholder]}
+            pointerEvents="none"
+          >
             {this.props.placeholder}
           </Text>
         )}
@@ -101,10 +92,6 @@ const styleSheet = StyleSheet.create({
     ios: {
       height: 47,
     },
-  },
-  icon: {
-    marginStart: 10,
-    alignSelf: 'center',
   },
   placeholder: {
     position: 'absolute',

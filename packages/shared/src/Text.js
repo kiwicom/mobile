@@ -11,13 +11,15 @@ import type { StylePropType } from '../types/Styles';
 // basically every component (but never strings - they must be translated)
 // the idea is that you should always use component as a children so you'll
 // eventually end up with the Translation component
-type ChildrenType = React.Element<any>;
+type ChildrenType = React.Element<any>; // FIXME: we cannot accept View in the children because it's not supported on Android
 
 type Props = {|
-  // FIXME: we cannot accept View in the children because it's not supported on Android
-  children: ChildrenType | React.ChildrenArray<ChildrenType>,
-  style?: StylePropType,
-  numberOfLines?: number,
+  +children: ChildrenType | React.ChildrenArray<ChildrenType>,
+  +style?: StylePropType,
+  +numberOfLines?: number,
+
+  // none - View (Text in this case) is never the target of touch events
+  +pointerEvents?: 'none',
 |};
 
 /**
