@@ -57,7 +57,7 @@ const Visa = ({ data }: Props) => {
 export default createFragmentContainer(
   Visa,
   graphql`
-    fragment Visa on Booking {
+    fragment Visa on BookingInterface {
       passengers {
         visaInformation {
           requiredIn {

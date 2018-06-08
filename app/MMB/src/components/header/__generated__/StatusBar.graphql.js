@@ -22,7 +22,7 @@ export type StatusBar = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "StatusBar",
-  "type": "Booking",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -41,5 +41,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '46bf5c9615cae215c175456984c980ce';
+(node/*: any*/).hash = '7b07e3e0c7a03027bae48fd7f88b4ff1';
 module.exports = node;

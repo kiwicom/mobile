@@ -15,15 +15,13 @@ type Props = {|
 
 function TripInfo(props: Props) {
   const data = idx(props, _ => _.data);
-  const type = idx(data, _ => _.type);
+  const type = idx(data, _ => _.__typename);
 
   return (
     <React.Fragment>
-      {type === 'ONE_WAY' && <TripInfoOneWay data={data && data.oneWay} />}
-      {type === 'RETURN' && <TripInfoReturn data={data && data.return} />}
-      {type === 'MULTICITY' && (
-        <TripInfoMulticity data={data && data.multicity} />
-      )}
+      {type === 'BookingOneWay' && <TripInfoOneWay data={data} />}
+      {type === 'BookingReturn' && <TripInfoReturn data={data} />}
+      {type === 'BookingMulticity' && <TripInfoMulticity data={data} />}
     </React.Fragment>
   );
 }
@@ -31,15 +29,15 @@ function TripInfo(props: Props) {
 export default createFragmentContainer(
   TripInfo,
   graphql`
-    fragment TripInfo on Booking {
-      type
-      oneWay {
+    fragment TripInfo on BookingInterface {
+      __typename
+      ... on BookingOneWay {
         ...TripInfoOneWay
       }
-      return {
+      ... on BookingReturn {
         ...TripInfoReturn
       }
-      multicity {
+      ... on BookingMulticity {
         ...TripInfoMulticity
       }
     }

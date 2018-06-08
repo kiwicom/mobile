@@ -18,8 +18,7 @@ type Props = {|
 export default class Deeplink extends React.Component<Props> {
   renderInnerComponent = (renderProps: DeeplinkQueryResponse) => {
     const uri =
-      idx(renderProps, _ => _.booking.directAccessURL) ||
-      'https://www.kiwi.com/';
+      idx(renderProps, _ => _.node.directAccessURL) || 'https://www.kiwi.com/';
 
     return <WebView source={{ uri }} />;
   };
@@ -34,8 +33,10 @@ export default class Deeplink extends React.Component<Props> {
               $bookingId: ID!
               $deeplinkTo: DirectAccessURLValues
             ) {
-              booking(id: $bookingId) {
-                directAccessURL(deeplinkTo: $deeplinkTo)
+              node(id: $bookingId) {
+                ... on BookingInterface {
+                  directAccessURL(deeplinkTo: $deeplinkTo)
+                }
               }
             }
           `}

@@ -35,11 +35,13 @@ type PropsWithContext = {|
 
 class CityImage extends React.Component<PropsWithContext> {
   goToDetail = () => {
-    const bookingId = idx(this.props.image, _ => _.databaseId) || '';
-    const isPastBooking = Boolean(idx(this.props.image, _ => _.isPastBooking));
-    const arrivalCityId = idx(this.props.arrival, _ => _.cityId) || '';
-    const arrivalTime = idx(this.props.arrival, _ => _.time) || '';
-    const departureTime = idx(this.props.departure, _ => _.time) || '';
+    const props = this.props;
+
+    const bookingId = idx(props.image, _ => _.id) || '';
+    const isPastBooking = Boolean(idx(props.image, _ => _.isPastBooking));
+    const arrivalCityId = idx(props.arrival, _ => _.cityId) || '';
+    const arrivalTime = idx(props.arrival, _ => _.time) || '';
+    const departureTime = idx(props.departure, _ => _.time) || '';
 
     this.props.setBookingDetail({
       bookingId: bookingId.toString(),
@@ -105,7 +107,7 @@ export default createFragmentContainer(
   withNavigation(CityImageWithContext),
   graphql`
     fragment CityImage_image on BookingInterface {
-      databaseId
+      id
       passengerCount
       isPastBooking
       destinationImageUrl(dimensions: _375x165)

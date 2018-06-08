@@ -12,7 +12,7 @@ import type { InvoiceQueryResponse } from './__generated__/InvoiceQuery.graphql'
 
 export default class Invoice extends React.Component<{||}> {
   renderInnerComponent = (renderProps: InvoiceQueryResponse) => {
-    const uri = idx(renderProps, _ => _.booking.assets.invoiceUrl);
+    const uri = idx(renderProps, _ => _.node.assets.invoiceUrl);
 
     if (!uri) {
       return (
@@ -32,9 +32,11 @@ export default class Invoice extends React.Component<{||}> {
           render={this.renderInnerComponent}
           query={graphql`
             query InvoiceQuery($bookingId: ID!) {
-              booking(id: $bookingId) {
-                assets {
-                  invoiceUrl
+              node(id: $bookingId) {
+                ... on BookingInterface {
+                  assets {
+                    invoiceUrl
+                  }
                 }
               }
             }

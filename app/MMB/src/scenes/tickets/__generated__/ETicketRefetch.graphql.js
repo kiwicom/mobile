@@ -12,7 +12,7 @@ type ETicket$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ETicketRefetch$ref: FragmentReference;
 export type ETicketRefetch = {|
-  +databaseId: ?number,
+  +id: string,
   +assets: ?{|
     +$fragmentRefs: ETicket$ref
   |},
@@ -24,14 +24,14 @@ export type ETicketRefetch = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "ETicketRefetch",
-  "type": "Booking",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "databaseId",
+      "name": "id",
       "args": null,
       "storageKey": null
     },
@@ -54,5 +54,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b3aab37e77ce73eb1dcfc038632deca3';
+(node/*: any*/).hash = 'a9bb89a2264299ce50c4b189db1a953a';
 module.exports = node;

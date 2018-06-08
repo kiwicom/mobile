@@ -39,7 +39,7 @@ var v0 = [
 return {
   "kind": "Fragment",
   "name": "Visa",
-  "type": "Booking",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -89,5 +89,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '59cd91887a5fe7fb18a8767ca74e6f2d';
+(node/*: any*/).hash = 'b3c3ce57cb3dc625b2498ad74c1105a5';
 module.exports = node;

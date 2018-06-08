@@ -24,7 +24,7 @@ export type Header = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "Header",
-  "type": "Booking",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -53,5 +53,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '5ca0cba5575549b024a72f8ac27bf242';
+(node/*: any*/).hash = '74af45228c7bc59024955b963b083415';
 module.exports = node;

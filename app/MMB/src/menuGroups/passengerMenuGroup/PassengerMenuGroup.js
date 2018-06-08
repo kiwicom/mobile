@@ -43,7 +43,7 @@ class PassengerMenuGroup extends React.Component<Props> {
 export default createFragmentContainer(
   PassengerMenuGroup,
   graphql`
-    fragment PassengerMenuGroup on Booking {
+    fragment PassengerMenuGroup on BookingInterface {
       ...PassengerMenuDetail
     }
   `,

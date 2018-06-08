@@ -37,7 +37,7 @@ var v0 = {
 return {
   "kind": "Fragment",
   "name": "PassengerDetail_booking",
-  "type": "Booking",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -79,5 +79,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f48a165e4b4927fbe861baa62dcc3ad9';
+(node/*: any*/).hash = '403a04d1697ee27fa87dab03d5e4c085';
 module.exports = node;
