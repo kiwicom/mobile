@@ -18,10 +18,10 @@ export default class Flights extends React.Component<Props> {
       render={this.renderInner}
       query={graphql`
         query FlightsQuery {
-          future: allBookings(only: FUTURE) {
+          future: customerBookings(only: FUTURE) {
             ...FlightListContainer_future
           }
-          past: allBookings(only: PAST) {
+          past: customerBookings(only: PAST) {
             ...FlightListContainer_past
           }
         }

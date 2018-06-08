@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d4e083b592e7a4b773a6c9e685982648
+ * @relayHash 22f17ae75c665aabc208d6b4628b7064
  */
 
 /* eslint-disable */
@@ -15,8 +15,8 @@ export type DeeplinkQueryVariables = {|
   deeplinkTo?: ?DirectAccessURLValues,
 |};
 export type DeeplinkQueryResponse = {|
-  +booking: ?{|
-    +directAccessURL: ?string
+  +node: ?{|
+    +directAccessURL?: ?string
   |}
 |};
 */
@@ -27,8 +27,11 @@ query DeeplinkQuery(
   $bookingId: ID!
   $deeplinkTo: DirectAccessURLValues
 ) {
-  booking(id: $bookingId) {
-    directAccessURL(deeplinkTo: $deeplinkTo)
+  node(id: $bookingId) {
+    __typename
+    ... on BookingInterface {
+      directAccessURL(deeplinkTo: $deeplinkTo)
+    }
     id
   }
 }
@@ -76,7 +79,7 @@ return {
   "operationKind": "query",
   "name": "DeeplinkQuery",
   "id": null,
-  "text": "query DeeplinkQuery(\n  $bookingId: ID!\n  $deeplinkTo: DirectAccessURLValues\n) {\n  booking(id: $bookingId) {\n    directAccessURL(deeplinkTo: $deeplinkTo)\n    id\n  }\n}\n",
+  "text": "query DeeplinkQuery(\n  $bookingId: ID!\n  $deeplinkTo: DirectAccessURLValues\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      directAccessURL(deeplinkTo: $deeplinkTo)\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -88,10 +91,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           v2
@@ -107,12 +110,19 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "__typename",
+            "args": null,
+            "storageKey": null
+          },
           v2,
           {
             "kind": "ScalarField",
@@ -128,5 +138,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6463ac541f13f1fe3443f85c62924c3c';
+(node/*: any*/).hash = '1415d8dd5f931756f909aaf62b01a03d';
 module.exports = node;

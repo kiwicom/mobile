@@ -40,12 +40,12 @@ export class FlightList extends React.Component<Props, State> {
 
     return flights.map(flight => {
       const key = idx(flight, _ => _.node.id);
-      const type = idx(flight, _ => _.node.type);
+      const type = idx(flight, _ => _.node.__typename);
       const variants: Object = {
-        ONE_WAY: <OneWayFlight booking={idx(flight, _ => _.node.oneWay)} />,
-        RETURN: <ReturnFlight booking={idx(flight, _ => _.node.return)} />,
-        MULTICITY: (
-          <MulticityFlight booking={idx(flight, _ => _.node.multicity)} />
+        BookingOneWay: <OneWayFlight booking={idx(flight, _ => _.node)} />,
+        BookingReturn: <ReturnFlight booking={idx(flight, _ => _.node)} />,
+        BookingMulticity: (
+          <MulticityFlight booking={idx(flight, _ => _.node)} />
         ),
       };
 
@@ -92,18 +92,18 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   FlightList,
   graphql`
-    fragment FlightList on BookingConnection {
+    fragment FlightList on BookingInterfaceConnection {
       edges {
         node {
           id
-          type
-          oneWay {
+          __typename
+          ... on BookingOneWay {
             ...OneWayFlight_booking
           }
-          return {
+          ... on BookingReturn {
             ...ReturnFlight_booking
           }
-          multicity {
+          ... on BookingMulticity {
             ...MulticityFlight_booking
           }
         }

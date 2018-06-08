@@ -20,8 +20,10 @@ export default class PassengerDetailContainer extends React.Component<Props> {
         <PrivateApiRenderer
           query={graphql`
             query PassengerDetailContainerQuery($id: ID!) {
-              booking(id: $id) {
-                ...PassengerDetail_booking
+              node(id: $id) {
+                ... on BookingInterface {
+                  ...PassengerDetail_booking
+                }
               }
             }
           `}

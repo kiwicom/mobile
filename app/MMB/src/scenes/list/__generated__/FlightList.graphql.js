@@ -11,23 +11,14 @@ import type { ConcreteFragment } from 'relay-runtime';
 type MulticityFlight_booking$ref = any;
 type OneWayFlight_booking$ref = any;
 type ReturnFlight_booking$ref = any;
-export type BookingType = "MULTICITY" | "ONE_WAY" | "RETURN" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FlightList$ref: FragmentReference;
 export type FlightList = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
       +id: string,
-      +type: ?BookingType,
-      +oneWay: ?{|
-        +$fragmentRefs: OneWayFlight_booking$ref
-      |},
-      +return: ?{|
-        +$fragmentRefs: ReturnFlight_booking$ref
-      |},
-      +multicity: ?{|
-        +$fragmentRefs: MulticityFlight_booking$ref
-      |},
+      +__typename: string,
+      +$fragmentRefs: OneWayFlight_booking$ref & ReturnFlight_booking$ref & MulticityFlight_booking$ref,
     |}
   |}>,
   +$refType: FlightList$ref,
@@ -38,7 +29,7 @@ export type FlightList = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "FlightList",
-  "type": "BookingConnection",
+  "type": "BookingInterfaceConnection",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -48,7 +39,7 @@ const node/*: ConcreteFragment*/ = {
       "name": "edges",
       "storageKey": null,
       "args": null,
-      "concreteType": "BookingEdge",
+      "concreteType": "BookingInterfaceEdge",
       "plural": true,
       "selections": [
         {
@@ -57,7 +48,7 @@ const node/*: ConcreteFragment*/ = {
           "name": "node",
           "storageKey": null,
           "args": null,
-          "concreteType": "Booking",
+          "concreteType": null,
           "plural": false,
           "selections": [
             {
@@ -70,34 +61,24 @@ const node/*: ConcreteFragment*/ = {
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "type",
+              "name": "__typename",
               "args": null,
               "storageKey": null
             },
             {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "oneWay",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "BookingOneWay",
-              "plural": false,
+              "kind": "InlineFragment",
+              "type": "BookingMulticity",
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "OneWayFlight_booking",
+                  "name": "MulticityFlight_booking",
                   "args": null
                 }
               ]
             },
             {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "return",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "BookingReturn",
-              "plural": false,
+              "kind": "InlineFragment",
+              "type": "BookingReturn",
               "selections": [
                 {
                   "kind": "FragmentSpread",
@@ -107,17 +88,12 @@ const node/*: ConcreteFragment*/ = {
               ]
             },
             {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "multicity",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "BookingMulticity",
-              "plural": false,
+              "kind": "InlineFragment",
+              "type": "BookingOneWay",
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "MulticityFlight_booking",
+                  "name": "OneWayFlight_booking",
                   "args": null
                 }
               ]
@@ -129,5 +105,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '7e538ba8271d23e5cd389f1224732f8e';
+(node/*: any*/).hash = '2d027f561873167755bdf34fcb39262a';
 module.exports = node;

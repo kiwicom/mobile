@@ -32,7 +32,7 @@ const PassengerMenuDetail = (props: Props) => {
 export default createFragmentContainer(
   PassengerMenuDetail,
   graphql`
-    fragment PassengerMenuDetail on Booking {
+    fragment PassengerMenuDetail on BookingInterface {
       ...Visa
       passengers {
         databaseId

@@ -75,7 +75,7 @@ export class PassengerDetail extends React.Component<Props, State> {
 export default createRefetchContainer(
   PassengerDetail,
   graphql`
-    fragment PassengerDetail_booking on Booking {
+    fragment PassengerDetail_booking on BookingInterface {
       databaseId
       contactDetails {
         ...ContactDetails_contactDetails
@@ -88,8 +88,10 @@ export default createRefetchContainer(
   `,
   graphql`
     query PassengerDetailQuery($id: ID!) {
-      booking(id: $id) {
-        ...PassengerDetail_booking
+      node(id: $id) {
+        ... on BookingInterface {
+          ...PassengerDetail_booking
+        }
       }
     }
   `,

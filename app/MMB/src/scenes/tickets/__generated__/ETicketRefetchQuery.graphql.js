@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5850c6cd94bcff3e0752958452901eca
+ * @relayHash be5ea4afc86eb3bea504efcbb700a5a6
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ export type ETicketRefetchQueryVariables = {|
   id: string
 |};
 export type ETicketRefetchQueryResponse = {|
-  +booking: ?{|
+  +node: ?{|
     +$fragmentRefs: ETicketRefetch$ref
   |}
 |};
@@ -25,14 +25,17 @@ export type ETicketRefetchQueryResponse = {|
 query ETicketRefetchQuery(
   $id: ID!
 ) {
-  booking(id: $id) {
-    ...ETicketRefetch
+  node(id: $id) {
+    __typename
+    ... on BookingInterface {
+      ...ETicketRefetch
+    }
     id
   }
 }
 
-fragment ETicketRefetch on Booking {
-  databaseId
+fragment ETicketRefetch on BookingInterface {
+  id
   assets {
     ...ETicket
   }
@@ -65,7 +68,7 @@ return {
   "operationKind": "query",
   "name": "ETicketRefetchQuery",
   "id": null,
-  "text": "query ETicketRefetchQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...ETicketRefetch\n    id\n  }\n}\n\nfragment ETicketRefetch on Booking {\n  databaseId\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
+  "text": "query ETicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...ETicketRefetch\n    }\n    id\n  }\n}\n\nfragment ETicketRefetch on BookingInterface {\n  id\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -77,10 +80,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
@@ -100,16 +103,23 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "databaseId",
+            "name": "__typename",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "id",
             "args": null,
             "storageKey": null
           },
@@ -130,13 +140,6 @@ return {
                 "storageKey": null
               }
             ]
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "id",
-            "args": null,
-            "storageKey": null
           }
         ]
       }
@@ -145,5 +148,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2bbd4df5965308e9a6f1d323f0da2613';
+(node/*: any*/).hash = 'c091efcd370c75b4427ed5798b2cac81';
 module.exports = node;

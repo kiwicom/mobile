@@ -108,7 +108,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
 export default createFragmentContainer(
   Header,
   graphql`
-    fragment Header on Booking {
+    fragment Header on BookingInterface {
       isPastBooking
       ...StatusBar
       ...TripInfo

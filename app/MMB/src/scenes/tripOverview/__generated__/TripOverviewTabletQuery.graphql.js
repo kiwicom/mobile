@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 23f302f97bee0ba0895156c52e281083
+ * @relayHash 36eedc2a089a9555085fa651470d0275
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ export type TripOverviewTabletQueryVariables = {|
   id: string
 |};
 export type TripOverviewTabletQueryResponse = {|
-  +booking: ?{|
+  +node: ?{|
     +$fragmentRefs: TripOverview$ref
   |}
 |};
@@ -25,25 +25,25 @@ export type TripOverviewTabletQueryResponse = {|
 query TripOverviewTabletQuery(
   $id: ID!
 ) {
-  booking(id: $id) {
-    ...TripOverview
+  node(id: $id) {
+    __typename
+    ... on BookingInterface {
+      ...TripOverview
+    }
     id
   }
 }
 
-fragment TripOverview on Booking {
-  type
-  oneWay {
+fragment TripOverview on BookingInterface {
+  __typename
+  ... on BookingOneWay {
     ...OneWayTimeline
-    id
   }
-  return {
+  ... on BookingReturn {
     ...ReturnTimeline
-    id
   }
-  multicity {
+  ... on BookingMulticity {
     ...MulticityTimeline
-    id
   }
 }
 
@@ -129,14 +129,14 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
@@ -173,10 +173,10 @@ v4 = [
         "concreteType": "LocationArea",
         "plural": false,
         "selections": [
-          v2
+          v3
         ]
       },
-      v3
+      v2
     ]
   }
 ],
@@ -226,7 +226,7 @@ v5 = [
         "concreteType": "Airline",
         "plural": false,
         "selections": [
-          v2,
+          v3,
           {
             "kind": "ScalarField",
             "alias": null,
@@ -236,7 +236,7 @@ v5 = [
           }
         ]
       },
-      v3
+      v2
     ]
   }
 ];
@@ -245,7 +245,7 @@ return {
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on Booking {\n  type\n  oneWay {\n    ...OneWayTimeline\n    id\n  }\n  return {\n    ...ReturnTimeline\n    id\n  }\n  multicity {\n    ...MulticityTimeline\n    id\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TripOverview\n    }\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -257,10 +257,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
@@ -280,49 +280,39 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "type",
+            "name": "__typename",
             "args": null,
             "storageKey": null
           },
+          v2,
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "oneWay",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingOneWay",
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "BookingMulticity",
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "trip",
+                "name": "trips",
                 "storageKey": null,
                 "args": null,
                 "concreteType": "Trip",
-                "plural": false,
+                "plural": true,
                 "selections": v5
-              },
-              v3
+              }
             ]
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "return",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingReturn",
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "BookingReturn",
             "selections": [
               {
                 "kind": "LinkedField",
@@ -343,33 +333,25 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": v5
-              },
-              v3
+              }
             ]
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "multicity",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingMulticity",
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "BookingOneWay",
             "selections": [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "trips",
+                "name": "trip",
                 "storageKey": null,
                 "args": null,
                 "concreteType": "Trip",
-                "plural": true,
+                "plural": false,
                 "selections": v5
-              },
-              v3
+              }
             ]
-          },
-          v3
+          }
         ]
       }
     ]
@@ -377,5 +359,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c522a46cc97310ecdee1e2dd8e9b048b';
+(node/*: any*/).hash = 'fc2cc19c0cabaff050f4ec4cb4be5aa3';
 module.exports = node;

@@ -5,15 +5,15 @@ import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 
 import MainMenu from './MainMenu';
 import BookingDetailContext from './context/BookingDetailContext';
-import type { MainMenuContainerQuery } from './__generated__/MainMenuContainerQuery.graphql';
+import { type MainMenuContainerQueryResponse } from './__generated__/MainMenuContainerQuery.graphql';
 
 type Props = {|
   +openMenu: string => void,
 |};
 
 export default class MainMenuContainer extends React.Component<Props> {
-  renderInnerComponent = (renderProps: MainMenuContainerQuery) => (
-    <MainMenu data={renderProps.booking} openMenu={this.props.openMenu} />
+  renderInnerComponent = (renderProps: MainMenuContainerQueryResponse) => (
+    <MainMenu data={renderProps.node} openMenu={this.props.openMenu} />
   );
 
   render = () => (
@@ -23,8 +23,10 @@ export default class MainMenuContainer extends React.Component<Props> {
           render={this.renderInnerComponent}
           query={graphql`
             query MainMenuContainerQuery($bookingId: ID!) {
-              booking(id: $bookingId) {
-                ...MainMenu
+              node(id: $bookingId) {
+                ... on BookingInterface {
+                  ...MainMenu
+                }
               }
             }
           `}

@@ -8,7 +8,7 @@ import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TripOverviewTabletQueryResponse } from './__generated__/TripOverviewTabletQuery.graphql';
 
 function TripOverviewTablet(rendererProps: TripOverviewTabletQueryResponse) {
-  return <TripOverview data={rendererProps.booking} />;
+  return <TripOverview data={rendererProps.node} />;
 }
 
 export default function TripOverviewTabletContainer() {
@@ -18,8 +18,10 @@ export default function TripOverviewTabletContainer() {
         <PrivateApiRenderer
           query={graphql`
             query TripOverviewTabletQuery($id: ID!) {
-              booking(id: $id) {
-                ...TripOverview
+              node(id: $id) {
+                ... on BookingInterface {
+                  ...TripOverview
+                }
               }
             }
           `}

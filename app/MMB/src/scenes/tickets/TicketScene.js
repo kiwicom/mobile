@@ -14,7 +14,7 @@ type Props = {|
 
 export default class TicketScene extends React.Component<Props> {
   renderInner = (renderProps: TicketSceneQueryResponse) => (
-    <ETicketRefetch data={renderProps.booking} />
+    <ETicketRefetch data={renderProps.node} />
   );
 
   render = () => (
@@ -23,8 +23,10 @@ export default class TicketScene extends React.Component<Props> {
         <PrivateApiRenderer
           query={graphql`
             query TicketSceneQuery($bookingId: ID!) {
-              booking(id: $bookingId) {
-                ...ETicketRefetch
+              node(id: $bookingId) {
+                ... on BookingInterface {
+                  ...ETicketRefetch
+                }
               }
             }
           `}

@@ -12,7 +12,7 @@ type Props = {||};
 
 export default class FlightServices extends React.Component<Props> {
   renderInner = (renderProps: FlightServicesQueryResponse) => (
-    <FlightServicesMenuGroup bookedServices={renderProps.booking} />
+    <FlightServicesMenuGroup bookedServices={renderProps.node} />
   );
 
   render = () => (
@@ -21,8 +21,10 @@ export default class FlightServices extends React.Component<Props> {
         <PrivateApiRenderer
           query={graphql`
             query FlightServicesQuery($id: ID!) {
-              booking(id: $id) {
-                ...FlightServicesMenuGroup_bookedServices
+              node(id: $id) {
+                ... on BookingInterface {
+                  ...FlightServicesMenuGroup_bookedServices
+                }
               }
             }
           `}

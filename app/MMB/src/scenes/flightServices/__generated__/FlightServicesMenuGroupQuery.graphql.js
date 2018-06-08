@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash bdb946b18c770add72aaba2eb7951e76
+ * @relayHash 781c014616c336a0d1dc8fda9d0c8a98
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ export type FlightServicesMenuGroupQueryVariables = {|
   id: string
 |};
 export type FlightServicesMenuGroupQueryResponse = {|
-  +booking: ?{|
+  +node: ?{|
     +$fragmentRefs: FlightServicesMenuGroup_bookedServices$ref
   |}
 |};
@@ -25,13 +25,16 @@ export type FlightServicesMenuGroupQueryResponse = {|
 query FlightServicesMenuGroupQuery(
   $id: ID!
 ) {
-  booking(id: $id) {
-    ...FlightServicesMenuGroup_bookedServices
+  node(id: $id) {
+    __typename
+    ... on BookingInterface {
+      ...FlightServicesMenuGroup_bookedServices
+    }
     id
   }
 }
 
-fragment FlightServicesMenuGroup_bookedServices on Booking {
+fragment FlightServicesMenuGroup_bookedServices on BookingInterface {
   databaseId
   bookedServices {
     category
@@ -62,7 +65,7 @@ return {
   "operationKind": "query",
   "name": "FlightServicesMenuGroupQuery",
   "id": null,
-  "text": "query FlightServicesMenuGroupQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...FlightServicesMenuGroup_bookedServices\n    id\n  }\n}\n\nfragment FlightServicesMenuGroup_bookedServices on Booking {\n  databaseId\n  bookedServices {\n    category\n    status\n  }\n}\n",
+  "text": "query FlightServicesMenuGroupQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...FlightServicesMenuGroup_bookedServices\n    }\n    id\n  }\n}\n\nfragment FlightServicesMenuGroup_bookedServices on BookingInterface {\n  databaseId\n  bookedServices {\n    category\n    status\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -74,10 +77,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
@@ -97,12 +100,19 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "__typename",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -149,5 +159,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6143f722411592a15d2fbb3c82e13678';
+(node/*: any*/).hash = '54e69ad1517f74d342be895f5e4c8159';
 module.exports = node;

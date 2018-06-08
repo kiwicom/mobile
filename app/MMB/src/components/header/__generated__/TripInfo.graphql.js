@@ -11,20 +11,24 @@ import type { ConcreteFragment } from 'relay-runtime';
 type TripInfoMulticity$ref = any;
 type TripInfoOneWay$ref = any;
 type TripInfoReturn$ref = any;
-export type BookingType = "MULTICITY" | "ONE_WAY" | "RETURN" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TripInfo$ref: FragmentReference;
 export type TripInfo = {|
-  +type: ?BookingType,
-  +oneWay: ?{|
-    +$fragmentRefs: TripInfoOneWay$ref
-  |},
-  +return: ?{|
-    +$fragmentRefs: TripInfoReturn$ref
-  |},
-  +multicity: ?{|
-    +$fragmentRefs: TripInfoMulticity$ref
-  |},
+  +__typename: "BookingOneWay",
+  +$fragmentRefs: TripInfoOneWay$ref,
+  +$refType: TripInfo$ref,
+|} | {|
+  +__typename: "BookingReturn",
+  +$fragmentRefs: TripInfoReturn$ref,
+  +$refType: TripInfo$ref,
+|} | {|
+  +__typename: "BookingMulticity",
+  +$fragmentRefs: TripInfoMulticity$ref,
+  +$refType: TripInfo$ref,
+|} | {|
+  // This will never be '%other', but we need some
+  // value in case none of the concrete values match.
+  +__typename: "%other",
   +$refType: TripInfo$ref,
 |};
 */
@@ -33,41 +37,31 @@ export type TripInfo = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "TripInfo",
-  "type": "Booking",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "type",
+      "name": "__typename",
       "args": null,
       "storageKey": null
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "oneWay",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "BookingOneWay",
-      "plural": false,
+      "kind": "InlineFragment",
+      "type": "BookingMulticity",
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "TripInfoOneWay",
+          "name": "TripInfoMulticity",
           "args": null
         }
       ]
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "return",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "BookingReturn",
-      "plural": false,
+      "kind": "InlineFragment",
+      "type": "BookingReturn",
       "selections": [
         {
           "kind": "FragmentSpread",
@@ -77,17 +71,12 @@ const node/*: ConcreteFragment*/ = {
       ]
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "multicity",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "BookingMulticity",
-      "plural": false,
+      "kind": "InlineFragment",
+      "type": "BookingOneWay",
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "TripInfoMulticity",
+          "name": "TripInfoOneWay",
           "args": null
         }
       ]
@@ -95,5 +84,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '5d1adb32123f374a1a1040d7222954dc';
+(node/*: any*/).hash = '11c36c423f6fcd40cef99a76041c9cca';
 module.exports = node;
