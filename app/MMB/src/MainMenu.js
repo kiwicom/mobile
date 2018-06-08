@@ -73,7 +73,7 @@ class MainMenu extends React.Component<Props, State> {
 export default createFragmentContainer(
   MainMenu,
   graphql`
-    fragment MainMenu on Booking {
+    fragment MainMenu on BookingInterface {
       ...Header
       ...PassengerMenuGroup
     }

@@ -31,7 +31,7 @@ class ETicketRefetch extends React.Component<Props, State> {
 
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.databaseId),
+        id: idx(this.props.data, _ => _.id),
       },
       null,
       () => {
@@ -54,8 +54,8 @@ class ETicketRefetch extends React.Component<Props, State> {
 export default createRefetchContainer(
   ETicketRefetch,
   graphql`
-    fragment ETicketRefetch on Booking {
-      databaseId
+    fragment ETicketRefetch on BookingInterface {
+      id
       assets {
         ...ETicket
       }
@@ -63,8 +63,10 @@ export default createRefetchContainer(
   `,
   graphql`
     query ETicketRefetchQuery($id: ID!) {
-      booking(id: $id) {
-        ...ETicketRefetch
+      node(id: $id) {
+        ... on BookingInterface {
+          ...ETicketRefetch
+        }
       }
     }
   `,

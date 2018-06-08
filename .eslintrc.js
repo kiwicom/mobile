@@ -36,7 +36,12 @@ module.exports = {
   rules: {
     'no-console': [ERROR, { allow: ['warn', 'error'] }],
     'no-duplicate-imports': ERROR,
-    'no-underscore-dangle': [ERROR, { enforceInMethodNames: true }],
+    'no-underscore-dangle': [
+      ERROR, {
+        enforceInMethodNames: true,
+        allow: ['__typename'], // needed for GraphQL interface types, see: https://github.com/facebook/relay/issues/2463
+      }
+    ],
     'no-restricted-imports': [
       ERROR,
       {

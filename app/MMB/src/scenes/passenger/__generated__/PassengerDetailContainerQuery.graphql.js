@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cb449d1725df94623a9e23e35149b91a
+ * @relayHash d5305b14240d989c21682510560c4ba3
  */
 
 /* eslint-disable */
@@ -14,7 +14,7 @@ export type PassengerDetailContainerQueryVariables = {|
   id: string
 |};
 export type PassengerDetailContainerQueryResponse = {|
-  +booking: ?{|
+  +node: ?{|
     +$fragmentRefs: PassengerDetail_booking$ref
   |}
 |};
@@ -25,13 +25,16 @@ export type PassengerDetailContainerQueryResponse = {|
 query PassengerDetailContainerQuery(
   $id: ID!
 ) {
-  booking(id: $id) {
-    ...PassengerDetail_booking
+  node(id: $id) {
+    __typename
+    ... on BookingInterface {
+      ...PassengerDetail_booking
+    }
     id
   }
 }
 
-fragment PassengerDetail_booking on Booking {
+fragment PassengerDetail_booking on BookingInterface {
   databaseId
   contactDetails {
     ...ContactDetails_contactDetails
@@ -115,7 +118,7 @@ return {
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  booking(id: $id) {\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on Booking {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...PassengerDetail_booking\n    }\n    id\n  }\n}\n\nfragment PassengerDetail_booking on BookingInterface {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -127,10 +130,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
@@ -150,12 +153,19 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "__typename",
+            "args": null,
+            "storageKey": null
+          },
           v2,
           {
             "kind": "LinkedField",
@@ -286,5 +296,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '574b3bd0092a89e22989a905a25e789f';
+(node/*: any*/).hash = '62c2f29ca9fe3a22e2f7b4cc040068f4';
 module.exports = node;

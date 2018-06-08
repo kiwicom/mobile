@@ -100,7 +100,7 @@ function Status({ data }: {| data: StatusBarIcon |}) {
 export default createFragmentContainer(
   Status,
   graphql`
-    fragment StatusBarIcon on Booking {
+    fragment StatusBarIcon on BookingInterface {
       status
       isPastBooking
     }

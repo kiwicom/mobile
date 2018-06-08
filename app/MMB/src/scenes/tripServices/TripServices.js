@@ -45,7 +45,7 @@ export default class TripServices extends React.Component<Props> {
   renderLocalServices = (rendererProps: TripServicesQueryResponse) => {
     const availableWhitelabeledServices = idx(
       rendererProps,
-      _ => _.booking.availableWhitelabeledServices,
+      _ => _.node.availableWhitelabeledServices,
     );
 
     return (
@@ -103,14 +103,16 @@ export default class TripServices extends React.Component<Props> {
               $departureTime: DateTime!
               $arrivalTime: DateTime!
             ) {
-              booking(id: $bookingId) {
-                availableWhitelabeledServices {
-                  ...LoungeMenuItem @arguments(departureTime: $departureTime)
-                  ...ParkingMenuItem
-                    @arguments(
-                      departureTime: $departureTime
-                      arrivalTime: $arrivalTime
-                    )
+              node(id: $bookingId) {
+                ... on BookingInterface {
+                  availableWhitelabeledServices {
+                    ...LoungeMenuItem @arguments(departureTime: $departureTime)
+                    ...ParkingMenuItem
+                      @arguments(
+                        departureTime: $departureTime
+                        arrivalTime: $arrivalTime
+                      )
+                  }
                 }
               }
             }

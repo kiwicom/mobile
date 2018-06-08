@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6952cd3e10b355fcda96b390e69bbb94
+ * @relayHash 1fc1c36e2b153cde81608e6cc1086c22
  */
 
 /* eslint-disable */
@@ -25,38 +25,35 @@ export type FlightsQueryResponse = {|
 
 /*
 query FlightsQuery {
-  future: allBookings(only: FUTURE) {
+  future: customerBookings(only: FUTURE) {
     ...FlightListContainer_future
   }
-  past: allBookings(only: PAST) {
+  past: customerBookings(only: PAST) {
     ...FlightListContainer_past
   }
 }
 
-fragment FlightListContainer_future on BookingConnection {
+fragment FlightListContainer_future on BookingInterfaceConnection {
   ...FlightList
 }
 
-fragment FlightListContainer_past on BookingConnection {
+fragment FlightListContainer_past on BookingInterfaceConnection {
   ...FlightList
 }
 
-fragment FlightList on BookingConnection {
+fragment FlightList on BookingInterfaceConnection {
   edges {
     node {
       id
-      type
-      oneWay {
+      __typename
+      ... on BookingOneWay {
         ...OneWayFlight_booking
-        id
       }
-      return {
+      ... on BookingReturn {
         ...ReturnFlight_booking
-        id
       }
-      multicity {
+      ... on BookingMulticity {
         ...MulticityFlight_booking
-        id
       }
     }
   }
@@ -97,7 +94,7 @@ fragment MulticityFlight_booking on BookingMulticity {
 }
 
 fragment CityImage_image on BookingInterface {
-  databaseId
+  id
   passengerCount
   isPastBooking
   destinationImageUrl(dimensions: _375x165)
@@ -151,7 +148,7 @@ var v0 = [
     "kind": "Literal",
     "name": "only",
     "value": "FUTURE",
-    "type": "AllBookingsOnlyEnum"
+    "type": "CustomerBookingsOnlyEnum"
   }
 ],
 v1 = [
@@ -159,7 +156,7 @@ v1 = [
     "kind": "Literal",
     "name": "only",
     "value": "PAST",
-    "type": "AllBookingsOnlyEnum"
+    "type": "CustomerBookingsOnlyEnum"
   }
 ],
 v2 = {
@@ -172,25 +169,18 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "databaseId",
+  "name": "passengerCount",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "passengerCount",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "isPastBooking",
   "args": null,
   "storageKey": null
 },
-v6 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "destinationImageUrl",
@@ -204,21 +194,21 @@ v6 = {
   ],
   "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
 },
-v7 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "status",
   "args": null,
   "storageKey": null
 },
-v8 = {
+v7 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "time",
+  "name": "databaseId",
   "args": null,
   "storageKey": null
 },
-v9 = {
+v8 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -248,22 +238,15 @@ v9 = {
     v2
   ]
 },
+v9 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "time",
+  "args": null,
+  "storageKey": null
+},
 v10 = [
   v8,
-  v9
-],
-v11 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "departure",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "RouteStop",
-  "plural": false,
-  "selections": v10
-},
-v12 = [
-  v9,
   {
     "kind": "ScalarField",
     "alias": null,
@@ -271,9 +254,13 @@ v12 = [
     "args": null,
     "storageKey": null
   },
+  v9
+],
+v11 = [
+  v9,
   v8
 ],
-v13 = {
+v12 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "arrival",
@@ -281,7 +268,17 @@ v13 = {
   "args": null,
   "concreteType": "RouteStop",
   "plural": false,
-  "selections": v12
+  "selections": v10
+},
+v13 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "departure",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v11
 },
 v14 = [
   {
@@ -290,7 +287,7 @@ v14 = [
     "name": "edges",
     "storageKey": null,
     "args": null,
-    "concreteType": "BookingEdge",
+    "concreteType": "BookingInterfaceEdge",
     "plural": true,
     "selections": [
       {
@@ -299,25 +296,20 @@ v14 = [
         "name": "node",
         "storageKey": null,
         "args": null,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           v2,
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "type",
+            "name": "__typename",
             "args": null,
             "storageKey": null
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "oneWay",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingOneWay",
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "BookingMulticity",
             "selections": [
               v3,
               v4,
@@ -327,27 +319,28 @@ v14 = [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "trip",
+                "name": "end",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "Trip",
+                "concreteType": "RouteStop",
                 "plural": false,
-                "selections": [
-                  v11,
-                  v13
-                ]
+                "selections": v10
               },
-              v2
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "start",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "RouteStop",
+                "plural": false,
+                "selections": v11
+              }
             ]
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "return",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingReturn",
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "BookingReturn",
             "selections": [
               v3,
               v4,
@@ -363,21 +356,15 @@ v14 = [
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v13,
-                  v11
+                  v12,
+                  v13
                 ]
-              },
-              v2
+              }
             ]
           },
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "multicity",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "BookingMulticity",
-            "plural": false,
+            "kind": "InlineFragment",
+            "type": "BookingOneWay",
             "selections": [
               v3,
               v4,
@@ -387,24 +374,16 @@ v14 = [
               {
                 "kind": "LinkedField",
                 "alias": null,
-                "name": "end",
+                "name": "trip",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "RouteStop",
+                "concreteType": "Trip",
                 "plural": false,
-                "selections": v12
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "start",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "RouteStop",
-                "plural": false,
-                "selections": v10
-              },
-              v2
+                "selections": [
+                  v13,
+                  v12
+                ]
+              }
             ]
           }
         ]
@@ -417,7 +396,7 @@ return {
   "operationKind": "query",
   "name": "FlightsQuery",
   "id": null,
-  "text": "query FlightsQuery {\n  future: allBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: allBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingConnection {\n  edges {\n    node {\n      id\n      type\n      oneWay {\n        ...OneWayFlight_booking\n        id\n      }\n      return {\n        ...ReturnFlight_booking\n        id\n      }\n      multicity {\n        ...MulticityFlight_booking\n        id\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  databaseId\n  passengerCount\n  isPastBooking\n  destinationImageUrl(dimensions: _375x165)\n  ...ImageBadges\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n  cityId\n  time\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n  time\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment ImageBadges on BookingInterface {\n  status\n  databaseId\n  isPastBooking\n}\n",
+  "text": "query FlightsQuery {\n  future: customerBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: customerBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingInterfaceConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingInterfaceConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingInterfaceConnection {\n  edges {\n    node {\n      id\n      __typename\n      ... on BookingOneWay {\n        ...OneWayFlight_booking\n      }\n      ... on BookingReturn {\n        ...ReturnFlight_booking\n      }\n      ... on BookingMulticity {\n        ...MulticityFlight_booking\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  id\n  passengerCount\n  isPastBooking\n  destinationImageUrl(dimensions: _375x165)\n  ...ImageBadges\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n  cityId\n  time\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n  time\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment ImageBadges on BookingInterface {\n  status\n  databaseId\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -429,10 +408,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": "future",
-        "name": "allBookings",
-        "storageKey": "allBookings(only:\"FUTURE\")",
+        "name": "customerBookings",
+        "storageKey": "customerBookings(only:\"FUTURE\")",
         "args": v0,
-        "concreteType": "BookingConnection",
+        "concreteType": "BookingInterfaceConnection",
         "plural": false,
         "selections": [
           {
@@ -445,10 +424,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": "past",
-        "name": "allBookings",
-        "storageKey": "allBookings(only:\"PAST\")",
+        "name": "customerBookings",
+        "storageKey": "customerBookings(only:\"PAST\")",
         "args": v1,
-        "concreteType": "BookingConnection",
+        "concreteType": "BookingInterfaceConnection",
         "plural": false,
         "selections": [
           {
@@ -468,20 +447,20 @@ return {
       {
         "kind": "LinkedField",
         "alias": "future",
-        "name": "allBookings",
-        "storageKey": "allBookings(only:\"FUTURE\")",
+        "name": "customerBookings",
+        "storageKey": "customerBookings(only:\"FUTURE\")",
         "args": v0,
-        "concreteType": "BookingConnection",
+        "concreteType": "BookingInterfaceConnection",
         "plural": false,
         "selections": v14
       },
       {
         "kind": "LinkedField",
         "alias": "past",
-        "name": "allBookings",
-        "storageKey": "allBookings(only:\"PAST\")",
+        "name": "customerBookings",
+        "storageKey": "customerBookings(only:\"PAST\")",
         "args": v1,
-        "concreteType": "BookingConnection",
+        "concreteType": "BookingInterfaceConnection",
         "plural": false,
         "selections": v14
       }
@@ -490,5 +469,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'abf0ee2aa0fb3ceb84523d4af9fa4e92';
+(node/*: any*/).hash = 'a88121bfe4f517138e0e13325f2cb5cf';
 module.exports = node;

@@ -123,7 +123,7 @@ type Booking {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
-  type: BookingType
+  type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -212,7 +212,7 @@ interface BookingInterface {
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
-  type: BookingType
+  type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -246,13 +246,31 @@ interface BookingInterface {
   availableWhitelabeledServices: WhitelabeledServices
 }
 
-type BookingMulticity implements BookingInterface {
+"""A connection to a list of items."""
+type BookingInterfaceConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [BookingInterfaceEdge]
+}
+
+"""An edge in a connection."""
+type BookingInterfaceEdge {
+  """The item at the end of the edge"""
+  node: BookingInterface
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type BookingMulticity implements BookingInterface & Node {
   """The ID of an object"""
   id: ID!
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
-  type: BookingType
+  type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -298,13 +316,13 @@ type BookingMulticity implements BookingInterface {
 """
 Booking with simple trip from origin to destination, with possible stopovers.
 """
-type BookingOneWay implements BookingInterface {
+type BookingOneWay implements BookingInterface & Node {
   """The ID of an object"""
   id: ID!
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
-  type: BookingType
+  type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -340,13 +358,13 @@ type BookingOneWay implements BookingInterface {
 }
 
 """Booking with return trip. A <-> B"""
-type BookingReturn implements BookingInterface {
+type BookingReturn implements BookingInterface & Node {
   """The ID of an object"""
   id: ID!
 
   """Unique number identifying the booking in communication with support."""
   databaseId: Int
-  type: BookingType
+  type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
   """Total price of the whole booking."""
@@ -657,6 +675,11 @@ type CurrencyDetailEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+enum CustomerBookingsOnlyEnum {
+  FUTURE
+  PAST
 }
 
 type CustomerSupport {
@@ -1632,8 +1655,6 @@ input RoomsConfiguration {
 
 """Root Mutation."""
 type RootMutation {
-  login(email: String!, password: String!): User
-  resetPassword(email: String!): ResetPasswordResponse
   addFAQArticleComment(
     """ID of FAQ article to receive vote."""
     id: ID!
@@ -1644,15 +1665,17 @@ type RootMutation {
     """Comment text"""
     comment: String!
   ): FAQArticle
+  login(email: String!, password: String!): User
+  resetPassword(email: String!): ResetPasswordResponse
 }
 
 """Root Query"""
 type RootQuery {
-  """Fetches an object given its ID"""
-  node(
-    """The ID of an object"""
-    id: ID!
-  ): Node
+  """
+  Search for all available hotels in one location. It's necessary to send
+  checkin and checkout dates as well as rooms configuration to get availability info.
+  """
+  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection
 
   """Search for your flight bookings."""
   allBookings(
@@ -1665,41 +1688,51 @@ type RootQuery {
     first: Int
     before: String
     last: Int
-  ): BookingConnection
+  ): BookingConnection @deprecated(reason: "Use \"customerBookings\" query instead.")
 
   """
-  Find most relevant booking relative to current time. That is a booking with
-  the smallest difference between current time and arrival time of one of its
-  Legs. If no future booking is found, then the nearest past booking is returned.
+  All dynamic packages. Dynamic package is a combination of return flight and
+  accommodation in hotel. It saves time and also the price should be better then
+  buying flight and acommodation separately.
   """
-  nearestBooking: BookingInterface
+  allDynamicPackages(
+    simpleSearch: DynamicPackagesSimpleSearchInput!
+
+    """An ISO-4217 currency code."""
+    currency: Currency
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): DynamicPackageConnection
+
+  """Retrieve list of FAQ categories."""
+  allFAQCategories(
+    """
+    Language in which the titles and perexes of FAQ categories are returned.
+    """
+    language: Language
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): FAQCategoryConnection
+
+  """Search for Frequently Asked Questions"""
+  allFAQs(
+    """Keyword for the search"""
+    search: String
+
+    """Language in which the search is made and the answer is returned"""
+    language: Language
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): FAQArticleConnection
 
   """Search for scheduled flights."""
   allFlights(search: FlightsSearchInput!, options: FlightsOptionsInput, filters: FlightsFiltersInput, after: String, first: Int, before: String, last: Int): FlightConnection
-
-  """Detail of a currency as used on Kiwi.com frontend"""
-  currency(
-    """The currency code used on Kiwi.com frontend"""
-    code: String!
-  ): CurrencyDetail
-
-  """Currencies used on Kiwi.com frontend"""
-  currencies(after: String, first: Int, before: String, last: Int): CurrencyDetailConnection
-
-  """Geography info by an IP address"""
-  geoIP(ip: IP!): GeoIP
-
-  """
-  Search for all available hotels in one location. It's necessary to send
-  checkin and checkout dates as well as rooms configuration to get availability info.
-  """
-  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection
-
-  """
-  Search for single available hotel by its ID. It's necessary to send checkin
-  and checkout dates as well as rooms configuration to get availability info.
-  """
-  availableHotel(search: AvailableHotelSearchInput!, options: AvailableHotelOptionsInput): HotelAvailability
 
   """
   Search for airports, cities, countries. You can search by location name,
@@ -1725,16 +1758,6 @@ type RootQuery {
     last: Int
   ): LocationConnection
 
-  """Single location by ID."""
-  location(
-    id: String!
-
-    """
-    DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
-    """
-    locale: Locale
-  ): Location
-
   """All locations in certain location. For example all airports in London"""
   allSubLocations(
     """Location ID"""
@@ -1746,14 +1769,68 @@ type RootQuery {
     last: Int
   ): LocationConnection
 
+  """
+  Search for single available hotel by its ID. It's necessary to send checkin
+  and checkout dates as well as rooms configuration to get availability info.
+  """
+  availableHotel(search: AvailableHotelSearchInput!, options: AvailableHotelOptionsInput): HotelAvailability
+
   """Find booking by its id or databaseId."""
   booking(
     """Both Booking id & databaseId can be used as ID."""
     id: ID!
-  ): Booking
+  ): Booking @deprecated(reason: "Use \"node\" query instead.")
+
+  """Currencies used on Kiwi.com frontend"""
+  currencies(after: String, first: Int, before: String, last: Int): CurrencyDetailConnection
+
+  """Detail of a currency as used on Kiwi.com frontend"""
+  currency(
+    """The currency code used on Kiwi.com frontend"""
+    code: String!
+  ): CurrencyDetail
 
   """Current user information."""
   currentUser: Identity
+
+  """Search for your flight bookings."""
+  customerBookings(
+    """
+    Allows to filter only future bookings or only past bookings but not both.
+    You can skip this argument to fetch all bookings (future and past).
+    """
+    only: CustomerBookingsOnlyEnum
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): BookingInterfaceConnection
+
+  """Customer support related data."""
+  customerSupport: CustomerSupport
+
+  """Retrieve single FAQ article."""
+  FAQArticle(
+    """ID of FAQ article to retrieve."""
+    id: ID!
+
+    """Language in which the text of the article is returned."""
+    language: Language
+  ): FAQArticle
+
+  """Retrieve specific FAQ category and its subcategories & articles."""
+  FAQCategory(
+    """ID of FAQ category to retrieve."""
+    id: ID!
+
+    """
+    Language in which the titles and perexes of FAQ categories are returned.
+    """
+    language: Language
+  ): FAQCategory
+
+  """Geography info by an IP address"""
+  geoIP(ip: IP!): GeoIP
 
   """Single hotel by ID."""
   hotel(id: ID!, language: Language): Hotel
@@ -1776,69 +1853,28 @@ type RootQuery {
     last: Int
   ): HotelCityConnection
 
-  """Search for Frequently Asked Questions"""
-  allFAQs(
-    """Keyword for the search"""
-    search: String
-
-    """Language in which the search is made and the answer is returned"""
-    language: Language
-    after: String
-    first: Int
-    before: String
-    last: Int
-  ): FAQArticleConnection
-
-  """Retrieve list of FAQ categories."""
-  allFAQCategories(
-    """
-    Language in which the titles and perexes of FAQ categories are returned.
-    """
-    language: Language
-    after: String
-    first: Int
-    before: String
-    last: Int
-  ): FAQCategoryConnection
-
-  """Retrieve specific FAQ category and its subcategories & articles."""
-  FAQCategory(
-    """ID of FAQ category to retrieve."""
-    id: ID!
+  """Single location by ID."""
+  location(
+    id: String!
 
     """
-    Language in which the titles and perexes of FAQ categories are returned.
+    DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
     """
-    language: Language
-  ): FAQCategory
-
-  """Retrieve single FAQ article."""
-  FAQArticle(
-    """ID of FAQ article to retrieve."""
-    id: ID!
-
-    """Language in which the text of the article is returned."""
-    language: Language
-  ): FAQArticle
+    locale: Locale
+  ): Location
 
   """
-  All dynamic packages. Dynamic package is a combination of return flight and
-  accommodation in hotel. It saves time and also the price should be better then
-  buying flight and acommodation separately.
+  Find most relevant booking relative to current time. That is a booking with
+  the smallest difference between current time and arrival time of one of its
+  Legs. If no future booking is found, then the nearest past booking is returned.
   """
-  allDynamicPackages(
-    simpleSearch: DynamicPackagesSimpleSearchInput!
+  nearestBooking: BookingInterface
 
-    """An ISO-4217 currency code."""
-    currency: Currency
-    after: String
-    first: Int
-    before: String
-    last: Int
-  ): DynamicPackageConnection
-
-  """Customer support related data."""
-  customerSupport: CustomerSupport
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
 }
 
 type RouteStop {

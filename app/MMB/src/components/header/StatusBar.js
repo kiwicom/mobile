@@ -32,7 +32,7 @@ function StatusBar(props: Props) {
 export default createFragmentContainer(
   StatusBar,
   graphql`
-    fragment StatusBar on Booking {
+    fragment StatusBar on BookingInterface {
       ...StatusBarIcon
       databaseId
     }

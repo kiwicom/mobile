@@ -15,13 +15,13 @@ type Props = {|
 |};
 
 function getValidTimeline(data) {
-  switch (data.type) {
-    case 'ONE_WAY':
-      return <OneWayTimeline data={data.oneWay} />;
-    case 'RETURN':
-      return <ReturnTimeline data={data.return} />;
-    case 'MULTICITY':
-      return <MulticityTimeline data={data.multicity} />;
+  switch (data.__typename) {
+    case 'BookingOneWay':
+      return <OneWayTimeline data={data} />;
+    case 'BookingReturn':
+      return <ReturnTimeline data={data} />;
+    case 'BookingMulticity':
+      return <MulticityTimeline data={data} />;
   }
   return null;
 }
@@ -39,15 +39,15 @@ function TripOverview(props: Props) {
 export default createFragmentContainer(
   TripOverview,
   graphql`
-    fragment TripOverview on Booking {
-      type
-      oneWay {
+    fragment TripOverview on BookingInterface {
+      __typename
+      ... on BookingOneWay {
         ...OneWayTimeline
       }
-      return {
+      ... on BookingReturn {
         ...ReturnTimeline
       }
-      multicity {
+      ... on BookingMulticity {
         ...MulticityTimeline
       }
     }

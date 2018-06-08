@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e0da4d402e4e922c52d7ddba82dc903c
+ * @relayHash 1e86acbbdadf745c3794a9eeec9b989a
  */
 
 /* eslint-disable */
@@ -17,8 +17,8 @@ export type TripServicesQueryVariables = {|
   arrivalTime: any,
 |};
 export type TripServicesQueryResponse = {|
-  +booking: ?{|
-    +availableWhitelabeledServices: ?{|
+  +node: ?{|
+    +availableWhitelabeledServices?: ?{|
       +$fragmentRefs: LoungeMenuItem$ref & ParkingMenuItem$ref
     |}
   |}
@@ -32,10 +32,13 @@ query TripServicesQuery(
   $departureTime: DateTime!
   $arrivalTime: DateTime!
 ) {
-  booking(id: $bookingId) {
-    availableWhitelabeledServices {
-      ...LoungeMenuItem_WJqJd
-      ...ParkingMenuItem_3cQ5np
+  node(id: $bookingId) {
+    __typename
+    ... on BookingInterface {
+      availableWhitelabeledServices {
+        ...LoungeMenuItem_WJqJd
+        ...ParkingMenuItem_3cQ5np
+      }
     }
     id
   }
@@ -126,7 +129,7 @@ return {
   "operationKind": "query",
   "name": "TripServicesQuery",
   "id": null,
-  "text": "query TripServicesQuery(\n  $bookingId: ID!\n  $departureTime: DateTime!\n  $arrivalTime: DateTime!\n) {\n  booking(id: $bookingId) {\n    availableWhitelabeledServices {\n      ...LoungeMenuItem_WJqJd\n      ...ParkingMenuItem_3cQ5np\n    }\n    id\n  }\n}\n\nfragment LoungeMenuItem_WJqJd on WhitelabeledServices {\n  lounge(departureTime: $departureTime) {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem_3cQ5np on WhitelabeledServices {\n  parking(fromDate: $departureTime, toDate: $arrivalTime) {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query TripServicesQuery(\n  $bookingId: ID!\n  $departureTime: DateTime!\n  $arrivalTime: DateTime!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      availableWhitelabeledServices {\n        ...LoungeMenuItem_WJqJd\n        ...ParkingMenuItem_3cQ5np\n      }\n    }\n    id\n  }\n}\n\nfragment LoungeMenuItem_WJqJd on WhitelabeledServices {\n  lounge(departureTime: $departureTime) {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem_3cQ5np on WhitelabeledServices {\n  parking(fromDate: $departureTime, toDate: $arrivalTime) {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -138,10 +141,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
           {
@@ -187,12 +190,19 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "booking",
+        "name": "node",
         "storageKey": null,
         "args": v1,
-        "concreteType": "Booking",
+        "concreteType": null,
         "plural": false,
         "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "__typename",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "LinkedField",
             "alias": null,
@@ -311,5 +321,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '18516d690c4579fcea5c4ea23a3490fd';
+(node/*: any*/).hash = '6b2a1de3d5dc0f333c8facc7c4b92c11';
 module.exports = node;

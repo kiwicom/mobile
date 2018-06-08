@@ -94,20 +94,20 @@ const styles = StyleSheet.create({
 export default createRefetchContainer(
   FlightListContainer,
   graphql`
-    fragment FlightListContainer_future on BookingConnection {
+    fragment FlightListContainer_future on BookingInterfaceConnection {
       ...FlightList
     }
 
-    fragment FlightListContainer_past on BookingConnection {
+    fragment FlightListContainer_past on BookingInterfaceConnection {
       ...FlightList
     }
   `,
   graphql`
     query FlightListContainerQuery {
-      future: allBookings(only: FUTURE) {
+      future: customerBookings(only: FUTURE) {
         ...FlightListContainer_future
       }
-      past: allBookings(only: PAST) {
+      past: customerBookings(only: PAST) {
         ...FlightListContainer_past
       }
     }

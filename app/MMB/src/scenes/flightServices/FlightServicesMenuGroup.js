@@ -171,7 +171,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
 export default createRefetchContainer(
   withNavigation(FlightServicesMenuGroup),
   graphql`
-    fragment FlightServicesMenuGroup_bookedServices on Booking {
+    fragment FlightServicesMenuGroup_bookedServices on BookingInterface {
       databaseId
       bookedServices {
         category
@@ -181,8 +181,10 @@ export default createRefetchContainer(
   `,
   graphql`
     query FlightServicesMenuGroupQuery($id: ID!) {
-      booking(id: $id) {
-        ...FlightServicesMenuGroup_bookedServices
+      node(id: $id) {
+        ... on BookingInterface {
+          ...FlightServicesMenuGroup_bookedServices
+        }
       }
     }
   `,

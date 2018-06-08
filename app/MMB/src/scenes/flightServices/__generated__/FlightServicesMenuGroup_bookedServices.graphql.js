@@ -26,7 +26,7 @@ export type FlightServicesMenuGroup_bookedServices = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "FlightServicesMenuGroup_bookedServices",
-  "type": "Booking",
+  "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -65,5 +65,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '7c73e7e031a403752d2a1eb048bce456';
+(node/*: any*/).hash = '539bbd61083312cb8719ff51c5522a79';
 module.exports = node;

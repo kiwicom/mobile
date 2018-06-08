@@ -21,7 +21,7 @@ export type FlightListContainer_future = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "FlightListContainer_future",
-  "type": "BookingConnection",
+  "type": "BookingInterfaceConnection",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -33,5 +33,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'bbc769249a6c84701f4e6f8b2191c4ab';
+(node/*: any*/).hash = '7ae9d6ade8bd94c3e77052c327fdcd65';
 module.exports = node;
