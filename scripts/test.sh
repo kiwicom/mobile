@@ -5,6 +5,6 @@ set -e # exit immediately if a pipeline returns a non-zero status
 set -x # print a trace of simple commands
 
 yarn lint
-yarn flow app
+yarn flow
 node node_modules/jest/bin/jest.js --ci --color --logHeapUsage --maxWorkers=4 --config=.jest.json
 yarn relay --validate
