@@ -24,9 +24,9 @@ type State = {|
 export default class TextInput extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    const { defaultValue } = props;
     this.state = {
-      displayPlaceholder:
-        props.defaultValue == null || props.defaultValue === '',
+      displayPlaceholder: defaultValue == null || defaultValue === '',
     };
   }
 
