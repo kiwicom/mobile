@@ -46,7 +46,9 @@ function withNativeNavigation<Props: {}>(
     render() {
       return (
         <WrappedComponent
-          onBackClicked={this.onBackClicked}
+          onBackClicked={
+            GestureController.isNativeGestureModule ? this.onBackClicked : null
+          }
           onNavigationStateChange={this.onNavigationStateChange}
           {...this.props}
         />

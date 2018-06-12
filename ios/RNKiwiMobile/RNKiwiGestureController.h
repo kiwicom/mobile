@@ -1,6 +1,20 @@
 #import "React/RCTBridgeModule.h"
 
+@protocol RNKiwiGestureControllerDelegate <NSObject>
+
+- (void)invokeDefaultBackButton;
+
+@end
+
 @interface RNKiwiGestureController : NSObject <RCTBridgeModule>
+
+/**
+ * We use 
+ *
+ */
+@property (nonatomic, weak, nullable) id<RNKiwiGestureControllerDelegate> gestureControllerDelegate;
+
++ (void)setGestureControllerDelegate:(id<RNKiwiGestureControllerDelegate>)gestureControllerDelegate;
 
 /**
  * These notifications are called when RN App starts/stop controlling gestures.

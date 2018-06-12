@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2CA7983B203C580B006C5F61 /* RNCurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA7983A203C580B006C5F61 /* RNCurrencyManager.m */; };
+		2CA7983C203C580B006C5F61 /* RNCurrencyManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2CA79839203C580B006C5F61 /* RNCurrencyManager.h */; };
+		2CE82B2A204F26C9009586B3 /* RNCurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE82B29204F26C9009586B3 /* RNCurrencyManagerTests.m */; };
+		2CE82B2C204F26C9009586B3 /* libRNCurrencyManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA79836203C580B006C5F61 /* libRNCurrencyManager.a */; };
+		2CE82B34204F27DE009586B3 /* RNDummyCurrencyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE82B33204F27DE009586B3 /* RNDummyCurrencyFormatter.m */; };
+		436B50E72248FF9BB160F7CB /* libPods-RNCurrencyManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D1685B380CC7C785F715B31 /* libPods-RNCurrencyManager.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2CE82B2D204F26C9009586B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CA7982E203C580B006C5F61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CA79835203C580B006C5F61;
+			remoteInfo = RNCurrencyManager;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2CA79834203C580B006C5F61 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				2CA7983C203C580B006C5F61 /* RNCurrencyManager.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2CA79836203C580B006C5F61 /* libRNCurrencyManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNCurrencyManager.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CA79839203C580B006C5F61 /* RNCurrencyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNCurrencyManager.h; sourceTree = "<group>"; };
+		2CA7983A203C580B006C5F61 /* RNCurrencyManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCurrencyManager.m; sourceTree = "<group>"; };
+		2CE82B27204F26C9009586B3 /* RNCurrencyManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RNCurrencyManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE82B29204F26C9009586B3 /* RNCurrencyManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNCurrencyManagerTests.m; sourceTree = "<group>"; };
+		2CE82B2B204F26C9009586B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CE82B32204F27DE009586B3 /* RNDummyCurrencyFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNDummyCurrencyFormatter.h; sourceTree = "<group>"; };
+		2CE82B33204F27DE009586B3 /* RNDummyCurrencyFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNDummyCurrencyFormatter.m; sourceTree = "<group>"; };
+		3D1685B380CC7C785F715B31 /* libPods-RNCurrencyManager.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNCurrencyManager.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A8C0D68CF924404396E3206 /* Pods-RNCurrencyManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCurrencyManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNCurrencyManager/Pods-RNCurrencyManager.debug.xcconfig"; sourceTree = "<group>"; };
+		C0B061BDBFBCE8C3BD85EAF3 /* Pods-RNCurrencyManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNCurrencyManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNCurrencyManager/Pods-RNCurrencyManager.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2CA79833203C580B006C5F61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				436B50E72248FF9BB160F7CB /* libPods-RNCurrencyManager.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CE82B24204F26C9009586B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE82B2C204F26C9009586B3 /* libRNCurrencyManager.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		067B7B612CCBF79DD35EA1B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D1685B380CC7C785F715B31 /* libPods-RNCurrencyManager.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2CA7982D203C580B006C5F61 = {
+			isa = PBXGroup;
+			children = (
+				2CA79838203C580B006C5F61 /* RNCurrencyManager */,
+				2CE82B28204F26C9009586B3 /* RNCurrencyManagerTests */,
+				2CA79837203C580B006C5F61 /* Products */,
+				418AAB5965C30BB332844063 /* Pods */,
+				067B7B612CCBF79DD35EA1B3 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2CA79837203C580B006C5F61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CA79836203C580B006C5F61 /* libRNCurrencyManager.a */,
+				2CE82B27204F26C9009586B3 /* RNCurrencyManagerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2CA79838203C580B006C5F61 /* RNCurrencyManager */ = {
+			isa = PBXGroup;
+			children = (
+				2CA79839203C580B006C5F61 /* RNCurrencyManager.h */,
+				2CA7983A203C580B006C5F61 /* RNCurrencyManager.m */,
+				2CE82B32204F27DE009586B3 /* RNDummyCurrencyFormatter.h */,
+				2CE82B33204F27DE009586B3 /* RNDummyCurrencyFormatter.m */,
+			);
+			path = RNCurrencyManager;
+			sourceTree = "<group>";
+		};
+		2CE82B28204F26C9009586B3 /* RNCurrencyManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				2CE82B29204F26C9009586B3 /* RNCurrencyManagerTests.m */,
+				2CE82B2B204F26C9009586B3 /* Info.plist */,
+			);
+			path = RNCurrencyManagerTests;
+			sourceTree = "<group>";
+		};
+		418AAB5965C30BB332844063 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4A8C0D68CF924404396E3206 /* Pods-RNCurrencyManager.debug.xcconfig */,
+				C0B061BDBFBCE8C3BD85EAF3 /* Pods-RNCurrencyManager.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2CA79835203C580B006C5F61 /* RNCurrencyManager */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CA7983F203C580B006C5F61 /* Build configuration list for PBXNativeTarget "RNCurrencyManager" */;
+			buildPhases = (
+				7D7010A2DC77A207214192D3 /* [CP] Check Pods Manifest.lock */,
+				2CA79832203C580B006C5F61 /* Sources */,
+				2CA79833203C580B006C5F61 /* Frameworks */,
+				2CA79834203C580B006C5F61 /* CopyFiles */,
+				CEB6E25C0668E275E86CEDBB /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RNCurrencyManager;
+			productName = RNCurrencyManager;
+			productReference = 2CA79836203C580B006C5F61 /* libRNCurrencyManager.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		2CE82B26204F26C9009586B3 /* RNCurrencyManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE82B31204F26C9009586B3 /* Build configuration list for PBXNativeTarget "RNCurrencyManagerTests" */;
+			buildPhases = (
+				2CE82B23204F26C9009586B3 /* Sources */,
+				2CE82B24204F26C9009586B3 /* Frameworks */,
+				2CE82B25204F26C9009586B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CE82B2E204F26C9009586B3 /* PBXTargetDependency */,
+			);
+			name = RNCurrencyManagerTests;
+			productName = RNCurrencyManagerTests;
+			productReference = 2CE82B27204F26C9009586B3 /* RNCurrencyManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2CA7982E203C580B006C5F61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Kiwi.com;
+				TargetAttributes = {
+					2CA79835203C580B006C5F61 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					2CE82B26204F26C9009586B3 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2CA79831203C580B006C5F61 /* Build configuration list for PBXProject "RNCurrencyManager" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2CA7982D203C580B006C5F61;
+			productRefGroup = 2CA79837203C580B006C5F61 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2CA79835203C580B006C5F61 /* RNCurrencyManager */,
+				2CE82B26204F26C9009586B3 /* RNCurrencyManagerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2CE82B25204F26C9009586B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7D7010A2DC77A207214192D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RNCurrencyManager-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CEB6E25C0668E275E86CEDBB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RNCurrencyManager/Pods-RNCurrencyManager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2CA79832203C580B006C5F61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE82B34204F27DE009586B3 /* RNDummyCurrencyFormatter.m in Sources */,
+				2CA7983B203C580B006C5F61 /* RNCurrencyManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CE82B23204F26C9009586B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE82B2A204F26C9009586B3 /* RNCurrencyManagerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2CE82B2E204F26C9009586B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CA79835203C580B006C5F61 /* RNCurrencyManager */;
+			targetProxy = 2CE82B2D204F26C9009586B3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2CA7983D203C580B006C5F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2CA7983E203C580B006C5F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2CA79840203C580B006C5F61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A8C0D68CF924404396E3206 /* Pods-RNCurrencyManager.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G44VYF3687;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2CA79841203C580B006C5F61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0B061BDBFBCE8C3BD85EAF3 /* Pods-RNCurrencyManager.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G44VYF3687;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2CE82B2F204F26C9009586B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G44VYF3687;
+				INFOPLIST_FILE = RNCurrencyManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.RNCurrencyManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2CE82B30204F26C9009586B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G44VYF3687;
+				INFOPLIST_FILE = RNCurrencyManagerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.RNCurrencyManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2CA79831203C580B006C5F61 /* Build configuration list for PBXProject "RNCurrencyManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CA7983D203C580B006C5F61 /* Debug */,
+				2CA7983E203C580B006C5F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CA7983F203C580B006C5F61 /* Build configuration list for PBXNativeTarget "RNCurrencyManager" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CA79840203C580B006C5F61 /* Debug */,
+				2CA79841203C580B006C5F61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2CE82B31204F26C9009586B3 /* Build configuration list for PBXNativeTarget "RNCurrencyManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE82B2F204F26C9009586B3 /* Debug */,
+				2CE82B30204F26C9009586B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2CA7982E203C580B006C5F61 /* Project object */;
+}
