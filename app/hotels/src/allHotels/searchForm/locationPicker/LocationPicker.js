@@ -36,11 +36,7 @@ type State = {|
 
 export class LocationPicker extends React.Component<PropsWithContext, State> {
   state = {
-    search: '',
-  };
-
-  componentDidMount = () => {
-    this.setState({ search: this.props.location || '' });
+    search: this.props.location || '',
   };
 
   onTextChange = (search: string) => {
