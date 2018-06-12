@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "react": "^16.3.2",
-    "react-native": "^0.55.4"
+    "react-native": "0.55.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

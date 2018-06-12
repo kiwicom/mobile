@@ -9,7 +9,6 @@ import idx from 'idx';
 import SingleHotel from '../../singleHotel';
 import type { NavigationProps } from '../NavigationStack';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
-import WithBackbuttonListener from '../WithBackButtonListener';
 
 type Props = {
   ...NavigationProps,
@@ -95,24 +94,19 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
 
   render() {
     return (
-      <WithBackbuttonListener
-        extraCondition={this.props.isStandAlonePackage}
-        onClick={this.onAndroidBackButtonClick}
-      >
-        <SingleHotel
-          onGoToHotelGallery={this.goToGalleryGrid}
-          onGoToPayment={this.goToPayment}
-          onGoToMap={this.goToMap}
-          currency={this.props.currency}
-          language={this.props.language}
-          search={{
-            hotelId: this.props.hotelId,
-            checkin: this.props.checkin,
-            checkout: this.props.checkout,
-            roomsConfiguration: this.props.roomsConfiguration,
-          }}
-        />
-      </WithBackbuttonListener>
+      <SingleHotel
+        onGoToHotelGallery={this.goToGalleryGrid}
+        onGoToPayment={this.goToPayment}
+        onGoToMap={this.goToMap}
+        currency={this.props.currency}
+        language={this.props.language}
+        search={{
+          hotelId: this.props.hotelId,
+          checkin: this.props.checkin,
+          checkout: this.props.checkout,
+          roomsConfiguration: this.props.roomsConfiguration,
+        }}
+      />
     );
   }
 }
