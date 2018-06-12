@@ -89,6 +89,7 @@ const styleSheet = StyleSheet.create({
     ios: {
       fontSize: 14,
       letterSpacing: -0.15,
+      fontFamily: 'CircularPro-Book',
     },
   },
 });

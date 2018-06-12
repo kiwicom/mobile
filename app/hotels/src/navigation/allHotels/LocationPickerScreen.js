@@ -29,9 +29,6 @@ type NavigationProps = {|
 
 const styles = StyleSheet.create({
   confirmButtonText: {
-    ios: {
-      fontFamily: 'SFProText-Semibold',
-    },
     android: {
       fontWeight: '600',
     },
