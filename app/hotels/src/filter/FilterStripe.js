@@ -41,13 +41,13 @@ const styles = StyleSheet.create({
   },
 });
 
-type PropsWithContext = {
+type PropsWithContext = {|
   ...Props,
-  currentSearchStats: CurrentSearchStats,
-  activeFilters: ActiveFilters,
-  onChange: OnChangeFilterParams => void,
-  filter: FilterParams,
-};
+  +currentSearchStats: CurrentSearchStats,
+  +activeFilters: ActiveFilters,
+  +onChange: OnChangeFilterParams => void,
+  +filter: FilterParams,
+|};
 
 /**
  * This filter holds all available hotel filters. Active (selected) filters are
@@ -147,7 +147,7 @@ class FilterStripe extends React.Component<PropsWithContext> {
 }
 
 type Props = {|
-  currency: string,
+  +currency: string,
 |};
 
 export default function FilterStripeWithContext(props: Props) {

@@ -38,7 +38,7 @@ const { Consumer, Provider: ContextProvider } = React.createContext(
 );
 
 type Props = {|
-  children: React.Node,
+  +children: React.Node,
 |};
 
 type State = {|

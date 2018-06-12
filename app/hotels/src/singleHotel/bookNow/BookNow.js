@@ -29,23 +29,23 @@ const styles = StyleSheet.create({
 });
 
 type ContainerProps = {|
-  onGoToPayment: ({
-    hotelId: number,
-    rooms: Array<{| id: string, count: number |}>,
-  }) => void,
-  selected: {
+  +onGoToPayment: ({|
+    +hotelId: number,
+    +rooms: $ReadOnlyArray<{| +id: string, +count: number |}>,
+  |}) => void,
+  +selected: {
     [string]: number,
   },
-  availableRooms: any,
-  hotel: any,
-  numberOfRooms: number,
-  personCount: number,
+  +availableRooms: any,
+  +hotel: any,
+  +numberOfRooms: number,
+  +personCount: number,
 |};
 
 type Props = {
   ...ContainerProps,
-  availableRooms: ?BookNow_availableRooms,
-  hotel: ?BookNow_hotel,
+  +availableRooms: ?BookNow_availableRooms,
+  +hotel: ?BookNow_hotel,
 };
 
 export class BookNow extends React.Component<Props> {

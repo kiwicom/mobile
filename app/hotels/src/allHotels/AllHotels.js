@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { ScrollView, Keyboard, View } from 'react-native';
 import {
-  Layout,
   AppStateChange,
   StyleSheet,
   GeolocationContext,
@@ -37,16 +36,16 @@ const styles = StyleSheet.create({
   },
 });
 
-type PropsWithContext = {
+type PropsWithContext = {|
   ...Props,
-  cityId: string | null,
-  search: SearchParams,
-  setSearch: OnChangeSearchParams => void,
-  setCityIdAndLocation: (cityId: string | null, location: string) => void,
-  lat: number | null,
-  lng: number | null,
-  canGetUserLocation: boolean,
-};
+  +cityId: string | null,
+  +search: SearchParams,
+  +setSearch: OnChangeSearchParams => void,
+  +setCityIdAndLocation: (cityId: string | null, location: string) => void,
+  +lat: number | null,
+  +lng: number | null,
+  +canGetUserLocation: boolean,
+|};
 
 export class AllHotels extends React.Component<PropsWithContext> {
   componentDidMount = () => {
@@ -95,48 +94,46 @@ export class AllHotels extends React.Component<PropsWithContext> {
         states={['active']}
         onStateChange={this.validateCheckinDate}
       >
-        <Layout>
-          <ScrollView
-            bounces={false}
-            contentContainerStyle={styles.scrollViewContainer}
-            onScroll={Keyboard.dismiss}
-          >
-            <SearchForm
-              openLocationPicker={this.props.openLocationPicker}
-              openGuestsModal={this.props.openGuestsModal}
+        <ScrollView
+          bounces={false}
+          contentContainerStyle={styles.scrollViewContainer}
+          onScroll={Keyboard.dismiss}
+        >
+          <SearchForm
+            openLocationPicker={this.props.openLocationPicker}
+            openGuestsModal={this.props.openGuestsModal}
+          />
+          <FilterStripe currency={this.props.currency} />
+          {canRenderAllHotelsSearch ? (
+            <AllHotelsSearch
+              coordinates={coordinates}
+              openSingleHotel={this.props.openSingleHotel}
+              cityId={this.props.cityId}
+              currency={this.props.currency}
             />
-            <FilterStripe currency={this.props.currency} />
-            {canRenderAllHotelsSearch ? (
-              <AllHotelsSearch
-                coordinates={coordinates}
-                openSingleHotel={this.props.openSingleHotel}
-                cityId={this.props.cityId}
-                currency={this.props.currency}
-              />
-            ) : (
-              <View style={styles.searchForCityContainer}>
-                {!this.props.canGetUserLocation ? (
-                  <Translation id="hotels_search.all_hotels.please_search" />
-                ) : (
-                  <IconLoading />
-                )}
-              </View>
-            )}
-          </ScrollView>
-        </Layout>
+          ) : (
+            <View style={styles.searchForCityContainer}>
+              {!this.props.canGetUserLocation ? (
+                <Translation id="hotels_search.all_hotels.please_search" />
+              ) : (
+                <IconLoading />
+              )}
+            </View>
+          )}
+        </ScrollView>
       </AppStateChange>
     );
   };
 }
 
 type Props = {|
-  currency: string,
-  coordinates: Coordinates | null,
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-  openLocationPicker: (location: string | null) => void,
-  openGuestsModal: () => void,
-  checkin: ?Date,
-  checkout: ?Date,
+  +currency: string,
+  +coordinates: Coordinates | null,
+  +openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  +openLocationPicker: (location: string | null) => void,
+  +openGuestsModal: () => void,
+  +checkin: ?Date,
+  +checkout: ?Date,
 |};
 
 export default function AllHotelsWithContext(props: Props) {
