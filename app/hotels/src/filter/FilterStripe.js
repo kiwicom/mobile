@@ -54,18 +54,9 @@ type PropsWithContext = {|
  * rendered first.
  */
 class FilterStripe extends React.Component<PropsWithContext> {
-  scrollViewRef: React.ElementRef<typeof ScrollView>;
-
   onChange = (params: OnChangeFilterParams) => {
     this.props.onChange(params);
-    this.scrollViewRef.scrollTo({
-      x: 0,
-      y: 0,
-      animated: true,
-    });
   };
-
-  storeScrollViewRef = ref => (this.scrollViewRef = ref);
 
   render = () => {
     const filters = [
@@ -133,7 +124,6 @@ class FilterStripe extends React.Component<PropsWithContext> {
     return (
       <View style={styles.view}>
         <ScrollView
-          ref={this.storeScrollViewRef}
           contentContainerStyle={styles.scrollView}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
