@@ -1,0 +1,14 @@
+platform :ios, '9.0'
+
+rn_path = '../../node_modules/react-native'
+rn_maps_path = '../../node_modules/react-native-maps'
+
+target 'RNDeviceInfo' do
+  project 'RNDeviceInfo.xcodeproj'
+  
+  pod 'React', path: rn_path, subspecs: [
+    'Core',
+  ]
+  pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
+
+end

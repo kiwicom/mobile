@@ -7,7 +7,7 @@ import RootComponent from './RootComponent';
 import HotelsStack from '../navigation/NavigationStack';
 import type { Coordinates } from '../CoordinatesType';
 
-type Props = {|
+type Props = {
   bookingComAffiliate: string,
   language: string,
   currency: string,
@@ -17,7 +17,7 @@ type Props = {|
   checkout?: string,
   onNavigationStateChange: () => void,
   onBackClicked: () => void,
-|};
+};
 
 class HotelsStandalonePackage extends React.Component<Props> {
   renderInnerComponent = () => {

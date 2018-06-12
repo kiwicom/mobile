@@ -23,10 +23,6 @@ def react_native_pods()
   pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga/yoga.podspec'
   pod 'react-native-maps', path: '../node_modules/react-native-maps'
   
-  pod 'RNLogging', :path => '../node_modules/@kiwicom/react-native-native-modules'
-  pod 'RNTranslationManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
-  pod 'RNCurrencyManager', :path => '../node_modules/@kiwicom/react-native-native-modules'
-  pod 'RNDeviceInfo', :path => '../node_modules/@kiwicom/react-native-native-modules'
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
@@ -36,16 +32,25 @@ def react_native_pods()
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
 
-end 
+end
+
+def react_native_modules()
+  pod 'RNModules', path: './RNModules', subspecs: [
+    'RNLogging',
+    'RNTranslationManager',
+    'RNCurrencyManager',
+    'RNDeviceInfo'
+  ]
+end
 
 target 'reactNativeApp' do
   react_native_pods()
+  react_native_modules()
 end
 
 target 'RNKiwiMobile' do
   react_native_pods()
-
-  pod 'RNNavigator', :path => '../node_modules/@kiwicom/react-native-native-modules'
+  react_native_modules()
 end
 
 post_install do |installer|
