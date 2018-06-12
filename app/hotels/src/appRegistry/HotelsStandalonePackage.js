@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { GestureController } from '@kiwicom/mobile-shared';
+import { WithNativeNavigation } from '@kiwicom/mobile-shared';
 
 import RootComponent from './RootComponent';
 import HotelsStack from '../navigation/NavigationStack';
@@ -12,37 +12,19 @@ type Props = {|
   language: string,
   currency: string,
   dataSaverEnabled: boolean,
-  onBackClicked: () => void,
   coordinates: Coordinates | null,
   checkin?: string,
   checkout?: string,
+  onNavigationStateChange: () => void,
+  onBackClicked: () => void,
 |};
 
-type NavigationState = {|
-  key: string,
-  isTransitioning: boolean,
-  index: number,
-  routes: mixed[],
-|};
-
-export default class HotelsStandalonePackage extends React.Component<Props> {
-  onNavigationStateChange = (
-    previousState: NavigationState,
-    currentState: NavigationState,
-  ) => {
-    if (currentState.index === 0) {
-      GestureController.enableGestures('KiwiHotels');
-    } else if (currentState.index > 0) {
-      GestureController.disableGestures('KiwiHotels');
-    }
-  };
-
-  renderInnerComponent = (onBackClicked: () => void) => {
+class HotelsStandalonePackage extends React.Component<Props> {
+  renderInnerComponent = () => {
     const checkin = this.props.checkin ? new Date(this.props.checkin) : null;
     const checkout = this.props.checkout ? new Date(this.props.checkout) : null;
     const screenProps = {
       ...this.props,
-      onBackClicked,
       checkin,
       checkout,
     };
@@ -50,18 +32,19 @@ export default class HotelsStandalonePackage extends React.Component<Props> {
     return (
       <HotelsStack
         screenProps={screenProps}
-        onNavigationStateChange={this.onNavigationStateChange}
+        onBackClicked={this.props.onBackClicked}
+        onNavigationStateChange={this.props.onNavigationStateChange}
       />
     );
   };
 
   render = () => {
     return (
-      <RootComponent
-        render={this.renderInnerComponent}
-        onBackClicked={this.props.onBackClicked}
-        dataSaverEnabled={this.props.dataSaverEnabled}
-      />
+      <RootComponent dataSaverEnabled={this.props.dataSaverEnabled}>
+        {this.renderInnerComponent()}
+      </RootComponent>
     );
   };
 }
+
+export default WithNativeNavigation(HotelsStandalonePackage);

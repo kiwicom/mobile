@@ -1,0 +1,30 @@
+ext {
+    gradlePluginVersion = "3.0.1"
+
+    minSdkVersionVar = 19
+    compileSdkVersionVar = 27
+    targetSdkVersionVar = 27
+    buildToolsVersionVar = "27.0.3"
+
+    kotlinVersion = "1.2.31"
+
+    supportVersion = "27.0.2"
+
+    junitVersion = "4.12"
+    testRunnerVersion = "1.0.1"
+    espressoVersion = "3.0.1"
+
+    reactNativeVersion = "0.55.4"
+
+    reactNativeVectorIcons = "4.6.0-rc.1"
+    reactNativeMaps = "0.21.0-rc.1"
+    reactNativeTooltips = "0.0.4-rc.1"
+
+    reactNativeNativeModules = "0.1.26.rc-1"
+    loggingVersion = "0.2.2"
+    infinarioVersion = "0.1"
+
+    playServicesVersion = "11.8.0"
+
+    rnKiwiMobileVersion = "0.23.1.rc-3"
+}

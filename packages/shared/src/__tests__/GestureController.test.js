@@ -11,18 +11,4 @@ describe('GestureController', () => {
       NativeModules.RNKiwiGestureController.enableGestures,
     ).toHaveBeenCalledWith('KiwiHotels');
   });
-
-  it('should call noop when there is no native module present', () => {
-    jest.resetModules();
-
-    const OriginalGestureController = NativeModules.RNKiwiGestureController;
-
-    delete NativeModules.RNKiwiGestureController;
-
-    const GestureController = require('../GestureController').default;
-
-    expect(() => GestureController.enableGestures('KiwiHotels')).not.toThrow();
-
-    NativeModules.RNKiwiGestureController = OriginalGestureController;
-  });
 });
