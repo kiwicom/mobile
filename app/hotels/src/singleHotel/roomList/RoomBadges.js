@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
   badgeText: {
     color: 'rgb(49, 161, 30)',
     fontSize: 10,
-    fontFamily: 'SFProText-Semibold',
   },
   iconStyle: {
     color: 'rgb(49, 161, 30)',

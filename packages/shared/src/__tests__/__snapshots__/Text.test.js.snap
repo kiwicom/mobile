@@ -9,6 +9,7 @@ exports[`applies the styles recursively 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
@@ -49,6 +50,7 @@ exports[`renders with additional style properties 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
@@ -78,6 +80,7 @@ exports[`renders with the default properties for iOS 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
@@ -105,6 +108,7 @@ exports[`supports multiple nested strings 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
@@ -153,6 +157,7 @@ exports[`supports nested styles 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
@@ -200,6 +205,7 @@ exports[`works even with the distant Text nodes 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,

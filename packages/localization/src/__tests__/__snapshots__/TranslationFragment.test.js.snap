@@ -9,6 +9,7 @@ exports[`overwrites the previous textTransform property 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
@@ -46,6 +47,7 @@ Array [
       Array [
         Object {
           "color": "#171b1e",
+          "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
@@ -64,6 +66,7 @@ Array [
       Array [
         Object {
           "color": "#171b1e",
+          "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
@@ -86,6 +89,7 @@ exports[`works with conditionals 1`] = `
     Array [
       Object {
         "color": "#171b1e",
+        "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
         "letterSpacing": -0.15,
@@ -108,6 +112,7 @@ Array [
       Array [
         Object {
           "color": "#171b1e",
+          "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
@@ -126,6 +131,7 @@ Array [
       Array [
         Object {
           "color": "#171b1e",
+          "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
@@ -144,6 +150,7 @@ Array [
       Array [
         Object {
           "color": "#171b1e",
+          "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
@@ -162,6 +169,7 @@ Array [
       Array [
         Object {
           "color": "#171b1e",
+          "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,
@@ -186,6 +194,7 @@ Array [
       Array [
         Object {
           "color": "#171b1e",
+          "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
           "letterSpacing": -0.15,

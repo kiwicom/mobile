@@ -19,6 +19,7 @@ exports[`renders as expected 1`] = `
         Array [
           Object {
             "color": "#171b1e",
+            "fontFamily": "CircularPro-Book",
             "fontSize": 14,
             "fontWeight": "normal",
             "letterSpacing": -0.15,
