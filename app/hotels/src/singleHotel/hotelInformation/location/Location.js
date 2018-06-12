@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 import MapView from 'react-native-maps';
 import {
   StyleSheet,
   StretchedImage,
   DropMarker,
   Text,
-  Touchable,
   Color,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
@@ -73,7 +72,7 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
   const longitude = idx(coordinates, _ => _.lng);
   return (
     <View style={[styles.background, isWide ? styles.wideContainer : null]}>
-      <Touchable onPress={onGoToMap}>
+      <TouchableWithoutFeedback onPress={onGoToMap}>
         <View style={styles.container}>
           <View style={styles.leftColumn}>
             <Text style={[styles.addressLine, styles.streetLine]}>
@@ -109,7 +108,7 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
             <StretchedImage source={gradient} />
           </View>
         </View>
-      </Touchable>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
