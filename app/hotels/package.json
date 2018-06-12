@@ -9,7 +9,7 @@
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
     "geolib": "^2.0.24",
-    "idx": "^2.2.0",
+    "idx": "^2.4.0",
     "querystring": "^0.2.0",
     "react-native-maps": "^0.21.0",
     "react-native-snap-carousel": "^3.6.0",
