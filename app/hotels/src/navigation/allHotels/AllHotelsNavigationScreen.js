@@ -1,9 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { HeaderBackButton } from 'react-navigation';
-import { StyleSheet, AdaptableLayout, Color } from '@kiwicom/mobile-shared';
+import {
+  LayoutDoubleColumn,
+  AdaptableLayout,
+  Color,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 
@@ -13,15 +16,15 @@ import MapHeaderButton from './MapHeaderButton';
 import type { Coordinates } from '../../CoordinatesType';
 
 type ContainerProps = {|
-  navigation: NavigationType,
-  currency: string,
-  coordinates: Coordinates | null,
-  checkin: ?Date,
-  checkout: ?Date,
+  +navigation: NavigationType,
+  +currency: string,
+  +coordinates: Coordinates | null,
+  +checkin: ?Date,
+  +checkout: ?Date,
 |};
 
 type NavigationProps = {|
-  onBackClicked: () => void,
+  +onBackClicked: () => void,
 |};
 
 type Props = ContainerProps & NavigationProps;
@@ -35,31 +38,23 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       });
     }
 
-    function renderHeaderLeft() {
-      return (
+    return {
+      headerLeft: (
         <HeaderBackButton
           tintColor={Color.brand}
           onPress={props.onBackClicked}
         />
-      );
-    }
-
-    function renderHeaderRight() {
-      return (
-        <AdaptableLayout.Consumer
-          renderOnNarrow={<MapHeaderButton onPress={goToAllHotelsMap} />}
-        />
-      );
-    }
-
-    return {
-      headerLeft: renderHeaderLeft(),
+      ),
       headerTitle: (
         <HeaderTitle>
           <Translation id="hotels.navigation.title.all_hotels" />
         </HeaderTitle>
       ),
-      headerRight: renderHeaderRight(),
+      headerRight: (
+        <AdaptableLayout.Consumer
+          renderOnNarrow={<MapHeaderButton onPress={goToAllHotelsMap} />}
+        />
+      ),
     };
   };
 
@@ -87,47 +82,28 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       params: searchParams,
     });
 
-  renderHotels = () => (
-    <AllHotels
-      currency={this.props.currency}
-      openSingleHotel={this.openSingleHotel}
-      coordinates={this.props.coordinates}
-      openLocationPicker={this.openLocationPicker}
-      openGuestsModal={this.openGuestsModal}
-      checkin={this.props.checkin}
-      checkout={this.props.checkout}
-    />
-  );
-
-  renderHotelsWithMap = () => (
-    <View style={styles.wrapper}>
-      {this.renderHotels()}
-      <View style={styles.map}>
-        <AllHotelsMap
-          currency={this.props.currency}
-          onGoToSingleHotel={this.openSingleHotel}
-          coordinates={this.props.coordinates}
-        />
-      </View>
-    </View>
-  );
-
   render = () => {
     return (
-      <AdaptableLayout.Consumer
-        renderOnWide={this.renderHotelsWithMap()}
-        renderOnNarrow={this.renderHotels()}
+      <LayoutDoubleColumn
+        menuComponent={
+          <AllHotels
+            currency={this.props.currency}
+            openSingleHotel={this.openSingleHotel}
+            coordinates={this.props.coordinates}
+            openLocationPicker={this.openLocationPicker}
+            openGuestsModal={this.openGuestsModal}
+            checkin={this.props.checkin}
+            checkout={this.props.checkout}
+          />
+        }
+        containerComponent={
+          <AllHotelsMap
+            currency={this.props.currency}
+            onGoToSingleHotel={this.openSingleHotel}
+            coordinates={this.props.coordinates}
+          />
+        }
       />
     );
   };
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  map: {
-    width: '55%',
-  },
-});

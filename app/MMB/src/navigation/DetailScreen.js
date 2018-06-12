@@ -2,11 +2,10 @@
 
 import * as React from 'react';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
-import { AdaptableLayout } from '@kiwicom/mobile-shared';
+import { AdaptableLayout, LayoutDoubleColumn } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import DetailShareButton from './DetailShareButton';
-import Layout from '../components/Layout';
 import MainMenuContainer from '../MainMenuContainer';
 import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
 import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
@@ -177,7 +176,7 @@ export default class DetailsScreen extends React.Component<Props, State> {
     ).screen;
 
     return (
-      <Layout
+      <LayoutDoubleColumn
         menuComponent={
           <AdaptableLayout.Consumer
             renderOnWide={

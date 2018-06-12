@@ -2,11 +2,14 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { AdaptableLayout, StyleSheet } from '@kiwicom/mobile-shared';
+
+import AdaptableLayout from './AdaptableLayout';
+import StyleSheet from '../PlatformStyleSheet';
+import Layout from './Layout';
 
 type Props = {|
-  menuComponent: React.Node,
-  containerComponent: React.Node,
+  +menuComponent: React.Node,
+  +containerComponent: React.Node,
 |};
 
 /**
@@ -46,7 +49,7 @@ type Props = {|
  * |                   |
  * `-------- ~ --------`
  */
-export default function Layout(props: Props) {
+export default function LayoutDoubleColumn(props: Props) {
   return (
     <AdaptableLayout.Consumer
       renderOnNarrow={<NarrowLayout menuComponent={props.menuComponent} />}
@@ -60,18 +63,20 @@ export default function Layout(props: Props) {
   );
 }
 
-function NarrowLayout(props: {| menuComponent: React.Node |}) {
+function NarrowLayout(props: {| +menuComponent: React.Node |}) {
   return <View style={styleSheet.menuNarrow}>{props.menuComponent}</View>;
 }
 
 function WideLayout(props: Props) {
   return (
-    <View style={styleSheet.wrapper}>
-      <View style={[styleSheet.menu, styleSheet.menuWide]}>
-        {props.menuComponent}
+    <Layout>
+      <View style={styleSheet.wrapper}>
+        <View style={[styleSheet.menu, styleSheet.menuWide]}>
+          {props.menuComponent}
+        </View>
+        <View style={styleSheet.container}>{props.containerComponent}</View>
       </View>
-      <View style={styleSheet.container}>{props.containerComponent}</View>
-    </View>
+    </Layout>
   );
 }
 
