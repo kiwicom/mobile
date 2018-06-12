@@ -1,48 +1,22 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { View, StatusBar } from 'react-native';
-
-import StyleSheet from '../PlatformStyleSheet';
-import Device from '../Device';
+import { StatusBar } from 'react-native';
 
 type Props = {|
-  children: React.Node,
+  +children: React.Node,
 |};
 
-const createStyles = () => {
-  const styles: Object = {
-    outerWrapper: {
-      flex: 1,
-      flexDirection: 'row',
-      justifyContent: 'center',
-    },
-    innerWrapper: {
-      flex: 1,
-    },
-  };
-
-  if (Device.isWideLayout()) {
-    styles.innerWrapper.maxWidth = Device.getWideDeviceThreshold();
-  }
-  return StyleSheet.create(styles);
-};
-
-/**
- * This is base Layout component with default width. It can expand up to
- * portrait mode width. This means that the content is centered in
- * landscape mode.
- */
-export default function Layout({ children }: Props) {
-  const defaultStyle = createStyles();
+export default function Layout(props: Props) {
   return (
-    <View style={defaultStyle.outerWrapper}>
+    <React.Fragment>
       <StatusBar
         animated={true}
-        translucent={true}
-        backgroundColor="rgba(0, 0, 0, 0.3)"
+        barStyle="default"
+        translucent={true} // Android only
+        backgroundColor="rgba(0, 0, 0, 0.3)" // Android only
       />
-      <View style={defaultStyle.innerWrapper}>{children}</View>
-    </View>
+      {props.children}
+    </React.Fragment>
   );
 }

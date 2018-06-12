@@ -4,7 +4,7 @@ import * as React from 'react';
 import { ScrollView, View } from 'react-native';
 import {
   GeneralError,
-  Layout,
+  LayoutSingleColumn,
   Logger,
   AdaptableLayout,
   StyleSheet,
@@ -23,14 +23,14 @@ import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 
 type Props = {|
-  openGallery: (hotelName: string, images: Image[]) => void,
-  availableHotel: HotelDetailScreen_availableHotel,
-  onGoToPayment: ({
-    hotelId: number,
-    rooms: Array<{| id: string, count: number |}>,
-  }) => void,
-  onGoToMap: () => void,
-  roomsConfiguration: RoomsConfiguration,
+  +openGallery: (hotelName: string, images: Image[]) => void,
+  +availableHotel: HotelDetailScreen_availableHotel,
+  +onGoToPayment: ({|
+    +hotelId: number,
+    +rooms: $ReadOnlyArray<{| +id: string, +count: number |}>,
+  |}) => void,
+  +onGoToMap: () => void,
+  +roomsConfiguration: RoomsConfiguration,
 |};
 
 type State = {|
@@ -120,37 +120,38 @@ export class HotelDetailScreen extends React.Component<Props, State> {
       );
     }
 
-    return [
-      <Layout key="detailLayout">
-        <ScrollView>
-          <AdaptableLayout.Consumer
-            renderOnWide={<View style={styles.marginView} />}
-          />
-          <Header openGallery={openGallery} hotel={availableHotel.hotel} />
-          <HotelInformation
-            hotel={availableHotel.hotel}
-            onGoToMap={onGoToMap}
-          />
-          <RoomList
-            data={availableHotel.availableRooms}
-            select={this.selectRoom}
-            deselect={this.deselectRoom}
-            selected={selected}
-            openGallery={openGallery}
-          />
-          <BrandLabel />
-        </ScrollView>
-      </Layout>,
-      <BookNow
-        key="floatingBookNow"
-        onGoToPayment={onGoToPayment}
-        selected={selected}
-        availableRooms={availableHotel.availableRooms}
-        hotel={availableHotel.hotel}
-        personCount={this.getPersonCount()}
-        numberOfRooms={this.getNumberOfRooms()}
-      />,
-    ];
+    return (
+      <React.Fragment>
+        <LayoutSingleColumn>
+          <ScrollView>
+            <AdaptableLayout.Consumer
+              renderOnWide={<View style={styles.marginView} />}
+            />
+            <Header openGallery={openGallery} hotel={availableHotel.hotel} />
+            <HotelInformation
+              hotel={availableHotel.hotel}
+              onGoToMap={onGoToMap}
+            />
+            <RoomList
+              data={availableHotel.availableRooms}
+              select={this.selectRoom}
+              deselect={this.deselectRoom}
+              selected={selected}
+              openGallery={openGallery}
+            />
+            <BrandLabel />
+          </ScrollView>
+        </LayoutSingleColumn>
+        <BookNow
+          onGoToPayment={onGoToPayment}
+          selected={selected}
+          availableRooms={availableHotel.availableRooms}
+          hotel={availableHotel.hotel}
+          personCount={this.getPersonCount()}
+          numberOfRooms={this.getNumberOfRooms()}
+        />
+      </React.Fragment>
+    );
   }
 }
 

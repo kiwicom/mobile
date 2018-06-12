@@ -52,7 +52,8 @@ export { default as Text } from './src/Text';
 export { default as AdaptableLayout } from './src/view/AdaptableLayout';
 export { default as CenteredView } from './src/view/CenteredView';
 export { default as DismissKeyboardView } from './src/view/DismissKeyboardView';
-export { default as Layout } from './src/view/Layout';
+export { default as LayoutDoubleColumn } from './src/view/LayoutDoubleColumn';
+export { default as LayoutSingleColumn } from './src/view/LayoutSingleColumn';
 export {
   default as VerticalSwipeResponder,
 } from './src/view/VerticalSwipeResponder';
