@@ -11,45 +11,13 @@ import Distance from './HotelDistance';
 import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';
 
 type Props = {|
-  data: HotelTitleType,
+  +data: HotelTitleType,
 |};
 
-const style = StyleSheet.create({
-  title: {
-    fontWeight: 'bold',
-    color: Color.textDark,
-    android: {
-      fontSize: 15,
-    },
-    ios: {
-      fontSize: 14,
-    },
-  },
-  rating: {
-    color: Color.grey.$600,
-    fontSize: 9,
-  },
-  distance: {
-    marginVertical: 6,
-  },
-  price: {
-    fontWeight: 'bold',
-    color: Color.brand,
-    letterSpacing: 0,
-    android: {
-      fontSize: 13,
-      lineHeight: 13,
-    },
-    ios: {
-      fontSize: 12,
-      lineHeight: 12,
-    },
-  },
-});
-
 function HotelTitle({ data }: Props) {
-  const hotelName = idx(data, _ => _.hotel.name) || '';
+  const hotelName = idx(data, _ => _.hotel.name);
   const hotelStars = idx(data, _ => _.hotel.rating.stars);
+
   const price = {
     ...{
       // default null object
@@ -60,9 +28,9 @@ function HotelTitle({ data }: Props) {
   };
 
   return (
-    <View>
+    <React.Fragment>
       <Text style={style.title}>
-        <Translation passThrough={`${hotelName} `} />
+        <Translation passThrough={`${hotelName || ''} `} />
         <Text style={style.rating}>
           <Stars rating={hotelStars} />
         </Text>
@@ -76,7 +44,7 @@ function HotelTitle({ data }: Props) {
         currency={price.currency}
         style={style.price}
       />
-    </View>
+    </React.Fragment>
   );
 }
 
@@ -98,3 +66,36 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const style = StyleSheet.create({
+  title: {
+    fontWeight: 'bold',
+    color: Color.textDark,
+    android: {
+      fontSize: 15,
+    },
+    ios: {
+      fontSize: 14,
+    },
+  },
+  rating: {
+    color: Color.textLight,
+    fontSize: 9,
+  },
+  distance: {
+    marginVertical: 6,
+  },
+  price: {
+    fontWeight: 'bold',
+    color: Color.brand,
+    letterSpacing: 0,
+    android: {
+      fontSize: 13,
+      lineHeight: 13,
+    },
+    ios: {
+      fontSize: 12,
+      lineHeight: 12,
+    },
+  },
+});
