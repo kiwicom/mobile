@@ -1,29 +1,33 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
-import CenteredView from '../view/CenteredView';
-import Color from '../Color';
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   // error message visible by user
-  errorMessage: TranslationType,
+  +errorMessage: TranslationType,
 |};
 
 export default function GeneralError({ errorMessage }: Props) {
   return (
-    <CenteredView>
+    <View style={styleSheet.wrapper}>
       <Text style={styleSheet.text}>{errorMessage}</Text>
-    </CenteredView>
+    </View>
   );
 }
 
 const styleSheet = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
   text: {
-    color: Color.red.normal,
     textAlign: 'center',
   },
 });
