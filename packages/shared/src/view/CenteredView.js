@@ -6,7 +6,7 @@ import { View } from 'react-native';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  children: React.Node,
+  +children: React.Node,
 |};
 
 /**

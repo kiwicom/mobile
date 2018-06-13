@@ -6,12 +6,12 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import GeneralError from '../GeneralError';
 
-it('renders as expected', () => {
+it('renders without crashing', () => {
   expect(
     renderer.create(
       <GeneralError
         errorMessage={<Translation passThrough="Error Message" />}
       />,
     ),
-  ).toMatchSnapshot();
+  ).toBeTruthy();
 });
