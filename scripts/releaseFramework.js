@@ -22,7 +22,9 @@ let version = child_process
 (async () => {
   try {
     const githubToken = process.env.GITHUB_TOKEN;
-    if (githubToken == null) throw new Error('Missing GITHUB_TOKEN');
+    if (githubToken == null) {
+      throw new Error('Missing GITHUB_TOKEN');
+    }
 
     console.log(`Start building FAT framework...`);
 
