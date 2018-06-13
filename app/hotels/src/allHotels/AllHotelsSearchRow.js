@@ -11,8 +11,8 @@ import HotelReviewScore from './HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
 
 type Props = {|
-  openSingleHotel: (id: string) => void,
-  data: AllHotelsSearchRowProps,
+  +openSingleHotel: (id: string) => void,
+  +data: AllHotelsSearchRowProps,
 |};
 
 const style = StyleSheet.create({
@@ -43,7 +43,7 @@ const style = StyleSheet.create({
   },
   cardStyle: {
     marginVertical: 0,
-    marginTop: 5,
+    marginBottom: 5,
   },
 });
 

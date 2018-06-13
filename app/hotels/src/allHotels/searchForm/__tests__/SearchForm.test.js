@@ -33,42 +33,34 @@ const defaultProps = {
   openLocationPicker: jest.fn(),
 };
 
-describe('SearchForm', () => {
-  it('Checkin change triggers onChange', async () => {
-    expect.assertions(1);
+it('Checkin change triggers onChange', async () => {
+  expect.assertions(1);
 
-    const onChange = jest.fn();
-    const testRenderer = renderer.create(
-      // $FlowIssue: https://github.com/facebook/flow/issues/2405
-      <SearchForm {...defaultProps} onChange={onChange} />,
-    );
-    const testInstance = testRenderer.root;
-    await testInstance
-      .findAllByType(DatePicker)[0]
-      .props.onDateChange('2018-01-01');
-
-    expect(onChange).toBeCalled();
-  });
-
-  it('Checkout change triggers onChange', async () => {
-    expect.assertions(1);
-
-    const onChange = jest.fn();
-    const testRenderer = renderer.create(
-      // $FlowIssue: https://github.com/facebook/flow/issues/2405
-      <SearchForm {...defaultProps} onChange={onChange} />,
-    );
-    const testInstance = testRenderer.root;
-    await testInstance
-      .findAllByType(DatePicker)[1]
-      .props.onDateChange('2018-01-02');
-
-    expect(onChange).toBeCalled();
-  });
-
-  it('Render all inputs', async () => {
-    const renderer = new ShallowRenderer();
+  const onChange = jest.fn();
+  const testRenderer = renderer.create(
     // $FlowIssue: https://github.com/facebook/flow/issues/2405
-    expect(renderer.render(<SearchForm {...defaultProps} />)).toMatchSnapshot();
-  });
+    <SearchForm {...defaultProps} onChange={onChange} />,
+  );
+  const testInstance = testRenderer.root;
+  await testInstance
+    .findAllByType(DatePicker)[0]
+    .props.onDateChange('2018-01-01');
+
+  expect(onChange).toBeCalled();
+});
+
+it('Checkout change triggers onChange', async () => {
+  expect.assertions(1);
+
+  const onChange = jest.fn();
+  const testRenderer = renderer.create(
+    // $FlowIssue: https://github.com/facebook/flow/issues/2405
+    <SearchForm {...defaultProps} onChange={onChange} />,
+  );
+  const testInstance = testRenderer.root;
+  await testInstance
+    .findAllByType(DatePicker)[1]
+    .props.onDateChange('2018-01-02');
+
+  expect(onChange).toBeCalled();
 });

@@ -113,8 +113,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.3,
     shadowRadius: 2,
-    elevation: 1, // Android
     margin: 3, // necessary to see the Android elevation properly
+    android: {
+      elevation: 1,
+    },
   },
   container: {
     justifyContent: 'center',
