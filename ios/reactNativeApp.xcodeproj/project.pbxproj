@@ -23,8 +23,6 @@
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
 		2711985E20B1F7E300C6292B /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 		2711985F20B1F7E300C6292B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */; };
-		2711986020B1F7E300C6292B /* SFProText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */; };
-		2711986120B1F7E300C6292B /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 463A493B8DDC4A86A32B73D4 /* SFProText-Regular.ttf */; };
 		2711986220B1F7E300C6292B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB92C0158EB3448ABD260167 /* Entypo.ttf */; };
 		2711986320B1F7E300C6292B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2B3E92C36254A399220D4DE /* EvilIcons.ttf */; };
 		2711986420B1F7E300C6292B /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 930DC3E79F864AEFBC5F91D7 /* Feather.ttf */; };
@@ -58,6 +56,7 @@
 		63A8419F20C8538A0093183F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419E20C8538A0093183F /* MessageUI.framework */; };
 		686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 686E004A20B2E1360013512F /* RNKiwiConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 686E005020B2E24B0013512F /* RNKiwiConstants.m */; };
+		68A3675220D114BC00F0027D /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */; };
 		7EEEE5BA4A6944DCBDECD4C3 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 929CCF0BD6A142DEAB8DA917 /* Octicons.ttf */; };
 		96C2C08DFA5C43B3AE2859F4 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */; };
 		A33D4A1D5C6845B3B939C9F8 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38EC9C92B1414019B0EAF6AF /* Foundation.ttf */; };
@@ -111,7 +110,6 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = reactNativeApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = reactNativeApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reactNativeApp/main.m; sourceTree = "<group>"; };
-		146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Semibold.ttf"; path = "../assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; };
 		2107154420B5677200E6C96B /* RNKiwiGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNKiwiGestureController.m; sourceTree = "<group>"; };
 		2107154520B5677200E6C96B /* RNKiwiGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 		27E931E320ADA0630053AE19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		34003FC5EE453F3F2C072F56 /* libPods-RNNativePlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNNativePlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EC9C92B1414019B0EAF6AF /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		463A493B8DDC4A86A32B73D4 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Regular.ttf"; path = "../assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		46C66C53E2B841209A9370D0 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		5377C27743964C6D8EF1FA05 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		63A8419C20C853840093183F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -289,8 +286,6 @@
 			children = (
 				BF458A69A33B4401B9E9FCDA /* spfont.ttf */,
 				21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */,
-				146DD9454CFB4E00BB34FBAA /* SFProText-Semibold.ttf */,
-				463A493B8DDC4A86A32B73D4 /* SFProText-Regular.ttf */,
 				CB92C0158EB3448ABD260167 /* Entypo.ttf */,
 				E2B3E92C36254A399220D4DE /* EvilIcons.ttf */,
 				930DC3E79F864AEFBC5F91D7 /* Feather.ttf */,
@@ -484,10 +479,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68A3675220D114BC00F0027D /* CircularPro-Book.otf in Resources */,
 				2711985E20B1F7E300C6292B /* spfont.ttf in Resources */,
 				2711985F20B1F7E300C6292B /* Roboto-Regular.ttf in Resources */,
-				2711986020B1F7E300C6292B /* SFProText-Semibold.ttf in Resources */,
-				2711986120B1F7E300C6292B /* SFProText-Regular.ttf in Resources */,
 				2711986220B1F7E300C6292B /* Entypo.ttf in Resources */,
 				2711986320B1F7E300C6292B /* EvilIcons.ttf in Resources */,
 				2711986420B1F7E300C6292B /* Feather.ttf in Resources */,
@@ -535,7 +529,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/../scripts/bundleIOSJavascript.sh";
+			shellScript = $SRCROOT/../scripts/bundleIOSJavascript.sh;
 		};
 		686E005220B305D30013512F /* Remove extraneous assets */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -559,7 +553,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/../scripts/removeExtraneousAssets.sh";
+			shellScript = $SRCROOT/../scripts/removeExtraneousAssets.sh;
 		};
 		6F6635CB67CA39F804FA5347 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
