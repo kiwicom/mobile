@@ -13,8 +13,6 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import CallSupport from './CallSupport';
-
 type Props = {|
   +navigation: NavigationType,
 |};
@@ -31,10 +29,6 @@ export default class Help extends React.Component<Props> {
     this.navigate('mmb.help.help');
   };
 
-  handleOpenSupport = () => {
-    this.navigate('mmb.help.support');
-  };
-
   render = () => (
     <ScrollView>
       <MenuGroup
@@ -46,10 +40,6 @@ export default class Help extends React.Component<Props> {
         <MenuItem
           title={<Translation id="mmb.sub_menu.help.help" />}
           onPress={this.handleOpenHelp}
-        />
-        <MenuItem
-          title={<Translation id="mmb.sub_menu.help.call_support" />}
-          onPress={this.handleOpenSupport}
         />
       </MenuGroup>
     </ScrollView>
@@ -67,8 +57,5 @@ export const HelpSubmenuItems = {
         />
       );
     },
-  },
-  'mmb.help.support': {
-    screen: CallSupport,
   },
 };
