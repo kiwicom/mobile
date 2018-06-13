@@ -3,16 +3,15 @@
 #import "RNKiwiSharedBridge.h"
 #import "RNKiwiGestureController.h"
 
-#import <RNNavigator/RNNavigationModule.h>
-#import <RNLogging/RNLoggingModule.h>
-#import <RNTranslationManager/RNTranslationManager.h>
-#import <RNCurrencyManager/RNCurrencyManager.h>
-#import <RNDeviceInfo/RNDeviceInfo.h>
+#import <RNModules/RNLoggingModule.h>
+#import <RNModules/RNTranslationManager.h>
+#import <RNModules/RNCurrencyManager.h>
+#import <RNModules/RNDeviceInfo.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-@interface RNKiwiViewController() <RNNavigationDelegate, RNLogger, RNTranslator, RNCurrencyFormatter>
+@interface RNKiwiViewController() <RNLogger, RNTranslator, RNCurrencyFormatter, RNKiwiGestureControllerDelegate>
 
 @property (nonatomic, strong) id<RNKiwiOptions> options;
 @property (nonatomic) BOOL isGestureAllowed;
@@ -38,8 +37,8 @@
 
 - (void)setupReactWrappersWithObject:(id)object {
   [RNLoggingModule setLogger:object];
-  [RNNavigationModule setNavigationDelegate:object];
   [RNTranslationManager setTranslator:object];
+  [RNKiwiGestureController setGestureControllerDelegate:object];
   [RNCurrencyManager setCurrencyFormatter:object];
   if (object) {
     [self startObservingGestures];
@@ -77,12 +76,6 @@
 
 - (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
   return UIStatusBarAnimationFade;
-}
-
-#pragma mark - RNNavigation
-
-- (void)userWantsLeaveHotels {
-  [self notifyFinish];
 }
 
 #pragma mark - RNLogger
@@ -151,6 +144,12 @@
 
 - (BOOL)isInteractivePopGestureAllowed {
   return _isGestureAllowed;
+}
+
+#pragma mark - Gesture Controller Delegate
+
+- (void)invokeDefaultBackButton {
+  [self notifyFinish];
 }
 
 @end

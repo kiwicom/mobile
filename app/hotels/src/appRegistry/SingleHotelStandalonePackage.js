@@ -7,7 +7,7 @@ import RootComponent from './RootComponent';
 import SingleHotelStack from '../navigation/singleHotel/SingleHotelStack';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 
-type Props = {|
+type Props = {
   dataSaverEnabled: boolean,
   hotelId: string,
   checkin: string,
@@ -18,7 +18,7 @@ type Props = {|
   language: string,
   onNavigationStateChange: () => void,
   onBackClicked: () => void,
-|};
+};
 
 class SingleHotelStandAlonePackage extends React.Component<Props> {
   renderInnerComponent = () => {
