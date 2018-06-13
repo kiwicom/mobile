@@ -9,13 +9,13 @@ import TextButton from '../buttons/TextButton';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  buttonTitle: TranslationType,
-  children: React.Node,
-  isVisible: boolean,
-  onClose: Function,
-  onSave: Function,
-  style?: Object,
-  testID?: string,
+  +buttonTitle: TranslationType,
+  +children: React.Node,
+  +isVisible: boolean,
+  +onClose: Function,
+  +onSave: Function,
+  +style?: Object,
+  +testID?: string,
 |};
 
 const POPUP_PADDING = 20;

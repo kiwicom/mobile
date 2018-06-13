@@ -12,11 +12,11 @@ import StyleSheet from '../PlatformStyleSheet';
 import LinkButton from '../buttons/LinkButton';
 
 type Props = {|
-  buttonTitle: TranslationType,
-  children: React.Node,
-  isVisible: boolean,
-  onClose: Function,
-  onSave: Function,
+  +buttonTitle: TranslationType,
+  +children: React.Node,
+  +isVisible: boolean,
+  +onClose: Function,
+  +onSave: Function,
 |};
 
 /**
@@ -32,19 +32,24 @@ export default class BarPopup extends React.Component<Props> {
 
   render = () => (
     <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
-      <View style={styles.bar}>
-        <LinkButton
-          title={<Translation id="shared.bar_popup.cancel" />}
-          onPress={this.onClose}
-        />
-        <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
+      <View style={styleSheet.bar}>
+        <View style={styleSheet.leftButton}>
+          <LinkButton
+            title={<Translation id="shared.bar_popup.cancel" />}
+            onPress={this.onClose}
+          />
+        </View>
+
+        <View style={styleSheet.rightButton}>
+          <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
+        </View>
       </View>
-      <View style={styles.children}>{this.props.children}</View>
+      <View style={styleSheet.children}>{this.props.children}</View>
     </Popup>
   );
 }
 
-const styles = StyleSheet.create({
+const styleSheet = StyleSheet.create({
   bar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -52,5 +57,11 @@ const styles = StyleSheet.create({
   },
   children: {
     padding: 10,
+  },
+  leftButton: {
+    flexShrink: 1,
+  },
+  rightButton: {
+    flexShrink: 1,
   },
 });
