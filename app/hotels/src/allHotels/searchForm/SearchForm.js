@@ -13,12 +13,12 @@ import type {
 import LocationButton from './LocationButton';
 import HotelsSearchContext from '../../HotelsSearchContext';
 
-type PropsWithContext = {|
+type PropsWithContext = $ReadOnly<{|
   ...Props,
   location: string,
   search: SearchParams,
   onChange: (search: OnChangeSearchParams) => void,
-|};
+|}>;
 
 export class SearchForm extends React.Component<PropsWithContext> {
   componentDidMount = () => {
@@ -53,10 +53,10 @@ export class SearchForm extends React.Component<PropsWithContext> {
   };
 }
 
-type Props = {|
+type Props = $ReadOnly<{|
   openLocationPicker: (location: string) => void,
   openGuestsModal: () => void,
-|};
+|}>;
 
 export default function SearchFormWithContext(props: Props) {
   return (
@@ -79,11 +79,12 @@ const styles = StyleSheet.create({
     backgroundColor: Color.white,
     android: {
       paddingHorizontal: 14,
-      paddingTop: 15,
+      paddingVertical: 15,
+      elevation: 1,
     },
     ios: {
       paddingHorizontal: 10,
-      paddingTop: 10,
+      paddingVertical: 10,
     },
   },
   row: {

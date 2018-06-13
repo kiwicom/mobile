@@ -33,6 +33,18 @@ export const testBrokenRTL: StylePropType = StyleSheet.create({
   },
 });
 
+export const testElevation: StylePropType = StyleSheet.create({
+  // $FlowExpectedError: elevation must be under the Android key
+  testA: {
+    elevation: 1,
+  },
+  testB: {
+    android: {
+      elevation: 1,
+    },
+  },
+});
+
 export const testStyleSheetPlatforms: StylePropType = StyleSheet.create({
   testA: {
     fontSize: 12,

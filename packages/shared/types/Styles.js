@@ -36,7 +36,12 @@ export type StyleObjectType = {
 
 export type PlatformStyleObjectType = {
   +[key: string]: $Shape<
-    ReducedDangerouslyImpreciseStyle & {
+    $Rest<
+      ReducedDangerouslyImpreciseStyle,
+      {|
+        elevation: *, // elevation should be only used under the Android key
+      |},
+    > & {
       android: ReducedDangerouslyImpreciseStyle,
       ios: ReducedDangerouslyImpreciseStyle,
     },
