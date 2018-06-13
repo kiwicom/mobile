@@ -34,6 +34,7 @@ module.exports = {
     'prettier/flowtype',
   ],
   rules: {
+    'curly': ERROR,
     'no-console': [ERROR, { allow: ['warn', 'error'] }],
     'no-duplicate-imports': ERROR,
     'no-underscore-dangle': [
