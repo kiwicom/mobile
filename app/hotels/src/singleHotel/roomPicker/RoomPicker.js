@@ -12,14 +12,14 @@ import {
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-type Props = {|
+type Props = $ReadOnly<{|
   price: number | null,
   currency: string | null,
   selectedCount: number,
   selectableCount: number,
   increment: () => void,
   decrement: () => void,
-|};
+|}>;
 
 export default function RoomPicker({
   price,
@@ -32,6 +32,7 @@ export default function RoomPicker({
   if (price == null && currency == null) {
     return null;
   }
+
   if (selectedCount === 0) {
     return (
       <Touchable
