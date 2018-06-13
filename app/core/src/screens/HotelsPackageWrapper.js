@@ -17,6 +17,8 @@ type Props = {|
 |};
 
 export default class HotelsPackageWrapper extends React.Component<Props> {
+  goToHomepage = () => this.props.navigation.goBack();
+
   render = () => {
     const affiliate = String(Config.affiliate.bookingCom);
     const coordinates = this.props.coordinates;
@@ -26,6 +28,7 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
         bookingComAffiliate={affiliate}
         language="en"
         currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
+        onBackClicked={this.goToHomepage}
         dataSaverEnabled={false}
         coordinates={coordinates}
         checkin={this.props.checkin}
