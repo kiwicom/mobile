@@ -122,8 +122,8 @@ export class HotelDetailScreen extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <LayoutSingleColumn>
-          <ScrollView>
+        <ScrollView>
+          <LayoutSingleColumn>
             <AdaptableLayout.Consumer
               renderOnWide={<View style={styles.marginView} />}
             />
@@ -140,8 +140,8 @@ export class HotelDetailScreen extends React.Component<Props, State> {
               openGallery={openGallery}
             />
             <BrandLabel />
-          </ScrollView>
-        </LayoutSingleColumn>
+          </LayoutSingleColumn>
+        </ScrollView>
         <BookNow
           onGoToPayment={onGoToPayment}
           selected={selected}
