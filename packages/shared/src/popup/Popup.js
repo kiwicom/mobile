@@ -9,9 +9,9 @@ import Modal from '../Modal';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  children: React.Node,
-  isVisible: boolean,
-  onClose: () => void,
+  +children: React.Node,
+  +isVisible: boolean,
+  +onClose: () => void,
 |};
 
 export default class Popup extends React.Component<Props> {
