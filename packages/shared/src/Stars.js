@@ -5,7 +5,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   // number of stars
-  rating?: ?number,
+  +rating?: ?number,
 |};
 
 export default function Stars({ rating }: Props) {

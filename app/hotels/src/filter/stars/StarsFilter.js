@@ -15,9 +15,9 @@ import type { OnChangeFilterParams } from '../FilterParametersType';
 type Stars = number[];
 
 type Props = {|
-  stars: Stars,
-  onChange: OnChangeFilterParams => void,
-  isActive: boolean,
+  +stars: Stars,
+  +onChange: OnChangeFilterParams => void,
+  +isActive: boolean,
 |};
 
 type State = {|

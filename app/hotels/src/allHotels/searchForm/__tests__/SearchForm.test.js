@@ -25,6 +25,7 @@ const searchParams = {
     children: [],
   },
 };
+
 const defaultProps = {
   location: 'Pra',
   search: searchParams,
