@@ -22,11 +22,11 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn test-ci
 
-#  release:
-#    docker:
-#      - image: pstauffer/curl:latest
-#    steps:
-#      - run: curl -gX POST $DEPLOY_TRIGGER_URL$CIRCLE_SHA1
+  release:
+    docker:
+      - image: pstauffer/curl:latest
+    steps:
+      - run: curl -gX POST $DEPLOY_TRIGGER_URL$CIRCLE_SHA1
 
 
 workflows:
@@ -34,10 +34,10 @@ workflows:
   test-and-release:
     jobs:
       - test
-#      - release:
-#          requires:
-#            - test
-#          filters:
-#            branches:
-#              only:
-#                - master
+      - release:
+          requires:
+            - test
+          filters:
+            branches:
+              only:
+                - master
