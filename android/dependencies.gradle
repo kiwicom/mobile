@@ -1,5 +1,6 @@
 ext {
     gradlePluginVersion = "3.0.1"
+    kotlinVersion = "1.2.31"
 
     compileSdkVersionVar = 27
     targetSdkVersionVar = 27

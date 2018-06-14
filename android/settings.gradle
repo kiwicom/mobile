@@ -14,6 +14,6 @@ project(':react-native-vector-icons').projectDir = new File(rootProject.projectD
 include ':react-native-maps'
 project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps/lib/android')
 include ':react-native-native-modules'
-project(':react-native-native-modules').projectDir = new File(rootProject.projectDir, '../node_modules/@kiwicom/react-native-native-modules/android')
+project(':react-native-native-modules').projectDir = new File(rootProject.projectDir, '../RNAndroidPlayground/react-native-native-modules/')
 
 include ':app'

@@ -527,10 +527,6 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@kiwicom/react-native-native-modules@^0.1.25":
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/@kiwicom/react-native-native-modules/-/react-native-native-modules-0.1.25.tgz#0668621aac2ba64d22a23328612de4f8ca8f1f75"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
