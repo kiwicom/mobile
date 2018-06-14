@@ -1,7 +1,7 @@
 ext {
     gradlePluginVersion = "3.0.1"
 
-    minSdkVersionVar = 19
+    minSdkVersionVar = 16
     compileSdkVersionVar = 27
     targetSdkVersionVar = 27
     buildToolsVersionVar = "27.0.3"
