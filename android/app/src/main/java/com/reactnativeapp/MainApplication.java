@@ -1,28 +1,28 @@
 package com.reactnativeapp;
 
-import android.app.Application;
 import android.support.multidex.MultiDexApplication;
 
-import com.facebook.react.ReactApplication;
-import cl.json.RNSharePackage;
-import cl.json.ShareApplication;
-import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.reactlibrary.RNTooltipsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.airbnb.android.react.maps.MapsPackage;
-import com.trinerdis.skypicker.colors.RNColorsPackage;
-import com.trinerdis.skypicker.currency.RNCurrencyManagerPackage;
-import com.trinerdis.skypicker.device.RNDeviceInfoPackage;
-import com.trinerdis.skypicker.logging.RNLoggingPackage;
-import com.trinerdis.skypicker.translation.*;
+import com.reactlibrary.RNTooltipsPackage;
+import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage;
+import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage;
+import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage;
+import com.skypicker.reactnative.nativemodules.translation.RNTranslationManagerPackage;
+
+import org.wonday.pdf.RCTPdfView;
 
 import java.util.Arrays;
 import java.util.List;
+
+import cl.json.RNSharePackage;
+import cl.json.ShareApplication;
 
 public class MainApplication extends MultiDexApplication implements ShareApplication, ReactApplication {
 
@@ -44,7 +44,6 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
                     new MapsPackage(),
                     new RNLoggingPackage(),
                     new RNTranslationManagerPackage(),
-                    new RNColorsPackage(),
                     new RNCurrencyManagerPackage(),
                     new RNDeviceInfoPackage()
             );
