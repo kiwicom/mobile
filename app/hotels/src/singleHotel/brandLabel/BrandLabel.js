@@ -2,29 +2,37 @@
 
 import * as React from 'react';
 import { View, Image } from 'react-native';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import brandImage from './bookingLogo.png';
 
-const styles = StyleSheet.create({
+export default function BrandLabel() {
+  return (
+    <View style={styleSheet.wrapper}>
+      <Text style={styleSheet.poweredBy}>
+        <Translation id="single_hotel.powered_by" />
+      </Text>
+      <Image
+        style={styleSheet.image}
+        resizeMode="contain"
+        source={brandImage}
+      />
+    </View>
+  );
+}
+
+const styleSheet = StyleSheet.create({
   wrapper: {
-    height: 70,
+    height: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  poweredBy: {
+    color: Color.textLight,
+  },
   image: {
+    marginTop: 2,
     height: 15,
   },
 });
-
-class BrandLabel extends React.Component<{||}> {
-  render = () => {
-    return (
-      <View style={styles.wrapper}>
-        <Image style={styles.image} resizeMode="contain" source={brandImage} />
-      </View>
-    );
-  };
-}
-
-export default BrandLabel;

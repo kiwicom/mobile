@@ -3,6 +3,7 @@
 import '../../../app/hotels/src/singleHotel/roomPicker/__tests__/RoomPicker.test.js';
 import '../../../app/hotels/src/singleHotel/roomList/__tests__/RoomDescription.test.js';
 import '../../../app/hotels/src/singleHotel/roomList/__tests__/RoomBadges.test.js';
+import '../../../app/hotels/src/singleHotel/brandLabel/__tests__/BrandLabel.test.js';
 import '../../../app/hotels/src/singleHotel/bookNow/__tests__/BookNow.test.js';
 import '../../../app/hotels/src/gallery/__tests__/PhotosStripeHeader.test.js';
 import '../../../app/hotels/src/filter/stars/__tests__/StarsPopup.test.js';
