@@ -6,10 +6,10 @@ import { ScrollView, RefreshControl } from 'react-native';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
-  refreshing: boolean,
-  onRefresh: () => void,
-  children: React.Node,
-  contentContainerStyle?: StylePropType,
+  +refreshing: boolean,
+  +onRefresh: () => void,
+  +children: React.Node,
+  +contentContainerStyle?: StylePropType,
 |};
 
 export default function RefreshableScrollView(props: Props) {

@@ -11,7 +11,7 @@ type Props = {||};
 
 export default class PassengerDetailContainer extends React.Component<Props> {
   renderInner = (renderProps: PassengerDetailContainerQuery) => {
-    return <PassengerDetail booking={renderProps.booking} />;
+    return <PassengerDetail booking={renderProps.node} />;
   };
 
   render = () => (
