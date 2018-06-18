@@ -72,13 +72,13 @@ const styles = StyleSheet.create({
 });
 
 type ContainerProps = {|
-  openGallery: (hotelName: string, images: GalleryGridImage[]) => void,
-  hotel: any,
+  +openGallery: (hotelName: string, images: GalleryGridImage[]) => void,
+  +hotel: any,
 |};
 
 export type Props = {
   ...ContainerProps,
-  hotel: ?Header_hotel,
+  +hotel: ?Header_hotel,
 };
 
 export class Header extends React.Component<Props> {

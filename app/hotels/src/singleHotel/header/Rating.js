@@ -5,9 +5,9 @@ import { Stars } from '@kiwicom/mobile-shared';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  stars?: ?number,
-  score?: ?number,
-  description?: ?string,
+  +stars?: ?number,
+  +score?: ?number,
+  +description?: ?string,
 |};
 
 export default function Rating({ stars, score, description }: Props) {
