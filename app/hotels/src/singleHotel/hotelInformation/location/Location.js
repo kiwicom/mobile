@@ -17,53 +17,16 @@ import idx from 'idx';
 import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel } from './__generated__/Location_hotel.graphql';
 
-const styles = StyleSheet.create({
-  background: {
-    backgroundColor: '#ffffff',
-  },
-  wideContainer: {
-    borderRadius: 2,
-  },
-  container: {
-    height: 100,
-    flexDirection: 'row',
-  },
-  leftColumn: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 15,
-  },
-  rightColumn: {
-    flex: 1,
-  },
-  addressLine: {
-    fontSize: 14,
-    lineHeight: 19,
-    letterSpacing: -0.15,
-  },
-  streetLine: {
-    color: Color.textDark,
-  },
-  cityLine: {
-    color: Color.textLight,
-  },
-  mapBottom: {
-    android: {
-      bottom: -25,
-    },
-  },
-});
-
 type ContainerProps = {|
-  hotel: any,
-  onGoToMap: () => void,
-  isWide: boolean,
+  +hotel: any,
+  +onGoToMap: () => void,
+  +isWide: boolean,
 |};
 
-type Props = {
+type Props = {|
   ...ContainerProps,
-  hotel: ?Location_hotel,
-};
+  +hotel: ?Location_hotel,
+|};
 
 export function Location({ hotel, onGoToMap, isWide }: Props) {
   const address = idx(hotel, _ => _.address);
@@ -112,6 +75,43 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  background: {
+    backgroundColor: Color.white,
+  },
+  wideContainer: {
+    borderRadius: 2,
+  },
+  container: {
+    height: 100,
+    flexDirection: 'row',
+  },
+  leftColumn: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 15,
+  },
+  rightColumn: {
+    flex: 1,
+  },
+  addressLine: {
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: -0.15,
+  },
+  streetLine: {
+    color: Color.textDark,
+  },
+  cityLine: {
+    color: Color.textLight,
+  },
+  mapBottom: {
+    android: {
+      bottom: -25,
+    },
+  },
+});
 
 export default (createFragmentContainer(
   Location,

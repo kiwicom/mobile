@@ -9,9 +9,9 @@ import Touchable from './Touchable';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
-  children: React.Node,
-  onPress?: Function,
-  style?: StylePropType,
+  +children: React.Node,
+  +onPress?: Function,
+  +style?: StylePropType,
 |};
 
 export default function SimpleCard(props: Props) {
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: Color.white,
     borderStyle: 'solid',
-    marginVertical: 3,
     padding: 10,
     android: {
       marginHorizontal: 8,

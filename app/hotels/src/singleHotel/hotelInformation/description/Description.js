@@ -13,16 +13,63 @@ import {
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
-import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 import Facilities from './Facilities';
+import type { Description_hotel } from './__generated__/Description_hotel.graphql';
+
+type ContainerProps = {|
+  +hotel: any,
+  +locationView?: any,
+|};
+
+type Props = {
+  ...ContainerProps,
+  +hotel: ?Description_hotel,
+  +locationView?: React.Node,
+};
+
+export class Description extends React.Component<Props> {
+  renderCardChildren = (isWide: boolean) => (
+    <View>
+      {this.props.locationView}
+      <View style={isWide ? styles.wideCardChildrenWrapper : null}>
+        <ReadMore
+          numberOfLines={5}
+          truncatedText="Show More"
+          revealedText="Show Less"
+        >
+          <Text style={styles.summary}>
+            <Translation passThrough={idx(this.props, _ => _.hotel.summary)} />
+          </Text>
+        </ReadMore>
+        <Facilities facilities={idx(this.props, _ => _.hotel.facilities)} />
+      </View>
+    </View>
+  );
+
+  render = () => {
+    return (
+      <AdaptableLayout.Consumer
+        renderOnNarrow={
+          <View style={styles.simpleCardWrapper}>
+            <SimpleCard>{this.renderCardChildren(false)}</SimpleCard>
+          </View>
+        }
+        renderOnWide={
+          <View style={styles.simpleCardWideWrapper}>
+            <SimpleCard style={styles.card}>
+              {this.renderCardChildren(true)}
+            </SimpleCard>
+          </View>
+        }
+      />
+    );
+  };
+}
 
 const styles = StyleSheet.create({
   simpleCardWrapper: {
     android: {
       marginTop: 10,
-    },
-    ios: {
-      marginTop: -2,
     },
   },
   simpleCardWideWrapper: {
@@ -47,61 +94,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
   },
 });
-
-type ContainerProps = {|
-  hotel: any,
-  locationView?: any,
-|};
-
-type Props = {
-  ...ContainerProps,
-  hotel: ?Description_hotel,
-  locationView?: React.Node,
-};
-
-export class Description extends React.Component<Props> {
-  renderCardChildren = (isWide: boolean) => (
-    <View>
-      {this.props.locationView}
-      <View style={isWide ? styles.wideCardChildrenWrapper : null}>
-        <ReadMore
-          numberOfLines={5}
-          truncatedText="Show More"
-          revealedText="Show Less"
-        >
-          <Text style={styles.summary}>
-            <Translation passThrough={idx(this.props, _ => _.hotel.summary)} />
-          </Text>
-        </ReadMore>
-        <Facilities facilities={idx(this.props, _ => _.hotel.facilities)} />
-      </View>
-    </View>
-  );
-
-  renderBaseComponent = () => {
-    return (
-      <View style={styles.simpleCardWrapper}>
-        <SimpleCard>{this.renderCardChildren(false)}</SimpleCard>
-      </View>
-    );
-  };
-
-  render = () => {
-    const baseComponent = this.renderBaseComponent();
-    return (
-      <AdaptableLayout.Consumer
-        renderOnNarrow={baseComponent}
-        renderOnWide={
-          <View style={styles.simpleCardWideWrapper}>
-            <SimpleCard style={styles.card}>
-              {this.renderCardChildren(true)}
-            </SimpleCard>
-          </View>
-        }
-      />
-    );
-  };
-}
 
 export default (createFragmentContainer(
   Description,

@@ -16,11 +16,11 @@ import idx from 'idx';
 import Header from './header/Header';
 import HotelInformation from './hotelInformation/HotelInformation';
 import RoomList from './roomList/RoomList';
-import type { Image } from '../gallery/GalleryGrid';
-import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import BookNow from './bookNow/BookNow';
 import BrandLabel from './brandLabel/BrandLabel';
+import type { Image } from '../gallery/GalleryGrid';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
+import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 
 type Props = {|
   +openGallery: (hotelName: string, images: Image[]) => void,

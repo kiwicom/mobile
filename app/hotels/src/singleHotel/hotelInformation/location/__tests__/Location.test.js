@@ -9,8 +9,7 @@ const renderer = new ShallowRenderer();
 
 it('renders without crashing', () => {
   const props = {
-    openGallery() {},
-    onGoToMap() {},
+    onGoToMap: () => {},
     isWide: false,
     hotel: ({
       hotel: 'asdf',
@@ -22,8 +21,7 @@ it('renders without crashing', () => {
 
 it('renders without crashing with missing data', () => {
   const props = {
-    openGallery() {},
-    onGoToMap() {},
+    onGoToMap: () => {},
     isWide: false,
     hotel: undefined,
   };

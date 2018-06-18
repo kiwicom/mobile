@@ -10,22 +10,14 @@ import Description from './description/Description';
 import type { HotelInformation_hotel } from './__generated__/HotelInformation_hotel.graphql';
 
 type ContainerProps = {|
-  hotel: any,
-  onGoToMap: () => void,
+  +hotel: any,
+  +onGoToMap: () => void,
 |};
 
 type Props = {|
   ...ContainerProps,
-  hotel: ?HotelInformation_hotel,
+  +hotel: ?HotelInformation_hotel,
 |};
-
-const styles = StyleSheet.create({
-  locationContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: Color.grey.$200,
-    marginBottom: 15,
-  },
-});
 
 export class HotelInformation extends React.Component<Props> {
   renderDescription = (locationView: React.Node) => (
@@ -40,31 +32,36 @@ export class HotelInformation extends React.Component<Props> {
     />
   );
 
-  renderBaseComponent = () => (
-    <View>
-      {this.renderLocation(false)}
-      {this.renderDescription()}
-    </View>
-  );
-
   render = () => {
-    const baseComponent = this.renderBaseComponent();
     return (
       <AdaptableLayout.Consumer
-        renderOnNarrow={baseComponent}
+        renderOnNarrow={
+          <React.Fragment>
+            {this.renderLocation(false)}
+            {this.renderDescription()}
+          </React.Fragment>
+        }
         renderOnWide={
-          <View>
+          <React.Fragment>
             {this.renderDescription(
               <View style={styles.locationContainer}>
                 {this.renderLocation(true)}
               </View>,
             )}
-          </View>
+          </React.Fragment>
         }
       />
     );
   };
 }
+
+const styles = StyleSheet.create({
+  locationContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: Color.grey.$200,
+    marginBottom: 15,
+  },
+});
 
 export default (createFragmentContainer(
   HotelInformation,
