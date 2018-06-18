@@ -106,20 +106,20 @@ const PlusButton = ({ disabled, onPress }) => {
   );
 };
 
-const radius = 3;
+const radius = 6;
 const styles = StyleSheet.create({
   row: {
     flexGrow: 1,
     flexDirection: 'row',
   },
   container: {
-    backgroundColor: 'rgba(0, 151, 169, 0.13)',
+    backgroundColor: '#c4e7e4',
     height: 44,
     paddingHorizontal: 10,
     paddingVertical: 14,
   },
   text: {
-    color: Color.brand,
+    color: Color.brandDark,
     fontSize: 14,
   },
   button: {
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: '600',
-    color: '#ffffff',
+    color: Color.white,
   },
   priceAndCount: {
     justifyContent: 'center',

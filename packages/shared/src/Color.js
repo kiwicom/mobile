@@ -59,13 +59,11 @@ export default {
   brandLight: ColorPalette.product.light,
   brandDark: ColorPalette.product.dark,
 
-  // FIXME: rename
   inputBackground: '#e8edf1',
   backgroundGray: '#f4f6f8',
 
   border: '#e8edf1',
 
-  // FIXME: rename
   textDark: ColorPalette.ink.dark,
   textMedium: ColorPalette.ink.normal,
   textLight: ColorPalette.ink.light,
