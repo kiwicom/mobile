@@ -21,9 +21,6 @@ export type HotelDetailPreview_availability = {|
     +mainPhoto: ?{|
       +thumbnailUrl: ?string
     |},
-    +rating: ?{|
-      +stars: ?number
-    |},
     +review: ?{|
       +score: ?number,
       +description: ?string,
@@ -111,24 +108,6 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "rating",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "HotelRating",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "stars",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
           "name": "review",
           "storageKey": null,
           "args": null,
@@ -163,5 +142,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4da52edc3d61c591746c2e2a4ec71914';
+(node/*: any*/).hash = '7f97f501a2c5c8f1394094641853ce5c';
 module.exports = node;

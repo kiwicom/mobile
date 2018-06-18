@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {|
-  children: React.Node,
+  +children: React.Node,
 |};
 
 export default class BottomSheet extends React.Component<Props> {

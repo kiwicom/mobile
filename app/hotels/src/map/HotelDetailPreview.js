@@ -16,53 +16,13 @@ import idx from 'idx';
 import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
 
 type ContainerProps = {|
-  availability: $FlowFixMeProps,
+  +availability: $FlowFixMeProps,
 |};
 
-type Props = {
+type Props = {|
   ...ContainerProps,
-  availability: ?HotelDetailPreview_availability,
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    height: 60,
-  },
-  image: {
-    width: 60,
-    height: 60,
-    borderRadius: 3,
-    marginEnd: 10,
-  },
-  description: {
-    flex: 1,
-    justifyContent: 'space-between',
-  },
-  hotelName: {
-    fontSize: 16,
-    color: Color.textDark,
-    android: {
-      lineHeight: 17,
-    },
-  },
-  metainfo: {
-    color: Color.grey.$700,
-    opacity: 0.8,
-    fontSize: 12,
-    android: {
-      lineHeight: 13,
-    },
-  },
-  price: {
-    color: Color.brand,
-    fontWeight: 'bold',
-    fontSize: 12,
-    android: {
-      lineHeight: 13,
-    },
-  },
-});
+  +availability: ?HotelDetailPreview_availability,
+|};
 
 const getReview = review => {
   if (review && review.count) {
@@ -101,7 +61,7 @@ export class HotelDetailPreview extends React.Component<Props> {
     const review = idx(availability, _ => _.hotel.review);
 
     return (
-      <View style={[styles.container]}>
+      <View style={styles.container}>
         <View>
           <NetworkImage
             style={styles.image}
@@ -129,6 +89,45 @@ export class HotelDetailPreview extends React.Component<Props> {
   };
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    height: 60,
+  },
+  image: {
+    width: 60,
+    height: 60,
+    borderRadius: 3,
+    marginEnd: 10,
+  },
+  description: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  hotelName: {
+    fontSize: 16,
+    color: Color.textDark,
+    android: {
+      lineHeight: 17,
+    },
+  },
+  metainfo: {
+    color: Color.textLight,
+    fontSize: 12,
+    android: {
+      lineHeight: 13,
+    },
+  },
+  price: {
+    color: Color.brand,
+    fontWeight: 'bold',
+    fontSize: 12,
+    android: {
+      lineHeight: 13,
+    },
+  },
+});
+
 export default (createFragmentContainer(
   HotelDetailPreview,
   graphql`
@@ -142,9 +141,6 @@ export default (createFragmentContainer(
         name
         mainPhoto {
           thumbnailUrl
-        }
-        rating {
-          stars
         }
         review {
           score

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 45829a9401294ade8c05e7f281f65f42
+ * @relayHash 3e16894b747ceb41374c42a4d175a473
  */
 
 /* eslint-disable */
@@ -89,9 +89,6 @@ fragment HotelDetailPreview_availability on HotelAvailability {
       thumbnailUrl
       id
     }
-    rating {
-      stars
-    }
     review {
       score
       description
@@ -148,7 +145,7 @@ return {
   "operationKind": "query",
   "name": "SingleHotelMapScreenQuery",
   "id": null,
-  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    hotel {\n      ...MapView_hotel\n      id\n    }\n    ...AdditionalInfo\n    id\n  }\n}\n\nfragment MapView_hotel on Hotel {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    address {\n      ...Address_address\n    }\n    id\n  }\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    hotel {\n      ...MapView_hotel\n      id\n    }\n    ...AdditionalInfo\n    id\n  }\n}\n\nfragment MapView_hotel on Hotel {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    address {\n      ...Address_address\n    }\n    id\n  }\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -264,24 +261,6 @@ return {
                     "storageKey": null
                   },
                   v2
-                ]
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "rating",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "HotelRating",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "stars",
-                    "args": null,
-                    "storageKey": null
-                  }
                 ]
               },
               {
