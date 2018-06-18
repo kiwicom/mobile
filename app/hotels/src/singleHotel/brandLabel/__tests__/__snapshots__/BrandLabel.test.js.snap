@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders as expected 1`] = `
+<Component
+  style={
+    Object {
+      "alignItems": "center",
+      "height": 100,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#7f91a8",
+      }
+    }
+  >
+    <Translation
+      id="single_hotel.powered_by"
+    />
+  </Text>
+  <Image
+    resizeMode="contain"
+    source={
+      Object {
+        "testUri": "../../../app/hotels/src/singleHotel/brandLabel/bookingLogo.png",
+      }
+    }
+    style={
+      Object {
+        "height": 15,
+        "marginTop": 2,
+      }
+    }
+  />
+</Component>
+`;

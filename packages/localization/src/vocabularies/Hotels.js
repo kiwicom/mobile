@@ -68,4 +68,5 @@ export default {
   'single_hotel.room_badges.free_cancellation': 'Free cancellation',
   'single_hotel.room_list.rooms': 'Rooms',
   'single_hotel.room_picker.select': 'Select',
+  'single_hotel.powered_by': 'Powered by',
 };
