@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { TextButton } from '@kiwicom/mobile-shared';
+import { TextButton, LayoutSingleColumn } from '@kiwicom/mobile-shared';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import {
   Translation,
@@ -11,7 +11,7 @@ import {
 } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  navigation: NavigationType,
+  +navigation: NavigationType,
 |};
 
 function Section({ children }: { children: React.Node }) {
@@ -75,7 +75,7 @@ export default class Homepage extends React.Component<Props> {
 
   render = () => {
     return (
-      <React.Fragment>
+      <LayoutSingleColumn>
         <Section>
           <TextButton
             title={<Translation passThrough="Hotels" />}
@@ -108,7 +108,7 @@ export default class Homepage extends React.Component<Props> {
             onPress={this.searchWithDates}
           />
         </Section>
-      </React.Fragment>
+      </LayoutSingleColumn>
     );
   };
 }

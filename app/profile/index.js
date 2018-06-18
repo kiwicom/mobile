@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { AsyncStorage, Alert } from 'react-native';
-import { SimpleCard } from '@kiwicom/mobile-shared';
+import { SimpleCard, LayoutSingleColumn } from '@kiwicom/mobile-shared';
 
 import Login from './components/authentication/Login';
 import Logout from './components/authentication/Logout';
@@ -21,10 +21,12 @@ export default class LoginScreen extends React.Component<{||}> {
 
   render = () => {
     return (
-      <SimpleCard>
-        <Login onLogin={this.onLogin} />
-        <Logout onLogout={this.onLogout} />
-      </SimpleCard>
+      <LayoutSingleColumn>
+        <SimpleCard>
+          <Login onLogin={this.onLogin} />
+          <Logout onLogout={this.onLogout} />
+        </SimpleCard>
+      </LayoutSingleColumn>
     );
   };
 }

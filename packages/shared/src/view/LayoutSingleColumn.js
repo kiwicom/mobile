@@ -18,6 +18,7 @@ type Props = {|
  */
 export default function LayoutSingleColumn(props: Props) {
   const innerStyle = {
+    width: '100%',
     maxWidth: Device.getWideDeviceThreshold(),
   };
 
