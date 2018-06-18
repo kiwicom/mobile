@@ -4,10 +4,10 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "@kiwicom/mobile-assets": "^0",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-shared": "^0",
-    "@kiwicom/mobile-assets": "^0",
-    "react-native-pdf": "^3.0.8",
-    "react-native-fetch-blob": "^0.10.8"    
+    "react-native-fetch-blob": "^0.10.8",
+    "react-native-pdf": "^3.0.16"
   }
 }
