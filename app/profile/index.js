@@ -14,6 +14,7 @@ export default class LoginScreen extends React.Component<{||}> {
   };
 
   onLogout = () => {
+    // TODO: clean the Relay offline cache (?)
     AsyncStorage.removeItem('mobile:MMB-Token');
     Alert.alert('Token removed from local storage');
   };

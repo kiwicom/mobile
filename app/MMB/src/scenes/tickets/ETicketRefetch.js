@@ -37,6 +37,9 @@ class ETicketRefetch extends React.Component<Props, State> {
       () => {
         this.setState({ isRefreshing: false });
       },
+      {
+        force: true,
+      },
     );
   };
 

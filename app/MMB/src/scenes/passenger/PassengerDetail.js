@@ -16,8 +16,8 @@ import VisaDisclaimer from './visa/VisaDisclaimer';
 import ContactDetails from './contactDetails/ContactDetails';
 
 type Props = {|
-  booking: PassengersType,
-  relay: RelayRefetchProp,
+  +booking: PassengersType,
+  +relay: RelayRefetchProp,
 |};
 
 type State = {|
@@ -38,6 +38,9 @@ export class PassengerDetail extends React.Component<Props, State> {
       null,
       () => {
         this.setState({ isRefreshing: false });
+      },
+      {
+        force: true,
       },
     );
   };
