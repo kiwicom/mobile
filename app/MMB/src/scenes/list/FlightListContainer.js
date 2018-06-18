@@ -37,9 +37,16 @@ class FlightListContainer extends React.Component<Props, State> {
 
   refetch = () => {
     this.setState({ isRefreshing: true });
-    this.props.relay.refetch(null, null, () => {
-      this.setState({ isRefreshing: false });
-    });
+    this.props.relay.refetch(
+      null,
+      null,
+      () => {
+        this.setState({ isRefreshing: false });
+      },
+      {
+        force: true,
+      },
+    );
   };
 
   render = () => {

@@ -53,7 +53,7 @@ export type RelayPaginationProp = {|
 |};
 
 type RefetchOptions = {|
-  +force?: boolean,
+  +force: true, // we always have to force the refetch since we use offline cache (TODO: wrap it)
 |};
 
 type Disposable = {|
@@ -65,6 +65,6 @@ export type RelayRefetchProp = {|
     refetchVariables: Object | null | ((fragmentVariables: Object) => Object),
     renderVariables: ?Object,
     callback: ?(error: ?Error) => void,
-    options?: RefetchOptions,
+    options: RefetchOptions,
   ) => Disposable,
 |};

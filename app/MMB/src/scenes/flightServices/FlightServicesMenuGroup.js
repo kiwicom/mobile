@@ -100,6 +100,9 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
       () => {
         this.setState({ isLoading: false });
       },
+      {
+        force: true,
+      },
     );
   };
 
