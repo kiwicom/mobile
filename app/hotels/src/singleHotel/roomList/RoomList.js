@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -31,7 +30,7 @@ class RoomList extends React.Component<Props> {
     const data = this.props.data || [];
 
     return (
-      <View style={styles.wrapper}>
+      <React.Fragment>
         <Text style={styles.title}>
           <Translation id="single_hotel.room_list.rooms" />
         </Text>
@@ -45,15 +44,12 @@ class RoomList extends React.Component<Props> {
             openGallery={openGallery}
           />
         ))}
-      </View>
+      </React.Fragment>
     );
   };
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
   title: {
     fontSize: 14,
     color: Color.textLight,
