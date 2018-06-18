@@ -7,10 +7,10 @@
     "@kiwicom/mobile-accessibility": "^0",
     "@kiwicom/mobile-localization": "^0",
     "@ptomasroos/react-native-multi-slider": "^0.0.14",
-    "react-native-image-progress": "^1.1.0",
-    "react-native-modal": "^6.0.0",
-    "react-native-vector-icons": "^4.6.0",
-    "react-native-read-more-text": "^1.0.0"
+    "react-native-image-progress": "^1.1.1",
+    "react-native-modal": "^6.1.0",
+    "react-native-read-more-text": "^1.1.0",
+    "react-native-vector-icons": "^4.6.0"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0"
