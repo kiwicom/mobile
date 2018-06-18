@@ -10,11 +10,11 @@
 
 2. Change `rnKiwiMobileVersion` in `dependencies.gradle`
 
-3. Deploy SNAPSHOT of `rnkiwimobile`:
+3. Manual deployment `rnkiwimobile` SNAPSHOT:
 
 ```bash
 cd rnkiwimobile
-DEPLOYMENT_PASSWORD={replaceForPassword} gradle uploadArchives
+ANDROID_DEPLOYMENT_PASSWORD={replaceForPassword} gradle uploadArchives
 ``` 
 
 ## Usage in real app
