@@ -12,6 +12,7 @@ import type {
 import BookingDetailContext from '../../context/BookingDetailContext';
 import BookedFlightTimelineEvent from './events/BookedFlightTimelineEvent';
 import AirportArrivalTimelineEvent from './events/AirportArrivalTimelineEvent';
+import LeaveForAirportTimelineEvent from './events/LeaveForAirportTimelineEvent';
 import DaySeparator from './DaySeparator';
 
 // @TODO Display day banners only once for each day
@@ -30,6 +31,13 @@ function getValidTimelineEvent(data: TimelineEventType, index) {
           <React.Fragment key={'TimelineEvent-' + data.__typename + index}>
             {data && data.timestamp && <DaySeparator date={data.timestamp} />}
             <AirportArrivalTimelineEvent data={data} />
+          </React.Fragment>
+        );
+      case 'LeaveForAirportTimelineEvent':
+        return (
+          <React.Fragment key={'TimelineEvent-' + data.__typename + index}>
+            {data && data.timestamp && <DaySeparator date={data.timestamp} />}
+            <LeaveForAirportTimelineEvent data={data} />
           </React.Fragment>
         );
       default:
@@ -59,9 +67,6 @@ export default class Timeline extends React.Component<{||}> {
                 events {
                   __typename
                   timestamp
-                  ... on BookedFlightTimelineEvent {
-                    ...BookedFlightTimelineEvent
-                  }
                   ... on AirportArrivalTimelineEvent {
                     ...AirportArrivalTimelineEvent
                   }

@@ -1,53 +1,45 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import idx from 'idx';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
-import TimelineRow from './TimelineRow';
+import type { TimelineEvent as TimelineEventType } from './__generated__/TimelineQuery.graphql';
+import TimelineEventLayout from './TimelineEventLayout';
+import DateLocation from './TimelineEventDateLocation';
 
 type Props = {|
-  +dateLocation: ?React.Node,
+  +data: ?TimelineEventType,
   +iconVertLines: React.Node,
   +mainContent: React.Node,
-  +isPastEvent?: boolean,
 |};
 
-export default function TimelineEvent(props: Props) {
-  let rowStyle = {};
-  if (props.isPastEvent) {
-    rowStyle = styles.isPastEvent;
+const TimelineEvent = (props: Props) => {
+  const timestamp = idx(props, _ => _.data.timestamp);
+  let time = null;
+  let isPastEvent = false;
+  if (timestamp) {
+    time = DateFormatter(new Date(timestamp)).formatToTime();
+    isPastEvent = new Date() - new Date(timestamp) > 0;
   }
+  let dateLocation = null;
+  if (time) {
+    dateLocation = <DateLocation time={time} />;
+  }
+
+  const iconVertLines = React.Children.map(props.iconVertLines, child =>
+    React.cloneElement(child, {
+      isPastEvent,
+    }),
+  );
   return (
-    <TimelineRow
-      leftColumn={
-        <View style={styles.row}>
-          <View style={styles.dateLocation}>{props.dateLocation}</View>
-          <View style={styles.iconVertLines}>{props.iconVertLines}</View>
-        </View>
-      }
-      rightColumn={<View style={styles.mainContent}>{props.mainContent}</View>}
-      rowStyle={rowStyle}
+    <TimelineEventLayout
+      isPastEvent={isPastEvent}
+      dateLocation={dateLocation}
+      iconVertLines={iconVertLines}
+      mainContent={props.mainContent}
     />
   );
-}
+};
 
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-  },
-  isPastEvent: {
-    backgroundColor: Color.grey.$50,
-  },
-  dateLocation: {
-    flex: 1,
-  },
-  iconVertLines: {
-    flex: 1,
-  },
-  mainContent: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
-});
+export default TimelineEvent;

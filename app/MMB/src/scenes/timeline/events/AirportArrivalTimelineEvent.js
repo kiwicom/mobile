@@ -3,31 +3,21 @@
 import React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 
-import type { AirportArrivalTimelineEvent as AirportArrivalTimelineEventType } from './__generated__/AirportArrivalTimelineEvent.graphql';
+import type { TimelineEvent as TimelineEventType } from '../__generated__/TimelineQuery.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
-import DateLocation from '../TimelineEventDateLocation';
 
 type Props = {|
-  +data: ?AirportArrivalTimelineEventType,
+  +data: ?TimelineEventType,
 |};
 
 const AirportArrivalTimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
   const airport = idx(props, _ => _.data.location.airport.name);
-  let time = null;
-  if (timestamp) {
-    time = DateFormatter(new Date(timestamp)).formatToTime();
-  }
-  let dateLocation = null;
-  if (time) {
-    dateLocation = <DateLocation time={time} />;
-  }
   return (
     <TimelineEvent
-      dateLocation={dateLocation}
+      data={props.data}
       iconVertLines={<TimelineEventIcon name="flight" />}
       mainContent={
         <Translation
