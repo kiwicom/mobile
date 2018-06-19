@@ -56,12 +56,8 @@ class ParkingMenuItem extends React.Component<Props> {
 export default createFragmentContainer(
   ParkingMenuItem,
   graphql`
-    fragment ParkingMenuItem on WhitelabeledServices
-      @argumentDefinitions(
-        departureTime: { type: "DateTime!" }
-        arrivalTime: { type: "DateTime!" }
-      ) {
-      parking(fromDate: $departureTime, toDate: $arrivalTime) {
+    fragment ParkingMenuItem on WhitelabeledServices {
+      parking {
         whitelabelURL
       }
     }

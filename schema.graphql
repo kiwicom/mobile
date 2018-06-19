@@ -460,6 +460,15 @@ enum BookingType {
   MULTICITY
 }
 
+type CarRentalService {
+  relevantCities: [CarRentalServiceRelevantCities]
+}
+
+type CarRentalServiceRelevantCities {
+  whitelabelURL: String
+  location: Location
+}
+
 type Carrier {
   """The ID of an object"""
   id: ID!
@@ -1846,7 +1855,9 @@ type RootQuery {
 
   """Find booking by its id or databaseId."""
   booking(
-    """Both Booking id & databaseId can be used as ID."""
+    """
+    Database ID (human readable ID) of the booking. You should use "node" query if you want to use opaque ID.
+    """
     id: ID!
   ): Booking @deprecated(reason: "Use \"node\" query instead.")
 
@@ -2022,6 +2033,7 @@ type Visa {
 }
 
 type WhitelabeledServices {
-  lounge(departureTime: DateTime!): LoungeService
-  parking(fromDate: DateTime!, toDate: DateTime!): ParkingService
+  lounge: LoungeService
+  parking: ParkingService
+  carRental: CarRentalService
 }
