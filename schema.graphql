@@ -28,6 +28,14 @@ type Airline {
   isLowCost: Boolean
 }
 
+type AirportArrivalTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Location of departure"""
+  location: RouteStop
+}
+
 enum AllBookingsOnlyEnum {
   FUTURE
   PAST
@@ -52,6 +60,14 @@ input AreaInput {
   bottomRight: CoordinatesInput!
 }
 
+type ArrivalTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Location of arrival"""
+  location: RouteStop
+}
+
 input AvailableHotelOptionsInput {
   """Three-letters ISO 4217 currency code, e.g. EUR or USD"""
   currency: Currency
@@ -72,6 +88,19 @@ type Baggage {
   width: Int
   weight: Int
   note: String
+}
+
+type BoardingTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Gate at which boarding is done"""
+  gate: String
+}
+
+type BookedFlightTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
 }
 
 type BookedService {
@@ -168,6 +197,11 @@ type BookingAssets {
 
   """URL of the invoice."""
   invoiceUrl: String
+}
+
+type BookingConfirmedTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
 }
 
 """A connection to a list of items."""
@@ -413,6 +447,11 @@ enum BookingStatus {
   DELETED
   CLOSED
   EXPIRED
+}
+
+type BookingTimeline {
+  """List of events of the Bookingtimeline"""
+  events: [TimelineEvent]
 }
 
 enum BookingType {
@@ -682,15 +721,6 @@ enum CustomerBookingsOnlyEnum {
   PAST
 }
 
-type CustomerSupport {
-  phoneNumbers: [CustomerSupportPhoneNumber]
-}
-
-type CustomerSupportPhoneNumber {
-  availabilityDescription: String
-  number: String
-}
-
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -721,6 +751,14 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 """
 scalar DateTime
 
+type DepartureTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """Location of departure"""
+  location: RouteStop
+}
+
 enum DirectAccessURLValues {
   CHANGE_TRIP
   INSURANCE
@@ -739,6 +777,27 @@ enum DirectAccessURLValues {
   VALIDATE_PAYMENT
   TRAVEL_DOCUMENTS
   PAYMENT
+}
+
+type DownloadBoardingPassTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
+type DownloadETicketTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """URL of the eTicket"""
+  ticketUrl: String
+}
+
+type DownloadReceiptTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+
+  """URL of the receipt/invoice"""
+  receiptUrl: String
 }
 
 input DurationInput {
@@ -1396,6 +1455,11 @@ enum Language {
   zhtw @deprecated(reason: "Use \"Accept-Language\" HTTP header to specify locale.")
 }
 
+type LeaveForAirportTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 """
 Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
 """
@@ -1622,6 +1686,11 @@ input PassengersInput {
   infants: Int
 }
 
+type PaymentConfirmedTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 type Price {
   amount: Float
 
@@ -1806,9 +1875,6 @@ type RootQuery {
     last: Int
   ): BookingInterfaceConnection
 
-  """Customer support related data."""
-  customerSupport: CustomerSupport
-
   """Retrieve single FAQ article."""
   FAQArticle(
     """ID of FAQ article to retrieve."""
@@ -1870,6 +1936,12 @@ type RootQuery {
   """
   nearestBooking: BookingInterface
 
+  """Get the timeline for your booking."""
+  bookingTimeline(
+    """Only Booking id can be used as ID."""
+    id: ID!
+  ): BookingTimeline
+
   """Fetches an object given its ID"""
   node(
     """The ID of an object"""
@@ -1897,6 +1969,16 @@ input StopoversInput {
 
   """Maximum number of hours of stopover duration."""
   to: Int
+}
+
+interface TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
+type TransportFromAirportTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
 }
 
 """Travel document info"""
