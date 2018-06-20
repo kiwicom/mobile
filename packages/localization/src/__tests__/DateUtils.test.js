@@ -31,3 +31,26 @@ it('returns correct diff in days', () => {
     DateUtils.diffInDays(new Date('2018-12-24'), new Date('2018-12-30')),
   ).toBe(-6);
 });
+
+describe('isSameDay', () => {
+  it('returns the right answer', () => {
+    expect(
+      DateUtils.isSameDay(new Date('2018-12-24'), new Date('2018-12-24')),
+    ).toBe(true);
+    expect(
+      DateUtils.isSameDay(
+        new Date('2018-12-24T00:00:00.000+02:00'),
+        new Date('2018-12-23T23:00:00.000Z'),
+      ),
+    ).toBe(true);
+    expect(
+      DateUtils.isSameDay(
+        new Date('2019-01-01T00:00:00.000+02:00'),
+        new Date('2018-12-31T23:00:00.000Z'),
+      ),
+    ).toBe(true);
+    expect(
+      DateUtils.isSameDay(new Date('2018-12-24'), new Date('2018-12-23')),
+    ).toBe(false);
+  });
+});
