@@ -47,7 +47,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
-                authentication(userName: "deployment", password: System.getenv("DEPLOYMENT_PASSWORD"))
+                authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
             }
             pom {
                 groupId = "com.trinerdis.skypicker"

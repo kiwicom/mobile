@@ -1,1 +1,1 @@
-include ':app', ':rnkiwimobile', ':react-native-native-modules'
+include ':app', ':rnkiwimobile', ':react-native-native-modules', ':react-native-vector-icons', ':react-native-maps', ':react-native-tooltips'
