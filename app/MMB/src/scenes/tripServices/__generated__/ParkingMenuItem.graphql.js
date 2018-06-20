@@ -24,40 +24,14 @@ const node/*: ConcreteFragment*/ = {
   "name": "ParkingMenuItem",
   "type": "WhitelabeledServices",
   "metadata": null,
-  "argumentDefinitions": [
-    {
-      "kind": "LocalArgument",
-      "name": "departureTime",
-      "type": "DateTime!",
-      "defaultValue": null
-    },
-    {
-      "kind": "LocalArgument",
-      "name": "arrivalTime",
-      "type": "DateTime!",
-      "defaultValue": null
-    }
-  ],
+  "argumentDefinitions": [],
   "selections": [
     {
       "kind": "LinkedField",
       "alias": null,
       "name": "parking",
       "storageKey": null,
-      "args": [
-        {
-          "kind": "Variable",
-          "name": "fromDate",
-          "variableName": "departureTime",
-          "type": "DateTime!"
-        },
-        {
-          "kind": "Variable",
-          "name": "toDate",
-          "variableName": "arrivalTime",
-          "type": "DateTime!"
-        }
-      ],
+      "args": null,
       "concreteType": "ParkingService",
       "plural": false,
       "selections": [
@@ -73,5 +47,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b97fd398cd900a682de7cfe712264018';
+(node/*: any*/).hash = '82e9bb44eeb965f6893bcad381cc19b5';
 module.exports = node;
