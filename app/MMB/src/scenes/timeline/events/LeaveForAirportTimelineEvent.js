@@ -1,29 +1,32 @@
 // @flow
 
 import * as React from 'react';
-import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
+import idx from 'idx';
+import { Translation } from '@kiwicom/mobile-localization';
 import { Text, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
-import type { TimelineEvent as TimelineEventType } from '../__generated__/TimelineQuery.graphql';
+import type { LeaveForAirportTimelineEvent as LeaveForAirportTimelineEventType } from '../__generated__/TimelineQuery.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
 
 type Props = {|
-  +data: TimelineEventType,
+  +data: LeaveForAirportTimelineEventType,
 |};
 
 const LeaveForAirportTimelineEvent = (props: Props) => {
+  const timestamp = idx(props, _ => _.data.timestamp);
   return (
     <TimelineEvent
-      data={props.data}
+      timestamp={timestamp}
       iconVertLines={<TimelineEventIcon name="directions-walk" />}
       mainContent={
-        <TranslationFragment>
+        <React.Fragment>
           <Translation id="mmb.booking_timeline.event.leave_for_airport.title" />
           <Text style={styles.note}>
             <Translation id="mmb.booking_timeline.event.leave_for_airport.note" />
           </Text>
-        </TranslationFragment>
+        </React.Fragment>
       }
     />
   );
@@ -33,4 +36,11 @@ const styles = StyleSheet.create({
   note: { fontSize: 13, color: Color.ink.light },
 });
 
-export default LeaveForAirportTimelineEvent;
+export default createFragmentContainer(
+  LeaveForAirportTimelineEvent,
+  graphql`
+    fragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {
+      timestamp
+    }
+  `,
+);

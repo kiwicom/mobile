@@ -1,21 +1,19 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { DateFormatter } from '@kiwicom/mobile-localization';
 
-import type { TimelineEvent as TimelineEventType } from './__generated__/TimelineQuery.graphql';
 import TimelineEventLayout from './TimelineEventLayout';
 import DateLocation from './TimelineEventDateLocation';
 
 type Props = {|
-  +data: ?TimelineEventType,
+  +timestamp: ?Date,
   +iconVertLines: React.Node,
   +mainContent: React.Node,
 |};
 
 const TimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
+  const { timestamp } = props;
   let time = null;
   let isPastEvent = false;
   if (timestamp) {

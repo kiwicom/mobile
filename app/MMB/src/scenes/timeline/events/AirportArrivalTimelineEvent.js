@@ -5,19 +5,20 @@ import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import type { TimelineEvent as TimelineEventType } from '../__generated__/TimelineQuery.graphql';
+import type { AirportArrivalTimelineEvent as AirportArrivalTimelineEventType } from './__generated__/AirportArrivalTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
 
 type Props = {|
-  +data: ?TimelineEventType,
+  +data: ?AirportArrivalTimelineEventType,
 |};
 
 const AirportArrivalTimelineEvent = (props: Props) => {
   const airport = idx(props, _ => _.data.location.airport.name);
+  const timestamp = idx(props, _ => _.data.timestamp);
   return (
     <TimelineEvent
-      data={props.data}
+      timestamp={timestamp}
       iconVertLines={<TimelineEventIcon name="flight" />}
       mainContent={
         <Translation
