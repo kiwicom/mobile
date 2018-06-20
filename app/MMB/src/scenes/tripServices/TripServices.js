@@ -7,7 +7,7 @@ import { TextIcon, WebView } from '@kiwicom/mobile-shared';
 import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import {
   TitledMenuGroup,
-  MenuItem,
+  TodoMenuItem,
   type RouteNamesType,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
@@ -16,12 +16,9 @@ import idx from 'idx';
 import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
+import CarRentalMenuItem from './CarRentalMenuItem';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TripServicesQueryResponse } from './__generated__/TripServicesQuery.graphql';
-
-const VoidAction = () => {
-  console.warn('TODO');
-};
 
 type Props = {|
   +navigation: NavigationType,
@@ -61,16 +58,12 @@ export default class TripServices extends React.Component<Props> {
         <TitledMenuGroup
           title={<Translation id="mmb.trip_services.local_services" />}
         >
-          <MenuItem
-            title={
-              <Translation id="mmb.trip_services.local_services.car_rental" />
-            }
-            onPress={VoidAction}
-            icon={<TextIcon code="&#xe03a;" />}
+          <CarRentalMenuItem
+            data={availableWhitelabeledServices}
+            onOpenWebview={this.openWebview}
           />
-          <MenuItem
+          <TodoMenuItem
             title={<Translation id="mmb.trip_services.local_services.hotel" />}
-            onPress={VoidAction}
             icon={<TextIcon code="&#xe029;" />}
           />
           <LoungeMenuItem
@@ -81,11 +74,10 @@ export default class TripServices extends React.Component<Props> {
             data={availableWhitelabeledServices}
             onOpenWebview={this.openWebview}
           />
-          <MenuItem
+          <TodoMenuItem
             title={
               <Translation id="mmb.trip_services.local_services.transportation" />
             }
-            onPress={VoidAction}
             icon={<TextIcon code="<" />}
           />
         </TitledMenuGroup>
@@ -95,23 +87,16 @@ export default class TripServices extends React.Component<Props> {
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId, departureTime, arrivalTime }) => (
+      {({ bookingId }) => (
         <PrivateApiRenderer
           query={graphql`
-            query TripServicesQuery(
-              $bookingId: ID!
-              $departureTime: DateTime!
-              $arrivalTime: DateTime!
-            ) {
+            query TripServicesQuery($bookingId: ID!) {
               node(id: $bookingId) {
                 ... on BookingInterface {
                   availableWhitelabeledServices {
-                    ...LoungeMenuItem @arguments(departureTime: $departureTime)
+                    ...CarRentalMenuItem
+                    ...LoungeMenuItem
                     ...ParkingMenuItem
-                      @arguments(
-                        departureTime: $departureTime
-                        arrivalTime: $arrivalTime
-                      )
                   }
                 }
               }
@@ -119,8 +104,6 @@ export default class TripServices extends React.Component<Props> {
           `}
           variables={{
             bookingId,
-            departureTime,
-            arrivalTime,
           }}
           render={this.renderLocalServices}
         />

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1e86acbbdadf745c3794a9eeec9b989a
+ * @relayHash 5032eb09d5ce4bf2fc26c463107fa8a6
  */
 
 /* eslint-disable */
@@ -9,17 +9,16 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type CarRentalMenuItem$ref = any;
 type LoungeMenuItem$ref = any;
 type ParkingMenuItem$ref = any;
 export type TripServicesQueryVariables = {|
-  bookingId: string,
-  departureTime: any,
-  arrivalTime: any,
+  bookingId: string
 |};
 export type TripServicesQueryResponse = {|
   +node: ?{|
     +availableWhitelabeledServices?: ?{|
-      +$fragmentRefs: LoungeMenuItem$ref & ParkingMenuItem$ref
+      +$fragmentRefs: CarRentalMenuItem$ref & LoungeMenuItem$ref & ParkingMenuItem$ref
     |}
   |}
 |};
@@ -29,23 +28,34 @@ export type TripServicesQueryResponse = {|
 /*
 query TripServicesQuery(
   $bookingId: ID!
-  $departureTime: DateTime!
-  $arrivalTime: DateTime!
 ) {
   node(id: $bookingId) {
     __typename
     ... on BookingInterface {
       availableWhitelabeledServices {
-        ...LoungeMenuItem_WJqJd
-        ...ParkingMenuItem_3cQ5np
+        ...CarRentalMenuItem
+        ...LoungeMenuItem
+        ...ParkingMenuItem
       }
     }
     id
   }
 }
 
-fragment LoungeMenuItem_WJqJd on WhitelabeledServices {
-  lounge(departureTime: $departureTime) {
+fragment CarRentalMenuItem on WhitelabeledServices {
+  carRental {
+    relevantCities {
+      whitelabelURL
+      location {
+        ...LocationPopupButton
+        id
+      }
+    }
+  }
+}
+
+fragment LoungeMenuItem on WhitelabeledServices {
+  lounge {
     relevantAirports {
       whitelabelURL
       location {
@@ -56,8 +66,8 @@ fragment LoungeMenuItem_WJqJd on WhitelabeledServices {
   }
 }
 
-fragment ParkingMenuItem_3cQ5np on WhitelabeledServices {
-  parking(fromDate: $departureTime, toDate: $arrivalTime) {
+fragment ParkingMenuItem on WhitelabeledServices {
+  parking {
     whitelabelURL
   }
 }
@@ -82,18 +92,6 @@ var v0 = [
     "name": "bookingId",
     "type": "ID!",
     "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "departureTime",
-    "type": "DateTime!",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "arrivalTime",
-    "type": "DateTime!",
-    "defaultValue": null
   }
 ],
 v1 = [
@@ -105,31 +103,72 @@ v1 = [
   }
 ],
 v2 = {
-  "kind": "Variable",
-  "name": "departureTime",
-  "variableName": "departureTime",
-  "type": null
-},
-v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "whitelabelURL",
   "args": null,
   "storageKey": null
 },
-v4 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
-};
+},
+v4 = [
+  v2,
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "location",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "city",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "LocationArea",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "locationId",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "countryFlagURL",
+        "args": null,
+        "storageKey": null
+      },
+      v3
+    ]
+  }
+];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TripServicesQuery",
   "id": null,
-  "text": "query TripServicesQuery(\n  $bookingId: ID!\n  $departureTime: DateTime!\n  $arrivalTime: DateTime!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      availableWhitelabeledServices {\n        ...LoungeMenuItem_WJqJd\n        ...ParkingMenuItem_3cQ5np\n      }\n    }\n    id\n  }\n}\n\nfragment LoungeMenuItem_WJqJd on WhitelabeledServices {\n  lounge(departureTime: $departureTime) {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem_3cQ5np on WhitelabeledServices {\n  parking(fromDate: $departureTime, toDate: $arrivalTime) {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query TripServicesQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      availableWhitelabeledServices {\n        ...CarRentalMenuItem\n        ...LoungeMenuItem\n        ...ParkingMenuItem\n      }\n    }\n    id\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -158,23 +197,18 @@ return {
             "selections": [
               {
                 "kind": "FragmentSpread",
+                "name": "CarRentalMenuItem",
+                "args": null
+              },
+              {
+                "kind": "FragmentSpread",
                 "name": "LoungeMenuItem",
-                "args": [
-                  v2
-                ]
+                "args": null
               },
               {
                 "kind": "FragmentSpread",
                 "name": "ParkingMenuItem",
-                "args": [
-                  {
-                    "kind": "Variable",
-                    "name": "arrivalTime",
-                    "variableName": "arrivalTime",
-                    "type": null
-                  },
-                  v2
-                ]
+                "args": null
               }
             ]
           }
@@ -215,16 +249,30 @@ return {
               {
                 "kind": "LinkedField",
                 "alias": null,
+                "name": "carRental",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "CarRentalService",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "relevantCities",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "CarRentalServiceRelevantCities",
+                    "plural": true,
+                    "selections": v4
+                  }
+                ]
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
                 "name": "lounge",
                 "storageKey": null,
-                "args": [
-                  {
-                    "kind": "Variable",
-                    "name": "departureTime",
-                    "variableName": "departureTime",
-                    "type": "DateTime!"
-                  }
-                ],
+                "args": null,
                 "concreteType": "LoungeService",
                 "plural": false,
                 "selections": [
@@ -236,53 +284,7 @@ return {
                     "args": null,
                     "concreteType": "LoungeServiceRelevantAirports",
                     "plural": true,
-                    "selections": [
-                      v3,
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "location",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Location",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "LinkedField",
-                            "alias": null,
-                            "name": "city",
-                            "storageKey": null,
-                            "args": null,
-                            "concreteType": "LocationArea",
-                            "plural": false,
-                            "selections": [
-                              {
-                                "kind": "ScalarField",
-                                "alias": null,
-                                "name": "name",
-                                "args": null,
-                                "storageKey": null
-                              }
-                            ]
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "locationId",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "countryFlagURL",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          v4
-                        ]
-                      }
-                    ]
+                    "selections": v4
                   }
                 ]
               },
@@ -291,29 +293,16 @@ return {
                 "alias": null,
                 "name": "parking",
                 "storageKey": null,
-                "args": [
-                  {
-                    "kind": "Variable",
-                    "name": "fromDate",
-                    "variableName": "departureTime",
-                    "type": "DateTime!"
-                  },
-                  {
-                    "kind": "Variable",
-                    "name": "toDate",
-                    "variableName": "arrivalTime",
-                    "type": "DateTime!"
-                  }
-                ],
+                "args": null,
                 "concreteType": "ParkingService",
                 "plural": false,
                 "selections": [
-                  v3
+                  v2
                 ]
               }
             ]
           },
-          v4
+          v3
         ]
       }
     ]
@@ -321,5 +310,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6b2a1de3d5dc0f333c8facc7c4b92c11';
+(node/*: any*/).hash = '769723bb0882609f095aba72b3ab38b0';
 module.exports = node;

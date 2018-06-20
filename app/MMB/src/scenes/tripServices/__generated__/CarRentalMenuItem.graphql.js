@@ -10,24 +10,24 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type LocationPopupButton$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type LoungeMenuItem$ref: FragmentReference;
-export type LoungeMenuItem = {|
-  +lounge: ?{|
-    +relevantAirports: ?$ReadOnlyArray<?{|
+declare export opaque type CarRentalMenuItem$ref: FragmentReference;
+export type CarRentalMenuItem = {|
+  +carRental: ?{|
+    +relevantCities: ?$ReadOnlyArray<?{|
       +whitelabelURL: ?string,
       +location: ?{|
         +$fragmentRefs: LocationPopupButton$ref
       |},
     |}>
   |},
-  +$refType: LoungeMenuItem$ref,
+  +$refType: CarRentalMenuItem$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "LoungeMenuItem",
+  "name": "CarRentalMenuItem",
   "type": "WhitelabeledServices",
   "metadata": null,
   "argumentDefinitions": [],
@@ -35,19 +35,19 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "lounge",
+      "name": "carRental",
       "storageKey": null,
       "args": null,
-      "concreteType": "LoungeService",
+      "concreteType": "CarRentalService",
       "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "relevantAirports",
+          "name": "relevantCities",
           "storageKey": null,
           "args": null,
-          "concreteType": "LoungeServiceRelevantAirports",
+          "concreteType": "CarRentalServiceRelevantCities",
           "plural": true,
           "selections": [
             {
@@ -80,5 +80,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '681e3b6818a52aa4d89fee568b80a528';
+(node/*: any*/).hash = 'a241be08faf7914eca795bd6780839a4';
 module.exports = node;

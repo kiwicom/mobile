@@ -3,7 +3,11 @@
 import * as React from 'react';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
+import {
+  MenuItem,
+  TodoMenuItem,
+  TitledMenuGroup,
+} from '@kiwicom/mobile-navigation';
 
 type Props = {|
   +openSubmenu: (activeId: string, menuId: string) => void,
@@ -32,7 +36,7 @@ export default class TripInfoMenuGroup extends React.Component<Props> {
         icon={<TextIcon code="." />}
         description={<Translation id="mmb.tickets.boarding_passes" />}
       />
-      <MenuItem
+      <TodoMenuItem
         onPress={this.handleOpenExploreSubmenu}
         title={<Translation id="mmb.landing_page.maw.action_button.explore" />}
         isActive={this.props.activeId === 'mmb.main_menu.trip_info.explore'}

@@ -13,9 +13,14 @@ type Props = {|
   +whitelabelURL: string,
   +data: LocationPopupButtonType,
   +onPress: string => void,
+  +displayIata?: boolean,
 |};
 
 class LocationPopupButton extends React.Component<Props> {
+  static defaultProps = {
+    displayIata: false,
+  };
+
   openWhitelabel = () => {
     this.props.onPress(this.props.whitelabelURL);
   };
@@ -28,9 +33,13 @@ class LocationPopupButton extends React.Component<Props> {
       <Touchable onPress={this.openWhitelabel} style={styleSheet.wrapper}>
         <React.Fragment>
           <CountryFlag data={this.props.data} />
-          <Translation
-            passThrough={`in ${cityName || ''} (${locationId || ''})`}
-          />
+          {this.props.displayIata ? (
+            <Translation
+              passThrough={`in ${cityName || ''} (${locationId || ''})`}
+            />
+          ) : (
+            <Translation passThrough={cityName || ''} />
+          )}
         </React.Fragment>
       </Touchable>
     );
