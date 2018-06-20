@@ -19,7 +19,8 @@
     "postinstall": "node ./scripts/configureApplication.js",
     "pod-install": "node ./scripts/podInstall.js",
     "release-hotels": "node ./scripts/releaseHotels.js",
-    "release": "node ./scripts/releaseFramework.js",
+    "release-android": "node ./scripts/buildAndroidSnapshots.js",
+    "release-ios": "node ./scripts/releaseFramework.js",
     "playground": "node ./scripts/activatePlayground.js",
     "flow": "flow app --include-warnings"
   },
@@ -47,7 +48,8 @@
     "node-fetch": "^2.1.2",
     "prettier": "^1.13.5",
     "react-native-dotenv": "^0.1.0",
-    "react-test-renderer": "^16.3.2"
+    "react-test-renderer": "^16.3.2",
+    "url-exists": "^1.0.3"
   },
   "rnpm": {
     "assets": [

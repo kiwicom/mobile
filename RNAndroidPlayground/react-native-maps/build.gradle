@@ -16,8 +16,6 @@ buildscript {
 }
 
 subprojects {
-    buildDir = "$rootProject.projectDir/build"
-
     apply plugin: 'maven'
     apply plugin: 'com.android.library'
 
@@ -37,13 +35,15 @@ subprojects {
         implementation "com.facebook.react:react-native:$reactNativeVersion"
     }
 
+    buildDir = "$rootProject.projectDir/build"
+
     tasks.create('uploadTrinerdis', Upload.class) {
         configuration = project.configurations.archives
         repositories {
             mavenDeployer {
                 repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
-                    authentication(userName: "deployment", password: System.getenv("DEPLOYMENT_PASSWORD"))
-                    pom.version = "$reactNativeMaps-SNAPSHOT"
+                    authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
+                    pom.version = "$version-SNAPSHOT"
                     pom.artifactId = "react-native-maps"
                     pom.groupId = "com.trinerdis.skypicker"
                 }

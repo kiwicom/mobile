@@ -1,3 +1,8 @@
+import groovy.json.JsonSlurper
+
+def inputFile = new File("${projectDir}/../../.build/package.json")
+def packageJson = new JsonSlurper().parseText(inputFile.text)
+
 ext {
     gradlePluginVersion = "3.0.1"
 
@@ -14,11 +19,10 @@ ext {
     testRunnerVersion = "1.0.1"
     espressoVersion = "3.0.1"
 
-    reactNativeVersion = "0.55.4"
-
-    reactNativeVectorIcons = "4.6.0-rc.1"
-    reactNativeMaps = "0.21.0-rc.1"
-    reactNativeTooltips = "0.0.4-rc.1"
+    reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
+    reactNativeVectorIcons = packageJson['dependencies']['react-native-vector-icons'].replace('^', '')
+    reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '')
+    reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '')
 
     reactNativeNativeModules = "0.1.26.rc-1"
     loggingVersion = "0.2.2"
@@ -26,5 +30,5 @@ ext {
 
     playServicesVersion = "11.8.0"
 
-    rnKiwiMobileVersion = "0.23.1.rc-3"
+    rnKiwiMobileVersion = packageJson['version']
 }

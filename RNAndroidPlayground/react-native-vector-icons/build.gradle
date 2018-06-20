@@ -74,15 +74,18 @@ subprojects {
         }
     }
 
-    uploadArchives {
+    buildDir = "$rootProject.projectDir/build"
+
+    tasks.create('uploadTrinerdis', Upload.class) {
+        configuration = project.configurations.archives
         repositories {
             mavenDeployer {
                 repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
-                    authentication(userName: "deployment", password: System.getenv("DEPLOYMENT_PASSWORD"))
+                    authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
+                    pom.version = "$version-SNAPSHOT"
+                    pom.artifactId = "react-native-vector-icons"
+                    pom.groupId = "com.trinerdis.skypicker"
                 }
-                pom.version = "$reactNativeVectorIcons-SNAPSHOT"
-                pom.artifactId = "react-native-vector-icons"
-                pom.groupId = "com.trinerdis.skypicker"
             }
         }
     }
