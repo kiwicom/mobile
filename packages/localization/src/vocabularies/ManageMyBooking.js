@@ -141,4 +141,8 @@ export default {
     'Booked flight to __1_destination__',
   'mmb.booking_timeline.event.airport_arrival.title':
     'Arrive at __1_airport__ airport (__2_code__)',
+
+  'mmb.booking_timeline.event.leave_for_airport.title': 'Leave for the airport',
+  'mmb.booking_timeline.event.leave_for_airport.note':
+    "Don't forget your passport/photo ID.",
 };
