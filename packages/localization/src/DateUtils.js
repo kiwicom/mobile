@@ -25,4 +25,12 @@ DateUtils.diffInDays = (higherDate: Date, lowerDate: Date) => {
   return Math.ceil(diffMs / (1000 * 3600 * 24));
 };
 
+DateUtils.isSameDay = (firstDate: Date, secondDate: Date): boolean => {
+  return (
+    firstDate.getUTCFullYear() === secondDate.getUTCFullYear() &&
+    firstDate.getUTCMonth() === secondDate.getUTCMonth() &&
+    firstDate.getUTCDate() === secondDate.getUTCDate()
+  );
+};
+
 export default DateUtils;
