@@ -15,6 +15,7 @@ type Props = {|
 
 const BookedFlightTimelineEvent = (props: Props) => {
   const timestamp = idx(props, _ => _.data.timestamp);
+  const destination = idx(props, _ => _.data.location.airport.city.name);
   return (
     <TimelineEvent
       timestamp={timestamp}
@@ -23,7 +24,7 @@ const BookedFlightTimelineEvent = (props: Props) => {
         <Translation
           id="mmb.booking_timeline.event.booked_flight.title"
           values={{
-            destination: 'Wonderland', // TODO in GQL proxy
+            destination,
           }}
         />
       }
@@ -36,6 +37,13 @@ export default createFragmentContainer(
   graphql`
     fragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {
       timestamp
+      location {
+        airport {
+          city {
+            name
+          }
+        }
+      }
     }
   `,
 );
