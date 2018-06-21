@@ -1,15 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import {
-  StyleSheet,
-  Color,
-  AdaptableLayout,
-  Touchable,
-  TextIcon,
-} from '@kiwicom/mobile-shared';
+import { AdaptableLayout, Touchable, TextIcon } from '@kiwicom/mobile-shared';
 import { SeparatorFullWidth, MenuItem } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
@@ -29,13 +22,9 @@ function HeaderShared(props: HeaderSharedProps) {
 
   return (
     <React.Fragment>
-      <View style={styleSheet.wrapper}>
-        <StatusBar data={booking} />
-        <View style={styleSheet.separator}>
-          <SeparatorFullWidth />
-        </View>
-        {props.children}
-      </View>
+      <StatusBar data={booking} />
+      <SeparatorFullWidth />
+      {props.children}
     </React.Fragment>
   );
 }
@@ -116,13 +105,3 @@ export default createFragmentContainer(
     }
   `,
 );
-
-const styleSheet = StyleSheet.create({
-  wrapper: {
-    backgroundColor: Color.white,
-    padding: 10,
-  },
-  separator: {
-    marginVertical: 10,
-  },
-});

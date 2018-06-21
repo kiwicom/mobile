@@ -1,6 +1,8 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
+import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
@@ -10,7 +12,7 @@ import TripInfoMulticity from './TripInfoMulticity';
 import type { TripInfo as TripInfoType } from './__generated__/TripInfo.graphql';
 
 type Props = {|
-  data: TripInfoType,
+  +data: TripInfoType,
 |};
 
 function TripInfo(props: Props) {
@@ -18,11 +20,11 @@ function TripInfo(props: Props) {
   const type = idx(data, _ => _.__typename);
 
   return (
-    <React.Fragment>
+    <View style={styleSheet.wrapper}>
       {type === 'BookingOneWay' && <TripInfoOneWay data={data} />}
       {type === 'BookingReturn' && <TripInfoReturn data={data} />}
       {type === 'BookingMulticity' && <TripInfoMulticity data={data} />}
-    </React.Fragment>
+    </View>
   );
 }
 
@@ -43,3 +45,10 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styleSheet = StyleSheet.create({
+  wrapper: {
+    backgroundColor: Color.white,
+    padding: 10,
+  },
+});

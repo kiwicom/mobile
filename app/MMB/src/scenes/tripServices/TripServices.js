@@ -17,6 +17,7 @@ import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
 import CarRentalMenuItem from './CarRentalMenuItem';
+import InsuranceOverview from './insurance/InsuranceOverview';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TripServicesQueryResponse } from './__generated__/TripServicesQuery.graphql';
 
@@ -25,7 +26,7 @@ type Props = {|
 |};
 
 export default class TripServices extends React.Component<Props> {
-  navigate = (key: RouteNamesType, params: Object) => {
+  navigate = (key: RouteNamesType, params?: Object) => {
     this.props.navigation.navigate({
       routeName: key,
       key: `key-${key}`,
@@ -37,6 +38,10 @@ export default class TripServices extends React.Component<Props> {
     this.navigate('mmb.trip_services.webview', {
       url,
     });
+  };
+
+  openInsurance = () => {
+    this.navigate('mmb.trip_services.insurance');
   };
 
   renderLocalServices = (rendererProps: TripServicesQueryResponse) => {
@@ -52,7 +57,7 @@ export default class TripServices extends React.Component<Props> {
         <TitledMenuGroup
           title={<Translation id="mmb.trip_services.general_services" />}
         >
-          <InsuranceMenuItem />
+          <InsuranceMenuItem onOpenInsurance={this.openInsurance} />
         </TitledMenuGroup>
 
         <TitledMenuGroup
@@ -116,6 +121,11 @@ export const TripServicesSubmenuItems = {
   'mmb.trip_services.webview': {
     screen: function TripServicesSubmenuWebview({ url }: {| +url: string |}) {
       return <WebView source={{ uri: url }} />;
+    },
+  },
+  'mmb.trip_services.insurance': {
+    screen: function TripServicesSubmenuInsurance() {
+      return <InsuranceOverview />;
     },
   },
 };
