@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3df0397d6f46f39ff8c7224bd950a04b
+ * @relayHash d63faacc4932f7d15c167e0b667eee6b
  */
 
 /* eslint-disable */
@@ -50,6 +50,14 @@ query TimelineQuery(
 
 fragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {
   timestamp
+  location {
+    airport {
+      city {
+        name
+      }
+      id
+    }
+  }
 }
 
 fragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {
@@ -97,13 +105,27 @@ v3 = {
   "name": "timestamp",
   "args": null,
   "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TimelineQuery",
   "id": null,
-  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      name\n      id\n    }\n  }\n}\n",
+  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      name\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -218,20 +240,49 @@ return {
                         "concreteType": "Location",
                         "plural": false,
                         "selections": [
+                          v4,
+                          v5
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "InlineFragment",
+                "type": "BookedFlightTimelineEvent",
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "location",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "RouteStop",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "airport",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Location",
+                        "plural": false,
+                        "selections": [
                           {
-                            "kind": "ScalarField",
+                            "kind": "LinkedField",
                             "alias": null,
-                            "name": "name",
+                            "name": "city",
+                            "storageKey": null,
                             "args": null,
-                            "storageKey": null
+                            "concreteType": "LocationArea",
+                            "plural": false,
+                            "selections": [
+                              v4
+                            ]
                           },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "id",
-                            "args": null,
-                            "storageKey": null
-                          }
+                          v5
                         ]
                       }
                     ]
