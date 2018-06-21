@@ -101,6 +101,9 @@ type BoardingTimelineEvent implements TimelineEvent {
 type BookedFlightTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+
+  """Location of arrival"""
+  location: RouteStop
 }
 
 type BookedService {
