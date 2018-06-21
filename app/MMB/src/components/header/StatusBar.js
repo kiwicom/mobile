@@ -11,7 +11,7 @@ import StatusBarIcon from './StatusBarIcon';
 import type { StatusBar as StatusBarType } from './__generated__/StatusBar.graphql';
 
 type Props = {|
-  data: StatusBarType,
+  +data: StatusBarType,
 |};
 
 function StatusBar(props: Props) {
@@ -42,6 +42,8 @@ export default createFragmentContainer(
 const styleSheet = StyleSheet.create({
   row: {
     flexDirection: 'row',
+    backgroundColor: Color.white,
+    padding: 10,
   },
   icon: {
     flexGrow: 1,

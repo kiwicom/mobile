@@ -5,7 +5,9 @@ import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TodoMenuItem } from '@kiwicom/mobile-navigation';
 
-type Props = {||};
+type Props = {|
+  onOpenInsurance: () => void,
+|};
 
 export default class InsuranceMenuItem extends React.Component<Props> {
   render = () => {
@@ -22,6 +24,7 @@ export default class InsuranceMenuItem extends React.Component<Props> {
           <Translation id="mmb.trip_services.general_services.insurance" />
         }
         icon={<TextIcon code="'" />}
+        onPress={this.props.onOpenInsurance}
       />
     );
   };
