@@ -26,6 +26,7 @@ type MMBStackNavigatorNames =
   | 'mmb.flight_services.pets'
   | 'mmb.flight_services.special_assistance'
   | 'mmb.flight_services.sports_equipment'
+  | 'mmb.trip_services.insurance'
   | 'mmb.trip_services.webview'
   | 'mmb.help.help'
   | 'mmb.help.support'
