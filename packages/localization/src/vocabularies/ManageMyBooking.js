@@ -75,6 +75,10 @@ export default {
   'mmb.trip_services.local_services.parking': 'Parking',
   'mmb.trip_services.local_services.transportation': 'Transportation',
   'mmb.trip_services.locations_popup.title': 'For which part of the trip?',
+  'mmb.trip_services.order.pax': 'Passengers',
+  'mmb.trip_services.order.total': 'Total price including all taxes and fees',
+  'mmb.trip_services.order.process_to_payment': 'Proceed to payment',
+  'mmb.trip_services.order.process_to_refund': 'Proceed With The Refund',
 
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',
