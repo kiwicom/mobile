@@ -29,10 +29,8 @@ const getDependencyVersion = packageName => {
 // Get rnkiwimobile version
 const RNKiwiMobileVersion = buildPackage.version;
 
-const deployToTrinerdis = (packageName, manualVersion, buildJS = false) => {
-  const version = manualVersion
-    ? manualVersion
-    : getDependencyVersion(packageName);
+const deployDependency = packageName => {
+  const version = getDependencyVersion(packageName);
 
   return new Promise((resolve, reject) =>
     urlExists(
@@ -43,12 +41,6 @@ const deployToTrinerdis = (packageName, manualVersion, buildJS = false) => {
           return;
         }
         if (!exists) {
-          if (buildJS) {
-            console.log('Generating Android JS build...');
-            child_process.execSync('scripts/buildAndroidJavascript.sh', {
-              stdio: 'inherit',
-            });
-          }
           console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
           exec(
             `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
@@ -70,15 +62,30 @@ const deployToTrinerdis = (packageName, manualVersion, buildJS = false) => {
   );
 };
 
+const deployLibrary = (packageName, version) => {
+  console.log('Generating Android JS build...');
+  child_process.execSync('scripts/buildAndroidJavascript.sh', {
+    stdio: 'inherit',
+  });
+  console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
+  exec(
+    `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
+      // $FlowFixMe we already checked in the top that is defined
+      process.env.ANDROID_DEPLOYMENT_PASSWORD
+    } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
+  );
+  console.log(`${packageName}/${version}-SNAPSHOT was successfully deployed.`);
+};
+
 (() => {
   console.log(`Start building Android SNAPSHOT(s)...`);
   Promise.all([
-    deployToTrinerdis('react-native-maps'),
-    deployToTrinerdis('react-native-vector-icons'),
-    deployToTrinerdis('react-native-tooltips'),
+    deployDependency('react-native-maps'),
+    deployDependency('react-native-vector-icons'),
+    deployDependency('react-native-tooltips'),
   ]).then(() => {
     // Main package to publish: rnkiwimobile
     console.log('-----');
-    deployToTrinerdis('rnkiwimobile', RNKiwiMobileVersion, true);
+    deployLibrary('rnkiwimobile', RNKiwiMobileVersion);
   });
 })();
