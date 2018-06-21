@@ -17,7 +17,10 @@ import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
 import CarRentalMenuItem from './CarRentalMenuItem';
-import InsuranceOverview from './insurance/InsuranceOverview';
+import InsuranceOverviewScene from './insurance/InsuranceOverviewScene';
+import InsuranceSelectionScene from './insurance/InsuranceSelectionScene';
+import PaymentScene from './insurance/PaymentScene';
+import RefundScene from './insurance/RefundScene';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TripServicesQueryResponse } from './__generated__/TripServicesQuery.graphql';
 
@@ -124,8 +127,27 @@ export const TripServicesSubmenuItems = {
     },
   },
   'mmb.trip_services.insurance': {
-    screen: function TripServicesSubmenuInsurance() {
-      return <InsuranceOverview />;
+    screen: function TripServicesSubmenuInsurance({
+      navigation,
+    }: {|
+      +navigation: NavigationType,
+    |}) {
+      return <InsuranceOverviewScene navigation={navigation} />;
+    },
+  },
+  'mmb.trip_services.insurance.selection': {
+    screen: function TripServicesSubmenuInsuranceSelection() {
+      return <InsuranceSelectionScene />;
+    },
+  },
+  'mmb.trip_services.insurance.payment': {
+    screen: function TripServicesSubmenuInsurancePayment() {
+      return <PaymentScene />;
+    },
+  },
+  'mmb.trip_services.insurance.refund': {
+    screen: function TripServicesSubmenuInsuranceRefund() {
+      return <RefundScene />;
     },
   },
 };

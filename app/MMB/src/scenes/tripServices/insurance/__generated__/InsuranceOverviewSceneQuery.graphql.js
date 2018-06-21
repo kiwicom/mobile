@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a5323ba0491d91324cb89ac9aaf78f12
+ * @relayHash 428dadb103e803c67834a81dfb4cde8f
  */
 
 /* eslint-disable */
@@ -11,10 +11,10 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type DestinationImage$ref = any;
 type TripInfo$ref = any;
-export type InsuranceOverviewQueryVariables = {|
+export type InsuranceOverviewSceneQueryVariables = {|
   bookingId: string
 |};
-export type InsuranceOverviewQueryResponse = {|
+export type InsuranceOverviewSceneQueryResponse = {|
   +node: ?{|
     +$fragmentRefs: DestinationImage$ref & TripInfo$ref
   |}
@@ -23,7 +23,7 @@ export type InsuranceOverviewQueryResponse = {|
 
 
 /*
-query InsuranceOverviewQuery(
+query InsuranceOverviewSceneQuery(
   $bookingId: ID!
 ) {
   node(id: $bookingId) {
@@ -226,13 +226,13 @@ v7 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "InsuranceOverviewQuery",
+  "name": "InsuranceOverviewSceneQuery",
   "id": null,
-  "text": "query InsuranceOverviewQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...DestinationImage\n      ...TripInfo\n    }\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query InsuranceOverviewSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...DestinationImage\n      ...TripInfo\n    }\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "InsuranceOverviewQuery",
+    "name": "InsuranceOverviewSceneQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -262,7 +262,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "InsuranceOverviewQuery",
+    "name": "InsuranceOverviewSceneQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -383,5 +383,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '122c9b2d75a21bde26d6e9dfd0454193';
+(node/*: any*/).hash = '8f25093bb99be69848eced1e2f4e8bc6';
 module.exports = node;
