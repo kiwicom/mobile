@@ -9,6 +9,7 @@ import idx from 'idx';
 
 import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
+import MobileTripOverviewHandle from './MobileTripOverviewHandle';
 import TripOverview from '../../scenes/tripOverview/TripOverview';
 import type { Header as HeaderType } from './__generated__/Header.graphql';
 
@@ -77,14 +78,9 @@ class Header extends React.Component<HeaderProps, HeaderState> {
             <Touchable onPress={this.toggleExpandable}>
               <React.Fragment>
                 <TripInfo data={booking} />
-                {this.state.expanded ? (
-                  <React.Fragment>
-                    <TextIcon code="m" />
-                    <TripOverview data={booking} />
-                  </React.Fragment>
-                ) : (
-                  <TextIcon code="l" />
-                )}
+                <MobileTripOverviewHandle isExpanded={this.state.expanded}>
+                  <TripOverview data={booking} />
+                </MobileTripOverviewHandle>
               </React.Fragment>
             </Touchable>
           </HeaderShared>
