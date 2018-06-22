@@ -9,24 +9,26 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type AirportArrivalTimelineEvent$ref: FragmentReference;
-export type AirportArrivalTimelineEvent = {|
+declare export opaque type ArrivalTimelineEvent$ref: FragmentReference;
+export type ArrivalTimelineEvent = {|
   +timestamp: ?any,
   +location: ?{|
     +airport: ?{|
       +locationId: ?string,
-      +name: ?string,
+      +city: ?{|
+        +name: ?string
+      |},
     |}
   |},
-  +$refType: AirportArrivalTimelineEvent$ref,
+  +$refType: ArrivalTimelineEvent$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "AirportArrivalTimelineEvent",
-  "type": "AirportArrivalTimelineEvent",
+  "name": "ArrivalTimelineEvent",
+  "type": "ArrivalTimelineEvent",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -63,11 +65,22 @@ const node/*: ConcreteFragment*/ = {
               "storageKey": null
             },
             {
-              "kind": "ScalarField",
+              "kind": "LinkedField",
               "alias": null,
-              "name": "name",
+              "name": "city",
+              "storageKey": null,
               "args": null,
-              "storageKey": null
+              "concreteType": "LocationArea",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "name",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
             }
           ]
         }
@@ -76,5 +89,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '7d8949cffbf26574a6730a5f2093c45f';
+(node/*: any*/).hash = 'b416d14cfcdd3e21a377f335bab254b2';
 module.exports = node;

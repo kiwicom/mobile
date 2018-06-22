@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash db08cba5f0bbd770df8ce73a3c9706f1
+ * @relayHash 8d0c673652daca940b0cd81dcca2528e
  */
 
 /* eslint-disable */
@@ -10,8 +10,10 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type AirportArrivalTimelineEvent$ref = any;
+type ArrivalTimelineEvent$ref = any;
 type BoardingTimelineEvent$ref = any;
 type BookedFlightTimelineEvent$ref = any;
+type DepartureTimelineEvent$ref = any;
 type DownloadInvoiceTimelineEvent$ref = any;
 type LeaveForAirportTimelineEvent$ref = any;
 export type TimelineQueryVariables = {|
@@ -22,7 +24,7 @@ export type TimelineQueryResponse = {|
     +events: ?$ReadOnlyArray<?{|
       +__typename: string,
       +timestamp: ?any,
-      +$fragmentRefs: BookedFlightTimelineEvent$ref & LeaveForAirportTimelineEvent$ref & AirportArrivalTimelineEvent$ref & DownloadInvoiceTimelineEvent$ref & BoardingTimelineEvent$ref,
+      +$fragmentRefs: BookedFlightTimelineEvent$ref & LeaveForAirportTimelineEvent$ref & AirportArrivalTimelineEvent$ref & DownloadInvoiceTimelineEvent$ref & BoardingTimelineEvent$ref & DepartureTimelineEvent$ref & ArrivalTimelineEvent$ref,
     |}>
   |}
 |};
@@ -52,6 +54,12 @@ query TimelineQuery(
       ... on BoardingTimelineEvent {
         ...BoardingTimelineEvent
       }
+      ... on DepartureTimelineEvent {
+        ...DepartureTimelineEvent
+      }
+      ... on ArrivalTimelineEvent {
+        ...ArrivalTimelineEvent
+      }
     }
   }
 }
@@ -76,6 +84,7 @@ fragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {
   timestamp
   location {
     airport {
+      locationId
       name
       id
     }
@@ -109,6 +118,32 @@ fragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {
 
 fragment BoardingTimelineEvent on BoardingTimelineEvent {
   timestamp
+}
+
+fragment DepartureTimelineEvent on DepartureTimelineEvent {
+  timestamp
+  location {
+    airport {
+      city {
+        name
+      }
+      id
+    }
+  }
+  duration
+}
+
+fragment ArrivalTimelineEvent on ArrivalTimelineEvent {
+  timestamp
+  location {
+    airport {
+      locationId
+      city {
+        name
+      }
+      id
+    }
+  }
 }
 */
 
@@ -146,18 +181,37 @@ v3 = {
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "locationId",
   "args": null,
   "storageKey": null
 },
 v5 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "city",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "LocationArea",
+  "plural": false,
+  "selections": [
+    v5
+  ]
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v6 = [
+v8 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -167,28 +221,27 @@ v6 = [
     "concreteType": "Location",
     "plural": false,
     "selections": [
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "city",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "LocationArea",
-        "plural": false,
-        "selections": [
-          v4
-        ]
-      },
-      v5
+      v6,
+      v7
     ]
   }
-];
+],
+v9 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "location",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v8
+};
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TimelineQuery",
   "id": null,
-  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n}\n",
+  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n      ... on DepartureTimelineEvent {\n        ...DepartureTimelineEvent\n      }\n      ... on ArrivalTimelineEvent {\n        ...ArrivalTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n}\n\nfragment DepartureTimelineEvent on DepartureTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  duration\n}\n\nfragment ArrivalTimelineEvent on ArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -217,6 +270,28 @@ return {
             "selections": [
               v2,
               v3,
+              {
+                "kind": "InlineFragment",
+                "type": "ArrivalTimelineEvent",
+                "selections": [
+                  {
+                    "kind": "FragmentSpread",
+                    "name": "ArrivalTimelineEvent",
+                    "args": null
+                  }
+                ]
+              },
+              {
+                "kind": "InlineFragment",
+                "type": "DepartureTimelineEvent",
+                "selections": [
+                  {
+                    "kind": "FragmentSpread",
+                    "name": "DepartureTimelineEvent",
+                    "args": null
+                  }
+                ]
+              },
               {
                 "kind": "InlineFragment",
                 "type": "BoardingTimelineEvent",
@@ -305,6 +380,51 @@ return {
               v3,
               {
                 "kind": "InlineFragment",
+                "type": "ArrivalTimelineEvent",
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "location",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "RouteStop",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "airport",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Location",
+                        "plural": false,
+                        "selections": [
+                          v4,
+                          v6,
+                          v7
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "InlineFragment",
+                "type": "DepartureTimelineEvent",
+                "selections": [
+                  v9,
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "duration",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              },
+              {
+                "kind": "InlineFragment",
                 "type": "DownloadInvoiceTimelineEvent",
                 "selections": [
                   {
@@ -338,7 +458,7 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v6
+                        "selections": v8
                       },
                       {
                         "kind": "LinkedField",
@@ -348,9 +468,9 @@ return {
                         "args": null,
                         "concreteType": "RouteStop",
                         "plural": false,
-                        "selections": v6
+                        "selections": v8
                       },
-                      v5
+                      v7
                     ]
                   }
                 ]
@@ -378,7 +498,8 @@ return {
                         "plural": false,
                         "selections": [
                           v4,
-                          v5
+                          v5,
+                          v7
                         ]
                       }
                     ]
@@ -389,16 +510,7 @@ return {
                 "kind": "InlineFragment",
                 "type": "BookedFlightTimelineEvent",
                 "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "location",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "RouteStop",
-                    "plural": false,
-                    "selections": v6
-                  }
+                  v9
                 ]
               }
             ]
@@ -410,5 +522,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd318a5972014164b3b4094366794dd8c';
+(node/*: any*/).hash = 'e52aa18b04c7796a31fe8192cfc145b5';
 module.exports = node;

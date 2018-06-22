@@ -9,24 +9,26 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type AirportArrivalTimelineEvent$ref: FragmentReference;
-export type AirportArrivalTimelineEvent = {|
+declare export opaque type DepartureTimelineEvent$ref: FragmentReference;
+export type DepartureTimelineEvent = {|
   +timestamp: ?any,
   +location: ?{|
     +airport: ?{|
-      +locationId: ?string,
-      +name: ?string,
+      +city: ?{|
+        +name: ?string
+      |}
     |}
   |},
-  +$refType: AirportArrivalTimelineEvent$ref,
+  +duration: ?number,
+  +$refType: DepartureTimelineEvent$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "AirportArrivalTimelineEvent",
-  "type": "AirportArrivalTimelineEvent",
+  "name": "DepartureTimelineEvent",
+  "type": "DepartureTimelineEvent",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -56,25 +58,36 @@ const node/*: ConcreteFragment*/ = {
           "plural": false,
           "selections": [
             {
-              "kind": "ScalarField",
+              "kind": "LinkedField",
               "alias": null,
-              "name": "locationId",
+              "name": "city",
+              "storageKey": null,
               "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "name",
-              "args": null,
-              "storageKey": null
+              "concreteType": "LocationArea",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "name",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
             }
           ]
         }
       ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "duration",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '7d8949cffbf26574a6730a5f2093c45f';
+(node/*: any*/).hash = '8248ebb91d0ebb6e8d68c9b281868b1f';
 module.exports = node;

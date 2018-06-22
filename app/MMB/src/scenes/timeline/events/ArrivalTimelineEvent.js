@@ -1,32 +1,33 @@
 // @flow
 
-import React from 'react';
+import * as React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Icon } from '@kiwicom/mobile-shared';
 
-import type { AirportArrivalTimelineEvent as AirportArrivalTimelineEventType } from './__generated__/AirportArrivalTimelineEvent.graphql';
+import type { ArrivalTimelineEvent as ArrivalTimelineEventType } from './__generated__/ArrivalTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
 
 type Props = {|
-  +data: ?AirportArrivalTimelineEventType,
+  +data: ArrivalTimelineEventType,
 |};
 
-const AirportArrivalTimelineEvent = (props: Props) => {
-  const airport = idx(props, _ => _.data.location.airport.name);
-  const code = idx(props, _ => _.data.location.airport.locationId);
+const ArrivalTimelineEvent = (props: Props) => {
   const timestamp = idx(props, _ => _.data.timestamp);
+  const airport = idx(props, _ => _.data.location.airport.city.name);
+  const code = idx(props, _ => _.data.location.airport.locationId);
+
   return (
     <TimelineEvent
       timestamp={timestamp}
       iconVertLines={
-        <TimelineEventIcon icon={<Icon size={17} name="flight" />} />
+        <TimelineEventIcon icon={<Icon size={17} name="flight-land" />} />
       }
       mainContent={
         <Translation
-          id="mmb.booking_timeline.event.airport_arrival.title"
+          id="mmb.booking_timeline.event.arrival.title"
           values={{
             airport,
             code,
@@ -38,14 +39,16 @@ const AirportArrivalTimelineEvent = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  AirportArrivalTimelineEvent,
+  ArrivalTimelineEvent,
   graphql`
-    fragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {
+    fragment ArrivalTimelineEvent on ArrivalTimelineEvent {
       timestamp
       location {
         airport {
           locationId
-          name
+          city {
+            name
+          }
         }
       }
     }

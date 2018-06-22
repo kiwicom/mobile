@@ -11,6 +11,8 @@ import BookingDetailContext from '../../context/BookingDetailContext';
 import BookedFlightTimelineEvent from './events/BookedFlightTimelineEvent';
 import AirportArrivalTimelineEvent from './events/AirportArrivalTimelineEvent';
 import DownloadInvoiceTimelineEvent from './events/DownloadInvoiceTimelineEvent';
+import DepartureTimelineEvent from './events/DepartureTimelineEvent';
+import ArrivalTimelineEvent from './events/ArrivalTimelineEvent';
 import LeaveForAirportTimelineEvent from './events/LeaveForAirportTimelineEvent';
 import BoardingTimelineEvent from './events/BoardingTimelineEvent';
 import DaySeparator from './DaySeparator';
@@ -30,6 +32,10 @@ function getValidTimelineEvent(data) {
         return <LeaveForAirportTimelineEvent data={data} />;
       case 'BoardingTimelineEvent':
         return <BoardingTimelineEvent data={data} />;
+      case 'ArrivalTimelineEvent':
+        return <ArrivalTimelineEvent data={data} />;
+      case 'DepartureTimelineEvent':
+        return <DepartureTimelineEvent data={data} />;
       default:
         return null;
     }
@@ -101,6 +107,12 @@ export default class Timeline extends React.Component<{||}> {
                   }
                   ... on BoardingTimelineEvent {
                     ...BoardingTimelineEvent
+                  }
+                  ... on DepartureTimelineEvent {
+                    ...DepartureTimelineEvent
+                  }
+                  ... on ArrivalTimelineEvent {
+                    ...ArrivalTimelineEvent
                   }
                 }
               }
