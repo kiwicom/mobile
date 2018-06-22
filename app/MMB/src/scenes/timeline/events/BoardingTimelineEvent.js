@@ -4,8 +4,9 @@ import React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, Color, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon } from '@kiwicom/mobile-shared';
 
+import Note from '../MainContentNote';
 import type { BoardingTimelineEvent as BoardingTimelineEventType } from './__generated__/BoardingTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
@@ -23,9 +24,9 @@ const BoardingTimelineEvent = (props: Props) => {
       mainContent={
         <React.Fragment>
           <Translation id="mmb.booking_timeline.event.gate_arrival.title" />
-          <Text style={styles.note}>
+          <Note>
             <Translation id="mmb.booking_timeline.event.gate_arrival.note" />
-          </Text>
+          </Note>
         </React.Fragment>
       }
     />
@@ -40,7 +41,3 @@ export default createFragmentContainer(
     }
   `,
 );
-
-const styles = StyleSheet.create({
-  note: { fontSize: 13, color: Color.ink.light },
-});

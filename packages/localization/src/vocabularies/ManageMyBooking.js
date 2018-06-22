@@ -160,11 +160,32 @@ export default {
     'The invoice is not yet available.',
   'mmb.booking_timeline.event.download_invoice.note_singular':
     '__1_route__, __2_passengers__× traveller.',
-
   'mmb.booking_timeline.event.download_invoice.note_plural':
     '__1_route__, __2_passengers__× travellers.',
   'mmb.booking_timeline.event.download_invoice.button.title': 'Download',
 
   'mmb.booking_timeline.event.gate_arrival.title': 'Boarding at the gate',
   'mmb.booking_timeline.event.gate_arrival.note': 'Beware of the distance.',
+  'mmb.booking_timeline.event.arrival.title':
+    'Welcome to __1_airport__ airport (__2_code__)',
+
+  'mmb.booking_timeline.event.departure.title':
+    'Plane to __destination__ takes off',
+  'mmb.booking_timeline.event.departure.note': 'Enjoy your flight.',
+  'mmb.booking_timeline.event.departure.note_hour':
+    'Enjoy your flight. The flight will take __hours__ hour.',
+  'mmb.booking_timeline.event.departure.note_hours':
+    'Enjoy your flight. The flight will take __hours__ hours.',
+  'mmb.booking_timeline.event.departure.note_minutes':
+    'Enjoy your flight. The flight will take __minutes__ minutes.',
+  'mmb.booking_timeline.event.departure.note_minute':
+    'Enjoy your flight. The flight will take __minutes__ minute.',
+  'mmb.booking_timeline.event.departure.note_hour_minute':
+    'Enjoy your flight. The flight will take __hours__ hour and __minutes__ minute.',
+  'mmb.booking_timeline.event.departure.note_hour_minutes':
+    'Enjoy your flight. The flight will take __hours__ hour and __minutes__ minutes.',
+  'mmb.booking_timeline.event.departure.note_hours_minute':
+    'Enjoy your flight. The flight will take __hours__ hours and __minutes__ minute.',
+  'mmb.booking_timeline.event.departure.note_hours_minutes':
+    'Enjoy your flight. The flight will take __hours__ hours and __minutes__ minutes.',
 };
