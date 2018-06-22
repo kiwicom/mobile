@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
   mainContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    paddingTop: 20,
+    paddingBottom: 10,
+    paddingEnd: 10,
   },
 });

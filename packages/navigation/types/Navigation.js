@@ -37,6 +37,7 @@ type MMBStackNavigatorNames =
   | 'mmb.other.open'
   | 'mmb.other.refund'
   | 'mmb.tickets.e_ticket'
+  | 'mmb.timeline.invoice'
   | 'DetailScreen';
 
 type HomepageStackNavigatorRouteNames = 'Home';
