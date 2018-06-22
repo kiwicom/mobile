@@ -3,9 +3,10 @@
 import * as React from 'react';
 import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, Color, StyleSheet, Icon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
+import Note from '../MainContentNote';
 import type { LeaveForAirportTimelineEvent as LeaveForAirportTimelineEventType } from '../__generated__/TimelineQuery.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
@@ -25,18 +26,14 @@ const LeaveForAirportTimelineEvent = (props: Props) => {
       mainContent={
         <React.Fragment>
           <Translation id="mmb.booking_timeline.event.leave_for_airport.title" />
-          <Text style={styles.note}>
+          <Note>
             <Translation id="mmb.booking_timeline.event.leave_for_airport.note" />
-          </Text>
+          </Note>
         </React.Fragment>
       }
     />
   );
 };
-
-const styles = StyleSheet.create({
-  note: { fontSize: 13, color: Color.ink.light },
-});
 
 export default createFragmentContainer(
   LeaveForAirportTimelineEvent,

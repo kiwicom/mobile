@@ -5,19 +5,14 @@ import idx from 'idx';
 import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import {
-  Text,
-  StyleSheet,
-  Color,
-  TextButton,
-  Icon,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, TextButton, Icon } from '@kiwicom/mobile-shared';
 import {
   type NavigationType,
   type RouteNamesType,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 
+import Note from '../MainContentNote';
 import Invoice from '../../../components/Invoice';
 import type { DownloadInvoiceTimelineEvent as DownloadInvoiceTimelineEventType } from './__generated__/DownloadInvoiceTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
@@ -33,30 +28,21 @@ function renderNote(
   numberPassengers: ?number,
   route: ?string,
 ): React.Element<typeof Translation> {
-  if (!disabled) {
-    if (numberPassengers && numberPassengers >= 1) {
-      return (
-        <Translation
-          id="mmb.booking_timeline.event.download_invoice.note_plural"
-          values={{
-            route: route,
-            passengers: numberPassengers,
-          }}
-        />
-      );
+  let id = 'mmb.booking_timeline.event.download_invoice.note_not_available';
+  if (!disabled && numberPassengers) {
+    id = 'mmb.booking_timeline.event.download_invoice.note_singular';
+    if (numberPassengers > 1) {
+      id = 'mmb.booking_timeline.event.download_invoice.note_plural';
     }
-    return (
-      <Translation
-        id="mmb.booking_timeline.event.download_invoice.note_singular"
-        values={{
-          route: route,
-          passengers: numberPassengers,
-        }}
-      />
-    );
   }
   return (
-    <Translation id="mmb.booking_timeline.event.download_invoice.note_not_available" />
+    <Translation
+      id={id}
+      values={{
+        route: route,
+        passengers: numberPassengers,
+      }}
+    />
   );
 }
 
@@ -110,7 +96,7 @@ class DownloadInvoiceTimelineEvent extends React.Component<Props> {
         mainContent={
           <View style={styles.container}>
             <Translation id="mmb.booking_timeline.event.download_invoice.title" />
-            <Text style={styles.note}>{note}</Text>
+            <Note>{note}</Note>
             <View style={styles.button}>
               <TextButton
                 disabled={disabled}
@@ -159,7 +145,6 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-  note: { fontSize: 13, color: Color.ink.light },
   button: {
     flex: 1,
     marginTop: 10,
