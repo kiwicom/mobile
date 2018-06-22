@@ -8,6 +8,7 @@ import DateLocation from './TimelineEventDateLocation';
 
 type Props = {|
   +timestamp: ?Date,
+  +displayTime: boolean,
   +iconVertLines: React.Node,
   +mainContent: React.Node,
 |};
@@ -21,7 +22,7 @@ const TimelineEvent = (props: Props) => {
     isPastEvent = new Date() - new Date(timestamp) > 0;
   }
   let dateLocation = null;
-  if (time) {
+  if (time && props.displayTime) {
     dateLocation = <DateLocation time={time} />;
   }
 
@@ -38,6 +39,10 @@ const TimelineEvent = (props: Props) => {
       mainContent={props.mainContent}
     />
   );
+};
+
+TimelineEvent.defaultProps = {
+  displayTime: true,
 };
 
 export default TimelineEvent;

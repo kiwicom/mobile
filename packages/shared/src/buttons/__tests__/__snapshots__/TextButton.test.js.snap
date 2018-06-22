@@ -4,12 +4,16 @@ exports[`renders button with custom title 1`] = `
 <Button
   disabled={false}
   onPress={[Function]}
+  style={false}
 >
   <ButtonTitle
     style={
-      Object {
-        "color": "#ffffff",
-      }
+      Array [
+        Object {
+          "color": "#ffffff",
+        },
+        false,
+      ]
     }
     text={
       <Translation

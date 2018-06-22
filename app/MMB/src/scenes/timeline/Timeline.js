@@ -10,15 +10,19 @@ import type { TimelineQueryResponse } from './__generated__/TimelineQuery.graphq
 import BookingDetailContext from '../../context/BookingDetailContext';
 import BookedFlightTimelineEvent from './events/BookedFlightTimelineEvent';
 import AirportArrivalTimelineEvent from './events/AirportArrivalTimelineEvent';
+import DownloadInvoiceTimelineEvent from './events/DownloadInvoiceTimelineEvent';
 import LeaveForAirportTimelineEvent from './events/LeaveForAirportTimelineEvent';
 import DaySeparator from './DaySeparator';
 
-// @TODO Display day banners only once for each day
+export { TimelineSubmenuItems } from './events/DownloadInvoiceTimelineEvent';
+
 function getValidTimelineEvent(data) {
   if (data && data.__typename) {
     switch (data.__typename) {
       case 'BookedFlightTimelineEvent':
         return <BookedFlightTimelineEvent data={data} />;
+      case 'DownloadInvoiceTimelineEvent':
+        return <DownloadInvoiceTimelineEvent data={data} />;
       case 'AirportArrivalTimelineEvent':
         return <AirportArrivalTimelineEvent data={data} />;
       case 'LeaveForAirportTimelineEvent':
@@ -88,6 +92,9 @@ export default class Timeline extends React.Component<{||}> {
                   }
                   ... on AirportArrivalTimelineEvent {
                     ...AirportArrivalTimelineEvent
+                  }
+                  ... on DownloadInvoiceTimelineEvent {
+                    ...DownloadInvoiceTimelineEvent
                   }
                 }
               }

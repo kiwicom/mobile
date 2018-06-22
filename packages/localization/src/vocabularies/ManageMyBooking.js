@@ -149,4 +149,14 @@ export default {
   'mmb.booking_timeline.event.leave_for_airport.title': 'Leave for the airport',
   'mmb.booking_timeline.event.leave_for_airport.note':
     "Don't forget your passport/photo ID.",
+
+  'mmb.booking_timeline.event.download_invoice.title': 'Download invoice',
+  'mmb.booking_timeline.event.download_invoice.note_not_available':
+    'The invoice is not yet available.',
+  'mmb.booking_timeline.event.download_invoice.note_singular':
+    '__1_route__, __2_passengers__× traveller.',
+
+  'mmb.booking_timeline.event.download_invoice.note_plural':
+    '__1_route__, __2_passengers__× travellers.',
+  'mmb.booking_timeline.event.download_invoice.button.title': 'Download',
 };

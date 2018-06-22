@@ -20,7 +20,7 @@ import TripServices, {
 } from '../scenes/tripServices/TripServices';
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
 import TripOverviewTablet from '../scenes/tripOverview/TripOverviewTablet';
-import Timeline from '../scenes/timeline/Timeline';
+import Timeline, { TimelineSubmenuItems } from '../scenes/timeline/Timeline';
 
 export const MenuComponents = {
   'mmb.trip_overview': {
@@ -111,6 +111,7 @@ export const MenuComponents = {
   ...HelpSubmenuItems,
   ...OtherSubmenuItems,
   ...TicketSceneSubMenus,
+  ...TimelineSubmenuItems,
 };
 
 type Props = {|
