@@ -19,8 +19,18 @@ type Props = {|
  */
 export default function TextButton(props: Props) {
   return (
-    <Button onPress={props.onPress} disabled={props.disabled}>
-      <ButtonTitle style={styleSheet.buttonText} text={props.title} />
+    <Button
+      onPress={props.onPress}
+      disabled={props.disabled}
+      style={props.disabled && styleSheet.buttonDisabled}
+    >
+      <ButtonTitle
+        style={[
+          styleSheet.buttonText,
+          props.disabled && styleSheet.buttonTextDisabled,
+        ]}
+        text={props.title}
+      />
     </Button>
   );
 }
@@ -32,5 +42,11 @@ TextButton.defaultProps = {
 const styleSheet = StyleSheet.create({
   buttonText: {
     color: Color.white,
+  },
+  buttonDisabled: {
+    backgroundColor: Color.grey.$300,
+  },
+  buttonTextDisabled: {
+    color: Color.ink.dark,
   },
 });

@@ -24,12 +24,16 @@ export default function TimelineEventIcon(props: Props) {
   return (
     <View style={styles.container}>
       <View
-        style={[styles.line, props.isFirst && styles.resetBackgroundColor]}
+        style={[
+          styles.line,
+          styles.topLine,
+          props.isFirst && styles.resetBackgroundColor,
+        ]}
       />
       <View style={styles.iconBorder}>
         {props.isPastEvent ? pastEventIcon : icon}
       </View>
-      <View style={styles.line} />
+      <View style={[styles.line, styles.bottomLine]} />
     </View>
   );
 }
@@ -37,17 +41,22 @@ export default function TimelineEventIcon(props: Props) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
+    justifyContent: 'flex-start',
+    height: '100%',
   },
   line: {
     backgroundColor: Color.ink.lighter,
-    flex: 1,
-    height: 30,
     width: 1,
   },
   resetBackgroundColor: {
     backgroundColor: 'transparent',
+  },
+  topLine: {
+    height: 20,
+  },
+  bottomLine: {
+    minHeight: 10,
+    flex: 1,
   },
   icon: {
     color: Color.product.normal,

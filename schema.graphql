@@ -804,12 +804,18 @@ type DownloadETicketTimelineEvent implements TimelineEvent {
   ticketUrl: String
 }
 
-type DownloadReceiptTimelineEvent implements TimelineEvent {
+type DownloadInvoiceTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
 
-  """URL of the receipt/invoice"""
-  receiptUrl: String
+  """URL of the invoice"""
+  invoiceUrl: String
+
+  """Number of passengers"""
+  numberPassengers: Int
+
+  """Legs of the booking"""
+  legs: [Leg]
 }
 
 input DurationInput {
@@ -880,6 +886,9 @@ type FAQArticle {
   """The ID of an object"""
   id: ID!
 
+  """Original numeric id of the article"""
+  originalId: Int
+
   """Title of the article"""
   title: String
 
@@ -917,6 +926,9 @@ type FAQArticleEdge {
 type FAQCategory {
   """The ID of an object"""
   id: ID!
+
+  """Original numeric id of the FAQ category"""
+  originalId: Int
 
   """Title of the FAQ category"""
   title: String
