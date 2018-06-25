@@ -8,9 +8,9 @@ import Text from './Text';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
-  amount: number | null, // may be null (compatible with GraphQL query failure)
-  currency: string | null, // may be null (compatible with GraphQL query failure)
-  style?: StylePropType,
+  +amount: number | null,
+  +currency: string | null,
+  +style?: StylePropType,
 |};
 
 type State = {|
