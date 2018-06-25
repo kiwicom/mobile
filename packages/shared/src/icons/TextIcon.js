@@ -9,13 +9,13 @@ import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  code: string,
+  +code: string,
   style?: StylePropType,
 |};
 
 const styleSheet = StyleSheet.create({
   icon: {
-    fontFamily: 'spfont',
+    fontFamily: 'spfont', // font with all the icons (see Fontastic)
     includeFontPadding: false,
     textAlignVertical: 'center',
   },
