@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Keyboard } from 'react-native';
 import { TextInput, TextButton } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -45,6 +45,7 @@ export default class EmailLoginForm extends React.Component<Props, State> {
         } else {
           this.props.onSuccess(createAccessToken(response && response.token));
         }
+        Keyboard.dismiss();
       },
     );
 

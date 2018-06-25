@@ -1,32 +1,66 @@
 // @flow
 
 import * as React from 'react';
-import { AsyncStorage, Alert } from 'react-native';
-import { SimpleCard, LayoutSingleColumn } from '@kiwicom/mobile-shared';
+import { AsyncStorage, View } from 'react-native';
+import {
+  SimpleCard,
+  LayoutSingleColumn,
+  DismissKeyboardView,
+  StyleSheet,
+} from '@kiwicom/mobile-shared';
 
 import Login from './components/authentication/Login';
 import Logout from './components/authentication/Logout';
 
-export default class LoginScreen extends React.Component<{||}> {
+type State = {|
+  isLoggedIn: boolean,
+|};
+
+export default class LoginScreen extends React.Component<{||}, State> {
+  state = {
+    isLoggedIn: false,
+  };
+
+  componentDidMount = async () => {
+    const token = await AsyncStorage.getItem('mobile:MMB-Token');
+
+    if (token != null) {
+      this.setState({ isLoggedIn: true });
+    }
+  };
+
   onLogin = (token: string) => {
     AsyncStorage.setItem('mobile:MMB-Token', token);
-    Alert.alert('Successfully logged in');
+    this.setState({ isLoggedIn: true });
   };
 
   onLogout = () => {
     // TODO: clean the Relay offline cache (?)
     AsyncStorage.removeItem('mobile:MMB-Token');
-    Alert.alert('Token removed from local storage');
+    this.setState({ isLoggedIn: false });
   };
 
   render = () => {
     return (
-      <LayoutSingleColumn>
-        <SimpleCard>
-          <Login onLogin={this.onLogin} />
-          <Logout onLogout={this.onLogout} />
-        </SimpleCard>
-      </LayoutSingleColumn>
+      <View style={styles.container}>
+        <DismissKeyboardView>
+          <LayoutSingleColumn>
+            <SimpleCard>
+              {this.state.isLoggedIn ? (
+                <Logout onLogout={this.onLogout} />
+              ) : (
+                <Login onLogin={this.onLogin} />
+              )}
+            </SimpleCard>
+          </LayoutSingleColumn>
+        </DismissKeyboardView>
+      </View>
     );
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 60,
+  },
+});
