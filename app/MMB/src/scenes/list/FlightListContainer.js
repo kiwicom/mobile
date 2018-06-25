@@ -21,9 +21,9 @@ import type { FlightListContainer_future as FutureFlightType } from './__generat
 import type { FlightListContainer_past as PastFlightType } from './__generated__/FlightListContainer_past.graphql';
 
 type Props = {|
-  future: FutureFlightType,
-  past: PastFlightType,
-  relay: RelayRefetchProp,
+  +future: FutureFlightType,
+  +past: PastFlightType,
+  +relay: RelayRefetchProp,
 |};
 
 type State = {|

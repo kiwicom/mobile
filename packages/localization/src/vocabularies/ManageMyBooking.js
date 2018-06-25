@@ -80,6 +80,11 @@ export default {
   'mmb.trip_services.order.process_to_payment': 'Proceed to payment',
   'mmb.trip_services.order.process_to_refund': 'Proceed With The Refund',
 
+  // MMB Insurance
+  'mmb.trip_services.insurance.variant.none': 'No Insurance',
+  'mmb.trip_services.insurance.variant.basic': 'Travel Basic',
+  'mmb.trip_services.insurance.variant.plus': 'Travel Plus',
+
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',
   'mmb.support.phone.all_numbers': 'All Numbers',
