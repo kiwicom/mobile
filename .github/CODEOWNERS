@@ -6,7 +6,7 @@
 # the repo. Unless a later match takes precedence, they will
 # be requested for review when someone opens a pull request.
 
-* @tbergq @mrtnzlml
+* @tbergq
 
 # Any files in the "android" and "ios" directory at the
 # root of the repository and any of its subdirectories.
