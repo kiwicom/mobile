@@ -9,8 +9,9 @@ import MenuGroup from './MenuGroup';
 import MenuGroupTitle from './MenuGroupTitle';
 
 type Props = {|
-  title: React.Element<typeof Translation>,
-  children: React.Node,
+  +title: React.Element<typeof Translation>,
+  +children: React.Node,
+  +customSeparator?: React.Node,
 |};
 
 /**
@@ -42,7 +43,8 @@ type Props = {|
  * |                              |
  * `------------------------------`
  */
-export default function TitledMenuGroup({ title, children }: Props) {
+export default function TitledMenuGroup(props: Props) {
+  const { title, children, customSeparator } = props;
   let newChildren = Array.isArray(children) ? children : [children];
 
   if (Platform.OS === 'android') {
@@ -55,7 +57,7 @@ export default function TitledMenuGroup({ title, children }: Props) {
     <React.Fragment>
       {Platform.OS === 'ios' && <MenuGroupTitle title={title} />}
       <SimpleCard style={styles.card}>
-        <MenuGroup>{newChildren}</MenuGroup>
+        <MenuGroup customSeparator={customSeparator}>{newChildren}</MenuGroup>
       </SimpleCard>
     </React.Fragment>
   );
