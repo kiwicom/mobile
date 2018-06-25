@@ -2,12 +2,14 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
+import idx from 'idx';
 import { LayoutSingleColumn, TextButton } from '@kiwicom/mobile-shared';
 import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
-  TitledMenuGroup,
   MenuItem,
+  TitledMenuGroup,
+  SeparatorFullWidth,
   type RouteNamesType,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
@@ -19,8 +21,8 @@ import BookingDetailContext from '../../../context/BookingDetailContext';
 import type { InsuranceOverviewSceneQueryResponse } from './__generated__/InsuranceOverviewSceneQuery.graphql';
 
 type Props = {|
-  data: InsuranceOverviewSceneQueryResponse,
-  navigation: NavigationType,
+  +data: InsuranceOverviewSceneQueryResponse,
+  +navigation: NavigationType,
 |};
 
 class InsuranceOverviewScene extends React.Component<Props> {
@@ -46,28 +48,34 @@ class InsuranceOverviewScene extends React.Component<Props> {
 
   render = () => {
     const { data } = this.props;
+    const pax = idx(data, _ => _.node.passengers) || [];
+
     return (
       <React.Fragment>
         <ScrollView>
           <LayoutSingleColumn>
             <DestinationImage data={data.node} />
+
             <TripInfo data={data.node} />
+
             <TitledMenuGroup
               title={<Translation id="mmb.trip_services.order.pax" />}
+              customSeparator={<SeparatorFullWidth />}
             >
-              <MenuItem
-                title={
-                  <Translation passThrough="TODO: list of PAX (links to the insurance selection)" />
+              {pax.map(pap => {
+                if (!pap) {
+                  return null;
                 }
-                onPress={this.goToTheInsuranceSelection}
-              />
-              <MenuItem
-                title={
-                  <Translation passThrough="TODO: list of PAX (links to the insurance selection)" />
-                }
-                onPress={this.goToTheInsuranceSelection}
-              />
+                return (
+                  <MenuItem
+                    key={pap.databaseId}
+                    title={<Translation passThrough={pap.fullName} />}
+                    onPress={this.goToTheInsuranceSelection}
+                  />
+                );
+              })}
             </TitledMenuGroup>
+
             <View style={{ padding: 10 }}>
               <TextButton
                 title={
@@ -76,6 +84,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
                 onPress={this.goToTheInsuranceRefund}
               />
             </View>
+
             <View style={{ padding: 10 }}>
               <TextButton
                 title={
@@ -120,6 +129,10 @@ export default class InsuranceOverviewSceneContainer extends React.Component<
                   ... on BookingInterface {
                     ...DestinationImage
                     ...TripInfo
+                    passengers {
+                      databaseId
+                      fullName
+                    }
                   }
                 }
               }
