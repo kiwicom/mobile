@@ -6,8 +6,8 @@ import { View, Platform } from 'react-native';
 import { SeparatorFullWidth, SeparatorTrimmed } from './Separators';
 
 type Props = {|
-  children: React.Node,
-  customSeparator?: React.Node,
+  +children: React.Node,
+  +customSeparator?: React.Node,
 |};
 
 /**
