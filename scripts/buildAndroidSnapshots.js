@@ -42,12 +42,17 @@ const deployDependency = packageName => {
         }
         if (!exists) {
           console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
-          exec(
-            `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
-              // $FlowFixMe we already checked in the top that is defined
-              process.env.ANDROID_DEPLOYMENT_PASSWORD
-            } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
-          );
+          try {
+            exec(
+              `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
+                // $FlowFixMe we already checked in the top that is defined
+                process.env.ANDROID_DEPLOYMENT_PASSWORD
+              } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
+            );
+          } catch (err) {
+            reject(err);
+            return;
+          }
           console.log(
             `${packageName}/${version}-SNAPSHOT was successfully deployed.`,
           );
@@ -68,12 +73,17 @@ const deployLibrary = (packageName, version) => {
     stdio: 'inherit',
   });
   console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
-  exec(
-    `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
-      // $FlowFixMe we already checked in the top that is defined
-      process.env.ANDROID_DEPLOYMENT_PASSWORD
-    } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
-  );
+  try {
+    exec(
+      `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
+        // $FlowFixMe we already checked in the top that is defined
+        process.env.ANDROID_DEPLOYMENT_PASSWORD
+      } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
+    );
+  } catch (err) {
+    console.log('ERROR:', err);
+    process.exit(-1);
+  }
   console.log(`${packageName}/${version}-SNAPSHOT was successfully deployed.`);
 };
 
@@ -83,9 +93,14 @@ const deployLibrary = (packageName, version) => {
     deployDependency('react-native-maps'),
     deployDependency('react-native-vector-icons'),
     deployDependency('react-native-tooltips'),
-  ]).then(() => {
-    // Main package to publish: rnkiwimobile
-    console.log('-----');
-    deployLibrary('rnkiwimobile', RNKiwiMobileVersion);
-  });
+  ])
+    .then(() => {
+      // Main package to publish: rnkiwimobile
+      console.log('-----');
+      deployLibrary('rnkiwimobile', RNKiwiMobileVersion);
+    })
+    .catch(err => {
+      console.log('ERROR:', err);
+      process.exit(-1);
+    });
 })();
