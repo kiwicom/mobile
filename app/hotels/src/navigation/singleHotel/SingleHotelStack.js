@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Dimensions as RNDimensions } from 'react-native'; // eslint-disable-line no-restricted-imports
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   HeaderTitle,
@@ -10,7 +10,7 @@ import {
   createTransparentHeaderStyle,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Device } from '@kiwicom/mobile-shared';
+import { Dimensions, Device } from '@kiwicom/mobile-shared';
 
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
@@ -23,13 +23,27 @@ export default StackNavigator(
     SingleHotel: {
       screen: SingleHotelNavigationScreen,
       navigationOptions: {
-        headerTitle:
-          Device.isNarrowLayout() && Platform.OS === 'android' ? null : (
-            <HeaderTitle>
-              <Translation id="hotels.navigation.title.single_hotel" />
-            </HeaderTitle>
-          ),
-        ...createTransparentHeaderStyle(),
+        headerTitle: (
+          <Dimensions.Consumer>
+            {dimensions => {
+              return Device.isNarrowLayout(dimensions) &&
+                Platform.OS === 'android' ? null : (
+                <HeaderTitle>
+                  <Translation id="hotels.navigation.title.single_hotel" />
+                </HeaderTitle>
+              );
+            }}
+          </Dimensions.Consumer>
+        ),
+        /**
+         * @todo Due to static nature of React Navigation, this configuration
+         * will not update when screen width changes (when used with SplitView)
+         * or rotates.
+         *
+         * This has to be fixed by providing a custom Header component that forks
+         * React Navigation one and uses Dimensions.Consumer to re-render itself.
+         */
+        ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
     SingleHotelMap: {

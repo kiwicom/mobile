@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   wide: {
-    maxWidth: Device.getWideDeviceThreshold(),
+    maxWidth: Device.DEVICE_THRESHOLD,
   },
   noResultsContainer: {
     alignItems: 'center',
@@ -53,15 +53,13 @@ const styles = StyleSheet.create({
   },
 });
 
+const CARD_ITEM_WIDTH = Device.DEVICE_THRESHOLD * SNAP_WIDTH;
+
 class HotelSwipeList extends React.Component<Props, State> {
   carouselRef: React.ElementRef<typeof Carousel>;
 
   componentDidUpdate = () => {
     this.carouselRef.snapToItem(this.props.selectedIndex, false);
-  };
-
-  getCardItemWidth = () => {
-    return Device.getWideDeviceThreshold() * SNAP_WIDTH;
   };
 
   getSelectedAddress = () => {
@@ -75,7 +73,7 @@ class HotelSwipeList extends React.Component<Props, State> {
 
     return (
       <HotelSwipeItem
-        width={this.getCardItemWidth()}
+        width={CARD_ITEM_WIDTH}
         data={item.node}
         onPress={onOpenSingleHotel}
       />
@@ -99,8 +97,8 @@ class HotelSwipeList extends React.Component<Props, State> {
                 ref={this.storeRef}
                 data={data}
                 renderItem={this.renderItem}
-                sliderWidth={Device.getWideDeviceThreshold()}
-                itemWidth={this.getCardItemWidth()}
+                sliderWidth={Device.DEVICE_THRESHOLD}
+                itemWidth={CARD_ITEM_WIDTH}
                 inactiveSlideScale={1}
                 inactiveSlideOpacity={0.5}
                 decelerationRate="fast"
@@ -122,7 +120,7 @@ class HotelSwipeList extends React.Component<Props, State> {
     );
 
     return (
-      <AdaptableLayout.Consumer
+      <AdaptableLayout
         renderOnWide={
           <View style={[styles.fullWidth, styles.wide]}>{child}</View>
         }

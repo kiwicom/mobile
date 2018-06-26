@@ -34,7 +34,7 @@ export class HotelInformation extends React.Component<Props> {
 
   render = () => {
     return (
-      <AdaptableLayout.Consumer
+      <AdaptableLayout
         renderOnNarrow={
           <React.Fragment>
             {this.renderLocation(false)}

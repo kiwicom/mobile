@@ -9,7 +9,9 @@ import {
   Text,
   StyleSheet,
   Touchable,
+  Dimensions,
   type StylePropType,
+  type DimensionType,
 } from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
@@ -41,7 +43,7 @@ const createNavigationOptions = () => {
   if (Platform.OS === 'android') {
     navigationOptions.headerStyle.paddingTop = StatusBar.currentHeight;
     navigationOptions.headerStyle.height =
-      StatusBar.currentHeight + Device.getToolbarHeight();
+      StatusBar.currentHeight + Device.TOOLBAR_HEIGHT;
   }
   return navigationOptions;
 };
@@ -93,7 +95,10 @@ export const StackNavigator = (
     [string]: {|
       +screen: mixed,
       +navigationOptions?: {|
-        +headerTitle: React.Element<typeof HeaderTitle> | null,
+        +headerTitle:
+          | React.Element<typeof HeaderTitle>
+          | null
+          | React.Element<typeof Dimensions.Consumer>,
         +headerStyle?: StylePropType,
         +mode?: 'modal',
       |},
@@ -120,8 +125,8 @@ export const StackNavigatorOptions = {
   },
 };
 
-export const createTransparentHeaderStyle = () => {
-  if (Platform.OS === 'ios' || Device.isWideLayout()) {
+export const createTransparentHeaderStyle = (dim: DimensionType) => {
+  if (Platform.OS === 'ios' || Device.isWideLayout(dim)) {
     // normal header on iOS and wide Android
     return {};
   }

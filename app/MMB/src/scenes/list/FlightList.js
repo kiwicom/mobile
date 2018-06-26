@@ -3,7 +3,12 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, Device, AdaptableLayout } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  Device,
+  AdaptableLayout,
+  Dimensions,
+} from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
 import OneWayFlight from './OneWayFlight';
@@ -20,17 +25,6 @@ type State = {|
 |};
 
 export class FlightList extends React.Component<Props, State> {
-  state = {
-    isPortrait: true,
-  };
-
-  componentDidMount = () => this.onLayoutChange();
-
-  onLayoutChange = () => {
-    const isPortrait = Device.isPortrait();
-    this.setState({ isPortrait });
-  };
-
   render = () => {
     const flights = idx(this.props, _ => _.data.edges);
 
@@ -55,19 +49,26 @@ export class FlightList extends React.Component<Props, State> {
       }
 
       return (
-        <AdaptableLayout.Consumer
+        <AdaptableLayout
           key={key}
           renderOnNarrow={<View style={styles.itemContainer}>{Component}</View>}
           renderOnWide={
-            <View
-              style={[
-                styles.itemContainer,
-                this.state.isPortrait ? styles.portrait : styles.landscape,
-              ]}
-              onLayout={this.onLayoutChange}
-            >
-              {Component}
-            </View>
+            <Dimensions.Consumer>
+              {dimensions => {
+                return (
+                  <View
+                    style={[
+                      styles.itemContainer,
+                      Device.isPortrait(dimensions)
+                        ? styles.portrait
+                        : styles.landscape,
+                    ]}
+                  >
+                    {Component}
+                  </View>
+                );
+              }}
+            </Dimensions.Consumer>
           }
         />
       );

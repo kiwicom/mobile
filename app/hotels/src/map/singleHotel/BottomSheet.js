@@ -13,7 +13,7 @@ import { openHeight, closedHeight } from '../bottomSheetDimensions';
 
 const styles = StyleSheet.create({
   wideContainer: {
-    width: Device.getWideDeviceThreshold(),
+    width: Device.DEVICE_THRESHOLD,
     alignSelf: 'center',
   },
   narrowContainer: {
@@ -35,7 +35,7 @@ export default class BottomSheet extends React.Component<Props> {
     );
 
     return (
-      <AdaptableLayout.Consumer
+      <AdaptableLayout
         renderOnWide={<View style={styles.wideContainer}>{content}</View>}
         renderOnNarrow={<View style={styles.narrowContainer}>{content}</View>}
       />

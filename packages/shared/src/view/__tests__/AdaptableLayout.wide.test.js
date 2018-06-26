@@ -3,11 +3,11 @@
 import * as React from 'react';
 import Renderer from 'react-test-renderer';
 
+import Dimensions from '../Dimensions';
 import AdaptableLayout from '../AdaptableLayout';
 
 jest.mock('../../Device', () => ({
   isWideLayout: () => true,
-  subscribeToDimensionChanges: () => () => {},
 }));
 
 const RendersCorrectly = () => 'I am going to render without any problems...';
@@ -19,12 +19,12 @@ const ThrowsError = () => {
 it('renders wide components', () => {
   expect(
     Renderer.create(
-      <AdaptableLayout.Provider>
-        <AdaptableLayout.Consumer
+      <Dimensions.Provider dimensions={{ width: 700, height: 500 }}>
+        <AdaptableLayout
           renderOnWide={<RendersCorrectly />}
           renderOnNarrow={<ThrowsError />}
         />
-      </AdaptableLayout.Provider>,
+      </Dimensions.Provider>,
     ),
   ).toMatchSnapshot();
 });
@@ -32,9 +32,9 @@ it('renders wide components', () => {
 it('renders empty element if there is no wide layout', () => {
   expect(
     Renderer.create(
-      <AdaptableLayout.Provider>
-        <AdaptableLayout.Consumer renderOnNarrow={<ThrowsError />} />
-      </AdaptableLayout.Provider>,
+      <Dimensions.Provider dimensions={{ width: 200, height: 500 }}>
+        <AdaptableLayout renderOnNarrow={<ThrowsError />} />
+      </Dimensions.Provider>,
     ),
   ).toMatchSnapshot();
 });
