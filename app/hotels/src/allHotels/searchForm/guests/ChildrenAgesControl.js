@@ -3,13 +3,14 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import AgeControl from './AgeControl';
 import type { ChildAge } from './GuestsTypes';
 
 type Props = {|
-  childrenAges: ChildAge[],
-  onChange: (childrenAges: ChildAge[]) => void,
+  +childrenAges: ChildAge[],
+  +onChange: (childrenAges: ChildAge[]) => void,
 |};
 
 export default class ChildrenAgesControl extends React.Component<Props> {
@@ -24,7 +25,12 @@ export default class ChildrenAgesControl extends React.Component<Props> {
     return (
       <View key={index} style={isLastItem ? null : styles.ageControlContainer}>
         <AgeControl
-          label={`Child ${index + 1}`}
+          label={
+            <Translation
+              id="hotels_search.guests_modal.children_index"
+              values={{ index: index + 1 }}
+            />
+          }
           age={item.age}
           onChange={this.handleAgeChange(index)}
           style={styles.ageControl}
