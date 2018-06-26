@@ -7,6 +7,14 @@ function addDays(date: Date, days: number): Date {
   return result;
 }
 
+const getUTCYearMonthDate = (date: Date) => {
+  return {
+    year: date.getUTCFullYear(),
+    month: date.getUTCMonth(),
+    date: date.getUTCDate(),
+  };
+};
+
 function DateUtils(rawDate: Date = new Date()) {
   return {
     addDays: (count: number) => addDays(rawDate, count),
@@ -26,10 +34,36 @@ DateUtils.diffInDays = (higherDate: Date, lowerDate: Date) => {
 };
 
 DateUtils.isSameDay = (firstDate: Date, secondDate: Date): boolean => {
+  const first = getUTCYearMonthDate(firstDate);
+  const second = getUTCYearMonthDate(secondDate);
   return (
-    firstDate.getUTCFullYear() === secondDate.getUTCFullYear() &&
-    firstDate.getUTCMonth() === secondDate.getUTCMonth() &&
-    firstDate.getUTCDate() === secondDate.getUTCDate()
+    first.year === second.year &&
+    first.month === second.month &&
+    first.date === second.date
+  );
+};
+
+DateUtils.isAfterDate = (firstDate: Date, secondDate: Date): boolean => {
+  const first = getUTCYearMonthDate(firstDate);
+  const second = getUTCYearMonthDate(secondDate);
+  return (
+    first.year > second.year ||
+    (first.year === second.year && first.month > second.month) ||
+    (first.year === second.year &&
+      first.month === second.month &&
+      first.date > second.date)
+  );
+};
+
+DateUtils.isBeforeDate = (firstDate: Date, secondDate: Date): boolean => {
+  const first = getUTCYearMonthDate(firstDate);
+  const second = getUTCYearMonthDate(secondDate);
+  return (
+    first.year < second.year ||
+    (first.year === second.year && first.month < second.month) ||
+    (first.year === second.year &&
+      first.month === second.month &&
+      first.date < second.date)
   );
 };
 

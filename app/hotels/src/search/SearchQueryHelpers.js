@@ -40,14 +40,16 @@ export const getSearchQueryParams = (
 
 export const isDateBeforeToday = (date: Date) => {
   const today = new Date();
-  return date < today && date.getUTCDay() !== today.getUTCDay();
+  return DateUtils.isBeforeDate(date, today);
 };
 
 export const updateCheckinDateIfBeforeToday = (
   search: SearchParams,
   onSearchChange: OnChangeSearchParams => void,
 ) => {
-  if (isDateBeforeToday(search.checkin)) {
+  // In case we do not get sent any dates from native,
+  // we should update if checkin date is missing
+  if (search.checkin == null || isDateBeforeToday(search.checkin)) {
     onSearchChange({
       ...search,
       checkin: new Date(),
