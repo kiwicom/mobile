@@ -6,6 +6,7 @@ import {
   getSearchQueryParams,
   hasCoordinates,
   updateCheckinDateIfBeforeToday,
+  isDateBeforeToday,
 } from '../SearchQueryHelpers';
 import { sanitizeDate } from '../../GraphQLSanitizers';
 
@@ -125,6 +126,21 @@ describe('SearchQueryHelpers', () => {
 
       updateCheckinDateIfBeforeToday(search, onSearchChange);
       expect(onSearchChange).toHaveBeenCalled();
+    });
+  });
+
+  describe('isDateBeforeToday', () => {
+    it('should return true if date is before today', () => {
+      expect(isDateBeforeToday(DateUtils().addDays(-1))).toBe(true);
+      expect(isDateBeforeToday(DateUtils().addDays(-7))).toBe(true);
+    });
+
+    it('should return false if date is today', () => {
+      expect(isDateBeforeToday(new Date())).toBe(false);
+    });
+
+    it('should return false if date is after today', () => {
+      expect(isDateBeforeToday(DateUtils().addDays(1))).toBe(false);
     });
   });
 });

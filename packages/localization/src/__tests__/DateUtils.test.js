@@ -53,4 +53,62 @@ describe('isSameDay', () => {
       DateUtils.isSameDay(new Date('2018-12-24'), new Date('2018-12-23')),
     ).toBe(false);
   });
+
+  describe('isAfterDate', () => {
+    it('returns right answer', () => {
+      expect(
+        DateUtils.isAfterDate(new Date('2018-12-24'), new Date('2018-12-23')),
+      ).toBe(true);
+      expect(
+        DateUtils.isAfterDate(new Date('2018-12-23'), new Date('2018-12-24')),
+      ).toBe(false);
+
+      expect(
+        DateUtils.isAfterDate(new Date('2019-12-24'), new Date('2018-12-24')),
+      ).toBe(true);
+      expect(
+        DateUtils.isAfterDate(new Date('2018-12-24'), new Date('2019-12-24')),
+      ).toBe(false);
+
+      expect(
+        DateUtils.isAfterDate(new Date('2018-12-24'), new Date('2018-11-24')),
+      ).toBe(true);
+      expect(
+        DateUtils.isAfterDate(new Date('2018-11-24'), new Date('2019-12-24')),
+      ).toBe(false);
+
+      expect(
+        DateUtils.isAfterDate(new Date('2018-12-24'), new Date('2018-12-24')),
+      ).toBe(false);
+    });
+  });
+
+  describe('isBeforeDate', () => {
+    it('returns right answer', () => {
+      expect(
+        DateUtils.isBeforeDate(new Date('2018-12-24'), new Date('2018-12-23')),
+      ).toBe(false);
+      expect(
+        DateUtils.isBeforeDate(new Date('2018-12-23'), new Date('2018-12-24')),
+      ).toBe(true);
+
+      expect(
+        DateUtils.isBeforeDate(new Date('2019-12-24'), new Date('2018-12-24')),
+      ).toBe(false);
+      expect(
+        DateUtils.isBeforeDate(new Date('2018-12-24'), new Date('2019-12-24')),
+      ).toBe(true);
+
+      expect(
+        DateUtils.isBeforeDate(new Date('2018-12-24'), new Date('2018-11-24')),
+      ).toBe(false);
+      expect(
+        DateUtils.isBeforeDate(new Date('2018-11-24'), new Date('2019-12-24')),
+      ).toBe(true);
+
+      expect(
+        DateUtils.isBeforeDate(new Date('2018-12-24'), new Date('2018-12-24')),
+      ).toBe(false);
+    });
+  });
 });
