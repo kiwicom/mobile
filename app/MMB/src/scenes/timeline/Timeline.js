@@ -12,6 +12,7 @@ import BookedFlightTimelineEvent from './events/BookedFlightTimelineEvent';
 import AirportArrivalTimelineEvent from './events/AirportArrivalTimelineEvent';
 import DownloadInvoiceTimelineEvent from './events/DownloadInvoiceTimelineEvent';
 import LeaveForAirportTimelineEvent from './events/LeaveForAirportTimelineEvent';
+import BoardingTimelineEvent from './events/BoardingTimelineEvent';
 import DaySeparator from './DaySeparator';
 
 export { TimelineSubmenuItems } from './events/DownloadInvoiceTimelineEvent';
@@ -27,6 +28,8 @@ function getValidTimelineEvent(data) {
         return <AirportArrivalTimelineEvent data={data} />;
       case 'LeaveForAirportTimelineEvent':
         return <LeaveForAirportTimelineEvent data={data} />;
+      case 'BoardingTimelineEvent':
+        return <BoardingTimelineEvent data={data} />;
       default:
         return null;
     }
@@ -95,6 +98,9 @@ export default class Timeline extends React.Component<{||}> {
                   }
                   ... on DownloadInvoiceTimelineEvent {
                     ...DownloadInvoiceTimelineEvent
+                  }
+                  ... on BoardingTimelineEvent {
+                    ...BoardingTimelineEvent
                   }
                 }
               }
