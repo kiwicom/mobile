@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 68d81c7f18408e29d969f8d43e9930ee
+ * @relayHash db08cba5f0bbd770df8ce73a3c9706f1
  */
 
 /* eslint-disable */
@@ -10,6 +10,7 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type AirportArrivalTimelineEvent$ref = any;
+type BoardingTimelineEvent$ref = any;
 type BookedFlightTimelineEvent$ref = any;
 type DownloadInvoiceTimelineEvent$ref = any;
 type LeaveForAirportTimelineEvent$ref = any;
@@ -21,7 +22,7 @@ export type TimelineQueryResponse = {|
     +events: ?$ReadOnlyArray<?{|
       +__typename: string,
       +timestamp: ?any,
-      +$fragmentRefs: BookedFlightTimelineEvent$ref & LeaveForAirportTimelineEvent$ref & AirportArrivalTimelineEvent$ref & DownloadInvoiceTimelineEvent$ref,
+      +$fragmentRefs: BookedFlightTimelineEvent$ref & LeaveForAirportTimelineEvent$ref & AirportArrivalTimelineEvent$ref & DownloadInvoiceTimelineEvent$ref & BoardingTimelineEvent$ref,
     |}>
   |}
 |};
@@ -47,6 +48,9 @@ query TimelineQuery(
       }
       ... on DownloadInvoiceTimelineEvent {
         ...DownloadInvoiceTimelineEvent
+      }
+      ... on BoardingTimelineEvent {
+        ...BoardingTimelineEvent
       }
     }
   }
@@ -101,6 +105,10 @@ fragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {
     }
     id
   }
+}
+
+fragment BoardingTimelineEvent on BoardingTimelineEvent {
+  timestamp
 }
 */
 
@@ -180,7 +188,7 @@ return {
   "operationKind": "query",
   "name": "TimelineQuery",
   "id": null,
-  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -209,6 +217,17 @@ return {
             "selections": [
               v2,
               v3,
+              {
+                "kind": "InlineFragment",
+                "type": "BoardingTimelineEvent",
+                "selections": [
+                  {
+                    "kind": "FragmentSpread",
+                    "name": "BoardingTimelineEvent",
+                    "args": null
+                  }
+                ]
+              },
               {
                 "kind": "InlineFragment",
                 "type": "DownloadInvoiceTimelineEvent",
@@ -391,5 +410,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e3a12768b3eceb23d38c4bbaf24fc881';
+(node/*: any*/).hash = 'd318a5972014164b3b4094366794dd8c';
 module.exports = node;

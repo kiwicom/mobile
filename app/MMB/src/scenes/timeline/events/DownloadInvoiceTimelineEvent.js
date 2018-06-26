@@ -5,7 +5,13 @@ import idx from 'idx';
 import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { Text, StyleSheet, Color, TextButton } from '@kiwicom/mobile-shared';
+import {
+  Text,
+  StyleSheet,
+  Color,
+  TextButton,
+  Icon,
+} from '@kiwicom/mobile-shared';
 import {
   type NavigationType,
   type RouteNamesType,
@@ -96,7 +102,11 @@ class DownloadInvoiceTimelineEvent extends React.Component<Props> {
       <TimelineEvent
         timestamp={timestamp}
         displayTime={false}
-        iconVertLines={<TimelineEventIcon name="ticket-confirmation" />}
+        iconVertLines={
+          <TimelineEventIcon
+            icon={<Icon size={17} name="ticket-confirmation" />}
+          />
+        }
         mainContent={
           <View style={styles.container}>
             <Translation id="mmb.booking_timeline.event.download_invoice.title" />
