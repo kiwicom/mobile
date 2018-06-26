@@ -4,6 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
+import { Icon } from '@kiwicom/mobile-shared';
 
 import type { BookedFlightTimelineEvent as BookedFlightTimelineEventType } from './__generated__/BookedFlightTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
@@ -19,7 +20,12 @@ const BookedFlightTimelineEvent = (props: Props) => {
   return (
     <TimelineEvent
       timestamp={timestamp}
-      iconVertLines={<TimelineEventIcon name="check" isFirst={true} />}
+      iconVertLines={
+        <TimelineEventIcon
+          icon={<Icon size={17} name="check" />}
+          isFirst={true}
+        />
+      }
       mainContent={
         <Translation
           id="mmb.booking_timeline.event.booked_flight.title"

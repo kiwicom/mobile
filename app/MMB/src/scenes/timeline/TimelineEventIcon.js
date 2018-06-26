@@ -2,25 +2,21 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color, Icon } from '@kiwicom/mobile-shared';
-
-const size = 17;
+import { StyleSheet, Color, Icon, TextIcon } from '@kiwicom/mobile-shared';
 
 export type Props = {|
-  +name: string,
+  +icon: React.Element<typeof TextIcon | typeof Icon>,
   +isFirst?: boolean,
   +isPastEvent?: boolean,
 |};
 
 export default function TimelineEventIcon(props: Props) {
+  const icon = React.cloneElement(props.icon, {
+    style: [props.icon.props.style, styles.icon],
+  });
   const pastEventIcon = (
-    <Icon
-      name="check"
-      size={size}
-      style={[styles.icon, styles.pastEventIcon]}
-    />
+    <TextIcon code="V" style={[styles.icon, styles.pastEventIcon]} />
   );
-  const icon = <Icon name={props.name} size={size} style={styles.icon} />;
   return (
     <View style={styles.container}>
       <View

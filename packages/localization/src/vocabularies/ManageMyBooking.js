@@ -164,4 +164,7 @@ export default {
   'mmb.booking_timeline.event.download_invoice.note_plural':
     '__1_route__, __2_passengers__× travellers.',
   'mmb.booking_timeline.event.download_invoice.button.title': 'Download',
+
+  'mmb.booking_timeline.event.gate_arrival.title': 'Boarding at the gate',
+  'mmb.booking_timeline.event.gate_arrival.note': 'Beware of the distance.',
 };

@@ -767,8 +767,11 @@ type DepartureTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
 
-  """Location of departure"""
+  """Location of arrival"""
   location: RouteStop
+
+  """Flight duration in minutes."""
+  duration: Int
 }
 
 enum DirectAccessURLValues {
@@ -970,6 +973,13 @@ enum FAQCommentType {
   DONT_LIKE
   NOT_ACCURATE
   OTHER
+}
+
+enum FAQSection {
+  BEFORE_BOOKING
+  UPCOMING_BOOKING
+  URGENT_BOOKING
+  PAST_BOOKING
 }
 
 type Flight {
@@ -1802,9 +1812,9 @@ type RootQuery {
   """Retrieve list of FAQ categories."""
   allFAQCategories(
     """
-    Language in which the titles and perexes of FAQ categories are returned.
+    Fetch only subsection of FAQ based on the current situation of customer.
     """
-    language: Language
+    section: FAQSection
     after: String
     first: Int
     before: String
@@ -1815,9 +1825,6 @@ type RootQuery {
   allFAQs(
     """Keyword for the search"""
     search: String
-
-    """Language in which the search is made and the answer is returned"""
-    language: Language
     after: String
     first: Int
     before: String
@@ -1905,20 +1912,12 @@ type RootQuery {
   FAQArticle(
     """ID of FAQ article to retrieve."""
     id: ID!
-
-    """Language in which the text of the article is returned."""
-    language: Language
   ): FAQArticle
 
   """Retrieve specific FAQ category and its subcategories & articles."""
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
-
-    """
-    Language in which the titles and perexes of FAQ categories are returned.
-    """
-    language: Language
   ): FAQCategory
 
   """Geography info by an IP address"""
