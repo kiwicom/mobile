@@ -19,7 +19,7 @@ describe('AllHotels', () => {
     expect(setSearch).toHaveBeenCalled();
   });
 
-  it('does not call onSearchChange if checkin is before today', () => {
+  it('calls onSearchChange if checkin is before today', () => {
     const setSearch = jest.fn();
     // $FlowExpectedError: Only passing props needed for test to run
     const Component = new AllHotels({
@@ -30,10 +30,10 @@ describe('AllHotels', () => {
     });
 
     Component.componentDidMount();
-    expect(setSearch).not.toHaveBeenCalled();
+    expect(setSearch).toHaveBeenCalled();
   });
 
-  it('does not call onSearchChange if dates are missing', () => {
+  it('calls onSearchChange if dates are missing', () => {
     const setSearch = jest.fn();
     // $FlowExpectedError: Only passing props needed for test to run
     const Component = new AllHotels({
@@ -42,6 +42,6 @@ describe('AllHotels', () => {
     });
 
     Component.componentDidMount();
-    expect(setSearch).not.toHaveBeenCalled();
+    expect(setSearch).toHaveBeenCalled();
   });
 });
