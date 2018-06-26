@@ -24,20 +24,50 @@ type State = {|
 |};
 
 const facilitiesList = {
-  airportShuttle: { text: 'Airport shuttle', icon: 'airport-shuttle' },
-  familyRooms: { text: 'Family rooms', icon: 'child-friendly' },
+  airportShuttle: {
+    text: 'Airport shuttle',
+    icon: 'airport-shuttle',
+  },
+  familyRooms: {
+    text: 'Family rooms',
+    icon: 'child-friendly',
+  },
   facilitiesForDisabled: {
     text: 'Facilities for Disabled Guests',
     icon: 'accessible',
   },
-  fitnessCenter: { text: 'Fitness Center', icon: 'fitness-center' },
-  parking: { text: 'Parking', icon: 'directions-car' },
-  freeParking: { text: 'Free Parking', icon: 'directions-car' },
-  valetParking: { text: 'Valet Parking', icon: 'directions-car' },
-  indoorPool: { text: 'Indoor Pool', icon: 'pool' },
-  petsAllowed: { text: 'Pets allowed', icon: 'pets' },
-  spa: { text: 'Spa', icon: 'spa' },
-  wifi: { text: 'Wi-Fi', icon: 'wifi' },
+  fitnessCenter: {
+    text: 'Fitness Center',
+    icon: 'fitness-center',
+  },
+  parking: {
+    text: 'Parking',
+    icon: 'directions-car',
+  },
+  freeParking: {
+    text: 'Free Parking',
+    icon: 'directions-car',
+  },
+  valetParking: {
+    text: 'Valet Parking',
+    icon: 'directions-car',
+  },
+  indoorPool: {
+    text: 'Indoor Pool',
+    icon: 'pool',
+  },
+  petsAllowed: {
+    text: 'Pets allowed',
+    icon: 'pets',
+  },
+  spa: {
+    text: 'Spa',
+    icon: 'spa',
+  },
+  wifi: {
+    text: 'Wi-Fi',
+    icon: 'wifi',
+  },
 };
 
 export default class HotelFacilitiesPopup extends React.Component<

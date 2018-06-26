@@ -43,7 +43,10 @@ Duration.separateHours = (durationInMinutes: number) => {
   const hours = Math.floor(minutes / 60);
   minutes = minutes % 60;
 
-  return { hours, minutes };
+  return {
+    hours,
+    minutes,
+  };
 };
 
 export default createFragmentContainer(

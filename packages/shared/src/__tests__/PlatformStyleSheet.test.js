@@ -24,14 +24,20 @@ const createStyle = () =>
 it('works with iOS', () => {
   Platform.OS = 'ios';
   expect(createStyle()).toEqual({
-    container: { flexDirection: 'row', padding: 10 },
+    container: {
+      flexDirection: 'row',
+      padding: 10,
+    },
   });
 });
 
 it('works with Android', () => {
   Platform.OS = 'android';
   expect(createStyle()).toEqual({
-    container: { flexDirection: 'row', padding: 20 },
+    container: {
+      flexDirection: 'row',
+      padding: 20,
+    },
   });
 });
 

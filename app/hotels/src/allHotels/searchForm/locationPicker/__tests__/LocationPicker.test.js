@@ -19,12 +19,22 @@ describe('LocationPicker', () => {
       const Component = getComponent(saveToStorage);
       Component.saveRecentSearches('1', 'Rome');
 
-      expect(saveToStorage).toHaveBeenCalledWith([{ id: '1', name: 'Rome' }]);
+      expect(saveToStorage).toHaveBeenCalledWith([
+        {
+          id: '1',
+          name: 'Rome',
+        },
+      ]);
     });
 
     it('does not call saveToStorage if it is already stored', () => {
       const saveToStorage = jest.fn();
-      const locations = [{ id: '1', name: 'Rome' }];
+      const locations = [
+        {
+          id: '1',
+          name: 'Rome',
+        },
+      ];
       const Component = getComponent(saveToStorage, locations);
       Component.saveRecentSearches('1', 'Rome');
 
@@ -34,9 +44,15 @@ describe('LocationPicker', () => {
     it('does not save more than 20 locations', () => {
       const saveToStorage = jest.fn();
       const locations = [];
-      const newLocation = { id: '31', name: 'Rome' };
+      const newLocation = {
+        id: '31',
+        name: 'Rome',
+      };
       for (let i = 1; i < 20; i++) {
-        locations.push({ id: `${i}`, name: `location ${i}` });
+        locations.push({
+          id: `${i}`,
+          name: `location ${i}`,
+        });
       }
       const Component = getComponent(saveToStorage, locations);
       Component.saveRecentSearches(newLocation.id, newLocation.name);

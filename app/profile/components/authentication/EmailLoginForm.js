@@ -51,10 +51,16 @@ export default class EmailLoginForm extends React.Component<Props, State> {
 
   tryLogIn = (username: string, password: string, callback: Callback) => {
     this.setState({ loading: true });
-    LoginMutation({ email: username, password }, (response, errors) => {
-      this.setState({ loading: false });
-      callback(response, errors);
-    });
+    LoginMutation(
+      {
+        email: username,
+        password,
+      },
+      (response, errors) => {
+        this.setState({ loading: false });
+        callback(response, errors);
+      },
+    );
   };
 
   render = () => (

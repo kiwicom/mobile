@@ -40,11 +40,21 @@ it('returns null when availableRooms are not provided', () => {
 
 it('returns null when no room is selected', () => {
   expect(countBookingPrice(availableRooms, {})).toBe(null);
-  expect(countBookingPrice(availableRooms, { aaa: 0, bbb: 0 })).toBe(null);
+  expect(
+    countBookingPrice(availableRooms, {
+      aaa: 0,
+      bbb: 0,
+    }),
+  ).toBe(null);
 });
 
 it('returns sum of selected rooms', () => {
-  expect(countBookingPrice(availableRooms, { aaa: 2, bbb: 1 })).toEqual({
+  expect(
+    countBookingPrice(availableRooms, {
+      aaa: 2,
+      bbb: 1,
+    }),
+  ).toEqual({
     amount: 1333,
     currency: 'EUR',
   });

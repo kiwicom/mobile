@@ -53,7 +53,10 @@ export class LocationPicker extends React.Component<PropsWithContext, State> {
     let recentSearches = this.props.storageValue;
 
     if (recentSearches.find(item => item.id === cityId) === undefined) {
-      recentSearches.unshift({ id: cityId, name: cityName });
+      recentSearches.unshift({
+        id: cityId,
+        name: cityName,
+      });
       recentSearches.slice(0, 20); // Limit recent searches to 20 locations
 
       this.props.saveToStorage(recentSearches);

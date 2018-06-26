@@ -74,7 +74,10 @@ export class RoomRow extends React.Component<Props> {
   getOriginalIdAndMaxPersons = () => {
     const originalId = idx(this.props, _ => _.availableRoom.originalId);
     const maxPersons = idx(this.props, _ => _.availableRoom.room.maxPersons);
-    return { originalId, maxPersons };
+    return {
+      originalId,
+      maxPersons,
+    };
   };
 
   openGallery = () => {

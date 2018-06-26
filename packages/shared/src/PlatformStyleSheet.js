@@ -39,10 +39,16 @@ export default {
     Object.keys(styles).forEach(name => {
       let { ios, android, ...style } = { ...styles[name] };
       if (ios && Platform.OS === 'ios') {
-        style = { ...style, ...ios };
+        style = {
+          ...style,
+          ...ios,
+        };
       }
       if (android && Platform.OS === 'android') {
-        style = { ...style, ...android };
+        style = {
+          ...style,
+          ...android,
+        };
       }
       platformStyles[name] = style;
     });

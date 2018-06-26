@@ -18,13 +18,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: [
-    'import',
-    'prettier',
-    'react',
-    'react-native',
-    'flowtype',
-  ],
+  plugins: ['import', 'prettier', 'react', 'react-native', 'flowtype'],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -34,19 +28,20 @@ module.exports = {
     'prettier/flowtype',
   ],
   rules: {
-    'curly': ERROR,
+    curly: ERROR,
     'no-console': [ERROR, { allow: ['warn', 'error'] }],
     'no-duplicate-imports': ERROR,
     'no-underscore-dangle': [
-      ERROR, {
+      ERROR,
+      {
         enforceInMethodNames: true,
         allow: ['__typename'], // needed for GraphQL interface types, see: https://github.com/facebook/relay/issues/2463
-      }
+      },
     ],
     'no-restricted-imports': [
       ERROR,
       {
-        patterns: ["moment"], // DateFormatter
+        patterns: ['moment'], // DateFormatter
         paths: [
           {
             name: 'react-native',
@@ -60,26 +55,22 @@ module.exports = {
               'TouchableNativeFeedback', // Touchable
               'TouchableOpacity', // Touchable
             ],
-            message:
-              "Please use '@kiwicom/mobile-shared' package instead.",
+            message: "Please use '@kiwicom/mobile-shared' package instead.",
           },
           {
             name: 'react-native-read-more-text', // ReadMore
-            message:
-              "Please use '@kiwicom/mobile-shared' package instead.",
+            message: "Please use '@kiwicom/mobile-shared' package instead.",
           },
           {
             name: 'react-navigation',
             importNames: [
               'StackNavigator', // StackNavigator
             ],
-            message:
-              "Please use '@kiwicom/mobile-navigation' package instead.",
+            message: "Please use '@kiwicom/mobile-navigation' package instead.",
           },
           {
             name: 'react-relay',
-            message:
-              "Please use '@kiwicom/mobile-relay' package instead.",
+            message: "Please use '@kiwicom/mobile-relay' package instead.",
           },
         ],
       },
@@ -104,9 +95,7 @@ module.exports = {
     'react/prop-types': OFF, // we use Flow instead,
     'react-native/no-unused-styles': ERROR,
     'flowtype/require-valid-file-annotation': [ERROR, 'always'],
-    'flowtype/newline-after-flow-annotation': [
-      ERROR,
-      'always'
-    ]
+    'flowtype/newline-after-flow-annotation': [ERROR, 'always'],
+    'object-property-newline': ERROR,
   },
 };

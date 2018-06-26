@@ -116,7 +116,10 @@ export class Map extends React.Component<Props, State> {
     const latitudeDelta = boundaries.maxLat - boundaries.minLat;
     const longitudeDelta = boundaries.maxLng - boundaries.minLng;
 
-    return { longitudeDelta, latitudeDelta };
+    return {
+      longitudeDelta,
+      latitudeDelta,
+    };
   };
 
   getRegion = (props: Props) => {
