@@ -69,7 +69,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     const booking = idx(this.props, _ => _.data);
 
     return (
-      <AdaptableLayout.Consumer
+      <AdaptableLayout
         renderOnWide={
           <React.Fragment>
             <HeaderShared data={booking}>

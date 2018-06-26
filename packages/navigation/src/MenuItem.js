@@ -75,7 +75,7 @@ function MenuItem(props: Props) {
         {props.actionIcon ? (
           <View style={styleSheet.rightArrow}>{props.actionIcon}</View>
         ) : (
-          <AdaptableLayout.Consumer
+          <AdaptableLayout
             renderOnNarrow={
               <View style={styleSheet.rightArrow}>
                 <Icon name="chevron-right" size={26} color={Color.brand} />
@@ -97,7 +97,7 @@ export default function AdaptableMenuItem(props: Props) {
   // it's not possible to activate it because new scene should always open
   // on mobile devices.
   return (
-    <AdaptableLayout.Consumer
+    <AdaptableLayout
       renderOnNarrow={<MenuItem {...props} isActive={false} />}
       renderOnWide={<MenuItem {...props} />}
     />

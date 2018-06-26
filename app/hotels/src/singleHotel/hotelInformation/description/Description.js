@@ -48,7 +48,7 @@ export class Description extends React.Component<Props> {
 
   render = () => {
     return (
-      <AdaptableLayout.Consumer
+      <AdaptableLayout
         renderOnNarrow={
           <View style={styles.simpleCardWrapper}>
             <SimpleCard>{this.renderCardChildren(false)}</SimpleCard>

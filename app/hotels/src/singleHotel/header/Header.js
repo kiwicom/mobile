@@ -11,6 +11,7 @@ import {
   AdaptableLayout,
   Device,
   BlackToAlpha as gradient,
+  Dimensions,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -21,31 +22,35 @@ import Rating from './Rating';
 import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 import type { Header_hotel } from './__generated__/Header_hotel.graphql';
 
-const height = Platform.select({
-  android: Device.isWideLayout() ? 150 : 200,
-  ios: 150,
-});
+const generateDynamicStyles = dim => {
+  const height = Platform.select({
+    android: Device.isWideLayout(dim) ? 150 : 200,
+    ios: 150,
+  });
+  return {
+    nameAndRatingContainer: {
+      height: height,
+      marginTop: -height,
+      alignItems: 'flex-end',
+      flexDirection: 'row',
+    },
+    picture: {
+      height: height,
+    },
+    galleryButton: {
+      position: 'absolute',
+      end: 10,
+      android: {
+        top: Device.isWideLayout(dim) ? 10 : StatusBar.currentHeight + 16,
+      },
+      ios: {
+        top: 10,
+      },
+    },
+  };
+};
 
 const styles = StyleSheet.create({
-  picture: {
-    height: height,
-  },
-  galleryButton: {
-    position: 'absolute',
-    end: 10,
-    android: {
-      top: Device.isWideLayout() ? 10 : StatusBar.currentHeight + 16,
-    },
-    ios: {
-      top: 10,
-    },
-  },
-  nameAndRatingContainer: {
-    height: height,
-    marginTop: -height,
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-  },
   nameAndRating: {
     marginStart: 15,
     marginEnd: 15,
@@ -102,38 +107,49 @@ export class Header extends React.Component<Props> {
     const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
     const photosCount = idx(hotel, _ => _.photos.edges.length);
     return (
-      <Touchable onPress={this.openGallery}>
-        <View>
-          <NetworkImage style={styles.picture} source={{ uri: mainPhotoUrl }} />
-          <View style={styles.nameAndRatingContainer}>
-            <StretchedImage source={gradient} />
-            <View style={styles.nameAndRating}>
-              <Text style={styles.hotelName}>
-                <Translation passThrough={idx(hotel, _ => _.name)} />
-              </Text>
-              <Text style={styles.rating}>
-                <Rating
-                  stars={idx(hotel, _ => _.rating.stars)}
-                  score={idx(hotel, _ => _.review.score)}
-                  description={idx(hotel, _ => _.review.description)}
+      <Dimensions.Consumer>
+        {dimensions => {
+          const dynamicStyles = generateDynamicStyles(dimensions);
+
+          return (
+            <Touchable onPress={this.openGallery}>
+              <View>
+                <NetworkImage
+                  style={dynamicStyles.picture}
+                  source={{ uri: mainPhotoUrl }}
                 />
-              </Text>
-            </View>
-          </View>
-          {photosCount && (
-            <View style={styles.galleryButton}>
-              <GalleryButton count={photosCount} />
-            </View>
-          )}
-        </View>
-      </Touchable>
+                <View style={dynamicStyles.nameAndRatingContainer}>
+                  <StretchedImage source={gradient} />
+                  <View style={styles.nameAndRating}>
+                    <Text style={styles.hotelName}>
+                      <Translation passThrough={idx(hotel, _ => _.name)} />
+                    </Text>
+                    <Text style={styles.rating}>
+                      <Rating
+                        stars={idx(hotel, _ => _.rating.stars)}
+                        score={idx(hotel, _ => _.review.score)}
+                        description={idx(hotel, _ => _.review.description)}
+                      />
+                    </Text>
+                  </View>
+                </View>
+                {photosCount && (
+                  <View style={dynamicStyles.galleryButton}>
+                    <GalleryButton count={photosCount} />
+                  </View>
+                )}
+              </View>
+            </Touchable>
+          );
+        }}
+      </Dimensions.Consumer>
     );
   };
 
   render = () => {
     const header = this.renderHeader();
     return (
-      <AdaptableLayout.Consumer
+      <AdaptableLayout
         renderOnNarrow={header}
         renderOnWide={<View style={styles.tabletContainer}>{header}</View>}
       />

@@ -179,7 +179,7 @@ export default class DetailsScreen extends React.Component<Props, State> {
     return (
       <LayoutDoubleColumn
         menuComponent={
-          <AdaptableLayout.Consumer
+          <AdaptableLayout
             renderOnWide={
               <MainMenuContainer openMenu={this.changeContentOnTablet} />
             }

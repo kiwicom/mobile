@@ -5,8 +5,9 @@ import { View, ScrollView } from 'react-native';
 import {
   StyleSheet,
   Text,
-  AdaptableLayout,
+  Dimensions,
   Color,
+  type DimensionType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
@@ -18,6 +19,7 @@ type Props = {|
   +name: string,
   +navigation: NavigationType,
   +onGoBack: () => void,
+  +dimensions: DimensionType,
 |};
 
 const PlaygroundSection = props => (
@@ -56,7 +58,7 @@ export default class Playground extends React.Component<Props> {
       );
     }
     return (
-      <AdaptableLayout.Provider>
+      <Dimensions.Provider dimensions={this.props.dimensions}>
         <ScrollView>
           {PlaygroundRenderer.components[this.props.name].components.map(
             (component, index) => {
@@ -68,7 +70,7 @@ export default class Playground extends React.Component<Props> {
             },
           )}
         </ScrollView>
-      </AdaptableLayout.Provider>
+      </Dimensions.Provider>
     );
   };
 }

@@ -4,11 +4,13 @@ import * as React from 'react';
 import { SingleHotelStandalonePackage } from '@kiwicom/react-native-app-hotels';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
+import { type DimensionType } from '@kiwicom/mobile-shared';
 
 import Config from '../../config/application';
 
 type Props = {|
   navigation: NavigationType,
+  dimensions: DimensionType,
 |};
 
 export default class SingleHotelPackageWrapper extends React.Component<Props> {
@@ -27,6 +29,7 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
         checkout={DateFormatter(DateUtils().addDays(7)).formatForMachine()}
         hotelId="aG90ZWw6ODAyMDQ="
         roomsConfiguration={[{ adultsCount: 1, children: [] }]}
+        dimensions={this.props.dimensions}
       />
     );
   };

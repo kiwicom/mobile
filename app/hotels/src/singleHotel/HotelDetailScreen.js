@@ -124,7 +124,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
       <React.Fragment>
         <ScrollView>
           <LayoutSingleColumn>
-            <AdaptableLayout.Consumer
+            <AdaptableLayout
               renderOnWide={<View style={styles.marginView} />}
             />
             <Header openGallery={openGallery} hotel={availableHotel.hotel} />
