@@ -11,11 +11,13 @@ import {
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
+import Age from './Age';
+
 type Props = {|
-  label: string,
-  age: number | null,
-  onChange: (age: number) => void,
-  style?: Object,
+  +label: React.Element<typeof Translation>,
+  +age: number | null,
+  +onChange: (age: number) => void,
+  +style?: Object,
 |};
 
 type State = {|
@@ -39,13 +41,10 @@ export default class AgeControl extends React.Component<Props, State> {
       <React.Fragment>
         <TouchableWithoutFeedback onPress={this.onPress}>
           <View style={[styles.wrapper, style]}>
-            <Translation passThrough={label} />
+            {label}
             <View style={styles.ageView}>
               <Text style={styles.age}>
-                <Translation
-                  testID="ageControlValue"
-                  passThrough={age === null ? 0 : age}
-                />
+                <Age age={age} />
               </Text>
               {Platform.select({
                 android: (
