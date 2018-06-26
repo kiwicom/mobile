@@ -149,7 +149,10 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
-  note: { fontSize: 13, color: Color.ink.light },
+  note: {
+    fontSize: 13,
+    color: Color.ink.light,
+  },
   button: {
     flex: 1,
     marginTop: 10,

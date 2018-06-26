@@ -12,7 +12,10 @@ import { sanitizeDate } from '../../GraphQLSanitizers';
 const defaultSearch = {
   checkin: new Date(1),
   checkout: new Date(2),
-  roomsConfiguration: { adultsCount: 1, children: [] },
+  roomsConfiguration: {
+    adultsCount: 1,
+    children: [],
+  },
 };
 
 const defaultCoordinates = {
@@ -74,7 +77,10 @@ describe('SearchQueryHelpers', () => {
         checkout: sanitizeDate(new Date(2)),
         latitude: 3,
         longitude: 4,
-        roomsConfiguration: { adultsCount: 1, children: [] },
+        roomsConfiguration: {
+          adultsCount: 1,
+          children: [],
+        },
       });
     });
 
@@ -85,7 +91,10 @@ describe('SearchQueryHelpers', () => {
         checkin: sanitizeDate(new Date(1)),
         checkout: sanitizeDate(new Date(2)),
         cityId: 'oslo',
-        roomsConfiguration: { adultsCount: 1, children: [] },
+        roomsConfiguration: {
+          adultsCount: 1,
+          children: [],
+        },
       });
     });
   });
@@ -95,7 +104,10 @@ describe('SearchQueryHelpers', () => {
       const search = {
         checkin: new Date(),
         checkout: new Date(),
-        roomsConfiguration: { adultsCount: 1, children: [] },
+        roomsConfiguration: {
+          adultsCount: 1,
+          children: [],
+        },
       };
       const onSearchChange = jest.fn();
 
@@ -107,7 +119,10 @@ describe('SearchQueryHelpers', () => {
       const search = {
         checkin: DateUtils().addDays(1),
         checkout: new Date(),
-        roomsConfiguration: { adultsCount: 1, children: [] },
+        roomsConfiguration: {
+          adultsCount: 1,
+          children: [],
+        },
       };
       const onSearchChange = jest.fn();
 
@@ -119,7 +134,10 @@ describe('SearchQueryHelpers', () => {
       const search = {
         checkin: DateUtils().addDays(-3),
         checkout: new Date(),
-        roomsConfiguration: { adultsCount: 1, children: [] },
+        roomsConfiguration: {
+          adultsCount: 1,
+          children: [],
+        },
       };
       const onSearchChange = jest.fn();
 

@@ -126,7 +126,10 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
       item => !orderedCategories.includes(item.key),
     );
 
-    return { ordered, rest };
+    return {
+      ordered,
+      rest,
+    };
   };
 
   render = () => {

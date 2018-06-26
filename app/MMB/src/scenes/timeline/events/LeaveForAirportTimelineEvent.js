@@ -33,7 +33,10 @@ const LeaveForAirportTimelineEvent = (props: Props) => {
 };
 
 const styles = StyleSheet.create({
-  note: { fontSize: 13, color: Color.ink.light },
+  note: {
+    fontSize: 13,
+    color: Color.ink.light,
+  },
 });
 
 export default createFragmentContainer(

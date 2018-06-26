@@ -60,4 +60,7 @@ class Provider extends React.Component<Props, State> {
   );
 }
 
-export default { Consumer, Provider };
+export default {
+  Consumer,
+  Provider,
+};

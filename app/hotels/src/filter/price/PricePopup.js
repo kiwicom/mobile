@@ -38,7 +38,12 @@ export default class PricePopup extends React.Component<Props, State> {
   });
 
   handlePriceChanged = ([start, end]: number[]) =>
-    this.setState({ price: { start, end } });
+    this.setState({
+      price: {
+        start,
+        end,
+      },
+    });
 
   onSave = () =>
     this.props.onSave({

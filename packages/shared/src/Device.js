@@ -43,7 +43,10 @@ export default {
 
     // invoke listeners with new dimensions
     dimensionChangeListeners.forEach(event => {
-      event({ height, width });
+      event({
+        height,
+        width,
+      });
     });
   },
 

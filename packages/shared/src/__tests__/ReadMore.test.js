@@ -24,7 +24,10 @@ describe('ReadMore', () => {
         numberOfLines={4}
         truncatedText="Show more"
         revealedText="Hide"
-        style={{ color: 'pink', fontWeight: '600' }}
+        style={{
+          color: 'pink',
+          fontWeight: '600',
+        }}
       >
         <Translation passThrough={loremIpsum} />
       </ReadMore>,

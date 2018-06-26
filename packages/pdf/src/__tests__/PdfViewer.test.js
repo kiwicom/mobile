@@ -8,7 +8,12 @@ import PdfViewer from '../PdfViewer';
 
 it('renders', () => {
   PlaygroundRenderer.render(
-    <View style={{ height: 500, width: '100%' }}>
+    <View
+      style={{
+        height: 500,
+        width: '100%',
+      }}
+    >
       <PdfViewer uri="https://images.kiwi.com/content-media/kiwicom_brand_colours.pdf" />
     </View>,
     false,
@@ -18,7 +23,10 @@ it('renders', () => {
 
 it('handles errors', () => {
   const onError = jest.fn();
-  const Component = new PdfViewer({ uri: 'lol', onError });
+  const Component = new PdfViewer({
+    uri: 'lol',
+    onError,
+  });
   // $FlowExpectedError: Intentionally overriting method to be able to test it without rendering component
   Component.setState = jest.fn();
   Component.onError();

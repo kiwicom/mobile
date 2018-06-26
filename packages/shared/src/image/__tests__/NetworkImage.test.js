@@ -10,7 +10,11 @@ const renderer = new ShallowRenderer();
 it('passes props to the original Image component', () => {
   renderer.render(
     <NetworkImage
-      style={{ width: 50, height: 75, borderRadius: 2 }}
+      style={{
+        width: 50,
+        height: 75,
+        borderRadius: 2,
+      }}
       resizeMode="cover"
       source={{ uri: 'http://image.png' }}
     />,

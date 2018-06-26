@@ -4,7 +4,10 @@ import SuggestionListItem from '../SuggestionListItem';
 
 const createListItem = (fullName: string, stringToHighlight: string) => {
   return new SuggestionListItem({
-    city: { id: 'fakeId', name: fullName },
+    city: {
+      id: 'fakeId',
+      name: fullName,
+    },
     search: stringToHighlight,
     onCitySelected: () => {},
   });

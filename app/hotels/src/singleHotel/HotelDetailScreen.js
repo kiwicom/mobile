@@ -93,7 +93,10 @@ export class HotelDetailScreen extends React.Component<Props, State> {
     const roomsConfiguration = idx(
       this.props,
       _ => _.roomsConfiguration[0],
-    ) || { adultsCount: 0, children: [] };
+    ) || {
+      adultsCount: 0,
+      children: [],
+    };
     const guestTotal =
       roomsConfiguration.adultsCount + roomsConfiguration.children.length;
 

@@ -26,7 +26,12 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
         checkin={DateFormatter(DateUtils().addDays(1)).formatForMachine()}
         checkout={DateFormatter(DateUtils().addDays(7)).formatForMachine()}
         hotelId="aG90ZWw6ODAyMDQ="
-        roomsConfiguration={[{ adultsCount: 1, children: [] }]}
+        roomsConfiguration={[
+          {
+            adultsCount: 1,
+            children: [],
+          },
+        ]}
       />
     );
   };

@@ -101,7 +101,10 @@ const SLIDER_PADDING = 20;
 const styles = StyleSheet.create({
   selected: { backgroundColor: Color.orange.normal },
   unselected: { backgroundColor: Color.grey.$400 },
-  track: { borderRadius: 5, height: 2 },
+  track: {
+    borderRadius: 5,
+    height: 2,
+  },
   marker: {
     height: 30,
     width: 30,
@@ -110,7 +113,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Color.grey.$400,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 3 },
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     margin: 3, // necessary to see the Android elevation properly
