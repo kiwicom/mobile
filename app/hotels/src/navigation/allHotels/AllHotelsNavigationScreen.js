@@ -51,7 +51,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
         </HeaderTitle>
       ),
       headerRight: (
-        <AdaptableLayout.Consumer
+        <AdaptableLayout
           renderOnNarrow={<MapHeaderButton onPress={goToAllHotelsMap} />}
         />
       ),

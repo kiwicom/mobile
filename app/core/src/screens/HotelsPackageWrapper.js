@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { HotelsStandalonePackage } from '@kiwicom/react-native-app-hotels';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
+import { type DimensionType } from '@kiwicom/mobile-shared';
 
 import Config from '../../config/application';
 
@@ -14,6 +15,7 @@ type Props = {|
   |},
   checkin?: string,
   checkout?: string,
+  dimensions: DimensionType,
 |};
 
 export default class HotelsPackageWrapper extends React.Component<Props> {
@@ -33,6 +35,7 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
         coordinates={coordinates}
         checkin={this.props.checkin}
         checkout={this.props.checkout}
+        dimensions={this.props.dimensions}
       />
     );
   };

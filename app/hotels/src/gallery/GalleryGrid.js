@@ -5,9 +5,9 @@ import { FlatList } from 'react-native';
 import {
   GeneralError,
   Modal,
-  Device,
-  type OnLayout,
   StyleSheet,
+  type OnLayout,
+  type DimensionType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -31,6 +31,7 @@ export type Image = {
 
 type Props = {|
   hotelName: string,
+  dimensions: DimensionType,
   images: Image[],
   onGoToGalleryStripe: (
     hotelName: string,
@@ -47,32 +48,28 @@ type State = {|
 
 export default class GalleryGrid extends React.Component<Props, State> {
   state = {
-    tileWidth: 0,
+    /**
+     * This assumes that the gallery is expanded over the whole screen
+     * without additional paddings (this is how it's designed).
+     *
+     * Event `onLayout` attached to the `FlatList` is called after all
+     * images are loaded which is too late (works good on iOS). But it's
+     * still needed for portrait <-> layout changes.
+     */
+    tileWidth: this.getTileWidth(this.props.dimensions.width),
     stripeVisible: false,
     stripeImageIndex: 0,
   };
 
-  /**
-   * This assumes that the gallery is expanded over the whole screen
-   * without additional paddings (this is how it's designed).
-   *
-   * Event `onLayout` attached to the `FlatList` is called after all
-   * images are loaded which is too late (works good on iOS). But it's
-   * still needed for portrait <-> layout changes.
-   */
-  componentDidMount = () => {
-    this.updateTileWidth(Device.getDimensions().width);
-  };
-
   calculateTileWidth = (event: OnLayout) => {
     const width = event.nativeEvent.layout.width;
-    this.updateTileWidth(width);
+    this.setState({
+      tileWidth: this.getTileWidth(width),
+    });
   };
 
-  updateTileWidth = (width: number) => {
-    this.setState({
-      tileWidth: (width - tileGap * (tilesInRow - 1)) / tilesInRow,
-    });
+  getTileWidth = (width: number) => {
+    return width - (tileGap * (tilesInRow - 1)) / tilesInRow;
   };
 
   openStripe = (imageIndex: number) =>

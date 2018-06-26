@@ -49,6 +49,7 @@ export { default as Text } from './src/Text';
  * These components helps us to build the layout but they are more or less
  * useless without UI components.
  */
+export { default as Dimensions } from './src/view/Dimensions';
 export { default as AdaptableLayout } from './src/view/AdaptableLayout';
 export { default as CenteredView } from './src/view/CenteredView';
 export { default as DismissKeyboardView } from './src/view/DismissKeyboardView';
@@ -111,3 +112,5 @@ export type {
   StyleObjectType,
   PlatformStyleObjectType,
 } from './types/Styles';
+
+export type { DimensionType } from './types/Objects';

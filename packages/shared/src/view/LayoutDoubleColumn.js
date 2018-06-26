@@ -51,7 +51,7 @@ type Props = {|
  */
 export default function LayoutDoubleColumn(props: Props) {
   return (
-    <AdaptableLayout.Consumer
+    <AdaptableLayout
       renderOnNarrow={<NarrowLayout menuComponent={props.menuComponent} />}
       renderOnWide={
         <WideLayout

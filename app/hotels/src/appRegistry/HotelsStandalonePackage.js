@@ -1,7 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { WithNativeNavigation } from '@kiwicom/mobile-shared';
+import {
+  WithNativeNavigation,
+  type DimensionType,
+} from '@kiwicom/mobile-shared';
 
 import RootComponent from './RootComponent';
 import HotelsStack from '../navigation/NavigationStack';
@@ -17,6 +20,7 @@ type Props = {
   checkout?: string,
   onNavigationStateChange: () => void,
   onBackClicked: () => void,
+  dimensions: DimensionType,
 };
 
 class HotelsStandalonePackage extends React.Component<Props> {
@@ -40,7 +44,10 @@ class HotelsStandalonePackage extends React.Component<Props> {
 
   render = () => {
     return (
-      <RootComponent dataSaverEnabled={this.props.dataSaverEnabled}>
+      <RootComponent
+        dimensions={this.props.dimensions}
+        dataSaverEnabled={this.props.dataSaverEnabled}
+      >
         {this.renderInnerComponent()}
       </RootComponent>
     );
