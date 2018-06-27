@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   icon: {
     color: Color.product.normal,
     textAlign: 'center',
+    fontSize: 15,
   },
   pastEventIcon: {
     color: Color.white,
@@ -71,17 +72,17 @@ const styles = StyleSheet.create({
   iconBorder: {
     borderRadius: 50,
     borderWidth: 2,
-    padding: 3,
+    padding: 4,
     borderColor: Color.product.normal,
     backgroundColor: Color.white,
-    margin: 2,
+    margin: 3,
   },
   pastEventIconBorder: {
     borderRadius: 50,
     borderWidth: 2,
-    padding: 3,
+    padding: 4,
     borderColor: Color.product.normal,
     backgroundColor: Color.product.normal,
-    margin: 2,
+    margin: 3,
   },
 });

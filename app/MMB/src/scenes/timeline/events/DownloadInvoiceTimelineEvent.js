@@ -5,7 +5,7 @@ import idx from 'idx';
 import { View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, TextButton, Icon } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextButton, TextIcon } from '@kiwicom/mobile-shared';
 import {
   type NavigationType,
   type RouteNamesType,
@@ -89,9 +89,7 @@ class DownloadInvoiceTimelineEvent extends React.Component<Props> {
         timestamp={timestamp}
         displayTime={false}
         iconVertLines={
-          <TimelineEventIcon
-            icon={<Icon size={17} name="ticket-confirmation" />}
-          />
+          <TimelineEventIcon icon={<TextIcon code="&#xe011;" />} />
         }
         mainContent={
           <View style={styles.container}>
