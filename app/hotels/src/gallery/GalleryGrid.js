@@ -30,10 +30,10 @@ export type Image = {
 };
 
 type Props = {|
-  hotelName: string,
-  dimensions: DimensionType,
-  images: Image[],
-  onGoToGalleryStripe: (
+  +hotelName: string,
+  +dimensions: DimensionType,
+  +images: Image[],
+  +onGoToGalleryStripe: (
     hotelName: string,
     highResImages: string[],
     imageIndex: number,
