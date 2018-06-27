@@ -8,13 +8,14 @@ import DateLocation from './TimelineEventDateLocation';
 
 type Props = {|
   +timestamp: ?Date,
+  +place?: string,
   +displayTime: boolean,
   +iconVertLines: React.Node,
   +mainContent: React.Node,
 |};
 
 const TimelineEvent = (props: Props) => {
-  const { timestamp } = props;
+  const { timestamp, place } = props;
   let time = null;
   let isPastEvent = false;
   if (timestamp) {
@@ -23,7 +24,7 @@ const TimelineEvent = (props: Props) => {
   }
   let dateLocation = null;
   if (time && props.displayTime) {
-    dateLocation = <DateLocation time={time} />;
+    dateLocation = <DateLocation time={time} place={place} />;
   }
 
   const iconVertLines = React.Children.map(props.iconVertLines, child =>

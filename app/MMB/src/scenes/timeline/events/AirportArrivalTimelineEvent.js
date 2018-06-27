@@ -10,6 +10,7 @@ import Note from '../MainContentNote';
 import type { AirportArrivalTimelineEvent as AirportArrivalTimelineEventType } from './__generated__/AirportArrivalTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
+import TimelineEventDateLocationContext from '../../../context/TimelineEventDateLocationContext';
 
 type Props = {|
   +data: ?AirportArrivalTimelineEventType,
@@ -17,27 +18,30 @@ type Props = {|
 
 const AirportArrivalTimelineEvent = (props: Props) => {
   const airport = idx(props, _ => _.data.location.airport.name);
-  const code = idx(props, _ => _.data.location.airport.locationId);
+  const code = idx(props, _ => _.data.location.airport.locationId) || '';
   const timestamp = idx(props, _ => _.data.timestamp);
   return (
-    <TimelineEvent
-      timestamp={timestamp}
-      iconVertLines={<TimelineEventIcon icon={<TextIcon code="a" />} />}
-      mainContent={
-        <React.Fragment>
-          <Translation
-            id="mmb.booking_timeline.event.airport_arrival.title"
-            values={{
-              airport,
-              code,
-            }}
-          />
-          <Note>
-            <Translation id="mmb.booking_timeline.event.airport_arrival.note" />
-          </Note>
-        </React.Fragment>
-      }
-    />
+    <TimelineEventDateLocationContext.Provider value={{ highlightText: true }}>
+      <TimelineEvent
+        timestamp={timestamp}
+        place={code}
+        iconVertLines={<TimelineEventIcon icon={<TextIcon code="a" />} />}
+        mainContent={
+          <React.Fragment>
+            <Translation
+              id="mmb.booking_timeline.event.airport_arrival.title"
+              values={{
+                airport,
+                code,
+              }}
+            />
+            <Note>
+              <Translation id="mmb.booking_timeline.event.airport_arrival.note" />
+            </Note>
+          </React.Fragment>
+        }
+      />
+    </TimelineEventDateLocationContext.Provider>
   );
 };
 
