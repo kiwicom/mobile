@@ -4,7 +4,7 @@ import * as React from 'react';
 import { ScrollView } from 'react-native';
 import idx from 'idx';
 import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
-import { DateUtils } from '@kiwicom/mobile-localization';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import type { TimelineQueryResponse } from './__generated__/TimelineQuery.graphql';
 import BookingDetailContext from '../../context/BookingDetailContext';
@@ -20,13 +20,33 @@ import BoardingTimelineEvent from './events/BoardingTimelineEvent';
 import TransportFromAirportTimelineEvent from './events/TransportFromAirportTimelineEvent';
 import DaySeparator from './DaySeparator';
 import DownloadETicketTimelineEvent from './events/DownloadETicketTimelineEvent';
+import TimelineEventIconContext from '../../context/TimelineEventIconContext';
 
 export const TimelineSubmenuItems = {
   ...TimelineInvoiceSubmenuItems,
 };
 
-function getValidTimelineEvent(data) {
-  if (data && data.__typename) {
+type Events = $PropertyType<
+  $NonMaybeType<$PropertyType<TimelineQueryResponse, 'bookingTimeline'>>,
+  'events',
+>;
+
+type Event = $ElementType<$NonMaybeType<Events>, number>;
+
+type TimelineEvent = ?React.Element<
+  | typeof BookedFlightTimelineEvent
+  | typeof AirportArrivalTimelineEvent
+  | typeof DownloadInvoiceTimelineEvent
+  | typeof DepartureTimelineEvent
+  | typeof ArrivalTimelineEvent
+  | typeof LeaveForAirportTimelineEvent
+  | typeof BoardingTimelineEvent
+  | typeof TransportFromAirportTimelineEvent
+  | typeof DownloadETicketTimelineEvent,
+>;
+
+function getValidTimelineEvent(data: Event): TimelineEvent {
+  if (data) {
     switch (data.__typename) {
       case 'BookedFlightTimelineEvent':
         return <BookedFlightTimelineEvent data={data} />;
@@ -53,35 +73,62 @@ function getValidTimelineEvent(data) {
   return null;
 }
 
-function renderDaySeparator(event, prevEvent) {
-  if (event && event.timestamp && prevEvent && prevEvent.timestamp) {
-    const eventTimestamp = new Date(event.timestamp);
-    const prevEventTimestamp = new Date(prevEvent.timestamp);
-    if (!DateUtils.isSameDay(eventTimestamp, prevEventTimestamp)) {
-      return <DaySeparator date={eventTimestamp} />;
-    }
-  }
-  return null;
-}
+type Acc = {
+  [date: string]: Array<TimelineEvent>,
+};
 
-function renderChildren(events) {
+function renderChildren(events: Events) {
   if (events) {
-    return events.map((event, index) => {
-      if (event && event.timestamp && event.__typename) {
-        let daySeparator;
-        if (index === 0) {
-          daySeparator = <DaySeparator date={new Date(event.timestamp)} />;
-        } else {
-          daySeparator = renderDaySeparator(event, events[index - 1]);
-        }
-        return (
-          <React.Fragment key={'TimelineEvent-' + event.__typename + index}>
-            {daySeparator}
-            {getValidTimelineEvent(event)}
-          </React.Fragment>
-        );
+    const renderedEventsByDate = events.reduce((acc: Acc, curr: Event) => {
+      const event = getValidTimelineEvent(curr);
+      const timestamp = idx(curr, _ => _.timestamp);
+      if (!event || !timestamp) {
+        return acc;
       }
-      return null;
+
+      const key = DateFormatter(new Date(timestamp)).formatForMachine();
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(event);
+      return acc;
+    }, {});
+
+    const dates = Object.keys(renderedEventsByDate);
+
+    return dates.map((date, dateIndex) => {
+      const renderedEvents = renderedEventsByDate[date];
+      const isFirstDate = dateIndex === 0;
+      const isLastDate = dateIndex === dates.length - 1;
+      const renderedEventsWithContext = renderedEvents.map(
+        (renderedEvent, index) => {
+          // This controls top and bottom lines around the icon
+          const value = {
+            displayTopLine: !(isFirstDate && index === 0),
+            displayBottomLine: !(
+              isLastDate && index === renderedEvents.length - 1
+            ),
+          };
+          const typename =
+            idx(renderedEvent, _ => _.props.data.__typename) || '';
+
+          return (
+            <TimelineEventIconContext.Provider
+              value={value}
+              key={'TimelineEvent-' + date + typename + index}
+            >
+              {renderedEvent}
+            </TimelineEventIconContext.Provider>
+          );
+        },
+      );
+
+      return (
+        <React.Fragment key={'TimelineDay-' + date}>
+          <DaySeparator date={new Date(date)} />
+          {renderedEventsWithContext}
+        </React.Fragment>
+      );
     });
   }
 }
