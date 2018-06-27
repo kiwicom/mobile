@@ -21,7 +21,21 @@ export default {
     'Please go to settings and allow localization, or go back and search for your desired destination',
   'hotels_search.date_picker.select_date': 'Select date',
   'hotels_search.filter.free_cancellation': 'free cancellation',
+  'hotels_search.filter.hotel_facilities_filter.airport_shuttle':
+    'Airport shuttle',
+  'hotels_search.filter.hotel_facilities_filter.family_rooms': 'Family rooms',
+  'hotels_search.filter.hotel_facilities_filter.facilities_for_disabled':
+    'Facilities for Disabled Guests',
+  'hotels_search.filter.hotel_facilities_filter.fitness_center':
+    'Fitness Center',
+  'hotels_search.filter.hotel_facilities_filter.parking': 'Parking',
+  'hotels_search.filter.hotel_facilities_filter.free_parking': 'Free Parking',
+  'hotels_search.filter.hotel_facilities_filter.valet_parking': 'Valet Parking',
+  'hotels_search.filter.hotel_facilities_filter.indoor_pool': 'Indoor Pool',
+  'hotels_search.filter.hotel_facilities_filter.pets_allowed': 'Pets allowed',
+  'hotels_search.filter.hotel_facilities_filter.spa': 'Spa',
   'hotels_search.filter.hotel_facilities_filter.title': 'amenities',
+  'hotels_search.filter.hotel_facilities_filter.wifi': 'Wi-Fi',
   'hotels_search.filter.hotel_facilities_popup.save': 'Save',
   'hotels_search.filter.hotel_facilities_popup.title': 'Hotel facilities',
   'hotels_search.filter.price_filter.price': 'price',

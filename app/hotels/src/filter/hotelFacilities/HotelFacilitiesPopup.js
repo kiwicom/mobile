@@ -13,10 +13,10 @@ import {
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  facilities: string[],
-  onClose: () => void,
-  onSave: (string[]) => void,
-  isVisible: boolean,
+  +facilities: string[],
+  +onClose: () => void,
+  +onSave: (string[]) => void,
+  +isVisible: boolean,
 |};
 
 type State = {|
@@ -24,20 +24,70 @@ type State = {|
 |};
 
 const facilitiesList = {
-  airportShuttle: { text: 'Airport shuttle', icon: 'airport-shuttle' },
-  familyRooms: { text: 'Family rooms', icon: 'child-friendly' },
+  airportShuttle: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.airport_shuttle" />
+    ),
+    icon: 'airport-shuttle',
+  },
+  familyRooms: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.family_rooms" />
+    ),
+    icon: 'child-friendly',
+  },
   facilitiesForDisabled: {
-    text: 'Facilities for Disabled Guests',
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.facilities_for_disabled" />
+    ),
     icon: 'accessible',
   },
-  fitnessCenter: { text: 'Fitness Center', icon: 'fitness-center' },
-  parking: { text: 'Parking', icon: 'directions-car' },
-  freeParking: { text: 'Free Parking', icon: 'directions-car' },
-  valetParking: { text: 'Valet Parking', icon: 'directions-car' },
-  indoorPool: { text: 'Indoor Pool', icon: 'pool' },
-  petsAllowed: { text: 'Pets allowed', icon: 'pets' },
-  spa: { text: 'Spa', icon: 'spa' },
-  wifi: { text: 'Wi-Fi', icon: 'wifi' },
+  fitnessCenter: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.fitness_center" />
+    ),
+    icon: 'fitness-center',
+  },
+  parking: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.parking" />
+    ),
+    icon: 'directions-car',
+  },
+  freeParking: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.free_parking" />
+    ),
+    icon: 'directions-car',
+  },
+  valetParking: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.valet_parking" />
+    ),
+    icon: 'directions-car',
+  },
+  indoorPool: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.indoor_pool" />
+    ),
+    icon: 'pool',
+  },
+  petsAllowed: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.pets_allowed" />
+    ),
+    icon: 'pets',
+  },
+  spa: {
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.spa" />,
+    icon: 'spa',
+  },
+  wifi: {
+    text: (
+      <Translation id="hotels_search.filter.hotel_facilities_filter.wifi" />
+    ),
+    icon: 'wifi',
+  },
 };
 
 export default class HotelFacilitiesPopup extends React.Component<
@@ -77,7 +127,7 @@ export default class HotelFacilitiesPopup extends React.Component<
         >
           <View style={styles.checkbox}>
             <Icon name={facility.icon} size={20} style={styles.facilityIcon} />
-            <Translation passThrough={facility.text} />
+            {facility.text}
           </View>
         </Checkbox>,
       );
