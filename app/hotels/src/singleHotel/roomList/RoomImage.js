@@ -6,6 +6,32 @@ import { Touchable, NetworkImage, StyleSheet } from '@kiwicom/mobile-shared';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 
+type Props = {|
+  +thumbnailUrl: ?string,
+  +photoCount: number,
+  +openGallery: () => void,
+|};
+
+export default function RoomImage({
+  thumbnailUrl,
+  photoCount,
+  openGallery,
+}: Props) {
+  return (
+    <Touchable onPress={openGallery} disabled={thumbnailUrl == null}>
+      <View>
+        <NetworkImage source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
+        <View style={styles.galleryButton}>
+          <GalleryButton
+            count={photoCount}
+            style={{ container: styles.galleryButtonContainer }}
+          />
+        </View>
+      </View>
+    </Touchable>
+  );
+}
+
 const styles = StyleSheet.create({
   galleryButton: {
     position: 'absolute',
@@ -23,29 +49,3 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
 });
-
-type Props = {|
-  thumbnailUrl: ?string,
-  photoCount: number,
-  openGallery: () => void,
-|};
-
-export default function RoomImage({
-  thumbnailUrl,
-  photoCount,
-  openGallery,
-}: Props) {
-  return (
-    <Touchable onPress={openGallery}>
-      <View>
-        <NetworkImage source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
-        <View style={styles.galleryButton}>
-          <GalleryButton
-            count={photoCount}
-            style={{ container: styles.galleryButtonContainer }}
-          />
-        </View>
-      </View>
-    </Touchable>
-  );
-}
