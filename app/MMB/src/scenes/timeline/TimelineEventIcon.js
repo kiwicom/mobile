@@ -4,11 +4,40 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Color, Icon, TextIcon } from '@kiwicom/mobile-shared';
 
+import TimelineEventIconContext from '../../context/TimelineEventIconContext';
+
 export type Props = {|
   +icon: React.Element<typeof TextIcon | typeof Icon>,
-  +isFirst?: boolean,
   +isPastEvent?: boolean,
 |};
+
+const TopLine = () => (
+  <TimelineEventIconContext.Consumer>
+    {({ displayTopLine }) => (
+      <View
+        style={[
+          styles.line,
+          styles.topLine,
+          !displayTopLine && styles.resetBackgroundColor,
+        ]}
+      />
+    )}
+  </TimelineEventIconContext.Consumer>
+);
+
+const BottomLine = () => (
+  <TimelineEventIconContext.Consumer>
+    {({ displayBottomLine }) => (
+      <View
+        style={[
+          styles.line,
+          styles.bottomLine,
+          !displayBottomLine && styles.resetBackgroundColor,
+        ]}
+      />
+    )}
+  </TimelineEventIconContext.Consumer>
+);
 
 export default function TimelineEventIcon(props: Props) {
   const icon = (
@@ -26,15 +55,9 @@ export default function TimelineEventIcon(props: Props) {
 
   return (
     <View style={styles.container}>
-      <View
-        style={[
-          styles.line,
-          styles.topLine,
-          props.isFirst && styles.resetBackgroundColor,
-        ]}
-      />
+      <TopLine />
       {props.isPastEvent ? pastEventIcon : icon}
-      <View style={[styles.line, styles.bottomLine]} />
+      <BottomLine />
     </View>
   );
 }
