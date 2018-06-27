@@ -10,15 +10,20 @@ import type { TimelineQueryResponse } from './__generated__/TimelineQuery.graphq
 import BookingDetailContext from '../../context/BookingDetailContext';
 import BookedFlightTimelineEvent from './events/BookedFlightTimelineEvent';
 import AirportArrivalTimelineEvent from './events/AirportArrivalTimelineEvent';
-import DownloadInvoiceTimelineEvent from './events/DownloadInvoiceTimelineEvent';
+import DownloadInvoiceTimelineEvent, {
+  TimelineInvoiceSubmenuItems,
+} from './events/DownloadInvoiceTimelineEvent';
 import DepartureTimelineEvent from './events/DepartureTimelineEvent';
 import ArrivalTimelineEvent from './events/ArrivalTimelineEvent';
 import LeaveForAirportTimelineEvent from './events/LeaveForAirportTimelineEvent';
 import BoardingTimelineEvent from './events/BoardingTimelineEvent';
 import TransportFromAirportTimelineEvent from './events/TransportFromAirportTimelineEvent';
 import DaySeparator from './DaySeparator';
+import DownloadETicketTimelineEvent from './events/DownloadETicketTimelineEvent';
 
-export { TimelineSubmenuItems } from './events/DownloadInvoiceTimelineEvent';
+export const TimelineSubmenuItems = {
+  ...TimelineInvoiceSubmenuItems,
+};
 
 function getValidTimelineEvent(data) {
   if (data && data.__typename) {
@@ -27,6 +32,8 @@ function getValidTimelineEvent(data) {
         return <BookedFlightTimelineEvent data={data} />;
       case 'DownloadInvoiceTimelineEvent':
         return <DownloadInvoiceTimelineEvent data={data} />;
+      case 'DownloadETicketTimelineEvent':
+        return <DownloadETicketTimelineEvent data={data} />;
       case 'AirportArrivalTimelineEvent':
         return <AirportArrivalTimelineEvent data={data} />;
       case 'LeaveForAirportTimelineEvent':
@@ -107,6 +114,9 @@ export default class Timeline extends React.Component<{||}> {
                   }
                   ... on DownloadInvoiceTimelineEvent {
                     ...DownloadInvoiceTimelineEvent
+                  }
+                  ... on DownloadETicketTimelineEvent {
+                    ...DownloadETicketTimelineEvent
                   }
                   ... on BoardingTimelineEvent {
                     ...BoardingTimelineEvent

@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const TimelineSubmenuItems = {
+export const TimelineInvoiceSubmenuItems = {
   'mmb.timeline.invoice': {
     screen: function TimelineSubmenuOpenInvoice() {
       return <Invoice />;

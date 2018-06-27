@@ -150,6 +150,8 @@ export default {
     'Booked flight to __1_destination__',
   'mmb.booking_timeline.event.airport_arrival.title':
     'Arrive at __1_airport__ airport (__2_code__)',
+  'mmb.booking_timeline.event.airport_arrival.note':
+    'Give yourself extra time, just in case.',
 
   'mmb.booking_timeline.event.leave_for_airport.title': 'Leave for the airport',
   'mmb.booking_timeline.event.leave_for_airport.note':
@@ -193,4 +195,8 @@ export default {
     'Getting transport from airport',
   'mmb.booking_timeline.event.transport_from_airport.note':
     'Expect additional costs.',
+  'mmb.booking_timeline.event.download_eticket.title': 'Download e-ticket',
+  'mmb.booking_timeline.event.download_eticket.button.title': 'Download',
+  'mmb.booking_timeline.event.download_eticket.button.title.not_available':
+    'Not yet available',
 };
