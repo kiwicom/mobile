@@ -46,6 +46,10 @@ type State = {|
   stripeImageIndex: number,
 |};
 
+const getTileWidth = (width: number) => {
+  return (width - tileGap * (tilesInRow - 1)) / tilesInRow;
+};
+
 export default class GalleryGrid extends React.Component<Props, State> {
   state = {
     /**
@@ -56,7 +60,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
      * images are loaded which is too late (works good on iOS). But it's
      * still needed for portrait <-> layout changes.
      */
-    tileWidth: this.getTileWidth(this.props.dimensions.width),
+    tileWidth: getTileWidth(this.props.dimensions.width),
     stripeVisible: false,
     stripeImageIndex: 0,
   };
@@ -64,12 +68,8 @@ export default class GalleryGrid extends React.Component<Props, State> {
   calculateTileWidth = (event: OnLayout) => {
     const width = event.nativeEvent.layout.width;
     this.setState({
-      tileWidth: this.getTileWidth(width),
+      tileWidth: getTileWidth(width),
     });
-  };
-
-  getTileWidth = (width: number) => {
-    return width - (tileGap * (tilesInRow - 1)) / tilesInRow;
   };
 
   openStripe = (imageIndex: number) =>
