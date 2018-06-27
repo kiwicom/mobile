@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.white,
     alignSelf: 'center',
     width: '100%',
+    maxHeight: '75%',
   },
   wideContentContainer: {
     width: '75%',
