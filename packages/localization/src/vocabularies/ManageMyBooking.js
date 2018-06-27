@@ -146,6 +146,7 @@ export default {
 
   // MMB Booking Timeline
   'mmb.booking_timeline.today': 'Today',
+  'mmb.booking_timeline.event.in_destination': 'in __place__',
   'mmb.booking_timeline.event.booked_flight.title':
     'Booked flight to __1_destination__',
   'mmb.booking_timeline.event.airport_arrival.title':
