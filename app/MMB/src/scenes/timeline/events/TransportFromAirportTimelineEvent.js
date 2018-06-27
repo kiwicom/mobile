@@ -7,26 +7,26 @@ import { TextIcon } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
 import Note from '../MainContentNote';
-import type { LeaveForAirportTimelineEvent as LeaveForAirportTimelineEventType } from '../__generated__/TimelineQuery.graphql';
+import type { TransportFromAirportTimelineEvent as TransportFromAirportTimelineEventType } from '../__generated__/TimelineQuery.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
 
 type Props = {|
-  +data: LeaveForAirportTimelineEventType,
+  +data: TransportFromAirportTimelineEventType,
 |};
 
-const LeaveForAirportTimelineEvent = (props: Props) => {
+const TransportFromAirportTimelineEvent = (props: Props) => {
   const timestamp = idx(props, _ => _.data.timestamp);
   return (
     <TimelineEvent
-      timestamp={timestamp}
       displayTime={false}
-      iconVertLines={<TimelineEventIcon icon={<TextIcon code="&#xe052;" />} />}
+      timestamp={timestamp}
+      iconVertLines={<TimelineEventIcon icon={<TextIcon code="<" />} />}
       mainContent={
         <React.Fragment>
-          <Translation id="mmb.booking_timeline.event.leave_for_airport.title" />
+          <Translation id="mmb.booking_timeline.event.transport_from_airport.title" />
           <Note>
-            <Translation id="mmb.booking_timeline.event.leave_for_airport.note" />
+            <Translation id="mmb.booking_timeline.event.transport_from_airport.note" />
           </Note>
         </React.Fragment>
       }
@@ -35,9 +35,9 @@ const LeaveForAirportTimelineEvent = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  LeaveForAirportTimelineEvent,
+  TransportFromAirportTimelineEvent,
   graphql`
-    fragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {
+    fragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {
       timestamp
     }
   `,

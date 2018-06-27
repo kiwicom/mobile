@@ -188,4 +188,9 @@ export default {
     'Enjoy your flight. The flight will take __hours__ hours and __minutes__ minute.',
   'mmb.booking_timeline.event.departure.note_hours_minutes':
     'Enjoy your flight. The flight will take __hours__ hours and __minutes__ minutes.',
+
+  'mmb.booking_timeline.event.transport_from_airport.title':
+    'Getting transport from airport',
+  'mmb.booking_timeline.event.transport_from_airport.note':
+    'Expect additional costs.',
 };
