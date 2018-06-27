@@ -1,6 +1,6 @@
 // @flow
 
-import { GetDeviceLocale } from '@kiwicom/mobile-localization';
+import { DeviceInfo } from '@kiwicom/mobile-localization';
 import {
   Environment,
   Network,
@@ -53,7 +53,7 @@ export default function createEnvironment(accessToken: string = '') {
   const networkHeaders: Object = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    'Accept-Language': GetDeviceLocale().replace('-', '_'),
+    'Accept-Language': DeviceInfo.getLocaleUnderscored(),
   };
 
   if (accessToken) {

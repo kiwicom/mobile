@@ -1,12 +1,12 @@
 // @flow strict
 
-import getDeviceLocale from './GetDeviceLocale';
+import { getLocaleDashed } from './GetDeviceLocale';
 
 import 'intl'; // Polyfill because of Android
 import 'intl/locale-data/complete';
 
 // language prop passed from native code is not accessible at this point
-const DEVICE_LOCALE = getDeviceLocale();
+const DEVICE_LOCALE = getLocaleDashed();
 
 function date(date: Date) {
   return Intl.DateTimeFormat(DEVICE_LOCALE, {
