@@ -3,5 +3,8 @@
 import { NativeModules } from 'react-native';
 
 NativeModules.RNDeviceInfo = {
-  Locale: 'en',
+  getLanguage: 'en',
+  getTerritory: 'US',
+  getLocaleUnderscored: 'en_US',
+  getLocaleDashed: 'en-US',
 };

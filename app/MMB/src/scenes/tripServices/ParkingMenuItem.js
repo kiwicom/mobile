@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { TextIcon } from '@kiwicom/mobile-shared';
-import { Translation, GetDeviceLocale } from '@kiwicom/mobile-localization';
+import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
 import idx from 'idx';
@@ -25,7 +25,7 @@ class ParkingMenuItem extends React.Component<Props> {
       whitelabelURL +
         (whitelabelURL.includes('?') ? '&' : '?') +
         querystring.stringify({
-          utm_source: 'kiwicom_' + GetDeviceLocale(), // this should be actually language only but the locale should be fine as well
+          utm_source: 'kiwicom_' + DeviceInfo.getLocaleDashed(), // this should be actually language only but the locale should be fine as well
           utm_medium: 'referral',
           utm_campaign: Platform.select({
             android: 'kiwi-android',
