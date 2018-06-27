@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { DatePickerIOS } from 'react-native';
-import { Translation, GetDeviceLocale } from '@kiwicom/mobile-localization';
+import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
 
 import DatePickerButton from './DatePickerButton';
 import BarPopup from '../../popup/BarPopup';
@@ -63,7 +63,7 @@ export default class DatePicker extends React.Component<Props, State> {
             maximumDate={maxDate}
             date={this.state.date}
             onDateChange={this.onDateChange}
-            locale={GetDeviceLocale()}
+            locale={DeviceInfo.getLocaleDashed()}
             mode="date"
           />
         </BarPopup>

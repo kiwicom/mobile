@@ -6,13 +6,13 @@ import Translation from './src/Translation';
 import TranslationFragment from './src/TranslationFragment';
 import DateFormatter from './src/DateFormatter';
 import DateUtils from './src/DateUtils';
-import GetDeviceLocale from './src/GetDeviceLocale';
+import DeviceInfo from './src/GetDeviceLocale';
 
 export {
   TranslationFragment,
   DateFormatter,
   DateUtils,
-  GetDeviceLocale,
+  DeviceInfo,
   Translation,
 };
 

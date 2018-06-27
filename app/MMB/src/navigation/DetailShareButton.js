@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Share, Platform } from 'react-native';
-import { DateFormatter, GetDeviceLocale } from '@kiwicom/mobile-localization';
+import { DateFormatter, DeviceInfo } from '@kiwicom/mobile-localization';
 
 import BookingDetailContext from '../context/BookingDetailContext';
 import ShareButton from '../components/ShareButton';
@@ -14,7 +14,7 @@ type PropsWithContext = {|
 
 class DetailShareButton extends React.Component<PropsWithContext> {
   onPress = () => {
-    const lang = GetDeviceLocale().split('-')[0] || 'en';
+    const lang = DeviceInfo.getLanguage() || 'en';
     const message = `https://kiwi.com/share?date=${DateFormatter(
       this.props.arrivalTime,
     ).formatForMachine()}&city_id=${
