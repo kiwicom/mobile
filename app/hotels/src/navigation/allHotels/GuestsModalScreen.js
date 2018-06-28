@@ -154,6 +154,7 @@ export default class GuestsModalScreenWithContext extends React.Component<
           </Text>
         </HeaderButton>
       ),
+      gesturesEnabled: false,
     };
   };
 

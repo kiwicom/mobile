@@ -54,6 +54,7 @@ export default class LocationPickerScreen extends React.Component<Props> {
           <Translation id="hotels_search.location_picker.header" />
         </HeaderTitle>
       ),
+      gesturesEnabled: false,
     };
   };
 
