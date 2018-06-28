@@ -5,6 +5,7 @@ import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import TimelineEventLayout from './TimelineEventLayout';
 import DateLocation from './TimelineEventDateLocation';
+import TimelineEventContext from '../../context/TimelineEventContext';
 
 type Props = {|
   +timestamp: ?Date,
@@ -27,18 +28,14 @@ const TimelineEvent = (props: Props) => {
     dateLocation = <DateLocation time={time} place={place} />;
   }
 
-  const iconVertLines = React.Children.map(props.iconVertLines, child =>
-    React.cloneElement(child, {
-      isPastEvent,
-    }),
-  );
   return (
-    <TimelineEventLayout
-      isPastEvent={isPastEvent}
-      dateLocation={dateLocation}
-      iconVertLines={iconVertLines}
-      mainContent={props.mainContent}
-    />
+    <TimelineEventContext.Provider value={{ isPastEvent }}>
+      <TimelineEventLayout
+        dateLocation={dateLocation}
+        iconVertLines={props.iconVertLines}
+        mainContent={props.mainContent}
+      />
+    </TimelineEventContext.Provider>
   );
 };
 

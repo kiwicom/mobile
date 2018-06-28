@@ -7,6 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon } from '@kiwicom/mobile-shared';
 
 import Note from '../../MainContentNote';
+import Title from '../../MainContentTitle';
 import renderNote from './DepartureTimelineEventNote';
 import type { DepartureTimelineEvent as DeparturelineEventType } from './__generated__/DepartureTimelineEvent.graphql';
 import TimelineEvent from '../../TimelineEvent';
@@ -27,12 +28,14 @@ const DepartureTimelineEvent = (props: Props) => {
       iconVertLines={<TimelineEventIcon icon={<TextIcon code="*" />} />}
       mainContent={
         <React.Fragment>
-          <Translation
-            id="mmb.booking_timeline.event.departure.title"
-            values={{
-              destination,
-            }}
-          />
+          <Title>
+            <Translation
+              id="mmb.booking_timeline.event.departure.title"
+              values={{
+                destination,
+              }}
+            />
+          </Title>
           <Note>{renderNote(duration)}</Note>
         </React.Fragment>
       }

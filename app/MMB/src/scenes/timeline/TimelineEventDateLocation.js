@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import TimelineEventDateLocationContext from '../../context/TimelineEventDateLocationContext';
+import { TextWithIsPastEventContext } from '../../context/TimelineEventContext';
 
 type Props = {|
   +time: string,
@@ -38,9 +39,11 @@ export default function TimelineEventDateLocation(props: Props) {
 const TextWithContext = ({ children }) => (
   <TimelineEventDateLocationContext.Consumer>
     {({ highlightText }) => (
-      <Text style={[styles.text, highlightText && styles.highlightText]}>
+      <TextWithIsPastEventContext
+        style={[styles.text, highlightText && styles.highlightText]}
+      >
         {children}
-      </Text>
+      </TextWithIsPastEventContext>
     )}
   </TimelineEventDateLocationContext.Consumer>
 );
@@ -53,6 +56,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 10,
+    fontWeight: 'bold',
   },
   highlightText: {
     color: Color.red.normal,
