@@ -40,12 +40,10 @@ const generateDynamicStyles = dim => {
     galleryButton: {
       position: 'absolute',
       end: 10,
-      android: {
-        top: Device.isWideLayout(dim) ? 10 : StatusBar.currentHeight + 16,
-      },
-      ios: {
-        top: 10,
-      },
+      top: Platform.select({
+        android: Device.isWideLayout(dim) ? 10 : StatusBar.currentHeight + 16,
+        ios: 10,
+      }),
     },
   };
 };
