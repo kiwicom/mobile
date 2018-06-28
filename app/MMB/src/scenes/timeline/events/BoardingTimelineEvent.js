@@ -7,6 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon } from '@kiwicom/mobile-shared';
 
 import Note from '../MainContentNote';
+import Title from '../MainContentTitle';
 import type { BoardingTimelineEvent as BoardingTimelineEventType } from './__generated__/BoardingTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
@@ -24,7 +25,9 @@ const BoardingTimelineEvent = (props: Props) => {
       iconVertLines={<TimelineEventIcon icon={<TextIcon code="&#xe00a;" />} />}
       mainContent={
         <React.Fragment>
-          <Translation id="mmb.booking_timeline.event.gate_arrival.title" />
+          <Title>
+            <Translation id="mmb.booking_timeline.event.gate_arrival.title" />
+          </Title>
           <Note>
             <Translation id="mmb.booking_timeline.event.gate_arrival.note" />
           </Note>

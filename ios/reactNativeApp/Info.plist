@@ -55,6 +55,10 @@
 		<string>spfont.ttf</string>
 		<string>Roboto-Regular.ttf</string>
 		<string>CircularPro-Book.otf</string>
+		<string>CircularPro-Bold.otf</string>
+		<string>CircularPro-Medium.otf</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-Medium.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

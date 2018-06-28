@@ -6,6 +6,7 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon } from '@kiwicom/mobile-shared';
 
+import Title from '../MainContentTitle';
 import type { ArrivalTimelineEvent as ArrivalTimelineEventType } from './__generated__/ArrivalTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
@@ -27,13 +28,15 @@ const ArrivalTimelineEvent = (props: Props) => {
         place={code}
         iconVertLines={<TimelineEventIcon icon={<TextIcon code="%" />} />}
         mainContent={
-          <Translation
-            id="mmb.booking_timeline.event.arrival.title"
-            values={{
-              airport,
-              code,
-            }}
-          />
+          <Title>
+            <Translation
+              id="mmb.booking_timeline.event.arrival.title"
+              values={{
+                airport,
+                code,
+              }}
+            />
+          </Title>
         }
       />
     </TimelineEventDateLocationContext.Provider>

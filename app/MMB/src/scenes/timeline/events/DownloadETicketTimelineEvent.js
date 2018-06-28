@@ -12,6 +12,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 
+import Title from '../MainContentTitle';
 import type { DownloadETicketTimelineEvent as DownloadETicketTimelineEventType } from './__generated__/DownloadETicketTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
@@ -56,7 +57,9 @@ class DownloadETicketTimelineEvent extends React.Component<Props> {
         }
         mainContent={
           <View style={styles.container}>
-            <Translation id="mmb.booking_timeline.event.download_eticket.title" />
+            <Title>
+              <Translation id="mmb.booking_timeline.event.download_eticket.title" />
+            </Title>
             <View style={styles.button}>
               <TextButton
                 disabled={disabled}
