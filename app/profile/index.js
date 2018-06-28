@@ -61,6 +61,6 @@ export default class LoginScreen extends React.Component<{||}, State> {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 60,
+    flex: 1,
   },
 });
