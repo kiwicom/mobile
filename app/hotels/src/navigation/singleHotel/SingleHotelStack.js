@@ -58,13 +58,6 @@ export default StackNavigator(
     },
     GalleryGrid: {
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjecter),
-      navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.gallery_grid" />
-          </HeaderTitle>
-        ),
-      },
     },
     Payment: {
       screen: withMappedProps(Payment),

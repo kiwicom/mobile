@@ -10,6 +10,7 @@ import {
   type DimensionType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
 
 import GalleryGridTile from './GalleryGridTile';
 import PhotosStripe from './PhotosStripe';
@@ -30,6 +31,7 @@ export type Image = {
 };
 
 type Props = {|
+  +navigation: NavigationType,
   +hotelName: string,
   +dimensions: DimensionType,
   +images: Image[],
@@ -51,6 +53,15 @@ const getTileWidth = (width: number) => {
 };
 
 export default class GalleryGrid extends React.Component<Props, State> {
+  static navigationOptions = ({ navigation }: Props) => ({
+    gesturesEnabled: navigation.state.params.isGesturesEnabled,
+    headerTitle: (
+      <HeaderTitle>
+        <Translation id="hotels.navigation.title.gallery_grid" />
+      </HeaderTitle>
+    ),
+  });
+
   state = {
     /**
      * This assumes that the gallery is expanded over the whole screen
@@ -65,6 +76,12 @@ export default class GalleryGrid extends React.Component<Props, State> {
     stripeImageIndex: 0,
   };
 
+  componentDidMount = () => {
+    this.props.navigation.setParams({
+      isGesturesEnabled: true,
+    });
+  };
+
   calculateTileWidth = (event: OnLayout) => {
     const width = event.nativeEvent.layout.width;
     this.setState({
@@ -72,16 +89,26 @@ export default class GalleryGrid extends React.Component<Props, State> {
     });
   };
 
-  openStripe = (imageIndex: number) =>
+  openStripe = (imageIndex: number) => {
     this.setState({
       stripeVisible: true,
       stripeImageIndex: imageIndex,
     });
 
-  closeStripe = () =>
+    this.props.navigation.setParams({
+      isGesturesEnabled: false,
+    });
+  };
+
+  closeStripe = () => {
     this.setState({
       stripeVisible: false,
     });
+
+    this.props.navigation.setParams({
+      isGesturesEnabled: true,
+    });
+  };
 
   renderItem = ({ item, index }: { item: Image, index: number }) => (
     <GalleryGridTile
@@ -95,33 +122,35 @@ export default class GalleryGrid extends React.Component<Props, State> {
   );
 
   render = () => {
-    return this.props.images ? (
-      [
-        <FlatList
-          key="grid"
-          data={this.props.images}
-          extraData={this.state}
-          renderItem={this.renderItem}
-          numColumns={tilesInRow}
-          onLayout={this.calculateTileWidth}
-        />,
-        <Modal
-          key="stripe"
-          isVisible={this.state.stripeVisible}
-          backdropColor="black"
-          backdropOpacity={1}
-          style={styles.modal}
-          onRequestClose={this.closeStripe}
-        >
-          <PhotosStripe
-            hotelName={this.props.hotelName}
-            imageUrls={this.props.images.map(image => image.highRes)}
-            index={this.state.stripeImageIndex}
-            onClose={this.closeStripe}
+    if (this.props.images) {
+      return (
+        <React.Fragment>
+          <FlatList
+            data={this.props.images}
+            extraData={this.state}
+            renderItem={this.renderItem}
+            numColumns={tilesInRow}
+            onLayout={this.calculateTileWidth}
           />
-        </Modal>,
-      ]
-    ) : (
+          <Modal
+            isVisible={this.state.stripeVisible}
+            backdropColor="black"
+            backdropOpacity={1}
+            style={styles.modal}
+            onRequestClose={this.closeStripe}
+          >
+            <PhotosStripe
+              hotelName={this.props.hotelName}
+              imageUrls={this.props.images.map(image => image.highRes)}
+              index={this.state.stripeImageIndex}
+              onClose={this.closeStripe}
+            />
+          </Modal>
+        </React.Fragment>
+      );
+    }
+
+    return (
       <GeneralError
         errorMessage={<Translation id="hotels.gallery_grid.no_images" />}
       />
