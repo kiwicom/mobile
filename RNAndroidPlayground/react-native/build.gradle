@@ -1,0 +1,56 @@
+buildscript {
+    apply from: "../dependencies.gradle"
+
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
+        // Needed to assemble react-native
+        classpath 'de.undercouch:gradle-download-task:3.4.3'
+    }
+}
+
+subprojects {
+    apply plugin: 'maven'
+    apply plugin: 'com.android.library'
+
+    repositories {
+        google()
+        jcenter()
+
+        maven {
+            url "$rootDir/../../node_modules/react-native/android"
+        }
+        maven {
+            url 'http://trinerdis.cz:8000/repository/snapshots/'
+        }
+    }
+
+    buildDir = "$rootProject.projectDir/build"
+
+    tasks.create('uploadTrinerdis', Upload.class) {
+        configuration = project.configurations.archives
+        repositories {
+            mavenDeployer {
+                repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
+                    authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
+                    pom.version = "$version"
+                    pom.artifactId = "react-native"
+                    pom.groupId = "com.facebook.react"
+                }
+            }
+        }
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

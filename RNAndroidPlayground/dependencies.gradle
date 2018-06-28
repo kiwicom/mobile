@@ -26,7 +26,7 @@ ext {
 
     reactNativeNativeModules = "0.1.26.rc-1"
     loggingVersion = "0.2.2"
-    infinarioVersion = "0.1"
+    infinarioVersion = "0.2"
 
     playServicesVersion = "11.8.0"
 
