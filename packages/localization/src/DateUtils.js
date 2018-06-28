@@ -67,4 +67,7 @@ DateUtils.isBeforeDate = (firstDate: Date, secondDate: Date): boolean => {
   );
 };
 
+DateUtils.getLocalTimeZone = () =>
+  Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 export default DateUtils;
