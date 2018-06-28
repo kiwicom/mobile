@@ -7,6 +7,7 @@ import { TextIcon } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
 import Note from '../MainContentNote';
+import Title from '../MainContentTitle';
 import type { TransportFromAirportTimelineEvent as TransportFromAirportTimelineEventType } from '../__generated__/TimelineQuery.graphql';
 import TimelineEvent from '../TimelineEvent';
 import TimelineEventIcon from '../TimelineEventIcon';
@@ -24,7 +25,9 @@ const TransportFromAirportTimelineEvent = (props: Props) => {
       iconVertLines={<TimelineEventIcon icon={<TextIcon code="<" />} />}
       mainContent={
         <React.Fragment>
-          <Translation id="mmb.booking_timeline.event.transport_from_airport.title" />
+          <Title>
+            <Translation id="mmb.booking_timeline.event.transport_from_airport.title" />
+          </Title>
           <Note>
             <Translation id="mmb.booking_timeline.event.transport_from_airport.note" />
           </Note>

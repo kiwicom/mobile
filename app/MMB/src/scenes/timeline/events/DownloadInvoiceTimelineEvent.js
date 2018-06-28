@@ -13,6 +13,7 @@ import {
 import { Translation } from '@kiwicom/mobile-localization';
 
 import Note from '../MainContentNote';
+import Title from '../MainContentTitle';
 import Invoice from '../../../components/Invoice';
 import type { DownloadInvoiceTimelineEvent as DownloadInvoiceTimelineEventType } from './__generated__/DownloadInvoiceTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
@@ -93,7 +94,9 @@ class DownloadInvoiceTimelineEvent extends React.Component<Props> {
         }
         mainContent={
           <View style={styles.container}>
-            <Translation id="mmb.booking_timeline.event.download_invoice.title" />
+            <Title>
+              <Translation id="mmb.booking_timeline.event.download_invoice.title" />
+            </Title>
             <Note>{note}</Note>
             <View style={styles.button}>
               <TextButton

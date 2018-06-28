@@ -5,10 +5,10 @@ import { View } from 'react-native';
 import { StyleSheet, Color, Icon, TextIcon } from '@kiwicom/mobile-shared';
 
 import TimelineEventIconContext from '../../context/TimelineEventIconContext';
+import TimelineEventContext from '../../context/TimelineEventContext';
 
 export type Props = {|
   +icon: React.Element<typeof TextIcon | typeof Icon>,
-  +isPastEvent?: boolean,
 |};
 
 const TopLine = () => (
@@ -56,7 +56,9 @@ export default function TimelineEventIcon(props: Props) {
   return (
     <View style={styles.container}>
       <TopLine />
-      {props.isPastEvent ? pastEventIcon : icon}
+      <TimelineEventContext.Consumer>
+        {({ isPastEvent }) => (isPastEvent ? pastEventIcon : icon)}
+      </TimelineEventContext.Consumer>
       <BottomLine />
     </View>
   );
