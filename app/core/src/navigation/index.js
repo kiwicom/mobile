@@ -29,12 +29,24 @@ const VoidStack = StackNavigator(
   },
 );
 
+const ProfileStack = StackNavigator(
+  {
+    Profile: {
+      screen: ProfileScreen,
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'Profile',
+  },
+);
+
 export default TabNavigator(
   {
     Search: { screen: HotelsStack },
     Bookings: { screen: MMBPackage },
     Message: { screen: VoidStack },
-    Profile: { screen: ProfileScreen },
+    Profile: { screen: ProfileStack },
   },
   {
     tabBarOptions: {
