@@ -36,7 +36,16 @@ export default class DatePicker extends React.Component<Props, State> {
   };
 
   onDateChange = (date: Date | string) => {
-    this.setState({ date: new Date(date) });
+    const chosenDate = new Date(date);
+    this.setState({
+      date: new Date(
+        Date.UTC(
+          chosenDate.getFullYear(),
+          chosenDate.getMonth(),
+          chosenDate.getDate(),
+        ),
+      ),
+    });
   };
 
   render = () => {
