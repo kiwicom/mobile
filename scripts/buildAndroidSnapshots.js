@@ -1,6 +1,5 @@
-/* @flow */
-
 /* eslint-disable no-console */
+/* eslint-disable flowtype/require-valid-file-annotation */
 
 const urlExists = require('url-exists');
 const child_process = require('child_process');
@@ -32,11 +31,7 @@ const getDependencyVersion = packageName => {
 // Get rnkiwimobile version
 const RNKiwiMobileVersion = buildPackage.version;
 
-const deployDependency = (
-  packageName: string,
-  url: string,
-  extension: string = '',
-) => {
+const deployDependency = (packageName, url, extension) => {
   const version = getDependencyVersion(packageName);
 
   return new Promise((resolve, reject) =>
