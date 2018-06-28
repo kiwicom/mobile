@@ -31,7 +31,7 @@ const getDependencyVersion = packageName => {
 // Get rnkiwimobile version
 const RNKiwiMobileVersion = buildPackage.version;
 
-const deployDependency = (packageName, url, extension) => {
+const deployDependency = (packageName, url, extension = '') => {
   const version = getDependencyVersion(packageName);
 
   return new Promise((resolve, reject) =>
