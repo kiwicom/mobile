@@ -7,7 +7,7 @@ RCT_EXPORT_MODULE();
 
 - (NSString *)currentLanguage {
     
-    NSString *localeIdentifier = [[NSLocale currentLocale] objectForKey: NSLocaleLanguageCode];
+    NSString *localeIdentifier = [[[[NSLocale preferredLanguages] firstObject] componentsSeparatedByString:@"-"] firstObject];
     
     if (localeIdentifier == nil) {
         NSLog(@"RNDeviceInfo: current language is undefined");
