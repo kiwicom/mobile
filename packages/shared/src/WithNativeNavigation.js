@@ -14,6 +14,7 @@ type InjectedProps = {|
 
 function withNativeNavigation<Props: {}>(
   WrappedComponent: React.ComponentType<Props>,
+  moduleName: string,
 ): React.ComponentType<$Diff<Props, InjectedProps>> {
   return class WithNativeNavigation extends React.Component<*> {
     currentIndex: number;
@@ -27,10 +28,10 @@ function withNativeNavigation<Props: {}>(
       currentState: NavigationState,
     ) => {
       if (currentState.index === 0) {
-        GestureController.enableGestures('KiwiHotels');
+        GestureController.enableGestures(moduleName);
         this.currentIndex = 0;
       } else if (currentState.index > 0) {
-        GestureController.disableGestures('KiwiHotels');
+        GestureController.disableGestures(moduleName);
         this.currentIndex = currentState.index;
       }
     };
