@@ -10,6 +10,7 @@ import { StyleSheet, type DimensionType } from '@kiwicom/mobile-shared';
 type Props = {|
   navigation: NavigationType,
   dimensions: DimensionType,
+  onNavigationStateChange: () => void,
 |};
 
 export default class MMBPackageWrapper extends React.Component<
@@ -60,6 +61,7 @@ export default class MMBPackageWrapper extends React.Component<
 
     return (
       <ManageMyBookingPackage
+        onNavigationStateChange={this.props.onNavigationStateChange}
         dimensions={this.props.dimensions}
         currency="EUR"
         accessToken={this.state.token}
