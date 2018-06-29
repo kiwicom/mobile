@@ -8,26 +8,26 @@ import 'intl/locale-data/complete';
 // language prop passed from native code is not accessible at this point
 const DEVICE_LOCALE = getLocaleDashed();
 
-function date(date: Date, timeZone: string) {
+function date(date: Date) {
   return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    timeZone,
+    timeZone: 'UTC', // this is very important!
     weekday: 'short',
     month: 'numeric',
     day: 'numeric',
   }).format(date);
 }
 
-function time(date: Date, timeZone: string) {
+function time(date: Date) {
   return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    timeZone,
+    timeZone: 'UTC', // this is very important!
     hour: 'numeric',
     minute: 'numeric',
   }).format(date);
 }
 
-function birthday(date: Date, timeZone: string) {
+function birthday(date: Date) {
   return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    timeZone,
+    timeZone: 'UTC', // this is very important!
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
@@ -48,11 +48,11 @@ function pad(number) {
  */
 function DateFormatter(rawDate: Date = new Date()) {
   return {
-    formatToDate: (timeZone: string = 'UTC') => date(rawDate, timeZone),
-    formatToTime: (timeZone: string = 'UTC') => time(rawDate, timeZone),
+    formatToDate: () => date(rawDate),
+    formatToTime: () => time(rawDate),
 
     // note: I am not sure about the naming - improve when needed
-    formatToBirthday: (timeZone: string = 'UTC') => birthday(rawDate, timeZone),
+    formatToBirthday: () => birthday(rawDate),
 
     /**
      * Always returns YYYY-MM-DD at this moment.
