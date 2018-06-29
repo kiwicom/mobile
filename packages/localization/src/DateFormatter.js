@@ -1,6 +1,7 @@
 // @flow strict
 
 import { getLocaleDashed } from './GetDeviceLocale';
+import DateUtils from './DateUtils';
 
 import 'intl'; // Polyfill because of Android
 import 'intl/locale-data/complete';
@@ -46,7 +47,7 @@ function pad(number) {
  * formatter. Every function is localized and you should never call formatting
  * on the raw Date object.
  */
-function DateFormatter(rawDate: Date = new Date()) {
+function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
   return {
     formatToDate: () => date(rawDate),
     formatToTime: () => time(rawDate),
