@@ -13,8 +13,8 @@ const InitialContextState = {
   cityId: null,
   location: '',
   searchParams: {
-    checkin: DateUtils().addDays(7),
-    checkout: DateUtils().addDays(14),
+    checkin: DateUtils(DateUtils.getUTCToday()).addDays(7),
+    checkout: DateUtils(DateUtils.getUTCToday()).addDays(14),
     roomsConfiguration: {
       adultsCount: 1,
       children: [],
