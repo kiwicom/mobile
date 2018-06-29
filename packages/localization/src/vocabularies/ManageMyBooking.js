@@ -26,6 +26,9 @@ export default {
   'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
+  // MMB Boarding passes
+  'mmb.boarding_passes.boarding_pass': 'Boarding Pass',
+
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
   'mmb.flight_overview.timeline.carrier': 'Carrier:',

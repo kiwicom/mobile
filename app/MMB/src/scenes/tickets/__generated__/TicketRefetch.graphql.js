@@ -10,20 +10,20 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type ETicket$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type ETicketRefetch$ref: FragmentReference;
-export type ETicketRefetch = {|
+declare export opaque type TicketRefetch$ref: FragmentReference;
+export type TicketRefetch = {|
   +id: string,
   +assets: ?{|
     +$fragmentRefs: ETicket$ref
   |},
-  +$refType: ETicketRefetch$ref,
+  +$refType: TicketRefetch$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "ETicketRefetch",
+  "name": "TicketRefetch",
   "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
@@ -54,5 +54,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a9bb89a2264299ce50c4b189db1a953a';
+(node/*: any*/).hash = 'fb33979f8c1022041f5b3cf9ec47a42e';
 module.exports = node;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9c4068dea7939371c82da676b8688361
+ * @relayHash a6888fe93e958946d3f0c7e34e74f766
  */
 
 /* eslint-disable */
@@ -9,13 +9,13 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type ETicketRefetch$ref = any;
+type TicketRefetch$ref = any;
 export type TicketSceneQueryVariables = {|
   bookingId: string
 |};
 export type TicketSceneQueryResponse = {|
   +node: ?{|
-    +$fragmentRefs: ETicketRefetch$ref
+    +$fragmentRefs: TicketRefetch$ref
   |}
 |};
 */
@@ -28,13 +28,13 @@ query TicketSceneQuery(
   node(id: $bookingId) {
     __typename
     ... on BookingInterface {
-      ...ETicketRefetch
+      ...TicketRefetch
     }
     id
   }
 }
 
-fragment ETicketRefetch on BookingInterface {
+fragment TicketRefetch on BookingInterface {
   id
   assets {
     ...ETicket
@@ -68,7 +68,7 @@ return {
   "operationKind": "query",
   "name": "TicketSceneQuery",
   "id": null,
-  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...ETicketRefetch\n    }\n    id\n  }\n}\n\nfragment ETicketRefetch on BookingInterface {\n  id\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
+  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -88,7 +88,7 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "ETicketRefetch",
+            "name": "TicketRefetch",
             "args": null
           }
         ]
@@ -148,5 +148,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '39039dbd7e0af89066bfdadfc9932b4f';
+(node/*: any*/).hash = 'ce095645f484bdd3dbff1e48ff0bba4f';
 module.exports = node;
