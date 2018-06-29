@@ -52,7 +52,6 @@ module.exports = {
             name: 'react-native',
             importNames: [
               'Button', // Button
-              'Dimensions', // Device
               'LayoutAnimation', // LayoutAnimation
               'StyleSheet', // StyleSheet
               'Text', // Text
