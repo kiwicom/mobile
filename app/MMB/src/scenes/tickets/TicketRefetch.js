@@ -10,7 +10,8 @@ import { RefreshableScrollView, StyleSheet } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
 import ETicket from './ETicket';
-import type { ETicketRefetch as BookingType } from './__generated__/ETicketRefetch.graphql';
+import BoardingPasses from './boardingPasses/BoardingPasses';
+import type { ETicketRefetch as BookingType } from './__generated__/TicketRefetch.graphql';
 
 type Props = {|
   +data: BookingType,
@@ -50,6 +51,7 @@ class ETicketRefetch extends React.Component<Props, State> {
       contentContainerStyle={styles.container}
     >
       <ETicket data={idx(this.props.data, _ => _.assets)} />
+      <BoardingPasses />
     </RefreshableScrollView>
   );
 }
@@ -57,7 +59,7 @@ class ETicketRefetch extends React.Component<Props, State> {
 export default createRefetchContainer(
   ETicketRefetch,
   graphql`
-    fragment ETicketRefetch on BookingInterface {
+    fragment TicketRefetch on BookingInterface {
       id
       assets {
         ...ETicket
@@ -65,10 +67,10 @@ export default createRefetchContainer(
     }
   `,
   graphql`
-    query ETicketRefetchQuery($id: ID!) {
+    query TicketRefetchQuery($id: ID!) {
       node(id: $id) {
         ... on BookingInterface {
-          ...ETicketRefetch
+          ...TicketRefetch
         }
       }
     }
