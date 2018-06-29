@@ -5,7 +5,7 @@ import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
 
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TicketSceneQueryResponse } from './__generated__/TicketSceneQuery.graphql';
-import ETicketRefetch from './ETicketRefetch';
+import TicketRefetch from './TicketRefetch';
 import ETicketPdfScreen from './eTicketPdf/ETicketPdfScreen';
 
 type Props = {|
@@ -14,7 +14,7 @@ type Props = {|
 
 export default class TicketScene extends React.Component<Props> {
   renderInner = (renderProps: TicketSceneQueryResponse) => (
-    <ETicketRefetch data={renderProps.node} />
+    <TicketRefetch data={renderProps.node} />
   );
 
   render = () => (
@@ -25,7 +25,7 @@ export default class TicketScene extends React.Component<Props> {
             query TicketSceneQuery($bookingId: ID!) {
               node(id: $bookingId) {
                 ... on BookingInterface {
-                  ...ETicketRefetch
+                  ...TicketRefetch
                 }
               }
             }

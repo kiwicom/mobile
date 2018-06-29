@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash be5ea4afc86eb3bea504efcbb700a5a6
+ * @relayHash 1571ecc1c3ebc0b17baa4922337cb67a
  */
 
 /* eslint-disable */
@@ -9,32 +9,32 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type ETicketRefetch$ref = any;
-export type ETicketRefetchQueryVariables = {|
+type TicketRefetch$ref = any;
+export type TicketRefetchQueryVariables = {|
   id: string
 |};
-export type ETicketRefetchQueryResponse = {|
+export type TicketRefetchQueryResponse = {|
   +node: ?{|
-    +$fragmentRefs: ETicketRefetch$ref
+    +$fragmentRefs: TicketRefetch$ref
   |}
 |};
 */
 
 
 /*
-query ETicketRefetchQuery(
+query TicketRefetchQuery(
   $id: ID!
 ) {
   node(id: $id) {
     __typename
     ... on BookingInterface {
-      ...ETicketRefetch
+      ...TicketRefetch
     }
     id
   }
 }
 
-fragment ETicketRefetch on BookingInterface {
+fragment TicketRefetch on BookingInterface {
   id
   assets {
     ...ETicket
@@ -66,13 +66,13 @@ v1 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "ETicketRefetchQuery",
+  "name": "TicketRefetchQuery",
   "id": null,
-  "text": "query ETicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...ETicketRefetch\n    }\n    id\n  }\n}\n\nfragment ETicketRefetch on BookingInterface {\n  id\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
+  "text": "query TicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  assets {\n    ...ETicket\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "ETicketRefetchQuery",
+    "name": "TicketRefetchQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -88,7 +88,7 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "ETicketRefetch",
+            "name": "TicketRefetch",
             "args": null
           }
         ]
@@ -97,7 +97,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "ETicketRefetchQuery",
+    "name": "TicketRefetchQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -148,5 +148,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c091efcd370c75b4427ed5798b2cac81';
+(node/*: any*/).hash = 'ac93d2ab12685b3f729e6e0f7b3ffd97';
 module.exports = node;

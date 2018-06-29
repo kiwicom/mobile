@@ -20,6 +20,7 @@ import type {
 } from '@kiwicom/mobile-navigation';
 
 import type { ETicket as AssetsType } from './__generated__/ETicket.graphql';
+import TicketHeader from './components/TicketHeader';
 
 type Props = {|
   +data: AssetsType,
@@ -44,12 +45,12 @@ class ETicket extends React.Component<Props> {
   render = () => {
     const isTicketConfirmed = Boolean(idx(this.props.data, _ => _.ticketUrl));
     return (
-      <SimpleCard>
+      <SimpleCard style={styles.card}>
         <View style={styles.header}>
-          <TextIcon code="J" style={styles.icon} />
-          <Text style={styles.headerText}>
-            <Translation id="mmb.tickets.e_ticket" />
-          </Text>
+          <TicketHeader
+            icon={<TextIcon code="J" />}
+            title={<Translation id="mmb.tickets.e_ticket" />}
+          />
         </View>
         <Translation
           id={
@@ -90,19 +91,12 @@ export default createFragmentContainer(
 );
 
 const styles = StyleSheet.create({
+  card: {
+    marginBottom: 20,
+  },
   header: {
-    flexDirection: 'row',
     marginBottom: 12,
     paddingTop: 4,
-  },
-  icon: {
-    color: Color.textDark,
-    alignSelf: 'center',
-    marginEnd: 7,
-  },
-  headerText: {
-    color: Color.textDark,
-    fontSize: 16,
   },
   buttonWrapper: {
     marginTop: 21,
