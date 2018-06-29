@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Platform, Dimensions as RNDimensions } from 'react-native'; // eslint-disable-line no-restricted-imports
+import { Platform, Dimensions as RNDimensions } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   HeaderTitle,
