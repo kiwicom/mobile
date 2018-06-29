@@ -20,7 +20,7 @@ export default class DatePicker extends React.Component<Props> {
       maxDate: this.props.maxDate,
     });
     if (action !== DatePickerAndroid.dismissedAction) {
-      this.props.onDateChange(new Date(year, month, day));
+      this.props.onDateChange(new Date(Date.UTC(year, month, day)));
     }
   };
 

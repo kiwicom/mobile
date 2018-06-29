@@ -15,7 +15,21 @@ const getUTCYearMonthDate = (date: Date) => {
   };
 };
 
-function DateUtils(rawDate: Date = new Date()) {
+const getUTCNow = () => {
+  const now = new Date();
+  return new Date(
+    Date.UTC(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      now.getHours(),
+      now.getMinutes(),
+      now.getSeconds(),
+    ),
+  );
+};
+
+function DateUtils(rawDate: Date = getUTCNow()) {
   return {
     addDays: (count: number) => addDays(rawDate, count),
   };
@@ -66,5 +80,12 @@ DateUtils.isBeforeDate = (firstDate: Date, secondDate: Date): boolean => {
       first.date < second.date)
   );
 };
+
+DateUtils.getUTCToday = () => {
+  const now = new Date();
+  return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+};
+
+DateUtils.getUTCNow = getUTCNow;
 
 export default DateUtils;
