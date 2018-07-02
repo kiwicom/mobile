@@ -31,11 +31,12 @@ export default function DatePickerButton(props: Props) {
 const styles = StyleSheet.create({
   dateTouchBody: {
     backgroundColor: Color.inputBackground,
-    borderRadius: 6,
     android: {
       height: 48,
+      borderRadius: 2,
     },
     ios: {
+      borderRadius: 6,
       height: 47,
     },
     justifyContent: 'center',
