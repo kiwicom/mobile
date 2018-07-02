@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BoardingPasses$ref = any;
 type ETicket$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TicketRefetch$ref: FragmentReference;
@@ -16,6 +17,7 @@ export type TicketRefetch = {|
   +assets: ?{|
     +$fragmentRefs: ETicket$ref
   |},
+  +$fragmentRefs: BoardingPasses$ref,
   +$refType: TicketRefetch$ref,
 |};
 */
@@ -36,6 +38,11 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
+      "kind": "FragmentSpread",
+      "name": "BoardingPasses",
+      "args": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "assets",
@@ -54,5 +61,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'fb33979f8c1022041f5b3cf9ec47a42e';
+(node/*: any*/).hash = 'aa36dfaaf38afd496cb88e83da113cfb';
 module.exports = node;
