@@ -14,8 +14,8 @@ import { Translation } from '@kiwicom/mobile-localization';
 import type { RoomConfigurationType } from '../SearchParametersType';
 
 type Props = {|
-  guests: RoomConfigurationType,
-  openGuestsModal: () => void,
+  +guests: RoomConfigurationType,
+  +openGuestsModal: () => void,
 |};
 
 export const ButtonTitle = ({
@@ -58,12 +58,13 @@ const buttonStyles = StyleSheet.create({
     alignItems: 'center',
     padding: 12,
     backgroundColor: Color.inputBackground,
-    borderRadius: 6,
     android: {
       elevation: 1,
       height: 48,
+      borderRadius: 2,
     },
     ios: {
+      borderRadius: 6,
       height: 47,
     },
   },

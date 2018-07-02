@@ -12,10 +12,10 @@ import {
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  title: TranslationType,
-  isActive: boolean,
-  onPress: () => void,
-  icon?: React.Element<typeof Icon>,
+  +title: TranslationType,
+  +isActive: boolean,
+  +onPress: () => void,
+  +icon?: React.Element<typeof Icon>,
 |};
 
 export default function FilterButton(props: Props) {
@@ -28,29 +28,44 @@ export default function FilterButton(props: Props) {
     });
   }
 
-  const styleSheet = StyleSheet.create({
-    buttonGroup: {
-      backgroundColor: isActive ? Color.brand : Color.brandLight,
-      marginEnd: 5,
-    },
-    buttonText: {
-      color: isActive ? Color.white : Color.brandDark,
-    },
-    icon: {
-      paddingEnd: 5,
-    },
-    row: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-  });
-
   return (
-    <Button onPress={onPress} style={styleSheet.buttonGroup}>
+    <Button
+      onPress={onPress}
+      style={[styleSheet.buttonGroup, isActive && styleSheet.activeButtonGroup]}
+    >
       <View style={styleSheet.row}>
         <View style={styleSheet.icon}>{icon}</View>
-        <ButtonTitle text={title} style={styleSheet.buttonText} />
+        <ButtonTitle
+          text={title}
+          style={[
+            styleSheet.buttonText,
+            isActive && styleSheet.activeButtonText,
+          ]}
+        />
       </View>
     </Button>
   );
 }
+
+const styleSheet = StyleSheet.create({
+  activeButtonGroup: {
+    backgroundColor: Color.brand,
+  },
+  buttonGroup: {
+    backgroundColor: Color.brandLight,
+    marginEnd: 5,
+  },
+  activeButtonText: {
+    color: Color.white,
+  },
+  buttonText: {
+    color: Color.brandDark,
+  },
+  icon: {
+    paddingEnd: 5,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
