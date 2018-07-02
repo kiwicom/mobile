@@ -10,8 +10,8 @@ import idx from 'idx';
 import type { DateAndPassengerCount_departure as DepartureType } from './__generated__/DateAndPassengerCount_departure.graphql';
 
 type Props = {|
-  departure: DepartureType,
-  passengerCount: ?number,
+  +departure: DepartureType,
+  +passengerCount: ?number,
 |};
 
 export const DateAndPassengerCount = (props: Props) => {
@@ -22,19 +22,14 @@ export const DateAndPassengerCount = (props: Props) => {
 
   return (
     <View style={styles.row}>
-      <Text style={[styles.text, styles.dateText]}>
+      <Text style={styles.text}>
         <Translation passThrough={departureDate} />
       </Text>
       <View style={styles.row}>
-        <Text style={[styles.text, styles.dateText]}>
+        <Text style={[styles.text, styles.passengersText]}>
           <Translation passThrough={props.passengerCount} />
         </Text>
-        <Icon
-          name="people"
-          size={15}
-          color={Color.white}
-          style={styles.passengerIcon}
-        />
+        <Icon name="people" size={15} color={Color.white} />
       </View>
     </View>
   );
@@ -56,13 +51,9 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Color.white,
-  },
-
-  dateText: {
     fontSize: 12,
-    opacity: 0.7,
   },
-  passengerIcon: {
-    opacity: 0.7,
+  passengersText: {
+    marginEnd: 3,
   },
 });

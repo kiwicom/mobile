@@ -8,13 +8,12 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "EXPIRED" | "NEW" | "PENDING" | "REFUNDED" | "%future added value";
+type StatusBadge$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ImageBadges$ref: FragmentReference;
 export type ImageBadges = {|
-  +status: ?BookingStatus,
   +databaseId: ?number,
-  +isPastBooking: ?boolean,
+  +$fragmentRefs: StatusBadge$ref,
   +$refType: ImageBadges$ref,
 |};
 */
@@ -30,26 +29,17 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "status",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
       "name": "databaseId",
       "args": null,
       "storageKey": null
     },
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "isPastBooking",
-      "args": null,
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "StatusBadge",
+      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '96c16621f984cf482ad3edc97ba5b80b';
+(node/*: any*/).hash = 'b9f6b3c06f86bd67abb9557492d7a96d';
 module.exports = node;
