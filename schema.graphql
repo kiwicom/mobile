@@ -90,6 +90,11 @@ type Baggage {
   note: String
 }
 
+type BoardingPass {
+  flightNumber: String
+  boardingPassUrl: String
+}
+
 type BoardingTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
@@ -200,6 +205,9 @@ type BookingAssets {
 
   """URL of the invoice."""
   invoiceUrl: String
+
+  """Boarding passes for flights in this booking"""
+  boardingPasses: [BoardingPass]
 }
 
 type BookingConfirmedTimelineEvent implements TimelineEvent {
@@ -1515,6 +1523,9 @@ type Leg {
 
   """Information about who covers the transfer"""
   guarantee: CoveredBy
+
+  """Boarding pass for this leg"""
+  boardingPass: BoardingPass
 }
 
 """

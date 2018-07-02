@@ -51,7 +51,7 @@ class ETicketRefetch extends React.Component<Props, State> {
       contentContainerStyle={styles.container}
     >
       <ETicket data={idx(this.props.data, _ => _.assets)} />
-      <BoardingPasses />
+      <BoardingPasses data={this.props.data} />
     </RefreshableScrollView>
   );
 }
@@ -61,6 +61,7 @@ export default createRefetchContainer(
   graphql`
     fragment TicketRefetch on BookingInterface {
       id
+      ...BoardingPasses
       assets {
         ...ETicket
       }
