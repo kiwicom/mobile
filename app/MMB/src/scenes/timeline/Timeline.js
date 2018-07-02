@@ -21,6 +21,7 @@ import TransportFromAirportTimelineEvent from './events/TransportFromAirportTime
 import DaySeparator from './DaySeparator';
 import DownloadETicketTimelineEvent from './events/DownloadETicketTimelineEvent';
 import TimelineEventIconContext from '../../context/TimelineEventIconContext';
+import DownloadBoardingPassTimelineEvent from './events/DownloadBoardingPassTimelineEvent';
 
 export const TimelineSubmenuItems = {
   ...TimelineInvoiceSubmenuItems,
@@ -42,7 +43,8 @@ type TimelineEvent = ?React.Element<
   | typeof LeaveForAirportTimelineEvent
   | typeof BoardingTimelineEvent
   | typeof TransportFromAirportTimelineEvent
-  | typeof DownloadETicketTimelineEvent,
+  | typeof DownloadETicketTimelineEvent
+  | typeof DownloadBoardingPassTimelineEvent,
 >;
 
 function getValidTimelineEvent(data: Event): TimelineEvent {
@@ -66,6 +68,8 @@ function getValidTimelineEvent(data: Event): TimelineEvent {
         return <DepartureTimelineEvent data={data} />;
       case 'TransportFromAirportTimelineEvent':
         return <TransportFromAirportTimelineEvent data={data} />;
+      case 'DownloadBoardingPassTimelineEvent':
+        return <DownloadBoardingPassTimelineEvent data={data} />;
       default:
         return null;
     }
@@ -176,6 +180,9 @@ export default class Timeline extends React.Component<{||}> {
                   }
                   ... on TransportFromAirportTimelineEvent {
                     ...TransportFromAirportTimelineEvent
+                  }
+                  ... on DownloadBoardingPassTimelineEvent {
+                    ...DownloadBoardingPassTimelineEvent
                   }
                 }
               }

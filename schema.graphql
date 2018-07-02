@@ -805,6 +805,9 @@ enum DirectAccessURLValues {
 type DownloadBoardingPassTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+
+  """Leg corresponding to the boarding pass"""
+  leg: Leg
 }
 
 type DownloadETicketTimelineEvent implements TimelineEvent {
