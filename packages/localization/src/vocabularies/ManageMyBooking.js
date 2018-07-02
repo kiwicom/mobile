@@ -55,6 +55,10 @@ export default {
   'mmb.tickets.not_available':
     'E-Ticket file is not available yet. Please try it later.',
 
+  // MMB Boarding Passes
+  'mmb.boarding_passes.not_available':
+    'Boarding pass file is not available yet. Please try it later.',
+
   // MMB Trip info
   'mmb.title.trip_info': 'Trip info',
   'mmb.button.tickets': 'Tickets',
@@ -202,5 +206,13 @@ export default {
   'mmb.booking_timeline.event.download_eticket.title': 'Download e-ticket',
   'mmb.booking_timeline.event.download_eticket.button.title': 'Download',
   'mmb.booking_timeline.event.download_eticket.button.title.not_available':
+    'Not yet available',
+
+  'mmb.booking_timeline.event.download_boarding_pass.title':
+    'Download your boarding pass',
+  'mmb.booking_timeline.event.download_boarding_pass.note_not_available':
+    'Not available yet.',
+  'mmb.booking_timeline.event.download_boarding_pass.button.title': 'Download',
+  'mmb.booking_timeline.event.download_boarding_pass.button.title.not_available':
     'Not yet available',
 };

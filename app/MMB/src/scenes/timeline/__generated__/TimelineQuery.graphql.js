@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4dedc6445baff6ff6fa3b2fec1e299e6
+ * @relayHash e41155d01c27194f9ab8d4d033a9d398
  */
 
 /* eslint-disable */
@@ -14,6 +14,7 @@ type ArrivalTimelineEvent$ref = any;
 type BoardingTimelineEvent$ref = any;
 type BookedFlightTimelineEvent$ref = any;
 type DepartureTimelineEvent$ref = any;
+type DownloadBoardingPassTimelineEvent$ref = any;
 type DownloadETicketTimelineEvent$ref = any;
 type DownloadInvoiceTimelineEvent$ref = any;
 type LeaveForAirportTimelineEvent$ref = any;
@@ -26,7 +27,7 @@ export type TimelineQueryResponse = {|
     +events: ?$ReadOnlyArray<?{|
       +__typename: string,
       +timestamp: ?any,
-      +$fragmentRefs: BookedFlightTimelineEvent$ref & LeaveForAirportTimelineEvent$ref & AirportArrivalTimelineEvent$ref & DownloadInvoiceTimelineEvent$ref & DownloadETicketTimelineEvent$ref & BoardingTimelineEvent$ref & DepartureTimelineEvent$ref & ArrivalTimelineEvent$ref & TransportFromAirportTimelineEvent$ref,
+      +$fragmentRefs: BookedFlightTimelineEvent$ref & LeaveForAirportTimelineEvent$ref & AirportArrivalTimelineEvent$ref & DownloadInvoiceTimelineEvent$ref & DownloadETicketTimelineEvent$ref & BoardingTimelineEvent$ref & DepartureTimelineEvent$ref & ArrivalTimelineEvent$ref & TransportFromAirportTimelineEvent$ref & DownloadBoardingPassTimelineEvent$ref,
     |}>
   |}
 |};
@@ -67,6 +68,9 @@ query TimelineQuery(
       }
       ... on TransportFromAirportTimelineEvent {
         ...TransportFromAirportTimelineEvent
+      }
+      ... on DownloadBoardingPassTimelineEvent {
+        ...DownloadBoardingPassTimelineEvent
       }
     }
   }
@@ -162,6 +166,33 @@ fragment ArrivalTimelineEvent on ArrivalTimelineEvent {
 fragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {
   timestamp
 }
+
+fragment DownloadBoardingPassTimelineEvent on DownloadBoardingPassTimelineEvent {
+  timestamp
+  leg {
+    departure {
+      airport {
+        city {
+          name
+        }
+        id
+      }
+    }
+    arrival {
+      airport {
+        city {
+          name
+        }
+        id
+      }
+    }
+    boardingPass {
+      flightNumber
+      boardingPassUrl
+    }
+    id
+  }
+}
 */
 
 const node/*: ConcreteRequest*/ = (function(){
@@ -237,13 +268,33 @@ v7 = [
   }
 ],
 v8 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "departure",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v7
+},
+v9 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "arrival",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": v7
+},
+v10 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "locationId",
   "args": null,
   "storageKey": null
 },
-v9 = {
+v11 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "location",
@@ -258,7 +309,7 @@ return {
   "operationKind": "query",
   "name": "TimelineQuery",
   "id": null,
-  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on DownloadETicketTimelineEvent {\n        ...DownloadETicketTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n      ... on DepartureTimelineEvent {\n        ...DepartureTimelineEvent\n      }\n      ... on ArrivalTimelineEvent {\n        ...ArrivalTimelineEvent\n      }\n      ... on TransportFromAirportTimelineEvent {\n        ...TransportFromAirportTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment DownloadETicketTimelineEvent on DownloadETicketTimelineEvent {\n  timestamp\n  ticketUrl\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n}\n\nfragment DepartureTimelineEvent on DepartureTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  duration\n}\n\nfragment ArrivalTimelineEvent on ArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {\n  timestamp\n}\n",
+  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on DownloadETicketTimelineEvent {\n        ...DownloadETicketTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n      ... on DepartureTimelineEvent {\n        ...DepartureTimelineEvent\n      }\n      ... on ArrivalTimelineEvent {\n        ...ArrivalTimelineEvent\n      }\n      ... on TransportFromAirportTimelineEvent {\n        ...TransportFromAirportTimelineEvent\n      }\n      ... on DownloadBoardingPassTimelineEvent {\n        ...DownloadBoardingPassTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment DownloadETicketTimelineEvent on DownloadETicketTimelineEvent {\n  timestamp\n  ticketUrl\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n}\n\nfragment DepartureTimelineEvent on DepartureTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  duration\n}\n\nfragment ArrivalTimelineEvent on ArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {\n  timestamp\n}\n\nfragment DownloadBoardingPassTimelineEvent on DownloadBoardingPassTimelineEvent {\n  timestamp\n  leg {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    boardingPass {\n      flightNumber\n      boardingPassUrl\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -289,11 +340,22 @@ return {
               v3,
               {
                 "kind": "InlineFragment",
-                "type": "DownloadInvoiceTimelineEvent",
+                "type": "DownloadETicketTimelineEvent",
                 "selections": [
                   {
                     "kind": "FragmentSpread",
-                    "name": "DownloadInvoiceTimelineEvent",
+                    "name": "DownloadETicketTimelineEvent",
+                    "args": null
+                  }
+                ]
+              },
+              {
+                "kind": "InlineFragment",
+                "type": "DownloadBoardingPassTimelineEvent",
+                "selections": [
+                  {
+                    "kind": "FragmentSpread",
+                    "name": "DownloadBoardingPassTimelineEvent",
                     "args": null
                   }
                 ]
@@ -344,22 +406,22 @@ return {
               },
               {
                 "kind": "InlineFragment",
-                "type": "DownloadETicketTimelineEvent",
+                "type": "BookedFlightTimelineEvent",
                 "selections": [
                   {
                     "kind": "FragmentSpread",
-                    "name": "DownloadETicketTimelineEvent",
+                    "name": "BookedFlightTimelineEvent",
                     "args": null
                   }
                 ]
               },
               {
                 "kind": "InlineFragment",
-                "type": "BookedFlightTimelineEvent",
+                "type": "DownloadInvoiceTimelineEvent",
                 "selections": [
                   {
                     "kind": "FragmentSpread",
-                    "name": "BookedFlightTimelineEvent",
+                    "name": "DownloadInvoiceTimelineEvent",
                     "args": null
                   }
                 ]
@@ -419,50 +481,56 @@ return {
               v3,
               {
                 "kind": "InlineFragment",
-                "type": "DownloadInvoiceTimelineEvent",
+                "type": "DownloadETicketTimelineEvent",
                 "selections": [
                   {
                     "kind": "ScalarField",
                     "alias": null,
-                    "name": "invoiceUrl",
+                    "name": "ticketUrl",
                     "args": null,
                     "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "numberPassengers",
-                    "args": null,
-                    "storageKey": null
-                  },
+                  }
+                ]
+              },
+              {
+                "kind": "InlineFragment",
+                "type": "DownloadBoardingPassTimelineEvent",
+                "selections": [
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "legs",
+                    "name": "leg",
                     "storageKey": null,
                     "args": null,
                     "concreteType": "Leg",
-                    "plural": true,
+                    "plural": false,
                     "selections": [
+                      v8,
+                      v9,
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "departure",
+                        "name": "boardingPass",
                         "storageKey": null,
                         "args": null,
-                        "concreteType": "RouteStop",
+                        "concreteType": "BoardingPass",
                         "plural": false,
-                        "selections": v7
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "arrival",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "RouteStop",
-                        "plural": false,
-                        "selections": v7
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "flightNumber",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "boardingPassUrl",
+                            "args": null,
+                            "storageKey": null
+                          }
+                        ]
                       },
                       v6
                     ]
@@ -491,7 +559,7 @@ return {
                         "concreteType": "Location",
                         "plural": false,
                         "selections": [
-                          v8,
+                          v10,
                           v5,
                           v6
                         ]
@@ -504,7 +572,7 @@ return {
                 "kind": "InlineFragment",
                 "type": "DepartureTimelineEvent",
                 "selections": [
-                  v9,
+                  v11,
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -516,22 +584,43 @@ return {
               },
               {
                 "kind": "InlineFragment",
-                "type": "DownloadETicketTimelineEvent",
+                "type": "BookedFlightTimelineEvent",
                 "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "ticketUrl",
-                    "args": null,
-                    "storageKey": null
-                  }
+                  v11
                 ]
               },
               {
                 "kind": "InlineFragment",
-                "type": "BookedFlightTimelineEvent",
+                "type": "DownloadInvoiceTimelineEvent",
                 "selections": [
-                  v9
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "invoiceUrl",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "numberPassengers",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "legs",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Leg",
+                    "plural": true,
+                    "selections": [
+                      v8,
+                      v9,
+                      v6
+                    ]
+                  }
                 ]
               },
               {
@@ -556,7 +645,7 @@ return {
                         "concreteType": "Location",
                         "plural": false,
                         "selections": [
-                          v8,
+                          v10,
                           v4,
                           v6
                         ]
@@ -574,5 +663,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e197557c95805d441d0153558d800c9a';
+(node/*: any*/).hash = '942480e8c2d6b4f21aa05a7574dd91d8';
 module.exports = node;
