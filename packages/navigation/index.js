@@ -29,6 +29,7 @@ const createNavigationOptions = () => {
       ...Platform.select({
         android: {
           borderBottomWidth: 0,
+          elevation: 2,
         },
         ios: {
           borderBottomWidth: StyleSheet.hairlineWidth,

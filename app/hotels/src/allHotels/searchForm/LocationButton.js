@@ -5,35 +5,9 @@ import { View, TouchableWithoutFeedback } from 'react-native';
 import { Text, StyleSheet, Icon, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
-const styles = StyleSheet.create({
-  locationButton: {
-    flexDirection: 'row',
-    backgroundColor: Color.inputBackground,
-    alignItems: 'center',
-    borderRadius: 6,
-    android: {
-      elevation: 1,
-      height: 48,
-    },
-    ios: {
-      height: 47,
-    },
-  },
-  placeholderText: {
-    color: Color.textLight,
-  },
-  locationText: {
-    color: Color.textDark,
-  },
-  icon: {
-    marginHorizontal: 10,
-    alignSelf: 'center',
-  },
-});
-
 type Props = {|
-  onPress: () => void,
-  location: ?string,
+  +onPress: () => void,
+  +location: ?string,
 |};
 
 export default function LocationButton(props: Props) {
@@ -54,3 +28,30 @@ export default function LocationButton(props: Props) {
     </TouchableWithoutFeedback>
   );
 }
+
+const styles = StyleSheet.create({
+  locationButton: {
+    flexDirection: 'row',
+    backgroundColor: Color.inputBackground,
+    alignItems: 'center',
+    android: {
+      borderRadius: 2,
+      elevation: 1,
+      height: 48,
+    },
+    ios: {
+      height: 47,
+      borderRadius: 6,
+    },
+  },
+  placeholderText: {
+    color: Color.textLight,
+  },
+  locationText: {
+    color: Color.textDark,
+  },
+  icon: {
+    marginHorizontal: 10,
+    alignSelf: 'center',
+  },
+});
