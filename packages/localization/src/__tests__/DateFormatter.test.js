@@ -46,3 +46,12 @@ it('always returns UTC', () => {
     DateFormatter(new Date('2018-12-24T00:00:00+02:00')).formatToTime(),
   ).toBe('10:00 PM');
 });
+
+it('formats shortDate correctly', () => {
+  expect(DateFormatter(new Date('2018-12-24')).formatToShortDate()).toBe(
+    '12/24',
+  );
+  expect(
+    DateFormatter(new Date('2018-12-24T00:00:00Z')).formatToShortDate(),
+  ).toBe('12/24');
+});

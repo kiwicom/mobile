@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e2efe741b01834490e4e4911aee4f51f
+ * @relayHash 80723ba743a71d7426069894c6580fec
  */
 
 /* eslint-disable */
@@ -54,20 +54,34 @@ fragment ETicket on BookingAssets {
 }
 
 fragment BoardingPassReturn on BookingReturn {
+  ...OutboundFlights
+}
+
+fragment OutboundFlights on BookingReturn {
   outbound {
     legs {
       id
-      departure {
-        airport {
-          city {
-            name
-          }
-          id
-        }
+      ...FlightFromTo
+    }
+  }
+}
+
+fragment FlightFromTo on Leg {
+  departure {
+    localTime
+    airport {
+      city {
+        name
       }
-      boardingPass {
-        boardingPassUrl
+      id
+    }
+  }
+  arrival {
+    airport {
+      city {
+        name
       }
+      id
     }
   }
 }
@@ -96,13 +110,43 @@ v2 = {
   "name": "id",
   "args": null,
   "storageKey": null
+},
+v3 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "airport",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Location",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "city",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "LocationArea",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "name",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    v2
+  ]
 };
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TicketSceneQuery",
   "id": null,
-  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    legs {\n      id\n      departure {\n        airport {\n          city {\n            name\n          }\n          id\n        }\n      }\n      boardingPass {\n        boardingPassUrl\n      }\n    }\n  }\n}\n",
+  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  ...OutboundFlights\n}\n\nfragment OutboundFlights on BookingReturn {\n  outbound {\n    legs {\n      id\n      ...FlightFromTo\n    }\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -202,53 +246,25 @@ return {
                         "plural": false,
                         "selections": [
                           {
-                            "kind": "LinkedField",
+                            "kind": "ScalarField",
                             "alias": null,
-                            "name": "airport",
-                            "storageKey": null,
+                            "name": "localTime",
                             "args": null,
-                            "concreteType": "Location",
-                            "plural": false,
-                            "selections": [
-                              {
-                                "kind": "LinkedField",
-                                "alias": null,
-                                "name": "city",
-                                "storageKey": null,
-                                "args": null,
-                                "concreteType": "LocationArea",
-                                "plural": false,
-                                "selections": [
-                                  {
-                                    "kind": "ScalarField",
-                                    "alias": null,
-                                    "name": "name",
-                                    "args": null,
-                                    "storageKey": null
-                                  }
-                                ]
-                              },
-                              v2
-                            ]
-                          }
+                            "storageKey": null
+                          },
+                          v3
                         ]
                       },
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "boardingPass",
+                        "name": "arrival",
                         "storageKey": null,
                         "args": null,
-                        "concreteType": "BoardingPass",
+                        "concreteType": "RouteStop",
                         "plural": false,
                         "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "boardingPassUrl",
-                            "args": null,
-                            "storageKey": null
-                          }
+                          v3
                         ]
                       }
                     ]
