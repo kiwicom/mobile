@@ -6,7 +6,7 @@ export default {
   'mmb.booking_state.refunded': 'Refunded',
   'mmb.booking_state.in_process': 'In process',
 
-  'mmb.my_bookings.title.bookings': 'Bookings',
+  'mmb.my_bookings.title.bookings': 'My Bookings',
   'mmb.my_bookings.future_trips': 'Future trips',
   'mmb.my_bookings.past_trips': 'Past trips',
 
