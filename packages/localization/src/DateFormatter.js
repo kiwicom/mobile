@@ -18,6 +18,14 @@ function date(date: Date) {
   }).format(date);
 }
 
+function shortDate(date: Date) {
+  return Intl.DateTimeFormat(DEVICE_LOCALE, {
+    timeZone: 'UTC', // this is very important!
+    month: 'numeric',
+    day: 'numeric',
+  }).format(date);
+}
+
 function time(date: Date) {
   return Intl.DateTimeFormat(DEVICE_LOCALE, {
     timeZone: 'UTC', // this is very important!
@@ -51,6 +59,7 @@ function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
   return {
     formatToDate: () => date(rawDate),
     formatToTime: () => time(rawDate),
+    formatToShortDate: () => shortDate(rawDate),
 
     // note: I am not sure about the naming - improve when needed
     formatToBirthday: () => birthday(rawDate),
