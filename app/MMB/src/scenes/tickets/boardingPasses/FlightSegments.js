@@ -9,41 +9,44 @@ import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 
 import FlightFromTo from './FlightFromTo';
-import type { OutboundFlights as OutboundFlightsType } from './__generated__/OutboundFlights.graphql';
+import type { FlightSegments as FlightSegmentsType } from './__generated__/FlightSegments.graphql';
 
 type Props = {|
-  +data: OutboundFlightsType,
+  +data: FlightSegmentsType,
+  +icon: React.Element<typeof TextIcon>,
+  +iconTitle: React.Element<typeof Translation>,
 |};
 
-const OutboundFlights = (props: Props) => {
-  const outbound = idx(props.data, _ => _.outbound.legs) || [];
+const FlightSegments = (props: Props) => {
+  const legs = idx(props.data, _ => _.legs) || [];
+  const icon = React.cloneElement(props.icon, {
+    style: StyleSheet.flatten([styles.icon, props.icon.props.style]),
+  });
   return (
     <React.Fragment>
       <View style={styles.row}>
-        <TextIcon code="&#xe079;" style={styles.outboundIcon} />
-        <Text style={styles.departureText}>
-          <Translation id="mmb.boarding_passes.outbound_flights.departure" />
-        </Text>
+        {icon}
+        <Text style={styles.text}>{props.iconTitle}</Text>
       </View>
       <View style={styles.separator}>
         <SeparatorFullWidth />
       </View>
-      {outbound.map(item => (
-        <FlightFromTo data={item} key={idx(item, _ => _.id)} />
+      {legs.map(item => (
+        <View style={styles.flightItem} key={idx(item, _ => _.id)}>
+          <FlightFromTo data={item} />
+        </View>
       ))}
     </React.Fragment>
   );
 };
 
 export default createFragmentContainer(
-  OutboundFlights,
+  FlightSegments,
   graphql`
-    fragment OutboundFlights on BookingReturn {
-      outbound {
-        legs {
-          id
-          ...FlightFromTo
-        }
+    fragment FlightSegments on Trip {
+      legs {
+        id
+        ...FlightFromTo
       }
     }
   `,
@@ -57,15 +60,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 9,
   },
-  departureText: {
+  text: {
     color: Color.textLight,
     fontSize: 12,
     alignSelf: 'center',
   },
-  outboundIcon: {
-    color: Color.brand,
-    transform: [{ rotate: '90deg' }],
+  icon: {
     marginEnd: 18,
     fontSize: 18,
+  },
+  flightItem: {
+    marginBottom: 20,
   },
 });

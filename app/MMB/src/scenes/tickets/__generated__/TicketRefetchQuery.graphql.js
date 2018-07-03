@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5252d2c2ca96b1c1240235e00e79d83b
+ * @relayHash 49217b0c9d2dc401fff2365fff83fb2e
  */
 
 /* eslint-disable */
@@ -54,15 +54,18 @@ fragment ETicket on BookingAssets {
 }
 
 fragment BoardingPassReturn on BookingReturn {
-  ...OutboundFlights
+  outbound {
+    ...FlightSegments
+  }
+  inbound {
+    ...FlightSegments
+  }
 }
 
-fragment OutboundFlights on BookingReturn {
-  outbound {
-    legs {
-      id
-      ...FlightFromTo
-    }
+fragment FlightSegments on Trip {
+  legs {
+    id
+    ...FlightFromTo
   }
 }
 
@@ -140,13 +143,58 @@ v3 = {
     },
     v2
   ]
-};
+},
+v4 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "legs",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Leg",
+    "plural": true,
+    "selections": [
+      v2,
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "departure",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "RouteStop",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "localTime",
+            "args": null,
+            "storageKey": null
+          },
+          v3
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "arrival",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "RouteStop",
+        "plural": false,
+        "selections": [
+          v3
+        ]
+      }
+    ]
+  }
+];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TicketRefetchQuery",
   "id": null,
-  "text": "query TicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  ...OutboundFlights\n}\n\nfragment OutboundFlights on BookingReturn {\n  outbound {\n    legs {\n      id\n      ...FlightFromTo\n    }\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query TicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -225,51 +273,17 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "legs",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "Leg",
-                    "plural": true,
-                    "selections": [
-                      v2,
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "departure",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "RouteStop",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "localTime",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          v3
-                        ]
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "arrival",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "RouteStop",
-                        "plural": false,
-                        "selections": [
-                          v3
-                        ]
-                      }
-                    ]
-                  }
-                ]
+                "selections": v4
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "inbound",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v4
               }
             ]
           }
