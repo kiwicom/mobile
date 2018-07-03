@@ -7,6 +7,7 @@
 @interface RNKiwiViewController: UIViewController
 
 - (nonnull instancetype)initWithOptions:(nonnull id<RNKiwiOptions>)properties;
+//                          andDimensions:( NSDictionary *)dimensions;
 - (nonnull instancetype)init NS_UNAVAILABLE;
 - (BOOL)isInteractivePopGestureAllowed;
 

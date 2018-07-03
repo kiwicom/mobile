@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9LU-Kd-CUw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9LU-Kd-CUw">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,24 +10,45 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJh-yV-LXh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJh-yV-LXh">
                                 <rect key="frame" x="165" y="100" width="45" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Hotels"/>
                                 <connections>
                                     <action selector="showHotelsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lgz-E8-h0R"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDZ-EC-VJu">
+                                <rect key="frame" x="155" y="177" width="64" height="30"/>
+                                <state key="normal" title="Bookings"/>
+                                <connections>
+                                    <action selector="showBookingsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DsU-Vp-Dy0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iev-rK-pXK">
+                                <rect key="frame" x="166" y="255" width="44" height="30"/>
+                                <state key="normal" title="Profile"/>
+                                <connections>
+                                    <action selector="showProfileView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2qN-yH-bSb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Iev-rK-pXK" firstAttribute="top" secondItem="rDZ-EC-VJu" secondAttribute="bottom" constant="48" id="01t-3Q-0jV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rDZ-EC-VJu" secondAttribute="bottom" constant="456" id="XLF-nX-6FM"/>
+                            <constraint firstItem="rDZ-EC-VJu" firstAttribute="top" secondItem="tJh-yV-LXh" secondAttribute="bottom" constant="51" id="XYi-xE-zsA"/>
+                            <constraint firstItem="Iev-rK-pXK" firstAttribute="trailing" secondItem="tJh-yV-LXh" secondAttribute="trailing" id="bdN-WM-qOY"/>
+                            <constraint firstItem="rDZ-EC-VJu" firstAttribute="centerX" secondItem="tJh-yV-LXh" secondAttribute="centerX" id="hvR-8S-kJD"/>
+                            <constraint firstItem="rDZ-EC-VJu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tSv-0J-WCv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="0er-u5-jmz"/>

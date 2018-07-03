@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		012E4C1BA8444C8182992EEB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B11306CBC6D24D3C990EAC4B /* Ionicons.ttf */; };
 		038BD3170181472CA3083F7C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */; };
@@ -19,6 +20,10 @@
 		2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107154520B5677200E6C96B /* RNKiwiGestureController.h */; };
 		215881F420C7FF140016707A /* RNKiwiMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931B020AD96780053AE19 /* RNKiwiMobile.framework */; };
 		215881F520C7FF140016707A /* RNKiwiMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931B020AD96780053AE19 /* RNKiwiMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21E47B3D20EA1219002B92A6 /* RNHotelsOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B3C20EA1219002B92A6 /* RNHotelsOptions.m */; };
+		21E47B4620EA1F4A002B92A6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B4520EA1F4A002B92A6 /* MainViewController.m */; };
+		21E47B4820EA2AB5002B92A6 /* RNBookingsOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B4720EA2AB5002B92A6 /* RNBookingsOptions.m */; };
+		21E47B4C20EB5817002B92A6 /* RNProfileOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B4B20EB5817002B92A6 /* RNProfileOptions.m */; };
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
 		2711985E20B1F7E300C6292B /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 		2711985F20B1F7E300C6292B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */; };
@@ -44,7 +49,6 @@
 		27E931C920AD9AE90053AE19 /* RNKiwiOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931CD20AD9EF60053AE19 /* libPods-RNKiwiMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931CC20AD9EF60053AE19 /* libPods-RNKiwiMobile.a */; };
 		27E931D620ADA0600053AE19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931D520ADA0600053AE19 /* AppDelegate.m */; };
-		27E931D920ADA0600053AE19 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931D820ADA0600053AE19 /* ViewController.m */; };
 		27E931DC20ADA0600053AE19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E931DA20ADA0600053AE19 /* Main.storyboard */; };
 		27E931E120ADA0630053AE19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E931DF20ADA0630053AE19 /* LaunchScreen.storyboard */; };
 		27E931E420ADA0630053AE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931E320ADA0630053AE19 /* main.m */; };
@@ -112,6 +116,14 @@
 		2107154420B5677200E6C96B /* RNKiwiGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNKiwiGestureController.m; sourceTree = "<group>"; };
 		2107154520B5677200E6C96B /* RNKiwiGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		21E47B3B20EA1200002B92A6 /* RNHotelsOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNHotelsOptions.h; sourceTree = "<group>"; };
+		21E47B3C20EA1219002B92A6 /* RNHotelsOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNHotelsOptions.m; sourceTree = "<group>"; };
+		21E47B4420EA1F38002B92A6 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		21E47B4520EA1F4A002B92A6 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		21E47B4720EA2AB5002B92A6 /* RNBookingsOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNBookingsOptions.m; sourceTree = "<group>"; };
+		21E47B4920EA2AC9002B92A6 /* RNBookingsOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBookingsOptions.h; sourceTree = "<group>"; };
+		21E47B4A20EB5809002B92A6 /* RNProfileOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNProfileOptions.h; sourceTree = "<group>"; };
+		21E47B4B20EB5817002B92A6 /* RNProfileOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNProfileOptions.m; sourceTree = "<group>"; };
 		2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiSharedBridge.h; sourceTree = "<group>"; };
 		2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiSharedBridge.m; sourceTree = "<group>"; };
 		27E931B020AD96780053AE19 /* RNKiwiMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNKiwiMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,8 +140,6 @@
 		27E931D220ADA0600053AE19 /* RNNativePlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNNativePlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E931D420ADA0600053AE19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		27E931D520ADA0600053AE19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		27E931D720ADA0600053AE19 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		27E931D820ADA0600053AE19 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		27E931DB20ADA0600053AE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27E931E020ADA0630053AE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27E931E220ADA0630053AE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -244,12 +254,18 @@
 			children = (
 				27E931D420ADA0600053AE19 /* AppDelegate.h */,
 				27E931D520ADA0600053AE19 /* AppDelegate.m */,
-				27E931D720ADA0600053AE19 /* ViewController.h */,
-				27E931D820ADA0600053AE19 /* ViewController.m */,
 				27E931DA20ADA0600053AE19 /* Main.storyboard */,
 				27E931DF20ADA0630053AE19 /* LaunchScreen.storyboard */,
 				27E931E220ADA0630053AE19 /* Info.plist */,
 				27E931E320ADA0630053AE19 /* main.m */,
+				21E47B4420EA1F38002B92A6 /* MainViewController.h */,
+				21E47B4520EA1F4A002B92A6 /* MainViewController.m */,
+				21E47B4720EA2AB5002B92A6 /* RNBookingsOptions.m */,
+				21E47B4920EA2AC9002B92A6 /* RNBookingsOptions.h */,
+				21E47B3C20EA1219002B92A6 /* RNHotelsOptions.m */,
+				21E47B3B20EA1200002B92A6 /* RNHotelsOptions.h */,
+				21E47B4A20EB5809002B92A6 /* RNProfileOptions.h */,
+				21E47B4B20EB5817002B92A6 /* RNProfileOptions.m */,
 			);
 			path = RNNativePlayground;
 			sourceTree = "<group>";
@@ -426,6 +442,7 @@
 					27E931D120ADA0600053AE19 = {
 						CreatedOnToolsVersion = 9.3;
 						DevelopmentTeam = G44VYF3687;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -693,8 +710,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27E931D920ADA0600053AE19 /* ViewController.m in Sources */,
+				21E47B4820EA2AB5002B92A6 /* RNBookingsOptions.m in Sources */,
 				27E931E420ADA0630053AE19 /* main.m in Sources */,
+				21E47B3D20EA1219002B92A6 /* RNHotelsOptions.m in Sources */,
+				21E47B4620EA1F4A002B92A6 /* MainViewController.m in Sources */,
+				21E47B4C20EB5817002B92A6 /* RNProfileOptions.m in Sources */,
 				27E931D620ADA0600053AE19 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -890,6 +910,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_COMMA = YES;
@@ -915,6 +936,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.RNNativePlayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RNNativePlayground/RNNativePlayground-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -927,6 +951,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_COMMA = YES;
@@ -952,6 +977,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.RNNativePlayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RNNativePlayground/RNNativePlayground-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

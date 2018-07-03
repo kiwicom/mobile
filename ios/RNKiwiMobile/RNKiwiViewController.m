@@ -23,6 +23,7 @@
 #pragma mark - Setup
 
 - (instancetype)initWithOptions:(id<RNKiwiOptions>)options {
+  
   self = [super init];
   if (self) {
     _options = options;

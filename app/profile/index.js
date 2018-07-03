@@ -1,12 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { AsyncStorage, View } from 'react-native';
+import { AsyncStorage, View, AppRegistry } from 'react-native';
 import {
   SimpleCard,
   LayoutSingleColumn,
   DismissKeyboardView,
   StyleSheet,
+  WithNativeNavigation,
 } from '@kiwicom/mobile-shared';
 
 import Login from './components/authentication/Login';
@@ -64,3 +65,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+AppRegistry.registerComponent('Login', () =>
+  WithNativeNavigation(LoginScreen, 'Login'),
+);
