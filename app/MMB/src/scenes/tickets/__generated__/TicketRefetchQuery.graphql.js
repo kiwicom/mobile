@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9d1d9ba8cce6dab613a05beae16c6810
+ * @relayHash 5d8cee5363190e49aed3ad86c2f9d45f
  */
 
 /* eslint-disable */
@@ -47,6 +47,9 @@ fragment BoardingPasses on Node {
   ... on BookingReturn {
     ...BoardingPassReturn
   }
+  ... on BookingOneWay {
+    ...BoardingPassOneWay
+  }
 }
 
 fragment ETicket on BookingAssets {
@@ -58,6 +61,12 @@ fragment BoardingPassReturn on BookingReturn {
     ...FlightSegments
   }
   inbound {
+    ...FlightSegments
+  }
+}
+
+fragment BoardingPassOneWay on BookingOneWay {
+  trip {
     ...FlightSegments
   }
 }
@@ -219,7 +228,7 @@ return {
   "operationKind": "query",
   "name": "TicketRefetchQuery",
   "id": null,
-  "text": "query TicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n}\n",
+  "text": "query TicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -283,6 +292,22 @@ return {
                 "name": "ticketUrl",
                 "args": null,
                 "storageKey": null
+              }
+            ]
+          },
+          {
+            "kind": "InlineFragment",
+            "type": "BookingOneWay",
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "trip",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v4
               }
             ]
           },
