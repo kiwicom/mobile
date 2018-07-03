@@ -29,6 +29,7 @@ export default {
   // MMB Boarding passes
   'mmb.boarding_passes.boarding_pass': 'Boarding Pass',
   'mmb.boarding_passes.boarding_pass_return.departure': 'Departure',
+  'mmb.boarding_passes.boarding_pass_one_way.departure': 'Departure',
   'mmb.boarding_passes.boarding_pass_return.return': 'Return',
   'mmb.boarding_passes.download_button.open_printable_document':
     'Open Printable Document',

@@ -8,12 +8,17 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BoardingPassOneWay$ref = any;
 type BoardingPassReturn$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type BoardingPasses$ref: FragmentReference;
 export type BoardingPasses = {|
   +__typename: "BookingReturn",
   +$fragmentRefs: BoardingPassReturn$ref,
+  +$refType: BoardingPasses$ref,
+|} | {|
+  +__typename: "BookingOneWay",
+  +$fragmentRefs: BoardingPassOneWay$ref,
   +$refType: BoardingPasses$ref,
 |} | {|
   // This will never be '%other', but we need some
@@ -40,6 +45,17 @@ const node/*: ConcreteFragment*/ = {
     },
     {
       "kind": "InlineFragment",
+      "type": "BookingOneWay",
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "BoardingPassOneWay",
+          "args": null
+        }
+      ]
+    },
+    {
+      "kind": "InlineFragment",
       "type": "BookingReturn",
       "selections": [
         {
@@ -52,5 +68,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '442a80880e835f3949c03470825cc281';
+(node/*: any*/).hash = '750290032053fa67c65cf7702fc38682';
 module.exports = node;

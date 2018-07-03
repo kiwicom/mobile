@@ -9,6 +9,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import TicketHeader from '../components/TicketHeader';
 import type { BoardingPasses as BoardingPassesType } from './__generated__/BoardingPasses.graphql';
 import BoardingPassReturn from './BoardingPassReturn';
+import BoardingPassOneWay from './BoardingPassOneWay';
 
 type Props = {|
   +data: BoardingPassesType,
@@ -25,6 +26,9 @@ const BoardingPasses = (props: Props) => {
       </View>
       {props.data.__typename === 'BookingReturn' && (
         <BoardingPassReturn data={props.data} />
+      )}
+      {props.data.__typename === 'BookingOneWay' && (
+        <BoardingPassOneWay data={props.data} />
       )}
     </SimpleCard>
   );
@@ -44,6 +48,9 @@ export default createFragmentContainer(
       __typename
       ... on BookingReturn {
         ...BoardingPassReturn
+      }
+      ... on BookingOneWay {
+        ...BoardingPassOneWay
       }
     }
   `,
