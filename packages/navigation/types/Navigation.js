@@ -37,6 +37,7 @@ type MMBStackNavigatorNames =
   | 'mmb.other.open'
   | 'mmb.other.refund'
   | 'mmb.tickets.e_ticket'
+  | 'mmb.tickets.boarding_pass'
   | 'mmb.timeline.invoice'
   | 'DetailScreen';
 
