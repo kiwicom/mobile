@@ -28,7 +28,8 @@ export default {
 
   // MMB Boarding passes
   'mmb.boarding_passes.boarding_pass': 'Boarding Pass',
-  'mmb.boarding_passes.outbound_flights.departure': 'Departure',
+  'mmb.boarding_passes.boarding_pass_return.departure': 'Departure',
+  'mmb.boarding_passes.boarding_pass_return.return': 'Return',
 
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
