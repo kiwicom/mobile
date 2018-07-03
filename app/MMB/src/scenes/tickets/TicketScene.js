@@ -7,6 +7,7 @@ import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TicketSceneQueryResponse } from './__generated__/TicketSceneQuery.graphql';
 import TicketRefetch from './TicketRefetch';
 import ETicketPdfScreen from './eTicketPdf/ETicketPdfScreen';
+import BoardingPassPdfScreen from './boardingPassesPdf/BoardingPassPdfScreen';
 
 type Props = {|
   +data: TicketSceneQueryResponse,
@@ -41,5 +42,8 @@ export default class TicketScene extends React.Component<Props> {
 export const TicketSceneSubMenus = {
   'mmb.tickets.e_ticket': {
     screen: ETicketPdfScreen,
+  },
+  'mmb.tickets.boarding_pass': {
+    screen: BoardingPassPdfScreen,
   },
 };
