@@ -32,8 +32,13 @@ class DownloadBoardingPassTimelineEvent extends React.Component<Props> {
     });
   };
 
-  handleOpenETicket = () => {
-    // TODO
+  handleOpenBoardingPass = () => {
+    this.navigate('mmb.tickets.boarding_pass', {
+      boardingPassUrl: idx(
+        this.props,
+        _ => _.data.leg.boardingPass.boardingPassUrl,
+      ),
+    });
   };
 
   render() {
@@ -82,7 +87,7 @@ class DownloadBoardingPassTimelineEvent extends React.Component<Props> {
               <TextButton
                 disabled={disabled}
                 title={buttonTitle}
-                onPress={this.handleOpenETicket}
+                onPress={this.handleOpenBoardingPass}
               />
             </View>
           </View>
