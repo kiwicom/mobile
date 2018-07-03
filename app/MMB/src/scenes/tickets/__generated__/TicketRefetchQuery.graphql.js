@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5d8cee5363190e49aed3ad86c2f9d45f
+ * @relayHash e322647db550929f050dd4d682fadd1d
  */
 
 /* eslint-disable */
@@ -50,6 +50,9 @@ fragment BoardingPasses on Node {
   ... on BookingOneWay {
     ...BoardingPassOneWay
   }
+  ... on BookingMulticity {
+    ...BoardingPassMultiCity
+  }
 }
 
 fragment ETicket on BookingAssets {
@@ -67,6 +70,20 @@ fragment BoardingPassReturn on BookingReturn {
 
 fragment BoardingPassOneWay on BookingOneWay {
   trip {
+    ...FlightSegments
+  }
+}
+
+fragment BoardingPassMultiCity on BookingMulticity {
+  trips {
+    arrival {
+      airport {
+        city {
+          name
+        }
+        id
+      }
+    }
     ...FlightSegments
   }
 }
@@ -160,75 +177,77 @@ v3 = {
     v2
   ]
 },
-v4 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "legs",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "Leg",
-    "plural": true,
-    "selections": [
-      v2,
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "departure",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "RouteStop",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "localTime",
-            "args": null,
-            "storageKey": null
-          },
-          v3
-        ]
-      },
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "arrival",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "RouteStop",
-        "plural": false,
-        "selections": [
-          v3
-        ]
-      },
-      {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "boardingPass",
-        "storageKey": null,
-        "args": null,
-        "concreteType": "BoardingPass",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "boardingPassUrl",
-            "args": null,
-            "storageKey": null
-          }
-        ]
-      }
-    ]
-  }
+v4 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "arrival",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "RouteStop",
+  "plural": false,
+  "selections": [
+    v3
+  ]
+},
+v5 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "legs",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Leg",
+  "plural": true,
+  "selections": [
+    v2,
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "departure",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "RouteStop",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "localTime",
+          "args": null,
+          "storageKey": null
+        },
+        v3
+      ]
+    },
+    v4,
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "boardingPass",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "BoardingPass",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "boardingPassUrl",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    }
+  ]
+},
+v6 = [
+  v5
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TicketRefetchQuery",
   "id": null,
-  "text": "query TicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n}\n",
+  "text": "query TicketRefetchQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n  ... on BookingMulticity {\n    ...BoardingPassMultiCity\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassMultiCity on BookingMulticity {\n  trips {\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -297,6 +316,25 @@ return {
           },
           {
             "kind": "InlineFragment",
+            "type": "BookingMulticity",
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "trips",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": true,
+                "selections": [
+                  v4,
+                  v5
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "InlineFragment",
             "type": "BookingOneWay",
             "selections": [
               {
@@ -307,7 +345,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v6
               }
             ]
           },
@@ -323,7 +361,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v6
               },
               {
                 "kind": "LinkedField",
@@ -333,7 +371,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v4
+                "selections": v6
               }
             ]
           }

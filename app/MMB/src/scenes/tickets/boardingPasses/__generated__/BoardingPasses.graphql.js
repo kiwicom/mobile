@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type BoardingPassMultiCity$ref = any;
 type BoardingPassOneWay$ref = any;
 type BoardingPassReturn$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -19,6 +20,10 @@ export type BoardingPasses = {|
 |} | {|
   +__typename: "BookingOneWay",
   +$fragmentRefs: BoardingPassOneWay$ref,
+  +$refType: BoardingPasses$ref,
+|} | {|
+  +__typename: "BookingMulticity",
+  +$fragmentRefs: BoardingPassMultiCity$ref,
   +$refType: BoardingPasses$ref,
 |} | {|
   // This will never be '%other', but we need some
@@ -45,6 +50,17 @@ const node/*: ConcreteFragment*/ = {
     },
     {
       "kind": "InlineFragment",
+      "type": "BookingMulticity",
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "BoardingPassMultiCity",
+          "args": null
+        }
+      ]
+    },
+    {
+      "kind": "InlineFragment",
       "type": "BookingOneWay",
       "selections": [
         {
@@ -68,5 +84,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '750290032053fa67c65cf7702fc38682';
+(node/*: any*/).hash = '6cb2a32a73300602cb8943001003d8d2';
 module.exports = node;
