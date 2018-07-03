@@ -210,7 +210,7 @@ export default {
   'mmb.booking_timeline.event.download_eticket.title': 'Download e-ticket',
   'mmb.booking_timeline.event.download_eticket.button.title': 'Download',
   'mmb.booking_timeline.event.download_eticket.button.title.not_available':
-    'Not yet available',
+    'Not available yet',
 
   'mmb.booking_timeline.event.download_boarding_pass.title':
     'Download your boarding pass',
@@ -218,5 +218,5 @@ export default {
     'Not available yet.',
   'mmb.booking_timeline.event.download_boarding_pass.button.title': 'Download',
   'mmb.booking_timeline.event.download_boarding_pass.button.title.not_available':
-    'Not yet available',
+    'Not available yet',
 };
