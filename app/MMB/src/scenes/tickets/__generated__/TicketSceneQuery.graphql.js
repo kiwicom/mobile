@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 689d016f71b51fc9c5a95ef23172f2dc
+ * @relayHash ae5f6108bdb7ceb2d67cdab8adc15305
  */
 
 /* eslint-disable */
@@ -87,6 +87,13 @@ fragment FlightFromTo on Leg {
       id
     }
   }
+  boardingPass {
+    ...DownloadButton
+  }
+}
+
+fragment DownloadButton on BoardingPass {
+  boardingPassUrl
 }
 */
 
@@ -185,6 +192,24 @@ v4 = [
         "selections": [
           v3
         ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "boardingPass",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "BoardingPass",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "boardingPassUrl",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -194,7 +219,7 @@ return {
   "operationKind": "query",
   "name": "TicketSceneQuery",
   "id": null,
-  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

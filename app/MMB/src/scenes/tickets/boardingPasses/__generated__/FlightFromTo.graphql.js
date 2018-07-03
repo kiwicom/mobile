@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type DownloadButton$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FlightFromTo$ref: FragmentReference;
 export type FlightFromTo = {|
@@ -25,6 +26,9 @@ export type FlightFromTo = {|
         +name: ?string
       |}
     |}
+  |},
+  +boardingPass: ?{|
+    +$fragmentRefs: DownloadButton$ref
   |},
   +$refType: FlightFromTo$ref,
 |};
@@ -98,10 +102,26 @@ return {
       "selections": [
         v0
       ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "boardingPass",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "BoardingPass",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "DownloadButton",
+          "args": null
+        }
+      ]
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b9c0c09e147be2363082ac0c9cbc77e9';
+(node/*: any*/).hash = 'c859af7174ec2dc0bfd08cafb26f8d4a';
 module.exports = node;
