@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   disabled: {
-    backgroundColor: '#b8c1cc',
+    backgroundColor: Color.disabled,
   },
   buttonText: {
     color: Color.white,
