@@ -10,29 +10,31 @@ import TicketHeader from '../components/TicketHeader';
 import type { BoardingPasses as BoardingPassesType } from './__generated__/BoardingPasses.graphql';
 import BoardingPassReturn from './BoardingPassReturn';
 import BoardingPassOneWay from './BoardingPassOneWay';
+import BoardingPassMultiCity from './BoardingPassMultiCity';
 
 type Props = {|
   +data: BoardingPassesType,
 |};
 
-const BoardingPasses = (props: Props) => {
-  return (
-    <SimpleCard>
-      <View style={styles.header}>
-        <TicketHeader
-          icon={<TextIcon code="6" />}
-          title={<Translation id="mmb.boarding_passes.boarding_pass" />}
-        />
-      </View>
-      {props.data.__typename === 'BookingReturn' && (
-        <BoardingPassReturn data={props.data} />
-      )}
-      {props.data.__typename === 'BookingOneWay' && (
-        <BoardingPassOneWay data={props.data} />
-      )}
-    </SimpleCard>
-  );
-};
+const BoardingPasses = (props: Props) => (
+  <SimpleCard>
+    <View style={styles.header}>
+      <TicketHeader
+        icon={<TextIcon code="6" />}
+        title={<Translation id="mmb.boarding_passes.boarding_pass" />}
+      />
+    </View>
+    {props.data.__typename === 'BookingReturn' && (
+      <BoardingPassReturn data={props.data} />
+    )}
+    {props.data.__typename === 'BookingOneWay' && (
+      <BoardingPassOneWay data={props.data} />
+    )}
+    {props.data.__typename === 'BookingMulticity' && (
+      <BoardingPassMultiCity data={props.data} />
+    )}
+  </SimpleCard>
+);
 
 const styles = StyleSheet.create({
   header: {
@@ -51,6 +53,9 @@ export default createFragmentContainer(
       }
       ... on BookingOneWay {
         ...BoardingPassOneWay
+      }
+      ... on BookingMulticity {
+        ...BoardingPassMultiCity
       }
     }
   `,
