@@ -61,6 +61,7 @@ export default {
 
   inputBackground: '#e8edf1',
   backgroundGray: '#f4f6f8',
+  disabled: '#b8c1cc',
 
   border: '#e8edf1',
 

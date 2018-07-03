@@ -7,6 +7,7 @@ import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { TextIcon, StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
+import DownloadButton from './DownloadButton';
 import type { FlightFromTo as RouteStopType } from './__generated__/FlightFromTo.graphql';
 
 type Props = {|
@@ -29,18 +30,23 @@ const FlightFromTo = (props: Props) => {
           <Translation passThrough={time} />
         </Text>
       </View>
-      <View style={[styles.row, styles.cityContainer]}>
-        <Text style={styles.cityText}>
-          <Translation
-            passThrough={idx(props.data, _ => _.departure.airport.city.name)}
-          />
-        </Text>
-        <TextIcon code="&#xe099;" style={styles.icon} />
-        <Text style={styles.cityText}>
-          <Translation
-            passThrough={idx(props.data, _ => _.arrival.airport.city.name)}
-          />
-        </Text>
+      <View style={styles.rightColumn}>
+        <View style={[styles.row, styles.cityContainer]}>
+          <Text style={styles.cityText}>
+            <Translation
+              passThrough={idx(props.data, _ => _.departure.airport.city.name)}
+            />
+          </Text>
+          <TextIcon code="&#xe099;" style={styles.icon} />
+          <Text style={styles.cityText}>
+            <Translation
+              passThrough={idx(props.data, _ => _.arrival.airport.city.name)}
+            />
+          </Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <DownloadButton data={idx(props.data, _ => _.boardingPass)} />
+        </View>
       </View>
     </View>
   );
@@ -63,6 +69,9 @@ export default createFragmentContainer(
             name
           }
         }
+      }
+      boardingPass {
+        ...DownloadButton
       }
     }
   `,
@@ -92,5 +101,12 @@ const styles = StyleSheet.create({
   cityText: {
     fontSize: 16,
     fontWeight: '600',
+  },
+  buttonContainer: {
+    marginTop: 15,
+  },
+  rightColumn: {
+    marginEnd: 9,
+    flex: 1,
   },
 });
