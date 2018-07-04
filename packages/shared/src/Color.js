@@ -54,6 +54,20 @@ const ColorPalette = {
   },
 };
 
+const tripColorCodes = [
+  '#00A991',
+  '#FBAD18',
+  '#d50c6a',
+  '#35dc93',
+  '#ef7209',
+  '#863ccd',
+  '#006dc7',
+  '#4fb52e',
+  '#30363d',
+  '#ff80ce',
+  '#ff2424',
+];
+
 export default {
   brand: ColorPalette.product.normal,
   brandLight: ColorPalette.product.light,
@@ -70,4 +84,5 @@ export default {
   textLight: ColorPalette.ink.light,
 
   ...ColorPalette,
+  tripColorCodes,
 };

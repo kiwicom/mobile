@@ -1,0 +1,328 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BoardingPassMultiCity renders even with many trips 1`] = `
+Array [
+  <Relay(FlightSegments)
+    data={1}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#00A991",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={2}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#FBAD18",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={3}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#d50c6a",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={4}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#35dc93",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={5}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#ef7209",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={6}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#863ccd",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={7}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#006dc7",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={8}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#4fb52e",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={9}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#30363d",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={10}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#ff80ce",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={11}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#ff2424",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={12}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#ff2424",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={13}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#ff2424",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+  <Relay(FlightSegments)
+    data={14}
+    icon={
+      <TextIcon
+        code=""
+        style={
+          Array [
+            Object {
+              "transform": Array [
+                Object {
+                  "rotate": "90deg",
+                },
+              ],
+            },
+            Object {
+              "color": "#ff2424",
+            },
+          ]
+        }
+      />
+    }
+    iconTitle={<Translation />}
+  />,
+]
+`;
