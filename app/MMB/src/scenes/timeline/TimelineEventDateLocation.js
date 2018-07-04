@@ -11,6 +11,7 @@ import { TextWithIsPastEventContext } from '../../context/TimelineEventContext';
 type Props = {|
   +time: string,
   +place?: string,
+  +flight?: string,
 |};
 
 export default function TimelineEventDateLocation(props: Props) {
@@ -22,6 +23,13 @@ export default function TimelineEventDateLocation(props: Props) {
           id="mmb.booking_timeline.event.in_destination"
           values={{ place: props.place }}
         />
+      </TextWithContext>
+    );
+  }
+  if (props.flight) {
+    destination = (
+      <TextWithContext>
+        <Translation passThrough={props.flight} />
       </TextWithContext>
     );
   }
