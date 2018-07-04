@@ -3,6 +3,8 @@
 
 @interface RNBookingsOptions () <RNKiwiOptions>
 
+@property (nonatomic, strong) NSDictionary* dimensions;
+
 @end
 
 @implementation RNBookingsOptions

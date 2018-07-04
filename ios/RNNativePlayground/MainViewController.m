@@ -14,9 +14,6 @@
 @end
 
 @implementation MainViewController{
-  RNHotelsOptions *rnHotelsOptions;
-  RNBookingsOptions *rnBookingsOptions;
-  RNProfileOptions *rnProfileOptions;
   NSDictionary *rnWindowDimensions;
 }
 
@@ -38,14 +35,9 @@
   return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated{
   self.navigationController.navigationBar.hidden = YES;
   self.navigationController.interactivePopGestureRecognizer.delegate = self;
-  
-  rnWindowDimensions = [self windowDimensions];
-  rnHotelsOptions = [[RNHotelsOptions alloc] initWithDimensions:rnWindowDimensions];
-  rnBookingsOptions = [[RNBookingsOptions alloc] initWithDimensions:rnWindowDimensions];
-  rnProfileOptions = [[RNProfileOptions alloc] initWithDimensions:rnWindowDimensions];
 }
 
 - (NSDictionary *)windowDimensions {
@@ -56,10 +48,9 @@
   };
 }
 
-
 - (IBAction)showHotelsView:(id)sender {
   __weak typeof(self) weakSelf = self;
-  _hotelsVc = [[RNKiwiViewController alloc] initWithOptions:rnHotelsOptions];
+  _hotelsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNHotelsOptions alloc] initWithDimensions:[self windowDimensions]]];
   
   [_hotelsVc setCurrencyFormatter:weakSelf];
   [_hotelsVc setTranslationProvider:weakSelf];
@@ -71,7 +62,7 @@
 
 - (IBAction)showBookingsView:(UIButton *)sender {
   __weak typeof(self) weakSelf = self;
-  _bookingsVc = [[RNKiwiViewController alloc] initWithOptions:rnBookingsOptions];
+  _bookingsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNBookingsOptions alloc] initWithDimensions:[self windowDimensions]]];
 
   [_bookingsVc setCurrencyFormatter:weakSelf];
   [_bookingsVc setTranslationProvider:weakSelf];
@@ -83,7 +74,7 @@
 
 - (IBAction)showProfileView:(UIButton *)sender {
   __weak typeof(self) weakSelf = self;
-  _profileVc = [[RNKiwiViewController alloc] initWithOptions:rnProfileOptions];
+  _profileVc = [[RNKiwiViewController alloc] initWithOptions:[[RNProfileOptions alloc] initWithDimensions:[self windowDimensions]]];
   
   [_profileVc setCurrencyFormatter:weakSelf];
   [_profileVc setTranslationProvider:weakSelf];

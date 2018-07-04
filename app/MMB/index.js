@@ -1,13 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { AppRegistry } from 'react-native';
 import { AuthContext } from '@kiwicom/mobile-relay';
-import {
-  Dimensions,
-  WithNativeNavigation,
-  type DimensionType,
-} from '@kiwicom/mobile-shared';
+import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
 
 import NavigationStack from './src/navigation/NavigationStack';
 import BookingDetailContext from './src/context/BookingDetailContext';

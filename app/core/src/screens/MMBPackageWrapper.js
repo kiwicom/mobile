@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { AsyncStorage, View, AppRegistry } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import { ManageMyBookingPackage } from '@kiwicom/mobile-manage-my-booking';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';

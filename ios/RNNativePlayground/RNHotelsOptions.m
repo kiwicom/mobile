@@ -3,6 +3,8 @@
 
 @interface RNHotelsOptions ()
 
+@property (nonatomic, strong) NSDictionary* dimensions;
+
 @end
 
 @implementation RNHotelsOptions
@@ -10,8 +12,7 @@
 # pragma mark - RNKiwiOptions
 
 -(id)initWithDimensions:(NSDictionary *)dimensions {
-    self = [super init];
-  
+  self = [super init];
   if (self) {
     _dimensions = dimensions;
   }
@@ -23,7 +24,7 @@
     @"coordinates": @{
        @"latitude" : @59.9139,
        @"longitude": @10.7522
-       },
+    },
     @"language": @"en",
     @"currency": @"EUR",
     @"dimensions": _dimensions

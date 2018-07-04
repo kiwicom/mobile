@@ -3,6 +3,8 @@
 
 @interface RNProfileOptions ()
 
+@property (nonatomic, strong) NSDictionary* dimensions;
+
 @end
 
 @implementation RNProfileOptions

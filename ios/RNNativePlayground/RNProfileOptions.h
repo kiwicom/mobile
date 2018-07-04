@@ -4,7 +4,6 @@
 @interface RNProfileOptions : NSObject <RNKiwiOptions>
 
 - (instancetype)initWithDimensions:(NSDictionary *)dimensions;
-@property (nonatomic, weak, nullable) NSDictionary* dimensions;
 
 @end
 
