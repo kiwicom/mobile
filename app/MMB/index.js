@@ -33,8 +33,4 @@ class ManageMyBookingPackage extends React.Component<Props> {
   );
 }
 
-AppRegistry.registerComponent('ManageMyBooking', () =>
-  WithNativeNavigation(ManageMyBookingPackage, 'ManageMyBooking'),
-);
-
 export { ManageMyBookingPackage };

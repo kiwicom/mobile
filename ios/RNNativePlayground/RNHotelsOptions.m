@@ -20,14 +20,14 @@
 
 - (NSDictionary<NSString *, NSObject *> *)initialProperties {
   return @{
-           @"coordinates": @{
-               @"latitude" : @59.9139,
-               @"longitude": @10.7522
-               },
-           @"language": @"en",
-           @"currency": @"EUR",
-           @"dimensions": _dimensions
-           };
+    @"coordinates": @{
+       @"latitude" : @59.9139,
+       @"longitude": @10.7522
+       },
+    @"language": @"en",
+    @"currency": @"EUR",
+    @"dimensions": _dimensions
+  };
 }
 
 - (NSString *)moduleName {

@@ -51,9 +51,9 @@
 - (NSDictionary *)windowDimensions {
   CGRect windowRect = self.view.window.frame;
   return @{
-            @"width": @(windowRect.size.width),
-            @"height": @(windowRect.size.height)
-            };
+    @"width": @(windowRect.size.width),
+    @"height": @(windowRect.size.height)
+  };
 }
 
 

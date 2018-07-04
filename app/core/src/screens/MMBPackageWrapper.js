@@ -1,11 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { AsyncStorage, View } from 'react-native';
+import { AsyncStorage, View, AppRegistry } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import { ManageMyBookingPackage } from '@kiwicom/mobile-manage-my-booking';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, type DimensionType } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  type DimensionType,
+  WithNativeNavigation,
+} from '@kiwicom/mobile-shared';
 
 type Props = {|
   navigation: NavigationType,
@@ -42,7 +47,8 @@ export default class MMBPackageWrapper extends React.Component<
 
   componentDidMount = () => {
     this.fetchToken();
-    this.props.navigation.setParams({ fetchToken: this.fetchToken });
+    this.props.navigation &&
+      this.props.navigation.setParams({ fetchToken: this.fetchToken });
   };
 
   fetchToken = async () => {
@@ -75,3 +81,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
 });
+
+AppRegistry.registerComponent('ManageMyBooking', () =>
+  WithNativeNavigation(MMBPackageWrapper, 'ManageMyBooking'),
+);

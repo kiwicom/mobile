@@ -20,9 +20,9 @@
 
 - (NSDictionary<NSString *, NSObject *> *)initialProperties {
   return @{
-           @"currency": @"EUR",
-           @"dimensions": _dimensions
-    };
+    @"currency": @"EUR",
+    @"dimensions": _dimensions
+  };
 }
 
 - (NSString *)moduleName {
