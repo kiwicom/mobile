@@ -2,10 +2,12 @@
 
 import React from 'react';
 import idx from 'idx';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 
+import ExploreAirportButton from './components/ExploreAirportButton';
 import Note from '../MainContentNote';
 import Title from '../MainContentTitle';
 import type { AirportArrivalTimelineEvent as AirportArrivalTimelineEventType } from './__generated__/AirportArrivalTimelineEvent.graphql';
@@ -41,6 +43,9 @@ const AirportArrivalTimelineEvent = (props: Props) => {
             <Note>
               <Translation id="mmb.booking_timeline.event.airport_arrival.note" />
             </Note>
+            <View style={styles.button}>
+              <ExploreAirportButton locationId={code} />
+            </View>
           </React.Fragment>
         }
       />
@@ -62,3 +67,12 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  button: {
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: 'flex-end',
+  },
+});
