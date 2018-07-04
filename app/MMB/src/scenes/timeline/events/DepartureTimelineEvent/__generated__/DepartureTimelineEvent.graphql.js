@@ -20,12 +20,25 @@ export type DepartureTimelineEvent = {|
     |}
   |},
   +duration: ?number,
+  +airline: ?{|
+    +code: ?string,
+    +name: ?string,
+  |},
+  +flightNumber: ?number,
   +$refType: DepartureTimelineEvent$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "DepartureTimelineEvent",
   "type": "DepartureTimelineEvent",
@@ -66,13 +79,7 @@ const node/*: ConcreteFragment*/ = {
               "concreteType": "LocationArea",
               "plural": false,
               "selections": [
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "name",
-                  "args": null,
-                  "storageKey": null
-                }
+                v0
               ]
             }
           ]
@@ -85,9 +92,36 @@ const node/*: ConcreteFragment*/ = {
       "name": "duration",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "airline",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Airline",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "code",
+          "args": null,
+          "storageKey": null
+        },
+        v0
+      ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "flightNumber",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = '8248ebb91d0ebb6e8d68c9b281868b1f';
+(node/*: any*/).hash = '67124621c1c409094b131a879f7cf690';
 module.exports = node;

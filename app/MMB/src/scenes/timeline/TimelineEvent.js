@@ -10,13 +10,14 @@ import TimelineEventContext from '../../context/TimelineEventContext';
 type Props = {|
   +timestamp: ?Date,
   +place?: string,
+  +flight?: string,
   +displayTime: boolean,
   +iconVertLines: React.Node,
   +mainContent: React.Node,
 |};
 
 const TimelineEvent = (props: Props) => {
-  const { timestamp, place } = props;
+  const { timestamp, place, flight } = props;
   let time = null;
   let isPastEvent = false;
   if (timestamp) {
@@ -25,7 +26,7 @@ const TimelineEvent = (props: Props) => {
   }
   let dateLocation = null;
   if (time && props.displayTime) {
-    dateLocation = <DateLocation time={time} place={place} />;
+    dateLocation = <DateLocation time={time} place={place} flight={flight} />;
   }
 
   return (
