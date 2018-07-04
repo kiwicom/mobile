@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type Baggage$ref = any;
 type ContactDetails_contactDetails$ref = any;
 type Passenger_passenger$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -21,6 +22,7 @@ export type PassengerDetail_booking = {|
     +databaseId: ?number,
     +$fragmentRefs: Passenger_passenger$ref,
   |}>,
+  +$fragmentRefs: Baggage$ref,
   +$refType: PassengerDetail_booking$ref,
 |};
 */
@@ -74,10 +76,15 @@ return {
           "args": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "Baggage",
+      "args": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '403a04d1697ee27fa87dab03d5e4c085';
+(node/*: any*/).hash = 'd90dcde0bfab9e22e83702356db2b374';
 module.exports = node;

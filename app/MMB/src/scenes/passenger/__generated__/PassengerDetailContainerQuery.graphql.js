@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d5305b14240d989c21682510560c4ba3
+ * @relayHash f632cfcddaae0b4483460f6f8c684193
  */
 
 /* eslint-disable */
@@ -43,6 +43,7 @@ fragment PassengerDetail_booking on BookingInterface {
     databaseId
     ...Passenger_passenger
   }
+  ...Baggage
 }
 
 fragment ContactDetails_contactDetails on BookingContactDetails {
@@ -69,6 +70,25 @@ fragment Passenger_passenger on Passenger {
       id
     }
   }
+}
+
+fragment Baggage on BookingInterface {
+  allowedBaggage {
+    ...CabinBags
+  }
+}
+
+fragment CabinBags on AllowedBaggage {
+  cabin {
+    ...BagInfo
+  }
+}
+
+fragment BagInfo on Baggage {
+  height
+  length
+  width
+  weight
 }
 */
 
@@ -118,7 +138,7 @@ return {
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...PassengerDetail_booking\n    }\n    id\n  }\n}\n\nfragment PassengerDetail_booking on BookingInterface {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...PassengerDetail_booking\n    }\n    id\n  }\n}\n\nfragment PassengerDetail_booking on BookingInterface {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n  ...Baggage\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n\nfragment Baggage on BookingInterface {\n  allowedBaggage {\n    ...CabinBags\n  }\n}\n\nfragment CabinBags on AllowedBaggage {\n  cabin {\n    ...BagInfo\n  }\n}\n\nfragment BagInfo on Baggage {\n  height\n  length\n  width\n  weight\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -283,6 +303,56 @@ return {
                     "concreteType": "Location",
                     "plural": true,
                     "selections": v4
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "allowedBaggage",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "AllowedBaggage",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "cabin",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Baggage",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "height",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "length",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "width",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "weight",
+                    "args": null,
+                    "storageKey": null
                   }
                 ]
               }

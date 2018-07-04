@@ -14,6 +14,7 @@ import type { PassengerDetail_booking as PassengersType } from './__generated__/
 import Passenger from './Passenger';
 import VisaDisclaimer from './visa/VisaDisclaimer';
 import ContactDetails from './contactDetails/ContactDetails';
+import Baggage from './baggage/Baggage';
 
 type Props = {|
   +booking: PassengersType,
@@ -61,7 +62,7 @@ export class PassengerDetail extends React.Component<Props, State> {
             <Passenger passenger={passenger} />
           </View>
         ))}
-
+        <Baggage data={this.props.booking} />
         <View style={styles.contactDetailsWrapper}>
           <ContactDetails
             contactDetails={idx(this.props.booking, _ => _.contactDetails)}
@@ -87,6 +88,7 @@ export default createRefetchContainer(
         databaseId
         ...Passenger_passenger
       }
+      ...Baggage
     }
   `,
   graphql`
