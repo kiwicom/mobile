@@ -2,10 +2,12 @@
 
 import * as React from 'react';
 import idx from 'idx';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 
+import ExploreAirportButton from './components/ExploreAirportButton';
 import Title from '../MainContentTitle';
 import type { ArrivalTimelineEvent as ArrivalTimelineEventType } from './__generated__/ArrivalTimelineEvent.graphql';
 import TimelineEvent from '../TimelineEvent';
@@ -20,7 +22,6 @@ const ArrivalTimelineEvent = (props: Props) => {
   const timestamp = idx(props, _ => _.data.timestamp);
   const airport = idx(props, _ => _.data.location.airport.city.name);
   const code = idx(props, _ => _.data.location.airport.locationId) || '';
-
   return (
     <TimelineEventDateLocationContext.Provider value={{ highlightText: true }}>
       <TimelineEvent
@@ -28,15 +29,20 @@ const ArrivalTimelineEvent = (props: Props) => {
         place={code}
         iconVertLines={<TimelineEventIcon icon={<TextIcon code="%" />} />}
         mainContent={
-          <Title>
-            <Translation
-              id="mmb.booking_timeline.event.arrival.title"
-              values={{
-                airport,
-                code,
-              }}
-            />
-          </Title>
+          <React.Fragment>
+            <Title>
+              <Translation
+                id="mmb.booking_timeline.event.arrival.title"
+                values={{
+                  airport,
+                  code,
+                }}
+              />
+            </Title>
+            <View style={styles.button}>
+              <ExploreAirportButton locationId={code} />
+            </View>
+          </React.Fragment>
         }
       />
     </TimelineEventDateLocationContext.Provider>
@@ -59,3 +65,12 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  button: {
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: 'flex-end',
+  },
+});
