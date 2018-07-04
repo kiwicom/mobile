@@ -187,22 +187,12 @@ export default {
   'mmb.booking_timeline.event.departure.title':
     'Plane to __destination__ takes off',
   'mmb.booking_timeline.event.departure.note': 'Enjoy your flight.',
-  'mmb.booking_timeline.event.departure.note_hour':
-    'Enjoy your flight. The flight will take __hours__ hour.',
   'mmb.booking_timeline.event.departure.note_hours':
-    'Enjoy your flight. The flight will take __hours__ hours.',
+    'Enjoy your __hours__h flight with __airlineName__ __flightIdentifier__.',
   'mmb.booking_timeline.event.departure.note_minutes':
-    'Enjoy your flight. The flight will take __minutes__ minutes.',
-  'mmb.booking_timeline.event.departure.note_minute':
-    'Enjoy your flight. The flight will take __minutes__ minute.',
-  'mmb.booking_timeline.event.departure.note_hour_minute':
-    'Enjoy your flight. The flight will take __hours__ hour and __minutes__ minute.',
-  'mmb.booking_timeline.event.departure.note_hour_minutes':
-    'Enjoy your flight. The flight will take __hours__ hour and __minutes__ minutes.',
-  'mmb.booking_timeline.event.departure.note_hours_minute':
-    'Enjoy your flight. The flight will take __hours__ hours and __minutes__ minute.',
+    'Enjoy your __minutes__m flight with __airlineName__ __flightIdentifier__.',
   'mmb.booking_timeline.event.departure.note_hours_minutes':
-    'Enjoy your flight. The flight will take __hours__ hours and __minutes__ minutes.',
+    'Enjoy your __hours__h __minutes__m flight with __airlineName__ __flightIdentifier__.',
 
   'mmb.booking_timeline.event.transport_from_airport.title':
     'Getting transport from airport',

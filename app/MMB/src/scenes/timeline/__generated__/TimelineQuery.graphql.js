@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e41155d01c27194f9ab8d4d033a9d398
+ * @relayHash 37c961e8b2b2bc9762b2a6124de1eea2
  */
 
 /* eslint-disable */
@@ -148,6 +148,11 @@ fragment DepartureTimelineEvent on DepartureTimelineEvent {
     }
   }
   duration
+  airline {
+    code
+    name
+  }
+  flightNumber
 }
 
 fragment ArrivalTimelineEvent on ArrivalTimelineEvent {
@@ -290,11 +295,18 @@ v9 = {
 v10 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "locationId",
+  "name": "flightNumber",
   "args": null,
   "storageKey": null
 },
 v11 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "locationId",
+  "args": null,
+  "storageKey": null
+},
+v12 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "location",
@@ -309,7 +321,7 @@ return {
   "operationKind": "query",
   "name": "TimelineQuery",
   "id": null,
-  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on DownloadETicketTimelineEvent {\n        ...DownloadETicketTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n      ... on DepartureTimelineEvent {\n        ...DepartureTimelineEvent\n      }\n      ... on ArrivalTimelineEvent {\n        ...ArrivalTimelineEvent\n      }\n      ... on TransportFromAirportTimelineEvent {\n        ...TransportFromAirportTimelineEvent\n      }\n      ... on DownloadBoardingPassTimelineEvent {\n        ...DownloadBoardingPassTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment DownloadETicketTimelineEvent on DownloadETicketTimelineEvent {\n  timestamp\n  ticketUrl\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n}\n\nfragment DepartureTimelineEvent on DepartureTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  duration\n}\n\nfragment ArrivalTimelineEvent on ArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {\n  timestamp\n}\n\nfragment DownloadBoardingPassTimelineEvent on DownloadBoardingPassTimelineEvent {\n  timestamp\n  leg {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    boardingPass {\n      flightNumber\n      boardingPassUrl\n    }\n    id\n  }\n}\n",
+  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on DownloadETicketTimelineEvent {\n        ...DownloadETicketTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n      ... on DepartureTimelineEvent {\n        ...DepartureTimelineEvent\n      }\n      ... on ArrivalTimelineEvent {\n        ...ArrivalTimelineEvent\n      }\n      ... on TransportFromAirportTimelineEvent {\n        ...TransportFromAirportTimelineEvent\n      }\n      ... on DownloadBoardingPassTimelineEvent {\n        ...DownloadBoardingPassTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment DownloadETicketTimelineEvent on DownloadETicketTimelineEvent {\n  timestamp\n  ticketUrl\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n}\n\nfragment DepartureTimelineEvent on DepartureTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  duration\n  airline {\n    code\n    name\n  }\n  flightNumber\n}\n\nfragment ArrivalTimelineEvent on ArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {\n  timestamp\n}\n\nfragment DownloadBoardingPassTimelineEvent on DownloadBoardingPassTimelineEvent {\n  timestamp\n  leg {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    boardingPass {\n      flightNumber\n      boardingPassUrl\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -516,13 +528,7 @@ return {
                         "concreteType": "BoardingPass",
                         "plural": false,
                         "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "flightNumber",
-                            "args": null,
-                            "storageKey": null
-                          },
+                          v10,
                           {
                             "kind": "ScalarField",
                             "alias": null,
@@ -559,7 +565,7 @@ return {
                         "concreteType": "Location",
                         "plural": false,
                         "selections": [
-                          v10,
+                          v11,
                           v5,
                           v6
                         ]
@@ -572,21 +578,41 @@ return {
                 "kind": "InlineFragment",
                 "type": "DepartureTimelineEvent",
                 "selections": [
-                  v11,
+                  v12,
                   {
                     "kind": "ScalarField",
                     "alias": null,
                     "name": "duration",
                     "args": null,
                     "storageKey": null
-                  }
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "airline",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Airline",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "code",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      v4
+                    ]
+                  },
+                  v10
                 ]
               },
               {
                 "kind": "InlineFragment",
                 "type": "BookedFlightTimelineEvent",
                 "selections": [
-                  v11
+                  v12
                 ]
               },
               {
@@ -645,7 +671,7 @@ return {
                         "concreteType": "Location",
                         "plural": false,
                         "selections": [
-                          v10,
+                          v11,
                           v4,
                           v6
                         ]

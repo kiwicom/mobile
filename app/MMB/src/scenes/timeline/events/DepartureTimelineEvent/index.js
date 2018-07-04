@@ -21,10 +21,27 @@ const DepartureTimelineEvent = (props: Props) => {
   const timestamp = idx(props, _ => _.data.timestamp);
   const destination = idx(props, _ => _.data.location.airport.city.name);
   const duration = idx(props, _ => _.data.duration);
+  const airlineCode = idx(props, _ => _.data.airline.code);
+  const airlineName = idx(props, _ => _.data.airline.name);
+  const flightNumber = idx(props, _ => _.data.flightNumber);
+
+  let flight = '';
+  if (airlineCode && flightNumber) {
+    flight = `${airlineCode} ${flightNumber}`;
+  }
+  if (flight.length > 9 && airlineCode) {
+    flight = airlineCode;
+  }
+
+  let flightIdentifier = '';
+  if (airlineCode && flightNumber) {
+    flightIdentifier = `${airlineCode}${flightNumber}`;
+  }
 
   return (
     <TimelineEvent
       timestamp={timestamp}
+      flight={flight}
       iconVertLines={<TimelineEventIcon icon={<TextIcon code="*" />} />}
       mainContent={
         <React.Fragment>
@@ -36,7 +53,7 @@ const DepartureTimelineEvent = (props: Props) => {
               }}
             />
           </Title>
-          <Note>{renderNote(duration)}</Note>
+          <Note>{renderNote(duration, airlineName, flightIdentifier)}</Note>
         </React.Fragment>
       }
     />
@@ -56,6 +73,11 @@ export default createFragmentContainer(
         }
       }
       duration
+      airline {
+        code
+        name
+      }
+      flightNumber
     }
   `,
 );
