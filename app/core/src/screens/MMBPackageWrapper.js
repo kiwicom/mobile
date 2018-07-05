@@ -42,8 +42,7 @@ export default class MMBPackageWrapper extends React.Component<
 
   componentDidMount = () => {
     this.fetchToken();
-    this.props.navigation &&
-      this.props.navigation.setParams({ fetchToken: this.fetchToken });
+    this.props.navigation.setParams({ fetchToken: this.fetchToken });
   };
 
   fetchToken = async () => {
