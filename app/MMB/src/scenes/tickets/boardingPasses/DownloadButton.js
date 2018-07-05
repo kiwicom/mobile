@@ -9,6 +9,7 @@ import { withNavigation } from 'react-navigation';
 import type { NavigationType } from '@kiwicom/mobile-navigation';
 
 import type { DownloadButton as BoardingPassType } from './__generated__/DownloadButton.graphql';
+import BoardingPassInformation from './boardingPassInformation/BoardingPassInformation';
 
 type Props = {|
   +data: BoardingPassType,
@@ -30,8 +31,7 @@ class DownloadButton extends React.Component<Props> {
     const isDisabled = !idx(this.props.data, _ => _.boardingPassUrl);
     return (
       <React.Fragment>
-        {/* TODO: Find out how this text is decided */}
-        <Translation passThrough="put some random text here i guess that should be really long so I can check that it breaks on to new line" />
+        <BoardingPassInformation data={this.props.data} />
         <Button
           onPress={this.navigateToBoardingPass}
           style={[styles.button, isDisabled && styles.disabled]}
@@ -51,6 +51,7 @@ export default createFragmentContainer(
   graphql`
     fragment DownloadButton on BoardingPass {
       boardingPassUrl
+      ...BoardingPassInformation
     }
   `,
 );
