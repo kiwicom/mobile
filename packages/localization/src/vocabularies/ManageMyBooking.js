@@ -33,6 +33,8 @@ export default {
   'mmb.boarding_passes.boarding_pass_return.return': 'Return',
   'mmb.boarding_passes.download_button.open_printable_document':
     'Open Printable Document',
+  'mmb.boarding_passes.past_booking_information.missed_checkin':
+    'Missed online check-in. It was available on our site until __date__',
 
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
