@@ -37,6 +37,13 @@ class Provider extends React.Component<Props, State> {
     };
   }
 
+  static getDerivedStateFromProps(props: Props, state: State) {
+    return {
+      ...state,
+      accessToken: props.accessToken,
+    };
+  }
+
   setAccessToken = (accessToken: string | null) => {
     this.setState({ accessToken });
   };

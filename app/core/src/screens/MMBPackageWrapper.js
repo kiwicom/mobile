@@ -1,15 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { AsyncStorage, View, AppRegistry } from 'react-native';
-import { ManageMyBookingPackage } from '@kiwicom/mobile-manage-my-booking';
+import { AsyncStorage, View } from 'react-native';
+import { MMBStandalonePackage } from '@kiwicom/mobile-manage-my-booking';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import {
-  StyleSheet,
-  type DimensionType,
-  WithNativeNavigation,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, type DimensionType } from '@kiwicom/mobile-shared';
 
 type Props = {|
   navigation: NavigationType,
@@ -65,8 +61,7 @@ export default class MMBPackageWrapper extends React.Component<
     }
 
     return (
-      <ManageMyBookingPackage
-        onNavigationStateChange={this.props.onNavigationStateChange}
+      <MMBStandalonePackage
         dimensions={this.props.dimensions}
         currency="EUR"
         accessToken={this.state.token}
@@ -80,7 +75,3 @@ const styles = StyleSheet.create({
     marginTop: 60,
   },
 });
-
-AppRegistry.registerComponent('ManageMyBooking', () =>
-  WithNativeNavigation(MMBPackageWrapper, 'ManageMyBooking'),
-);
