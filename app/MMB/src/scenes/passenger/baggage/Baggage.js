@@ -8,8 +8,10 @@ import {
   SeparatorTrimmed,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import CabinBags from './CabinBags';
+import CheckedBaggage from './CheckedBaggage';
 import type { Baggage as BaggageType } from './__generated__/Baggage.graphql';
 
 type Props = {|
@@ -21,7 +23,8 @@ const Baggage = (props: Props) => (
     <MenuGroup
       customSeparator={<SeparatorTrimmed gapSizeStart={15} gapSizeEnd={15} />}
     >
-      <CabinBags data={props.data.allowedBaggage} />
+      <CabinBags data={idx(props.data, _ => _.allowedBaggage)} />
+      <CheckedBaggage data={idx(props.data, _ => _.allowedBaggage)} />
     </MenuGroup>
   </TitledMenuGroup>
 );
@@ -32,6 +35,7 @@ export default createFragmentContainer(
     fragment Baggage on BookingInterface {
       allowedBaggage {
         ...CabinBags
+        ...CheckedBaggage
       }
     }
   `,
