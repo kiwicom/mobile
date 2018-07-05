@@ -9,11 +9,12 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type CabinBags$ref = any;
+type CheckedBaggage$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Baggage$ref: FragmentReference;
 export type Baggage = {|
   +allowedBaggage: ?{|
-    +$fragmentRefs: CabinBags$ref
+    +$fragmentRefs: CabinBags$ref & CheckedBaggage$ref
   |},
   +$refType: Baggage$ref,
 |};
@@ -40,11 +41,16 @@ const node/*: ConcreteFragment*/ = {
           "kind": "FragmentSpread",
           "name": "CabinBags",
           "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "CheckedBaggage",
+          "args": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '70ec293511e4c8806002ef3c6c5860ba';
+(node/*: any*/).hash = 'b8a6b4efbd75b12e617d3612836f33ee';
 module.exports = node;
