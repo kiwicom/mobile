@@ -12,6 +12,7 @@ import idx from 'idx';
 
 import CabinBags from './CabinBags';
 import CheckedBaggage from './CheckedBaggage';
+import BaggageGroupButton from './BaggageGroupButton';
 import type { Baggage as BaggageType } from './__generated__/Baggage.graphql';
 
 type Props = {|
@@ -20,12 +21,14 @@ type Props = {|
 
 const Baggage = (props: Props) => (
   <TitledMenuGroup title={<Translation passThrough="Baggage" />}>
-    <MenuGroup
-      customSeparator={<SeparatorTrimmed gapSizeStart={15} gapSizeEnd={15} />}
-    >
-      <CabinBags data={idx(props.data, _ => _.allowedBaggage)} />
-      <CheckedBaggage data={idx(props.data, _ => _.allowedBaggage)} />
-    </MenuGroup>
+    <BaggageGroupButton>
+      <MenuGroup
+        customSeparator={<SeparatorTrimmed gapSizeStart={15} gapSizeEnd={15} />}
+      >
+        <CabinBags data={idx(props.data, _ => _.allowedBaggage)} />
+        <CheckedBaggage data={idx(props.data, _ => _.allowedBaggage)} />
+      </MenuGroup>
+    </BaggageGroupButton>
   </TitledMenuGroup>
 );
 
