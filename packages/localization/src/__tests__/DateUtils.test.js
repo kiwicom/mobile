@@ -30,6 +30,20 @@ it('returns correct diff in days', () => {
   expect(
     DateUtils.diffInDays(new Date('2018-12-24'), new Date('2018-12-30')),
   ).toBe(-6);
+
+  expect(
+    DateUtils.diffInDays(
+      new Date('2018-12-24T02:00:00.000Z'),
+      new Date('2018-12-24T01:00:00.000Z'),
+    ),
+  ).toBe(0);
+
+  expect(
+    DateUtils.diffInDays(
+      new Date('2018-12-24T01:00:00.000Z'),
+      new Date('2018-12-24T02:00:00.000Z'),
+    ),
+  ).toBe(0);
 });
 
 describe('isSameDay', () => {

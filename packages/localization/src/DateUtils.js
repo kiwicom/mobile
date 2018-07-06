@@ -15,6 +15,11 @@ const getUTCYearMonthDate = (date: Date) => {
   };
 };
 
+const toUTCDate = (inDate: Date) => {
+  const { year, month, date } = getUTCYearMonthDate(inDate);
+  return new Date(Date.UTC(year, month, date));
+};
+
 const getUTCNow = () => {
   const now = new Date();
   return new Date(
@@ -40,11 +45,12 @@ function DateUtils(rawDate: Date = getUTCNow()) {
  * Negative if A is sooner than B.
  * ZERO for the same dates.
  *
- * Returned value is in miliseconds.
  */
 DateUtils.diffInDays = (higherDate: Date, lowerDate: Date) => {
-  const diffMs = higherDate - lowerDate;
-  return Math.ceil(diffMs / (1000 * 3600 * 24));
+  const diffMs = toUTCDate(higherDate) - toUTCDate(lowerDate);
+  const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24;
+
+  return diffMs / ONE_DAY_IN_MS;
 };
 
 DateUtils.isSameDay = (firstDate: Date, secondDate: Date): boolean => {
