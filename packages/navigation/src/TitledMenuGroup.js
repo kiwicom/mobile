@@ -66,5 +66,8 @@ export default function TitledMenuGroup(props: Props) {
 const styles = StyleSheet.create({
   card: {
     padding: 0,
+    android: {
+      marginTop: 11,
+    },
   },
 });
