@@ -39,6 +39,13 @@
                                     <action selector="showProfileView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2qN-yH-bSb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-36-V1h">
+                                <rect key="frame" x="167" y="329" width="42" height="30"/>
+                                <state key="normal" title="Log in"/>
+                                <connections>
+                                    <segue destination="186-R1-ioT" kind="show" id="gHf-4M-ptD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -46,6 +53,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rDZ-EC-VJu" secondAttribute="bottom" constant="456" id="XLF-nX-6FM"/>
                             <constraint firstItem="rDZ-EC-VJu" firstAttribute="top" secondItem="tJh-yV-LXh" secondAttribute="bottom" constant="51" id="XYi-xE-zsA"/>
                             <constraint firstItem="Iev-rK-pXK" firstAttribute="trailing" secondItem="tJh-yV-LXh" secondAttribute="trailing" id="bdN-WM-qOY"/>
+                            <constraint firstItem="wgT-36-V1h" firstAttribute="centerX" secondItem="Iev-rK-pXK" secondAttribute="centerX" id="dWi-FJ-xAU"/>
+                            <constraint firstItem="wgT-36-V1h" firstAttribute="top" secondItem="Iev-rK-pXK" secondAttribute="bottom" constant="44" id="grr-SK-wAH"/>
                             <constraint firstItem="rDZ-EC-VJu" firstAttribute="centerX" secondItem="tJh-yV-LXh" secondAttribute="centerX" id="hvR-8S-kJD"/>
                             <constraint firstItem="rDZ-EC-VJu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tSv-0J-WCv"/>
                         </constraints>
@@ -56,6 +65,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1055.2" y="89.505247376311857"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="Qz8-N7-Gce">
+            <objects>
+                <viewController id="186-R1-ioT" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u3t-gc-JoC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="reactnative@kiwi.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GZc-0m-vRH">
+                                <rect key="frame" x="106" y="128" width="162" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nick:" destination="186-R1-ioT" eventType="editingDidEnd" id="TaC-Oh-gCR"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FfS-vs-Zgh">
+                                <rect key="frame" x="166" y="302" width="42" height="30"/>
+                                <state key="normal" title="Log in"/>
+                                <connections>
+                                    <action selector="logIn:" destination="186-R1-ioT" eventType="touchUpInside" id="iOd-o5-qGb"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FHu-xg-e3N">
+                                <rect key="frame" x="106" y="208" width="165" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FHu-xg-e3N" firstAttribute="top" secondItem="GZc-0m-vRH" secondAttribute="bottom" constant="53" id="31P-9p-xSS"/>
+                            <constraint firstItem="GZc-0m-vRH" firstAttribute="top" secondItem="Xcc-yE-Eld" secondAttribute="top" constant="64" id="DVR-eP-t9w"/>
+                            <constraint firstItem="GZc-0m-vRH" firstAttribute="centerX" secondItem="FfS-vs-Zgh" secondAttribute="centerX" id="Vxw-p1-0eZ"/>
+                            <constraint firstItem="FfS-vs-Zgh" firstAttribute="top" secondItem="FHu-xg-e3N" secondAttribute="bottom" constant="61" id="hEb-Vw-KHl"/>
+                            <constraint firstItem="GZc-0m-vRH" firstAttribute="centerX" secondItem="u3t-gc-JoC" secondAttribute="centerX" id="k2x-eE-3ir"/>
+                            <constraint firstItem="GZc-0m-vRH" firstAttribute="centerX" secondItem="FHu-xg-e3N" secondAttribute="centerX" id="wuh-An-pT4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xcc-yE-Eld"/>
+                    </view>
+                    <connections>
+                        <outlet property="nick" destination="GZc-0m-vRH" id="rdx-kQ-u1G"/>
+                        <outlet property="password" destination="FHu-xg-e3N" id="gXz-ac-hA2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lyW-rQ-WtK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2022" y="111"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xgc-YE-kbp">

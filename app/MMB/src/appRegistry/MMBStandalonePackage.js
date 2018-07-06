@@ -28,24 +28,7 @@ class MMBStandalonePackage extends React.Component<Props, State> {
     accessToken: '',
   };
 
-  componentDidMount = () => {
-    this.fetchToken();
-  };
-
-  fetchToken = async () => {
-    const accessToken = await AsyncStorage.getItem('mobile:MMB-Token');
-    this.setState({ accessToken });
-  };
-
   renderInnerComponent = () => {
-    if (!this.state.accessToken && !this.props.accessToken) {
-      return (
-        <View style={styles.loginMessageContainer}>
-          <Translation passThrough="You are not logged in, go to profile and log in" />
-        </View>
-      );
-    }
-
     return (
       <NavigationStack
         onNavigationStateChange={this.props.onNavigationStateChange}
@@ -57,18 +40,12 @@ class MMBStandalonePackage extends React.Component<Props, State> {
     return (
       <RootComponent
         dimensions={this.props.dimensions}
-        accessToken={this.state.accessToken || this.props.accessToken}
+        accessToken={this.props.accessToken}
       >
         {this.renderInnerComponent()}
       </RootComponent>
     );
   };
 }
-
-const styles = StyleSheet.create({
-  loginMessageContainer: {
-    marginTop: 60,
-  },
-});
 
 export default WithNativeNavigation(MMBStandalonePackage, 'ManageMyBooking');

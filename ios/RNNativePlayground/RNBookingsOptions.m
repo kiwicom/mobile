@@ -23,7 +23,8 @@
 - (NSDictionary<NSString *, NSObject *> *)initialProperties {
   return @{
     @"currency": @"EUR",
-    @"dimensions": _dimensions
+    @"dimensions": _dimensions,
+    @"accessToken": @"WyJ2aUZ6NFlQWlMtUmphNnVIVVp3dTZMIiwiT2JvMFBJaC5zQ3JxZnc5bm9NUzRnTzF3TGdvVnBYcTV4RzJ1RU5PR1E5SWpoVHljamVLdDIiLDI2NDk2NDg0NDNd.iOE7KEsrwLbYna3KsFUZl6JsRY4"
   };
 }
 
