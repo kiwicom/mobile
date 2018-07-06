@@ -114,7 +114,7 @@ export default {
   'mmb.passengers.phone': 'Phone',
   'mmb.passengers.title.contact_details': 'Contact details',
   'mmb.passengers.cabin_bags.cabin_bags': 'Cabin bags',
-  'mmb.passengers.cabin_bags.checked_baggage': 'Checked baggage',
+  'mmb.passengers.cabin_bags.checked_baggage': 'Checked bags',
   'mmb.passengers.bag_info.bag_info':
     '__1_length__ × __2_width__ × __3_height__ cm, __4_weight__ kg',
 
