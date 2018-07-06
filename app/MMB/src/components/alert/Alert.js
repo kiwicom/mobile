@@ -1,15 +1,21 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, Icon, Color } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  Icon,
+  Color,
+  type StylePropType,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import RenderAlert from './RenderAlert';
 
 type Props = {|
-  type: 'danger' | 'warning' | 'success',
-  title: React.Element<typeof Translation>,
-  children?: React.Node,
+  +type: 'danger' | 'warning' | 'success',
+  +title: React.Element<typeof Translation>,
+  +children?: React.Node,
+  +titleStyle?: StylePropType,
 |};
 
 const ICON_SIZE = 17;
@@ -21,7 +27,7 @@ export default function Alert(props: Props) {
         <RenderAlert
           icon={<Icon name="warning" size={ICON_SIZE} color={RED} />}
           title={props.title}
-          titleStyle={styles.titleDanger}
+          titleStyle={[styles.titleDanger, props.titleStyle]}
           containerStyle={styles.containerDanger}
         >
           {props.children}
@@ -32,7 +38,7 @@ export default function Alert(props: Props) {
         <RenderAlert
           icon={<Icon name="warning" size={ICON_SIZE} color="#eb9d08" />}
           title={props.title}
-          titleStyle={styles.titleWarning}
+          titleStyle={[styles.titleWarning, props.titleStyle]}
           containerStyle={styles.containerWarning}
         >
           {props.children}
@@ -50,7 +56,7 @@ export default function Alert(props: Props) {
             />
           }
           title={props.title}
-          titleStyle={styles.titleSuccess}
+          titleStyle={[styles.titleSuccess, props.titleStyle]}
           containerStyle={styles.containerSuccess}
         >
           {props.children}
