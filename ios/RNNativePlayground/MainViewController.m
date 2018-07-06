@@ -2,7 +2,6 @@
 #import "MainViewController.h"
 #import "RNHotelsOptions.h"
 #import "RNBookingsOptions.h"
-#import "RNProfileOptions.h"
 #import "NoLoggedInViewController.h"
 
 @interface MainViewController () <UIGestureRecognizerDelegate, RNKiwiViewControllerFlowDelegate, RNKiwiCurrencyManager, RNKiwiTranslationProvider>
@@ -10,7 +9,6 @@
 @property (nonatomic, strong) RNKiwiViewController *activeVc;
 @property (nonatomic, strong) RNKiwiViewController *hotelsVc;
 @property (nonatomic, strong) RNKiwiViewController *bookingsVc;
-@property (nonatomic, strong) RNKiwiViewController *profileVc;
 
 @end
 
@@ -31,7 +29,6 @@
      */
     [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:[[RNHotelsOptions alloc] init]];
     [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:[[RNBookingsOptions alloc] init]];
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:[[RNProfileOptions alloc] init]];
   }
   return self;
 }
@@ -76,18 +73,6 @@
   } else {
     [[self navigationController] pushViewController:_bookingsVc animated:YES];
   }
-}
-
-- (IBAction)showProfileView:(UIButton *)sender {
-  __weak typeof(self) weakSelf = self;
-  _profileVc = [[RNKiwiViewController alloc] initWithOptions:[[RNProfileOptions alloc] initWithDimensions:[self windowDimensions]]];
-  
-  [_profileVc setCurrencyFormatter:weakSelf];
-  [_profileVc setTranslationProvider:weakSelf];
-  [_profileVc setFlowDelegate:weakSelf];
-  
-  _activeVc = _profileVc;
-  [[self navigationController] pushViewController:_profileVc animated:YES];
 }
 
 

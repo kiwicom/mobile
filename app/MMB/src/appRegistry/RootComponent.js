@@ -7,9 +7,9 @@ import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
 import BookingDetailContext from '../context/BookingDetailContext';
 
 type Props = {|
-  children: React.Node,
-  dimensions: DimensionType,
-  accessToken: string,
+  +children: React.Node,
+  +dimensions: DimensionType,
+  +accessToken: string,
 |};
 
 export default class RootComponent extends React.Component<Props> {

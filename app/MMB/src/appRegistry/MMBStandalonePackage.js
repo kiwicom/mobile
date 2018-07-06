@@ -1,22 +1,19 @@
 // @flow
 
 import * as React from 'react';
-import { AsyncStorage, View } from 'react-native';
 import {
-  StyleSheet,
   WithNativeNavigation,
   type DimensionType,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import NavigationStack from '../../src/navigation/NavigationStack';
 import RootComponent from './RootComponent';
 
 type Props = {|
-  dimensions: DimensionType,
-  onNavigationStateChange: () => void,
-  accessToken: string,
-  currency: string,
+  +dimensions: DimensionType,
+  +onNavigationStateChange: () => void,
+  +accessToken: string,
+  +currency: string,
 |};
 
 type State = {|

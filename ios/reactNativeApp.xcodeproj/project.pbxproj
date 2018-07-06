@@ -23,7 +23,6 @@
 		21E47B3D20EA1219002B92A6 /* RNHotelsOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B3C20EA1219002B92A6 /* RNHotelsOptions.m */; };
 		21E47B4620EA1F4A002B92A6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B4520EA1F4A002B92A6 /* MainViewController.m */; };
 		21E47B4820EA2AB5002B92A6 /* RNBookingsOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B4720EA2AB5002B92A6 /* RNBookingsOptions.m */; };
-		21E47B4C20EB5817002B92A6 /* RNProfileOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B4B20EB5817002B92A6 /* RNProfileOptions.m */; };
 		21E47B6820EE54EE002B92A6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B6720EE54EE002B92A6 /* LoginViewController.m */; };
 		21E47B6E20EF8792002B92A6 /* NoLoggedInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E47B6D20EF8792002B92A6 /* NoLoggedInViewController.m */; };
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
@@ -124,8 +123,6 @@
 		21E47B4520EA1F4A002B92A6 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		21E47B4720EA2AB5002B92A6 /* RNBookingsOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNBookingsOptions.m; sourceTree = "<group>"; };
 		21E47B4920EA2AC9002B92A6 /* RNBookingsOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNBookingsOptions.h; sourceTree = "<group>"; };
-		21E47B4A20EB5809002B92A6 /* RNProfileOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNProfileOptions.h; sourceTree = "<group>"; };
-		21E47B4B20EB5817002B92A6 /* RNProfileOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNProfileOptions.m; sourceTree = "<group>"; };
 		21E47B6620EE54EE002B92A6 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		21E47B6720EE54EE002B92A6 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		21E47B6C20EF8792002B92A6 /* NoLoggedInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoLoggedInViewController.h; sourceTree = "<group>"; };
@@ -270,8 +267,6 @@
 				21E47B4920EA2AC9002B92A6 /* RNBookingsOptions.h */,
 				21E47B3C20EA1219002B92A6 /* RNHotelsOptions.m */,
 				21E47B3B20EA1200002B92A6 /* RNHotelsOptions.h */,
-				21E47B4A20EB5809002B92A6 /* RNProfileOptions.h */,
-				21E47B4B20EB5817002B92A6 /* RNProfileOptions.m */,
 				21E47B6620EE54EE002B92A6 /* LoginViewController.h */,
 				21E47B6720EE54EE002B92A6 /* LoginViewController.m */,
 				21E47B6C20EF8792002B92A6 /* NoLoggedInViewController.h */,
@@ -726,7 +721,6 @@
 				21E47B3D20EA1219002B92A6 /* RNHotelsOptions.m in Sources */,
 				21E47B4620EA1F4A002B92A6 /* MainViewController.m in Sources */,
 				21E47B6820EE54EE002B92A6 /* LoginViewController.m in Sources */,
-				21E47B4C20EB5817002B92A6 /* RNProfileOptions.m in Sources */,
 				27E931D620ADA0600053AE19 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

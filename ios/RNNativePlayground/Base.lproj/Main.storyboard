@@ -32,15 +32,8 @@
                                     <action selector="showBookingsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DsU-Vp-Dy0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iev-rK-pXK">
-                                <rect key="frame" x="166" y="255" width="44" height="30"/>
-                                <state key="normal" title="Profile"/>
-                                <connections>
-                                    <action selector="showProfileView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2qN-yH-bSb"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgT-36-V1h">
-                                <rect key="frame" x="167" y="329" width="42" height="30"/>
+                                <rect key="frame" x="166" y="247" width="42" height="56"/>
                                 <state key="normal" title="Log in"/>
                                 <connections>
                                     <segue destination="186-R1-ioT" kind="show" id="gHf-4M-ptD"/>
@@ -49,14 +42,13 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Iev-rK-pXK" firstAttribute="top" secondItem="rDZ-EC-VJu" secondAttribute="bottom" constant="48" id="01t-3Q-0jV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="wgT-36-V1h" secondAttribute="bottom" constant="364" id="47c-QI-KqE"/>
+                            <constraint firstItem="wgT-36-V1h" firstAttribute="centerX" secondItem="rDZ-EC-VJu" secondAttribute="centerX" id="BzX-lJ-kaL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rDZ-EC-VJu" secondAttribute="bottom" constant="456" id="XLF-nX-6FM"/>
                             <constraint firstItem="rDZ-EC-VJu" firstAttribute="top" secondItem="tJh-yV-LXh" secondAttribute="bottom" constant="51" id="XYi-xE-zsA"/>
-                            <constraint firstItem="Iev-rK-pXK" firstAttribute="trailing" secondItem="tJh-yV-LXh" secondAttribute="trailing" id="bdN-WM-qOY"/>
-                            <constraint firstItem="wgT-36-V1h" firstAttribute="centerX" secondItem="Iev-rK-pXK" secondAttribute="centerX" id="dWi-FJ-xAU"/>
-                            <constraint firstItem="wgT-36-V1h" firstAttribute="top" secondItem="Iev-rK-pXK" secondAttribute="bottom" constant="44" id="grr-SK-wAH"/>
                             <constraint firstItem="rDZ-EC-VJu" firstAttribute="centerX" secondItem="tJh-yV-LXh" secondAttribute="centerX" id="hvR-8S-kJD"/>
                             <constraint firstItem="rDZ-EC-VJu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tSv-0J-WCv"/>
+                            <constraint firstItem="wgT-36-V1h" firstAttribute="top" secondItem="rDZ-EC-VJu" secondAttribute="bottom" constant="40" id="zV3-46-eDH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
