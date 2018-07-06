@@ -14,7 +14,7 @@
     "react-native-maps": "^0.21.0",
     "react-native-snap-carousel": "^3.7.2",
     "react-native-swiper": "^1.5.13",
-    "react-native-tooltips": "^0.0.4"
+    "react-native-tooltips": "^0.0.6"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
