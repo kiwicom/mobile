@@ -129,6 +129,7 @@ export default {
   'mmb.visa_state.visa_is_required_in': 'Visa required in:',
   'mmb.visa_state.visa_may_be_required_in': 'Visa may be required in:',
   'mmb.visa_state.visa_may_be_required': 'Visa may be required',
+
   // MMB menu:
   'mmb.main_menu.title': 'Manage my bookings',
   'mmb.flight_services': 'Flight Services',
@@ -161,6 +162,12 @@ export default {
   'mmb.sub_menu.manage.other.apply_for_refund': 'Apply for refund',
 
   'mmb.trip_services.title.ordered': 'Ordered',
+
+  // MMB Missing Information
+  'mmb.missing_information.missing_informations': 'Missing informations',
+  'mmb.missing_information.fill_in_information':
+    'Please fill in passenger info to confirm booking',
+  'mmb.missing_information.button_text': 'Fill Passenger Info',
 
   // MMB Booking Timeline
   'mmb.booking_timeline.today': 'Today',

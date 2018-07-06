@@ -9,6 +9,7 @@ import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import PassengerMenuGroup from './menuGroups/passengerMenuGroup/PassengerMenuGroup';
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import TripInfoMenuGroup from './menuGroups/TripInfoMenuGroup';
+import MissingInformation from './components/MissingInformation';
 import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 
 type Props = {|
@@ -45,6 +46,8 @@ class MainMenu extends React.Component<Props, State> {
           openSubmenu={this.handleOpenSubmenu}
         />
 
+        <MissingInformation data={this.props.data} />
+
         <TripInfoMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
@@ -76,6 +79,7 @@ export default createFragmentContainer(
     fragment MainMenu on BookingInterface {
       ...Header
       ...PassengerMenuGroup
+      ...MissingInformation
     }
   `,
 );
