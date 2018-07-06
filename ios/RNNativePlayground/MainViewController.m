@@ -3,6 +3,7 @@
 #import "RNHotelsOptions.h"
 #import "RNBookingsOptions.h"
 #import "RNProfileOptions.h"
+#import "NoLoggedInViewController.h"
 
 @interface MainViewController () <UIGestureRecognizerDelegate, RNKiwiViewControllerFlowDelegate, RNKiwiCurrencyManager, RNKiwiTranslationProvider>
 
@@ -69,7 +70,12 @@
   [_bookingsVc setFlowDelegate:weakSelf];
   
   _activeVc = _bookingsVc;
-  [[self navigationController] pushViewController:_bookingsVc animated:YES];
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"accessToken"] isEqualToString:@""]) {
+    NoLoggedInViewController *_noLoggedVc = [self.storyboard instantiateViewControllerWithIdentifier:@"noLogged"];
+    [[self navigationController] pushViewController:_noLoggedVc animated:YES];
+  } else {
+    [[self navigationController] pushViewController:_bookingsVc animated:YES];
+  }
 }
 
 - (IBAction)showProfileView:(UIButton *)sender {
@@ -111,7 +117,6 @@
   if (self.navigationController.interactivePopGestureRecognizer == gestureRecognizer) {
     return [_activeVc isInteractivePopGestureAllowed];
   }
-  
   return YES;
 }
 
