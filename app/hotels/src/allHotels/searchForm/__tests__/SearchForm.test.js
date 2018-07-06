@@ -44,7 +44,7 @@ it('Checkin change triggers onChange', async () => {
   const testInstance = testRenderer.root;
   await testInstance
     .findAllByType(DatePicker)[0]
-    .props.onDateChange('2018-01-01');
+    .props.onDateChange(new Date('2018-01-01'));
 
   expect(onChange).toBeCalled();
 });
@@ -60,7 +60,7 @@ it('Checkout change triggers onChange', async () => {
   const testInstance = testRenderer.root;
   await testInstance
     .findAllByType(DatePicker)[1]
-    .props.onDateChange('2018-01-02');
+    .props.onDateChange(new Date('2018-01-02'));
 
   expect(onChange).toBeCalled();
 });
