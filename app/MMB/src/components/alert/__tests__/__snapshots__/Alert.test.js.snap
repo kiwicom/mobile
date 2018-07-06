@@ -29,9 +29,12 @@ exports[`Alert renders alert without children 1`] = `
     />
   }
   titleStyle={
-    Object {
-      "color": "#196e25",
-    }
+    Array [
+      Object {
+        "color": "#196e25",
+      },
+      undefined,
+    ]
   }
 />
 `;
@@ -56,9 +59,12 @@ exports[`Alert renders danger type 1`] = `
     />
   }
   titleStyle={
-    Object {
-      "color": "#d0021b",
-    }
+    Array [
+      Object {
+        "color": "#d0021b",
+      },
+      undefined,
+    ]
   }
 >
   <Translation
@@ -96,9 +102,12 @@ exports[`Alert renders success type 1`] = `
     />
   }
   titleStyle={
-    Object {
-      "color": "#196e25",
-    }
+    Array [
+      Object {
+        "color": "#196e25",
+      },
+      undefined,
+    ]
   }
 >
   <Translation
@@ -127,9 +136,12 @@ exports[`Alert renders warning type 1`] = `
     />
   }
   titleStyle={
-    Object {
-      "color": "#eb9d08",
-    }
+    Array [
+      Object {
+        "color": "#eb9d08",
+      },
+      undefined,
+    ]
   }
 >
   <Translation
