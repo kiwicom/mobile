@@ -1,8 +1,10 @@
 // @flow
 
 import * as React from 'react';
+import { Platform } from 'react-native';
 import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
 
+import DetailShareButton from '../../navigation/DetailShareButton';
 import PassengerDetail from './PassengerDetail';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { PassengerDetailContainerQuery } from './__generated__/PassengerDetailContainerQuery.graphql';
@@ -10,6 +12,10 @@ import type { PassengerDetailContainerQuery } from './__generated__/PassengerDet
 type Props = {||};
 
 export default class PassengerDetailContainer extends React.Component<Props> {
+  static navigationOptions = () => ({
+    headerRight: Platform.select({ ios: null, android: <DetailShareButton /> }),
+  });
+
   renderInner = (renderProps: PassengerDetailContainerQuery) => {
     return <PassengerDetail booking={renderProps.node} />;
   };
