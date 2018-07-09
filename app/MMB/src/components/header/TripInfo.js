@@ -49,6 +49,5 @@ export default createFragmentContainer(
 const styleSheet = StyleSheet.create({
   wrapper: {
     backgroundColor: Color.white,
-    padding: 10,
   },
 });
