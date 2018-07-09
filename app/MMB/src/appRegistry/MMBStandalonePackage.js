@@ -45,4 +45,5 @@ class MMBStandalonePackage extends React.Component<Props, State> {
   };
 }
 
+//$FlowFixMe - `onBackClicked` is not implemented yet in Android app
 export default WithNativeNavigation(MMBStandalonePackage, 'ManageMyBooking');

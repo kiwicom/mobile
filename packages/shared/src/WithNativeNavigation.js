@@ -9,7 +9,7 @@ type NavigationState = {|
 
 type InjectedProps = {|
   onNavigationStateChange: () => void,
-  onBackClicked?: () => void,
+  onBackClicked: () => void,
 |};
 
 function withNativeNavigation<Props: {}>(
