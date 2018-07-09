@@ -1,17 +1,19 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
+import ColorStrip from './ColorStrip';
 import TripCities from './TripCities';
 import TripTimes from './TripTimes';
 import type { TripInfoReturn as TripInfoReturnType } from './__generated__/TripInfoReturn.graphql';
 
 type Props = {|
-  data: TripInfoReturnType,
+  +data: TripInfoReturnType,
 |};
 
 function TripInfoReturn(props: Props) {
@@ -20,19 +22,22 @@ function TripInfoReturn(props: Props) {
   const inbound = idx(data, _ => _.inbound);
 
   return (
-    <React.Fragment>
-      <TripCities data={outbound} type="RETURN" />
+    <View style={styleSheet.row}>
+      <ColorStrip />
+      <View style={styleSheet.content}>
+        <TripCities data={outbound} type="RETURN" />
 
-      <Text style={styleSheet.title}>
-        <Translation id="mmb.trip_info.return.departure" />
-      </Text>
-      <TripTimes data={outbound} />
+        <Text style={styleSheet.title}>
+          <Translation id="mmb.trip_info.return.departure" />
+        </Text>
+        <TripTimes data={outbound} />
 
-      <Text style={styleSheet.title}>
-        <Translation id="mmb.trip_info.return.return" />
-      </Text>
-      <TripTimes data={inbound} />
-    </React.Fragment>
+        <Text style={styleSheet.title}>
+          <Translation id="mmb.trip_info.return.return" />
+        </Text>
+        <TripTimes data={inbound} />
+      </View>
+    </View>
   );
 }
 
@@ -56,5 +61,13 @@ const styleSheet = StyleSheet.create({
     color: Color.textLight,
     marginTop: 11,
     marginBottom: 2,
+  },
+  row: {
+    flexDirection: 'row',
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    padding: 10,
   },
 });
