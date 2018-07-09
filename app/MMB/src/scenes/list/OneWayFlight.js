@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
-import CityImage from './cityImage/CityImage';
+import CityImageContainer from './cityImage/CityImageContainer';
 import type { OneWayFlight_booking as OneWayFlightType } from './__generated__/OneWayFlight_booking.graphql';
 
 type Props = {|
@@ -14,7 +14,7 @@ type Props = {|
 |};
 
 const OneWayFlight = (props: Props) => (
-  <CityImage
+  <CityImageContainer
     image={props.booking}
     arrival={idx(props.booking, _ => _.trip.arrival)}
     departure={idx(props.booking, _ => _.trip.departure)}
@@ -26,13 +26,13 @@ export default createFragmentContainer(
   OneWayFlight,
   graphql`
     fragment OneWayFlight_booking on BookingOneWay {
-      ...CityImage_image
+      ...CityImageContainer_image
       trip {
         departure {
-          ...CityImage_departure
+          ...CityImageContainer_departure
         }
         arrival {
-          ...CityImage_arrival
+          ...CityImageContainer_arrival
         }
       }
     }

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
-import CityImage from './cityImage/CityImage';
+import CityImageContainer from './cityImage/CityImageContainer';
 import type { MulticityFlight_booking as MulticityFlightType } from './__generated__/MulticityFlight_booking.graphql';
 
 type Props = {|
@@ -14,7 +14,7 @@ type Props = {|
 |};
 
 const MulticityFlight = (props: Props) => (
-  <CityImage
+  <CityImageContainer
     image={props.booking}
     arrival={idx(props.booking, _ => _.end)}
     departure={idx(props.booking, _ => _.start)}
@@ -26,12 +26,12 @@ export default createFragmentContainer(
   MulticityFlight,
   graphql`
     fragment MulticityFlight_booking on BookingMulticity {
-      ...CityImage_image
+      ...CityImageContainer_image
       end {
-        ...CityImage_arrival
+        ...CityImageContainer_arrival
       }
       start {
-        ...CityImage_departure
+        ...CityImageContainer_departure
       }
     }
   `,

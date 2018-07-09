@@ -1,15 +1,17 @@
 // @flow strict
 
 import * as React from 'react';
+import { View } from 'react-native';
 import {
   graphql,
   createRefetchContainer,
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
-import { RefreshableScrollView } from '@kiwicom/mobile-shared';
+import { RefreshableScrollView, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
+import CityImage from '../../components/CityImage';
 import TripInfo from '../../components/header/TripInfo';
 import type { FillTravelDocument as Boooking } from './__generated__/FillTravelDocument.graphql';
 
@@ -48,7 +50,9 @@ class FillTravelDocument extends React.Component<Props, State> {
       refreshing={this.state.isRefreshing}
       onRefresh={this.refetch}
     >
-      <Translation passThrough="TODO: Image" />
+      <View style={styles.imageContainer}>
+        <CityImage url={this.props.data.destinationImageUrl} />
+      </View>
       <TripInfo data={this.props.data} />
       <Translation passThrough="TODO: Passengers" />
     </RefreshableScrollView>
@@ -60,6 +64,7 @@ export default createRefetchContainer(
   graphql`
     fragment FillTravelDocument on BookingInterface {
       id
+      destinationImageUrl(dimensions: _375x165)
       ...TripInfo
     }
   `,
@@ -73,3 +78,10 @@ export default createRefetchContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  imageContainer: {
+    width: '100%',
+    height: 152,
+  },
+});

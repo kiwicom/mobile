@@ -8,21 +8,21 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type CityImage_arrival$ref = any;
-type CityImage_departure$ref = any;
-type CityImage_image$ref = any;
+type CityImageContainer_arrival$ref = any;
+type CityImageContainer_departure$ref = any;
+type CityImageContainer_image$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type OneWayFlight_booking$ref: FragmentReference;
 export type OneWayFlight_booking = {|
   +trip: ?{|
     +departure: ?{|
-      +$fragmentRefs: CityImage_departure$ref
+      +$fragmentRefs: CityImageContainer_departure$ref
     |},
     +arrival: ?{|
-      +$fragmentRefs: CityImage_arrival$ref
+      +$fragmentRefs: CityImageContainer_arrival$ref
     |},
   |},
-  +$fragmentRefs: CityImage_image$ref,
+  +$fragmentRefs: CityImageContainer_image$ref,
   +$refType: OneWayFlight_booking$ref,
 |};
 */
@@ -37,7 +37,7 @@ const node/*: ConcreteFragment*/ = {
   "selections": [
     {
       "kind": "FragmentSpread",
-      "name": "CityImage_image",
+      "name": "CityImageContainer_image",
       "args": null
     },
     {
@@ -60,7 +60,7 @@ const node/*: ConcreteFragment*/ = {
           "selections": [
             {
               "kind": "FragmentSpread",
-              "name": "CityImage_departure",
+              "name": "CityImageContainer_departure",
               "args": null
             }
           ]
@@ -76,7 +76,7 @@ const node/*: ConcreteFragment*/ = {
           "selections": [
             {
               "kind": "FragmentSpread",
-              "name": "CityImage_arrival",
+              "name": "CityImageContainer_arrival",
               "args": null
             }
           ]
@@ -86,5 +86,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '75f9b272d80a921b6a63be83cef347f9';
+(node/*: any*/).hash = '5ac6f9b9fd1240aa35f9df16d0f82bc4';
 module.exports = node;
