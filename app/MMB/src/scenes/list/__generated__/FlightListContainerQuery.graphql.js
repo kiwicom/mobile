@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash cd9f78a5ab13f2611bd998c13d579e90
+ * @relayHash 98e68289aa06ae87494eb62c6bb08ddf
  */
 
 /* eslint-disable */
@@ -60,40 +60,40 @@ fragment FlightList on BookingInterfaceConnection {
 }
 
 fragment OneWayFlight_booking on BookingOneWay {
-  ...CityImage_image
+  ...CityImageContainer_image
   trip {
     departure {
-      ...CityImage_departure
+      ...CityImageContainer_departure
     }
     arrival {
-      ...CityImage_arrival
+      ...CityImageContainer_arrival
     }
   }
 }
 
 fragment ReturnFlight_booking on BookingReturn {
-  ...CityImage_image
+  ...CityImageContainer_image
   outbound {
     arrival {
-      ...CityImage_arrival
+      ...CityImageContainer_arrival
     }
     departure {
-      ...CityImage_departure
+      ...CityImageContainer_departure
     }
   }
 }
 
 fragment MulticityFlight_booking on BookingMulticity {
-  ...CityImage_image
+  ...CityImageContainer_image
   end {
-    ...CityImage_arrival
+    ...CityImageContainer_arrival
   }
   start {
-    ...CityImage_departure
+    ...CityImageContainer_departure
   }
 }
 
-fragment CityImage_image on BookingInterface {
+fragment CityImageContainer_image on BookingInterface {
   id
   passengerCount
   isPastBooking
@@ -101,13 +101,13 @@ fragment CityImage_image on BookingInterface {
   ...ImageBadges
 }
 
-fragment CityImage_arrival on RouteStop {
+fragment CityImageContainer_arrival on RouteStop {
   ...FromToRow_arrival
   cityId
   time
 }
 
-fragment CityImage_departure on RouteStop {
+fragment CityImageContainer_departure on RouteStop {
   ...DateAndPassengerCount_departure
   ...FromToRow_departure
   time
@@ -400,7 +400,7 @@ return {
   "operationKind": "query",
   "name": "FlightListContainerQuery",
   "id": null,
-  "text": "query FlightListContainerQuery {\n  future: customerBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: customerBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingInterfaceConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingInterfaceConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingInterfaceConnection {\n  edges {\n    node {\n      id\n      __typename\n      ... on BookingOneWay {\n        ...OneWayFlight_booking\n      }\n      ... on BookingReturn {\n        ...ReturnFlight_booking\n      }\n      ... on BookingMulticity {\n        ...MulticityFlight_booking\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImage_image\n  trip {\n    departure {\n      ...CityImage_departure\n    }\n    arrival {\n      ...CityImage_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImage_image\n  outbound {\n    arrival {\n      ...CityImage_arrival\n    }\n    departure {\n      ...CityImage_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImage_image\n  end {\n    ...CityImage_arrival\n  }\n  start {\n    ...CityImage_departure\n  }\n}\n\nfragment CityImage_image on BookingInterface {\n  id\n  passengerCount\n  isPastBooking\n  destinationImageUrl(dimensions: _375x165)\n  ...ImageBadges\n}\n\nfragment CityImage_arrival on RouteStop {\n  ...FromToRow_arrival\n  cityId\n  time\n}\n\nfragment CityImage_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n  time\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment ImageBadges on BookingInterface {\n  databaseId\n  ...StatusBadge\n}\n\nfragment StatusBadge on BookingInterface {\n  status\n  isPastBooking\n}\n",
+  "text": "query FlightListContainerQuery {\n  future: customerBookings(only: FUTURE) {\n    ...FlightListContainer_future\n  }\n  past: customerBookings(only: PAST) {\n    ...FlightListContainer_past\n  }\n}\n\nfragment FlightListContainer_future on BookingInterfaceConnection {\n  ...FlightList\n}\n\nfragment FlightListContainer_past on BookingInterfaceConnection {\n  ...FlightList\n}\n\nfragment FlightList on BookingInterfaceConnection {\n  edges {\n    node {\n      id\n      __typename\n      ... on BookingOneWay {\n        ...OneWayFlight_booking\n      }\n      ... on BookingReturn {\n        ...ReturnFlight_booking\n      }\n      ... on BookingMulticity {\n        ...MulticityFlight_booking\n      }\n    }\n  }\n}\n\nfragment OneWayFlight_booking on BookingOneWay {\n  ...CityImageContainer_image\n  trip {\n    departure {\n      ...CityImageContainer_departure\n    }\n    arrival {\n      ...CityImageContainer_arrival\n    }\n  }\n}\n\nfragment ReturnFlight_booking on BookingReturn {\n  ...CityImageContainer_image\n  outbound {\n    arrival {\n      ...CityImageContainer_arrival\n    }\n    departure {\n      ...CityImageContainer_departure\n    }\n  }\n}\n\nfragment MulticityFlight_booking on BookingMulticity {\n  ...CityImageContainer_image\n  end {\n    ...CityImageContainer_arrival\n  }\n  start {\n    ...CityImageContainer_departure\n  }\n}\n\nfragment CityImageContainer_image on BookingInterface {\n  id\n  passengerCount\n  isPastBooking\n  destinationImageUrl(dimensions: _375x165)\n  ...ImageBadges\n}\n\nfragment CityImageContainer_arrival on RouteStop {\n  ...FromToRow_arrival\n  cityId\n  time\n}\n\nfragment CityImageContainer_departure on RouteStop {\n  ...DateAndPassengerCount_departure\n  ...FromToRow_departure\n  time\n}\n\nfragment DateAndPassengerCount_departure on RouteStop {\n  time\n}\n\nfragment FromToRow_departure on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment FromToRow_arrival on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment ImageBadges on BookingInterface {\n  databaseId\n  ...StatusBadge\n}\n\nfragment StatusBadge on BookingInterface {\n  status\n  isPastBooking\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
