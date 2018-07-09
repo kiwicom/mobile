@@ -40,7 +40,8 @@ type MMBStackNavigatorNames =
   | 'mmb.tickets.boarding_pass'
   | 'mmb.timeline.invoice'
   | 'mmb.explore'
-  | 'DetailScreen';
+  | 'DetailScreen'
+  | 'TravelDocumentScreen';
 
 type HomepageStackNavigatorRouteNames = 'Home';
 type PlaygroundNavigationRouteNames = 'Playground';
