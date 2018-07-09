@@ -7,6 +7,7 @@ import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
+import ColorStrip from './ColorStrip';
 import StatusBarIcon from './StatusBarIcon';
 import type { StatusBar as StatusBarType } from './__generated__/StatusBar.graphql';
 
@@ -19,12 +20,15 @@ function StatusBar(props: Props) {
 
   return (
     <View style={styleSheet.row}>
-      <View style={styleSheet.icon}>
-        <StatusBarIcon data={props.data} />
+      <ColorStrip />
+      <View style={[styleSheet.row, styleSheet.container]}>
+        <View style={styleSheet.icon}>
+          <StatusBarIcon data={props.data} />
+        </View>
+        <Text style={styleSheet.bid}>
+          <Translation passThrough={`#${id || ''}`} />
+        </Text>
       </View>
-      <Text style={styleSheet.bid}>
-        <Translation passThrough={`#${id || ''}`} />
-      </Text>
     </View>
   );
 }
@@ -42,8 +46,11 @@ export default createFragmentContainer(
 const styleSheet = StyleSheet.create({
   row: {
     flexDirection: 'row',
+  },
+  container: {
     backgroundColor: Color.white,
     padding: 10,
+    flex: 1,
   },
   icon: {
     flexGrow: 1,

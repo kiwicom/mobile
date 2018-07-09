@@ -1,12 +1,19 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { AdaptableLayout, Touchable, TextIcon } from '@kiwicom/mobile-shared';
-import { SeparatorFullWidth, MenuItem } from '@kiwicom/mobile-navigation';
+import {
+  AdaptableLayout,
+  Touchable,
+  TextIcon,
+  StyleSheet,
+} from '@kiwicom/mobile-shared';
+import { SeparatorTrimmed, MenuItem } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
+import ColorStrip from './ColorStrip';
 import StatusBar from './StatusBar';
 import TripInfo from './TripInfo';
 import MobileTripOverviewHandle from './MobileTripOverviewHandle';
@@ -24,7 +31,12 @@ function HeaderShared(props: HeaderSharedProps) {
   return (
     <React.Fragment>
       <StatusBar data={booking} />
-      <SeparatorFullWidth />
+      <View style={[styles.row, styles.wrapper]}>
+        <ColorStrip />
+        <View style={styles.wrapper}>
+          <SeparatorTrimmed gapSizeStart={10} gapSizeEnd={10} />
+        </View>
+      </View>
       {props.children}
     </React.Fragment>
   );
@@ -101,3 +113,12 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
+  wrapper: {
+    flex: 1,
+  },
+});
