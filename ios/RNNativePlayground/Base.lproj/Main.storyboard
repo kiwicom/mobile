@@ -67,7 +67,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="reactnative@kiwi.com" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GZc-0m-vRH">
-                                <rect key="frame" x="106" y="128" width="162" height="30"/>
+                                <rect key="frame" x="104.5" y="128" width="165" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="X8Q-PY-iWe"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -89,8 +92,12 @@
                                     <action selector="logOut:" destination="186-R1-ioT" eventType="touchUpInside" id="FcR-rx-juJ"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FHu-xg-e3N">
-                                <rect key="frame" x="106" y="208" width="165" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FHu-xg-e3N">
+                                <rect key="frame" x="104.5" y="211" width="165" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="165" id="3Ud-iY-PRZ"/>
+                                    <constraint firstAttribute="width" constant="165" id="vap-4C-SUH"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -110,6 +117,8 @@
                         <viewLayoutGuide key="safeArea" id="Xcc-yE-Eld"/>
                     </view>
                     <connections>
+                        <outlet property="logInButton" destination="FfS-vs-Zgh" id="Pbm-GO-LNZ"/>
+                        <outlet property="logOutButton" destination="b0N-mo-ZV7" id="c2d-ut-IKW"/>
                         <outlet property="nick" destination="GZc-0m-vRH" id="rdx-kQ-u1G"/>
                         <outlet property="password" destination="FHu-xg-e3N" id="gXz-ac-hA2"/>
                     </connections>

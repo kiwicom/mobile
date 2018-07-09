@@ -67,7 +67,7 @@
   [_bookingsVc setFlowDelegate:weakSelf];
   
   _activeVc = _bookingsVc;
-  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"accessToken"] isEqualToString:@""]) {
+  if ([[[NSUserDefaults standardUserDefaults] valueForKey:@"accessToken"] length] == 0) {
     NoLoggedInViewController *_noLoggedVc = [self.storyboard instantiateViewControllerWithIdentifier:@"noLogged"];
     [[self navigationController] pushViewController:_noLoggedVc animated:YES];
   } else {
