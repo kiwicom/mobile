@@ -1,10 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
 import idx from 'idx';
 import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
 
 import type { TimelineQueryResponse } from './__generated__/TimelineQuery.graphql';
 import BookingDetailContext from '../../context/BookingDetailContext';
@@ -22,6 +21,10 @@ import DaySeparator from './DaySeparator';
 import DownloadETicketTimelineEvent from './events/DownloadETicketTimelineEvent';
 import TimelineEventIconContext from '../../context/TimelineEventIconContext';
 import DownloadBoardingPassTimelineEvent from './events/DownloadBoardingPassTimelineEvent';
+import {
+  ScrollViewWithScrollToY,
+  ScrollIntoView,
+} from '../../components/ScrollIntoView';
 
 export const TimelineSubmenuItems = {
   ...TimelineInvoiceSubmenuItems,
@@ -100,6 +103,16 @@ function renderChildren(events: Events) {
 
     const dates = Object.keys(renderedEventsByDate);
 
+    const dayDifferenceToToday = dates.map(date =>
+      DateUtils.diffInDays(new Date(date), new Date()),
+    );
+    const daysInTheFuture = dayDifferenceToToday.filter(
+      difference => difference >= 0,
+    );
+    const dateIndexClosestToToday = dayDifferenceToToday.indexOf(
+      Math.min(...daysInTheFuture),
+    );
+
     return dates.map((date, dateIndex) => {
       const renderedEvents = renderedEventsByDate[date];
       const isFirstDate = dateIndex === 0;
@@ -126,12 +139,14 @@ function renderChildren(events: Events) {
           );
         },
       );
-
       return (
-        <React.Fragment key={'TimelineDay-' + date}>
+        <ScrollIntoView
+          key={'TimelineDay-' + date}
+          shouldScrollIntoView={dateIndex === dateIndexClosestToToday}
+        >
           <DaySeparator date={new Date(date)} />
           {renderedEventsWithContext}
-        </React.Fragment>
+        </ScrollIntoView>
       );
     });
   }
@@ -141,7 +156,7 @@ export default class Timeline extends React.Component<{||}> {
   renderInner = (renderProps: TimelineQueryResponse) => {
     const events = idx(renderProps, _ => _.bookingTimeline.events);
     const children = renderChildren(events);
-    return <ScrollView>{children}</ScrollView>;
+    return <ScrollViewWithScrollToY>{children}</ScrollViewWithScrollToY>;
   };
 
   render = () => (
