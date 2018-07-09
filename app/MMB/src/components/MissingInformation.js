@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
+import type { NavigationType } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 import { View } from 'react-native';
 import {
@@ -12,17 +13,22 @@ import {
   Button,
   Color,
 } from '@kiwicom/mobile-shared';
+import { withNavigation } from 'react-navigation';
 
 import Alert from '../components/alert/Alert';
 import type { MissingInformation as PassengerType } from './__generated__/MissingInformation.graphql';
 
 type Props = {|
   +data: PassengerType,
+  +navigation: NavigationType,
 |};
 
 class MissingInformation extends React.Component<Props> {
   fillInPassengerInfo = () => {
-    console.warn('TODO');
+    this.props.navigation.navigate({
+      routeName: 'TravelDocumentScreen',
+      key: 'key-TravelDocumentScreen',
+    });
   };
 
   render = () => {
@@ -60,7 +66,7 @@ class MissingInformation extends React.Component<Props> {
 }
 
 export default createFragmentContainer(
-  MissingInformation,
+  withNavigation(MissingInformation),
   graphql`
     fragment MissingInformation on BookingInterface {
       passengers {

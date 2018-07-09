@@ -8,6 +8,7 @@ import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-nav
 
 import DetailScreen, { MenuComponents } from './DetailScreen';
 import ListScreen from './ListScreen';
+import FillTravelDocumentScreen from './FillTravelDocumentScreen';
 
 // THIS IS ONLY FOR MOBILE DEVICES!
 const Screens = {};
@@ -32,6 +33,9 @@ export default StackNavigator(
       screen: withMappedProps(DetailScreen),
     },
     ...Screens,
+    TravelDocumentScreen: {
+      screen: withMappedProps(FillTravelDocumentScreen),
+    },
   },
   {
     ...StackNavigatorOptions,

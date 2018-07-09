@@ -26,6 +26,8 @@ export default {
   'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
+  'mmb.fill_travel_document_screen.title': 'Fill travel document details',
+
   // MMB Boarding passes
   'mmb.boarding_passes.boarding_pass': 'Boarding Pass',
   'mmb.boarding_passes.boarding_pass_return.departure': 'Departure',
