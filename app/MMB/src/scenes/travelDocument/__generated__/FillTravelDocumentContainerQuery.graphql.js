@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 33e5e50100f6ac5259f6f3b4ef0946f0
+ * @relayHash 80cab8d1289fa849299e612285d82e98
  */
 
 /* eslint-disable */
@@ -36,6 +36,7 @@ query FillTravelDocumentContainerQuery(
 
 fragment FillTravelDocument on BookingInterface {
   id
+  destinationImageUrl(dimensions: _375x165)
   ...TripInfo
 }
 
@@ -227,7 +228,7 @@ return {
   "operationKind": "query",
   "name": "FillTravelDocumentContainerQuery",
   "id": null,
-  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...FillTravelDocument\n    }\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  id\n  ...TripInfo\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...FillTravelDocument\n    }\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  id\n  destinationImageUrl(dimensions: _375x165)\n  ...TripInfo\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -269,6 +270,20 @@ return {
         "plural": false,
         "selections": [
           v2,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "destinationImageUrl",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "dimensions",
+                "value": "_375x165",
+                "type": "BookingDestinationImageDimensions"
+              }
+            ],
+            "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
+          },
           {
             "kind": "ScalarField",
             "alias": null,

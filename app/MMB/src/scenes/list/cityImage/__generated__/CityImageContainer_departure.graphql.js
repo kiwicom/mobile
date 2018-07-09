@@ -8,36 +8,34 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type FromToRow_arrival$ref = any;
+type DateAndPassengerCount_departure$ref = any;
+type FromToRow_departure$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type CityImage_arrival$ref: FragmentReference;
-export type CityImage_arrival = {|
-  +cityId: ?string,
+declare export opaque type CityImageContainer_departure$ref: FragmentReference;
+export type CityImageContainer_departure = {|
   +time: ?any,
-  +$fragmentRefs: FromToRow_arrival$ref,
-  +$refType: CityImage_arrival$ref,
+  +$fragmentRefs: DateAndPassengerCount_departure$ref & FromToRow_departure$ref,
+  +$refType: CityImageContainer_departure$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "CityImage_arrival",
+  "name": "CityImageContainer_departure",
   "type": "RouteStop",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "FragmentSpread",
-      "name": "FromToRow_arrival",
+      "name": "DateAndPassengerCount_departure",
       "args": null
     },
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "cityId",
-      "args": null,
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "FromToRow_departure",
+      "args": null
     },
     {
       "kind": "ScalarField",
@@ -49,5 +47,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b0ac23d857e7bda1db54b32ddc8d19ee';
+(node/*: any*/).hash = '7037fb5ef11a413aeb57889de0c0a429';
 module.exports = node;

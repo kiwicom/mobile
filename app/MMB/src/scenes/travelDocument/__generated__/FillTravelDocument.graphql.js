@@ -13,6 +13,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type FillTravelDocument$ref: FragmentReference;
 export type FillTravelDocument = {|
   +id: string,
+  +destinationImageUrl: ?string,
   +$fragmentRefs: TripInfo$ref,
   +$refType: FillTravelDocument$ref,
 |};
@@ -34,6 +35,20 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "destinationImageUrl",
+      "args": [
+        {
+          "kind": "Literal",
+          "name": "dimensions",
+          "value": "_375x165",
+          "type": "BookingDestinationImageDimensions"
+        }
+      ],
+      "storageKey": "destinationImageUrl(dimensions:\"_375x165\")"
+    },
+    {
       "kind": "FragmentSpread",
       "name": "TripInfo",
       "args": null
@@ -41,5 +56,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '8eed1921d2182ac1e112409e1f00d4dc';
+(node/*: any*/).hash = '43be7c93e262a5c700a862f302ce6c41';
 module.exports = node;

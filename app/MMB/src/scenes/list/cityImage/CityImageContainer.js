@@ -3,7 +3,6 @@
 import * as React from 'react';
 import {
   StyleSheet,
-  NetworkImage,
   StretchedImage,
   BlackToAlpha as gradient,
   Touchable,
@@ -17,10 +16,11 @@ import idx from 'idx';
 import FromToRow from './FromToRow';
 import DateAndPassengerCount from './DateAndPassengerCount';
 import ImageBadges from './ImageBadges';
+import CityImage from '../../../components/CityImage';
 import BookingDetailContext from '../../../context/BookingDetailContext';
-import type { CityImage_arrival as ArrivalType } from './__generated__/CityImage_arrival.graphql';
-import type { CityImage_departure as DepartureType } from './__generated__/CityImage_departure.graphql';
-import type { CityImage_image as ImageType } from './__generated__/CityImage_image.graphql';
+import type { CityImage_arrival as ArrivalType } from './__generated__/CityImageContainer_arrival.graphql';
+import type { CityImage_departure as DepartureType } from './__generated__/CityImageContainer_departure.graphql';
+import type { CityImage_image as ImageType } from './__generated__/CityImageContainer_image.graphql';
 
 type PropsWithContext = {|
   ...Props,
@@ -33,7 +33,7 @@ type PropsWithContext = {|
   |}) => void,
 |};
 
-class CityImage extends React.Component<PropsWithContext> {
+class CityImageContainer extends React.Component<PropsWithContext> {
   goToDetail = () => {
     const props = this.props;
 
@@ -60,12 +60,9 @@ class CityImage extends React.Component<PropsWithContext> {
   render = () => (
     <Touchable onPress={this.goToDetail}>
       <View style={styles.container}>
-        <NetworkImage
-          source={{
-            uri: this.props.image.destinationImageUrl,
-          }}
+        <CityImage
           style={styles.image}
-          resizeMode="cover"
+          url={this.props.image.destinationImageUrl}
         />
         <StretchedImage source={gradient} style={styles.stretchedImage} />
         <View style={[styles.row, styles.padding]}>
@@ -98,7 +95,7 @@ type Props = {|
 const CityImageWithContext = (props: Props) => (
   <BookingDetailContext.Consumer>
     {({ actions: { setBookingDetail } }) => (
-      <CityImage {...props} setBookingDetail={setBookingDetail} />
+      <CityImageContainer {...props} setBookingDetail={setBookingDetail} />
     )}
   </BookingDetailContext.Consumer>
 );
@@ -106,7 +103,7 @@ const CityImageWithContext = (props: Props) => (
 export default createFragmentContainer(
   withNavigation(CityImageWithContext),
   graphql`
-    fragment CityImage_image on BookingInterface {
+    fragment CityImageContainer_image on BookingInterface {
       id
       passengerCount
       isPastBooking
@@ -114,13 +111,13 @@ export default createFragmentContainer(
       ...ImageBadges
     }
 
-    fragment CityImage_arrival on RouteStop {
+    fragment CityImageContainer_arrival on RouteStop {
       ...FromToRow_arrival
       cityId
       time
     }
 
-    fragment CityImage_departure on RouteStop {
+    fragment CityImageContainer_departure on RouteStop {
       ...DateAndPassengerCount_departure
       ...FromToRow_departure
       time
@@ -143,15 +140,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
   },
-  image: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 4,
-  },
   stretchedImage: {
     width: '100%',
     borderRadius: 4,
   },
   bottomContainer: {
     justifyContent: 'flex-end',
+  },
+  image: {
+    borderRadius: 4,
   },
 });
