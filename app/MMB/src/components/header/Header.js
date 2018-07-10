@@ -9,7 +9,11 @@ import {
   TextIcon,
   StyleSheet,
 } from '@kiwicom/mobile-shared';
-import { SeparatorTrimmed, MenuItem } from '@kiwicom/mobile-navigation';
+import {
+  SeparatorFullWidth,
+  SeparatorTrimmed,
+  MenuItem,
+} from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
@@ -90,6 +94,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
             <Touchable onPress={this.toggleExpandable}>
               <React.Fragment>
                 <TripInfo data={booking} />
+                <SeparatorFullWidth />
                 <MobileTripOverviewHandle isExpanded={this.state.expanded}>
                   <TripOverview data={booking} />
                 </MobileTripOverviewHandle>

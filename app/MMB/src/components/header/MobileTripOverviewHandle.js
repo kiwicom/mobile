@@ -15,13 +15,16 @@ export default function MobileTripOverviewHandle(props: Props) {
       {props.isExpanded ? (
         <React.Fragment>
           <View style={styleSheet.icon}>
-            <TextIcon code="m" />
+            <TextIcon
+              style={[styleSheet.textIcon, styleSheet.downTextIcon]}
+              code="m"
+            />
           </View>
           {props.children}
         </React.Fragment>
       ) : (
         <View style={styleSheet.icon}>
-          <TextIcon code="l" />
+          <TextIcon style={styleSheet.textIcon} code="l" />
         </View>
       )}
     </View>
@@ -33,7 +36,13 @@ const styleSheet = StyleSheet.create({
     backgroundColor: Color.white,
   },
   icon: {
-    height: 23,
+    height: 24,
     alignSelf: 'center',
+  },
+  textIcon: {
+    color: Color.product.normal,
+  },
+  downTextIcon: {
+    paddingTop: 6,
   },
 });
