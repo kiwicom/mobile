@@ -16,8 +16,10 @@ const defaultState = {
   arrivalCityId: '',
   arrivalTime: new Date(),
   departureTime: new Date(),
+  isMissingDocumentId: false,
   actions: {
     setBookingDetail: () => {},
+    setIsMissingDocumentId: () => {},
   },
 };
 
@@ -31,8 +33,10 @@ type Props = {|
 
 type State = {|
   ...BookingDetail,
+  +isMissingDocumentId: boolean,
   +actions: {|
     +setBookingDetail: (booking: BookingDetail) => void,
+    +setIsMissingDocumentId: (isMissingDocumentId: boolean) => void,
   |},
 |};
 
@@ -44,12 +48,17 @@ class Provider extends React.Component<Props, State> {
       ...defaultState,
       actions: {
         setBookingDetail: this.setBookingDetail,
+        setIsMissingDocumentId: this.setIsMissingDocumentId,
       },
     };
   }
 
   setBookingDetail = (booking: BookingDetail) => {
     this.setState(booking);
+  };
+
+  setIsMissingDocumentId = (isMissingDocumentId: boolean) => {
+    this.setState({ isMissingDocumentId });
   };
 
   render = () => (
