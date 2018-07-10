@@ -23,7 +23,7 @@ type Props = {|
   +navigation: NavigationType,
 |};
 
-class MissingInformation extends React.Component<Props> {
+export class MissingInformation extends React.Component<Props> {
   fillInPassengerInfo = () => {
     this.props.navigation.navigate({
       routeName: 'TravelDocumentScreen',
@@ -33,11 +33,11 @@ class MissingInformation extends React.Component<Props> {
 
   render = () => {
     const passengers = idx(this.props.data, _ => _.passengers) || [];
-    const passengerWithMissingId = passengers.find(passenger =>
-      Boolean(idx(passenger, _ => _.travelDocument.idNumber)),
+    const isPassengerMissingId = passengers.some(
+      passenger => idx(passenger, _ => _.travelDocument.idNumber) == null,
     );
 
-    if (passengerWithMissingId != null) {
+    if (!isPassengerMissingId) {
       return null;
     }
 
