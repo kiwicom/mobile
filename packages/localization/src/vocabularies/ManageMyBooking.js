@@ -170,6 +170,10 @@ export default {
   'mmb.missing_information.fill_in_information':
     'Please fill in passenger info to confirm booking',
   'mmb.missing_information.button_text': 'Fill Passenger Info',
+  'mmb.missing_information.passenger_menu_right.not_filled': 'Not Filled',
+  'mmb.missing_information.passenger_menu_right.filled': 'Filled',
+  'mmb.missing_information.passenger_travel_document_menu_group.passengers':
+    'Passengers',
 
   // MMB Booking Timeline
   'mmb.booking_timeline.today': 'Today',
