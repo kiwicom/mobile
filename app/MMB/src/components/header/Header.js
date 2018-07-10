@@ -1,14 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import {
-  AdaptableLayout,
-  Touchable,
-  TextIcon,
-  StyleSheet,
-} from '@kiwicom/mobile-shared';
+import { AdaptableLayout, TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import {
   SeparatorFullWidth,
   SeparatorTrimmed,
@@ -91,15 +86,15 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         }
         renderOnNarrow={
           <HeaderShared data={booking}>
-            <Touchable onPress={this.toggleExpandable}>
-              <React.Fragment>
+            <TouchableWithoutFeedback onPress={this.toggleExpandable}>
+              <View>
                 <TripInfo data={booking} />
                 <SeparatorFullWidth />
                 <MobileTripOverviewHandle isExpanded={this.state.expanded}>
                   <TripOverview data={booking} />
                 </MobileTripOverviewHandle>
-              </React.Fragment>
-            </Touchable>
+              </View>
+            </TouchableWithoutFeedback>
           </HeaderShared>
         }
       />
