@@ -30,19 +30,20 @@ const styleSheet = StyleSheet.create({
  *
  * We currently support only one font family: "spfont".
  */
-function TextIcon(props: Props) {
-  return (
-    <Text style={[styleSheet.icon, props.style]}>
-      <Translation passThrough={props.code} />
-    </Text>
-  );
+class TextIcon extends React.Component<Props> {
+  static defaultProps = {
+    style: {
+      color: Color.textLight,
+      fontSize: 20,
+    },
+  };
+  render() {
+    return (
+      <Text style={[styleSheet.icon, this.props.style]}>
+        <Translation passThrough={this.props.code} />
+      </Text>
+    );
+  }
 }
-
-TextIcon.defaultProps = {
-  style: {
-    color: Color.textLight,
-    fontSize: 20,
-  },
-};
 
 export default TextIcon;
