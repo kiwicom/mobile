@@ -1,11 +1,11 @@
 // @flow strict
 
 import * as React from 'react';
+import { Platform, View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import type { NavigationType } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
-import { View } from 'react-native';
 import {
   StyleSheet,
   SimpleCard,
@@ -41,24 +41,33 @@ export class MissingInformation extends React.Component<Props> {
       return null;
     }
 
+    const alert = (
+      <Alert
+        type="danger"
+        title={
+          <Translation id="mmb.missing_information.missing_informations" />
+        }
+        titleStyle={styles.alertText}
+      />
+    );
+
     return (
       <View style={styles.container}>
-        <Alert
-          type="danger"
-          title={
-            <Translation id="mmb.missing_information.missing_informations" />
-          }
-          titleStyle={styles.alertText}
-        />
-        <SimpleCard>
-          <Text style={styles.missingInformationText}>
-            <Translation id="mmb.missing_information.fill_in_information" />
-          </Text>
-          <Button onPress={this.fillInPassengerInfo}>
-            <Text style={styles.buttonText}>
-              <Translation id="mmb.missing_information.button_text" />
-            </Text>
-          </Button>
+        {Platform.OS === 'ios' && alert}
+        <SimpleCard style={styles.card}>
+          <React.Fragment>
+            {Platform.OS === 'android' && alert}
+            <View style={styles.cardContent}>
+              <Text style={styles.missingInformationText}>
+                <Translation id="mmb.missing_information.fill_in_information" />
+              </Text>
+              <Button onPress={this.fillInPassengerInfo}>
+                <Text style={styles.buttonText}>
+                  <Translation id="mmb.missing_information.button_text" />
+                </Text>
+              </Button>
+            </View>
+          </React.Fragment>
         </SimpleCard>
       </View>
     );
@@ -79,6 +88,12 @@ export default createFragmentContainer(
 );
 
 const styles = StyleSheet.create({
+  card: {
+    padding: 0,
+  },
+  cardContent: {
+    padding: 10,
+  },
   container: {
     marginTop: 22,
   },
