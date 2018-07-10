@@ -133,7 +133,7 @@ export default {
   'mmb.visa_state.visa_may_be_required': 'Visa may be required',
 
   // MMB menu:
-  'mmb.main_menu.title': 'Manage my bookings',
+  'mmb.main_menu.title': 'Booking details',
   'mmb.flight_services': 'Flight Services',
   'mmb.title.passengers': 'Passengers',
 

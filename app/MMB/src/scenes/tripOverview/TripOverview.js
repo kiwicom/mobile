@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { SimpleCard } from '@kiwicom/mobile-shared';
+import { SimpleCard, StyleSheet } from '@kiwicom/mobile-shared';
 
 import OneWayTimeline from './OneWayTimeline';
 import ReturnTimeline from './ReturnTimeline';
@@ -31,7 +31,7 @@ function TripOverview(props: Props) {
 
   return (
     <ScrollView>
-      <SimpleCard>{children}</SimpleCard>
+      <SimpleCard style={styleSheet.simpleCard}>{children}</SimpleCard>
     </ScrollView>
   );
 }
@@ -53,3 +53,9 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styleSheet = StyleSheet.create({
+  simpleCard: {
+    borderTopWidth: 0,
+  },
+});
