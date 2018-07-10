@@ -8,11 +8,11 @@ import {
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
 import { RefreshableScrollView, StyleSheet } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import CityImage from '../../components/CityImage';
 import TripInfo from '../../components/header/TripInfo';
+import PassengerTravelDocumentMenuGroup from './PassengerTravelDocumentMenuGroup';
 import type { FillTravelDocument as Boooking } from './__generated__/FillTravelDocument.graphql';
 
 type Props = {|
@@ -54,7 +54,7 @@ class FillTravelDocument extends React.Component<Props, State> {
         <CityImage url={this.props.data.destinationImageUrl} />
       </View>
       <TripInfo data={this.props.data} />
-      <Translation passThrough="TODO: Passengers" />
+      <PassengerTravelDocumentMenuGroup data={this.props.data} />
     </RefreshableScrollView>
   );
 }
@@ -66,6 +66,7 @@ export default createRefetchContainer(
       id
       destinationImageUrl(dimensions: _375x165)
       ...TripInfo
+      ...PassengerTravelDocumentMenuGroup
     }
   `,
   graphql`
