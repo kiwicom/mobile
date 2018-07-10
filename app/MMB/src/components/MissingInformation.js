@@ -16,14 +16,26 @@ import {
 import { withNavigation } from 'react-navigation';
 
 import Alert from '../components/alert/Alert';
+import BookingDetailContext from '../context/BookingDetailContext';
 import type { MissingInformation as PassengerType } from './__generated__/MissingInformation.graphql';
 
-type Props = {|
-  +data: PassengerType,
-  +navigation: NavigationType,
+type PropsWithContext = {|
+  ...Props,
+  setIsMissingDocumentId: (isMissingDocumentId: boolean) => void,
 |};
 
-export class MissingInformation extends React.Component<Props> {
+export class MissingInformation extends React.Component<PropsWithContext> {
+  componentDidMount = () => {
+    this.props.setIsMissingDocumentId(this.isSomePassengerMissingId());
+  };
+
+  isSomePassengerMissingId = () => {
+    const passengers = idx(this.props.data, _ => _.passengers) || [];
+    return passengers.some(
+      passenger => idx(passenger, _ => _.travelDocument.idNumber) == null,
+    );
+  };
+
   fillInPassengerInfo = () => {
     this.props.navigation.navigate({
       routeName: 'TravelDocumentScreen',
@@ -32,12 +44,7 @@ export class MissingInformation extends React.Component<Props> {
   };
 
   render = () => {
-    const passengers = idx(this.props.data, _ => _.passengers) || [];
-    const isPassengerMissingId = passengers.some(
-      passenger => idx(passenger, _ => _.travelDocument.idNumber) == null,
-    );
-
-    if (!isPassengerMissingId) {
+    if (!this.isSomePassengerMissingId()) {
       return null;
     }
 
@@ -65,8 +72,24 @@ export class MissingInformation extends React.Component<Props> {
   };
 }
 
+type Props = {|
+  +data: PassengerType,
+  +navigation: NavigationType,
+|};
+
+const MissingInformationWithContext = (props: Props) => (
+  <BookingDetailContext.Consumer>
+    {({ actions: { setIsMissingDocumentId } }) => (
+      <MissingInformation
+        {...props}
+        setIsMissingDocumentId={setIsMissingDocumentId}
+      />
+    )}
+  </BookingDetailContext.Consumer>
+);
+
 export default createFragmentContainer(
-  withNavigation(MissingInformation),
+  withNavigation(MissingInformationWithContext),
   graphql`
     fragment MissingInformation on BookingInterface {
       passengers {

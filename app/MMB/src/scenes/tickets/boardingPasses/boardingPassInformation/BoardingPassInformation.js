@@ -4,6 +4,7 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
+import FutureBookingInformation from './FutureBookingInformation';
 import BookingDetailContext from '../../../../context/BookingDetailContext';
 import PastBookingInformation from './PastBookingInformation';
 import type { BoardingPassInformation as BoardingPass } from './__generated__/BoardingPassInformation.graphql';
@@ -29,7 +30,12 @@ const BoardingPassInformation = (props: PropsWithContext) => {
     );
   }
 
-  return null; // TODO: Future booking information
+  return (
+    <FutureBookingInformation
+      boardingPassAvailableDate={date}
+      data={props.data}
+    />
+  );
 };
 
 type Props = {|
@@ -50,6 +56,7 @@ export default createFragmentContainer(
     fragment BoardingPassInformation on BoardingPass {
       availableAt
       boardingPassUrl
+      ...FutureBookingInformation
     }
   `,
 );

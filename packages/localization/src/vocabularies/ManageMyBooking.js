@@ -37,6 +37,12 @@ export default {
     'Open Printable Document',
   'mmb.boarding_passes.past_booking_information.missed_checkin':
     'Missed online check-in. It was available on our site until __date__',
+  'mmb.boarding_passes.future_booking_information.available_at_date':
+    'Your boarding pass will be available after online check-in on __date__.',
+  'mmb.boarding_passes.future_booking_information.missing_information':
+    'We need your passport/ID details to check you in online.',
+  'mmb.boarding_passes.future_booking_information.available':
+    'You have been provided with digital boarding pass, but you should print it out because some airlines require a physical copy',
 
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',

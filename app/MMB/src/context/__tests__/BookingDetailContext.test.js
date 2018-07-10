@@ -14,8 +14,15 @@ const getWrapper = () =>
   renderer.create(
     <BookingDetailContext.Provider>
       <BookingDetailContext.Consumer>
-        {({ actions: { setBookingDetail }, ...rest }) => (
-          <ContextConsumer {...rest} setBookingDetail={setBookingDetail} />
+        {({
+          actions: { setBookingDetail, setIsMissingDocumentId },
+          ...rest
+        }) => (
+          <ContextConsumer
+            {...rest}
+            setBookingDetail={setBookingDetail}
+            setIsMissingDocumentId={setIsMissingDocumentId}
+          />
         )}
       </BookingDetailContext.Consumer>
     </BookingDetailContext.Provider>,
@@ -33,9 +40,10 @@ describe('BookingDetailContext', () => {
     ).toEqual(DateFormatter(new Date()).formatForMachine());
     expect(instance.props.arrivalCityId).toBe('');
     expect(typeof instance.props.setBookingDetail).toBe('function');
+    expect(instance.props.isMissingDocumentId).toBe(false);
   });
 
-  it('it setsBookingDetail', () => {
+  it('setsBookingDetail', () => {
     const wrapper = getWrapper();
     const instance = wrapper.root.findByType(ContextConsumer);
 
@@ -50,5 +58,16 @@ describe('BookingDetailContext', () => {
     expect(instance.props.bookingId).toBe('123');
     expect(instance.props.arrivalCityId).toBe('oslo_no');
     expect(instance.props.arrivalTime).toEqual(new Date(1));
+  });
+
+  it('sets missing document id', () => {
+    const wrapper = getWrapper();
+    const instance = wrapper.root.findByType(ContextConsumer);
+
+    instance.props.setIsMissingDocumentId(true);
+    expect(instance.props.isMissingDocumentId).toBe(true);
+
+    instance.props.setIsMissingDocumentId(false);
+    expect(instance.props.isMissingDocumentId).toBe(false);
   });
 });

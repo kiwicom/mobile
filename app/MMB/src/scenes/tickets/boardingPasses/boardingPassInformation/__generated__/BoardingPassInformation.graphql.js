@@ -8,11 +8,13 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type FutureBookingInformation$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type BoardingPassInformation$ref: FragmentReference;
 export type BoardingPassInformation = {|
   +availableAt: ?any,
   +boardingPassUrl: ?string,
+  +$fragmentRefs: FutureBookingInformation$ref,
   +$refType: BoardingPassInformation$ref,
 |};
 */
@@ -38,9 +40,14 @@ const node/*: ConcreteFragment*/ = {
       "name": "boardingPassUrl",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "FutureBookingInformation",
+      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2b985b7bb0e155b5ac78777662292456';
+(node/*: any*/).hash = 'd49f7627c24455fa08c3d4115e0a45b9';
 module.exports = node;
