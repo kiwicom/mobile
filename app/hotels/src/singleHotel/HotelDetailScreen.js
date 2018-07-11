@@ -40,12 +40,6 @@ type State = {|
   maxPersons: number,
 |};
 
-const styles = StyleSheet.create({
-  marginView: {
-    marginBottom: 15,
-  },
-});
-
 export class HotelDetailScreen extends React.Component<Props, State> {
   state = {
     selected: {},
@@ -122,7 +116,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <ScrollView>
+        <ScrollView contentContainerStyle={styles.container}>
           <LayoutSingleColumn>
             <AdaptableLayout
               renderOnWide={<View style={styles.marginView} />}
@@ -171,3 +165,12 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  marginView: {
+    marginBottom: 15,
+  },
+  container: {
+    paddingBottom: 64,
+  },
+});
