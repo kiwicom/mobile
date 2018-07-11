@@ -1,7 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+import {
+  Translation,
+  DateFormatter,
+  type DateFormatterFunctions,
+} from '@kiwicom/mobile-localization';
 import { View } from 'react-native';
 
 import Touchable from '../../Touchable';
@@ -10,9 +14,10 @@ import Text from '../../Text';
 import Color from '../../Color';
 
 type Props = {|
-  onPress: () => void,
-  date: Date,
-  iconComponent?: React.Node,
+  +onPress: () => void,
+  +date: ?Date,
+  +formatFunction: ?DateFormatterFunctions,
+  +iconComponent?: React.Node,
 |};
 
 export default function DatePickerButton(props: Props) {
@@ -20,9 +25,15 @@ export default function DatePickerButton(props: Props) {
     <Touchable style={styles.dateTouchBody} onPress={props.onPress}>
       <View style={styles.date}>
         {props.iconComponent}
-        <Text style={styles.dateText}>
-          <Translation passThrough={DateFormatter(props.date).formatToDate()} />
-        </Text>
+        {props.date !== null && (
+          <Text style={styles.dateText}>
+            <Translation
+              passThrough={DateFormatter(props.date)[
+                props.formatFunction || 'formatToDate'
+              ]()}
+            />
+          </Text>
+        )}
       </View>
     </Touchable>
   );

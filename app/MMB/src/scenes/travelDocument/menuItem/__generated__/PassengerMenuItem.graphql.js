@@ -12,6 +12,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type PassengerMenuItem$ref: FragmentReference;
 export type PassengerMenuItem = {|
   +fullName: ?string,
+  +title: ?string,
   +travelDocument: ?{|
     +idNumber: ?string,
     +expiration: ?any,
@@ -32,6 +33,13 @@ const node/*: ConcreteFragment*/ = {
       "kind": "ScalarField",
       "alias": null,
       "name": "fullName",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "title",
       "args": null,
       "storageKey": null
     },
@@ -63,5 +71,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b4ecd3079101ab5b560cfe4bdf491054';
+(node/*: any*/).hash = '6a0c11317c82c9199a530d7cb2abf2e5';
 module.exports = node;
