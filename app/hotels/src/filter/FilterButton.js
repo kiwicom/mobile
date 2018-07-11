@@ -52,7 +52,7 @@ const styleSheet = StyleSheet.create({
     backgroundColor: Color.brand,
   },
   buttonGroup: {
-    backgroundColor: Color.brandLight,
+    backgroundColor: '#c4e7e4',
     marginEnd: 5,
   },
   activeButtonText: {
