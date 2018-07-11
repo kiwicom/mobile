@@ -17,6 +17,14 @@ type Address {
   zip: String
 }
 
+"""AirHelp+ offer as a booking ancillary"""
+type AirHelpPlusOffer {
+  isPossible: Boolean
+
+  """Price per passenger"""
+  pricePerPerson: Price
+}
+
 type Airline {
   name: String
 
@@ -1706,6 +1714,11 @@ interface Node {
   id: ID!
 }
 
+type NoMoreEditsTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 """Information about pagination in a connection."""
 type PageInfo {
   """When paginating forwards, are there more items?"""
@@ -2003,6 +2016,9 @@ type RootQuery {
     """The ID of an object"""
     id: ID!
   ): Node
+
+  """AirHelp+ offer that can be purchased with booking"""
+  airHelpPlusOffer(bookingId: String!): AirHelpPlusOffer
 }
 
 type RouteStop {
