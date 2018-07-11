@@ -10,9 +10,8 @@ export default function FillTravelDocumentScreen() {
   return <FillTravelDocumentContainer />;
 }
 
-// TODO: All text is not showing on mobile. Find out how to enlarge surrounding view
 FillTravelDocumentScreen.navigationOptions = () => ({
-  title: (
+  headerTitle: (
     <HeaderTitle>
       <Translation id="mmb.fill_travel_document_screen.title" />
     </HeaderTitle>
