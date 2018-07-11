@@ -23,6 +23,13 @@ class PassengerMenuItem extends React.Component<Props> {
     this.props.navigation.navigate({
       routeName: 'TravelDocumentModalScreen',
       key: 'key-TravelDocumentModalScreen',
+      params: {
+        title: idx(this.props.data, _ => _.title) || '',
+        fullName: idx(this.props.data, _ => _.fullName) || '',
+        idNumber: idx(this.props.data, _ => _.travelDocument.idNumber) || null,
+        expiryDate:
+          idx(this.props.data, _ => _.travelDocument.expiration) || null,
+      },
     });
   };
 
@@ -55,6 +62,7 @@ export default createFragmentContainer(
   graphql`
     fragment PassengerMenuItem on Passenger {
       fullName
+      title
       travelDocument {
         idNumber
         expiration

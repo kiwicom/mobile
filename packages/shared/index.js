@@ -24,6 +24,7 @@ export { default as DatePicker } from './src/forms/datePicker/DatePicker';
 export { default as NumberControl } from './src/forms/NumberControl';
 export { default as Slider } from './src/forms/Slider';
 export { default as TextInput } from './src/forms/TextInput';
+export { default as Switch } from './src/forms/Switch.js';
 
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as IconLoading } from './src/loaders/IconLoading';

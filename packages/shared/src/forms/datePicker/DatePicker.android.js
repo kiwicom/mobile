@@ -29,6 +29,7 @@ export default class DatePicker extends React.Component<Props> {
       onPress={this.openDatePicker}
       date={this.props.date}
       iconComponent={this.props.iconComponent}
+      formatFunction={this.props.formatFunction}
     />
   );
 }
