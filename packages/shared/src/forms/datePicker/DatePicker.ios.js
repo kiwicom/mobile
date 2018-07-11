@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { DatePickerIOS } from 'react-native';
-import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
+import {
+  Translation,
+  DeviceInfo,
+  DateUtils,
+} from '@kiwicom/mobile-localization';
 
 import DatePickerButton from './DatePickerButton';
 import BarPopup from '../../popup/BarPopup';
@@ -22,7 +26,7 @@ export default class DatePicker extends React.Component<Props, State> {
   static getDerivedStateFromProps = ({ date }: Props) => ({ date });
 
   componentDidMount = () => {
-    this.setState({ date: this.props.date });
+    this.setState({ date: this.props.date || DateUtils.getUTCToday() });
   };
 
   togglePopup = () => {
@@ -49,7 +53,14 @@ export default class DatePicker extends React.Component<Props, State> {
   };
 
   render = () => {
-    const { date, minDate, maxDate, iconComponent, ...rest } = this.props;
+    const {
+      date,
+      minDate,
+      maxDate,
+      iconComponent,
+      formatFunction,
+      ...rest
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -57,6 +68,7 @@ export default class DatePicker extends React.Component<Props, State> {
           onPress={this.togglePopup}
           date={date}
           iconComponent={iconComponent}
+          formatFunction={formatFunction}
         />
         <BarPopup
           isVisible={this.state.isPickerOpen}

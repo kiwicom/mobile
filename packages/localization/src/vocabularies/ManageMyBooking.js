@@ -26,6 +26,9 @@ export default {
   'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
+  'mmb.title.mr': 'Mr.',
+  'mmb.title.ms': 'Ms.',
+
   'mmb.fill_travel_document_screen.title': 'Fill travel document details',
   'mmb.fill_travel_document_screen_modal.title': 'Fill travel document details',
 
@@ -183,6 +186,11 @@ export default {
     'Passengers',
   'mmb.missing_informaiton.travel_document_modal_screen.close': 'Close',
   'mmb.missing_informaiton.travel_document_modal_screen.save': 'Save',
+  'mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_number':
+    'Passport or ID number',
+  'mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_expiry':
+    'Passport or ID expiry date',
+  'mmb.missing_informaiton.travel_document_modal_screen.no_expiry': 'No expiry',
 
   // MMB Booking Timeline
   'mmb.booking_timeline.today': 'Today',

@@ -16,6 +16,13 @@ export {
   Translation,
 };
 
+export type DateFormatterFunctions =
+  | 'formatToDate'
+  | 'formatToTime'
+  | 'formatToShortDate'
+  | 'formatToBirthday'
+  | 'formatForMachine';
+
 export type TranslationType =
   | React.Element<typeof Translation>
   | React.Element<typeof TranslationFragment>;
