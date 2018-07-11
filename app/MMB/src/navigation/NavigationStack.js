@@ -9,6 +9,7 @@ import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-nav
 import DetailScreen, { MenuComponents } from './DetailScreen';
 import ListScreen from './ListScreen';
 import FillTravelDocumentScreen from './FillTravelDocumentScreen';
+import TravelDocumentModalScreen from './TravelDocumentModalScreen';
 
 // THIS IS ONLY FOR MOBILE DEVICES!
 const Screens = {};
@@ -24,7 +25,23 @@ Object.entries(MenuComponents).forEach(
   },
 );
 
-export default StackNavigator(
+const TravelDocumentStack = StackNavigator(
+  {
+    TravelDocumentScreen: {
+      screen: withMappedProps(FillTravelDocumentScreen),
+    },
+    TravelDocumentModalScreen: {
+      screen: withMappedProps(TravelDocumentModalScreen),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'TravelDocumentScreen',
+    mode: 'modal',
+  },
+);
+
+const MainStack = StackNavigator(
   {
     ListScreen: {
       screen: withMappedProps(ListScreen),
@@ -33,12 +50,25 @@ export default StackNavigator(
       screen: withMappedProps(DetailScreen),
     },
     ...Screens,
-    TravelDocumentScreen: {
-      screen: withMappedProps(FillTravelDocumentScreen),
-    },
   },
   {
     ...StackNavigatorOptions,
     initialRouteName: 'ListScreen',
+  },
+);
+
+export default StackNavigator(
+  {
+    MMBMainStack: {
+      screen: withMappedProps(MainStack),
+    },
+    TravelDocumentScreen: {
+      screen: withMappedProps(TravelDocumentStack),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'MMBMainStack',
+    headerMode: 'none',
   },
 );

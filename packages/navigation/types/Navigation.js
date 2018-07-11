@@ -41,7 +41,8 @@ type MMBStackNavigatorNames =
   | 'mmb.timeline.invoice'
   | 'mmb.explore'
   | 'DetailScreen'
-  | 'TravelDocumentScreen';
+  | 'TravelDocumentScreen'
+  | 'TravelDocumentModalScreen';
 
 type HomepageStackNavigatorRouteNames = 'Home';
 type PlaygroundNavigationRouteNames = 'Playground';

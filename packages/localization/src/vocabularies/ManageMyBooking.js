@@ -27,6 +27,7 @@ export default {
   'mmb.status.unknown': 'Unknown',
 
   'mmb.fill_travel_document_screen.title': 'Fill travel document details',
+  'mmb.fill_travel_document_screen_modal.title': 'Fill travel document details',
 
   // MMB Boarding passes
   'mmb.boarding_passes.boarding_pass': 'Boarding Pass',
@@ -174,6 +175,8 @@ export default {
   'mmb.missing_information.passenger_menu_right.filled': 'Filled',
   'mmb.missing_information.passenger_travel_document_menu_group.passengers':
     'Passengers',
+  'mmb.missing_informaiton.travel_document_modal_screen.close': 'Close',
+  'mmb.missing_informaiton.travel_document_modal_screen.save': 'Save',
 
   // MMB Booking Timeline
   'mmb.booking_timeline.today': 'Today',
