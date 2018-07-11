@@ -6,6 +6,8 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, Color, Icon, Touchable } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { withNavigation } from 'react-navigation';
+import type { NavigationType } from '@kiwicom/mobile-navigation';
 
 import PassengerSubtitle from './PassengerSubtitle';
 import PassengerMenuRightContent from './PassengerMenuRightContent';
@@ -13,10 +15,16 @@ import type { PassengerMenuItem as PassengerType } from './__generated__/Passeng
 
 type Props = {|
   +data: PassengerType,
+  +navigation: NavigationType,
 |};
 
 class PassengerMenuItem extends React.Component<Props> {
-  onPress = () => console.warn('TODO');
+  onPress = () => {
+    this.props.navigation.navigate({
+      routeName: 'TravelDocumentModalScreen',
+      key: 'key-TravelDocumentModalScreen',
+    });
+  };
 
   render = () => {
     const date = idx(this.props.data, _ => _.travelDocument.expiration) || null;
@@ -43,7 +51,7 @@ class PassengerMenuItem extends React.Component<Props> {
   };
 }
 export default createFragmentContainer(
-  PassengerMenuItem,
+  withNavigation(PassengerMenuItem),
   graphql`
     fragment PassengerMenuItem on Passenger {
       fullName
