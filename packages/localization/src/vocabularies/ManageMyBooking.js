@@ -230,4 +230,6 @@ export default {
   'mmb.booking_timeline.event.download_boarding_pass.button.title': 'Download',
   'mmb.booking_timeline.event.download_boarding_pass.button.title.not_available':
     'Not available yet',
+
+  'mmb.booking_timeline.event.no_more_edits.title': 'No more trip changes',
 };
