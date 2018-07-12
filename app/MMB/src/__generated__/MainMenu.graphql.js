@@ -14,6 +14,7 @@ type PassengerMenuGroup$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MainMenu$ref: FragmentReference;
 export type MainMenu = {|
+  +id: string,
   +$fragmentRefs: Header$ref & PassengerMenuGroup$ref & MissingInformation$ref,
   +$refType: MainMenu$ref,
 |};
@@ -27,6 +28,13 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "FragmentSpread",
       "name": "Header",
@@ -45,5 +53,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '001decf0a45eee59ebaa10c71a870206';
+(node/*: any*/).hash = 'cdb6f395e0d7217170e883d9132dcbd7';
 module.exports = node;
