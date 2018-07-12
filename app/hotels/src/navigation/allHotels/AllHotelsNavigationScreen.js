@@ -33,7 +33,7 @@ type NavigationProps = {|
   +lastNavigationMode?: string,
 |};
 
-type Props = ContainerProps & NavigationProps;
+type Props = {| ...ContainerProps, ...NavigationProps |};
 
 export default class AllHotelsNavigationScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
