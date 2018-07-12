@@ -1,11 +1,6 @@
 // @flow strict
 
 export default {
-  'mmb.booking_state.confirmed': 'Confirmed',
-  'mmb.booking_state.confirmed.travelled': 'Travelled',
-  'mmb.booking_state.refunded': 'Refunded',
-  'mmb.booking_state.in_process': 'In process',
-
   'mmb.my_bookings.title.bookings': 'My Bookings',
   'mmb.my_bookings.future_trips': 'Future trips',
   'mmb.my_bookings.past_trips': 'Past trips',
@@ -22,7 +17,7 @@ export default {
   'mmb.status.expired': 'Expired',
   'mmb.status.new': 'New',
   'mmb.status.pending': 'Pending',
-  'mmb.status.refused': 'Refused',
+  'mmb.status.refunded': 'Refunded',
   'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
