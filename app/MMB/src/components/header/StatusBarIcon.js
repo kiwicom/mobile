@@ -84,7 +84,7 @@ function Status({ data }: {| data: StatusBarIcon |}) {
       return (
         <StatusIcon
           color={Color.black}
-          title={<Translation id="mmb.status.refused" />}
+          title={<Translation id="mmb.status.refunded" />}
         />
       );
     default:

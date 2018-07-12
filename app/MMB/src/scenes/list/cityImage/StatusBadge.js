@@ -16,42 +16,87 @@ const StatusBadge = (props: Props) => {
   const status = idx(props.data, _ => _.status) || '';
   const isPastBooking = idx(props.data, _ => _.isPastBooking);
 
+  let renderStatus;
   switch (status) {
-    case 'REFUNDED':
-      return (
-        <AdaptableBadge
-          translation={<Translation id="mmb.booking_state.refunded" />}
-          style={styles.refundedBadge}
-          textStyle={styles.badgeText}
-        />
-      );
-    case 'CONFIRMED':
-      return (
-        <AdaptableBadge
-          translation={
-            <Translation
-              id={
-                isPastBooking
-                  ? 'mmb.booking_state.confirmed.travelled'
-                  : 'mmb.booking_state.confirmed'
-              }
-            />
-          }
-          style={styles.confirmBadge}
-          textStyle={styles.badgeText}
-        />
-      );
-    case 'CLOSED':
-      return (
-        <AdaptableBadge
-          translation={<Translation id="mmb.booking_state.in_process" />}
-          style={styles.inProcessBadge}
-          textStyle={styles.badgeText}
-        />
-      );
-    default:
-      return null;
+    case 'CANCELLED': {
+      renderStatus = {
+        translationId: 'mmb.status.cancelled',
+        style: styles.redBadge,
+      };
+      break;
+    }
+
+    case 'CLOSED': {
+      renderStatus = {
+        translationId: 'mmb.status.closed',
+        style: styles.redBadge,
+      };
+      break;
+    }
+
+    case 'CONFIRMED': {
+      renderStatus = {
+        translationId: isPastBooking
+          ? 'mmb.status.travelled'
+          : 'mmb.status.confirmed',
+        style: styles.greenBadge,
+      };
+      break;
+    }
+
+    case 'DELETED': {
+      renderStatus = {
+        translationId: 'mmb.status.deleted',
+        style: styles.redBadge,
+      };
+      break;
+    }
+
+    case 'EXPIRED': {
+      renderStatus = {
+        translationId: 'mmb.status.expired',
+        style: styles.redBadge,
+      };
+      break;
+    }
+
+    case 'NEW': {
+      renderStatus = {
+        translationId: 'mmb.status.new',
+        style: styles.blueBadge,
+      };
+      break;
+    }
+
+    case 'PENDING': {
+      renderStatus = {
+        translationId: 'mmb.status.pending',
+        style: styles.orangeBadge,
+      };
+      break;
+    }
+
+    case 'REFUNDED': {
+      renderStatus = {
+        translationId: 'mmb.status.refunded',
+        style: styles.blackBadge,
+      };
+      break;
+    }
+    default: {
+      renderStatus = null;
+    }
   }
+  if (renderStatus) {
+    return (
+      <AdaptableBadge
+        translation={<Translation id={renderStatus.translationId} />}
+        style={[styles.badge, renderStatus.style]}
+        textStyle={styles.badgeText}
+      />
+    );
+  }
+  return null;
 };
 
 export default createFragmentContainer(
@@ -65,14 +110,23 @@ export default createFragmentContainer(
 );
 
 const styles = StyleSheet.create({
-  confirmBadge: {
-    backgroundColor: 'rgba(51, 189, 27, 0.6)',
+  badge: {
+    opacity: 0.7,
   },
-  refundedBadge: {
-    backgroundColor: 'rgba(48, 54, 61, 0.6)',
+  greenBadge: {
+    backgroundColor: Color.green.normal,
   },
-  inProcessBadge: {
-    backgroundColor: 'rgba(249, 151, 30, 0.6)', // TODO: Replace with real color when provided - missing in design.
+  blackBadge: {
+    backgroundColor: Color.black,
+  },
+  orangeBadge: {
+    backgroundColor: Color.orange.normal,
+  },
+  redBadge: {
+    backgroundColor: Color.red.normal,
+  },
+  blueBadge: {
+    backgroundColor: Color.blue.normal,
   },
   badgeText: {
     fontSize: 10,
