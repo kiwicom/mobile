@@ -13,6 +13,7 @@ export default {
   'hotels.navigation.title.payment': 'Hotel',
   'hotels.navigation.title.single_hotel': 'Details',
   'hotels.navigation.title.single_hotel_map': 'Map',
+  'hotels.navigation.close.button': 'Close',
 
   'hotels_search.all_hotels.please_search':
     'Please search for your desired destination.',

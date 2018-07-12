@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import { type StylePropType } from '@kiwicom/mobile-shared';
 
 import StyleSheet from './PlatformStyleSheet';
 import Touchable from './Touchable';
@@ -10,16 +11,23 @@ type Props = {|
   +onPress: () => void,
   +onLongPress?: (React.ElementRef<typeof Touchable>) => void,
   +children?: React.Node,
+  +left?: boolean,
+  +style?: StylePropType,
 |};
 
 type State = {|
   reference: React.ElementRef<typeof Touchable> | null,
 |};
 
-export default class HeaderRightButton extends React.PureComponent<
-  Props,
-  State,
-> {
+export default class HeaderButton extends React.PureComponent<Props, State> {
+  static Right = (props: Props) => (
+    <HeaderButton {...props} style={[props.style, styles.right]} />
+  );
+
+  static Left = (props: Props) => (
+    <HeaderButton {...props} style={[props.style, styles.left]} />
+  );
+
   state = {
     reference: null,
   };
@@ -35,7 +43,7 @@ export default class HeaderRightButton extends React.PureComponent<
   };
 
   render = () => {
-    const { onPress } = this.props;
+    const { onPress, style } = this.props;
 
     return (
       <Touchable
@@ -49,7 +57,9 @@ export default class HeaderRightButton extends React.PureComponent<
         ref={this.storeReference}
       >
         <View style={styles.container}>
-          <View style={styles.innerContainer}>{this.props.children}</View>
+          <View style={[styles.innerContainer, style]}>
+            {this.props.children}
+          </View>
         </View>
       </Touchable>
     );
@@ -64,12 +74,22 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     ios: {
-      marginStart: 22,
-      marginEnd: 10,
       paddingVertical: 12,
     },
     android: {
       margin: 16,
+    },
+  },
+  right: {
+    ios: {
+      marginStart: 22,
+      marginEnd: 10,
+    },
+  },
+  left: {
+    ios: {
+      marginStart: 10,
+      marginEnd: 22,
     },
   },
 });

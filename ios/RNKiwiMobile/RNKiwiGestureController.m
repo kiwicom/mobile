@@ -4,6 +4,7 @@
 
 NSString *const RNKiwiEnableGestures = @"RNKiwiEnableGestures";
 NSString *const RNKiwiDisableGestures = @"RNKiwiDisableGestures";
+NSString *const RNKiwiCloseModal = @"RNKiwiCloseModal";
 
 @implementation RNKiwiGestureController
 
@@ -26,6 +27,12 @@ RCT_EXPORT_METHOD(disableGestures:(NSString *)moduleName) {
 
 RCT_EXPORT_METHOD(enableGestures:(NSString *)moduleName) {
   [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiEnableGestures
+                                                      object:nil
+                                                    userInfo:@{ @"moduleName": moduleName }];
+}
+
+RCT_EXPORT_METHOD(closeModal:(NSString *)moduleName) {
+  [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiCloseModal
                                                       object:nil
                                                     userInfo:@{ @"moduleName": moduleName }];
 }

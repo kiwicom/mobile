@@ -4,19 +4,19 @@ import * as React from 'react';
 import { Platform } from 'react-native';
 import {
   TextIcon,
-  HeaderRightButton,
+  HeaderButton,
   Color,
   StyleSheet,
 } from '@kiwicom/mobile-shared';
 
 export default function ShareButton({ onPress }: {| +onPress: () => void |}) {
   return (
-    <HeaderRightButton onPress={onPress}>
+    <HeaderButton.Right onPress={onPress}>
       {Platform.select({
         ios: <TextIcon code="&#xe083;" style={styles.icon} />,
         android: <TextIcon code="&#xe068;" style={styles.icon} />,
       })}
-    </HeaderRightButton>
+    </HeaderButton.Right>
   );
 }
 
