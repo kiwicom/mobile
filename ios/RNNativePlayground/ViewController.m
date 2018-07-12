@@ -5,6 +5,7 @@
 @interface ViewController () <UIGestureRecognizerDelegate, RNKiwiOptions, RNKiwiCurrencyManager, RNKiwiTranslationProvider, RNKiwiViewControllerFlowDelegate>
 
 @property (nonatomic, strong) RNKiwiViewController *vc;
+@property (nonatomic, strong) NSString *lastNavigationMode;
 
 @end
 
@@ -26,32 +27,48 @@
   return self;
 }
 
-- (IBAction)showHotelsView:(id)sender {
+-(void)setUpVC {
   __weak typeof(self) weakSelf = self;
   _vc = [[RNKiwiViewController alloc] initWithOptions:weakSelf];
   [_vc setCurrencyFormatter:weakSelf];
   [_vc setTranslationProvider:weakSelf];
   [_vc setFlowDelegate:weakSelf];
-  
-  [[self navigationController] pushViewController:_vc animated:YES];
 }
+
+- (IBAction)presentHotelsView:(id)sender {
+    [self setUpVC];
+  
+    _lastNavigationMode = @"present";
+  
+    [[self navigationController] presentViewController:_vc animated:YES completion:nil];
+}
+
+- (IBAction)pushHotelsView:(UIButton *)sender {
+    [self setUpVC];
+  
+    _lastNavigationMode = @"push";
+    
+    [[self navigationController] pushViewController:_vc animated:YES];
+}
+
 
 # pragma mark - RNKiwiOptions
 
 - (NSDictionary<NSString *, NSObject *> *)initialProperties {
   CGRect windowRect = self.view.window.frame;
   return @{
-           @"coordinates": @{
-               @"latitude" : @59.9139,
-               @"longitude": @10.7522
-               },
-           @"language": @"en",
-           @"currency": @"EUR",
-           @"dimensions": @{
-               @"width": @(windowRect.size.width),
-               @"height": @(windowRect.size.height)
-               }
-           };
+    @"coordinates": @{
+        @"latitude" : @59.9139,
+        @"longitude": @10.7522
+    },
+    @"language": @"en",
+    @"currency": @"EUR",
+    @"lastNavigationMode": _lastNavigationMode,
+    @"dimensions": @{
+        @"width": @(windowRect.size.width),
+        @"height": @(windowRect.size.height)
+    }
+  };
 }
 
 - (NSString *)moduleName {

@@ -14,6 +14,7 @@ const isNativeGestureModule = () => {
 const {
   enableGestures = noop,
   disableGestures = noop,
+  closeModal = noop,
   invokeDefaultBackButton = noop,
 } =
   Platform.OS === 'ios'
@@ -23,6 +24,7 @@ const {
 export default {
   enableGestures,
   disableGestures,
+  closeModal,
   invokeDefaultBackButton,
   isNativeGestureModule: isNativeGestureModule(),
 };

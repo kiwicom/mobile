@@ -60,6 +60,7 @@
   
   if ([self isBeingDismissed] || [self isMovingFromParentViewController]) {
     [self notifyFinish];
+    [self closeModal];
     [self setupReactWrappersWithObject:nil];
   }
 }
@@ -126,6 +127,12 @@
   }
 }
 
+- (void)closeModal:(NSNotification *)notification {
+  if ([notification.userInfo[@"moduleName"] isEqualToString:[_options moduleName]]) {
+     [self dismissViewControllerAnimated:YES completion:nil];
+  }
+}
+
 - (void)startObservingGestures {
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(disableGestures:)
@@ -136,7 +143,13 @@
                                            selector:@selector(enableGestures:)
                                                name:RNKiwiEnableGestures
                                              object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(closeModal:)
+                                               name:RNKiwiCloseModal
+                                             object:nil];
 }
+
 
 - (void)stopObservingGestures {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -150,6 +163,10 @@
 
 - (void)invokeDefaultBackButton {
   [self notifyFinish];
+}
+
+- (void)closeModal {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

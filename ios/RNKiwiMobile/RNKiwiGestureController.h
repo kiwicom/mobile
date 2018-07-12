@@ -24,4 +24,6 @@ RCT_EXTERN NSString *const RNKiwiEnableGestures;
 
 RCT_EXTERN NSString *const RNKiwiDisableGestures;
 
+RCT_EXTERN NSString *const RNKiwiCloseModal;
+
 @end
