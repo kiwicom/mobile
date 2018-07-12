@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { HeaderRightButton, Color, Icon } from '@kiwicom/mobile-shared';
+import { HeaderButton, Color, Icon } from '@kiwicom/mobile-shared';
 import RNTooltips from 'react-native-tooltips';
 
 type Props = {|
@@ -40,9 +40,9 @@ export default class MapHeaderButton extends React.Component<Props, State> {
 
   render = () => (
     <React.Fragment>
-      <HeaderRightButton onPress={this.onPress} onLongPress={this.onLongPress}>
+      <HeaderButton.Right onPress={this.onPress} onLongPress={this.onLongPress}>
         <Icon name="map" size={24} color={Color.brand} />
-      </HeaderRightButton>
+      </HeaderButton.Right>
       <RNTooltips
         text="Open map"
         visible={this.state.isTooltipVisible}
