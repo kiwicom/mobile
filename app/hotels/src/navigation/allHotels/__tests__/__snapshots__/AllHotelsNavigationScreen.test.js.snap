@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders arrow icon button with \`goBack\` onPress function when lastNavigationMode is \`push\` 1`] = `
+<TouchableItem
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
+  borderless={true}
+  delayPressIn={0}
+  onPress={[MockFunction]}
+  pressColor="rgba(0, 0, 0, .32)"
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "flexDirection": "row",
+    }
+  }
+  testID="header-back"
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../react-navigation/src/views/assets/back-icon.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 21,
+            "marginLeft": 9,
+            "marginRight": 22,
+            "marginVertical": 12,
+            "resizeMode": "contain",
+            "transform": Array [
+              Object {
+                "scaleX": 1,
+              },
+            ],
+            "width": 13,
+          },
+          false,
+          Object {
+            "tintColor": "#00a991",
+          },
+        ]
+      }
+    />
+  </Component>
+</TouchableItem>
+`;
+
+exports[`renders arrow icon button with \`goBack\` onPress function when lastNavigationMode is null 1`] = `
+<TouchableItem
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
+  borderless={true}
+  delayPressIn={0}
+  onPress={[MockFunction]}
+  pressColor="rgba(0, 0, 0, .32)"
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "transparent",
+      "flexDirection": "row",
+    }
+  }
+  testID="header-back"
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "transparent",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "testUri": "../../react-navigation/src/views/assets/back-icon.png",
+        }
+      }
+      style={
+        Array [
+          Object {
+            "height": 21,
+            "marginLeft": 9,
+            "marginRight": 22,
+            "marginVertical": 12,
+            "resizeMode": "contain",
+            "transform": Array [
+              Object {
+                "scaleX": 1,
+              },
+            ],
+            "width": 13,
+          },
+          false,
+          Object {
+            "tintColor": "#00a991",
+          },
+        ]
+      }
+    />
+  </Component>
+</TouchableItem>
+`;
+
+exports[`renders close button with \`closeNativeModal\` onPress function when lastNavigationMode is \`present\` 1`] = `
+<HeaderButton
+  onPress={[Function]}
+  style={
+    Array [
+      undefined,
+      Object {
+        "marginEnd": 22,
+        "marginStart": 10,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#00a991",
+        "fontSize": 17,
+        "fontWeight": "600",
+      }
+    }
+  >
+    <Translation
+      id="hotels.navigation.close.button"
+    />
+  </Text>
+</HeaderButton>
+`;
