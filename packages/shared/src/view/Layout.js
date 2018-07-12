@@ -13,7 +13,6 @@ export default function Layout(props: Props) {
       <StatusBar
         animated={true}
         barStyle="default"
-        translucent={true} // Android only
         backgroundColor="rgba(0, 0, 0, 0.3)" // Android only
       />
       {props.children}
