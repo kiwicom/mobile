@@ -39,6 +39,10 @@ export default class Other extends React.Component<Props> {
     this.navigate('mmb.other.refund');
   };
 
+  handleCancellation = () => {
+    this.navigate('mmb.other.cancellation');
+  };
+
   render = () => (
     <ScrollView>
       <MenuGroup
@@ -62,6 +66,10 @@ export default class Other extends React.Component<Props> {
           }
           onPress={this.handleOpenRefund}
         />
+        <MenuItem
+          title={<Translation id="mmb.sub_menu.manage.other.cancellation" />}
+          onPress={this.handleCancellation}
+        />
       </MenuGroup>
     </ScrollView>
   );
@@ -81,6 +89,11 @@ export const OtherSubmenuItems = {
   'mmb.other.refund': {
     screen: function OtherSubmenuRefundForm() {
       return <Deeplink to="REFUND" />;
+    },
+  },
+  'mmb.other.cancellation': {
+    screen: function OtherSubmenuRefundForm() {
+      return <Deeplink to="CANCEL" />;
     },
   },
 };
