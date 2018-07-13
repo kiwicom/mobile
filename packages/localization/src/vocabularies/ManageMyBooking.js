@@ -162,11 +162,12 @@ export default {
   'mmb.main_menu.manage.other': 'Other',
   'mmb.main_menu.manage.other.description':
     'Booking cancellation, invoice, etc',
-  'mmb.sub_menu.manage.other.title': 'Others',
-  'mmb.sub_menu.manage.other.invoice': 'Invoice',
-  'mmb.sub_menu.manage.other.open_on_web': 'Open on Web',
+  'mmb.sub_menu.manage.other.title': 'Other',
+  'mmb.sub_menu.manage.other.invoice': 'Download Invoice',
+  'mmb.sub_menu.manage.other.open_on_web': 'Open on the Web',
   'mmb.sub_menu.manage.other.refund_form': 'Refund Form',
   'mmb.sub_menu.manage.other.apply_for_refund': 'Apply for refund',
+  'mmb.sub_menu.manage.other.cancellation': 'Booking Cancellation',
 
   'mmb.trip_services.title.ordered': 'Ordered',
 
