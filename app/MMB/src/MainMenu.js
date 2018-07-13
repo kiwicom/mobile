@@ -1,8 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView } from 'react-native';
-import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import {
+  graphql,
+  createRefetchContainer,
+  type RelayRefetchProp,
+} from '@kiwicom/mobile-relay';
+import { RefreshableScrollView } from '@kiwicom/mobile-shared';
+import idx from 'idx';
 
 import Header from './components/header/Header';
 import ManageMenuGroup from './menuGroups/ManageMenuGroup';
@@ -15,15 +20,18 @@ import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 type Props = {|
   +openMenu: string => void,
   +data: BookingType,
+  +relay: RelayRefetchProp,
 |};
 
 type State = {|
   activeId: string,
+  isRefreshing: boolean,
 |};
 
 class MainMenu extends React.Component<Props, State> {
   state = {
     activeId: 'mmb.main_menu.trip_overview',
+    isRefreshing: false,
   };
 
   handleOpenSubmenu = (activeId: string, menuId: string) => {
@@ -35,11 +43,31 @@ class MainMenu extends React.Component<Props, State> {
     );
   };
 
+  refetch = () => {
+    this.setState({ isRefreshing: true });
+
+    this.props.relay.refetch(
+      {
+        id: idx(this.props.data, _ => _.id),
+      },
+      null,
+      () => {
+        this.setState({ isRefreshing: false });
+      },
+      {
+        force: true,
+      },
+    );
+  };
+
   render = () => {
     const { activeId } = this.state;
 
     return (
-      <ScrollView>
+      <RefreshableScrollView
+        refreshing={this.state.isRefreshing}
+        onRefresh={this.refetch}
+      >
         <Header
           data={this.props.data}
           activeId={activeId}
@@ -68,18 +96,28 @@ class MainMenu extends React.Component<Props, State> {
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
         />
-      </ScrollView>
+      </RefreshableScrollView>
     );
   };
 }
 
-export default createFragmentContainer(
+export default createRefetchContainer(
   MainMenu,
   graphql`
     fragment MainMenu on BookingInterface {
+      id
       ...Header
       ...PassengerMenuGroup
       ...MissingInformation
+    }
+  `,
+  graphql`
+    query MainMenuRefetchQuery($id: ID!) {
+      node(id: $id) {
+        ... on BookingInterface {
+          ...MainMenu
+        }
+      }
     }
   `,
 );
