@@ -280,4 +280,9 @@ export default {
   'mmb.booking_timeline.event.check_in_closing.title': 'Online check-in closes',
   'mmb.booking_timeline.event.check_in_closing.note':
     'Upload the required documents so we can finish your check-in.',
+
+  'mmb.booking_timeline.event.enter_details.title': 'Enter details',
+  'mmb.booking_timeline.event.enter_details.note':
+    'Add your passport/ID details so that we can check in online for you',
+  'mmb.booking_timeline.event.enter_details.button.title': 'Add',
 };
