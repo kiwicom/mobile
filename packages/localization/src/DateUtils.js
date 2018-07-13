@@ -94,4 +94,9 @@ DateUtils.getUTCToday = () => {
 
 DateUtils.getUTCNow = getUTCNow;
 
+DateUtils.latestTimeOfDay = (day: Date) => {
+  const { year, month, date } = getUTCYearMonthDate(day);
+  return new Date(Date.UTC(year, month, date, 23, 59, 59, 999));
+};
+
 export default DateUtils;
