@@ -49,13 +49,14 @@ export default {
   'mmb.flight_overview.timeline.flight_no': 'Flight number:',
 
   // MMB Flight services
-  'mmb.flight_services.additional_baggage': 'Checked baggage',
+  'mmb.flight_services.additional_baggage': 'Baggage',
   'mmb.flight_services.allocated_seating': 'Seat Selection',
   'mmb.flight_services.musical_equipment': 'Musical Equipment',
   'mmb.flight_services.traveling_with_pets': 'Pet Passengers',
   'mmb.flight_services.special_assistance': 'Special Assistance',
   'mmb.flight_services.sports_equipment': 'Sports Equipment',
-  'mmb.flight_services.title': 'Services',
+  'mmb.flight_services.title': 'Flight Services',
+  'mmb.flight_services.title_services': 'Services',
   'mmb.flight_services.title_ordered': 'Ordered',
 
   // MMB Tickets
