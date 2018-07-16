@@ -51,7 +51,9 @@ export default class FlightServices extends React.Component<Props> {
 
   render = () => (
     <ScrollView>
-      <TitledMenuGroup title={<Translation id="mmb.flight_services.title" />}>
+      <TitledMenuGroup
+        title={<Translation id="mmb.flight_services.title_services" />}
+      >
         <MenuItem
           title={<Translation id="mmb.flight_services.additional_baggage" />}
           onPress={this.handleOpenBaggage}
