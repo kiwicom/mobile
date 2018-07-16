@@ -153,7 +153,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
         )}
         {rest.length > 0 && (
           <TitledMenuGroup
-            title={<Translation id="mmb.flight_services.title" />}
+            title={<Translation id="mmb.flight_services.title_services" />}
           >
             {rest.map(service => (
               <FlightServiceMenuItem
