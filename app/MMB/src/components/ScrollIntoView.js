@@ -20,11 +20,8 @@ export class ScrollIntoView extends React.Component<Props> {
     this.props.scrollToY && this.props.scrollToY(e.nativeEvent.layout.y);
   };
   render() {
-    return (
-      <View onLayout={this.props.shouldScrollIntoView && this.onLayout}>
-        {this.props.children}
-      </View>
-    );
+    const onLayout = this.props.shouldScrollIntoView ? this.onLayout : null;
+    return <View onLayout={onLayout}>{this.props.children}</View>;
   }
 }
 
