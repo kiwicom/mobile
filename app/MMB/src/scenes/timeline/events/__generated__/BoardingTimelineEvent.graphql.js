@@ -12,6 +12,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type BoardingTimelineEvent$ref: FragmentReference;
 export type BoardingTimelineEvent = {|
   +timestamp: ?any,
+  +terminal: ?string,
   +$refType: BoardingTimelineEvent$ref,
 |};
 */
@@ -30,9 +31,16 @@ const node/*: ConcreteFragment*/ = {
       "name": "timestamp",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "terminal",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e8eb8377a8013b7e7883c59b0d6966b0';
+(node/*: any*/).hash = 'b97c82fe503bc81a2ef975a0526d8957';
 module.exports = node;

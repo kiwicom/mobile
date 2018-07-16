@@ -18,6 +18,10 @@ type Props = {|
 
 const BoardingTimelineEvent = (props: Props) => {
   const timestamp = idx(props, _ => _.data.timestamp);
+  const terminal = idx(props, _ => _.data.terminal);
+  const noteTranslationId = terminal
+    ? 'mmb.booking_timeline.event.gate_arrival.note_terminal'
+    : 'mmb.booking_timeline.event.gate_arrival.note';
   return (
     <TimelineEvent
       timestamp={timestamp}
@@ -29,7 +33,7 @@ const BoardingTimelineEvent = (props: Props) => {
             <Translation id="mmb.booking_timeline.event.gate_arrival.title" />
           </Title>
           <Note>
-            <Translation id="mmb.booking_timeline.event.gate_arrival.note" />
+            <Translation id={noteTranslationId} values={{ terminal }} />
           </Note>
         </React.Fragment>
       }
@@ -42,6 +46,7 @@ export default createFragmentContainer(
   graphql`
     fragment BoardingTimelineEvent on BoardingTimelineEvent {
       timestamp
+      terminal
     }
   `,
 );

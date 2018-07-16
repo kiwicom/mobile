@@ -113,8 +113,8 @@ type BoardingTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
 
-  """Gate at which boarding is done"""
-  gate: String
+  """Terminal at which boarding is done"""
+  terminal: String
 }
 
 type BookedFlightTimelineEvent implements TimelineEvent {
@@ -916,6 +916,11 @@ input DynamicPackagesSimpleSearchInput {
   passengers: PassengersInput!
 }
 
+type EnterDetailsTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 type FAQArticle {
   """The ID of an object"""
   id: ID!
@@ -1532,12 +1537,17 @@ type Leg {
   """The ID of an object"""
   id: ID!
   airline: Airline
+  operatingAirline: OperatingAirline
+  vehicle: Vehicle
   arrival: RouteStop
   departure: RouteStop
 
   """Leg duration in minutes."""
   duration: Int
   flightNumber: Int
+
+  """Reservation number related to the leg."""
+  pnr: String
   recheckRequired: Boolean
 
   """Determines whether Leg is related to return flight."""
@@ -1693,6 +1703,7 @@ input LocationsOptionsInput {
 enum LocationType {
   airport
   autonomous_territory
+  bus_station
   city
   country
   station
@@ -1717,6 +1728,12 @@ interface Node {
 type NoMoreEditsTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+}
+
+type OperatingAirline {
+  """IATA code of the operating airline."""
+  iata: String
+  name: String
 }
 
 """Information about pagination in a connection."""
@@ -2028,6 +2045,9 @@ type RouteStop {
 
   """City id of the route stop"""
   cityId: String
+
+  """Terminal of the route stop"""
+  terminal: String
 }
 
 type Services {
@@ -2073,6 +2093,11 @@ type User {
   token: String
   isLoggedIn: Boolean
   identity: Identity
+}
+
+type Vehicle {
+  manufacturer: String
+  model: String
 }
 
 enum VehicleType {

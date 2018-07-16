@@ -214,6 +214,8 @@ export default {
 
   'mmb.booking_timeline.event.gate_arrival.title': 'Boarding at the gate',
   'mmb.booking_timeline.event.gate_arrival.note': 'Beware of the distance.',
+  'mmb.booking_timeline.event.gate_arrival.note_terminal':
+    'Proceed to Terminal __terminal__. Beware of the distance.',
   'mmb.booking_timeline.event.arrival.title':
     'Welcome to __1_airport__ airport (__2_code__)',
 
