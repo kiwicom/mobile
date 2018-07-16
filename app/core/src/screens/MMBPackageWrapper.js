@@ -21,29 +21,19 @@ export default class MMBPackageWrapper extends React.Component<
     token: '',
   };
 
-  static navigationOptions = ({
-    navigation,
-  }: {
-    navigation: NavigationType,
-  }) => {
-    return {
-      tabBarOnPress: ({
-        scene,
-        jumpToIndex,
-      }: {
-        scene: {| index: number |},
-        jumpToIndex: (index: number) => void,
-      }) => {
-        jumpToIndex(scene.index);
-        navigation.state.params.fetchToken();
+  componentDidMount = () => {
+    this.willFocusSubscription = this.props.navigation.addListener(
+      'willFocus',
+      () => {
+        this.fetchToken();
       },
-    };
+    );
+    this.fetchToken();
   };
 
-  componentDidMount = () => {
-    this.fetchToken();
-    this.props.navigation.setParams({ fetchToken: this.fetchToken });
-  };
+  componentWillUnmount() {
+    this.willFocusSubscription.remove();
+  }
 
   fetchToken = async () => {
     const token = await AsyncStorage.getItem('mobile:MMB-Token');

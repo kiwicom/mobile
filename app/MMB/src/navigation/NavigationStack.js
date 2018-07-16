@@ -4,7 +4,6 @@ import {
   StackNavigator,
   StackNavigatorOptions,
 } from '@kiwicom/mobile-navigation';
-import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 
 import DetailScreen, { MenuComponents } from './DetailScreen';
 import ListScreen from './ListScreen';
@@ -17,7 +16,7 @@ Object.entries(MenuComponents).forEach(
   // $FlowIssue: https://github.com/facebook/flow/issues/2221
   ([routeName, { screen, headerTitle }]) => {
     Screens[routeName] = {
-      screen: withMappedProps(screen),
+      screen,
       navigationOptions: {
         headerTitle,
       },
@@ -28,10 +27,10 @@ Object.entries(MenuComponents).forEach(
 const TravelDocumentStack = StackNavigator(
   {
     TravelDocumentScreen: {
-      screen: withMappedProps(FillTravelDocumentScreen),
+      screen: FillTravelDocumentScreen,
     },
     TravelDocumentModalScreen: {
-      screen: withMappedProps(TravelDocumentModalScreen),
+      screen: TravelDocumentModalScreen,
     },
   },
   {
@@ -44,10 +43,10 @@ const TravelDocumentStack = StackNavigator(
 const MainStack = StackNavigator(
   {
     ListScreen: {
-      screen: withMappedProps(ListScreen),
+      screen: ListScreen,
     },
     DetailScreen: {
-      screen: withMappedProps(DetailScreen),
+      screen: DetailScreen,
     },
     ...Screens,
   },
@@ -60,10 +59,10 @@ const MainStack = StackNavigator(
 export default StackNavigator(
   {
     MMBMainStack: {
-      screen: withMappedProps(MainStack),
+      screen: MainStack,
     },
     TravelDocumentScreen: {
-      screen: withMappedProps(TravelDocumentStack),
+      screen: TravelDocumentStack,
     },
   },
   {
