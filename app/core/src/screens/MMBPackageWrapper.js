@@ -21,6 +21,8 @@ export default class MMBPackageWrapper extends React.Component<
     token: '',
   };
 
+  willFocusSubscription: { remove: () => void };
+
   componentDidMount = () => {
     this.willFocusSubscription = this.props.navigation.addListener(
       'willFocus',
