@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   galleryButtonContainer: {
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    borderRadius: 0,
   },
   thumbnail: {
     width: 60,
