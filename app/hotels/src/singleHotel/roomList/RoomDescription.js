@@ -10,12 +10,12 @@ import idx from 'idx';
 import type { RoomDescription_room as RoomDescriptionType } from './__generated__/RoomDescription_room.graphql';
 
 type ContainerProps = {|
-  room: ?Object,
+  +room: ?Object,
 |};
 
 type Props = {|
   ...ContainerProps,
-  room: RoomDescriptionType,
+  +room: RoomDescriptionType,
 |};
 
 const styles = StyleSheet.create({
@@ -45,8 +45,10 @@ export const RoomDescription = (props: Props) => {
         <ReadMore
           numberOfLines={2}
           style={styles.readMore}
-          truncatedText="Read more"
-          revealedText="Hide"
+          truncatedText={
+            <Translation id="single_hotel.room_description.read_more" />
+          }
+          revealedText={<Translation id="single_hotel.room_description.hide" />}
         >
           <Text style={styles.description}>
             <Translation passThrough={description} />

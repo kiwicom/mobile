@@ -12,7 +12,11 @@ const loremIpsum =
 describe('ReadMore', () => {
   it('renders', () => {
     PlaygroundRenderer.render(
-      <ReadMore numberOfLines={4} truncatedText="Show more" revealedText="Hide">
+      <ReadMore
+        numberOfLines={4}
+        truncatedText={<Translation passThrough="Show more" />}
+        revealedText={<Translation passThrough="Show less" />}
+      >
         <Translation passThrough={loremIpsum} />
       </ReadMore>,
     );
@@ -22,8 +26,8 @@ describe('ReadMore', () => {
     PlaygroundRenderer.render(
       <ReadMore
         numberOfLines={4}
-        truncatedText="Show more"
-        revealedText="Hide"
+        truncatedText={<Translation passThrough="Show more" />}
+        revealedText={<Translation passThrough="Show less" />}
         style={{ color: 'pink', fontWeight: '600' }}
       >
         <Translation passThrough={loremIpsum} />
