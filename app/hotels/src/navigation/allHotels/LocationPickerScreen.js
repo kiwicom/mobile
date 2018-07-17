@@ -49,7 +49,7 @@ export default class LocationPickerScreen extends React.Component<Props> {
           </Text>
         </HeaderButton>
       ),
-      title: (
+      headerTitle: (
         <HeaderTitle>
           <Translation id="hotels_search.location_picker.header" />
         </HeaderTitle>

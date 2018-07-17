@@ -142,7 +142,7 @@ export default class GuestsModalScreenWithContext extends React.Component<
           <Translation id="hotels_search.guests_modal.close" />
         </HeaderButton>
       ),
-      title: (
+      headerTitle: (
         <HeaderTitle>
           <Translation id="hotels_search.guests_modal.header" />
         </HeaderTitle>
