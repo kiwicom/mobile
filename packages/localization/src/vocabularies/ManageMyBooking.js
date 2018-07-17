@@ -250,4 +250,12 @@ export default {
   'mmb.booking_timeline.event.no_more_edits.title': 'No more trip changes',
 
   'mmb.booking_timeline.event.navigate_to_terminal.title': 'Go to terminal',
+
+  'mmb.booking_timeline.event.time_to_check_in.title': 'Time to check-in',
+  'mmb.booking_timeline.event.time_to_check_in.note':
+    'Upload the required documents so we can finish your check-in.',
+
+  'mmb.booking_timeline.event.check_in_closing.title': 'Online check-in closes',
+  'mmb.booking_timeline.event.check_in_closing.note':
+    'Upload the required documents so we can finish your check-in.',
 };

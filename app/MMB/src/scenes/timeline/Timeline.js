@@ -23,6 +23,8 @@ import TimelineEventIconContext from '../../context/TimelineEventIconContext';
 import DownloadBoardingPassTimelineEvent from './events/DownloadBoardingPassTimelineEvent';
 import NoMoreEditsTimelineEvent from './events/NoMoreEditsTimelineEvent';
 import NavigateToTerminalTimelineEvent from './events/NavigateToTerminalTimelineEvent';
+import TimeToCheckinTimelineEvent from './events/TimeToCheckinTimelineEvent';
+import CheckinClosingTimelineEvent from './events/CheckinClosingTimelineEvent';
 import {
   ScrollViewWithScrollToY,
   ScrollIntoView,
@@ -51,7 +53,9 @@ type TimelineEvent = ?React.Element<
   | typeof DownloadETicketTimelineEvent
   | typeof DownloadBoardingPassTimelineEvent
   | typeof NoMoreEditsTimelineEvent
-  | typeof NavigateToTerminalTimelineEvent,
+  | typeof NavigateToTerminalTimelineEvent
+  | typeof TimeToCheckinTimelineEvent
+  | typeof CheckinClosingTimelineEvent,
 >;
 
 function getValidTimelineEvent(data: Event): TimelineEvent {
@@ -81,6 +85,10 @@ function getValidTimelineEvent(data: Event): TimelineEvent {
         return <NoMoreEditsTimelineEvent data={data} />;
       case 'NavigateToTerminalTimelineEvent':
         return <NavigateToTerminalTimelineEvent data={data} />;
+      case 'TimeToCheckinTimelineEvent':
+        return <TimeToCheckinTimelineEvent data={data} />;
+      case 'CheckinClosingTimelineEvent':
+        return <CheckinClosingTimelineEvent data={data} />;
       default:
         return null;
     }
@@ -212,6 +220,12 @@ export default class Timeline extends React.Component<{||}> {
                   }
                   ... on NavigateToTerminalTimelineEvent {
                     ...NavigateToTerminalTimelineEvent
+                  }
+                  ... on TimeToCheckinTimelineEvent {
+                    ...TimeToCheckinTimelineEvent
+                  }
+                  ... on CheckinClosingTimelineEvent {
+                    ...CheckinClosingTimelineEvent
                   }
                 }
               }

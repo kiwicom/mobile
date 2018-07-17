@@ -206,6 +206,7 @@ type Booking {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+  onlineCheckinIsAvailable: Boolean
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -303,6 +304,7 @@ interface BookingInterface {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+  onlineCheckinIsAvailable: Boolean
 }
 
 """A connection to a list of items."""
@@ -361,6 +363,7 @@ type BookingMulticity implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+  onlineCheckinIsAvailable: Boolean
 
   """Initial origin."""
   start: RouteStop
@@ -413,6 +416,7 @@ type BookingOneWay implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+  onlineCheckinIsAvailable: Boolean
   trip: Trip
 }
 
@@ -455,6 +459,7 @@ type BookingReturn implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+  onlineCheckinIsAvailable: Boolean
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -504,6 +509,11 @@ type Carrier {
 
   """Indicates whether it is low cost carrier."""
   isLowCost: Boolean
+}
+
+type CheckinClosingTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
 }
 
 type Coordinates {
@@ -1658,12 +1668,14 @@ type Location {
   alternativeNames: [String]
   autonomousTerritory: LocationArea
   rank: Int
+  code: String
 }
 
 type LocationArea {
   locationId: String
   name: String
   slug: String
+  code: String
 }
 
 """A connection to a list of items."""
@@ -2069,6 +2081,11 @@ input StopoversInput {
 }
 
 interface TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
+type TimeToCheckinTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
 }
