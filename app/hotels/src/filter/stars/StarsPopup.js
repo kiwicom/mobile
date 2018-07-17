@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   delimiter: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderBottomColor: Color.backgroundGray,
   },
   unrated: {
