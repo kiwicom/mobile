@@ -24,15 +24,16 @@ export default function BrandLabel() {
 
 const styleSheet = StyleSheet.create({
   wrapper: {
-    height: 100,
+    paddingVertical: 50,
     alignItems: 'center',
     justifyContent: 'center',
   },
   poweredBy: {
     color: Color.textLight,
+    fontSize: 10,
   },
   image: {
     marginTop: 2,
-    height: 15,
+    height: 14,
   },
 });
