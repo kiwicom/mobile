@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 10,
     fontWeight: 'bold',
+    color: Color.ink.light,
   },
   highlightText: {
     color: Color.red.normal,

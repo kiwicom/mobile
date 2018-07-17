@@ -22,6 +22,7 @@ import DownloadETicketTimelineEvent from './events/DownloadETicketTimelineEvent'
 import TimelineEventIconContext from '../../context/TimelineEventIconContext';
 import DownloadBoardingPassTimelineEvent from './events/DownloadBoardingPassTimelineEvent';
 import NoMoreEditsTimelineEvent from './events/NoMoreEditsTimelineEvent';
+import NavigateToTerminalTimelineEvent from './events/NavigateToTerminalTimelineEvent';
 import {
   ScrollViewWithScrollToY,
   ScrollIntoView,
@@ -49,7 +50,8 @@ type TimelineEvent = ?React.Element<
   | typeof TransportFromAirportTimelineEvent
   | typeof DownloadETicketTimelineEvent
   | typeof DownloadBoardingPassTimelineEvent
-  | typeof NoMoreEditsTimelineEvent,
+  | typeof NoMoreEditsTimelineEvent
+  | typeof NavigateToTerminalTimelineEvent,
 >;
 
 function getValidTimelineEvent(data: Event): TimelineEvent {
@@ -77,6 +79,8 @@ function getValidTimelineEvent(data: Event): TimelineEvent {
         return <DownloadBoardingPassTimelineEvent data={data} />;
       case 'NoMoreEditsTimelineEvent':
         return <NoMoreEditsTimelineEvent data={data} />;
+      case 'NavigateToTerminalTimelineEvent':
+        return <NavigateToTerminalTimelineEvent data={data} />;
       default:
         return null;
     }
@@ -205,6 +209,9 @@ export default class Timeline extends React.Component<{||}> {
                   }
                   ... on NoMoreEditsTimelineEvent {
                     ...NoMoreEditsTimelineEvent
+                  }
+                  ... on NavigateToTerminalTimelineEvent {
+                    ...NavigateToTerminalTimelineEvent
                   }
                 }
               }
