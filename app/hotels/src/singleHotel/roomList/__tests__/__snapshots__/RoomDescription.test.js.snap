@@ -13,7 +13,11 @@ exports[`RoomDescription renders 1`] = `
   />
   <ReadMore
     numberOfLines={2}
-    revealedText="Hide"
+    revealedText={
+      <Translation
+        id="single_hotel.room_description.hide"
+      />
+    }
     style={
       Object {
         "color": "#00a991",
@@ -21,7 +25,11 @@ exports[`RoomDescription renders 1`] = `
         "fontWeight": "600",
       }
     }
-    truncatedText="Read more"
+    truncatedText={
+      <Translation
+        id="single_hotel.room_description.read_more"
+      />
+    }
   >
     <Text
       style={

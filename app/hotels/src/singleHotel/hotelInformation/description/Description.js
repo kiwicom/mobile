@@ -34,8 +34,10 @@ export class Description extends React.Component<Props> {
       <View style={isWide ? styles.wideCardChildrenWrapper : null}>
         <ReadMore
           numberOfLines={5}
-          truncatedText="Show More"
-          revealedText="Show Less"
+          truncatedText={
+            <Translation id="single_hotel.description.show_more" />
+          }
+          revealedText={<Translation id="single_hotel.description.show_more" />}
         >
           <Text style={styles.summary}>
             <Translation passThrough={idx(this.props, _ => _.hotel.summary)} />
