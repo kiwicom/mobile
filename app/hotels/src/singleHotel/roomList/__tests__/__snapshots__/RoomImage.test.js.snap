@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RoomImage renders 1`] = `
+<Touchable
+  borderlessRipple={false}
+  disabled={false}
+  onPress={[MockFunction]}
+  rippleColor="rgba(0, 0, 0, .32)"
+>
+  <Component>
+    <NetworkImageWithContext
+      source={
+        Object {
+          "uri": "https://e3.365dm.com/18/05/1600x1200/lionel-messi-barcelona_4322799.jpg?bypass-service-worker&20180528123616",
+        }
+      }
+      style={
+        Object {
+          "borderRadius": 2,
+          "height": 80,
+          "width": 60,
+        }
+      }
+    />
+    <Component
+      style={
+        Object {
+          "bottom": 0,
+          "end": 0,
+          "position": "absolute",
+          "start": 0,
+        }
+      }
+    >
+      <GalleryButton
+        count={32}
+        style={
+          Object {
+            "container": Object {
+              "alignItems": "center",
+              "backgroundColor": "rgba(0, 0, 0, 0.3)",
+              "borderRadius": 0,
+              "justifyContent": "center",
+              "paddingVertical": 4,
+            },
+            "icon": Object {
+              "height": 10,
+              "width": 10,
+            },
+            "text": Object {
+              "fontSize": 10,
+            },
+          }
+        }
+      />
+    </Component>
+  </Component>
+</Touchable>
+`;
