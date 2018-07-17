@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
 import AdaptableLayout from '../view/AdaptableLayout';
 import Color from '../Color';
@@ -23,7 +24,9 @@ export default class Popup extends React.Component<Props> {
         contentContainerStyle={styles.content}
         alwaysBounceVertical={false}
       >
-        {this.props.children}
+        <SafeAreaView style={styles.safeArea}>
+          {this.props.children}
+        </SafeAreaView>
       </ScrollView>
     );
 
@@ -68,5 +71,9 @@ const styles = StyleSheet.create({
   },
   content: {
     opacity: 1,
+  },
+  safeArea: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
 });
