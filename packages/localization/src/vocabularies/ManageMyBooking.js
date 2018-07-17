@@ -248,4 +248,6 @@ export default {
     'Not available yet',
 
   'mmb.booking_timeline.event.no_more_edits.title': 'No more trip changes',
+
+  'mmb.booking_timeline.event.navigate_to_terminal.title': 'Go to terminal',
 };

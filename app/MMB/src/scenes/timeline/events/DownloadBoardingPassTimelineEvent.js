@@ -75,7 +75,7 @@ class DownloadBoardingPassTimelineEvent extends React.Component<Props> {
         timestamp={timestamp}
         displayTime={false}
         iconVertLines={
-          <TimelineEventIcon icon={<TextIcon code="&#xe011;" />} />
+          <TimelineEventIcon icon={<TextIcon code="&#xe00b;" />} />
         }
         mainContent={
           <View style={styles.container}>
