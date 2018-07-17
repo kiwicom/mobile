@@ -1719,6 +1719,11 @@ type LoungeServiceRelevantAirports {
   location: Location
 }
 
+type NavigateToTerminalTimelineEvent implements TimelineEvent {
+  """Time of appearance in the timeline."""
+  timestamp: DateTime
+}
+
 """An object with an ID"""
 interface Node {
   """The id of the object."""
