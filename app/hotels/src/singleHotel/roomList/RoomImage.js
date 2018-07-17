@@ -24,7 +24,11 @@ export default function RoomImage({
         <View style={styles.galleryButton}>
           <GalleryButton
             count={photoCount}
-            style={{ container: styles.galleryButtonContainer }}
+            style={{
+              container: styles.galleryButtonContainer,
+              icon: styles.icon,
+              text: styles.text,
+            }}
           />
         </View>
       </View>
@@ -41,12 +45,21 @@ const styles = StyleSheet.create({
   },
   galleryButtonContainer: {
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
     borderRadius: 0,
+    paddingVertical: 4,
   },
   thumbnail: {
     width: 60,
     height: 80,
     borderRadius: 2,
+  },
+  icon: {
+    height: 10,
+    width: 10,
+  },
+  text: {
+    fontSize: 10,
   },
 });
