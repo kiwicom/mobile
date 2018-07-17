@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   delimiter: {
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     borderBottomColor: Color.grey.$300,
   },
   checkbox: {
