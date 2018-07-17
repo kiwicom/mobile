@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   lessMoreButton: {
     color: Color.brand,
-    fontWeight: '800',
+    fontWeight: '500',
   },
   adaptableBadge: {
     backgroundColor: '#eceff1',
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
 });
 
 type ContainerProps = {|
-  facilities: any,
+  +facilities: any,
 |};
 
 type Props = {
   ...ContainerProps,
-  facilities: ?Facilities_facilities,
+  +facilities: ?Facilities_facilities,
 };
 
 type State = {|

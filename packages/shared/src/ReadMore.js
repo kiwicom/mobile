@@ -12,11 +12,11 @@ import Color from './Color';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
-  numberOfLines: number,
-  children: React.Node,
-  truncatedText: string,
-  revealedText: string,
-  style?: StylePropType,
+  +numberOfLines: number,
+  +children: React.Node,
+  +truncatedText: React.Element<typeof Translation>,
+  +revealedText: React.Element<typeof Translation>,
+  +style?: StylePropType,
 |};
 
 const styles = StyleSheet.create({
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     color: Color.brand,
-    fontWeight: '800',
+    fontWeight: '500',
   },
 });
 
@@ -34,15 +34,13 @@ const Link = ({
   handlePress,
   style,
 }: {|
-  label: string,
+  label: React.Element<typeof Translation>,
   handlePress: () => void,
   style?: StylePropType,
 |}) => (
   <View style={styles.linkView}>
     <Touchable onPress={handlePress} noRipple={true}>
-      <Text style={[styles.linkText, style]}>
-        <Translation passThrough={label} />
-      </Text>
+      <Text style={[styles.linkText, style]}>{label}</Text>
     </Touchable>
   </View>
 );

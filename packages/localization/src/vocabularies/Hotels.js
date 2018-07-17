@@ -87,4 +87,8 @@ export default {
   'single_hotel.room_list.rooms': 'Rooms',
   'single_hotel.room_picker.select': 'Select',
   'single_hotel.powered_by': 'Powered by',
+  'single_hotel.description.show_more': 'Show More',
+  'single_hotel.description.show_less': 'Show Less',
+  'single_hotel.room_description.read_more': 'Read more',
+  'single_hotel.room_description.hide': 'Hide',
 };
