@@ -8,22 +8,22 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type TravelDocumentPassengerMenuItem$ref = any;
+type PassengerInsuranceMenuItem$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type PassengerTravelDocumentMenuGroup$ref: FragmentReference;
-export type PassengerTravelDocumentMenuGroup = {|
+declare export opaque type InsuranceOverviewPassengerMenuGroup$ref: FragmentReference;
+export type InsuranceOverviewPassengerMenuGroup = {|
   +passengers: ?$ReadOnlyArray<?{|
     +databaseId: ?number,
-    +$fragmentRefs: TravelDocumentPassengerMenuItem$ref,
+    +$fragmentRefs: PassengerInsuranceMenuItem$ref,
   |}>,
-  +$refType: PassengerTravelDocumentMenuGroup$ref,
+  +$refType: InsuranceOverviewPassengerMenuGroup$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "PassengerTravelDocumentMenuGroup",
+  "name": "InsuranceOverviewPassengerMenuGroup",
   "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
@@ -46,7 +46,7 @@ const node/*: ConcreteFragment*/ = {
         },
         {
           "kind": "FragmentSpread",
-          "name": "TravelDocumentPassengerMenuItem",
+          "name": "PassengerInsuranceMenuItem",
           "args": null
         }
       ]
@@ -54,5 +54,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4f5856bc20258c6a1362f7d637ccc41f';
+(node/*: any*/).hash = '0beced77ab433acc048a4a8b27a8262d';
 module.exports = node;

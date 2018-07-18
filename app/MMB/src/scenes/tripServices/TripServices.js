@@ -8,6 +8,7 @@ import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import {
   TitledMenuGroup,
   TodoMenuItem,
+  HeaderTitle,
   type RouteNamesType,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
@@ -18,7 +19,7 @@ import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
 import CarRentalMenuItem from './CarRentalMenuItem';
 import InsuranceOverviewScene from './insurance/InsuranceOverviewScene';
-import InsuranceSelectionScene from './insurance/InsuranceSelectionScene';
+import InsuranceSelectionScene from './insurance/insuranceSelectionScene/InsuranceSelectionScene';
 import PaymentScene from './insurance/PaymentScene';
 import RefundScene from './insurance/RefundScene';
 import BookingDetailContext from '../../context/BookingDetailContext';
@@ -134,10 +135,24 @@ export const TripServicesSubmenuItems = {
     |}) {
       return <InsuranceOverviewScene navigation={navigation} />;
     },
+    headerTitle: function TripServicesHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.trip_services.insurance.title" />
+        </HeaderTitle>
+      );
+    },
   },
   'mmb.trip_services.insurance.selection': {
     screen: function TripServicesSubmenuInsuranceSelection() {
       return <InsuranceSelectionScene />;
+    },
+    headerTitle: function TripServicesHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.trip_services.insurance.selection.title" />
+        </HeaderTitle>
+      );
     },
   },
   'mmb.trip_services.insurance.payment': {

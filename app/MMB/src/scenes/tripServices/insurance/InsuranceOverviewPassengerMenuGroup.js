@@ -6,23 +6,19 @@ import { TitledMenuGroup } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
-import TravelDocumentPassengerMenuItem from './menuItem/TravelDocumentPassengerMenuItem';
-import type { PassengerTravelDocumentMenuGroup as PassengersType } from './__generated__/PassengerTravelDocumentMenuGroup.graphql';
+import PassengerInsuranceMenuItem from './menuItem/PassengerInsuranceMenuItem';
+import type { InsuranceOverviewPassengerMenuGroup as PassengersType } from './__generated__/InsuranceOverviewPassengerMenuGroup.graphql';
 
 type Props = {|
   +data: PassengersType,
 |};
 
-const PassengerTravelDocumentMenuGroup = (props: Props) => {
+const InsuranceOverviewPassengerMenuGroup = (props: Props) => {
   const passengers = idx(props.data, _ => _.passengers) || [];
   return (
-    <TitledMenuGroup
-      title={
-        <Translation id="mmb.missing_information.passenger_travel_document_menu_group.passengers" />
-      }
-    >
+    <TitledMenuGroup title={<Translation id="mmb.trip_services.order.pax" />}>
       {passengers.map(passenger => (
-        <TravelDocumentPassengerMenuItem
+        <PassengerInsuranceMenuItem
           data={passenger}
           key={idx(passenger, _ => _.databaseId)}
         />
@@ -31,12 +27,12 @@ const PassengerTravelDocumentMenuGroup = (props: Props) => {
   );
 };
 export default createFragmentContainer(
-  PassengerTravelDocumentMenuGroup,
+  InsuranceOverviewPassengerMenuGroup,
   graphql`
-    fragment PassengerTravelDocumentMenuGroup on BookingInterface {
+    fragment InsuranceOverviewPassengerMenuGroup on BookingInterface {
       passengers {
         databaseId
-        ...TravelDocumentPassengerMenuItem
+        ...PassengerInsuranceMenuItem
       }
     }
   `,
