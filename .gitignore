@@ -67,3 +67,6 @@ buck-out/
 *.cer
 *.mobileprovision
 *.dSYM.zip
+
+# Jest
+/coverage

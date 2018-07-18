@@ -1,3 +1,4 @@
 app/core/config/flow-typed
 **/node_modules/**
 **/RNAndroidPlayground/**
+/coverage
