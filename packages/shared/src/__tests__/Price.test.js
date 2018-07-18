@@ -8,6 +8,11 @@ import Price from '../Price';
 import CurrencyFormatter from '../CurrencyFormatter';
 
 jest.mock('../CurrencyFormatter', () => jest.fn());
+jest.mock('../CancellablePromise', () => ({
+  promise: new Promise((resolve, reject) => {
+    reject();
+  }),
+}));
 
 const renderer = new ShallowRenderer();
 
@@ -27,5 +32,14 @@ describe('Price', () => {
   it('calls Currencyformatter if amount and currency is passed', () => {
     testRenderer.create(<Price amount={45} currency="EUR" />);
     expect(CurrencyFormatter).toHaveBeenCalledWith(45, 'EUR');
+  });
+
+  it('does not call set state if promise is rejected', async () => {
+    const Component = new Price({ amount: 45, currency: 'EUR' });
+
+    jest.spyOn(Component, 'setState');
+    await Component.formatCurrency();
+
+    expect(Component.setState).not.toHaveBeenCalled();
   });
 });

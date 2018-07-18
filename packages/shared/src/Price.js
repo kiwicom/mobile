@@ -6,6 +6,9 @@ import { Translation } from '@kiwicom/mobile-localization';
 import CurrencyFormatter from './CurrencyFormatter';
 import Text from './Text';
 import type { StylePropType } from '../types/Styles';
+import CancellablePromise, {
+  type CancellablePromiseType,
+} from './CancellablePromise';
 
 type Props = {|
   +amount: number | null,
@@ -23,6 +26,7 @@ type State = {|
  * all prices should be wrapped in this component so the future changes are easy.
  */
 export default class Price extends React.Component<Props, State> {
+  cancellablePromise: CancellablePromiseType | null = null;
   state = {
     formattedCurrency: '',
   };
@@ -37,13 +41,24 @@ export default class Price extends React.Component<Props, State> {
     }
   };
 
+  componentWillUnmount = () => {
+    if (this.cancellablePromise !== null) {
+      this.cancellablePromise.cancel();
+    }
+  };
+
   formatCurrency = async () => {
     if (this.props.amount != null && this.props.currency != null) {
-      const formattedCurrency = await CurrencyFormatter(
-        this.props.amount,
-        this.props.currency,
-      );
-      this.setState({ formattedCurrency });
+      try {
+        this.cancellablePromise = CancellablePromise(
+          CurrencyFormatter(this.props.amount, this.props.currency),
+        );
+        const formattedCurrency = await this.cancellablePromise.promise;
+        this.setState({ formattedCurrency });
+        this.cancellablePromise = null;
+      } catch (err) {
+        this.cancellablePromise = null;
+      }
     }
   };
 

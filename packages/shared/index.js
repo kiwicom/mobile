@@ -86,6 +86,7 @@ export { default as StretchedImage } from './src/image/StretchedImage';
  * Non-UI components (components without render output):
  */
 export { default as AppStateChange } from './src/AppStateChange';
+export { default as CancellablePromise } from './src/CancellablePromise';
 export { default as Color } from './src/Color';
 export { default as CurrencyFormatter } from './src/CurrencyFormatter';
 export { default as Device } from './src/Device';
@@ -113,5 +114,7 @@ export type {
   StyleObjectType,
   PlatformStyleObjectType,
 } from './types/Styles';
+
+export type { CancellablePromiseType } from './src/CancellablePromise';
 
 export type { DimensionType } from './types/Objects';
