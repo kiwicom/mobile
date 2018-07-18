@@ -1,6 +1,7 @@
 // @flow strict
 
 import { NativeModules } from 'react-native';
+import { CancellablePromise } from '@kiwicom/mobile-shared';
 
 export type TranslationPromise = {|
   cancel: () => void,
@@ -8,22 +9,7 @@ export type TranslationPromise = {|
 |};
 
 export function cancellableTranslation(nativeKey: string): TranslationPromise {
-  let resolve;
-  let reject;
-
-  const promise = new Promise((originalResolve, originalReject) => {
-    resolve = originalResolve;
-    reject = originalReject;
-  });
-
-  NativeModules.RNTranslationManager.translateAsync(nativeKey)
-    .then(resolve)
-    .then(reject);
-
-  return {
-    promise,
-    cancel: () => {
-      reject('cancelled');
-    },
-  };
+  return CancellablePromise(
+    NativeModules.RNTranslationManager.translateAsync(nativeKey),
+  );
 }
