@@ -27,13 +27,13 @@ function withNativeNavigation<Props: {}>(
       this.currentIndex = 0;
     }
 
-    nestings = function nestings(nav) {
+    isCurrentRouteModal(nav) {
       const nestedNav =
         nav.routes && nav.index !== undefined && nav.routes[nav.index];
       if (!nestedNav) {
         return nav.params && nav.params.isModal;
       }
-      return nestings(nestedNav);
+      return this.isCurrentRouteModal(nestedNav);
     };
 
     onNavigationStateChange = (
@@ -42,7 +42,7 @@ function withNativeNavigation<Props: {}>(
     ) => {
       const nav = this.navigator.state.nav;
 
-      if (this.nestings(nav)) {
+      if (this.isCurrentRouteModal(nav)) {
         GestureController.disableGestures(moduleName);
       } else if (currentState.index === 0) {
         GestureController.enableGestures(moduleName);
