@@ -78,23 +78,23 @@ export type Navigation = {
   addListener: NavigationListener,
 };
 
-type Routes = Array<{|
-  key: string,
-  index: number,
-  isTransitioning: boolean,
-  routeName: string,
+type Routes = $ReadOnlyArray<{|
+  +key: string,
+  +index: number,
+  +isTransitioning: boolean,
+  +routeName: string,
 |}>;
 
-export type Navigator = {
-  state: {
-    nav: {
-      key: string,
-      index: number,
-      isTransitioning: boolean,
-      params?: {|
+export type Navigator = {|
+  +state: {|
+    +nav: {|
+      +key: string,
+      +index: number,
+      +isTransitioning: boolean,
+      +params?: {|
         isModal: boolean,
       |},
-      routes: Routes,
-    },
-  },
-};
+      +routes: Routes,
+    |},
+  |},
+|};

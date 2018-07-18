@@ -9,9 +9,9 @@ type NavigationState = {|
 |};
 
 type InjectedProps = {|
-  onNavigationStateChange: () => void,
-  onBackClicked: () => void,
-  onNavigator: (ref: React.ElementRef<*>) => void,
+  +onNavigationStateChange: () => void,
+  +onBackClicked: () => void,
+  +onNavigator: (ref: React.ElementRef<*>) => void,
 |};
 
 function withNativeNavigation<Props: {}>(
