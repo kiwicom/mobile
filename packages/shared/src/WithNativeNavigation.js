@@ -2,14 +2,16 @@
 
 import * as React from 'react';
 import { GestureController } from '@kiwicom/mobile-shared';
+import { type NavigatorType } from '@kiwicom/mobile-navigation';
 
 type NavigationState = {|
   index: number,
 |};
 
 type InjectedProps = {|
-  onNavigationStateChange: () => void,
-  onBackClicked: () => void,
+  +onNavigationStateChange: () => void,
+  +onBackClicked: () => void,
+  +onNavigator: (ref: React.ElementRef<*>) => void,
 |};
 
 function withNativeNavigation<Props: {}>(
@@ -18,16 +20,31 @@ function withNativeNavigation<Props: {}>(
 ): React.ComponentType<$Diff<Props, InjectedProps>> {
   return class WithNativeNavigation extends React.Component<*> {
     currentIndex: number;
+    navigator: NavigatorType;
 
     constructor(props) {
       super(props);
       this.currentIndex = 0;
     }
+
+    isCurrentRouteModal(nav) {
+      const nestedNav =
+        nav.routes && nav.index !== undefined && nav.routes[nav.index];
+      if (!nestedNav) {
+        return nav.params && nav.params.isModal;
+      }
+      return this.isCurrentRouteModal(nestedNav);
+    };
+
     onNavigationStateChange = (
       previousState: NavigationState,
       currentState: NavigationState,
     ) => {
-      if (currentState.index === 0) {
+      const nav = this.navigator.state.nav;
+
+      if (this.isCurrentRouteModal(nav)) {
+        GestureController.disableGestures(moduleName);
+      } else if (currentState.index === 0) {
         GestureController.enableGestures(moduleName);
         this.currentIndex = 0;
       } else if (currentState.index > 0) {
@@ -44,12 +61,17 @@ function withNativeNavigation<Props: {}>(
       return false;
     };
 
+    onNavigator = navigator => {
+      this.navigator = navigator;
+    };
+
     render() {
       return (
         <WrappedComponent
           onBackClicked={
             GestureController.isNativeGestureModule ? this.onBackClicked : null
           }
+          onNavigator={this.onNavigator}
           onNavigationStateChange={this.onNavigationStateChange}
           {...this.props}
         />

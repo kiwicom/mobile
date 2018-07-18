@@ -74,6 +74,7 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
         affiliateId: this.props.bookingComAffiliate,
         language: this.props.language,
         currency: this.props.currency,
+        isModal: true,
       },
     });
   };

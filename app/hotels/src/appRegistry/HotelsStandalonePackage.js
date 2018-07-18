@@ -20,10 +20,15 @@ type Props = {
   checkout?: string,
   onNavigationStateChange: () => void,
   onBackClicked: () => void,
+  onNavigator: (ref: React.ElementRef<*>) => void,
   dimensions: DimensionType,
 };
 
 class HotelsStandalonePackage extends React.Component<Props> {
+  navigatorRef = (ref: React.ElementRef<*>) => {
+    this.props.onNavigator(ref);
+  };
+
   renderInnerComponent = () => {
     const checkin = this.props.checkin ? new Date(this.props.checkin) : null;
     const checkout = this.props.checkout ? new Date(this.props.checkout) : null;
@@ -38,6 +43,7 @@ class HotelsStandalonePackage extends React.Component<Props> {
         screenProps={screenProps}
         onBackClicked={this.props.onBackClicked}
         onNavigationStateChange={this.props.onNavigationStateChange}
+        ref={this.navigatorRef}
       />
     );
   };

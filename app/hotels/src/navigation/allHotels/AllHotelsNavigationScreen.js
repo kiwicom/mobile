@@ -81,6 +81,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
       key: 'key-LocationPicker',
       params: {
         location,
+        isModal: true,
       },
     });
   };
@@ -89,6 +90,9 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
     this.props.navigation.navigate({
       routeName: 'GuestsModal',
       key: 'key-GuestsModal',
+      params: {
+        isModal: true,
+      },
     });
   };
 
