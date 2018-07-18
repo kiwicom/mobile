@@ -9,22 +9,22 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type PassengerMenuItem$ref: FragmentReference;
-export type PassengerMenuItem = {|
-  +fullName: ?string,
+declare export opaque type TravelDocumentPassengerMenuItem$ref: FragmentReference;
+export type TravelDocumentPassengerMenuItem = {|
   +title: ?string,
+  +fullName: ?string,
   +travelDocument: ?{|
     +idNumber: ?string,
     +expiration: ?any,
   |},
-  +$refType: PassengerMenuItem$ref,
+  +$refType: TravelDocumentPassengerMenuItem$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "PassengerMenuItem",
+  "name": "TravelDocumentPassengerMenuItem",
   "type": "Passenger",
   "metadata": null,
   "argumentDefinitions": [],
@@ -32,14 +32,14 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "fullName",
+      "name": "title",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "title",
+      "name": "fullName",
       "args": null,
       "storageKey": null
     },
@@ -71,5 +71,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '6a0c11317c82c9199a530d7cb2abf2e5';
+(node/*: any*/).hash = 'de53565386f539710ba3eaa2e0f23034';
 module.exports = node;
