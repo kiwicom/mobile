@@ -8,7 +8,7 @@ import {
 import { Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import ProfileScreen from '@kiwicom/mobile-profile';
-import { TabNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 
 import HotelsStack from './HotelsStack';
 import MMBPackage from '../screens/MMBPackageWrapper';
@@ -41,7 +41,7 @@ const ProfileStack = StackNavigator(
   },
 );
 
-export default TabNavigator(
+export default createBottomTabNavigator(
   {
     Search: { screen: HotelsStack },
     Bookings: { screen: MMBPackage },

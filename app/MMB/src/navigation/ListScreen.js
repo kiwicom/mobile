@@ -11,7 +11,7 @@ export default function ListScreen() {
 }
 
 ListScreen.navigationOptions = () => ({
-  title: (
+  headerTitle: (
     <HeaderTitle>
       <Translation id="mmb.my_bookings.title.bookings" />
     </HeaderTitle>

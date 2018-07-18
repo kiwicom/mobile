@@ -60,10 +60,10 @@ const MainStack = StackNavigator(
 export default StackNavigator(
   {
     MMBMainStack: {
-      screen: withMappedProps(MainStack),
+      screen: MainStack,
     },
     TravelDocumentScreen: {
-      screen: withMappedProps(TravelDocumentStack),
+      screen: TravelDocumentStack,
     },
   },
   {
