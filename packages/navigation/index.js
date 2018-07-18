@@ -147,3 +147,4 @@ export const createTransparentHeaderStyle = (dim: DimensionType) => {
 
 export type { RouteNames as RouteNamesType } from './types/Navigation';
 export type { Navigation as NavigationType } from './types/Navigation';
+export type { Navigator as NavigatorType } from './types/Navigation';

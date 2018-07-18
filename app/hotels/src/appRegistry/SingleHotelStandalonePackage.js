@@ -21,10 +21,15 @@ type Props = {
   language: string,
   onNavigationStateChange: () => void,
   onBackClicked: () => void,
+  onNavigator: (ref: React.ElementRef<*>) => void,
   dimensions: DimensionType,
 };
 
 class SingleHotelStandAlonePackage extends React.Component<Props> {
+  navigatorRef = (ref: React.ElementRef<*>) => {
+    this.props.onNavigator(ref);
+  };
+
   renderInnerComponent = () => {
     const screenProps = {
       ...this.props,
@@ -39,6 +44,7 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
         screenProps={screenProps}
         onBackClicked={this.props.onBackClicked}
         onNavigationStateChange={this.props.onNavigationStateChange}
+        ref={this.navigatorRef}
       />
     );
   };

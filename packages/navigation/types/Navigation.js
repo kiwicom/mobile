@@ -77,3 +77,24 @@ export type Navigation = {
   goBack: (key?: string | null) => void,
   addListener: NavigationListener,
 };
+
+type Routes = Array<{|
+  key: string,
+  index: number,
+  isTransitioning: boolean,
+  routeName: string,
+|}>;
+
+export type Navigator = {
+  state: {
+    nav: {
+      key: string,
+      index: number,
+      isTransitioning: boolean,
+      params?: {|
+        isModal: boolean,
+      |},
+      routes: Routes,
+    },
+  },
+};

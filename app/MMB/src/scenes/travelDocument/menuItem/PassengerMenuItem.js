@@ -29,6 +29,7 @@ class PassengerMenuItem extends React.Component<Props> {
         idNumber: idx(this.props.data, _ => _.travelDocument.idNumber) || null,
         expiryDate:
           idx(this.props.data, _ => _.travelDocument.expiration) || null,
+        isModal: true,
       },
     });
   };
