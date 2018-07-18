@@ -106,6 +106,25 @@ export default {
   'mmb.trip_services.insurance.variant.none': 'No Insurance',
   'mmb.trip_services.insurance.variant.basic': 'Travel Basic',
   'mmb.trip_services.insurance.variant.plus': 'Travel Plus',
+  'mmb.trip_services.insurance.title': 'Edit insurance',
+  'mmb.trip_services.insurance.selection.title': 'Insurance',
+  'mmb.trip_services.insurance.selection.travel_insurance': 'Travel insurance',
+  'mmb.trip_services.insurance.selection.provided_by_axa':
+    'Provided by Axa Assistance',
+  'mmb.trip_services.insurance.selection.insurance_summary.assistance':
+    'Assistance services',
+  'mmb.trip_services.insurance.selection.insurance_summary.bags':
+    'Lost baggage',
+  'mmb.trip_services.insurance.selection.insurance_summary.cancellation':
+    'Trip cancellation (illness, accident, death)',
+  'mmb.trip_services.insurance.selection.insurance_summary.liability':
+    'Liability',
+  'mmb.trip_services.insurance.selection.insurance_summary.medical':
+    'Medical expenses',
+  'mmb.trip_services.insurance.selection.insurance_summary.travel':
+    'Air travel insurance',
+  'mmb.trip_services.insurance.selection.insurance_summary.more_info':
+    'More info',
 
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',

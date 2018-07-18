@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1500a3f097c4bd48f0e0a97e07885dc1
+ * @relayHash 644d6a9160ea601613b7d15d56d0f9ec
  */
 
 /* eslint-disable */
@@ -57,13 +57,13 @@ fragment TripInfo on BookingInterface {
 fragment PassengerTravelDocumentMenuGroup on BookingInterface {
   passengers {
     databaseId
-    ...PassengerMenuItem
+    ...TravelDocumentPassengerMenuItem
   }
 }
 
-fragment PassengerMenuItem on Passenger {
-  fullName
+fragment TravelDocumentPassengerMenuItem on Passenger {
   title
+  fullName
   travelDocument {
     idNumber
     expiration
@@ -245,7 +245,7 @@ return {
   "operationKind": "query",
   "name": "FillTravelDocumentContainerQuery",
   "id": null,
-  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...FillTravelDocument\n    }\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  id\n  destinationImageUrl(dimensions: _375x165)\n  ...TripInfo\n  ...PassengerTravelDocumentMenuGroup\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment PassengerTravelDocumentMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...PassengerMenuItem\n  }\n}\n\nfragment PassengerMenuItem on Passenger {\n  fullName\n  title\n  travelDocument {\n    idNumber\n    expiration\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...FillTravelDocument\n    }\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  id\n  destinationImageUrl(dimensions: _375x165)\n  ...TripInfo\n  ...PassengerTravelDocumentMenuGroup\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment PassengerTravelDocumentMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...TravelDocumentPassengerMenuItem\n  }\n}\n\nfragment TravelDocumentPassengerMenuItem on Passenger {\n  title\n  fullName\n  travelDocument {\n    idNumber\n    expiration\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -327,14 +327,14 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "fullName",
+                "name": "title",
                 "args": null,
                 "storageKey": null
               },
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "title",
+                "name": "fullName",
                 "args": null,
                 "storageKey": null
               },
