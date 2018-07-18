@@ -1,25 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`works with failed rating prop 1`] = `
-<Translation
-  passThrough=""
-/>
+<Text
+  style={
+    Object {
+      "letterSpacing": 2,
+    }
+  }
+>
+  <Translation
+    passThrough=""
+  />
+</Text>
 `;
 
 exports[`works with failed rating prop 2`] = `
-<Translation
-  passThrough=""
-/>
+<Text
+  style={
+    Object {
+      "letterSpacing": 2,
+    }
+  }
+>
+  <Translation
+    passThrough=""
+  />
+</Text>
 `;
 
 exports[`works with rating prop 1`] = `
-<Translation
-  passThrough="★★★"
-/>
+<Text
+  style={
+    Object {
+      "letterSpacing": 2,
+    }
+  }
+>
+  <Translation
+    passThrough="★★★"
+  />
+</Text>
 `;
 
 exports[`works with rating prop 2`] = `
-<Translation
-  passThrough="★★★★★★★★★★"
-/>
+<Text
+  style={
+    Object {
+      "letterSpacing": 2,
+    }
+  }
+>
+  <Translation
+    passThrough="★★★★★★★★★★"
+  />
+</Text>
 `;
