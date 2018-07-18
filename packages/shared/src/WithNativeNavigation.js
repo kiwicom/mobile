@@ -1,10 +1,12 @@
-/* @flow */
+// @flow
 
 import * as React from 'react';
 import { GestureController } from '@kiwicom/mobile-shared';
 
 type NavigationState = {|
-  index: number,
+  +routes: $ReadOnlyArray<{
+    +routes: $ReadOnlyArray<mixed>,
+  }>,
 |};
 
 type InjectedProps = {|
@@ -17,27 +19,37 @@ function withNativeNavigation<Props: {}>(
   moduleName: string,
 ): React.ComponentType<$Diff<Props, InjectedProps>> {
   return class WithNativeNavigation extends React.Component<*> {
-    currentIndex: number;
+    isEnabled: boolean;
+    lastCall: '' | 'disabled' | 'enabled';
 
     constructor(props) {
       super(props);
-      this.currentIndex = 0;
+      this.isEnabled = true;
+      this.lastCall = '';
     }
     onNavigationStateChange = (
       previousState: NavigationState,
       currentState: NavigationState,
     ) => {
-      if (currentState.index === 0) {
+      // Native gesture should only be enabled in the very first screen
+      // Also, there should not be modal (like first screen + modal)
+      const isDisabled =
+        currentState.routes.length > 1 ||
+        currentState.routes[0].routes.length > 1;
+
+      if (!isDisabled && this.lastCall !== 'enabled') {
         GestureController.enableGestures(moduleName);
-        this.currentIndex = 0;
-      } else if (currentState.index > 0) {
+        this.lastCall = 'enabled';
+        this.isEnabled = true;
+      } else if (this.lastCall !== 'disabled') {
         GestureController.disableGestures(moduleName);
-        this.currentIndex = currentState.index;
+        this.lastCall = 'disabled';
+        this.isEnabled = false;
       }
     };
 
     onBackClicked = () => {
-      if (this.currentIndex === 0) {
+      if (this.isEnabled) {
         GestureController.invokeDefaultBackButton();
         return true;
       }
