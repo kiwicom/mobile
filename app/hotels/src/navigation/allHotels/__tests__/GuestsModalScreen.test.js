@@ -16,6 +16,9 @@ const navigation = {
   state: {
     params: {},
   },
+  addListener: jest.fn(() => ({
+    remove: jest.fn(),
+  })),
 };
 
 const shallowRenderGuestsPopup = (searchChange: Function) => {
