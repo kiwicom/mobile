@@ -129,6 +129,62 @@ export default {
   'mmb.trip_services.insurance.selection.insurance_summary.more_info':
     'More info',
 
+  'mmb.trip_services.insurance.more_info.title': 'Travel insurance',
+  'mmb.trip_services.insurance.selection.more_info.pitch':
+    'Some important facts about your insurance are summarised below. To find all the details, read the full Terms and conditions.',
+  'mmb.trip_services.insurance.selection.more_info.accidental_death':
+    'Accidental death',
+  'mmb.trip_services.insurance.selection.more_info.agree_with_terms':
+    'By purchasing and using this insurance, you agree with terms & conditions negotiated between IPA and Kiwi.com.',
+  'mmb.trip_services.insurance.selection.more_info.baggage_limit_item':
+    'Baggage  insurance - limit per item',
+  'mmb.trip_services.insurance.selection.more_info.baggage_limit_total':
+    'Baggage insurance - total limit',
+  'mmb.trip_services.insurance.selection.more_info.co_insurance':
+    'Additional insurance',
+  'mmb.trip_services.insurance.selection.more_info.co_insurance_causes_flights_cancellation':
+    'Additional insurance for causes of trip cancellations as stated in the T&Cs',
+  'mmb.trip_services.insurance.selection.more_info.co_insurance_causes_subsequent_services':
+    'Additional insurance for causes of subsequent services as stated in the T&C',
+  'mmb.trip_services.insurance.selection.more_info.delayed_baggage_coverage':
+    'Delayed baggage coverage',
+  'mmb.trip_services.insurance.selection.more_info.emergency_dental_treatment':
+    'Emergency dental treatment',
+  'mmb.trip_services.insurance.selection.more_info.emergency_medical_expenses':
+    'Emergency medical expenses',
+  'mmb.trip_services.insurance.selection.more_info.flight_cancellation':
+    'Trip cancellation and subsequent services coverage — total limit',
+  'mmb.trip_services.insurance.selection.more_info.flight_delays_or_cancellations_coverage':
+    'Delay and cancellation coverage',
+  'mmb.trip_services.insurance.selection.more_info.interpretation_and_translation':
+    'Interpretation and translation',
+  'mmb.trip_services.insurance.selection.more_info.liability_health':
+    'Liability for damages - health',
+  'mmb.trip_services.insurance.selection.more_info.liability_property':
+    'Liability for damages - property',
+  'mmb.trip_services.insurance.selection.more_info.loss_travel_documents':
+    'Loss of travel documents (passport, ID)',
+  'mmb.trip_services.insurance.selection.more_info.medical_assistance':
+    'Medical assistance',
+  'mmb.trip_services.insurance.selection.more_info.missed_flight_coverage':
+    'Missed flight coverage',
+  'mmb.trip_services.insurance.selection.more_info.permanent_consequences_of_accident':
+    'Permanent consequences of accident',
+  'mmb.trip_services.insurance.selection.more_info.provided_by_axa':
+    'Provided by Axa Assistance',
+  'mmb.trip_services.insurance.selection.more_info.real_cost_to_overall_limit':
+    'Actual cost up to the overall limit',
+  'mmb.trip_services.insurance.selection.more_info.repatriation_medical_transportation':
+    'Repatriation and medical transportation',
+  'mmb.trip_services.insurance.selection.more_info.telephone_assistance':
+    'Telephone emergency assistance',
+  'mmb.trip_services.insurance.selection.more_info.to_amount_paid_for_flights_and':
+    'to the amount paid for flights and subsequent services, but not exceeding € 2,000',
+  'mmb.trip_services.insurance.selection.more_info.tourist_assistance':
+    'Tourist assistance',
+  'mmb.trip_services.insurance.selection.more_info.terms':
+    'Terms and Conditions',
+
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',
   'mmb.support.phone.all_numbers': 'All Numbers',

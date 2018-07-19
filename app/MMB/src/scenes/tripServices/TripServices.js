@@ -22,6 +22,8 @@ import InsuranceOverviewScene from './insurance/InsuranceOverviewScene';
 import InsuranceSelectionScene from './insurance/insuranceSelectionScene/InsuranceSelectionScene';
 import PaymentScene from './insurance/PaymentScene';
 import RefundScene from './insurance/RefundScene';
+import MoreInfoScene from './insurance/moreInfoScene/MoreInfoScene';
+import InsuranceTermsPdfScene from './insurance/InsuranceTermsPdfScene';
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TripServicesQueryResponse } from './__generated__/TripServicesQuery.graphql';
 
@@ -140,8 +142,12 @@ export const TripServicesSubmenuItems = {
     },
   },
   'mmb.trip_services.insurance.selection': {
-    screen: function TripServicesSubmenuInsuranceSelection() {
-      return <InsuranceSelectionScene />;
+    screen: function TripServicesSubmenuInsuranceSelection({
+      navigation,
+    }: {|
+      +navigation: NavigationType,
+    |}) {
+      return <InsuranceSelectionScene navigation={navigation} />;
     },
     headerTitle: function TripServicesHeaderTitle() {
       return (
@@ -159,6 +165,34 @@ export const TripServicesSubmenuItems = {
   'mmb.trip_services.insurance.refund': {
     screen: function TripServicesSubmenuInsuranceRefund() {
       return <RefundScene />;
+    },
+  },
+  'mmb.trip_services.insurance.selection.more_info': {
+    screen: function TripServicesSubmenuInsuranceSelectionMoreInfo({
+      navigation,
+    }: {|
+      +navigation: NavigationType,
+    |}) {
+      return <MoreInfoScene navigation={navigation} />;
+    },
+    headerTitle: function TripServicesSubmenuInsuranceSelectionMoreInfoHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.trip_services.insurance.more_info.title" />
+        </HeaderTitle>
+      );
+    },
+  },
+  'mmb.trip_services.insurance.selection.more_info.terms': {
+    screen: function TripServicesSubmenuInsuranceSelectionMoreInfo() {
+      return <InsuranceTermsPdfScene />;
+    },
+    headerTitle: function TripServicesSubmenuInsuranceSelectionMoreInfoHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.trip_services.insurance.more_info.title" />
+        </HeaderTitle>
+      );
     },
   },
 };
