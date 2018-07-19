@@ -210,6 +210,7 @@ type Booking {
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
+  insurancePrices: [InsurancePrice]
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -308,6 +309,7 @@ interface BookingInterface {
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
+  insurancePrices: [InsurancePrice]
 }
 
 """A connection to a list of items."""
@@ -367,6 +369,7 @@ type BookingMulticity implements BookingInterface & Node {
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
+  insurancePrices: [InsurancePrice]
 
   """Initial origin."""
   start: RouteStop
@@ -420,6 +423,7 @@ type BookingOneWay implements BookingInterface & Node {
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
+  insurancePrices: [InsurancePrice]
   trip: Trip
 }
 
@@ -463,6 +467,7 @@ type BookingReturn implements BookingInterface & Node {
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
+  insurancePrices: [InsurancePrice]
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -833,6 +838,29 @@ enum DirectAccessURLValues {
   VALIDATE_PAYMENT
   TRAVEL_DOCUMENTS
   PAYMENT
+}
+
+interface DocumentInterface {
+  """URL of the document"""
+  url: String
+}
+
+"""A connection to a list of items."""
+type DocumentInterfaceConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DocumentInterfaceEdge]
+}
+
+"""An edge in a connection."""
+type DocumentInterfaceEdge {
+  """The item at the end of the edge"""
+  node: DocumentInterface
+
+  """A cursor for use in pagination"""
+  cursor: String!
 }
 
 type DownloadBoardingPassTimelineEvent implements TimelineEvent {
@@ -1474,9 +1502,22 @@ type Identity {
   login: String
 }
 
+type InsurancePrice {
+  price: Price
+
+  """Insurance type"""
+  insuranceType: InsuranceType
+}
+
 type InsuranceService {
   """Returns passengers allowed to buy a travel insurance."""
   passengers: [Passenger]
+}
+
+"""Insurance Terms and Conditions document"""
+type InsuranceTerms implements DocumentInterface {
+  """URL of the document"""
+  url: String
 }
 
 """The possible insurance type values"""
@@ -1879,7 +1920,7 @@ type RootMutation {
 """Root Query"""
 type RootQuery {
   """AirHelp+ offer that can be purchased with booking"""
-  airHelpPlusOffer(bookingId: String!): AirHelpPlusOffer
+  airHelpPlusOffer: AirHelpPlusOffer
 
   """
   Search for all available hotels in one location. It's necessary to send
@@ -1899,6 +1940,9 @@ type RootQuery {
     before: String
     last: Int
   ): BookingConnection @deprecated(reason: "Use \"customerBookings\" query instead.")
+
+  """Search for the urls of public documents"""
+  allDocuments(after: String, first: Int, before: String, last: Int): DocumentInterfaceConnection
 
   """
   All dynamic packages. Dynamic package is a combination of return flight and
