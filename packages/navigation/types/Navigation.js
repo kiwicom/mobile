@@ -28,6 +28,8 @@ type MMBStackNavigatorNames =
   | 'mmb.flight_services.sports_equipment'
   | 'mmb.trip_services.insurance'
   | 'mmb.trip_services.insurance.refund'
+  | 'mmb.trip_services.insurance.selection.more_info'
+  | 'mmb.trip_services.insurance.selection.more_info.terms'
   | 'mmb.trip_services.insurance.payment'
   | 'mmb.trip_services.insurance.selection'
   | 'mmb.trip_services.webview'

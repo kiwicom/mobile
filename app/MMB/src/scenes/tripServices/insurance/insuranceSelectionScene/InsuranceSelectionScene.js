@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, TouchableWithoutFeedback } from 'react-native';
 import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
@@ -34,6 +34,11 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
   state = {
     selectedVariant: 'none',
   };
+
+  goToMoreInfo = () =>
+    this.props.navigation.navigate(
+      'mmb.trip_services.insurance.selection.more_info',
+    );
 
   selectVariantNone = () => this.setState({ selectedVariant: 'none' });
 
@@ -83,16 +88,18 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
           />
         </View>
 
-        <View>
-          <InsuranceSummary />
-          <IconWithText
-            textIconCode="F"
-            text={
-              <Translation id="mmb.trip_services.insurance.selection.insurance_summary.more_info" />
-            }
-            color={Color.product.normal}
-          />
-        </View>
+        <InsuranceSummary />
+        <TouchableWithoutFeedback onPress={this.goToMoreInfo}>
+          <View>
+            <IconWithText
+              textIconCode="F"
+              text={
+                <Translation id="mmb.trip_services.insurance.selection.insurance_summary.more_info" />
+              }
+              color={Color.product.normal}
+            />
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   };
