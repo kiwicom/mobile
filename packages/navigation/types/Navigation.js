@@ -62,14 +62,19 @@ export type NavigationListener = (
 ) => { remove: () => void };
 
 /**
- * @see https://reactnavigation.org/docs/navigators/navigation-prop
+ * Based on official types with custom changes (like RouteNames)
+ * @see https://github.com/flow-typed/flow-typed/tree/master/definitions/npm/react-navigation_v2.x.x
  */
 export type Navigation = {
-  navigate: ({
-    routeName: RouteNames,
-    key: string, // should be unique
+  navigate: (
+    routeName:
+      | RouteNames
+      | {|
+          routeName: RouteNames,
+          params?: NavigationStateParameters,
+        |},
     params?: NavigationStateParameters,
-  }) => void,
+  ) => void, // In fact it returns boolean but we don't care of this result
   state: {
     params: NavigationStateParameters,
   },
