@@ -12,6 +12,9 @@ const navigation = {
   navigate: jest.fn(),
   setParams: jest.fn(),
   goBack: jest.fn(),
+  getParam: jest.fn(),
+  dispatch: jest.fn(),
+  isFocused: jest.fn(),
   state: {
     params: {},
   },

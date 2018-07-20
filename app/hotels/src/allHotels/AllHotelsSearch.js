@@ -17,7 +17,7 @@ import HotelsFilterContext from '../HotelsFilterContext';
 
 type PropsWithContext = {
   // external:
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void | boolean,
   cityId: ?string,
   coordinates: Coordinates | null,
   currency: string,
@@ -91,7 +91,7 @@ class AllHotelsSearch extends React.Component<PropsWithContext> {
 }
 
 type Props = {
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void | boolean,
   cityId: ?string,
   coordinates: Coordinates | null,
   currency: string,

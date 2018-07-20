@@ -156,7 +156,9 @@ class AllHotelsMap extends React.Component<PropsWithContext> {
 type Props = {|
   currency: string,
   coordinates: Coordinates | null,
-  onGoToSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  onGoToSingleHotel: (
+    searchParams: AvailableHotelSearchInput,
+  ) => void | boolean,
 |};
 
 export default function AllHotelsMapWithContext(props: Props) {

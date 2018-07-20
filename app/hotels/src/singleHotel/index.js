@@ -25,7 +25,7 @@ type ContainerProps = {|
 export const handleOpenSingleHotel = (
   hotelId: string,
   searchParams: SearchParams,
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void | boolean,
 ) => {
   if (searchParams.checkin && searchParams.checkout) {
     openSingleHotel({

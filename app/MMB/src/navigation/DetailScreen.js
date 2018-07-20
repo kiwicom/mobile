@@ -151,7 +151,6 @@ export default class DetailsScreen extends React.Component<Props, State> {
    * Do proper navigation transition on mobile (narrow) devices.
    */
   openMenuOnMobile = (key: string) => {
-    // $FlowExpectedError: Flow type for this navigation seems to be quite challenging. I am skipping it on purpose.
     this.props.navigation.navigate({
       routeName: key,
       key: `key-${key}`,

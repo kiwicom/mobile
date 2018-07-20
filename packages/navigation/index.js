@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Platform, StatusBar } from 'react-native';
-import ReactNavigation from 'react-navigation';
+import { StackNavigator as MainStackNavigator } from 'react-navigation'; // eslint-disable-line no-restricted-imports
 import {
   Color,
   Device,
@@ -115,7 +115,7 @@ export const StackNavigator = (
     +headerMode?: 'none',
   |},
 ) => {
-  return ReactNavigation.StackNavigator(RouteConfigs, StackNavigatorConfig);
+  return MainStackNavigator.StackNavigator(RouteConfigs, StackNavigatorConfig);
 };
 
 export const StackNavigatorOptions = {

@@ -10,7 +10,7 @@ import Button from './Button';
 
 type Props = {|
   +title: TranslationType,
-  +onPress: () => void,
+  +onPress: () => void | boolean,
   +disabled?: boolean,
 |};
 
