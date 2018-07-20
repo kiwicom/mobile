@@ -1,6 +1,6 @@
 // @flow
 
-type NavigationStateParameters = Object;
+import type { NavigationScreenProp } from 'react-navigation';
 
 // FIXME: this is related to the packages and not navigation
 type CoreStackNavigatorRouteNames =
@@ -55,25 +55,4 @@ export type RouteNames =
   | HomepageStackNavigatorRouteNames
   | PlaygroundNavigationRouteNames;
 
-export type NavigationListener = (
-  key: 'willBlur' | 'willFocus' | 'didFocus' | 'didBlur',
-  // See payload https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
-  callback: (payload: Object) => void,
-) => { remove: () => void };
-
-/**
- * @see https://reactnavigation.org/docs/navigators/navigation-prop
- */
-export type Navigation = {
-  navigate: ({
-    routeName: RouteNames,
-    key: string, // should be unique
-    params?: NavigationStateParameters,
-  }) => void,
-  state: {
-    params: NavigationStateParameters,
-  },
-  setParams: (newParameters: NavigationStateParameters) => void,
-  goBack: (key?: string | null) => void,
-  addListener: NavigationListener,
-};
+export type Navigation = NavigationScreenProp<*>;

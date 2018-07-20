@@ -9,7 +9,7 @@ import type { StylePropType } from '../../index';
 
 type Props = {|
   +children: React.Node,
-  +onPress: () => void,
+  +onPress: () => *,
   +style?: StylePropType,
   +disabled?: boolean,
 |};

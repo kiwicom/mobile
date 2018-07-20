@@ -129,7 +129,7 @@ export class AllHotels extends React.Component<PropsWithContext> {
 type Props = {|
   +currency: string,
   +coordinates: Coordinates | null,
-  +openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
+  +openSingleHotel: (searchParams: AvailableHotelSearchInput) => void | boolean,
   +openLocationPicker: (location: string | null) => void,
   +openGuestsModal: () => void,
   +checkin: ?Date,

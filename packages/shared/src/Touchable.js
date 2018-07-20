@@ -14,7 +14,7 @@ import { type StylePropType } from '../types/Styles';
 
 type Props = {|
   children: React.Node,
-  onPress: () => void,
+  onPress: () => void | boolean,
   disabled: boolean,
   style?: StylePropType,
   onLongPress?: () => void,
