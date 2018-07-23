@@ -23,15 +23,11 @@ const TravelDocumentPassengerMenuItem = (props: Props) => {
   const expiryDate = idx(props.data, _ => _.travelDocument.expiration) || null;
 
   function onPress() {
-    props.navigation.navigate({
-      routeName: 'TravelDocumentModalScreen',
-      key: 'key-TravelDocumentModalScreen',
-      params: {
-        title,
-        fullName,
-        idNumber,
-        expiryDate,
-      },
+    props.navigation.navigate('TravelDocumentModalScreen', {
+      title,
+      fullName,
+      idNumber,
+      expiryDate,
     });
   }
 

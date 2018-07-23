@@ -28,11 +28,7 @@ export default class AllHotelsMapNavigationScreen extends React.Component<
   };
 
   goToHotel = (searchParams: AvailableHotelSearchInput) => {
-    return this.props.navigation.navigate({
-      routeName: 'SingleHotel',
-      key: 'key-SingleHotel',
-      params: searchParams,
-    });
+    return this.props.navigation.navigate('SingleHotel', searchParams);
   };
 
   render = () => (

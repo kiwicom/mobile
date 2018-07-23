@@ -83,12 +83,8 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
   };
 
   navigate = (key: RouteNamesType) => {
-    this.props.navigation.navigate({
-      routeName: key,
-      key: `key-${key}`,
-      params: {
-        bookingId: idx(this.props.bookedServices, _ => _.databaseId),
-      },
+    this.props.navigation.navigate(key, {
+      bookingId: idx(this.props.bookedServices, _ => _.databaseId),
     });
   };
 

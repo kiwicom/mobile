@@ -42,10 +42,7 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
     }
 
     function goToAllHotelsMap() {
-      props.navigation.navigate({
-        routeName: 'AllHotelsMap',
-        key: 'key-AllHotelsMap',
-      });
+      props.navigation.navigate('AllHotelsMap');
     }
 
     return {
@@ -76,28 +73,15 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
   };
 
   openLocationPicker = (location: string | null) => {
-    this.props.navigation.navigate({
-      routeName: 'LocationPicker',
-      key: 'key-LocationPicker',
-      params: {
-        location,
-      },
-    });
+    this.props.navigation.navigate('LocationPicker', { location });
   };
 
   openGuestsModal = () => {
-    this.props.navigation.navigate({
-      routeName: 'GuestsModal',
-      key: 'key-GuestsModal',
-    });
+    this.props.navigation.navigate('GuestsModal');
   };
 
   openSingleHotel = (searchParams: any) =>
-    this.props.navigation.navigate({
-      routeName: 'SingleHotel',
-      key: 'key-SingleHotel',
-      params: searchParams,
-    });
+    this.props.navigation.navigate('SingleHotel', searchParams);
 
   render = () => {
     return (
