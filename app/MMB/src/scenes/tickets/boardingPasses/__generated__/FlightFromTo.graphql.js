@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type AppleWallet$ref = any;
 type DownloadButton$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FlightFromTo$ref: FragmentReference;
@@ -28,7 +29,7 @@ export type FlightFromTo = {|
     |}
   |},
   +boardingPass: ?{|
-    +$fragmentRefs: DownloadButton$ref
+    +$fragmentRefs: DownloadButton$ref & AppleWallet$ref
   |},
   +$refType: FlightFromTo$ref,
 |};
@@ -116,6 +117,11 @@ return {
           "kind": "FragmentSpread",
           "name": "DownloadButton",
           "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "AppleWallet",
+          "args": null
         }
       ]
     }
@@ -123,5 +129,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'c859af7174ec2dc0bfd08cafb26f8d4a';
+(node/*: any*/).hash = 'fa049004b6ac398c3ce6798121384d21';
 module.exports = node;

@@ -42,6 +42,9 @@ export default {
     'We need your passport/ID details to check you in online.',
   'mmb.boarding_passes.future_booking_information.available':
     'You have been provided with digital boarding pass, but you should print it out because some airlines require a physical copy',
+  'mmb.boarding_passes.apple_wallet.title': 'Apple Wallet boarding pass',
+  'mmb.boarding_passes.apple_wallet.information_text':
+    'Board the plane with an electronic boarding pass from your Apple Wallet',
 
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
