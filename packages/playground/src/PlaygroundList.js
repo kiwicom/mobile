@@ -42,13 +42,9 @@ export class PlaygroundList extends React.Component<Props> {
 
   navigateToPlayground = (name: string) => {
     this.props.saveToStorage(name);
-    this.props.navigation.navigate({
-      routeName: 'Playground',
-      key: 'key-Playground',
-      params: {
-        name,
-        onGoBack: this.onBackClicked,
-      },
+    this.props.navigation.navigate('Playground', {
+      name,
+      onGoBack: this.onBackClicked,
     });
   };
 

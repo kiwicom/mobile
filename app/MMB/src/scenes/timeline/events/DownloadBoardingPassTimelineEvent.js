@@ -25,11 +25,7 @@ type Props = {|
 
 class DownloadBoardingPassTimelineEvent extends React.Component<Props> {
   navigate = (key: RouteNamesType, params?: Object) => {
-    this.props.navigation.navigate({
-      routeName: key,
-      key: `key-${key}`,
-      params,
-    });
+    this.props.navigation.navigate(key, params);
   };
 
   handleOpenBoardingPass = () => {

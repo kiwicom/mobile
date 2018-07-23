@@ -65,10 +65,7 @@ function renderLegs(legs) {
 
 class DownloadInvoiceTimelineEvent extends React.Component<Props> {
   navigate = (key: RouteNamesType) => {
-    this.props.navigation.navigate({
-      routeName: key,
-      key: `key-${key}`,
-    });
+    this.props.navigation.navigate(key);
   };
 
   handleOpenInvoice = () => {

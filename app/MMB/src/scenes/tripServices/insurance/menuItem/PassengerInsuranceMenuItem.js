@@ -23,16 +23,12 @@ const PassengerInsuranceMenuItem = (props: Props) => {
   const databaseId = idx(props, _ => _.data.databaseId);
 
   function onPress() {
-    props.navigation.navigate({
-      routeName: 'mmb.trip_services.insurance.selection',
-      key: 'key-mmb.trip_services.insurance.selection',
-      params: {
-        fullName,
-        title,
-        birthday,
-        databaseId,
-        insuranceType,
-      },
+    props.navigation.navigate('mmb.trip_services.insurance.selection', {
+      fullName,
+      title,
+      birthday,
+      databaseId,
+      insuranceType,
     });
   }
   return (

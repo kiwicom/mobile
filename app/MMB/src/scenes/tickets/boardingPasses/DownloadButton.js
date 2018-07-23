@@ -18,12 +18,8 @@ type Props = {|
 
 class DownloadButton extends React.Component<Props> {
   navigateToBoardingPass = () => {
-    this.props.navigation.navigate({
-      routeName: 'mmb.tickets.boarding_pass',
-      key: `key-mmb.tickets.boarding_pass`,
-      params: {
-        boardingPassUrl: idx(this.props, _ => _.data.boardingPassUrl),
-      },
+    this.props.navigation.navigate('mmb.tickets.boarding_pass', {
+      boardingPassUrl: idx(this.props, _ => _.data.boardingPassUrl),
     });
   };
 
