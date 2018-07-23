@@ -13,10 +13,7 @@ type Props = {|
 
 class BaggageGroupButton extends React.Component<Props> {
   goToBaggage = () => {
-    this.props.navigation.navigate({
-      routeName: 'mmb.flight_services.checked_baggage',
-      key: 'key-mmb.flight_services.checked_baggage',
-    });
+    this.props.navigation.navigate('mmb.flight_services.checked_baggage');
   };
 
   render = () => (

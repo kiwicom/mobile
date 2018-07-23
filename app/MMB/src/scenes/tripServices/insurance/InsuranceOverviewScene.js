@@ -24,10 +24,7 @@ type Props = {|
 
 class InsuranceOverviewScene extends React.Component<Props> {
   navigate = (routeName: RouteNamesType) => {
-    this.props.navigation.navigate({
-      routeName,
-      key: 'key-' + routeName,
-    });
+    this.props.navigation.navigate(routeName);
   };
 
   goToTheInsurancePayment = () => {

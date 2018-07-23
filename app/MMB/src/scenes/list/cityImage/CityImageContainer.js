@@ -51,10 +51,7 @@ class CityImageContainer extends React.Component<PropsWithContext> {
       departureTime: new Date(departureTime),
     });
 
-    this.props.navigation.navigate({
-      routeName: 'DetailScreen',
-      key: 'key-DetailScreen',
-    });
+    this.props.navigation.navigate('DetailScreen');
   };
 
   render = () => (

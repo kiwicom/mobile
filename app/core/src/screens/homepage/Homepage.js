@@ -23,53 +23,34 @@ function Section({ children }: { children: React.Node }) {
 }
 
 export default class Homepage extends React.Component<Props> {
-  goToAllHotelsPage = () =>
-    this.props.navigation.navigate({
-      routeName: 'HotelsPackage',
-      key: 'key-HotelsPackage',
-    });
+  goToAllHotelsPage = () => this.props.navigation.navigate('HotelsPackage');
 
   goToOslo = () => {
-    this.props.navigation.navigate({
-      routeName: 'HotelsPackage',
-      key: 'key-HotelsPackage',
-      params: {
-        coordinates: {
-          latitude: 59.9139,
-          longitude: 10.7522,
-        },
+    this.props.navigation.navigate('HotelsPackage', {
+      coordinates: {
+        latitude: 59.9139,
+        longitude: 10.7522,
       },
     });
   };
 
   goToLima = () => {
-    this.props.navigation.navigate({
-      routeName: 'HotelsPackage',
-      key: 'key-HotelsPackage',
-      params: {
-        coordinates: {
-          latitude: -12.046374,
-          longitude: -77.042793,
-        },
+    this.props.navigation.navigate('HotelsPackage', {
+      coordinates: {
+        latitude: -12.046374,
+        longitude: -77.042793,
       },
     });
   };
 
   goToSingleHotel = () => {
-    this.props.navigation.navigate({
-      routeName: 'SingleHotelPackage',
-      key: 'key-SingleHotelPackage',
-    });
+    this.props.navigation.navigate('SingleHotelPackage');
   };
 
   searchWithDates = () => {
-    this.props.navigation.navigate({
-      routeName: 'HotelsPackage',
-      key: 'key-HotelsPackage',
-      params: {
-        checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
-        checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
-      },
+    this.props.navigation.navigate('HotelsPackage', {
+      checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
+      checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
     });
   };
 

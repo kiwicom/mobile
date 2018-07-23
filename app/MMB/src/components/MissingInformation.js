@@ -37,10 +37,7 @@ export class MissingInformation extends React.Component<PropsWithContext> {
   };
 
   fillInPassengerInfo = () => {
-    this.props.navigation.navigate({
-      routeName: 'TravelDocumentScreen',
-      key: 'key-TravelDocumentScreen',
-    });
+    this.props.navigation.navigate('TravelDocumentScreen');
   };
 
   render = () => {

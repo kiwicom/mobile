@@ -17,14 +17,10 @@ export default class AdditionalPropsInjecter extends React.Component<
     highResImages: string[],
     imageIndex: number,
   ) => {
-    this.props.navigation.navigate({
-      routeName: 'GalleryStripe',
-      key: 'key-GalleryStripe',
-      params: {
-        hotelName,
-        imageUrls: highResImages,
-        index: imageIndex,
-      },
+    this.props.navigation.navigate('GalleryStripe', {
+      hotelName,
+      imageUrls: highResImages,
+      index: imageIndex,
     });
   };
 
