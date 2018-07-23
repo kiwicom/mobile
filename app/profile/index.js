@@ -11,6 +11,7 @@ import {
 
 import Login from './components/authentication/Login';
 import Logout from './components/authentication/Logout';
+import SaveCustomToken from './components/SaveCustomToken';
 
 type State = {|
   isLoggedIn: boolean,
@@ -52,6 +53,11 @@ export default class LoginScreen extends React.Component<{||}, State> {
                 <Login onLogin={this.onLogin} />
               )}
             </SimpleCard>
+            {!this.state.isLoggedIn && (
+              <SimpleCard style={styles.customToken}>
+                <SaveCustomToken onPress={this.onLogin} />
+              </SimpleCard>
+            )}
           </LayoutSingleColumn>
         </DismissKeyboardView>
       </View>
@@ -62,5 +68,8 @@ export default class LoginScreen extends React.Component<{||}, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  customToken: {
+    marginTop: 20,
   },
 });
