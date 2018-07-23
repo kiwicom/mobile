@@ -5,7 +5,7 @@ import { GestureController } from '@kiwicom/mobile-shared';
 
 type NavigationState = {|
   +routes: $ReadOnlyArray<{
-    +routes: $ReadOnlyArray<mixed>,
+    +routes?: $ReadOnlyArray<mixed>,
   }>,
 |};
 
@@ -33,9 +33,11 @@ function withNativeNavigation<Props: {}>(
     ) => {
       // Native gesture should only be enabled in the very first screen
       // Also, there should not be modal (like first screen + modal)
+
       const isDisabled =
         currentState.routes.length > 1 ||
-        currentState.routes[0].routes.length > 1;
+        (currentState.routes[0].routes &&
+          currentState.routes[0].routes.length > 1);
 
       if (!isDisabled && this.lastCall !== 'enabled') {
         GestureController.enableGestures(moduleName);
