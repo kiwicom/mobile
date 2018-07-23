@@ -102,6 +102,7 @@ export const StackNavigator = (
           | React.Element<typeof Dimensions.Consumer>,
         +headerStyle?: StylePropType,
         +mode?: 'modal',
+        +headerTransparent?: boolean,
       |},
     |},
   },
@@ -134,12 +135,12 @@ export const createTransparentHeaderStyle = (dim: DimensionType) => {
 
   return {
     headerStyle: {
-      position: 'absolute',
-      backgroundColor: 'transparent',
-      top: StatusBar.currentHeight,
-      left: 0,
-      right: 0,
+      borderBottomWidth: 0,
+      backgroundColor: 'rgba(0,0,0,0)',
+      elevation: 0,
+      marginTop: StatusBar.currentHeight,
     },
+    headerTransparent: true,
   };
 };
 
