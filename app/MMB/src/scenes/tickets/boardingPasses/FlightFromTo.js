@@ -1,12 +1,13 @@
 // @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { TextIcon, StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
+import AppleWallet from './appleWallet/AppleWallet';
 import DownloadButton from './DownloadButton';
 import type { FlightFromTo as RouteStopType } from './__generated__/FlightFromTo.graphql';
 
@@ -14,7 +15,7 @@ type Props = {|
   +data: RouteStopType,
 |};
 
-const FlightFromTo = (props: Props) => {
+export const FlightFromTo = (props: Props) => {
   const date = idx(props.data, _ => _.departure.localTime);
   const shortDate = date
     ? DateFormatter(new Date(date)).formatToShortDate()
@@ -47,6 +48,11 @@ const FlightFromTo = (props: Props) => {
         <View style={styles.buttonContainer}>
           <DownloadButton data={idx(props.data, _ => _.boardingPass)} />
         </View>
+        {Platform.OS === 'ios' && (
+          <View style={styles.appleWalletContainer}>
+            <AppleWallet data={idx(props.data, _ => _.boardingPass)} />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -72,6 +78,7 @@ export default createFragmentContainer(
       }
       boardingPass {
         ...DownloadButton
+        ...AppleWallet
       }
     }
   `,
@@ -108,5 +115,8 @@ const styles = StyleSheet.create({
   rightColumn: {
     marginEnd: 9,
     flex: 1,
+  },
+  appleWalletContainer: {
+    marginTop: 20,
   },
 });

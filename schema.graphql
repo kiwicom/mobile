@@ -107,6 +107,9 @@ type BoardingPass {
 
   """The date when the boarding pass will be available for download"""
   availableAt: Date
+
+  """pkpasses connected to the boarding pass"""
+  pkpasses: [Pkpass]
 }
 
 type BoardingTimelineEvent implements TimelineEvent {
@@ -1786,6 +1789,19 @@ type Passenger {
 
   """Visa information for the passenger"""
   visaInformation: Visa
+
+  """Url needed for apple wallet integration"""
+  pkpasses: [Pkpass] @deprecated(reason: "Use pkpass under boarding pass instead")
+}
+
+input PassengerInput {
+  passengerId: Int!
+
+  """Expiry date of travel document"""
+  documentExpiry: Date!
+
+  """Number of travel document"""
+  documentNumber: String!
 }
 
 input PassengersInput {
@@ -1796,6 +1812,15 @@ input PassengersInput {
 type PaymentConfirmedTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+}
+
+"""Url needed for apple wallet integration"""
+type Pkpass {
+  flightNumber: String
+
+  """The url to the pkpass file"""
+  url: String
+  passenger: Passenger
 }
 
 type Price {
@@ -1843,10 +1868,19 @@ type RootMutation {
   ): FAQArticle
   login(email: String!, password: String!): User
   resetPassword(email: String!): ResetPasswordResponse
+  updatePassenger(
+    """The global booking id"""
+    id: ID!
+    simpleToken: String
+    passengers: [PassengerInput!]!
+  ): UpdatePassenger
 }
 
 """Root Query"""
 type RootQuery {
+  """AirHelp+ offer that can be purchased with booking"""
+  airHelpPlusOffer(bookingId: String!): AirHelpPlusOffer
+
   """
   Search for all available hotels in one location. It's necessary to send
   checkin and checkout dates as well as rooms configuration to get availability info.
@@ -1956,6 +1990,12 @@ type RootQuery {
     id: ID!
   ): Booking @deprecated(reason: "Use \"node\" query instead.")
 
+  """Get the timeline for your booking."""
+  bookingTimeline(
+    """Only Booking id can be used as ID."""
+    id: ID!
+  ): BookingTimeline
+
   """Currencies used on Kiwi.com frontend"""
   currencies(after: String, first: Int, before: String, last: Int): CurrencyDetailConnection
 
@@ -2039,20 +2079,22 @@ type RootQuery {
   """
   nearestBooking: BookingInterface
 
-  """Get the timeline for your booking."""
-  bookingTimeline(
-    """Only Booking id can be used as ID."""
-    id: ID!
-  ): BookingTimeline
-
   """Fetches an object given its ID"""
   node(
     """The ID of an object"""
     id: ID!
   ): Node
 
-  """AirHelp+ offer that can be purchased with booking"""
-  airHelpPlusOffer(bookingId: String!): AirHelpPlusOffer
+  """Find booking by its id and its simple access token."""
+  singleBooking(
+    """
+    Database ID (human readable ID) of the booking. You should use "node" query if you want to use opaque ID.
+    """
+    id: ID!
+
+    """Simple Token that lets you fetch a unique booking."""
+    simpleToken: String!
+  ): Booking
 }
 
 type RouteStop {
@@ -2109,6 +2151,10 @@ type Trip {
   """Trip duration in minutes."""
   duration: Int
   legs: [Leg]
+}
+
+type UpdatePassenger {
+  success: Boolean
 }
 
 type User {
