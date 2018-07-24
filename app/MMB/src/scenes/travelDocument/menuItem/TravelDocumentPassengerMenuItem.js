@@ -3,8 +3,10 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { withNavigation } from 'react-navigation';
-import type { NavigationType } from '@kiwicom/mobile-navigation';
+import {
+  type NavigationType,
+  withNavigation,
+} from '@kiwicom/mobile-navigation';
 
 import PassengerSubtitle from './PassengerSubtitle';
 import PassengerMenuRightContent from './PassengerMenuRightContent';

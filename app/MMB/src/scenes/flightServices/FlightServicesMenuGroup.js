@@ -7,8 +7,8 @@ import {
   type RouteNamesType,
   type NavigationType,
   TitledMenuGroup,
+  withNavigation,
 } from '@kiwicom/mobile-navigation';
-import { withNavigation } from 'react-navigation';
 import {
   createRefetchContainer,
   graphql,

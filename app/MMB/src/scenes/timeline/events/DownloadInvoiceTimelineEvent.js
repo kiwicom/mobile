@@ -3,12 +3,12 @@
 import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, TextButton, TextIcon } from '@kiwicom/mobile-shared';
 import {
   type NavigationType,
   type RouteNamesType,
+  withNavigation,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 

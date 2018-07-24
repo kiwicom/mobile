@@ -5,8 +5,10 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Button, StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
-import { withNavigation } from 'react-navigation';
-import type { NavigationType } from '@kiwicom/mobile-navigation';
+import {
+  type NavigationType,
+  withNavigation,
+} from '@kiwicom/mobile-navigation';
 
 import type { DownloadButton as BoardingPassType } from './__generated__/DownloadButton.graphql';
 import BoardingPassInformation from './boardingPassInformation/BoardingPassInformation';

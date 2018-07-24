@@ -4,10 +4,10 @@ import * as React from 'react';
 import { View, Image } from 'react-native';
 import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { withNavigation } from 'react-navigation';
 import {
   SeparatorTrimmed,
   type NavigationType,
+  withNavigation,
 } from '@kiwicom/mobile-navigation';
 
 import bannerImage from './insurance.png';
