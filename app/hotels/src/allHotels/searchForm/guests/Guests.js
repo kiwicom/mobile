@@ -40,7 +40,7 @@ export const ButtonTitle = ({
 
 export default function Guests({ guests, openGuestsModal }: Props) {
   return (
-    <Touchable onPress={openGuestsModal}>
+    <Touchable onPress={openGuestsModal} style={buttonStyles.button}>
       <View style={buttonStyles.buttonWrapper}>
         <Icon name="people" size={20} style={buttonStyles.icon} />
         <ButtonTitle
@@ -53,13 +53,17 @@ export default function Guests({ guests, openGuestsModal }: Props) {
 }
 
 const buttonStyles = StyleSheet.create({
+  button: {
+    android: {
+      borderRadius: 2,
+    },
+  },
   buttonWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
     backgroundColor: Color.inputBackground,
     android: {
-      elevation: 1,
       height: 48,
       borderRadius: 2,
     },
