@@ -71,6 +71,7 @@ module.exports = {
             name: 'react-navigation',
             importNames: [
               'StackNavigator', // StackNavigator
+              'withNavigation'
             ],
             message:
               "Please use '@kiwicom/mobile-navigation' package instead.",

@@ -13,10 +13,10 @@ import {
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
-import { withNavigation } from 'react-navigation';
-import type {
-  NavigationType,
-  RouteNamesType,
+import {
+  type NavigationType,
+  type RouteNamesType,
+  withNavigation,
 } from '@kiwicom/mobile-navigation';
 
 import type { ETicket as AssetsType } from './__generated__/ETicket.graphql';

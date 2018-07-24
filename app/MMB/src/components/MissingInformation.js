@@ -4,7 +4,10 @@ import * as React from 'react';
 import { Platform, View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import type { NavigationType } from '@kiwicom/mobile-navigation';
+import {
+  type NavigationType,
+  withNavigation,
+} from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 import {
   StyleSheet,
@@ -13,7 +16,6 @@ import {
   Button,
   Color,
 } from '@kiwicom/mobile-shared';
-import { withNavigation } from 'react-navigation';
 
 import Alert from '../components/alert/Alert';
 import BookingDetailContext from '../context/BookingDetailContext';
