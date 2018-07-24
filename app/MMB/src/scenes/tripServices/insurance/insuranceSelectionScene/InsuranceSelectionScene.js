@@ -11,28 +11,27 @@ import {
 } from '@kiwicom/mobile-navigation';
 
 import bannerImage from './insurance.png';
-import {
-  VariantButtonNone,
-  VariantButtonBasic,
-  VariantButtonPlus,
-} from '../VariantButtons';
-import { TravelBasicSummary, TravelPlusSummary } from './InsuranceSummaries';
+import VariantButtons from './variantButtons/VariantButtons';
+import InsuranceSummary from './InsuranceSummaries';
 import IconWithText from './IconWithText';
 import PassengerInfo from './PassengerInfo';
-
-type VariantsUnion = 'none' | 'basic' | 'plus';
+import type {
+  InsuranceSelectionSceneQueryResponse,
+  InsuranceType,
+} from './__generated__/InsuranceSelectionSceneContainerQuery.graphql';
 
 type Props = {|
   +navigation: NavigationType,
+  +data: InsuranceSelectionSceneQueryResponse,
 |};
 
 type State = {|
-  selectedVariant: VariantsUnion,
+  selectedVariant: InsuranceType,
 |};
 
 class InsuranceSelectionScene extends React.Component<Props, State> {
   state = {
-    selectedVariant: 'none',
+    selectedVariant: 'NONE',
   };
 
   goToMoreInfo = () =>
@@ -40,25 +39,20 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
       'mmb.trip_services.insurance.selection.more_info',
     );
 
-  selectVariantNone = () => this.setState({ selectedVariant: 'none' });
-
-  selectVariantBasic = () => this.setState({ selectedVariant: 'basic' });
-
-  selectVariantPlus = () => this.setState({ selectedVariant: 'plus' });
+  selectVariant = (insuranceType: InsuranceType) =>
+    this.setState({ selectedVariant: insuranceType });
 
   render = () => {
-    const { title, fullName, birthday } = this.props.navigation.state.params;
-    const { selectedVariant } = this.state;
-    let InsuranceSummary = () => null;
-    if (selectedVariant === 'basic') {
-      InsuranceSummary = TravelBasicSummary;
-    } else if (selectedVariant === 'plus') {
-      InsuranceSummary = TravelPlusSummary;
-    }
+    const { passenger } = this.props.navigation.state.params;
+
     return (
       <View style={styleSheet.wrapper}>
         <Image resizeMode="contain" source={bannerImage} />
-        <PassengerInfo title={title} fullName={fullName} birthday={birthday} />
+        <PassengerInfo
+          title={passenger.title || ''}
+          fullName={passenger.fullName || ''}
+          birthday={passenger.birthday || null}
+        />
         <SeparatorTrimmed gapSizeStart={0} />
         <View style={styleSheet.marginTop}>
           <Text>
@@ -72,23 +66,14 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
           </Text>
         </View>
         <View style={styleSheet.variantsRow}>
-          <VariantButtonPlus
-            onPress={this.selectVariantPlus}
-            isSelected={this.state.selectedVariant === 'plus'}
-          />
-
-          <VariantButtonBasic
-            onPress={this.selectVariantBasic}
-            isSelected={this.state.selectedVariant === 'basic'}
-          />
-
-          <VariantButtonNone
-            onPress={this.selectVariantNone}
-            isSelected={this.state.selectedVariant === 'none'}
+          <VariantButtons
+            data={this.props.data.node}
+            selectedVariant={this.state.selectedVariant}
+            selectVariant={this.selectVariant}
           />
         </View>
 
-        <InsuranceSummary />
+        <InsuranceSummary selectedVariant={this.state.selectedVariant} />
         <TouchableWithoutFeedback onPress={this.goToMoreInfo}>
           <View>
             <IconWithText

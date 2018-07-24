@@ -10,27 +10,21 @@ import {
 
 import PassengerMenuRightContent from './PassengerInsuranceMenuRightContent';
 import PassengerMenuItem from '../../../../components/passengerMenuItem/PassengerMenuItem';
-import type { PassengerInsuranceMenuItem as PassengerType } from './__generated__/PassengerInsuranceMenuItem.graphql';
+import type { PassengerInsuranceMenuItem as PassengerResponseType } from './__generated__/PassengerInsuranceMenuItem.graphql';
 
 type Props = {|
-  +data: PassengerType,
+  +data: PassengerResponseType,
   +navigation: NavigationType,
 |};
 
 const PassengerInsuranceMenuItem = (props: Props) => {
-  const fullName = idx(props, _ => _.data.fullName) || '';
-  const insuranceType = idx(props, _ => _.data.insuranceType);
-  const title = idx(props, _ => _.data.title) || '';
-  const birthday = idx(props, _ => _.data.birthday) || null;
-  const databaseId = idx(props, _ => _.data.databaseId);
+  const passenger = idx(props, _ => _.data);
+  const fullName = idx(passenger, _ => _.fullName) || '';
+  const insuranceType = idx(passenger, _ => _.insuranceType);
 
   function onPress() {
     props.navigation.navigate('mmb.trip_services.insurance.selection', {
-      fullName,
-      title,
-      birthday,
-      databaseId,
-      insuranceType,
+      passenger,
     });
   }
   return (

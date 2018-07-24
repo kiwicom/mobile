@@ -4,6 +4,22 @@ import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import IconWithText from './IconWithText';
+import { type InsuranceType } from './variantButtons/__generated__/VariantButtons.graphql';
+
+type Props = {|
+  +selectedVariant: InsuranceType,
+|};
+
+const InsuranceSummary = (props: Props) => {
+  switch (props.selectedVariant) {
+    case 'TRAVEL_PLUS':
+      return <TravelPlusSummary />;
+    case 'TRAVEL_BASIC':
+      return <TravelBasicSummary />;
+    default:
+      return null;
+  }
+};
 
 const TravelBasicSummary = () => (
   <React.Fragment>
@@ -69,4 +85,4 @@ const TravelPlusSummary = () => (
   </React.Fragment>
 );
 
-export { TravelPlusSummary, TravelBasicSummary };
+export default InsuranceSummary;
