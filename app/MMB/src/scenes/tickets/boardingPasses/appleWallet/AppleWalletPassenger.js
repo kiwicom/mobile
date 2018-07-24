@@ -5,16 +5,19 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Icon, StyleSheet, Color, Touchable } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { withNavigation } from 'react-navigation';
+import type { NavigationType } from '@kiwicom/mobile-navigation';
 
 import type { AppleWalletPassenger as AppleWalletType } from './__generated__/AppleWalletPassenger.graphql';
 
 type Props = {|
   +data: AppleWalletType,
+  +navigation: NavigationType,
 |};
 
 class AppleWalletPassenger extends React.Component<Props> {
   onPress = () => {
-    console.warn('TODO');
+    this.props.navigation.navigate('AppleWalletScreen');
   };
 
   render = () => (
@@ -30,10 +33,9 @@ class AppleWalletPassenger extends React.Component<Props> {
 }
 
 export default createFragmentContainer(
-  AppleWalletPassenger,
+  withNavigation(AppleWalletPassenger),
   graphql`
     fragment AppleWalletPassenger on Pkpass {
-      url
       passenger {
         fullName
       }

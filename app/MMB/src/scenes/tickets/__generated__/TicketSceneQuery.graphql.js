@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1db9a3db35800bab9ad8ad6ac8c7f428
+ * @relayHash ca5eaadbfbb6d991464b20e5cb85c590
  */
 
 /* eslint-disable */
@@ -134,7 +134,6 @@ fragment AppleWallet on BoardingPass {
 }
 
 fragment AppleWalletPassenger on Pkpass {
-  url
   passenger {
     fullName
   }
@@ -280,13 +279,6 @@ v5 = {
           "plural": true,
           "selections": [
             {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "url",
-              "args": null,
-              "storageKey": null
-            },
-            {
               "kind": "LinkedField",
               "alias": null,
               "name": "passenger",
@@ -325,7 +317,7 @@ return {
   "operationKind": "query",
   "name": "TicketSceneQuery",
   "id": null,
-  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n  ... on BookingMulticity {\n    ...BoardingPassMultiCity\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassMultiCity on BookingMulticity {\n  trips {\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n    ...AppleWallet\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n  ...BoardingPassInformation\n}\n\nfragment AppleWallet on BoardingPass {\n  pkpasses {\n    ...AppleWalletPassenger\n    passenger {\n      databaseId\n    }\n  }\n}\n\nfragment AppleWalletPassenger on Pkpass {\n  url\n  passenger {\n    fullName\n  }\n}\n\nfragment BoardingPassInformation on BoardingPass {\n  availableAt\n  boardingPassUrl\n  ...FutureBookingInformation\n}\n\nfragment FutureBookingInformation on BoardingPass {\n  boardingPassUrl\n}\n",
+  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n  ... on BookingMulticity {\n    ...BoardingPassMultiCity\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassMultiCity on BookingMulticity {\n  trips {\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n    ...AppleWallet\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n  ...BoardingPassInformation\n}\n\nfragment AppleWallet on BoardingPass {\n  pkpasses {\n    ...AppleWalletPassenger\n    passenger {\n      databaseId\n    }\n  }\n}\n\nfragment AppleWalletPassenger on Pkpass {\n  passenger {\n    fullName\n  }\n}\n\nfragment BoardingPassInformation on BoardingPass {\n  availableAt\n  boardingPassUrl\n  ...FutureBookingInformation\n}\n\nfragment FutureBookingInformation on BoardingPass {\n  boardingPassUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
