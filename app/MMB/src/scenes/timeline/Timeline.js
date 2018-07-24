@@ -26,10 +26,7 @@ import NavigateToTerminalTimelineEvent from './events/NavigateToTerminalTimeline
 import TimeToCheckinTimelineEvent from './events/TimeToCheckinTimelineEvent';
 import CheckinClosingTimelineEvent from './events/CheckinClosingTimelineEvent';
 import EnterDetailsTimelineEvent from './events/EnterDetailsTimelineEvent';
-import {
-  ScrollViewWithScrollToY,
-  ScrollIntoView,
-} from '../../components/ScrollIntoView';
+import SectionListScrollTo from '../../components/sectionListScrollTo/SectionListScrollTo';
 
 export const TimelineSubmenuItems = {
   ...TimelineInvoiceSubmenuItems,
@@ -159,24 +156,21 @@ function renderChildren(events: Events) {
           );
         },
       );
-      return (
-        <ScrollIntoView
-          key={'TimelineDay-' + date}
-          shouldScrollIntoView={dateIndex === dateIndexClosestToToday}
-        >
-          <DaySeparator date={new Date(date)} />
-          {renderedEventsWithContext}
-        </ScrollIntoView>
-      );
+      return {
+        header: <DaySeparator date={new Date(date)} />,
+        data: renderedEventsWithContext,
+        shouldScroll: dateIndex === dateIndexClosestToToday,
+      };
     });
   }
+  return [];
 }
 
 export default class Timeline extends React.Component<{||}> {
   renderInner = (renderProps: TimelineQueryResponse) => {
     const events = idx(renderProps, _ => _.bookingTimeline.events);
     const children = renderChildren(events);
-    return <ScrollViewWithScrollToY>{children}</ScrollViewWithScrollToY>;
+    return <SectionListScrollTo data={children} />;
   };
 
   render = () => (
