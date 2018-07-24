@@ -10,6 +10,7 @@ import DetailScreen, { MenuComponents } from './DetailScreen';
 import ListScreen from './ListScreen';
 import FillTravelDocumentScreen from './FillTravelDocumentScreen';
 import TravelDocumentModalScreen from './TravelDocumentModalScreen';
+import AppleWalletScreen from './AppleWalletScreen';
 
 // THIS IS ONLY FOR MOBILE DEVICES!
 const Screens = {};
@@ -48,6 +49,9 @@ const MainStack = StackNavigator(
     },
     DetailScreen: {
       screen: withMappedProps(DetailScreen),
+    },
+    AppleWalletScreen: {
+      screen: withMappedProps(AppleWalletScreen),
     },
     ...Screens,
   },

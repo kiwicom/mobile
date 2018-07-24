@@ -75,6 +75,12 @@ export { default as RefreshableScrollView } from './src/RefreshableScrollView';
  *  - image components
  */
 export { default as BlackToAlpha } from './images/black-to-alpha-vertical.png';
+export {
+  default as AppleWalletBackground,
+} from './images/apple-wallet-image.jpg';
+export {
+  default as AppleWalletBackgroundTablet,
+} from './images/apple-wallet-image-2x.jpg';
 
 export { default as Icon } from './src/icons/Icon';
 export { default as TextIcon } from './src/icons/TextIcon';
