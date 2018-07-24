@@ -4,9 +4,10 @@ import * as React from 'react';
 import { GestureController } from '@kiwicom/mobile-shared';
 
 type NavigationState = {|
-  +routes: $ReadOnlyArray<{
-    +routes?: $ReadOnlyArray<mixed>,
-  }>,
+  +index: number,
+  +routes: $ReadOnlyArray<{|
+    +index: number,
+  |}>,
 |};
 
 type InjectedProps = {|
@@ -24,26 +25,25 @@ function withNativeNavigation<Props: {}>(
 
     constructor(props) {
       super(props);
+      // First time we open the app, it should be enabled
       this.isEnabled = true;
-      this.lastCall = '';
+      this.lastCall = 'enabled';
+      GestureController.enableGestures(moduleName);
     }
     onNavigationStateChange = (
       previousState: NavigationState,
       currentState: NavigationState,
     ) => {
       // Native gesture should only be enabled in the very first screen
-      // Also, there should not be modal (like first screen + modal)
+      // We also check the nested index in case there is a modal opened
+      this.isEnabled =
+        currentState.index === 0 && currentState.routes[0].index === 0;
 
-      const isDisabled =
-        currentState.routes.length > 1 ||
-        (currentState.routes[0].routes &&
-          currentState.routes[0].routes.length > 1);
-
-      if (!isDisabled && this.lastCall !== 'enabled') {
+      if (this.isEnabled && this.lastCall !== 'enabled') {
         GestureController.enableGestures(moduleName);
         this.lastCall = 'enabled';
         this.isEnabled = true;
-      } else if (this.lastCall !== 'disabled') {
+      } else if (!this.isEnabled && this.lastCall !== 'disabled') {
         GestureController.disableGestures(moduleName);
         this.lastCall = 'disabled';
         this.isEnabled = false;
