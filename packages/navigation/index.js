@@ -21,6 +21,7 @@ export { default as MenuItem } from './src/MenuItem';
 export { default as TodoMenuItem } from './src/TodoMenuItem';
 export { SeparatorTrimmed, SeparatorFullWidth } from './src/Separators';
 export { default as TitledMenuGroup } from './src/TitledMenuGroup';
+export { withNavigation } from 'react-navigation';
 
 const createNavigationOptions = () => {
   const navigationOptions: Object = {

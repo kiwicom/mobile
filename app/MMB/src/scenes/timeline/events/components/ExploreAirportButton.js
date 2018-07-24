@@ -1,12 +1,12 @@
 // @flow
 
 import React from 'react';
-import { withNavigation } from 'react-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextButton } from '@kiwicom/mobile-shared';
 import {
   type NavigationType,
   type RouteNamesType,
+  withNavigation,
 } from '@kiwicom/mobile-navigation';
 
 type Props = {|

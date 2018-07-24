@@ -3,11 +3,13 @@
 import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import { Translation, DateUtils } from '@kiwicom/mobile-localization';
 import { TextIcon, TextButton, StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { type NavigationType } from '@kiwicom/mobile-navigation';
+import {
+  type NavigationType,
+  withNavigation,
+} from '@kiwicom/mobile-navigation';
 
 import Title from '../MainContentTitle';
 import Note from '../MainContentNote';
