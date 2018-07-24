@@ -6,6 +6,7 @@ exports[`Guests Render all inputs 1`] = `
   disabled={false}
   onPress={[MockFunction]}
   rippleColor="rgba(0, 0, 0, .32)"
+  style={Object {}}
 >
   <Component
     style={
