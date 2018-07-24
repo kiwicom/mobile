@@ -44,13 +44,14 @@ const styleSheet = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 11,
-    borderRadius: 2,
     backgroundColor: Color.brand,
     android: {
       height: 40,
+      borderRadius: 2,
     },
     ios: {
-      height: 36,
+      height: 44,
+      borderRadius: 6,
     },
   },
 });
