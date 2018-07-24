@@ -54,6 +54,10 @@ const styleSheet = StyleSheet.create({
   buttonGroup: {
     backgroundColor: '#c4e7e4',
     marginEnd: 5,
+    ios: {
+      height: 36,
+      borderRadius: 2,
+    },
   },
   activeButtonText: {
     color: Color.white,
