@@ -112,6 +112,8 @@ export default {
   'mmb.trip_services.insurance.title': 'Edit insurance',
   'mmb.trip_services.insurance.selection.title': 'Insurance',
   'mmb.trip_services.insurance.selection.travel_insurance': 'Travel insurance',
+  'mmb.trip_services.insurance.selection.price.free': 'Free',
+  'mmb.trip_services.insurance.selection.price.not_available': 'Not available',
   'mmb.trip_services.insurance.selection.provided_by_axa':
     'Provided by Axa Assistance',
   'mmb.trip_services.insurance.selection.insurance_summary.assistance':
