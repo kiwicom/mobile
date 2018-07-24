@@ -99,7 +99,7 @@ export default class Slider extends React.Component<Props, State> {
 const SLIDER_PADDING = 20;
 
 const styles = StyleSheet.create({
-  selected: { backgroundColor: Color.orange.normal },
+  selected: { backgroundColor: Color.brand },
   unselected: { backgroundColor: Color.grey.$400 },
   track: { borderRadius: 5, height: 2 },
   marker: {
