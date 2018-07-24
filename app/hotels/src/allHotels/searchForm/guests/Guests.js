@@ -56,6 +56,7 @@ const buttonStyles = StyleSheet.create({
   button: {
     android: {
       borderRadius: 2,
+      elevation: 1,
     },
   },
   buttonWrapper: {
