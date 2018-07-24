@@ -69,7 +69,7 @@ exports[`Slider renders 1`] = `
     }
     selectedStyle={
       Object {
-        "backgroundColor": "#f9971e",
+        "backgroundColor": "#00a991",
       }
     }
     sliderLength={-40}
@@ -173,7 +173,7 @@ exports[`Slider renders correctly with all values equal 1`] = `
     }
     selectedStyle={
       Object {
-        "backgroundColor": "#f9971e",
+        "backgroundColor": "#00a991",
       }
     }
     sliderLength={-40}
@@ -277,7 +277,7 @@ exports[`Slider renders with endValue undefined 1`] = `
     }
     selectedStyle={
       Object {
-        "backgroundColor": "#f9971e",
+        "backgroundColor": "#00a991",
       }
     }
     sliderLength={-40}
