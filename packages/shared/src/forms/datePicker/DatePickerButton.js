@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     android: {
       height: 48,
       borderRadius: 2,
+      elevation: 1,
     },
     ios: {
       borderRadius: 6,
