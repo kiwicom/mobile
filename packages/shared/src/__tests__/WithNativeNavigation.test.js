@@ -28,21 +28,27 @@ describe('WithNativeNavigation', () => {
     jest.clearAllMocks();
   });
 
-  it('enables gestures if it was not enabled', () => {
-    const onNavigationStateChange = getComponent().getInstance()
-      .onNavigationStateChange;
+  const sharedInstance = getComponent().getInstance();
 
-    const callEnable = () =>
+  it('calls enable when we init WithNativeNavigation', () => {
+    getComponent().getInstance();
+    expect(GestureController.enableGestures).toHaveBeenCalledTimes(1);
+  });
+
+  it('enables gestures if it was not enabled', () => {
+    sharedInstance.isEnabled = false;
+    sharedInstance.lastCall = 'disabled';
+    const onNavigationStateChange = sharedInstance.onNavigationStateChange;
+
+    const callEnable = () => {
       onNavigationStateChange(
         {},
         {
-          routes: [
-            {
-              routes: [],
-            },
-          ],
+          index: 0,
+          routes: [{ index: 0 }],
         },
       );
+    };
 
     callEnable();
     expect(GestureController.enableGestures).toHaveBeenCalledTimes(1);
@@ -52,19 +58,17 @@ describe('WithNativeNavigation', () => {
     expect(GestureController.enableGestures).toHaveBeenCalledTimes(1);
   });
 
-  it('disables gestures if it was not enabled 1', () => {
-    const onNavigationStateChange = getComponent().getInstance()
-      .onNavigationStateChange;
+  it('disables gestures if it was not disabled 1', () => {
+    sharedInstance.isEnabled = true;
+    sharedInstance.lastCall = 'enabled';
+    const onNavigationStateChange = sharedInstance.onNavigationStateChange;
 
     const callDisable = () =>
       onNavigationStateChange(
         {},
         {
-          routes: [
-            {
-              routes: [{ index: 0 }, { index: 1 }],
-            },
-          ],
+          index: 1,
+          routes: [{ index: 1 }],
         },
       );
 
@@ -76,30 +80,28 @@ describe('WithNativeNavigation', () => {
     expect(GestureController.disableGestures).toHaveBeenCalledTimes(1);
   });
 
-  it('disables gestures if it was not enabled 2', () => {
-    const onNavigationStateChange = getComponent().getInstance()
-      .onNavigationStateChange;
+  it('disables gestures if it was not disabled 2', () => {
+    sharedInstance.isEnabled = true;
+    sharedInstance.lastCall = 'enabled';
+    const onNavigationStateChange = sharedInstance.onNavigationStateChange;
 
     onNavigationStateChange(
       {},
       {
-        routes: [
-          {
-            routes: [],
-          },
-          {
-            routes: [],
-          },
-        ],
+        index: 0,
+        routes: [{ index: 1 }],
       },
     );
+
     expect(GestureController.disableGestures).toHaveBeenCalledTimes(1);
   });
 
   it('handles the back button', () => {
-    const instance = getComponent().getInstance();
-    const onNavigationStateChange = instance.onNavigationStateChange;
-    const onBackClicked = instance.onBackClicked;
+    sharedInstance.isEnabled = true;
+    sharedInstance.lastCall = 'enabled';
+
+    const onNavigationStateChange = sharedInstance.onNavigationStateChange;
+    const onBackClicked = sharedInstance.onBackClicked;
 
     // Enabled first state
     expect(onBackClicked()).toBe(true);
@@ -111,13 +113,11 @@ describe('WithNativeNavigation', () => {
     onNavigationStateChange(
       {},
       {
-        routes: [
-          {
-            routes: [{ index: 0 }, { index: 1 }],
-          },
-        ],
+        index: 0,
+        routes: [{ index: 1 }],
       },
     );
+
     expect(onBackClicked()).toBe(false);
     expect(GestureController.invokeDefaultBackButton).toHaveBeenCalledTimes(0);
   });
