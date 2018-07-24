@@ -19,7 +19,7 @@ import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
 import CarRentalMenuItem from './CarRentalMenuItem';
 import InsuranceOverviewScene from './insurance/InsuranceOverviewScene';
-import InsuranceSelectionScene from './insurance/insuranceSelectionScene/InsuranceSelectionScene';
+import InsuranceSelectionSceneContainer from './insurance/insuranceSelectionScene/InsuranceSelectionSceneContainer';
 import PaymentScene from './insurance/PaymentScene';
 import RefundScene from './insurance/RefundScene';
 import MoreInfoScene from './insurance/moreInfoScene/MoreInfoScene';
@@ -142,12 +142,8 @@ export const TripServicesSubmenuItems = {
     },
   },
   'mmb.trip_services.insurance.selection': {
-    screen: function TripServicesSubmenuInsuranceSelection({
-      navigation,
-    }: {|
-      +navigation: NavigationType,
-    |}) {
-      return <InsuranceSelectionScene navigation={navigation} />;
+    screen: function TripServicesSubmenuInsuranceSelection() {
+      return <InsuranceSelectionSceneContainer />;
     },
     headerTitle: function TripServicesHeaderTitle() {
       return (
