@@ -38,7 +38,6 @@ export { default as Modal } from './src/Modal';
 
 export { default as AdaptableBadge } from './src/AdaptableBadge';
 export { default as DropMarker } from './src/DropMarker';
-export { default as HeaderButton } from './src/HeaderButton';
 export { default as Price } from './src/Price';
 export { default as Stars } from './src/Stars';
 export { default as Text } from './src/Text';

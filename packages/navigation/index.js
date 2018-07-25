@@ -6,14 +6,13 @@ import ReactNavigation from 'react-navigation';
 import {
   Color,
   Device,
-  Text,
   StyleSheet,
-  Touchable,
   Dimensions,
   type StylePropType,
   type DimensionType,
 } from '@kiwicom/mobile-shared';
-import type { TranslationType } from '@kiwicom/mobile-localization';
+
+import HeaderTitle from './src/HeaderTitle';
 
 export { default as MenuGroup } from './src/MenuGroup';
 export { default as MenuGroupTitle } from './src/MenuGroupTitle';
@@ -21,6 +20,8 @@ export { default as MenuItem } from './src/MenuItem';
 export { default as TodoMenuItem } from './src/TodoMenuItem';
 export { SeparatorTrimmed, SeparatorFullWidth } from './src/Separators';
 export { default as TitledMenuGroup } from './src/TitledMenuGroup';
+export { default as HeaderTitle } from './src/HeaderTitle';
+export { default as HeaderButton } from './src/HeaderButton';
 export { withNavigation } from 'react-navigation';
 
 const createNavigationOptions = () => {
@@ -49,65 +50,6 @@ const createNavigationOptions = () => {
   }
   return navigationOptions;
 };
-
-export const HeaderTitle = ({ children }: {| children: TranslationType |}) => {
-  return <Text style={styleSheet.title}>{children}</Text>;
-};
-
-export const HeaderButton = ({
-  children,
-  onPress,
-  disabled,
-}: {|
-  +children: React.Element<any>,
-  +onPress: () => void,
-  +disabled: boolean,
-|}) => {
-  return (
-    <Touchable
-      borderlessRipple={true}
-      onPress={onPress}
-      style={styleSheet.headerButton}
-      disabled={disabled}
-    >
-      <Text
-        style={[
-          styleSheet.headerButtonText,
-          disabled ? styleSheet.disabledButton : null,
-        ]}
-      >
-        {children}
-      </Text>
-    </Touchable>
-  );
-};
-
-HeaderButton.defaultProps = {
-  disabled: false,
-};
-
-const styleSheet = StyleSheet.create({
-  title: {
-    color: Color.textDark,
-    fontWeight: '600',
-    android: {
-      fontSize: 18,
-    },
-    ios: {
-      fontSize: 17,
-    },
-  },
-  headerButton: {
-    padding: 8,
-  },
-  headerButtonText: {
-    color: Color.brand,
-    fontSize: 17,
-  },
-  disabledButton: {
-    color: Color.inputBackground,
-  },
-});
 
 export const StackNavigator = (
   RouteConfigs: {

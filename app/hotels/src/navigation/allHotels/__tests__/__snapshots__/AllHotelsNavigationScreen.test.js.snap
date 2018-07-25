@@ -118,6 +118,7 @@ exports[`renders arrow icon button with \`goBack\` onPress function when lastNav
 
 exports[`renders close button with \`closeNativeModal\` onPress function when lastNavigationMode is \`present\` 1`] = `
 <HeaderButton
+  disabled={false}
   onPress={[Function]}
   style={
     Array [
@@ -129,18 +130,10 @@ exports[`renders close button with \`closeNativeModal\` onPress function when la
     ]
   }
 >
-  <Text
-    style={
-      Object {
-        "color": "#00a991",
-        "fontSize": 17,
-        "fontWeight": "600",
-      }
-    }
-  >
+  <HeaderButton.Text>
     <Translation
       id="shared.button.close"
     />
-  </Text>
+  </HeaderButton.Text>
 </HeaderButton>
 `;

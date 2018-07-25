@@ -3,10 +3,9 @@
 import * as React from 'react';
 import {
   type NavigationType,
-  HeaderTitle,
   HeaderButton,
+  HeaderTitle,
 } from '@kiwicom/mobile-navigation';
-import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelsSearchContext from '../../HotelsSearchContext';
@@ -19,12 +18,6 @@ import type {
   ChildAge,
 } from '../../allHotels/searchForm/guests/GuestsTypes';
 import GuestsModal from '../../allHotels/searchForm/guests/GuestsModal';
-
-const styles = StyleSheet.create({
-  saveButtonText: {
-    fontWeight: '600',
-  },
-});
 
 type PropsWithContext = {
   ...Props,
@@ -137,22 +130,18 @@ export default class GuestsModalScreenWithContext extends React.Component<
     }
 
     return {
-      headerLeft: (
-        <HeaderButton onPress={goBack}>
-          <Translation id="hotels_search.guests_modal.close" />
-        </HeaderButton>
-      ),
+      headerLeft: <HeaderButton.CloseModal onPress={goBack} />,
       headerTitle: (
         <HeaderTitle>
           <Translation id="hotels_search.guests_modal.header" />
         </HeaderTitle>
       ),
       headerRight: (
-        <HeaderButton onPress={onSave}>
-          <Text style={styles.saveButtonText}>
+        <HeaderButton.Right onPress={onSave}>
+          <HeaderButton.Text>
             <Translation id="hotels_search.guests_modal.save" />
-          </Text>
-        </HeaderButton>
+          </HeaderButton.Text>
+        </HeaderButton.Right>
       ),
       gesturesEnabled: false,
     };

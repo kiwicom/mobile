@@ -3,14 +3,8 @@
 import * as React from 'react';
 import { HeaderBackButton } from 'react-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import {
-  GestureController,
-  Color,
-  HeaderButton,
-  StyleSheet,
-  Text,
-} from '@kiwicom/mobile-shared';
-import { type NavigationType } from '@kiwicom/mobile-navigation';
+import { GestureController, Color } from '@kiwicom/mobile-shared';
+import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
 
 type NavProps = {
   ...NavigationType,
@@ -32,9 +26,9 @@ function withStandaloneScreen<Props>(
         headerLeft:
           props.lastNavigationMode && props.lastNavigationMode === 'present' ? (
             <HeaderButton.Left onPress={closeNativeModal}>
-              <Text style={styles.closeButton}>
+              <HeaderButton.Text>
                 <Translation id="shared.button.close" />
-              </Text>
+              </HeaderButton.Text>
             </HeaderButton.Left>
           ) : (
             <HeaderBackButton
@@ -64,18 +58,5 @@ function withStandaloneScreen<Props>(
     }
   };
 }
-
-const styles = StyleSheet.create({
-  closeButton: {
-    color: Color.brand,
-    fontWeight: '600',
-    android: {
-      fontSize: 18,
-    },
-    ios: {
-      fontSize: 17,
-    },
-  },
-});
 
 export default withStandaloneScreen;

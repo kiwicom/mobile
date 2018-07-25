@@ -1,14 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { Text, StyleSheet } from '@kiwicom/mobile-shared';
+import idx from 'idx';
 import {
   type NavigationType,
-  HeaderTitle,
   HeaderButton,
+  HeaderTitle,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import LocationPicker from '../../allHotels/searchForm/locationPicker/LocationPicker';
 
@@ -27,14 +26,6 @@ type NavigationProps = {|
   navigation: NavigationType,
 |};
 
-const styles = StyleSheet.create({
-  confirmButtonText: {
-    android: {
-      fontWeight: '600',
-    },
-  },
-});
-
 export default class LocationPickerScreen extends React.Component<Props> {
   static navigationOptions = ({ navigation }: NavigationProps) => {
     function goBack() {
@@ -43,11 +34,10 @@ export default class LocationPickerScreen extends React.Component<Props> {
 
     return {
       headerLeft: (
-        <HeaderButton onPress={goBack}>
-          <Text style={styles.confirmButtonText}>
-            <Translation id="hotels_search.location_picker.cancel" />
-          </Text>
-        </HeaderButton>
+        <HeaderButton.CloseModal
+          onPress={goBack}
+          text={<Translation id="hotels_search.location_picker.cancel" />}
+        />
       ),
       headerTitle: (
         <HeaderTitle>
