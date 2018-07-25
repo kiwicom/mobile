@@ -13,6 +13,10 @@ type DownloadButton$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FlightFromTo$ref: FragmentReference;
 export type FlightFromTo = {|
+  +id: string,
+  +airline: ?{|
+    +logoUrl: ?string
+  |},
   +departure: ?{|
     +localTime: ?any,
     +airport: ?{|
@@ -74,6 +78,31 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "airline",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Airline",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "logoUrl",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "departure",
@@ -129,5 +158,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'fa049004b6ac398c3ce6798121384d21';
+(node/*: any*/).hash = 'c7701218d5d881a8c7be56c05b35dfae';
 module.exports = node;

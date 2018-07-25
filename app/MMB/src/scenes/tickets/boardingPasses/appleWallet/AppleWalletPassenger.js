@@ -11,14 +11,21 @@ import {
 } from '@kiwicom/mobile-navigation';
 
 import type { AppleWalletPassenger as AppleWalletType } from './__generated__/AppleWalletPassenger.graphql';
+import WalletContext from './../../../../context/WalletContext';
 
-type Props = {|
-  +data: AppleWalletType,
-  +navigation: NavigationType,
+type PropsWithContext = {|
+  ...Props,
+  addPkpassData: (passengerName: string, pkpassUrl: string, id: string) => void,
 |};
 
-class AppleWalletPassenger extends React.Component<Props> {
+class AppleWalletPassenger extends React.Component<PropsWithContext> {
   onPress = () => {
+    const name = idx(this.props.data, _ => _.passenger.fullName) || '';
+    const url = idx(this.props.data, _ => _.url) || '';
+
+    if (this.props.segmentId != null) {
+      this.props.addPkpassData(name, url, this.props.segmentId);
+    }
     this.props.navigation.navigate('AppleWalletScreen');
   };
 
@@ -34,10 +41,25 @@ class AppleWalletPassenger extends React.Component<Props> {
   );
 }
 
+type Props = {|
+  +data: AppleWalletType,
+  +navigation: NavigationType,
+  +segmentId: ?string,
+|};
+
+const AppleWalletPassengerWithContext = (props: Props) => (
+  <WalletContext.Consumer>
+    {({ actions: { addPkpassData } }) => (
+      <AppleWalletPassenger {...props} addPkpassData={addPkpassData} />
+    )}
+  </WalletContext.Consumer>
+);
+
 export default createFragmentContainer(
-  withNavigation(AppleWalletPassenger),
+  withNavigation(AppleWalletPassengerWithContext),
   graphql`
     fragment AppleWalletPassenger on Pkpass {
+      url
       passenger {
         fullName
       }

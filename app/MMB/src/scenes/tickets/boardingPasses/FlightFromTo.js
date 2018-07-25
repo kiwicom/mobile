@@ -10,57 +10,98 @@ import idx from 'idx';
 import AppleWallet from './appleWallet/AppleWallet';
 import DownloadButton from './DownloadButton';
 import type { FlightFromTo as RouteStopType } from './__generated__/FlightFromTo.graphql';
+import WalletContext, { type Segment } from '../../../context/WalletContext';
+
+type PropsWithContext = {|
+  ...Props,
+  +addSegment: (segment: Segment) => void,
+|};
+
+export class FlightFromTo extends React.Component<PropsWithContext> {
+  componentDidMount = () => {
+    const id = idx(this.props.data, _ => _.id) || '';
+    const airlineLogoUrl = idx(this.props.data, _ => _.airline.logoUrl) || '';
+    const flightDate = idx(this.props.data, _ => _.departure.localTime) || null;
+    this.props.addSegment({
+      id,
+      airlineLogoUrl,
+      flightDate,
+    });
+  };
+
+  render = () => {
+    const date = idx(this.props.data, _ => _.departure.localTime);
+    const shortDate = date
+      ? DateFormatter(new Date(date)).formatToShortDate()
+      : '';
+    const time = date ? DateFormatter(new Date(date)).formatToTime() : '';
+    return (
+      <View style={styles.row}>
+        <View style={styles.dateContainer}>
+          <Text style={styles.dateText}>
+            <Translation passThrough={shortDate} />
+          </Text>
+          <Text style={styles.dateText}>
+            <Translation passThrough={time} />
+          </Text>
+        </View>
+        <View style={styles.rightColumn}>
+          <View style={[styles.row, styles.cityContainer]}>
+            <Text style={styles.cityText}>
+              <Translation
+                passThrough={idx(
+                  this.props.data,
+                  _ => _.departure.airport.city.name,
+                )}
+              />
+            </Text>
+            <TextIcon code="&#xe099;" style={styles.icon} />
+            <Text style={styles.cityText}>
+              <Translation
+                passThrough={idx(
+                  this.props.data,
+                  _ => _.arrival.airport.city.name,
+                )}
+              />
+            </Text>
+          </View>
+          <View style={styles.buttonContainer}>
+            <DownloadButton data={idx(this.props.data, _ => _.boardingPass)} />
+          </View>
+          {Platform.OS === 'ios' && (
+            <View style={styles.appleWalletContainer}>
+              <AppleWallet
+                segmentId={idx(this.props.data, _ => _.id)}
+                data={idx(this.props.data, _ => _.boardingPass)}
+              />
+            </View>
+          )}
+        </View>
+      </View>
+    );
+  };
+}
 
 type Props = {|
   +data: RouteStopType,
 |};
 
-export const FlightFromTo = (props: Props) => {
-  const date = idx(props.data, _ => _.departure.localTime);
-  const shortDate = date
-    ? DateFormatter(new Date(date)).formatToShortDate()
-    : '';
-  const time = date ? DateFormatter(new Date(date)).formatToTime() : '';
-  return (
-    <View style={styles.row}>
-      <View style={styles.dateContainer}>
-        <Text style={styles.dateText}>
-          <Translation passThrough={shortDate} />
-        </Text>
-        <Text style={styles.dateText}>
-          <Translation passThrough={time} />
-        </Text>
-      </View>
-      <View style={styles.rightColumn}>
-        <View style={[styles.row, styles.cityContainer]}>
-          <Text style={styles.cityText}>
-            <Translation
-              passThrough={idx(props.data, _ => _.departure.airport.city.name)}
-            />
-          </Text>
-          <TextIcon code="&#xe099;" style={styles.icon} />
-          <Text style={styles.cityText}>
-            <Translation
-              passThrough={idx(props.data, _ => _.arrival.airport.city.name)}
-            />
-          </Text>
-        </View>
-        <View style={styles.buttonContainer}>
-          <DownloadButton data={idx(props.data, _ => _.boardingPass)} />
-        </View>
-        {Platform.OS === 'ios' && (
-          <View style={styles.appleWalletContainer}>
-            <AppleWallet data={idx(props.data, _ => _.boardingPass)} />
-          </View>
-        )}
-      </View>
-    </View>
-  );
-};
+const FlightFromToWithContext = (props: Props) => (
+  <WalletContext.Consumer>
+    {({ actions: { addSegment } }) => (
+      <FlightFromTo {...props} addSegment={addSegment} />
+    )}
+  </WalletContext.Consumer>
+);
+
 export default createFragmentContainer(
-  FlightFromTo,
+  FlightFromToWithContext,
   graphql`
     fragment FlightFromTo on Leg {
+      id
+      airline {
+        logoUrl
+      }
       departure {
         localTime
         airport {

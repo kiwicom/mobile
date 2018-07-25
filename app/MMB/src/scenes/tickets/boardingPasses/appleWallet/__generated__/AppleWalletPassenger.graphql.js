@@ -11,6 +11,7 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type AppleWalletPassenger$ref: FragmentReference;
 export type AppleWalletPassenger = {|
+  +url: ?string,
   +passenger: ?{|
     +fullName: ?string
   |},
@@ -26,6 +27,13 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "url",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -47,5 +55,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ba46f5a1076aacd79647709654ecd6bb';
+(node/*: any*/).hash = '61c60dd20c79385de68ba4be12f67a04';
 module.exports = node;
