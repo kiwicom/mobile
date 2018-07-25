@@ -7,6 +7,10 @@ import DatePickerButton from './DatePickerButton';
 import type { Props } from './DatePickerProps';
 
 export default class DatePicker extends React.Component<Props> {
+  static defaultProps = {
+    disabled: false,
+  };
+
   openDatePicker = () => {
     // The DatePickerButton onPress expects a method () => void,
     // We have to wrap the call to show datePicker with a method with ^^ signature
@@ -30,6 +34,7 @@ export default class DatePicker extends React.Component<Props> {
       date={this.props.date}
       iconComponent={this.props.iconComponent}
       formatFunction={this.props.formatFunction}
+      disabled={this.props.disabled}
     />
   );
 }

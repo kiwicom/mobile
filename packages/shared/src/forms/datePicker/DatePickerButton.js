@@ -15,6 +15,7 @@ import Color from '../../Color';
 
 type Props = {|
   +onPress: () => void,
+  +disabled: boolean,
   +date: ?Date,
   +formatFunction: ?DateFormatterFunctions,
   +iconComponent?: React.Node,
@@ -22,7 +23,11 @@ type Props = {|
 
 export default function DatePickerButton(props: Props) {
   return (
-    <Touchable style={styles.dateTouchBody} onPress={props.onPress}>
+    <Touchable
+      style={[styles.dateTouchBody, props.disabled ? styles.disabled : null]}
+      onPress={props.onPress}
+      disabled={props.disabled}
+    >
       <View style={styles.date}>
         {props.iconComponent}
         {props.date !== null && (
@@ -67,5 +72,8 @@ const styles = StyleSheet.create({
       fontSize: 14,
     },
     marginStart: 5,
+  },
+  disabled: {
+    backgroundColor: Color.disabledInput,
   },
 });

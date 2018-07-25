@@ -16,6 +16,7 @@ import {
   Text,
   DatePicker,
   Switch,
+  ErrorMessage,
 } from '@kiwicom/mobile-shared';
 
 import TitleTranslation from '../components/TitleTranslation';
@@ -32,7 +33,13 @@ type State = {|
   idNumber: string,
   expiryDate: Date | null,
   noExpiry: boolean,
+  error: {|
+    idNumber: boolean,
+    expiryDate: boolean,
+  |},
 |};
+
+const noop = () => {};
 
 export default class TravelDocumentModalScreen extends React.Component<
   Props,
@@ -45,12 +52,18 @@ export default class TravelDocumentModalScreen extends React.Component<
       idNumber: props.idNumber || '',
       expiryDate: props.expiryDate,
       noExpiry: false,
+      error: {
+        idNumber: false,
+        expiryDate: true,
+      },
     };
   }
+
   static navigationOptions = ({ navigation }: Props) => {
     function goBack() {
       navigation.goBack(null);
     }
+    const onSave = navigation.state.params.onSave || noop;
     return {
       headerLeft: (
         <HeaderButton onPress={goBack}>
@@ -63,7 +76,10 @@ export default class TravelDocumentModalScreen extends React.Component<
         </HeaderTitle>
       ),
       headerRight: (
-        <HeaderButton onPress={goBack}>
+        <HeaderButton
+          onPress={onSave}
+          disabled={navigation.state.params.disabled}
+        >
           <Translation id="mmb.missing_informaiton.travel_document_modal_screen.save" />
         </HeaderButton>
       ),
@@ -71,16 +87,61 @@ export default class TravelDocumentModalScreen extends React.Component<
     };
   };
 
+  componentDidMount = () => {
+    this.props.navigation.setParams({ onSave: this.onSave, disabled: true });
+  };
+
   onIdNumberChange = (idNumber: string) => {
-    this.setState({ idNumber });
+    this.setState(
+      state => ({
+        idNumber,
+        error: {
+          ...state.error,
+          idNumber: idNumber.length > 0 && idNumber.length < 5,
+        },
+      }),
+      this.validate,
+    );
   };
 
   onDateChange = (expiryDate: Date) => {
-    this.setState({ expiryDate });
+    this.setState(
+      state => ({
+        expiryDate,
+        error: {
+          ...state.error,
+          expiryDate: false,
+        },
+      }),
+      this.validate,
+    );
   };
 
   onNoExpiryChange = (noExpiry: boolean) => {
-    this.setState({ noExpiry });
+    this.setState(
+      state => ({
+        noExpiry,
+        expiryDate: null,
+        error: {
+          ...state.error,
+          expiryDate: !noExpiry,
+        },
+      }),
+      this.validate,
+    );
+  };
+
+  onSave = () => {
+    // TODO: Send mutation
+    this.props.navigation.goBack();
+  };
+
+  validate = () => {
+    // Not using this.state.error.idNumber because if this.state.idNumber.length === 0
+    // we want to disable save button, but not show error message under input
+    const hasError =
+      this.state.idNumber.length < 5 || this.state.error.expiryDate;
+    this.props.navigation.setParams({ disabled: hasError });
   };
 
   render = () => (
@@ -99,9 +160,19 @@ export default class TravelDocumentModalScreen extends React.Component<
           defaultValue={this.state.idNumber}
           onChangeText={this.onIdNumberChange}
         />
+        {this.state.error.idNumber && (
+          <ErrorMessage style={styles.error}>
+            <Translation id="mmb.missing_informaiton.travel_document_modal_screen.id_number_error" />
+          </ErrorMessage>
+        )}
       </View>
       <View style={styles.inputContainer}>
-        <Text style={styles.label}>
+        <Text
+          style={[
+            styles.label,
+            this.state.noExpiry ? styles.noExpiry : styles.expiry,
+          ]}
+        >
           <Translation id="mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_expiry" />
         </Text>
         <View style={styles.row}>
@@ -111,6 +182,7 @@ export default class TravelDocumentModalScreen extends React.Component<
               onDateChange={this.onDateChange}
               minDate={new Date()} // TODO: Should probably be the date of the last leg
               formatFunction="formatToBirthday"
+              disabled={this.state.noExpiry}
             />
           </View>
           <View style={[styles.row, styles.switchContainer]}>
@@ -131,6 +203,7 @@ export default class TravelDocumentModalScreen extends React.Component<
 const styles = StyleSheet.create({
   container: {
     padding: 15,
+    backgroundColor: Color.white,
   },
   icon: {
     color: Color.black,
@@ -157,5 +230,14 @@ const styles = StyleSheet.create({
   },
   datePickerContainer: {
     flex: 1,
+  },
+  error: {
+    alignSelf: 'flex-end',
+  },
+  noExpiry: {
+    color: Color.labelDisabled,
+  },
+  expiry: {
+    color: Color.textLight,
   },
 });
