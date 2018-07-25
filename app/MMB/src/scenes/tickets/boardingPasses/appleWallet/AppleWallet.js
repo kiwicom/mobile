@@ -12,6 +12,7 @@ import type { AppleWallet as Pkpasses } from './__generated__/AppleWallet.graphq
 
 type Props = {|
   +data: Pkpasses,
+  +segmentId: ?string,
 |};
 
 const AppleWallet = (props: Props) => {
@@ -33,6 +34,7 @@ const AppleWallet = (props: Props) => {
           <AppleWalletPassenger
             key={idx(item, _ => _.passenger.databaseId)}
             data={item}
+            segmentId={props.segmentId}
           />
         ))}
       </View>

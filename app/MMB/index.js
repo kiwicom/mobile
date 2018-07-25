@@ -11,6 +11,7 @@ import {
 
 import NavigationStack from './src/navigation/NavigationStack';
 import BookingDetailContext from './src/context/BookingDetailContext';
+import WalletContext from './src/context/WalletContext';
 
 type Props = {|
   currency: string,
@@ -23,11 +24,13 @@ class ManageMyBookingPackage extends React.Component<Props> {
   render = () => (
     <Dimensions.Provider dimensions={this.props.dimensions}>
       <AuthContext.Provider accessToken={this.props.accessToken}>
-        <BookingDetailContext.Provider>
-          <NavigationStack
-            onNavigationStateChange={this.props.onNavigationStateChange}
-          />
-        </BookingDetailContext.Provider>
+        <WalletContext.Provider>
+          <BookingDetailContext.Provider>
+            <NavigationStack
+              onNavigationStateChange={this.props.onNavigationStateChange}
+            />
+          </BookingDetailContext.Provider>
+        </WalletContext.Provider>
       </AuthContext.Provider>
     </Dimensions.Provider>
   );
