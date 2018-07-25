@@ -11,4 +11,5 @@ export type Props = {|
   +maxDate?: Date,
   +iconComponent?: React.Node,
   +formatFunction?: DateFormatterFunctions,
+  +disabled: boolean,
 |};

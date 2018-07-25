@@ -57,19 +57,33 @@ export const HeaderTitle = ({ children }: {| children: TranslationType |}) => {
 export const HeaderButton = ({
   children,
   onPress,
+  disabled,
 }: {|
-  children: React.Element<any>,
-  onPress: () => void,
+  +children: React.Element<any>,
+  +onPress: () => void,
+  +disabled: boolean,
 |}) => {
   return (
     <Touchable
       borderlessRipple={true}
       onPress={onPress}
       style={styleSheet.headerButton}
+      disabled={disabled}
     >
-      <Text style={styleSheet.headerButtonText}>{children}</Text>
+      <Text
+        style={[
+          styleSheet.headerButtonText,
+          disabled ? styleSheet.disabledButton : null,
+        ]}
+      >
+        {children}
+      </Text>
     </Touchable>
   );
+};
+
+HeaderButton.defaultProps = {
+  disabled: false,
 };
 
 const styleSheet = StyleSheet.create({
@@ -89,6 +103,9 @@ const styleSheet = StyleSheet.create({
   headerButtonText: {
     color: Color.brand,
     fontSize: 17,
+  },
+  disabledButton: {
+    color: Color.inputBackground,
   },
 });
 
