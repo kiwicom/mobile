@@ -4,8 +4,8 @@ import * as React from 'react';
 import { View } from 'react-native';
 import {
   type NavigationType,
-  HeaderTitle,
   HeaderButton,
+  HeaderTitle,
 } from '@kiwicom/mobile-navigation';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { StyleSheet, Color, IconLoading } from '@kiwicom/mobile-shared';
@@ -48,23 +48,21 @@ export class TravelDocumentModalScreen extends React.Component<Props, State> {
     }
     const onSave = navigation.state.params.onSave || noop;
     return {
-      headerLeft: (
-        <HeaderButton onPress={goBack}>
-          <Translation id="mmb.missing_informaiton.travel_document_modal_screen.close" />
-        </HeaderButton>
-      ),
+      headerLeft: <HeaderButton.CloseModal onPress={goBack} />,
       headerTitle: (
         <HeaderTitle>
           <Translation id="mmb.fill_travel_document_screen_modal.title" />
         </HeaderTitle>
       ),
       headerRight: (
-        <HeaderButton
-          onPress={onSave}
+        <HeaderButton.Right
           disabled={navigation.state.params.disabled}
+          onPress={onSave}
         >
-          <Translation id="mmb.missing_informaiton.travel_document_modal_screen.save" />
-        </HeaderButton>
+          <HeaderButton.Text>
+            <Translation id="mmb.missing_informaiton.travel_document_modal_screen.save" />
+          </HeaderButton.Text>
+        </HeaderButton.Right>
       ),
       gesturesEnabled: false,
     };

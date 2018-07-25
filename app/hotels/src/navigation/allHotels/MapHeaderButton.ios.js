@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { HeaderButton, Icon, Color } from '@kiwicom/mobile-shared';
+import { HeaderButton } from '@kiwicom/mobile-navigation';
+import { Icon, Color } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +onPress: () => void,

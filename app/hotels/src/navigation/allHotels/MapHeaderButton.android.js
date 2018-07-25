@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { HeaderButton, Color, Icon } from '@kiwicom/mobile-shared';
+import { HeaderButton } from '@kiwicom/mobile-navigation';
+import { Color, Icon } from '@kiwicom/mobile-shared';
 import RNTooltips from 'react-native-tooltips';
 
 type Props = {|

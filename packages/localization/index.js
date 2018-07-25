@@ -7,6 +7,7 @@ import TranslationFragment from './src/TranslationFragment';
 import DateFormatter from './src/DateFormatter';
 import DateUtils from './src/DateUtils';
 import DeviceInfo from './src/GetDeviceLocale';
+import type { TranslationKeys } from './src/DefaultVocabulary';
 
 export {
   TranslationFragment,
@@ -15,6 +16,8 @@ export {
   DeviceInfo,
   Translation,
 };
+
+export type TranslationKeysType = TranslationKeys;
 
 export type DateFormatterFunctions =
   | 'formatToDate'
