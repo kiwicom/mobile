@@ -2,12 +2,8 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import {
-  TextIcon,
-  HeaderButton,
-  Color,
-  StyleSheet,
-} from '@kiwicom/mobile-shared';
+import { TextIcon, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { HeaderButton } from '@kiwicom/mobile-navigation';
 
 export default function ShareButton({ onPress }: {| +onPress: () => void |}) {
   return (
