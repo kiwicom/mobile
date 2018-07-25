@@ -268,6 +268,8 @@ export default {
   'mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_expiry':
     'Passport or ID expiry date',
   'mmb.missing_informaiton.travel_document_modal_screen.no_expiry': 'No expiry',
+  'mmb.missing_informaiton.travel_document_modal_screen.id_number_error':
+    'Please recheck this, it seems too short',
 
   // MMB Booking Timeline
   'mmb.booking_timeline.today': 'Today',

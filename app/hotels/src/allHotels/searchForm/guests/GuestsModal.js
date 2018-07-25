@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, ScrollView, InteractionManager } from 'react-native';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, Color, ErrorMessage } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import ChildrenAgesControl from './ChildrenAgesControl';
@@ -10,7 +10,6 @@ import type {
   RoomConfigurationType as UnsavedRoomConfigurationType,
   ChildAge,
 } from './GuestsTypes';
-import ErrorMessage from './ErrorMessage';
 import GuestsNumberControls from './GuestsNumberControls';
 
 const styles = StyleSheet.create({

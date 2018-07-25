@@ -25,6 +25,10 @@ export default class DatePicker extends React.Component<Props, State> {
 
   static getDerivedStateFromProps = ({ date }: Props) => ({ date });
 
+  static defaultProps = {
+    disabled: false,
+  };
+
   componentDidMount = () => {
     this.setState({ date: this.props.date || DateUtils.getUTCToday() });
   };
@@ -36,7 +40,9 @@ export default class DatePicker extends React.Component<Props, State> {
   };
 
   onSave = () => {
-    this.props.onDateChange(this.state.date);
+    // if this.state.date is null, fallback sent to DatepickerIOS is today's date
+    // if user clicks save and this.state.date is null, then he has selected today's date
+    this.props.onDateChange(this.state.date || DateUtils.getUTCToday());
   };
 
   onDateChange = (date: Date | string) => {
@@ -59,6 +65,7 @@ export default class DatePicker extends React.Component<Props, State> {
       maxDate,
       iconComponent,
       formatFunction,
+      disabled,
       ...rest
     } = this.props;
 
@@ -69,6 +76,7 @@ export default class DatePicker extends React.Component<Props, State> {
           date={date}
           iconComponent={iconComponent}
           formatFunction={formatFunction}
+          disabled={disabled}
         />
         <BarPopup
           isVisible={this.state.isPickerOpen}
@@ -82,7 +90,7 @@ export default class DatePicker extends React.Component<Props, State> {
             {...rest}
             minimumDate={minDate}
             maximumDate={maxDate}
-            date={this.state.date}
+            date={this.state.date || DateUtils.getUTCToday()}
             onDateChange={this.onDateChange}
             locale={DeviceInfo.getLocaleDashed()}
             mode="date"

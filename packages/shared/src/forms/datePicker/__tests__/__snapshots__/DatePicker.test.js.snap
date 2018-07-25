@@ -3,6 +3,7 @@
 exports[`DatePicker renders in playground 1`] = `
 <DatePicker
   date={2018-01-01T00:00:00.000Z}
+  disabled={false}
   iconComponent={
     <TextIcon
       code=""
@@ -21,6 +22,7 @@ exports[`DatePicker renders in playground 1`] = `
 exports[`DatePicker works with max date 1`] = `
 <DatePicker
   date={2018-01-01T00:00:00.000Z}
+  disabled={false}
   iconComponent={
     <TextIcon
       code=""
@@ -40,6 +42,7 @@ exports[`DatePicker works with max date 1`] = `
 exports[`DatePicker works with min date 1`] = `
 <DatePicker
   date={2018-01-01T00:00:00.000Z}
+  disabled={false}
   iconComponent={
     <TextIcon
       code=""
@@ -59,6 +62,7 @@ exports[`DatePicker works with min date 1`] = `
 exports[`DatePicker works with other date formats 1`] = `
 <DatePicker
   date={2018-01-01T00:00:00.000Z}
+  disabled={false}
   format="L"
   iconComponent={
     <TextIcon

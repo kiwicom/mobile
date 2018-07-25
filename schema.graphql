@@ -477,14 +477,14 @@ type BookingReturn implements BookingInterface & Node {
 }
 
 enum BookingStatus {
-  NEW
-  REFUNDED
-  PENDING
-  CONFIRMED
-  CANCELLED
-  DELETED
   CLOSED
-  EXPIRED
+  CONFIRMED
+  REFUNDED
+  NEW @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
+  PENDING @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
+  CANCELLED @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
+  DELETED @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
+  EXPIRED @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
 }
 
 type BookingTimeline {
@@ -1839,7 +1839,7 @@ input PassengerInput {
   passengerId: Int!
 
   """Expiry date of travel document"""
-  documentExpiry: Date!
+  documentExpiry: Date
 
   """Number of travel document"""
   documentNumber: String!
@@ -2077,7 +2077,8 @@ type RootQuery {
     id: ID!
 
     """
-    Fetch only subsection of FAQ based on the current situation of customer.
+    DEPRECATED: Subsection of FAQ is handled automatically now, this has no
+    effect.Fetch only subsection of FAQ based on the current situation of customer.
     """
     section: FAQSection
   ): FAQCategory
