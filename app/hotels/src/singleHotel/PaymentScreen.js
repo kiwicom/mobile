@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import { WebView, Logger } from '@kiwicom/mobile-shared';
+import {
+  WebView,
+  Logger,
+  type WebViewStateChangeEvent,
+} from '@kiwicom/mobile-shared';
 import { DateUtils } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
 
@@ -10,16 +14,16 @@ import { sanitizeDate } from '../GraphQLSanitizers';
 import hotelPackage from '../../package.json';
 
 export type PaymentParameters = {|
-  hotelId: number,
-  checkin: Date,
-  checkout: Date,
-  rooms: Array<{|
-    id: string,
-    count: number, // how many rooms with this ID?
+  +hotelId: number,
+  +checkin: Date,
+  +checkout: Date,
+  +rooms: Array<{|
+    +id: string,
+    +count: number, // how many rooms with this ID?
   |}>,
-  affiliateId: string,
-  language: string,
-  currency: string,
+  +affiliateId: string,
+  +language: string,
+  +currency: string,
 |};
 
 export default class PaymentScreen extends React.Component<PaymentParameters> {
@@ -27,11 +31,18 @@ export default class PaymentScreen extends React.Component<PaymentParameters> {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_PAYMENT);
   };
 
+  onNavigationStateChange = (event: WebViewStateChangeEvent) => {
+    if (!event.loading && event.url.includes('booking.com/confirmation')) {
+      Logger.ancillaryPurchased(Logger.Type.ANCILLARY_STEP_PAYMENT);
+    }
+  };
+
   render = () => (
     <WebView
       source={{
         uri: createURI(this.props),
       }}
+      onNavigationStateChange={this.onNavigationStateChange}
     />
   );
 }

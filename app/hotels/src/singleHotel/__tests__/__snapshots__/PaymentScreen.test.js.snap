@@ -6,6 +6,7 @@ exports[`creates correct URL 2`] = `"https://secure.booking.com/book.html?from_s
 
 exports[`creates correct URL 3`] = `
 <WebView
+  onNavigationStateChange={[Function]}
   source={
     Object {
       "uri": "https://secure.booking.com/book.html?from_source=hotel&hostname=hotels.kiwi.com&hotel_id=2&stage=1&checkin=1970-01-03&interval=14&children_extrabeds=&nr_rooms_7709411_91461863_1_1_0=5&rt_pos_selected=&aid=321&label=kiwi-ios-react-1.0.0&lang=cs&selected_currency=JPY",

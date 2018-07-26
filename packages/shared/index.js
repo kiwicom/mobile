@@ -113,6 +113,7 @@ export type {
   OnDimensionsChange,
   GestureState,
   PanResponderEvent,
+  WebViewStateChangeEvent,
 } from './types/Events';
 
 export type {
