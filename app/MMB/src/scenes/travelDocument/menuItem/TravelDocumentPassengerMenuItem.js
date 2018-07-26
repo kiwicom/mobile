@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
+import {
+  createFragmentContainer,
+  graphql,
+  AuthContext,
+} from '@kiwicom/mobile-relay';
 import {
   type NavigationType,
   withNavigation,
@@ -12,17 +16,20 @@ import PassengerSubtitle from './PassengerSubtitle';
 import PassengerMenuRightContent from './PassengerMenuRightContent';
 import PassengerMenuItem from '../../../components/passengerMenuItem/PassengerMenuItem';
 import type { PassengerMenuItem as PassengerType } from '../../../components/passengerMenuItem/__generated__/PassengerMenuItem.graphql';
+import BookingDetailContext from '../../../context/BookingDetailContext';
 
-type Props = {|
-  +data: PassengerType,
-  +navigation: NavigationType,
+type PropsWithContext = {|
+  ...Props,
+  +bookingId: string,
+  +token: string,
 |};
 
-const TravelDocumentPassengerMenuItem = (props: Props) => {
+const TravelDocumentPassengerMenuItem = (props: PropsWithContext) => {
   const title = idx(props.data, _ => _.title) || '';
   const fullName = idx(props.data, _ => _.fullName) || '';
   const idNumber = idx(props.data, _ => _.travelDocument.idNumber) || null;
   const expiryDate = idx(props.data, _ => _.travelDocument.expiration) || null;
+  const passengerId = idx(props.data, _ => _.databaseId) || null;
 
   function onPress() {
     props.navigation.navigate('TravelDocumentModalScreen', {
@@ -30,6 +37,9 @@ const TravelDocumentPassengerMenuItem = (props: Props) => {
       fullName,
       idNumber,
       expiryDate,
+      passengerId,
+      bookingId: props.bookingId,
+      token: props.token,
     });
   }
 
@@ -45,12 +55,35 @@ const TravelDocumentPassengerMenuItem = (props: Props) => {
     />
   );
 };
+
+type Props = {|
+  +data: PassengerType,
+  +navigation: NavigationType,
+|};
+
+const TravelDocumentPassengerMenuItemWithContext = (props: Props) => (
+  <BookingDetailContext.Consumer>
+    {({ bookingId }) => (
+      <AuthContext.Consumer>
+        {({ accessToken }) => (
+          <TravelDocumentPassengerMenuItem
+            {...props}
+            bookingId={bookingId}
+            token={accessToken || ''}
+          />
+        )}
+      </AuthContext.Consumer>
+    )}
+  </BookingDetailContext.Consumer>
+);
+
 export default createFragmentContainer(
-  withNavigation(TravelDocumentPassengerMenuItem),
+  withNavigation(TravelDocumentPassengerMenuItemWithContext),
   graphql`
     fragment TravelDocumentPassengerMenuItem on Passenger {
       title
       fullName
+      databaseId
       travelDocument {
         idNumber
         expiration
