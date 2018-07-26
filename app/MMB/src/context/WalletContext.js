@@ -32,11 +32,15 @@ type State = {|
   selectedSegment: Segment | null,
   +actions: {|
     +addSegment: (segment: Segment) => void,
-    +setSelectedSegment: (segmentId: string | null) => void,
+    +setSelectedSegment: (
+      segmentId: string | null,
+      callback?: () => void,
+    ) => void,
     +addPkpassData: (
       passengerName: string,
       pkpassUrl: string,
       segmentId: string,
+      callback?: () => void,
     ) => void,
   |},
 |};
@@ -66,6 +70,7 @@ class Provider extends React.Component<Props, State> {
     passengerName: string,
     pkpassUrl: string,
     segmentId: string,
+    callback?: () => void,
   ) => {
     this.setState(
       state => ({
@@ -81,18 +86,25 @@ class Provider extends React.Component<Props, State> {
         }),
       }),
       () => {
-        this.setSelectedSegment(segmentId);
+        this.setSelectedSegment(segmentId, callback);
       },
     );
   };
 
-  setSelectedSegment = (segmentId: string | null) => {
-    this.setState(state => ({
-      selectedSegment:
-        segmentId === null
-          ? null
-          : state.segments.find(segment => segment.id === segmentId),
-    }));
+  setSelectedSegment = (segmentId: string | null, callback?: () => void) => {
+    this.setState(
+      state => ({
+        selectedSegment:
+          segmentId === null
+            ? null
+            : state.segments.find(segment => segment.id === segmentId),
+      }),
+      () => {
+        if (callback !== undefined) {
+          callback();
+        }
+      },
+    );
   };
 
   render = () => (
