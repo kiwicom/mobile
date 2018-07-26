@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, Touchable, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
       width: 1,
       height: 1,
     },
-    textShadowColor: '#000',
+    textShadowColor: Color.black,
     textShadowRadius: 2,
   },
   subTitle: {

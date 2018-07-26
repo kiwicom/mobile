@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { Image, View } from 'react-native';
-import { StyleSheet, Text, type StylePropType } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  Text,
+  Color,
+  type StylePropType,
+} from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -12,7 +17,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     borderRadius: 2,
-    backgroundColor: 'rgba(48, 54, 61, 0.6)',
+    backgroundColor: Color.grey.transparent.outerSpace.$60,
     paddingVertical: 5,
     paddingHorizontal: 8,
   },
@@ -25,7 +30,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 14,
     fontWeight: '600',
-    color: '#ffffff',
+    color: Color.white,
     marginStart: 5,
   },
 });

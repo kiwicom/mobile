@@ -21,7 +21,7 @@ exports[`renders text 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#ffffff",
         },
         undefined,
       ]
@@ -57,7 +57,7 @@ exports[`renders text with color 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#ffffff",
         },
         undefined,
       ]
@@ -91,7 +91,7 @@ exports[`renders very long texts 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#ffffff",
         },
         undefined,
       ]

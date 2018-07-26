@@ -52,7 +52,7 @@ const styleSheet = StyleSheet.create({
     backgroundColor: Color.brand,
   },
   buttonGroup: {
-    backgroundColor: '#c4e7e4',
+    backgroundColor: Color.blue.jaggedIce,
     marginEnd: 5,
     ios: {
       height: 36,

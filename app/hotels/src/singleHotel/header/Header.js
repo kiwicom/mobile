@@ -12,6 +12,7 @@ import {
   Device,
   BlackToAlpha as gradient,
   Dimensions,
+  Color,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -60,12 +61,12 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontWeight: '600',
     letterSpacing: -0.45,
-    color: '#ffffff',
+    color: Color.white,
   },
   rating: {
     backgroundColor: 'transparent',
     fontSize: 12,
-    color: '#ffffff',
+    color: Color.white,
   },
   tabletContainer: {
     android: {

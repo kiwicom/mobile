@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   container: {
-    backgroundColor: '#c4e7e4',
+    backgroundColor: Color.blue.jaggedIce,
     height: 44,
     paddingHorizontal: 10,
     paddingVertical: 14,

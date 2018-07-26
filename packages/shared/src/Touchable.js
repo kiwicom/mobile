@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import type { AccessibilityProps } from '@kiwicom/mobile-accessibility';
 
+import Color from './Color';
 import { type StylePropType } from '../types/Styles';
 
 type Props = {|
@@ -37,7 +38,7 @@ type Props = {|
 export default class Touchable extends React.Component<Props> {
   static defaultProps = {
     borderlessRipple: false,
-    rippleColor: 'rgba(0, 0, 0, .32)',
+    rippleColor: Color.transparent.black.$32,
     disabled: false,
   };
 

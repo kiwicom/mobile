@@ -52,13 +52,13 @@ export class HotelReviewScore extends React.Component<Props> {
    */
   calculateColor = (score: number): ?string => {
     if (score >= 0 === score < 3) {
-      return '#d0021b';
+      return Color.red.monza;
     }
     if (score >= 3 === score <= 7) {
       return Color.orange.normal;
     }
     if (score > 7 === score <= 10) {
-      return '#31a11e';
+      return Color.green.lapalma;
     }
   };
 
