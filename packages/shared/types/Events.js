@@ -73,3 +73,8 @@ export type PanResponderEvent = {
     touches: [],
   },
 };
+
+export type WebViewStateChangeEvent = {|
+  +url: string,
+  +loading: boolean,
+|};
