@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, Platform } from 'react-native';
 import Swiper from 'react-native-swiper';
-import { StyleSheet, NetworkImage } from '@kiwicom/mobile-shared';
+import { StyleSheet, NetworkImage, Color } from '@kiwicom/mobile-shared';
 
 import PhotosStripeHeader from './PhotosStripeHeader';
 
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   slide: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: Color.black,
   },
   networkImage: {
     flex: 1,

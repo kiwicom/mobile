@@ -27,7 +27,7 @@ const style = StyleSheet.create({
     flexWrap: 'wrap',
   },
   text: {
-    color: '#fff',
+    color: Color.white,
   },
 });
 

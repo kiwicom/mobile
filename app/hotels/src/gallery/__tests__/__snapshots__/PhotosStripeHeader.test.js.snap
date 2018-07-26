@@ -49,7 +49,7 @@ exports[`renders header with title 1`] = `
           "color": "white",
           "fontWeight": "bold",
           "textAlign": "center",
-          "textShadowColor": "#000",
+          "textShadowColor": "#000000",
           "textShadowOffset": Object {
             "height": 1,
             "width": 1,
@@ -141,7 +141,7 @@ exports[`renders header with very long title 1`] = `
           "color": "white",
           "fontWeight": "bold",
           "textAlign": "center",
-          "textShadowColor": "#000",
+          "textShadowColor": "#000000",
           "textShadowOffset": Object {
             "height": 1,
             "width": 1,

@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 5,
     paddingHorizontal: 8,
-    backgroundColor: '#fff',
+    backgroundColor: Color.white,
     borderRadius: 3,
     borderColor: Color.grey.$200,
     borderWidth: 1,
   },
   price: {
-    color: '#000',
+    color: Color.black,
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     borderWidth: 7,
-    borderTopColor: '#fff',
+    borderTopColor: Color.white,
     alignSelf: 'center',
     marginTop: -18,
   },
@@ -45,7 +45,7 @@ const selectedStyles = StyleSheet.create({
     backgroundColor: Color.brand,
   },
   price: {
-    color: '#fff',
+    color: Color.white,
   },
   arrow: {
     borderTopColor: Color.brand,

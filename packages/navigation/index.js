@@ -154,7 +154,7 @@ export const createTransparentHeaderStyle = (dim: DimensionType) => {
   return {
     headerStyle: {
       borderBottomWidth: 0,
-      backgroundColor: 'rgba(0,0,0,0)',
+      backgroundColor: 'transparent',
       elevation: 0,
       marginTop: StatusBar.currentHeight,
     },

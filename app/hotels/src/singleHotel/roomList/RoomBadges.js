@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { AdaptableBadge, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import {
+  AdaptableBadge,
+  StyleSheet,
+  TextIcon,
+  Color,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
@@ -19,15 +24,15 @@ type Props = {|
 
 const styles = StyleSheet.create({
   badgeContainer: {
-    backgroundColor: 'rgba(49, 161, 30, 0.15)',
+    backgroundColor: Color.green.transparent.lapalma.$15,
     marginTop: 5,
   },
   badgeText: {
-    color: 'rgb(49, 161, 30)',
+    color: Color.green.lapalma,
     fontSize: 10,
   },
   iconStyle: {
-    color: 'rgb(49, 161, 30)',
+    color: Color.green.lapalma,
     fontSize: 10,
     ios: {
       alignSelf: 'flex-end',

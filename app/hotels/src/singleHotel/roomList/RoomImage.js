@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Touchable, NetworkImage, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  Touchable,
+  NetworkImage,
+  StyleSheet,
+  Color,
+} from '@kiwicom/mobile-shared';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
   galleryButtonContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
+    backgroundColor: Color.transparent.black.$30,
     borderRadius: 0,
     paddingVertical: 4,
   },

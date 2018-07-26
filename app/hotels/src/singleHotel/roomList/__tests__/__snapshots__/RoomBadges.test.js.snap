@@ -9,7 +9,7 @@ Array [
         style={
           Object {
             "alignSelf": "flex-end",
-            "color": "rgb(49, 161, 30)",
+            "color": "#31a11e",
             "fontSize": 10,
             "marginEnd": 5,
           }
@@ -24,7 +24,7 @@ Array [
     }
     textStyle={
       Object {
-        "color": "rgb(49, 161, 30)",
+        "color": "#31a11e",
         "fontSize": 10,
       }
     }
@@ -41,7 +41,7 @@ Array [
         style={
           Object {
             "alignSelf": "flex-end",
-            "color": "rgb(49, 161, 30)",
+            "color": "#31a11e",
             "fontSize": 10,
             "marginEnd": 5,
           }
@@ -56,7 +56,7 @@ Array [
     }
     textStyle={
       Object {
-        "color": "rgb(49, 161, 30)",
+        "color": "#31a11e",
         "fontSize": 10,
       }
     }

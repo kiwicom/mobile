@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { LayoutAnimation } from '@kiwicom/mobile-shared';
 
+import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 import VerticalSwipeResponder from './view/VerticalSwipeResponder';
 
@@ -18,7 +19,7 @@ type State = {|
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: Color.white,
     overflow: 'hidden',
     android: {
       borderTopRightRadius: 3,

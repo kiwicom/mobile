@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: '#000',
-    backgroundColor: '#eee',
+    borderColor: Color.black,
+    backgroundColor: Color.grey.$200,
   },
   sectionText: {
     paddingBottom: 10,
-    color: '#888',
+    color: Color.grey.$550,
     fontSize: 10,
   },
 });
