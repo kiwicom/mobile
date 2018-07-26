@@ -46,6 +46,15 @@ export default {
   'mmb.boarding_passes.apple_wallet.information_text':
     'Board the plane with an electronic boarding pass from your Apple Wallet',
 
+  //MMB Apple Wallet
+  'mmb.apple_wallet.apple_wallet_scene.passenger': 'Passenger',
+  'mmb.apple_wallet.apple_wallet_scene.departure_date': 'Departure date',
+  'mmb.apple_wallet.apple_wallet_scene.departure_time': 'Departure time',
+  'mmb.apple_wallet.apple_wallet_scene.why_use_apple_wallet':
+    'Why use the Apple Wallet?',
+  'mmb.apple_wallet.apple_wallet_scene.why_wallet_text':
+    'On your departure date, your boarding pass will be displayed directly on the lock screen: making it easy to board the plane. It will also be automatically updated with any schedule changes.',
+
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
   'mmb.flight_overview.timeline.carrier': 'Carrier:',

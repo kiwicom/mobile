@@ -15,7 +15,12 @@ import WalletContext from './../../../../context/WalletContext';
 
 type PropsWithContext = {|
   ...Props,
-  addPkpassData: (passengerName: string, pkpassUrl: string, id: string) => void,
+  addPkpassData: (
+    passengerName: string,
+    pkpassUrl: string,
+    id: string,
+    callback?: () => void,
+  ) => void,
 |};
 
 class AppleWalletPassenger extends React.Component<PropsWithContext> {
@@ -24,9 +29,11 @@ class AppleWalletPassenger extends React.Component<PropsWithContext> {
     const url = idx(this.props.data, _ => _.url) || '';
 
     if (this.props.segmentId != null) {
-      this.props.addPkpassData(name, url, this.props.segmentId);
+      // We cannot navigate before selected segment has been set
+      this.props.addPkpassData(name, url, this.props.segmentId, () => {
+        this.props.navigation.navigate('AppleWalletScreen');
+      });
     }
-    this.props.navigation.navigate('AppleWalletScreen');
   };
 
   render = () => (

@@ -24,7 +24,7 @@ export class FlightFromTo extends React.Component<PropsWithContext> {
     const flightDate = idx(this.props.data, _ => _.departure.localTime) || null;
     this.props.addSegment({
       id,
-      airlineLogoUrl,
+      airlineLogoUrl, // TODO: This is not the correct logo. Fix when images have been added to images.kiwi.com
       flightDate,
     });
   };

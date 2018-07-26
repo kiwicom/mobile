@@ -12,14 +12,6 @@ type PropsWithContext = {|
 |};
 
 class AppleWalletScreen extends React.Component<PropsWithContext> {
-  static navigationOptions = () => ({
-    headerStyle: {
-      backgroundColor: 'transparent',
-    },
-    headerTransparent: true,
-    headerTintColor: Color.white,
-  });
-
   componentWillUnmount = () => {
     this.props.setSelectedSegment(null);
   };
@@ -40,6 +32,14 @@ export default function AppleWalletScreenWithContext() {
     </WalletContext.Consumer>
   );
 }
+
+AppleWalletScreenWithContext.navigationOptions = () => ({
+  headerStyle: {
+    backgroundColor: 'transparent',
+  },
+  headerTransparent: true,
+  headerTintColor: Color.white,
+});
 
 const styles = StyleSheet.create({
   container: {
