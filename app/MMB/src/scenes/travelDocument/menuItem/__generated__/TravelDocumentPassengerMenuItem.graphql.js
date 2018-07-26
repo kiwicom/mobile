@@ -13,6 +13,7 @@ declare export opaque type TravelDocumentPassengerMenuItem$ref: FragmentReferenc
 export type TravelDocumentPassengerMenuItem = {|
   +title: ?string,
   +fullName: ?string,
+  +databaseId: ?number,
   +travelDocument: ?{|
     +idNumber: ?string,
     +expiration: ?any,
@@ -44,6 +45,13 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "databaseId",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "travelDocument",
@@ -71,5 +79,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'de53565386f539710ba3eaa2e0f23034';
+(node/*: any*/).hash = '4c272dd44ad57342dc4f8384e4fbf64b';
 module.exports = node;

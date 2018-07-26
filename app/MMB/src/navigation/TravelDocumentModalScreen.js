@@ -7,7 +7,7 @@ import {
   HeaderTitle,
   HeaderButton,
 } from '@kiwicom/mobile-navigation';
-import { Translation } from '@kiwicom/mobile-localization';
+import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import {
   StyleSheet,
   TextIcon,
@@ -17,9 +17,11 @@ import {
   DatePicker,
   Switch,
   ErrorMessage,
+  IconLoading,
 } from '@kiwicom/mobile-shared';
 
 import TitleTranslation from '../components/TitleTranslation';
+import updatePassengerMutation from './mutation/UpdatePassenger';
 
 type Props = {|
   +navigation: NavigationType,
@@ -27,12 +29,16 @@ type Props = {|
   +title: string,
   +idNumber: string | null,
   +expiryDate: Date | null,
+  +bookingId: string,
+  +passengerId: number,
+  +token: string,
 |};
 
 type State = {|
   idNumber: string,
   expiryDate: Date | null,
   noExpiry: boolean,
+  isSubmitting: boolean,
   error: {|
     idNumber: boolean,
     expiryDate: boolean,
@@ -52,6 +58,7 @@ export default class TravelDocumentModalScreen extends React.Component<
       idNumber: props.idNumber || '',
       expiryDate: props.expiryDate,
       noExpiry: false,
+      isSubmitting: false,
       error: {
         idNumber: false,
         expiryDate: true,
@@ -132,8 +139,29 @@ export default class TravelDocumentModalScreen extends React.Component<
   };
 
   onSave = () => {
-    // TODO: Send mutation
-    this.props.navigation.goBack();
+    this.setState({ isSubmitting: true });
+    this.props.navigation.setParams({ disabled: true });
+    updatePassengerMutation(
+      {
+        id: this.props.bookingId,
+        passengers: [
+          {
+            passengerId: this.props.passengerId,
+            documentExpiry:
+              this.state.expiryDate === null
+                ? null
+                : DateFormatter(this.state.expiryDate).formatForMachine(),
+            documentNumber: this.state.idNumber,
+          },
+        ],
+      },
+      () => {
+        this.props.navigation.goBack();
+        this.setState({ isSubmitting: false });
+        this.props.navigation.setParams({ disabled: false });
+      },
+      this.props.token,
+    );
   };
 
   validate = () => {
@@ -196,6 +224,7 @@ export default class TravelDocumentModalScreen extends React.Component<
           </View>
         </View>
       </View>
+      {this.state.isSubmitting && <IconLoading />}
     </View>
   );
 }
