@@ -25,7 +25,9 @@ export default function Alert(props: Props) {
     case 'danger':
       return (
         <RenderAlert
-          icon={<Icon name="warning" size={ICON_SIZE} color={RED} />}
+          icon={
+            <Icon name="warning" size={ICON_SIZE} color={Color.red.monza} />
+          }
           title={props.title}
           titleStyle={[styles.titleDanger, props.titleStyle]}
           containerStyle={styles.containerDanger}
@@ -36,7 +38,13 @@ export default function Alert(props: Props) {
     case 'warning':
       return (
         <RenderAlert
-          icon={<Icon name="warning" size={ICON_SIZE} color="#eb9d08" />}
+          icon={
+            <Icon
+              name="warning"
+              size={ICON_SIZE}
+              color={Color.orange.gamboge}
+            />
+          }
           title={props.title}
           titleStyle={[styles.titleWarning, props.titleStyle]}
           containerStyle={styles.containerWarning}
@@ -67,11 +75,9 @@ export default function Alert(props: Props) {
   }
 }
 
-const RED = '#d0021b';
-
 const styles = StyleSheet.create({
   containerDanger: {
-    backgroundColor: 'rgba(208, 2, 27, 0.15)',
+    backgroundColor: Color.red.transparent.monza.$15,
   },
   successIcon: {
     transform: [{ rotate: '180deg' }],
@@ -83,12 +89,12 @@ const styles = StyleSheet.create({
     color: Color.green.dark,
   },
   containerWarning: {
-    backgroundColor: 'rgba(235, 157, 8, 0.15)',
+    backgroundColor: Color.orange.transparent.gamboge.$15,
   },
   titleWarning: {
-    color: '#eb9d08',
+    color: Color.orange.gamboge,
   },
   titleDanger: {
-    color: RED,
+    color: Color.red.monza,
   },
 });

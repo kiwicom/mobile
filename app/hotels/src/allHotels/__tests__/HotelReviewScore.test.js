@@ -1,5 +1,7 @@
 // @flow
 
+import { Color } from '@kiwicom/mobile-shared';
+
 import { HotelReviewScore } from '../HotelReviewScore';
 
 let HRS;
@@ -20,9 +22,9 @@ describe('formatScore', () => {
 
 describe('calculateColor', () => {
   it('returns correct score color', () => {
-    const RED = '#d0021b';
-    const ORANGE = '#f9971e';
-    const GREEN = '#31a11e';
+    const RED = Color.red.monza;
+    const ORANGE = Color.orange.normal;
+    const GREEN = Color.green.lapalma;
 
     expect(HRS.calculateColor(-1)).toBeUndefined();
     expect(HRS.calculateColor(0)).toBe(RED);

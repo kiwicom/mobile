@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
+import Color from '../Color';
 import AdaptableLayout from './AdaptableLayout';
 import StyleSheet from '../PlatformStyleSheet';
 import Layout from './Layout';
@@ -92,7 +93,7 @@ const styleSheet = StyleSheet.create({
     width: 520,
     maxWidth: '50%',
     borderEndWidth: 1,
-    borderEndColor: '#cad2dc',
+    borderEndColor: Color.grey.geyser,
   },
   container: {
     flex: 1,

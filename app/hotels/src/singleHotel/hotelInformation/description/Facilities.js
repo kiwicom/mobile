@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   adaptableBadge: {
-    backgroundColor: '#eceff1',
+    backgroundColor: Color.grey.porcelain,
     marginEnd: 5,
     marginBottom: 5,
   },

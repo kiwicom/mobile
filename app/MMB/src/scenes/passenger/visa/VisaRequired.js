@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 
 import Alert from '../../../components/alert/Alert';
 
@@ -31,7 +31,7 @@ export default function VisaRequired(props: Props) {
 const styles = StyleSheet.create({
   country: {
     fontSize: 12,
-    color: '#d0021b',
+    color: Color.red.monza,
     fontWeight: '600',
   },
 });

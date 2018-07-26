@@ -3,6 +3,8 @@
 import * as React from 'react';
 import { StatusBar } from 'react-native';
 
+import Color from '../Color';
+
 type Props = {|
   +children: React.Node,
 |};
@@ -13,7 +15,7 @@ export default function Layout(props: Props) {
       <StatusBar
         animated={true}
         barStyle="default"
-        backgroundColor="rgba(0, 0, 0, 0.3)" // Android only
+        backgroundColor={Color.transparent.black.$30} // Android only
       />
       {props.children}
     </React.Fragment>
