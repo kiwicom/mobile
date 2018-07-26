@@ -4,6 +4,7 @@ import * as React from 'react';
 import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
 
 import PublicEnvironment from './src/PublicEnvironment';
+import PrivateEnvironment from './src/PrivateEnvironment';
 
 export {
   graphql,
@@ -22,7 +23,16 @@ export const createFragmentContainer = (
   return Relay.createFragmentContainer(component, fragmentSpec);
 };
 
-export const commitMutation = (config: CommitMutationConfig) => {
+export const commitMutation = (
+  config: CommitMutationConfig,
+  token?: string,
+) => {
+  if (token) {
+    return Relay.commitMutation(
+      PrivateEnvironment.getEnvironment(token),
+      config,
+    );
+  }
   return Relay.commitMutation(PublicEnvironment.getEnvironment(), config);
 };
 
@@ -33,6 +43,7 @@ type CommitMutationConfig = {|
   +mutation: string,
   +variables: Object,
   +onCompleted: Function,
+  +updater?: Function,
 |};
 
 export type QueryRendererProps = {|
