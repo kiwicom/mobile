@@ -18,14 +18,6 @@ const StatusBadge = (props: Props) => {
 
   let renderStatus;
   switch (status) {
-    case 'CANCELLED': {
-      renderStatus = {
-        translationId: 'mmb.status.cancelled',
-        style: styles.redBadge,
-      };
-      break;
-    }
-
     case 'CLOSED': {
       renderStatus = {
         translationId: 'mmb.status.closed',
@@ -40,38 +32,6 @@ const StatusBadge = (props: Props) => {
           ? 'mmb.status.travelled'
           : 'mmb.status.confirmed',
         style: styles.greenBadge,
-      };
-      break;
-    }
-
-    case 'DELETED': {
-      renderStatus = {
-        translationId: 'mmb.status.deleted',
-        style: styles.redBadge,
-      };
-      break;
-    }
-
-    case 'EXPIRED': {
-      renderStatus = {
-        translationId: 'mmb.status.expired',
-        style: styles.redBadge,
-      };
-      break;
-    }
-
-    case 'NEW': {
-      renderStatus = {
-        translationId: 'mmb.status.new',
-        style: styles.blueBadge,
-      };
-      break;
-    }
-
-    case 'PENDING': {
-      renderStatus = {
-        translationId: 'mmb.status.pending',
-        style: styles.orangeBadge,
       };
       break;
     }
@@ -119,14 +79,8 @@ const styles = StyleSheet.create({
   blackBadge: {
     backgroundColor: Color.black,
   },
-  orangeBadge: {
-    backgroundColor: Color.orange.normal,
-  },
   redBadge: {
     backgroundColor: Color.red.normal,
-  },
-  blueBadge: {
-    backgroundColor: Color.blue.normal,
   },
   badgeText: {
     fontSize: 10,
