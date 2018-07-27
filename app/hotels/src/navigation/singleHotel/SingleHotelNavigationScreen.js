@@ -2,9 +2,7 @@
 
 import * as React from 'react';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
-import { HeaderBackButton } from 'react-navigation';
-import { Color } from '@kiwicom/mobile-shared';
-import idx from 'idx';
+import { WithStandaloneScreen } from '@kiwicom/mobile-shared';
 
 import SingleHotel from '../../singleHotel';
 import type { NavigationProps } from '../NavigationStack';
@@ -17,17 +15,7 @@ type Props = {
   isStandAlonePackage?: boolean,
 };
 
-const noop = () => {};
-
 class SingleHotelNavigationScreen extends React.Component<Props> {
-  static navigationOptions = (props: Props) => {
-    const goBack = idx(props.navigation.state.params, _ => _.goBack) || noop;
-
-    return {
-      headerLeft: <HeaderBackButton tintColor={Color.brand} onPress={goBack} />,
-    };
-  };
-
   static defaultProps = {
     isStandAlonePackage: false,
   };
@@ -99,4 +87,6 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
   }
 }
 
-export default withMappedNavigationAndConfigProps(SingleHotelNavigationScreen);
+export default withMappedNavigationAndConfigProps(
+  WithStandaloneScreen(SingleHotelNavigationScreen, 'SingleHotel'),
+);

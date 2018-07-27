@@ -35,7 +35,7 @@ describe('WithNativeNavigation', () => {
     expect(GestureController.enableGestures).toHaveBeenCalledTimes(1);
   });
 
-  it('enables gestures if it was not enabled', () => {
+  it('enables gestures if it was not enabled 1', () => {
     sharedInstance.isEnabled = false;
     sharedInstance.lastCall = 'disabled';
     const onNavigationStateChange = sharedInstance.onNavigationStateChange;
@@ -46,6 +46,29 @@ describe('WithNativeNavigation', () => {
         {
           index: 0,
           routes: [{ index: 0 }],
+        },
+      );
+    };
+
+    callEnable();
+    expect(GestureController.enableGestures).toHaveBeenCalledTimes(1);
+
+    callEnable();
+    // Still 1 time because we do not call if it was the last call
+    expect(GestureController.enableGestures).toHaveBeenCalledTimes(1);
+  });
+
+  it('enables gestures if it was not enabled 2', () => {
+    sharedInstance.isEnabled = false;
+    sharedInstance.lastCall = 'disabled';
+    const onNavigationStateChange = sharedInstance.onNavigationStateChange;
+
+    const callEnable = () => {
+      onNavigationStateChange(
+        {},
+        {
+          index: 0,
+          routes: [{}],
         },
       );
     };
