@@ -105,6 +105,7 @@ export { default as StyleSheet } from './src/PlatformStyleSheet';
 export { default as Touchable } from './src/Touchable';
 export { default as WithStorage } from './src/WithStorage';
 export { default as WithNativeNavigation } from './src/WithNativeNavigation';
+export { default as WithStandaloneScreen } from './src/WithStandaloneScreen';
 
 // Flow types:
 

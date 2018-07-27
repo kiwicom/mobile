@@ -46,6 +46,7 @@ const Translations = {
 
   'shared.age_picker.done': 'Done',
   'shared.bar_popup.cancel': 'Cancel',
+  'shared.button.close': 'Close',
   'shared.pdf_viewer.load_failed': 'Failed to load pdf',
   'shared.web_view.no_internet_connection':
     'No internet connection, please check your internet settings or try it later.',

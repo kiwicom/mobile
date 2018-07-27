@@ -21,6 +21,7 @@ const navigation = {
 };
 
 const getNavigationOptions = (lastNavigationMode?: string) => {
+  // $FlowExpectedError: Don't know how to type navigationOptions from HOC yet
   const NavigationOptions = AllHotelsNavigationScreen.navigationOptions({
     navigation: navigation,
     currency: 'EUR',

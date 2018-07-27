@@ -1,16 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { Platform } from 'react-native';
-import { HeaderBackButton } from 'react-navigation';
 import {
   LayoutDoubleColumn,
   AdaptableLayout,
-  Color,
-  GestureController,
-  HeaderButton,
-  StyleSheet,
-  Text,
+  WithStandaloneScreen,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
@@ -35,30 +29,13 @@ type NavigationProps = {|
 
 type Props = {| ...ContainerProps, ...NavigationProps |};
 
-export default class AllHotelsNavigationScreen extends React.Component<Props> {
+class AllHotelsNavigationScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
-    function closeNativeModal() {
-      GestureController.closeModal('KiwiHotels');
-    }
-
     function goToAllHotelsMap() {
       props.navigation.navigate('AllHotelsMap');
     }
 
     return {
-      headerLeft:
-        props.lastNavigationMode && props.lastNavigationMode === 'present' ? (
-          <HeaderButton.Left onPress={closeNativeModal}>
-            <Text style={styles.closeButton}>
-              <Translation id="hotels.navigation.close.button" />
-            </Text>
-          </HeaderButton.Left>
-        ) : (
-          <HeaderBackButton
-            tintColor={Color.brand}
-            onPress={props.onBackClicked}
-          />
-        ),
       headerTitle: (
         <HeaderTitle>
           <Translation id="hotels.navigation.title.all_hotels" />
@@ -109,10 +86,4 @@ export default class AllHotelsNavigationScreen extends React.Component<Props> {
   };
 }
 
-const styles = StyleSheet.create({
-  closeButton: {
-    color: Color.brand,
-    fontWeight: '600',
-    fontSize: Platform.OS === 'android' ? 18 : 17,
-  },
-});
+export default WithStandaloneScreen(AllHotelsNavigationScreen, 'KiwiHotels');
