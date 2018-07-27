@@ -6,7 +6,7 @@ import { GestureController } from '@kiwicom/mobile-shared';
 type NavigationState = {|
   +index: number,
   +routes: $ReadOnlyArray<{|
-    +index: number,
+    +index?: number,
   |}>,
 |};
 
@@ -37,7 +37,7 @@ function withNativeNavigation<Props: {}>(
       // Native gesture should only be enabled in the very first screen
       // We also check the nested index in case there is a modal opened
       this.isEnabled =
-        currentState.index === 0 && currentState.routes[0].index === 0;
+        currentState.index === 0 && !currentState.routes[0].index;
 
       if (this.isEnabled && this.lastCall !== 'enabled') {
         GestureController.enableGestures(moduleName);

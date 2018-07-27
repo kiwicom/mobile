@@ -139,7 +139,7 @@ exports[`renders close button with \`closeNativeModal\` onPress function when la
     }
   >
     <Translation
-      id="hotels.navigation.close.button"
+      id="shared.button.close"
     />
   </Text>
 </HeaderButton>
