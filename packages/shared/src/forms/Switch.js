@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Switch as OriginalSwitch } from 'react-native';
+import { Switch as OriginalSwitch } from 'react-native'; // eslint-disable-line no-restricted-imports
 
 import Color from '../Color';
 
