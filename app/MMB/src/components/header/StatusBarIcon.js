@@ -25,13 +25,6 @@ function Status({ data }: {| data: StatusBarIcon |}) {
   const isPastBooking = data.isPastBooking;
 
   switch (code) {
-    case 'CANCELLED':
-      return (
-        <StatusIcon
-          color={Color.red.normal}
-          title={<Translation id="mmb.status.cancelled" />}
-        />
-      );
     case 'CLOSED':
       return (
         <StatusIcon
@@ -50,34 +43,6 @@ function Status({ data }: {| data: StatusBarIcon |}) {
               }
             />
           }
-        />
-      );
-    case 'DELETED':
-      return (
-        <StatusIcon
-          color={Color.red.normal}
-          title={<Translation id="mmb.status.deleted" />}
-        />
-      );
-    case 'EXPIRED':
-      return (
-        <StatusIcon
-          color={Color.red.normal}
-          title={<Translation id="mmb.status.expired" />}
-        />
-      );
-    case 'NEW':
-      return (
-        <StatusIcon
-          color={Color.blue.normal}
-          title={<Translation id="mmb.status.new" />}
-        />
-      );
-    case 'PENDING':
-      return (
-        <StatusIcon
-          color={Color.orange.normal}
-          title={<Translation id="mmb.status.pending" />}
         />
       );
     case 'REFUNDED':
