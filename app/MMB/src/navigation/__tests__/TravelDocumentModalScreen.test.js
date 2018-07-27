@@ -1,84 +1,94 @@
 // @flow strict
 
-import * as React from 'react';
-import renderer from 'react-test-renderer';
-
-import TravelDocumentModalScreen from '../TravelDocumentModalScreen';
-
-jest.mock('../../components/TitleTranslation.js', () => () => null);
-jest.mock('DatePickerIOS');
+import { TravelDocumentModalScreen } from '../TravelDocumentModalScreen';
 
 const navigation = {
   setParams: jest.fn(),
 };
 
-const getInstance = () =>
-  renderer
-    .create(
-      // $FlowExpectedError: All props not needed for this test
-      <TravelDocumentModalScreen expiryDate={null} navigation={navigation} />,
-    )
-    .getInstance();
-
 afterEach(() => {
   jest.resetAllMocks();
 });
 
+const getComponent = props =>
+  // $FlowExpectedError: Passing just props needed to run test
+  new TravelDocumentModalScreen({
+    ...props,
+    navigation,
+  });
+
 describe('TravelDocumentModalScreen', () => {
-  it('should validate onIdNumberChange correctly', () => {
-    const instance = getInstance();
-    expect(instance.state.error.idNumber).toBe(false);
+  it('should call navigation setParams when a idNumber changes', () => {
+    const Component = getComponent({
+      idNumber: 'a',
+    });
 
-    instance.onIdNumberChange('1');
-    expect(instance.state.error.idNumber).toBe(true);
-
-    instance.onIdNumberChange('12345');
-    expect(instance.state.error.idNumber).toBe(false);
+    // $FlowExpectedError: Passing just props needed to run test
+    Component.componentDidUpdate({ idNumber: 'ab' });
+    expect(navigation.setParams).toBeCalledWith({ disabled: true });
   });
 
-  it('should validate onDateChange correctly', () => {
-    const instance = getInstance();
-    expect(instance.state.error.expiryDate).toBe(true);
+  it('should call navigation setParams when a expiryDate changes', () => {
+    const Component = getComponent({
+      idNumber: 'a',
+    });
 
-    instance.onDateChange(new Date());
-    expect(instance.state.error.expiryDate).toBe(false);
+    // $FlowExpectedError: Passing just props needed to run test
+    Component.componentDidUpdate({ expiryDate: new Date() });
+    expect(navigation.setParams).toBeCalledWith({ disabled: true });
   });
 
-  it('should validate onNoExpiryChange correctly', () => {
-    const instance = getInstance();
-    expect(instance.state.error.expiryDate).toBe(true);
+  it('should call navigation setParams when a noExpiry changes', () => {
+    const Component = getComponent({
+      noExpiry: false,
+      idNumber: '',
+    });
 
-    instance.onDateChange(new Date());
-    expect(instance.state.error.expiryDate).toBe(false);
-
-    instance.onNoExpiryChange(false);
-    expect(instance.state.error.expiryDate).toBe(true);
+    // $FlowExpectedError: Passing just props needed to run test
+    Component.componentDidUpdate({ noExpiry: true, idNumber: '' });
+    expect(navigation.setParams).toBeCalledWith({ disabled: true });
   });
 
-  it('should disable header button correctly', () => {
-    const instance = getInstance();
-    jest.resetAllMocks();
+  it('should not call set params if idNumber and expiry date remain unchanged', () => {
+    const Component = getComponent({
+      idNumber: 'a',
+      expiryDate: null,
+    });
 
-    instance.onIdNumberChange('12345');
-    expect(navigation.setParams).toHaveBeenCalledWith({ disabled: true });
-    expect(navigation.setParams).toHaveBeenCalledTimes(1);
-    jest.resetAllMocks();
+    // $FlowExpectedError: Passing just props needed to run test
+    Component.componentDidUpdate({
+      idNumber: 'a',
+      expiryDate: null,
+    });
+    expect(navigation.setParams).not.toHaveBeenCalled();
+  });
 
-    instance.onDateChange(new Date());
-    expect(navigation.setParams).toHaveBeenCalledWith({ disabled: false });
-    expect(navigation.setParams).toHaveBeenCalledTimes(1);
-    jest.resetAllMocks();
+  it('should enable save button if idNumber > 5 && expiryDate is set', () => {
+    const Component = getComponent({
+      idNumber: '123456',
+      expiryDate: new Date(),
+    });
 
-    instance.onIdNumberChange('2');
-    expect(navigation.setParams).toHaveBeenCalledWith({ disabled: true });
-    expect(navigation.setParams).toHaveBeenCalledTimes(1);
-    jest.resetAllMocks();
+    // $FlowExpectedError: Passing just props needed to run test
+    Component.componentDidUpdate({
+      idNumber: '123456',
+      expiryDate: null,
+    });
+    expect(navigation.setParams).toBeCalledWith({ disabled: false });
+  });
 
-    instance.onIdNumberChange('12345');
-    jest.resetAllMocks();
-    instance.onNoExpiryChange(true);
-    expect(navigation.setParams).toHaveBeenCalledWith({ disabled: false });
-    expect(navigation.setParams).toHaveBeenCalledTimes(1);
-    jest.resetAllMocks();
+  it('should enable save button if idNumber > 5 && noExpiry is true', () => {
+    const Component = getComponent({
+      idNumber: '123456',
+      expiryDate: null,
+      noExpiry: true,
+    });
+
+    // $FlowExpectedError: Passing just props needed to run test
+    Component.componentDidUpdate({
+      idNumber: '12345',
+      expiryDate: null,
+    });
+    expect(navigation.setParams).toBeCalledWith({ disabled: false });
   });
 });

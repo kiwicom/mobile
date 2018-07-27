@@ -15,9 +15,14 @@ const mutation = graphql`
   }
 `;
 
+type Callback = (
+  response: UpdatePassengerMutationResponse,
+  errors: ?[Error],
+) => void;
+
 export default (
   input: UpdatePassengerMutationVariables,
-  callback: (response: UpdatePassengerMutationResponse) => void,
+  callback: Callback,
   token: string,
 ) => {
   commitMutation(
@@ -26,7 +31,7 @@ export default (
       variables: input,
       updater: store => {
         const payload = store.getRootField('updatePassenger');
-        const success = payload.getValue('success');
+        const success = payload === null ? false : payload.getValue('success');
 
         if (success) {
           const booking = store.get(input.id);
@@ -47,8 +52,8 @@ export default (
           });
         }
       },
-      onCompleted: (response: UpdatePassengerMutationResponse) => {
-        callback(response);
+      onCompleted: (response: UpdatePassengerMutationResponse, errors) => {
+        callback(response, errors);
       },
     },
     token,

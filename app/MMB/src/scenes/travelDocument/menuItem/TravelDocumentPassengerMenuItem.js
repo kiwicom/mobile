@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import {
-  createFragmentContainer,
-  graphql,
-  AuthContext,
-} from '@kiwicom/mobile-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   type NavigationType,
   withNavigation,
@@ -21,7 +17,6 @@ import BookingDetailContext from '../../../context/BookingDetailContext';
 type PropsWithContext = {|
   ...Props,
   +bookingId: string,
-  +token: string,
 |};
 
 const TravelDocumentPassengerMenuItem = (props: PropsWithContext) => {
@@ -35,11 +30,8 @@ const TravelDocumentPassengerMenuItem = (props: PropsWithContext) => {
     props.navigation.navigate('TravelDocumentModalScreen', {
       title,
       fullName,
-      idNumber,
-      expiryDate,
       passengerId,
       bookingId: props.bookingId,
-      token: props.token,
     });
   }
 
@@ -64,15 +56,7 @@ type Props = {|
 const TravelDocumentPassengerMenuItemWithContext = (props: Props) => (
   <BookingDetailContext.Consumer>
     {({ bookingId }) => (
-      <AuthContext.Consumer>
-        {({ accessToken }) => (
-          <TravelDocumentPassengerMenuItem
-            {...props}
-            bookingId={bookingId}
-            token={accessToken || ''}
-          />
-        )}
-      </AuthContext.Consumer>
+      <TravelDocumentPassengerMenuItem {...props} bookingId={bookingId} />
     )}
   </BookingDetailContext.Consumer>
 );

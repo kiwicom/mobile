@@ -8,63 +8,39 @@ import {
   HeaderButton,
 } from '@kiwicom/mobile-navigation';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
-import {
-  StyleSheet,
-  TextIcon,
-  Color,
-  TextInput,
-  Text,
-  DatePicker,
-  Switch,
-  ErrorMessage,
-  IconLoading,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Color, IconLoading } from '@kiwicom/mobile-shared';
+import { withAuthContext } from '@kiwicom/mobile-relay';
 
-import TitleTranslation from '../components/TitleTranslation';
 import updatePassengerMutation from './mutation/UpdatePassenger';
+import { withFormContext } from '../scenes/travelDocument/form/TravelDocumentFormContext';
+import TravelDocumentForm from '../scenes/travelDocument/form/TravelDocumentForm';
 
 type Props = {|
   +navigation: NavigationType,
-  +fullName: string,
   +title: string,
-  +idNumber: string | null,
-  +expiryDate: Date | null,
-  +bookingId: string,
+  +fullName: string,
   +passengerId: number,
-  +token: string,
+  +bookingId: string,
+  +accessToken: string,
+  +idNumber: string,
+  +expiryDate: Date | null,
+  +noExpiry: boolean,
+  +onIdNumberChange: (idNumber: string) => void,
+  +onDateChange: (date: Date) => void,
+  +onNoExpiryChange: (noExpiry: boolean) => void,
+  +reset: () => void,
 |};
 
 type State = {|
-  idNumber: string,
-  expiryDate: Date | null,
-  noExpiry: boolean,
   isSubmitting: boolean,
-  error: {|
-    idNumber: boolean,
-    expiryDate: boolean,
-  |},
 |};
 
 const noop = () => {};
 
-export default class TravelDocumentModalScreen extends React.Component<
-  Props,
-  State,
-> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      idNumber: props.idNumber || '',
-      expiryDate: props.expiryDate,
-      noExpiry: false,
-      isSubmitting: false,
-      error: {
-        idNumber: false,
-        expiryDate: true,
-      },
-    };
-  }
+export class TravelDocumentModalScreen extends React.Component<Props, State> {
+  state = {
+    isSubmitting: false,
+  };
 
   static navigationOptions = ({ navigation }: Props) => {
     function goBack() {
@@ -98,135 +74,67 @@ export default class TravelDocumentModalScreen extends React.Component<
     this.props.navigation.setParams({ onSave: this.onSave, disabled: true });
   };
 
-  onIdNumberChange = (idNumber: string) => {
-    this.setState(
-      state => ({
-        idNumber,
-        error: {
-          ...state.error,
-          idNumber: idNumber.length > 0 && idNumber.length < 5,
-        },
-      }),
-      this.validate,
-    );
+  componentDidUpdate = (prevProps: Props) => {
+    if (
+      prevProps.idNumber !== this.props.idNumber ||
+      prevProps.expiryDate !== this.props.expiryDate ||
+      prevProps.noExpiry !== this.props.noExpiry
+    ) {
+      const expiryError = this.props.noExpiry
+        ? false
+        : this.props.expiryDate === null;
+      const hasError = this.props.idNumber.length < 5 || expiryError;
+
+      this.props.navigation.setParams({
+        disabled: hasError,
+      });
+    }
   };
 
-  onDateChange = (expiryDate: Date) => {
-    this.setState(
-      state => ({
-        expiryDate,
-        error: {
-          ...state.error,
-          expiryDate: false,
-        },
-      }),
-      this.validate,
-    );
-  };
-
-  onNoExpiryChange = (noExpiry: boolean) => {
-    this.setState(
-      state => ({
-        noExpiry,
-        expiryDate: null,
-        error: {
-          ...state.error,
-          expiryDate: !noExpiry,
-        },
-      }),
-      this.validate,
-    );
+  componentWillUnmount = () => {
+    this.props.reset();
   };
 
   onSave = () => {
+    const { bookingId, passengerId, accessToken } = this.props;
     this.setState({ isSubmitting: true });
     this.props.navigation.setParams({ disabled: true });
     updatePassengerMutation(
       {
-        id: this.props.bookingId,
+        id: bookingId,
         passengers: [
           {
-            passengerId: this.props.passengerId,
+            passengerId,
             documentExpiry:
-              this.state.expiryDate === null
+              this.props.expiryDate === null
                 ? null
-                : DateFormatter(this.state.expiryDate).formatForMachine(),
-            documentNumber: this.state.idNumber,
+                : DateFormatter(this.props.expiryDate).formatForMachine(),
+            documentNumber: this.props.idNumber,
           },
         ],
       },
-      () => {
-        this.props.navigation.goBack();
+      (response, errors) => {
+        if (!errors) {
+          this.props.navigation.goBack();
+        } else {
+          // TODO: Show some error message
+        }
         this.setState({ isSubmitting: false });
         this.props.navigation.setParams({ disabled: false });
       },
-      this.props.token,
+      accessToken,
     );
   };
 
-  validate = () => {
-    // Not using this.state.error.idNumber because if this.state.idNumber.length === 0
-    // we want to disable save button, but not show error message under input
-    const hasError =
-      this.state.idNumber.length < 5 || this.state.error.expiryDate;
-    this.props.navigation.setParams({ disabled: hasError });
+  render = () => {
+    const { title, fullName } = this.props;
+    return (
+      <View style={styles.container}>
+        <TravelDocumentForm fullName={fullName} title={title} />
+        {this.state.isSubmitting && <IconLoading />}
+      </View>
+    );
   };
-
-  render = () => (
-    <View style={styles.container}>
-      <View style={styles.row}>
-        <TextIcon code="w" style={styles.icon} />
-        <TitleTranslation title={this.props.title} />
-        <Translation passThrough={' ' + this.props.fullName} />
-      </View>
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>
-          <Translation id="mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_number" />
-        </Text>
-        <TextInput
-          autoFocus={true}
-          defaultValue={this.state.idNumber}
-          onChangeText={this.onIdNumberChange}
-        />
-        {this.state.error.idNumber && (
-          <ErrorMessage style={styles.error}>
-            <Translation id="mmb.missing_informaiton.travel_document_modal_screen.id_number_error" />
-          </ErrorMessage>
-        )}
-      </View>
-      <View style={styles.inputContainer}>
-        <Text
-          style={[
-            styles.label,
-            this.state.noExpiry ? styles.noExpiry : styles.expiry,
-          ]}
-        >
-          <Translation id="mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_expiry" />
-        </Text>
-        <View style={styles.row}>
-          <View style={styles.datePickerContainer}>
-            <DatePicker
-              date={this.state.expiryDate}
-              onDateChange={this.onDateChange}
-              minDate={new Date()} // TODO: Should probably be the date of the last leg
-              formatFunction="formatToBirthday"
-              disabled={this.state.noExpiry}
-            />
-          </View>
-          <View style={[styles.row, styles.switchContainer]}>
-            <Text style={[styles.label, styles.switchText]}>
-              <Translation id="mmb.missing_informaiton.travel_document_modal_screen.no_expiry" />
-            </Text>
-            <Switch
-              value={this.state.noExpiry}
-              onValueChange={this.onNoExpiryChange}
-            />
-          </View>
-        </View>
-      </View>
-      {this.state.isSubmitting && <IconLoading />}
-    </View>
-  );
 }
 
 const styles = StyleSheet.create({
@@ -234,39 +142,6 @@ const styles = StyleSheet.create({
     padding: 15,
     backgroundColor: Color.white,
   },
-  icon: {
-    color: Color.black,
-    fontSize: 16,
-    paddingTop: 2,
-    marginEnd: 5,
-    alignSelf: 'flex-start',
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  inputContainer: {
-    marginTop: 15,
-  },
-  label: {
-    color: Color.textLight,
-    marginBottom: 5,
-  },
-  switchContainer: {
-    alignItems: 'center',
-  },
-  switchText: {
-    marginHorizontal: 5,
-  },
-  datePickerContainer: {
-    flex: 1,
-  },
-  error: {
-    alignSelf: 'flex-end',
-  },
-  noExpiry: {
-    color: Color.labelDisabled,
-  },
-  expiry: {
-    color: Color.textLight,
-  },
 });
+
+export default withFormContext(withAuthContext(TravelDocumentModalScreen));

@@ -13,7 +13,7 @@ export {
 } from 'react-relay';
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
-export { default as AuthContext } from './src/AuthContext';
+export { default as AuthContext, withAuthContext } from './src/AuthContext';
 
 // just a very simple Flow types - doesn't work very well yet (better than nothing)
 export const createFragmentContainer = (

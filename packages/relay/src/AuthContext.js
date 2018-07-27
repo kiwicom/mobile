@@ -47,3 +47,24 @@ class Provider extends React.Component<Props, State> {
 }
 
 export default { Consumer, Provider };
+
+type PropsWithContext = {};
+
+export function withAuthContext(Component: React.ElementType) {
+  const WithAuthContext = (props: PropsWithContext) => (
+    <Consumer>
+      {({ accessToken, actions: { setAccessToken } }) => (
+        <Component
+          {...props}
+          accessToken={accessToken}
+          setAccessToken={setAccessToken}
+        />
+      )}
+    </Consumer>
+  );
+  // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+  if (Component.navigationOptions) {
+    WithAuthContext.navigationOptions = Component.navigationOptions;
+  }
+  return WithAuthContext;
+}
