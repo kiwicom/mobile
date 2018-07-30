@@ -11,16 +11,17 @@ import HotelsStack from '../navigation/NavigationStack';
 import type { Coordinates } from '../CoordinatesType';
 
 type Props = {
-  bookingComAffiliate: string,
-  language: string,
-  currency: string,
-  dataSaverEnabled: boolean,
-  coordinates: Coordinates | null,
-  checkin?: string,
-  checkout?: string,
-  onNavigationStateChange: () => void,
-  onBackClicked: () => void,
-  dimensions: DimensionType,
+  +bookingComAffiliate: string,
+  +language: string,
+  +currency: string,
+  +dataSaverEnabled: boolean,
+  +coordinates: Coordinates | null,
+  +checkin?: string,
+  +checkout?: string,
+  +onNavigationStateChange: () => void,
+  +onBackClicked: () => void,
+  +dimensions: DimensionType,
+  +version: string,
 };
 
 class HotelsStandalonePackage extends React.Component<Props> {
@@ -47,6 +48,7 @@ class HotelsStandalonePackage extends React.Component<Props> {
       <RootComponent
         dimensions={this.props.dimensions}
         dataSaverEnabled={this.props.dataSaverEnabled}
+        version={this.props.version}
       >
         {this.renderInnerComponent()}
       </RootComponent>

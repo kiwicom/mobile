@@ -8,14 +8,14 @@ import { type DimensionType } from '@kiwicom/mobile-shared';
 import Config from '../../config/application';
 
 type Props = {|
-  navigation: NavigationType,
-  coordinates: null | {|
-    latitude: number,
-    longitude: number,
+  +navigation: NavigationType,
+  +coordinates: null | {|
+    +latitude: number,
+    +longitude: number,
   |},
-  checkin?: string,
-  checkout?: string,
-  dimensions: DimensionType,
+  +checkin?: string,
+  +checkout?: string,
+  +dimensions: DimensionType,
 |};
 
 export default class HotelsPackageWrapper extends React.Component<Props> {
@@ -23,7 +23,6 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
 
   render = () => {
     const affiliate = String(Config.affiliate.bookingCom);
-    const coordinates = this.props.coordinates;
 
     return (
       <HotelsStandalonePackage
@@ -32,10 +31,11 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
         currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
         onBackClicked={this.goToHomepage}
         dataSaverEnabled={false}
-        coordinates={coordinates}
+        coordinates={this.props.coordinates}
         checkin={this.props.checkin}
         checkout={this.props.checkout}
         dimensions={this.props.dimensions}
+        version="rn-development"
       />
     );
   };
