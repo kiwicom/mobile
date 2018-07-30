@@ -11,7 +11,7 @@ import { DateUtils } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
-import hotelPackage from '../../package.json';
+import { withHotelsContext } from '../HotelsContext';
 
 export type PaymentParameters = {|
   +hotelId: number,
@@ -24,9 +24,10 @@ export type PaymentParameters = {|
   +affiliateId: string,
   +language: string,
   +currency: string,
+  +version: string,
 |};
 
-export default class PaymentScreen extends React.Component<PaymentParameters> {
+export class PaymentScreen extends React.Component<PaymentParameters> {
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_PAYMENT);
   };
@@ -46,6 +47,8 @@ export default class PaymentScreen extends React.Component<PaymentParameters> {
     />
   );
 }
+
+export default withHotelsContext(PaymentScreen);
 
 export function createURI(pp: PaymentParameters): string {
   const checkinQuery = sanitizeDate(pp.checkin);
@@ -69,7 +72,7 @@ export function createURI(pp: PaymentParameters): string {
       ...roomsQuery,
       rt_pos_selected: '', // ???
       aid: pp.affiliateId,
-      label: `kiwi-${Platform.OS}-react-${hotelPackage.version}`,
+      label: `kiwi-${Platform.OS}-react-${pp.version}`,
       lang: pp.language,
       selected_currency: pp.currency,
     })

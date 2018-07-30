@@ -9,8 +9,8 @@ import { type DimensionType } from '@kiwicom/mobile-shared';
 import Config from '../../config/application';
 
 type Props = {|
-  navigation: NavigationType,
-  dimensions: DimensionType,
+  +navigation: NavigationType,
+  +dimensions: DimensionType,
 |};
 
 export default class SingleHotelPackageWrapper extends React.Component<Props> {
@@ -30,6 +30,7 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
         hotelId="aG90ZWw6ODAyMDQ="
         roomsConfiguration={[{ adultsCount: 1, children: [] }]}
         dimensions={this.props.dimensions}
+        version="rn-development"
       />
     );
   };

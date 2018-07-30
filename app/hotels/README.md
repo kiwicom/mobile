@@ -16,6 +16,7 @@ const render = () => <HotelsStandalonePackage
    // checkin and checkout are optional props, pass with format "YYYY-MM-DD"
   checkin="2018-12-01"
   checkout="2018-12-05"
+  version="3.7.13-9d55ad66"
 />
 ```
 
@@ -39,6 +40,7 @@ const render = () => <SingleHotelStandAlonePackage
   checkout="2018-05-05" 
   roomsConfiguration={roomsConfiguration}
   hotelId="fq34rffa3="
+  version="3.7.13-9d55ad66"
 />
 ```
 

@@ -10,11 +10,13 @@ import {
 
 import HotelsSearchContext from '../HotelsSearchContext';
 import HotelsFilterContext from '../HotelsFilterContext';
+import HotelsContext from '../HotelsContext';
 
 type Props = {|
-  dataSaverEnabled: boolean,
-  children: React.Node,
-  dimensions: DimensionType,
+  +dataSaverEnabled: boolean,
+  +children: React.Node,
+  +dimensions: DimensionType,
+  +version: string,
 |};
 
 export default class RootComponent extends React.Component<Props> {
@@ -23,9 +25,11 @@ export default class RootComponent extends React.Component<Props> {
       <HotelsSearchContext.Provider>
         <HotelsFilterContext.Provider>
           <GeolocationContext.Provider>
-            <Dimensions.Provider dimensions={this.props.dimensions}>
-              {this.props.children}
-            </Dimensions.Provider>
+            <HotelsContext.Provider version={this.props.version}>
+              <Dimensions.Provider dimensions={this.props.dimensions}>
+                {this.props.children}
+              </Dimensions.Provider>
+            </HotelsContext.Provider>
           </GeolocationContext.Provider>
         </HotelsFilterContext.Provider>
       </HotelsSearchContext.Provider>
