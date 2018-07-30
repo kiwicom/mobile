@@ -1,14 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
-import {
-  Text,
-  StyleSheet,
-  Color,
-  AdaptableLayout,
-  RefreshableScrollView,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, RefreshableScrollView } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   graphql,
@@ -17,6 +10,7 @@ import {
 } from '@kiwicom/mobile-relay';
 
 import FlightList from './FlightList';
+import FlightListLayout from './FlightListLayout';
 import type { FlightListContainer_future as FutureFlightType } from './__generated__/FlightListContainer_future.graphql';
 import type { FlightListContainer_past as PastFlightType } from './__generated__/FlightListContainer_past.graphql';
 
@@ -56,27 +50,13 @@ class FlightListContainer extends React.Component<Props, State> {
         refreshing={this.state.isRefreshing}
         onRefresh={this.refetch}
       >
-        <Text style={styles.subtitle}>
-          <Translation id="mmb.my_bookings.future_trips" />
-        </Text>
-        <AdaptableLayout
-          renderOnNarrow={<FlightList data={this.props.future} />}
-          renderOnWide={
-            <View style={styles.tabletWrapper}>
-              <FlightList data={this.props.future} />
-            </View>
-          }
+        <FlightListLayout
+          title={<Translation id="mmb.my_bookings.future_trips" />}
+          content={<FlightList data={this.props.future} />}
         />
-        <Text style={styles.subtitle}>
-          <Translation id="mmb.my_bookings.past_trips" />
-        </Text>
-        <AdaptableLayout
-          renderOnNarrow={<FlightList data={this.props.past} />}
-          renderOnWide={
-            <View style={styles.tabletWrapper}>
-              <FlightList data={this.props.past} />
-            </View>
-          }
+        <FlightListLayout
+          title={<Translation id="mmb.my_bookings.past_trips" />}
+          content={<FlightList data={this.props.past} />}
         />
       </RefreshableScrollView>
     );
@@ -86,15 +66,6 @@ class FlightListContainer extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-  },
-  subtitle: {
-    marginTop: 10,
-    marginBottom: 12,
-    color: Color.textLight,
-  },
-  tabletWrapper: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
   },
 });
 

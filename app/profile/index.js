@@ -12,6 +12,7 @@ import {
 import Login from './components/authentication/Login';
 import Logout from './components/authentication/Logout';
 import SaveCustomToken from './components/SaveCustomToken';
+import SaveSimpleToken from './components/SaveSimpleToken';
 
 type State = {|
   isLoggedIn: boolean,
@@ -24,8 +25,10 @@ export default class LoginScreen extends React.Component<{||}, State> {
 
   componentDidMount = async () => {
     const token = await AsyncStorage.getItem('mobile:MMB-Token');
-
-    if (token != null) {
+    const simpleTokenData = await AsyncStorage.getItem(
+      'mobile:MMB-Simple-Token',
+    );
+    if (token != null || simpleTokenData != null) {
       this.setState({ isLoggedIn: true });
     }
   };
@@ -35,9 +38,21 @@ export default class LoginScreen extends React.Component<{||}, State> {
     this.setState({ isLoggedIn: true });
   };
 
+  onSimpleLogin = (simpleToken: string, bookingId: string) => {
+    AsyncStorage.setItem(
+      'mobile:MMB-Simple-Token',
+      JSON.stringify({
+        simpleToken,
+        bookingId,
+      }),
+    );
+    this.setState({ isLoggedIn: true });
+  };
+
   onLogout = () => {
     // TODO: clean the Relay offline cache (?)
     AsyncStorage.removeItem('mobile:MMB-Token');
+    AsyncStorage.removeItem('mobile:MMB-Simple-Token');
     this.setState({ isLoggedIn: false });
   };
 
@@ -54,9 +69,14 @@ export default class LoginScreen extends React.Component<{||}, State> {
               )}
             </SimpleCard>
             {!this.state.isLoggedIn && (
-              <SimpleCard style={styles.customToken}>
-                <SaveCustomToken onPress={this.onLogin} />
-              </SimpleCard>
+              <React.Fragment>
+                <SimpleCard style={styles.customToken}>
+                  <SaveCustomToken onPress={this.onLogin} />
+                </SimpleCard>
+                <SimpleCard style={styles.customToken}>
+                  <SaveSimpleToken onSave={this.onSimpleLogin} />
+                </SimpleCard>
+              </React.Fragment>
             )}
           </LayoutSingleColumn>
         </DismissKeyboardView>
