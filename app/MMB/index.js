@@ -15,16 +15,22 @@ import WalletContext from './src/context/WalletContext';
 import TravelDocumentFormContext from './src/scenes/travelDocument/form/TravelDocumentFormContext';
 
 type Props = {|
-  currency: string,
-  accessToken: string,
-  dimensions: DimensionType,
-  onNavigationStateChange: () => void,
+  +currency: string,
+  +dimensions: DimensionType,
+  +onNavigationStateChange: () => void,
+  +accessToken?: string,
+  +bookingId?: number,
+  +simpleToken?: string,
 |};
 
 class ManageMyBookingPackage extends React.Component<Props> {
   render = () => (
     <Dimensions.Provider dimensions={this.props.dimensions}>
-      <AuthContext.Provider accessToken={this.props.accessToken}>
+      <AuthContext.Provider
+        accessToken={this.props.accessToken || null}
+        bookingId={this.props.bookingId || null}
+        simpleToken={this.props.simpleToken || null}
+      >
         <WalletContext.Provider>
           <BookingDetailContext.Provider>
             <TravelDocumentFormContext.Provider>

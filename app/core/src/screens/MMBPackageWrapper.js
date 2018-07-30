@@ -8,17 +8,22 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, type DimensionType } from '@kiwicom/mobile-shared';
 
 type Props = {|
-  navigation: NavigationType,
-  dimensions: DimensionType,
-  onNavigationStateChange: () => void,
+  +navigation: NavigationType,
+  +dimensions: DimensionType,
+  +onNavigationStateChange: () => void,
 |};
 
-export default class MMBPackageWrapper extends React.Component<
-  Props,
-  {| token: string | null |},
-> {
+type State = {|
+  token: string | null,
+  bookingId: number | null,
+  simpleToken: string | null,
+|};
+
+export default class MMBPackageWrapper extends React.Component<Props, State> {
   state = {
     token: '',
+    bookingId: null,
+    simpleToken: null,
   };
 
   willFocusSubscription: { remove: () => void };
@@ -39,11 +44,23 @@ export default class MMBPackageWrapper extends React.Component<
 
   fetchToken = async () => {
     const token = await AsyncStorage.getItem('mobile:MMB-Token');
-    this.setState({ token });
+    const simpleTokenData = await AsyncStorage.getItem(
+      'mobile:MMB-Simple-Token',
+    );
+
+    if (simpleTokenData) {
+      const { bookingId, simpleToken } = JSON.parse(simpleTokenData);
+      this.setState({ bookingId, simpleToken, token });
+    } else {
+      this.setState({ token, simpleToken: null, bookingId: null });
+    }
   };
 
   render = () => {
-    if (!this.state.token) {
+    if (
+      !this.state.token &&
+      (!this.state.bookingId && !this.state.simpleToken)
+    ) {
       return (
         <View style={styles.loginMessageContainer}>
           <Translation passThrough="You are not logged in, go to profile and log in" />
@@ -51,14 +68,29 @@ export default class MMBPackageWrapper extends React.Component<
       );
     }
 
-    return (
-      <ManageMyBookingPackage
-        onNavigationStateChange={this.props.onNavigationStateChange}
-        dimensions={this.props.dimensions}
-        currency="EUR"
-        accessToken={this.state.token}
-      />
-    );
+    if (this.state.bookingId && this.state.simpleToken) {
+      return (
+        <ManageMyBookingPackage
+          onNavigationStateChange={this.props.onNavigationStateChange}
+          dimensions={this.props.dimensions}
+          currency="EUR"
+          bookingId={this.state.bookingId}
+          simpleToken={this.state.simpleToken}
+        />
+      );
+    }
+
+    if (this.state.token) {
+      return (
+        <ManageMyBookingPackage
+          onNavigationStateChange={this.props.onNavigationStateChange}
+          dimensions={this.props.dimensions}
+          currency="EUR"
+          accessToken={this.state.token}
+        />
+      );
+    }
+    return null;
   };
 }
 

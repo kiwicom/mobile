@@ -1,19 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import {
-  StyleSheet,
-  Device,
-  AdaptableLayout,
-  Dimensions,
-} from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
 import OneWayFlight from './OneWayFlight';
 import ReturnFlight from './ReturnFlight';
 import MulticityFlight from './MulticityFlight';
+import FlightItemLayout from './FlightItemLayout';
 import type { FlightList as FlightListType } from './__generated__/FlightList.graphql';
 
 type Props = {|
@@ -48,47 +42,10 @@ export class FlightList extends React.Component<Props, State> {
         Component = variants[type];
       }
 
-      return (
-        <AdaptableLayout
-          key={key}
-          renderOnNarrow={<View style={styles.itemContainer}>{Component}</View>}
-          renderOnWide={
-            <Dimensions.Consumer>
-              {dimensions => {
-                return (
-                  <View
-                    style={[
-                      styles.itemContainer,
-                      Device.isPortrait(dimensions)
-                        ? styles.portrait
-                        : styles.landscape,
-                    ]}
-                  >
-                    {Component}
-                  </View>
-                );
-              }}
-            </Dimensions.Consumer>
-          }
-        />
-      );
+      return <FlightItemLayout key={key}>{Component}</FlightItemLayout>;
     });
   };
 }
-
-const styles = StyleSheet.create({
-  itemContainer: {
-    marginBottom: 16,
-  },
-  portrait: {
-    width: '50%',
-    paddingEnd: 15,
-  },
-  landscape: {
-    width: '33.3%',
-    paddingEnd: 15,
-  },
-});
 
 export default createFragmentContainer(
   FlightList,

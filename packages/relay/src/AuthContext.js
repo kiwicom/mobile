@@ -4,6 +4,8 @@ import * as React from 'react';
 
 const defaultState = {
   accessToken: null,
+  bookingId: null,
+  simpleToken: null,
   actions: {
     setAccessToken: () => {},
   },
@@ -16,10 +18,14 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
 type Props = {|
   +children: React.Node,
   +accessToken?: string | null,
+  +bookingId?: number | null,
+  +simpleToken?: string | null,
 |};
 
 type State = {|
   accessToken: string | null,
+  +bookingId: number | null,
+  +simpleToken: string | null,
   +actions: {|
     +setAccessToken: (accessToken: string | null) => void,
   |},
@@ -31,6 +37,8 @@ class Provider extends React.Component<Props, State> {
 
     this.state = {
       accessToken: props.accessToken || null,
+      bookingId: props.bookingId || null,
+      simpleToken: props.simpleToken || null,
       actions: {
         setAccessToken: this.setAccessToken,
       },
@@ -53,12 +61,8 @@ type PropsWithContext = {};
 export function withAuthContext(Component: React.ElementType) {
   const WithAuthContext = (props: PropsWithContext) => (
     <Consumer>
-      {({ accessToken, actions: { setAccessToken } }) => (
-        <Component
-          {...props}
-          accessToken={accessToken}
-          setAccessToken={setAccessToken}
-        />
+      {({ actions, ...rest }) => (
+        <Component {...props} {...rest} {...actions} />
       )}
     </Consumer>
   );

@@ -2135,11 +2135,11 @@ type RootQuery {
     """
     Database ID (human readable ID) of the booking. You should use "node" query if you want to use opaque ID.
     """
-    id: ID!
+    id: Int!
 
-    """Simple Token that lets you fetch a unique booking."""
-    simpleToken: String!
-  ): Booking
+    """Simple auth token that lets you fetch a unique booking."""
+    authToken: String!
+  ): BookingInterface
 }
 
 type RouteStop {
