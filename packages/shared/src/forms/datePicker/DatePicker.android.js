@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { DatePickerAndroid } from 'react-native';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import DatePickerButton from './DatePickerButton';
 import type { Props } from './DatePickerProps';
@@ -19,7 +20,7 @@ export default class DatePicker extends React.Component<Props> {
 
   showDatePicker = async () => {
     const { action, year, month, day } = await DatePickerAndroid.open({
-      date: this.props.date,
+      date: this.props.date || DateUtils.getUTCToday(),
       minDate: this.props.minDate,
       maxDate: this.props.maxDate,
     });
