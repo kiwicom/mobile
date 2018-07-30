@@ -11,17 +11,18 @@ import SingleHotelStack from '../navigation/singleHotel/SingleHotelStack';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 
 type Props = {
-  dataSaverEnabled: boolean,
-  hotelId: string,
-  checkin: string,
-  checkout: string,
-  roomsConfiguration: RoomsConfiguration,
-  bookingComAffiliate: string,
-  currency: string,
-  language: string,
-  onNavigationStateChange: () => void,
-  onBackClicked: () => void,
-  dimensions: DimensionType,
+  +dataSaverEnabled: boolean,
+  +hotelId: string,
+  +checkin: string,
+  +checkout: string,
+  +roomsConfiguration: RoomsConfiguration,
+  +bookingComAffiliate: string,
+  +currency: string,
+  +language: string,
+  +onNavigationStateChange: () => void,
+  +onBackClicked: () => void,
+  +dimensions: DimensionType,
+  +version: string,
 };
 
 class SingleHotelStandAlonePackage extends React.Component<Props> {
@@ -48,6 +49,7 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
       <RootComponent
         dimensions={this.props.dimensions}
         dataSaverEnabled={this.props.dataSaverEnabled}
+        version={this.props.version}
       >
         {this.renderInnerComponent()}
       </RootComponent>

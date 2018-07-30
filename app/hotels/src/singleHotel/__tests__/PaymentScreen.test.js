@@ -4,7 +4,7 @@ import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 import { NativeModules } from 'react-native';
 
-import PaymentScreen, { createURI } from '../PaymentScreen';
+import { PaymentScreen, createURI } from '../PaymentScreen';
 
 const renderer = new ShallowRenderer();
 const ONE_DAY = 8.64e7; // ms
@@ -32,6 +32,7 @@ it('creates correct URL', () => {
       affiliateId: '123',
       language: 'en',
       currency: 'EUR',
+      version: 'rn-test',
     }),
   ).toMatchSnapshot();
 
@@ -49,6 +50,7 @@ it('creates correct URL', () => {
       affiliateId: '321',
       language: 'cs',
       currency: 'JPY',
+      version: 'rn-test',
     }),
   ).toMatchSnapshot();
 
@@ -67,6 +69,7 @@ it('creates correct URL', () => {
         affiliateId="321"
         language="cs"
         currency="JPY"
+        version="rn-test"
       />,
     ),
   ).toMatchSnapshot();
