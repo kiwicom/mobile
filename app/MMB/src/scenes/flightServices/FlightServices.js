@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 
 import FlightServicesMenuGroup from './FlightServicesMenuGroup';
 import type { FlightServicesQueryResponse } from './__generated__/FlightServicesQuery.graphql';
@@ -12,16 +12,16 @@ type Props = {||};
 
 export default class FlightServices extends React.Component<Props> {
   renderInner = (renderProps: FlightServicesQueryResponse) => (
-    <FlightServicesMenuGroup bookedServices={renderProps.node} />
+    <FlightServicesMenuGroup bookedServices={renderProps.singleBooking} />
   );
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
+      {({ bookingId, authToken }) => (
+        <PublicApiRenderer
           query={graphql`
-            query FlightServicesQuery($id: ID!) {
-              node(id: $id) {
+            query FlightServicesQuery($id: Int!, $authToken: String!) {
+              singleBooking(id: $id, authToken: $authToken) {
                 ... on BookingInterface {
                   ...FlightServicesMenuGroup_bookedServices
                 }
@@ -30,6 +30,7 @@ export default class FlightServices extends React.Component<Props> {
           `}
           variables={{
             id: bookingId,
+            authToken,
           }}
           render={this.renderInner}
         />

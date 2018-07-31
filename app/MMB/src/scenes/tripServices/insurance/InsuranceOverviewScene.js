@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
 import { LayoutSingleColumn, TextButton } from '@kiwicom/mobile-shared';
-import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   type RouteNamesType,
@@ -42,11 +42,11 @@ class InsuranceOverviewScene extends React.Component<Props> {
       <React.Fragment>
         <ScrollView>
           <LayoutSingleColumn>
-            <DestinationImage data={data.node} />
+            <DestinationImage data={data.singleBooking} />
 
-            <TripInfo data={data.node} />
+            <TripInfo data={data.singleBooking} />
 
-            <InsuranceOverviewPassengerMenuGroup data={data.node} />
+            <InsuranceOverviewPassengerMenuGroup data={data.singleBooking} />
 
             <View style={{ padding: 10 }}>
               <TextButton
@@ -92,12 +92,15 @@ export default class InsuranceOverviewSceneContainer extends React.Component<
   render = () => {
     return (
       <BookingDetailContext.Consumer>
-        {({ bookingId }) => (
-          <PrivateApiRenderer
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
             render={this.renderInnerComponent}
             query={graphql`
-              query InsuranceOverviewSceneQuery($bookingId: ID!) {
-                node(id: $bookingId) {
+              query InsuranceOverviewSceneQuery(
+                $bookingId: Int!
+                $authToken: String!
+              ) {
+                singleBooking(id: $bookingId, authToken: $authToken) {
                   ... on BookingInterface {
                     ...DestinationImage
                     ...TripInfo
@@ -107,7 +110,8 @@ export default class InsuranceOverviewSceneContainer extends React.Component<
               }
             `}
             variables={{
-              bookingId: bookingId,
+              bookingId,
+              authToken,
             }}
           />
         )}

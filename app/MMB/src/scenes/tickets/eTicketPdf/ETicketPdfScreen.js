@@ -9,7 +9,7 @@ import ShareButton from '../../../components/ShareButton';
 import BookingDetailContext from '../../../context/BookingDetailContext';
 
 type ShareButtonProps = {|
-  +bookingId: string,
+  +bookingId: number,
 |};
 
 class ETicketShareButton extends React.Component<ShareButtonProps> {

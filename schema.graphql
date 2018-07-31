@@ -211,6 +211,7 @@ type Booking {
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
+  authToken: String
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -310,6 +311,7 @@ interface BookingInterface {
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
+  authToken: String
 }
 
 """A connection to a list of items."""
@@ -370,6 +372,7 @@ type BookingMulticity implements BookingInterface & Node {
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
+  authToken: String
 
   """Initial origin."""
   start: RouteStop
@@ -424,6 +427,7 @@ type BookingOneWay implements BookingInterface & Node {
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
+  authToken: String
   trip: Trip
 }
 
@@ -468,6 +472,7 @@ type BookingReturn implements BookingInterface & Node {
   availableWhitelabeledServices: WhitelabeledServices
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
+  authToken: String
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -2038,6 +2043,7 @@ type RootQuery {
   bookingTimeline(
     """Only Booking id can be used as ID."""
     id: ID!
+    authToken: String
   ): BookingTimeline
 
   """Currencies used on Kiwi.com frontend"""

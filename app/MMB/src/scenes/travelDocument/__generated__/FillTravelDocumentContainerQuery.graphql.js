@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dc314d97452d5cd7ee48fd9b442ed313
+ * @relayHash 04c9e5afc4511fd10a43a9a84d3f13d8
  */
 
 /* eslint-disable */
@@ -11,10 +11,11 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type FillTravelDocument$ref = any;
 export type FillTravelDocumentContainerQueryVariables = {|
-  bookingId: string
+  bookingId: number,
+  authToken: string,
 |};
 export type FillTravelDocumentContainerQueryResponse = {|
-  +node: ?{|
+  +singleBooking: ?{|
     +$fragmentRefs: FillTravelDocument$ref
   |}
 |};
@@ -23,13 +24,12 @@ export type FillTravelDocumentContainerQueryResponse = {|
 
 /*
 query FillTravelDocumentContainerQuery(
-  $bookingId: ID!
+  $bookingId: Int!
+  $authToken: String!
 ) {
-  node(id: $bookingId) {
+  singleBooking(id: $bookingId, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      ...FillTravelDocument
-    }
+    ...FillTravelDocument
     id
   }
 }
@@ -142,16 +142,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "bookingId",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "bookingId",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -246,7 +258,7 @@ return {
   "operationKind": "query",
   "name": "FillTravelDocumentContainerQuery",
   "id": null,
-  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...FillTravelDocument\n    }\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  id\n  destinationImageUrl(dimensions: _375x165)\n  ...TripInfo\n  ...PassengerTravelDocumentMenuGroup\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment PassengerTravelDocumentMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...TravelDocumentPassengerMenuItem\n  }\n}\n\nfragment TravelDocumentPassengerMenuItem on Passenger {\n  title\n  fullName\n  databaseId\n  travelDocument {\n    idNumber\n    expiration\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...FillTravelDocument\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  id\n  destinationImageUrl(dimensions: _375x165)\n  ...TripInfo\n  ...PassengerTravelDocumentMenuGroup\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment PassengerTravelDocumentMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...TravelDocumentPassengerMenuItem\n  }\n}\n\nfragment TravelDocumentPassengerMenuItem on Passenger {\n  title\n  fullName\n  databaseId\n  travelDocument {\n    idNumber\n    expiration\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -258,7 +270,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -281,7 +293,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -453,5 +465,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '33dd94f842359041becd93c53d902b95';
+(node/*: any*/).hash = '8f7f14ec71452905a7b5cc9bc59bd123';
 module.exports = node;

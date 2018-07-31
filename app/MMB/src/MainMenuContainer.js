@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import MainMenu from './MainMenu';
 import BookingDetailContext from './context/BookingDetailContext';
@@ -13,17 +13,20 @@ type Props = {|
 
 export default class MainMenuContainer extends React.Component<Props> {
   renderInnerComponent = (renderProps: MainMenuContainerQueryResponse) => (
-    <MainMenu data={renderProps.node} openMenu={this.props.openMenu} />
+    <MainMenu data={renderProps.singleBooking} openMenu={this.props.openMenu} />
   );
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
+      {({ bookingId, authToken }) => (
+        <PublicApiRenderer
           render={this.renderInnerComponent}
           query={graphql`
-            query MainMenuContainerQuery($bookingId: ID!) {
-              node(id: $bookingId) {
+            query MainMenuContainerQuery(
+              $bookingId: Int!
+              $authToken: String!
+            ) {
+              singleBooking(id: $bookingId, authToken: $authToken) {
                 ... on BookingInterface {
                   ...MainMenu
                 }
@@ -31,7 +34,8 @@ export default class MainMenuContainer extends React.Component<Props> {
             }
           `}
           variables={{
-            bookingId: bookingId,
+            bookingId,
+            authToken,
           }}
         />
       )}

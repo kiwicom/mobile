@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
 
 import type { TimelineQueryResponse } from './__generated__/TimelineQuery.graphql';
@@ -181,11 +181,11 @@ export default class Timeline extends React.Component<{||}> {
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
+      {({ id, authToken }) => (
+        <PublicApiRenderer
           query={graphql`
-            query TimelineQuery($id: ID!) {
-              bookingTimeline(id: $id) {
+            query TimelineQuery($id: ID!, $authToken: String!) {
+              bookingTimeline(id: $id, authToken: $authToken) {
                 events {
                   __typename
                   timestamp
@@ -239,7 +239,8 @@ export default class Timeline extends React.Component<{||}> {
             }
           `}
           variables={{
-            id: bookingId,
+            id,
+            authToken,
           }}
           render={this.renderInner}
         />

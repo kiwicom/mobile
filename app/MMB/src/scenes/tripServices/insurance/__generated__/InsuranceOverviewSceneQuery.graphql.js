@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d9d976ef11fcad6aa9faa3fbc8305be6
+ * @relayHash 3f15b26baf239ce97ef83e3d52a19845
  */
 
 /* eslint-disable */
@@ -13,10 +13,11 @@ type DestinationImage$ref = any;
 type InsuranceOverviewPassengerMenuGroup$ref = any;
 type TripInfo$ref = any;
 export type InsuranceOverviewSceneQueryVariables = {|
-  bookingId: string
+  bookingId: number,
+  authToken: string,
 |};
 export type InsuranceOverviewSceneQueryResponse = {|
-  +node: ?{|
+  +singleBooking: ?{|
     +$fragmentRefs: DestinationImage$ref & TripInfo$ref & InsuranceOverviewPassengerMenuGroup$ref
   |}
 |};
@@ -25,15 +26,14 @@ export type InsuranceOverviewSceneQueryResponse = {|
 
 /*
 query InsuranceOverviewSceneQuery(
-  $bookingId: ID!
+  $bookingId: Int!
+  $authToken: String!
 ) {
-  node(id: $bookingId) {
+  singleBooking(id: $bookingId, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      ...DestinationImage
-      ...TripInfo
-      ...InsuranceOverviewPassengerMenuGroup
-    }
+    ...DestinationImage
+    ...TripInfo
+    ...InsuranceOverviewPassengerMenuGroup
     id
   }
 }
@@ -141,16 +141,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "bookingId",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "bookingId",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -245,7 +257,7 @@ return {
   "operationKind": "query",
   "name": "InsuranceOverviewSceneQuery",
   "id": null,
-  "text": "query InsuranceOverviewSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...DestinationImage\n      ...TripInfo\n      ...InsuranceOverviewPassengerMenuGroup\n    }\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment InsuranceOverviewPassengerMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...PassengerInsuranceMenuItem\n  }\n}\n\nfragment PassengerInsuranceMenuItem on Passenger {\n  fullName\n  title\n  birthday\n  databaseId\n  insuranceType\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query InsuranceOverviewSceneQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...DestinationImage\n    ...TripInfo\n    ...InsuranceOverviewPassengerMenuGroup\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment InsuranceOverviewPassengerMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...PassengerInsuranceMenuItem\n  }\n}\n\nfragment PassengerInsuranceMenuItem on Passenger {\n  fullName\n  title\n  birthday\n  databaseId\n  insuranceType\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -257,7 +269,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -290,7 +302,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -451,5 +463,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '612cbc2e2d47019a5854591e0c0324e2';
+(node/*: any*/).hash = '65f23280b724872ea01ae34e7b748f12';
 module.exports = node;

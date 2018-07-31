@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import PdfViewer from '@kiwicom/mobile-pdf';
@@ -12,7 +12,7 @@ import type { InvoiceQueryResponse } from './__generated__/InvoiceQuery.graphql'
 
 export default class Invoice extends React.Component<{||}> {
   renderInnerComponent = (renderProps: InvoiceQueryResponse) => {
-    const uri = idx(renderProps, _ => _.node.assets.invoiceUrl);
+    const uri = idx(renderProps, _ => _.singleBooking.assets.invoiceUrl);
 
     if (!uri) {
       return (
@@ -27,12 +27,12 @@ export default class Invoice extends React.Component<{||}> {
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
+      {({ bookingId, authToken }) => (
+        <PublicApiRenderer
           render={this.renderInnerComponent}
           query={graphql`
-            query InvoiceQuery($bookingId: ID!) {
-              node(id: $bookingId) {
+            query InvoiceQuery($bookingId: Int!, $authToken: String!) {
+              singleBooking(id: $bookingId, authToken: $authToken) {
                 ... on BookingInterface {
                   assets {
                     invoiceUrl
@@ -42,7 +42,8 @@ export default class Invoice extends React.Component<{||}> {
             }
           `}
           variables={{
-            bookingId: bookingId,
+            bookingId,
+            authToken,
           }}
         />
       )}

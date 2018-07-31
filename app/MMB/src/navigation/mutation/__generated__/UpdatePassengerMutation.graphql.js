@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 017b96c58f9612d50b4e82e5556f4872
+ * @relayHash 5b226bb53c0138bbdb5cc990c4c85794
  */
 
 /* eslint-disable */
@@ -17,6 +17,7 @@ export type PassengerInput = {
 export type UpdatePassengerMutationVariables = {|
   id: string,
   passengers: $ReadOnlyArray<PassengerInput>,
+  simpleToken: string,
 |};
 export type UpdatePassengerMutationResponse = {|
   +updatePassenger: ?{|
@@ -30,8 +31,9 @@ export type UpdatePassengerMutationResponse = {|
 mutation UpdatePassengerMutation(
   $id: ID!
   $passengers: [PassengerInput!]!
+  $simpleToken: String!
 ) {
-  updatePassenger(id: $id, passengers: $passengers) {
+  updatePassenger(id: $id, passengers: $passengers, simpleToken: $simpleToken) {
     success
   }
 }
@@ -49,6 +51,12 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "passengers",
     "type": "[PassengerInput!]!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "simpleToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
@@ -70,6 +78,12 @@ v1 = [
         "name": "passengers",
         "variableName": "passengers",
         "type": "[PassengerInput!]!"
+      },
+      {
+        "kind": "Variable",
+        "name": "simpleToken",
+        "variableName": "simpleToken",
+        "type": "String"
       }
     ],
     "concreteType": "UpdatePassenger",
@@ -90,7 +104,7 @@ return {
   "operationKind": "mutation",
   "name": "UpdatePassengerMutation",
   "id": null,
-  "text": "mutation UpdatePassengerMutation(\n  $id: ID!\n  $passengers: [PassengerInput!]!\n) {\n  updatePassenger(id: $id, passengers: $passengers) {\n    success\n  }\n}\n",
+  "text": "mutation UpdatePassengerMutation(\n  $id: ID!\n  $passengers: [PassengerInput!]!\n  $simpleToken: String!\n) {\n  updatePassenger(id: $id, passengers: $passengers, simpleToken: $simpleToken) {\n    success\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -109,5 +123,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '1e156e67a56e2b828b5f3312d5a4a2b3';
+(node/*: any*/).hash = '6e3b9dbd9a0186b24dcf8b5a07796a73';
 module.exports = node;

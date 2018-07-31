@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, PrivateApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import PassengerDetail from './PassengerDetail';
 import BookingDetailContext from '../../context/BookingDetailContext';
@@ -11,23 +11,26 @@ type Props = {||};
 
 export default class PassengerDetailContainer extends React.Component<Props> {
   renderInner = (renderProps: PassengerDetailContainerQuery) => {
-    return <PassengerDetail booking={renderProps.node} />;
+    return <PassengerDetail booking={renderProps.singleBooking} />;
   };
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
+      {({ bookingId, authToken }) => (
+        <PublicApiRenderer
           query={graphql`
-            query PassengerDetailContainerQuery($id: ID!) {
-              node(id: $id) {
+            query PassengerDetailContainerQuery(
+              $id: Int!
+              $authToken: String!
+            ) {
+              singleBooking(id: $id, authToken: $authToken) {
                 ... on BookingInterface {
                   ...PassengerDetail_booking
                 }
               }
             }
           `}
-          variables={{ id: bookingId }}
+          variables={{ id: bookingId, authToken }}
           render={this.renderInner}
         />
       )}

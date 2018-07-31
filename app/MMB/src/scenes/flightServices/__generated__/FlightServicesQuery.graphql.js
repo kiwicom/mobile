@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 137c38d6f687ee8755930a3fa8dd3245
+ * @relayHash bac07f1ec50331af0676739dc9680cb2
  */
 
 /* eslint-disable */
@@ -11,10 +11,11 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type FlightServicesMenuGroup_bookedServices$ref = any;
 export type FlightServicesQueryVariables = {|
-  id: string
+  id: number,
+  authToken: string,
 |};
 export type FlightServicesQueryResponse = {|
-  +node: ?{|
+  +singleBooking: ?{|
     +$fragmentRefs: FlightServicesMenuGroup_bookedServices$ref
   |}
 |};
@@ -23,13 +24,12 @@ export type FlightServicesQueryResponse = {|
 
 /*
 query FlightServicesQuery(
-  $id: ID!
+  $id: Int!
+  $authToken: String!
 ) {
-  node(id: $id) {
+  singleBooking(id: $id, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      ...FlightServicesMenuGroup_bookedServices
-    }
+    ...FlightServicesMenuGroup_bookedServices
     id
   }
 }
@@ -48,16 +48,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "id",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "id",
-    "type": "ID!"
+    "type": "Int!"
   }
 ];
 return {
@@ -65,7 +77,7 @@ return {
   "operationKind": "query",
   "name": "FlightServicesQuery",
   "id": null,
-  "text": "query FlightServicesQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...FlightServicesMenuGroup_bookedServices\n    }\n    id\n  }\n}\n\nfragment FlightServicesMenuGroup_bookedServices on BookingInterface {\n  databaseId\n  bookedServices {\n    category\n    status\n  }\n}\n",
+  "text": "query FlightServicesQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...FlightServicesMenuGroup_bookedServices\n    id\n  }\n}\n\nfragment FlightServicesMenuGroup_bookedServices on BookingInterface {\n  databaseId\n  bookedServices {\n    category\n    status\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -77,7 +89,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -100,7 +112,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -159,5 +171,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'bc9f19f55d9a7046fe2af0134778d356';
+(node/*: any*/).hash = '4eb2440f33a5e7579964bc38ea56a74c';
 module.exports = node;

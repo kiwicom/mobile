@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 import { ScrollView } from 'react-native';
 import { TextIcon, WebView } from '@kiwicom/mobile-shared';
-import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import {
   TitledMenuGroup,
   TodoMenuItem,
@@ -49,7 +49,7 @@ export default class TripServices extends React.Component<Props> {
   renderLocalServices = (rendererProps: TripServicesQueryResponse) => {
     const availableWhitelabeledServices = idx(
       rendererProps,
-      _ => _.node.availableWhitelabeledServices,
+      _ => _.singleBooking.availableWhitelabeledServices,
     );
 
     return (
@@ -94,11 +94,11 @@ export default class TripServices extends React.Component<Props> {
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
+      {({ bookingId, authToken }) => (
+        <PublicApiRenderer
           query={graphql`
-            query TripServicesQuery($bookingId: ID!) {
-              node(id: $bookingId) {
+            query TripServicesQuery($bookingId: Int!, $authToken: String!) {
+              singleBooking(id: $bookingId, authToken: $authToken) {
                 ... on BookingInterface {
                   availableWhitelabeledServices {
                     ...CarRentalMenuItem
@@ -111,6 +111,7 @@ export default class TripServices extends React.Component<Props> {
           `}
           variables={{
             bookingId,
+            authToken,
           }}
           render={this.renderLocalServices}
         />
