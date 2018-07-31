@@ -5,16 +5,19 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		012E4C1BA8444C8182992EEB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B11306CBC6D24D3C990EAC4B /* Ionicons.ttf */; };
 		038BD3170181472CA3083F7C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */; };
 		03D20B5071D8480381221201 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 930DC3E79F864AEFBC5F91D7 /* Feather.ttf */; };
 		0897E83159B140B5AD8D8D92 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2B3E92C36254A399220D4DE /* EvilIcons.ttf */; };
 		0DFDC54B85CC45A3B31CACFB /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5377C27743964C6D8EF1FA05 /* FontAwesome.ttf */; };
+		1392EC52BC67478BA7420344 /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		18FF3A01EB984541A93A4963 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */; };
 		2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2107154420B5677200E6C96B /* RNKiwiGestureController.m */; };
 		2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107154520B5677200E6C96B /* RNKiwiGestureController.h */; };
 		215881F420C7FF140016707A /* RNKiwiMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931B020AD96780053AE19 /* RNKiwiMobile.framework */; };
@@ -55,17 +58,18 @@
 		63A8419F20C8538A0093183F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419E20C8538A0093183F /* MessageUI.framework */; };
 		686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 686E004A20B2E1360013512F /* RNKiwiConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 686E005020B2E24B0013512F /* RNKiwiConstants.m */; };
+		68838000210F87290036946F /* RNKiwiAppleWalletManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68837FFF210F87290036946F /* RNKiwiAppleWalletManager.m */; };
+		68969E8521108BB400618CAF /* RNKiwiAppleButtonView.h in Headers */ = {isa = PBXBuildFile; fileRef = 68969E8321108BB400618CAF /* RNKiwiAppleButtonView.h */; };
+		68969E8621108BB400618CAF /* RNKiwiAppleButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68969E8421108BB400618CAF /* RNKiwiAppleButtonView.m */; };
 		68A3675220D114BC00F0027D /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */; };
+		6D1003A6ACB9423E80A708C5 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */; };
 		7EEEE5BA4A6944DCBDECD4C3 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 929CCF0BD6A142DEAB8DA917 /* Octicons.ttf */; };
 		96C2C08DFA5C43B3AE2859F4 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */; };
+		9F7ED75AD27047ED8D2AF3CA /* CircularPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1641E3E0F4C42F0A3CB58F1 /* CircularPro-Bold.otf */; };
 		A33D4A1D5C6845B3B939C9F8 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38EC9C92B1414019B0EAF6AF /* Foundation.ttf */; };
 		A96754F560094312A0F7CAB7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB92C0158EB3448ABD260167 /* Entypo.ttf */; };
 		B025D45E10CE4ED9A975D6DF /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 645A06359A464CB0B63845A2 /* MaterialCommunityIcons.ttf */; };
 		C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
-		9F7ED75AD27047ED8D2AF3CA /* CircularPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1641E3E0F4C42F0A3CB58F1 /* CircularPro-Bold.otf */; };
-		1392EC52BC67478BA7420344 /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */; };
-		6D1003A6ACB9423E80A708C5 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */; };
-		18FF3A01EB984541A93A4963 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +142,7 @@
 		27E931E020ADA0630053AE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27E931E220ADA0630053AE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27E931E320ADA0630053AE19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Medium.otf"; path = "../assets/fonts/CircularPro-Medium.otf"; sourceTree = "<group>"; };
 		34003FC5EE453F3F2C072F56 /* libPods-RNNativePlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNNativePlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38EC9C92B1414019B0EAF6AF /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		46C66C53E2B841209A9370D0 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -148,6 +153,9 @@
 		6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		686E004A20B2E1360013512F /* RNKiwiConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiConstants.h; sourceTree = "<group>"; };
 		686E005020B2E24B0013512F /* RNKiwiConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiConstants.m; sourceTree = "<group>"; };
+		68837FFF210F87290036946F /* RNKiwiAppleWalletManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiAppleWalletManager.m; sourceTree = "<group>"; };
+		68969E8321108BB400618CAF /* RNKiwiAppleButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiAppleButtonView.h; sourceTree = "<group>"; };
+		68969E8421108BB400618CAF /* RNKiwiAppleButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiAppleButtonView.m; sourceTree = "<group>"; };
 		68A42BBB8E1C6CD26053AC72 /* Pods-RNPlayground.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.release.xcconfig"; sourceTree = "<group>"; };
 		7362EE36714587FAF8D16632 /* Pods-RNKiwiMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNKiwiMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNKiwiMobile/Pods-RNKiwiMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		83DEB0A076A11B421C735EE9 /* Pods-RNPlayground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.debug.xcconfig"; sourceTree = "<group>"; };
@@ -157,16 +165,15 @@
 		B11306CBC6D24D3C990EAC4B /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		B4E7213E71A344C5AE638015 /* Pods-RNKiwiMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNKiwiMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNKiwiMobile/Pods-RNKiwiMobile.release.xcconfig"; sourceTree = "<group>"; };
 		BF458A69A33B4401B9E9FCDA /* spfont.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = spfont.ttf; path = ../assets/fonts/spfont.ttf; sourceTree = "<group>"; };
+		C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		CB92C0158EB3448ABD260167 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		D1641E3E0F4C42F0A3CB58F1 /* CircularPro-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Bold.otf"; path = "../assets/fonts/CircularPro-Bold.otf"; sourceTree = "<group>"; };
 		D9EB95B82ECBF86CAF3AF472 /* Pods-reactNativeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Book.otf"; path = "../assets/fonts/CircularPro-Book.otf"; sourceTree = "<group>"; };
 		E2B3E92C36254A399220D4DE /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		F1CBA12F9C74CC3D03C0D84C /* Pods-reactNativeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp.release.xcconfig"; sourceTree = "<group>"; };
 		F477A1D455304A4EA37DF899 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		D1641E3E0F4C42F0A3CB58F1 /* CircularPro-Bold.otf */ = {isa = PBXFileReference; name = "CircularPro-Bold.otf"; path = "../assets/fonts/CircularPro-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; name = "CircularPro-Medium.otf"; path = "../assets/fonts/CircularPro-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +250,9 @@
 				27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */,
 				27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */,
 				27E931B320AD96790053AE19 /* Info.plist */,
+				68837FFF210F87290036946F /* RNKiwiAppleWalletManager.m */,
+				68969E8321108BB400618CAF /* RNKiwiAppleButtonView.h */,
+				68969E8421108BB400618CAF /* RNKiwiAppleButtonView.m */,
 			);
 			path = RNKiwiMobile;
 			sourceTree = "<group>";
@@ -343,6 +353,7 @@
 				27E931C520AD9A4B0053AE19 /* RNKiwiCurrencyManager.h in Headers */,
 				2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */,
 				686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */,
+				68969E8521108BB400618CAF /* RNKiwiAppleButtonView.h in Headers */,
 				27E931B420AD96790053AE19 /* RNKiwiMobile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -699,7 +710,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */,
+				68969E8621108BB400618CAF /* RNKiwiAppleButtonView.m in Sources */,
 				2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */,
+				68838000210F87290036946F /* RNKiwiAppleWalletManager.m in Sources */,
 				686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */,
 				2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */,
 			);
