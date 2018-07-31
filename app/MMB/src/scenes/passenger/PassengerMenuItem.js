@@ -5,8 +5,10 @@ import { View } from 'react-native';
 import { Color, StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
+import TitleTranslation from '../../components/TitleTranslation';
+
 type Props = {|
-  name?: React.Element<typeof Translation>,
+  name?: React.Element<typeof Translation | typeof TitleTranslation>,
   title: React.Element<typeof Translation>,
   value: React.Element<typeof Translation>,
 |};

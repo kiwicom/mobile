@@ -19,8 +19,9 @@ exports[`renders 1`] = `
     <Row>
       <PassengerMenuItem
         name={
-          <Translation
-            passThrough="Mr. Trond Bergquist"
+          <TitleTranslation
+            name="Trond Bergquist"
+            title="Mr"
           />
         }
         title={
