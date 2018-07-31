@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 91eb81b2975e7a36d3451f46dc1b6c6c
+ * @relayHash dab36fe7e50fb34c650ed086fd3ae320
  */
 
 /* eslint-disable */
@@ -11,10 +11,11 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type TicketRefetch$ref = any;
 export type TicketSceneQueryVariables = {|
-  bookingId: string
+  bookingId: number,
+  authToken: string,
 |};
 export type TicketSceneQueryResponse = {|
-  +node: ?{|
+  +singleBooking: ?{|
     +$fragmentRefs: TicketRefetch$ref
   |}
 |};
@@ -23,13 +24,12 @@ export type TicketSceneQueryResponse = {|
 
 /*
 query TicketSceneQuery(
-  $bookingId: ID!
+  $bookingId: Int!
+  $authToken: String!
 ) {
-  node(id: $bookingId) {
+  singleBooking(id: $bookingId, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      ...TicketRefetch
-    }
+    ...TicketRefetch
     id
   }
 }
@@ -160,16 +160,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "bookingId",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "bookingId",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -347,7 +359,7 @@ return {
   "operationKind": "query",
   "name": "TicketSceneQuery",
   "id": null,
-  "text": "query TicketSceneQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...TicketRefetch\n    }\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n  ... on BookingMulticity {\n    ...BoardingPassMultiCity\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassMultiCity on BookingMulticity {\n  trips {\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  id\n  airline {\n    logoUrl\n  }\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n    ...AppleWallet\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n  ...BoardingPassInformation\n}\n\nfragment AppleWallet on BoardingPass {\n  pkpasses {\n    ...AppleWalletPassenger\n    passenger {\n      databaseId\n    }\n  }\n}\n\nfragment AppleWalletPassenger on Pkpass {\n  url\n  passenger {\n    fullName\n  }\n}\n\nfragment BoardingPassInformation on BoardingPass {\n  availableAt\n  boardingPassUrl\n  ...FutureBookingInformation\n}\n\nfragment FutureBookingInformation on BoardingPass {\n  boardingPassUrl\n}\n",
+  "text": "query TicketSceneQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TicketRefetch\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n  ... on BookingMulticity {\n    ...BoardingPassMultiCity\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassMultiCity on BookingMulticity {\n  trips {\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  id\n  airline {\n    logoUrl\n  }\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n    ...AppleWallet\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  boardingPassUrl\n  ...BoardingPassInformation\n}\n\nfragment AppleWallet on BoardingPass {\n  pkpasses {\n    ...AppleWalletPassenger\n    passenger {\n      databaseId\n    }\n  }\n}\n\nfragment AppleWalletPassenger on Pkpass {\n  url\n  passenger {\n    fullName\n  }\n}\n\nfragment BoardingPassInformation on BoardingPass {\n  availableAt\n  boardingPassUrl\n  ...FutureBookingInformation\n}\n\nfragment FutureBookingInformation on BoardingPass {\n  boardingPassUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -359,7 +371,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -382,7 +394,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -482,5 +494,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ce095645f484bdd3dbff1e48ff0bba4f';
+(node/*: any*/).hash = '7bb4ef06a1de1893d87c196b5bf16056';
 module.exports = node;

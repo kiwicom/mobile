@@ -34,7 +34,7 @@ describe('BookingDetailContext', () => {
 
     const instance = wrapper.root.findByType(ContextConsumer);
     expect(instance.props.isPastBooking).toBe(false);
-    expect(instance.props.bookingId).toBe('');
+    expect(instance.props.bookingId).toBe(0);
     expect(
       DateFormatter(instance.props.arrivalTime).formatForMachine(),
     ).toEqual(DateFormatter(new Date()).formatForMachine());

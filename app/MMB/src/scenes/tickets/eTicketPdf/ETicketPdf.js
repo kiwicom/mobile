@@ -9,7 +9,7 @@ import BookingDetailContext from '../../../context/BookingDetailContext';
 
 type PropsWithContext = {|
   ...Props,
-  +bookingId: string,
+  +bookingId: number,
 |};
 
 const ETicketPdf = ({ ticketUrl, bookingId }: PropsWithContext) => {

@@ -67,7 +67,7 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
         </View>
         <View style={styleSheet.variantsRow}>
           <VariantButtons
-            data={this.props.data.node}
+            data={this.props.data}
             selectedVariant={this.state.selectedVariant}
             selectVariant={this.selectVariant}
           />

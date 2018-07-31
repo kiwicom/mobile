@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a88764ce6e33c131280b92b79a832616
+ * @relayHash e7d7c60b86c2756a74db05f550bb4064
  */
 
 /* eslint-disable */
@@ -10,11 +10,12 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type InvoiceQueryVariables = {|
-  bookingId: string
+  bookingId: number,
+  authToken: string,
 |};
 export type InvoiceQueryResponse = {|
-  +node: ?{|
-    +assets?: ?{|
+  +singleBooking: ?{|
+    +assets: ?{|
       +invoiceUrl: ?string
     |}
   |}
@@ -24,14 +25,13 @@ export type InvoiceQueryResponse = {|
 
 /*
 query InvoiceQuery(
-  $bookingId: ID!
+  $bookingId: Int!
+  $authToken: String!
 ) {
-  node(id: $bookingId) {
+  singleBooking(id: $bookingId, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      assets {
-        invoiceUrl
-      }
+    assets {
+      invoiceUrl
     }
     id
   }
@@ -43,16 +43,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "bookingId",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "bookingId",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -78,7 +90,7 @@ return {
   "operationKind": "query",
   "name": "InvoiceQuery",
   "id": null,
-  "text": "query InvoiceQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      assets {\n        invoiceUrl\n      }\n    }\n    id\n  }\n}\n",
+  "text": "query InvoiceQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    assets {\n      invoiceUrl\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -90,7 +102,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -109,7 +121,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -137,5 +149,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'cd60e91c5730d68a2c7e791f6492bde2';
+(node/*: any*/).hash = '77962c5538c9db39d4ea8b9e09750e90';
 module.exports = node;

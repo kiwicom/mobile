@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 22f17ae75c665aabc208d6b4628b7064
+ * @relayHash dc2c9377b7a77e77e37eed7284a9b25a
  */
 
 /* eslint-disable */
@@ -11,12 +11,13 @@
 import type { ConcreteRequest } from 'relay-runtime';
 export type DirectAccessURLValues = "ASSISTANCE" | "BAGS" | "CANCEL" | "CAR_RENTS" | "CHANGE_TRIP" | "EDIT_PASSENGERS" | "HOTELS" | "INSURANCE" | "MUSICAL_EQUIPMENT" | "PAYMENT" | "PENDING_SERVICES" | "PETS" | "REFUND" | "SEATING" | "SPORT_EQUIPMENT" | "TRAVEL_DOCUMENTS" | "VALIDATE_PAYMENT" | "%future added value";
 export type DeeplinkQueryVariables = {|
-  bookingId: string,
+  bookingId: number,
+  authToken: string,
   deeplinkTo?: ?DirectAccessURLValues,
 |};
 export type DeeplinkQueryResponse = {|
-  +node: ?{|
-    +directAccessURL?: ?string
+  +singleBooking: ?{|
+    +directAccessURL: ?string
   |}
 |};
 */
@@ -24,14 +25,13 @@ export type DeeplinkQueryResponse = {|
 
 /*
 query DeeplinkQuery(
-  $bookingId: ID!
+  $bookingId: Int!
+  $authToken: String!
   $deeplinkTo: DirectAccessURLValues
 ) {
-  node(id: $bookingId) {
+  singleBooking(id: $bookingId, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      directAccessURL(deeplinkTo: $deeplinkTo)
-    }
+    directAccessURL(deeplinkTo: $deeplinkTo)
     id
   }
 }
@@ -42,7 +42,13 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "bookingId",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   },
   {
@@ -55,9 +61,15 @@ var v0 = [
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "bookingId",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -79,7 +91,7 @@ return {
   "operationKind": "query",
   "name": "DeeplinkQuery",
   "id": null,
-  "text": "query DeeplinkQuery(\n  $bookingId: ID!\n  $deeplinkTo: DirectAccessURLValues\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      directAccessURL(deeplinkTo: $deeplinkTo)\n    }\n    id\n  }\n}\n",
+  "text": "query DeeplinkQuery(\n  $bookingId: Int!\n  $authToken: String!\n  $deeplinkTo: DirectAccessURLValues\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    directAccessURL(deeplinkTo: $deeplinkTo)\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -91,7 +103,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -110,7 +122,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -138,5 +150,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '1415d8dd5f931756f909aaf62b01a03d';
+(node/*: any*/).hash = 'c857d0c9c2945f331315f52f26fcf929';
 module.exports = node;

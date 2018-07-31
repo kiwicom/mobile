@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 254852e83dcb40d7f829e74c8e847328
+ * @relayHash ab890a15710065753ddaebcdcdea8fb4
  */
 
 /* eslint-disable */
@@ -11,10 +11,11 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type PassengerDetail_booking$ref = any;
 export type PassengerDetailContainerQueryVariables = {|
-  id: string
+  id: number,
+  authToken: string,
 |};
 export type PassengerDetailContainerQueryResponse = {|
-  +node: ?{|
+  +singleBooking: ?{|
     +$fragmentRefs: PassengerDetail_booking$ref
   |}
 |};
@@ -23,13 +24,12 @@ export type PassengerDetailContainerQueryResponse = {|
 
 /*
 query PassengerDetailContainerQuery(
-  $id: ID!
+  $id: Int!
+  $authToken: String!
 ) {
-  node(id: $id) {
+  singleBooking(id: $id, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      ...PassengerDetail_booking
-    }
+    ...PassengerDetail_booking
     id
   }
 }
@@ -104,16 +104,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "id",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "id",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -175,7 +187,7 @@ return {
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...PassengerDetail_booking\n    }\n    id\n  }\n}\n\nfragment PassengerDetail_booking on BookingInterface {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n  ...Baggage\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n\nfragment Baggage on BookingInterface {\n  allowedBaggage {\n    ...CabinBags\n    ...CheckedBaggage\n  }\n}\n\nfragment CabinBags on AllowedBaggage {\n  cabin {\n    ...BagInfo\n  }\n}\n\nfragment CheckedBaggage on AllowedBaggage {\n  checked {\n    ...BagInfo\n  }\n}\n\nfragment BagInfo on Baggage {\n  height\n  length\n  width\n  weight\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on BookingInterface {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n  ...Baggage\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n\nfragment Baggage on BookingInterface {\n  allowedBaggage {\n    ...CabinBags\n    ...CheckedBaggage\n  }\n}\n\nfragment CabinBags on AllowedBaggage {\n  cabin {\n    ...BagInfo\n  }\n}\n\nfragment CheckedBaggage on AllowedBaggage {\n  checked {\n    ...BagInfo\n  }\n}\n\nfragment BagInfo on Baggage {\n  height\n  length\n  width\n  weight\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -187,7 +199,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -210,7 +222,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -384,5 +396,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '62c2f29ca9fe3a22e2f7b4cc040068f4';
+(node/*: any*/).hash = '4bc32b92fded2b0ac7828192564862b2';
 module.exports = node;

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 36eedc2a089a9555085fa651470d0275
+ * @relayHash ed9e1b96d1e6e686aa780885726db0f2
  */
 
 /* eslint-disable */
@@ -11,10 +11,11 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type TripOverview$ref = any;
 export type TripOverviewTabletQueryVariables = {|
-  id: string
+  id: number,
+  authToken: string,
 |};
 export type TripOverviewTabletQueryResponse = {|
-  +node: ?{|
+  +singleBooking: ?{|
     +$fragmentRefs: TripOverview$ref
   |}
 |};
@@ -23,13 +24,12 @@ export type TripOverviewTabletQueryResponse = {|
 
 /*
 query TripOverviewTabletQuery(
-  $id: ID!
+  $id: Int!
+  $authToken: String!
 ) {
-  node(id: $id) {
+  singleBooking(id: $id, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      ...TripOverview
-    }
+    ...TripOverview
     id
   }
 }
@@ -114,16 +114,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "id",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "id",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -245,7 +257,7 @@ return {
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: ID!\n) {\n  node(id: $id) {\n    __typename\n    ... on BookingInterface {\n      ...TripOverview\n    }\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -257,7 +269,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -280,7 +292,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -359,5 +371,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'fc2cc19c0cabaff050f4ec4cb4be5aa3';
+(node/*: any*/).hash = '006cfa80486c921de7b2e3bd24dafb77';
 module.exports = node;
