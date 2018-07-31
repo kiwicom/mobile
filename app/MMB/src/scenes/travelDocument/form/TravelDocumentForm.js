@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, TextIcon, Color } from '@kiwicom/mobile-shared';
 
 import TitleTranslation from '../../../components/TitleTranslation';
@@ -19,8 +18,7 @@ export default function TravelDocumentForm(props: Props) {
     <React.Fragment>
       <View style={styles.row}>
         <TextIcon code="w" style={styles.icon} />
-        <TitleTranslation title={props.title} />
-        <Translation passThrough={' ' + props.fullName} />
+        <TitleTranslation title={props.title} name={props.fullName} />
       </View>
       <View style={styles.inputContainer}>
         <IdInput />

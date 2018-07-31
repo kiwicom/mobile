@@ -7,6 +7,7 @@ import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
+import TitleTranslation from '../../components/TitleTranslation';
 import type { Passenger as PassengerType } from './__generated__/Passenger.graphql';
 
 type Props = {|
@@ -21,7 +22,7 @@ const Passenger = ({ data }: Props) => {
   return (
     <View style={styles.passenger}>
       <Text style={styles.passengerText}>
-        <Translation passThrough={`${title}. ${fullName}`} />
+        <TitleTranslation title={title} name={fullName} />
       </Text>
       <Text style={[styles.passengerText, styles.passengerBirthday]}>
         <Translation passThrough={DateFormatter(birthday).formatToBirthday()} />

@@ -13,6 +13,7 @@ import VisaInformation from './visa/VisaInformation';
 import VisaWarning from './visa/VisaWarning';
 import VisaRequired from './visa/VisaRequired';
 import PassengerMenuItem from './PassengerMenuItem';
+import TitleTranslation from '../../components/TitleTranslation';
 import type { Passenger_passenger as PassengerType } from './__generated__/Passenger_passenger.graphql';
 
 const Row = ({ children }: {| children: React.Node |}) => (
@@ -45,7 +46,7 @@ export const Passenger = ({ passenger }: Props) => {
       >
         <Row>
           <PassengerMenuItem
-            name={<Translation passThrough={`${title}. ${fullName}`} />}
+            name={<TitleTranslation title={title} name={fullName} />}
             title={<Translation id="mmb.passenger.nationality.label" />}
             value={<Translation passThrough={nationality.toUpperCase()} />}
           />
