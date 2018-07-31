@@ -21,8 +21,8 @@ export default {
   'mmb.status.travelled': 'Travelled',
   'mmb.status.unknown': 'Unknown',
 
-  'mmb.title.mr': 'Mr.',
-  'mmb.title.ms': 'Ms.',
+  'mmb.title.mr': 'Mr. __name__',
+  'mmb.title.ms': 'Ms. __name__',
 
   'mmb.fill_travel_document_screen.title': 'Fill travel document details',
   'mmb.fill_travel_document_screen_modal.title': 'Fill travel document details',
