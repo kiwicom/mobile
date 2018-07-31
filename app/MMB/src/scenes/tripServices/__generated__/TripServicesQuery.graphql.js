@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5032eb09d5ce4bf2fc26c463107fa8a6
+ * @relayHash c3ad66eafcc9b69ada372c63ca417753
  */
 
 /* eslint-disable */
@@ -13,11 +13,12 @@ type CarRentalMenuItem$ref = any;
 type LoungeMenuItem$ref = any;
 type ParkingMenuItem$ref = any;
 export type TripServicesQueryVariables = {|
-  bookingId: string
+  bookingId: number,
+  authToken: string,
 |};
 export type TripServicesQueryResponse = {|
-  +node: ?{|
-    +availableWhitelabeledServices?: ?{|
+  +singleBooking: ?{|
+    +availableWhitelabeledServices: ?{|
       +$fragmentRefs: CarRentalMenuItem$ref & LoungeMenuItem$ref & ParkingMenuItem$ref
     |}
   |}
@@ -27,16 +28,15 @@ export type TripServicesQueryResponse = {|
 
 /*
 query TripServicesQuery(
-  $bookingId: ID!
+  $bookingId: Int!
+  $authToken: String!
 ) {
-  node(id: $bookingId) {
+  singleBooking(id: $bookingId, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      availableWhitelabeledServices {
-        ...CarRentalMenuItem
-        ...LoungeMenuItem
-        ...ParkingMenuItem
-      }
+    availableWhitelabeledServices {
+      ...CarRentalMenuItem
+      ...LoungeMenuItem
+      ...ParkingMenuItem
     }
     id
   }
@@ -90,16 +90,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "bookingId",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "bookingId",
-    "type": "ID!"
+    "type": "Int!"
   }
 ],
 v2 = {
@@ -168,7 +180,7 @@ return {
   "operationKind": "query",
   "name": "TripServicesQuery",
   "id": null,
-  "text": "query TripServicesQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      availableWhitelabeledServices {\n        ...CarRentalMenuItem\n        ...LoungeMenuItem\n        ...ParkingMenuItem\n      }\n    }\n    id\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query TripServicesQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    availableWhitelabeledServices {\n      ...CarRentalMenuItem\n      ...LoungeMenuItem\n      ...ParkingMenuItem\n    }\n    id\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -180,7 +192,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -224,7 +236,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -310,5 +322,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '769723bb0882609f095aba72b3ab38b0';
+(node/*: any*/).hash = '37f6cab3a641f4549bde8c052835f3e8';
 module.exports = node;

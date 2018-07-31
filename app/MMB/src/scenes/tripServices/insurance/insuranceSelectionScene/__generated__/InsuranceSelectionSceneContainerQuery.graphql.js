@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash eb88e7d365cf8f2f0011fc81b850286a
+ * @relayHash f71c243d62a402b33782b57b4a1e7190
  */
 
 /* eslint-disable */
@@ -11,10 +11,11 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type VariantButtons$ref = any;
 export type InsuranceSelectionSceneContainerQueryVariables = {|
-  bookingId: string
+  bookingId: number,
+  authToken: string,
 |};
 export type InsuranceSelectionSceneContainerQueryResponse = {|
-  +node: ?{|
+  +singleBooking: ?{|
     +$fragmentRefs: VariantButtons$ref
   |}
 |};
@@ -23,13 +24,12 @@ export type InsuranceSelectionSceneContainerQueryResponse = {|
 
 /*
 query InsuranceSelectionSceneContainerQuery(
-  $bookingId: ID!
+  $bookingId: Int!
+  $authToken: String!
 ) {
-  node(id: $bookingId) {
+  singleBooking(id: $bookingId, authToken: $authToken) {
     __typename
-    ... on BookingInterface {
-      ...VariantButtons
-    }
+    ...VariantButtons
     id
   }
 }
@@ -50,16 +50,28 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "bookingId",
-    "type": "ID!",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String!"
+  },
+  {
+    "kind": "Variable",
     "name": "id",
     "variableName": "bookingId",
-    "type": "ID!"
+    "type": "Int!"
   }
 ];
 return {
@@ -67,7 +79,7 @@ return {
   "operationKind": "query",
   "name": "InsuranceSelectionSceneContainerQuery",
   "id": null,
-  "text": "query InsuranceSelectionSceneContainerQuery(\n  $bookingId: ID!\n) {\n  node(id: $bookingId) {\n    __typename\n    ... on BookingInterface {\n      ...VariantButtons\n    }\n    id\n  }\n}\n\nfragment VariantButtons on BookingInterface {\n  insurancePrices {\n    insuranceType\n    price {\n      amount\n      currency\n    }\n  }\n}\n",
+  "text": "query InsuranceSelectionSceneContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...VariantButtons\n    id\n  }\n}\n\nfragment VariantButtons on BookingInterface {\n  insurancePrices {\n    insuranceType\n    price {\n      amount\n      currency\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -79,7 +91,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -102,7 +114,7 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "node",
+        "name": "singleBooking",
         "storageKey": null,
         "args": v1,
         "concreteType": null,
@@ -172,5 +184,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2912b1050c44aee287f974a6dbdd6837';
+(node/*: any*/).hash = '79155748d367b1addb3ee2dea5416c62';
 module.exports = node;

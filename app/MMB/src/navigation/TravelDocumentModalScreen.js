@@ -9,9 +9,9 @@ import {
 } from '@kiwicom/mobile-navigation';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { StyleSheet, Color, IconLoading } from '@kiwicom/mobile-shared';
-import { withAuthContext } from '@kiwicom/mobile-relay';
 
 import updatePassengerMutation from './mutation/UpdatePassenger';
+import { withBookingDetailContext } from '../context/BookingDetailContext';
 import { withFormContext } from '../scenes/travelDocument/form/TravelDocumentFormContext';
 import TravelDocumentForm from '../scenes/travelDocument/form/TravelDocumentForm';
 
@@ -21,7 +21,7 @@ type Props = {|
   +fullName: string,
   +passengerId: number,
   +bookingId: string,
-  +accessToken: string,
+  +authToken: string,
   +idNumber: string,
   +expiryDate: Date | null,
   +noExpiry: boolean,
@@ -94,12 +94,13 @@ export class TravelDocumentModalScreen extends React.Component<Props, State> {
   };
 
   onSave = () => {
-    const { bookingId, passengerId, accessToken } = this.props;
+    const { bookingId, passengerId, authToken } = this.props;
     this.setState({ isSubmitting: true });
     this.props.navigation.setParams({ disabled: true });
     updatePassengerMutation(
       {
         id: bookingId,
+        simpleToken: authToken,
         passengers: [
           {
             passengerId,
@@ -120,7 +121,6 @@ export class TravelDocumentModalScreen extends React.Component<Props, State> {
         this.setState({ isSubmitting: false });
         this.props.navigation.setParams({ disabled: false });
       },
-      accessToken,
     );
   };
 
@@ -142,4 +142,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withFormContext(withAuthContext(TravelDocumentModalScreen));
+export default withFormContext(
+  withBookingDetailContext(state => ({
+    authToken: state.authToken,
+    bookingId: state.id,
+  }))(TravelDocumentModalScreen),
+);

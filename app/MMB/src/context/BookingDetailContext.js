@@ -2,21 +2,25 @@
 
 import * as React from 'react';
 
-type BookingDetail = {|
+export type BookingDetail = {|
+  +id: string,
   +isPastBooking: boolean,
-  +bookingId: string,
+  +bookingId: number,
   +arrivalCityId: string,
   +arrivalTime: Date,
   +departureTime: Date,
+  +authToken: string,
 |};
 
 const defaultState = {
+  id: '',
   isPastBooking: false,
-  bookingId: '',
+  bookingId: 0,
   arrivalCityId: '',
   arrivalTime: new Date(),
   departureTime: new Date(),
   isMissingDocumentId: false,
+  authToken: '',
   actions: {
     setBookingDetail: () => {},
     setIsMissingDocumentId: () => {},
@@ -67,3 +71,22 @@ class Provider extends React.Component<Props, State> {
 }
 
 export default { Consumer, Provider };
+
+export function withBookingDetailContext(select: (state: State) => Object) {
+  return function(Component: React.ElementType) {
+    const WithBookingDetailContext = (props: Object) => {
+      const mapStateToProps = state => {
+        const stateProps = select(state);
+        return <Component {...props} {...stateProps} />;
+      };
+
+      return <Consumer>{mapStateToProps}</Consumer>;
+    };
+
+    // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+    if (Component.navigationOptions) {
+      WithBookingDetailContext.navigationOptions = Component.navigationOptions;
+    }
+    return WithBookingDetailContext;
+  };
+}

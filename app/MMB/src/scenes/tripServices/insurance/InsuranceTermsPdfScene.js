@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import PdfViewer from '@kiwicom/mobile-pdf';
 
 import type { InsuranceTermsPdfSceneQueryResponse as Props } from './__generated__/InsuranceTermsPdfSceneQuery.graphql';
@@ -19,7 +19,7 @@ const renderPdfViewer = (props: Props) => {
 
 const InsuranceTermsPdfScene = () => {
   return (
-    <PrivateApiRenderer
+    <PublicApiRenderer
       query={graphql`
         query InsuranceTermsPdfSceneQuery {
           allDocuments {

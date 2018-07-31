@@ -12,14 +12,13 @@ import PassengerSubtitle from './PassengerSubtitle';
 import PassengerMenuRightContent from './PassengerMenuRightContent';
 import PassengerMenuItem from '../../../components/passengerMenuItem/PassengerMenuItem';
 import type { PassengerMenuItem as PassengerType } from '../../../components/passengerMenuItem/__generated__/PassengerMenuItem.graphql';
-import BookingDetailContext from '../../../context/BookingDetailContext';
 
-type PropsWithContext = {|
-  ...Props,
-  +bookingId: string,
+type Props = {|
+  +data: PassengerType,
+  +navigation: NavigationType,
 |};
 
-const TravelDocumentPassengerMenuItem = (props: PropsWithContext) => {
+const TravelDocumentPassengerMenuItem = (props: Props) => {
   const title = idx(props.data, _ => _.title) || '';
   const fullName = idx(props.data, _ => _.fullName) || '';
   const idNumber = idx(props.data, _ => _.travelDocument.idNumber) || null;
@@ -31,7 +30,6 @@ const TravelDocumentPassengerMenuItem = (props: PropsWithContext) => {
       title,
       fullName,
       passengerId,
-      bookingId: props.bookingId,
     });
   }
 
@@ -48,21 +46,8 @@ const TravelDocumentPassengerMenuItem = (props: PropsWithContext) => {
   );
 };
 
-type Props = {|
-  +data: PassengerType,
-  +navigation: NavigationType,
-|};
-
-const TravelDocumentPassengerMenuItemWithContext = (props: Props) => (
-  <BookingDetailContext.Consumer>
-    {({ bookingId }) => (
-      <TravelDocumentPassengerMenuItem {...props} bookingId={bookingId} />
-    )}
-  </BookingDetailContext.Consumer>
-);
-
 export default createFragmentContainer(
-  withNavigation(TravelDocumentPassengerMenuItemWithContext),
+  withNavigation(TravelDocumentPassengerMenuItem),
   graphql`
     fragment TravelDocumentPassengerMenuItem on Passenger {
       title

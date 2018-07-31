@@ -19,36 +19,36 @@ import FromToRow from './FromToRow';
 import DateAndPassengerCount from './DateAndPassengerCount';
 import ImageBadges from './ImageBadges';
 import CityImage from '../../../components/CityImage';
-import BookingDetailContext from '../../../context/BookingDetailContext';
+import BookingDetailContext, {
+  type BookingDetail,
+} from '../../../context/BookingDetailContext';
 import type { CityImage_arrival as ArrivalType } from './__generated__/CityImageContainer_arrival.graphql';
 import type { CityImage_departure as DepartureType } from './__generated__/CityImageContainer_departure.graphql';
 import type { CityImage_image as ImageType } from './__generated__/CityImageContainer_image.graphql';
 
 type PropsWithContext = {|
   ...Props,
-  +setBookingDetail: (booking: {|
-    isPastBooking: boolean,
-    bookingId: string,
-    arrivalCityId: string,
-    arrivalTime: Date,
-    departureTime: Date,
-  |}) => void,
+  +setBookingDetail: (booking: BookingDetail) => void,
 |};
 
 class CityImageContainer extends React.Component<PropsWithContext> {
   goToDetail = () => {
     const props = this.props;
 
-    const bookingId = idx(props.image, _ => _.id) || '';
+    const id = idx(props.image, _ => _.id) || '';
+    const bookingId = idx(props.image, _ => _.databaseId) || 0;
     const isPastBooking = Boolean(idx(props.image, _ => _.isPastBooking));
     const arrivalCityId = idx(props.arrival, _ => _.cityId) || '';
     const arrivalTime = idx(props.arrival, _ => _.time) || '';
     const departureTime = idx(props.departure, _ => _.time) || '';
+    const authToken = idx(props.image, _ => _.authToken) || '';
 
     this.props.setBookingDetail({
-      bookingId: bookingId.toString(),
+      id,
+      bookingId,
       isPastBooking,
       arrivalCityId,
+      authToken,
       arrivalTime: new Date(arrivalTime),
       departureTime: new Date(departureTime),
     });
@@ -104,9 +104,11 @@ export default createFragmentContainer(
   graphql`
     fragment CityImageContainer_image on BookingInterface {
       id
+      databaseId
       passengerCount
       isPastBooking
       destinationImageUrl(dimensions: _375x165)
+      authToken
       ...ImageBadges
     }
 

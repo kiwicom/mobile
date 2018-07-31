@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 
 import BookingDetailContext from '../../context/BookingDetailContext';
 import type { TicketSceneQueryResponse } from './__generated__/TicketSceneQuery.graphql';
@@ -15,23 +15,23 @@ type Props = {|
 
 export default class TicketScene extends React.Component<Props> {
   renderInner = (renderProps: TicketSceneQueryResponse) => (
-    <TicketRefetch data={renderProps.node} />
+    <TicketRefetch data={renderProps.singleBooking} />
   );
 
   render = () => (
     <BookingDetailContext.Consumer>
-      {({ bookingId }) => (
-        <PrivateApiRenderer
+      {({ bookingId, authToken }) => (
+        <PublicApiRenderer
           query={graphql`
-            query TicketSceneQuery($bookingId: ID!) {
-              node(id: $bookingId) {
+            query TicketSceneQuery($bookingId: Int!, $authToken: String!) {
+              singleBooking(id: $bookingId, authToken: $authToken) {
                 ... on BookingInterface {
                   ...TicketRefetch
                 }
               }
             }
           `}
-          variables={{ bookingId }}
+          variables={{ bookingId, authToken }}
           render={this.renderInner}
         />
       )}

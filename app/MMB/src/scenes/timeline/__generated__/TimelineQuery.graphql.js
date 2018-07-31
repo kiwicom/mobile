@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d8ba30f835745fc1b2ed744a4cbdb8a8
+ * @relayHash 1bf9aa1d22bf0b8c133b126e0255acdf
  */
 
 /* eslint-disable */
@@ -25,7 +25,8 @@ type NoMoreEditsTimelineEvent$ref = any;
 type TimeToCheckinTimelineEvent$ref = any;
 type TransportFromAirportTimelineEvent$ref = any;
 export type TimelineQueryVariables = {|
-  id: string
+  id: string,
+  authToken: string,
 |};
 export type TimelineQueryResponse = {|
   +bookingTimeline: ?{|
@@ -42,8 +43,9 @@ export type TimelineQueryResponse = {|
 /*
 query TimelineQuery(
   $id: ID!
+  $authToken: String!
 ) {
-  bookingTimeline(id: $id) {
+  bookingTimeline(id: $id, authToken: $authToken) {
     events {
       __typename
       timestamp
@@ -248,9 +250,21 @@ var v0 = [
     "name": "id",
     "type": "ID!",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "authToken",
+    "type": "String!",
+    "defaultValue": null
   }
 ],
 v1 = [
+  {
+    "kind": "Variable",
+    "name": "authToken",
+    "variableName": "authToken",
+    "type": "String"
+  },
   {
     "kind": "Variable",
     "name": "id",
@@ -362,7 +376,7 @@ return {
   "operationKind": "query",
   "name": "TimelineQuery",
   "id": null,
-  "text": "query TimelineQuery(\n  $id: ID!\n) {\n  bookingTimeline(id: $id) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on DownloadETicketTimelineEvent {\n        ...DownloadETicketTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n      ... on DepartureTimelineEvent {\n        ...DepartureTimelineEvent\n      }\n      ... on ArrivalTimelineEvent {\n        ...ArrivalTimelineEvent\n      }\n      ... on TransportFromAirportTimelineEvent {\n        ...TransportFromAirportTimelineEvent\n      }\n      ... on DownloadBoardingPassTimelineEvent {\n        ...DownloadBoardingPassTimelineEvent\n      }\n      ... on NoMoreEditsTimelineEvent {\n        ...NoMoreEditsTimelineEvent\n      }\n      ... on NavigateToTerminalTimelineEvent {\n        ...NavigateToTerminalTimelineEvent\n      }\n      ... on TimeToCheckinTimelineEvent {\n        ...TimeToCheckinTimelineEvent\n      }\n      ... on CheckinClosingTimelineEvent {\n        ...CheckinClosingTimelineEvent\n      }\n      ... on EnterDetailsTimelineEvent {\n        ...EnterDetailsTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment DownloadETicketTimelineEvent on DownloadETicketTimelineEvent {\n  timestamp\n  ticketUrl\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n  terminal\n}\n\nfragment DepartureTimelineEvent on DepartureTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  duration\n  airline {\n    code\n    name\n  }\n  flightNumber\n}\n\nfragment ArrivalTimelineEvent on ArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {\n  timestamp\n}\n\nfragment DownloadBoardingPassTimelineEvent on DownloadBoardingPassTimelineEvent {\n  timestamp\n  leg {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    boardingPass {\n      flightNumber\n      boardingPassUrl\n    }\n    id\n  }\n}\n\nfragment NoMoreEditsTimelineEvent on NoMoreEditsTimelineEvent {\n  timestamp\n}\n\nfragment NavigateToTerminalTimelineEvent on NavigateToTerminalTimelineEvent {\n  timestamp\n}\n\nfragment TimeToCheckinTimelineEvent on TimeToCheckinTimelineEvent {\n  timestamp\n}\n\nfragment CheckinClosingTimelineEvent on CheckinClosingTimelineEvent {\n  timestamp\n}\n\nfragment EnterDetailsTimelineEvent on EnterDetailsTimelineEvent {\n  timestamp\n}\n",
+  "text": "query TimelineQuery(\n  $id: ID!\n  $authToken: String!\n) {\n  bookingTimeline(id: $id, authToken: $authToken) {\n    events {\n      __typename\n      timestamp\n      ... on BookedFlightTimelineEvent {\n        ...BookedFlightTimelineEvent\n      }\n      ... on LeaveForAirportTimelineEvent {\n        ...LeaveForAirportTimelineEvent\n      }\n      ... on AirportArrivalTimelineEvent {\n        ...AirportArrivalTimelineEvent\n      }\n      ... on DownloadInvoiceTimelineEvent {\n        ...DownloadInvoiceTimelineEvent\n      }\n      ... on DownloadETicketTimelineEvent {\n        ...DownloadETicketTimelineEvent\n      }\n      ... on BoardingTimelineEvent {\n        ...BoardingTimelineEvent\n      }\n      ... on DepartureTimelineEvent {\n        ...DepartureTimelineEvent\n      }\n      ... on ArrivalTimelineEvent {\n        ...ArrivalTimelineEvent\n      }\n      ... on TransportFromAirportTimelineEvent {\n        ...TransportFromAirportTimelineEvent\n      }\n      ... on DownloadBoardingPassTimelineEvent {\n        ...DownloadBoardingPassTimelineEvent\n      }\n      ... on NoMoreEditsTimelineEvent {\n        ...NoMoreEditsTimelineEvent\n      }\n      ... on NavigateToTerminalTimelineEvent {\n        ...NavigateToTerminalTimelineEvent\n      }\n      ... on TimeToCheckinTimelineEvent {\n        ...TimeToCheckinTimelineEvent\n      }\n      ... on CheckinClosingTimelineEvent {\n        ...CheckinClosingTimelineEvent\n      }\n      ... on EnterDetailsTimelineEvent {\n        ...EnterDetailsTimelineEvent\n      }\n    }\n  }\n}\n\nfragment BookedFlightTimelineEvent on BookedFlightTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment LeaveForAirportTimelineEvent on LeaveForAirportTimelineEvent {\n  timestamp\n}\n\nfragment AirportArrivalTimelineEvent on AirportArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      name\n      id\n    }\n  }\n}\n\nfragment DownloadInvoiceTimelineEvent on DownloadInvoiceTimelineEvent {\n  timestamp\n  invoiceUrl\n  numberPassengers\n  legs {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    id\n  }\n}\n\nfragment DownloadETicketTimelineEvent on DownloadETicketTimelineEvent {\n  timestamp\n  ticketUrl\n}\n\nfragment BoardingTimelineEvent on BoardingTimelineEvent {\n  timestamp\n  terminal\n}\n\nfragment DepartureTimelineEvent on DepartureTimelineEvent {\n  timestamp\n  location {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  duration\n  airline {\n    code\n    name\n  }\n  flightNumber\n}\n\nfragment ArrivalTimelineEvent on ArrivalTimelineEvent {\n  timestamp\n  location {\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n}\n\nfragment TransportFromAirportTimelineEvent on TransportFromAirportTimelineEvent {\n  timestamp\n}\n\nfragment DownloadBoardingPassTimelineEvent on DownloadBoardingPassTimelineEvent {\n  timestamp\n  leg {\n    departure {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    boardingPass {\n      flightNumber\n      boardingPassUrl\n    }\n    id\n  }\n}\n\nfragment NoMoreEditsTimelineEvent on NoMoreEditsTimelineEvent {\n  timestamp\n}\n\nfragment NavigateToTerminalTimelineEvent on NavigateToTerminalTimelineEvent {\n  timestamp\n}\n\nfragment TimeToCheckinTimelineEvent on TimeToCheckinTimelineEvent {\n  timestamp\n}\n\nfragment CheckinClosingTimelineEvent on CheckinClosingTimelineEvent {\n  timestamp\n}\n\nfragment EnterDetailsTimelineEvent on EnterDetailsTimelineEvent {\n  timestamp\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -798,5 +812,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b00dfe4017fee2a6f24f27a25a86b394';
+(node/*: any*/).hash = 'e58d9ed16fea3c33756f352d0165cb86';
 module.exports = node;
