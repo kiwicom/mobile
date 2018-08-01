@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f29d2f336e6a3b78a000eb8c59f69aa2
+ * @relayHash 7aee9fe5eb8272165d7f773927ca60f7
  */
 
 /* eslint-disable */
@@ -20,6 +20,10 @@ export type LoginMutationResponse = {|
       +fullName: ?string
     |},
   |}
+|};
+export type LoginMutation = {|
+  variables: LoginMutationVariables,
+  response: LoginMutationResponse,
 |};
 */
 
