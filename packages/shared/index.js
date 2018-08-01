@@ -17,6 +17,7 @@ export { default as ButtonTitle } from './src/buttons/ButtonTitle';
 export {
   default as IncrementDecrementButtons,
 } from './src/buttons/IncrementDecrementButtons';
+export { default as AppleWalletButton } from './src/buttons/AppleWalletButton';
 
 export { default as AgePicker } from './src/forms/AgePicker';
 export { default as Checkbox } from './src/forms/Checkbox';
