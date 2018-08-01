@@ -39,7 +39,8 @@ def react_native_modules()
     'RNLogging',
     'RNTranslationManager',
     'RNCurrencyManager',
-    'RNDeviceInfo'
+    'RNDeviceInfo',
+    'RNAppleWallet'
   ]
 end
 
