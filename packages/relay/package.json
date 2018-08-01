@@ -5,11 +5,11 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
-    "react-relay": "^1.6.0"
+    "react-relay": "^1.6.2"
   },
   "devDependencies": {
-    "babel-plugin-relay": "^1.6.0",
+    "babel-plugin-relay": "^1.6.2",
     "graphql": "^0.13.2",
-    "relay-compiler": "^1.6.0"
+    "relay-compiler": "^1.6.2"
   }
 }

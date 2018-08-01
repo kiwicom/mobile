@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a71e80c09d4a53918a865636a6978e00
+ * @relayHash 4863ae16b1d47d7a471ba914acce5401
  */
 
 /* eslint-disable */
@@ -17,6 +17,10 @@ export type TicketRefetchQueryResponse = {|
   +node: ?{|
     +$fragmentRefs: TicketRefetch$ref
   |}
+|};
+export type TicketRefetchQuery = {|
+  variables: TicketRefetchQueryVariables,
+  response: TicketRefetchQueryResponse,
 |};
 */
 

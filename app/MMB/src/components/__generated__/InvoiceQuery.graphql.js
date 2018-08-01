@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e7d7c60b86c2756a74db05f550bb4064
+ * @relayHash 1ec6a670777b13858a3d18d0f90e14be
  */
 
 /* eslint-disable */
@@ -19,6 +19,10 @@ export type InvoiceQueryResponse = {|
       +invoiceUrl: ?string
     |}
   |}
+|};
+export type InvoiceQuery = {|
+  variables: InvoiceQueryVariables,
+  response: InvoiceQueryResponse,
 |};
 */
 
