@@ -1,8 +1,5 @@
+#import "RNKiwiAppleWalletManager.h"
 #import "RNKiwiAppleButtonView.h"
-#import <React/RCTViewManager.h>
-
-@interface RNKiwiAppleWalletManager : RCTViewManager
-@end
 
 @implementation RNKiwiAppleWalletManager
 
