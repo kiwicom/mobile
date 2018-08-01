@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 603ccae9c8ce236ae737c6c17c9d180f
+ * @relayHash 77a386ef3ac7031338b331db61a98432
  */
 
 /* eslint-disable */
@@ -17,6 +17,10 @@ export type MainMenuRefetchQueryResponse = {|
   +node: ?{|
     +$fragmentRefs: MainMenu$ref
   |}
+|};
+export type MainMenuRefetchQuery = {|
+  variables: MainMenuRefetchQueryVariables,
+  response: MainMenuRefetchQueryResponse,
 |};
 */
 

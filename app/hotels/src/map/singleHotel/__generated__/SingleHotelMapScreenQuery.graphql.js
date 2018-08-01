@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3e16894b747ceb41374c42a4d175a473
+ * @relayHash 1328769eb5346ce5ef5fbdae61821a6e
  */
 
 /* eslint-disable */
@@ -41,6 +41,10 @@ export type SingleHotelMapScreenQueryResponse = {|
     |},
     +$fragmentRefs: AdditionalInfo$ref,
   |}
+|};
+export type SingleHotelMapScreenQuery = {|
+  variables: SingleHotelMapScreenQueryVariables,
+  response: SingleHotelMapScreenQueryResponse,
 |};
 */
 
