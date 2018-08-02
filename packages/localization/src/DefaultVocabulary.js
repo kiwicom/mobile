@@ -28,19 +28,16 @@ import ManageMyBookingVocabulary from './vocabularies/ManageMyBooking';
  *
  * TODO: better parameters structure (native code is not replacing it anyway)
  */
-const Translations = {
-  ...HotelsVocabulary,
-  ...ManageMyBookingVocabulary,
 
+const CoreVocabulary = {
   'core.authentication.logging_in': 'Logging in...',
   'core.authentication.login': 'Login!',
   'core.authentication.logout': 'Logout',
   'core.authentication.email': 'Email',
   'core.authentication.password': 'Password',
+};
 
-  'partial_failure.error':
-    'Some parts of the page may be missing due to partial server error.',
-
+const SharedVocabulary = {
   'relay.query_renderer.no_connection':
     'No internet connection, please check your internet settings or try it later.',
 
@@ -52,6 +49,34 @@ const Translations = {
     'No internet connection, please check your internet settings or try it later.',
 };
 
+const Translations = {
+  ...CoreVocabulary,
+  ...HotelsVocabulary,
+  ...ManageMyBookingVocabulary,
+  ...SharedVocabulary,
+};
+
 export type TranslationKeys = $Keys<typeof Translations>;
 export type TranslationKeysObject = { [TranslationKeys]: string };
 export default (Translations: TranslationKeysObject);
+
+export type TranslationPackages =
+  | 'HotelsVocabulary'
+  | 'ManageMyBookingVocabulary'
+  | 'SharedVocabulary'
+  | 'CoreVocabulary';
+
+export const getVocabularies = (vocabularies: TranslationPackages[]) => {
+  const translationPackages = {
+    HotelsVocabulary,
+    ManageMyBookingVocabulary,
+    SharedVocabulary,
+    CoreVocabulary,
+  };
+  return vocabularies.reduce((acc, curr) => {
+    return {
+      ...acc,
+      ...translationPackages[curr],
+    };
+  }, {});
+};
