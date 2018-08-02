@@ -15,6 +15,7 @@ import PassengerMenuGroup from './menuGroups/passengerMenuGroup/PassengerMenuGro
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import TripInfoMenuGroup from './menuGroups/TripInfoMenuGroup';
 import MissingInformation from './components/MissingInformation';
+import ExploreCity from './components/exploreCity/ExploreCity';
 import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 
 type Props = {|
@@ -48,7 +49,8 @@ class MainMenu extends React.Component<Props, State> {
 
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.id),
+        id: idx(this.props.data, _ => _.databaseId),
+        authToken: idx(this.props.data, _ => _.authToken),
       },
       null,
       () => {
@@ -62,7 +64,7 @@ class MainMenu extends React.Component<Props, State> {
 
   render = () => {
     const { activeId } = this.state;
-
+    const isPastBooking = idx(this.props.data, _ => _.isPastBooking);
     return (
       <RefreshableScrollView
         refreshing={this.state.isRefreshing}
@@ -74,7 +76,12 @@ class MainMenu extends React.Component<Props, State> {
           openSubmenu={this.handleOpenSubmenu}
         />
 
-        <MissingInformation data={this.props.data} />
+        {!isPastBooking && (
+          <React.Fragment>
+            <MissingInformation data={this.props.data} />
+            <ExploreCity data={this.props.data} />
+          </React.Fragment>
+        )}
 
         <TripInfoMenuGroup
           activeId={activeId}
@@ -105,15 +112,18 @@ export default createRefetchContainer(
   MainMenu,
   graphql`
     fragment MainMenu on BookingInterface {
-      id
+      databaseId
+      authToken
+      isPastBooking
+      ...ExploreCity
       ...Header
       ...PassengerMenuGroup
       ...MissingInformation
     }
   `,
   graphql`
-    query MainMenuRefetchQuery($id: ID!) {
-      node(id: $id) {
+    query MainMenuRefetchQuery($id: Int!, $authToken: String!) {
+      singleBooking(id: $id, authToken: $authToken) {
         ... on BookingInterface {
           ...MainMenu
         }
