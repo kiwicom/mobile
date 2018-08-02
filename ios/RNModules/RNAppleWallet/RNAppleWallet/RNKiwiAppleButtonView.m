@@ -2,20 +2,24 @@
 
 @implementation RNKiwiAppleButtonView
 
-- (instancetype)init {
-  self = [super initWithAddPassButtonStyle:0];
-  if (self) {
-    [self addTarget:self
-             action:@selector(buttonClicked)
-   forControlEvents:UIControlEventTouchUpInside];
-  }
-  return self;
+- (instancetype)initWithAddPassButtonStyle:(PKAddPassButtonStyle)style {
+    if (self = [super init]) {
+        self.addPassButton = [[PKAddPassButton alloc] initWithAddPassButtonStyle:style];
+        self.addPassButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.addPassButton addTarget:self
+                               action:@selector(addPassButtonDidTouchUpInside:)
+                     forControlEvents:UIControlEventTouchUpInside];
+        [super setFrame:self.addPassButton.frame];
+        [self addSubview:self.addPassButton];
+    }
+    
+    return self;
 }
 
--(void)buttonClicked {
-  if (_onPress) {
-    _onPress(nil);
-  }
+- (void)addPassButtonDidTouchUpInside:(id)sender {
+    if (self.onPress) {
+        self.onPress(nil);
+    }
 }
 
 @end
