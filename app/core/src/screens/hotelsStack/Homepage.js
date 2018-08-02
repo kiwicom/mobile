@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { TextButton, LayoutSingleColumn } from '@kiwicom/mobile-shared';
-import { type NavigationType } from '@kiwicom/mobile-navigation';
+import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
 import {
   Translation,
   DateFormatter,
@@ -23,6 +23,14 @@ function Section({ children }: { children: React.Node }) {
 }
 
 export default class Homepage extends React.Component<Props> {
+  static navigationOptions = {
+    headerTitle: (
+      <HeaderTitle>
+        <Translation passThrough="Welcome to rn-hotels" />
+      </HeaderTitle>
+    ),
+  };
+
   goToAllHotelsPage = () => this.props.navigation.navigate('HotelsPackage');
 
   goToOslo = () => {

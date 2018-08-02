@@ -5,7 +5,7 @@ import { HotelsStandalonePackage } from '@kiwicom/react-native-app-hotels';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { type DimensionType } from '@kiwicom/mobile-shared';
 
-import Config from '../../config/application';
+import Config from '../../../config/application';
 
 type Props = {|
   +navigation: NavigationType,
@@ -19,6 +19,10 @@ type Props = {|
 |};
 
 export default class HotelsPackageWrapper extends React.Component<Props> {
+  static navigationOptions = {
+    header: null,
+  };
+
   goToHomepage = () => this.props.navigation.goBack();
 
   render = () => {
