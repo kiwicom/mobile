@@ -76,7 +76,10 @@ export const StackNavigator = (
     +headerMode?: 'none',
   |},
 ) => {
-  return ReactNavigation.StackNavigator(RouteConfigs, StackNavigatorConfig);
+  return ReactNavigation.createStackNavigator(
+    RouteConfigs,
+    StackNavigatorConfig,
+  );
 };
 
 export const StackNavigatorOptions = {
