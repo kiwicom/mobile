@@ -6,7 +6,7 @@ import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
 import { type DimensionType } from '@kiwicom/mobile-shared';
 
-import Config from '../../config/application';
+import Config from '../../../config/application';
 
 type Props = {|
   +navigation: NavigationType,
@@ -14,6 +14,10 @@ type Props = {|
 |};
 
 export default class SingleHotelPackageWrapper extends React.Component<Props> {
+  static navigationOptions = {
+    header: null,
+  };
+
   goToHomepage = () => this.props.navigation.goBack();
 
   render = () => {
