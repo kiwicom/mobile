@@ -2,7 +2,7 @@
 
 exports[`BoardingPassMultiCity renders even with many trips 1`] = `
 Array [
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={1}
     icon={
       <TextIcon
@@ -25,7 +25,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={2}
     icon={
       <TextIcon
@@ -48,7 +48,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={3}
     icon={
       <TextIcon
@@ -71,7 +71,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={4}
     icon={
       <TextIcon
@@ -94,7 +94,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={5}
     icon={
       <TextIcon
@@ -117,7 +117,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={6}
     icon={
       <TextIcon
@@ -140,7 +140,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={7}
     icon={
       <TextIcon
@@ -163,7 +163,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={8}
     icon={
       <TextIcon
@@ -186,7 +186,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={9}
     icon={
       <TextIcon
@@ -209,7 +209,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={10}
     icon={
       <TextIcon
@@ -232,7 +232,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={11}
     icon={
       <TextIcon
@@ -255,7 +255,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={12}
     icon={
       <TextIcon
@@ -278,7 +278,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={13}
     icon={
       <TextIcon
@@ -301,7 +301,7 @@ Array [
     }
     iconTitle={<Translation />}
   />,
-  <ForwardRef(Relay(FlightSegments))
+  <Relay(FlightSegments)
     data={14}
     icon={
       <TextIcon

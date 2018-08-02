@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6258fb65d7afea573687de70a2dc6ce2
+ * @relayHash 78e7e99d733bebda870520f8a553feeb
  */
 
 /* eslint-disable */
@@ -17,10 +17,6 @@ export type FillTravelDocumentQueryResponse = {|
   +node: ?{|
     +$fragmentRefs: FillTravelDocument$ref
   |}
-|};
-export type FillTravelDocumentQuery = {|
-  variables: FillTravelDocumentQueryVariables,
-  response: FillTravelDocumentQueryResponse,
 |};
 */
 

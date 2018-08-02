@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f23d7927e601b4a81a8cf779826d6c1e
+ * @relayHash 3f15b26baf239ce97ef83e3d52a19845
  */
 
 /* eslint-disable */
@@ -20,10 +20,6 @@ export type InsuranceOverviewSceneQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: DestinationImage$ref & TripInfo$ref & InsuranceOverviewPassengerMenuGroup$ref
   |}
-|};
-export type InsuranceOverviewSceneQuery = {|
-  variables: InsuranceOverviewSceneQueryVariables,
-  response: InsuranceOverviewSceneQueryResponse,
 |};
 */
 

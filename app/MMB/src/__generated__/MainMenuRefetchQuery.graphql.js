@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d2602e2a1fcbe439290ff53a028c2438
+ * @relayHash 46af34c8eec97db64f0950b30f087703
  */
 
 /* eslint-disable */
@@ -18,10 +18,6 @@ export type MainMenuRefetchQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: MainMenu$ref
   |}
-|};
-export type MainMenuRefetchQuery = {|
-  variables: MainMenuRefetchQueryVariables,
-  response: MainMenuRefetchQueryResponse,
 |};
 */
 
