@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 61c8d2cb6cb0a89ad3a0910db1aae967
+ * @relayHash 663083f4dc0dcb4cb2bf8c6d3fe55ff4
  */
 
 /* eslint-disable */
@@ -22,10 +22,6 @@ export type FlightQueryResponse = {|
     +isPastBooking: ?boolean,
     +$fragmentRefs: OneWayFlight_booking$ref & ReturnFlight_booking$ref & MulticityFlight_booking$ref,
   |}
-|};
-export type FlightQuery = {|
-  variables: FlightQueryVariables,
-  response: FlightQueryResponse,
 |};
 */
 

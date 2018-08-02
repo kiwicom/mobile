@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a2c7cf58cd38d558d6f5380cdfc5c385
+ * @relayHash dc2c9377b7a77e77e37eed7284a9b25a
  */
 
 /* eslint-disable */
@@ -19,10 +19,6 @@ export type DeeplinkQueryResponse = {|
   +singleBooking: ?{|
     +directAccessURL: ?string
   |}
-|};
-export type DeeplinkQuery = {|
-  variables: DeeplinkQueryVariables,
-  response: DeeplinkQueryResponse,
 |};
 */
 

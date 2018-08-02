@@ -114,7 +114,7 @@ describe('FlightFromTo', () => {
         }
       }
     >
-      <ForwardRef(Relay(withNavigation(DownloadButton))) />
+      <Relay(withNavigation(DownloadButton)) />
     </Component>
     <Component
       style={
@@ -123,7 +123,7 @@ describe('FlightFromTo', () => {
         }
       }
     >
-      <ForwardRef(Relay(AppleWallet)) />
+      <Relay(AppleWallet) />
     </Component>
   </Component>
 </Component>
@@ -235,7 +235,7 @@ describe('FlightFromTo', () => {
         }
       }
     >
-      <ForwardRef(Relay(withNavigation(DownloadButton))) />
+      <Relay(withNavigation(DownloadButton)) />
     </Component>
   </Component>
 </Component>

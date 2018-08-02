@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 12b0519cbba833256bccc638e483c3bc
+ * @relayHash 73a9aaeab10f9743932f0291736a4b33
  */
 
 /* eslint-disable */
@@ -19,10 +19,6 @@ export type FlightsQueryResponse = {|
   +past: ?{|
     +$fragmentRefs: FlightListContainer_past$ref
   |},
-|};
-export type FlightsQuery = {|
-  variables: FlightsQueryVariables,
-  response: FlightsQueryResponse,
 |};
 */
 

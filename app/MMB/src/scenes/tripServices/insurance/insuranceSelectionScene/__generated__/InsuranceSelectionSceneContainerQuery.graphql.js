@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8682c496bb963c2593f9285d40e25f19
+ * @relayHash f71c243d62a402b33782b57b4a1e7190
  */
 
 /* eslint-disable */
@@ -18,10 +18,6 @@ export type InsuranceSelectionSceneContainerQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: VariantButtons$ref
   |}
-|};
-export type InsuranceSelectionSceneContainerQuery = {|
-  variables: InsuranceSelectionSceneContainerQueryVariables,
-  response: InsuranceSelectionSceneContainerQueryResponse,
 |};
 */
 
