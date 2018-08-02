@@ -242,6 +242,12 @@ export default {
   'mmb.main_menu.services.trip_services.description':
     'Insurance, hotels, transfers',
 
+  'mmb.main_menu.explore_city.prepare_for_trip': 'Prepare for your trip',
+  'mmb.main_menu.eplore_city.your_trip_in_days':
+    'Your trip to __1_city__ is in __2_days__ days',
+  'mmb.main_menu.explore_city.spending_time_in': 'Spending time in __city__?',
+  'mmb.main_menu.explore_city.find_stuff_to_do': 'Find something to do',
+
   'mmb.main_menu.manage': 'Manage',
   'mmb.main_menu.manage.help': 'Help',
   'mmb.main_menu.manage.help.description': 'Contact us',
