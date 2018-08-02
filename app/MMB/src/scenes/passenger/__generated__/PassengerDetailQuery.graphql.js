@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5dec9cb1309a3b2d683e3067ca4b25e2
+ * @relayHash df051649d7fccb87a3b81637cca00b85
  */
 
 /* eslint-disable */
@@ -17,10 +17,6 @@ export type PassengerDetailQueryResponse = {|
   +node: ?{|
     +$fragmentRefs: PassengerDetail_booking$ref
   |}
-|};
-export type PassengerDetailQuery = {|
-  variables: PassengerDetailQueryVariables,
-  response: PassengerDetailQueryResponse,
 |};
 */
 

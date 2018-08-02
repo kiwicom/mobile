@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 67de3a6b924e62c1fd25093e4b253ffc
+ * @relayHash 7e88603a83fda56a24b725af347bb532
  */
 
 /* eslint-disable */
@@ -35,10 +35,6 @@ export type TravelDocumentFormQueryResponse = {|
     // value in case none of the concrete values match.
     +__typename: "%other"
   |})
-|};
-export type TravelDocumentFormQuery = {|
-  variables: TravelDocumentFormQueryVariables,
-  response: TravelDocumentFormQueryResponse,
 |};
 */
 

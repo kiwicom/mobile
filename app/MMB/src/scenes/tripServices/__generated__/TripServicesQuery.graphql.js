@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 2879c413c7e6e360f7ec46cafa46ee1b
+ * @relayHash c3ad66eafcc9b69ada372c63ca417753
  */
 
 /* eslint-disable */
@@ -22,10 +22,6 @@ export type TripServicesQueryResponse = {|
       +$fragmentRefs: CarRentalMenuItem$ref & LoungeMenuItem$ref & ParkingMenuItem$ref
     |}
   |}
-|};
-export type TripServicesQuery = {|
-  variables: TripServicesQueryVariables,
-  response: TripServicesQueryResponse,
 |};
 */
 

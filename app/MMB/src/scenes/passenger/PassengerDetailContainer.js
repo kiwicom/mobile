@@ -5,12 +5,12 @@ import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import PassengerDetail from './PassengerDetail';
 import BookingDetailContext from '../../context/BookingDetailContext';
-import type { PassengerDetailContainerQueryResponse } from './__generated__/PassengerDetailContainerQuery.graphql';
+import type { PassengerDetailContainerQuery } from './__generated__/PassengerDetailContainerQuery.graphql';
 
 type Props = {||};
 
 export default class PassengerDetailContainer extends React.Component<Props> {
-  renderInner = (renderProps: PassengerDetailContainerQueryResponse) => {
+  renderInner = (renderProps: PassengerDetailContainerQuery) => {
     return <PassengerDetail booking={renderProps.singleBooking} />;
   };
 
