@@ -22,7 +22,8 @@
     "release-android": "node ./scripts/buildAndroidSnapshots.js",
     "release-ios": "node ./scripts/releaseFramework.js",
     "playground": "node ./scripts/activatePlayground.js",
-    "flow": "flow app --include-warnings"
+    "flow": "flow app --include-warnings",
+    "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js"
   },
   "dependencies": {
     "react": "^16.3.2",

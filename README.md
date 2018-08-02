@@ -328,8 +328,10 @@ This fragment also comply with Flow types and it has similar behaviour with `Rea
 We use [PhraseApp](https://phraseapp.com/) for managing translations. All keys and relevant screenshots are deployed automatically (the deployment script must be executed manually though):
 
 ```
-yarn babel-node app/translations/src/Deployer.js
+yarn deploy-translations
 ```
+
+`PHRASE_APP_PROJECT_ID` and `PHRASE_APP_TOKEN` should be added to `~/.bash_profile`
 
 _(we need to improve it - this is just PoC)_
 

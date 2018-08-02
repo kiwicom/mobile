@@ -37,7 +37,7 @@ export class Description extends React.Component<Props> {
           truncatedText={
             <Translation id="single_hotel.description.show_more" />
           }
-          revealedText={<Translation id="single_hotel.description.show_more" />}
+          revealedText={<Translation id="single_hotel.description.show_less" />}
         >
           <Text style={styles.summary}>
             <Translation passThrough={idx(this.props, _ => _.hotel.summary)} />
