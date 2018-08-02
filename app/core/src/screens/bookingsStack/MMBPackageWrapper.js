@@ -20,6 +20,10 @@ type State = {|
 |};
 
 export default class MMBPackageWrapper extends React.Component<Props, State> {
+  static navigationOptions = {
+    header: null,
+  };
+
   state = {
     token: '',
     bookingId: null,
