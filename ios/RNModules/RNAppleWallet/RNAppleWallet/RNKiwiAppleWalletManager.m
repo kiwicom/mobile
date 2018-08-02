@@ -8,7 +8,8 @@ RCT_EXPORT_VIEW_PROPERTY(onPress, RCTBubblingEventBlock)
 
 - (UIView *)view
 {
-  return [RNKiwiAppleButtonView new];
+    RNKiwiAppleButtonView *button = [[RNKiwiAppleButtonView alloc] initWithAddPassButtonStyle:PKAddPassButtonStyleBlack];
+    return button;
 }
 
 @end
