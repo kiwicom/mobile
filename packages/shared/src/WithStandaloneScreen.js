@@ -8,7 +8,9 @@ import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
 
 type NavProps = {
   ...NavigationType,
+  +isStandAlonePackage?: boolean,
   +onBackClicked: () => void,
+  +goBack?: () => void,
   +lastNavigationMode?: string,
 };
 
@@ -22,20 +24,25 @@ function withStandaloneScreen<Props>(
         GestureController.closeModal(moduleName);
       }
 
+      const showAsModal =
+        (typeof props.isStandAlonePackage === 'undefined' ||
+          props.isStandAlonePackage) &&
+        props.lastNavigationMode &&
+        props.lastNavigationMode === 'present';
+
       const options = {
-        headerLeft:
-          props.lastNavigationMode && props.lastNavigationMode === 'present' ? (
-            <HeaderButton.Left onPress={closeNativeModal}>
-              <HeaderButton.Text>
-                <Translation id="shared.button.close" />
-              </HeaderButton.Text>
-            </HeaderButton.Left>
-          ) : (
-            <HeaderBackButton
-              tintColor={Color.brand}
-              onPress={props.onBackClicked}
-            />
-          ),
+        headerLeft: showAsModal ? (
+          <HeaderButton.Left onPress={closeNativeModal}>
+            <HeaderButton.Text>
+              <Translation id="shared.button.close" />
+            </HeaderButton.Text>
+          </HeaderButton.Left>
+        ) : (
+          <HeaderBackButton
+            tintColor={Color.brand}
+            onPress={props.goBack ? props.goBack : props.onBackClicked}
+          />
+        ),
       };
 
       let wrappedOptions = {};
