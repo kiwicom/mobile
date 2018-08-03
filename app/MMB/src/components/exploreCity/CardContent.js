@@ -5,6 +5,8 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
 import ExploreOneWay from './ExploreOneWay';
+import ExploreReturn from './ExploreReturn';
+import ExploreMulticity from './ExploreMulticity';
 import type { CardContent as BookingType } from './__generated__/CardContent.graphql';
 
 type Props = {|
@@ -16,8 +18,8 @@ const CardContent = (props: Props) => {
   return (
     <React.Fragment>
       {type === 'BookingOneWay' && <ExploreOneWay data={props.data} />}
-      {/* TODO: Add BookingReturn */}
-      {/* TODO: Add BookingMulticity */}
+      {type === 'BookingReturn' && <ExploreReturn data={props.data} />}
+      {type === 'BookingMulticity' && <ExploreMulticity data={props.data} />}
       {/* TODO: Add button */}
     </React.Fragment>
   );
@@ -29,6 +31,8 @@ export default createFragmentContainer(
     fragment CardContent on BookingInterface {
       __typename
       ...ExploreOneWay
+      ...ExploreReturn
+      ...ExploreMulticity
     }
   `,
 );
