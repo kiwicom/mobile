@@ -21,12 +21,10 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
   };
 
   componentDidMount = () => {
-    this.props.navigation.setParams({ goBack: this.goBack });
-  };
-
-  onAndroidBackButtonClick = () => {
-    this.props.onBackClicked();
-    return true;
+    this.props.navigation.setParams({
+      goBack: this.goBack,
+      isStandAlonePackage: this.props.isStandAlonePackage,
+    });
   };
 
   goBack = () => {
