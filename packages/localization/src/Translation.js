@@ -3,14 +3,12 @@
 import * as React from 'react';
 import { Text } from '@kiwicom/mobile-shared';
 
-import DefaultVocabulary, { type TranslationKeys } from './DefaultVocabulary';
+import { type TranslationKeys } from './DefaultVocabulary';
 import CaseTransform, {
   type SupportedTransformationsType,
 } from './transformations/CaseTransform';
-import {
-  cancellableTranslation,
-  type TranslationPromise,
-} from './CancellableTranslation';
+import { type TranslationPromise } from './CancellableTranslation';
+import { setTranslatedString, replaceValues } from './TranslationHelpers';
 
 type CommonProps = {|
   testID?: string,
@@ -78,42 +76,14 @@ export default class Translation extends React.Component<Props, State> {
     }
   };
 
-  setTranslatedString = async () => {
+  setTranslatedString = () => {
     if (this.props.id) {
-      const key = this.props.id;
-      const nativeKey = 'mobile.' + key;
-      try {
-        this.translatePromise = cancellableTranslation(nativeKey);
-        let translatedString = await this.translatePromise.promise;
-        if (translatedString === nativeKey) {
-          // fallback to our dummy vocabulary because native code didn't provide translation
-          translatedString = DefaultVocabulary[key];
-        }
-
-        if (translatedString === undefined) {
-          // Everything failed - native translation even our fallback. This usually
-          // means we are using key that does not exist. In this case the only thing
-          // we can actually do is to use original key as a text.
-          translatedString = key;
-        }
-        this.setState({ translatedString });
-        this.translatePromise = null;
-      } catch (err) {
-        this.translatePromise = null;
-      }
+      setTranslatedString(
+        this.props.id,
+        this.translatePromise,
+        translatedString => this.setState({ translatedString }),
+      );
     }
-  };
-
-  replaceValues = (text: string, values?: Object): string => {
-    const VARIABLE_REGEX = /__([0-9]+_)?([a-zA-Z-_]+)__/g;
-    return text.replace(
-      VARIABLE_REGEX,
-      (match, variableIndex, variableName) => {
-        // 'variableIndex' is currently being ignored (we don't need it)
-        const value = values && values[variableName];
-        return value !== undefined ? value : '?';
-      },
-    );
   };
 
   render = () => {
@@ -142,7 +112,7 @@ export default class Translation extends React.Component<Props, State> {
       <Text style={containerStyle}>
         {/* $FlowExpectedError: we do not allow to use 'string' in the 'Text' components but translations are exceptions. */}
         {CaseTransform(
-          this.replaceValues(this.state.translatedString, values),
+          replaceValues(this.state.translatedString, values),
           this.props.textTransform,
         )}
       </Text>
