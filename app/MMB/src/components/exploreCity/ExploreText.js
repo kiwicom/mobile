@@ -6,6 +6,7 @@ import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 
+import ExploreButton from './ExploreButton';
 import type { ExploreText as TripType } from './__generated__/ExploreText.graphql';
 
 type Props = {|
@@ -41,6 +42,7 @@ const ExploreText = (props: Props) => {
           <Translation id="mmb.main_menu.explore_city.find_stuff_to_do" />
         )}
       </Text>
+      <ExploreButton cityName={city || ''} />
     </React.Fragment>
   );
 };
