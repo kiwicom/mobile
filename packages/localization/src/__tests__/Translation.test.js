@@ -5,6 +5,7 @@ import { NativeModules } from 'react-native';
 import renderer from 'react-test-renderer';
 
 import Translation from '../Translation';
+import { replaceValues } from '../TranslationHelpers';
 
 const CancellableTranslation = require('../CancellableTranslation');
 
@@ -30,7 +31,7 @@ it('should call NativeModules.RNTranslationManager.translateAsync with the key p
 
 it('replaces parameter', () => {
   expect(
-    Component.replaceValues('Your flight __number__ departs now.', {
+    replaceValues('Your flight __number__ departs now.', {
       number: 42,
     }),
   ).toBe('Your flight 42 departs now.');
@@ -38,7 +39,7 @@ it('replaces parameter', () => {
 
 it('replaces parameters', () => {
   expect(
-    Component.replaceValues(
+    replaceValues(
       'Your flight __1_number__ departs from __2_airport__ gate __3_gate__.',
       {
         number: 42,
@@ -50,18 +51,18 @@ it('replaces parameters', () => {
 });
 
 it('works without parameters', () => {
-  expect(Component.replaceValues('Your flight departs now.')).toBe(
+  expect(replaceValues('Your flight departs now.')).toBe(
     'Your flight departs now.',
   );
 });
 
 it('works without value to replace', () => {
-  expect(Component.replaceValues('Your flight __number__ departs now.')).toBe(
+  expect(replaceValues('Your flight __number__ departs now.')).toBe(
     'Your flight ? departs now.',
   );
-  expect(
-    Component.replaceValues('Your flight __number__ departs now.', {}),
-  ).toBe('Your flight ? departs now.');
+  expect(replaceValues('Your flight __number__ departs now.', {})).toBe(
+    'Your flight ? departs now.',
+  );
 });
 
 it('works with pass through translations', () => {
