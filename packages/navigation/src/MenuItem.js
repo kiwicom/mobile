@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import {
   Color,
   TextIcon,
@@ -76,11 +76,14 @@ function MenuItem(props: Props) {
           <View style={styleSheet.rightArrow}>{props.actionIcon}</View>
         ) : (
           <AdaptableLayout
-            renderOnNarrow={
-              <View style={styleSheet.rightArrow}>
-                <Icon name="chevron-right" size={26} color={Color.brand} />
-              </View>
-            }
+            renderOnNarrow={Platform.select({
+              ios: (
+                <View style={styleSheet.rightArrow}>
+                  <Icon name="chevron-right" size={26} color={Color.brand} />
+                </View>
+              ),
+              android: null,
+            })}
           />
         )}
       </React.Fragment>
