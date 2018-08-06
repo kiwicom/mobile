@@ -6,7 +6,7 @@ ext {
     targetSdkVersionVar = 27
     buildToolsVersionVar = "27.0.2"
 
-    reactNativeVersion = "0.51.0"
+    reactNativeVersion = "0.55.4"
     supportVersion = "26.1.0"
     playServicesVersion = "11.8.0"
 }
