@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import Translation from './src/Translation';
+import Alert from './src/Alert';
 import TranslationFragment from './src/TranslationFragment';
 import DateFormatter from './src/DateFormatter';
 import DateUtils from './src/DateUtils';
@@ -15,6 +16,7 @@ export {
   DateUtils,
   DeviceInfo,
   Translation,
+  Alert,
 };
 
 export type TranslationKeysType = TranslationKeys;
