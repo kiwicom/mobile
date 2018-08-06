@@ -248,6 +248,8 @@ export default {
   'mmb.main_menu.explore_city.spending_time_in': 'Spending time in __city__?',
   'mmb.main_menu.explore_city.find_stuff_to_do': 'Find something to do',
   'mmb.main_menu.explore_city.card_content.explore': 'Explore __city__',
+  'mmb.main_menu.explore_city.explore_menu_group.order_transport':
+    'Order transportation to __iata__',
 
   'mmb.main_menu.manage': 'Manage',
   'mmb.main_menu.manage.help': 'Help',
