@@ -20,7 +20,6 @@ const CardContent = (props: Props) => {
       {type === 'BookingOneWay' && <ExploreOneWay data={props.data} />}
       {type === 'BookingReturn' && <ExploreReturn data={props.data} />}
       {type === 'BookingMulticity' && <ExploreMulticity data={props.data} />}
-      {/* TODO: Add button */}
     </React.Fragment>
   );
 };

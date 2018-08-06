@@ -15,9 +15,7 @@ type Props = {|
 const ExploreCity = (props: Props) => (
   <View style={styles.container}>
     <SimpleCard style={styles.card}>
-      <View style={styles.cardContent}>
-        <CardContent data={props.data} />
-      </View>
+      <CardContent data={props.data} />
     </SimpleCard>
   </View>
 );
@@ -36,10 +34,8 @@ const styles = StyleSheet.create({
     marginTop: 21,
   },
   card: {
-    paddingTop: 30,
+    paddingTop: 20,
+    paddingBottom: 0,
     paddingHorizontal: 0,
-  },
-  cardContent: {
-    paddingHorizontal: 20,
   },
 });
