@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, TextIcon, Color } from '@kiwicom/mobile-shared';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import last from 'lodash/last';
 
 import TitleTranslation from '../../../components/TitleTranslation';
 import IdInput from './IdInput';
@@ -32,7 +33,7 @@ export default class TravelDocumentForm extends React.Component<Props> {
         data = singleBooking.inbound;
         break;
       case 'BookingMulticity':
-        data = singleBooking.trips;
+        data = last(singleBooking.trips);
         break;
       default:
         break;
