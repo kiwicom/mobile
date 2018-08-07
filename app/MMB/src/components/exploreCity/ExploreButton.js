@@ -6,7 +6,7 @@ import { StyleSheet, TextButton } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  +cityName: string,
+  +cityName: ?string,
 |};
 
 const onPress = () => {
@@ -26,7 +26,7 @@ export default function ExploreButton(props: Props) {
           title={
             <Translation
               id="mmb.main_menu.explore_city.card_content.explore"
-              values={{ city: props.cityName }}
+              values={{ city: props.cityName || '' }}
             />
           }
           onPress={onPress}
