@@ -22,11 +22,10 @@ export { default as AppleWalletButton } from './src/buttons/AppleWalletButton';
 export { default as AgePicker } from './src/forms/AgePicker';
 export { default as Checkbox } from './src/forms/Checkbox';
 export { default as DatePicker } from './src/forms/datePicker/DatePicker';
-export { default as ErrorMessage } from './src/forms/ErrorMessage';
 export { default as NumberControl } from './src/forms/NumberControl';
 export { default as Slider } from './src/forms/Slider';
 export { default as TextInput } from './src/forms/TextInput';
-export { default as Switch } from './src/forms/Switch.js';
+export { default as Switch } from './src/forms/Switch';
 
 export { default as FullPageLoading } from './src/loaders/FullPageLoading';
 export { default as IconLoading } from './src/loaders/IconLoading';
@@ -64,6 +63,7 @@ export { default as WebView } from './src/WebView';
 export { default as SimpleCard } from './src/SimpleCard';
 
 export { default as GeneralError } from './src/errors/GeneralError';
+export { default as ErrorMessage } from './src/errors/ErrorMessage';
 
 export { default as ReadMore } from './src/ReadMore';
 export { default as BottomSheet } from './src/BottomSheet';

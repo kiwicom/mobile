@@ -32,7 +32,7 @@ exports[`IncrementDecrementButtons renders 1`] = `
         }
       }
       text="–"
-      touchable={false}
+      touchable={true}
     />
   </Component>
   <Button

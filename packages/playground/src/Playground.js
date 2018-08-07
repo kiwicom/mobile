@@ -40,7 +40,7 @@ export default class Playground extends React.Component<Props> {
 
     return {
       title: 'Playground',
-      headerLeft: <HeaderBackButton tintColor={Color.white} onPress={goBack} />,
+      headerLeft: <HeaderBackButton tintColor={Color.brand} onPress={goBack} />,
     };
   };
 

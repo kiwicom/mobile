@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders 1`] = `
+<Touchable
+  accessibilityComponentType="button"
+  borderlessRipple={false}
+  disabled={false}
+  onPress={[Function]}
+  rippleColor="rgba(0, 0, 0, .32)"
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#00a991",
+        "borderRadius": 6,
+        "flexGrow": 1,
+        "height": 44,
+        "justifyContent": "center",
+        "paddingHorizontal": 11,
+      },
+      undefined,
+    ]
+  }
+>
+  <Translation
+    passThrough="Button"
+  />
+</Touchable>
+`;
