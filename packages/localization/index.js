@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import Translation from './src/Translation';
-import Alert from './src/Alert';
+import Alert, { type Translation as AlertTranslation } from './src/Alert';
 import TranslationFragment from './src/TranslationFragment';
 import DateFormatter from './src/DateFormatter';
 import DateUtils from './src/DateUtils';
@@ -20,6 +20,7 @@ export {
 };
 
 export type TranslationKeysType = TranslationKeys;
+export type AlertTranslationType = AlertTranslation;
 
 export type DateFormatterFunctions =
   | 'formatToDate'
