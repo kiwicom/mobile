@@ -31,7 +31,7 @@ describe('IncrementDecrementButtons', () => {
       <IncrementDecrementButtons
         onIncrement={onIncrement}
         onDecrement={onDecrement}
-        number={1}
+        number={2}
         min={1}
         max={3}
       />,
