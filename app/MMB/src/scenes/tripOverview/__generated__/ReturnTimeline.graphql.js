@@ -13,10 +13,46 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type ReturnTimeline$ref: FragmentReference;
 export type ReturnTimeline = {|
   +outbound: ?{|
-    +$fragmentRefs: Timeline$ref
+    +departure: ?{|
+      +localTime: ?any,
+      +airport: ?{|
+        +locationId: ?string,
+        +city: ?{|
+          +name: ?string
+        |},
+      |},
+    |},
+    +arrival: ?{|
+      +localTime: ?any,
+      +airport: ?{|
+        +locationId: ?string,
+        +city: ?{|
+          +name: ?string
+        |},
+      |},
+    |},
+    +$fragmentRefs: Timeline$ref,
   |},
   +inbound: ?{|
-    +$fragmentRefs: Timeline$ref
+    +departure: ?{|
+      +localTime: ?any,
+      +airport: ?{|
+        +locationId: ?string,
+        +city: ?{|
+          +name: ?string
+        |},
+      |},
+    |},
+    +arrival: ?{|
+      +localTime: ?any,
+      +airport: ?{|
+        +locationId: ?string,
+        +city: ?{|
+          +name: ?string
+        |},
+      |},
+    |},
+    +$fragmentRefs: Timeline$ref,
   |},
   +$refType: ReturnTimeline$ref,
 |};
@@ -26,9 +62,74 @@ export type ReturnTimeline = {|
 const node/*: ConcreteFragment*/ = (function(){
 var v0 = [
   {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "localTime",
+    "args": null,
+    "storageKey": null
+  },
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "airport",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "locationId",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "city",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "LocationArea",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
+  }
+],
+v1 = [
+  {
     "kind": "FragmentSpread",
     "name": "Timeline",
     "args": null
+  },
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "departure",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "RouteStop",
+    "plural": false,
+    "selections": v0
+  },
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "arrival",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "RouteStop",
+    "plural": false,
+    "selections": v0
   }
 ];
 return {
@@ -46,7 +147,7 @@ return {
       "args": null,
       "concreteType": "Trip",
       "plural": false,
-      "selections": v0
+      "selections": v1
     },
     {
       "kind": "LinkedField",
@@ -56,11 +157,11 @@ return {
       "args": null,
       "concreteType": "Trip",
       "plural": false,
-      "selections": v0
+      "selections": v1
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '77deb8f676be76d1054c827732712eec';
+(node/*: any*/).hash = 'bf4f59c3bd4ef2350c870aba599d5896';
 module.exports = node;

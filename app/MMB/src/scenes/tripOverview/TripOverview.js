@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { SimpleCard, StyleSheet } from '@kiwicom/mobile-shared';
 
+import TripOverviewContext from './TripOverviewContext';
 import OneWayTimeline from './OneWayTimeline';
 import ReturnTimeline from './ReturnTimeline';
 import MulticityTimeline from './MulticityTimeline';
@@ -31,7 +32,9 @@ function TripOverview(props: Props) {
 
   return (
     <ScrollView>
-      <SimpleCard style={styleSheet.simpleCard}>{children}</SimpleCard>
+      <TripOverviewContext.Provider>
+        <SimpleCard style={styleSheet.simpleCard}>{children}</SimpleCard>
+      </TripOverviewContext.Provider>
     </ScrollView>
   );
 }

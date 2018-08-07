@@ -6,7 +6,7 @@ import { type TranslationKeys } from './DefaultVocabulary';
 import { type TranslationPromise } from './CancellableTranslation';
 import { setTranslatedString, replaceValues } from './TranslationHelpers';
 
-type Translation =
+export type Translation =
   | {|
       +id: TranslationKeys,
       +values?: Object,
