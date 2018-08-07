@@ -243,7 +243,7 @@ export default {
     'Insurance, hotels, transfers',
 
   'mmb.main_menu.explore_city.prepare_for_trip': 'Prepare for your trip',
-  'mmb.main_menu.eplore_city.your_trip_in_days':
+  'mmb.main_menu.explore_city.your_trip_in_days':
     'Your trip to __1_city__ is in __2_days__ days',
   'mmb.main_menu.explore_city.spending_time_in': 'Spending time in __city__?',
   'mmb.main_menu.explore_city.find_stuff_to_do': 'Find something to do',

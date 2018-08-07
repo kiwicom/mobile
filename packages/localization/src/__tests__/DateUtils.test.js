@@ -125,4 +125,33 @@ describe('isSameDay', () => {
       ).toBe(false);
     });
   });
+
+  describe('diffInHours', () => {
+    it('returns positive number if date a is before date b', () => {
+      expect(
+        DateUtils.diffInHours(
+          new Date(2018, 11, 24, 18),
+          new Date(2018, 11, 24, 10),
+        ),
+      ).toBe(8);
+    });
+
+    it('returns negative number if date a is after date b', () => {
+      expect(
+        DateUtils.diffInHours(
+          new Date(2018, 11, 24, 10),
+          new Date(2018, 11, 24, 18),
+        ),
+      ).toBe(-8);
+    });
+
+    it('returns zero if date a is equal to date b', () => {
+      expect(
+        DateUtils.diffInHours(
+          new Date(2018, 11, 24, 18, 0, 0, 0),
+          new Date(2018, 11, 24, 18, 0, 0, 0),
+        ),
+      ).toBe(0);
+    });
+  });
 });
