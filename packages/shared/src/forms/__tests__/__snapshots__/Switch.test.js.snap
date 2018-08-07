@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with false 1`] = `
+<Switch
+  disabled={false}
+  onTintColor="#00a991"
+  onValueChange={[MockFunction]}
+  value={false}
+/>
+`;
+
+exports[`renders with true 1`] = `
+<Switch
+  disabled={false}
+  onTintColor="#00a991"
+  onValueChange={[MockFunction]}
+  value={true}
+/>
+`;

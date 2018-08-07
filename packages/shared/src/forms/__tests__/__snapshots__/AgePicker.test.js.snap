@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<React.Fragment>
+  <TextButton
+    disabled={false}
+    onPress={[Function]}
+    title={
+      <Translation
+        passThrough="Show age picker"
+      />
+    }
+  />
+  <AgePicker
+    isVisible={false}
+    max={3}
+    min={1}
+    onChange={[Function]}
+    onClose={[Function]}
+  />
+</React.Fragment>
+`;

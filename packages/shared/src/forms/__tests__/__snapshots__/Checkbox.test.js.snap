@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checked 1`] = `
+<TouchableWithoutFeedback
+  onPress={[Function]}
+>
+  <Component
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "paddingBottom": 8,
+          "paddingTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Component
+      style={
+        Object {
+          "flex": 3,
+          "height": 26,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Translation
+        passThrough="Checked"
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "flex": 1,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Icon
+        color="#00a991"
+        name="check"
+        size={26}
+      />
+    </Component>
+  </Component>
+</TouchableWithoutFeedback>
+`;
+
+exports[`not checked 1`] = `
+<TouchableWithoutFeedback
+  onPress={[Function]}
+>
+  <Component
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "paddingBottom": 8,
+          "paddingTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Component
+      style={
+        Object {
+          "flex": 3,
+          "height": 26,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Translation
+        passThrough="Unchecked"
+      />
+    </Component>
+  </Component>
+</TouchableWithoutFeedback>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders 1`] = `
+<Button
+  disabled={false}
+  onPress={[Function]}
+  style={
+    Object {
+      "backgroundColor": "transparent",
+    }
+  }
+>
+  <ButtonTitle
+    style={
+      Array [
+        Object {
+          "color": "#00a991",
+        },
+        undefined,
+      ]
+    }
+    text={
+      <Translation
+        passThrough="Link button"
+      />
+    }
+  />
+</Button>
+`;
