@@ -102,6 +102,10 @@ export default {
   'mmb.menu.explore': 'Explore',
   'mmb.menu.timeline': 'Timeline',
 
+  // MMB Explore
+  'mmb.explore.airports': 'Airports',
+  'mmb.explore.destinations': 'Destinations',
+
   // MMB Trip services
   'mmb.trip_services.title': 'Trip services',
   'mmb.trip_services.general_services': 'General services',
