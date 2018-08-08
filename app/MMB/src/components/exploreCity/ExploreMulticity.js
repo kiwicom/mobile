@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import ExploreVariant from './exploreVariants/ExploreVariant';
 import type { ExploreMulticity as BookingType } from './__generated__/ExploreMulticity.graphql';
@@ -12,7 +13,20 @@ type Props = {|
 |};
 
 const ExploreMulticity = (props: Props) => {
-  return <ExploreVariant data={idx(props.data, _ => _.trips[0])} />;
+  const trips = idx(props.data, _ => _.trips) || [];
+  const tripHasStarted =
+    DateUtils.getUTCNow() > new Date(idx(trips, _ => _[0].departure.time) || 0);
+  let trip;
+
+  if (!tripHasStarted) {
+    trip = trips[0];
+  }
+
+  if (trip == null) {
+    return null;
+  }
+
+  return <ExploreVariant trip={trip} />;
 };
 
 export default createFragmentContainer(
@@ -21,7 +35,13 @@ export default createFragmentContainer(
     fragment ExploreMulticity on BookingInterface {
       ... on BookingMulticity {
         trips {
-          ...ExploreVariant
+          arrival {
+            time
+          }
+          departure {
+            time
+          }
+          ...ExploreVariant_trip
         }
       }
     }

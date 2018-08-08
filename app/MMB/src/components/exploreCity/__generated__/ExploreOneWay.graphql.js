@@ -8,12 +8,12 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type ExploreVariant$ref = any;
+type ExploreVariant_trip$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ExploreOneWay$ref: FragmentReference;
 export type ExploreOneWay = {|
   +trip?: ?{|
-    +$fragmentRefs: ExploreVariant$ref
+    +$fragmentRefs: ExploreVariant_trip$ref
   |},
   +$refType: ExploreOneWay$ref,
 |};
@@ -42,7 +42,7 @@ const node/*: ConcreteFragment*/ = {
           "selections": [
             {
               "kind": "FragmentSpread",
-              "name": "ExploreVariant",
+              "name": "ExploreVariant_trip",
               "args": null
             }
           ]
@@ -52,5 +52,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '988aa4e793ca89b57eb3cb457bf98764';
+(node/*: any*/).hash = 'c66286a9f946617d86ecc2ab034b1480';
 module.exports = node;
