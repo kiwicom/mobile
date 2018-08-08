@@ -9,33 +9,25 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type BookingConfirmed$ref: FragmentReference;
-export type BookingConfirmed = {|
-  +time: ?any,
+declare export opaque type BookingConfirmed_arrival$ref: FragmentReference;
+export type BookingConfirmed_arrival = {|
   +airport: ?{|
     +city: ?{|
       +name: ?string
     |}
   |},
-  +$refType: BookingConfirmed$ref,
+  +$refType: BookingConfirmed_arrival$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "BookingConfirmed",
+  "name": "BookingConfirmed_arrival",
   "type": "RouteStop",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "time",
-      "args": null,
-      "storageKey": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -68,5 +60,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e28ac9616fc5c1f3da8f6b487adcaf42';
+(node/*: any*/).hash = 'f89e6ffe3c6ec64a8afff5f4649a40e7';
 module.exports = node;

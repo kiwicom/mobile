@@ -6,14 +6,16 @@ import { Translation, DateUtils } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import ExploreText from '../ExploreText';
-import type { BookingConfirmed as Booking } from './__generated__/BookingConfirmed.graphql';
+import type { BookingConfirmed_arrival } from './__generated__/BookingConfirmed_arrival.graphql';
+import type { BookingConfirmed_departure } from './__generated__/BookingConfirmed_departure.graphql';
 
 type Props = {|
-  +data: Booking,
+  +arrival: BookingConfirmed_arrival,
+  +departure: BookingConfirmed_departure,
 |};
 
 const BookingConfirmed = (props: Props) => {
-  const departureTime = idx(props.data, _ => _.time);
+  const departureTime = idx(props.departure, _ => _.time);
   if (departureTime == null) {
     return null;
   }
@@ -24,13 +26,13 @@ const BookingConfirmed = (props: Props) => {
 
   return (
     <ExploreText
-      city={idx(props.data, _ => _.airport.city.name)}
+      city={idx(props.arrival, _ => _.airport.city.name)}
       title={<Translation id="mmb.main_menu.explore_city.prepare_for_trip" />}
       text={
         <Translation
           id="mmb.main_menu.explore_city.your_trip_in_days"
           values={{
-            city: idx(props.data, _ => _.airport.city.name),
+            city: idx(props.arrival, _ => _.airport.city.name),
             days: daysLeft,
           }}
         />
@@ -42,8 +44,10 @@ const BookingConfirmed = (props: Props) => {
 export default createFragmentContainer(
   BookingConfirmed,
   graphql`
-    fragment BookingConfirmed on RouteStop {
+    fragment BookingConfirmed_departure on RouteStop {
       time
+    }
+    fragment BookingConfirmed_arrival on RouteStop {
       airport {
         city {
           name

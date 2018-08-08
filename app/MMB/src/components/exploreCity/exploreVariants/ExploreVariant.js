@@ -6,14 +6,14 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { DateUtils } from '@kiwicom/mobile-localization';
 
 import BookingConfirmed from './BookingConfirmed';
-import type { ExploreVariant as BookingType } from './__generated__/ExploreVariant.graphql';
+import type { ExploreVariant_trip } from './__generated__/ExploreVariant_trip.graphql';
 
 type Props = {|
-  +data: BookingType,
+  +trip: ExploreVariant_trip,
 |};
 
 const ExploreVariant = (props: Props) => {
-  const rawDate = idx(props.data, _ => _.departure.time);
+  const rawDate = idx(props.trip, _ => _.departure.time);
 
   if (rawDate == null) {
     return null;
@@ -25,7 +25,12 @@ const ExploreVariant = (props: Props) => {
   );
 
   if (hoursToFlight > 8) {
-    return <BookingConfirmed data={idx(props.data, _ => _.departure)} />;
+    return (
+      <BookingConfirmed
+        departure={idx(props.trip, _ => _.legs[0].departure)}
+        arrival={idx(props.trip, _ => _.arrival)}
+      />
+    );
   }
   return null;
 };
@@ -33,10 +38,18 @@ const ExploreVariant = (props: Props) => {
 export default createFragmentContainer(
   ExploreVariant,
   graphql`
-    fragment ExploreVariant on Trip {
+    fragment ExploreVariant_trip on Trip {
       departure {
-        ...BookingConfirmed
         time
+      }
+      arrival {
+        ...BookingConfirmed_arrival
+      }
+      legs {
+        departure {
+          ...BookingConfirmed_departure
+          time
+        }
       }
     }
   `,

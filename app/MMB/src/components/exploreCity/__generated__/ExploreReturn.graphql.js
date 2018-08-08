@@ -8,19 +8,31 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type ExploreVariant$ref = any;
+type ExploreVariant_trip$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ExploreReturn$ref: FragmentReference;
 export type ExploreReturn = {|
   +outbound?: ?{|
-    +$fragmentRefs: ExploreVariant$ref
+    +arrival: ?{|
+      +time: ?any
+    |},
+    +$fragmentRefs: ExploreVariant_trip$ref,
+  |},
+  +inbound?: ?{|
+    +$fragmentRefs: ExploreVariant_trip$ref
   |},
   +$refType: ExploreReturn$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "FragmentSpread",
+  "name": "ExploreVariant_trip",
+  "args": null
+};
+return {
   "kind": "Fragment",
   "name": "ExploreReturn",
   "type": "BookingInterface",
@@ -40,17 +52,44 @@ const node/*: ConcreteFragment*/ = {
           "concreteType": "Trip",
           "plural": false,
           "selections": [
+            v0,
             {
-              "kind": "FragmentSpread",
-              "name": "ExploreVariant",
-              "args": null
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "arrival",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "RouteStop",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "time",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
             }
+          ]
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "inbound",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Trip",
+          "plural": false,
+          "selections": [
+            v0
           ]
         }
       ]
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = '3f2eb5c9f1914dc09c9417c8e9468140';
+(node/*: any*/).hash = 'd401e5f7bf0cc6c36a693335c42279dd';
 module.exports = node;
