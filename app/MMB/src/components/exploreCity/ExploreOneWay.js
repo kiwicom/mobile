@@ -12,7 +12,7 @@ type Props = {|
 |};
 
 const ExploreOneWay = (props: Props) => {
-  return <ExploreVariant data={idx(props.data, _ => _.trip)} />;
+  return <ExploreVariant trip={idx(props.data, _ => _.trip)} />;
 };
 
 export default createFragmentContainer(
@@ -21,7 +21,7 @@ export default createFragmentContainer(
     fragment ExploreOneWay on BookingInterface {
       ... on BookingOneWay {
         trip {
-          ...ExploreVariant
+          ...ExploreVariant_trip
         }
       }
     }
