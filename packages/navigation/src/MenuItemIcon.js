@@ -14,6 +14,7 @@ export default function MenuItemIcon(props: Props) {
     <View style={styleSheet.iconWrapper}>
       {React.cloneElement(props.iconComponent, {
         style: [
+          props.iconComponent.props.style,
           styleSheet.icon,
           props.invertColors ? styleSheet.iconInverted : null,
         ],

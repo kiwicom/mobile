@@ -21,6 +21,7 @@ import TripServices, {
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
 import TripOverviewTablet from '../scenes/tripOverview/TripOverviewTablet';
 import Timeline, { TimelineSubmenuItems } from '../scenes/timeline/Timeline';
+import Explore from '../scenes/explore/Explore';
 
 export const MenuComponents = {
   'mmb.trip_overview': {
@@ -87,7 +88,7 @@ export const MenuComponents = {
     },
   },
   'mmb.explore': {
-    screen: () => null,
+    screen: Explore,
     headerTitle: function ExploreSubmenuHeaderTitle() {
       return (
         <HeaderTitle>
