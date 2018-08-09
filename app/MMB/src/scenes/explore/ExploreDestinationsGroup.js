@@ -21,25 +21,30 @@ const todo = () => {
 const ExploreDestinationsGroup = (props: Props) => {
   const trips = props.data || [];
 
+  const destinations = [
+    ...trips.map(trip => trip.departure),
+    ...trips.map(trip => trip.arrival),
+  ];
+
   return (
     <TitledMenuGroup title={<Translation id="mmb.explore.destinations" />}>
-      {uniqBy(trips, 'arrival.airport.city.name').map((trip, index) => {
+      {uniqBy(destinations, 'airport.code').map(destination => {
         return (
           <MenuItem
             isActive={false}
             title={
               <Translation
-                passThrough={idx(trip, _ => _.arrival.airport.city.name) || ''}
+                passThrough={idx(destination, _ => _.airport.city.name) || ''}
               />
             }
             description={
               <Translation
                 passThrough={
-                  idx(trip, _ => _.arrival.airport.country.name) || ''
+                  idx(destination, _ => _.airport.country.name) || ''
                 }
               />
             }
-            key={`${trip.arrival.airport.id}-${index}`}
+            key={destination.airport.id}
             onPress={todo}
             icon={<TextIcon code="c" />}
           />
@@ -56,6 +61,7 @@ export default createFragmentContainer(
       departure {
         airport {
           id
+          code
           country {
             name
           }
@@ -67,6 +73,7 @@ export default createFragmentContainer(
       arrival {
         airport {
           id
+          code
           country {
             name
           }
