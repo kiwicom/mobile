@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c0ba29d50f973104ef15d2b728a276d5
+ * @relayHash c52bec0e3a89b1cf93ab214d6c4f789b
  */
 
 /* eslint-disable */
@@ -123,24 +123,22 @@ fragment ExploreAirportGroup on Leg {
   id
   departure {
     airport {
+      id
       type
       city {
-        locationId
         name
         code
       }
-      id
     }
   }
   arrival {
     airport {
+      id
       type
       city {
-        locationId
         name
         code
       }
-      id
     }
   }
 }
@@ -251,6 +249,7 @@ v8 = [
     "concreteType": "Location",
     "plural": false,
     "selections": [
+      v3,
       {
         "kind": "ScalarField",
         "alias": null,
@@ -267,18 +266,10 @@ v8 = [
         "concreteType": "LocationArea",
         "plural": false,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "locationId",
-            "args": null,
-            "storageKey": null
-          },
           v5,
           v4
         ]
-      },
-      v3
+      }
     ]
   }
 ],
@@ -341,7 +332,7 @@ return {
   "operationKind": "query",
   "name": "ExploreQuery",
   "id": null,
-  "text": "query ExploreQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ... on BookingOneWay {\n      ...ExploreBookingOneWay\n    }\n    ... on BookingMulticity {\n      ...ExploreBookingMulticity\n    }\n    ... on BookingReturn {\n      ...ExploreBookingReturn\n    }\n    id\n  }\n}\n\nfragment ExploreBookingOneWay on BookingOneWay {\n  trip {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingMulticity on BookingMulticity {\n  trips {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingReturn on BookingReturn {\n  outbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n  inbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreDestinationsGroup on Trip {\n  departure {\n    airport {\n      id\n      code\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      id\n      code\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n}\n\nfragment ExploreAirportGroup on Leg {\n  id\n  departure {\n    airport {\n      type\n      city {\n        locationId\n        name\n        code\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      type\n      city {\n        locationId\n        name\n        code\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query ExploreQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ... on BookingOneWay {\n      ...ExploreBookingOneWay\n    }\n    ... on BookingMulticity {\n      ...ExploreBookingMulticity\n    }\n    ... on BookingReturn {\n      ...ExploreBookingReturn\n    }\n    id\n  }\n}\n\nfragment ExploreBookingOneWay on BookingOneWay {\n  trip {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingMulticity on BookingMulticity {\n  trips {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingReturn on BookingReturn {\n  outbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n  inbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreDestinationsGroup on Trip {\n  departure {\n    airport {\n      id\n      code\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      id\n      code\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n}\n\nfragment ExploreAirportGroup on Leg {\n  id\n  departure {\n    airport {\n      id\n      type\n      city {\n        name\n        code\n      }\n    }\n  }\n  arrival {\n    airport {\n      id\n      type\n      city {\n        name\n        code\n      }\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

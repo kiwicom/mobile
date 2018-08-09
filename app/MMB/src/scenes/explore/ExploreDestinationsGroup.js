@@ -28,7 +28,7 @@ const ExploreDestinationsGroup = (props: Props) => {
 
   return (
     <TitledMenuGroup title={<Translation id="mmb.explore.destinations" />}>
-      {uniqBy(destinations, 'airport.code').map((destination, index) => {
+      {uniqBy(destinations, 'airport.code').map(destination => {
         return (
           <MenuItem
             isActive={false}
@@ -44,7 +44,7 @@ const ExploreDestinationsGroup = (props: Props) => {
                 }
               />
             }
-            key={`${destination.airport.id}-${index}`}
+            key={destination.airport.id}
             onPress={todo}
             icon={<TextIcon code="c" />}
           />

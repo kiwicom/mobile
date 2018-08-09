@@ -33,7 +33,7 @@ const ExploreAirportGroup = (props: Props) => {
 
   return (
     <TitledMenuGroup title={<Translation id="mmb.explore.airports" />}>
-      {uniqBy(locations, 'city.code').map((location, index) => {
+      {uniqBy(locations, 'city.code').map(location => {
         return (
           <MenuItem
             isActive={false}
@@ -47,7 +47,7 @@ const ExploreAirportGroup = (props: Props) => {
                 passThrough={idx(location, _ => _.city.code) || ''}
               />
             }
-            key={`${location.locationId}-${index}`}
+            key={location.id}
             onPress={todo}
             icon={<TextIcon code="a" style={styles.icon} />}
           />
@@ -64,9 +64,9 @@ export default createFragmentContainer(
       id
       departure {
         airport {
+          id
           type
           city {
-            locationId
             name
             code
           }
@@ -74,9 +74,9 @@ export default createFragmentContainer(
       }
       arrival {
         airport {
+          id
           type
           city {
-            locationId
             name
             code
           }
