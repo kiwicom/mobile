@@ -2158,6 +2158,9 @@ type RouteStop {
 
   """Terminal of the route stop"""
   terminal: String
+
+  """Gate for the route stop"""
+  gate: String
 }
 
 type Services {
