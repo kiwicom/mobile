@@ -14,9 +14,9 @@ export type ExploreAirportGroup = $ReadOnlyArray<{|
   +id: string,
   +departure: ?{|
     +airport: ?{|
+      +id: string,
       +type: ?string,
       +city: ?{|
-        +locationId: ?string,
         +name: ?string,
         +code: ?string,
       |},
@@ -24,9 +24,9 @@ export type ExploreAirportGroup = $ReadOnlyArray<{|
   |},
   +arrival: ?{|
     +airport: ?{|
+      +id: string,
       +type: ?string,
       +city: ?{|
-        +locationId: ?string,
         +name: ?string,
         +code: ?string,
       |},
@@ -38,7 +38,14 @@ export type ExploreAirportGroup = $ReadOnlyArray<{|
 
 
 const node/*: ConcreteFragment*/ = (function(){
-var v0 = [
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -48,6 +55,7 @@ var v0 = [
     "concreteType": "Location",
     "plural": false,
     "selections": [
+      v0,
       {
         "kind": "ScalarField",
         "alias": null,
@@ -64,13 +72,6 @@ var v0 = [
         "concreteType": "LocationArea",
         "plural": false,
         "selections": [
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "locationId",
-            "args": null,
-            "storageKey": null
-          },
           {
             "kind": "ScalarField",
             "alias": null,
@@ -99,13 +100,7 @@ return {
   },
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "id",
-      "args": null,
-      "storageKey": null
-    },
+    v0,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -114,7 +109,7 @@ return {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v0
+      "selections": v1
     },
     {
       "kind": "LinkedField",
@@ -124,11 +119,11 @@ return {
       "args": null,
       "concreteType": "RouteStop",
       "plural": false,
-      "selections": v0
+      "selections": v1
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'cc7dc7a3f7cf7de9924b7d2895c3f2c4';
+(node/*: any*/).hash = 'e6d8ca8d4713aa69bd4fdef4112dbe2b';
 module.exports = node;
