@@ -11,7 +11,7 @@ type Props = {|
 |};
 
 function OneWayTimeline(props: Props) {
-  return <Timeline data={props.data.trip} />;
+  return <Timeline data={[props.data.trip]} type="ONEWAY" />;
 }
 
 export default createFragmentContainer(
