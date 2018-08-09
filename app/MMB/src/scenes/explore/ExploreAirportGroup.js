@@ -17,7 +17,7 @@ const todo = () => {
   console.warn('TODO');
 };
 
-const ExploreAirportGroup = (props: Props) => {
+export const ExploreAirportGroup = (props: Props) => {
   const legs = props.data || [];
   const locations = legs
     .reduce((acc, curr) => {
@@ -26,7 +26,6 @@ const ExploreAirportGroup = (props: Props) => {
       return [...acc, departure, arrival];
     }, [])
     .filter(i => idx(i, _ => _.type) === 'airport');
-
   if (locations.length === 0) {
     return null;
   }

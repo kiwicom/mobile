@@ -8,7 +8,7 @@ import idx from 'idx';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import uniqBy from 'lodash/uniqBy';
 
-import type { ExploreAirportGroup as TripType } from './__generated__/ExploreAirportGroup.graphql';
+import type { ExportDestinationsGroup as TripType } from './__generated__/ExploreDestinationsGroup.graphql';
 
 type Props = {|
   +data: TripType,
@@ -18,7 +18,7 @@ const todo = () => {
   console.warn('TODO');
 };
 
-const ExploreDestinationsGroup = (props: Props) => {
+export const ExploreDestinationsGroup = (props: Props) => {
   const trips = props.data || [];
 
   const destinations = [
