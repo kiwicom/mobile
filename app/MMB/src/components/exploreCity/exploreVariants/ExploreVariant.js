@@ -7,6 +7,7 @@ import { DateUtils } from '@kiwicom/mobile-localization';
 
 import BookingConfirmed from './BookingConfirmed';
 import PriorToDeparture from './PriorToDeparture';
+import IsFlying from './IsFlying';
 import type { ExploreVariant_trip } from './__generated__/ExploreVariant_trip.graphql';
 
 type Props = {|
@@ -14,6 +15,7 @@ type Props = {|
 |};
 
 export const ExploreVariant = (props: Props) => {
+  const legs = idx(props.trip, _ => _.legs) || [];
   const rawDate = idx(props.trip, _ => _.departure.time);
 
   if (rawDate == null) {
@@ -36,6 +38,21 @@ export const ExploreVariant = (props: Props) => {
   if (hoursToFlight > 0) {
     return <PriorToDeparture data={idx(props.trip, _ => _.legs[0])} />;
   }
+
+  const isFlyingLeg = legs.find(leg => {
+    const legDeparture = new Date(idx(leg, _ => _.departure.time) || 0);
+    const legArrival = new Date(idx(leg, _ => _.arrival.time) || 0);
+
+    return (
+      legDeparture >= DateUtils.getUTCNow() &&
+      legArrival > DateUtils.getUTCNow()
+    );
+  });
+
+  if (isFlyingLeg) {
+    return <IsFlying data={idx(isFlyingLeg, _ => _.arrival)} />;
+  }
+
   return null;
 };
 
@@ -53,6 +70,10 @@ export default createFragmentContainer(
         ...PriorToDeparture
         departure {
           ...BookingConfirmed_departure
+          time
+        }
+        arrival {
+          ...IsFlying
           time
         }
       }

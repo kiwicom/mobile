@@ -47,14 +47,25 @@ describe('ExploreVariant', () => {
     expect(wrapper.type.displayName).toEqual('Relay(PriorToDeparture)');
   });
 
-  it('should render null if it is 0 hours to departure', () => {
+  it('should render IsFlying if it is after departure and before arrival', () => {
     DateUtils.getUTCNow = jest.fn(() => new Date(2018, 11, 24, 18, 0, 0, 0));
     const data = {
       departure: {
         time: new Date(2018, 11, 24, 18, 0, 0, 0),
       },
+      legs: [
+        {
+          departure: {
+            time: new Date(2018, 11, 24, 18, 0, 0, 0),
+          },
+          arrival: {
+            time: new Date(2018, 11, 24, 20, 0, 0, 0),
+          },
+        },
+      ],
     };
     const wrapper = getWrapper(data);
-    expect(wrapper).toBe(null);
+
+    expect(wrapper.type.displayName).toEqual('Relay(IsFlying)');
   });
 });
