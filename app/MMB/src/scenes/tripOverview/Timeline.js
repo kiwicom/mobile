@@ -4,39 +4,50 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import { type AlertTranslationType } from '@kiwicom/mobile-localization';
 import Dash from 'react-native-dash';
 import idx from 'idx';
 
 import TimelineDeparture from './TimelineDeparture';
 import TimelineArrival from './TimelineArrival';
+import TripOverviewContext from './TripOverviewContext';
 import type { Timeline as TimelineDataType } from './__generated__/Timeline.graphql';
 
 const lineWidth = 2;
 const circleSize = 12;
 const lineOffset = circleSize / 2 - lineWidth / 2;
 
-type Props = {|
-  +children: React.Node[],
-  +data: TimelineDataType,
+type Warning = {|
+  +text: AlertTranslationType,
+  +timelineTitle: {|
+    +localTime: ?Date,
+    +iataCode: ?string,
+  |},
 |};
 
-function Timeline(props: Props) {
-  const children = [];
-  const legs = idx(props, _ => _.data.legs) || [];
+type PropsWithContext = {|
+  +data: TimelineDataType,
+  +type: 'MULTICITY' | 'RETURN' | 'ONEWAY',
+  +warnings: Warning[],
+  +actions: {
+    +addWarningData: (warning: Warning) => void,
+  },
+|};
 
+function renderLegs(legs) {
+  const legsChildren = [];
   legs.forEach((leg, index) => {
     if (!leg) {
       return;
     }
 
-    children.push(
+    legsChildren.push(
       <TimelineDeparture key={index} routeStop={leg.departure} legInfo={leg} />,
     );
-    children.push(<TimelineArrival key={index} data={leg.arrival} />);
+    legsChildren.push(<TimelineArrival key={index} data={leg.arrival} />);
   });
-
-  return children.map((child, index) => {
-    const isLast = children.length === index + 1;
+  return legsChildren.map((child, index) => {
+    const isLast = legsChildren.length === index + 1;
     const isOdd = index & 1;
 
     const shouldDrawSolidLine = !isLast && !isOdd;
@@ -72,6 +83,93 @@ function Timeline(props: Props) {
   });
 }
 
+class Timeline extends React.Component<PropsWithContext> {
+  componentDidMount() {
+    this.addWarnings();
+  }
+
+  departureDifferentFromPreviousArrival(trip, index) {
+    if (index > 0) {
+      const trips = idx(this.props, _ => _.data) || [];
+      const arrivalPreviousTrip = idx(trips, _ => _[index - 1].arrival);
+      const departure = idx(trip, _ => _.departure);
+      const arrivalLocationId =
+        idx(arrivalPreviousTrip, _ => _.airport.locationId) || '';
+      const departureLocationId =
+        idx(departure, _ => _.airport.locationId) || '';
+      const arrivalCityName =
+        idx(arrivalPreviousTrip, _ => _.airport.city.name) || '';
+      const departureCityName = idx(departure, _ => _.airport.city.name) || '';
+
+      if (arrivalLocationId !== departureLocationId) {
+        const warning = {
+          text: {
+            id: 'mmb.flight_overview.timeline.warning.different_airport_return',
+            values: {
+              arrival: `${arrivalCityName} (${arrivalLocationId})`,
+              departure: `${departureCityName} (${departureLocationId})`,
+            },
+          },
+          timelineTitle: {
+            localTime: idx(departure, _ => _.localTime),
+            iataCode: departureLocationId,
+          },
+        };
+        this.props.actions.addWarningData(warning);
+      }
+    }
+  }
+
+  lastArrivalDifferentFromFirstDeparture() {
+    const trips = idx(this.props, _ => _.data) || [];
+    const arrival = idx(trips, _ => _[trips.length - 1].arrival);
+    const departure = idx(trips, _ => _[0].departure);
+    const arrivalLocationId = idx(arrival, _ => _.airport.locationId) || '';
+    const departureLocationId = idx(departure, _ => _.airport.locationId) || '';
+    const arrivalCityName = idx(arrival, _ => _.airport.city.name) || '';
+    const departureCityName = idx(departure, _ => _.airport.city.name) || '';
+    if (arrivalLocationId !== departureLocationId) {
+      const warning = {
+        text: {
+          id:
+            'mmb.flight_overview.timeline.warning.different_airport_return_first',
+          values: {
+            arrival: `${arrivalCityName} (${arrivalLocationId})`,
+            departure: `${departureCityName} (${departureLocationId})`,
+          },
+        },
+        timelineTitle: {
+          localTime: idx(arrival, _ => _.localTime),
+          iataCode: arrivalLocationId,
+        },
+      };
+      this.props.actions.addWarningData(warning);
+    }
+  }
+
+  addWarnings() {
+    const trips = idx(this.props, _ => _.data) || [];
+    trips.forEach((trip, index) => {
+      this.departureDifferentFromPreviousArrival(trip, index);
+    });
+    if (trips.length > 1 && this.props.type === 'RETURN') {
+      this.lastArrivalDifferentFromFirstDeparture();
+    }
+  }
+
+  render() {
+    const children = [];
+    const trips = idx(this.props, _ => _.data) || [];
+
+    trips.forEach(trip => {
+      const legs = idx(trip, _ => _.legs) || [];
+      children.push(renderLegs(legs));
+    });
+
+    return children;
+  }
+}
+
 const styles = StyleSheet.create({
   rowContainer: {
     flexDirection: 'row',
@@ -105,10 +203,41 @@ const styles = StyleSheet.create({
   },
 });
 
+type Props = {|
+  +data: TimelineDataType,
+  +type: 'MULTICITY' | 'RETURN' | 'ONEWAY',
+|};
+
+function TimelineWithContext(props: Props) {
+  return (
+    <TripOverviewContext.Consumer>
+      {context => <Timeline {...props} {...context} />}
+    </TripOverviewContext.Consumer>
+  );
+}
+
 export default createFragmentContainer(
-  Timeline,
+  TimelineWithContext,
   graphql`
-    fragment Timeline on Trip {
+    fragment Timeline on Trip @relay(plural: true) {
+      departure {
+        localTime
+        airport {
+          locationId
+          city {
+            name
+          }
+        }
+      }
+      arrival {
+        localTime
+        airport {
+          locationId
+          city {
+            name
+          }
+        }
+      }
       legs {
         departure {
           ...TimelineDeparture_routeStop
