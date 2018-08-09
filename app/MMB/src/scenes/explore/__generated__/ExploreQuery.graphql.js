@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 30306257cbf7787f0d964c08108ac593
+ * @relayHash c0ba29d50f973104ef15d2b728a276d5
  */
 
 /* eslint-disable */
@@ -96,6 +96,7 @@ fragment ExploreDestinationsGroup on Trip {
   departure {
     airport {
       id
+      code
       country {
         name
       }
@@ -107,6 +108,7 @@ fragment ExploreDestinationsGroup on Trip {
   arrival {
     airport {
       id
+      code
       country {
         name
       }
@@ -190,14 +192,21 @@ v3 = {
 v4 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "code",
+  "args": null,
+  "storageKey": null
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "name",
   "args": null,
   "storageKey": null
 },
-v5 = [
-  v4
-],
 v6 = [
+  v5
+],
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -208,6 +217,7 @@ v6 = [
     "plural": false,
     "selections": [
       v3,
+      v4,
       {
         "kind": "LinkedField",
         "alias": null,
@@ -216,7 +226,7 @@ v6 = [
         "args": null,
         "concreteType": "LocationArea",
         "plural": false,
-        "selections": v5
+        "selections": v6
       },
       {
         "kind": "LinkedField",
@@ -226,12 +236,12 @@ v6 = [
         "args": null,
         "concreteType": "LocationArea",
         "plural": false,
-        "selections": v5
+        "selections": v6
       }
     ]
   }
 ],
-v7 = [
+v8 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -264,21 +274,15 @@ v7 = [
             "args": null,
             "storageKey": null
           },
-          v4,
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "code",
-            "args": null,
-            "storageKey": null
-          }
+          v5,
+          v4
         ]
       },
       v3
     ]
   }
 ],
-v8 = [
+v9 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -287,7 +291,7 @@ v8 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v6
+    "selections": v7
   },
   {
     "kind": "LinkedField",
@@ -297,7 +301,7 @@ v8 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v6
+    "selections": v7
   },
   {
     "kind": "LinkedField",
@@ -317,7 +321,7 @@ v8 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v7
+        "selections": v8
       },
       {
         "kind": "LinkedField",
@@ -327,7 +331,7 @@ v8 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v7
+        "selections": v8
       }
     ]
   }
@@ -337,7 +341,7 @@ return {
   "operationKind": "query",
   "name": "ExploreQuery",
   "id": null,
-  "text": "query ExploreQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ... on BookingOneWay {\n      ...ExploreBookingOneWay\n    }\n    ... on BookingMulticity {\n      ...ExploreBookingMulticity\n    }\n    ... on BookingReturn {\n      ...ExploreBookingReturn\n    }\n    id\n  }\n}\n\nfragment ExploreBookingOneWay on BookingOneWay {\n  trip {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingMulticity on BookingMulticity {\n  trips {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingReturn on BookingReturn {\n  outbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n  inbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreDestinationsGroup on Trip {\n  departure {\n    airport {\n      id\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      id\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n}\n\nfragment ExploreAirportGroup on Leg {\n  id\n  departure {\n    airport {\n      type\n      city {\n        locationId\n        name\n        code\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      type\n      city {\n        locationId\n        name\n        code\n      }\n      id\n    }\n  }\n}\n",
+  "text": "query ExploreQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ... on BookingOneWay {\n      ...ExploreBookingOneWay\n    }\n    ... on BookingMulticity {\n      ...ExploreBookingMulticity\n    }\n    ... on BookingReturn {\n      ...ExploreBookingReturn\n    }\n    id\n  }\n}\n\nfragment ExploreBookingOneWay on BookingOneWay {\n  trip {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingMulticity on BookingMulticity {\n  trips {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreBookingReturn on BookingReturn {\n  outbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n  inbound {\n    ...ExploreDestinationsGroup\n    legs {\n      ...ExploreAirportGroup\n      id\n    }\n  }\n}\n\nfragment ExploreDestinationsGroup on Trip {\n  departure {\n    airport {\n      id\n      code\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n  arrival {\n    airport {\n      id\n      code\n      country {\n        name\n      }\n      city {\n        name\n      }\n    }\n  }\n}\n\nfragment ExploreAirportGroup on Leg {\n  id\n  departure {\n    airport {\n      type\n      city {\n        locationId\n        name\n        code\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      type\n      city {\n        locationId\n        name\n        code\n      }\n      id\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -421,7 +425,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v8
+                "selections": v9
               },
               {
                 "kind": "LinkedField",
@@ -431,7 +435,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v8
+                "selections": v9
               }
             ]
           },
@@ -447,7 +451,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v8
+                "selections": v9
               }
             ]
           },
@@ -463,7 +467,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v8
+                "selections": v9
               }
             ]
           }

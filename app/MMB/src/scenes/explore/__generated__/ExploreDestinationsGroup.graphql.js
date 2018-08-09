@@ -14,6 +14,7 @@ export type ExploreDestinationsGroup = $ReadOnlyArray<{|
   +departure: ?{|
     +airport: ?{|
       +id: string,
+      +code: ?string,
       +country: ?{|
         +name: ?string
       |},
@@ -25,6 +26,7 @@ export type ExploreDestinationsGroup = $ReadOnlyArray<{|
   +arrival: ?{|
     +airport: ?{|
       +id: string,
+      +code: ?string,
       +country: ?{|
         +name: ?string
       |},
@@ -62,6 +64,13 @@ v1 = [
         "kind": "ScalarField",
         "alias": null,
         "name": "id",
+        "args": null,
+        "storageKey": null
+      },
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "code",
         "args": null,
         "storageKey": null
       },
@@ -121,5 +130,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3f2d55a2fe8316c2a0b7f817a5c24ddf';
+(node/*: any*/).hash = '9848c840e1bfa718521d376fc89220d3';
 module.exports = node;
