@@ -1,7 +1,5 @@
 {
-  "collectCoverage": false,
   "preset": "react-native",
-  "verbose": false,
   "globals": {
     "__DEV__": false
   },
