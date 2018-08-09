@@ -6,6 +6,7 @@ import { Translation, DateUtils } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import ExploreText from '../ExploreText';
+import ExploreButton from '../ExploreButton';
 import type { BookingConfirmed_arrival } from './__generated__/BookingConfirmed_arrival.graphql';
 import type { BookingConfirmed_departure } from './__generated__/BookingConfirmed_departure.graphql';
 
@@ -25,19 +26,21 @@ const BookingConfirmed = (props: Props) => {
   );
 
   return (
-    <ExploreText
-      city={idx(props.arrival, _ => _.airport.city.name)}
-      title={<Translation id="mmb.main_menu.explore_city.prepare_for_trip" />}
-      text={
-        <Translation
-          id="mmb.main_menu.explore_city.your_trip_in_days"
-          values={{
-            city: idx(props.arrival, _ => _.airport.city.name),
-            days: daysLeft,
-          }}
-        />
-      }
-    />
+    <React.Fragment>
+      <ExploreText
+        title={<Translation id="mmb.main_menu.explore_city.prepare_for_trip" />}
+        text={
+          <Translation
+            id="mmb.main_menu.explore_city.your_trip_in_days"
+            values={{
+              city: idx(props.arrival, _ => _.airport.city.name),
+              days: daysLeft,
+            }}
+          />
+        }
+      />
+      <ExploreButton cityName={idx(props.arrival, _ => _.airport.city.name)} />
+    </React.Fragment>
   );
 };
 
