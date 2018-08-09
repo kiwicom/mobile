@@ -5,25 +5,17 @@ import { View } from 'react-native';
 import { type TranslationType } from '@kiwicom/mobile-localization';
 import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
 
-import ExploreButton from './ExploreButton';
-
 type Props = {|
   +title: TranslationType,
-  +text: TranslationType,
-  +city: ?string,
+  +text: TranslationType | $ReadOnlyArray<TranslationType>,
 |};
 
 const ExploreText = (props: Props) => {
   return (
-    <React.Fragment>
-      <View style={styles.padding}>
-        <Text style={styles.title}>{props.title}</Text>
-        <Text style={styles.subText}>{props.text}</Text>
-      </View>
-      <View style={[styles.padding, styles.buttonContainer]}>
-        <ExploreButton cityName={props.city} />
-      </View>
-    </React.Fragment>
+    <View style={styles.padding}>
+      <Text style={styles.title}>{props.title}</Text>
+      <Text style={styles.subText}>{props.text}</Text>
+    </View>
   );
 };
 
@@ -41,8 +33,5 @@ const styles = StyleSheet.create({
   },
   padding: {
     paddingHorizontal: 20,
-  },
-  buttonContainer: {
-    marginBottom: 25,
   },
 });

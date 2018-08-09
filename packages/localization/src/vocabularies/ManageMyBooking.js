@@ -255,9 +255,21 @@ export default {
     'Your trip to __1_city__ is in __2_days__ days',
   'mmb.main_menu.explore_city.spending_time_in': 'Spending time in __city__?',
   'mmb.main_menu.explore_city.find_stuff_to_do': 'Find something to do',
-  'mmb.main_menu.explore_city.card_content.explore': 'Explore __city__',
+  'mmb.main_menu.explore_city.card_content.explore_city': 'Explore __city__',
+  'mmb.main_menu.explore_city.card_content.explore_airport':
+    'Explore __airport__ airport',
   'mmb.main_menu.explore_city.explore_menu_group.order_transport':
     'Order transportation to __iata__',
+  'mmb.main_menu.explore_city.prior_to_departure.flying_soon':
+    "You're flying soon",
+  'mmb.main_menu.explore_city.prior_to_departure.flying_to_destination':
+    'Your flight to __1_destination__ departs at __2_time__.',
+  'mmb.main_menu.explore_city.prior_to_departure.go_to_gate':
+    'Go to gate __gate__.',
+  'mmb.main_menu.explore_city.prior_to_departure.recheck_your_bags':
+    "Don't forget to recheck your bags.",
+  'mmb.main_menu.explore_city.prior_to_departure.recheck_your_bags_and_go_to_gate':
+    "Don't forget to recheck your bags, then go to gate __gate__.",
 
   'mmb.main_menu.manage': 'Manage',
   'mmb.main_menu.manage.help': 'Help',

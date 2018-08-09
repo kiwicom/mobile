@@ -10,6 +10,7 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type BookingConfirmed_arrival$ref = any;
 type BookingConfirmed_departure$ref = any;
+type PriorToDeparture$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type ExploreVariant_trip$ref: FragmentReference;
 export type ExploreVariant_trip = {|
@@ -23,7 +24,8 @@ export type ExploreVariant_trip = {|
     +departure: ?{|
       +time: ?any,
       +$fragmentRefs: BookingConfirmed_departure$ref,
-    |}
+    |},
+    +$fragmentRefs: PriorToDeparture$ref,
   |}>,
   +$refType: ExploreVariant_trip$ref,
 |};
@@ -83,6 +85,11 @@ return {
       "plural": true,
       "selections": [
         {
+          "kind": "FragmentSpread",
+          "name": "PriorToDeparture",
+          "args": null
+        },
+        {
           "kind": "LinkedField",
           "alias": null,
           "name": "departure",
@@ -105,5 +112,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '721f670075c8767d84b1d6cf4f9f0c5a';
+(node/*: any*/).hash = 'dba69b27f6d7e66ade69c5a54f33b615';
 module.exports = node;
