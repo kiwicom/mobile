@@ -270,6 +270,9 @@ export default {
     "Don't forget to recheck your bags.",
   'mmb.main_menu.explore_city.prior_to_departure.recheck_your_bags_and_go_to_gate':
     "Don't forget to recheck your bags, then go to gate __gate__.",
+  'mmb.main_menu.explore_city.is_flying.enjoy_flight': 'Enjoy your flight',
+  'mmb.main_menu.explore_city.is_flying.heading_to':
+    "You're heading to __1_destination__. Expected arrival at __2_code__ airport is __3_time__ local time.",
 
   'mmb.main_menu.manage': 'Manage',
   'mmb.main_menu.manage.help': 'Help',
