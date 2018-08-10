@@ -9,12 +9,14 @@ import {
 import Homepage from '../../screens/hotelsStack/Homepage';
 import HotelsPackageWrapper from '../../screens/hotelsStack/HotelsPackageWrapper';
 import SingleHotelsPackageWrapper from '../../screens/hotelsStack/SingleHotelPackageWrapper';
+import NewHotelsPackageWrapper from '../../screens/hotelsStack/NewHotelsPackageWrapper';
 
 export default StackNavigator(
   {
     Home: withMappedProps(Homepage),
     HotelsPackage: withMappedProps(HotelsPackageWrapper),
     SingleHotelPackage: withMappedProps(SingleHotelsPackageWrapper),
+    NewHotelsPackage: withMappedProps(NewHotelsPackageWrapper),
   },
   {
     initialRouteName: 'Home',
