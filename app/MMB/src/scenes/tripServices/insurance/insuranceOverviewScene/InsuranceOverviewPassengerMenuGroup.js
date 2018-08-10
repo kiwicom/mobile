@@ -1,39 +1,37 @@
 // @flow strict
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { TitledMenuGroup } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
 import PassengerInsuranceMenuItem from './menuItem/PassengerInsuranceMenuItem';
-import type { InsuranceOverviewPassengerMenuGroup as PassengersType } from './__generated__/InsuranceOverviewPassengerMenuGroup.graphql';
+
+type InsuranceType = 'NONE' | 'TRAVEL_BASIC' | 'TRAVEL_PLUS';
+
+type Passenger = {|
+  +fullName: ?string,
+  +title: ?string,
+  +birthday: ?Date,
+  +databaseId: ?number,
+  +insuranceType: ?InsuranceType,
+|};
 
 type Props = {|
-  +data: PassengersType,
+  +passengers: Passenger[],
 |};
 
 const InsuranceOverviewPassengerMenuGroup = (props: Props) => {
-  const passengers = idx(props.data, _ => _.passengers) || [];
+  const passengers = idx(props, _ => _.passengers) || [];
   return (
     <TitledMenuGroup title={<Translation id="mmb.trip_services.order.pax" />}>
       {passengers.map(passenger => (
         <PassengerInsuranceMenuItem
-          data={passenger}
+          passenger={passenger}
           key={idx(passenger, _ => _.databaseId)}
         />
       ))}
     </TitledMenuGroup>
   );
 };
-export default createFragmentContainer(
-  InsuranceOverviewPassengerMenuGroup,
-  graphql`
-    fragment InsuranceOverviewPassengerMenuGroup on BookingInterface {
-      passengers {
-        databaseId
-        ...PassengerInsuranceMenuItem
-      }
-    }
-  `,
-);
+export default InsuranceOverviewPassengerMenuGroup;

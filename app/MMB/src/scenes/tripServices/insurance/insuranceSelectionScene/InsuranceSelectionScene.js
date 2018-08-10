@@ -19,29 +19,46 @@ import type {
   InsuranceSelectionSceneQueryResponse,
   InsuranceType,
 } from './__generated__/InsuranceSelectionSceneContainerQuery.graphql';
+import { withInsuranceContext } from '../insuranceOverviewScene/InsuranceOverviewSceneContext';
 
 type Props = {|
   +navigation: NavigationType,
   +data: InsuranceSelectionSceneQueryResponse,
+  +updatePassengerInsurance: (args: UpdatePassengerInsurance) => void,
 |};
 
 type State = {|
   selectedVariant: InsuranceType,
 |};
 
+type UpdatePassengerInsurance = {|
+  +databaseId: ?number,
+  +insuranceType: ?InsuranceType,
+|};
+
 class InsuranceSelectionScene extends React.Component<Props, State> {
-  state = {
-    selectedVariant: 'NONE',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedVariant: this.props.navigation.state.params.passenger
+        .insuranceType,
+    };
+  }
 
   goToMoreInfo = () =>
     this.props.navigation.navigate(
       'mmb.trip_services.insurance.selection.more_info',
     );
 
-  selectVariant = (insuranceType: InsuranceType) =>
-    this.setState({ selectedVariant: insuranceType });
-
+  selectVariant = (insuranceType: InsuranceType) => {
+    this.setState({ selectedVariant: insuranceType }, () => {
+      const { passenger } = this.props.navigation.state.params;
+      this.props.updatePassengerInsurance({
+        databaseId: passenger.databaseId,
+        insuranceType,
+      });
+    });
+  };
   render = () => {
     const { passenger } = this.props.navigation.state.params;
 
@@ -90,7 +107,11 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
   };
 }
 
-export default withNavigation(InsuranceSelectionScene);
+export default withNavigation(
+  withInsuranceContext(state => ({
+    updatePassengerInsurance: state.actions.updatePassengerInsurance,
+  }))(InsuranceSelectionScene),
+);
 
 const styleSheet = StyleSheet.create({
   wrapper: {

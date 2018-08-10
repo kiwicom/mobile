@@ -13,6 +13,7 @@ import NavigationStack from './src/navigation/NavigationStack';
 import BookingDetailContext from './src/context/BookingDetailContext';
 import WalletContext from './src/context/WalletContext';
 import TravelDocumentFormContext from './src/scenes/travelDocument/form/TravelDocumentFormContext';
+import InsuranceOverviewContext from './src/scenes/tripServices/insurance/insuranceOverviewScene/InsuranceOverviewSceneContext';
 
 type Props = {|
   +currency: string,
@@ -34,9 +35,11 @@ class ManageMyBookingPackage extends React.Component<Props> {
         <WalletContext.Provider>
           <BookingDetailContext.Provider>
             <TravelDocumentFormContext.Provider>
-              <NavigationStack
-                onNavigationStateChange={this.props.onNavigationStateChange}
-              />
+              <InsuranceOverviewContext.Provider>
+                <NavigationStack
+                  onNavigationStateChange={this.props.onNavigationStateChange}
+                />
+              </InsuranceOverviewContext.Provider>
             </TravelDocumentFormContext.Provider>
           </BookingDetailContext.Provider>
         </WalletContext.Provider>
