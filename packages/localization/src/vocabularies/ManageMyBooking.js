@@ -128,6 +128,12 @@ export default {
   'mmb.trip_services.insurance.variant.none': 'No Insurance',
   'mmb.trip_services.insurance.variant.basic': 'Travel Basic',
   'mmb.trip_services.insurance.variant.plus': 'Travel Plus',
+  'mmb.trip_services.insurance.variant.basic.quantity':
+    '__quantity__x Travel Basic',
+  'mmb.trip_services.insurance.variant.plus.quantity':
+    '__quantity__x Travel Plus',
+  'mmb.trip_services.insurance.variant.none.quantity':
+    '__quantity__x No Insurance',
   'mmb.trip_services.insurance.title': 'Edit insurance',
   'mmb.trip_services.insurance.selection.title': 'Insurance',
   'mmb.trip_services.insurance.selection.travel_insurance': 'Travel insurance',
