@@ -2,23 +2,31 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
 
 import PassengerMenuRightContent from './PassengerInsuranceMenuRightContent';
-import PassengerMenuItem from '../../../../components/passengerMenuItem/PassengerMenuItem';
-import type { PassengerInsuranceMenuItem as PassengerResponseType } from './__generated__/PassengerInsuranceMenuItem.graphql';
+import PassengerMenuItem from '../../../../../components/passengerMenuItem/PassengerMenuItem';
+
+type InsuranceType = 'NONE' | 'TRAVEL_BASIC' | 'TRAVEL_PLUS';
+
+type Passenger = {|
+  +fullName: ?string,
+  +title: ?string,
+  +birthday: ?Date,
+  +databaseId: ?number,
+  +insuranceType: ?InsuranceType,
+|};
 
 type Props = {|
-  +data: PassengerResponseType,
+  +passenger: Passenger,
   +navigation: NavigationType,
 |};
 
 const PassengerInsuranceMenuItem = (props: Props) => {
-  const passenger = idx(props, _ => _.data);
+  const passenger = idx(props, _ => _.passenger);
   const fullName = idx(passenger, _ => _.fullName) || '';
   const insuranceType = idx(passenger, _ => _.insuranceType);
 
@@ -38,15 +46,4 @@ const PassengerInsuranceMenuItem = (props: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  withNavigation(PassengerInsuranceMenuItem),
-  graphql`
-    fragment PassengerInsuranceMenuItem on Passenger {
-      fullName
-      title
-      birthday
-      databaseId
-      insuranceType
-    }
-  `,
-);
+export default withNavigation(PassengerInsuranceMenuItem);
