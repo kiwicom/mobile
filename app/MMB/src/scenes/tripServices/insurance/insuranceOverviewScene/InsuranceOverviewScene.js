@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
-import { LayoutSingleColumn, TextButton } from '@kiwicom/mobile-shared';
+import {
+  LayoutSingleColumn,
+  TextButton,
+  StyleSheet,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   type RouteNamesType,
@@ -11,7 +15,7 @@ import {
 
 import InsuranceOverviewPassengerMenuGroup from '../insuranceOverviewScene/InsuranceOverviewPassengerMenuGroup';
 import DestinationImage from '../insuranceOverviewScene/DestinationImage';
-import OrderSummary from '../insuranceOverviewScene/OrderSummary';
+import OrderSummary from '../insuranceOverviewScene/orderSummary/OrderSummary';
 import TripInfo from '../../../../components/header/TripInfo';
 import type { InsuranceOverviewSceneQueryResponse } from './__generated__/InsuranceOverviewSceneContainerQuery.graphql';
 import { withInsuranceContext } from './InsuranceOverviewSceneContext';
@@ -39,19 +43,14 @@ type Data = {|
   +insurancePrices: InsurancePrice[],
 |};
 
-type Change = {|
-  +databaseId: ?number,
-  +from: ?InsuranceType,
-  +to: ?InsuranceType,
-|};
-
 type Props = {|
   +data: InsuranceOverviewSceneQueryResponse,
   +navigation: NavigationType,
   +initContext: (data: Data) => void,
+  +reset: () => void,
   +passengers: Passenger[],
-  +changes: Change[],
   +initialised: boolean,
+  +amount: number,
 |};
 
 class InsuranceOverviewScene extends React.Component<Props> {
@@ -69,6 +68,10 @@ class InsuranceOverviewScene extends React.Component<Props> {
     }
   }
 
+  componentWillUnmount() {
+    this.props.reset();
+  }
+
   navigate = (routeName: RouteNamesType) => {
     this.props.navigation.navigate(routeName);
   };
@@ -82,10 +85,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
   };
 
   render = () => {
-    const { data, passengers, changes } = this.props;
-
-    const hasChanged = changes.some(change => change.to !== change.from);
-
+    const { data, passengers, amount } = this.props;
     return (
       <React.Fragment>
         <ScrollView>
@@ -96,26 +96,30 @@ class InsuranceOverviewScene extends React.Component<Props> {
 
             <InsuranceOverviewPassengerMenuGroup passengers={passengers} />
 
-            <View style={{ padding: 10 }}>
-              <TextButton
-                title={
-                  <Translation id="mmb.trip_services.order.process_to_refund" />
-                }
-                onPress={this.goToTheInsuranceRefund}
-              />
-            </View>
+            {amount < 0 && (
+              <View style={styles.buttonWrapper}>
+                <TextButton
+                  title={
+                    <Translation id="mmb.trip_services.order.process_to_refund" />
+                  }
+                  onPress={this.goToTheInsuranceRefund}
+                />
+              </View>
+            )}
 
-            <View style={{ padding: 10 }}>
-              <TextButton
-                title={
-                  <Translation id="mmb.trip_services.order.process_to_payment" />
-                }
-                onPress={this.goToTheInsurancePayment}
-              />
-            </View>
+            {amount > 0 && (
+              <View style={styles.buttonWrapper}>
+                <TextButton
+                  title={
+                    <Translation id="mmb.trip_services.order.process_to_payment" />
+                  }
+                  onPress={this.goToTheInsurancePayment}
+                />
+              </View>
+            )}
           </LayoutSingleColumn>
         </ScrollView>
-        {hasChanged && <OrderSummary />}
+        {amount !== 0 && <OrderSummary />}
       </React.Fragment>
     );
   };
@@ -123,7 +127,14 @@ class InsuranceOverviewScene extends React.Component<Props> {
 
 export default withInsuranceContext(state => ({
   initContext: state.actions.initState,
+  reset: state.actions.reset,
   passengers: state.passengers,
-  changes: state.changes,
   initialised: state.initialised,
+  amount: state.amount,
 }))(InsuranceOverviewScene);
+
+const styles = StyleSheet.create({
+  buttonWrapper: {
+    padding: 10,
+  },
+});

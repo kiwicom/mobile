@@ -1,15 +1,19 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 
 const defaultState = {
   passengers: [],
   insurancePrices: [],
   changes: [],
   initialised: false,
+  amount: 0,
+  currency: 'EUR',
   actions: {
     initState: () => {},
     updatePassengerInsurance: () => {},
+    reset: () => {},
   },
 };
 
@@ -59,9 +63,12 @@ type State = {|
   ...Data,
   changes: Change[],
   initialised: boolean,
+  amount: number,
+  currency: string,
   +actions: {
     +initState: (data: Data) => void,
     +updatePassengerInsurance: (args: UpdatePassengerInsurance) => void,
+    +reset: () => void,
   },
 |};
 
@@ -73,6 +80,7 @@ class Provider extends React.Component<Props, State> {
       actions: {
         initState: this.initState,
         updatePassengerInsurance: this.updatePassengerInsurance,
+        reset: this.reset,
       },
     };
   }
@@ -88,11 +96,20 @@ class Provider extends React.Component<Props, State> {
         from: passenger.insuranceType,
         to: passenger.insuranceType,
       }));
+      // TODO test whether all currencies are the same and do something if not?
+      const currency =
+        idx(
+          insurancePrices.find(insurancePrice =>
+            idx(insurancePrice, _ => _.price.currency),
+          ),
+          _ => _.price.currency,
+        ) || '';
       this.setState({
         passengers,
         insurancePrices,
         changes,
         initialised: true,
+        currency,
       });
     }
   };
@@ -129,7 +146,56 @@ class Provider extends React.Component<Props, State> {
       },
       ...changes.slice(changeIndex + 1),
     ];
-    this.setState({ passengers: updatedPassengers, changes: updatedChanges });
+
+    const updatedAmount = this.computeUpdatedAmount(updatedChanges);
+
+    this.setState({
+      passengers: updatedPassengers,
+      changes: updatedChanges,
+      amount: updatedAmount,
+    });
+  };
+
+  computeUpdatedAmount = (updatedChanges: Change[]) => {
+    //TODO deal with edge case when all provided insurance prices are not in the same currency
+    return updatedChanges
+      .map(change => {
+        if (change.to === change.from) {
+          return 0;
+        }
+        let newPrice = 0;
+        let originalPrice = 0;
+        if (change.to !== 'NONE') {
+          newPrice =
+            idx(
+              this.state.insurancePrices.find(
+                insurancePrice => insurancePrice.insuranceType === change.to,
+              ),
+              _ => _.price.amount,
+            ) || 0;
+        }
+        if (change.from !== 'NONE') {
+          originalPrice =
+            idx(
+              this.state.insurancePrices.find(
+                insurancePrice => insurancePrice.insuranceType === change.from,
+              ),
+              _ => _.price.amount,
+            ) || 0;
+        }
+        return newPrice - originalPrice;
+      })
+      .reduce((curr, acc) => curr + acc, 0);
+  };
+
+  reset = () => {
+    this.setState({
+      passengers: [],
+      insurancePrices: [],
+      changes: [],
+      initialised: false,
+      amount: 0,
+    });
   };
 
   render = () => (

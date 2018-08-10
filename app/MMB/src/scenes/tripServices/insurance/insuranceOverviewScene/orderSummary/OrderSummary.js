@@ -2,44 +2,47 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  StyleSheet,
-  Color,
-  Text as NativeText,
-  Price,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Color, Text, Price } from '@kiwicom/mobile-shared';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 
-function Text({ children }) {
-  return <NativeText style={styleSheet.text}>{children}</NativeText>;
-}
+import { withInsuranceContext } from '../InsuranceOverviewSceneContext';
+import InsuranceRow from './InsuranceRow';
 
-export default function OrderSummary() {
+type Props = {|
+  +amount: number,
+  +currency: string,
+|};
+
+function OrderSummary(props: Props) {
   return (
     <View style={styleSheet.wrapper}>
-      <View style={styleSheet.row}>
-        <View style={styleSheet.item}>
-          <Text>
-            <Translation passThrough="TODO" />
-          </Text>
-        </View>
-        <Price amount={-1} currency="WTF" style={styleSheet.price} />
-      </View>
+      <InsuranceRow insuranceType="TRAVEL_PLUS" />
+      <InsuranceRow insuranceType="TRAVEL_BASIC" />
+      <InsuranceRow insuranceType="NONE" />
 
       <SeparatorFullWidth color={Color.textLight} />
 
       <View style={styleSheet.row}>
         <View style={styleSheet.item}>
-          <Text>
+          <Text style={styleSheet.text}>
             <Translation id="mmb.trip_services.order.total" />
           </Text>
         </View>
-        <Price amount={-1} currency="WTF" style={styleSheet.price} />
+        <Price
+          amount={props.amount}
+          currency={props.currency}
+          style={styleSheet.price}
+        />
       </View>
     </View>
   );
 }
+
+export default withInsuranceContext(state => ({
+  amount: state.amount,
+  currency: state.currency,
+}))(OrderSummary);
 
 const styleSheet = StyleSheet.create({
   wrapper: {
