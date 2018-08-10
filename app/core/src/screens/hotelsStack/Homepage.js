@@ -33,6 +33,15 @@ export default class Homepage extends React.Component<Props> {
 
   goToAllHotelsPage = () => this.props.navigation.navigate('HotelsPackage');
 
+  goToNewHotelsPage = () =>
+    this.props.navigation.navigate('NewHotelsPackage', {
+      cityId: 'aG90ZWxDaXR5Oi0zNzI0OTA=',
+      currency: 'EUR',
+      checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
+      checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
+      roomsConfiguration: [{ adultsCount: 1, children: [] }],
+    });
+
   goToOslo = () => {
     this.props.navigation.navigate('HotelsPackage', {
       coordinates: {
@@ -65,6 +74,12 @@ export default class Homepage extends React.Component<Props> {
   render = () => {
     return (
       <LayoutSingleColumn>
+        <Section>
+          <TextButton
+            title={<Translation passThrough="New hotels" />}
+            onPress={this.goToNewHotelsPage}
+          />
+        </Section>
         <Section>
           <TextButton
             title={<Translation passThrough="Hotels" />}
