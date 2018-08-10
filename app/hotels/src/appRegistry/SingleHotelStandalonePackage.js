@@ -50,6 +50,7 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
         dimensions={this.props.dimensions}
         dataSaverEnabled={this.props.dataSaverEnabled}
         version={this.props.version}
+        currency={this.props.currency}
       >
         {this.renderInnerComponent()}
       </RootComponent>

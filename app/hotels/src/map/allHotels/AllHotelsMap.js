@@ -106,9 +106,7 @@ class AllHotelsMap extends React.Component<PropsWithContext> {
         onStateChange={this.validateCheckinDate}
       >
         <View style={styles.container}>
-          <AdaptableLayout
-            renderOnNarrow={<FilterStripe currency={currency} />}
-          />
+          <AdaptableLayout renderOnNarrow={<FilterStripe />} />
           {canSearch ? (
             <PublicApiRenderer
               query={graphql`

@@ -103,7 +103,7 @@ export class AllHotels extends React.Component<PropsWithContext> {
             openLocationPicker={this.props.openLocationPicker}
             openGuestsModal={this.props.openGuestsModal}
           />
-          <FilterStripe currency={this.props.currency} />
+          <FilterStripe />
           {canRenderAllHotelsSearch ? (
             <AllHotelsSearch
               coordinates={coordinates}

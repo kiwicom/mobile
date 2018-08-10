@@ -4,6 +4,7 @@ import * as React from 'react';
 import { ScrollView, View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
+import HotelsContext from '../HotelsContext';
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
@@ -18,7 +19,7 @@ import HotelsFilterContext from '../HotelsFilterContext';
 import Filters from './Filters';
 
 type PropsWithContext = {|
-  ...Props,
+  +currency: string,
   +activeFilters: ActiveFilters,
   +onChange: OnChangeFilterParams => void,
   +filter: FilterParams,
@@ -104,21 +105,21 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {|
-  +currency: string,
-|};
-
-export default function FilterStripeWithContext(props: Props) {
+export default function FilterStripeWithContext() {
   return (
-    <HotelsFilterContext.Consumer>
-      {({ activeFilters, filterParams, actions: { setFilter } }) => (
-        <FilterStripe
-          {...props}
-          onChange={setFilter}
-          filter={filterParams}
-          activeFilters={activeFilters}
-        />
+    <HotelsContext.Consumer>
+      {({ currency }) => (
+        <HotelsFilterContext.Consumer>
+          {({ activeFilters, filterParams, actions: { setFilter } }) => (
+            <FilterStripe
+              currency={currency}
+              onChange={setFilter}
+              filter={filterParams}
+              activeFilters={activeFilters}
+            />
+          )}
+        </HotelsFilterContext.Consumer>
       )}
-    </HotelsFilterContext.Consumer>
+    </HotelsContext.Consumer>
   );
 }

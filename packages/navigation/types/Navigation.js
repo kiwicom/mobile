@@ -6,6 +6,7 @@ type NavigationStateParameters = Object;
 type CoreStackNavigatorRouteNames =
   | 'Homepage'
   | 'HotelsPackage'
+  | 'NewHotelsPackage'
   | 'SingleHotelPackage'
   | 'MMBPackage';
 
