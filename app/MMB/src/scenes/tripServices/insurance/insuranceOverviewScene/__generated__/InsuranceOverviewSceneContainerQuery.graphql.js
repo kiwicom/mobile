@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3f15b26baf239ce97ef83e3d52a19845
+ * @relayHash 1205277540004d3eaa41d6b370ef55ed
  */
 
 /* eslint-disable */
@@ -10,22 +10,36 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type DestinationImage$ref = any;
-type InsuranceOverviewPassengerMenuGroup$ref = any;
 type TripInfo$ref = any;
-export type InsuranceOverviewSceneQueryVariables = {|
+export type InsuranceType = "NONE" | "TRAVEL_BASIC" | "TRAVEL_PLUS" | "%future added value";
+export type InsuranceOverviewSceneContainerQueryVariables = {|
   bookingId: number,
   authToken: string,
 |};
-export type InsuranceOverviewSceneQueryResponse = {|
+export type InsuranceOverviewSceneContainerQueryResponse = {|
   +singleBooking: ?{|
-    +$fragmentRefs: DestinationImage$ref & TripInfo$ref & InsuranceOverviewPassengerMenuGroup$ref
+    +passengers: ?$ReadOnlyArray<?{|
+      +fullName: ?string,
+      +title: ?string,
+      +birthday: ?any,
+      +databaseId: ?number,
+      +insuranceType: ?InsuranceType,
+    |}>,
+    +insurancePrices: ?$ReadOnlyArray<?{|
+      +insuranceType: ?InsuranceType,
+      +price: ?{|
+        +amount: ?number,
+        +currency: ?string,
+      |},
+    |}>,
+    +$fragmentRefs: DestinationImage$ref & TripInfo$ref,
   |}
 |};
 */
 
 
 /*
-query InsuranceOverviewSceneQuery(
+query InsuranceOverviewSceneContainerQuery(
   $bookingId: Int!
   $authToken: String!
 ) {
@@ -33,7 +47,20 @@ query InsuranceOverviewSceneQuery(
     __typename
     ...DestinationImage
     ...TripInfo
-    ...InsuranceOverviewPassengerMenuGroup
+    passengers {
+      fullName
+      title
+      birthday
+      databaseId
+      insuranceType
+    }
+    insurancePrices {
+      insuranceType
+      price {
+        amount
+        currency
+      }
+    }
     id
   }
 }
@@ -53,21 +80,6 @@ fragment TripInfo on BookingInterface {
   ... on BookingMulticity {
     ...TripInfoMulticity
   }
-}
-
-fragment InsuranceOverviewPassengerMenuGroup on BookingInterface {
-  passengers {
-    databaseId
-    ...PassengerInsuranceMenuItem
-  }
-}
-
-fragment PassengerInsuranceMenuItem on Passenger {
-  fullName
-  title
-  birthday
-  databaseId
-  insuranceType
 }
 
 fragment TripInfoOneWay on BookingOneWay {
@@ -168,18 +180,102 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "insuranceType",
   "args": null,
   "storageKey": null
 },
 v3 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "passengers",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Passenger",
+  "plural": true,
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "fullName",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "title",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "birthday",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "databaseId",
+      "args": null,
+      "storageKey": null
+    },
+    v2
+  ]
+},
+v4 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "insurancePrices",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "InsurancePrice",
+  "plural": true,
+  "selections": [
+    v2,
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "price",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Price",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "amount",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "currency",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    }
+  ]
+},
+v5 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "localTime",
   "args": null,
   "storageKey": null
 },
-v4 = [
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -214,19 +310,19 @@ v4 = [
         "args": null,
         "storageKey": null
       },
-      v2
+      v5
     ]
   },
-  v3
+  v6
 ],
-v5 = {
+v8 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "duration",
   "args": null,
   "storageKey": null
 },
-v6 = [
+v9 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -235,7 +331,7 @@ v6 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v4
+    "selections": v7
   },
   {
     "kind": "LinkedField",
@@ -245,23 +341,23 @@ v6 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v4
+    "selections": v7
   },
-  v5
+  v8
 ],
-v7 = [
-  v3
+v10 = [
+  v6
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "InsuranceOverviewSceneQuery",
+  "name": "InsuranceOverviewSceneContainerQuery",
   "id": null,
-  "text": "query InsuranceOverviewSceneQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...DestinationImage\n    ...TripInfo\n    ...InsuranceOverviewPassengerMenuGroup\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment InsuranceOverviewPassengerMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...PassengerInsuranceMenuItem\n  }\n}\n\nfragment PassengerInsuranceMenuItem on Passenger {\n  fullName\n  title\n  birthday\n  databaseId\n  insuranceType\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query InsuranceOverviewSceneContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...DestinationImage\n    ...TripInfo\n    passengers {\n      fullName\n      title\n      birthday\n      databaseId\n      insuranceType\n    }\n    insurancePrices {\n      insuranceType\n      price {\n        amount\n        currency\n      }\n    }\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  ...Duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "InsuranceOverviewSceneQuery",
+    "name": "InsuranceOverviewSceneContainerQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -285,18 +381,15 @@ return {
             "name": "TripInfo",
             "args": null
           },
-          {
-            "kind": "FragmentSpread",
-            "name": "InsuranceOverviewPassengerMenuGroup",
-            "args": null
-          }
+          v3,
+          v4
         ]
       }
     ]
   },
   "operation": {
     "kind": "Operation",
-    "name": "InsuranceOverviewSceneQuery",
+    "name": "InsuranceOverviewSceneContainerQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -329,53 +422,9 @@ return {
             "args": null,
             "storageKey": null
           },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "passengers",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Passenger",
-            "plural": true,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "databaseId",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "fullName",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "title",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "birthday",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "insuranceType",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
-          v2,
+          v3,
+          v4,
+          v5,
           {
             "kind": "InlineFragment",
             "type": "BookingMulticity",
@@ -388,7 +437,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v6
+                "selections": v9
               }
             ]
           },
@@ -404,7 +453,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v9
               },
               {
                 "kind": "LinkedField",
@@ -415,7 +464,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v5,
+                  v8,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -424,7 +473,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v7
+                    "selections": v10
                   },
                   {
                     "kind": "LinkedField",
@@ -434,7 +483,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v7
+                    "selections": v10
                   }
                 ]
               }
@@ -452,7 +501,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v9
               }
             ]
           }
@@ -463,5 +512,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '65f23280b724872ea01ae34e7b748f12';
+(node/*: any*/).hash = '0a26f8835031982177ac297e7c92ef03';
 module.exports = node;
