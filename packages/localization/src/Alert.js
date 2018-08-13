@@ -1,6 +1,6 @@
 // @flow
 
-import { Alert as AlertNative } from 'react-native';
+import { Alert as AlertNative } from 'react-native'; // eslint-disable-line no-restricted-imports
 
 import { type TranslationKeys } from './DefaultVocabulary';
 import { type TranslationPromise } from './CancellableTranslation';
