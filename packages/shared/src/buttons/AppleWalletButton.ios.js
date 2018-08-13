@@ -25,7 +25,6 @@ class AppleWalletButton extends React.Component<Props> {
 const styles = StyleSheet.create({
   button: {
     height: 44,
-    width: '80%',
   },
 });
 

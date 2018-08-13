@@ -54,6 +54,8 @@ export default {
     'Why use the Apple Wallet?',
   'mmb.apple_wallet.apple_wallet_scene.why_wallet_text':
     'On your departure date, your boarding pass will be displayed directly on the lock screen: making it easy to board the plane. It will also be automatically updated with any schedule changes.',
+  'mmb.apple_wallet.apple_wallet_scene.add_pass_error':
+    'There was an error during communication with our server. Please try again later',
 
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
