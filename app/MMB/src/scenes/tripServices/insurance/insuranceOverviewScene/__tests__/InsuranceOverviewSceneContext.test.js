@@ -33,6 +33,7 @@ describe('InsuranceOverviewSceneContext', () => {
     expect(instance.props.insurancePrices).toEqual([]);
     expect(instance.props.changes).toEqual([]);
     expect(instance.props.initialised).toBe(false);
+    expect(instance.props.amount).toBe(0);
     expect(typeof instance.props.initState).toBe('function');
     expect(typeof instance.props.updatePassengerInsurance).toBe('function');
   });
@@ -82,6 +83,7 @@ describe('InsuranceOverviewSceneContext', () => {
       },
     ]);
     expect(instance.props.initialised).toBe(true);
+    expect(instance.props.amount).toBe(0);
   });
 
   it("updates a passenger's insurance", () => {
@@ -110,6 +112,13 @@ describe('InsuranceOverviewSceneContext', () => {
           insuranceType: 'NONE',
           price: null,
         },
+        {
+          insuranceType: 'TRAVEL_PLUS',
+          price: {
+            amount: 24.32,
+            currency: 'EUR',
+          },
+        },
       ],
     });
 
@@ -134,5 +143,6 @@ describe('InsuranceOverviewSceneContext', () => {
       },
     ]);
     expect(instance.props.initialised).toBe(true);
+    expect(instance.props.amount).toBe(24.32);
   });
 });
