@@ -16,7 +16,7 @@ import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
 import GalleryGrid from '../../gallery/GalleryGrid';
 import Payment from '../../singleHotel/PaymentScreen';
-import AdditionalPropsInjecter from './AdditionalPropsInjector';
+import AdditionalPropsInjector from './AdditionalPropsInjector';
 
 export default StackNavigator(
   {
@@ -57,7 +57,7 @@ export default StackNavigator(
       },
     },
     GalleryGrid: {
-      screen: withMappedProps(GalleryGrid, AdditionalPropsInjecter),
+      screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
     },
     Payment: {
       screen: withMappedProps(Payment),
