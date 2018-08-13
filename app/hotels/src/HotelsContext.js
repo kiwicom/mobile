@@ -9,6 +9,7 @@ const defaultState = {
   checkout: null,
   roomsConfiguration: null,
   currency: '',
+  cityName: null,
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
@@ -25,6 +26,7 @@ export type RoomConfigurationType = {|
 type Props = {|
   +children: React.Node,
   +version: string,
+  +cityName: ?string,
   +cityId: ?string,
   +checkin: ?string,
   +checkout: ?string,
@@ -34,6 +36,7 @@ type Props = {|
 
 type State = {|
   +version: string,
+  +cityName: string | null,
   +cityId: string | null,
   +checkin: Date | null,
   +checkout: Date | null,
@@ -65,6 +68,7 @@ class Provider extends React.Component<Props, State> {
       checkout: getAsUtcDate(props.checkout),
       roomsConfiguration: props.roomsConfiguration || null,
       currency: props.currency,
+      cityName: props.cityName || null,
     };
   }
   render = () => (

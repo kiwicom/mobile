@@ -23,6 +23,7 @@ type Props = {
   +onBackClicked: () => void,
   +dimensions: DimensionType,
   +version: string,
+  +cityName: string,
   +cityId: string,
   +checkin: string,
   +checkout: string,
@@ -40,6 +41,7 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
       checkout={this.props.checkout}
       currency={this.props.currency}
       roomsConfiguration={this.props.roomsConfiguration}
+      cityName={this.props.cityName}
     >
       <NewHotelsStack
         screenProps={this.props}

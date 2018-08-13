@@ -18,6 +18,7 @@ type Props = {|
   +dimensions: DimensionType,
   +version: string,
   +cityId?: string,
+  +cityName?: string,
   +checkin?: string,
   +checkout?: string,
   +roomsConfiguration?: RoomConfigurationType,
@@ -37,6 +38,7 @@ export default class RootComponent extends React.Component<Props> {
               checkout={this.props.checkout}
               roomsConfiguration={this.props.roomsConfiguration}
               currency={this.props.currency}
+              cityName={this.props.cityName}
             >
               <Dimensions.Provider dimensions={this.props.dimensions}>
                 {this.props.children}

@@ -6,6 +6,16 @@ import DateUtils from './DateUtils';
 import 'intl'; // Polyfill because of Android
 import 'intl/locale-data/complete';
 
+type FormatterConfig = {|
+  +weekday?: 'narrow' | 'short' | 'long',
+  +year?: 'numeric' | '2-digit',
+  +month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long',
+  +day?: 'numeric' | '2-digit',
+  +hour?: 'numeric' | '2-digit',
+  +minute?: 'numeric' | '2-digit',
+  +second?: 'numeric' | '2-digit',
+|};
+
 // language prop passed from native code is not accessible at this point
 const DEVICE_LOCALE = getLocaleDashed();
 
@@ -43,6 +53,13 @@ function birthday(date: Date) {
   }).format(date);
 }
 
+function custom(date: Date, config: FormatterConfig) {
+  return Intl.DateTimeFormat(DEVICE_LOCALE, {
+    ...config,
+    timeZone: 'UTC', // this is very important!
+  }).format(date);
+}
+
 function pad(number) {
   if (number < 10) {
     return '0' + number;
@@ -76,6 +93,9 @@ function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
         pad(rawDate.getUTCDate())
       );
     },
+
+    // Pass in your own configuration
+    formatCustom: (config: FormatterConfig) => custom(rawDate, config),
   };
 }
 
