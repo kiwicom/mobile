@@ -2,11 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
+import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   LayoutDoubleColumn,
-  AdaptableLayout,
   Button,
   Text,
   StyleSheet,
@@ -15,7 +14,7 @@ import {
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
-import MapHeaderButton from './MapHeaderButton';
+import SearchResultsHeader from './SearchResultsHeader';
 
 type Props = {|
   +navigation: NavigationType,
@@ -29,16 +28,7 @@ export default class SearchResultsScreen extends React.Component<Props> {
     }
 
     return {
-      headerTitle: (
-        <HeaderTitle>
-          <Translation id="hotels.navigation.title.all_hotels" />
-        </HeaderTitle>
-      ),
-      headerRight: (
-        <AdaptableLayout
-          renderOnNarrow={<MapHeaderButton onPress={goToAllHotelsMap} />}
-        />
-      ),
+      header: <SearchResultsHeader goToMap={goToAllHotelsMap} />,
     };
   };
 
