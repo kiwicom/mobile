@@ -30,12 +30,12 @@ export default class Homepage extends React.Component<Props> {
       </HeaderTitle>
     ),
   };
-
   goToAllHotelsPage = () => this.props.navigation.navigate('HotelsPackage');
 
   goToNewHotelsPage = () =>
     this.props.navigation.navigate('NewHotelsPackage', {
       cityId: 'aG90ZWxDaXR5Oi0zNzI0OTA=',
+      cityName: 'Barcelona',
       currency: 'EUR',
       checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
       checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),

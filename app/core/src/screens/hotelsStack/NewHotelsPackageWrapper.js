@@ -18,6 +18,7 @@ type Props = {|
   +checkout: string,
   +dimensions: DimensionType,
   +cityId: string,
+  +cityName: string,
   +roomsConfiguration: RoomConfigurationType,
 |};
 
@@ -43,6 +44,7 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
         checkout={this.props.checkout}
         dimensions={this.props.dimensions}
         cityId={this.props.cityId}
+        cityName={this.props.cityName}
         roomsConfiguration={this.props.roomsConfiguration}
         version="rn-development"
       />
