@@ -15,14 +15,14 @@ export default function HeaderImage() {
       renderOnNarrow={
         <Image
           source={AppleWalletBackground}
-          resizeMode="cover"
+          resizeMode="stretch"
           style={styles.image}
         />
       }
       renderOnWide={
         <Image
           source={AppleWalletBackgroundTablet}
-          resizeMode="cover"
+          resizeMode="stretch"
           style={styles.image}
         />
       }
@@ -32,11 +32,7 @@ export default function HeaderImage() {
 
 const styles = StyleSheet.create({
   image: {
-    height: 250,
+    flex: 1,
     width: '100%',
-    position: 'absolute',
-    top: 0,
-    start: 0,
-    end: 0,
   },
 });

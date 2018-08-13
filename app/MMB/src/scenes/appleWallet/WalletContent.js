@@ -2,11 +2,28 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  StyleSheet,
+  Color,
+  Text,
+  AppleWalletButton,
+  PassBook,
+} from '@kiwicom/mobile-shared';
+import { Translation, Alert } from '@kiwicom/mobile-localization';
 
 import Passenger from './Passenger';
 import DateAndTime from './DateAndTime';
+import WalletContext from '../../context/WalletContext';
+
+const createAddHandler = pkpassUrl => async () => {
+  try {
+    await PassBook.addPass(pkpassUrl);
+  } catch (err) {
+    return Alert.translatedAlert(undefined, {
+      id: 'mmb.apple_wallet.apple_wallet_scene.add_pass_error',
+    });
+  }
+};
 
 export default function WalletContent() {
   return (
@@ -25,7 +42,20 @@ export default function WalletContent() {
           <Translation id="mmb.apple_wallet.apple_wallet_scene.why_wallet_text" />
         </Text>
       </View>
-      {/* TODO: Button to add to wallet */}
+      <View style={styles.walletButtonContainer}>
+        <WalletContext.Consumer>
+          {({ selectedSegment }) => {
+            if (selectedSegment === null) {
+              return null;
+            }
+            return (
+              <AppleWalletButton
+                onPress={createAddHandler(selectedSegment.pkpassUrl)}
+              />
+            );
+          }}
+        </WalletContext.Consumer>
+      </View>
     </React.Fragment>
   );
 }
@@ -46,6 +76,10 @@ const styles = StyleSheet.create({
   infoContainer: {
     paddingTop: 16,
     paddingBottom: 20,
+  },
+  walletButtonContainer: {
+    justifyContent: 'center',
+    paddingVertical: 20,
   },
   subtitle: {
     fontSize: 12,

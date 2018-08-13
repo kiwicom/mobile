@@ -12,14 +12,14 @@ export default function AppleWalletScene() {
   return (
     <React.Fragment>
       <HeaderImage />
-      <View style={[styles.content, styles.flex]}>
+      <View style={styles.content}>
         <View style={[styles.logoContainer, styles.borderBottom]}>
           <View style={styles.contentPadding}>
             <AirlineLogo />
           </View>
           {/* TODO: replace with zig zag separator */}
         </View>
-        <View style={[styles.contentPadding, styles.flex]}>
+        <View style={styles.contentPadding}>
           <WalletContent />
         </View>
       </View>
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.white,
     borderTopStartRadius: 10,
     borderTopEndRadius: 10,
-    marginTop: 240,
+    marginTop: -10,
     paddingTop: 25,
   },
   logoContainer: {
@@ -41,9 +41,6 @@ const styles = StyleSheet.create({
   },
   contentPadding: {
     paddingHorizontal: 20,
-  },
-  flex: {
-    flex: 1,
   },
   borderBottom: {
     borderBottomWidth: 1,
