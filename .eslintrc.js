@@ -58,7 +58,8 @@ module.exports = {
               'TouchableHighlight', // Touchable
               'TouchableNativeFeedback', // Touchable
               'TouchableOpacity', // Touchable
-              'Switch' //Switch
+              'Switch', //Switch
+              'Alert' // Alert (localization)
             ],
             message:
               "Please use '@kiwicom/mobile-shared' package instead.",
