@@ -21,7 +21,7 @@ type InsurancePrice = {|
   +price: {|
     +amount: number,
     +currency: string,
-  |},
+  |} | null,
 |};
 
 type Props = {|
@@ -30,7 +30,7 @@ type Props = {|
   +changes: Change[],
 |};
 
-function InsuranceRow(props: Props) {
+export function InsuranceRow(props: Props) {
   let translationId = '';
   switch (props.insuranceType) {
     case 'TRAVEL_PLUS': {
