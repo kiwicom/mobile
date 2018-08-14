@@ -117,7 +117,7 @@ export default withInsuranceContext(state => ({
 const styleSheet = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    marginVertical: 15,
+    marginBottom: 5,
   },
   item: {
     flexGrow: 1,
