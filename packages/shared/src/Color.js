@@ -113,6 +113,7 @@ export default {
   disabled: '#b8c1cc',
   disabledInput: '#fafbfc',
   labelDisabled: '#dfe4ea',
+  backgroundBody: '#f5f7f9',
 
   border: '#e8edf1',
 

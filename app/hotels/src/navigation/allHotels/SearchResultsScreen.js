@@ -15,21 +15,16 @@ import {
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
 import SearchResultsHeader from './SearchResultsHeader';
+import HotelsContext from '../../HotelsContext';
 
-type Props = {|
-  +navigation: NavigationType,
-  +onBackClicked: () => void,
+type PropsWithContext = {|
+  ...Props,
+  setIsNew: (isNew: boolean) => void,
 |};
 
-export default class SearchResultsScreen extends React.Component<Props> {
-  static navigationOptions = (props: Props) => {
-    function goToAllHotelsMap() {
-      props.navigation.navigate('AllHotelsMap');
-    }
-
-    return {
-      header: <SearchResultsHeader goToMap={goToAllHotelsMap} />,
-    };
+class SearchResultsScreen extends React.Component<PropsWithContext> {
+  componentDidMount = () => {
+    this.props.setIsNew(true);
   };
 
   render = () => (
@@ -65,3 +60,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+type Props = {|
+  +navigation: NavigationType,
+  +onBackClicked: () => void,
+|};
+
+export default function SearchResultsScreenWithContext(props: Props) {
+  return (
+    <HotelsContext.Consumer>
+      {({ actions: { setIsNew } }) => (
+        <SearchResultsScreen {...props} setIsNew={setIsNew} />
+      )}
+    </HotelsContext.Consumer>
+  );
+}
+
+SearchResultsScreenWithContext.navigationOptions = (props: Props) => {
+  function goToAllHotelsMap() {
+    props.navigation.navigate('AllHotelsMap');
+  }
+
+  return {
+    header: <SearchResultsHeader goToMap={goToAllHotelsMap} />,
+  };
+};
