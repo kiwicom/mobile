@@ -1,8 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
-import { StyleSheet, Color, Text, Price } from '@kiwicom/mobile-shared';
+import { View, TouchableWithoutFeedback } from 'react-native';
+import {
+  StyleSheet,
+  Color,
+  Text,
+  Price,
+  TextIcon,
+} from '@kiwicom/mobile-shared';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -14,29 +20,54 @@ type Props = {|
   +currency: string,
 |};
 
-function OrderSummary(props: Props) {
-  return (
-    <View style={styleSheet.wrapper}>
-      <InsuranceRow insuranceType="TRAVEL_PLUS" />
-      <InsuranceRow insuranceType="TRAVEL_BASIC" />
-      <InsuranceRow insuranceType="NONE" />
+type State = {|
+  isExpanded: boolean,
+|};
 
-      <SeparatorFullWidth color={Color.textLight} />
+class OrderSummary extends React.Component<Props, State> {
+  state = {
+    isExpanded: false,
+  };
 
-      <View style={styleSheet.row}>
-        <View style={styleSheet.item}>
-          <Text style={styleSheet.text}>
-            <Translation id="mmb.trip_services.order.total" />
-          </Text>
+  updateExpanded = () => {
+    this.setState(state => ({ isExpanded: !state.isExpanded }));
+  };
+
+  render() {
+    const styleExpanded = this.state.isExpanded
+      ? styleSheet.textIconExpanded
+      : null;
+    return (
+      <TouchableWithoutFeedback onPress={this.updateExpanded}>
+        <View style={styleSheet.wrapper}>
+          <TextIcon code="l" style={[styleSheet.textIcon, styleExpanded]} />
+          {this.state.isExpanded && (
+            <React.Fragment>
+              <InsuranceRow insuranceType="TRAVEL_PLUS" />
+              <InsuranceRow insuranceType="TRAVEL_BASIC" />
+              <InsuranceRow insuranceType="NONE" />
+              <View style={styleSheet.separatorFullWidth}>
+                <SeparatorFullWidth color={Color.textLight} />
+              </View>
+            </React.Fragment>
+          )}
+
+          <View style={styleSheet.row}>
+            <View style={styleSheet.item}>
+              <Text style={styleSheet.text}>
+                <Translation id="mmb.trip_services.order.total" />
+              </Text>
+            </View>
+            <Price
+              amount={this.props.amount}
+              currency={this.props.currency}
+              style={styleSheet.price}
+            />
+          </View>
         </View>
-        <Price
-          amount={props.amount}
-          currency={props.currency}
-          style={styleSheet.price}
-        />
-      </View>
-    </View>
-  );
+      </TouchableWithoutFeedback>
+    );
+  }
 }
 
 export default withInsuranceContext(state => ({
@@ -54,7 +85,7 @@ const styleSheet = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginVertical: 15,
+    marginBottom: 15,
   },
   item: {
     flexGrow: 1,
@@ -64,5 +95,19 @@ const styleSheet = StyleSheet.create({
   },
   price: {
     color: Color.white,
+  },
+  separatorFullWidth: {
+    marginVertical: 15,
+  },
+  textIcon: {
+    fontSize: 12,
+    color: Color.textLight,
+    alignSelf: 'center',
+    transform: [{ rotate: '180deg' }],
+    marginTop: 5,
+  },
+  textIconExpanded: {
+    transform: [],
+    marginTop: 0,
   },
 });
