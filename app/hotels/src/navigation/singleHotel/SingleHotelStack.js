@@ -15,7 +15,7 @@ import { Dimensions, Device } from '@kiwicom/mobile-shared';
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
 import GalleryGrid from '../../gallery/GalleryGrid';
-import Payment from '../../singleHotel/PaymentScreen';
+import { PaymentScreen } from '../../singleHotel/PaymentScreen';
 import AdditionalPropsInjector from './AdditionalPropsInjector';
 
 export default StackNavigator(
@@ -60,7 +60,7 @@ export default StackNavigator(
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
     },
     Payment: {
-      screen: withMappedProps(Payment),
+      screen: withMappedProps(PaymentScreen),
       navigationOptions: {
         mode: 'modal',
         headerTitle: (
