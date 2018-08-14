@@ -1,5 +1,9 @@
 // @flow
 
+/* eslint-disable react-native/no-unused-styles */
+// We need to deactivate this rule for now, doing this -> const styleSheet = isNew ? newStyles : styles;
+// Will confuse the linter, but all styles are being used
+
 import * as React from 'react';
 import { View } from 'react-native';
 import {
@@ -11,20 +15,23 @@ import {
 } from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 
-type Props = {|
-  +title: TranslationType,
-  +isActive: boolean,
-  +onPress: () => void,
-  +icon?: React.Element<typeof Icon>,
+import HotelsContext from '../HotelsContext';
+
+type PropsWithContext = {|
+  ...Props,
+  isNew: boolean,
 |};
 
-export default function FilterButton(props: Props) {
+const FilterButton = (props: PropsWithContext) => {
   let icon = props.icon;
-  const { title, isActive, onPress } = props;
+  const { title, isActive, onPress, isNew } = props;
+  const styleSheet = isNew ? newStyles : styles;
+  const iconColor = isNew ? Color.ink.normal : Color.brandDark;
+  const iconColorActive = isNew ? Color.inputBackground : Color.white;
 
   if (icon) {
     icon = React.cloneElement(icon, {
-      color: isActive ? Color.white : Color.brandDark,
+      color: isActive ? iconColorActive : iconColor,
     });
   }
 
@@ -45,9 +52,24 @@ export default function FilterButton(props: Props) {
       </View>
     </Button>
   );
+};
+
+type Props = {|
+  +title: TranslationType,
+  +isActive: boolean,
+  +onPress: () => void,
+  +icon?: React.Element<typeof Icon>,
+|};
+
+export default function FilterButtonWithContext(props: Props) {
+  return (
+    <HotelsContext.Consumer>
+      {({ isNew }) => <FilterButton {...props} isNew={isNew} />}
+    </HotelsContext.Consumer>
+  );
 }
 
-const styleSheet = StyleSheet.create({
+const styles = StyleSheet.create({
   activeButtonGroup: {
     backgroundColor: Color.brand,
   },
@@ -64,6 +86,38 @@ const styleSheet = StyleSheet.create({
   },
   buttonText: {
     color: Color.brandDark,
+  },
+  icon: {
+    paddingEnd: 5,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+});
+
+/**
+ * Used for new design
+ */
+const newStyles = StyleSheet.create({
+  activeButtonGroup: {
+    backgroundColor: Color.ink.normal,
+  },
+  buttonGroup: {
+    backgroundColor: Color.backgroundBody,
+    marginEnd: 5,
+    borderColor: Color.inputBackground,
+    borderWidth: StyleSheet.hairlineWidth,
+    ios: {
+      height: 36,
+      borderRadius: 2,
+    },
+  },
+  activeButtonText: {
+    color: Color.inputBackground,
+  },
+  buttonText: {
+    color: Color.ink.normal,
   },
   icon: {
     paddingEnd: 5,

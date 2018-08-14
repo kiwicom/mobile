@@ -1,8 +1,8 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 
 import HotelsContext from '../HotelsContext';
 import StarsFilter from './stars/StarsFilter';
@@ -23,6 +23,7 @@ type PropsWithContext = {|
   +activeFilters: ActiveFilters,
   +onChange: OnChangeFilterParams => void,
   +filter: FilterParams,
+  +isNew: boolean,
 |};
 
 /**
@@ -48,11 +49,12 @@ class FilterStripe extends React.Component<PropsWithContext> {
   storeScrollViewRef = ref => (this.scrollViewRef = ref);
 
   render = () => {
+    const newStyle = this.props.isNew ? styles.backgroundNew : null;
     return (
       <View style={styles.view}>
         <ScrollView
           ref={this.storeScrollViewRef}
-          contentContainerStyle={styles.scrollView}
+          contentContainerStyle={[styles.scrollView, newStyle]}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
@@ -103,12 +105,15 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
     },
   },
+  backgroundNew: {
+    backgroundColor: Color.white,
+  },
 });
 
 export default function FilterStripeWithContext() {
   return (
     <HotelsContext.Consumer>
-      {({ currency }) => (
+      {({ currency, isNew }) => (
         <HotelsFilterContext.Consumer>
           {({ activeFilters, filterParams, actions: { setFilter } }) => (
             <FilterStripe
@@ -116,6 +121,7 @@ export default function FilterStripeWithContext() {
               onChange={setFilter}
               filter={filterParams}
               activeFilters={activeFilters}
+              isNew={isNew}
             />
           )}
         </HotelsFilterContext.Consumer>

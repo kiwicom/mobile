@@ -10,6 +10,10 @@ const defaultState = {
   roomsConfiguration: null,
   currency: '',
   cityName: null,
+  isNew: false,
+  actions: {
+    setIsNew: () => {},
+  },
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
@@ -42,6 +46,10 @@ type State = {|
   +checkout: Date | null,
   +roomsConfiguration: RoomConfigurationType | null,
   +currency: string,
+  isNew: boolean,
+  +actions: {|
+    +setIsNew: (isNew: boolean) => void,
+  |},
 |};
 
 const validateDate = (input: string): boolean => {
@@ -69,8 +77,17 @@ class Provider extends React.Component<Props, State> {
       roomsConfiguration: props.roomsConfiguration || null,
       currency: props.currency,
       cityName: props.cityName || null,
+      isNew: false,
+      actions: {
+        setIsNew: this.setIsNew,
+      },
     };
   }
+
+  setIsNew = (isNew: boolean) => {
+    this.setState({ isNew });
+  };
+
   render = () => (
     <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
   );
