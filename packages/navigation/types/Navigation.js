@@ -43,7 +43,6 @@ type MMBStackNavigatorNames =
   | 'mmb.tickets.e_ticket'
   | 'mmb.tickets.boarding_pass'
   | 'mmb.timeline.invoice'
-  | 'mmb.explore'
   | 'DetailScreen'
   | 'TravelDocumentScreen'
   | 'TravelDocumentModalScreen'

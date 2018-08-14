@@ -15,10 +15,6 @@ export default class TripInfoMenuGroup extends React.Component<Props> {
     this.props.openSubmenu('mmb.main_menu.trip_info.tickets', 'mmb.tickets');
   };
 
-  handleOpenExploreSubmenu = () => {
-    this.props.openSubmenu('mmb.main_menu.trip_info.explore', 'mmb.explore');
-  };
-
   handleOpenTimelineSubmenu = () => {
     this.props.openSubmenu('mmb.main_menu.trip_info.timeline', 'mmb.timeline');
   };
@@ -31,13 +27,6 @@ export default class TripInfoMenuGroup extends React.Component<Props> {
         isActive={this.props.activeId === 'mmb.main_menu.trip_info.tickets'}
         icon={<TextIcon code="." />}
         description={<Translation id="mmb.tickets.boarding_passes" />}
-      />
-      <MenuItem
-        onPress={this.handleOpenExploreSubmenu}
-        title={<Translation id="mmb.landing_page.maw.action_button.explore" />}
-        isActive={this.props.activeId === 'mmb.main_menu.trip_info.explore'}
-        icon={<TextIcon code="&#xe07e;" />}
-        description={<Translation id="mmb.subtitle.airport_and_destination" />}
       />
       <MenuItem
         onPress={this.handleOpenTimelineSubmenu}

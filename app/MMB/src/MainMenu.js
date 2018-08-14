@@ -15,7 +15,6 @@ import PassengerMenuGroup from './menuGroups/passengerMenuGroup/PassengerMenuGro
 import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
 import TripInfoMenuGroup from './menuGroups/TripInfoMenuGroup';
 import MissingInformation from './components/MissingInformation';
-import ExploreCity from './components/exploreCity/ExploreCity';
 import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
 
 type Props = {|
@@ -79,7 +78,6 @@ class MainMenu extends React.Component<Props, State> {
         {!isPastBooking && (
           <React.Fragment>
             <MissingInformation data={this.props.data} />
-            <ExploreCity data={this.props.data} />
           </React.Fragment>
         )}
 
@@ -115,7 +113,6 @@ export default createRefetchContainer(
       databaseId
       authToken
       isPastBooking
-      ...ExploreCity
       ...Header
       ...PassengerMenuGroup
       ...MissingInformation

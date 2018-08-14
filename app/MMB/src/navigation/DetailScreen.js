@@ -21,7 +21,6 @@ import TripServices, {
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
 import TripOverviewTablet from '../scenes/tripOverview/TripOverviewTablet';
 import Timeline, { TimelineSubmenuItems } from '../scenes/timeline/Timeline';
-import Explore from '../scenes/explore/Explore';
 
 export const MenuComponents = {
   'mmb.trip_overview': {
@@ -83,16 +82,6 @@ export const MenuComponents = {
       return (
         <HeaderTitle>
           <Translation id="mmb.menu.my_tickets" />
-        </HeaderTitle>
-      );
-    },
-  },
-  'mmb.explore': {
-    screen: Explore,
-    headerTitle: function ExploreSubmenuHeaderTitle() {
-      return (
-        <HeaderTitle>
-          <Translation id="mmb.menu.explore" />
         </HeaderTitle>
       );
     },
