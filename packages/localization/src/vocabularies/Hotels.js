@@ -17,6 +17,8 @@ export default {
   'hotels_search.all_hotels.please_search':
     'Please search for your desired destination.',
   'hotels_search.all_hotels_search_list.no_hotels_found': 'No hotels found.',
+  'hotels_search.all_hotels_search.date_error':
+    'Oops, there seems to be something wrong with the chosen dates',
   'hotels_search.all_hotels_map.allow_localization_or_search':
     'Please go to settings and allow localization, or go back and search for your desired destination',
   'hotels_search.date_picker.select_date': 'Select date',
