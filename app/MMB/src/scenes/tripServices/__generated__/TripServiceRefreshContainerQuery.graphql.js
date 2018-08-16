@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e27336f6fed51fa9d52dcde010d2a663
+ * @relayHash d84a2e649d26142d2d8cd7890820ac79
  */
 
 /* eslint-disable */
@@ -10,11 +10,11 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type TripServiceRefreshContainer$ref = any;
-export type TripServicesQueryVariables = {|
+export type TripServiceRefreshContainerQueryVariables = {|
   bookingId: number,
   authToken: string,
 |};
-export type TripServicesQueryResponse = {|
+export type TripServiceRefreshContainerQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: TripServiceRefreshContainer$ref
   |}
@@ -23,7 +23,7 @@ export type TripServicesQueryResponse = {|
 
 
 /*
-query TripServicesQuery(
+query TripServiceRefreshContainerQuery(
   $bookingId: Int!
   $authToken: String!
 ) {
@@ -180,13 +180,13 @@ v4 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "TripServicesQuery",
+  "name": "TripServiceRefreshContainerQuery",
   "id": null,
-  "text": "query TripServicesQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query TripServiceRefreshContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "TripServicesQuery",
+    "name": "TripServiceRefreshContainerQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -211,7 +211,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "TripServicesQuery",
+    "name": "TripServiceRefreshContainerQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -317,5 +317,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f59e774fafcc13db9a1e7d1c61b39b82';
+(node/*: any*/).hash = '8fd76281408064e7cfec7279b1fe93ac';
 module.exports = node;

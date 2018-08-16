@@ -2,22 +2,11 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { ScrollView } from 'react-native';
-import { TextIcon, WebView } from '@kiwicom/mobile-shared';
+import { WebView } from '@kiwicom/mobile-shared';
 import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
-import {
-  TitledMenuGroup,
-  TodoMenuItem,
-  HeaderTitle,
-  type RouteNamesType,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
-import idx from 'idx';
+import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 
-import LoungeMenuItem from './LoungeMenuItem';
-import ParkingMenuItem from './ParkingMenuItem';
-import InsuranceMenuItem from './InsuranceMenuItem';
-import CarRentalMenuItem from './CarRentalMenuItem';
+import TripServiceRefreshContainer from './TripServiceRefreshContainer';
 import InsuranceOverviewSceneContainer from './insurance/insuranceOverviewScene/InsuranceOverviewSceneContainer';
 import InsuranceSelectionSceneContainer from './insurance/insuranceSelectionScene/InsuranceSelectionSceneContainer';
 import PaymentScene from './insurance/PaymentScene';
@@ -32,64 +21,8 @@ type Props = {|
 |};
 
 export default class TripServices extends React.Component<Props> {
-  navigate = (key: RouteNamesType, params?: Object) => {
-    this.props.navigation.navigate(key, params);
-  };
-
-  openWebview = (url: string) => {
-    this.navigate('mmb.trip_services.webview', {
-      url,
-    });
-  };
-
-  openInsurance = () => {
-    this.navigate('mmb.trip_services.insurance');
-  };
-
   renderLocalServices = (rendererProps: TripServicesQueryResponse) => {
-    const availableWhitelabeledServices = idx(
-      rendererProps,
-      _ => _.singleBooking.availableWhitelabeledServices,
-    );
-
-    return (
-      <ScrollView>
-        {/* TODO: ordered services - how does it work here? */}
-
-        <TitledMenuGroup
-          title={<Translation id="mmb.trip_services.general_services" />}
-        >
-          <InsuranceMenuItem onOpenInsurance={this.openInsurance} />
-        </TitledMenuGroup>
-
-        <TitledMenuGroup
-          title={<Translation id="mmb.trip_services.local_services" />}
-        >
-          <CarRentalMenuItem
-            data={availableWhitelabeledServices}
-            onOpenWebview={this.openWebview}
-          />
-          <TodoMenuItem
-            title={<Translation id="mmb.trip_services.local_services.hotel" />}
-            icon={<TextIcon code="&#xe029;" />}
-          />
-          <LoungeMenuItem
-            data={availableWhitelabeledServices}
-            onOpenWebview={this.openWebview}
-          />
-          <ParkingMenuItem
-            data={availableWhitelabeledServices}
-            onOpenWebview={this.openWebview}
-          />
-          <TodoMenuItem
-            title={
-              <Translation id="mmb.trip_services.local_services.transportation" />
-            }
-            icon={<TextIcon code="<" />}
-          />
-        </TitledMenuGroup>
-      </ScrollView>
-    );
+    return <TripServiceRefreshContainer data={rendererProps.singleBooking} />;
   };
 
   render = () => (
@@ -100,11 +33,7 @@ export default class TripServices extends React.Component<Props> {
             query TripServicesQuery($bookingId: Int!, $authToken: String!) {
               singleBooking(id: $bookingId, authToken: $authToken) {
                 ... on BookingInterface {
-                  availableWhitelabeledServices {
-                    ...CarRentalMenuItem
-                    ...LoungeMenuItem
-                    ...ParkingMenuItem
-                  }
+                  ...TripServiceRefreshContainer
                 }
               }
             }
