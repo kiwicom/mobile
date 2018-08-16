@@ -7,7 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import DetailShareButton from './DetailShareButton';
 import MainMenuContainer from '../MainMenuContainer';
-import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help';
+import HelpSubmenu, { HelpSubmenuItems } from '../scenes/help/HelpContainer';
 import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import TicketScene, {
   TicketSceneSubMenus,
