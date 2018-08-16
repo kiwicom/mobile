@@ -163,6 +163,13 @@ export const TripServicesSubmenuItems = {
     screen: function TripServicesSubmenuInsuranceRefund() {
       return <RefundScene />;
     },
+    headerTitle: function TripServicesSubmenuInsuranceRefundHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.trip_services.insurance.refund.title" />
+        </HeaderTitle>
+      );
+    },
   },
   'mmb.trip_services.insurance.selection.more_info': {
     screen: function TripServicesSubmenuInsuranceSelectionMoreInfo({
