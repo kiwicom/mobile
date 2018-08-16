@@ -212,6 +212,13 @@ export default {
   'mmb.trip_services.insurance.selection.more_info.terms':
     'Terms and Conditions',
 
+  'mmb.trip_services.insurance.refund.title': 'Refund',
+  'mmb.trip_services.insurance.refund.cancellation_requested':
+    'Insurance cancellation requested',
+  'mmb.trip_services.insurance.refund.cancellation_requested.comment':
+    "It may take a few hours to process your request. We'll email you as soon as it's complete.",
+  'mmb.trip_services.insurance.refund.confirm': 'Confirm',
+
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',
   'mmb.support.phone.all_numbers': 'All Numbers',
