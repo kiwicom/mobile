@@ -778,6 +778,14 @@ enum CustomerBookingsOnlyEnum {
   PAST
 }
 
+type CustomerSupportNumber {
+  """Customer Support phone number locale territory"""
+  localeTerritory: String
+
+  """Customer Support phone number"""
+  number: String
+}
+
 """
 A date string, such as 2007-12-03, compliant with the `full-date` format
 outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
@@ -1597,7 +1605,6 @@ type Leg {
   id: ID!
   airline: Airline
   operatingAirline: OperatingAirline
-  vehicle: Vehicle
   arrival: RouteStop
   departure: RouteStop
 
@@ -1611,6 +1618,7 @@ type Leg {
 
   """Determines whether Leg is related to return flight."""
   isReturn: Boolean
+  vehicle: Vehicle
   type: VehicleType
 
   """Information about who covers the transfer"""
@@ -2070,6 +2078,9 @@ type RootQuery {
     before: String
     last: Int
   ): BookingInterfaceConnection
+
+  """Get customer support number for your locale"""
+  customerSupportNumber: CustomerSupportNumber
 
   """Retrieve single FAQ article."""
   FAQArticle(

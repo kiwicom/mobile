@@ -295,6 +295,8 @@ export default {
   'mmb.sub_menu.help.title': 'Support',
   'mmb.sub_menu.help.help': 'Help',
   'mmb.sub_menu.help.call_support': 'Call Support',
+  'mmb.sub_menu.help.call_support.failed':
+    'Impossible to make a call. Try again later.',
 
   'mmb.main_menu.manage.other': 'Other',
   'mmb.main_menu.manage.other.description':
