@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateFormatter, Translation } from '@kiwicom/mobile-localization';
 import {
   withNavigation,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
+import { GeneralError } from '@kiwicom/mobile-shared';
 
 import HotelsFilterContext from '../HotelsFilterContext';
 import {
@@ -57,8 +58,13 @@ class NewAllHotelsSearch extends React.Component<Props> {
     } = this.props;
 
     if (checkin === null || checkout === null) {
-      // TODO: Show error
-      return null;
+      return (
+        <GeneralError
+          errorMessage={
+            <Translation id="hotels_search.all_hotels_search.date_error" />
+          }
+        />
+      );
     }
     return (
       <HotelsFilterContext.Consumer>
