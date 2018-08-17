@@ -1,8 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Text, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { type TranslationType } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +children: ?TranslationType,
@@ -20,6 +21,6 @@ export default Note;
 const styles = StyleSheet.create({
   note: {
     fontSize: 13,
-    color: Color.ink.light,
+    color: defaultTokens.paletteInkLight,
   },
 });

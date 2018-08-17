@@ -5,6 +5,7 @@ import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { StatusBadge as StatusBadgeType } from './__generated__/StatusBadge.graphql';
 
@@ -74,17 +75,17 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   greenBadge: {
-    backgroundColor: Color.green.normal,
+    backgroundColor: defaultTokens.paletteGreenNormal,
   },
   blackBadge: {
-    backgroundColor: Color.black,
+    backgroundColor: Color.black, // TODO: Consult designer
   },
   redBadge: {
-    backgroundColor: Color.red.normal,
+    backgroundColor: defaultTokens.paletteRedNormal,
   },
   badgeText: {
     fontSize: 10,
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
     padding: 2.5,
   },
 });

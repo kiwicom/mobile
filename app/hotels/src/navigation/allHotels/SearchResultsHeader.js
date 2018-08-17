@@ -5,11 +5,11 @@ import { View } from 'react-native';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import {
   StyleSheet,
-  Color,
   Text,
   AdaptableBadge,
   AdaptableLayout,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MapHeaderButton from './MapHeaderButton';
 import HotelsContext from '../../HotelsContext';
@@ -50,7 +50,7 @@ export default function SearchResultsHeader(props: Props) {
                   renderOnNarrow={
                     <MapHeaderButton
                       onPress={props.goToMap}
-                      iconColor={Color.ink.light}
+                      iconColor={defaultTokens.paletteInkLight}
                     />
                   }
                 />
@@ -65,7 +65,7 @@ export default function SearchResultsHeader(props: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     paddingTop: 20,
     paddingStart: 16,
     android: {
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     },
     ios: {
       borderBottomWidth: StyleSheet.hairlineWidth,
-      borderBottomColor: Color.border,
+      borderBottomColor: defaultTokens.borderColorCard,
     },
   },
   row: {
@@ -85,16 +85,16 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: '800',
     fontSize: 16,
-    color: Color.ink.dark,
+    color: defaultTokens.colorTextAttention,
     marginBottom: 3,
     paddingTop: 8,
   },
   badgeText: {
     fontSize: 12,
-    color: Color.ink.normal,
+    color: defaultTokens.colorTextPrimary,
   },
   badge: {
-    backgroundColor: Color.inputBackground,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     marginBottom: 12,
   },
 });

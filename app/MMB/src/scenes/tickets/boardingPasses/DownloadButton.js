@@ -9,6 +9,7 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { DownloadButton as BoardingPassType } from './__generated__/DownloadButton.graphql';
 import BoardingPassInformation from './boardingPassInformation/BoardingPassInformation';
@@ -56,15 +57,15 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: Color.brand,
+    backgroundColor: defaultTokens.paletteProductNormal,
     height: 44,
     borderRadius: 4,
     marginTop: 15,
   },
   buttonText: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
   disabled: {
-    backgroundColor: Color.disabled,
+    backgroundColor: Color.disabled, // TODO: Consult designer
   },
 });

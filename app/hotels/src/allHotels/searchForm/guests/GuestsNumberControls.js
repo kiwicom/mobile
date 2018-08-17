@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
@@ -6,10 +6,10 @@ import { StyleSheet, Color, NumberControl } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  adultsCount: number,
-  childCount: number,
-  handleAdultChange: (adultsCount: number) => void,
-  handleChildrenChange: (number: number) => void,
+  +adultsCount: number,
+  +childCount: number,
+  +handleAdultChange: (adultsCount: number) => void,
+  +handleChildrenChange: (number: number) => void,
 |};
 
 export default function GuestsNumberControl(props: Props) {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     paddingStart: 15,
-    borderBottomColor: Color.backgroundGray,
+    borderBottomColor: Color.backgroundGray, // TODO: Consult with designer
     borderBottomWidth: 1,
   },
   numberPicker: {

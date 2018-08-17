@@ -18,6 +18,7 @@ import {
   type RouteNamesType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { ETicket as AssetsType } from './__generated__/ETicket.graphql';
 import TicketHeader from './components/TicketHeader';
@@ -98,14 +99,14 @@ const styles = StyleSheet.create({
     marginTop: 21,
   },
   button: {
-    backgroundColor: Color.brand,
+    backgroundColor: defaultTokens.paletteProductNormal,
     height: 44,
     borderRadius: 4,
   },
   disabled: {
-    backgroundColor: Color.disabled,
+    backgroundColor: Color.disabled, // TODO: Consult desinger
   },
   buttonText: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
 });

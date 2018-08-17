@@ -1,13 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import {
-  StyleSheet,
-  Icon,
-  Color,
-  type StylePropType,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Icon, type StylePropType } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import RenderAlert from './RenderAlert';
 
@@ -26,7 +22,11 @@ export default function Alert(props: Props) {
       return (
         <RenderAlert
           icon={
-            <Icon name="warning" size={ICON_SIZE} color={Color.red.monza} />
+            <Icon
+              name="warning"
+              size={ICON_SIZE}
+              color={defaultTokens.colorAlertIconCritical}
+            />
           }
           title={props.title}
           titleStyle={[styles.titleDanger, props.titleStyle]}
@@ -42,7 +42,7 @@ export default function Alert(props: Props) {
             <Icon
               name="warning"
               size={ICON_SIZE}
-              color={Color.orange.gamboge}
+              color={defaultTokens.colorAlertIconWarning}
             />
           }
           title={props.title}
@@ -59,7 +59,7 @@ export default function Alert(props: Props) {
             <Icon
               size={ICON_SIZE}
               name="error-outline"
-              color={Color.green.normal}
+              color={defaultTokens.colorAlertIconSuccess}
               style={styles.successIcon}
             />
           }
@@ -77,24 +77,24 @@ export default function Alert(props: Props) {
 
 const styles = StyleSheet.create({
   containerDanger: {
-    backgroundColor: Color.red.transparent.monza.$15,
+    backgroundColor: defaultTokens.backgroundAlertCritical,
   },
   successIcon: {
     transform: [{ rotate: '180deg' }],
   },
   containerSuccess: {
-    backgroundColor: Color.green.light,
+    backgroundColor: defaultTokens.backgroundAlertSuccess,
   },
   titleSuccess: {
-    color: Color.green.dark,
+    color: defaultTokens.colorTextAlertSuccess,
   },
   containerWarning: {
-    backgroundColor: Color.orange.transparent.gamboge.$15,
+    backgroundColor: defaultTokens.backgroundAlertWarning,
   },
   titleWarning: {
-    color: Color.orange.gamboge,
+    color: defaultTokens.colorTextAlertWarning,
   },
   titleDanger: {
-    color: Color.red.monza,
+    color: defaultTokens.colorTextAlertCritical,
   },
 });

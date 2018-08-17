@@ -1,15 +1,16 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { Text, StyleSheet, Touchable, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  photoNumber: number,
-  totalPhotos: number,
-  hotelName: string,
-  onClose: () => void,
+  +photoNumber: number,
+  +totalPhotos: number,
+  +hotelName: string,
+  +onClose: () => void,
 |};
 
 export default class PhotosStripeHeader extends React.Component<Props> {
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     textAlign: 'center',
-    color: 'white',
+    color: defaultTokens.paletteWhite,
     fontSize: 40,
     lineHeight: 40,
     marginTop: -10,
@@ -59,18 +60,18 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    color: 'white',
+    color: defaultTokens.paletteWhite,
     fontWeight: 'bold',
     textShadowOffset: {
       width: 1,
       height: 1,
     },
-    textShadowColor: Color.black,
+    textShadowColor: Color.black, // TODO: Consult designer
     textShadowRadius: 2,
   },
   subTitle: {
     textAlign: 'center',
-    color: 'grey',
+    color: 'grey', // TODO: Consult designer
     fontSize: 12,
   },
   voidRight: {

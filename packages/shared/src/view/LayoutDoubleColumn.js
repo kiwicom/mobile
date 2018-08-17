@@ -93,7 +93,7 @@ const styleSheet = StyleSheet.create({
     width: 520,
     maxWidth: '50%',
     borderEndWidth: 1,
-    borderEndColor: Color.grey.geyser,
+    borderEndColor: Color.grey.geyser, // TODO: Consult designer
   },
   container: {
     flex: 1,

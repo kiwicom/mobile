@@ -22,28 +22,6 @@ type Props = {|
   availableRoom: RoomBadgesTypes,
 |};
 
-const styles = StyleSheet.create({
-  badgeContainer: {
-    backgroundColor: Color.green.transparent.lapalma.$15,
-    marginTop: 5,
-  },
-  badgeText: {
-    color: Color.green.lapalma,
-    fontSize: 10,
-  },
-  iconStyle: {
-    color: Color.green.lapalma,
-    fontSize: 10,
-    ios: {
-      alignSelf: 'flex-end',
-    },
-    android: {
-      alignSelf: 'center',
-    },
-    marginEnd: 5,
-  },
-});
-
 export const RoomBadges = (props: Props) => {
   const isBreakfastIncluded = idx(
     props.availableRoom,
@@ -93,3 +71,25 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  badgeContainer: {
+    backgroundColor: Color.green.transparent.lapalma.$15, // TODO: Consult designer
+    marginTop: 5,
+  },
+  badgeText: {
+    color: Color.green.lapalma, // TODO: Consult designer
+    fontSize: 10,
+  },
+  iconStyle: {
+    color: Color.green.lapalma, // TODO: Consult designer
+    fontSize: 10,
+    ios: {
+      alignSelf: 'flex-end',
+    },
+    android: {
+      alignSelf: 'center',
+    },
+    marginEnd: 5,
+  },
+});

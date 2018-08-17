@@ -9,13 +9,8 @@ import {
   withNavigation,
 } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
-import {
-  StyleSheet,
-  SimpleCard,
-  Text,
-  Button,
-  Color,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, SimpleCard, Text, Button } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Alert from '../components/alert/Alert';
 import BookingDetailContext from '../context/BookingDetailContext';
@@ -23,7 +18,7 @@ import type { MissingInformation as PassengerType } from './__generated__/Missin
 
 type PropsWithContext = {|
   ...Props,
-  setIsMissingDocumentId: (isMissingDocumentId: boolean) => void,
+  +setIsMissingDocumentId: (isMissingDocumentId: boolean) => void,
 |};
 
 export class MissingInformation extends React.Component<PropsWithContext> {
@@ -131,6 +126,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: '600',
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
 });

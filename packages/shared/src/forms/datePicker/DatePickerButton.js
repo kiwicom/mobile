@@ -7,6 +7,7 @@ import {
   type DateFormatterFunctions,
 } from '@kiwicom/mobile-localization';
 import { View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Touchable from '../../Touchable';
 import StyleSheet from '../../PlatformStyleSheet';
@@ -46,7 +47,7 @@ export default function DatePickerButton(props: Props) {
 
 const styles = StyleSheet.create({
   dateTouchBody: {
-    backgroundColor: Color.inputBackground,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     android: {
       height: 48,
       borderRadius: 2,
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     marginStart: 10,
   },
   dateText: {
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
     android: {
       fontSize: 16,
     },
@@ -74,6 +75,6 @@ const styles = StyleSheet.create({
     marginStart: 5,
   },
   disabled: {
-    backgroundColor: Color.disabledInput,
+    backgroundColor: Color.disabledInput, // TODO: Consult designer
   },
 });

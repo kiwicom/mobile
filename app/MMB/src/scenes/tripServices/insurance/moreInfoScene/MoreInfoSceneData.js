@@ -1,11 +1,11 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, Color, TextIcon } from '@kiwicom/mobile-shared';
 
 const styles = StyleSheet.create({
-  icon: { color: Color.black },
+  icon: { color: Color.black }, // TODO: Consult designer
 });
 
 export default [

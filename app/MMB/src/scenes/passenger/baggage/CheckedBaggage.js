@@ -49,7 +49,7 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   icon: {
-    color: Color.black,
+    color: Color.black, // TODO: Consult designer
     fontSize: 14,
   },
 });

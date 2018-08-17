@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import {
@@ -9,14 +9,15 @@ import {
   Text,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StarsCheckbox from './StarsCheckbox';
 
 type Props = {|
-  stars: number[],
-  onClose: () => void,
-  onSave: (number[]) => void,
-  isVisible: boolean,
+  +stars: number[],
+  +onClose: () => void,
+  +onSave: (number[]) => void,
+  +isVisible: boolean,
 |};
 
 type State = {|
@@ -90,13 +91,13 @@ export default class StarsPopup extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   title: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     paddingBottom: 5,
     fontSize: 12,
   },
   delimiter: {
     borderBottomWidth: 0.5,
-    borderBottomColor: Color.backgroundGray,
+    borderBottomColor: Color.backgroundGray, // TODO: Consult designer
   },
   unrated: {
     marginStart: 3,

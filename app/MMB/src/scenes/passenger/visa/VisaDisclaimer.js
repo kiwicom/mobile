@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 export default function VisaDisclaimer() {
   return (
@@ -15,6 +16,6 @@ export default function VisaDisclaimer() {
 const styles = StyleSheet.create({
   text: {
     fontSize: 10,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

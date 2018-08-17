@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { type AlertTranslationType } from '@kiwicom/mobile-localization';
 import Dash from 'react-native-dash';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineDeparture from './TimelineDeparture';
 import TimelineArrival from './TimelineArrival';
@@ -56,7 +57,7 @@ function renderLegs(legs) {
     const itemWrapperStyle = {};
 
     if (shouldDrawSolidLine === true) {
-      itemWrapperStyle.borderColor = Color.ink.light;
+      itemWrapperStyle.borderColor = defaultTokens.paletteInkLight;
       itemWrapperStyle.borderStartWidth = lineWidth;
     }
 
@@ -69,7 +70,7 @@ function renderLegs(legs) {
             dashGap={lineWidth * 2}
             dashLength={lineWidth}
             dashThickness={lineWidth}
-            dashColor={Color.ink.light}
+            dashColor={defaultTokens.paletteInkLight}
             style={styles.dashedLine}
           />
         )}
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     start: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Color.brand,
+    backgroundColor: defaultTokens.paletteProductNormal,
   },
   itemWrapper: {
     flex: 1,

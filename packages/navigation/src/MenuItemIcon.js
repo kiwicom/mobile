@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Color, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   invertColors: boolean,
@@ -34,12 +35,12 @@ const styleSheet = StyleSheet.create({
     },
     ios: {
       fontSize: 14,
-      color: Color.grey.$600,
+      color: Color.grey.$600, // TODO: Consult designer
     },
   },
   iconInverted: {
     ios: {
-      color: Color.white,
+      color: defaultTokens.paletteWhite,
     },
   },
 });

@@ -1,8 +1,8 @@
 // @flow strict
 
 import * as React from 'react';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from '../Color';
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../index';
@@ -44,7 +44,7 @@ const styleSheet = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 11,
-    backgroundColor: Color.brand,
+    backgroundColor: defaultTokens.paletteProductNormal,
     android: {
       height: 40,
       borderRadius: 2,

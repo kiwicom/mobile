@@ -28,7 +28,7 @@ exports[`Slider renders 1`] = `
     markerOffsetY={0}
     markerStyle={
       Object {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#fff",
         "borderColor": "#bdbdbd",
         "borderRadius": 15,
         "borderWidth": 1,
@@ -51,7 +51,7 @@ exports[`Slider renders 1`] = `
     onValuesChangeStart={[Function]}
     pressedMarkerStyle={
       Object {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#fff",
         "borderColor": "#bdbdbd",
         "borderRadius": 15,
         "borderWidth": 1,
@@ -132,7 +132,7 @@ exports[`Slider renders correctly with all values equal 1`] = `
     markerOffsetY={0}
     markerStyle={
       Object {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#fff",
         "borderColor": "#bdbdbd",
         "borderRadius": 15,
         "borderWidth": 1,
@@ -155,7 +155,7 @@ exports[`Slider renders correctly with all values equal 1`] = `
     onValuesChangeStart={[Function]}
     pressedMarkerStyle={
       Object {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#fff",
         "borderColor": "#bdbdbd",
         "borderRadius": 15,
         "borderWidth": 1,
@@ -236,7 +236,7 @@ exports[`Slider renders with endValue undefined 1`] = `
     markerOffsetY={0}
     markerStyle={
       Object {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#fff",
         "borderColor": "#bdbdbd",
         "borderRadius": 15,
         "borderWidth": 1,
@@ -259,7 +259,7 @@ exports[`Slider renders with endValue undefined 1`] = `
     onValuesChangeStart={[Function]}
     pressedMarkerStyle={
       Object {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#fff",
         "borderColor": "#bdbdbd",
         "borderRadius": 15,
         "borderWidth": 1,

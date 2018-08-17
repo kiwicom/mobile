@@ -4,8 +4,9 @@ import * as React from 'react';
 import { View, Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
-import { TextIcon, StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import AppleWallet from './appleWallet/AppleWallet';
 import DownloadButton from './DownloadButton';
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 12,
     fontWeight: '600',
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   dateContainer: {
     marginEnd: 10,
@@ -141,7 +142,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   icon: {
-    color: Color.textLight,
+    color: defaultTokens.colorIconSecondary,
     fontSize: 8,
     alignSelf: 'center',
     marginHorizontal: 8,

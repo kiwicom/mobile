@@ -1,11 +1,12 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TitleTranslation from '../../components/TitleTranslation';
 import type { Passenger as PassengerType } from './__generated__/Passenger.graphql';
@@ -52,6 +53,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   passengerBirthday: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

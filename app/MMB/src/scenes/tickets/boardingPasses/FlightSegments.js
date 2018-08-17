@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { TextIcon, StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FlightFromTo from './FlightFromTo';
 import type { FlightSegments as FlightSegmentsType } from './__generated__/FlightSegments.graphql';
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     marginTop: 9,
   },
   text: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     fontSize: 12,
     alignSelf: 'center',
   },

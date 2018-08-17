@@ -4,19 +4,20 @@ import * as React from 'react';
 import { View } from 'react-native';
 import type { OnLayout } from '@kiwicom/mobile-shared';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  onChange: (number[]) => void,
-  min: number,
-  max: number,
-  startValue: number,
-  endValue?: number,
-  step?: number,
-  snapped?: boolean,
-  style?: Object,
+  +onChange: (number[]) => void,
+  +min: number,
+  +max: number,
+  +startValue: number,
+  +endValue?: number,
+  +step?: number,
+  +snapped?: boolean,
+  +style?: Object,
 |};
 
 type State = {|
@@ -99,18 +100,28 @@ export default class Slider extends React.Component<Props, State> {
 const SLIDER_PADDING = 20;
 
 const styles = StyleSheet.create({
-  selected: { backgroundColor: Color.brand },
-  unselected: { backgroundColor: Color.grey.$400 },
-  track: { borderRadius: 5, height: 2 },
+  selected: {
+    backgroundColor: defaultTokens.paletteProductNormal,
+  },
+  unselected: {
+    backgroundColor: Color.grey.$400, // TODO: Consult designer
+  },
+  track: {
+    borderRadius: 5,
+    height: 2,
+  },
   marker: {
     height: 30,
     width: 30,
     borderRadius: 15,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     borderWidth: 1,
-    borderColor: Color.grey.$400,
-    shadowColor: Color.black,
-    shadowOffset: { width: 0, height: 3 },
+    borderColor: Color.grey.$400, // TODO: Consult designer
+    shadowColor: Color.black, // TODO: Consult designer
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
     shadowOpacity: 0.3,
     shadowRadius: 2,
     margin: 3, // necessary to see the Android elevation properly

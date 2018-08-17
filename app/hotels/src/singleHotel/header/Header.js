@@ -12,11 +12,11 @@ import {
   Device,
   BlackToAlpha as gradient,
   Dimensions,
-  Color,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 import Rating from './Rating';
@@ -48,32 +48,6 @@ const generateDynamicStyles = dim => {
     },
   };
 };
-
-const styles = StyleSheet.create({
-  nameAndRating: {
-    marginStart: 15,
-    marginEnd: 15,
-    marginBottom: 10,
-  },
-  hotelName: {
-    backgroundColor: 'transparent',
-    fontSize: 18,
-    lineHeight: 22,
-    fontWeight: '600',
-    letterSpacing: -0.45,
-    color: Color.white,
-  },
-  rating: {
-    backgroundColor: 'transparent',
-    fontSize: 12,
-    color: Color.white,
-  },
-  tabletContainer: {
-    android: {
-      paddingHorizontal: 8,
-    },
-  },
-});
 
 type ContainerProps = {|
   +openGallery: (hotelName: string, images: GalleryGridImage[]) => void,
@@ -184,3 +158,29 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  nameAndRating: {
+    marginStart: 15,
+    marginEnd: 15,
+    marginBottom: 10,
+  },
+  hotelName: {
+    backgroundColor: 'transparent',
+    fontSize: 18,
+    lineHeight: 22,
+    fontWeight: '600',
+    letterSpacing: -0.45,
+    color: defaultTokens.paletteWhite,
+  },
+  rating: {
+    backgroundColor: 'transparent',
+    fontSize: 12,
+    color: defaultTokens.paletteWhite,
+  },
+  tabletContainer: {
+    android: {
+      paddingHorizontal: 8,
+    },
+  },
+});

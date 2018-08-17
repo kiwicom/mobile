@@ -3,8 +3,9 @@
 import * as React from 'react';
 import { HeaderBackButton } from 'react-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import { GestureController, Color } from '@kiwicom/mobile-shared';
+import { GestureController } from '@kiwicom/mobile-shared';
 import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type NavProps = {
   ...NavigationType,
@@ -39,7 +40,7 @@ function withStandaloneScreen<Props>(
           </HeaderButton.Left>
         ) : (
           <HeaderBackButton
-            tintColor={Color.brand}
+            tintColor={defaultTokens.paletteProductNormal}
             onPress={props.goBack ? props.goBack : props.onBackClicked}
           />
         ),

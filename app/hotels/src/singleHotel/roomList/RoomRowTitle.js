@@ -1,27 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { Text, TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomRowTitle_room as RoomRowTitleType } from './__generated__/RoomRowTitle_room.graphql';
-
-const styles = StyleSheet.create({
-  title: {
-    fontSize: 14,
-    color: Color.textDark,
-  },
-  icon: {
-    fontSize: 10,
-    color: Color.textLight,
-  },
-  sizeText: {
-    fontSize: 12,
-    color: Color.textLight,
-  },
-});
 
 type ContainerProps = {|
   room: ?Object,
@@ -73,3 +59,18 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 14,
+    color: defaultTokens.colorTextAttention,
+  },
+  icon: {
+    fontSize: 10,
+    color: defaultTokens.colorIconSecondary,
+  },
+  sizeText: {
+    fontSize: 12,
+    color: defaultTokens.colorTextSecondary,
+  },
+});

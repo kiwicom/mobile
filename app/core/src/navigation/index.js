@@ -1,6 +1,6 @@
-// @flow
+// @flow strict
 
-import { Color } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { createBottomTabNavigator } from 'react-navigation';
 
 import HotelsStack from './stacks/HotelsStack';
@@ -17,13 +17,13 @@ export default createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: Color.brand,
-      inactiveTintColor: Color.grey.$600,
+      activeTintColor: defaultTokens.paletteProductNormal,
+      inactiveTintColor: defaultTokens.paletteInkLight,
       style: {
-        backgroundColor: Color.white, // makes Android tab bar white instead of standard blue
+        backgroundColor: defaultTokens.paletteWhite, // makes Android tab bar white instead of standard blue
       },
       indicatorStyle: {
-        backgroundColor: Color.brand,
+        backgroundColor: defaultTokens.paletteProductNormal,
       },
     },
     initialRouteName: 'Bookings',

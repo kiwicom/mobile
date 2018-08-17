@@ -31,7 +31,7 @@ export default function VisaWarning(props: Props) {
 const styles = StyleSheet.create({
   country: {
     fontSize: 12,
-    color: Color.orange.gamboge,
+    color: Color.orange.gamboge, // TODO: Consult designer
     fontWeight: '600',
   },
 });

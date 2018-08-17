@@ -1,16 +1,20 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { ActivityIndicator } from 'react-native';
-
-import Color from '../Color';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  size: 'large' | 'small',
+  +size: 'large' | 'small',
 |};
 
 function IconLoading(props: Props) {
-  return <ActivityIndicator size={props.size} color={Color.brand} />;
+  return (
+    <ActivityIndicator
+      size={props.size}
+      color={defaultTokens.paletteProductNormal}
+    />
+  );
 }
 
 IconLoading.defaultProps = {

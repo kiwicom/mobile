@@ -1,26 +1,14 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 import Icon from './icons/Icon';
 
 type Props = {|
-  size?: number,
+  +size?: number,
 |};
-
-const createStyles = (size: number) =>
-  StyleSheet.create({
-    icon: {
-      ios: {
-        position: 'absolute',
-        left: -size / 2,
-        top: -size,
-      },
-      android: {},
-    },
-  });
 
 /**
  * This drop marker is always pointing to the (0,0) coordinate. It's because
@@ -39,6 +27,23 @@ const createStyles = (size: number) =>
 export default function DropMarker({ size = 50 }: Props) {
   const styles = createStyles(size);
   return (
-    <Icon name="place" size={size} color={Color.brand} style={styles.icon} />
+    <Icon
+      name="place"
+      size={size}
+      color={defaultTokens.paletteProductNormal}
+      style={styles.icon}
+    />
   );
 }
+
+const createStyles = (size: number) =>
+  StyleSheet.create({
+    icon: {
+      ios: {
+        position: 'absolute',
+        left: -size / 2,
+        top: -size,
+      },
+      android: {},
+    },
+  });

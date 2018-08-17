@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
@@ -52,7 +53,7 @@ class RoomList extends React.Component<Props> {
 const styles = StyleSheet.create({
   title: {
     fontSize: 14,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     padding: 15,
     paddingTop: 22,
     paddingBottom: 7,

@@ -58,7 +58,7 @@ export class HotelInformation extends React.Component<Props> {
 const styles = StyleSheet.create({
   locationContainer: {
     borderBottomWidth: 1,
-    borderBottomColor: Color.grey.$200,
+    borderBottomColor: Color.grey.$200, // TODO: Consult designer
     marginBottom: 15,
   },
 });

@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, TextIcon, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { Text, TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +textIconCode: string,
@@ -15,7 +16,7 @@ const IconWithText = (props: Props) => {
   const textStyle = StyleSheet.create({
     text: {
       fontSize: 12,
-      color: props.color || Color.ink.light,
+      color: props.color || defaultTokens.colorTextSecondary,
     },
   });
   return (

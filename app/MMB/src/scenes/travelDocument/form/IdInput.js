@@ -7,8 +7,8 @@ import {
   TextInput,
   StyleSheet,
   ErrorMessage,
-  Color,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TravelDocumentFormContext from './TravelDocumentFormContext';
 
@@ -40,7 +40,7 @@ const IdInput = () => (
 
 const styles = StyleSheet.create({
   label: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     marginBottom: 5,
   },
   error: {

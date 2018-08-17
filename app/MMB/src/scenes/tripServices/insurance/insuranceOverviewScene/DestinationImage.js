@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, NetworkImage, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, NetworkImage } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { DestinationImage as DestinationImageType } from './__generated__/DestinationImage.graphql';
 
@@ -36,7 +37,7 @@ export default createFragmentContainer(
 const styles = StyleSheet.create({
   image: StyleSheet.absoluteFillObject,
   container: {
-    backgroundColor: Color.brandLight,
+    backgroundColor: defaultTokens.paletteProductLight,
     height: 150,
     width: '100%',
     overflow: 'hidden',

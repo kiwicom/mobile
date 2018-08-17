@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import { TextIcon, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 export default function ShareButton({ onPress }: {| +onPress: () => void |}) {
   return (
@@ -19,7 +20,7 @@ export default function ShareButton({ onPress }: {| +onPress: () => void |}) {
 const styles = StyleSheet.create({
   icon: {
     fontSize: 21,
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     alignSelf: 'flex-start',
   },
 });

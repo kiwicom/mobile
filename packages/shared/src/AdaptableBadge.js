@@ -1,35 +1,21 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 import type { StylePropType } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from './Text';
 import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 
 type Props = {|
-  translation: TranslationType,
-  style?: StylePropType,
-  textStyle?: StylePropType,
-  icon?: React.Node,
+  +translation: TranslationType,
+  +style?: StylePropType,
+  +textStyle?: StylePropType,
+  +icon?: React.Node,
 |};
-
-const style = StyleSheet.create({
-  container: {
-    alignSelf: 'flex-start',
-    borderRadius: 2,
-    paddingVertical: 2,
-    paddingHorizontal: 5,
-    backgroundColor: Color.grey.$500,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  text: {
-    color: Color.white,
-  },
-});
 
 /**
  * This badge automatically adapt width based on the text length inside so the
@@ -53,3 +39,18 @@ export default function AdaptableBadge(props: Props) {
     </View>
   );
 }
+
+const style = StyleSheet.create({
+  container: {
+    alignSelf: 'flex-start',
+    borderRadius: 2,
+    paddingVertical: 2,
+    paddingHorizontal: 5,
+    backgroundColor: Color.grey.$500, // TODO: Consult designer
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  text: {
+    color: defaultTokens.paletteWhite,
+  },
+});

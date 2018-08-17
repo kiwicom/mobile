@@ -4,9 +4,9 @@ import * as React from 'react';
 import {
   TextIcon,
   StyleSheet,
-  Color,
   type StylePropType,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   type: 'RETURN' | 'ONE_WAY' | 'MULTICITY',
@@ -28,6 +28,6 @@ export default function TravelTypeIcon(props: Props) {
 
 const styles = StyleSheet.create({
   icon: {
-    color: Color.textLight,
+    color: defaultTokens.colorIconSecondary,
   },
 });

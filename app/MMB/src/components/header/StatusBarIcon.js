@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { StatusBarIcon } from './__generated__/StatusBarIcon.graphql';
 
@@ -28,14 +29,14 @@ function Status({ data }: {| data: StatusBarIcon |}) {
     case 'CLOSED':
       return (
         <StatusIcon
-          color={Color.red.normal}
+          color={defaultTokens.paletteRedNormal}
           title={<Translation id="mmb.status.closed" />}
         />
       );
     case 'CONFIRMED':
       return (
         <StatusIcon
-          color={Color.green.normal}
+          color={defaultTokens.paletteGreenNormal}
           title={
             <Translation
               id={
@@ -48,17 +49,12 @@ function Status({ data }: {| data: StatusBarIcon |}) {
     case 'REFUNDED':
       return (
         <StatusIcon
-          color={Color.black}
+          color={Color.black} // TODO: Consult designer
           title={<Translation id="mmb.status.refunded" />}
         />
       );
     default:
-      return (
-        <StatusIcon
-          color={Color.grey.$500}
-          title={<Translation id="mmb.status.unknown" />}
-        />
-      );
+      return null;
   }
 }
 

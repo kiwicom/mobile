@@ -6,6 +6,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Text, StyleSheet, Color, ReadMore } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomDescription_room as RoomDescriptionType } from './__generated__/RoomDescription_room.graphql';
 
@@ -17,23 +18,6 @@ type Props = {|
   ...ContainerProps,
   +room: RoomDescriptionType,
 |};
-
-const styles = StyleSheet.create({
-  delimiter: {
-    height: 1,
-    backgroundColor: Color.backgroundGray,
-    marginVertical: 6,
-  },
-  description: {
-    fontSize: 12,
-    color: Color.textDark,
-  },
-  readMore: {
-    color: Color.brand,
-    fontWeight: '600',
-    fontSize: 12,
-  },
-});
 
 export const RoomDescription = (props: Props) => {
   const description = idx(props, _ => _.room.description.text);
@@ -71,3 +55,20 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  delimiter: {
+    height: 1,
+    backgroundColor: Color.backgroundGray, // TODO: Consult designer
+    marginVertical: 6,
+  },
+  description: {
+    fontSize: 12,
+    color: defaultTokens.colorTextAttention,
+  },
+  readMore: {
+    color: defaultTokens.paletteProductNormal,
+    fontWeight: '600',
+    fontSize: 12,
+  },
+});

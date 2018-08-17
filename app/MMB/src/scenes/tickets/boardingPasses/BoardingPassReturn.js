@@ -3,8 +3,9 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
-import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FlightSegments from './FlightSegments';
 import type { BoardingPassReturn as BoardingPassReturnType } from './__generated__/BoardingPassReturn.graphql';
@@ -48,11 +49,11 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   outboundIcon: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     transform: [{ rotate: '90deg' }],
   },
   inboundIcon: {
-    color: Color.orange.normal,
+    color: defaultTokens.paletteOrangeNormal,
     transform: [{ rotate: '270deg' }],
   },
 });

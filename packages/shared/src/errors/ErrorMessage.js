@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { type TranslationType } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from '../Text';
-import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
 
@@ -19,6 +19,6 @@ export default function Message(props: Props): React.Node {
 
 const styles = StyleSheet.create({
   error: {
-    color: Color.red.normal,
+    color: defaultTokens.paletteRedNormal,
   },
 });

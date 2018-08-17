@@ -2,15 +2,10 @@
 
 import * as React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
-import {
-  StyleSheet,
-  Color,
-  Text,
-  Price,
-  TextIcon,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, Price, TextIcon } from '@kiwicom/mobile-shared';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import { withInsuranceContext } from '../InsuranceOverviewSceneContext';
 import InsuranceRow from './InsuranceRow';
@@ -47,7 +42,7 @@ class OrderSummary extends React.Component<Props, State> {
               <InsuranceRow insuranceType="TRAVEL_BASIC" />
               <InsuranceRow insuranceType="NONE" />
               <View style={styleSheet.separatorFullWidth}>
-                <SeparatorFullWidth color={Color.textLight} />
+                <SeparatorFullWidth color={defaultTokens.paletteInkLight} />
               </View>
             </React.Fragment>
           )}
@@ -80,7 +75,7 @@ const styleSheet = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    backgroundColor: Color.ink.normal,
+    backgroundColor: defaultTokens.paletteInkNormal,
     paddingHorizontal: 10,
   },
   row: {
@@ -91,17 +86,17 @@ const styleSheet = StyleSheet.create({
     flexGrow: 1,
   },
   text: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   price: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
   separatorFullWidth: {
     marginVertical: 15,
   },
   textIcon: {
     fontSize: 12,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     alignSelf: 'center',
     transform: [{ rotate: '180deg' }],
     marginTop: 5,

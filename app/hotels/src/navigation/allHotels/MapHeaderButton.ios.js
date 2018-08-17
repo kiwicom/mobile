@@ -1,8 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { Icon, Color } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: () => void,
@@ -18,5 +19,5 @@ export default function MapHeaderButton(props: Props) {
 }
 
 MapHeaderButton.defaultProps = {
-  iconColor: Color.brand,
+  iconColor: defaultTokens.paletteProductNormal,
 };

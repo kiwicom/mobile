@@ -2,13 +2,14 @@
 
 import * as React from 'react';
 import { View, Image, TouchableWithoutFeedback } from 'react-native';
-import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   SeparatorTrimmed,
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import bannerImage from './insurance.png';
 import VariantButtons from './variantButtons/VariantButtons';
@@ -98,7 +99,7 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
               text={
                 <Translation id="mmb.trip_services.insurance.selection.insurance_summary.more_info" />
               }
-              color={Color.product.normal}
+              color={defaultTokens.paletteProductNormal}
             />
           </View>
         </TouchableWithoutFeedback>
@@ -117,19 +118,19 @@ const styleSheet = StyleSheet.create({
   wrapper: {
     flex: 1,
     // TODO: every page should have white page by default instead (?)
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     padding: 10,
   },
   variantsRow: {
     flexDirection: 'row',
-    backgroundColor: Color.inputBackground,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     borderRadius: 5,
     marginTop: 4,
     marginBottom: 4,
     padding: 1,
   },
   colorInkLight: {
-    color: Color.ink.light,
+    color: defaultTokens.paletteInkLight,
   },
   marginTop: {
     marginTop: 10,

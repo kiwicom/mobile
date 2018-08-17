@@ -4,57 +4,13 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Color, Price, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { PriceMarker as PriceMarkerData } from './__generated__/PriceMarker.graphql';
 
-const styles = StyleSheet.create({
-  bubble: {
-    flexDirection: 'row',
-    paddingVertical: 5,
-    paddingHorizontal: 8,
-    backgroundColor: Color.white,
-    borderRadius: 3,
-    borderColor: Color.grey.$200,
-    borderWidth: 1,
-  },
-  price: {
-    color: Color.black,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  arrowBorder: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    borderWidth: 8,
-    borderTopColor: Color.grey.$200,
-    borderRadius: 3,
-    alignSelf: 'center',
-  },
-  arrow: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    borderWidth: 7,
-    borderTopColor: Color.white,
-    alignSelf: 'center',
-    marginTop: -18,
-  },
-});
-
-const selectedStyles = StyleSheet.create({
-  bubble: {
-    backgroundColor: Color.brand,
-  },
-  price: {
-    color: Color.white,
-  },
-  arrow: {
-    borderTopColor: Color.brand,
-  },
-});
-
 type Props = {|
-  isSelected?: boolean,
-  data: PriceMarkerData,
+  +isSelected?: boolean,
+  +data: PriceMarkerData,
 |};
 
 const PriceMarker = (props: Props) => {
@@ -96,3 +52,48 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  bubble: {
+    flexDirection: 'row',
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+    backgroundColor: defaultTokens.paletteWhite,
+    borderRadius: 3,
+    borderColor: Color.grey.$200, // TODO: Consult designer
+    borderWidth: 1,
+  },
+  price: {
+    color: Color.black, // TODO: Consult designer
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  arrowBorder: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 8,
+    borderTopColor: Color.grey.$200, // TODO: Consult designer
+    borderRadius: 3,
+    alignSelf: 'center',
+  },
+  arrow: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 7,
+    borderTopColor: defaultTokens.paletteWhite,
+    alignSelf: 'center',
+    marginTop: -18,
+  },
+});
+
+const selectedStyles = StyleSheet.create({
+  bubble: {
+    backgroundColor: defaultTokens.paletteProductNormal,
+  },
+  price: {
+    color: defaultTokens.paletteWhite,
+  },
+  arrow: {
+    borderTopColor: defaultTokens.paletteProductNormal,
+  },
+});
