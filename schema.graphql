@@ -96,6 +96,13 @@ type Baggage {
   width: Int
   weight: Int
   note: String
+  category: BaggageCategory
+}
+
+enum BaggageCategory {
+  CHECKED
+  PERSONAL_ITEM
+  CABIN_BAG
 }
 
 type BoardingPass {
@@ -186,6 +193,7 @@ type Booking {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -231,6 +239,12 @@ type BookingAssets {
 
   """Boarding passes for flights in this booking"""
   boardingPasses: [BoardingPass]
+}
+
+type BookingBaggage {
+  quantity: Int
+  passengers: [Passenger]
+  bag: Baggage
 }
 
 type BookingConfirmedTimelineEvent implements TimelineEvent {
@@ -289,6 +303,7 @@ interface BookingInterface {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -353,6 +368,7 @@ type BookingMulticity implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -411,6 +427,7 @@ type BookingOneWay implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -459,6 +476,7 @@ type BookingReturn implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
+  unstable_baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets

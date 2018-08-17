@@ -16,6 +16,7 @@ type Props = {|
   +data: LocationPopupButtonType,
   +onPress: string => void,
   +displayIata?: boolean,
+  +displayDate?: boolean,
   +date?: ?string,
 |};
 
@@ -33,6 +34,7 @@ class LocationPopupButton extends React.Component<Props> {
     const cityName = idx(this.props, _ => _.data.city.name);
     const locationId = idx(this.props, _ => _.data.locationId);
     const date = idx(this.props, _ => _.date);
+    const displayDate = idx(this.props, _ => _.displayDate);
 
     return (
       <Touchable onPress={this.openWhitelabel} style={styleSheet.wrapper}>
@@ -41,16 +43,18 @@ class LocationPopupButton extends React.Component<Props> {
           <View style={styleSheet.locationWrapper}>
             {this.props.displayIata ? (
               <Translation
-                passThrough={`in ${cityName || ''} (${locationId || ''})`}
+                passThrough={`${cityName || ''} (${locationId || ''})`}
               />
             ) : (
               <Translation passThrough={cityName || ''} />
             )}
-            {this.props.date != null && (
-              <Text style={styleSheet.date}>
-                <Translation passThrough={date || ''} />
-              </Text>
-            )}
+            {date != null &&
+              displayDate != null &&
+              displayDate && (
+                <Text style={styleSheet.date}>
+                  <Translation passThrough={date} />
+                </Text>
+              )}
           </View>
         </React.Fragment>
       </Touchable>

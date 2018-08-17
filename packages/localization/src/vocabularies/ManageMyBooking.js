@@ -27,6 +27,11 @@ export default {
   'mmb.fill_travel_document_screen.title': 'Fill travel document details',
   'mmb.fill_travel_document_screen_modal.title': 'Fill travel document details',
 
+  'mmb.alert.button.settings': 'Settings',
+  'mmb.alert.button.ok': 'OK',
+  'mmb.alert.something_went_wrong':
+    'Something went wrong; please try again later.',
+
   // MMB Boarding passes
   'mmb.boarding_passes.boarding_pass': 'Boarding Pass',
   'mmb.boarding_passes.boarding_pass_return.departure': 'Departure',
@@ -237,6 +242,22 @@ export default {
   'mmb.trip_services.insurance.payment.security_code': 'Security code',
   'mmb.trip_services.insurance.payment.remember_card':
     'Remember this card for next time',
+
+  // MMB Transportation
+  'mmb.trip_services.transportation.map.title': 'Get transportation',
+  'mmb.trip_services.transportation.map.right_button': 'Book ride',
+  'mmb.trip_services.transportation.map.marker_location_button':
+    'Tap to select location or start writing add...',
+  'mmb.trip_services.transportation.map.current_position_alert':
+    'Location services are not available. You can enable them in settings.',
+  'mmb.trip_services.transportation.address_picker.cancel_button': 'Cancel',
+  'mmb.trip_services.transportation.address_picker.input.placeholder': 'To: ',
+  'mmb.trip_service.transportation.map.legend.long_tap': 'Long tap =',
+  'mmb.trip_service.transportation.map.legend.tap': 'Tap =',
+  'mmb.trip_service.transportation.map.legend.markerA': 'from',
+  'mmb.trip_service.transportation.map.legend.markerB': 'to',
+  'mmb.trip_service.transportation.address_picker.current_location_title':
+    'Your current location',
 
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',

@@ -85,6 +85,7 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
           version="rn-development"
           bookingComAffiliate={String(Config.affiliate.bookingCom)}
           dataSaverEnabled={false}
+          googleMapsAPIKey={String(Config.apiKey.googleMaps)}
         />
       );
     }
@@ -99,6 +100,7 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
           version="rn-development"
           bookingComAffiliate={String(Config.affiliate.bookingCom)}
           dataSaverEnabled={false}
+          googleMapsAPIKey={String(Config.apiKey.googleMaps)}
         />
       );
     }

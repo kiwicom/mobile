@@ -94,6 +94,13 @@ function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
       );
     },
 
+    /**
+     * Always returns HH:mm at this moment.
+     */
+    formatTimeForMachine: () => {
+      return pad(rawDate.getUTCHours()) + ':' + pad(rawDate.getUTCMinutes());
+    },
+
     // Pass in your own configuration
     formatCustom: (config: FormatterConfig) => custom(rawDate, config),
   };
