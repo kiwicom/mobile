@@ -6,6 +6,7 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import AppleWalletPassenger from './AppleWalletPassenger';
 import type { AppleWallet as Pkpasses } from './__generated__/AppleWallet.graphql';
@@ -58,7 +59,7 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   title: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   infoText: {
     marginVertical: 10,
@@ -68,6 +69,6 @@ const styles = StyleSheet.create({
   },
   passengerContainer: {
     borderTopWidth: 1,
-    borderTopColor: Color.backgroundGray,
+    borderTopColor: Color.backgroundGray, // TODO: Consult designer
   },
 });

@@ -9,8 +9,8 @@ import {
   Button,
   Text,
   StyleSheet,
-  Color,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
@@ -19,7 +19,7 @@ import HotelsContext from '../../HotelsContext';
 
 type PropsWithContext = {|
   ...Props,
-  setIsNew: (isNew: boolean) => void,
+  +setIsNew: (isNew: boolean) => void,
 |};
 
 class SearchResultsScreen extends React.Component<PropsWithContext> {
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     bottom: 8,
     start: 8,
     end: 8,
-    backgroundColor: Color.inputBackground,
+    backgroundColor: defaultTokens.paletteCloudNormal,
   },
   text: {
     fontWeight: '800',

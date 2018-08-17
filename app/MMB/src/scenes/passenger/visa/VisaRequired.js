@@ -31,7 +31,7 @@ export default function VisaRequired(props: Props) {
 const styles = StyleSheet.create({
   country: {
     fontSize: 12,
-    color: Color.red.monza,
+    color: Color.red.monza, // TODO: Consult designer
     fontWeight: '600',
   },
 });

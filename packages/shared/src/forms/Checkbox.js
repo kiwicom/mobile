@@ -2,17 +2,17 @@
 
 import * as React from 'react';
 import { View, TouchableWithoutFeedback, Platform } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from '../PlatformStyleSheet';
-import Color from '../Color';
 import Icon from '../icons/Icon';
 import type { StylePropType } from '../../types/Styles';
 
 type Props = {|
-  onPress: () => void,
-  children: React.Node,
-  isChecked?: boolean,
-  style?: StylePropType,
+  +onPress: () => void,
+  +children: React.Node,
+  +isChecked?: boolean,
+  +style?: StylePropType,
 |};
 
 export default function Checkbox(props: Props) {
@@ -28,7 +28,7 @@ export default function Checkbox(props: Props) {
                 android: 25, // solves checkbox row jumping on Android devices
                 ios: 26,
               })}
-              color={Color.brand}
+              color={defaultTokens.paletteProductNormal}
             />
           </View>
         )}

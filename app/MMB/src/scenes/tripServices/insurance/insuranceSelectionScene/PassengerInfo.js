@@ -1,9 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 export type Props = {|
   +title: string,
@@ -39,6 +40,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   passengerBirthday: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Color, StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +bagCount: number,
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     alignItems: 'center',
   },
   countContainer: {

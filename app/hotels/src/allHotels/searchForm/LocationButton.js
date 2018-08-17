@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
-import { Text, StyleSheet, Icon, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: () => void,
@@ -32,7 +33,7 @@ export default function LocationButton(props: Props) {
 const styles = StyleSheet.create({
   locationButton: {
     flexDirection: 'row',
-    backgroundColor: Color.inputBackground,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     alignItems: 'center',
     android: {
       borderRadius: 2,
@@ -45,10 +46,10 @@ const styles = StyleSheet.create({
     },
   },
   placeholderText: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   locationText: {
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
   },
   icon: {
     marginHorizontal: 10,

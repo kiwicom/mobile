@@ -1,11 +1,11 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import AdaptableLayout from '../view/AdaptableLayout';
-import Color from '../Color';
 import Modal from '../Modal';
 import StyleSheet from '../PlatformStyleSheet';
 
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     margin: 0,
   },
   contentContainer: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     alignSelf: 'center',
     width: '100%',
     maxHeight: '75%',

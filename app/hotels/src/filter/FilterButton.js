@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 /* eslint-disable react-native/no-unused-styles */
 // We need to deactivate this rule for now, doing this -> const styleSheet = isNew ? newStyles : styles;
@@ -14,20 +14,23 @@ import {
   StyleSheet,
 } from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HotelsContext from '../HotelsContext';
 
 type PropsWithContext = {|
   ...Props,
-  isNew: boolean,
+  +isNew: boolean,
 |};
 
 const FilterButton = (props: PropsWithContext) => {
   let icon = props.icon;
   const { title, isActive, onPress, isNew } = props;
   const styleSheet = isNew ? newStyles : styles;
-  const iconColor = isNew ? Color.ink.normal : Color.brandDark;
-  const iconColorActive = isNew ? Color.inputBackground : Color.white;
+  const iconColor = isNew ? defaultTokens.colorIconPrimary : Color.brandDark; // Color.brandDark is not on design tokens, this code will disappear once native starts to use `NewKiwiHotels`
+  const iconColorActive = isNew
+    ? defaultTokens.paletteCloudNormal
+    : defaultTokens.paletteWhite;
 
   if (icon) {
     icon = React.cloneElement(icon, {
@@ -71,10 +74,10 @@ export default function FilterButtonWithContext(props: Props) {
 
 const styles = StyleSheet.create({
   activeButtonGroup: {
-    backgroundColor: Color.brand,
+    backgroundColor: defaultTokens.paletteProductNormal,
   },
   buttonGroup: {
-    backgroundColor: Color.blue.jaggedIce,
+    backgroundColor: Color.blue.jaggedIce, // Leave this for now
     marginEnd: 5,
     ios: {
       height: 36,
@@ -82,10 +85,10 @@ const styles = StyleSheet.create({
     },
   },
   activeButtonText: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
   buttonText: {
-    color: Color.brandDark,
+    color: Color.brandDark, // Leave this for now
   },
   icon: {
     paddingEnd: 5,
@@ -101,12 +104,12 @@ const styles = StyleSheet.create({
  */
 const newStyles = StyleSheet.create({
   activeButtonGroup: {
-    backgroundColor: Color.ink.normal,
+    backgroundColor: defaultTokens.paletteInkNormal,
   },
   buttonGroup: {
-    backgroundColor: Color.backgroundBody,
+    backgroundColor: defaultTokens.backgroundBody,
     marginEnd: 5,
-    borderColor: Color.inputBackground,
+    borderColor: defaultTokens.borderColorCard,
     borderWidth: StyleSheet.hairlineWidth,
     ios: {
       height: 36,
@@ -114,10 +117,10 @@ const newStyles = StyleSheet.create({
     },
   },
   activeButtonText: {
-    color: Color.inputBackground,
+    color: defaultTokens.paletteCloudNormal,
   },
   buttonText: {
-    color: Color.ink.normal,
+    color: defaultTokens.colorTextPrimary,
   },
   icon: {
     paddingEnd: 5,

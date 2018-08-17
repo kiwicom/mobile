@@ -1,9 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View, ScrollView, InteractionManager } from 'react-native';
-import { Text, StyleSheet, Color, ErrorMessage } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, ErrorMessage } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import ChildrenAgesControl from './ChildrenAgesControl';
 import type {
@@ -12,38 +13,12 @@ import type {
 } from './GuestsTypes';
 import GuestsNumberControls from './GuestsNumberControls';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-  },
-  controlContainer: {
-    paddingStart: 15,
-    backgroundColor: Color.white,
-  },
-  childAgeTitle: {
-    paddingStart: 15,
-    paddingVertical: 12,
-  },
-  childAgeTitleText: {
-    color: Color.textLight,
-  },
-  message: {
-    paddingTop: 10,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  childContainer: {
-    flex: 1,
-  },
-});
-
 type Props = {|
-  guests: UnsavedRoomConfigurationType,
-  isMissingAge: boolean,
-  handleAdultChange: (adultsCount: number) => void,
-  handleChildrenChange: (number: number) => void,
-  handleChildrenAgesChange: (children: ChildAge[]) => void,
+  +guests: UnsavedRoomConfigurationType,
+  +isMissingAge: boolean,
+  +handleAdultChange: (adultsCount: number) => void,
+  +handleChildrenChange: (number: number) => void,
+  +handleChildrenAgesChange: (children: ChildAge[]) => void,
 |};
 
 export default class GuestsModal extends React.Component<Props> {
@@ -101,3 +76,29 @@ export default class GuestsModal extends React.Component<Props> {
     );
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 20,
+  },
+  controlContainer: {
+    paddingStart: 15,
+    backgroundColor: defaultTokens.paletteWhite,
+  },
+  childAgeTitle: {
+    paddingStart: 15,
+    paddingVertical: 12,
+  },
+  childAgeTitleText: {
+    color: defaultTokens.colorTextSecondary,
+  },
+  message: {
+    paddingTop: 10,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  childContainer: {
+    flex: 1,
+  },
+});

@@ -1,8 +1,8 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { Color } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { HeaderBackButton } from 'react-navigation';
 
 import AllHotelsMap from '../../map/allHotels/AllHotelsMap';
@@ -10,9 +10,9 @@ import type { Coordinates } from '../../CoordinatesType';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 
 type Props = {|
-  navigation: NavigationType,
-  currency: string,
-  coordinates: Coordinates | null,
+  +navigation: NavigationType,
+  +currency: string,
+  +coordinates: Coordinates | null,
 |};
 
 export default class AllHotelsMapNavigationScreen extends React.Component<
@@ -23,7 +23,12 @@ export default class AllHotelsMapNavigationScreen extends React.Component<
       navigation.goBack(null);
     }
     return {
-      headerLeft: <HeaderBackButton tintColor={Color.brand} onPress={goBack} />,
+      headerLeft: (
+        <HeaderBackButton
+          tintColor={defaultTokens.paletteProductNormal}
+          onPress={goBack}
+        />
+      ),
     };
   };
 

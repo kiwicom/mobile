@@ -3,9 +3,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import ReactNative from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from './PlatformStyleSheet';
-import Color from './Color';
 import type { StylePropType } from '../types/Styles';
 
 // basically every component (but never strings - they must be translated)
@@ -80,7 +80,7 @@ const styleSheet = StyleSheet.create({
   // These values are from the official design. Don't touch it please.
   defaultTextStyle: {
     fontWeight: 'normal',
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
     android: {
       fontSize: 15,
       letterSpacing: 0,

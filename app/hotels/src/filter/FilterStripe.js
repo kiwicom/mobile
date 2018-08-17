@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { ScrollView, View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HotelsContext from '../HotelsContext';
 import StarsFilter from './stars/StarsFilter';
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
     },
   },
   backgroundNew: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });
 

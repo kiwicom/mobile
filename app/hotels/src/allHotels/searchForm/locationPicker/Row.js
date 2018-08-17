@@ -1,22 +1,13 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { StyleSheet, Color, type StylePropType } from '@kiwicom/mobile-shared';
+import { StyleSheet, type StylePropType } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
-
-const styles = StyleSheet.create({
-  row: {
-    backgroundColor: Color.white,
-    marginBottom: 5,
-    paddingHorizontal: 11,
-    paddingVertical: 20,
-    flexDirection: 'row',
-  },
-});
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  style?: StylePropType,
-  children: React.Node,
+  +style?: StylePropType,
+  +children: React.Node,
 |};
 
 export default function Row(props: Props) {
@@ -26,3 +17,13 @@ export default function Row(props: Props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  row: {
+    backgroundColor: defaultTokens.paletteWhite,
+    marginBottom: 5,
+    paddingHorizontal: 11,
+    paddingVertical: 20,
+    flexDirection: 'row',
+  },
+});

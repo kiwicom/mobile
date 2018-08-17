@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HeaderImage from './HeaderImage';
 import AirlineLogo from './AirlineLogo';
@@ -29,7 +30,7 @@ export default function AppleWalletScene() {
 
 const styles = StyleSheet.create({
   content: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     borderTopStartRadius: 10,
     borderTopEndRadius: 10,
     marginTop: -10,
@@ -44,6 +45,6 @@ const styles = StyleSheet.create({
   },
   borderBottom: {
     borderBottomWidth: 1,
-    borderBottomColor: Color.backgroundGray,
+    borderBottomColor: Color.backgroundGray, // TODO: Consult designer
   },
 });

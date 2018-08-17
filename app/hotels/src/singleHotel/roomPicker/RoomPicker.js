@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
@@ -11,14 +11,15 @@ import {
   Color,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = $ReadOnly<{|
-  price: number | null,
-  currency: string | null,
-  selectedCount: number,
-  selectableCount: number,
-  increment: () => void,
-  decrement: () => void,
+  +price: number | null,
+  +currency: string | null,
+  +selectedCount: number,
+  +selectableCount: number,
+  +increment: () => void,
+  +decrement: () => void,
 |}>;
 
 export default function RoomPicker({
@@ -113,17 +114,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   container: {
-    backgroundColor: Color.blue.jaggedIce,
+    backgroundColor: Color.blue.jaggedIce, // TODO: Consult designer
     height: 44,
     paddingHorizontal: 10,
     paddingVertical: 14,
   },
   text: {
-    color: Color.brandDark,
+    color: Color.brandDark, // TODO: Consult designer
     fontSize: 14,
   },
   button: {
-    backgroundColor: Color.brand,
+    backgroundColor: defaultTokens.paletteProductNormal,
     width: 60,
     justifyContent: 'center',
     alignItems: 'center',
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: '600',
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
   priceAndCount: {
     justifyContent: 'center',

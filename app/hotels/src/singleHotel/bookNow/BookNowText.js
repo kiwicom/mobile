@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
@@ -8,28 +8,13 @@ import {
   type StylePropType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-
-const styles = StyleSheet.create({
-  priceWrapper: {
-    flexDirection: 'row',
-    alignSelf: 'center',
-  },
-  buttonInnerWrapper: {
-    paddingVertical: 14,
-  },
-  buttonTitle: {
-    fontSize: 16,
-    fontWeight: '800',
-    color: 'white',
-    textAlign: 'center',
-  },
-});
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  price: React.Node,
-  numberOfRooms: number,
-  personCount: number,
-  buttonPriceStyle: StylePropType,
+  +price: React.Node,
+  +numberOfRooms: number,
+  +personCount: number,
+  +buttonPriceStyle: StylePropType,
 |};
 
 export default function BookNowText(props: Props) {
@@ -57,3 +42,19 @@ export default function BookNowText(props: Props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  priceWrapper: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  buttonInnerWrapper: {
+    paddingVertical: 14,
+  },
+  buttonTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: defaultTokens.paletteWhite,
+    textAlign: 'center',
+  },
+});

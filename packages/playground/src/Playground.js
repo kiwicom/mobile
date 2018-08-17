@@ -6,12 +6,12 @@ import {
   StyleSheet,
   Text,
   Dimensions,
-  Color,
   type DimensionType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import PlaygroundRenderer from './PlaygroundRenderer';
 
@@ -40,7 +40,12 @@ export default class Playground extends React.Component<Props> {
 
     return {
       title: 'Playground',
-      headerLeft: <HeaderBackButton tintColor={Color.brand} onPress={goBack} />,
+      headerLeft: (
+        <HeaderBackButton
+          tintColor={defaultTokens.paletteProductNormal}
+          onPress={goBack}
+        />
+      ),
     };
   };
 
@@ -81,12 +86,12 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: Color.black,
-    backgroundColor: Color.grey.$200,
+    borderColor: defaultTokens.paletteInkDark,
+    backgroundColor: defaultTokens.paletteCloudNormal,
   },
   sectionText: {
     paddingBottom: 10,
-    color: Color.grey.$550,
+    color: defaultTokens.paletteCloudNormal,
     fontSize: 10,
   },
 });

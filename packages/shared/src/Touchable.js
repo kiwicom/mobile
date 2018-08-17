@@ -14,18 +14,18 @@ import Color from './Color';
 import { type StylePropType } from '../types/Styles';
 
 type Props = {|
-  children: React.Node,
-  onPress: () => void,
-  disabled: boolean,
-  style?: StylePropType,
-  onLongPress?: () => void,
-  delayPressIn?: number,
+  +children: React.Node,
+  +onPress: () => void,
+  +disabled: boolean,
+  +style?: StylePropType,
+  +onLongPress?: () => void,
+  +delayPressIn?: number,
   // This will disable ripple effect completely and it will fallback to the
   // opacity behavior.
-  noRipple?: boolean,
+  +noRipple?: boolean,
   // Should the ripple render outside of the view bounds?
-  borderlessRipple?: boolean,
-  rippleColor?: string,
+  +borderlessRipple?: boolean,
+  +rippleColor?: string,
   ...AccessibilityProps,
 |};
 
@@ -38,7 +38,7 @@ type Props = {|
 export default class Touchable extends React.Component<Props> {
   static defaultProps = {
     borderlessRipple: false,
-    rippleColor: Color.transparent.black.$32,
+    rippleColor: Color.transparent.black.$32, // TODO: Consult designer
     disabled: false,
   };
 

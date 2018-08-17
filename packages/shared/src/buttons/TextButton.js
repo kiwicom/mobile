@@ -1,7 +1,8 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { type TranslationType } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
@@ -11,7 +12,7 @@ import Button from './Button';
 type Props = {|
   +title: TranslationType,
   +onPress: () => void,
-  +disabled?: boolean,
+  +disabled: boolean,
 |};
 
 /**
@@ -41,12 +42,12 @@ TextButton.defaultProps = {
 
 const styleSheet = StyleSheet.create({
   buttonText: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
   buttonDisabled: {
-    backgroundColor: Color.grey.$300,
+    backgroundColor: Color.grey.$300, // TODO: Consult designer
   },
   buttonTextDisabled: {
-    color: Color.ink.dark,
+    color: defaultTokens.paletteInkDark,
   },
 });

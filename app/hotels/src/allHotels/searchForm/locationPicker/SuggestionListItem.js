@@ -1,31 +1,21 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { Text, StyleSheet, Color, Touchable } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Row from './Row';
 
 type Props = {|
-  city: {
-    id: string,
-    name: ?string,
+  +city: {
+    +id: string,
+    +name: ?string,
   },
-  onCitySelected: (cityId: string | null, cityName: ?string) => void,
-  search: string,
+  +onCitySelected: (cityId: string | null, cityName: ?string) => void,
+  +search: string,
 |};
-
-const styles = StyleSheet.create({
-  matchText: {
-    color: Color.brand,
-  },
-  text: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: Color.textDark,
-  },
-});
 
 export default class SuggestionListItem extends React.Component<Props> {
   onPress = () => {
@@ -86,3 +76,14 @@ export default class SuggestionListItem extends React.Component<Props> {
     );
   };
 }
+
+const styles = StyleSheet.create({
+  matchText: {
+    color: defaultTokens.paletteProductNormal,
+  },
+  text: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: defaultTokens.colorTextAttention,
+  },
+});

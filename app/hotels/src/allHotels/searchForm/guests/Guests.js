@@ -1,15 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Touchable,
-  Color,
-  StyleSheet,
-  Icon,
-  Text,
-} from '@kiwicom/mobile-shared';
+import { Touchable, StyleSheet, Icon, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomConfigurationType } from '../SearchParametersType';
 
@@ -63,7 +58,7 @@ const buttonStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
-    backgroundColor: Color.inputBackground,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     android: {
       height: 48,
       borderRadius: 2,
@@ -77,6 +72,6 @@ const buttonStyles = StyleSheet.create({
     marginEnd: 8,
   },
   childrenStyle: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

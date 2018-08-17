@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   title: React.Element<typeof Translation>,
@@ -29,7 +30,7 @@ const styleSheet = StyleSheet.create({
     },
   },
   title: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     android: {
       fontSize: 17,
     },

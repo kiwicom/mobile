@@ -3,8 +3,9 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BagInfo as BagInfoType } from './__generated__/BagInfo.graphql';
 
@@ -47,6 +48,6 @@ export default createFragmentContainer(
 const styles = StyleSheet.create({
   text: {
     fontSize: 12,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

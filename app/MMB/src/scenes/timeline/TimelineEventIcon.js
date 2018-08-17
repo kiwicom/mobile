@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color, Icon, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, Icon, TextIcon } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineEventIconContext from '../../context/TimelineEventIconContext';
 import TimelineEventContext from '../../context/TimelineEventContext';
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   line: {
-    backgroundColor: Color.ink.lighter,
+    backgroundColor: defaultTokens.paletteInkLighter,
     width: 1,
   },
   resetBackgroundColor: {
@@ -85,29 +86,29 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   icon: {
-    color: Color.product.normal,
+    color: defaultTokens.paletteProductNormal,
     textAlign: 'center',
     fontSize: 15,
   },
   pastEventIcon: {
-    color: Color.white,
-    backgroundColor: Color.product.normal,
+    color: defaultTokens.paletteWhite,
+    backgroundColor: defaultTokens.paletteProductNormal,
     textAlign: 'center',
   },
   iconBorder: {
     borderRadius: 50,
     borderWidth: 2,
     padding: 4,
-    borderColor: Color.product.normal,
-    backgroundColor: Color.white,
+    borderColor: defaultTokens.paletteProductNormal,
+    backgroundColor: defaultTokens.paletteWhite,
     margin: 3,
   },
   pastEventIconBorder: {
     borderRadius: 50,
     borderWidth: 2,
     padding: 4,
-    borderColor: Color.product.normal,
-    backgroundColor: Color.product.normal,
+    borderColor: defaultTokens.paletteProductNormal,
+    backgroundColor: defaultTokens.paletteProductNormal,
     margin: 3,
   },
 });

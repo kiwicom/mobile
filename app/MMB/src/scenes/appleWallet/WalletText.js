@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { type TranslationType } from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +label: TranslationType,
@@ -22,7 +23,7 @@ export default function WalletText(props: Props) {
 const styles = StyleSheet.create({
   label: {
     fontSize: 12,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   text: {
     fontSize: 16,

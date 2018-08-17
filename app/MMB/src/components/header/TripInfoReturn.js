@@ -4,8 +4,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import ColorStrip from './ColorStrip';
 import TripCities from './TripCities';
@@ -58,7 +59,7 @@ export default createFragmentContainer(
 
 const styleSheet = StyleSheet.create({
   title: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     marginTop: 11,
     marginBottom: 2,
   },

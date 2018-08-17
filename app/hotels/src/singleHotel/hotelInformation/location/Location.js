@@ -8,11 +8,11 @@ import {
   StretchedImage,
   DropMarker,
   Text,
-  Color,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel } from './__generated__/Location_hotel.graphql';
@@ -78,7 +78,7 @@ export function Location({ hotel, onGoToMap, isWide }: Props) {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   wideContainer: {
     borderRadius: 2,
@@ -101,10 +101,10 @@ const styles = StyleSheet.create({
     letterSpacing: -0.15,
   },
   streetLine: {
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
   },
   cityLine: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   mapBottom: {
     android: {

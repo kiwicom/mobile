@@ -3,41 +3,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import {
-  StyleSheet,
-  Text,
-  TextIcon,
-  Icon,
-  Color,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, TextIcon, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
 import formatBeddingInfo from './formatBeddingInfo';
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-    marginBottom: 5,
-  },
-  text: {
-    fontSize: 12,
-    lineHeight: 15,
-    color: Color.textLight,
-  },
-  icon: {
-    color: Color.textLight,
-    fontSize: 12,
-    marginEnd: 2,
-    android: {
-      alignSelf: 'center',
-    },
-    ios: {
-      alignSelf: 'flex-end',
-    },
-  },
-});
 
 type ContainerProps = {|
   room: any,
@@ -90,3 +62,26 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
+  text: {
+    fontSize: 12,
+    lineHeight: 15,
+    color: defaultTokens.colorTextSecondary,
+  },
+  icon: {
+    color: defaultTokens.colorTextSecondary,
+    fontSize: 12,
+    marginEnd: 2,
+    android: {
+      alignSelf: 'center',
+    },
+    ios: {
+      alignSelf: 'flex-end',
+    },
+  },
+});

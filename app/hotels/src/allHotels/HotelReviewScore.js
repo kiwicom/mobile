@@ -5,11 +5,12 @@ import idx from 'idx';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelReviewScore_hotel } from './__generated__/HotelReviewScore_hotel.graphql';
 
 type Props = {|
-  hotel: HotelReviewScore_hotel,
+  +hotel: HotelReviewScore_hotel,
 |};
 
 const style = StyleSheet.create({
@@ -52,13 +53,13 @@ export class HotelReviewScore extends React.Component<Props> {
    */
   calculateColor = (score: number): ?string => {
     if (score >= 0 === score < 3) {
-      return Color.red.monza;
+      return Color.red.monza; // TODO: Consult with designer and replace with design token
     }
     if (score >= 3 === score <= 7) {
-      return Color.orange.normal;
+      return defaultTokens.paletteOrangeNormal;
     }
     if (score > 7 === score <= 10) {
-      return Color.green.lapalma;
+      return Color.green.lapalma; // TODO: Consult with designer and replace with design token
     }
   };
 

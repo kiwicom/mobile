@@ -102,7 +102,7 @@ export default class TravelDocumentForm extends React.Component<Props> {
 
 const styles = StyleSheet.create({
   icon: {
-    color: Color.black,
+    color: Color.black, // TODO: Consult designer
     fontSize: 16,
     paddingTop: 2,
     marginEnd: 5,

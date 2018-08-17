@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Platform, View } from 'react-native';
 import {
   Touchable,
-  Color,
   StyleSheet,
   Icon,
   Text,
@@ -14,6 +13,7 @@ import {
   type TranslationType,
   Translation,
 } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: () => void,
@@ -65,7 +65,11 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
   static CloseModal = ({ onPress, text }: CloseModalProps) => (
     <HeaderButton.Left onPress={onPress}>
       {Platform.OS === 'android' ? (
-        <Icon name="close" size={24} color={Color.brand} />
+        <Icon
+          name="close"
+          size={24}
+          color={defaultTokens.paletteProductNormal}
+        />
       ) : (
         <HeaderButton.Text>
           {text || <Translation id="shared.button.close" />}
@@ -147,7 +151,7 @@ const styles = StyleSheet.create({
     },
   },
   headerButtonText: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     ios: {
       fontSize: 17,
     },
@@ -156,7 +160,7 @@ const styles = StyleSheet.create({
     },
   },
   disabledButton: {
-    color: Color.inputBackground,
+    color: defaultTokens.paletteCloudNormal,
   },
 });
 

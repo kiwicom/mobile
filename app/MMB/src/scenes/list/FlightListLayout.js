@@ -3,12 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
-import {
-  AdaptableLayout,
-  StyleSheet,
-  Color,
-  Text,
-} from '@kiwicom/mobile-shared';
+import { AdaptableLayout, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +title: TranslationType,
@@ -31,7 +27,7 @@ const styles = StyleSheet.create({
   subtitle: {
     marginTop: 10,
     marginBottom: 12,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   tabletWrapper: {
     flexDirection: 'row',

@@ -9,14 +9,9 @@ import {
   Alert,
   type AlertTranslationType,
 } from '@kiwicom/mobile-localization';
-import {
-  StyleSheet,
-  Color,
-  Text,
-  Touchable,
-  TextIcon,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, Touchable, TextIcon } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TripOverviewContext from './TripOverviewContext';
 import type { TimelineTitle as TimelineTitleDataType } from './__generated__/TimelineTitle.graphql';
@@ -151,16 +146,16 @@ const styleSheet = StyleSheet.create({
     flexGrow: 1,
   },
   date: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   iataCode: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   row: {
     flexDirection: 'row',
   },
   warningStyle: {
-    color: Color.red.normal,
+    color: defaultTokens.paletteRedNormal,
   },
   warningRow: {
     flexDirection: 'row',

@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import idx from 'idx';
@@ -8,9 +8,9 @@ import {
   SimpleCard,
   NetworkImage,
   StyleSheet,
-  Color,
   Touchable,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from './HotelReviewScore';
@@ -116,14 +116,14 @@ export default createFragmentContainer(
 
 const newStyles = StyleSheet.create({
   container: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     paddingTop: 8,
     paddingStart: 8,
   },
   content: {
     flex: 1,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderColor: Color.ink.lighter,
+    borderColor: defaultTokens.paletteInkLighter,
   },
   imageContainer: {
     marginBottom: 8,

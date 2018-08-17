@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +color?: string,
@@ -13,7 +14,7 @@ export default function ColorStrip(props: Props) {
 }
 
 ColorStrip.defaultProps = {
-  color: Color.brand,
+  color: defaultTokens.paletteProductNormal,
 };
 
 const styles = StyleSheet.create({

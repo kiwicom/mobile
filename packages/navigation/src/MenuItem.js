@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { View, Platform } from 'react-native';
 import {
-  Color,
   TextIcon,
   StyleSheet,
   Text,
@@ -12,6 +11,7 @@ import {
   Icon,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MenuItemIcon from './MenuItemIcon';
 
@@ -79,7 +79,11 @@ function MenuItem(props: Props) {
             renderOnNarrow={Platform.select({
               ios: (
                 <View style={styleSheet.rightArrow}>
-                  <Icon name="chevron-right" size={26} color={Color.brand} />
+                  <Icon
+                    name="chevron-right"
+                    size={26}
+                    color={defaultTokens.paletteProductNormal}
+                  />
                 </View>
               ),
               android: null,
@@ -114,12 +118,16 @@ function createStyleSheet(props: Props) {
       paddingVertical: 20,
       paddingHorizontal: props.description ? 13 : 15,
       android: {
-        backgroundColor: Color.white,
+        backgroundColor: defaultTokens.paletteWhite,
         borderStartWidth: 5,
-        borderStartColor: props.isActive ? Color.brand : Color.white,
+        borderStartColor: props.isActive
+          ? defaultTokens.paletteProductNormal
+          : defaultTokens.paletteWhite,
       },
       ios: {
-        backgroundColor: props.isActive ? Color.brand : Color.white,
+        backgroundColor: props.isActive
+          ? defaultTokens.paletteProductNormal
+          : defaultTokens.paletteWhite,
       },
     },
     middleWrapper: {
@@ -129,19 +137,23 @@ function createStyleSheet(props: Props) {
     title: {
       fontWeight: 'bold',
       android: {
-        color: Color.textDark,
+        color: defaultTokens.colorTextAttention,
       },
       ios: {
-        color: props.isActive ? Color.white : Color.textDark,
+        color: props.isActive
+          ? defaultTokens.paletteWhite
+          : defaultTokens.colorTextAttention,
       },
     },
     description: {
       fontSize: 12,
       android: {
-        color: Color.textLight,
+        color: defaultTokens.colorTextSecondary,
       },
       ios: {
-        color: props.isActive ? Color.white : Color.textLight,
+        color: props.isActive
+          ? defaultTokens.paletteWhite
+          : defaultTokens.colorTextSecondary,
       },
     },
     rightArrow: {

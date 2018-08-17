@@ -2,14 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  StyleSheet,
-  Color,
-  TextIcon,
-  Touchable,
-  Text,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon, Touchable, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Price from './Price';
 
@@ -64,16 +59,16 @@ const styleSheet = StyleSheet.create({
     alignItems: 'center',
   },
   variantButtonSelected: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   iconWrapper: {
     marginBottom: 7,
   },
   iconStyle: {
-    color: Color.textMedium,
+    color: defaultTokens.paletteInkNormal,
     fontSize: 19,
   },
   textDisabled: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

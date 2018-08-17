@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { View, Image } from 'react-native';
-import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import brandImage from './bookingLogo.png';
 
@@ -29,7 +30,7 @@ const styleSheet = StyleSheet.create({
     justifyContent: 'center',
   },
   poweredBy: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     fontSize: 10,
   },
   image: {

@@ -3,30 +3,15 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Color, Touchable, Price } from '@kiwicom/mobile-shared';
+import { StyleSheet, Touchable, Price } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import BookNowText from './BookNowText';
 import countBookingPrice from './countBookingPrice';
 import convertRooms from './convertRooms';
 import type { BookNow_availableRooms } from './__generated__/BookNow_availableRooms.graphql';
 import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
-
-const styles = StyleSheet.create({
-  buttonWrapper: {
-    position: 'absolute',
-    bottom: 0,
-    start: 0,
-    end: 0,
-    flex: 1,
-    backgroundColor: Color.brand,
-  },
-  buttonPrice: {
-    fontSize: 12,
-    color: 'white',
-    textAlign: 'center',
-  },
-});
 
 type ContainerProps = {|
   +onGoToPayment: ({|
@@ -104,3 +89,19 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  buttonWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    start: 0,
+    end: 0,
+    flex: 1,
+    backgroundColor: defaultTokens.paletteProductNormal,
+  },
+  buttonPrice: {
+    fontSize: 12,
+    color: defaultTokens.paletteWhite,
+    textAlign: 'center',
+  },
+});

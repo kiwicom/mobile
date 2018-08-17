@@ -1,9 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import AgeControl from './AgeControl';
 import type { ChildAge } from './GuestsTypes';
@@ -58,13 +59,13 @@ export default class ChildrenAgesControl extends React.Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   list: {
     paddingStart: 15,
   },
   ageControlContainer: {
-    borderBottomColor: Color.backgroundGray,
+    borderBottomColor: Color.backgroundGray, // TODO: Consult with desinger, not in design token
     borderBottomWidth: 1,
   },
   ageControl: {

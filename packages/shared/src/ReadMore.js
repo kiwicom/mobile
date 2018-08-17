@@ -1,14 +1,14 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import OriginalReadMore from 'react-native-read-more-text'; // eslint-disable-line no-restricted-imports
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from './Text';
 import Touchable from './Touchable';
 import StyleSheet from './PlatformStyleSheet';
-import Color from './Color';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
@@ -18,16 +18,6 @@ type Props = {|
   +revealedText: React.Element<typeof Translation>,
   +style?: StylePropType,
 |};
-
-const styles = StyleSheet.create({
-  linkView: {
-    flexDirection: 'row',
-  },
-  linkText: {
-    color: Color.brand,
-    fontWeight: '500',
-  },
-});
 
 const Link = ({
   label,
@@ -72,3 +62,13 @@ export default class ReadMore extends React.Component<Props> {
     </OriginalReadMore>
   );
 }
+
+const styles = StyleSheet.create({
+  linkView: {
+    flexDirection: 'row',
+  },
+  linkText: {
+    color: defaultTokens.paletteProductNormal,
+    fontWeight: '500',
+  },
+});

@@ -1,17 +1,17 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 import type { StylePropType } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 import ButtonTitle from './ButtonTitle';
 import Button from './Button';
 
 type Props = {|
   +title: TranslationType,
-  +onPress: Function,
+  +onPress: () => void,
   +titleStyle?: StylePropType,
 |};
 
@@ -34,6 +34,6 @@ const styleSheet = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   text: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
   },
 });

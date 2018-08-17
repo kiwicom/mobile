@@ -22,7 +22,7 @@ exports[`renders without crashing 1`] = `
     <BookNowText
       buttonPriceStyle={
         Object {
-          "color": "white",
+          "color": "#fff",
           "fontSize": 12,
           "textAlign": "center",
         }
@@ -35,7 +35,7 @@ exports[`renders without crashing 1`] = `
           currency="EUR"
           style={
             Object {
-              "color": "white",
+              "color": "#fff",
               "fontSize": 12,
               "textAlign": "center",
             }

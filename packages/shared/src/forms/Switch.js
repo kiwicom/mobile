@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { Switch as OriginalSwitch } from 'react-native'; // eslint-disable-line no-restricted-imports
-
-import Color from '../Color';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +value: boolean,
@@ -15,7 +14,7 @@ export default function Switch(props: Props) {
     <OriginalSwitch
       onValueChange={props.onValueChange}
       value={props.value}
-      onTintColor={Color.brand}
+      onTintColor={defaultTokens.paletteProductNormal}
     />
   );
 }

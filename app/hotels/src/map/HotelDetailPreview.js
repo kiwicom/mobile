@@ -1,17 +1,12 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  StyleSheet,
-  NetworkImage,
-  Color,
-  Price,
-  Text,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, NetworkImage, Price, Text } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
 
@@ -106,20 +101,20 @@ const styles = StyleSheet.create({
   },
   hotelName: {
     fontSize: 16,
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
     android: {
       lineHeight: 17,
     },
   },
   metainfo: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     fontSize: 12,
     android: {
       lineHeight: 13,
     },
   },
   price: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     fontWeight: 'bold',
     fontSize: 12,
     android: {

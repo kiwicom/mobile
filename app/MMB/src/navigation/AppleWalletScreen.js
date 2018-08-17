@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import AppleWalletScene from '../scenes/appleWallet/AppleWalletScene';
 import WalletContext from '../context/WalletContext';
@@ -38,7 +39,7 @@ AppleWalletScreenWithContext.navigationOptions = () => ({
     backgroundColor: 'transparent',
   },
   headerTransparent: true,
-  headerTintColor: Color.white,
+  headerTintColor: defaultTokens.paletteWhite,
 });
 
 const styles = StyleSheet.create({

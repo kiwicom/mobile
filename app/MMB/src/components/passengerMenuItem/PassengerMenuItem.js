@@ -4,7 +4,8 @@ import * as React from 'react';
 import idx from 'idx';
 import { View, Platform } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Color, Icon, Touchable } from '@kiwicom/mobile-shared';
+import { StyleSheet, Icon, Touchable } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +passengerFullName: string,
@@ -30,7 +31,11 @@ const PassengerMenuItem = (props: Props) => {
           {Platform.select({
             android: null,
             ios: !disabled && (
-              <Icon name="chevron-right" size={26} color={Color.brand} />
+              <Icon
+                name="chevron-right"
+                size={26}
+                color={defaultTokens.paletteProductNormal}
+              />
             ),
           })}
         </View>

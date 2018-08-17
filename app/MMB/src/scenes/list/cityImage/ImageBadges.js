@@ -1,9 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { ImageBadges as ImageBadgesType } from './__generated__/ImageBadges.graphql';
 import StatusBadge from './StatusBadge';
@@ -35,11 +36,11 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   bookingIdBadge: {
-    backgroundColor: Color.grey.transparent.outerSpace.$60,
+    backgroundColor: Color.grey.transparent.outerSpace.$60, // TODO: Consult designer
   },
   badgeText: {
     fontSize: 10,
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
     padding: 2.5,
   },
 });

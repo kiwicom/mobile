@@ -10,6 +10,7 @@ import {
   PassBook,
 } from '@kiwicom/mobile-shared';
 import { Translation, Alert } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Passenger from './Passenger';
 import DateAndTime from './DateAndTime';
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   },
   borderBottom: {
     borderBottomWidth: 1,
-    borderBottomColor: Color.backgroundGray,
+    borderBottomColor: Color.backgroundGray, // TODO: Consult designer
   },
   dateContainer: {
     paddingTop: 18,
@@ -86,6 +87,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   text: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

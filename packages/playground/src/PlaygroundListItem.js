@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Touchable, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Touchable } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 const styles = StyleSheet.create({
   row: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     padding: 10,
     marginBottom: 5,
   },

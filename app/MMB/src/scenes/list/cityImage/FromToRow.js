@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TravelTypeIcon from '../../../components/TravelTypeIcon';
 import type { FromToRow_arrival as ArrivalType } from './__generated__/FromToRow_arrival.graphql';
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   text: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
   flexItem: {
     flex: 1,
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
   arrivalWrapper: {
     alignItems: 'flex-end',

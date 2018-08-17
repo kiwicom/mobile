@@ -1,13 +1,14 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  title: React.Element<typeof Translation>,
-  value: React.Element<typeof Translation>,
+  +title: React.Element<typeof Translation>,
+  +value: React.Element<typeof Translation>,
 |};
 
 export default function ContactMenuItem(props: Props) {
@@ -24,10 +25,10 @@ const styleSheet = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 15,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   title: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     fontSize: 12,
   },
 });

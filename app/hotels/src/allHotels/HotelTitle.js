@@ -4,8 +4,9 @@ import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Color, Price, Stars, Text, StyleSheet } from '@kiwicom/mobile-shared';
+import { Price, Stars, Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Distance from './HotelDistance';
 import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';
@@ -70,7 +71,7 @@ export default createFragmentContainer(
 const style = StyleSheet.create({
   title: {
     fontWeight: 'bold',
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
     android: {
       fontSize: 15,
     },
@@ -79,7 +80,7 @@ const style = StyleSheet.create({
     },
   },
   rating: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     fontSize: 9,
   },
   distance: {
@@ -87,7 +88,7 @@ const style = StyleSheet.create({
   },
   price: {
     fontWeight: 'bold',
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     letterSpacing: 0,
     android: {
       fontSize: 13,
