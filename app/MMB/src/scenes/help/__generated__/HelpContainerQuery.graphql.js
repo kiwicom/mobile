@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a0046bf3692de9b2c139f0c729ac6e1b
+ * @relayHash f5f8c891c718d5507bea44a4b12d826e
  */
 
 /* eslint-disable */
@@ -9,10 +9,11 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type Help$ref = any;
 export type HelpContainerQueryVariables = {||};
 export type HelpContainerQueryResponse = {|
   +customerSupportNumber: ?{|
-    +number: ?string
+    +$fragmentRefs: Help$ref
   |}
 |};
 */
@@ -21,38 +22,21 @@ export type HelpContainerQueryResponse = {|
 /*
 query HelpContainerQuery {
   customerSupportNumber {
-    number
+    ...Help
   }
+}
+
+fragment Help on CustomerSupportNumber {
+  number
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
-var v0 = [
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "customerSupportNumber",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "CustomerSupportNumber",
-    "plural": false,
-    "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "number",
-        "args": null,
-        "storageKey": null
-      }
-    ]
-  }
-];
-return {
+const node/*: ConcreteRequest*/ = {
   "kind": "Request",
   "operationKind": "query",
   "name": "HelpContainerQuery",
   "id": null,
-  "text": "query HelpContainerQuery {\n  customerSupportNumber {\n    number\n  }\n}\n",
+  "text": "query HelpContainerQuery {\n  customerSupportNumber {\n    ...Help\n  }\n}\n\nfragment Help on CustomerSupportNumber {\n  number\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -60,16 +44,51 @@ return {
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": [],
-    "selections": v0
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "customerSupportNumber",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "CustomerSupportNumber",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "FragmentSpread",
+            "name": "Help",
+            "args": null
+          }
+        ]
+      }
+    ]
   },
   "operation": {
     "kind": "Operation",
     "name": "HelpContainerQuery",
     "argumentDefinitions": [],
-    "selections": v0
+    "selections": [
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "customerSupportNumber",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "CustomerSupportNumber",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "number",
+            "args": null,
+            "storageKey": null
+          }
+        ]
+      }
+    ]
   }
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = '999572874ee31a1d3d47919ec72ec921';
+(node/*: any*/).hash = '530efc5c83eb8b57c2e1b52721df0d31';
 module.exports = node;
