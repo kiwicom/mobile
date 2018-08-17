@@ -2,30 +2,16 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelDistance_hotel } from './__generated__/HotelDistance_hotel.graphql';
 
 type Props = {|
-  hotel: HotelDistance_hotel,
+  +hotel: HotelDistance_hotel,
 |};
-
-const style = StyleSheet.create({
-  text: {
-    letterSpacing: 0.2,
-    color: Color.textLight,
-    android: {
-      fontSize: 13,
-      lineHeight: 15,
-    },
-    ios: {
-      fontSize: 12,
-      lineHeight: 12,
-    },
-  },
-});
 
 // 1.5 km city center radius
 const CITY_CENTER_RADIUS = 1.5;
@@ -44,6 +30,21 @@ function HotelDistance({ hotel }: Props) {
     </Text>
   );
 }
+
+const style = StyleSheet.create({
+  text: {
+    letterSpacing: 0.2,
+    color: defaultTokens.colorTextSecondary,
+    android: {
+      fontSize: 13,
+      lineHeight: 15,
+    },
+    ios: {
+      fontSize: 12,
+      lineHeight: 12,
+    },
+  },
+});
 
 export function getDistanceText(
   distanceFromCenter: number,

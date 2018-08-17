@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TripInfoOneWay from './TripInfoOneWay';
 import TripInfoReturn from './TripInfoReturn';
@@ -48,6 +49,6 @@ export default createFragmentContainer(
 
 const styleSheet = StyleSheet.create({
   wrapper: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });

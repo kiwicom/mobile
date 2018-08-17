@@ -1,11 +1,11 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { TextInput as OriginalTextInput, View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from '../PlatformStyleSheet';
-import Color from '../Color';
 import Text from '../Text';
 
 type Props = {|
@@ -78,8 +78,8 @@ const styleSheet = StyleSheet.create({
   },
   input: {
     flex: 1,
-    color: Color.textDark,
-    backgroundColor: Color.inputBackground,
+    color: defaultTokens.colorTextAttention,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     borderRadius: 6,
     padding: 10,
   },
@@ -97,6 +97,6 @@ const styleSheet = StyleSheet.create({
     position: 'absolute',
     padding: 10,
     paddingVertical: 15,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

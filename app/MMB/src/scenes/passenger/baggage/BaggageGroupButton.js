@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { View, Platform } from 'react-native';
-import { Touchable, StyleSheet, Icon, Color } from '@kiwicom/mobile-shared';
+import { Touchable, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +children: React.Node,
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   icon: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     alignSelf: 'center',
   },
 });

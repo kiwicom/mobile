@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View, Platform } from 'react-native';
@@ -8,10 +8,10 @@ import { StyleSheet, NetworkImage, Color } from '@kiwicom/mobile-shared';
 import PhotosStripeHeader from './PhotosStripeHeader';
 
 type Props = {|
-  hotelName: string,
-  imageUrls: string[],
-  index: number,
-  onClose: () => void,
+  +hotelName: string,
+  +imageUrls: string[],
+  +index: number,
+  +onClose: () => void,
 |};
 
 type State = {|
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   slide: {
     flex: 1,
-    backgroundColor: Color.black,
+    backgroundColor: Color.black, // TODO: Consult desinger
   },
   networkImage: {
     flex: 1,

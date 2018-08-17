@@ -1,9 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { Color, Icon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import RNTooltips from 'react-native-tooltips';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: () => void,
@@ -17,7 +18,7 @@ type State = {|
 
 export default class MapHeaderButton extends React.Component<Props, State> {
   static defaultProps = {
-    iconColor: Color.brand,
+    iconColor: defaultTokens.paletteProductNormal,
   };
 
   state = {

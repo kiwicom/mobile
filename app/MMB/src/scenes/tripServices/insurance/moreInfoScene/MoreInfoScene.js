@@ -1,10 +1,11 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { Color, Text, StyleSheet, LinkButton } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, LinkButton } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Row from './MoreInfoSceneRow';
 import rows from './MoreInfoSceneData';
@@ -48,7 +49,7 @@ export default class MoreInfoScene extends React.Component<Props> {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     paddingHorizontal: 6,
   },
   pitch: {
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
   },
   headerColor: {
-    color: Color.ink.light,
+    color: defaultTokens.paletteInkLight,
     fontWeight: 'bold',
   },
   terms: {

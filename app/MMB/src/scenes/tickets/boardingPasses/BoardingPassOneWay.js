@@ -3,8 +3,9 @@
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BoardingPassOneWay as BookingType } from './__generated__/BoardingPassOneWay.graphql';
 import FlightSegments from './FlightSegments';
@@ -36,7 +37,7 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   outboundIcon: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     transform: [{ rotate: '90deg' }],
   },
 });

@@ -1,27 +1,20 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { Touchable, StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { Touchable, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Row from './Row';
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: Color.textDark,
-  },
-});
-
 type Location = {|
-  id: string,
-  name: string,
+  +id: string,
+  +name: string,
 |};
 
 type Props = {|
-  location: Location,
-  onCitySelected: (cityId: string, cityName: string) => void,
+  +location: Location,
+  +onCitySelected: (cityId: string, cityName: string) => void,
 |};
 
 export default class RecentSearchItem extends React.Component<Props> {
@@ -40,3 +33,11 @@ export default class RecentSearchItem extends React.Component<Props> {
     </Touchable>
   );
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: defaultTokens.colorTextAttention,
+  },
+});

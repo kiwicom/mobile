@@ -1,16 +1,17 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { Color, StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TitleTranslation from '../../components/TitleTranslation';
 
 type Props = {|
-  name?: React.Element<typeof Translation | typeof TitleTranslation>,
-  title: React.Element<typeof Translation>,
-  value: React.Element<typeof Translation>,
+  +name?: React.Element<typeof Translation | typeof TitleTranslation>,
+  +title: React.Element<typeof Translation>,
+  +value: React.Element<typeof Translation>,
 |};
 
 export default function PassengerMenuItem(props: Props) {
@@ -37,14 +38,14 @@ const styleSheet = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     padding: 15,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   title: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     fontSize: 12,
   },
   icon: {
-    color: Color.black,
+    color: Color.black, // TODO: Consult designer
     fontSize: 16,
     paddingTop: 2,
     marginEnd: 5,

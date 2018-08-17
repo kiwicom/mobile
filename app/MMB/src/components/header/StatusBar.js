@@ -3,9 +3,10 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import ColorStrip from './ColorStrip';
 import StatusBarIcon from './StatusBarIcon';
@@ -48,7 +49,7 @@ const styleSheet = StyleSheet.create({
     flexDirection: 'row',
   },
   container: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     padding: 10,
     flex: 1,
   },
@@ -56,6 +57,6 @@ const styleSheet = StyleSheet.create({
     flexGrow: 1,
   },
   bid: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

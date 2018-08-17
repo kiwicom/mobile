@@ -4,8 +4,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { NetworkImage, StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { NetworkImage, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineTitle from './TimelineTitle';
 import type { TimelineDeparture_routeStop } from './__generated__/TimelineDeparture_routeStop.graphql';
@@ -93,6 +94,6 @@ const styleSheet = StyleSheet.create({
   },
   value: {
     fontSize: 12,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

@@ -1,9 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, Color, TextIcon, Text } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type RowTitle = React.Element<typeof Translation>;
 type Cell = React.Element<typeof Translation | typeof TextIcon>;
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   wrapperBackground: {
-    backgroundColor: Color.backgroundGray,
+    backgroundColor: Color.backgroundGray, // TODO: Consult designer
   },
   cellWrapper: {
     flex: 1,
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerColor: {
-    color: Color.ink.light,
+    color: defaultTokens.paletteInkLight,
     fontWeight: 'bold',
   },
 });

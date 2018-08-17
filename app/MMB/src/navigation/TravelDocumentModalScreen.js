@@ -8,7 +8,8 @@ import {
   HeaderTitle,
 } from '@kiwicom/mobile-navigation';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
-import { StyleSheet, Color, IconLoading } from '@kiwicom/mobile-shared';
+import { StyleSheet, IconLoading } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import updatePassengerMutation from './mutation/UpdatePassenger';
 import { withBookingDetailContext } from '../context/BookingDetailContext';
@@ -138,7 +139,7 @@ export class TravelDocumentModalScreen extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });
 

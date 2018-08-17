@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { Image, View } from 'react-native';
@@ -10,37 +10,16 @@ import {
 } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import icon from './gallery-icon.png';
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    borderRadius: 2,
-    backgroundColor: Color.grey.transparent.outerSpace.$60,
-    paddingVertical: 5,
-    paddingHorizontal: 8,
-  },
-  icon: {
-    width: 14,
-    height: 14,
-  },
-  count: {
-    backgroundColor: 'transparent',
-    fontSize: 12,
-    lineHeight: 14,
-    fontWeight: '600',
-    color: Color.white,
-    marginStart: 5,
-  },
-});
-
 type Props = {|
-  count: number,
-  style?: {
-    container?: StylePropType,
-    icon?: StylePropType,
-    text?: StylePropType,
+  +count: number,
+  +style?: {
+    +container?: StylePropType,
+    +icon?: StylePropType,
+    +text?: StylePropType,
   },
 |};
 
@@ -57,3 +36,25 @@ export default function GalleryButton({ count, style }: Props) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    borderRadius: 2,
+    backgroundColor: Color.grey.transparent.outerSpace.$60, // TODO: Consult designer
+    paddingVertical: 5,
+    paddingHorizontal: 8,
+  },
+  icon: {
+    width: 14,
+    height: 14,
+  },
+  count: {
+    backgroundColor: 'transparent',
+    fontSize: 12,
+    lineHeight: 14,
+    fontWeight: '600',
+    color: defaultTokens.paletteWhite,
+    marginStart: 5,
+  },
+});

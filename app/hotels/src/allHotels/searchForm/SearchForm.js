@@ -1,8 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { Color, Logger, StyleSheet } from '@kiwicom/mobile-shared';
+import { Logger, StyleSheet } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DateInput from './DateInput';
 import Guests from './guests/Guests';
@@ -15,9 +16,9 @@ import HotelsSearchContext from '../../HotelsSearchContext';
 
 type PropsWithContext = $ReadOnly<{|
   ...Props,
-  location: string,
-  search: SearchParams,
-  onChange: (search: OnChangeSearchParams) => void,
+  +location: string,
+  +search: SearchParams,
+  +onChange: (search: OnChangeSearchParams) => void,
 |}>;
 
 export class SearchForm extends React.Component<PropsWithContext> {
@@ -76,7 +77,7 @@ export default function SearchFormWithContext(props: Props) {
 
 const styles = StyleSheet.create({
   form: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     android: {
       paddingHorizontal: 14,
       paddingVertical: 15,

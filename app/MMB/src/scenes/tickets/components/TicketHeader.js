@@ -1,9 +1,10 @@
 // @flow strict
 
 import * as React from 'react';
-import { TextIcon, Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { TextIcon, Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +icon: React.Element<typeof TextIcon>,
@@ -25,12 +26,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   icon: {
-    color: Color.textDark,
+    color: defaultTokens.colorIconAttention,
     alignSelf: 'center',
     marginEnd: 7,
   },
   headerText: {
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
     fontSize: 16,
   },
 });

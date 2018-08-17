@@ -1,10 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 import type { StylePropType } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from '../Color';
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 
@@ -12,14 +12,6 @@ type Props = {|
   +code: string,
   style?: StylePropType,
 |};
-
-const styleSheet = StyleSheet.create({
-  icon: {
-    fontFamily: 'spfont', // font with all the icons (see Fontastic)
-    includeFontPadding: false,
-    textAlignVertical: 'center',
-  },
-});
 
 /**
  * These icons are font mobile icons from Fontastic. Usage:
@@ -33,10 +25,11 @@ const styleSheet = StyleSheet.create({
 class TextIcon extends React.Component<Props> {
   static defaultProps = {
     style: {
-      color: Color.textLight,
+      color: defaultTokens.colorIconSecondary,
       fontSize: 20,
     },
   };
+
   render() {
     return (
       <Text style={[styleSheet.icon, this.props.style]}>
@@ -47,3 +40,11 @@ class TextIcon extends React.Component<Props> {
 }
 
 export default TextIcon;
+
+const styleSheet = StyleSheet.create({
+  icon: {
+    fontFamily: 'spfont', // font with all the icons (see Fontastic)
+    includeFontPadding: false,
+    textAlignVertical: 'center',
+  },
+});

@@ -4,12 +4,12 @@ exports[`Alert renders alert without children 1`] = `
 <RenderAlert
   containerStyle={
     Object {
-      "backgroundColor": "#c4f2ca",
+      "backgroundColor": "#e7f3e8",
     }
   }
   icon={
     <Icon
-      color="#46b655"
+      color="#46B655"
       name="error-outline"
       size={17}
       style={
@@ -31,7 +31,7 @@ exports[`Alert renders alert without children 1`] = `
   titleStyle={
     Array [
       Object {
-        "color": "#196e25",
+        "color": "#065d12",
       },
       undefined,
     ]
@@ -43,12 +43,12 @@ exports[`Alert renders danger type 1`] = `
 <RenderAlert
   containerStyle={
     Object {
-      "backgroundColor": "rgba(208, 2, 27, 0.15)",
+      "backgroundColor": "#fae8e8",
     }
   }
   icon={
     <Icon
-      color="#d0021b"
+      color="#d21c1c"
       name="warning"
       size={17}
     />
@@ -61,7 +61,7 @@ exports[`Alert renders danger type 1`] = `
   titleStyle={
     Array [
       Object {
-        "color": "#d0021b",
+        "color": "#650808",
       },
       undefined,
     ]
@@ -77,12 +77,12 @@ exports[`Alert renders success type 1`] = `
 <RenderAlert
   containerStyle={
     Object {
-      "backgroundColor": "#c4f2ca",
+      "backgroundColor": "#e7f3e8",
     }
   }
   icon={
     <Icon
-      color="#46b655"
+      color="#46B655"
       name="error-outline"
       size={17}
       style={
@@ -104,7 +104,7 @@ exports[`Alert renders success type 1`] = `
   titleStyle={
     Array [
       Object {
-        "color": "#196e25",
+        "color": "#065d12",
       },
       undefined,
     ]
@@ -120,12 +120,12 @@ exports[`Alert renders warning type 1`] = `
 <RenderAlert
   containerStyle={
     Object {
-      "backgroundColor": "rgba(235, 157, 8, 0.15)",
+      "backgroundColor": "#fcf1cd",
     }
   }
   icon={
     <Icon
-      color="#eb9d08"
+      color="#f9971e"
       name="warning"
       size={17}
     />
@@ -138,7 +138,7 @@ exports[`Alert renders warning type 1`] = `
   titleStyle={
     Array [
       Object {
-        "color": "#eb9d08",
+        "color": "#a93610",
       },
       undefined,
     ]

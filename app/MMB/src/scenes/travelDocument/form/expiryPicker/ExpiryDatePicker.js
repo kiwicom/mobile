@@ -13,6 +13,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import max from 'lodash/max';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TravelDocumentFormContext from '../TravelDocumentFormContext';
 import type { ExpiryDatePicker as SegmentsType } from './__generated__/ExpiryDatePicker.graphql';
@@ -98,13 +99,13 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   noExpiry: {
-    color: Color.labelDisabled,
+    color: Color.labelDisabled, // TODO: Consult designer
   },
   expiry: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   label: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
     marginBottom: 5,
   },
   switchContainer: {

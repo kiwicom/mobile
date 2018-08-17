@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineEventDateLocationContext from '../../context/TimelineEventDateLocationContext';
 import { TextWithIsPastEventContext } from '../../context/TimelineEventContext';
@@ -65,9 +66,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 10,
     fontWeight: 'bold',
-    color: Color.ink.light,
+    color: defaultTokens.colorTextSecondary,
   },
   highlightText: {
-    color: Color.red.normal,
+    color: defaultTokens.paletteRedNormal,
   },
 });

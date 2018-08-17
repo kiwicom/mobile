@@ -1,16 +1,17 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, TextIcon, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Duration as DurationType } from './__generated__/Duration.graphql';
 
 type Props = {|
-  data: DurationType,
+  +data: DurationType,
 |};
 
 export function Duration(props: Props) {
@@ -62,6 +63,6 @@ const styleSheet = StyleSheet.create({
   },
   durationText: {
     fontSize: 10,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

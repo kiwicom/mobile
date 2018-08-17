@@ -12,32 +12,9 @@ import {
 } from '@kiwicom/mobile-shared';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
-
-const styles = StyleSheet.create({
-  facilities: {
-    marginTop: 15,
-    paddingTop: 15,
-    borderTopWidth: 1,
-    borderTopColor: Color.grey.$200,
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-  },
-  lessMoreButton: {
-    color: Color.brand,
-    fontWeight: '500',
-  },
-  adaptableBadge: {
-    backgroundColor: Color.grey.porcelain,
-    marginEnd: 5,
-    marginBottom: 5,
-  },
-  adaptableBadgeText: {
-    color: Color.textLight,
-  },
-});
 
 type ContainerProps = {|
   +facilities: any,
@@ -119,3 +96,27 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  facilities: {
+    marginTop: 15,
+    paddingTop: 15,
+    borderTopWidth: 1,
+    borderTopColor: Color.grey.$200, // TODO: Consult designer
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+  lessMoreButton: {
+    color: defaultTokens.paletteProductNormal,
+    fontWeight: '500',
+  },
+  adaptableBadge: {
+    backgroundColor: Color.grey.porcelain, // TODO: Consult designer
+    marginEnd: 5,
+    marginBottom: 5,
+  },
+  adaptableBadgeText: {
+    color: defaultTokens.colorTextSecondary,
+  },
+});

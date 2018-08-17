@@ -9,13 +9,14 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { AppleWalletPassenger as AppleWalletType } from './__generated__/AppleWalletPassenger.graphql';
 import WalletContext from './../../../../context/WalletContext';
 
 type PropsWithContext = {|
   ...Props,
-  addPkpassData: (
+  +addPkpassData: (
     passengerName: string,
     pkpassUrl: string,
     id: string,
@@ -42,7 +43,11 @@ class AppleWalletPassenger extends React.Component<PropsWithContext> {
         <Translation
           passThrough={idx(this.props.data, _ => _.passenger.fullName)}
         />
-        <Icon name="chevron-right" size={26} color={Color.brand} />
+        <Icon
+          name="chevron-right"
+          size={26}
+          color={defaultTokens.paletteProductNormal}
+        />
       </React.Fragment>
     </Touchable>
   );
@@ -80,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: Color.backgroundGray,
+    borderBottomColor: Color.backgroundGray, // TODO: Consult designer
     paddingVertical: 20,
   },
 });

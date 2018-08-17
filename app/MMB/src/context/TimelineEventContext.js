@@ -1,12 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Text,
-  StyleSheet,
-  Color,
-  type StylePropType,
-} from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, type StylePropType } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 const { Consumer, Provider } = React.createContext({
   isPastEvent: false,
@@ -32,6 +28,6 @@ export default { Consumer, Provider };
 
 const styles = StyleSheet.create({
   isPastEvent: {
-    color: Color.ink.light,
+    color: defaultTokens.paletteInkLight,
   },
 });

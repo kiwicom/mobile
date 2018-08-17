@@ -1,36 +1,21 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { LayoutAnimation } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 import VerticalSwipeResponder from './view/VerticalSwipeResponder';
 
 type Props = {|
-  children: React.Node,
-  openHeight: number,
-  closedHeight: number,
+  +children: React.Node,
+  +openHeight: number,
+  +closedHeight: number,
 |};
 
 type State = {|
   height: number,
 |};
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Color.white,
-    overflow: 'hidden',
-    android: {
-      borderTopRightRadius: 3,
-      borderTopLeftRadius: 3,
-      marginTop: 1,
-      marginStart: 1,
-      marginEnd: 1,
-      elevation: 1,
-    },
-  },
-});
 
 export default class BottomSheet extends React.Component<Props, State> {
   state = {
@@ -64,3 +49,18 @@ export default class BottomSheet extends React.Component<Props, State> {
     );
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: defaultTokens.paletteWhite,
+    overflow: 'hidden',
+    android: {
+      borderTopRightRadius: 3,
+      borderTopLeftRadius: 3,
+      marginTop: 1,
+      marginStart: 1,
+      marginEnd: 1,
+      elevation: 1,
+    },
+  },
+});

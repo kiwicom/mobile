@@ -1,13 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { Animated, View } from 'react-native';
-import {
-  LayoutAnimation,
-  StyleSheet,
-  Color,
-  TextIcon,
-} from '@kiwicom/mobile-shared';
+import { LayoutAnimation, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +isExpanded: boolean,
@@ -92,13 +88,13 @@ export default class MobileTripOverviewHandle extends React.Component<
 
 const styleSheet = StyleSheet.create({
   handleWrapper: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   icon: {
     height: 24,
     alignSelf: 'center',
   },
   textIcon: {
-    color: Color.product.normal,
+    color: defaultTokens.paletteProductNormal,
   },
 });

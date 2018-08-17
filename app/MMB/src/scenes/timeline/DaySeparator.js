@@ -7,6 +7,7 @@ import {
   DateFormatter,
   DateUtils,
 } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineRow from './TimelineRow';
 
@@ -41,10 +42,10 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: Color.backgroundGray,
+    backgroundColor: Color.backgroundGray, // TODO: Consult designer
   },
   date: {
-    color: Color.ink.light,
+    color: defaultTokens.paletteInkLight,
     fontWeight: 'bold',
   },
 });

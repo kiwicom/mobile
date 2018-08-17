@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MenuItem from './MenuItem';
 
@@ -41,6 +42,6 @@ const styleSheet = StyleSheet.create({
     textDecorationLine: 'line-through',
   },
   textTodo: {
-    color: 'red',
+    color: defaultTokens.paletteRedNormal,
   },
 });

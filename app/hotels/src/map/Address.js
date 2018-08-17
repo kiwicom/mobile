@@ -1,41 +1,23 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Color, Icon, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { Icon, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Address_address } from './__generated__/Address_address.graphql';
 
 type ContainerProps = {|
-  address: $FlowFixMeProps,
+  +address: $FlowFixMeProps,
 |};
 
 type Props = {
   ...ContainerProps,
-  address: ?Address_address,
+  +address: ?Address_address,
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    marginHorizontal: 10,
-    height: 50,
-  },
-  mapIcon: {
-    alignSelf: 'center',
-    marginEnd: 10,
-  },
-  header: {
-    fontWeight: 'bold',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
 
 class Address extends React.Component<Props> {
   render = () => {
@@ -46,7 +28,11 @@ class Address extends React.Component<Props> {
     return (
       <View style={styles.container}>
         <View style={styles.mapIcon}>
-          <Icon name="map" size={24} color={Color.brand} />
+          <Icon
+            name="map"
+            size={24}
+            color={defaultTokens.paletteProductNormal}
+          />
         </View>
         <View style={styles.content}>
           <Text style={styles.header}>
@@ -71,3 +57,22 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    marginHorizontal: 10,
+    height: 50,
+  },
+  mapIcon: {
+    alignSelf: 'center',
+    marginEnd: 10,
+  },
+  header: {
+    fontWeight: 'bold',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+});

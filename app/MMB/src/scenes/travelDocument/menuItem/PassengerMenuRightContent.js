@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +idNumber: string | null,
@@ -25,9 +26,9 @@ export default function PassengerMenuRightContent(props: Props) {
 
 const styles = StyleSheet.create({
   missing: {
-    color: Color.red.normal,
+    color: defaultTokens.paletteRedNormal,
   },
   filled: {
-    color: Color.green.normal,
+    color: defaultTokens.paletteGreenNormal,
   },
 });

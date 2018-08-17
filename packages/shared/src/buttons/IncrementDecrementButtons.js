@@ -1,11 +1,11 @@
-// @flow
+// @flow srict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from '../Text';
-import Color from '../Color';
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
@@ -16,10 +16,10 @@ const Button = ({
   onPress,
   style,
 }: {|
-  text: string,
-  touchable: boolean,
-  onPress: () => void,
-  style?: StylePropType,
+  +text: string,
+  +touchable: boolean,
+  +onPress: () => void,
+  +style?: StylePropType,
 |}) => {
   const inner = (
     <View
@@ -77,11 +77,11 @@ const styleSheet = StyleSheet.create({
   buttonsGroup: {
     flexDirection: 'row',
     borderWidth: 1,
-    borderColor: Color.inputBackground,
+    borderColor: defaultTokens.paletteCloudNormal,
     height: 29,
     width: 94, // 47 * 2 (see button)
     borderRadius: 4,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   button: {
     flex: 1,
@@ -90,16 +90,16 @@ const styleSheet = StyleSheet.create({
     width: 47, // 94 / 2 (see buttonsGroup)
   },
   buttonDisabled: {
-    backgroundColor: Color.inputBackground,
+    backgroundColor: defaultTokens.paletteCloudNormal,
   },
   buttonLeft: {
     alignItems: 'center',
     borderEndWidth: 1,
-    borderColor: Color.inputBackground,
+    borderColor: defaultTokens.paletteCloudNormal,
     paddingBottom: 0,
   },
   buttonText: {
-    color: Color.textDark,
+    color: defaultTokens.colorTextAttention,
     fontSize: 25,
     ios: {
       paddingBottom: 33,
@@ -109,7 +109,7 @@ const styleSheet = StyleSheet.create({
     },
   },
   buttonTextDisabled: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   minusText: {
     android: {

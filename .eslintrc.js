@@ -65,6 +65,14 @@ module.exports = {
               "Please use '@kiwicom/mobile-shared' package instead.",
           },
           {
+            name: '@kiwicom/orbit-design-tokens',
+            importNames: [
+              'defaultTokens',
+            ],
+            message:
+              "Please use '@kiwicom/mobile-orbit' package instead.",
+          },
+          {
             name: 'react-native-read-more-text', // ReadMore
             message:
               "Please use '@kiwicom/mobile-shared' package instead.",

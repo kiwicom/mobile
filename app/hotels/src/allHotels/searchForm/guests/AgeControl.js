@@ -1,15 +1,16 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View, TouchableWithoutFeedback, Platform } from 'react-native';
 import {
   StyleSheet,
-  Color,
   AgePicker,
   Icon,
   Text,
+  type StylePropType,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Age from './Age';
 
@@ -17,7 +18,7 @@ type Props = {|
   +label: React.Element<typeof Translation>,
   +age: number | null,
   +onChange: (age: number) => void,
-  +style?: Object,
+  +style?: StylePropType,
 |};
 
 type State = {|
@@ -86,6 +87,6 @@ const styles = StyleSheet.create({
     marginEnd: 10,
   },
   icon: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
   },
 });

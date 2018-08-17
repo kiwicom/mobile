@@ -1,10 +1,11 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import idx from 'idx';
-import { StyleSheet, Color, Text, Price } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, Price } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import { withInsuranceContext } from '../InsuranceOverviewSceneContext';
 
@@ -123,9 +124,9 @@ const styleSheet = StyleSheet.create({
     flexGrow: 1,
   },
   text: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
   price: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
 });

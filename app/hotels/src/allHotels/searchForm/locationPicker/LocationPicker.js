@@ -2,14 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  StyleSheet,
-  Color,
-  TextInput,
-  WithStorage,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, TextInput, WithStorage } from '@kiwicom/mobile-shared';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import RecentSearches from './RecentSearches';
 import SuggestionList from './SuggestionList';
@@ -134,6 +130,6 @@ const styles = StyleSheet.create({
   },
   textInputContainer: {
     padding: 10,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });

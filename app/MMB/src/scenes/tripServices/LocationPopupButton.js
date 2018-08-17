@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { Touchable, Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { Touchable, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import CountryFlag from '../../components/CountryFlag';
 import type { LocationPopupButton as LocationPopupButtonType } from './__generated__/LocationPopupButton.graphql';
@@ -64,6 +65,6 @@ const styleSheet = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 17,
     paddingHorizontal: 15,
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });

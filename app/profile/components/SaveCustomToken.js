@@ -1,14 +1,9 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  Color,
-} from '@kiwicom/mobile-shared';
+import { Text, TextInput, Button, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: (token: string) => void,
@@ -50,6 +45,6 @@ export default class SaveCustomToken extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   button: {
-    color: Color.white,
+    color: defaultTokens.paletteWhite,
   },
 });

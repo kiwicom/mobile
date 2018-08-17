@@ -157,12 +157,12 @@ export default class HotelFacilitiesPopup extends React.Component<
 
 const styles = StyleSheet.create({
   title: {
-    color: Color.grey.$800,
+    color: Color.grey.$800, // TODO: Consult designer
     paddingBottom: 5,
   },
   delimiter: {
     borderBottomWidth: 0.5,
-    borderBottomColor: Color.grey.$300,
+    borderBottomColor: Color.grey.$300, // TODO: Consult designer
   },
   checkbox: {
     flexDirection: 'row',

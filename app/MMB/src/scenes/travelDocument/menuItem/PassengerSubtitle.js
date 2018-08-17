@@ -1,8 +1,9 @@
 // @flow strict
 
 import * as React from 'react';
-import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +expirationDate: Date | null,
@@ -25,6 +26,6 @@ export default function PassengerSubtitle(props: Props) {
 
 const styles = StyleSheet.create({
   documentText: {
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });

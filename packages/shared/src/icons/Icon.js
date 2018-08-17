@@ -1,14 +1,13 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import type { StylePropType } from '@kiwicom/mobile-shared';
-
-import Color from '../Color';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  name: string,
-  size: number,
+  +name: string,
+  +size: number,
   color?: string,
   style?: StylePropType,
 |};
@@ -22,7 +21,7 @@ function Icon(props: Props) {
 }
 
 Icon.defaultProps = {
-  color: Color.textLight,
+  color: defaultTokens.colorIconSecondary,
 };
 
 export default Icon;

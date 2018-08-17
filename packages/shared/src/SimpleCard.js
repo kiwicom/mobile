@@ -1,16 +1,16 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 import Touchable from './Touchable';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
   +children: React.Node,
-  +onPress?: Function,
+  +onPress?: () => void,
   +style?: StylePropType,
 |};
 
@@ -28,7 +28,7 @@ export default function SimpleCard(props: Props) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: Color.white,
+    backgroundColor: defaultTokens.paletteWhite,
     borderStyle: 'solid',
     padding: 10,
     android: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     ios: {
       borderTopWidth: StyleSheet.hairlineWidth,
       borderBottomWidth: StyleSheet.hairlineWidth,
-      borderColor: Color.border,
+      borderColor: defaultTokens.paletteCloudNormal,
     },
   },
 });

@@ -11,6 +11,7 @@ import {
   type StylePropType,
   type DimensionType,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HeaderTitle from './src/HeaderTitle';
 
@@ -27,7 +28,7 @@ export { withNavigation } from 'react-navigation';
 const createNavigationOptions = () => {
   const navigationOptions: Object = {
     headerStyle: {
-      backgroundColor: Color.white,
+      backgroundColor: defaultTokens.paletteWhite,
       ...Platform.select({
         android: {
           borderBottomWidth: 0,
@@ -35,11 +36,11 @@ const createNavigationOptions = () => {
         },
         ios: {
           borderBottomWidth: StyleSheet.hairlineWidth,
-          borderBottomColor: Color.border,
+          borderBottomColor: defaultTokens.borderColorCard,
         },
       }),
     },
-    headerTintColor: Color.brand, // back arrow
+    headerTintColor: defaultTokens.paletteProductNormal, // back arrow
     headerBackTitle: null,
   };
 
@@ -86,7 +87,7 @@ export const StackNavigatorOptions = {
   initialRouteName: 'Home',
   navigationOptions: createNavigationOptions(),
   cardStyle: {
-    backgroundColor: Color.backgroundGray,
+    backgroundColor: Color.backgroundGray, // TODO: Consult with designer
   },
 };
 

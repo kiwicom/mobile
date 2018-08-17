@@ -23,7 +23,7 @@ exports[`renders header with title 1`] = `
     <Text
       style={
         Object {
-          "color": "white",
+          "color": "#fff",
           "fontSize": 40,
           "lineHeight": 40,
           "marginTop": -10,
@@ -46,7 +46,7 @@ exports[`renders header with title 1`] = `
     <Text
       style={
         Object {
-          "color": "white",
+          "color": "#fff",
           "fontWeight": "bold",
           "textAlign": "center",
           "textShadowColor": "#000000",
@@ -115,7 +115,7 @@ exports[`renders header with very long title 1`] = `
     <Text
       style={
         Object {
-          "color": "white",
+          "color": "#fff",
           "fontSize": 40,
           "lineHeight": 40,
           "marginTop": -10,
@@ -138,7 +138,7 @@ exports[`renders header with very long title 1`] = `
     <Text
       style={
         Object {
-          "color": "white",
+          "color": "#fff",
           "fontWeight": "bold",
           "textAlign": "center",
           "textShadowColor": "#000000",

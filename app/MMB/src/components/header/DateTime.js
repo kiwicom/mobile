@@ -1,9 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 function DateTime(props) {
   const localDateTime = new Date(props.data.localTime);
@@ -39,6 +40,6 @@ const styleSheet = StyleSheet.create({
   },
   time: {
     fontSize: 10,
-    color: Color.textLight,
+    color: defaultTokens.colorTextSecondary,
   },
 });
