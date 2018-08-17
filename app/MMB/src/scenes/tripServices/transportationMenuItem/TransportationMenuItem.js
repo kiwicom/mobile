@@ -4,20 +4,30 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { MenuItem } from '@kiwicom/mobile-navigation';
+import {
+  MenuItem,
+  withNavigation,
+  type NavigationType,
+} from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 
-import LocationsPopup from './LocationsPopup';
-import LocationPopupButton from './LocationPopupButton';
+import LocationsPopup from '../LocationsPopup';
+import TransportLocationItem from './TransportLocationItem';
 import type { TransportationMenuItem as TransportationMenuItemType } from './__generated__/TransportationMenuItem.graphql';
 
 type Props = {|
   +data: TransportationMenuItemType,
   +onOpenWebview: string => void,
+  +navigation: NavigationType,
 |};
 
 type State = {|
   isPopupVisible: boolean,
+|};
+
+type MapParams = {|
+  +location: {| +lat: ?number, +lng: ?number |},
+  +whitelabelURL: string,
 |};
 
 class TransportationMenuItem extends React.Component<Props, State> {
@@ -25,23 +35,38 @@ class TransportationMenuItem extends React.Component<Props, State> {
     isPopupVisible: false,
   };
 
-  openTransportationLink = (whitelabelURL: string) => {
+  openTransportationMap = (params: MapParams) => {
     this.setState(
       {
         isPopupVisible: false,
       },
-      () => this.props.onOpenWebview(whitelabelURL),
+      () => this.props.navigation.navigate('TransportationMap', { params }),
     );
   };
 
   openPopup = () => {
     const relevantLocations =
       idx(this.props, _ => _.data.transportation.relevantLocations) || [];
-
     if (relevantLocations.length === 1) {
       // do not open the modal for only one whitelabel URL (open it directly)
-      const whitelabelURL = idx(relevantLocations, _ => _[0].whitelabelURL);
-      this.openTransportationLink(whitelabelURL || '');
+      const whitelabelURL =
+        idx(relevantLocations, _ => _[0].whitelabelURL) || '';
+
+      let location = idx(relevantLocations, _ => _[0].location.location);
+
+      if (location != null) {
+        this.openTransportationMap({ location, whitelabelURL });
+      } else {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.openTransportationMap({
+            location: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            },
+            whitelabelURL,
+          });
+        });
+      }
       return;
     }
 
@@ -71,22 +96,32 @@ class TransportationMenuItem extends React.Component<Props, State> {
           isVisible={this.state.isPopupVisible}
           onClose={this.hidePopup}
         >
-          {relevantLocations.map((relevantLocation, index) => {
+          {relevantLocations.map(relevantLocation => {
             if (!relevantLocation) {
               return null;
             }
             const { whitelabelURL, location, date } = relevantLocation;
+            const currentCityName = idx(location, _ => _.city.name);
             return (
-              <LocationPopupButton
+              <TransportLocationItem
                 key={whitelabelURL}
                 data={location}
-                date={
-                  index > 0 && index < relevantLocations.length - 1
-                    ? null
-                    : date
+                date={date}
+                displayDate={
+                  relevantLocations.filter(_relevantLocation => {
+                    const cityName = idx(
+                      _relevantLocation,
+                      _ => _.location.city.name,
+                    );
+                    return (
+                      cityName &&
+                      currentCityName &&
+                      cityName === currentCityName
+                    );
+                  }).length !== 1
                 }
                 whitelabelURL={whitelabelURL}
-                onPress={this.openTransportationLink}
+                onPress={this.openTransportationMap}
                 displayIata={false}
               />
             );
@@ -106,14 +141,21 @@ class TransportationMenuItem extends React.Component<Props, State> {
 }
 
 export default createFragmentContainer(
-  TransportationMenuItem,
+  withNavigation(TransportationMenuItem),
   graphql`
     fragment TransportationMenuItem on WhitelabeledServices {
       transportation {
         relevantLocations {
           whitelabelURL
           location {
-            ...LocationPopupButton
+            ...TransportLocationItem
+            location {
+              lat
+              lng
+            }
+            city {
+              name
+            }
           }
           date
         }

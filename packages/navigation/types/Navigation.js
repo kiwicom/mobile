@@ -48,7 +48,9 @@ type MMBStackNavigatorNames =
   | 'TravelDocumentModalScreen'
   | 'AppleWalletScreen'
   | 'MMBHotelsStack'
-  | 'MMBMainSwitchStack';
+  | 'MMBMainSwitchStack'
+  | 'AddressPickerScreen'
+  | 'TransportationMap';
 
 type HomepageStackNavigatorRouteNames = 'Home';
 type PlaygroundNavigationRouteNames = 'Playground';

@@ -21,7 +21,7 @@ import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItemContainer from './insuranceMenuItem/InsuranceMenuItemContainer';
 import CarRentalMenuItem from './CarRentalMenuItem';
-import TransportationMenuItem from './TransportationMenuItem';
+import TransportationMenuItem from './transportationMenuItem/TransportationMenuItem';
 import type { TripServiceRefreshContainer as BookingType } from './__generated__/TripServiceRefreshContainer.graphql';
 
 type Props = {|
