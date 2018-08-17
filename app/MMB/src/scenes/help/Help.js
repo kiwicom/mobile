@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import idx from 'idx';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { ScrollView, Platform, Linking } from 'react-native';
 import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { Translation, Alert } from '@kiwicom/mobile-localization';
@@ -12,16 +13,17 @@ import {
   SeparatorTrimmed,
   type RouteNamesType,
   type NavigationType,
+  withNavigation,
 } from '@kiwicom/mobile-navigation';
 
-import type { HelpContainerQueryResponse } from './__generated__/HelpContainerQuery.graphql';
+import type { Help as HelpType } from './__generated__/Help.graphql';
 
 type Props = {|
   +navigation: NavigationType,
-  +data: HelpContainerQueryResponse,
+  +data: HelpType,
 |};
 
-export default class Help extends React.Component<Props> {
+class Help extends React.Component<Props> {
   navigate = (key: RouteNamesType) => {
     this.props.navigation.navigate(key);
   };
@@ -31,8 +33,7 @@ export default class Help extends React.Component<Props> {
   };
 
   handleOpenCallSupport = () => {
-    const number =
-      idx(this.props.data, _ => _.customerSupportNumber.number) || '';
+    const number = idx(this.props.data, _ => _.number) || '';
     const sanitizedNumber = number.replace(/\s/g, '');
     const url =
       Platform.OS === 'ios'
@@ -57,8 +58,7 @@ export default class Help extends React.Component<Props> {
   };
 
   render = () => {
-    const number =
-      idx(this.props.data, _ => _.customerSupportNumber.number) || '';
+    const number = idx(this.props.data, _ => _.number) || '';
 
     return (
       <ScrollView>
@@ -92,3 +92,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
 });
+
+export default createFragmentContainer(
+  withNavigation(Help),
+  graphql`
+    fragment Help on CustomerSupportNumber {
+      number
+    }
+  `,
+);

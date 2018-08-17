@@ -3,18 +3,15 @@
 import * as React from 'react';
 import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import { WebView } from '@kiwicom/mobile-shared';
-import { type NavigationType } from '@kiwicom/mobile-navigation';
 
 import type { HelpQueryContainerResponse } from './__generated__/HelpContainerQuery.graphql';
 import Help from './Help';
 
-type Props = {|
-  +navigation: NavigationType,
-|};
+type Props = {||};
 
 export default class HelpContainer extends React.Component<Props> {
   renderInner = (renderProps: HelpQueryContainerResponse) => (
-    <Help data={renderProps} navigation={this.props.navigation} />
+    <Help data={renderProps.customerSupportNumber} />
   );
 
   render() {
@@ -23,7 +20,7 @@ export default class HelpContainer extends React.Component<Props> {
         query={graphql`
           query HelpContainerQuery {
             customerSupportNumber {
-              number
+              ...Help
             }
           }
         `}
