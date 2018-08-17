@@ -16,6 +16,7 @@ import TravelDocumentFormContext from './src/scenes/travelDocument/form/TravelDo
 import InsuranceOverviewContext from './src/scenes/tripServices/insurance/insuranceOverviewScene/InsuranceOverviewSceneContext';
 import HotelsContext from './src/context/HotelsContext';
 import SplitNavigationContext from './src/context/SplitNavigationContext';
+import GoogleMapsContext from './src/context/GoogleMapsContext';
 
 type Props = {|
   +currency: string,
@@ -27,6 +28,7 @@ type Props = {|
   +version: string,
   +dataSaverEnabled: boolean,
   +bookingComAffiliate: string,
+  +googleMapsAPIKey: string,
 |};
 
 class ManageMyBookingPackage extends React.Component<Props> {
@@ -48,11 +50,15 @@ class ManageMyBookingPackage extends React.Component<Props> {
                   onNavigationStateChange={this.props.onNavigationStateChange}
                 >
                   <SplitNavigationContext.Provider>
-                    <NavigationStack
-                      onNavigationStateChange={
-                        this.props.onNavigationStateChange
-                      }
-                    />
+                    <GoogleMapsContext.Provider
+                      googleMapsAPIKey={this.props.googleMapsAPIKey}
+                    >
+                      <NavigationStack
+                        onNavigationStateChange={
+                          this.props.onNavigationStateChange
+                        }
+                      />
+                    </GoogleMapsContext.Provider>
                   </SplitNavigationContext.Provider>
                 </HotelsContext.Provider>
               </InsuranceOverviewContext.Provider>

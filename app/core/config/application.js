@@ -2,6 +2,7 @@
 
 import {
   AFFILIATE_BOOKINGCOM,
+  API_KEY_GOOGLE_MAPS,
   AUTH_ANDROID_GOOGLE_CLIENTID,
   AUTH_IOS_GOOGLE_CLIENTID,
   AUTH_KIWI_BACKEND,
@@ -14,6 +15,9 @@ export default {
   },
   animations: {
     duration: 100, // ms
+  },
+  apiKey: {
+    googleMaps: sanitize(API_KEY_GOOGLE_MAPS),
   },
   auth: {
     android: {

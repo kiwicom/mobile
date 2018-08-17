@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type LocationPopupButton$ref = any;
+type TransportLocationItem$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TransportationMenuItem$ref: FragmentReference;
 export type TransportationMenuItem = {|
@@ -16,7 +16,14 @@ export type TransportationMenuItem = {|
     +relevantLocations: ?$ReadOnlyArray<?{|
       +whitelabelURL: ?string,
       +location: ?{|
-        +$fragmentRefs: LocationPopupButton$ref
+        +location: ?{|
+          +lat: ?number,
+          +lng: ?number,
+        |},
+        +city: ?{|
+          +name: ?string
+        |},
+        +$fragmentRefs: TransportLocationItem$ref,
       |},
       +date: ?any,
     |}>
@@ -69,8 +76,51 @@ const node/*: ConcreteFragment*/ = {
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "LocationPopupButton",
+                  "name": "TransportLocationItem",
                   "args": null
+                },
+                {
+                  "kind": "LinkedField",
+                  "alias": null,
+                  "name": "location",
+                  "storageKey": null,
+                  "args": null,
+                  "concreteType": "Coordinates",
+                  "plural": false,
+                  "selections": [
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "name": "lat",
+                      "args": null,
+                      "storageKey": null
+                    },
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "name": "lng",
+                      "args": null,
+                      "storageKey": null
+                    }
+                  ]
+                },
+                {
+                  "kind": "LinkedField",
+                  "alias": null,
+                  "name": "city",
+                  "storageKey": null,
+                  "args": null,
+                  "concreteType": "LocationArea",
+                  "plural": false,
+                  "selections": [
+                    {
+                      "kind": "ScalarField",
+                      "alias": null,
+                      "name": "name",
+                      "args": null,
+                      "storageKey": null
+                    }
+                  ]
                 }
               ]
             },
@@ -88,5 +138,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ca50877455fd4c1e03885ed32bd28e8f';
+(node/*: any*/).hash = 'f8796db8c8a942834c038508976b30f6';
 module.exports = node;
