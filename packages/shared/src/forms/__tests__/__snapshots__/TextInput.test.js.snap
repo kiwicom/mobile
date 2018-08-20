@@ -1,121 +1,182 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1`] = `
-<Component
-  style={
-    Object {
-      "flexDirection": "row",
-      "height": 47,
-    }
-  }
->
-  <TextInput
-    allowFontScaling={true}
-    autoCorrect={false}
-    onChangeText={[Function]}
-    placeholder={null}
+<React.Fragment>
+  <Component
     style={
-      Array [
-        Object {
-          "fontSize": 14,
-        },
-        Object {
-          "backgroundColor": "#e8edf1",
-          "borderRadius": 6,
-          "color": "#171b1e",
-          "flex": 1,
-          "padding": 10,
-        },
-      ]
+      Object {
+        "flexDirection": "row",
+        "height": 47,
+      }
     }
-    underlineColorAndroid="transparent"
-  />
-</Component>
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCorrect={false}
+      onChangeText={[Function]}
+      placeholder={null}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+          },
+          Object {
+            "backgroundColor": "#e8edf1",
+            "borderRadius": 6,
+            "color": "#171b1e",
+            "flex": 1,
+            "padding": 10,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+    />
+  </Component>
+</React.Fragment>
 `;
 
 exports[`renders with default value 1`] = `
-<Component
-  style={
-    Object {
-      "flexDirection": "row",
-      "height": 47,
-    }
-  }
->
-  <TextInput
-    allowFontScaling={true}
-    autoCorrect={false}
-    defaultValue="Default value"
-    onChangeText={[Function]}
-    placeholder={null}
+<React.Fragment>
+  <Component
     style={
-      Array [
-        Object {
-          "fontSize": 14,
-        },
-        Object {
-          "backgroundColor": "#e8edf1",
-          "borderRadius": 6,
-          "color": "#171b1e",
-          "flex": 1,
-          "padding": 10,
-        },
-      ]
+      Object {
+        "flexDirection": "row",
+        "height": 47,
+      }
     }
-    underlineColorAndroid="transparent"
-  />
-</Component>
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCorrect={false}
+      defaultValue="Default value"
+      onChangeText={[Function]}
+      placeholder={null}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+          },
+          Object {
+            "backgroundColor": "#e8edf1",
+            "borderRadius": 6,
+            "color": "#171b1e",
+            "flex": 1,
+            "padding": 10,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+    />
+  </Component>
+</React.Fragment>
 `;
 
-exports[`renders with placeholder 1`] = `
-<Component
-  style={
-    Object {
-      "flexDirection": "row",
-      "height": 47,
-    }
-  }
->
-  <TextInput
-    allowFontScaling={true}
-    autoCorrect={false}
-    onChangeText={[Function]}
-    placeholder={null}
-    style={
-      Array [
-        Object {
-          "fontSize": 14,
-        },
-        Object {
-          "backgroundColor": "#e8edf1",
-          "borderRadius": 6,
-          "color": "#171b1e",
-          "flex": 1,
-          "padding": 10,
-        },
-      ]
-    }
-    underlineColorAndroid="transparent"
-  />
+exports[`renders with label 1`] = `
+<React.Fragment>
   <Text
-    pointerEvents="none"
     style={
       Array [
-        Object {
-          "fontSize": 14,
-        },
         Object {
           "color": "#7f91a8",
-          "padding": 10,
-          "paddingVertical": 15,
-          "position": "absolute",
         },
+        undefined,
       ]
     }
   >
     <Translation
-      passThrough="Placeholder"
+      passThrough="label"
     />
   </Text>
-</Component>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "height": 47,
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCorrect={false}
+      defaultValue="Test"
+      label={
+        <Translation
+          passThrough="label"
+        />
+      }
+      onChangeText={[Function]}
+      placeholder={null}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+          },
+          Object {
+            "backgroundColor": "#e8edf1",
+            "borderRadius": 6,
+            "color": "#171b1e",
+            "flex": 1,
+            "padding": 10,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+    />
+  </Component>
+</React.Fragment>
+`;
+
+exports[`renders with placeholder 1`] = `
+<React.Fragment>
+  <Component
+    style={
+      Object {
+        "flexDirection": "row",
+        "height": 47,
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      autoCorrect={false}
+      onChangeText={[Function]}
+      placeholder={null}
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+          },
+          Object {
+            "backgroundColor": "#e8edf1",
+            "borderRadius": 6,
+            "color": "#171b1e",
+            "flex": 1,
+            "padding": 10,
+          },
+        ]
+      }
+      underlineColorAndroid="transparent"
+    />
+    <Text
+      pointerEvents="none"
+      style={
+        Array [
+          Object {
+            "fontSize": 14,
+          },
+          Object {
+            "color": "#7f91a8",
+            "padding": 10,
+            "paddingVertical": 15,
+            "position": "absolute",
+          },
+        ]
+      }
+    >
+      <Translation
+        passThrough="Placeholder"
+      />
+    </Text>
+  </Component>
+</React.Fragment>
 `;

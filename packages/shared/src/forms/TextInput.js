@@ -5,6 +5,7 @@ import { TextInput as OriginalTextInput, View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import { type StylePropType } from '../../types/Styles';
 import StyleSheet from '../PlatformStyleSheet';
 import Text from '../Text';
 
@@ -13,8 +14,10 @@ type Props = {|
   +defaultValue?: string,
   +autoFocus?: boolean,
   +onChangeText?: (text: string) => void,
-  +keyboardType?: 'email-address',
+  +keyboardType?: 'email-address' | 'numeric' | 'number-pad',
   +secureTextEntry?: boolean,
+  +label?: React.Element<typeof Translation>,
+  +labelStyle?: StylePropType,
 |};
 
 type State = {|
@@ -44,26 +47,33 @@ export default class TextInput extends React.Component<Props, State> {
   };
 
   render = () => (
-    <View style={styleSheet.wrapper}>
-      <OriginalTextInput
-        underlineColorAndroid="transparent"
-        autoCorrect={false}
-        {...this.props}
-        placeholder={null}
-        onChangeText={this.handlePlaceholder}
-        style={[styleSheet.text, styleSheet.input]}
-      />
+    <React.Fragment>
+      {this.props.label != null && (
+        <Text style={[styleSheet.label, this.props.labelStyle]}>
+          {this.props.label}
+        </Text>
+      )}
+      <View style={styleSheet.wrapper}>
+        <OriginalTextInput
+          underlineColorAndroid="transparent"
+          autoCorrect={false}
+          {...this.props}
+          placeholder={null}
+          onChangeText={this.handlePlaceholder}
+          style={[styleSheet.text, styleSheet.input]}
+        />
 
-      {this.props.placeholder &&
-        this.state.displayPlaceholder && (
-          <Text
-            style={[styleSheet.text, styleSheet.placeholder]}
-            pointerEvents="none"
-          >
-            {this.props.placeholder}
-          </Text>
-        )}
-    </View>
+        {this.props.placeholder &&
+          this.state.displayPlaceholder && (
+            <Text
+              style={[styleSheet.text, styleSheet.placeholder]}
+              pointerEvents="none"
+            >
+              {this.props.placeholder}
+            </Text>
+          )}
+      </View>
+    </React.Fragment>
   );
 }
 
@@ -99,4 +109,5 @@ const styleSheet = StyleSheet.create({
     paddingVertical: 15,
     color: defaultTokens.colorTextSecondary,
   },
+  label: { color: defaultTokens.colorTextSecondary },
 });

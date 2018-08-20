@@ -19,3 +19,12 @@ it('renders with placeholder', () => {
     <TextInput placeholder={<Translation passThrough="Placeholder" />} />,
   );
 });
+
+it('renders with label', () => {
+  PlaygroundRenderer.render(
+    <TextInput
+      label={<Translation passThrough="label" />}
+      defaultValue="Test"
+    />,
+  );
+});
