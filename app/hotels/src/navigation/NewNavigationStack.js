@@ -51,6 +51,13 @@ export default StackNavigator(
     },
     AllHotelsMap: {
       screen: withMappedProps(AllHotelsMap),
+      navigationOptions: {
+        headerTitle: (
+          <HeaderTitle>
+            <Translation id="hotels.navigation.title.all_hotels_map" />
+          </HeaderTitle>
+        ),
+      },
     },
     GalleryGrid: {
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
