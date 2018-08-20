@@ -30,12 +30,15 @@ export default class PricePopup extends React.Component<Props, State> {
     },
   };
 
-  static getDerivedStateFromProps = ({ start, end }: Props) => ({
-    price: {
-      start,
-      end,
-    },
-  });
+  static getDerivedStateFromProps = ({ start, end, isVisible }: Props) =>
+    isVisible
+      ? null
+      : {
+          price: {
+            start,
+            end,
+          },
+        };
 
   handlePriceChanged = ([start, end]: number[]) =>
     this.setState({ price: { start, end } });
