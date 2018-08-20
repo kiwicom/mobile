@@ -112,6 +112,9 @@ android {
     compileSdkVersion compileSdkVersionVar
     buildToolsVersion buildToolsVersionVar
 
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
     defaultConfig {
         applicationId "com.reactnativeapp"
         minSdkVersion 16
