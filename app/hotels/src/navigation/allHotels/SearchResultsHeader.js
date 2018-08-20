@@ -10,6 +10,7 @@ import {
   AdaptableLayout,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { SafeAreaView } from 'react-navigation';
 
 import MapHeaderButton from './MapHeaderButton';
 import HotelsContext from '../../HotelsContext';
@@ -20,53 +21,57 @@ type Props = {|
 
 export default function SearchResultsHeader(props: Props) {
   return (
-    <HotelsContext.Consumer>
-      {({ cityName, checkin }) => {
-        return (
-          <View style={styles.container}>
-            <View style={styles.row}>
-              <View>
-                <Text style={styles.text}>
-                  <Translation passThrough={cityName || ''} />
-                </Text>
+    <SafeAreaView style={styles.safeArea}>
+      <HotelsContext.Consumer>
+        {({ cityName, checkin }) => {
+          return (
+            <View style={styles.container}>
+              <View style={styles.row}>
+                <View>
+                  <Text style={styles.text}>
+                    <Translation passThrough={cityName || ''} />
+                  </Text>
+                  {checkin !== null && (
+                    <AdaptableBadge
+                      style={styles.badge}
+                      textStyle={styles.badgeText}
+                      translation={
+                        <Translation
+                          passThrough={DateFormatter(checkin).formatCustom({
+                            weekday: 'long',
+                            day: '2-digit',
+                            month: 'long',
+                          })}
+                        />
+                      }
+                    />
+                  )}
+                </View>
                 {checkin !== null && (
-                  <AdaptableBadge
-                    style={styles.badge}
-                    textStyle={styles.badgeText}
-                    translation={
-                      <Translation
-                        passThrough={DateFormatter(checkin).formatCustom({
-                          weekday: 'long',
-                          day: '2-digit',
-                          month: 'long',
-                        })}
+                  <AdaptableLayout
+                    renderOnNarrow={
+                      <MapHeaderButton
+                        onPress={props.goToMap}
+                        iconColor={defaultTokens.paletteInkLight}
                       />
                     }
                   />
                 )}
               </View>
-              {checkin !== null && (
-                <AdaptableLayout
-                  renderOnNarrow={
-                    <MapHeaderButton
-                      onPress={props.goToMap}
-                      iconColor={defaultTokens.paletteInkLight}
-                    />
-                  }
-                />
-              )}
             </View>
-          </View>
-        );
-      }}
-    </HotelsContext.Consumer>
+          );
+        }}
+      </HotelsContext.Consumer>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: defaultTokens.paletteWhite,
+  },
   container: {
     backgroundColor: defaultTokens.paletteWhite,
-    paddingTop: 20,
     paddingStart: 16,
     android: {
       borderBottomWidth: 0,
