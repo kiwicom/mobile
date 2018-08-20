@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { ScrollView, Platform, Linking } from 'react-native';
-import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation, Alert } from '@kiwicom/mobile-localization';
 import {
   MenuItem,
@@ -15,6 +15,7 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Help as HelpType } from './__generated__/Help.graphql';
 
@@ -88,7 +89,7 @@ class Help extends React.Component<Props> {
 
 const styles = StyleSheet.create({
   icon: {
-    color: Color.brand,
+    color: defaultTokens.paletteProductNormal,
     fontSize: 22,
   },
 });

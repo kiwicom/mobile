@@ -24,9 +24,12 @@ export default class ScorePopup extends React.Component<Props, State> {
     sliderValue: 0,
   };
 
-  static getDerivedStateFromProps = ({ minScore }: Props) => ({
-    sliderValue: convertScoreToSliderValue(minScore),
-  });
+  static getDerivedStateFromProps = ({ minScore, isVisible }: Props) =>
+    isVisible
+      ? null
+      : {
+          sliderValue: convertScoreToSliderValue(minScore),
+        };
 
   handleScoreChanged = ([minScore]: number[]) =>
     this.setState({ sliderValue: minScore });
