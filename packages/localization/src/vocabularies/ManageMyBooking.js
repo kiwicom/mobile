@@ -219,6 +219,19 @@ export default {
     "It may take a few hours to process your request. We'll email you as soon as it's complete.",
   'mmb.trip_services.insurance.refund.confirm': 'Confirm',
 
+  'mmb.trip_services.insurance.payment.title': 'Payment - Insurance',
+  'mmb.trip_services.insurance.payment.header': 'Payment',
+  'mmb.trip_services.insurance.payment.cardholders_name': "Cardholder's name",
+  'mmb.trip_services.insurance.payment.credit_card_number':
+    'Credit card number',
+  'mmb.trip_services.insurance.payment.pay_now': 'Pay now',
+  'mmb.trip_services.insurance.payment.expiry_date': 'Expiry date',
+  'mmb.trip_services.insurance.payment.month': 'MM',
+  'mmb.trip_services.insurance.payment.year': 'YY',
+  'mmb.trip_services.insurance.payment.security_code': 'Security code',
+  'mmb.trip_services.insurance.payment.remember_card':
+    'Remember this card for next time',
+
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',
   'mmb.support.phone.all_numbers': 'All Numbers',

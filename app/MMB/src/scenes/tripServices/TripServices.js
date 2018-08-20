@@ -9,7 +9,7 @@ import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import TripServiceRefreshContainer from './TripServiceRefreshContainer';
 import InsuranceOverviewSceneContainer from './insurance/insuranceOverviewScene/InsuranceOverviewSceneContainer';
 import InsuranceSelectionSceneContainer from './insurance/insuranceSelectionScene/InsuranceSelectionSceneContainer';
-import PaymentScene from './insurance/PaymentScene';
+import PaymentScene from './insurance/paymentScene/PaymentScene';
 import RefundScene from './insurance/RefundScene';
 import MoreInfoScene from './insurance/moreInfoScene/MoreInfoScene';
 import InsuranceTermsPdfScene from './insurance/InsuranceTermsPdfScene';
@@ -86,6 +86,13 @@ export const TripServicesSubmenuItems = {
   'mmb.trip_services.insurance.payment': {
     screen: function TripServicesSubmenuInsurancePayment() {
       return <PaymentScene />;
+    },
+    headerTitle: function TripServicesSubmenuInsurancePaymentHeaderTitle() {
+      return (
+        <HeaderTitle>
+          <Translation id="mmb.trip_services.insurance.payment.title" />
+        </HeaderTitle>
+      );
     },
   },
   'mmb.trip_services.insurance.refund': {
