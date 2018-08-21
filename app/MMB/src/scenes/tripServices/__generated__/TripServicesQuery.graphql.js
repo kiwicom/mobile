@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9f8b79a18d02a09d42288f68a69f9d8f
+ * @relayHash 9af89937d96fad3df21f561884a337b2
  */
 
 /* eslint-disable */
@@ -37,12 +37,37 @@ query TripServicesQuery(
 fragment TripServiceRefreshContainer on BookingInterface {
   databaseId
   authToken
+  ...InsuranceMenuItemContainer
   availableWhitelabeledServices {
     ...CarRentalMenuItem
     ...LoungeMenuItem
     ...ParkingMenuItem
     ...HotelMenuItem
     ...TransportationMenuItem
+  }
+}
+
+fragment InsuranceMenuItemContainer on BookingInterface {
+  __typename
+  status
+  passengers {
+    nationality
+  }
+  isPastBooking
+  ... on BookingOneWay {
+    trip {
+      ...InsuranceMenuItem
+    }
+  }
+  ... on BookingReturn {
+    outbound {
+      ...InsuranceMenuItem
+    }
+  }
+  ... on BookingMulticity {
+    trips {
+      ...InsuranceMenuItem
+    }
   }
 }
 
@@ -124,6 +149,12 @@ fragment LocationItem on HotelServiceRelevantLocation {
   location {
     ...LocationPopupButton
     id
+  }
+}
+
+fragment InsuranceMenuItem on Trip {
+  departure {
+    time
   }
 }
 */
@@ -219,13 +250,33 @@ v5 = {
 v6 = [
   v2,
   v5
+],
+v7 = [
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "departure",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "RouteStop",
+    "plural": false,
+    "selections": [
+      {
+        "kind": "ScalarField",
+        "alias": null,
+        "name": "time",
+        "args": null,
+        "storageKey": null
+      }
+    ]
+  }
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TripServicesQuery",
   "id": null,
-  "text": "query TripServicesQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n    ...TransportationMenuItem\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    relevantLocations {\n      ...LocationItem\n      location {\n        id\n      }\n      hotelCity {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment TransportationMenuItem on WhitelabeledServices {\n  transportation {\n    relevantLocations {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n      date\n    }\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment LocationItem on HotelServiceRelevantLocation {\n  hotelCity {\n    id\n    name\n  }\n  location {\n    ...LocationPopupButton\n    id\n  }\n}\n",
+  "text": "query TripServicesQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  ...InsuranceMenuItemContainer\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n    ...TransportationMenuItem\n  }\n}\n\nfragment InsuranceMenuItemContainer on BookingInterface {\n  __typename\n  status\n  passengers {\n    nationality\n  }\n  isPastBooking\n  ... on BookingOneWay {\n    trip {\n      ...InsuranceMenuItem\n    }\n  }\n  ... on BookingReturn {\n    outbound {\n      ...InsuranceMenuItem\n    }\n  }\n  ... on BookingMulticity {\n    trips {\n      ...InsuranceMenuItem\n    }\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    relevantLocations {\n      ...LocationItem\n      location {\n        id\n      }\n      hotelCity {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment TransportationMenuItem on WhitelabeledServices {\n  transportation {\n    relevantLocations {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n      date\n    }\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment LocationItem on HotelServiceRelevantLocation {\n  hotelCity {\n    id\n    name\n  }\n  location {\n    ...LocationPopupButton\n    id\n  }\n}\n\nfragment InsuranceMenuItem on Trip {\n  departure {\n    time\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -269,7 +320,7 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
-            "name": "__typename",
+            "name": "isPastBooking",
             "args": null,
             "storageKey": null
           },
@@ -279,6 +330,38 @@ return {
             "name": "databaseId",
             "args": null,
             "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "__typename",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "status",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "passengers",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Passenger",
+            "plural": true,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "nationality",
+                "args": null,
+                "storageKey": null
+              }
+            ]
           },
           {
             "kind": "ScalarField",
@@ -419,7 +502,55 @@ return {
               }
             ]
           },
-          v4
+          v4,
+          {
+            "kind": "InlineFragment",
+            "type": "BookingOneWay",
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "trip",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v7
+              }
+            ]
+          },
+          {
+            "kind": "InlineFragment",
+            "type": "BookingMulticity",
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "trips",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": true,
+                "selections": v7
+              }
+            ]
+          },
+          {
+            "kind": "InlineFragment",
+            "type": "BookingReturn",
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "outbound",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Trip",
+                "plural": false,
+                "selections": v7
+              }
+            ]
+          }
         ]
       }
     ]

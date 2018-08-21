@@ -125,6 +125,8 @@ export default {
   'mmb.trip_services.order.process_to_refund': 'Proceed With The Refund',
 
   // MMB Insurance
+  'mmb.trip_services.insurance.no_changes':
+    'Insurance cannot be changed less than 48 hours before your trip.',
   'mmb.trip_services.insurance.variant.none': 'No Insurance',
   'mmb.trip_services.insurance.variant.basic': 'Travel Basic',
   'mmb.trip_services.insurance.variant.plus': 'Travel Plus',
