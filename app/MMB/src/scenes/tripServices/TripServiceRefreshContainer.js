@@ -19,7 +19,7 @@ import idx from 'idx';
 import HotelMenuItem from './hotelMenuItem/HotelMenuItem';
 import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
-import InsuranceMenuItem from './InsuranceMenuItem';
+import InsuranceMenuItemContainer from './insuranceMenuItem/InsuranceMenuItemContainer';
 import CarRentalMenuItem from './CarRentalMenuItem';
 import TransportationMenuItem from './TransportationMenuItem';
 import type { TripServiceRefreshContainer as BookingType } from './__generated__/TripServiceRefreshContainer.graphql';
@@ -80,7 +80,10 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
       <TitledMenuGroup
         title={<Translation id="mmb.trip_services.general_services" />}
       >
-        <InsuranceMenuItem onOpenInsurance={this.openInsurance} />
+        <InsuranceMenuItemContainer
+          onOpenInsurance={this.openInsurance}
+          data={this.props.data}
+        />
       </TitledMenuGroup>
 
       <TitledMenuGroup
@@ -116,6 +119,7 @@ export default createRefetchContainer(
     fragment TripServiceRefreshContainer on BookingInterface {
       databaseId
       authToken
+      ...InsuranceMenuItemContainer
       availableWhitelabeledServices {
         ...CarRentalMenuItem
         ...LoungeMenuItem
