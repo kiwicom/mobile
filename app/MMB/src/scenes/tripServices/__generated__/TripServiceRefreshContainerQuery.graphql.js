@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 125800bf8abfa6779ab8ead48cd88fe0
+ * @relayHash e9f19ca947fe29442af53647c072012f
  */
 
 /* eslint-disable */
@@ -78,11 +78,26 @@ fragment ParkingMenuItem on WhitelabeledServices {
 fragment HotelMenuItem on WhitelabeledServices {
   hotel {
     relevantLocations {
+      ...LocationItem
       location {
         id
-        ...LocationPopupButton
+      }
+      hotelCity {
+        id
+        name
       }
     }
+  }
+}
+
+fragment LocationItem on HotelServiceRelevantLocation {
+  hotelCity {
+    id
+    name
+  }
+  location {
+    ...LocationPopupButton
+    id
   }
 }
 
@@ -136,68 +151,67 @@ v2 = {
   "storageKey": null
 },
 v3 = {
-  "kind": "LinkedField",
+  "kind": "ScalarField",
   "alias": null,
-  "name": "city",
-  "storageKey": null,
+  "name": "name",
   "args": null,
-  "concreteType": "LocationArea",
-  "plural": false,
-  "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "name",
-      "args": null,
-      "storageKey": null
-    }
-  ]
+  "storageKey": null
 },
 v4 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "locationId",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "countryFlagURL",
-  "args": null,
-  "storageKey": null
-},
-v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v7 = [
+v5 = {
+  "kind": "LinkedField",
+  "alias": null,
+  "name": "location",
+  "storageKey": null,
+  "args": null,
+  "concreteType": "Location",
+  "plural": false,
+  "selections": [
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "city",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "LocationArea",
+      "plural": false,
+      "selections": [
+        v3
+      ]
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "locationId",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "countryFlagURL",
+      "args": null,
+      "storageKey": null
+    },
+    v4
+  ]
+},
+v6 = [
   v2,
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "location",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "Location",
-    "plural": false,
-    "selections": [
-      v3,
-      v4,
-      v5,
-      v6
-    ]
-  }
+  v5
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TripServiceRefreshContainerQuery",
   "id": null,
-  "text": "query TripServiceRefreshContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    relevantLocations {\n      location {\n        id\n        ...LocationPopupButton\n      }\n    }\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query TripServiceRefreshContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    relevantLocations {\n      ...LocationItem\n      location {\n        id\n      }\n      hotelCity {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment LocationItem on HotelServiceRelevantLocation {\n  hotelCity {\n    id\n    name\n  }\n  location {\n    ...LocationPopupButton\n    id\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -285,7 +299,7 @@ return {
                     "args": null,
                     "concreteType": "CarRentalServiceRelevantCities",
                     "plural": true,
-                    "selections": v7
+                    "selections": v6
                   }
                 ]
               },
@@ -306,7 +320,7 @@ return {
                     "args": null,
                     "concreteType": "LoungeServiceRelevantAirports",
                     "plural": true,
-                    "selections": v7
+                    "selections": v6
                   }
                 ]
               },
@@ -343,25 +357,24 @@ return {
                       {
                         "kind": "LinkedField",
                         "alias": null,
-                        "name": "location",
+                        "name": "hotelCity",
                         "storageKey": null,
                         "args": null,
-                        "concreteType": "Location",
+                        "concreteType": "HotelCity",
                         "plural": false,
                         "selections": [
-                          v6,
-                          v3,
                           v4,
-                          v5
+                          v3
                         ]
-                      }
+                      },
+                      v5
                     ]
                   }
                 ]
               }
             ]
           },
-          v6
+          v4
         ]
       }
     ]

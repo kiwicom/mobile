@@ -8,16 +8,20 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type LocationPopupButton$ref = any;
+type LocationItem$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelMenuItem$ref: FragmentReference;
 export type HotelMenuItem = {|
   +hotel: ?{|
     +relevantLocations: ?$ReadOnlyArray<?{|
       +location: ?{|
+        +id: string
+      |},
+      +hotelCity: ?{|
         +id: string,
-        +$fragmentRefs: LocationPopupButton$ref,
-      |}
+        +name: ?string,
+      |},
+      +$fragmentRefs: LocationItem$ref,
     |}>
   |},
   +$refType: HotelMenuItem$ref,
@@ -25,7 +29,15 @@ export type HotelMenuItem = {|
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "HotelMenuItem",
   "type": "WhitelabeledServices",
@@ -51,6 +63,11 @@ const node/*: ConcreteFragment*/ = {
           "plural": true,
           "selections": [
             {
+              "kind": "FragmentSpread",
+              "name": "LocationItem",
+              "args": null
+            },
+            {
               "kind": "LinkedField",
               "alias": null,
               "name": "location",
@@ -59,17 +76,25 @@ const node/*: ConcreteFragment*/ = {
               "concreteType": "Location",
               "plural": false,
               "selections": [
+                v0
+              ]
+            },
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "hotelCity",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "HotelCity",
+              "plural": false,
+              "selections": [
+                v0,
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "name": "id",
+                  "name": "name",
                   "args": null,
                   "storageKey": null
-                },
-                {
-                  "kind": "FragmentSpread",
-                  "name": "LocationPopupButton",
-                  "args": null
                 }
               ]
             }
@@ -79,6 +104,7 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = '1ddb8e86189efdb988ceaa8a90c4a24b';
+(node/*: any*/).hash = 'c5834d26457c6a8bd34d8b06ce5c7677';
 module.exports = node;

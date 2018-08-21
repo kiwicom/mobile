@@ -33,7 +33,7 @@ class ManageMyBookingPackage extends React.Component<Props> {
         simpleToken={this.props.simpleToken || null}
       >
         <WalletContext.Provider>
-          <BookingDetailContext.Provider>
+          <BookingDetailContext.Provider currency={this.props.currency}>
             <TravelDocumentFormContext.Provider>
               <InsuranceOverviewContext.Provider>
                 <NavigationStack
