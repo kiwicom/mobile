@@ -17,7 +17,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 
-import HotelMenuItem from './HotelMenuItem';
+import HotelMenuItem from './hotelMenuItem/HotelMenuItem';
 import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
