@@ -10,6 +10,7 @@
 import type { ConcreteFragment } from 'relay-runtime';
 type CarRentalMenuItem$ref = any;
 type HotelMenuItem$ref = any;
+type InsuranceMenuItemContainer$ref = any;
 type LoungeMenuItem$ref = any;
 type ParkingMenuItem$ref = any;
 type TransportationMenuItem$ref = any;
@@ -21,6 +22,7 @@ export type TripServiceRefreshContainer = {|
   +availableWhitelabeledServices: ?{|
     +$fragmentRefs: CarRentalMenuItem$ref & LoungeMenuItem$ref & ParkingMenuItem$ref & HotelMenuItem$ref & TransportationMenuItem$ref
   |},
+  +$fragmentRefs: InsuranceMenuItemContainer$ref,
   +$refType: TripServiceRefreshContainer$ref,
 |};
 */
@@ -46,6 +48,11 @@ const node/*: ConcreteFragment*/ = {
       "name": "authToken",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "InsuranceMenuItemContainer",
+      "args": null
     },
     {
       "kind": "LinkedField",
@@ -86,5 +93,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '8af9547e951da88fbd1f9b4f0004b8f9';
+(node/*: any*/).hash = 'ee259798be67d3e9544405499d5be3c9';
 module.exports = node;
