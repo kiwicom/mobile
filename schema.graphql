@@ -212,6 +212,9 @@ type Booking {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -312,6 +315,9 @@ interface BookingInterface {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
 }
 
 """A connection to a list of items."""
@@ -374,6 +380,9 @@ type BookingMulticity implements BookingInterface & Node {
   insurancePrices: [InsurancePrice]
   authToken: String
 
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
+
   """Initial origin."""
   start: RouteStop
 
@@ -428,6 +437,9 @@ type BookingOneWay implements BookingInterface & Node {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
   trip: Trip
 }
 
@@ -473,6 +485,9 @@ type BookingReturn implements BookingInterface & Node {
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
+
+  """Nearest upcoming leg by arrival time."""
+  upcomingLeg: Leg
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -1451,6 +1466,15 @@ type HotelRoomPhotoEdge {
   cursor: String!
 }
 
+type HotelService {
+  relevantLocations: [HotelServiceRelevantLocation]
+}
+
+type HotelServiceRelevantLocation {
+  location: Location
+  hotelCity: HotelCity
+}
+
 input HotelsFilterInput {
   """List of hotels classes (stars) you want to filter."""
   starsRating: [Int]
@@ -2197,6 +2221,16 @@ type TimeToCheckinTimelineEvent implements TimelineEvent {
   timestamp: DateTime
 }
 
+type TransportationService {
+  relevantLocations: [TransportationServiceRelevantLocations]
+}
+
+type TransportationServiceRelevantLocations {
+  location: Location
+  whitelabelURL: String
+  date: Date
+}
+
 type TransportFromAirportTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
@@ -2255,4 +2289,6 @@ type WhitelabeledServices {
   lounge: LoungeService
   parking: ParkingService
   carRental: CarRentalService
+  hotel: HotelService
+  transportation: TransportationService
 }

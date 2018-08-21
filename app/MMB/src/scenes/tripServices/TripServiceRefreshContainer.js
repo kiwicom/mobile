@@ -17,6 +17,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 
+import HotelMenuItem from './HotelMenuItem';
 import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
@@ -89,9 +90,8 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
           data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
           onOpenWebview={this.openWebview}
         />
-        <TodoMenuItem
-          title={<Translation id="mmb.trip_services.local_services.hotel" />}
-          icon={<TextIcon code="&#xe029;" />}
+        <HotelMenuItem
+          data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
         />
         <LoungeMenuItem
           data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
@@ -122,6 +122,7 @@ export default createRefetchContainer(
         ...CarRentalMenuItem
         ...LoungeMenuItem
         ...ParkingMenuItem
+        ...HotelMenuItem
       }
     }
   `,
