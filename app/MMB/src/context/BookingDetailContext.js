@@ -21,6 +21,7 @@ const defaultState = {
   departureTime: new Date(),
   isMissingDocumentId: false,
   authToken: '',
+  currency: '',
   actions: {
     setBookingDetail: () => {},
     setIsMissingDocumentId: () => {},
@@ -33,11 +34,13 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
 
 type Props = {|
   +children: React.Node,
+  +currency: string,
 |};
 
 type State = {|
   ...BookingDetail,
   +isMissingDocumentId: boolean,
+  +currency: string,
   +actions: {|
     +setBookingDetail: (booking: BookingDetail) => void,
     +setIsMissingDocumentId: (isMissingDocumentId: boolean) => void,
@@ -50,6 +53,7 @@ class Provider extends React.Component<Props, State> {
 
     this.state = {
       ...defaultState,
+      currency: props.currency,
       actions: {
         setBookingDetail: this.setBookingDetail,
         setIsMissingDocumentId: this.setIsMissingDocumentId,

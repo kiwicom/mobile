@@ -20,6 +20,7 @@ type Props = {|
 class LocationPopupButton extends React.Component<Props> {
   static defaultProps = {
     displayIata: false,
+    whitelabelURL: '',
   };
 
   openWhitelabel = () => {

@@ -6,6 +6,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 
+import { NewHotelsStandAlonePackage } from '../../../hotels';
 import DetailScreen, { MenuComponents } from './DetailScreen';
 import ListScreen from './ListScreen';
 import FillTravelDocumentScreen from './FillTravelDocumentScreen';
@@ -42,6 +43,22 @@ const TravelDocumentStack = StackNavigator(
   },
 );
 
+// This is not good enough since it just opens as a new page, not modal
+// It is complicated, needs to be improved later
+const HotelStack = StackNavigator(
+  {
+    Hotels: {
+      screen: withMappedProps(NewHotelsStandAlonePackage),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'Hotels',
+    mode: 'modal',
+    headerMode: 'none',
+  },
+);
+
 const MainStack = StackNavigator(
   {
     ListScreen: {
@@ -68,6 +85,9 @@ export default StackNavigator(
     },
     TravelDocumentScreen: {
       screen: TravelDocumentStack,
+    },
+    MMBHotelsStack: {
+      screen: HotelStack,
     },
   },
   {

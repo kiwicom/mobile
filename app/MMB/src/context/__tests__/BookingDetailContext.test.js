@@ -12,7 +12,7 @@ class ContextConsumer extends React.Component<{}> {
 
 const getWrapper = () =>
   renderer.create(
-    <BookingDetailContext.Provider>
+    <BookingDetailContext.Provider currency="EUR">
       <BookingDetailContext.Consumer>
         {({
           actions: { setBookingDetail, setIsMissingDocumentId },
@@ -41,6 +41,7 @@ describe('BookingDetailContext', () => {
     expect(instance.props.arrivalCityId).toBe('');
     expect(typeof instance.props.setBookingDetail).toBe('function');
     expect(instance.props.isMissingDocumentId).toBe(false);
+    expect(instance.props.currency).toBe('EUR');
   });
 
   it('setsBookingDetail', () => {
