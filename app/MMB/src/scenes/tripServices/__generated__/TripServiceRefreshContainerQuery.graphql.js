@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e9f19ca947fe29442af53647c072012f
+ * @relayHash 9747e80b93acc6bf17e2bd2f22f2273c
  */
 
 /* eslint-disable */
@@ -42,6 +42,7 @@ fragment TripServiceRefreshContainer on BookingInterface {
     ...LoungeMenuItem
     ...ParkingMenuItem
     ...HotelMenuItem
+    ...TransportationMenuItem
   }
 }
 
@@ -90,14 +91,16 @@ fragment HotelMenuItem on WhitelabeledServices {
   }
 }
 
-fragment LocationItem on HotelServiceRelevantLocation {
-  hotelCity {
-    id
-    name
-  }
-  location {
-    ...LocationPopupButton
-    id
+fragment TransportationMenuItem on WhitelabeledServices {
+  transportation {
+    relevantLocations {
+      whitelabelURL
+      location {
+        ...LocationPopupButton
+        id
+      }
+      date
+    }
   }
 }
 
@@ -111,6 +114,17 @@ fragment LocationPopupButton on Location {
 
 fragment CountryFlag on Location {
   countryFlagURL
+}
+
+fragment LocationItem on HotelServiceRelevantLocation {
+  hotelCity {
+    id
+    name
+  }
+  location {
+    ...LocationPopupButton
+    id
+  }
 }
 */
 
@@ -211,7 +225,7 @@ return {
   "operationKind": "query",
   "name": "TripServiceRefreshContainerQuery",
   "id": null,
-  "text": "query TripServiceRefreshContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    relevantLocations {\n      ...LocationItem\n      location {\n        id\n      }\n      hotelCity {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment LocationItem on HotelServiceRelevantLocation {\n  hotelCity {\n    id\n    name\n  }\n  location {\n    ...LocationPopupButton\n    id\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query TripServiceRefreshContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n    ...TransportationMenuItem\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    relevantLocations {\n      ...LocationItem\n      location {\n        id\n      }\n      hotelCity {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment TransportationMenuItem on WhitelabeledServices {\n  transportation {\n    relevantLocations {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n      date\n    }\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment LocationItem on HotelServiceRelevantLocation {\n  hotelCity {\n    id\n    name\n  }\n  location {\n    ...LocationPopupButton\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -368,6 +382,37 @@ return {
                         ]
                       },
                       v5
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "transportation",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "TransportationService",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "relevantLocations",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "TransportationServiceRelevantLocations",
+                    "plural": true,
+                    "selections": [
+                      v2,
+                      v5,
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "date",
+                        "args": null,
+                        "storageKey": null
+                      }
                     ]
                   }
                 ]
