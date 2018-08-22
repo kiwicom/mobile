@@ -10,7 +10,7 @@ import TripServiceRefreshContainer from './TripServiceRefreshContainer';
 import InsuranceOverviewSceneContainer from './insurance/insuranceOverviewScene/InsuranceOverviewSceneContainer';
 import InsuranceSelectionSceneContainer from './insurance/insuranceSelectionScene/InsuranceSelectionSceneContainer';
 import PaymentScene from './insurance/paymentScene/PaymentScene';
-import RefundScene from './insurance/RefundScene';
+import RefundScene from './insurance/refundScene/RefundScene';
 import MoreInfoScene from './insurance/moreInfoScene/MoreInfoScene';
 import InsuranceTermsPdfScene from './insurance/InsuranceTermsPdfScene';
 import BookingDetailContext from '../../context/BookingDetailContext';

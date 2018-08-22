@@ -35,6 +35,7 @@ export { default as BarPopup } from './src/popup/BarPopup';
 export { default as ButtonPopup } from './src/popup/ButtonPopup';
 
 export { default as Modal } from './src/Modal';
+export { default as ModalWithLoader } from './src/ModalWithLoader';
 
 export { default as AdaptableBadge } from './src/AdaptableBadge';
 export { default as DropMarker } from './src/DropMarker';

@@ -76,6 +76,13 @@ type ArrivalTimelineEvent implements TimelineEvent {
   location: RouteStop
 }
 
+enum availabilityStatus {
+  AVAILABLE
+  IN_FUTURE
+  AT_AIRPORT
+  OTHER
+}
+
 input AvailableHotelOptionsInput {
   """Three-letters ISO 4217 currency code, e.g. EUR or USD"""
   currency: Currency
@@ -114,6 +121,9 @@ type BoardingPass {
 
   """The date when the boarding pass will be available for download"""
   availableAt: Date
+
+  """Boarding pass availability status"""
+  availabilityStatus: availabilityStatus
 
   """pkpasses connected to the boarding pass"""
   pkpasses: [Pkpass]
