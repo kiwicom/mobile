@@ -14,6 +14,7 @@ const defaultState = {
     initState: () => {},
     updatePassengerInsurance: () => {},
     reset: () => {},
+    refundMutationSuccesful: () => {},
   },
 };
 
@@ -69,6 +70,7 @@ type State = {|
     +initState: (data: Data) => void,
     +updatePassengerInsurance: (args: UpdatePassengerInsurance) => void,
     +reset: () => void,
+    +refundMutationSuccesful: () => void,
   },
 |};
 
@@ -81,6 +83,7 @@ class Provider extends React.Component<Props, State> {
         initState: this.initState,
         updatePassengerInsurance: this.updatePassengerInsurance,
         reset: this.reset,
+        refundMutationSuccesful: this.refundMutationSuccesful,
       },
     };
   }
@@ -198,6 +201,13 @@ class Provider extends React.Component<Props, State> {
     });
   };
 
+  refundMutationSuccesful = () => {
+    this.setState({
+      changes: [],
+      amount: 0,
+    });
+  };
+
   render = () => (
     <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
   );
@@ -222,4 +232,19 @@ export function withInsuranceContext(select: (state: State) => Object) {
     }
     return WithInsuranceContext;
   };
+}
+
+export function withAllInsuranceContext(Component: React.ElementType) {
+  const WithAllInsuranceContext = (props: Object) => (
+    <Consumer>
+      {({ actions, ...rest }) => (
+        <Component {...props} {...rest} {...actions} />
+      )}
+    </Consumer>
+  );
+  // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+  if (Component.navigationOptions) {
+    WithAllInsuranceContext.navigationOptions = Component.navigationOptions;
+  }
+  return WithAllInsuranceContext;
 }

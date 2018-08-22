@@ -229,6 +229,11 @@ export default {
   'mmb.trip_services.insurance.refund.cancellation_requested.comment':
     "It may take a few hours to process your request. We'll email you as soon as it's complete.",
   'mmb.trip_services.insurance.refund.confirm': 'Confirm',
+  'mmb.trip_services.insurance.refund.processing': 'Processing refund...',
+  'mmb.trip_services.insurance.refund.successful': 'Refund was successful.',
+  'mmb.trip_services.insurance.refund.problem.title': 'Insurance pending',
+  'mmb.trip_services.insurance.refund.problem.message':
+    "You can edit your insurance after you've paid for the previous changes in My Bookings.",
 
   'mmb.trip_services.insurance.payment.title': 'Payment - Insurance',
   'mmb.trip_services.insurance.payment.header': 'Payment',
