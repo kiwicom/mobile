@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { Touchable, StyleSheet } from '@kiwicom/mobile-shared';
+import { Touchable, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import CountryFlag from '../../components/CountryFlag';
 import type { LocationPopupButton as LocationPopupButtonType } from './__generated__/LocationPopupButton.graphql';
@@ -15,6 +16,7 @@ type Props = {|
   +data: LocationPopupButtonType,
   +onPress: string => void,
   +displayIata?: boolean,
+  +date?: ?string,
 |};
 
 class LocationPopupButton extends React.Component<Props> {
@@ -30,18 +32,26 @@ class LocationPopupButton extends React.Component<Props> {
   render = () => {
     const cityName = idx(this.props, _ => _.data.city.name);
     const locationId = idx(this.props, _ => _.data.locationId);
+    const date = idx(this.props, _ => _.date);
 
     return (
       <Touchable onPress={this.openWhitelabel} style={styleSheet.wrapper}>
         <React.Fragment>
           <CountryFlag data={this.props.data} />
-          {this.props.displayIata ? (
-            <Translation
-              passThrough={`in ${cityName || ''} (${locationId || ''})`}
-            />
-          ) : (
-            <Translation passThrough={cityName || ''} />
-          )}
+          <View style={styleSheet.locationWrapper}>
+            {this.props.displayIata ? (
+              <Translation
+                passThrough={`in ${cityName || ''} (${locationId || ''})`}
+              />
+            ) : (
+              <Translation passThrough={cityName || ''} />
+            )}
+            {this.props.date != null && (
+              <Text style={styleSheet.date}>
+                <Translation passThrough={date || ''} />
+              </Text>
+            )}
+          </View>
         </React.Fragment>
       </Touchable>
     );
@@ -66,6 +76,14 @@ const styleSheet = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 17,
     paddingHorizontal: 15,
+    alignItems: 'center',
     backgroundColor: defaultTokens.paletteWhite,
+  },
+  locationWrapper: {
+    flexDirection: 'column',
+  },
+  date: {
+    color: defaultTokens.colorTextSecondary,
+    paddingTop: 2,
   },
 });

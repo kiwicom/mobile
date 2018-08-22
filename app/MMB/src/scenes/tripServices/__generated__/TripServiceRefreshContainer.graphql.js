@@ -12,13 +12,14 @@ type CarRentalMenuItem$ref = any;
 type HotelMenuItem$ref = any;
 type LoungeMenuItem$ref = any;
 type ParkingMenuItem$ref = any;
+type TransportationMenuItem$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TripServiceRefreshContainer$ref: FragmentReference;
 export type TripServiceRefreshContainer = {|
   +databaseId: ?number,
   +authToken: ?string,
   +availableWhitelabeledServices: ?{|
-    +$fragmentRefs: CarRentalMenuItem$ref & LoungeMenuItem$ref & ParkingMenuItem$ref & HotelMenuItem$ref
+    +$fragmentRefs: CarRentalMenuItem$ref & LoungeMenuItem$ref & ParkingMenuItem$ref & HotelMenuItem$ref & TransportationMenuItem$ref
   |},
   +$refType: TripServiceRefreshContainer$ref,
 |};
@@ -74,11 +75,16 @@ const node/*: ConcreteFragment*/ = {
           "kind": "FragmentSpread",
           "name": "HotelMenuItem",
           "args": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "TransportationMenuItem",
+          "args": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'f1d6524f74d942192b699db2cef10e7e';
+(node/*: any*/).hash = '8af9547e951da88fbd1f9b4f0004b8f9';
 module.exports = node;

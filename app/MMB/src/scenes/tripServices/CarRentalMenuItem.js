@@ -19,12 +19,12 @@ type Props = {|
 |};
 
 type State = {|
-  popupVisible: boolean,
+  isPopupVisible: boolean,
 |};
 
 export class CarRentalMenuItem extends React.Component<Props, State> {
   state = {
-    popupVisible: false,
+    isPopupVisible: false,
   };
 
   buildWhitelabelURL = (whitelabelURL: string) => {
@@ -45,7 +45,7 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
   openLink = (whitelabelURL: string) => {
     this.setState(
       {
-        popupVisible: false,
+        isPopupVisible: false,
       },
       () => this.props.onOpenWebview(this.buildWhitelabelURL(whitelabelURL)),
     );
@@ -63,13 +63,13 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
     }
 
     this.setState({
-      popupVisible: true,
+      isPopupVisible: true,
     });
   };
 
   hidePopup = () => {
     this.setState({
-      popupVisible: false,
+      isPopupVisible: false,
     });
   };
 
@@ -86,7 +86,7 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
     return (
       <React.Fragment>
         <LocationsPopup
-          isVisible={this.state.popupVisible}
+          isVisible={this.state.isPopupVisible}
           onClose={this.hidePopup}
         >
           {relevantCities.map(relevantCity => {

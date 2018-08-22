@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { RefreshableScrollView, TextIcon } from '@kiwicom/mobile-shared';
+import { RefreshableScrollView } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   graphql,
@@ -10,7 +10,6 @@ import {
 } from '@kiwicom/mobile-relay';
 import {
   TitledMenuGroup,
-  TodoMenuItem,
   withNavigation,
   type NavigationType,
   type RouteNamesType,
@@ -22,6 +21,7 @@ import LoungeMenuItem from './LoungeMenuItem';
 import ParkingMenuItem from './ParkingMenuItem';
 import InsuranceMenuItem from './InsuranceMenuItem';
 import CarRentalMenuItem from './CarRentalMenuItem';
+import TransportationMenuItem from './TransportationMenuItem';
 import type { TripServiceRefreshContainer as BookingType } from './__generated__/TripServiceRefreshContainer.graphql';
 
 type Props = {|
@@ -101,11 +101,9 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
           data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
           onOpenWebview={this.openWebview}
         />
-        <TodoMenuItem
-          title={
-            <Translation id="mmb.trip_services.local_services.transportation" />
-          }
-          icon={<TextIcon code="<" />}
+        <TransportationMenuItem
+          data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
+          onOpenWebview={this.openWebview}
         />
       </TitledMenuGroup>
     </RefreshableScrollView>
@@ -123,6 +121,7 @@ export default createRefetchContainer(
         ...LoungeMenuItem
         ...ParkingMenuItem
         ...HotelMenuItem
+        ...TransportationMenuItem
       }
     }
   `,
