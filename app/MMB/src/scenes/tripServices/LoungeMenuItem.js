@@ -19,18 +19,18 @@ type Props = {|
 |};
 
 type State = {|
-  popupVisible: boolean,
+  isPopupVisible: boolean,
 |};
 
 class LoungeMenuItem extends React.Component<Props, State> {
   state = {
-    popupVisible: false,
+    isPopupVisible: false,
   };
 
   openLoungeLink = (whitelabelURL: string) => {
     this.setState(
       {
-        popupVisible: false,
+        isPopupVisible: false,
       },
       () =>
         this.props.onOpenWebview(
@@ -61,13 +61,13 @@ class LoungeMenuItem extends React.Component<Props, State> {
     }
 
     this.setState({
-      popupVisible: true,
+      isPopupVisible: true,
     });
   };
 
   hidePopup = () => {
     this.setState({
-      popupVisible: false,
+      isPopupVisible: false,
     });
   };
 
@@ -84,7 +84,7 @@ class LoungeMenuItem extends React.Component<Props, State> {
     return (
       <React.Fragment>
         <LocationsPopup
-          isVisible={this.state.popupVisible}
+          isVisible={this.state.isPopupVisible}
           onClose={this.hidePopup}
         >
           {relevantAirports.map(relevantAirport => {
