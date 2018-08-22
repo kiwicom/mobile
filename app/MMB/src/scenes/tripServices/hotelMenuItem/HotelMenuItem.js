@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
-import {
-  TextIcon,
-  Dimensions,
-  type DimensionType,
-} from '@kiwicom/mobile-shared';
+import { TextIcon } from '@kiwicom/mobile-shared';
 import {
   MenuItem,
   withNavigation,
@@ -27,7 +23,6 @@ type State = {|
 type PropsWithContext = {|
   ...Props,
   +currency: string,
-  +dimensions: DimensionType,
 |};
 
 class HotelMenuItem extends React.Component<PropsWithContext, State> {
@@ -35,7 +30,11 @@ class HotelMenuItem extends React.Component<PropsWithContext, State> {
     isPopupVisible: false,
   };
 
-  navigateToHotels = (cityId: string, cityName: string) => {
+  goBack = () => {
+    this.props.navigation.navigate('MMBMainSwitchStack');
+  };
+
+  openHotelsModal = (cityId: string, cityName: string) => {
     this.props.navigation.navigate('MMBHotelsStack', {
       bookingComAffiliate: '', // TODO
       language: DeviceInfo.getLanguage(),
@@ -44,8 +43,8 @@ class HotelMenuItem extends React.Component<PropsWithContext, State> {
       checkin: '2018-09-10', // TODO
       checkout: '2018-09-27', // TODO
       onNavigationStateChange: () => {}, // TODO
-      onBackClicked: null, // TODO:
-      dimensions: this.props.dimensions,
+      onBackClicked: this.goBack, // TODO:
+      dimensions: null,
       version: 'rn-development', // TODO
       cityName,
       cityId,
@@ -60,15 +59,15 @@ class HotelMenuItem extends React.Component<PropsWithContext, State> {
     if (relevantLocations.length === 1) {
       const cityId = idx(relevantLocations, _ => _[0].hotelCity.id) || '';
       const cityName = idx(relevantLocations, _ => _[0].hotelCity.name) || '';
-      this.navigateToHotels(cityId, cityName);
+      this.openHotelsModal(cityId, cityName);
     } else {
       this.togglePopup();
     }
   };
 
   onLocationPress = (cityId: string, cityName: string) => {
-    this.togglePopup();
-    this.navigateToHotels(cityId, cityName);
+    this.setState({ isPopupVisible: false });
+    this.openHotelsModal(cityId, cityName);
   };
 
   togglePopup = () => {
@@ -114,19 +113,9 @@ type Props = {|
 |};
 
 const HotelMenuItemWithContext = (props: Props) => (
-  <Dimensions.Consumer>
-    {dimensions => (
-      <BookingDetailContext.Consumer>
-        {({ currency }) => (
-          <HotelMenuItem
-            {...props}
-            currency={currency}
-            dimensions={dimensions}
-          />
-        )}
-      </BookingDetailContext.Consumer>
-    )}
-  </Dimensions.Consumer>
+  <BookingDetailContext.Consumer>
+    {({ currency }) => <HotelMenuItem {...props} currency={currency} />}
+  </BookingDetailContext.Consumer>
 );
 
 export default createFragmentContainer(

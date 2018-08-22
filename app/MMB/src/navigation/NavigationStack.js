@@ -4,6 +4,7 @@ import {
   StackNavigator,
   StackNavigatorOptions,
 } from '@kiwicom/mobile-navigation';
+import { createSwitchNavigator } from 'react-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 
 import { NewHotelsStandAlonePackage } from '../../../hotels';
@@ -61,19 +62,32 @@ const TravelDocumentModalStack = StackNavigator(
   },
 );
 
+const SwitchStack = createSwitchNavigator(
+  {
+    MMBMainSwitchStack: {
+      screen: MainStack,
+    },
+    MMBHotelsStack: {
+      screen: withMappedProps(NewHotelsStandAlonePackage),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'MMBMainSwitchStack',
+    backBehavior: 'initialRoute',
+    resetOnBlur: false,
+  },
+);
+
 export default StackNavigator(
   {
     MMBMainStack: {
-      screen: MainStack,
+      screen: SwitchStack,
     },
     TravelDocumentModalStack: {
       screen: TravelDocumentModalStack,
     },
     // This is not good enough, it is complicated, needs to be improved later
-
-    MMBHotelsStack: {
-      screen: withMappedProps(NewHotelsStandAlonePackage),
-    },
   },
   {
     ...StackNavigatorOptions,
