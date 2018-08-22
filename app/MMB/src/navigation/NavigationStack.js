@@ -27,38 +27,6 @@ Object.entries(MenuComponents).forEach(
   },
 );
 
-const TravelDocumentStack = StackNavigator(
-  {
-    TravelDocumentScreen: {
-      screen: withMappedProps(FillTravelDocumentScreen),
-    },
-    TravelDocumentModalScreen: {
-      screen: withMappedProps(TravelDocumentModalScreen),
-    },
-  },
-  {
-    ...StackNavigatorOptions,
-    initialRouteName: 'TravelDocumentScreen',
-    mode: 'modal',
-  },
-);
-
-// This is not good enough since it just opens as a new page, not modal
-// It is complicated, needs to be improved later
-const HotelStack = StackNavigator(
-  {
-    Hotels: {
-      screen: withMappedProps(NewHotelsStandAlonePackage),
-    },
-  },
-  {
-    ...StackNavigatorOptions,
-    initialRouteName: 'Hotels',
-    mode: 'modal',
-    headerMode: 'none',
-  },
-);
-
 const MainStack = StackNavigator(
   {
     ListScreen: {
@@ -70,6 +38,9 @@ const MainStack = StackNavigator(
     AppleWalletScreen: {
       screen: withMappedProps(AppleWalletScreen),
     },
+    TravelDocumentScreen: {
+      screen: withMappedProps(FillTravelDocumentScreen),
+    },
     ...Screens,
   },
   {
@@ -78,21 +49,36 @@ const MainStack = StackNavigator(
   },
 );
 
+const TravelDocumentModalStack = StackNavigator(
+  {
+    TravelDocumentModalScreen: {
+      screen: withMappedProps(TravelDocumentModalScreen),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'TravelDocumentModalScreen',
+  },
+);
+
 export default StackNavigator(
   {
     MMBMainStack: {
       screen: MainStack,
     },
-    TravelDocumentScreen: {
-      screen: TravelDocumentStack,
+    TravelDocumentModalStack: {
+      screen: TravelDocumentModalStack,
     },
+    // This is not good enough, it is complicated, needs to be improved later
+
     MMBHotelsStack: {
-      screen: HotelStack,
+      screen: withMappedProps(NewHotelsStandAlonePackage),
     },
   },
   {
     ...StackNavigatorOptions,
     initialRouteName: 'MMBMainStack',
     headerMode: 'none',
+    mode: 'modal',
   },
 );
