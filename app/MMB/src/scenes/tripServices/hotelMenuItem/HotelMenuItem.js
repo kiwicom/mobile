@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import {
+  TextIcon,
+  Dimensions,
+  type DimensionType,
+} from '@kiwicom/mobile-shared';
 import {
   MenuItem,
   withNavigation,
@@ -15,6 +19,7 @@ import LocationItem from './LocationItem';
 import LocationsPopup from '../LocationsPopup';
 import type { HotelMenuItem as HotelMenuItemType } from './__generated__/HotelMenuItem.graphql';
 import BookingDetailContext from '../../../context/BookingDetailContext';
+import HotelsContext from '../../../context/HotelsContext';
 
 type State = {|
   isPopupVisible: boolean,
@@ -23,6 +28,10 @@ type State = {|
 type PropsWithContext = {|
   ...Props,
   +currency: string,
+  +dimensions: DimensionType,
+  +bookingComAffiliate: string,
+  +dataSaverEnabled: boolean,
+  +version: string,
 |};
 
 class HotelMenuItem extends React.Component<PropsWithContext, State> {
@@ -36,16 +45,16 @@ class HotelMenuItem extends React.Component<PropsWithContext, State> {
 
   openHotelsModal = (cityId: string, cityName: string) => {
     this.props.navigation.navigate('MMBHotelsStack', {
-      bookingComAffiliate: '', // TODO
+      bookingComAffiliate: this.props.bookingComAffiliate,
       language: DeviceInfo.getLanguage(),
       currency: this.props.currency,
-      dataSaverEnabled: false, // TODO
+      dataSaverEnabled: this.props.dataSaverEnabled,
       checkin: '2018-09-10', // TODO
       checkout: '2018-09-27', // TODO
       onNavigationStateChange: () => {}, // TODO
-      onBackClicked: this.goBack, // TODO:
-      dimensions: null,
-      version: 'rn-development', // TODO
+      onBackClicked: this.goBack,
+      dimensions: this.props.dimensions,
+      version: this.props.version,
       cityName,
       cityId,
       roomsConfiguration: [{ adultsCount: 1, children: [] }], // TODO
@@ -113,9 +122,24 @@ type Props = {|
 |};
 
 const HotelMenuItemWithContext = (props: Props) => (
-  <BookingDetailContext.Consumer>
-    {({ currency }) => <HotelMenuItem {...props} currency={currency} />}
-  </BookingDetailContext.Consumer>
+  <HotelsContext.Consumer>
+    {state => (
+      <Dimensions.Consumer>
+        {dimensions => (
+          <BookingDetailContext.Consumer>
+            {({ currency }) => (
+              <HotelMenuItem
+                {...props}
+                currency={currency}
+                dimensions={dimensions}
+                {...state}
+              />
+            )}
+          </BookingDetailContext.Consumer>
+        )}
+      </Dimensions.Consumer>
+    )}
+  </HotelsContext.Consumer>
 );
 
 export default createFragmentContainer(
