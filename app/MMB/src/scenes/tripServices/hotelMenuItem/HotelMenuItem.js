@@ -1,7 +1,12 @@
 // @flow strict
 
 import * as React from 'react';
-import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
+import {
+  Translation,
+  DeviceInfo,
+  DateUtils,
+  DateFormatter,
+} from '@kiwicom/mobile-localization';
 import {
   TextIcon,
   Dimensions,
@@ -34,7 +39,14 @@ type PropsWithContext = {|
   +version: string,
 |};
 
-class HotelMenuItem extends React.Component<PropsWithContext, State> {
+export type HotelData = {|
+  +cityId: string,
+  +cityName: string,
+  +checkin: string | null,
+  +checkout: string | null,
+|};
+
+export class HotelMenuItem extends React.Component<PropsWithContext, State> {
   state = {
     isPopupVisible: false,
   };
@@ -43,21 +55,46 @@ class HotelMenuItem extends React.Component<PropsWithContext, State> {
     this.props.navigation.navigate('MMBMainSwitchStack');
   };
 
-  openHotelsModal = (cityId: string, cityName: string) => {
+  sanitizeDates = (dates: {|
+    +checkin: string | null,
+    +checkout: string | null,
+  |}) => {
+    const checkin =
+      dates.checkin === null
+        ? DateFormatter(DateUtils.getUTCToday()).formatForMachine()
+        : dates.checkin;
+    const checkout =
+      dates.checkout === null
+        ? DateFormatter(
+            DateUtils(new Date(checkin)).addDays(1),
+          ).formatForMachine()
+        : dates.checkout;
+    return {
+      checkin,
+      checkout,
+    };
+  };
+
+  openHotelsModal = ({ cityId, cityName, checkin, checkout }: HotelData) => {
+    const roomsConfiguration =
+      idx(this.props.data, _ => _.hotel.roomsConfiguration) || null;
+    const sanitizedDates = this.sanitizeDates({ checkin, checkout });
+
     this.props.navigation.navigate('MMBHotelsStack', {
       bookingComAffiliate: this.props.bookingComAffiliate,
       language: DeviceInfo.getLanguage(),
       currency: this.props.currency,
       dataSaverEnabled: this.props.dataSaverEnabled,
-      checkin: '2018-09-10', // TODO
-      checkout: '2018-09-27', // TODO
+      checkin: sanitizedDates.checkin,
+      checkout: sanitizedDates.checkout,
       onNavigationStateChange: () => {}, // TODO
-      onBackClicked: this.goBack,
+      onBackClicked: this.goBack, // TODO: Needs tuning on tablet
       dimensions: this.props.dimensions,
       version: this.props.version,
       cityName,
       cityId,
-      roomsConfiguration: [{ adultsCount: 1, children: [] }], // TODO
+      roomsConfiguration:
+        roomsConfiguration === null ? [] : [roomsConfiguration],
     });
   };
 
@@ -68,15 +105,22 @@ class HotelMenuItem extends React.Component<PropsWithContext, State> {
     if (relevantLocations.length === 1) {
       const cityId = idx(relevantLocations, _ => _[0].hotelCity.id) || '';
       const cityName = idx(relevantLocations, _ => _[0].hotelCity.name) || '';
-      this.openHotelsModal(cityId, cityName);
+      const checkin = idx(relevantLocations, _ => _[0].checkin) || null;
+      const checkout = idx(relevantLocations, _ => _[0].checkout) || null;
+      this.openHotelsModal({
+        cityId,
+        cityName,
+        checkin,
+        checkout,
+      });
     } else {
       this.togglePopup();
     }
   };
 
-  onLocationPress = (cityId: string, cityName: string) => {
+  onLocationPress = (hotelData: HotelData) => {
     this.setState({ isPopupVisible: false });
-    this.openHotelsModal(cityId, cityName);
+    this.openHotelsModal(hotelData);
   };
 
   togglePopup = () => {
@@ -147,8 +191,16 @@ export default createFragmentContainer(
   graphql`
     fragment HotelMenuItem on WhitelabeledServices {
       hotel {
+        roomsConfiguration {
+          adultsCount
+          children {
+            age
+          }
+        }
         relevantLocations {
           ...LocationItem
+          checkin
+          checkout
           location {
             id
           }

@@ -544,6 +544,10 @@ type CheckinClosingTimelineEvent implements TimelineEvent {
   timestamp: DateTime
 }
 
+type ChildrenType {
+  age: Int
+}
+
 type Coordinates {
   """Latitude."""
   lat: Float
@@ -1468,11 +1472,14 @@ type HotelRoomPhotoEdge {
 
 type HotelService {
   relevantLocations: [HotelServiceRelevantLocation]
+  roomsConfiguration: RoomsConfigurationOutput
 }
 
 type HotelServiceRelevantLocation {
   location: Location
   hotelCity: HotelCity
+  checkin: Date
+  checkout: Date
 }
 
 input HotelsFilterInput {
@@ -1882,6 +1889,13 @@ input PassengerInput {
   documentNumber: String!
 }
 
+input PassengerInsuranceInput {
+  passengerId: Int!
+
+  """New insurance type for passenger"""
+  insuranceType: InsuranceType
+}
+
 input PassengersInput {
   adults: Int!
   infants: Int
@@ -1932,6 +1946,12 @@ input RoomsConfiguration {
   children: [RoomsChildrenConfiguration]
 }
 
+"""Booking.com rooms configuration"""
+type RoomsConfigurationOutput {
+  adultsCount: Int
+  children: [ChildrenType]
+}
+
 """Root Mutation."""
 type RootMutation {
   addFAQArticleComment(
@@ -1952,6 +1972,12 @@ type RootMutation {
     simpleToken: String
     passengers: [PassengerInput!]!
   ): UpdatePassenger
+  refundInsurance(
+    """The global booking id"""
+    id: ID!
+    simpleToken: String!
+    passengers: [PassengerInsuranceInput!]!
+  ): Booking
 }
 
 """Root Query"""
