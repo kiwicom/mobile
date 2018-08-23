@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 88a6144f59c78546ae57e90415cf8926
+ * @relayHash bf8147437f0cac1d193ebaf65320d1f8
  */
 
 /* eslint-disable */
@@ -103,8 +103,16 @@ fragment ParkingMenuItem on WhitelabeledServices {
 
 fragment HotelMenuItem on WhitelabeledServices {
   hotel {
+    roomsConfiguration {
+      adultsCount
+      children {
+        age
+      }
+    }
     relevantLocations {
       ...LocationItem
+      checkin
+      checkout
       location {
         id
       }
@@ -142,6 +150,8 @@ fragment CountryFlag on Location {
 }
 
 fragment LocationItem on HotelServiceRelevantLocation {
+  checkin
+  checkout
   hotelCity {
     id
     name
@@ -276,7 +286,7 @@ return {
   "operationKind": "query",
   "name": "TripServiceRefreshContainerQuery",
   "id": null,
-  "text": "query TripServiceRefreshContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  ...InsuranceMenuItemContainer\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n    ...TransportationMenuItem\n  }\n}\n\nfragment InsuranceMenuItemContainer on BookingInterface {\n  __typename\n  status\n  passengers {\n    nationality\n  }\n  isPastBooking\n  ... on BookingOneWay {\n    trip {\n      ...InsuranceMenuItem\n    }\n  }\n  ... on BookingReturn {\n    outbound {\n      ...InsuranceMenuItem\n    }\n  }\n  ... on BookingMulticity {\n    trips {\n      ...InsuranceMenuItem\n    }\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    relevantLocations {\n      ...LocationItem\n      location {\n        id\n      }\n      hotelCity {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment TransportationMenuItem on WhitelabeledServices {\n  transportation {\n    relevantLocations {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n      date\n    }\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment LocationItem on HotelServiceRelevantLocation {\n  hotelCity {\n    id\n    name\n  }\n  location {\n    ...LocationPopupButton\n    id\n  }\n}\n\nfragment InsuranceMenuItem on Trip {\n  departure {\n    time\n  }\n}\n",
+  "text": "query TripServiceRefreshContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TripServiceRefreshContainer\n    id\n  }\n}\n\nfragment TripServiceRefreshContainer on BookingInterface {\n  databaseId\n  authToken\n  ...InsuranceMenuItemContainer\n  availableWhitelabeledServices {\n    ...CarRentalMenuItem\n    ...LoungeMenuItem\n    ...ParkingMenuItem\n    ...HotelMenuItem\n    ...TransportationMenuItem\n  }\n}\n\nfragment InsuranceMenuItemContainer on BookingInterface {\n  __typename\n  status\n  passengers {\n    nationality\n  }\n  isPastBooking\n  ... on BookingOneWay {\n    trip {\n      ...InsuranceMenuItem\n    }\n  }\n  ... on BookingReturn {\n    outbound {\n      ...InsuranceMenuItem\n    }\n  }\n  ... on BookingMulticity {\n    trips {\n      ...InsuranceMenuItem\n    }\n  }\n}\n\nfragment CarRentalMenuItem on WhitelabeledServices {\n  carRental {\n    relevantCities {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment LoungeMenuItem on WhitelabeledServices {\n  lounge {\n    relevantAirports {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n    }\n  }\n}\n\nfragment ParkingMenuItem on WhitelabeledServices {\n  parking {\n    whitelabelURL\n  }\n}\n\nfragment HotelMenuItem on WhitelabeledServices {\n  hotel {\n    roomsConfiguration {\n      adultsCount\n      children {\n        age\n      }\n    }\n    relevantLocations {\n      ...LocationItem\n      checkin\n      checkout\n      location {\n        id\n      }\n      hotelCity {\n        id\n        name\n      }\n    }\n  }\n}\n\nfragment TransportationMenuItem on WhitelabeledServices {\n  transportation {\n    relevantLocations {\n      whitelabelURL\n      location {\n        ...LocationPopupButton\n        id\n      }\n      date\n    }\n  }\n}\n\nfragment LocationPopupButton on Location {\n  city {\n    name\n  }\n  locationId\n  ...CountryFlag\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n\nfragment LocationItem on HotelServiceRelevantLocation {\n  checkin\n  checkout\n  hotelCity {\n    id\n    name\n  }\n  location {\n    ...LocationPopupButton\n    id\n  }\n}\n\nfragment InsuranceMenuItem on Trip {\n  departure {\n    time\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -445,12 +455,62 @@ return {
                   {
                     "kind": "LinkedField",
                     "alias": null,
+                    "name": "roomsConfiguration",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "RoomsConfigurationOutput",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "adultsCount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "children",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "ChildrenType",
+                        "plural": true,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "age",
+                            "args": null,
+                            "storageKey": null
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
                     "name": "relevantLocations",
                     "storageKey": null,
                     "args": null,
                     "concreteType": "HotelServiceRelevantLocation",
                     "plural": true,
                     "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "checkin",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "checkout",
+                        "args": null,
+                        "storageKey": null
+                      },
                       {
                         "kind": "LinkedField",
                         "alias": null,
