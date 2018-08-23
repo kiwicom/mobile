@@ -6,17 +6,26 @@ import idx from 'idx';
 
 import LocationPopupButton from '../LocationPopupButton';
 import type { LocationItem as LocationItemType } from './__generated__/LocationItem.graphql';
+import type { HotelData } from './HotelMenuItem';
 
 type Props = {|
   +data: LocationItemType,
-  +onPress: (cityId: string, cityName: string) => void,
+  +onPress: (hotelData: HotelData) => void,
 |};
 
 class LocationItem extends React.Component<Props> {
   onPress = () => {
     const cityId = idx(this.props.data, _ => _.hotelCity.id) || '';
     const cityName = idx(this.props.data, _ => _.hotelCity.name) || '';
-    this.props.onPress(cityId, cityName);
+    const checkin = idx(this.props.data, _ => _.checkin) || null;
+    const checkout = idx(this.props.data, _ => _.checkout) || null;
+
+    this.props.onPress({
+      cityId,
+      cityName,
+      checkin,
+      checkout,
+    });
   };
 
   render = () => {
@@ -39,6 +48,8 @@ export default createFragmentContainer(
   LocationItem,
   graphql`
     fragment LocationItem on HotelServiceRelevantLocation {
+      checkin
+      checkout
       hotelCity {
         id
         name
