@@ -7,6 +7,8 @@ import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, type DimensionType } from '@kiwicom/mobile-shared';
 
+import Config from '../../../config/application';
+
 type Props = {|
   +navigation: NavigationType,
   +dimensions: DimensionType,
@@ -80,6 +82,9 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
           currency="EUR"
           bookingId={this.state.bookingId}
           simpleToken={this.state.simpleToken}
+          version="rn-development"
+          bookingComAffiliate={String(Config.affiliate.bookingCom)}
+          dataSaverEnabled={false}
         />
       );
     }
@@ -91,6 +96,9 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
           dimensions={this.props.dimensions}
           currency="EUR"
           accessToken={this.state.token}
+          version="rn-development"
+          bookingComAffiliate={String(Config.affiliate.bookingCom)}
+          dataSaverEnabled={false}
         />
       );
     }

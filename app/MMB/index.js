@@ -14,6 +14,7 @@ import BookingDetailContext from './src/context/BookingDetailContext';
 import WalletContext from './src/context/WalletContext';
 import TravelDocumentFormContext from './src/scenes/travelDocument/form/TravelDocumentFormContext';
 import InsuranceOverviewContext from './src/scenes/tripServices/insurance/insuranceOverviewScene/InsuranceOverviewSceneContext';
+import HotelsContext from './src/context/HotelsContext';
 
 type Props = {|
   +currency: string,
@@ -22,6 +23,9 @@ type Props = {|
   +accessToken?: string,
   +bookingId?: number,
   +simpleToken?: string,
+  +version: string,
+  +dataSaverEnabled: boolean,
+  +bookingComAffiliate: string,
 |};
 
 class ManageMyBookingPackage extends React.Component<Props> {
@@ -36,9 +40,15 @@ class ManageMyBookingPackage extends React.Component<Props> {
           <BookingDetailContext.Provider currency={this.props.currency}>
             <TravelDocumentFormContext.Provider>
               <InsuranceOverviewContext.Provider>
-                <NavigationStack
-                  onNavigationStateChange={this.props.onNavigationStateChange}
-                />
+                <HotelsContext.Provider
+                  version={this.props.version}
+                  dataSaverEnabled={this.props.dataSaverEnabled}
+                  bookingComAffiliate={this.props.bookingComAffiliate}
+                >
+                  <NavigationStack
+                    onNavigationStateChange={this.props.onNavigationStateChange}
+                  />
+                </HotelsContext.Provider>
               </InsuranceOverviewContext.Provider>
             </TravelDocumentFormContext.Provider>
           </BookingDetailContext.Provider>
