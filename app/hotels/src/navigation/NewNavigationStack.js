@@ -14,7 +14,7 @@ import { Dimensions, Device } from '@kiwicom/mobile-shared';
 
 import SingleHotel from './singleHotel/SingleHotelNavigationScreen';
 import SearchResults from './allHotels/SearchResultsScreen';
-import AllHotelsMap from './allHotelsMap/AllHotelsMapNavigationScreen';
+import NewAllHotelsMap from './allHotelsMap/NewAllHotelsMapNavigationScreen';
 import AdditionalPropsInjector from './singleHotel/AdditionalPropsInjector';
 import SingleHotelMapNavigationScreen from './singleHotel/SingleHotelMapNavigationScreen';
 import Payment from '../singleHotel/PaymentScreen';
@@ -50,7 +50,7 @@ export default StackNavigator(
       },
     },
     AllHotelsMap: {
-      screen: withMappedProps(AllHotelsMap),
+      screen: withMappedProps(NewAllHotelsMap),
       navigationOptions: {
         headerTitle: (
           <HeaderTitle>
