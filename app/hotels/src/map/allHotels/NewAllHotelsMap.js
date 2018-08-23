@@ -5,7 +5,10 @@ import { View } from 'react-native';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { DateFormatter } from '@kiwicom/mobile-localization';
 import { StyleSheet, AdaptableLayout } from '@kiwicom/mobile-shared';
-import type { NavigationType } from '@kiwicom/mobile-navigation';
+import {
+  type NavigationType,
+  withNavigation,
+} from '@kiwicom/mobile-navigation';
 
 import FilterStripe from '../../filter/FilterStripe';
 import {
@@ -107,4 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withHotelsContext(NewAllHotelsMap);
+export default withHotelsContext(withNavigation(NewAllHotelsMap));
