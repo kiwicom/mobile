@@ -2,9 +2,11 @@
 
 import * as React from 'react';
 import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
+import { Alert } from '@kiwicom/mobile-localization';
 
 import PublicEnvironment from './src/PublicEnvironment';
 import PrivateEnvironment from './src/PrivateEnvironment';
+import ConnectionManager from './src/ConnectionManager';
 
 export {
   graphql,
@@ -27,6 +29,11 @@ export const commitMutation = (
   config: CommitMutationConfig,
   token?: string,
 ) => {
+  if (ConnectionManager.isConnected() === false) {
+    Alert.translatedAlert(null, { id: 'relay.query_renderer.no_connection' });
+    config.onCompleted(null, 'No connection');
+    return;
+  }
   if (token) {
     return Relay.commitMutation(
       PrivateEnvironment.getEnvironment(token),
