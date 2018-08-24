@@ -1,56 +1,55 @@
 // @flow strict
 
+/**
+ * This file should be used carefully, basically colors should be used from defaultTokens from mobile-orbit packages.
+ * The colors here are for special cases only, and should be commented why they are here
+ */
+import { defaultTokens } from '@kiwicom/mobile-orbit';
+
+export const hexToRgba = (hex: string, opacity: number): string => {
+  // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+  const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  const replacedHex = hex.replace(shorthandRegex, (m, r, g, b) => {
+    return r + r + g + g + b + b;
+  });
+
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(replacedHex);
+  return result
+    ? `rgba(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(
+        result[3],
+        16,
+      )}, ${opacity})`
+    : 'rgba(0,0,0,0)';
+};
+
 const ColorPalette = {
-  black: '#000000',
+  black: '#000000', // We need a black backround for our image modal, It should be entirely black
 
   transparent: {
     black: {
-      $30: 'rgba(0, 0, 0, 0.3)',
-      $32: 'rgba(0, 0, 0, .32)',
+      $30: 'rgba(0, 0, 0, 0.3)', // opacity works differently on RN, we need to keep this
+      $32: 'rgba(0, 0, 0, .32)', // opacity works differently on RN, we need to keep this
     },
   },
 
-  // FIXME: remove (or modify)
   grey: {
-    $50: '#fafafa',
-    $200: '#eeeeee',
-    $300: '#e0e0e0',
-    $400: '#bdbdbd',
-    $500: '#9e9e9e',
-    $600: '#757575',
-    $800: '#424242',
-    athensGrey: '#edeff2',
-    porcelain: '#eceff1',
-    geyser: '#cad2dc',
     transparent: {
       outerSpace: {
-        $60: 'rgba(48, 54, 61, 0.6)',
+        $60: hexToRgba(defaultTokens.paletteInkDark, 0.6), // opacity works differently on RN, we need to keep this
       },
     },
   },
 
   green: {
-    lapalma: '#31a11e',
     transparent: {
       lapalma: {
-        $15: 'rgba(49, 161, 30, 0.15)',
+        $15: hexToRgba(defaultTokens.paletteGreenNormal, 0.15), // opacity works differently on RN, we need to keep this
       },
     },
   },
-
-  orange: {
-    gamboge: '#eb9d08',
-  },
-
-  blue: {
-    jaggedIce: '#c4e7e4',
-  },
-
-  red: {
-    monza: '#d0021b',
-  },
 };
 
+// Collection of colors, in multicity trips, this is the only logical place to store them
 const tripColorCodes = [
   '#00a991',
   '#fbad18',
@@ -66,12 +65,6 @@ const tripColorCodes = [
 ];
 
 export default {
-  brandDark: '#007362',
-
-  backgroundGray: '#f4f6f8',
-  disabled: '#b8c1cc',
-  disabledInput: '#fafbfc',
-  labelDisabled: '#dfe4ea',
   ...ColorPalette,
   tripColorCodes,
 };

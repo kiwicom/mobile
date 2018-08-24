@@ -8,7 +8,6 @@ import {
   StyleSheet,
   Touchable,
   ButtonTitle,
-  Color,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -114,13 +113,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   container: {
-    backgroundColor: Color.blue.jaggedIce, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteProductLight,
     height: 44,
     paddingHorizontal: 10,
     paddingVertical: 14,
   },
   text: {
-    color: Color.brandDark, // TODO: Consult designer
+    color: defaultTokens.paletteProductDark,
     fontSize: 14,
   },
   button: {

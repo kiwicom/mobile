@@ -12,7 +12,6 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import Touchable from '../../Touchable';
 import StyleSheet from '../../PlatformStyleSheet';
 import Text from '../../Text';
-import Color from '../../Color';
 
 type Props = {|
   +onPress: () => void,
@@ -75,6 +74,6 @@ const styles = StyleSheet.create({
     marginStart: 5,
   },
   disabled: {
-    backgroundColor: Color.disabledInput, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
 });

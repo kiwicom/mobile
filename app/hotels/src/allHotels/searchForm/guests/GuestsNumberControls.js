@@ -2,8 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color, NumberControl } from '@kiwicom/mobile-shared';
+import { StyleSheet, NumberControl } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +adultsCount: number,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   separator: {
     paddingStart: 15,
-    borderBottomColor: Color.backgroundGray, // TODO: Consult with designer
+    borderBottomColor: defaultTokens.paletteCloudLight,
     borderBottomWidth: 1,
   },
   numberPicker: {

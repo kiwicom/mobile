@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { AdaptableLayout, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { AdaptableLayout, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Location from './location/Location';
 import Description from './description/Description';
@@ -58,7 +59,7 @@ export class HotelInformation extends React.Component<Props> {
 const styles = StyleSheet.create({
   locationContainer: {
     borderBottomWidth: 1,
-    borderBottomColor: Color.grey.$200, // TODO: Consult designer
+    borderBottomColor: defaultTokens.paletteCloudNormal,
     marginBottom: 15,
   },
 });

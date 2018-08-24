@@ -4,7 +4,6 @@ import * as React from 'react';
 import {
   StyleSheet,
   ButtonPopup,
-  Color,
   Checkbox,
   Text,
 } from '@kiwicom/mobile-shared';
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
   },
   delimiter: {
     borderBottomWidth: 0.5,
-    borderBottomColor: Color.backgroundGray, // TODO: Consult designer
+    borderBottomColor: defaultTokens.paletteCloudLight,
   },
   unrated: {
     marginStart: 3,

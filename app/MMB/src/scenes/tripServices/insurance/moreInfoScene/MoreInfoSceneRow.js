@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Color, TextIcon, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon, Text } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type RowTitle = React.Element<typeof Translation>;
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   wrapperBackground: {
-    backgroundColor: Color.backgroundGray, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
   cellWrapper: {
     flex: 1,

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Color, Price, StyleSheet } from '@kiwicom/mobile-shared';
+import { Price, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { PriceMarker as PriceMarkerData } from './__generated__/PriceMarker.graphql';
@@ -60,11 +60,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     backgroundColor: defaultTokens.paletteWhite,
     borderRadius: 3,
-    borderColor: Color.grey.$200, // TODO: Consult designer
+    borderColor: defaultTokens.paletteCloudNormal,
     borderWidth: 1,
   },
   price: {
-    color: Color.black, // TODO: Consult designer
+    color: defaultTokens.paletteInkDark,
     fontSize: 14,
     fontWeight: 'bold',
   },
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     borderWidth: 8,
-    borderTopColor: Color.grey.$200, // TODO: Consult designer
+    borderTopColor: defaultTokens.paletteCloudNormal,
     borderRadius: 3,
     alignSelf: 'center',
   },

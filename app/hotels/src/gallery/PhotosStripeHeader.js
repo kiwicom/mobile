@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, StyleSheet, Touchable, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
       width: 1,
       height: 1,
     },
-    textShadowColor: Color.black, // TODO: Consult designer
+    textShadowColor: defaultTokens.paletteInkDark,
     textShadowRadius: 2,
   },
   subTitle: {
     textAlign: 'center',
-    color: 'grey', // TODO: Consult designer
+    color: defaultTokens.paletteCloudLight,
     fontSize: 12,
   },
   voidRight: {

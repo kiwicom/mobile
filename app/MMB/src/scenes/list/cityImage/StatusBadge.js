@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { AdaptableBadge, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.paletteGreenNormal,
   },
   blackBadge: {
-    backgroundColor: Color.black, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteInkDark,
   },
   redBadge: {
     backgroundColor: defaultTokens.paletteRedNormal,

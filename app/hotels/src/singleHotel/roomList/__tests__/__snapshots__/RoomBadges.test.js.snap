@@ -9,7 +9,7 @@ Array [
         style={
           Object {
             "alignSelf": "flex-end",
-            "color": "#31a11e",
+            "color": "#46B655",
             "fontSize": 10,
             "marginEnd": 5,
           }
@@ -18,13 +18,13 @@ Array [
     }
     style={
       Object {
-        "backgroundColor": "rgba(49, 161, 30, 0.15)",
+        "backgroundColor": "rgba(70, 182, 85, 0.15)",
         "marginTop": 5,
       }
     }
     textStyle={
       Object {
-        "color": "#31a11e",
+        "color": "#46B655",
         "fontSize": 10,
       }
     }
@@ -41,7 +41,7 @@ Array [
         style={
           Object {
             "alignSelf": "flex-end",
-            "color": "#31a11e",
+            "color": "#46B655",
             "fontSize": 10,
             "marginEnd": 5,
           }
@@ -50,13 +50,13 @@ Array [
     }
     style={
       Object {
-        "backgroundColor": "rgba(49, 161, 30, 0.15)",
+        "backgroundColor": "rgba(70, 182, 85, 0.15)",
         "marginTop": 5,
       }
     }
     textStyle={
       Object {
-        "color": "#31a11e",
+        "color": "#46B655",
         "fontSize": 10,
       }
     }

@@ -2,13 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Text,
-  StyleSheet,
-  Color,
-  DatePicker,
-  Switch,
-} from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, DatePicker, Switch } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import max from 'lodash/max';
@@ -33,9 +27,7 @@ export const ExpiryDatePicker = (props: PropsWithContext) => {
   );
   return (
     <React.Fragment>
-      <Text
-        style={[styles.label, props.noExpiry ? styles.noExpiry : styles.expiry]}
-      >
+      <Text style={[styles.label, styles.expiry]}>
         <Translation id="mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_expiry" />
       </Text>
       <View style={styles.row}>
@@ -98,9 +90,6 @@ export default createFragmentContainer(
 );
 
 const styles = StyleSheet.create({
-  noExpiry: {
-    color: Color.labelDisabled, // TODO: Consult designer
-  },
   expiry: {
     color: defaultTokens.colorTextSecondary,
   },

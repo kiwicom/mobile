@@ -4,7 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
   },
   passengerContainer: {
     borderTopWidth: 1,
-    borderTopColor: Color.backgroundGray, // TODO: Consult designer
+    borderTopColor: defaultTokens.paletteCloudLight,
   },
 });

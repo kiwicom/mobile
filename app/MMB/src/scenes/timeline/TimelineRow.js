@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color, type StylePropType } from '@kiwicom/mobile-shared';
+import { StyleSheet, type StylePropType } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import IsPastEventContext from '../../context/TimelineEventContext';
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 14,
   },
   isPastEvent: {
-    backgroundColor: Color.grey.$50, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
 });
 

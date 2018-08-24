@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Button, StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { Button, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import {
   type NavigationType,
@@ -66,6 +66,6 @@ const styles = StyleSheet.create({
     color: defaultTokens.paletteWhite,
   },
   disabled: {
-    backgroundColor: Color.disabled, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteInkLighter,
   },
 });

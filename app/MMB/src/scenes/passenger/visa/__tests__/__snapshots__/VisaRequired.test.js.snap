@@ -14,7 +14,7 @@ exports[`VisaRequired renders with one country in the array 1`] = `
   <Text
     style={
       Object {
-        "color": "#d0021b",
+        "color": "#d21c1c",
         "fontSize": 12,
         "fontWeight": "600",
       }
@@ -39,7 +39,7 @@ exports[`VisaRequired renders with several countries in the array 1`] = `
   <Text
     style={
       Object {
-        "color": "#d0021b",
+        "color": "#d21c1c",
         "fontSize": 12,
         "fontWeight": "600",
       }
@@ -52,7 +52,7 @@ exports[`VisaRequired renders with several countries in the array 1`] = `
   <Text
     style={
       Object {
-        "color": "#d0021b",
+        "color": "#d21c1c",
         "fontSize": 12,
         "fontWeight": "600",
       }
@@ -65,7 +65,7 @@ exports[`VisaRequired renders with several countries in the array 1`] = `
   <Text
     style={
       Object {
-        "color": "#d0021b",
+        "color": "#d21c1c",
         "fontSize": 12,
         "fontWeight": "600",
       }

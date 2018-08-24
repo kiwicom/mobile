@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 export default function Handle() {
   return <View style={styles.handle} />;
@@ -11,7 +12,7 @@ export default function Handle() {
 const styles = StyleSheet.create({
   handle: {
     borderBottomWidth: 2,
-    borderBottomColor: Color.grey.athensGrey, // TODO: Consult designer
+    borderBottomColor: defaultTokens.paletteCloudLight,
     borderRadius: 130,
     alignSelf: 'center',
     width: 100,

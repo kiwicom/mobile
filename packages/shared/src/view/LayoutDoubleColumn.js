@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from '../Color';
 import AdaptableLayout from './AdaptableLayout';
 import StyleSheet from '../PlatformStyleSheet';
 import Layout from './Layout';
@@ -93,7 +93,7 @@ const styleSheet = StyleSheet.create({
     width: 520,
     maxWidth: '50%',
     borderEndWidth: 1,
-    borderEndColor: Color.grey.geyser, // TODO: Consult designer
+    borderEndColor: defaultTokens.paletteInkLighter,
   },
   container: {
     flex: 1,

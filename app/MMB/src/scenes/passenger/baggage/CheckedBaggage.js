@@ -4,8 +4,9 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Color, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import BagInfo from './BagInfo';
 import BaggageMenuItem from './BaggageMenuItem';
@@ -49,7 +50,7 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   icon: {
-    color: Color.black, // TODO: Consult designer
+    color: defaultTokens.paletteInkDark,
     fontSize: 14,
   },
 });
