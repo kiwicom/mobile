@@ -37,6 +37,7 @@ type PropsWithContext = {|
   +bookingComAffiliate: string,
   +dataSaverEnabled: boolean,
   +version: string,
+  +onNavigationStateChange: () => void,
 |};
 
 export type HotelData = {|
@@ -87,7 +88,7 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
       dataSaverEnabled: this.props.dataSaverEnabled,
       checkin: sanitizedDates.checkin,
       checkout: sanitizedDates.checkout,
-      onNavigationStateChange: () => {}, // TODO
+      onNavigationStateChange: this.props.onNavigationStateChange,
       onBackClicked: this.goBack,
       dimensions: this.props.dimensions,
       version: this.props.version,
