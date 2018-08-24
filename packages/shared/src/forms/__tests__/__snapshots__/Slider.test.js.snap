@@ -29,12 +29,12 @@ exports[`Slider renders 1`] = `
     markerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#bdbdbd",
+        "borderColor": "#7f91a8",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
-        "shadowColor": "#000000",
+        "shadowColor": "#171b1e",
         "shadowOffset": Object {
           "height": 3,
           "width": 0,
@@ -52,12 +52,12 @@ exports[`Slider renders 1`] = `
     pressedMarkerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#bdbdbd",
+        "borderColor": "#7f91a8",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
-        "shadowColor": "#000000",
+        "shadowColor": "#171b1e",
         "shadowOffset": Object {
           "height": 3,
           "width": 0,
@@ -91,7 +91,7 @@ exports[`Slider renders 1`] = `
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#bdbdbd",
+        "backgroundColor": "#7f91a8",
       }
     }
     values={
@@ -133,12 +133,12 @@ exports[`Slider renders correctly with all values equal 1`] = `
     markerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#bdbdbd",
+        "borderColor": "#7f91a8",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
-        "shadowColor": "#000000",
+        "shadowColor": "#171b1e",
         "shadowOffset": Object {
           "height": 3,
           "width": 0,
@@ -156,12 +156,12 @@ exports[`Slider renders correctly with all values equal 1`] = `
     pressedMarkerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#bdbdbd",
+        "borderColor": "#7f91a8",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
-        "shadowColor": "#000000",
+        "shadowColor": "#171b1e",
         "shadowOffset": Object {
           "height": 3,
           "width": 0,
@@ -195,7 +195,7 @@ exports[`Slider renders correctly with all values equal 1`] = `
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#bdbdbd",
+        "backgroundColor": "#7f91a8",
       }
     }
     values={
@@ -237,12 +237,12 @@ exports[`Slider renders with endValue undefined 1`] = `
     markerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#bdbdbd",
+        "borderColor": "#7f91a8",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
-        "shadowColor": "#000000",
+        "shadowColor": "#171b1e",
         "shadowOffset": Object {
           "height": 3,
           "width": 0,
@@ -260,12 +260,12 @@ exports[`Slider renders with endValue undefined 1`] = `
     pressedMarkerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#bdbdbd",
+        "borderColor": "#7f91a8",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
-        "shadowColor": "#000000",
+        "shadowColor": "#171b1e",
         "shadowOffset": Object {
           "height": 3,
           "width": 0,
@@ -299,7 +299,7 @@ exports[`Slider renders with endValue undefined 1`] = `
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#bdbdbd",
+        "backgroundColor": "#7f91a8",
       }
     }
     values={

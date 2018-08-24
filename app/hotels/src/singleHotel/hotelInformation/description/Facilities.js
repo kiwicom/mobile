@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   StyleSheet,
-  Color,
   AdaptableBadge,
   Text,
   Touchable,
@@ -102,7 +101,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     paddingTop: 15,
     borderTopWidth: 1,
-    borderTopColor: Color.grey.$200, // TODO: Consult designer
+    borderTopColor: defaultTokens.paletteCloudNormal,
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     flexDirection: 'row',
@@ -112,7 +111,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   adaptableBadge: {
-    backgroundColor: Color.grey.porcelain, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudLight,
     marginEnd: 5,
     marginBottom: 5,
   },

@@ -7,7 +7,6 @@ import {
   SimpleCard,
   StyleSheet,
   Text,
-  Color,
   Button,
 } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   disabled: {
-    backgroundColor: Color.disabled, // TODO: Consult desinger
+    backgroundColor: defaultTokens.paletteInkLighter,
   },
   buttonText: {
     color: defaultTokens.paletteWhite,

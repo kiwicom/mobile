@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type SeparatorFullWidthType = {|
@@ -58,7 +58,7 @@ const styleSheet = StyleSheet.create({
   separator: {
     flex: 1,
     height: 1,
-    backgroundColor: Color.backgroundGray, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
   row: {
     flexDirection: 'row',

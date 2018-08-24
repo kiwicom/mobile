@@ -49,7 +49,7 @@ exports[`renders header with title 1`] = `
           "color": "#fff",
           "fontWeight": "bold",
           "textAlign": "center",
-          "textShadowColor": "#000000",
+          "textShadowColor": "#171b1e",
           "textShadowOffset": Object {
             "height": 1,
             "width": 1,
@@ -65,7 +65,7 @@ exports[`renders header with title 1`] = `
     <Text
       style={
         Object {
-          "color": "grey",
+          "color": "#f5f7f9",
           "fontSize": 12,
           "textAlign": "center",
         }
@@ -141,7 +141,7 @@ exports[`renders header with very long title 1`] = `
           "color": "#fff",
           "fontWeight": "bold",
           "textAlign": "center",
-          "textShadowColor": "#000000",
+          "textShadowColor": "#171b1e",
           "textShadowOffset": Object {
             "height": 1,
             "width": 1,
@@ -157,7 +157,7 @@ exports[`renders header with very long title 1`] = `
     <Text
       style={
         Object {
-          "color": "grey",
+          "color": "#f5f7f9",
           "fontSize": 12,
           "textAlign": "center",
         }

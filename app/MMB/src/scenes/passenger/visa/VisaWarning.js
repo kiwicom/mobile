@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Alert from '../../../components/alert/Alert';
 
@@ -31,7 +32,7 @@ export default function VisaWarning(props: Props) {
 const styles = StyleSheet.create({
   country: {
     fontSize: 12,
-    color: Color.orange.gamboge, // TODO: Consult designer
+    color: defaultTokens.paletteOrangeNormal,
     fontWeight: '600',
   },
 });

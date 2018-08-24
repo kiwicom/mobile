@@ -4,7 +4,6 @@ import * as React from 'react';
 import { View } from 'react-native';
 import {
   StyleSheet,
-  Color,
   Text,
   AppleWalletButton,
   PassBook,
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
   },
   borderBottom: {
     borderBottomWidth: 1,
-    borderBottomColor: Color.backgroundGray, // TODO: Consult designer
+    borderBottomColor: defaultTokens.paletteCloudLight,
   },
   dateContainer: {
     paddingTop: 18,

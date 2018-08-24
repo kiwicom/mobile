@@ -6,7 +6,6 @@ import type { OnLayout } from '@kiwicom/mobile-shared';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.paletteProductNormal,
   },
   unselected: {
-    backgroundColor: Color.grey.$400, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteInkLight,
   },
   track: {
     borderRadius: 5,
@@ -116,8 +115,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: defaultTokens.paletteWhite,
     borderWidth: 1,
-    borderColor: Color.grey.$400, // TODO: Consult designer
-    shadowColor: Color.black, // TODO: Consult designer
+    borderColor: defaultTokens.paletteInkLight,
+    shadowColor: defaultTokens.paletteInkDark,
     shadowOffset: {
       width: 0,
       height: 3,

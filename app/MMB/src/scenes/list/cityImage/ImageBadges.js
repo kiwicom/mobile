@@ -36,7 +36,7 @@ export default createFragmentContainer(
 
 const styles = StyleSheet.create({
   bookingIdBadge: {
-    backgroundColor: Color.grey.transparent.outerSpace.$60, // TODO: Consult designer
+    backgroundColor: Color.grey.transparent.outerSpace.$60,
   },
   badgeText: {
     fontSize: 10,

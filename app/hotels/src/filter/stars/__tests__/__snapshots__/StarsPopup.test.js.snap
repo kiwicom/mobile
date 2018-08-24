@@ -30,7 +30,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={5}
     style={
       Object {
-        "borderBottomColor": "#f4f6f8",
+        "borderBottomColor": "#f5f7f9",
         "borderBottomWidth": 0.5,
       }
     }
@@ -41,7 +41,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={4}
     style={
       Object {
-        "borderBottomColor": "#f4f6f8",
+        "borderBottomColor": "#f5f7f9",
         "borderBottomWidth": 0.5,
       }
     }
@@ -52,7 +52,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={3}
     style={
       Object {
-        "borderBottomColor": "#f4f6f8",
+        "borderBottomColor": "#f5f7f9",
         "borderBottomWidth": 0.5,
       }
     }
@@ -63,7 +63,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={2}
     style={
       Object {
-        "borderBottomColor": "#f4f6f8",
+        "borderBottomColor": "#f5f7f9",
         "borderBottomWidth": 0.5,
       }
     }
@@ -74,7 +74,7 @@ exports[`StarsPopup should render popup 1`] = `
     stars={1}
     style={
       Object {
-        "borderBottomColor": "#f4f6f8",
+        "borderBottomColor": "#f5f7f9",
         "borderBottomWidth": 0.5,
       }
     }

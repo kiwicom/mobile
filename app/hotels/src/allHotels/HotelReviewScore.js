@@ -3,7 +3,7 @@
 import * as React from 'react';
 import idx from 'idx';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { AdaptableBadge, StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { AdaptableBadge, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -53,13 +53,13 @@ export class HotelReviewScore extends React.Component<Props> {
    */
   calculateColor = (score: number): ?string => {
     if (score >= 0 === score < 3) {
-      return Color.red.monza; // TODO: Consult with designer and replace with design token
+      return defaultTokens.paletteRedNormal;
     }
     if (score >= 3 === score <= 7) {
       return defaultTokens.paletteOrangeNormal;
     }
     if (score > 7 === score <= 10) {
-      return Color.green.lapalma; // TODO: Consult with designer and replace with design token
+      return defaultTokens.paletteGreenNormal;
     }
   };
 

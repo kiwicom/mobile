@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     borderRadius: 2,
-    backgroundColor: Color.grey.transparent.outerSpace.$60, // TODO: Consult designer
+    backgroundColor: Color.grey.transparent.outerSpace.$60,
     paddingVertical: 5,
     paddingHorizontal: 8,
   },

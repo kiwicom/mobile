@@ -9,7 +9,7 @@ exports[`renders as expected 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "#c4e7e4",
+        "backgroundColor": "#9ae5da",
         "height": 44,
         "paddingHorizontal": 10,
         "paddingVertical": 14,
@@ -36,7 +36,7 @@ exports[`renders as expected 1`] = `
     <ButtonTitle
       style={
         Object {
-          "color": "#007362",
+          "color": "#005448",
           "fontSize": 14,
         }
       }
@@ -59,7 +59,7 @@ exports[`renders as expected 1`] = `
       currency="CZK"
       style={
         Object {
-          "color": "#007362",
+          "color": "#005448",
           "fontSize": 14,
         }
       }
@@ -84,7 +84,7 @@ exports[`renders as expected 2`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#c4e7e4",
+          "backgroundColor": "#9ae5da",
           "height": 44,
           "paddingHorizontal": 10,
           "paddingVertical": 14,
@@ -103,7 +103,7 @@ exports[`renders as expected 2`] = `
       style={
         Array [
           Object {
-            "color": "#007362",
+            "color": "#005448",
             "fontSize": 14,
           },
           Object {
@@ -121,7 +121,7 @@ exports[`renders as expected 2`] = `
       currency="CZK"
       style={
         Object {
-          "color": "#007362",
+          "color": "#005448",
           "fontSize": 14,
         }
       }
@@ -150,7 +150,7 @@ exports[`renders as expected 3`] = `
     style={
       Array [
         Object {
-          "backgroundColor": "#c4e7e4",
+          "backgroundColor": "#9ae5da",
           "height": 44,
           "paddingHorizontal": 10,
           "paddingVertical": 14,
@@ -169,7 +169,7 @@ exports[`renders as expected 3`] = `
       style={
         Array [
           Object {
-            "color": "#007362",
+            "color": "#005448",
             "fontSize": 14,
           },
           Object {
@@ -187,7 +187,7 @@ exports[`renders as expected 3`] = `
       currency="CZK"
       style={
         Object {
-          "color": "#007362",
+          "color": "#005448",
           "fontSize": 14,
         }
       }

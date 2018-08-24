@@ -2,10 +2,13 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Color, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 const styles = StyleSheet.create({
-  icon: { color: Color.black }, // TODO: Consult designer
+  icon: {
+    color: defaultTokens.colorIconAttention,
+  },
 });
 
 export default [

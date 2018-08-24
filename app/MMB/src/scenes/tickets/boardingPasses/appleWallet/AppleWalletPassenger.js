@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Icon, StyleSheet, Color, Touchable } from '@kiwicom/mobile-shared';
+import { Icon, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import {
   type NavigationType,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderBottomColor: Color.backgroundGray, // TODO: Consult designer
+    borderBottomColor: defaultTokens.paletteCloudLight,
     paddingVertical: 20,
   },
 });

@@ -38,7 +38,7 @@ type Props = {|
 export default class Touchable extends React.Component<Props> {
   static defaultProps = {
     borderlessRipple: false,
-    rippleColor: Color.transparent.black.$32, // TODO: Consult designer
+    rippleColor: Color.transparent.black.$32,
     disabled: false,
   };
 

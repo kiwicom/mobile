@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     paddingStart: 15,
   },
   ageControlContainer: {
-    borderBottomColor: Color.backgroundGray, // TODO: Consult with desinger, not in design token
+    borderBottomColor: defaultTokens.paletteCloudLight,
     borderBottomWidth: 1,
   },
   ageControl: {

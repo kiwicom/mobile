@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, Text, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import {
   Translation,
   DateFormatter,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
     paddingBottom: 10,
-    backgroundColor: Color.backgroundGray, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
   date: {
     color: defaultTokens.paletteInkLight,
