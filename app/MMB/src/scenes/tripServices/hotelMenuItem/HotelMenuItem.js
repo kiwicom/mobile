@@ -88,7 +88,7 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
       checkin: sanitizedDates.checkin,
       checkout: sanitizedDates.checkout,
       onNavigationStateChange: () => {}, // TODO
-      onBackClicked: this.goBack, // TODO: Needs tuning on tablet
+      onBackClicked: this.goBack,
       dimensions: this.props.dimensions,
       version: this.props.version,
       cityName,
