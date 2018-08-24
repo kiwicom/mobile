@@ -1,51 +1,30 @@
 package com.kiwi.rnandroidplayground
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
-import com.kiwi.rnkiwimobile.RNKiwiActivity
+import com.kiwi.rnkiwimobile.RNHotelsActivity
 
-
-class HotelsActivity : RNKiwiActivity() {
-
+class HotelsActivity : RNHotelsActivity(HotelsModulesInjection) {
   companion object {
     fun getViewModelClass(): Class<HotelsActivity> =
       HotelsActivity::class.java
   }
 
-  // region overridden methods
-
-  override fun getModuleName(): String {
-    return "KiwiHotels"
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
   }
 
-  override fun getJSEntryPoint(): String {
-    return "app/hotels/index"
-  }
-
-  override fun getBookingComAffiliate(): String {
-    return ""
-  }
-
-  override fun getFormatCurrency(amount: Double, currency: String): String {
-    return amount.toString() + " " + currency
-  }
-
-  override fun getTranslation(key: String): String {
-    return key
-  }
-
-  override fun isDualPane() = false
-
-  override fun hasActiveBooking(): Boolean = false
-
-  override fun getCurrencyCode(): String = "EUR"
-
-  override fun getCountryCode(): String = "en"
-
-  override fun getCoordinates(): Bundle = Bundle()
-    .apply {
-      putDouble("latitude", 59.9139)
-      putDouble("longitude", 10.7522)
+  override fun getInitialProperties(): Bundle? {
+    return Bundle().apply{
+      putString("language", "en")
+      putString("currency", "EUR")
+      putString("bookingComAffiliate", "")
+      putBundle("coordinates", Bundle()
+        .apply {
+          putDouble("latitude", 59.9139)
+          putDouble("longitude", 10.7522)
+        })
     }
-
-  // endregion
+  }
 }
