@@ -21,6 +21,7 @@ import TripServices, {
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
 import TripOverviewTablet from '../scenes/tripOverview/TripOverviewTablet';
 import Timeline, { TimelineSubmenuItems } from '../scenes/timeline/Timeline';
+import { withSplitNavigationContext } from '../context/SplitNavigationContext';
 
 export const MenuComponents = {
   'mmb.trip_overview': {
@@ -106,17 +107,11 @@ export const MenuComponents = {
 
 type Props = {|
   +navigation: NavigationType,
+  +activeId: string,
+  +setActiveId: (activeId: string) => void,
 |};
 
-type State = {|
-  activeContainerComponent: string,
-|};
-
-export default class DetailsScreen extends React.Component<Props, State> {
-  state = {
-    activeContainerComponent: 'mmb.trip_overview',
-  };
-
+class DetailsScreen extends React.Component<Props> {
   static navigationOptions = (props: {| navigation: NavigationType |}) => {
     const params = props.navigation.state.params;
 
@@ -153,9 +148,7 @@ export default class DetailsScreen extends React.Component<Props, State> {
    */
   changeContentOnTablet = (key: string) => {
     this.props.navigation.setParams({ activeContainerComponent: key });
-    this.setState({
-      activeContainerComponent: key,
-    });
+    this.props.setActiveId(key);
   };
 
   getContainerComponent = (key: string) => {
@@ -163,9 +156,8 @@ export default class DetailsScreen extends React.Component<Props, State> {
   };
 
   render = () => {
-    const ContainerComponent = this.getContainerComponent(
-      this.state.activeContainerComponent,
-    ).screen;
+    const ContainerComponent = this.getContainerComponent(this.props.activeId)
+      .screen;
 
     return (
       <LayoutDoubleColumn
@@ -186,3 +178,5 @@ export default class DetailsScreen extends React.Component<Props, State> {
     );
   };
 }
+
+export default withSplitNavigationContext(DetailsScreen);

@@ -15,6 +15,7 @@ import WalletContext from './src/context/WalletContext';
 import TravelDocumentFormContext from './src/scenes/travelDocument/form/TravelDocumentFormContext';
 import InsuranceOverviewContext from './src/scenes/tripServices/insurance/insuranceOverviewScene/InsuranceOverviewSceneContext';
 import HotelsContext from './src/context/HotelsContext';
+import SplitNavigationContext from './src/context/SplitNavigationContext';
 
 type Props = {|
   +currency: string,
@@ -45,9 +46,13 @@ class ManageMyBookingPackage extends React.Component<Props> {
                   dataSaverEnabled={this.props.dataSaverEnabled}
                   bookingComAffiliate={this.props.bookingComAffiliate}
                 >
-                  <NavigationStack
-                    onNavigationStateChange={this.props.onNavigationStateChange}
-                  />
+                  <SplitNavigationContext.Provider>
+                    <NavigationStack
+                      onNavigationStateChange={
+                        this.props.onNavigationStateChange
+                      }
+                    />
+                  </SplitNavigationContext.Provider>
                 </HotelsContext.Provider>
               </InsuranceOverviewContext.Provider>
             </TravelDocumentFormContext.Provider>
