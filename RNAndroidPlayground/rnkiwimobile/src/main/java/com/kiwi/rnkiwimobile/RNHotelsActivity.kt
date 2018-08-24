@@ -1,6 +1,5 @@
 package com.kiwi.rnkiwimobile
 
-import android.os.Bundle
 import com.airbnb.android.react.maps.MapsPackage
 import com.facebook.react.ReactPackage
 import com.oblador.vectoricons.VectorIconsPackage
@@ -12,10 +11,13 @@ import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage
 import com.skypicker.reactnative.nativemodules.translation.RNTranslationManagerPackage
 import com.skypicker.reactnative.nativemodules.translation.ResourceStringCallback
 
-abstract class RNHotelsActivity : RNKiwiActivity() {
-  abstract val translationCallback: ResourceStringCallback
-  abstract val currencyCallback: CurrencyChangeCallback
+interface RNHotelsModulesInjection {
+  val translationCallback: ResourceStringCallback
+  val currencyCallback: CurrencyChangeCallback
+  val hasActiveBooking: Boolean
+}
 
+abstract class RNHotelsActivity(private val rnHotelsModules: RNHotelsModulesInjection) : RNKiwiActivity() {
   override fun getModuleName(): String {
     return "KiwiHotels"
   }
@@ -28,22 +30,9 @@ abstract class RNHotelsActivity : RNKiwiActivity() {
     return mutableListOf(RNTooltipsPackage(),
       RNDeviceInfoPackage(),
       MapsPackage(),
-      RNCurrencyManagerPackage(currencyCallback),
-      RNTranslationManagerPackage(translationCallback),
-      RNLoggingPackage(true),
+      RNCurrencyManagerPackage(rnHotelsModules.currencyCallback),
+      RNTranslationManagerPackage(rnHotelsModules.translationCallback),
+      RNLoggingPackage(rnHotelsModules.hasActiveBooking),
       VectorIconsPackage())
-  }
-
-  override fun getInitialProperties(): Bundle {
-    return Bundle().apply{
-      putString("language", "en")
-      putString("currency", "EUR")
-      putString("bookingComAffiliate", "")
-      putBundle("coordinates", Bundle()
-        .apply {
-          putDouble("latitude", 59.9139)
-          putDouble("longitude", 10.7522)
-        })
-    }
   }
 }

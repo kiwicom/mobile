@@ -3,12 +3,8 @@ package com.kiwi.rnandroidplayground
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import com.kiwi.rnkiwimobile.RNHotelsActivity
-import com.skypicker.reactnative.nativemodules.currency.CurrencyChangeCallback
-import com.skypicker.reactnative.nativemodules.translation.ResourceStringCallback
 
-
-class HotelsActivity : RNHotelsActivity() {
-
+class HotelsActivity : RNHotelsActivity(HotelsModulesInjection) {
   companion object {
     fun getViewModelClass(): Class<HotelsActivity> =
       HotelsActivity::class.java
@@ -19,11 +15,16 @@ class HotelsActivity : RNHotelsActivity() {
     requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
   }
 
-  override val translationCallback = object: ResourceStringCallback {
-    override fun getTranslation(key: String) = key
-  }
-
-  override val currencyCallback = object: CurrencyChangeCallback {
-    override fun getFormatCurrency(amount: Double, currency: String) = amount.toString() + " " + currency
+  override fun getInitialProperties(): Bundle? {
+    return Bundle().apply{
+      putString("language", "en")
+      putString("currency", "EUR")
+      putString("bookingComAffiliate", "")
+      putBundle("coordinates", Bundle()
+        .apply {
+          putDouble("latitude", 59.9139)
+          putDouble("longitude", 10.7522)
+        })
+    }
   }
 }

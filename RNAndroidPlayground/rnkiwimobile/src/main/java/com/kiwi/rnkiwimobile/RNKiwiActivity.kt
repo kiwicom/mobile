@@ -43,7 +43,7 @@ abstract class RNKiwiActivity :
 
   protected abstract fun getJSEntryPoint(): String
 
-  protected abstract fun getInitialProperties(): Bundle
+  protected abstract fun getInitialProperties(): Bundle?
 
   // endregion
 
