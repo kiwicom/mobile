@@ -1,6 +1,5 @@
 // @flow
 
-import { Color } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import { HotelReviewScore } from '../HotelReviewScore';
@@ -23,9 +22,9 @@ describe('formatScore', () => {
 
 describe('calculateColor', () => {
   it('returns correct score color', () => {
-    const RED = Color.red.monza;
+    const RED = defaultTokens.paletteRedNormal;
     const ORANGE = defaultTokens.paletteOrangeNormal;
-    const GREEN = Color.green.lapalma;
+    const GREEN = defaultTokens.paletteGreenNormal;
 
     expect(HRS.calculateColor(-1)).toBeUndefined();
     expect(HRS.calculateColor(0)).toBe(RED);

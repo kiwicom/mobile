@@ -4,7 +4,6 @@ import * as React from 'react';
 import { type TranslationType } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Color from '../Color';
 import StyleSheet from '../PlatformStyleSheet';
 import ButtonTitle from './ButtonTitle';
 import Button from './Button';
@@ -45,7 +44,7 @@ const styleSheet = StyleSheet.create({
     color: defaultTokens.paletteWhite,
   },
   buttonDisabled: {
-    backgroundColor: Color.grey.$300, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudNormal,
   },
   buttonTextDisabled: {
     color: defaultTokens.paletteInkDark,

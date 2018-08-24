@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Text, StyleSheet, Color, ReadMore } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, ReadMore } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -59,7 +59,7 @@ export default (createFragmentContainer(
 const styles = StyleSheet.create({
   delimiter: {
     height: 1,
-    backgroundColor: Color.backgroundGray, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteCloudLight,
     marginVertical: 6,
   },
   description: {

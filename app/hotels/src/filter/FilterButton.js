@@ -6,13 +6,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Button,
-  ButtonTitle,
-  Color,
-  Icon,
-  StyleSheet,
-} from '@kiwicom/mobile-shared';
+import { Button, ButtonTitle, Icon, StyleSheet } from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -27,7 +21,9 @@ const FilterButton = (props: PropsWithContext) => {
   let icon = props.icon;
   const { title, isActive, onPress, isNew } = props;
   const styleSheet = isNew ? newStyles : styles;
-  const iconColor = isNew ? defaultTokens.colorIconPrimary : Color.brandDark; // Color.brandDark is not on design tokens, this code will disappear once native starts to use `NewKiwiHotels`
+  const iconColor = isNew
+    ? defaultTokens.colorIconPrimary
+    : defaultTokens.paletteProductDark;
   const iconColorActive = isNew
     ? defaultTokens.paletteCloudNormal
     : defaultTokens.paletteWhite;
@@ -77,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.paletteProductNormal,
   },
   buttonGroup: {
-    backgroundColor: Color.blue.jaggedIce, // Leave this for now
+    backgroundColor: defaultTokens.paletteProductLight,
     marginEnd: 5,
     ios: {
       height: 36,
@@ -88,7 +84,7 @@ const styles = StyleSheet.create({
     color: defaultTokens.paletteWhite,
   },
   buttonText: {
-    color: Color.brandDark, // Leave this for now
+    color: defaultTokens.paletteProductDark,
   },
   icon: {
     paddingEnd: 5,

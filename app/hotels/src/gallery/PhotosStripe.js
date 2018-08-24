@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   slide: {
     flex: 1,
-    backgroundColor: Color.black, // TODO: Consult desinger
+    backgroundColor: Color.black,
   },
   networkImage: {
     flex: 1,

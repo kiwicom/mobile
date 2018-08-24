@@ -4,13 +4,13 @@ import * as React from 'react';
 import { View } from 'react-native';
 import {
   ButtonPopup,
-  Color,
   Checkbox,
   Icon,
   StyleSheet,
   Text,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +facilities: string[],
@@ -158,12 +158,12 @@ export default class HotelFacilitiesPopup extends React.Component<
 
 const styles = StyleSheet.create({
   title: {
-    color: Color.grey.$800, // TODO: Consult designer
+    color: defaultTokens.paletteInkNormal,
     paddingBottom: 5,
   },
   delimiter: {
     borderBottomWidth: 0.5,
-    borderBottomColor: Color.grey.$300, // TODO: Consult designer
+    borderBottomColor: defaultTokens.paletteCloudNormal,
   },
   checkbox: {
     flexDirection: 'row',

@@ -1,13 +1,13 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  invertColors: boolean,
-  iconComponent: React.Element<typeof TextIcon>,
+  +invertColors: boolean,
+  +iconComponent: React.Element<typeof TextIcon>,
 |};
 
 export default function MenuItemIcon(props: Props) {
@@ -35,7 +35,7 @@ const styleSheet = StyleSheet.create({
     },
     ios: {
       fontSize: 14,
-      color: Color.grey.$600, // TODO: Consult designer
+      color: defaultTokens.colorIconSecondary,
     },
   },
   iconInverted: {

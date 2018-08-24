@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Platform, StatusBar } from 'react-native';
 import ReactNavigation from 'react-navigation';
 import {
-  Color,
   Device,
   StyleSheet,
   Dimensions,
@@ -87,7 +86,7 @@ export const StackNavigatorOptions = {
   initialRouteName: 'Home',
   navigationOptions: createNavigationOptions(),
   cardStyle: {
-    backgroundColor: Color.backgroundGray, // TODO: Consult with designer
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
 };
 

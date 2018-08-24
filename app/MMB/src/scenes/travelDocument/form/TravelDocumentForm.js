@@ -2,9 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, TextIcon, Color } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import last from 'lodash/last';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TitleTranslation from '../../../components/TitleTranslation';
 import IdInput from './IdInput';
@@ -102,7 +103,7 @@ export default class TravelDocumentForm extends React.Component<Props> {
 
 const styles = StyleSheet.create({
   icon: {
-    color: Color.black, // TODO: Consult designer
+    color: defaultTokens.colorIconAttention,
     fontSize: 16,
     paddingTop: 2,
     marginEnd: 5,

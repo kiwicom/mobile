@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Color, StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -45,7 +45,7 @@ const styleSheet = StyleSheet.create({
     fontSize: 12,
   },
   icon: {
-    color: Color.black, // TODO: Consult designer
+    color: defaultTokens.colorIconAttention,
     fontSize: 16,
     paddingTop: 2,
     marginEnd: 5,

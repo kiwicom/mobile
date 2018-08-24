@@ -10,6 +10,7 @@ import {
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomBadges_availableRoom as RoomBadgesTypes } from './__generated__/RoomBadges_availableRoom.graphql';
 
@@ -74,15 +75,15 @@ export default (createFragmentContainer(
 
 const styles = StyleSheet.create({
   badgeContainer: {
-    backgroundColor: Color.green.transparent.lapalma.$15, // TODO: Consult designer
+    backgroundColor: Color.green.transparent.lapalma.$15,
     marginTop: 5,
   },
   badgeText: {
-    color: Color.green.lapalma, // TODO: Consult designer
+    color: defaultTokens.colorTextBadgeSuccess,
     fontSize: 10,
   },
   iconStyle: {
-    color: Color.green.lapalma, // TODO: Consult designer
+    color: defaultTokens.colorIconSuccess,
     fontSize: 10,
     ios: {
       alignSelf: 'flex-end',

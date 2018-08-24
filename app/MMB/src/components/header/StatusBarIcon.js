@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, Color, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -49,7 +49,7 @@ function Status({ data }: {| data: StatusBarIcon |}) {
     case 'REFUNDED':
       return (
         <StatusIcon
-          color={Color.black} // TODO: Consult designer
+          color={defaultTokens.paletteInkDark}
           title={<Translation id="mmb.status.refunded" />}
         />
       );

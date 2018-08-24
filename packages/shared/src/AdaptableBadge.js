@@ -7,7 +7,6 @@ import type { StylePropType } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from './Text';
-import Color from './Color';
 import StyleSheet from './PlatformStyleSheet';
 
 type Props = {|
@@ -46,7 +45,7 @@ const style = StyleSheet.create({
     borderRadius: 2,
     paddingVertical: 2,
     paddingHorizontal: 5,
-    backgroundColor: Color.grey.$500, // TODO: Consult designer
+    backgroundColor: defaultTokens.paletteInkLight,
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
