@@ -1,8 +1,8 @@
 // @flow strict
 
 import * as React from 'react';
-import { NativeModules } from 'react-native';
 import renderer from 'react-test-renderer';
+import { translateAsync } from '@kiwicom/rnmodules';
 
 import Translation from '../Translation';
 import { replaceValues } from '../TranslationHelpers';
@@ -22,11 +22,9 @@ const getComponent = (id: string = 'test.key') => {
   return renderer.create(<Translation id={id} />);
 };
 
-it('should call NativeModules.RNTranslationManager.translateAsync with the key parameter', () => {
+it('should call getTranslationAsync with the key parameter', () => {
   getComponent();
-  expect(NativeModules.RNTranslationManager.translateAsync).toBeCalledWith(
-    'mobile.test.key',
-  );
+  expect(translateAsync).toBeCalledWith('mobile.test.key');
 });
 
 it('replaces parameter', () => {
