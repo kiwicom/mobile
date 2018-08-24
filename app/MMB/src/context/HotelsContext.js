@@ -5,6 +5,7 @@ import * as React from 'react';
 const defaultState = {
   bookingComAffiliate: '',
   dataSaverEnabled: false,
+  onNavigationStateChange: () => {},
   version: '',
 };
 
@@ -17,12 +18,14 @@ type Props = {|
   +bookingComAffiliate: string,
   +dataSaverEnabled: boolean,
   +version: string,
+  +onNavigationStateChange: () => void,
 |};
 
 type State = {|
   +bookingComAffiliate: string,
   +dataSaverEnabled: boolean,
   +version: string,
+  +onNavigationStateChange: () => void,
 |};
 
 class Provider extends React.Component<Props, State> {
@@ -33,6 +36,7 @@ class Provider extends React.Component<Props, State> {
       bookingComAffiliate: props.bookingComAffiliate,
       dataSaverEnabled: props.dataSaverEnabled,
       version: props.version,
+      onNavigationStateChange: props.onNavigationStateChange,
     };
   }
   render = () => (

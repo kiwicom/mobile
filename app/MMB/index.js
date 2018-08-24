@@ -45,6 +45,7 @@ class ManageMyBookingPackage extends React.Component<Props> {
                   version={this.props.version}
                   dataSaverEnabled={this.props.dataSaverEnabled}
                   bookingComAffiliate={this.props.bookingComAffiliate}
+                  onNavigationStateChange={this.props.onNavigationStateChange}
                 >
                   <SplitNavigationContext.Provider>
                     <NavigationStack
