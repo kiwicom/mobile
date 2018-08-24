@@ -11,6 +11,8 @@ import {
 } from 'relay-runtime';
 import { AsyncStorage } from 'react-native';
 
+import ConnectionManager from './ConnectionManager';
+
 type FetcherResponse = {|
   +data: Object,
   +errors?: $ReadOnlyArray<Object>,
@@ -66,7 +68,7 @@ export default function createEnvironment(accessToken: string = '') {
     cacheConfig,
   ): Promise<FetcherResponse> => {
     return Observable.create(observer => {
-      if (cacheConfig.force === true) {
+      if (cacheConfig.force === true && ConnectionManager.isConnected()) {
         return fetchFromTheNetwork(
           networkHeaders,
           operation,
@@ -89,6 +91,9 @@ export default function createEnvironment(accessToken: string = '') {
               // load it from the memory first and call the API after that
               // this will make the UI feel really fast
               observer.next(store.lookup(operationSelector.root));
+              if (!ConnectionManager.isConnected()) {
+                observer.complete();
+              }
             }
           }
         })
@@ -97,9 +102,10 @@ export default function createEnvironment(accessToken: string = '') {
           console.warn(error);
         })
         .finally(() => {
-          // we are always trying to fetch from the network in order to update
-          // the cache - this could be done only when online in the future
-          fetchFromTheNetwork(networkHeaders, operation, variables, observer);
+          // Only fetch from network if we are connected
+          if (ConnectionManager.isConnected()) {
+            fetchFromTheNetwork(networkHeaders, operation, variables, observer);
+          }
         });
     });
   };
