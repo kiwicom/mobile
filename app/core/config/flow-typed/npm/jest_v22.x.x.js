@@ -262,6 +262,7 @@ type JestExpectType = {
   /**
    * This ensures that a React component matches the most recent snapshot.
    */
+  toMatchInlineSnapshot(name?: string): void,
   toMatchSnapshot(name?: string): void,
   /**
    * Use .toThrow to test that a function throws when it is called.

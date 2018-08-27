@@ -8,25 +8,23 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type FlightServices$ref = any;
-type Header$ref = any;
-type MissingInformation$ref = any;
-type PassengerMenuGroup$ref = any;
+type FlightServicesMulticity$ref = any;
+type FlightServicesOneWay$ref = any;
+type FlightServicesReturn$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type MainMenu$ref: FragmentReference;
-export type MainMenu = {|
-  +databaseId: ?number,
-  +authToken: ?string,
+declare export opaque type FlightServices$ref: FragmentReference;
+export type FlightServices = {|
+  +__typename: string,
   +isPastBooking: ?boolean,
-  +$fragmentRefs: Header$ref & PassengerMenuGroup$ref & MissingInformation$ref & FlightServices$ref,
-  +$refType: MainMenu$ref,
+  +$fragmentRefs: FlightServicesOneWay$ref & FlightServicesReturn$ref & FlightServicesMulticity$ref,
+  +$refType: FlightServices$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "MainMenu",
+  "name": "FlightServices",
   "type": "BookingInterface",
   "metadata": null,
   "argumentDefinitions": [],
@@ -34,14 +32,7 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "databaseId",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "authToken",
+      "name": "__typename",
       "args": null,
       "storageKey": null
     },
@@ -54,26 +45,21 @@ const node/*: ConcreteFragment*/ = {
     },
     {
       "kind": "FragmentSpread",
-      "name": "Header",
+      "name": "FlightServicesOneWay",
       "args": null
     },
     {
       "kind": "FragmentSpread",
-      "name": "PassengerMenuGroup",
+      "name": "FlightServicesReturn",
       "args": null
     },
     {
       "kind": "FragmentSpread",
-      "name": "MissingInformation",
-      "args": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "FlightServices",
+      "name": "FlightServicesMulticity",
       "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '53fb5a48e57d6ee59d4b56f348746d19';
+(node/*: any*/).hash = 'a6449dc89097f39c97c66905c09bc447';
 module.exports = node;
