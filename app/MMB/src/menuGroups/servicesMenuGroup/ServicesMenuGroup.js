@@ -5,7 +5,8 @@ import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
-import BookingDetailContext from '../context/BookingDetailContext';
+import BookingDetailContext from '../../context/BookingDetailContext';
+import FlightServices from './FlightServices';
 
 type PropsWithContext = {|
   ...Props,
@@ -29,20 +30,13 @@ export class ServicesMenuGroup extends React.Component<PropsWithContext> {
 
   render = () => (
     <TitledMenuGroup title={<Translation id="mmb.main_menu.services" />}>
-      {!this.props.isPastBooking && (
-        <MenuItem
-          onPress={this.handleOpenFlightServicesSubmenu}
-          isActive={
-            this.props.activeId === 'mmb.main_menu.services.flight_services'
-          }
-          icon={<TextIcon code="&#xe049;" />}
-          title={<Translation id="mmb.main_menu.services.flight_services" />}
-          description={
-            <Translation id="mmb.main_menu.services.flight_services.description" />
-          }
-          testID="flightServices"
-        />
-      )}
+      <FlightServices
+        onPress={this.handleOpenFlightServicesSubmenu}
+        isActive={
+          this.props.activeId === 'mmb.main_menu.services.flight_services'
+        }
+        data={this.props.data}
+      />
 
       <MenuItem
         onPress={this.handleOpenTripServicesSubmenu}
@@ -62,6 +56,7 @@ export class ServicesMenuGroup extends React.Component<PropsWithContext> {
 type Props = {|
   +openSubmenu: (activeId: string, menuId: string) => void,
   +activeId: string,
+  +data: Object,
 |};
 
 export default function ServicesMenuGroupWithContext(props: Props) {
