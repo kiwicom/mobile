@@ -47,11 +47,7 @@ RCT_EXPORT_MODULE();
     return _translator;
 }
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(translate:(NSString *)key) {
-    return [self.translator translate:key];
-}
-
-RCT_EXPORT_METHOD(translateAsync:(NSString *)key
+RCT_EXPORT_METHOD(translate:(NSString *)key
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     NSString *translation = [self.translator translate:key];
