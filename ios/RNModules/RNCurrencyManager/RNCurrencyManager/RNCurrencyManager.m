@@ -41,11 +41,7 @@ RCT_EXPORT_MODULE();
     return _formatter;
 }
 
-RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(formatAmount:(nonnull NSNumber *)amountInEUR toCurrency:(NSString *)currency) {
-    return [[self formatter] formatAmount:amountInEUR toCurrency:currency];
-}
-
-RCT_EXPORT_METHOD(formatAmountAsync:(nonnull NSNumber *)amountInEUR toCurrency:(NSString *)currency
+RCT_EXPORT_METHOD(formatAmount:(nonnull NSNumber *)amountInEUR toCurrency:(NSString *)currency
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject) {
     NSString *formattedAmount = [[self formatter] formatAmount:amountInEUR toCurrency:currency];

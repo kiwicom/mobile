@@ -29,12 +29,8 @@ class RNCurrencyManager(
 
   override fun getName(): String = Constant.TAG
 
-  @ReactMethod(isBlockingSynchronousMethod = true)
-  fun formatAmount(amount: Double, currency: String) = currencyListener
-    .getFormatCurrency(amount, currency)
-
   @ReactMethod
-  fun formatAmountAsync(amount: Double, currency: String, promise: Promise) {
+  fun formatAmount(amount: Double, currency: String, promise: Promise) {
     promise.resolve(currencyListener.getFormatCurrency(amount, currency))
   }
   // endregion Public Methods

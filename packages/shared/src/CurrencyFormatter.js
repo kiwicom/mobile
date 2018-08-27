@@ -1,14 +1,11 @@
 // @flow strict
 
-import { NativeModules } from 'react-native';
+import { formatAmount } from '@kiwicom/rnmodules';
 
 export default async function CurrencyFormatter(
   price: number,
   toCurrency: string,
 ) {
-  const formattedAmount = await NativeModules.RNCurrencyManager.formatAmountAsync(
-    price,
-    toCurrency,
-  );
+  const formattedAmount = await formatAmount(price, toCurrency);
   return formattedAmount;
 }
