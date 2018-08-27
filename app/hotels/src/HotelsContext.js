@@ -95,8 +95,21 @@ class Provider extends React.Component<Props, State> {
 
 export default { Consumer, Provider };
 
-export function withHotelsContext(Component: React.ElementType) {
-  return function WithHotelsContext(props: Object) {
-    return <Consumer>{value => <Component {...props} {...value} />}</Consumer>;
+export function withHotelsContext(select: (state: State) => Object) {
+  return function(Component: React.ElementType) {
+    const WithHotelsContext = (props: Object) => {
+      const mapStateToProps = state => {
+        const stateProps = select(state);
+        return <Component {...props} {...stateProps} />;
+      };
+
+      return <Consumer>{mapStateToProps}</Consumer>;
+    };
+
+    // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+    if (Component.navigationOptions) {
+      WithHotelsContext.navigationOptions = Component.navigationOptions;
+    }
+    return WithHotelsContext;
   };
 }
