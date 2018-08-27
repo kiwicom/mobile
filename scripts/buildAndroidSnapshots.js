@@ -22,18 +22,20 @@ if (!process.env.ANDROID_DEPLOYMENT_PASSWORD) {
 
 // Read native dependencies versions from package.json (maps, vector icons...)
 const buildPackage = require('../.build/package.json');
+// react-native-native-modules version
+const rnModulesPackage = require('../packages/rnmodules/package.json');
 
 // Get versions and remove ^ if necessary
 const getDependencyVersion = packageName => {
   return buildPackage.dependencies[packageName].replace('^', '');
 };
 
+const rnModulesVersion = rnModulesPackage['version'];
+
 // Get rnkiwimobile version
 const RNKiwiMobileVersion = buildPackage.version;
 
-const deployDependency = (packageName, url, extension = '') => {
-  const version = getDependencyVersion(packageName);
-
+const deployDependency = (packageName, url, version, extension = '') => {
   return new Promise((resolve, reject) =>
     urlExists(`${url}${packageName}/${version}${extension}/`, (err, exists) => {
       if (err) {
@@ -89,10 +91,35 @@ const deployLibrary = (packageName, version) => {
 (() => {
   console.log(`Start building Android SNAPSHOT(s)...`);
   Promise.all([
-    deployDependency('react-native', FACEBOOK_URL),
-    deployDependency('react-native-maps', SKYPICKER_URL, '-SNAPSHOT'),
-    deployDependency('react-native-vector-icons', SKYPICKER_URL, '-SNAPSHOT'),
-    deployDependency('react-native-tooltips', SKYPICKER_URL, '-SNAPSHOT'),
+    deployDependency(
+      'react-native',
+      FACEBOOK_URL,
+      getDependencyVersion('react-native'),
+    ),
+    deployDependency(
+      'react-native-maps',
+      SKYPICKER_URL,
+      `${getDependencyVersion('react-native-maps')}`,
+      '-SNAPSHOT',
+    ),
+    deployDependency(
+      'react-native-vector-icons',
+      SKYPICKER_URL,
+      `${getDependencyVersion('react-native-vector-icons')}`,
+      '-SNAPSHOT',
+    ),
+    deployDependency(
+      'react-native-tooltips',
+      SKYPICKER_URL,
+      `${getDependencyVersion('react-native-tooltips')}`,
+      '-SNAPSHOT',
+    ),
+    deployDependency(
+      'react-native-native-modules',
+      SKYPICKER_URL,
+      `${rnModulesVersion}`,
+      '-SNAPSHOT',
+    ),
   ])
     .then(() => {
       // Main package to publish: rnkiwimobile

@@ -1,6 +1,6 @@
 {
   "name": "@kiwicom/rnmodules",
-  "version": "0.0.0",
+  "version": "0.1.27",
   "private": true,
   "main": "index.js"
 }
