@@ -12,7 +12,7 @@ import idx from 'idx';
 import Header from './components/header/Header';
 import ManageMenuGroup from './menuGroups/ManageMenuGroup';
 import PassengerMenuGroup from './menuGroups/passengerMenuGroup/PassengerMenuGroup';
-import ServicesMenuGroup from './menuGroups/ServicesMenuGroup';
+import ServicesMenuGroup from './menuGroups/servicesMenuGroup/ServicesMenuGroup';
 import TripInfoMenuGroup from './menuGroups/TripInfoMenuGroup';
 import MissingInformation from './components/MissingInformation';
 import type { MainMenu as BookingType } from './__generated__/MainMenu.graphql';
@@ -95,6 +95,7 @@ class MainMenu extends React.Component<Props, State> {
         <ServicesMenuGroup
           activeId={activeId}
           openSubmenu={this.handleOpenSubmenu}
+          data={this.props.data}
         />
 
         <ManageMenuGroup
@@ -116,6 +117,7 @@ export default createRefetchContainer(
       ...Header
       ...PassengerMenuGroup
       ...MissingInformation
+      ...FlightServices
     }
   `,
   graphql`
