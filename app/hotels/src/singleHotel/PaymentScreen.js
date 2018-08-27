@@ -48,7 +48,12 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
   );
 }
 
-export default withHotelsContext(PaymentScreen);
+export default withHotelsContext(state => ({
+  checkin: state.checkin,
+  checkout: state.checkout,
+  currency: state.currency,
+  version: state.version,
+}))(PaymentScreen);
 
 export function createURI(pp: PaymentParameters): string {
   const checkinQuery = sanitizeDate(pp.checkin);

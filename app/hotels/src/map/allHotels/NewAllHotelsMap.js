@@ -110,4 +110,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withHotelsContext(withNavigation(NewAllHotelsMap));
+export default withNavigation(
+  withHotelsContext(
+    ({ checkin, checkout, cityId, currency, roomsConfiguration }) => ({
+      checkin,
+      checkout,
+      cityId,
+      currency,
+      roomsConfiguration,
+    }),
+  )(NewAllHotelsMap),
+);

@@ -12,7 +12,7 @@ describe('FlightFromTo', () => {
   it('renders', () => {
     // $FlowExpectedError: Props not needed for this test
     const wrapper = renderer.render(<FlightFromTo />);
-    // $FlowExpectedError: https://github.com/flow-typed/flow-typed/issues/2264
+
     expect(wrapper).toMatchInlineSnapshot(`
 <Component
   style={

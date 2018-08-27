@@ -107,4 +107,12 @@ class NewAllHotelsSearch extends React.Component<Props> {
   };
 }
 
-export default withNavigation(withHotelsContext(NewAllHotelsSearch));
+export default withNavigation(
+  withHotelsContext(state => ({
+    checkin: state.checkin,
+    checkout: state.checkout,
+    currency: state.currency,
+    roomsConfiguration: state.roomsConfiguration,
+    cityId: state.cityId,
+  }))(NewAllHotelsSearch),
+);
