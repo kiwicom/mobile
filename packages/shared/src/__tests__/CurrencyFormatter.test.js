@@ -1,14 +1,12 @@
 // @flow
 
-import { NativeModules } from 'react-native';
+import { formatAmount } from '@kiwicom/rnmodules';
 
 import CurrencyFormatter from '../CurrencyFormatter';
 
 describe('CurrencyFormatter', () => {
-  it('should call NativeModules.RNCurrencyManager.formatAmountAsync', async () => {
+  it('should call formatAmount', async () => {
     await CurrencyFormatter(100, 'USD');
-    expect(
-      NativeModules.RNCurrencyManager.formatAmountAsync,
-    ).toHaveBeenCalledWith(100, 'USD');
+    expect(formatAmount).toHaveBeenCalledWith(100, 'USD');
   });
 });
