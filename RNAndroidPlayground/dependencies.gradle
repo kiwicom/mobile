@@ -3,6 +3,9 @@ import groovy.json.JsonSlurper
 def inputFile = new File("${projectDir}/../../.build/package.json")
 def packageJson = new JsonSlurper().parseText(inputFile.text)
 
+def rnModulesFile = new File("${projectDir}/../../packages/rnmodules/package.json")
+def rnModulesPackageJson = new JsonSlurper().parseText(rnModulesFile.text)
+
 ext {
     gradlePluginVersion = "3.0.1"
 
@@ -24,7 +27,8 @@ ext {
     reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '')
     reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '')
 
-    reactNativeNativeModules = "0.1.26.rc-1"
+    reactNativeNativeModules = rnModulesPackageJson['version']
+
     loggingVersion = "0.2.2"
     infinarioVersion = "0.2"
 

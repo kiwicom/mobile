@@ -43,16 +43,15 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-uploadArchives {
+tasks.create('uploadTrinerdis', Upload.class) {
+    configuration = project.configurations.archives
     repositories {
         mavenDeployer {
             repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
                 authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
-            }
-            pom {
-                groupId = "com.trinerdis.skypicker"
-                artifactId = "react-native-native-modules"
-                version = "$reactNativeNativeModules-SNAPSHOT"
+                pom.version = "$version-SNAPSHOT"
+                pom.artifactId = "react-native-native-modules"
+                pom.groupId = "com.trinerdis.skypicker"
             }
         }
     }
