@@ -1,7 +1,7 @@
 // @flow strict
 
 import { CancellablePromise } from '@kiwicom/mobile-shared';
-import { translateAsync } from '@kiwicom/rnmodules';
+import { translate } from '@kiwicom/rnmodules';
 
 export type TranslationPromise = {|
   cancel: () => void,
@@ -9,5 +9,5 @@ export type TranslationPromise = {|
 |};
 
 export function cancellableTranslation(nativeKey: string): TranslationPromise {
-  return CancellablePromise(translateAsync(nativeKey));
+  return CancellablePromise(translate(nativeKey));
 }

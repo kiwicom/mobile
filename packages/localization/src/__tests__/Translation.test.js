@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { translateAsync } from '@kiwicom/rnmodules';
+import { translate } from '@kiwicom/rnmodules';
 
 import Translation from '../Translation';
 import { replaceValues } from '../TranslationHelpers';
@@ -24,7 +24,7 @@ const getComponent = (id: string = 'test.key') => {
 
 it('should call getTranslationAsync with the key parameter', () => {
   getComponent();
-  expect(translateAsync).toBeCalledWith('mobile.test.key');
+  expect(translate).toBeCalledWith('mobile.test.key');
 });
 
 it('replaces parameter', () => {

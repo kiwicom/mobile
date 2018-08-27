@@ -1,8 +1,9 @@
 package com.skypicker.reactnative.nativemodules.translation
 
-import com.facebook.react.bridge.*
-import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.ReactContextBaseJavaModule
+import com.facebook.react.bridge.ReactMethod
 
 class RNTranslationManager(
   reactContext: ReactApplicationContext,
@@ -28,11 +29,8 @@ class RNTranslationManager(
 
   override fun getName(): String = Constant.TAG
 
-  @ReactMethod(isBlockingSynchronousMethod = true)
-  fun translate(key: String) = stringListener.getTranslation(key)
-
   @ReactMethod
-  fun translateAsync(key: String, promise: Promise) {
+  fun translate(key: String, promise: Promise) {
     promise.resolve(stringListener.getTranslation(key))
   }
   // endregion Public Methods
