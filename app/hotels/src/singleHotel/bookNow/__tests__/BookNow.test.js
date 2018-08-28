@@ -5,6 +5,18 @@ import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 
 import { BookNow } from '../BookNow';
 
+const navigation = {
+  navigate: jest.fn(),
+  setParams: jest.fn(),
+  goBack: jest.fn(),
+  state: {
+    params: {},
+  },
+  addListener: jest.fn(() => ({
+    remove: jest.fn(),
+  })),
+};
+
 it('renders without crashing', () => {
   const props = {
     onGoToPayment() {},
@@ -29,6 +41,11 @@ it('renders without crashing', () => {
     },
     personCount: 2,
     numberOfRooms: 1,
+    checkin: new Date(0),
+    checkout: new Date(1),
+    bookingComAffiliate: 'test-lol',
+    currency: 'EUR',
+    navigation,
   };
 
   PlaygroundRenderer.render(<BookNow {...props} />);
@@ -42,6 +59,11 @@ it('renders without crashing with missing data', () => {
     hotel: undefined,
     personCount: 2,
     numberOfRooms: 1,
+    checkin: new Date(0),
+    checkout: new Date(1),
+    bookingComAffiliate: 'test-lol',
+    currency: 'EUR',
+    navigation,
   };
 
   PlaygroundRenderer.render(<BookNow {...props} />);

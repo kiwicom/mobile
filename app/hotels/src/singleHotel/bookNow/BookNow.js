@@ -6,40 +6,40 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Touchable, Price } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import {
+  withNavigation,
+  type NavigationType,
+} from '@kiwicom/mobile-navigation';
+import { DeviceInfo } from '@kiwicom/mobile-localization';
 
 import BookNowText from './BookNowText';
 import countBookingPrice from './countBookingPrice';
 import convertRooms from './convertRooms';
 import type { BookNow_availableRooms } from './__generated__/BookNow_availableRooms.graphql';
 import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
+import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
+import HotelsContext from '../../HotelsContext';
 
-type ContainerProps = {|
-  +onGoToPayment: ({|
-    +hotelId: number,
-    +rooms: $ReadOnlyArray<{| +id: string, +count: number |}>,
-  |}) => void,
-  +selected: {
-    [string]: number,
-  },
-  +availableRooms: any,
-  +hotel: any,
-  +numberOfRooms: number,
-  +personCount: number,
-|};
-
-type Props = {
-  ...ContainerProps,
-  +availableRooms: ?BookNow_availableRooms,
-  +hotel: ?BookNow_hotel,
+type PropsWithContext = {
+  ...Props,
+  +checkin: Date,
+  +checkout: Date,
+  +bookingComAffiliate: string,
+  +currency: string,
 };
 
-export class BookNow extends React.Component<Props> {
+export class BookNow extends React.Component<PropsWithContext> {
   handleGoToPayment = () => {
     const hotelId = idx(this.props.hotel, _ => _.originalId);
     if (hotelId) {
-      this.props.onGoToPayment({
+      this.props.navigation.navigate('Payment', {
         hotelId: Number(hotelId),
         rooms: convertRooms(this.props.selected),
+        checkin: this.props.checkin,
+        checkout: this.props.checkout,
+        affiliateId: this.props.bookingComAffiliate,
+        language: DeviceInfo.getLanguage(),
+        currency: this.props.currency,
       });
     }
   };
@@ -72,8 +72,33 @@ export class BookNow extends React.Component<Props> {
   }
 }
 
-export default (createFragmentContainer(
-  BookNow,
+type Props = {|
+  +selected: {
+    [string]: number,
+  },
+  +availableRooms: any,
+  +hotel: any,
+  +numberOfRooms: number,
+  +personCount: number,
+  +availableRooms: ?BookNow_availableRooms,
+  +hotel: ?BookNow_hotel,
+  +navigation: NavigationType,
+|};
+
+export const BookNowWithContext = (props: Props) => {
+  return (
+    <HotelsContext.Consumer>
+      {({ currency }) => (
+        <SingleHotelContext.Consumer>
+          {state => <BookNow {...props} {...state} currency={currency} />}
+        </SingleHotelContext.Consumer>
+      )}
+    </HotelsContext.Consumer>
+  );
+};
+
+export default createFragmentContainer(
+  withNavigation(BookNowWithContext),
   graphql`
     fragment BookNow_availableRooms on HotelRoomAvailability
       @relay(plural: true) {
@@ -88,7 +113,7 @@ export default (createFragmentContainer(
       originalId
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   buttonWrapper: {
