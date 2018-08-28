@@ -23,7 +23,6 @@ import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDeta
 
 type Props = {|
   +availableHotel: HotelDetailScreen_availableHotel,
-  +onGoToMap: () => void,
   +roomsConfiguration: RoomsConfiguration,
 |};
 
@@ -91,7 +90,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   };
 
   render() {
-    const { availableHotel, onGoToMap } = this.props;
+    const { availableHotel } = this.props;
     const { selected } = this.state;
     if (!availableHotel) {
       return (
@@ -111,10 +110,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
               renderOnWide={<View style={styles.marginView} />}
             />
             <Header hotel={availableHotel.hotel} />
-            <HotelInformation
-              hotel={availableHotel.hotel}
-              onGoToMap={onGoToMap}
-            />
+            <HotelInformation hotel={availableHotel.hotel} />
             <RoomList
               data={availableHotel.availableRooms}
               select={this.selectRoom}

@@ -39,16 +39,6 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
     }
   };
 
-  goToMap = () => {
-    this.props.navigation.navigate('SingleHotelMap', {
-      hotelId: this.props.hotelId,
-      checkin: this.props.checkin,
-      checkout: this.props.checkout,
-      roomsConfiguration: this.props.roomsConfiguration,
-      currency: this.props.currency,
-    });
-  };
-
   render() {
     return (
       <SingleHotelContext.Provider
@@ -58,7 +48,7 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
         roomsConfiguration={this.props.roomsConfiguration}
         bookingComAffiliate={this.props.bookingComAffiliate}
       >
-        <SingleHotel onGoToMap={this.goToMap} />
+        <SingleHotel />
       </SingleHotelContext.Provider>
     );
   }
