@@ -12,7 +12,6 @@ import type { HotelInformation_hotel } from './__generated__/HotelInformation_ho
 
 type ContainerProps = {|
   +hotel: any,
-  +onGoToMap: () => void,
 |};
 
 type Props = {|
@@ -26,11 +25,7 @@ export class HotelInformation extends React.Component<Props> {
   );
 
   renderLocation = (isWide: boolean) => (
-    <Location
-      hotel={this.props.hotel}
-      onGoToMap={this.props.onGoToMap}
-      isWide={isWide}
-    />
+    <Location hotel={this.props.hotel} isWide={isWide} />
   );
 
   render = () => {
