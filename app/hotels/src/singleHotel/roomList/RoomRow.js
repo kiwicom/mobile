@@ -13,6 +13,7 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import isEqual from 'react-fast-compare';
 
 import RoomPicker from '../roomPicker/RoomPicker';
 import RoomImage from './RoomImage';
@@ -38,6 +39,7 @@ type Props = {|
 |};
 
 export class RoomRow extends React.Component<Props> {
+  shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
   select = () => {
     const { originalId, maxPersons } = this.getOriginalIdAndMaxPersons();
     if (originalId && maxPersons) {
@@ -88,6 +90,7 @@ export class RoomRow extends React.Component<Props> {
     const originalId = idx(availableRoom, _ => _.originalId) || '';
     const selectedCount = idx(this.props.selected, _ => _[originalId]) || 0;
     const room = idx(availableRoom, _ => _.room);
+
     return (
       <SimpleCard style={styles.card}>
         <View style={isWide ? styles.widePadding : null}>

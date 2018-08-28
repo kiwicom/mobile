@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 781c014616c336a0d1dc8fda9d0c8a98
+ * @relayHash e9d080dafa1b4cd42a214f9227910ada
  */
 
 /* eslint-disable */
@@ -17,6 +17,10 @@ export type FlightServicesMenuGroupQueryResponse = {|
   +node: ?{|
     +$fragmentRefs: FlightServicesMenuGroup_bookedServices$ref
   |}
+|};
+export type FlightServicesMenuGroupQuery = {|
+  variables: FlightServicesMenuGroupQueryVariables,
+  response: FlightServicesMenuGroupQueryResponse,
 |};
 */
 

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 23cc1d6131801d6f9638116febcba748
+ * @relayHash 27ba55c89f5e4aa4173c9ce662d6792f
  */
 
 /* eslint-disable */
@@ -23,6 +23,10 @@ export type InsuranceTermsPdfSceneQueryResponse = {|
       |})
     |}>
   |}
+|};
+export type InsuranceTermsPdfSceneQuery = {|
+  variables: InsuranceTermsPdfSceneQueryVariables,
+  response: InsuranceTermsPdfSceneQueryResponse,
 |};
 */
 
