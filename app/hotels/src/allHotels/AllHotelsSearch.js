@@ -4,7 +4,7 @@ import * as React from 'react';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import AllHotelsSearchList from './AllHotelsSearchList';
-import { handleOpenSingleHotel } from '../singleHotel';
+import { handleOpenSingleHotel } from '../singleHotel/SingleHotelContainer';
 import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
 import { getSearchQueryParams } from '../search/SearchQueryHelpers';
 import type { AvailableHotelSearchInput } from '../singleHotel/AvailableHotelSearchInput';
