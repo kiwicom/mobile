@@ -22,7 +22,6 @@ class PickerWrapper extends React.Component<{}, {| date: Date |}> {
   };
 
   render = () => (
-    // $FlowIssue: https://github.com/facebook/flow/issues/2405 (cannot use spread operator with exact object)
     <DatePicker
       date={this.state.date}
       onDateChange={this.onDateChange}

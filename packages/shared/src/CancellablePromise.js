@@ -5,7 +5,7 @@ export type CancellablePromiseType = {|
   promise: Promise<*>,
 |};
 
-export default (incomingPromise: Promise<*>) => {
+export default (incomingPromise: Promise<*>): CancellablePromiseType => {
   let resolve;
   let reject;
 
