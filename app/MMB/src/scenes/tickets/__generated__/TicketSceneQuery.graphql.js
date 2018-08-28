@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash dab36fe7e50fb34c650ed086fd3ae320
+ * @relayHash f6f71a6bb47819ddb1448373ab2c2611
  */
 
 /* eslint-disable */
@@ -18,6 +18,10 @@ export type TicketSceneQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: TicketRefetch$ref
   |}
+|};
+export type TicketSceneQuery = {|
+  variables: TicketSceneQueryVariables,
+  response: TicketSceneQueryResponse,
 |};
 */
 

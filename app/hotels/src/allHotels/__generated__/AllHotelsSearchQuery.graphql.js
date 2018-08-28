@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e496b610bb484dbc60e69e5c61c97491
+ * @relayHash 6098780f06a1d77a25c1ee2ae9206012
  */
 
 /* eslint-disable */
@@ -61,6 +61,10 @@ export type AllHotelsSearchQueryVariables = {|
 |};
 export type AllHotelsSearchQueryResponse = {|
   +$fragmentRefs: AllHotelsSearchList_data$ref
+|};
+export type AllHotelsSearchQuery = {|
+  variables: AllHotelsSearchQueryVariables,
+  response: AllHotelsSearchQueryResponse,
 |};
 */
 
@@ -171,7 +175,39 @@ var v0 = [
     "defaultValue": null
   }
 ],
-v1 = {
+v1 = [
+  {
+    "kind": "Variable",
+    "name": "after",
+    "variableName": "after",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
+    "name": "filter",
+    "variableName": "filter",
+    "type": "HotelsFilterInput"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "first",
+    "type": "Int"
+  },
+  {
+    "kind": "Variable",
+    "name": "options",
+    "variableName": "options",
+    "type": "AvailableHotelOptionsInput"
+  },
+  {
+    "kind": "Variable",
+    "name": "search",
+    "variableName": "search",
+    "type": "HotelsSearchInput!"
+  }
+],
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -209,38 +245,7 @@ return {
         "alias": null,
         "name": "allAvailableHotels",
         "storageKey": null,
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "after",
-            "variableName": "after",
-            "type": "String"
-          },
-          {
-            "kind": "Variable",
-            "name": "filter",
-            "variableName": "filter",
-            "type": "HotelsFilterInput"
-          },
-          {
-            "kind": "Variable",
-            "name": "first",
-            "variableName": "first",
-            "type": "Int"
-          },
-          {
-            "kind": "Variable",
-            "name": "options",
-            "variableName": "options",
-            "type": "AvailableHotelOptionsInput"
-          },
-          {
-            "kind": "Variable",
-            "name": "search",
-            "variableName": "search",
-            "type": "HotelsSearchInput!"
-          }
-        ],
+        "args": v1,
         "concreteType": "HotelAvailabilityConnection",
         "plural": false,
         "selections": [
@@ -301,7 +306,7 @@ return {
                 "concreteType": "HotelAvailability",
                 "plural": false,
                 "selections": [
-                  v1,
+                  v2,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -368,7 +373,7 @@ return {
                           }
                         ]
                       },
-                      v1,
+                      v2,
                       {
                         "kind": "LinkedField",
                         "alias": null,
@@ -385,7 +390,7 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          v1
+                          v2
                         ]
                       },
                       {
@@ -464,38 +469,7 @@ return {
         "kind": "LinkedHandle",
         "alias": null,
         "name": "allAvailableHotels",
-        "args": [
-          {
-            "kind": "Variable",
-            "name": "after",
-            "variableName": "after",
-            "type": "String"
-          },
-          {
-            "kind": "Variable",
-            "name": "filter",
-            "variableName": "filter",
-            "type": "HotelsFilterInput"
-          },
-          {
-            "kind": "Variable",
-            "name": "first",
-            "variableName": "first",
-            "type": "Int"
-          },
-          {
-            "kind": "Variable",
-            "name": "options",
-            "variableName": "options",
-            "type": "AvailableHotelOptionsInput"
-          },
-          {
-            "kind": "Variable",
-            "name": "search",
-            "variableName": "search",
-            "type": "HotelsSearchInput!"
-          }
-        ],
+        "args": v1,
         "handle": "connection",
         "key": "AllHotels_allAvailableHotels",
         "filters": [

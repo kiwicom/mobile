@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f08a7b60e4c878d76758199ccb93c45d
+ * @relayHash 38a19b5292ea80545404cb5df0320063
  */
 
 /* eslint-disable */
@@ -37,6 +37,10 @@ export type SingleHotelContainerQueryResponse = {|
   +availableHotel: ?{|
     +$fragmentRefs: HotelDetailScreen_availableHotel$ref
   |}
+|};
+export type SingleHotelContainerQuery = {|
+  variables: SingleHotelContainerQueryVariables,
+  response: SingleHotelContainerQueryResponse,
 |};
 */
 

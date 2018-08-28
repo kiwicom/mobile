@@ -12,6 +12,7 @@ import {
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import isEqual from 'react-fast-compare';
 
 import Header from './header/Header';
 import HotelInformation from './hotelInformation/HotelInformation';
@@ -41,6 +42,13 @@ export class HotelDetailScreen extends React.Component<Props, State> {
 
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS);
+  };
+
+  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
+    const isPropsEqual = isEqual(nextProps, this.props);
+    const isStateEqual = isEqual(nextState, this.state);
+
+    return !isPropsEqual || !isStateEqual;
   };
 
   updateSelectedCount = (
@@ -92,6 +100,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   render() {
     const { availableHotel } = this.props;
     const { selected } = this.state;
+
     if (!availableHotel) {
       return (
         <GeneralError

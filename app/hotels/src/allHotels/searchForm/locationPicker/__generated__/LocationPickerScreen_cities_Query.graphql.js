@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash db9d1ea9df5960becd95a56eefbd0f9c
+ * @relayHash 3fd5c10a2c8cbfb2e889ad158e1476c0
  */
 
 /* eslint-disable */
@@ -15,6 +15,10 @@ export type LocationPickerScreen_cities_QueryVariables = {|
 |};
 export type LocationPickerScreen_cities_QueryResponse = {|
   +$fragmentRefs: SuggestionList_data$ref
+|};
+export type LocationPickerScreen_cities_Query = {|
+  variables: LocationPickerScreen_cities_QueryVariables,
+  response: LocationPickerScreen_cities_QueryResponse,
 |};
 */
 
@@ -51,6 +55,20 @@ var v0 = [
     "name": "prefix",
     "type": "String!",
     "defaultValue": null
+  }
+],
+v1 = [
+  {
+    "kind": "Literal",
+    "name": "first",
+    "value": 50,
+    "type": "Int"
+  },
+  {
+    "kind": "Variable",
+    "name": "prefix",
+    "variableName": "prefix",
+    "type": "String"
   }
 ];
 return {
@@ -91,20 +109,7 @@ return {
         "alias": null,
         "name": "hotelCities",
         "storageKey": null,
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "first",
-            "value": 50,
-            "type": "Int"
-          },
-          {
-            "kind": "Variable",
-            "name": "prefix",
-            "variableName": "prefix",
-            "type": "String"
-          }
-        ],
+        "args": v1,
         "concreteType": "HotelCityConnection",
         "plural": false,
         "selections": [
@@ -189,20 +194,7 @@ return {
         "kind": "LinkedHandle",
         "alias": null,
         "name": "hotelCities",
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "first",
-            "value": 50,
-            "type": "Int"
-          },
-          {
-            "kind": "Variable",
-            "name": "prefix",
-            "variableName": "prefix",
-            "type": "String"
-          }
-        ],
+        "args": v1,
         "handle": "connection",
         "key": "SuggestionList_hotelCities",
         "filters": [

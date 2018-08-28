@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 595b26c45819685ea5f416f08eecfa30
+ * @relayHash 6f7f7493b9bdb0051c87afef16d425ab
  */
 
 /* eslint-disable */
@@ -18,6 +18,10 @@ export type TripServicesQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: TripServiceRefreshContainer$ref
   |}
+|};
+export type TripServicesQuery = {|
+  variables: TripServicesQueryVariables,
+  response: TripServicesQueryResponse,
 |};
 */
 

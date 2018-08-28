@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f5f8c891c718d5507bea44a4b12d826e
+ * @relayHash bea8288b5e39d327736760de2c0162e3
  */
 
 /* eslint-disable */
@@ -15,6 +15,10 @@ export type HelpContainerQueryResponse = {|
   +customerSupportNumber: ?{|
     +$fragmentRefs: Help$ref
   |}
+|};
+export type HelpContainerQuery = {|
+  variables: HelpContainerQueryVariables,
+  response: HelpContainerQueryResponse,
 |};
 */
 

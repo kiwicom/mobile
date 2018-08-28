@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1bf9aa1d22bf0b8c133b126e0255acdf
+ * @relayHash 45111c6b32cf0bf9781ba9ff63dd6d82
  */
 
 /* eslint-disable */
@@ -36,6 +36,10 @@ export type TimelineQueryResponse = {|
       +$fragmentRefs: BookedFlightTimelineEvent$ref & LeaveForAirportTimelineEvent$ref & AirportArrivalTimelineEvent$ref & DownloadInvoiceTimelineEvent$ref & DownloadETicketTimelineEvent$ref & BoardingTimelineEvent$ref & DepartureTimelineEvent$ref & ArrivalTimelineEvent$ref & TransportFromAirportTimelineEvent$ref & DownloadBoardingPassTimelineEvent$ref & NoMoreEditsTimelineEvent$ref & NavigateToTerminalTimelineEvent$ref & TimeToCheckinTimelineEvent$ref & CheckinClosingTimelineEvent$ref & EnterDetailsTimelineEvent$ref,
     |}>
   |}
+|};
+export type TimelineQuery = {|
+  variables: TimelineQueryVariables,
+  response: TimelineQueryResponse,
 |};
 */
 
