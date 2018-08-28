@@ -1,9 +1,11 @@
 # TranslationManager
 
-It exposes the following methods:
+This module allows to translate a string given a key.
 
-## translate
+## API
+
+### translate
 
 ```js
-translateAsync(key: String) => Promise<String>
+translate(key: String) => Promise<String>
 ```
