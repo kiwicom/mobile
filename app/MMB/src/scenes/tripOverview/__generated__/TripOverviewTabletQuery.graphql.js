@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9f67b7b8a6b5fb4386e6bbadfdef9e1c
+ * @relayHash 9a2b57667d0f04acd760ad1889b50bfc
  */
 
 /* eslint-disable */
@@ -18,6 +18,10 @@ export type TripOverviewTabletQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: TripOverview$ref
   |}
+|};
+export type TripOverviewTabletQuery = {|
+  variables: TripOverviewTabletQueryVariables,
+  response: TripOverviewTabletQueryResponse,
 |};
 */
 

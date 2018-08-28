@@ -22,7 +22,7 @@ exports[`renders a "not found" message when no hotel is found 1`] = `
 
 exports[`renders found hotels 1`] = `
 <Component>
-  <Relay(AllHotelsSearchRowWithContext)
+  <ForwardRef(Relay(AllHotelsSearchRowWithContext))
     data={
       Object {
         "id": "hotel1",
@@ -30,7 +30,7 @@ exports[`renders found hotels 1`] = `
     }
     openSingleHotel={[Function]}
   />
-  <Relay(AllHotelsSearchRowWithContext)
+  <ForwardRef(Relay(AllHotelsSearchRowWithContext))
     data={
       Object {
         "id": "hotel2",

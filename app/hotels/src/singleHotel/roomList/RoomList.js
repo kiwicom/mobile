@@ -5,6 +5,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import isEqual from 'react-fast-compare';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
@@ -24,6 +25,8 @@ type Props = {|
 |};
 
 class RoomList extends React.Component<Props> {
+  shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
+
   render = () => {
     const { select, deselect, selected } = this.props;
     const data = this.props.data || [];

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c12c86f9dbcbf4f6493bb26f15bb13f8
+ * @relayHash 39aad77e0f982f9b4e15903246d7bc96
  */
 
 /* eslint-disable */
@@ -61,6 +61,10 @@ export type AllHotelsMapQueryResponse = {|
   +allAvailableHotels: ?{|
     +$fragmentRefs: MapScreen$ref
   |}
+|};
+export type AllHotelsMapQuery = {|
+  variables: AllHotelsMapQueryVariables,
+  response: AllHotelsMapQueryResponse,
 |};
 */
 

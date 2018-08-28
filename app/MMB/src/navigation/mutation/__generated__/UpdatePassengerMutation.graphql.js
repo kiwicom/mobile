@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5b226bb53c0138bbdb5cc990c4c85794
+ * @relayHash b0715226f8ec87a2e84c372f74a4039f
  */
 
 /* eslint-disable */
@@ -23,6 +23,10 @@ export type UpdatePassengerMutationResponse = {|
   +updatePassenger: ?{|
     +success: ?boolean
   |}
+|};
+export type UpdatePassengerMutation = {|
+  variables: UpdatePassengerMutationVariables,
+  response: UpdatePassengerMutationResponse,
 |};
 */
 

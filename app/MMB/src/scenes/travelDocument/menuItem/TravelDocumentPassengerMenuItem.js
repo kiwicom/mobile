@@ -11,7 +11,7 @@ import {
 import PassengerSubtitle from './PassengerSubtitle';
 import PassengerMenuRightContent from './PassengerMenuRightContent';
 import PassengerMenuItem from '../../../components/passengerMenuItem/PassengerMenuItem';
-import type { PassengerMenuItem as PassengerType } from '../../../components/passengerMenuItem/__generated__/PassengerMenuItem.graphql';
+import type { TravelDocumentPassengerMenuItem as PassengerType } from './__generated__/TravelDocumentPassengerMenuItem.graphql';
 
 type Props = {|
   +data: PassengerType,

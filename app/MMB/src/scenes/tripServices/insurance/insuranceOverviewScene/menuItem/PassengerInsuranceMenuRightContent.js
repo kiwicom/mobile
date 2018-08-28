@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text } from '@kiwicom/mobile-shared';
 
-import type { InsuranceType } from './__generated__/PassengerInsuranceMenuItem.graphql';
+type InsuranceType = 'NONE' | 'TRAVEL_BASIC' | 'TRAVEL_PLUS';
 
 type Props = {|
   +insuranceType: ?InsuranceType,

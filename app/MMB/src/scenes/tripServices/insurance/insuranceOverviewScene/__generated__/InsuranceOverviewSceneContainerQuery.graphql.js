@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1205277540004d3eaa41d6b370ef55ed
+ * @relayHash a856910420e4fe30db986cc0fc3eba1a
  */
 
 /* eslint-disable */
@@ -34,6 +34,10 @@ export type InsuranceOverviewSceneContainerQueryResponse = {|
     |}>,
     +$fragmentRefs: DestinationImage$ref & TripInfo$ref,
   |}
+|};
+export type InsuranceOverviewSceneContainerQuery = {|
+  variables: InsuranceOverviewSceneContainerQueryVariables,
+  response: InsuranceOverviewSceneContainerQueryResponse,
 |};
 */
 

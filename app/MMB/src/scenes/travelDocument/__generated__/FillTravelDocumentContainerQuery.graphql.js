@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 04c9e5afc4511fd10a43a9a84d3f13d8
+ * @relayHash 5b55c34fae3df1b48424901bc8448bb5
  */
 
 /* eslint-disable */
@@ -18,6 +18,10 @@ export type FillTravelDocumentContainerQueryResponse = {|
   +singleBooking: ?{|
     +$fragmentRefs: FillTravelDocument$ref
   |}
+|};
+export type FillTravelDocumentContainerQuery = {|
+  variables: FillTravelDocumentContainerQueryVariables,
+  response: FillTravelDocumentContainerQueryResponse,
 |};
 */
 
