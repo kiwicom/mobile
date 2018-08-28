@@ -1,8 +1,10 @@
-# CurrencyFormatter
+# CurrencyManager
 
- It exposes the following methods:
+This module allows to format a price given a currency.
 
- ## formatAmount
+## API
+
+### formatAmount
 
  ```js
 formatAmount(price: Number, toCurrency: string) => Promise<Number>

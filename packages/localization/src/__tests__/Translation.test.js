@@ -9,6 +9,10 @@ import { replaceValues } from '../TranslationHelpers';
 
 const CancellableTranslation = require('../CancellableTranslation');
 
+jest.mock('@kiwicom/rnmodules', () => ({
+  translate: jest.fn(),
+}));
+
 let Component;
 beforeEach(() => {
   Component = new Translation({
