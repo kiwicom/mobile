@@ -18,12 +18,10 @@ import HotelInformation from './hotelInformation/HotelInformation';
 import RoomList from './roomList/RoomList';
 import BookNow from './bookNow/BookNow';
 import BrandLabel from './brandLabel/BrandLabel';
-import type { Image } from '../gallery/GalleryGrid';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 
 type Props = {|
-  +openGallery: (hotelName: string, images: Image[]) => void,
   +availableHotel: HotelDetailScreen_availableHotel,
   +onGoToPayment: ({|
     +hotelId: number,
@@ -97,12 +95,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   };
 
   render() {
-    const {
-      openGallery,
-      availableHotel,
-      onGoToPayment,
-      onGoToMap,
-    } = this.props;
+    const { availableHotel, onGoToPayment, onGoToMap } = this.props;
     const { selected } = this.state;
     if (!availableHotel) {
       return (
@@ -121,7 +114,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
             <AdaptableLayout
               renderOnWide={<View style={styles.marginView} />}
             />
-            <Header openGallery={openGallery} hotel={availableHotel.hotel} />
+            <Header hotel={availableHotel.hotel} />
             <HotelInformation
               hotel={availableHotel.hotel}
               onGoToMap={onGoToMap}
@@ -131,7 +124,6 @@ export class HotelDetailScreen extends React.Component<Props, State> {
               select={this.selectRoom}
               deselect={this.deselectRoom}
               selected={selected}
-              openGallery={openGallery}
             />
             <BrandLabel />
           </LayoutSingleColumn>

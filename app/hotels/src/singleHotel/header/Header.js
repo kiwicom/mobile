@@ -17,51 +17,28 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import {
+  withNavigation,
+  type NavigationType,
+} from '@kiwicom/mobile-navigation';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 import Rating from './Rating';
-import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 import type { Header_hotel } from './__generated__/Header_hotel.graphql';
 
-const generateDynamicStyles = dim => {
-  const height = Platform.select({
-    android: Device.isWideLayout(dim) ? 150 : 200,
-    ios: 150,
-  });
-  return {
-    nameAndRatingContainer: {
-      height: height,
-      marginTop: -height,
-      alignItems: 'flex-end',
-      flexDirection: 'row',
-    },
-    picture: {
-      height: height,
-    },
-    galleryButton: {
-      position: 'absolute',
-      end: 10,
-      top: Platform.select({
-        android: Device.isWideLayout(dim) ? 10 : StatusBar.currentHeight + 16,
-        ios: 10,
-      }),
-    },
-  };
-};
-
 type ContainerProps = {|
-  +openGallery: (hotelName: string, images: GalleryGridImage[]) => void,
   +hotel: any,
 |};
 
 export type Props = {
   ...ContainerProps,
   +hotel: ?Header_hotel,
+  +navigation: NavigationType,
 };
 
 export class Header extends React.Component<Props> {
   openGallery = () => {
-    const { hotel, openGallery } = this.props;
+    const { hotel } = this.props;
     const photosEdges = idx(hotel, _ => _.photos.edges) || [];
     const images = photosEdges.map(edge => ({
       key: idx(edge, _ => _.node.id) || '',
@@ -70,28 +47,41 @@ export class Header extends React.Component<Props> {
     }));
     const hotelName = idx(hotel, _ => _.name);
 
-    if (typeof hotelName === 'string') {
-      openGallery(hotelName, images);
-    }
+    this.props.navigation.navigate('GalleryGrid', {
+      hotelName,
+      images,
+    });
   };
 
   renderHeader = () => {
     const { hotel } = this.props;
     const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
-    const photosCount = idx(hotel, _ => _.photos.edges.length);
+    const photosCount = idx(hotel, _ => _.photos.edges.length) || 0;
     return (
       <Dimensions.Consumer>
         {dimensions => {
-          const dynamicStyles = generateDynamicStyles(dimensions);
+          const isAndroidTablet = Platform.select({
+            android: Device.isWideLayout(dimensions),
+            ios: false,
+          });
 
           return (
             <Touchable onPress={this.openGallery}>
               <View>
                 <NetworkImage
-                  style={dynamicStyles.picture}
+                  style={
+                    isAndroidTablet ? styles.heightHigher : styles.heightNormal
+                  }
                   source={{ uri: mainPhotoUrl }}
                 />
-                <View style={dynamicStyles.nameAndRatingContainer}>
+                <View
+                  style={[
+                    styles.nameAndRatingContainer,
+                    isAndroidTablet
+                      ? styles.nameAndRatingContainerHigher
+                      : styles.nameAndRatingContainerNormal,
+                  ]}
+                >
                   <StretchedImage source={gradient} />
                   <View style={styles.nameAndRating}>
                     <Text style={styles.hotelName}>
@@ -106,8 +96,15 @@ export class Header extends React.Component<Props> {
                     </Text>
                   </View>
                 </View>
-                {photosCount && (
-                  <View style={dynamicStyles.galleryButton}>
+                {photosCount > 0 && (
+                  <View
+                    style={[
+                      styles.galleryButton,
+                      isAndroidTablet
+                        ? styles.galleryTopExtra
+                        : styles.galleryTopNormal,
+                    ]}
+                  >
                     <GalleryButton count={photosCount} />
                   </View>
                 )}
@@ -131,7 +128,7 @@ export class Header extends React.Component<Props> {
 }
 
 export default (createFragmentContainer(
-  Header,
+  withNavigation(Header),
   graphql`
     fragment Header_hotel on Hotel {
       name
@@ -182,5 +179,33 @@ const styles = StyleSheet.create({
     android: {
       paddingHorizontal: 8,
     },
+  },
+  nameAndRatingContainer: {
+    alignItems: 'flex-end',
+    flexDirection: 'row',
+  },
+  nameAndRatingContainerNormal: {
+    height: 150,
+    marginTop: -150,
+  },
+  nameAndRatingContainerHigher: {
+    height: 200,
+    marginTop: -200,
+  },
+  heightNormal: {
+    height: 150,
+  },
+  heightHigher: {
+    height: 200,
+  },
+  galleryButton: {
+    position: 'absolute',
+    end: 10,
+  },
+  galleryTopNormal: {
+    top: 10,
+  },
+  galleryTopExtra: {
+    top: StatusBar.currentHeight + 16,
   },
 });

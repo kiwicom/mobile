@@ -4,7 +4,6 @@ import * as React from 'react';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import HotelDetailScreen from './HotelDetailScreen';
-import type { Image } from '../gallery/GalleryGrid';
 import type { singleHotelQueryResponse } from './__generated__/singleHotelQuery.graphql';
 import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
 import type { AvailableHotelSearchInput } from './AvailableHotelSearchInput';
@@ -14,7 +13,6 @@ type ContainerProps = {|
   currency: string,
   language: string,
   search: AvailableHotelSearchInput,
-  onGoToHotelGallery: (hotelName: string, images: Image[]) => void,
   onGoToPayment: ({
     hotelId: number,
     rooms: Array<{| id: string, count: number |}>,
@@ -49,7 +47,6 @@ export default class SingleHotelContainer extends React.Component<
 > {
   renderInnerComponent = ({ availableHotel }: singleHotelQueryResponse) => (
     <HotelDetailScreen
-      openGallery={this.props.onGoToHotelGallery}
       onGoToPayment={this.props.onGoToPayment}
       onGoToMap={this.props.onGoToMap}
       availableHotel={availableHotel}

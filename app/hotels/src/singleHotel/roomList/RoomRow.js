@@ -9,6 +9,10 @@ import {
   AdaptableLayout,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
+import {
+  type NavigationType,
+  withNavigation,
+} from '@kiwicom/mobile-navigation';
 
 import RoomPicker from '../roomPicker/RoomPicker';
 import RoomImage from './RoomImage';
@@ -17,44 +21,21 @@ import RoomRowTitle from './RoomRowTitle';
 import RoomDescription from './RoomDescription';
 import RoomBadges from './RoomBadges';
 import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
-import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
-
-const styles = StyleSheet.create({
-  card: {
-    marginVertical: 5,
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  details: {
-    flex: 1,
-    paddingHorizontal: 15,
-    alignSelf: 'flex-start',
-  },
-  roomDetails: {
-    flex: 1,
-    marginTop: 10,
-    marginBottom: 20,
-  },
-  widePadding: {
-    paddingHorizontal: 5,
-  },
-});
 
 type ContainerProps = {|
-  availableRoom: ?Object,
-  select: (availabilityId: string, maxPersons: number) => void,
-  deselect: (availabilityId: string, maxPersons: number) => void,
-  selected: {
-    [string]: number,
+  +availableRoom: ?Object,
+  +select: (availabilityId: string, maxPersons: number) => void,
+  +deselect: (availabilityId: string, maxPersons: number) => void,
+  +selected: {
+    +[string]: number,
   },
-  openGallery: (roomTitle: string, images: GalleryGridImage[]) => void,
 |};
 
-type Props = {
+type Props = {|
   ...ContainerProps,
-  availableRoom: ?RoomRow_availableRoom,
-};
+  +availableRoom: ?RoomRow_availableRoom,
+  +navigation: NavigationType,
+|};
 
 export class RoomRow extends React.Component<Props> {
   select = () => {
@@ -87,7 +68,10 @@ export class RoomRow extends React.Component<Props> {
     }));
 
     const roomTitle = idx(availableRoom, _ => _.room.description.title) || '';
-    this.props.openGallery(roomTitle, photos);
+    this.props.navigation.navigate('GalleryGrid', {
+      hotelName: roomTitle,
+      images: photos,
+    });
   };
 
   renderRow = (isWide: boolean) => {
@@ -144,7 +128,7 @@ export class RoomRow extends React.Component<Props> {
 }
 
 export default (createFragmentContainer(
-  RoomRow,
+  withNavigation(RoomRow),
   graphql`
     fragment RoomRow_availableRoom on HotelRoomAvailability {
       originalId
@@ -179,3 +163,25 @@ export default (createFragmentContainer(
     }
   `,
 ): React.ComponentType<ContainerProps>);
+
+const styles = StyleSheet.create({
+  card: {
+    marginVertical: 5,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  details: {
+    flex: 1,
+    paddingHorizontal: 15,
+    alignSelf: 'flex-start',
+  },
+  roomDetails: {
+    flex: 1,
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  widePadding: {
+    paddingHorizontal: 5,
+  },
+});
