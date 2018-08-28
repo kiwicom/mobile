@@ -88,7 +88,10 @@ class InsuranceOverviewScene extends React.Component<Props> {
     const { data, passengers, amount } = this.props;
     return (
       <React.Fragment>
-        <ScrollView>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          alwaysBounceVertical={false}
+        >
           <LayoutSingleColumn>
             <DestinationImage data={data.singleBooking} />
 
@@ -134,6 +137,9 @@ export default withInsuranceContext(state => ({
 }))(InsuranceOverviewScene);
 
 const styles = StyleSheet.create({
+  container: {
+    paddingBottom: 52,
+  },
   buttonWrapper: {
     padding: 10,
   },
