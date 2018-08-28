@@ -4,14 +4,12 @@ import { NativeModules } from 'react-native';
 
 type CardType = {
   cardholder: string,
-  expiry: {
-    month: number,
-    year: number,
-  },
+  expiryMonth: number,
+  expireYear: number,
   number: string,
 };
 
-export const getCard = (): Promise<CardType> => {
+export const getCard = (): Promise<CardType> | null => {
   return NativeModules.RNCardManager.getCard();
 };
 
