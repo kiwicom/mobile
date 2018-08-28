@@ -4,9 +4,10 @@ import * as React from 'react';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 import { WithStandaloneScreen } from '@kiwicom/mobile-shared';
 
-import SingleHotel from '../../singleHotel';
+import SingleHotel from '../../singleHotel/SingleHotelContainer';
 import type { NavigationProps } from '../NavigationStack';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
+import SingleHotelContext from './SingleHotelContext';
 
 type Props = {
   ...NavigationProps,
@@ -61,18 +62,17 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
 
   render() {
     return (
-      <SingleHotel
-        onGoToPayment={this.goToPayment}
-        onGoToMap={this.goToMap}
-        currency={this.props.currency}
-        language={this.props.language}
-        search={{
-          hotelId: this.props.hotelId,
-          checkin: this.props.checkin,
-          checkout: this.props.checkout,
-          roomsConfiguration: this.props.roomsConfiguration,
-        }}
-      />
+      <SingleHotelContext.Provider
+        hotelId={this.props.hotelId}
+        checkin={this.props.checkin}
+        checkout={this.props.checkout}
+        roomsConfiguration={this.props.roomsConfiguration}
+      >
+        <SingleHotel
+          onGoToPayment={this.goToPayment}
+          onGoToMap={this.goToMap}
+        />
+      </SingleHotelContext.Provider>
     );
   }
 }
