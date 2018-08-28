@@ -20,7 +20,7 @@ import type {
   OnChangeSearchParams,
 } from '../../allHotels/searchForm/SearchParametersType';
 import type { FilterParams } from '../../filter/FilterParametersType';
-import { handleOpenSingleHotel } from '../../singleHotel';
+import { handleOpenSingleHotel } from '../../singleHotel/SingleHotelContainer';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import { sanitizeHotelFacilities } from '../../GraphQLSanitizers';
 import type { Coordinates } from '../../CoordinatesType';
