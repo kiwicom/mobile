@@ -47,7 +47,6 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
     availableHotel,
   }: SingleHotelContainerQueryResponse) => (
     <HotelDetailScreen
-      onGoToPayment={this.props.onGoToPayment}
       onGoToMap={this.props.onGoToMap}
       availableHotel={availableHotel}
       roomsConfiguration={this.props.roomsConfiguration}
@@ -90,10 +89,6 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
 }
 
 type Props = {|
-  +onGoToPayment: ({
-    hotelId: number,
-    rooms: Array<{| id: string, count: number |}>,
-  }) => void,
   +onGoToMap: () => void,
 |};
 

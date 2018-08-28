@@ -23,10 +23,6 @@ import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDeta
 
 type Props = {|
   +availableHotel: HotelDetailScreen_availableHotel,
-  +onGoToPayment: ({|
-    +hotelId: number,
-    +rooms: $ReadOnlyArray<{| +id: string, +count: number |}>,
-  |}) => void,
   +onGoToMap: () => void,
   +roomsConfiguration: RoomsConfiguration,
 |};
@@ -95,7 +91,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   };
 
   render() {
-    const { availableHotel, onGoToPayment, onGoToMap } = this.props;
+    const { availableHotel, onGoToMap } = this.props;
     const { selected } = this.state;
     if (!availableHotel) {
       return (
@@ -129,7 +125,6 @@ export class HotelDetailScreen extends React.Component<Props, State> {
           </LayoutSingleColumn>
         </ScrollView>
         <BookNow
-          onGoToPayment={onGoToPayment}
           selected={selected}
           availableRooms={availableHotel.availableRooms}
           hotel={availableHotel.hotel}
