@@ -26,7 +26,7 @@ type Props = {
 };
 
 class SingleHotelStandAlonePackage extends React.Component<Props> {
-  renderInnerComponent = () => {
+  render = () => {
     const screenProps = {
       ...this.props,
       // Better to pass strings than date object from native,
@@ -36,23 +36,17 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
       isStandAlonePackage: true,
     };
     return (
-      <SingleHotelStack
-        screenProps={screenProps}
-        onBackClicked={this.props.onBackClicked}
-        onNavigationStateChange={this.props.onNavigationStateChange}
-      />
-    );
-  };
-
-  render = () => {
-    return (
       <RootComponent
         dimensions={this.props.dimensions}
         dataSaverEnabled={this.props.dataSaverEnabled}
         version={this.props.version}
         currency={this.props.currency}
       >
-        {this.renderInnerComponent()}
+        <SingleHotelStack
+          screenProps={screenProps}
+          onBackClicked={this.props.onBackClicked}
+          onNavigationStateChange={this.props.onNavigationStateChange}
+        />
       </RootComponent>
     );
   };

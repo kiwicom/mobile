@@ -38,13 +38,6 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
     }
   };
 
-  goToGalleryGrid = (hotelName: string, images: any) => {
-    this.props.navigation.navigate('GalleryGrid', {
-      hotelName,
-      images,
-    });
-  };
-
   goToPayment = (parameters: Object) => {
     this.props.navigation.navigate('Payment', {
       ...parameters,
@@ -69,7 +62,6 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
   render() {
     return (
       <SingleHotel
-        onGoToHotelGallery={this.goToGalleryGrid}
         onGoToPayment={this.goToPayment}
         onGoToMap={this.goToMap}
         currency={this.props.currency}

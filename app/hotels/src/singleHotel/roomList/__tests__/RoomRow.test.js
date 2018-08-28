@@ -6,7 +6,17 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { RoomRow } from '../RoomRow';
 
 const renderer = new ShallowRenderer();
-
+const navigation = {
+  navigate: jest.fn(),
+  setParams: jest.fn(),
+  goBack: jest.fn(),
+  state: {
+    params: {},
+  },
+  addListener: jest.fn(() => ({
+    remove: jest.fn(),
+  })),
+};
 it('renders without crashing', () => {
   const props = {
     select() {},
@@ -19,7 +29,7 @@ it('renders without crashing', () => {
       minimalPrice: null,
       incrementalPrice: [],
     },
-    openGallery() {},
+    navigation,
   };
 
   renderer.render(<RoomRow {...props} />);
@@ -31,7 +41,7 @@ it('renders without crashing with missing data', () => {
     deselect() {},
     selected: {},
     availableRoom: undefined,
-    openGallery() {},
+    navigation,
   };
 
   renderer.render(<RoomRow {...props} />);
