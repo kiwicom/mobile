@@ -8,7 +8,6 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
-import type { Image as GalleryGridImage } from '../../gallery/GalleryGrid';
 
 type ContainerProps = {|
   +data: any,
@@ -17,7 +16,6 @@ type ContainerProps = {|
   +selected: {
     [string]: number,
   },
-  +openGallery: (roomTitle: string, images: GalleryGridImage[]) => void,
 |};
 
 type Props = {|
@@ -27,7 +25,7 @@ type Props = {|
 
 class RoomList extends React.Component<Props> {
   render = () => {
-    const { select, deselect, selected, openGallery } = this.props;
+    const { select, deselect, selected } = this.props;
     const data = this.props.data || [];
 
     return (
@@ -42,7 +40,6 @@ class RoomList extends React.Component<Props> {
             select={select}
             deselect={deselect}
             selected={selected}
-            openGallery={openGallery}
           />
         ))}
       </React.Fragment>

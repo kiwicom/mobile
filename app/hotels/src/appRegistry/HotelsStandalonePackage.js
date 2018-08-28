@@ -25,7 +25,7 @@ type Props = {
 };
 
 class HotelsStandalonePackage extends React.Component<Props> {
-  renderInnerComponent = () => {
+  render = () => {
     const checkin = this.props.checkin ? new Date(this.props.checkin) : null;
     const checkout = this.props.checkout ? new Date(this.props.checkout) : null;
     const screenProps = {
@@ -33,17 +33,6 @@ class HotelsStandalonePackage extends React.Component<Props> {
       checkin,
       checkout,
     };
-
-    return (
-      <HotelsStack
-        screenProps={screenProps}
-        onBackClicked={this.props.onBackClicked}
-        onNavigationStateChange={this.props.onNavigationStateChange}
-      />
-    );
-  };
-
-  render = () => {
     return (
       <RootComponent
         dimensions={this.props.dimensions}
@@ -51,7 +40,11 @@ class HotelsStandalonePackage extends React.Component<Props> {
         version={this.props.version}
         currency={this.props.currency}
       >
-        {this.renderInnerComponent()}
+        <HotelsStack
+          screenProps={screenProps}
+          onBackClicked={this.props.onBackClicked}
+          onNavigationStateChange={this.props.onNavigationStateChange}
+        />
       </RootComponent>
     );
   };

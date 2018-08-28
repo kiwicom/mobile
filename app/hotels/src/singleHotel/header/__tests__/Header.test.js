@@ -6,17 +6,27 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { Header } from '../Header';
 
 const renderer = new ShallowRenderer();
-const VoidAction = () => {};
+const navigation = {
+  navigate: jest.fn(),
+  setParams: jest.fn(),
+  goBack: jest.fn(),
+  state: {
+    params: {},
+  },
+  addListener: jest.fn(() => ({
+    remove: jest.fn(),
+  })),
+};
 
 it('renders without crashing', () => {
   expect(
     renderer.render(
       <Header
-        openGallery={VoidAction}
         // $FlowExpectedError: we are intentionally passing broken hotel object (invalid Props)
         hotel={{
           hotel: 'asdf',
         }}
+        navigation={navigation}
       />,
     ),
   ).toBeTruthy();
@@ -24,6 +34,6 @@ it('renders without crashing', () => {
 
 it('renders without crashing with missing data', () => {
   expect(
-    renderer.render(<Header openGallery={VoidAction} hotel={undefined} />),
+    renderer.render(<Header navigation={navigation} hotel={undefined} />),
   ).toBeTruthy();
 });
