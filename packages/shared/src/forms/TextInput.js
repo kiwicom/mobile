@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { TextInput as OriginalTextInput, View } from 'react-native';
+import { TextInput as OriginalTextInput, View } from 'react-native'; // eslint-disable-line no-restricted-imports
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
