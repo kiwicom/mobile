@@ -34,7 +34,6 @@ export const handleOpenSingleHotel = (
 };
 
 type PropsWithContext = {|
-  ...Props,
   +currency: string,
   +hotelId: string,
   +checkin: Date,
@@ -47,7 +46,6 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
     availableHotel,
   }: SingleHotelContainerQueryResponse) => (
     <HotelDetailScreen
-      onGoToMap={this.props.onGoToMap}
       availableHotel={availableHotel}
       roomsConfiguration={this.props.roomsConfiguration}
     />
@@ -88,18 +86,13 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
   }
 }
 
-type Props = {|
-  +onGoToMap: () => void,
-|};
-
-export default function SingleHotelContainerWithContext(props: Props) {
+export default function SingleHotelContainerWithContext() {
   return (
     <SingleHotelContext.Consumer>
       {({ checkin, checkout, roomsConfiguration, hotelId }) => (
         <HotelsContext.Consumer>
           {({ currency }) => (
             <SingleHotelContainer
-              {...props}
               currency={currency}
               hotelId={hotelId}
               checkin={checkin}
