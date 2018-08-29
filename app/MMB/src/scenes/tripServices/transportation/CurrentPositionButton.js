@@ -2,23 +2,67 @@
 
 import * as React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
-import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import isEqual from 'react-fast-compare';
+import { StyleSheet, TextIcon, GetLocation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  +onPress: () => void,
+  +onPress: (currentLocation: Coordinate) => void,
 |};
 
-export default function CurrentPositionButton(props: Props) {
-  return (
-    <View style={styles.roundButton}>
-      <TouchableWithoutFeedback onPress={props.onPress}>
-        <View>
-          <TextIcon code="&quot;" style={styles.icon} />
-        </View>
-      </TouchableWithoutFeedback>
-    </View>
-  );
+type State = {|
+  getLocation: boolean,
+|};
+
+type Coordinate = {|
+  +latitude: number,
+  +longitude: number,
+|};
+
+export default class CurrentPositionButton extends React.Component<
+  Props,
+  State,
+> {
+  state = {
+    getLocation: false,
+  };
+
+  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
+    const isPropsEqual = isEqual(nextProps, this.props);
+    const isStateEqual = isEqual(nextState, this.state);
+
+    return !isPropsEqual || !isStateEqual;
+  };
+
+  getLocation = () => {
+    this.setState({
+      getLocation: true,
+    });
+  };
+
+  reset = () => {
+    this.setState({
+      getLocation: false,
+    });
+  };
+
+  render() {
+    return (
+      <View style={styles.roundButton}>
+        <TouchableWithoutFeedback onPress={this.getLocation}>
+          <View>
+            <TextIcon code="&quot;" style={styles.icon} />
+            <GetLocation
+              getLocation={this.state.getLocation}
+              dealWithLocation={this.props.onPress}
+              failSilently={false}
+              onPressOK={this.reset}
+            />
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

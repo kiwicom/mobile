@@ -6,9 +6,16 @@ import { Text, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import FormattedAddress from './FormattedAddress';
+
+type Coordinate = {|
+  +latitude: number,
+  +longitude: number,
+|};
+
 type Props = {|
-  +onPress: () => Promise<void>,
-  +destination: ?string,
+  +onPress: () => void,
+  +coordinate: ?Coordinate,
 |};
 
 export default function MarkerLocationButton(props: Props) {
@@ -20,11 +27,11 @@ export default function MarkerLocationButton(props: Props) {
           <Text
             numberOfLines={1}
             style={
-              props.destination ? styles.locationText : styles.placeholderText
+              props.coordinate ? styles.locationText : styles.placeholderText
             }
           >
-            {props.destination ? (
-              <Translation passThrough={props.destination} />
+            {props.coordinate != null ? (
+              <FormattedAddress coordinate={props.coordinate} />
             ) : (
               <Translation id="mmb.trip_services.transportation.map.marker_location_button" />
             )}
