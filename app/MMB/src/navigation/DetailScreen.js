@@ -2,8 +2,13 @@
 
 import * as React from 'react';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
-import { AdaptableLayout, LayoutDoubleColumn } from '@kiwicom/mobile-shared';
+import {
+  AdaptableLayout,
+  LayoutDoubleColumn,
+  StyleSheet,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { View } from 'react-native';
 
 import DetailShareButton from './DetailShareButton';
 import MainMenuContainer from '../MainMenuContainer';
@@ -12,6 +17,7 @@ import OtherSubmenu, { OtherSubmenuItems } from '../scenes/Other';
 import TicketScene, {
   TicketSceneSubMenus,
 } from '../scenes/tickets/TicketScene';
+import TicketDeleteButton from '../scenes/tickets/TicketDeleteButton';
 import FlightServices, {
   FlightServicesSubmenuItems,
 } from '../scenes/flightServices/FlightServices';
@@ -86,6 +92,7 @@ export const MenuComponents = {
         </HeaderTitle>
       );
     },
+    headerRight: <TicketDeleteButton />,
   },
   'mmb.timeline': {
     screen: Timeline,
@@ -114,21 +121,31 @@ type Props = {|
 class DetailsScreen extends React.Component<Props> {
   static navigationOptions = (props: {| navigation: NavigationType |}) => {
     const params = props.navigation.state.params;
+    const title = (
+      <HeaderTitle>
+        <Translation id="mmb.main_menu.title" />
+      </HeaderTitle>
+    );
+    const shareButton = <DetailShareButton />;
 
     if (params && params.activeContainerComponent) {
       const Title = MenuComponents[params.activeContainerComponent].headerTitle;
+      const headerRight =
+        MenuComponents[params.activeContainerComponent].headerRight;
       return {
-        headerTitle: Title,
+        headerTitle: Title || title,
+        headerRight: (
+          <View style={styles.row}>
+            {headerRight}
+            {shareButton}
+          </View>
+        ),
       };
     }
 
     return {
-      headerTitle: (
-        <HeaderTitle>
-          <Translation id="mmb.main_menu.title" />
-        </HeaderTitle>
-      ),
-      headerRight: <DetailShareButton />,
+      headerTitle: title,
+      headerRight: shareButton,
     };
   };
 
@@ -180,3 +197,9 @@ class DetailsScreen extends React.Component<Props> {
 }
 
 export default withSplitNavigationContext(DetailsScreen);
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
+});

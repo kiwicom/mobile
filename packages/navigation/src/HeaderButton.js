@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Icon,
   Text,
+  TextIcon,
   type StylePropType,
 } from '@kiwicom/mobile-shared';
 import {
@@ -20,7 +21,8 @@ type Props = {|
   +onLongPress?: (React.ElementRef<typeof Touchable>) => void,
   +children:
     | React.Element<typeof HeaderButton.Text>
-    | React.Element<typeof Icon>,
+    | React.Element<typeof Icon>
+    | React.Element<typeof TextIcon>,
   +left?: boolean,
   +style?: StylePropType,
   +disabled?: boolean,

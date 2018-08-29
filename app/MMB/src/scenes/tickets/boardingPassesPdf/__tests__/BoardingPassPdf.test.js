@@ -30,7 +30,7 @@ describe('BoardingPassPdf', () => {
       <BoardingPassPdf boardingPassUrl="https://somedomain.com/folder/subfolder/file.pdf" />,
     );
 
-    expect(wrapper.props.fileName).toBe('/boardingPasses/file.pdf');
+    expect(wrapper.props.fileName).toBe('boardingPasses/file.pdf');
   });
 });
 

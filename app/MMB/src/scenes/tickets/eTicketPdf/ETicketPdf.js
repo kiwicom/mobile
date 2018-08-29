@@ -12,6 +12,9 @@ type PropsWithContext = {|
   +bookingId: number,
 |};
 
+export const getEticketPath = (bookingId: number) =>
+  `eTickets/${bookingId}.pdf`;
+
 const ETicketPdf = ({ ticketUrl, bookingId }: PropsWithContext) => {
   if (!ticketUrl) {
     return (
@@ -22,7 +25,7 @@ const ETicketPdf = ({ ticketUrl, bookingId }: PropsWithContext) => {
   }
 
   return (
-    <PdfViewAndStore fileName={`/eTickets/${bookingId}.pdf`} url={ticketUrl} />
+    <PdfViewAndStore fileName={getEticketPath(bookingId)} url={ticketUrl} />
   );
 };
 
