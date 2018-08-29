@@ -98,7 +98,10 @@ export { default as CancellablePromise } from './src/CancellablePromise';
 export { default as Color } from './src/Color';
 export { default as CurrencyFormatter } from './src/CurrencyFormatter';
 export { default as Device } from './src/Device';
-export { default as GeolocationContext } from './src/GeolocationContext';
+export {
+  default as GeolocationContext,
+  GetLocation,
+} from './src/GeolocationContext';
 export { default as GestureController } from './src/GestureController';
 export { default as LayoutAnimation } from './src/LayoutAnimation';
 export { default as Logger } from './src/Logger';
