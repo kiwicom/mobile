@@ -13,6 +13,7 @@ const vault = {
   AUTH_IOS_GOOGLE_CLIENTID: 'null',
   AUTH_KIWI_BACKEND: 'null',
   SENTRY_DSN: 'null',
+  API_KEY_GOOGLE_MAPS: 'null',
 };
 
 const envTemplate = `
@@ -44,6 +45,8 @@ AUTH_KIWI_BACKEND=${vault.AUTH_KIWI_BACKEND}
 # accordingly and fix all production issues.
 #
 SENTRY_DSN=${vault.SENTRY_DSN}
+
+API_KEY_GOOGLE_MAPS=${vault.API_KEY_GOOGLE_MAPS}
 `;
 
 log('Setting up ENV variables...');
