@@ -5,22 +5,31 @@ import { GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { PdfViewAndStore } from '@kiwicom/mobile-pdf';
 
-export const getPdfFilenameFromUrl = (url: string) => {
+import BookingDetailContext from '../../../context/BookingDetailContext';
+
+export const getPdfFilenameFromUrl = (url: string, bookingId: number) => {
   const filename = url.slice(url.lastIndexOf('/') + 1);
   const isPdf = filename.includes('.pdf');
   if (!isPdf) {
     return null;
   }
-  return filename.slice(0, filename.indexOf('.pdf'));
+  return `${filename.slice(
+    0,
+    filename.indexOf('.pdf'),
+  )}-bookingId:${bookingId}`;
 };
 
-type Props = {|
-  +boardingPassUrl: ?string,
+type PropsWithContext = {|
+  ...Props,
+  +bookingId: number,
 |};
 
-const BoardingPassPdf = ({ boardingPassUrl }: Props) => {
+export const BoardingPassPdf = ({
+  boardingPassUrl,
+  bookingId,
+}: PropsWithContext) => {
   if (boardingPassUrl) {
-    const filename = getPdfFilenameFromUrl(boardingPassUrl);
+    const filename = getPdfFilenameFromUrl(boardingPassUrl, bookingId);
 
     if (filename) {
       return (
@@ -38,4 +47,14 @@ const BoardingPassPdf = ({ boardingPassUrl }: Props) => {
   );
 };
 
-export default BoardingPassPdf;
+type Props = {|
+  +boardingPassUrl: ?string,
+|};
+
+export default function BoardingPassPdfWithContext(props: Props) {
+  return (
+    <BookingDetailContext.Consumer>
+      {({ bookingId }) => <BoardingPassPdf {...props} bookingId={bookingId} />}
+    </BookingDetailContext.Consumer>
+  );
+}
