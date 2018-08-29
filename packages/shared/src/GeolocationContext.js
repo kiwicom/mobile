@@ -1,6 +1,8 @@
 // @flow strict
 
 import * as React from 'react';
+import { Linking } from 'react-native';
+import { Alert } from '@kiwicom/mobile-localization';
 
 const defaultState = {
   lat: null,
@@ -13,7 +15,9 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
 });
 
 type Props = {|
-  children: React.Node,
+  +children: React.Node,
+  +failSilently?: boolean,
+  +onPressOK?: () => void,
 |};
 
 type State = {|
@@ -31,6 +35,31 @@ class Provider extends React.Component<Props, State> {
     this.updateGeolocation();
   };
 
+  openSettings = () => {
+    Linking.openURL('app-settings:');
+  };
+
+  alertOpenSettings = () => {
+    Alert.translatedAlert(
+      undefined,
+      {
+        id: 'mmb.trip_services.transportation.map.current_position_alert',
+      },
+      [
+        {
+          text: { id: 'mmb.alert.button.ok' },
+          onPress: this.props.onPressOK,
+          style: 'default',
+        },
+        {
+          text: { id: 'mmb.alert.button.settings' },
+          onPress: this.openSettings,
+          style: 'default',
+        },
+      ],
+    );
+  };
+
   updateGeolocation = () => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
@@ -41,9 +70,12 @@ class Provider extends React.Component<Props, State> {
         });
       },
       error => {
-        if (error.code === error.PERMISSION_DENIED) {
-          // TODO: Show alert to tell user to go to settings an allow us to access location
-          // Need alert with translations first
+        if (
+          this.props.failSilently != null &&
+          !this.props.failSilently &&
+          error.code === error.PERMISSION_DENIED
+        ) {
+          this.alertOpenSettings();
         }
         this.setState({ canGetUserLocation: false });
       },
@@ -61,3 +93,74 @@ class Provider extends React.Component<Props, State> {
 }
 
 export default { Consumer, Provider };
+
+type Location = {|
+  +latitude: number,
+  +longitude: number,
+|};
+
+type GetLocationProps = {|
+  +getLocation: boolean,
+  +dealWithLocation: (location: Location) => void,
+  +failSilently: boolean,
+  +onPressOK?: () => void,
+|};
+
+type GetLocationState = {|
+  getLocation: boolean,
+|};
+export class GetLocation extends React.Component<
+  GetLocationProps,
+  GetLocationState,
+> {
+  constructor(props: GetLocationProps) {
+    super(props);
+    this.state = {
+      getLocation: props.getLocation,
+    };
+  }
+
+  componentDidUpdate(prevProps: GetLocationProps, prevState: GetLocationState) {
+    if (prevState.getLocation !== this.props.getLocation) {
+      this.setState({
+        getLocation: this.props.getLocation,
+      });
+    }
+  }
+
+  onPress = () => {
+    this.setState({
+      getLocation: true,
+    });
+  };
+
+  unmountContext = () => {
+    this.setState({ getLocation: false });
+  };
+  render() {
+    if (!this.state.getLocation) {
+      return null;
+    }
+    return (
+      <Provider
+        failSilently={this.props.failSilently}
+        onPressOK={this.props.onPressOK}
+      >
+        <Consumer>
+          {({ lat, lng, canGetUserLocation }) => {
+            if (canGetUserLocation) {
+              lat != null &&
+                lng != null &&
+                this.props.dealWithLocation({
+                  latitude: lat,
+                  longitude: lng,
+                });
+            } else {
+              this.unmountContext();
+            }
+          }}
+        </Consumer>
+      </Provider>
+    );
+  }
+}

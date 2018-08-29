@@ -1,8 +1,9 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, Linking } from 'react-native';
+import { View } from 'react-native';
 import MapView from 'react-native-maps';
+import isEqual from 'react-fast-compare';
 import { HeaderBackButton } from 'react-navigation';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import {
@@ -12,14 +13,12 @@ import {
 } from '@kiwicom/mobile-navigation';
 import {
   Translation,
-  Alert,
   DeviceInfo,
   DateFormatter,
 } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import querystring from 'querystring';
 
-import { withGoogleMapsContext } from '../../../context/GoogleMapsContext';
 import MarkerLocationButton from './MarkerLocationButton';
 import CurrentPositionButton from './CurrentPositionButton';
 import AddressLocationLegend from './AddressLocationLegend';
@@ -29,9 +28,8 @@ import MarkerB from './MarkerB';
 type State = {|
   region: Region,
   markers: Markers,
-  destination: string,
   showUserLocation: boolean,
-  currentLocation: ?Region,
+  currentLocation: ?Coordinate,
 |};
 
 type Region = {|
@@ -82,7 +80,6 @@ export class TransportationMap extends React.Component<Props, State> {
         markerA: null,
         markerB: null,
       },
-      destination: '',
       showUserLocation: false,
       currentLocation: null,
     };
@@ -138,46 +135,15 @@ export class TransportationMap extends React.Component<Props, State> {
     }
   }
 
-  openLocationPicker = async () => {
-    const { currentLocation } = this.state;
-    let currentAddress;
+  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
+    const isPropsEqual = isEqual(nextProps, this.props);
+    const isStateEqual = isEqual(nextState, this.state);
 
-    if (currentLocation != null) {
-      const { latitude, longitude } = currentLocation;
-      currentAddress = await this.getFormattedAddress({
-        latitude,
-        longitude,
-      });
-    }
-
-    this.props.navigation.navigate('AddressPickerScreen', {
-      currentAddress,
-    });
+    return !isPropsEqual || !isStateEqual;
   };
 
-  openSettings = () => {
-    Linking.openURL('app-settings:');
-  };
-
-  alertOpenSettings = () => {
-    Alert.translatedAlert(
-      undefined,
-      {
-        id: 'mmb.trip_services.transportation.map.current_position_alert',
-      },
-      [
-        {
-          text: { id: 'mmb.alert.button.ok' },
-          undefined,
-          style: 'default',
-        },
-        {
-          text: { id: 'mmb.alert.button.settings' },
-          onPress: this.openSettings,
-          style: 'default',
-        },
-      ],
-    );
+  openLocationPicker = () => {
+    this.props.navigation.navigate('AddressPickerScreen');
   };
 
   onRegionChange = (region: Region) => {
@@ -243,7 +209,6 @@ export class TransportationMap extends React.Component<Props, State> {
 
   renderMarkerB = (e: NativeEvent) => {
     const { latitude, longitude } = e.nativeEvent.coordinate;
-    this.setDestination({ latitude, longitude });
     this.setState(state => ({
       markers: {
         ...state.markers,
@@ -255,76 +220,25 @@ export class TransportationMap extends React.Component<Props, State> {
     }));
   };
 
-  getFormattedAddress = async ({ latitude, longitude }: Coordinate) => {
-    const address = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${
-        this.props.googleMapsAPIKey
-      }`,
-    )
-      .then(res => res.json())
-      .then(json => json.results[0].address_components);
-
-    const city = (address.find(x => x.types.includes('locality')) || {})
-      .long_name;
-    const route = (address.find(x => x.types.includes('route')) || {})
-      .long_name;
-    const streetNumber = (
-      address.find(x => x.types.includes('street_number')) || {}
-    ).long_name;
-
-    const area = (
-      address.find(x => x.types.includes('administrative_area_level_1')) || {}
-    ).long_name;
-
-    const streetAddress =
-      route !== undefined && streetNumber !== undefined
-        ? route.concat(' ', streetNumber)
-        : route;
-
-    const formattedAddress = [city, streetAddress, area]
-      .filter(item => item !== undefined)
-      .join(', ');
-
-    return formattedAddress;
-  };
-
-  setDestination = async ({ latitude, longitude }: Coordinate) => {
-    const destination = await this.getFormattedAddress({ latitude, longitude });
-    this.setState({
-      destination,
-    });
-  };
-
-  showUserLocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const currentLocation = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta: 0.0375,
-          longitudeDelta: 0.0375,
-        };
-        this.setState({
-          currentLocation,
-          region: currentLocation,
-          showUserLocation: true,
-        });
+  showUserLocation = (currentLocation: Coordinate) => {
+    this.setState(state => ({
+      currentLocation,
+      region: {
+        ...state.region,
+        ...currentLocation,
       },
-      () => {
-        // TODO: Deal with Native Alert coming on top of this alert.
-        this.alertOpenSettings();
-      },
-    );
+      showUserLocation: true,
+    }));
   };
 
   render() {
-    const { destination, showUserLocation, markers } = this.state;
+    const { showUserLocation, markers } = this.state;
     const { markerA, markerB } = markers;
 
     return (
       <View style={styles.wrapper}>
         <MarkerLocationButton
-          destination={destination}
+          coordinate={markerB}
           onPress={this.openLocationPicker}
         />
         <View style={styles.wrapper}>
@@ -336,7 +250,7 @@ export class TransportationMap extends React.Component<Props, State> {
             scrollEnabled={true}
             showsUserLocation={showUserLocation}
             userLocationAnnotationTitle=""
-            style={styles.mapBottom}
+            style={styles.map}
           >
             <MarkerA coordinate={markerA} />
             <MarkerB coordinate={markerB} />
@@ -350,7 +264,7 @@ export class TransportationMap extends React.Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  mapBottom: {
+  map: {
     android: {
       bottom: -25,
     },
@@ -361,4 +275,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withGoogleMapsContext(TransportationMap);
+export default TransportationMap;
