@@ -25,7 +25,7 @@ const BoardingPassPdf = ({ boardingPassUrl }: Props) => {
     if (filename) {
       return (
         <PdfViewAndStore
-          fileName={`/boardingPasses/${filename}.pdf`}
+          fileName={`boardingPasses/${filename}.pdf`}
           url={boardingPassUrl}
         />
       );

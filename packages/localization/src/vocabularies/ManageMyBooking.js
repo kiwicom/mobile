@@ -87,6 +87,10 @@ export default {
   'mmb.tickets.e_ticket': 'E-Ticket',
   'mmb.tickets.not_available':
     'E-Ticket file is not available yet. Please try it later.',
+  'mmb.tickets.ticket_delete_button.confirm_delete':
+    'Are you sure you want to delete locally stored PDF files for this booking?',
+  'mmb.tickets.ticket_delete_button.delete_failed':
+    'Failed to delete locally stored files',
 
   // MMB Boarding Passes
   'mmb.boarding_passes.not_available':

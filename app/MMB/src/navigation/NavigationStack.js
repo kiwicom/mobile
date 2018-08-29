@@ -18,11 +18,12 @@ import AppleWalletScreen from './AppleWalletScreen';
 const Screens = {};
 Object.entries(MenuComponents).forEach(
   // $FlowIssue: https://github.com/facebook/flow/issues/2221
-  ([routeName, { screen, headerTitle }]) => {
+  ([routeName, { screen, headerTitle, headerRight }]) => {
     Screens[routeName] = {
       screen: withMappedProps(screen),
       navigationOptions: {
         headerTitle,
+        headerRight,
       },
     };
   },
