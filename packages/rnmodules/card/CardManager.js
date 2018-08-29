@@ -4,8 +4,8 @@ import { NativeModules } from 'react-native';
 
 type CardType = {
   cardholder: string,
-  expiryMonth: number,
-  expireYear: number,
+  expiryMonth: string,
+  expiryYear: string,
   number: string,
 };
 

@@ -1,12 +1,39 @@
 package com.skypicker.reactnative.nativemodules.card
 
+import android.content.Context
 import com.facebook.react.ReactPackage
-import com.facebook.react.bridge.NativeModule
-import com.facebook.react.bridge.ReactApplicationContext
+import com.facebook.react.bridge.*
 import com.facebook.react.uimanager.ViewManager
+import com.google.gson.Gson
 import java.util.*
 
-class RNCardManagerPackage() : ReactPackage {
+class RNCardManagerPackage(private val listener: CardCallback? = null) : ReactPackage {
+
+  private fun createMock(reactContext: ReactApplicationContext) = object : CardCallback {
+    override fun getCard(): Card? {
+      // Mock implementation
+      val prefs = reactContext.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+      val cardString = prefs.getString(RNCardManager.PREF_KEY, null)
+
+      val gson = Gson()
+      val card = if (cardString != null) gson.fromJson(cardString, Card::class.java) else null
+
+      if (card != null) {
+        return card
+      }
+
+      return null
+    }
+
+    override fun saveCard(card: Card) {
+      // Mock implementation
+      val gson = Gson()
+      val json = gson.toJson(card)
+      val prefs = reactContext.getSharedPreferences("prefs", Context.MODE_PRIVATE)
+
+      prefs.edit().putString(RNCardManager.PREF_KEY, json).apply()
+    }
+  }
 
   override fun createViewManagers(reactContext: ReactApplicationContext): List<ViewManager<*, *>> {
     return emptyList()
@@ -14,7 +41,7 @@ class RNCardManagerPackage() : ReactPackage {
 
   override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
     val modules = ArrayList<NativeModule>()
-    modules.add(RNCardManager(reactContext))
+    modules.add(RNCardManager(reactContext, listener ?: createMock(reactContext)))
     return modules
   }
 }

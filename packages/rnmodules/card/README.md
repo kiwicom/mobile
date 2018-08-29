@@ -7,7 +7,7 @@ This module allows to save card data and retrieve it afterwards.
 ### getCard
 
  ```js
-getCard(): Promise<Card> | null
+getCard(): Promise<Card | null>
 ```
 
 ### saveCard
@@ -22,7 +22,7 @@ saveCard(card: Card): void
 
 ```js
 cardholder: string,
-expiryMonth: number,
-expireYear: number,
+expiryMonth: string,
+expiryYear: string,
 number: string,
 ```
