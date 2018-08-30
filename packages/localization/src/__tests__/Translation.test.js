@@ -90,7 +90,7 @@ it('works with pass through translations and text transformations', () => {
 });
 
 it('does not call set state if promise is rejected', async () => {
-  let originalFunction = CancellableTranslation.cancellableTranslation;
+  const originalFunction = CancellableTranslation.cancellableTranslation;
   // $FlowExpectedError: Intentionally overwriting function to test outcome
   CancellableTranslation.cancellableTranslation = jest.fn(() => ({
     promise: new Promise((resolve, reject) => {

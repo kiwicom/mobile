@@ -1,10 +1,13 @@
 // @flow
 
 import { Alert as AlertNative } from 'react-native'; // eslint-disable-line no-restricted-imports
+import { translate } from '@kiwicom/rnmodules';
 
 import { type TranslationKeys } from './DefaultVocabulary';
-import { type TranslationPromise } from './CancellableTranslation';
-import { setTranslatedString, replaceValues } from './TranslationHelpers';
+import {
+  replaceValues,
+  getTranslation as prepareTranslation,
+} from './TranslationHelpers';
 
 export type Translation =
   | {|
@@ -37,12 +40,13 @@ type AlertButtonStyle = 'default' | 'cancel' | 'destructive';
 type AlertType = 'default' | 'plain-text' | 'secure-text' | 'login-password';
 
 const getTranslation = async (translation: ?Translation) => {
-  let translatePromise: TranslationPromise | null = null;
   if (translation && translation.id) {
-    const translatedTitle = await setTranslatedString(
+    const nativeKey = `mobile.${translation.id}`;
+    const translatedString = await translate(nativeKey);
+
+    const translatedTitle = prepareTranslation(
+      translatedString,
       translation.id,
-      translatePromise,
-      translatedString => translatedString,
     );
     if (translatedTitle) {
       return replaceValues(translatedTitle, translation.values);
@@ -64,7 +68,7 @@ export default class Alert extends AlertNative {
     const translatedTitleWithValues = await getTranslation(title);
     const translatedMessageWithValues = await getTranslation(message);
 
-    let translatedButtons: NativeAlertButtons = [];
+    const translatedButtons: NativeAlertButtons = [];
     if (buttons && buttons.length >= 1) {
       await Promise.all(
         buttons.map(async button => {
