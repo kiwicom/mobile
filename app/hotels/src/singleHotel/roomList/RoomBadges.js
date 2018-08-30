@@ -30,7 +30,7 @@ export const RoomBadges = (props: Props) => {
   );
   const isRefundable = idx(props.availableRoom, _ => _.isRefundable);
 
-  let badges = [];
+  const badges = [];
 
   if (isBreakfastIncluded) {
     badges.push(

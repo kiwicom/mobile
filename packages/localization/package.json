@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/rnmodules": "^0",
     "intl": "^1.2.5"
   },
   "devDependencies": {
