@@ -65,7 +65,7 @@ export class TicketDeleteButton extends React.Component<
   deleteFilesPromise = async () => {
     try {
       await RNFetchBlob.fs.unlink(this.getEticketPath());
-      await this.deleteBoardingPasses();
+      await RNFetchBlob.fs.unlink(this.getBoardingPassPath());
       this.setState({ hasLocalFiles: false });
     } catch (error) {
       Alert.translatedAlert(null, {
@@ -75,34 +75,12 @@ export class TicketDeleteButton extends React.Component<
     }
   };
 
-  deleteBoardingPasses = async () => {
-    try {
-      const boardingPasses = await RNFetchBlob.fs.ls(
-        this.getBoardingPassPath(),
-      );
-      boardingPasses.forEach(async boardingPass => {
-        if (boardingPass.includes(`-bookingId:${this.props.bookingId}`)) {
-          await RNFetchBlob.fs.unlink(
-            `${this.getBoardingPassPath()}/${boardingPass}`,
-          );
-        }
-      });
-    } catch (error) {
-      throw error;
-    }
-  };
-
   hasLocalFiles = async () => {
     const existsEticket = await RNFetchBlob.fs.exists(this.getEticketPath());
-    const existsBoardingPasses = await this.hasLocalBoardingPasses();
-    this.setState({ hasLocalFiles: existsEticket || existsBoardingPasses });
-  };
-
-  hasLocalBoardingPasses = async () => {
-    const boardingPasses = await RNFetchBlob.fs.ls(this.getBoardingPassPath());
-    return boardingPasses.some(file =>
-      file.includes(`-bookingId:${this.props.bookingId}`),
+    const existsBoardingPasses = await RNFetchBlob.fs.exists(
+      this.getBoardingPassPath(),
     );
+    this.setState({ hasLocalFiles: existsEticket || existsBoardingPasses });
   };
 
   getEticketPath = () => {
@@ -114,7 +92,7 @@ export class TicketDeleteButton extends React.Component<
 
   getBoardingPassPath = () => {
     const { DocumentDir } = RNFetchBlob.fs.dirs;
-    return `${DocumentDir}/boardingPasses`;
+    return `${DocumentDir}/boardingPasses/${this.props.bookingId}`;
   };
 
   render = () => {

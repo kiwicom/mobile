@@ -6,10 +6,14 @@ import BoardingPassesPdf from './BoardingPassPdf';
 
 type Props = {|
   +boardingPassUrl: ?string,
+  +flightNumber: string,
 |};
 
-const BoardingPassesPdfScreen = ({ boardingPassUrl }: Props) => (
-  <BoardingPassesPdf boardingPassUrl={boardingPassUrl} />
+const BoardingPassesPdfScreen = ({ boardingPassUrl, flightNumber }: Props) => (
+  <BoardingPassesPdf
+    boardingPassUrl={boardingPassUrl}
+    flightNumber={flightNumber}
+  />
 );
 
 export default BoardingPassesPdfScreen;
