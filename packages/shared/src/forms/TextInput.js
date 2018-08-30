@@ -18,6 +18,7 @@ type Props = {|
   +secureTextEntry?: boolean,
   +label?: React.Element<typeof Translation>,
   +labelStyle?: StylePropType,
+  +inputWrapperStyle?: StylePropType,
 |};
 
 type State = {|
@@ -53,7 +54,7 @@ export default class TextInput extends React.Component<Props, State> {
           {this.props.label}
         </Text>
       )}
-      <View style={styleSheet.wrapper}>
+      <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
         <OriginalTextInput
           underlineColorAndroid="transparent"
           autoCorrect={false}
