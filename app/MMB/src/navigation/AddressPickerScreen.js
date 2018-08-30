@@ -5,6 +5,8 @@ import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
 
+import AddressLocationInput from '../scenes/tripServices/transportation/AddressLocationInput';
+
 type Props = {|
   +navigation: NavigationType,
   +currentAddress: ?string,
@@ -16,6 +18,10 @@ export default class AddressPickerScreen extends React.Component<Props> {
       props.navigation.goBack();
     }
 
+    function todo() {
+      console.warn('todo');
+    }
+
     return {
       headerLeft: (
         <HeaderButton.CloseModal
@@ -25,13 +31,11 @@ export default class AddressPickerScreen extends React.Component<Props> {
           }
         />
       ),
-      headerTitle: (
-        <View>
-          <Translation passThrough="TODO" />
-        </View>
-      ),
+      headerTitle: <AddressLocationInput onChangeText={todo} />,
+      headerStyle: { paddingBottom: 5 },
     };
   };
+
   render() {
     return (
       <View>
