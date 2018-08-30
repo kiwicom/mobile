@@ -52,7 +52,7 @@ class TransportationMenuItem extends React.Component<Props, State> {
       const whitelabelURL =
         idx(relevantLocations, _ => _[0].whitelabelURL) || '';
 
-      let location = idx(relevantLocations, _ => _[0].location.location);
+      const location = idx(relevantLocations, _ => _[0].location.location);
 
       if (location != null) {
         this.openTransportationMap({ location, whitelabelURL });

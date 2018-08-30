@@ -22,7 +22,7 @@ export const getSearchQueryParams = (
   coordinates: Coordinates | null,
   cityId: ?string,
 ): Object => {
-  let params: Object = {
+  const params: Object = {
     ...search,
     checkin: sanitizeDate(search.checkin),
     checkout: sanitizeDate(search.checkout),

@@ -7,8 +7,11 @@ import { type TranslationKeys } from './DefaultVocabulary';
 import CaseTransform, {
   type SupportedTransformationsType,
 } from './transformations/CaseTransform';
-import { type TranslationPromise } from './CancellableTranslation';
-import { setTranslatedString, replaceValues } from './TranslationHelpers';
+import {
+  type TranslationPromise,
+  cancellableTranslation,
+} from './CancellableTranslation';
+import { getTranslation, replaceValues } from './TranslationHelpers';
 
 type CommonProps = {|
   testID?: string,
@@ -76,13 +79,22 @@ export default class Translation extends React.Component<Props, State> {
     }
   };
 
-  setTranslatedString = () => {
+  setTranslatedString = async () => {
     if (this.props.id) {
-      setTranslatedString(
-        this.props.id,
-        this.translatePromise,
-        translatedString => this.setState({ translatedString }),
-      );
+      const key = this.props.id;
+      const nativeKey = 'mobile.' + key;
+      try {
+        this.translatePromise = cancellableTranslation(nativeKey);
+        const translatedString = await this.translatePromise.promise;
+
+        this.setState({
+          translatedString: getTranslation(translatedString, key),
+        });
+
+        this.translatePromise = null;
+      } catch (err) {
+        this.translatePromise = null;
+      }
     }
   };
 

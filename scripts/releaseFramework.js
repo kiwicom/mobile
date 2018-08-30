@@ -14,7 +14,7 @@ const child_process = require('child_process');
 const fetch = require('node-fetch');
 const path = require('path');
 
-let version = child_process
+const version = child_process
   .execSync('git rev-parse --short HEAD')
   .toString()
   .trim();

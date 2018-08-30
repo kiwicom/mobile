@@ -46,7 +46,7 @@ export class LocationPicker extends React.Component<PropsWithContext, State> {
   };
 
   saveRecentSearches = (cityId: string, cityName: string) => {
-    let recentSearches = this.props.storageValue;
+    const recentSearches = this.props.storageValue;
 
     if (recentSearches.find(item => item.id === cityId) === undefined) {
       recentSearches.unshift({ id: cityId, name: cityName });
