@@ -5,7 +5,7 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 
 const renderer = new ShallowRenderer();
 
-import { getPdfFilenameFromUrl, BoardingPassPdf } from '../BoardingPassPdf';
+import { BoardingPassPdf } from '../BoardingPassPdf';
 
 jest.mock('react-native-fetch-blob', () => {
   return {
@@ -24,43 +24,71 @@ jest.mock('react-native-fetch-blob', () => {
   };
 });
 
-const bookingId = 123456;
+const getWrapper = (
+  bookingId: number = 123456,
+  BoardingPassUrl: string = 'https://somedomain.com/folder/subfolder/file.pdf',
+  flightNumber: string = '123_321',
+) =>
+  renderer.render(
+    <BoardingPassPdf
+      bookingId={bookingId}
+      boardingPassUrl={BoardingPassUrl}
+      flightNumber={flightNumber}
+    />,
+  );
 
 describe('BoardingPassPdf', () => {
   it('renders', () => {
-    const wrapper = renderer.render(
-      <BoardingPassPdf
-        bookingId={bookingId}
-        boardingPassUrl="https://somedomain.com/folder/subfolder/file.pdf"
-      />,
-    );
+    const wrapper = getWrapper();
 
-    expect(wrapper.props.fileName).toBe(
-      'boardingPasses/file-bookingId:123456.pdf',
-    );
-  });
-});
-
-describe('getPdfFilenameFromUrl', () => {
-  it('should return correct filename given the URL of a pdf', () => {
-    const url =
-      'https://somedomainname.com/numbers1234/Vienna-Palma%2CMajorca_1234567890_5bafa3bd88fbf8e8c90a0a.pdf?v=12345676';
-
-    expect(getPdfFilenameFromUrl(url, bookingId)).toBe(
-      'Vienna-Palma%2CMajorca_1234567890_5bafa3bd88fbf8e8c90a0a-bookingId:123456',
-    );
-    const pdf = 'somePdf.pdf';
-    expect(getPdfFilenameFromUrl(pdf, bookingId)).toBe(
-      'somePdf-bookingId:123456',
-    );
+    expect(wrapper).toMatchInlineSnapshot(`
+<PdfViewAndStore
+  fileName="boardingPasses/123456/123_321.pdf"
+  overwriteExisting={false}
+  url="https://somedomain.com/folder/subfolder/file.pdf"
+/>
+`);
   });
 
-  it('should return null if given a URL not containing .pdf', () => {
-    const url =
-      'https://somedomainname.com/numbers1234/Vienna-Palma%2CMajorca_1234567890_5bafa3bd88fbf8e8c90a0a.doc?v=12345676';
+  it('show error if bookingId is missing', () => {
+    // $FlowExpectedError: Intentionally testing what happens with null value
+    const wrapper = getWrapper(null);
+    expect(wrapper).toMatchInlineSnapshot(`
+<GeneralError
+  errorMessage={
+    <Translation
+      id="mmb.boarding_passes.not_available"
+    />
+  }
+/>
+`);
+  });
 
-    expect(getPdfFilenameFromUrl(url, bookingId)).toBe(null);
-    const pdf = 'someNonPdf.xls';
-    expect(getPdfFilenameFromUrl(pdf, bookingId)).toBe(null);
+  it('show error if boardingPassUrl is missing', () => {
+    // $FlowExpectedError: Intentionally testing what happens with null value
+    const wrapper = getWrapper(123, null);
+    expect(wrapper).toMatchInlineSnapshot(`
+<GeneralError
+  errorMessage={
+    <Translation
+      id="mmb.boarding_passes.not_available"
+    />
+  }
+/>
+`);
+  });
+
+  it('show error if flightNumber is missing', () => {
+    // $FlowExpectedError: Intentionally testing what happens with null value
+    const wrapper = getWrapper(123, 'test', null);
+    expect(wrapper).toMatchInlineSnapshot(`
+<GeneralError
+  errorMessage={
+    <Translation
+      id="mmb.boarding_passes.not_available"
+    />
+  }
+/>
+`);
   });
 });

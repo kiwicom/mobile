@@ -34,6 +34,7 @@ class DownloadBoardingPassTimelineEvent extends React.Component<Props> {
         this.props,
         _ => _.data.leg.boardingPass.boardingPassUrl,
       ),
+      flightNumber: idx(this.props, _ => _.data.leg.boardingPass.flightNumber),
     });
   };
 

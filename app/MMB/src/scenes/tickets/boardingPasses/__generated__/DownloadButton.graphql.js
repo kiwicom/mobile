@@ -12,6 +12,7 @@ type BoardingPassInformation$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type DownloadButton$ref: FragmentReference;
 export type DownloadButton = {|
+  +flightNumber: ?string,
   +boardingPassUrl: ?string,
   +$fragmentRefs: BoardingPassInformation$ref,
   +$refType: DownloadButton$ref,
@@ -29,6 +30,13 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
+      "name": "flightNumber",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
       "name": "boardingPassUrl",
       "args": null,
       "storageKey": null
@@ -41,5 +49,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2083b291900c2bf503115ebe519df49f';
+(node/*: any*/).hash = '377dd4859b8f63343575db0175eb213c';
 module.exports = node;

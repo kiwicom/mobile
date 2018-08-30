@@ -7,18 +7,6 @@ import { PdfViewAndStore } from '@kiwicom/mobile-pdf';
 
 import BookingDetailContext from '../../../context/BookingDetailContext';
 
-export const getPdfFilenameFromUrl = (url: string, bookingId: number) => {
-  const filename = url.slice(url.lastIndexOf('/') + 1);
-  const isPdf = filename.includes('.pdf');
-  if (!isPdf) {
-    return null;
-  }
-  return `${filename.slice(
-    0,
-    filename.indexOf('.pdf'),
-  )}-bookingId:${bookingId}`;
-};
-
 type PropsWithContext = {|
   ...Props,
   +bookingId: number,
@@ -27,19 +15,17 @@ type PropsWithContext = {|
 export const BoardingPassPdf = ({
   boardingPassUrl,
   bookingId,
+  flightNumber,
 }: PropsWithContext) => {
-  if (boardingPassUrl) {
-    const filename = getPdfFilenameFromUrl(boardingPassUrl, bookingId);
-
-    if (filename) {
-      return (
-        <PdfViewAndStore
-          fileName={`boardingPasses/${filename}.pdf`}
-          url={boardingPassUrl}
-        />
-      );
-    }
+  if (bookingId && flightNumber && boardingPassUrl) {
+    return (
+      <PdfViewAndStore
+        fileName={`boardingPasses/${bookingId}/${flightNumber}.pdf`}
+        url={boardingPassUrl}
+      />
+    );
   }
+
   return (
     <GeneralError
       errorMessage={<Translation id="mmb.boarding_passes.not_available" />}
@@ -49,6 +35,7 @@ export const BoardingPassPdf = ({
 
 type Props = {|
   +boardingPassUrl: ?string,
+  +flightNumber: string,
 |};
 
 export default function BoardingPassPdfWithContext(props: Props) {
