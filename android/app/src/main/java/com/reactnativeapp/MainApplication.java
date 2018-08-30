@@ -11,6 +11,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactlibrary.RNTooltipsPackage;
+import com.skypicker.reactnative.nativemodules.card.RNCardManagerPackage;
 import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage;
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage;
 import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage;
@@ -45,7 +46,8 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
                     new RNLoggingPackage(),
                     new RNTranslationManagerPackage(),
                     new RNCurrencyManagerPackage(),
-                    new RNDeviceInfoPackage()
+                    new RNDeviceInfoPackage(),
+                    new RNCardManagerPackage()
             );
         }
 
