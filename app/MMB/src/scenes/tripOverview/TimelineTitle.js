@@ -12,6 +12,7 @@ import {
 import { StyleSheet, Text, Touchable, TextIcon } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import memoize from 'memoize-one';
 
 import TripOverviewContext from './TripOverviewContext';
 import type { TimelineTitle as TimelineTitleDataType } from './__generated__/TimelineTitle.graphql';
@@ -29,38 +30,25 @@ type PropsWithContext = {|
   +warnings: ?(Warning[]),
 |};
 
-type State = {|
-  warning: ?Warning,
-|};
-
-class TimelineTitle extends React.Component<PropsWithContext, State> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      warning: null,
-    };
-  }
-  componentDidUpdate(prevProps) {
-    const { warnings } = this.props;
-    if (prevProps.warnings && warnings) {
-      if (prevProps.warnings.length !== warnings.length) {
-        const data = this.props.data;
-        const localTime = idx(data, _ => _.localTime);
-        const iataCode = idx(data, _ => _.airport.locationId);
-
-        const warning = warnings.find(
-          _warning =>
-            _warning.timelineTitle.localTime == localTime &&
-            _warning.timelineTitle.iataCode == iataCode,
-        );
-        this.setState({ warning });
-      }
-    }
-  }
+class TimelineTitle extends React.Component<PropsWithContext> {
+  getWarning = memoize(
+    (warnings: $ReadOnlyArray<Warning>, localTime: ?Date, iataCode: ?string) =>
+      warnings.find(
+        _warning =>
+          _warning.timelineTitle.localTime == localTime &&
+          _warning.timelineTitle.iataCode == iataCode,
+      ),
+  );
 
   onPress = () => {
-    if (this.state.warning) {
-      Alert.translatedAlert(undefined, this.state.warning.text);
+    const data = this.props.data;
+    const localTime = idx(data, _ => _.localTime);
+    const iataCode = idx(data, _ => _.airport.locationId);
+    const warnings = idx(this.props, _ => _.warnings) || [];
+
+    const warning = this.getWarning(warnings, localTime, iataCode);
+    if (warning) {
+      Alert.translatedAlert(undefined, warning.text);
     }
   };
 
@@ -69,7 +57,10 @@ class TimelineTitle extends React.Component<PropsWithContext, State> {
     const localTime = idx(data, _ => _.localTime);
     const cityName = idx(data, _ => _.airport.city.name);
     const iataCode = idx(data, _ => _.airport.locationId);
-    const warningStyle = this.state.warning ? styleSheet.warningStyle : null;
+    const warnings = idx(this.props, _ => _.warnings) || [];
+    const warning = this.getWarning(warnings, localTime, iataCode);
+
+    const warningStyle = warning != null ? styleSheet.warningStyle : null;
     return (
       <View style={styleSheet.row}>
         <View style={styleSheet.dateTime}>
@@ -90,7 +81,7 @@ class TimelineTitle extends React.Component<PropsWithContext, State> {
           )}
         </View>
 
-        <Touchable onPress={this.onPress} disabled={!this.state.warning}>
+        <Touchable onPress={this.onPress} disabled={warning == null}>
           <View style={styleSheet.warningRow}>
             <Translation passThrough={cityName} />
             <Translation passThrough=" " />
@@ -98,9 +89,9 @@ class TimelineTitle extends React.Component<PropsWithContext, State> {
               <Translation passThrough={iataCode} />
             </Text>
             <Translation passThrough=" " />
-            {this.state.warning ? (
+            {warning != null && (
               <TextIcon code="4" style={styleSheet.warningStyle} />
-            ) : null}
+            )}
           </View>
         </Touchable>
       </View>
