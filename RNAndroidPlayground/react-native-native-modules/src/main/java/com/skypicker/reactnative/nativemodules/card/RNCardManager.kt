@@ -8,10 +8,6 @@ class RNCardManager(
 ) :
   ReactContextBaseJavaModule(reactContext) {
 
-  companion object {
-    const val PREF_KEY = "PREFS_SAVED_CARD"
-  }
-
   private object Constant {
     const val TAG = "RNCardManager"
   }

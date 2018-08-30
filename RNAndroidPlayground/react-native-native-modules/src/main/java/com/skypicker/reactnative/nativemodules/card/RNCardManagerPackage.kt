@@ -10,10 +10,12 @@ import java.util.*
 class RNCardManagerPackage(private val listener: CardCallback? = null) : ReactPackage {
 
   private fun createMock(reactContext: ReactApplicationContext) = object : CardCallback {
+    val PREF_KEY = "PREFS_SAVED_CARD"
+
     override fun getCard(): Card? {
       // Mock implementation
       val prefs = reactContext.getSharedPreferences("prefs", Context.MODE_PRIVATE)
-      val cardString = prefs.getString(RNCardManager.PREF_KEY, null)
+      val cardString = prefs.getString(PREF_KEY, null)
 
       val gson = Gson()
       val card = if (cardString != null) gson.fromJson(cardString, Card::class.java) else null
@@ -31,7 +33,7 @@ class RNCardManagerPackage(private val listener: CardCallback? = null) : ReactPa
       val json = gson.toJson(card)
       val prefs = reactContext.getSharedPreferences("prefs", Context.MODE_PRIVATE)
 
-      prefs.edit().putString(RNCardManager.PREF_KEY, json).apply()
+      prefs.edit().putString(PREF_KEY, json).apply()
     }
   }
 
