@@ -4,10 +4,13 @@ exports[`renders 1`] = `
 <React.Fragment>
   <Component
     style={
-      Object {
-        "flexDirection": "row",
-        "height": 47,
-      }
+      Array [
+        Object {
+          "flexDirection": "row",
+          "height": 47,
+        },
+        undefined,
+      ]
     }
   >
     <TextInput
@@ -39,10 +42,13 @@ exports[`renders with default value 1`] = `
 <React.Fragment>
   <Component
     style={
-      Object {
-        "flexDirection": "row",
-        "height": 47,
-      }
+      Array [
+        Object {
+          "flexDirection": "row",
+          "height": 47,
+        },
+        undefined,
+      ]
     }
   >
     <TextInput
@@ -89,10 +95,13 @@ exports[`renders with label 1`] = `
   </Text>
   <Component
     style={
-      Object {
-        "flexDirection": "row",
-        "height": 47,
-      }
+      Array [
+        Object {
+          "flexDirection": "row",
+          "height": 47,
+        },
+        undefined,
+      ]
     }
   >
     <TextInput
@@ -130,10 +139,13 @@ exports[`renders with placeholder 1`] = `
 <React.Fragment>
   <Component
     style={
-      Object {
-        "flexDirection": "row",
-        "height": 47,
-      }
+      Array [
+        Object {
+          "flexDirection": "row",
+          "height": 47,
+        },
+        undefined,
+      ]
     }
   >
     <TextInput
