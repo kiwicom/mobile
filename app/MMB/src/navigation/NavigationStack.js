@@ -1,5 +1,6 @@
 // @flow
 
+import * as React from 'react';
 import {
   StackNavigator,
   StackNavigatorOptions,
@@ -24,14 +25,16 @@ Object.entries(MenuComponents).forEach(
   ([routeName, { screen, headerTitle, headerRight, headerStyle }]) => {
     Screens[routeName] = {
       screen: withMappedProps(screen),
-      navigationOptions: {
+      navigationOptions: (props: Object) => ({
         headerTitle,
-        headerRight,
+        headerRight:
+          headerRight == null ? null : React.cloneElement(headerRight, props),
         headerStyle: {
+          ...StackNavigatorOptions.navigationOptions.headerStyle,
           ...headerStyle,
           backgroundColor: defaultTokens.paletteWhite,
         },
-      },
+      }),
     };
   },
 );

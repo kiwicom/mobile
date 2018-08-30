@@ -4,7 +4,7 @@ import * as React from 'react';
 import Share from 'react-native-share';
 import { documentDir } from '@kiwicom/mobile-assets';
 
-import ETicketPdf from './ETicketPdf';
+import ETicketPdf, { getEticketPath } from './ETicketPdf';
 import ShareButton from '../../../components/ShareButton';
 import BookingDetailContext from '../../../context/BookingDetailContext';
 
@@ -14,14 +14,25 @@ type ShareButtonProps = {|
 
 class ETicketShareButton extends React.Component<ShareButtonProps> {
   onPress = () => {
-    const eTicketPath = `${documentDir}/eTickets/${this.props.bookingId}.pdf`;
-    Share.open({ url: eTicketPath });
+    this.sharePromise();
+  };
+
+  sharePromise = async () => {
+    try {
+      const eTicketPath = `${documentDir}/${getEticketPath(
+        this.props.bookingId,
+      )}`;
+      await Share.open({ url: eTicketPath });
+    } catch (err) {
+      // No worries, user just canceled share
+      return;
+    }
   };
 
   render = () => <ShareButton onPress={this.onPress} />;
 }
 
-function ShareButtonWithContext() {
+export function ShareButtonWithContext() {
   return (
     <BookingDetailContext.Consumer>
       {({ bookingId }) => <ETicketShareButton bookingId={bookingId} />}
@@ -36,9 +47,5 @@ type Props = {|
 const ETicketPdfScreen = ({ ticketUrl }: Props) => (
   <ETicketPdf ticketUrl={ticketUrl} />
 );
-
-ETicketPdfScreen.navigationOptions = () => ({
-  headerRight: <ShareButtonWithContext />,
-});
 
 export default ETicketPdfScreen;
