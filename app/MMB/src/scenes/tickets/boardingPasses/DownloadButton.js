@@ -23,6 +23,7 @@ class DownloadButton extends React.Component<Props> {
   navigateToBoardingPass = () => {
     this.props.navigation.navigate('mmb.tickets.boarding_pass', {
       boardingPassUrl: idx(this.props, _ => _.data.boardingPassUrl),
+      flightNumber: idx(this.props, _ => _.data.flightNumber),
     });
   };
 
@@ -49,6 +50,7 @@ export default createFragmentContainer(
   withNavigation(DownloadButton),
   graphql`
     fragment DownloadButton on BoardingPass {
+      flightNumber
       boardingPassUrl
       ...BoardingPassInformation
     }
