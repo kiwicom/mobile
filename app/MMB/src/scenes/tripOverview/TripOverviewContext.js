@@ -3,10 +3,26 @@
 import * as React from 'react';
 import { type AlertTranslationType } from '@kiwicom/mobile-localization';
 
-const { Consumer, Provider: ContextProvider } = React.createContext();
+const defaultState = {
+  warnings: [],
+  type: '%other',
+  actions: {
+    addWarningData: () => {},
+  },
+};
+const { Consumer, Provider: ContextProvider } = React.createContext(
+  defaultState,
+);
+
+export type BookingType =
+  | 'BookingReturn'
+  | 'BookingOneWay'
+  | 'BookingMulticity'
+  | '%other';
 
 type Props = {|
   +children: React.Node,
+  +type: BookingType,
 |};
 
 type TimelineTitle = {|
@@ -18,6 +34,7 @@ type Warning = {| +text: AlertTranslationType, +timelineTitle: TimelineTitle |};
 
 type State = {|
   warnings: Warning[],
+  +type: BookingType,
   +actions: {|
     +addWarningData: (warning: Warning) => void,
   |},
@@ -26,8 +43,10 @@ type State = {|
 class Provider extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
     this.state = {
       warnings: [],
+      type: props.type,
       actions: {
         addWarningData: this.addWarningData,
       },

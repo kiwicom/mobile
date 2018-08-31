@@ -12,6 +12,7 @@ import type { Duration as DurationType } from './__generated__/Duration.graphql'
 
 type Props = {|
   +data: DurationType,
+  +showIcon: boolean,
 |};
 
 export function Duration(props: Props) {
@@ -21,7 +22,7 @@ export function Duration(props: Props) {
 
   return (
     <View style={styleSheet.row}>
-      <TextIcon code="e" style={styleSheet.durationText} />
+      {props.showIcon && <TextIcon code="e" style={styleSheet.durationText} />}
       <Text style={styleSheet.durationText}>
         <Translation passThrough=" " />
         <Translation passThrough={hours} />
@@ -33,6 +34,10 @@ export function Duration(props: Props) {
     </View>
   );
 }
+
+Duration.defaultProps = {
+  showIcon: true,
+};
 
 Duration.separateHours = (durationInMinutes: number) => {
   let minutes = durationInMinutes;

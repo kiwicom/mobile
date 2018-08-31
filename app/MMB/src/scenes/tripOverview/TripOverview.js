@@ -19,7 +19,7 @@ function TripOverview(props: Props) {
   const type = props.data.__typename;
   return (
     <ScrollView>
-      <TripOverviewContext.Provider>
+      <TripOverviewContext.Provider type={type}>
         <SimpleCard style={styleSheet.simpleCard}>
           {type === 'BookingOneWay' && <OneWayTimeline data={props.data} />}
           {type === 'BookingReturn' && <ReturnTimeline data={props.data} />}
