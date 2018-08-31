@@ -35,4 +35,8 @@ Pod::Spec.new do |s|
   s.subspec "RNAppleWallet" do |ss|
     ss.source_files   = 'RNAppleWallet/RNAppleWallet/*.{h,m}'
   end
+  
+  s.subspec "RNCardManager" do |ss|
+    ss.source_files   = 'RNCardManager/RNCardManager/*.{h,m}'
+  end
 end
