@@ -9,6 +9,7 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type TimelineTrip$ref = any;
+type TripTitle$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Timeline$ref: FragmentReference;
 export type Timeline = $ReadOnlyArray<{|
@@ -33,7 +34,7 @@ export type Timeline = $ReadOnlyArray<{|
   +legs: ?$ReadOnlyArray<?{|
     +id: string
   |}>,
-  +$fragmentRefs: TimelineTrip$ref,
+  +$fragmentRefs: TripTitle$ref & TimelineTrip$ref,
   +$refType: Timeline$ref,
 |}>;
 */
@@ -95,6 +96,11 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "FragmentSpread",
+      "name": "TripTitle",
+      "args": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "departure",
@@ -141,5 +147,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '5085dc3ff02e8ee565c47b53d18d8e6c';
+(node/*: any*/).hash = '78f60992001128d5a426dc9e3d77ce14';
 module.exports = node;
