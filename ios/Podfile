@@ -40,7 +40,8 @@ def react_native_modules()
     'RNTranslationManager',
     'RNCurrencyManager',
     'RNDeviceInfo',
-    'RNAppleWallet'
+    'RNAppleWallet',
+    'RNCardManager'
   ]
 end
 
@@ -62,5 +63,4 @@ post_install do |installer|
       end
     end
   end
-
 end
