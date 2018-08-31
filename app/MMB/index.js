@@ -7,6 +7,7 @@ import {
   Dimensions,
   WithNativeNavigation,
   type DimensionType,
+  GeolocationContext,
 } from '@kiwicom/mobile-shared';
 
 import NavigationStack from './src/navigation/NavigationStack';
@@ -53,11 +54,13 @@ class ManageMyBookingPackage extends React.Component<Props> {
                     <GoogleMapsContext.Provider
                       googleMapsAPIKey={this.props.googleMapsAPIKey}
                     >
-                      <NavigationStack
-                        onNavigationStateChange={
-                          this.props.onNavigationStateChange
-                        }
-                      />
+                      <GeolocationContext.Provider>
+                        <NavigationStack
+                          onNavigationStateChange={
+                            this.props.onNavigationStateChange
+                          }
+                        />
+                      </GeolocationContext.Provider>
                     </GoogleMapsContext.Provider>
                   </SplitNavigationContext.Provider>
                 </HotelsContext.Provider>

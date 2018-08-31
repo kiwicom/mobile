@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
-import isEqual from 'react-fast-compare';
 import { Translation } from '@kiwicom/mobile-localization';
 import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
 import {
@@ -16,12 +15,20 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import FormattedAddress from '../scenes/tripServices/transportation/FormattedAddress';
 import AddressLocationInput from '../scenes/tripServices/transportation/AddressLocationInput';
 
+type Coordinate = {|
+  +latitude: number,
+  +longitude: number,
+|};
+
 type Props = {|
   +navigation: NavigationType,
   +lat: number | null,
   +lng: number | null,
   +canGetUserLocation: boolean,
-  +updateGeolocation: (failSilently: boolean) => void,
+  +updateGeolocation: (
+    dealWithLocation?: (coordinate: Coordinate) => void,
+    onError?: () => void,
+  ) => void,
 |};
 
 export class AddressPickerScreen extends React.Component<Props> {
@@ -49,14 +56,8 @@ export class AddressPickerScreen extends React.Component<Props> {
   };
 
   componentDidMount() {
-    this.props.updateGeolocation(true);
+    this.props.updateGeolocation(() => {}, () => {});
   }
-
-  shouldComponentUpdate = (nextProps: Props) => {
-    const isPropsEqual = isEqual(nextProps, this.props);
-
-    return !isPropsEqual;
-  };
 
   render() {
     let currentLocation = null;
