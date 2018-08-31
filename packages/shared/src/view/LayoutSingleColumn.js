@@ -9,6 +9,7 @@ import Layout from './Layout';
 
 type Props = {|
   +children: React.Node,
+  +testID?: string,
 |};
 
 /**
@@ -25,7 +26,9 @@ export default function LayoutSingleColumn(props: Props) {
   return (
     <Layout>
       <View style={styleSheet.wrapper}>
-        <View style={innerStyle}>{props.children}</View>
+        <View style={innerStyle} testID={props.testID}>
+          {props.children}
+        </View>
       </View>
     </Layout>
   );

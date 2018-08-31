@@ -8,6 +8,7 @@ module.exports = {
     es6: true,
     node: true,
     jest: true,
+    jasmine: true,
   },
   root: true, // stop ESLint from looking for a configuration file in parent folders
   parser: 'babel-eslint',
@@ -24,6 +25,7 @@ module.exports = {
     'react',
     'react-native',
     'flowtype',
+    'detox',
   ],
   extends: [
     'eslint:recommended',
