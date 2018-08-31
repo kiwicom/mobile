@@ -11,7 +11,7 @@ type Props = {|
 |};
 
 function MulticityTimeline(props: Props) {
-  return <Timeline data={props.data.trips} type="MULTICITY" />;
+  return <Timeline data={props.data.trips} />;
 }
 
 export default createFragmentContainer(

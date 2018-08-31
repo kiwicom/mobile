@@ -11,9 +11,7 @@ type Props = {|
 |};
 
 function ReturnTimeline(props: Props) {
-  return (
-    <Timeline data={[props.data.outbound, props.data.inbound]} type="RETURN" />
-  );
+  return <Timeline data={[props.data.outbound, props.data.inbound]} />;
 }
 
 export default createFragmentContainer(

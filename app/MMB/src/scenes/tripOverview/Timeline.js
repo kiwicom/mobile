@@ -1,13 +1,16 @@
 // @flow strict
 
 import * as React from 'react';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { type AlertTranslationType } from '@kiwicom/mobile-localization';
 import idx from 'idx';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 
-import TripOverviewContext from './TripOverviewContext';
+import TripOverviewContext, { type BookingType } from './TripOverviewContext';
 import type { Timeline as TimelineDataType } from './__generated__/Timeline.graphql';
 import TimelineTrip from './TimelineTrip';
+import TripTitle from './tripTitle/TripTitle';
 
 type Warning = {|
   +text: AlertTranslationType,
@@ -19,7 +22,7 @@ type Warning = {|
 
 type PropsWithContext = {|
   +data: TimelineDataType,
-  +type: 'MULTICITY' | 'RETURN' | 'ONEWAY',
+  +type: BookingType,
   +warnings: Warning[],
   +actions: {
     +addWarningData: (warning: Warning) => void,
@@ -95,7 +98,7 @@ class Timeline extends React.Component<PropsWithContext> {
     trips.forEach((trip, index) => {
       this.departureDifferentFromPreviousArrival(trip, index);
     });
-    if (trips.length > 1 && this.props.type === 'RETURN') {
+    if (trips.length > 1 && this.props.type === 'BookingReturn') {
       this.lastArrivalDifferentFromFirstDeparture();
     }
   }
@@ -111,11 +114,12 @@ class Timeline extends React.Component<PropsWithContext> {
           const legsCount = legsCounted;
           legsCounted += legs.length;
           return (
-            <TimelineTrip
-              key={`trip-${index}`}
-              data={trip}
-              legsCounted={legsCount}
-            />
+            <React.Fragment key={`trip-${index}`}>
+              <View style={styles.tripTitle}>
+                <TripTitle data={trip} />
+              </View>
+              <TimelineTrip data={trip} legsCounted={legsCount} />
+            </React.Fragment>
           );
         })}
       </React.Fragment>
@@ -125,7 +129,6 @@ class Timeline extends React.Component<PropsWithContext> {
 
 type Props = {|
   +data: TimelineDataType,
-  +type: 'MULTICITY' | 'RETURN' | 'ONEWAY',
 |};
 
 function TimelineWithContext(props: Props) {
@@ -140,6 +143,7 @@ export default createFragmentContainer(
   TimelineWithContext,
   graphql`
     fragment Timeline on Trip @relay(plural: true) {
+      ...TripTitle
       departure {
         localTime
         airport {
@@ -165,3 +169,9 @@ export default createFragmentContainer(
     }
   `,
 );
+
+const styles = StyleSheet.create({
+  tripTitle: {
+    marginBottom: 15,
+  },
+});
