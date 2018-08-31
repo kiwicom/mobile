@@ -34,20 +34,17 @@ export class GuestsModalScreen extends React.Component<
   PropsWithContext,
   State,
 > {
-  state = {
-    guests: {
-      adultsCount: 0,
-      children: [],
-    },
-    isMissingAge: false,
-  };
+  constructor(props: PropsWithContext) {
+    super(props);
 
-  componentDidMount = () => {
-    this.setState({
-      guests: ((this.props.guests: any): UnsavedRoomConfigurationType),
-    });
+    this.state = {
+      guests: (props.guests: any),
+      isMissingAge: false,
+    };
+  }
+  componentDidMount() {
     this.props.navigation.setParams({ onSave: this.onSave });
-  };
+  }
 
   isMissingAge = (children: ChildAge[]) => {
     return children.some(child => child.age === null);

@@ -18,19 +18,19 @@ type State = {|
 |};
 
 export default class DatePicker extends React.Component<Props, State> {
-  state = {
-    isPickerOpen: false,
-    date: new Date(),
-  };
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      isPickerOpen: false,
+      date: props.date || DateUtils.getUTCToday(),
+    };
+  }
 
   static getDerivedStateFromProps = ({ date }: Props) => ({ date });
 
   static defaultProps = {
     disabled: false,
-  };
-
-  componentDidMount = () => {
-    this.setState({ date: this.props.date || DateUtils.getUTCToday() });
   };
 
   togglePopup = () => {
