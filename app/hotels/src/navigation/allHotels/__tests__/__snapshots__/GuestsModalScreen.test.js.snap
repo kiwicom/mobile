@@ -4,7 +4,7 @@ exports[`GuestsModalScreen Renders correctly 1`] = `
 <GuestsModal
   guests={
     Object {
-      "adultsCount": 0,
+      "adultsCount": 3,
       "children": Array [],
     }
   }
