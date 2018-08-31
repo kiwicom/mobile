@@ -15,6 +15,11 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
   ...defaultState,
 });
 
+type Coordinate = {|
+  +latitude: number,
+  +longitude: number,
+|};
+
 type Props = {|
   +children: React.Node,
   +shouldNotUpdateGeolocationComponentDidMount?: boolean,
@@ -25,7 +30,10 @@ type State = {|
   lng: number | null,
   canGetUserLocation: boolean,
   actions: {|
-    +updateGeolocation: (failSilently: boolean) => void,
+    +updateGeolocation: (
+      dealWithLocation?: (coordinate: Coordinate) => void,
+      onError?: () => void,
+    ) => void,
   |},
 |};
 
@@ -41,12 +49,7 @@ class Provider extends React.Component<Props, State> {
   }
 
   componentDidMount = () => {
-    const {
-      shouldNotUpdateGeolocationComponentDidMount: dontUpdateGeolocation,
-    } = this.props;
-    if (dontUpdateGeolocation != null) {
-      !dontUpdateGeolocation && this.updateGeolocation(false);
-    }
+    this.updateGeolocation(() => {}, () => {});
   };
 
   openSettings = () => {
@@ -74,9 +77,13 @@ class Provider extends React.Component<Props, State> {
     );
   };
 
-  updateGeolocation = (failSilently: boolean) => {
+  updateGeolocation = (
+    dealWithLocation?: (coordinate: Coordinate) => void = () => {},
+    onError?: () => void = this.alertOpenSettings,
+  ) => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
+        dealWithLocation({ latitude, longitude });
         this.setState({
           lat: latitude,
           lng: longitude,
@@ -84,8 +91,8 @@ class Provider extends React.Component<Props, State> {
         });
       },
       error => {
-        if (!failSilently && error.code === error.PERMISSION_DENIED) {
-          this.alertOpenSettings();
+        if (error.code === error.PERMISSION_DENIED) {
+          onError();
         }
         this.setState({ canGetUserLocation: false });
       },
@@ -107,13 +114,11 @@ export default { Consumer, Provider };
 export const withGeolocationContext = (Component: React.ElementType) => {
   const withGeolocationContext = (props: {}) => {
     return (
-      <Provider shouldNotUpdateGeolocationComponentDidMount={true}>
-        <Consumer>
-          {({ actions, ...rest }) => (
-            <Component {...props} {...actions} {...rest} />
-          )}
-        </Consumer>
-      </Provider>
+      <Consumer>
+        {({ actions, ...rest }) => (
+          <Component {...props} {...actions} {...rest} />
+        )}
+      </Consumer>
     );
   };
   // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it

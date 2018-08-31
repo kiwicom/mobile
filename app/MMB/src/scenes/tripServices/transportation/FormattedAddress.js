@@ -13,7 +13,7 @@ type Coordinate = {|
 
 type Props = {|
   +coordinate: Coordinate,
-  +googleMapsAPIKey: string,
+  +getAddress: (coordinate: Coordinate) => ?Promise<string>,
 |};
 
 type State = {| formattedAddress: string |};
@@ -28,54 +28,15 @@ class FormattedAddress extends React.Component<Props, State> {
   };
 
   componentDidUpdate = (prevProps: Props) => {
-    if (!isEqual(prevProps, this.props)) {
+    if (!isEqual(prevProps.coordinate, this.props.coordinate)) {
       this.getAddress();
     }
   };
 
-  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
-    const isPropsEqual = isEqual(nextProps, this.props);
-    const isStateEqual = isEqual(nextState, this.state);
-
-    return !isPropsEqual || !isStateEqual;
-  };
-
   getAddress = async () => {
-    const {
-      coordinate: { latitude, longitude },
-    } = this.props;
-    const address = await fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${
-        this.props.googleMapsAPIKey
-      }`,
-    )
-      .then(res => res.json())
-      .then(json => json.results[0].address_components);
-
-    const city = (address.find(x => x.types.includes('locality')) || {})
-      .long_name;
-    const route = (address.find(x => x.types.includes('route')) || {})
-      .long_name;
-    const streetNumber = (
-      address.find(x => x.types.includes('street_number')) || {}
-    ).long_name;
-
-    const area = (
-      address.find(x => x.types.includes('administrative_area_level_1')) || {}
-    ).long_name;
-
-    const streetAddress =
-      route !== undefined && streetNumber !== undefined
-        ? route.concat(' ', streetNumber)
-        : route;
-
-    const formattedAddress = [city, streetAddress, area]
-      .filter(item => item !== undefined)
-      .join(', ');
-
-    this.setState({
-      formattedAddress,
-    });
+    const formattedAddress =
+      (await this.props.getAddress(this.props.coordinate)) || '';
+    this.setState({ formattedAddress });
   };
 
   render() {
