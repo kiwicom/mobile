@@ -8,9 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type TimelineArrival$ref = any;
-type TimelineDeparture_legInfo$ref = any;
-type TimelineDeparture_routeStop$ref = any;
+type TimelineTrip$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Timeline$ref: FragmentReference;
 export type Timeline = $ReadOnlyArray<{|
@@ -33,14 +31,9 @@ export type Timeline = $ReadOnlyArray<{|
     |},
   |},
   +legs: ?$ReadOnlyArray<?{|
-    +departure: ?{|
-      +$fragmentRefs: TimelineDeparture_routeStop$ref
-    |},
-    +arrival: ?{|
-      +$fragmentRefs: TimelineArrival$ref
-    |},
-    +$fragmentRefs: TimelineDeparture_legInfo$ref,
+    +id: string
   |}>,
+  +$fragmentRefs: TimelineTrip$ref,
   +$refType: Timeline$ref,
 |}>;
 */
@@ -131,47 +124,22 @@ return {
       "plural": true,
       "selections": [
         {
-          "kind": "LinkedField",
+          "kind": "ScalarField",
           "alias": null,
-          "name": "departure",
-          "storageKey": null,
+          "name": "id",
           "args": null,
-          "concreteType": "RouteStop",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "FragmentSpread",
-              "name": "TimelineDeparture_routeStop",
-              "args": null
-            }
-          ]
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "arrival",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "RouteStop",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "FragmentSpread",
-              "name": "TimelineArrival",
-              "args": null
-            }
-          ]
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "TimelineDeparture_legInfo",
-          "args": null
+          "storageKey": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "TimelineTrip",
+      "args": null
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6b52ec024ebb9271f5ce5fb00925a245';
+(node/*: any*/).hash = '5085dc3ff02e8ee565c47b53d18d8e6c';
 module.exports = node;
