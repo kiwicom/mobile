@@ -3,15 +3,23 @@
 import * as React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
 import isEqual from 'react-fast-compare';
-import { StyleSheet, TextIcon, GetLocation } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  TextIcon,
+  withGeolocationContext,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: (currentLocation: Coordinate) => void,
+  +lat: number | null,
+  +lng: number | null,
+  +canGetUserLocation: boolean,
+  +updateGeolocation: (failSilently: boolean) => void,
 |};
 
 type State = {|
-  getLocation: boolean,
+  click: boolean,
 |};
 
 type Coordinate = {|
@@ -19,13 +27,31 @@ type Coordinate = {|
   +longitude: number,
 |};
 
-export default class CurrentPositionButton extends React.Component<
-  Props,
-  State,
-> {
+class CurrentPositionButton extends React.Component<Props, State> {
   state = {
-    getLocation: false,
+    click: false,
   };
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    const prevCoordsAvailable = prevProps.lat != null && prevProps.lng != null;
+    const wasClicked = prevState.click != this.state.click;
+    const newCanGetUserLocation = this.props.canGetUserLocation;
+
+    const firstTime = !prevCoordsAvailable;
+    const otherTime =
+      wasClicked && prevCoordsAvailable && newCanGetUserLocation;
+
+    if (
+      (firstTime || otherTime) &&
+      this.props.lat != null &&
+      this.props.lng != null
+    ) {
+      this.props.onPress({
+        latitude: this.props.lat,
+        longitude: this.props.lng,
+      });
+    }
+  }
 
   shouldComponentUpdate = (nextProps: Props, nextState: State) => {
     const isPropsEqual = isEqual(nextProps, this.props);
@@ -35,15 +61,8 @@ export default class CurrentPositionButton extends React.Component<
   };
 
   getLocation = () => {
-    this.setState({
-      getLocation: true,
-    });
-  };
-
-  reset = () => {
-    this.setState({
-      getLocation: false,
-    });
+    this.props.updateGeolocation(false);
+    this.setState(state => ({ click: !state.click }));
   };
 
   render() {
@@ -52,12 +71,6 @@ export default class CurrentPositionButton extends React.Component<
         <TouchableWithoutFeedback onPress={this.getLocation}>
           <View>
             <TextIcon code="&quot;" style={styles.icon} />
-            <GetLocation
-              getLocation={this.state.getLocation}
-              dealWithLocation={this.props.onPress}
-              failSilently={false}
-              onPressOK={this.reset}
-            />
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -88,3 +101,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 });
+
+export default withGeolocationContext(CurrentPositionButton);
