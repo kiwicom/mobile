@@ -9,31 +9,22 @@ import {
   TextIcon,
   Text,
   StyleSheet,
-  GetLocation,
+  withGeolocationContext,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FormattedAddress from '../scenes/tripServices/transportation/FormattedAddress';
 import AddressLocationInput from '../scenes/tripServices/transportation/AddressLocationInput';
 
-type Coordinate = {|
-  +latitude: number,
-  +longitude: number,
-|};
-
 type Props = {|
   +navigation: NavigationType,
+  +lat: number | null,
+  +lng: number | null,
+  +canGetUserLocation: boolean,
+  +updateGeolocation: (failSilently: boolean) => void,
 |};
 
-type State = {|
-  currentLocation: ?Coordinate,
-|};
-
-export default class AddressPickerScreen extends React.Component<Props, State> {
-  state = {
-    currentLocation: null,
-  };
-
+export class AddressPickerScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
     function goBack() {
       props.navigation.goBack();
@@ -57,27 +48,24 @@ export default class AddressPickerScreen extends React.Component<Props, State> {
     };
   };
 
-  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
-    const isPropsEqual = isEqual(nextProps, this.props);
-    const isStateEqual = isEqual(nextState, this.state);
+  componentDidMount() {
+    this.props.updateGeolocation(true);
+  }
 
-    return !isPropsEqual || !isStateEqual;
-  };
-  updateLocation = (currentLocation: Coordinate) => {
-    this.setState({ currentLocation });
+  shouldComponentUpdate = (nextProps: Props) => {
+    const isPropsEqual = isEqual(nextProps, this.props);
+
+    return !isPropsEqual;
   };
 
   render() {
+    let currentLocation = null;
+    if (this.props.lat != null && this.props.lng != null) {
+      currentLocation = { latitude: this.props.lat, longitude: this.props.lng };
+    }
     return (
       <ScrollView>
-        {this.state.currentLocation == null && (
-          <GetLocation
-            getLocation={true}
-            dealWithLocation={this.updateLocation}
-            failSilently={true}
-          />
-        )}
-        {this.state.currentLocation != null && (
+        {currentLocation != null && (
           <View style={styles.currentLocationContainer}>
             <TextIcon code="&quot;" style={styles.currentLocationIcon} />
             <View>
@@ -85,7 +73,7 @@ export default class AddressPickerScreen extends React.Component<Props, State> {
                 <Translation id="mmb.trip_service.transportation.address_picker.current_location_title" />
               </Text>
               <Text style={styles.currentLocationAddress}>
-                <FormattedAddress coordinate={this.state.currentLocation} />
+                <FormattedAddress coordinate={currentLocation} />
               </Text>
             </View>
           </View>
@@ -119,3 +107,5 @@ const styles = StyleSheet.create({
     paddingTop: 4,
   },
 });
+
+export default withGeolocationContext(AddressPickerScreen);
