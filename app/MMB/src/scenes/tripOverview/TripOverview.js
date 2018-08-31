@@ -15,25 +15,18 @@ type Props = {|
   +data: TripOverviewType,
 |};
 
-function getValidTimeline(data) {
-  switch (data.__typename) {
-    case 'BookingOneWay':
-      return <OneWayTimeline data={data} />;
-    case 'BookingReturn':
-      return <ReturnTimeline data={data} />;
-    case 'BookingMulticity':
-      return <MulticityTimeline data={data} />;
-  }
-  return null;
-}
-
 function TripOverview(props: Props) {
-  const children = getValidTimeline(props.data);
-
+  const type = props.data.__typename;
   return (
     <ScrollView>
       <TripOverviewContext.Provider>
-        <SimpleCard style={styleSheet.simpleCard}>{children}</SimpleCard>
+        <SimpleCard style={styleSheet.simpleCard}>
+          {type === 'BookingOneWay' && <OneWayTimeline data={props.data} />}
+          {type === 'BookingReturn' && <ReturnTimeline data={props.data} />}
+          {type === 'BookingMulticity' && (
+            <MulticityTimeline data={props.data} />
+          )}
+        </SimpleCard>
       </TripOverviewContext.Provider>
     </ScrollView>
   );

@@ -1,22 +1,13 @@
 // @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
-import { StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { type AlertTranslationType } from '@kiwicom/mobile-localization';
-import Dash from 'react-native-dash';
 import idx from 'idx';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import TimelineDeparture from './TimelineDeparture';
-import TimelineArrival from './TimelineArrival';
 import TripOverviewContext from './TripOverviewContext';
 import type { Timeline as TimelineDataType } from './__generated__/Timeline.graphql';
-
-const lineWidth = 2;
-const circleSize = 12;
-const lineOffset = circleSize / 2 - lineWidth / 2;
+import TimelineTrip from './TimelineTrip';
 
 type Warning = {|
   +text: AlertTranslationType,
@@ -34,55 +25,6 @@ type PropsWithContext = {|
     +addWarningData: (warning: Warning) => void,
   },
 |};
-
-function renderLegs(legs) {
-  const legsChildren = [];
-  legs.forEach((leg, index) => {
-    if (!leg) {
-      return;
-    }
-
-    legsChildren.push(
-      <TimelineDeparture key={index} routeStop={leg.departure} legInfo={leg} />,
-    );
-    legsChildren.push(<TimelineArrival key={index} data={leg.arrival} />);
-  });
-  return legsChildren.map((child, index) => {
-    const isLast = legsChildren.length === index + 1;
-    const isOdd = index & 1;
-
-    const shouldDrawSolidLine = !isLast && !isOdd;
-    const shouldDrawDashedLine = isOdd && !isLast;
-
-    const itemWrapperStyle = {};
-
-    if (shouldDrawSolidLine === true) {
-      itemWrapperStyle.borderColor = defaultTokens.paletteInkLight;
-      itemWrapperStyle.borderStartWidth = lineWidth;
-    }
-
-    return (
-      <View key={index} style={styles.rowContainer}>
-        {shouldDrawDashedLine === true && (
-          // Dash component is a workaround for dashed border not supported in RN (https://github.com/facebook/react-native/blob/cb1bdf1e37236f5147ee5ef745573c0ced1b4f14/React/Views/RCTBorderDrawing.m#L394).
-          // Please try to not use it very often. It's resource heavy.
-          <Dash
-            dashGap={lineWidth * 2}
-            dashLength={lineWidth}
-            dashThickness={lineWidth}
-            dashColor={defaultTokens.paletteInkLight}
-            style={styles.dashedLine}
-          />
-        )}
-
-        <View style={[styles.itemWrapper, itemWrapperStyle]}>
-          <View style={styles.item}>{child}</View>
-        </View>
-        <View style={styles.circle} />
-      </View>
-    );
-  });
-}
 
 class Timeline extends React.Component<PropsWithContext> {
   componentDidMount() {
@@ -159,50 +101,27 @@ class Timeline extends React.Component<PropsWithContext> {
   }
 
   render() {
-    const children = [];
     const trips = idx(this.props, _ => _.data) || [];
 
-    trips.forEach(trip => {
-      const legs = idx(trip, _ => _.legs) || [];
-      children.push(renderLegs(legs));
-    });
-
-    return children;
+    let legsCounted = 0;
+    return (
+      <React.Fragment>
+        {trips.map((trip, index) => {
+          const legs = idx(trip, _ => _.legs) || [];
+          const legsCount = legsCounted;
+          legsCounted += legs.length;
+          return (
+            <TimelineTrip
+              key={`trip-${index}`}
+              data={trip}
+              legsCounted={legsCount}
+            />
+          );
+        })}
+      </React.Fragment>
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  rowContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  circle: {
-    width: circleSize,
-    height: circleSize,
-    borderRadius: circleSize / 2,
-    position: 'absolute',
-    start: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: defaultTokens.paletteProductNormal,
-  },
-  itemWrapper: {
-    flex: 1,
-    flexDirection: 'column',
-    borderStartWidth: 0,
-    borderEndWidth: 0,
-    marginStart: lineOffset,
-    paddingStart: 15,
-  },
-  dashedLine: {
-    width: 1,
-    flexDirection: 'column',
-    start: lineOffset,
-  },
-  item: {
-    marginBottom: 20,
-  },
-});
 
 type Props = {|
   +data: TimelineDataType,
@@ -240,14 +159,9 @@ export default createFragmentContainer(
         }
       }
       legs {
-        departure {
-          ...TimelineDeparture_routeStop
-        }
-        arrival {
-          ...TimelineArrival
-        }
-        ...TimelineDeparture_legInfo
+        id
       }
+      ...TimelineTrip
     }
   `,
 );
