@@ -23,7 +23,8 @@
     "release-ios": "node ./scripts/releaseFramework.js",
     "playground": "node ./scripts/activatePlayground.js",
     "flow": "flow app --include-warnings",
-    "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js"
+    "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js",
+    "e2e": "yarn detox build && yarn detox test"
   },
   "dependencies": {
     "react": "^16.3.2",
@@ -35,17 +36,20 @@
     "babel-jest": "^23.4.2",
     "babel-plugin-idx": "^2.4.0",
     "babel-preset-react-native": "^4.0.0",
+    "detox": "^8.2.3",
     "eslint": "^5.4.0",
     "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-detox": "^1.0.0",
     "eslint-plugin-flowtype": "^2.50.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jasmine": "^2.10.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-react-native": "^3.2.1",
     "find-in-files": "^0.5.0",
     "flow-bin": "^0.79.1",
     "jest": "^23.5.0",
-    "metro-bundler": "^0.22.1",
+    "metro": "^0.38.0",
     "node-fetch": "^2.2.0",
     "prettier": "^1.14.2",
     "react-native-dotenv": "^0.1.0",
@@ -56,5 +60,16 @@
     "assets": [
       "./assets/fonts/"
     ]
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/reactNativeApp.app",
+        "build": "xcodebuild -workspace ios/reactNativeApp.xcworkspace -scheme reactNativeApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 6"
+      }
+    },
+    "test-runner": "jest"
   }
 }
