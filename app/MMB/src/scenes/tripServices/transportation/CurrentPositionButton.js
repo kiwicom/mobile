@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
-import isEqual from 'react-fast-compare';
 import {
   StyleSheet,
   TextIcon,
@@ -12,10 +11,10 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: (currentLocation: Coordinate) => void,
-  +lat: number | null,
-  +lng: number | null,
-  +canGetUserLocation: boolean,
-  +updateGeolocation: (failSilently: boolean) => void,
+  +updateGeolocation: (
+    dealWithLocation?: (coordinate: Coordinate) => void,
+    onError?: () => void,
+  ) => void,
 |};
 
 type State = {|
@@ -28,52 +27,19 @@ type Coordinate = {|
 |};
 
 class CurrentPositionButton extends React.Component<Props, State> {
-  state = {
-    click: false,
-  };
-
-  componentDidUpdate(prevProps: Props, prevState: State) {
-    const prevCoordsAvailable = prevProps.lat != null && prevProps.lng != null;
-    const wasClicked = prevState.click != this.state.click;
-    const newCanGetUserLocation = this.props.canGetUserLocation;
-
-    const firstTime = !prevCoordsAvailable;
-    const otherTime =
-      wasClicked && prevCoordsAvailable && newCanGetUserLocation;
-
-    if (
-      (firstTime || otherTime) &&
-      this.props.lat != null &&
-      this.props.lng != null
-    ) {
-      this.props.onPress({
-        latitude: this.props.lat,
-        longitude: this.props.lng,
-      });
-    }
-  }
-
-  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
-    const isPropsEqual = isEqual(nextProps, this.props);
-    const isStateEqual = isEqual(nextState, this.state);
-
-    return !isPropsEqual || !isStateEqual;
-  };
-
   getLocation = () => {
-    this.props.updateGeolocation(false);
-    this.setState(state => ({ click: !state.click }));
+    this.props.updateGeolocation(this.props.onPress);
   };
 
   render() {
     return (
-      <View style={styles.roundButton}>
-        <TouchableWithoutFeedback onPress={this.getLocation}>
+      <TouchableWithoutFeedback onPress={this.getLocation}>
+        <View style={styles.roundButton}>
           <View>
             <TextIcon code="&quot;" style={styles.icon} />
           </View>
-        </TouchableWithoutFeedback>
-      </View>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
