@@ -9,7 +9,7 @@ type CardType = {|
   +number: string,
 |};
 
-export const getCard = (): Promise<CardType> | null => {
+export const getCard = (): Promise<CardType | null> => {
   return NativeModules.RNCardManager.getCard();
 };
 
