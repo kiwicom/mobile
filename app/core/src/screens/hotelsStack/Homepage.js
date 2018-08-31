@@ -73,7 +73,7 @@ export default class Homepage extends React.Component<Props> {
 
   render = () => {
     return (
-      <LayoutSingleColumn>
+      <LayoutSingleColumn testID="homePage">
         <Section>
           <TextButton
             title={<Translation passThrough="New hotels" />}

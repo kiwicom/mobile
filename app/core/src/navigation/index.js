@@ -10,7 +10,12 @@ import BookingsStack from './stacks/BookingsStack';
 
 export default createBottomTabNavigator(
   {
-    Search: { screen: HotelsStack },
+    Search: {
+      screen: HotelsStack,
+      navigationOptions: {
+        tabBarTestID: 'hotelsTab',
+      },
+    },
     Bookings: { screen: BookingsStack },
     Message: { screen: VoidStack },
     Profile: { screen: ProfileStack },
