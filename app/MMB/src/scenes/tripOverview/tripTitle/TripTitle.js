@@ -4,23 +4,30 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import TripOverviewContext, { type BookingType } from '../TripOverviewContext';
 import type { TripTitle as TripTitleType } from './__generated__/TripTitle.graphql';
 import MulticityTitle from './MulticityTitle';
 import Duration from '../../../components/header/Duration';
+import ReturnTitle from './ReturnTitle';
+import TripTitleText from './TripTitleText';
 
 type PropsWithContext = {|
   ...Props,
   +type: BookingType,
 |};
 
-const TripTitle = ({ type, data }: PropsWithContext) => {
+const TripTitle = ({ type, data, index }: PropsWithContext) => {
   return (
     <View style={styles.row}>
       {type === 'BookingMulticity' && <MulticityTitle data={data} />}
-      {/* TODO: Return */}
-      {/* TODO: OneWay */}
+      {type === 'BookingReturn' && <ReturnTitle isOutbound={index === 0} />}
+      {type === 'BookingOneWay' && (
+        <TripTitleText>
+          <Translation id="mmb.trip_overview.trip_title.outbound" />
+        </TripTitleText>
+      )}
       <View style={styles.durationContainer}>
         <Duration showIcon={false} data={data} />
       </View>
@@ -30,6 +37,7 @@ const TripTitle = ({ type, data }: PropsWithContext) => {
 
 type Props = {|
   +data: TripTitleType,
+  +index: number,
 |};
 
 const TripTitleWithContext = (props: Props) => {
