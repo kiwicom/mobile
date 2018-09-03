@@ -13,7 +13,7 @@ import {
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import memoize from 'memoize-one';
 
-import getFormattedAddress from '../helpers/getFormattedAddress';
+import { getAddress } from '../helpers/fetchGeocodeData';
 import { withGoogleMapsContext } from '../context/GoogleMapsContext';
 import AddressLocationInput from '../scenes/tripServices/transportation/AddressLocationInput';
 
@@ -86,7 +86,7 @@ export class AddressPickerScreen extends React.Component<Props, State> {
       : null;
 
   updateFormattedAddress = memoize(async (coordinate: ?Coordinate) => {
-    const formattedAddress = await getFormattedAddress(
+    const formattedAddress = await getAddress(
       coordinate,
       this.props.googleMapsAPIKey,
     );
