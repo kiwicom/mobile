@@ -27,17 +27,6 @@ If we want to trigger it manually, from the root of this repo we can run:
 ANDROID_DEPLOYMENT_PASSWORD=PASSWORD_HERE yarn release-android
 ```
 
-## Deploy a new version of react-native-native-modules
-
-If we change some native code for this module we also need to change the `reactNativeNativeModules` version
-in `dependencies.gradle`. 
-
-After that we can deploy a new version like:
-
-```bash
-ANDROID_DEPLOYMENT_PASSWORD=PASSWORD_HERE ../gradlew uploadArchives
-```
-
 ## Add a new native dependency
 
 When we update a dependency there are no major changes as versions will be taken from `package.json` and a new snapshot will be deployed.
