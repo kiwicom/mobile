@@ -1,13 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableWithoutFeedback, Linking } from 'react-native';
 import {
   StyleSheet,
   TextIcon,
   withGeolocationContext,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { Alert } from '@kiwicom/mobile-localization';
 
 type Props = {|
   +onPress: (currentLocation: Coordinate) => void,
@@ -27,8 +28,33 @@ type Coordinate = {|
 |};
 
 class CurrentPositionButton extends React.Component<Props, State> {
+  openSettings = () => {
+    Linking.openURL('app-settings:');
+  };
+
+  alertOpenSettings = () => {
+    Alert.translatedAlert(
+      undefined,
+      {
+        id: 'mmb.trip_services.transportation.map.current_position_alert',
+      },
+      [
+        {
+          text: { id: 'mmb.alert.button.ok' },
+          undefined,
+          style: 'default',
+        },
+        {
+          text: { id: 'mmb.alert.button.settings' },
+          onPress: this.openSettings,
+          style: 'default',
+        },
+      ],
+    );
+  };
+
   getLocation = () => {
-    this.props.updateGeolocation(this.props.onPress);
+    this.props.updateGeolocation(this.props.onPress, this.alertOpenSettings);
   };
 
   render() {

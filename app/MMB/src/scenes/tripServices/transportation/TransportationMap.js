@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import MapView from 'react-native-maps';
-import isEqual from 'react-fast-compare';
 import { HeaderBackButton } from 'react-navigation';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import {
@@ -19,6 +18,8 @@ import {
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import querystring from 'querystring';
 
+import getFormattedAddress from '../../../helpers/getFormattedAddress';
+import { withGoogleMapsContext } from '../../../context/GoogleMapsContext';
 import MarkerLocationButton from './MarkerLocationButton';
 import CurrentPositionButton from './CurrentPositionButton';
 import AddressLocationLegend from './AddressLocationLegend';
@@ -30,6 +31,7 @@ type State = {|
   markers: Markers,
   showUserLocation: boolean,
   currentLocation: ?Coordinate,
+  formattedAddress: string,
 |};
 
 type Region = {|
@@ -82,6 +84,7 @@ export class TransportationMap extends React.Component<Props, State> {
       },
       showUserLocation: false,
       currentLocation: null,
+      formattedAddress: '',
     };
   }
 
@@ -134,13 +137,6 @@ export class TransportationMap extends React.Component<Props, State> {
       navigation.setParams({ disabled: false });
     }
   }
-
-  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
-    const isPropsEqual = isEqual(nextProps, this.props);
-    const isStateEqual = isEqual(nextState, this.state);
-
-    return !isPropsEqual || !isStateEqual;
-  };
 
   openLocationPicker = () => {
     this.props.navigation.navigate('AddressPickerScreen');
@@ -207,8 +203,12 @@ export class TransportationMap extends React.Component<Props, State> {
     }));
   };
 
-  renderMarkerB = (e: NativeEvent) => {
+  renderMarkerB = async (e: NativeEvent) => {
     const { latitude, longitude } = e.nativeEvent.coordinate;
+    const formattedAddress = await getFormattedAddress(
+      { latitude, longitude },
+      this.props.googleMapsAPIKey,
+    );
     this.setState(state => ({
       markers: {
         ...state.markers,
@@ -217,6 +217,7 @@ export class TransportationMap extends React.Component<Props, State> {
           longitude,
         },
       },
+      formattedAddress,
     }));
   };
 
@@ -232,13 +233,13 @@ export class TransportationMap extends React.Component<Props, State> {
   };
 
   render() {
-    const { showUserLocation, markers } = this.state;
+    const { showUserLocation, markers, formattedAddress } = this.state;
     const { markerA, markerB } = markers;
 
     return (
       <View style={styles.wrapper}>
         <MarkerLocationButton
-          coordinate={markerB}
+          formattedAddress={formattedAddress}
           onPress={this.openLocationPicker}
         />
         <View style={styles.wrapper}>
@@ -275,4 +276,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TransportationMap;
+export default withGoogleMapsContext(TransportationMap);
