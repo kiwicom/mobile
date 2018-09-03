@@ -62,7 +62,7 @@ class TimelineTitle extends React.Component<PropsWithContext> {
 
     const warningStyle = warning != null ? styleSheet.warningStyle : null;
     return (
-      <View style={styleSheet.row}>
+      <View style={[styleSheet.row, styleSheet.underline]}>
         <View style={styleSheet.dateTime}>
           {localTime != null && (
             <Translation
@@ -151,5 +151,9 @@ const styleSheet = StyleSheet.create({
   warningRow: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  underline: {
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderColor: defaultTokens.paletteInkLighter,
   },
 });

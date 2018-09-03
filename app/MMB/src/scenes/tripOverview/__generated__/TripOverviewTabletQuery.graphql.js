@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c7aa07cab2aca717d1012c6245517fa7
+ * @relayHash 8a09c7d126abc0e0198b3e7c39488c86
  */
 
 /* eslint-disable */
@@ -120,6 +120,14 @@ fragment TimelineTrip on Trip {
 
 fragment TimelineDeparture_routeStop on RouteStop {
   ...TimelineTitle
+  terminal
+  airport {
+    code
+    city {
+      name
+    }
+    id
+  }
 }
 
 fragment TimelineArrival on RouteStop {
@@ -128,9 +136,18 @@ fragment TimelineArrival on RouteStop {
 
 fragment TimelineDeparture_legInfo on Leg {
   flightNumber
+  operatingAirline {
+    name
+    iata
+  }
   airline {
     name
     logoUrl
+    code
+  }
+  vehicle {
+    model
+    manufacturer
   }
 }
 
@@ -254,23 +271,13 @@ v7 = [
   },
   v6
 ],
-v8 = [
-  v6,
-  {
-    "kind": "LinkedField",
-    "alias": null,
-    "name": "airport",
-    "storageKey": null,
-    "args": null,
-    "concreteType": "Location",
-    "plural": false,
-    "selections": [
-      v5,
-      v4,
-      v2
-    ]
-  }
-],
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "code",
+  "args": null,
+  "storageKey": null
+},
 v9 = [
   {
     "kind": "LinkedField",
@@ -317,7 +324,31 @@ v9 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v8
+        "selections": [
+          v6,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "airport",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Location",
+            "plural": false,
+            "selections": [
+              v5,
+              v4,
+              v2,
+              v8
+            ]
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "terminal",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       },
       {
         "kind": "LinkedField",
@@ -327,7 +358,23 @@ v9 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v8
+        "selections": [
+          v6,
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "airport",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Location",
+            "plural": false,
+            "selections": [
+              v5,
+              v4,
+              v2
+            ]
+          }
+        ]
       },
       {
         "kind": "ScalarField",
@@ -335,6 +382,25 @@ v9 = [
         "name": "flightNumber",
         "args": null,
         "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "operatingAirline",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "OperatingAirline",
+        "plural": false,
+        "selections": [
+          v3,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "iata",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       },
       {
         "kind": "LinkedField",
@@ -352,6 +418,32 @@ v9 = [
             "name": "logoUrl",
             "args": null,
             "storageKey": null
+          },
+          v8
+        ]
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "vehicle",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Vehicle",
+        "plural": false,
+        "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "model",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "manufacturer",
+            "args": null,
+            "storageKey": null
           }
         ]
       }
@@ -363,7 +455,7 @@ return {
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  ...TripTitle\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    id\n  }\n  ...TimelineTrip\n}\n\nfragment TripTitle on Trip {\n  ...MulticityTitle\n  ...Duration\n}\n\nfragment TimelineTrip on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  airline {\n    name\n    logoUrl\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment MulticityTitle on Trip {\n  departure {\n    ...MulticityName\n  }\n  arrival {\n    ...MulticityName\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment MulticityName on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  ...TripTitle\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    id\n  }\n  ...TimelineTrip\n}\n\nfragment TripTitle on Trip {\n  ...MulticityTitle\n  ...Duration\n}\n\nfragment TimelineTrip on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n  terminal\n  airport {\n    code\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  operatingAirline {\n    name\n    iata\n  }\n  airline {\n    name\n    logoUrl\n    code\n  }\n  vehicle {\n    model\n    manufacturer\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment MulticityTitle on Trip {\n  departure {\n    ...MulticityName\n  }\n  arrival {\n    ...MulticityName\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment MulticityName on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
