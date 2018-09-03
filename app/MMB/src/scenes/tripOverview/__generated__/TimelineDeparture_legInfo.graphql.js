@@ -12,16 +12,33 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type TimelineDeparture_legInfo$ref: FragmentReference;
 export type TimelineDeparture_legInfo = {|
   +flightNumber: ?number,
+  +operatingAirline: ?{|
+    +name: ?string,
+    +iata: ?string,
+  |},
   +airline: ?{|
     +name: ?string,
     +logoUrl: ?string,
+    +code: ?string,
+  |},
+  +vehicle: ?{|
+    +model: ?string,
+    +manufacturer: ?string,
   |},
   +$refType: TimelineDeparture_legInfo$ref,
 |};
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ConcreteFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "TimelineDeparture_legInfo",
   "type": "Leg",
@@ -38,23 +55,68 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
+      "name": "operatingAirline",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "OperatingAirline",
+      "plural": false,
+      "selections": [
+        v0,
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "iata",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
       "name": "airline",
       "storageKey": null,
       "args": null,
       "concreteType": "Airline",
       "plural": false,
       "selections": [
+        v0,
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "name",
+          "name": "logoUrl",
           "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "logoUrl",
+          "name": "code",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "vehicle",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Vehicle",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "model",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "manufacturer",
           "args": null,
           "storageKey": null
         }
@@ -62,6 +124,7 @@ const node/*: ConcreteFragment*/ = {
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = '99a0a802897e26021892c6b44b61c966';
+(node/*: any*/).hash = '66867739322485b5cfd36cc52fc497af';
 module.exports = node;

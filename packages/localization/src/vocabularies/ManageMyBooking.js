@@ -65,11 +65,14 @@ export default {
   // MMB Flight overview
   'mmb.flight_overview.title': 'Flight Overview',
   'mmb.flight_overview.timeline.carrier': 'Carrier:',
+  'mmb.flight_overview.timeline.operating_airline': 'Operating airline:',
   'mmb.flight_overview.timeline.flight_no': 'Flight number:',
   'mmb.flight_overview.timeline.warning.different_airport_return':
     "Warning: you will depart from a different place. You'll arrive at __1_arrival__ and leave from __2_departure__.",
   'mmb.flight_overview.timeline.warning.different_airport_return_first':
     'Warning: your departure point differs from your return one. You will depart from __1_departure__ and return to __2_arrival__.',
+  'mmb.flight_overview.timeline.terminal':
+    '__1_city__ __2_iata__ - Terminal - __3_terminal__',
 
   // MMB Flight services
   'mmb.flight_services.additional_baggage': 'Baggage',
