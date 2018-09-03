@@ -1,21 +1,30 @@
 // @flow
 
+import memoize from 'memoize-one';
+
 type Coordinate = {|
   +latitude: number,
   +longitude: number,
 |};
 
-export default async function getAddress(
-  coordinate: ?Coordinate,
-  googleMapsAPIKey: string,
-) {
-  if (coordinate != null) {
+const fetchGeocodeData = memoize(
+  async (coordinate: Coordinate, googleMapsAPIKey: string) => {
     const { latitude, longitude } = coordinate;
     const res = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${googleMapsAPIKey}`,
     );
     const json = await res.json();
-    const address = await json.results[0].address_components;
+    return json.results[0];
+  },
+);
+
+export async function getAddress(
+  coordinate: ?Coordinate,
+  googleMapsAPIKey: string,
+) {
+  if (coordinate != null) {
+    const data = await fetchGeocodeData(coordinate, googleMapsAPIKey);
+    const address = data.address_components;
 
     const city = (address.find(x => x.types.includes('locality')) || {})
       .long_name;

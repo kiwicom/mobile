@@ -43,7 +43,7 @@ describe('TransportationMap', () => {
     };
 
     expect(transportationMap.buildWhitelabelURL()).toBe(
-      'https://some.url.without.params/?utm_source=kiwi&utm_medium=startpart&utm_campaign=mobileappconfpage&pickup=51%2C16&dropoff=51.5%2C15.5&language=en&currency=EUR&date=2018-08-30&time=14:40',
+      'https://some.url.without.params/search?utm_source=kiwi&utm_medium=startpart&utm_campaign=mobileappconfpage&pickup=51%2C16&dropoff=51.5%2C15.5&language=en&currency=EUR&date=2018-08-30&time=14:40',
     );
   });
   test('buildWhitelabelURL: it returns the whitelabelURL with correct params when both markers have been placed (without date)', () => {
@@ -72,7 +72,7 @@ describe('TransportationMap', () => {
     };
 
     expect(transportationMap.buildWhitelabelURL()).toBe(
-      'https://some.url.without.params/?utm_source=kiwi&utm_medium=startpart&utm_campaign=mobileappconfpage&pickup=51%2C16&dropoff=51.5%2C15.5&language=en&currency=EUR&date=&time=',
+      'https://some.url.without.params/search?utm_source=kiwi&utm_medium=startpart&utm_campaign=mobileappconfpage&pickup=51%2C16&dropoff=51.5%2C15.5&language=en&currency=EUR&date=&time=',
     );
   });
 

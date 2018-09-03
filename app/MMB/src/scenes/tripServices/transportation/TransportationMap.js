@@ -18,7 +18,7 @@ import {
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import querystring from 'querystring';
 
-import getFormattedAddress from '../../../helpers/getFormattedAddress';
+import { getAddress } from '../../../helpers/fetchGeocodeData';
 import { withGoogleMapsContext } from '../../../context/GoogleMapsContext';
 import MarkerLocationButton from './MarkerLocationButton';
 import CurrentPositionButton from './CurrentPositionButton';
@@ -174,7 +174,7 @@ export class TransportationMap extends React.Component<Props, State> {
       });
 
       // querystring.stringify uses encodeURIComponent which turns HH:mm into HH%3Amm which rideways does not understand
-      return `${whitelabelURL}?${query}&time=${time}`;
+      return `${whitelabelURL}search?${query}&time=${time}`;
     }
     return whitelabelURL;
   };
@@ -205,7 +205,7 @@ export class TransportationMap extends React.Component<Props, State> {
 
   renderMarkerB = async (e: NativeEvent) => {
     const { latitude, longitude } = e.nativeEvent.coordinate;
-    const formattedAddress = await getFormattedAddress(
+    const formattedAddress = await getAddress(
       { latitude, longitude },
       this.props.googleMapsAPIKey,
     );
