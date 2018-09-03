@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8a09c7d126abc0e0198b3e7c39488c86
+ * @relayHash f667cab2705dd36df81d133ac649729c
  */
 
 /* eslint-disable */
@@ -112,6 +112,7 @@ fragment TimelineTrip on Trip {
     }
     arrival {
       ...TimelineArrival
+      ...TimelineDeparture_arrival
     }
     ...TimelineDeparture_legInfo
     id
@@ -120,18 +121,15 @@ fragment TimelineTrip on Trip {
 
 fragment TimelineDeparture_routeStop on RouteStop {
   ...TimelineTitle
-  terminal
-  airport {
-    code
-    city {
-      name
-    }
-    id
-  }
+  ...TimelineTerminal
 }
 
 fragment TimelineArrival on RouteStop {
   ...TimelineTitle
+}
+
+fragment TimelineDeparture_arrival on RouteStop {
+  ...TimelineTerminal
 }
 
 fragment TimelineDeparture_legInfo on Leg {
@@ -148,6 +146,17 @@ fragment TimelineDeparture_legInfo on Leg {
   vehicle {
     model
     manufacturer
+  }
+}
+
+fragment TimelineTerminal on RouteStop {
+  terminal
+  airport {
+    code
+    city {
+      name
+    }
+    id
   }
 }
 
@@ -279,6 +288,31 @@ v8 = {
   "storageKey": null
 },
 v9 = [
+  v6,
+  {
+    "kind": "LinkedField",
+    "alias": null,
+    "name": "airport",
+    "storageKey": null,
+    "args": null,
+    "concreteType": "Location",
+    "plural": false,
+    "selections": [
+      v5,
+      v4,
+      v2,
+      v8
+    ]
+  },
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "terminal",
+    "args": null,
+    "storageKey": null
+  }
+],
+v10 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -324,31 +358,7 @@ v9 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": [
-          v6,
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "airport",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Location",
-            "plural": false,
-            "selections": [
-              v5,
-              v4,
-              v2,
-              v8
-            ]
-          },
-          {
-            "kind": "ScalarField",
-            "alias": null,
-            "name": "terminal",
-            "args": null,
-            "storageKey": null
-          }
-        ]
+        "selections": v9
       },
       {
         "kind": "LinkedField",
@@ -358,23 +368,7 @@ v9 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": [
-          v6,
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "airport",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Location",
-            "plural": false,
-            "selections": [
-              v5,
-              v4,
-              v2
-            ]
-          }
-        ]
+        "selections": v9
       },
       {
         "kind": "ScalarField",
@@ -455,7 +449,7 @@ return {
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  ...TripTitle\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    id\n  }\n  ...TimelineTrip\n}\n\nfragment TripTitle on Trip {\n  ...MulticityTitle\n  ...Duration\n}\n\nfragment TimelineTrip on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n  terminal\n  airport {\n    code\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  operatingAirline {\n    name\n    iata\n  }\n  airline {\n    name\n    logoUrl\n    code\n  }\n  vehicle {\n    model\n    manufacturer\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment MulticityTitle on Trip {\n  departure {\n    ...MulticityName\n  }\n  arrival {\n    ...MulticityName\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment MulticityName on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  ...TripTitle\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    id\n  }\n  ...TimelineTrip\n}\n\nfragment TripTitle on Trip {\n  ...MulticityTitle\n  ...Duration\n}\n\nfragment TimelineTrip on Trip {\n  legs {\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n      ...TimelineDeparture_arrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n  ...TimelineTerminal\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_arrival on RouteStop {\n  ...TimelineTerminal\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  operatingAirline {\n    name\n    iata\n  }\n  airline {\n    name\n    logoUrl\n    code\n  }\n  vehicle {\n    model\n    manufacturer\n  }\n}\n\nfragment TimelineTerminal on RouteStop {\n  terminal\n  airport {\n    code\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment MulticityTitle on Trip {\n  departure {\n    ...MulticityName\n  }\n  arrival {\n    ...MulticityName\n  }\n}\n\nfragment Duration on Trip {\n  duration\n}\n\nfragment MulticityName on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -516,7 +510,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v9
+                "selections": v10
               }
             ]
           },
@@ -532,7 +526,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v9
+                "selections": v10
               },
               {
                 "kind": "LinkedField",
@@ -542,7 +536,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v9
+                "selections": v10
               }
             ]
           },
@@ -558,7 +552,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v9
+                "selections": v10
               }
             ]
           }

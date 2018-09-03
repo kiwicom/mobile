@@ -10,12 +10,15 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineRow from './TimelineRow';
 import TimelineTitle from './TimelineTitle';
+import TimelineTerminal from './TimelineTerminal';
 import type { TimelineDeparture_routeStop } from './__generated__/TimelineDeparture_routeStop.graphql';
 import type { TimelineDeparture_legInfo } from './__generated__/TimelineDeparture_legInfo.graphql';
+import type { TimelineDeparture_arrival } from './__generated__/TimelineDeparture_arrival.graphql';
 
 type Props = {|
   +routeStop: TimelineDeparture_routeStop,
   +legInfo: TimelineDeparture_legInfo,
+  +arrival: TimelineDeparture_arrival,
 |};
 
 function TimelineDeparture(props: Props) {
@@ -31,10 +34,6 @@ function TimelineDeparture(props: Props) {
 
   const flightModel = idx(legInfo, _ => _.vehicle.model) || '';
   const manufacturer = idx(legInfo, _ => _.vehicle.manufacturer) || '';
-
-  const terminal = idx(props.routeStop, _ => _.terminal) || '';
-  const iata = idx(props.routeStop, _ => _.airport.code) || '';
-  const city = idx(props.routeStop, _ => _.airport.city.name) || '';
 
   return (
     <React.Fragment>
@@ -86,21 +85,16 @@ function TimelineDeparture(props: Props) {
               <Translation passThrough={`${manufacturer} ${flightModel}`} />
             }
           />
-          {terminal !== '' && (
-            <TimelineRow
-              icon={<TextIcon code="*" style={styleSheet.icon} />}
-              value={
-                <Translation
-                  id="mmb.flight_overview.timeline.terminal"
-                  values={{
-                    terminal,
-                    city,
-                    iata,
-                  }}
-                />
-              }
-            />
-          )}
+
+          <TimelineTerminal
+            data={props.routeStop}
+            icon={<TextIcon code="*" style={styleSheet.icon} />}
+          />
+
+          <TimelineTerminal
+            data={props.arrival}
+            icon={<TextIcon code="%" style={styleSheet.icon} />}
+          />
         </View>
 
         <NetworkImage
@@ -115,15 +109,12 @@ function TimelineDeparture(props: Props) {
 export default createFragmentContainer(
   TimelineDeparture,
   graphql`
+    fragment TimelineDeparture_arrival on RouteStop {
+      ...TimelineTerminal
+    }
     fragment TimelineDeparture_routeStop on RouteStop {
       ...TimelineTitle
-      terminal
-      airport {
-        code
-        city {
-          name
-        }
-      }
+      ...TimelineTerminal
     }
 
     fragment TimelineDeparture_legInfo on Leg {

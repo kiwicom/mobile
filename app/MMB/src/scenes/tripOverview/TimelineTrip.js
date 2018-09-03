@@ -38,7 +38,11 @@ function TimelineTrip(props: Props) {
               shouldDrawSolidLine={true}
               color={departureColorCode}
             >
-              <TimelineDeparture routeStop={leg.departure} legInfo={leg} />
+              <TimelineDeparture
+                routeStop={leg.departure}
+                legInfo={leg}
+                arrival={leg.arrival}
+              />
             </TimelineLegWrapper>
             <TimelineLegWrapper
               shouldDrawDashedLine={index + 1 !== legs.length}
@@ -64,6 +68,7 @@ export default createFragmentContainer(
         }
         arrival {
           ...TimelineArrival
+          ...TimelineDeparture_arrival
         }
         ...TimelineDeparture_legInfo
       }

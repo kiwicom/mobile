@@ -9,28 +9,22 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type TimelineTerminal$ref = any;
-type TimelineTitle$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type TimelineDeparture_routeStop$ref: FragmentReference;
-export type TimelineDeparture_routeStop = {|
-  +$fragmentRefs: TimelineTitle$ref & TimelineTerminal$ref,
-  +$refType: TimelineDeparture_routeStop$ref,
+declare export opaque type TimelineDeparture_arrival$ref: FragmentReference;
+export type TimelineDeparture_arrival = {|
+  +$fragmentRefs: TimelineTerminal$ref,
+  +$refType: TimelineDeparture_arrival$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "TimelineDeparture_routeStop",
+  "name": "TimelineDeparture_arrival",
   "type": "RouteStop",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "FragmentSpread",
-      "name": "TimelineTitle",
-      "args": null
-    },
     {
       "kind": "FragmentSpread",
       "name": "TimelineTerminal",
@@ -39,5 +33,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '152d1d04d2d2cd4c8def6fccb8fb9f15';
+(node/*: any*/).hash = '23e592bf5a17bf6d70d38bc250309fcc';
 module.exports = node;
