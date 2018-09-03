@@ -443,4 +443,8 @@ export default {
   'mmb.booking_timeline.event.enter_details.note':
     'Add your passport/ID details so that we can check in online for you',
   'mmb.booking_timeline.event.enter_details.button.title': 'Add',
+
+  // MMB Trip overview
+  'mmb.trip_overview.trip_title.outbound': 'Outbound',
+  'mmb.trip_overview.trip_title.inbound': 'Inbound',
 };

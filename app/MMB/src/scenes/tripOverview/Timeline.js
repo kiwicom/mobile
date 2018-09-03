@@ -116,7 +116,7 @@ class Timeline extends React.Component<PropsWithContext> {
           return (
             <React.Fragment key={`trip-${index}`}>
               <View style={styles.tripTitle}>
-                <TripTitle data={trip} />
+                <TripTitle index={index} data={trip} />
               </View>
               <TimelineTrip data={trip} legsCounted={legsCount} />
             </React.Fragment>
