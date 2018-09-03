@@ -64,7 +64,8 @@ module.exports = {
               'TouchableOpacity', // Touchable
               'Switch', //Switch
               'Alert', // Alert (localization)
-              'TextInput'
+              'TextInput',
+              'Modal'
             ],
             message:
               "Please use '@kiwicom/mobile-shared' package instead.",
