@@ -11,8 +11,10 @@ import {
   withGeolocationContext,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import memoize from 'memoize-one';
 
-import FormattedAddress from '../scenes/tripServices/transportation/FormattedAddress';
+import getFormattedAddress from '../helpers/getFormattedAddress';
+import { withGoogleMapsContext } from '../context/GoogleMapsContext';
 import AddressLocationInput from '../scenes/tripServices/transportation/AddressLocationInput';
 
 type Coordinate = {|
@@ -22,6 +24,7 @@ type Coordinate = {|
 
 type Props = {|
   +navigation: NavigationType,
+  +googleMapsAPIKey: string,
   +lat: number | null,
   +lng: number | null,
   +canGetUserLocation: boolean,
@@ -31,7 +34,11 @@ type Props = {|
   ) => void,
 |};
 
-export class AddressPickerScreen extends React.Component<Props> {
+type State = {|
+  formattedAddress: string,
+|};
+
+export class AddressPickerScreen extends React.Component<Props, State> {
   static navigationOptions = (props: Props) => {
     function goBack() {
       props.navigation.goBack();
@@ -55,18 +62,43 @@ export class AddressPickerScreen extends React.Component<Props> {
     };
   };
 
+  state = {
+    formattedAddress: '',
+  };
+
   componentDidMount() {
-    this.props.updateGeolocation(() => {}, () => {});
+    this.props.updateGeolocation();
+    const coordinate = this.getCoordinate();
+    this.updateFormattedAddress(coordinate);
   }
 
-  render() {
-    let currentLocation = null;
-    if (this.props.lat != null && this.props.lng != null) {
-      currentLocation = { latitude: this.props.lat, longitude: this.props.lng };
+  componentDidUpdate = () => {
+    const coordinate = this.getCoordinate();
+    this.updateFormattedAddress(coordinate);
+  };
+
+  getCoordinate = () =>
+    this.props.lat != null && this.props.lng != null
+      ? {
+          latitude: this.props.lat,
+          longitude: this.props.lng,
+        }
+      : null;
+
+  updateFormattedAddress = memoize(async (coordinate: ?Coordinate) => {
+    const formattedAddress = await getFormattedAddress(
+      coordinate,
+      this.props.googleMapsAPIKey,
+    );
+    if (formattedAddress != this.state.formattedAddress) {
+      this.setState({ formattedAddress });
     }
+  });
+
+  render() {
     return (
       <ScrollView>
-        {currentLocation != null && (
+        {this.state.formattedAddress != '' && (
           <View style={styles.currentLocationContainer}>
             <TextIcon code="&quot;" style={styles.currentLocationIcon} />
             <View>
@@ -74,7 +106,7 @@ export class AddressPickerScreen extends React.Component<Props> {
                 <Translation id="mmb.trip_service.transportation.address_picker.current_location_title" />
               </Text>
               <Text style={styles.currentLocationAddress}>
-                <FormattedAddress coordinate={currentLocation} />
+                <Translation passThrough={this.state.formattedAddress} />
               </Text>
             </View>
           </View>
@@ -109,4 +141,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withGeolocationContext(AddressPickerScreen);
+export default withGoogleMapsContext(
+  withGeolocationContext(AddressPickerScreen),
+);
