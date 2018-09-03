@@ -1,8 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import { Linking } from 'react-native';
-import { Alert } from '@kiwicom/mobile-localization';
 
 const defaultState = {
   lat: null,
@@ -22,7 +20,6 @@ type Coordinate = {|
 
 type Props = {|
   +children: React.Node,
-  +shouldNotUpdateGeolocationComponentDidMount?: boolean,
 |};
 
 type State = {|
@@ -49,37 +46,12 @@ class Provider extends React.Component<Props, State> {
   }
 
   componentDidMount = () => {
-    this.updateGeolocation(() => {}, () => {});
-  };
-
-  openSettings = () => {
-    Linking.openURL('app-settings:');
-  };
-
-  alertOpenSettings = () => {
-    Alert.translatedAlert(
-      undefined,
-      {
-        id: 'mmb.trip_services.transportation.map.current_position_alert',
-      },
-      [
-        {
-          text: { id: 'mmb.alert.button.ok' },
-          undefined,
-          style: 'default',
-        },
-        {
-          text: { id: 'mmb.alert.button.settings' },
-          onPress: this.openSettings,
-          style: 'default',
-        },
-      ],
-    );
+    this.updateGeolocation();
   };
 
   updateGeolocation = (
     dealWithLocation?: (coordinate: Coordinate) => void = () => {},
-    onError?: () => void = this.alertOpenSettings,
+    onError?: () => void = () => {},
   ) => {
     navigator.geolocation.getCurrentPosition(
       ({ coords: { latitude, longitude } }) => {
