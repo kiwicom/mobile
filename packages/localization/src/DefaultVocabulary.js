@@ -49,6 +49,8 @@ const SharedVocabulary = {
   'shared.pdf_viewer.load_failed': 'Failed to load pdf',
   'shared.web_view.no_internet_connection':
     'No internet connection, please check your internet settings or try it later.',
+  'shared.hours_short': 'h',
+  'shared.minutes_short': 'm',
 };
 
 const Translations = {

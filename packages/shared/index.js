@@ -43,6 +43,7 @@ export { default as PositionMarker } from './src/PositionMarker';
 export { default as Price } from './src/Price';
 export { default as Stars } from './src/Stars';
 export { default as Text } from './src/Text';
+export { default as Duration } from './src/Duration';
 
 /**
  * Layout components:
