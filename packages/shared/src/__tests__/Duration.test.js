@@ -3,13 +3,13 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { Duration } from '../Duration';
+import Duration, { separateHours } from '../Duration';
 
 const renderer = new ShallowRenderer();
 
 it('works as expected', () => {
   const test = (duration, expected) => {
-    expect(Duration.separateHours(duration)).toEqual(expected);
+    expect(separateHours(duration)).toEqual(expected);
   };
 
   test(-1, { hours: 0, minutes: 0 });
@@ -22,14 +22,7 @@ it('works as expected', () => {
 });
 
 it('works with broken input', () => {
-  // $FlowExpectedError: testing edge cases
-  expect(renderer.render(<Duration data={undefined} />)).toMatchSnapshot();
+  expect(renderer.render(<Duration duration={undefined} />)).toMatchSnapshot();
 
-  // $FlowExpectedError: testing edge cases
-  expect(renderer.render(<Duration data={{ aaa: 'bbb' }} />)).toMatchSnapshot();
-
-  expect(
-    // $FlowExpectedError: testing edge cases
-    renderer.render(<Duration data={{ duration: null }} />),
-  ).toMatchSnapshot();
+  expect(renderer.render(<Duration duration={null} />)).toMatchSnapshot();
 });

@@ -9,17 +9,16 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type DateTime$ref = any;
-type Duration$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TripTimes$ref: FragmentReference;
 export type TripTimes = {|
+  +duration: ?number,
   +departure: ?{|
     +$fragmentRefs: DateTime$ref
   |},
   +arrival: ?{|
     +$fragmentRefs: DateTime$ref
   |},
-  +$fragmentRefs: Duration$ref,
   +$refType: TripTimes$ref,
 |};
 */
@@ -41,9 +40,11 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "FragmentSpread",
-      "name": "Duration",
-      "args": null
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "duration",
+      "args": null,
+      "storageKey": null
     },
     {
       "kind": "LinkedField",
@@ -69,5 +70,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '657c08da5284310451246fb983abeb87';
+(node/*: any*/).hash = 'addd15a843b146c780830ad31ad57902';
 module.exports = node;

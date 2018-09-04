@@ -3,9 +3,9 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Duration } from '@kiwicom/mobile-shared';
+import idx from 'idx';
 
-import Duration from './Duration';
 import DateTime from './DateTime';
 import type { TripTimes as TripTimesType } from './__generated__/TripTimes.graphql';
 
@@ -24,7 +24,7 @@ function TripTimes({ data }: Props) {
       </View>
 
       <View style={styleSheet.duration}>
-        <Duration data={data} />
+        <Duration duration={idx(data, _ => _.duration)} />
       </View>
 
       <View style={styleSheet.arrival}>
@@ -38,7 +38,7 @@ export default createFragmentContainer(
   TripTimes,
   graphql`
     fragment TripTimes on Trip {
-      ...Duration
+      duration
       departure {
         ...DateTime
       }
