@@ -72,7 +72,7 @@ export default {
   'mmb.flight_overview.timeline.warning.different_airport_return_first':
     'Warning: your departure point differs from your return one. You will depart from __1_departure__ and return to __2_arrival__.',
   'mmb.flight_overview.timeline.terminal':
-    '__1_city__ __2_iata__ - Terminal - __3_terminal__',
+    '__1_city__ __2_iata__ - Terminal __3_terminal__',
 
   // MMB Flight services
   'mmb.flight_services.additional_baggage': 'Baggage',
