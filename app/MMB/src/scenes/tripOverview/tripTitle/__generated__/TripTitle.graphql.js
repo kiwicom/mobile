@@ -8,12 +8,12 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type Duration$ref = any;
 type MulticityTitle$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TripTitle$ref: FragmentReference;
 export type TripTitle = {|
-  +$fragmentRefs: MulticityTitle$ref & Duration$ref,
+  +duration: ?number,
+  +$fragmentRefs: MulticityTitle$ref,
   +$refType: TripTitle$ref,
 |};
 */
@@ -32,12 +32,14 @@ const node/*: ConcreteFragment*/ = {
       "args": null
     },
     {
-      "kind": "FragmentSpread",
-      "name": "Duration",
-      "args": null
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "duration",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '254d4a0a445d6e14e3c10d66427172be';
+(node/*: any*/).hash = 'ece4655ee8bc801e23001381a5d7a9d8';
 module.exports = node;

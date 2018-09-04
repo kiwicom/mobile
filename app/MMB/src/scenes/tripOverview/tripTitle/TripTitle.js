@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Duration } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
+import idx from 'idx';
 
 import TripOverviewContext, { type BookingType } from '../TripOverviewContext';
 import type { TripTitle as TripTitleType } from './__generated__/TripTitle.graphql';
 import MulticityTitle from './MulticityTitle';
-import Duration from '../../../components/header/Duration';
 import ReturnTitle from './ReturnTitle';
 import TripTitleText from './TripTitleText';
 
@@ -29,7 +29,7 @@ const TripTitle = ({ type, data, index }: PropsWithContext) => {
         </TripTitleText>
       )}
       <View style={styles.durationContainer}>
-        <Duration showIcon={false} data={data} />
+        <Duration showIcon={false} duration={idx(data, _ => _.duration)} />
       </View>
     </View>
   );
@@ -53,7 +53,7 @@ export default createFragmentContainer(
   graphql`
     fragment TripTitle on Trip {
       ...MulticityTitle
-      ...Duration
+      duration
     }
   `,
 );
