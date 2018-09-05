@@ -50,7 +50,8 @@ type MMBStackNavigatorNames =
   | 'MMBHotelsStack'
   | 'MMBMainSwitchStack'
   | 'AddressPickerScreen'
-  | 'TransportationMap';
+  | 'TransportationMap'
+  | 'GuaranteeScreen';
 
 type HomepageStackNavigatorRouteNames = 'Home';
 type PlaygroundNavigationRouteNames = 'Playground';

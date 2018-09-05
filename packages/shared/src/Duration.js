@@ -14,6 +14,7 @@ type Props = {|
   +showIcon: boolean,
   +duration: ?number,
   +style?: StylePropType,
+  +iconStyle?: StylePropType,
 |};
 
 export const separateHours = (durationInMinutes: number) => {
@@ -34,7 +35,9 @@ export default function Duration(props: Props) {
 
   return (
     <View style={styleSheet.row}>
-      {props.showIcon && <TextIcon code="e" style={styleSheet.durationText} />}
+      {props.showIcon && (
+        <TextIcon code="e" style={[styleSheet.durationText, props.iconStyle]} />
+      )}
       <Text style={[styleSheet.durationText, props.style]}>
         <Translation passThrough=" " />
         <Translation passThrough={hours} />
