@@ -182,6 +182,7 @@ exports[`renders with placeholder 1`] = `
             "paddingVertical": 15,
             "position": "absolute",
           },
+          undefined,
         ]
       }
     >

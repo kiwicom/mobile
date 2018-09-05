@@ -252,6 +252,9 @@ export default {
     'Remember this card for next time',
   'mmb.trip_services.insurance.payment.security_code.alert_message':
     'The security code (CVC/CVV/CID) is the 3 or 4 digit number on the back of your card or on the front for American Express.',
+  'mmb.trip_services.insurance.payment.card': 'Card •••• __1_digits__',
+  'mmb.trip_services.insurance.payment.CVV': 'CVV',
+  'mmb.trip_services.insurance.payment.use_another_card': 'Use another card',
 
   // MMB Transportation
   'mmb.trip_services.transportation.map.title': 'Get transportation',
