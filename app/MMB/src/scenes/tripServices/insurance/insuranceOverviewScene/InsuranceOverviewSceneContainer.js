@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { type NavigationType } from '@kiwicom/mobile-navigation';
+import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import BookingDetailContext from '../../../../context/BookingDetailContext';
 import type { InsuranceOverviewSceneQueryResponse } from './__generated__/InsuranceOverviewSceneContainerQuery.graphql';
@@ -15,6 +16,18 @@ type ContainerProps = {|
 export default class InsuranceOverviewSceneContainer extends React.Component<
   ContainerProps,
 > {
+  static navigationOptions = () => {
+    return {
+      headerTitle: function TripServicesHeaderTitle() {
+        return (
+          <HeaderTitle>
+            <Translation id="mmb.trip_services.insurance.title" />
+          </HeaderTitle>
+        );
+      },
+    };
+  };
+
   renderInnerComponent = (response: InsuranceOverviewSceneQueryResponse) => {
     return (
       <InsuranceOverviewScene

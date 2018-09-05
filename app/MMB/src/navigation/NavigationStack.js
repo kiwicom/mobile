@@ -18,6 +18,7 @@ import AppleWalletScreen from './AppleWalletScreen';
 import AddressPickerScreen from './AddressPickerScreen';
 import TransportationMap from '../scenes/tripServices/transportation/TransportationMap';
 import GuaranteeScreen from './GuaranteeScreen';
+import InsuranceStack from '../scenes/tripServices/insurance/navigation/InsuranceStack';
 
 // THIS IS ONLY FOR MOBILE DEVICES!
 const Screens = {};
@@ -128,6 +129,9 @@ export default StackNavigator(
     },
     GuaranteeStack: {
       screen: GuaranteeStack,
+    },
+    InsuranceStack: {
+      screen: InsuranceStack,
     },
   },
   {
