@@ -48,6 +48,7 @@ type Props = {|
   +navigation: NavigationType,
   +initContext: (data: Data) => void,
   +reset: () => void,
+  +hasChanged: () => boolean,
   +passengers: Passenger[],
   +initialised: boolean,
   +amount: number,
@@ -86,6 +87,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
 
   render = () => {
     const { data, passengers, amount } = this.props;
+    const hasChanged = this.props.hasChanged();
     return (
       <React.Fragment>
         <ScrollView
@@ -99,16 +101,17 @@ class InsuranceOverviewScene extends React.Component<Props> {
 
             <InsuranceOverviewPassengerMenuGroup passengers={passengers} />
 
-            {amount < 0 && (
-              <View style={styles.buttonWrapper}>
-                <TextButton
-                  title={
-                    <Translation id="mmb.trip_services.order.process_to_refund" />
-                  }
-                  onPress={this.goToTheInsuranceRefund}
-                />
-              </View>
-            )}
+            {hasChanged &&
+              amount <= 0 && (
+                <View style={styles.buttonWrapper}>
+                  <TextButton
+                    title={
+                      <Translation id="mmb.trip_services.order.process_to_refund" />
+                    }
+                    onPress={this.goToTheInsuranceRefund}
+                  />
+                </View>
+              )}
 
             {amount > 0 && (
               <View style={styles.buttonWrapper}>
@@ -122,7 +125,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
             )}
           </LayoutSingleColumn>
         </ScrollView>
-        {amount !== 0 && <OrderSummary />}
+        {hasChanged && <OrderSummary />}
       </React.Fragment>
     );
   };
@@ -131,6 +134,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
 export default withInsuranceContext(state => ({
   initContext: state.actions.initState,
   reset: state.actions.reset,
+  hasChanged: state.actions.hasChanged,
   passengers: state.passengers,
   initialised: state.initialised,
   amount: state.amount,
