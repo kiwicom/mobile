@@ -11,6 +11,7 @@ import Text from '../Text';
 
 type Props = {|
   +placeholder?: React.Element<typeof Translation>,
+  +placeholderStyle?: StylePropType,
   +defaultValue?: string,
   +autoFocus?: boolean,
   +onChangeText?: (text: string) => void,
@@ -19,6 +20,7 @@ type Props = {|
   +label?: React.Element<typeof Translation>,
   +labelStyle?: StylePropType,
   +inputWrapperStyle?: StylePropType,
+  +maxLength?: number,
 |};
 
 type State = {|
@@ -67,7 +69,11 @@ export default class TextInput extends React.Component<Props, State> {
         {this.props.placeholder &&
           this.state.displayPlaceholder && (
             <Text
-              style={[styleSheet.text, styleSheet.placeholder]}
+              style={[
+                styleSheet.text,
+                styleSheet.placeholder,
+                this.props.placeholderStyle,
+              ]}
               pointerEvents="none"
             >
               {this.props.placeholder}
