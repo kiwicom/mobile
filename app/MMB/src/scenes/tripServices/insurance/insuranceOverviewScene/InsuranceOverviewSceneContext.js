@@ -15,6 +15,7 @@ const defaultState = {
     updatePassengerInsurance: () => {},
     reset: () => {},
     refundMutationSuccesful: () => {},
+    hasChanged: () => false,
   },
 };
 
@@ -71,6 +72,7 @@ type State = {|
     +updatePassengerInsurance: (args: UpdatePassengerInsurance) => void,
     +reset: () => void,
     +refundMutationSuccesful: () => void,
+    +hasChanged: () => boolean,
   },
 |};
 
@@ -84,6 +86,7 @@ class Provider extends React.Component<Props, State> {
         updatePassengerInsurance: this.updatePassengerInsurance,
         reset: this.reset,
         refundMutationSuccesful: this.refundMutationSuccesful,
+        hasChanged: this.hasChanged,
       },
     };
   }
@@ -157,6 +160,10 @@ class Provider extends React.Component<Props, State> {
       changes: updatedChanges,
       amount: updatedAmount,
     });
+  };
+
+  hasChanged = () => {
+    return !this.state.changes.every(change => change.from === change.to);
   };
 
   computeUpdatedAmount = (updatedChanges: Change[]) => {
