@@ -37,6 +37,7 @@ function TimelineTrip(props: Props) {
               shouldDrawDashedLine={false}
               shouldDrawSolidLine={true}
               color={departureColorCode}
+              data={null} // This is not needed on this wrapper
             >
               <TimelineDeparture
                 routeStop={leg.departure}
@@ -48,6 +49,7 @@ function TimelineTrip(props: Props) {
               shouldDrawDashedLine={index + 1 !== legs.length}
               shouldDrawSolidLine={false}
               color={arrivalColorCode}
+              data={idx(legs, _ => _[index + 1]) || null} // Guarantee field is on next leg
             >
               <TimelineArrival data={leg.arrival} />
             </TimelineLegWrapper>
@@ -63,6 +65,8 @@ export default createFragmentContainer(
   graphql`
     fragment TimelineTrip on Trip {
       legs {
+        ...TimelineLegWrapper
+        guarantee
         departure {
           ...TimelineDeparture_routeStop
         }
