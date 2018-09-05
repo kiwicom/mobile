@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation, DateUtils, Alert } from '@kiwicom/mobile-localization';
-import { TodoMenuItem } from '@kiwicom/mobile-navigation';
+import { MenuItem } from '@kiwicom/mobile-navigation';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
 import type { InsuranceMenuItem as InsuranceMenuItemType } from './__generated__/InsuranceMenuItem.graphql';
@@ -35,7 +35,7 @@ export class InsuranceMenuItem extends React.Component<Props> {
 
   render = () => {
     return (
-      <TodoMenuItem
+      <MenuItem
         title={
           <Translation id="mmb.trip_services.general_services.insurance" />
         }

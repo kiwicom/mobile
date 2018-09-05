@@ -51,6 +51,8 @@ export default class PaymentScene extends React.Component<{||}> {
               <Translation id="mmb.trip_services.insurance.payment.pay_now" />
             }
             onPress={this.onPress}
+            // TODO
+            disabled={true}
           />
         </View>
 
