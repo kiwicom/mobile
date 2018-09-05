@@ -50,10 +50,7 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
     };
   }
 
-  goToMoreInfo = () =>
-    this.props.navigation.navigate(
-      'mmb.trip_services.insurance.selection.more_info',
-    );
+  goToMoreInfo = () => this.props.navigation.navigate('InsuranceMoreInfo');
 
   selectVariant = (insuranceType: InsuranceType) => {
     this.setState({ selectedVariant: insuranceType }, () => {
