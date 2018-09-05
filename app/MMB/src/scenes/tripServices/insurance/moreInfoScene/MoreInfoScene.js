@@ -16,9 +16,7 @@ type Props = {|
 
 export default class MoreInfoScene extends React.Component<Props> {
   onPress = () => {
-    this.props.navigation.navigate(
-      'mmb.trip_services.insurance.selection.more_info.terms',
-    );
+    this.props.navigation.navigate('InsuranceTerms');
   };
 
   render() {
