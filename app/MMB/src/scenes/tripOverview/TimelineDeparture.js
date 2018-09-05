@@ -79,12 +79,15 @@ function TimelineDeparture(props: Props) {
             }
           />
 
-          <TimelineRow
-            icon={<TextIcon code="R" style={styleSheet.icon} />}
-            value={
-              <Translation passThrough={`${manufacturer} ${flightModel}`} />
-            }
-          />
+          {manufacturer !== '' &&
+            flightModel !== '' && (
+              <TimelineRow
+                icon={<TextIcon code="R" style={styleSheet.icon} />}
+                value={
+                  <Translation passThrough={`${manufacturer} ${flightModel}`} />
+                }
+              />
+            )}
 
           <TimelineTerminal
             data={props.routeStop}

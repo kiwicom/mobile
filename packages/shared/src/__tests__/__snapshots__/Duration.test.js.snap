@@ -12,10 +12,13 @@ exports[`works with broken input 1`] = `
   <TextIcon
     code="e"
     style={
-      Object {
-        "color": "#7f91a8",
-        "fontSize": 10,
-      }
+      Array [
+        Object {
+          "color": "#7f91a8",
+          "fontSize": 10,
+        },
+        undefined,
+      ]
     }
   />
   <Text
@@ -63,10 +66,13 @@ exports[`works with broken input 2`] = `
   <TextIcon
     code="e"
     style={
-      Object {
-        "color": "#7f91a8",
-        "fontSize": 10,
-      }
+      Array [
+        Object {
+          "color": "#7f91a8",
+          "fontSize": 10,
+        },
+        undefined,
+      ]
     }
   />
   <Text

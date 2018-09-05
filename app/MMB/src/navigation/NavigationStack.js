@@ -17,6 +17,7 @@ import TravelDocumentModalScreen from './TravelDocumentModalScreen';
 import AppleWalletScreen from './AppleWalletScreen';
 import AddressPickerScreen from './AddressPickerScreen';
 import TransportationMap from '../scenes/tripServices/transportation/TransportationMap';
+import GuaranteeScreen from './GuaranteeScreen';
 
 // THIS IS ONLY FOR MOBILE DEVICES!
 const Screens = {};
@@ -103,6 +104,17 @@ const TransportationStack = StackNavigator(
   },
 );
 
+const GuaranteeStack = StackNavigator(
+  {
+    GuaranteeScreen: withMappedProps(GuaranteeScreen),
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'GuaranteeScreen',
+    mode: 'modal',
+  },
+);
+
 export default StackNavigator(
   {
     MMBMainStack: {
@@ -113,6 +125,9 @@ export default StackNavigator(
     },
     TransportationMap: {
       screen: TransportationStack,
+    },
+    GuaranteeStack: {
+      screen: GuaranteeStack,
     },
   },
   {

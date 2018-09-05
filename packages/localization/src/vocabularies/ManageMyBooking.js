@@ -32,6 +32,9 @@ export default {
   'mmb.alert.something_went_wrong':
     'Something went wrong; please try again later.',
 
+  // MMB Guarantee screen
+  'mmb.guarantee_screen.title': 'Help',
+
   // MMB Boarding passes
   'mmb.boarding_passes.boarding_pass': 'Boarding Pass',
   'mmb.boarding_passes.boarding_pass_return.departure': 'Departure',
@@ -457,4 +460,5 @@ export default {
   // MMB Trip overview
   'mmb.trip_overview.trip_title.outbound': 'Outbound',
   'mmb.trip_overview.trip_title.inbound': 'Inbound',
+  'mmb.trip_overview.trip_stopover.kiwi_guarantee': 'Kiwi.com Guarantee',
 };
