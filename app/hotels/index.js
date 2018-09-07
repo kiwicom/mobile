@@ -7,7 +7,10 @@ import SingleHotelStandalonePackage from './src/appRegistry/SingleHotelStandalon
 import NewHotelsStandAlonePackage from './src/appRegistry/NewHotelsStandalonePackage';
 
 AppRegistry.registerComponent('KiwiHotels', () => HotelsStandalonePackage);
-AppRegistry.registerComponent('NewKiwiHotels', () => HotelsStandalonePackage);
+AppRegistry.registerComponent(
+  'NewKiwiHotels',
+  () => NewHotelsStandAlonePackage,
+);
 AppRegistry.registerComponent(
   'SingleHotel',
   () => SingleHotelStandalonePackage,
