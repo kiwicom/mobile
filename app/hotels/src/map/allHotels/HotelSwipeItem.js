@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { TouchableWithoutFeedback, View } from 'react-native';
+import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { TouchableWithoutFeedback } from '@kiwicom/mobile-shared';
 
 import HotelDetailPreview from '../HotelDetailPreview';
 import type { HotelSwipeItem as HotelSwipeItemData } from './__generated__/HotelSwipeItem.graphql';

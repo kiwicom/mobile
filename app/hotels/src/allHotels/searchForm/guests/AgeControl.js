@@ -1,13 +1,14 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback, Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 import {
   StyleSheet,
   AgePicker,
   Icon,
   Text,
   type StylePropType,
+  TouchableWithoutFeedback,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';

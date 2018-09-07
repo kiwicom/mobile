@@ -2,6 +2,8 @@
 
 exports[`Guests Render all inputs 1`] = `
 <Touchable
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   borderlessRipple={false}
   disabled={false}
   onPress={[MockFunction]}
