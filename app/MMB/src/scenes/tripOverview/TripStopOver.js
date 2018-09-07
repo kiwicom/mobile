@@ -33,10 +33,14 @@ class TripStopOver extends React.Component<Props> {
   render = () => {
     const isKiwiGuarantee =
       idx(this.props, _ => _.data.guarantee) === 'KIWICOM';
+    const duration = idx(this.props, _ => _.data.stopoverDuration);
     return (
       <View style={styles.container}>
-        {/* TODO: Replace hardcoded duration, need to extend graphql first */}
-        <Duration duration={250} iconStyle={styles.iconMargin} />
+        <Duration
+          duration={duration}
+          iconStyle={styles.iconMargin}
+          style={styles.duration}
+        />
 
         {isKiwiGuarantee && (
           <View style={styles.row}>
@@ -73,6 +77,9 @@ const styles = StyleSheet.create({
   iconMargin: {
     marginEnd: 8,
   },
+  duration: {
+    fontSize: 12,
+  },
 });
 
 export default createFragmentContainer(
@@ -80,6 +87,7 @@ export default createFragmentContainer(
   graphql`
     fragment TripStopOver on Leg {
       guarantee
+      stopoverDuration
     }
   `,
 );

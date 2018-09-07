@@ -275,6 +275,9 @@ type BookingConnection {
 type BookingContactDetails {
   phone: String
   email: String
+
+  """Documentation and information about the passanger."""
+  passenger: Passenger
 }
 
 enum BookingDestinationImageDimensions {
@@ -1669,6 +1672,9 @@ type Leg {
 
   """Leg duration in minutes."""
   duration: Int
+
+  """Leg stopover duration before this leg in minutes."""
+  stopoverDuration: Int
   flightNumber: Int
 
   """Reservation number related to the leg."""
@@ -1982,16 +1988,6 @@ type RoomsConfigurationOutput {
 
 """Root Mutation."""
 type RootMutation {
-  addFAQArticleComment(
-    """ID of FAQ article to receive vote."""
-    id: ID!
-
-    """Value indicating the comment type."""
-    type: FAQCommentType!
-
-    """Comment text"""
-    comment: String!
-  ): FAQArticle
   login(email: String!, password: String!): User
   resetPassword(email: String!): ResetPasswordResponse
   updatePassenger(
@@ -2006,6 +2002,23 @@ type RootMutation {
     simpleToken: String!
     passengers: [PassengerInsuranceInput!]!
   ): Booking
+  voteFAQArticle(
+    """ID of FAQ article to receive vote."""
+    id: ID!
+
+    """Type of vote for article (up/down)"""
+    vote: VoteType
+  ): FAQArticle
+  addFAQArticleComment(
+    """ID of FAQ article to receive vote."""
+    id: ID!
+
+    """Value indicating the comment type."""
+    type: FAQCommentType!
+
+    """Comment text"""
+    comment: String!
+  ): FAQArticle
 }
 
 """Root Query"""
@@ -2337,6 +2350,11 @@ type Visa {
 
   """Countries where visa is not required"""
   okIn: [Location]
+}
+
+enum VoteType {
+  up
+  down
 }
 
 type WhitelabeledServices {
