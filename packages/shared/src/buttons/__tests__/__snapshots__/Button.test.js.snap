@@ -3,6 +3,7 @@
 exports[`Button renders 1`] = `
 <Touchable
   accessibilityComponentType="button"
+  accessibilityTraits="button"
   borderlessRipple={false}
   disabled={false}
   onPress={[Function]}

@@ -2,6 +2,8 @@
 
 exports[`Touchable with ripple effect disables foreground in borderless mode 1`] = `
 <DummyTouchableNativeFeedback
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   borderlessRipple={true}
   disabled={false}
   onPress={[Function]}
@@ -19,6 +21,8 @@ exports[`Touchable with ripple effect disables foreground in borderless mode 1`]
 
 exports[`Touchable with ripple effect is possible to turn ripple effect off 1`] = `
 <TouchableOpacity
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   activeOpacity={0.5}
   borderlessRipple={false}
   disabled={false}
@@ -34,6 +38,8 @@ exports[`Touchable with ripple effect is possible to turn ripple effect off 1`] 
 
 exports[`Touchable with ripple effect renders with foreground 1`] = `
 <DummyTouchableNativeFeedback
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   borderlessRipple={false}
   disabled={false}
   onPress={[Function]}
@@ -51,6 +57,8 @@ exports[`Touchable with ripple effect renders with foreground 1`] = `
 
 exports[`Touchable with ripple effect renders with ripple color 1`] = `
 <DummyTouchableNativeFeedback
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   borderlessRipple={false}
   disabled={false}
   onPress={[Function]}

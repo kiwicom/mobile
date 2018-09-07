@@ -1,9 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { AdaptableLayout, TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  AdaptableLayout,
+  TextIcon,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from '@kiwicom/mobile-shared';
 import {
   SeparatorFullWidth,
   SeparatorTrimmed,

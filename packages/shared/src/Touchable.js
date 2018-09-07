@@ -40,6 +40,8 @@ export default class Touchable extends React.Component<Props> {
     borderlessRipple: false,
     rippleColor: Color.transparent.black.$32,
     disabled: false,
+    accessibilityTraits: 'button',
+    accessibilityComponentType: 'button',
   };
 
   /**

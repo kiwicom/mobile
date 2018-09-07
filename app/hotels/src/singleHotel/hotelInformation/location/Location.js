@@ -1,13 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View } from 'react-native';
 import MapView from 'react-native-maps';
 import {
   StyleSheet,
   StretchedImage,
   DropMarker,
   Text,
+  TouchableWithoutFeedback,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';

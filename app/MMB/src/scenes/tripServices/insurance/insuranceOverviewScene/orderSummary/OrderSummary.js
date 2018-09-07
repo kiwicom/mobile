@@ -1,8 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
-import { StyleSheet, Text, Price, TextIcon } from '@kiwicom/mobile-shared';
+import { View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Price,
+  TextIcon,
+  TouchableWithoutFeedback,
+} from '@kiwicom/mobile-shared';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';

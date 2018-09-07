@@ -10,6 +10,8 @@ exports[`renders header with title 1`] = `
   }
 >
   <Touchable
+    accessibilityComponentType="button"
+    accessibilityTraits="button"
     borderlessRipple={false}
     disabled={false}
     onPress={[Function]}
@@ -102,6 +104,8 @@ exports[`renders header with very long title 1`] = `
   }
 >
   <Touchable
+    accessibilityComponentType="button"
+    accessibilityTraits="button"
     borderlessRipple={false}
     disabled={false}
     onPress={[Function]}

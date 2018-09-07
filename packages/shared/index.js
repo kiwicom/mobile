@@ -15,6 +15,9 @@ export { default as TextButton } from './src/buttons/TextButton';
 export { default as LinkButton } from './src/buttons/LinkButton';
 export { default as ButtonTitle } from './src/buttons/ButtonTitle';
 export {
+  default as TouchableWithoutFeedback,
+} from './src/TouchableWithoutFeedback';
+export {
   default as IncrementDecrementButtons,
 } from './src/buttons/IncrementDecrementButtons';
 export { default as AppleWalletButton } from './src/buttons/AppleWalletButton';

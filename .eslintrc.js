@@ -56,6 +56,7 @@ module.exports = {
               "TouchableHighlight", // Touchable
               "TouchableNativeFeedback", // Touchable
               "TouchableOpacity", // Touchable
+              "TouchableWithoutFeedback", // TouchableWithoutFeedback
               "Switch", //Switch
               "Alert", // Alert (localization)
               "TextInput",
