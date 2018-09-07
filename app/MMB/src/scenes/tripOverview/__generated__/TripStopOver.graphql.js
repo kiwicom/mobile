@@ -13,6 +13,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type TripStopOver$ref: FragmentReference;
 export type TripStopOver = {|
   +guarantee: ?CoveredBy,
+  +stopoverDuration: ?number,
   +$refType: TripStopOver$ref,
 |};
 */
@@ -31,9 +32,16 @@ const node/*: ConcreteFragment*/ = {
       "name": "guarantee",
       "args": null,
       "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "stopoverDuration",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'eb88a35a25936daf8a481e1f3a9efbb5';
+(node/*: any*/).hash = '14f2a78f39e00b6a12f7e92d0659607d';
 module.exports = node;
