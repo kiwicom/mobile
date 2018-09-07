@@ -11,8 +11,11 @@ class MainActivity : AppCompatActivity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    button.setOnClickListener {
+    button_hotels.setOnClickListener {
       startActivity(Intent(this, HotelsActivity.getViewModelClass()))
     }
-  }
+
+    button_new_hotels.setOnClickListener {
+      startActivity(Intent(this, NewHotelActivity.getViewModelClass()))
+    }  }
 }
