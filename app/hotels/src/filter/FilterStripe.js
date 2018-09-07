@@ -96,6 +96,7 @@ class FilterStripe extends React.Component<PropsWithContext> {
 const styles = StyleSheet.create({
   view: {
     width: '100%',
+    backgroundColor: defaultTokens.paletteWhite,
   },
   scrollView: {
     paddingVertical: 10,
