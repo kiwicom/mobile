@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback, Linking } from 'react-native';
+import { View, Linking } from 'react-native';
 import {
   StyleSheet,
   TextIcon,
   withGeolocationContext,
+  TouchableWithoutFeedback,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Alert } from '@kiwicom/mobile-localization';

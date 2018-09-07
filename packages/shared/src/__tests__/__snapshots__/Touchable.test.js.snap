@@ -2,6 +2,8 @@
 
 exports[`Touchable with children throws error for multiple children 1`] = `
 <TouchableOpacity
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   activeOpacity={0.5}
   borderlessRipple={false}
   disabled={false}
@@ -16,6 +18,8 @@ exports[`Touchable with children throws error for multiple children 1`] = `
 
 exports[`Touchable with children throws error for multiple children 2`] = `
 <TouchableOpacity
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   activeOpacity={0.5}
   borderlessRipple={false}
   disabled={false}

@@ -2,6 +2,8 @@
 
 exports[`renders with marginEnd if not last in the row 1`] = `
 <Touchable
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   borderlessRipple={false}
   disabled={false}
   onPress={[Function]}
@@ -28,6 +30,8 @@ exports[`renders with marginEnd if not last in the row 1`] = `
 
 exports[`renders without marginEnd if last in the row 1`] = `
 <Touchable
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
   borderlessRipple={false}
   disabled={false}
   onPress={[Function]}

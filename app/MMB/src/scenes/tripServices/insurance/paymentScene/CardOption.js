@@ -1,9 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { type TranslationType } from '@kiwicom/mobile-localization';
-import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import {
+  TextIcon,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|

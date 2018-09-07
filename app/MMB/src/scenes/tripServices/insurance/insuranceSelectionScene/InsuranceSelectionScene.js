@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View, Image, TouchableWithoutFeedback } from 'react-native';
-import { StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { View, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   SeparatorTrimmed,

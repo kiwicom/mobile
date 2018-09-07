@@ -1,8 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { TouchableWithoutFeedback, Keyboard, View } from 'react-native';
+import { Keyboard, View } from 'react-native';
 
+import TouchableWithoutFeedback from '../TouchableWithoutFeedback';
 import StyleSheet from '../PlatformStyleSheet';
 
 const styles = StyleSheet.create({

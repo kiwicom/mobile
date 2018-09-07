@@ -1,9 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import { View, TouchableWithoutFeedback, Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import TouchableWithoutFeedback from '../TouchableWithoutFeedback';
 import StyleSheet from '../PlatformStyleSheet';
 import Icon from '../icons/Icon';
 import type { StylePropType } from '../../types/Styles';

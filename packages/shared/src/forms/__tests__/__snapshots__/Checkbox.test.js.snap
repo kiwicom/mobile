@@ -2,6 +2,9 @@
 
 exports[`checked 1`] = `
 <TouchableWithoutFeedback
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
+  disabled={false}
   onPress={[Function]}
 >
   <Component
@@ -50,6 +53,9 @@ exports[`checked 1`] = `
 
 exports[`not checked 1`] = `
 <TouchableWithoutFeedback
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
+  disabled={false}
   onPress={[Function]}
 >
   <Component
