@@ -11,6 +11,7 @@ import {
   StyleSheet,
   AdaptableLayout,
   AdaptableBadge,
+  GestureController,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -25,6 +26,7 @@ type Props = {|
   +setIsNew: (isNew: boolean) => void,
   +cityName: string,
   +checkin: string,
+  +lastNavigationMode?: 'present' | 'push',
 |};
 
 class SearchResultsScreen extends React.Component<Props> {
@@ -79,12 +81,21 @@ class SearchResultsScreen extends React.Component<Props> {
     this.props.setIsNew(true);
   };
 
+  onClosePress = () => {
+    // This prop will only come if we launch this screen from a native app
+    if (this.props.lastNavigationMode === 'present') {
+      GestureController.closeModal('NewKiwiHotels');
+    } else {
+      this.props.onBackClicked();
+    }
+  };
+
   render = () => (
     <LayoutDoubleColumn
       menuComponent={
         <View style={styles.container}>
           <NewAllHotels />
-          <Button onPress={this.props.onBackClicked} style={styles.button}>
+          <Button onPress={this.onClosePress} style={styles.button}>
             <Text style={styles.text}>
               <Translation id="shared.button.close" />
             </Text>
