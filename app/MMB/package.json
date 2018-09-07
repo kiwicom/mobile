@@ -17,7 +17,6 @@
     "react-native-share": "^1.0.27"
   },
   "devDependencies": {
-    "@kiwicom/mobile-playground": "^0",
-    "mockdate": "^2.0.2"
+    "@kiwicom/mobile-playground": "^0"
   }
 }
