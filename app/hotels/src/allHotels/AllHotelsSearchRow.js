@@ -34,7 +34,11 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
     const lowResUrl = idx(this.props.data, _ => _.hotel.mainPhoto.lowResUrl);
 
     return (
-      <Touchable onPress={this.onGoToSingleHotel} style={newStyles.container}>
+      <Touchable
+        onPress={this.onGoToSingleHotel}
+        style={newStyles.container}
+        delayPressIn={100}
+      >
         <View style={style.row}>
           <View style={newStyles.imageContainer}>
             <NetworkImage
@@ -65,7 +69,11 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
     }
     const lowResUrl = idx(data, _ => _.hotel.mainPhoto.lowResUrl);
     return (
-      <SimpleCard onPress={this.onGoToSingleHotel} style={style.cardStyle}>
+      <SimpleCard
+        onPress={this.onGoToSingleHotel}
+        style={style.cardStyle}
+        delayPressIn={100}
+      >
         <View style={style.row}>
           <NetworkImage
             style={style.image}
