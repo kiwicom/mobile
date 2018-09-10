@@ -32,7 +32,7 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
       <HotelsStandalonePackage
         bookingComAffiliate={affiliate}
         language="en"
-        currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
+        currency="EUR"
         onBackClicked={this.goToHomepage}
         dataSaverEnabled={false}
         coordinates={this.props.coordinates}

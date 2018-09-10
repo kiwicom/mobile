@@ -232,7 +232,10 @@ type Booking {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
@@ -345,7 +348,10 @@ interface BookingInterface {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
 }
 
 """A connection to a list of items."""
@@ -410,7 +416,10 @@ type BookingMulticity implements BookingInterface & Node {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
 
   """Initial origin."""
   start: RouteStop
@@ -469,7 +478,10 @@ type BookingOneWay implements BookingInterface & Node {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
   trip: Trip
 }
 
@@ -518,7 +530,10 @@ type BookingReturn implements BookingInterface & Node {
   authToken: String
 
   """Nearest upcoming leg by arrival time."""
-  upcomingLeg: Leg
+  upcomingLeg(
+    """Filter out only legs with specified guarantee."""
+    guarantee: CoveredBy
+  ): Leg
 
   """Trip from origin to destination."""
   outbound: Trip
@@ -1281,8 +1296,10 @@ type HotelAvailabilityEdge {
 Overall statistics related to all hotels matching search & filter criteria
 """
 type HotelAvailabilityStats {
-  priceMax: Float
-  priceMin: Float
+  priceMax: Float @deprecated(reason: "Use \"maxPrice\" field instead.")
+  priceMin: Float @deprecated(reason: "Use \"minPrice\" field instead.")
+  minPrice: Float
+  maxPrice: Float
 }
 
 type HotelCity {
@@ -2183,12 +2200,6 @@ type RootQuery {
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
-
-    """
-    DEPRECATED: Subsection of FAQ is handled automatically now, this has no
-    effect.Fetch only subsection of FAQ based on the current situation of customer.
-    """
-    section: FAQSection
   ): FAQCategory
 
   """Geography info by an IP address"""
