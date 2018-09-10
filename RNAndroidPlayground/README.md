@@ -2,7 +2,7 @@
 
 ## Documentation
 
-See [docs](RNAndroidPlayground/docs) folder.
+See [docs](docs) folder.
 
 ## Test playground app
 
