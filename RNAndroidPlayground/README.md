@@ -1,5 +1,9 @@
 # Android distribution
 
+## Documentation
+
+See [docs](RNAndroidPlayground/docs) folder.
+
 ## Test playground app
 
 You can run the `app` using Android Studio. In `app/build.gradle` you need to replace the `SNAPSHOT` for local the library:
