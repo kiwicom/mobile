@@ -1,5 +1,14 @@
 # Native - RN integration docs
 
-* [Android](android)
-* iOS
-* JS
+Documentation describing how to integrate the official native app and React Native code.
+
+## Index
+
+### [Android](android)
+On Android we use the a gradle library called `rnkiwimobile`.
+
+### iOS
+TODO
+
+### JS
+TODO (navigation, create new vertical, etc)
