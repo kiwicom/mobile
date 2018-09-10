@@ -12,12 +12,17 @@ type Props = {|
   +children: React.Node,
   +onPress?: () => void,
   +style?: StylePropType,
+  +delayPressIn?: number,
 |};
 
 export default function SimpleCard(props: Props) {
   if (props.onPress) {
     return (
-      <Touchable style={[styles.wrapper, props.style]} onPress={props.onPress}>
+      <Touchable
+        style={[styles.wrapper, props.style]}
+        onPress={props.onPress}
+        delayPressIn={props.delayPressIn}
+      >
         {props.children}
       </Touchable>
     );
