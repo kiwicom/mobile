@@ -59,7 +59,9 @@ class HotelSwipeList extends React.Component<Props, State> {
   carouselRef: React.ElementRef<typeof Carousel>;
 
   componentDidUpdate = () => {
-    this.carouselRef.snapToItem(this.props.selectedIndex, false);
+    if (this.carouselRef) {
+      this.carouselRef.snapToItem(this.props.selectedIndex, false);
+    }
   };
 
   getSelectedAddress = () => {
