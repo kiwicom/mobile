@@ -2,7 +2,7 @@
 
 ### Example of vertical: RNHotelsActivity
 
-In this vertical, we want to include only the Javascript code related to hotels and only the required native dependencies. rnkiwimobile provides RNHotelsActivity that looks like:
+In this vertical, we want to include only the Javascript code related to hotels and only the required native dependencies. `rnkiwimobile` provides `RNHotelsActivity` that looks like:
 
 ```kt
 override fun getModuleName(): String {
@@ -24,7 +24,7 @@ override fun getPackages(): MutableList<ReactPackage> {
 }
 ```
 
-As you can see, we specify only the hotels entry point on the Javascript side and we pass only the necessary native dependencies. Some of them (`react-native-native-modules`) we add a callback which should be implemented by the native consumer.
+As you can see, we specify only the hotels entry point on the Javascript side and we pass only the necessary native dependencies. For some of of them (`react-native-native-modules`), we add a callback which should be implemented by the native consumer.
 
 ### Using a vertical (and dependency injection)
 
@@ -48,7 +48,7 @@ class HotelsActivity : RNHotelsActivity(HotelsModulesInjection) {
 }
 ```
 
-The native app can then inject the the `HotelsModulesInjection` interface with its own code:
+The native app can then inject the `HotelsModulesInjection` interface with its own code:
 
 ```kt
 object HotelsModulesInjection : RNHotelsModulesInjection {
