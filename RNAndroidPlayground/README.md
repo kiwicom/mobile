@@ -2,7 +2,7 @@
 
 ## Documentation
 
-See [docs](docs) folder.
+See [docs](../docs/android) folder.
 
 ## Test playground app
 

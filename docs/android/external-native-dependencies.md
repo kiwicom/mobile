@@ -2,7 +2,7 @@
 
 When we update a dependency there are no major changes as versions will be taken from [.build/package.json](../../.build/package.json) and a new snapshot will be deployed.
 
-To add a new native dependency though, that is more time consuming. We need to create a separated `SNAPSHOT` for it and upload it to [Trinerdis](http://trinerdis.cz:8000/repository/snapshots/). We need to create a similar structure for a new dependency like in [here](../react-native-tooltips).
+To add a new native dependency though, that is more time consuming. We need to create a separated `SNAPSHOT` for it and upload it to [Trinerdis](http://trinerdis.cz:8000/repository/snapshots/). We need to create a similar structure for a new dependency like in [here](../../RNAndroidPlayground/react-native-tooltips).
 
 Usually we only need to change the following part to use the correct dependency name:
 
@@ -22,7 +22,7 @@ tasks.create('uploadTrinerdis', Upload.class) {
 }
 ```
 
-We also need to instruct [dependencies.gradle](../dependencies.gradle) to take the correct version:
+We also need to instruct [dependencies.gradle](../../RNAndroidPlayground/dependencies.gradle) to take the correct version:
 
 ```
 ourNativeDependency = packageJson['dependencies']['our-native-dependency'].replace('^', '')
