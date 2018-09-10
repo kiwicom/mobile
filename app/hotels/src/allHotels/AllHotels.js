@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView, Keyboard, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import {
   AppStateChange,
   StyleSheet,
@@ -94,11 +94,7 @@ export class AllHotels extends React.Component<PropsWithContext> {
         states={['active']}
         onStateChange={this.validateCheckinDate}
       >
-        <ScrollView
-          bounces={false}
-          contentContainerStyle={styles.scrollViewContainer}
-          onScroll={Keyboard.dismiss}
-        >
+        <ScrollView contentContainerStyle={styles.scrollViewContainer}>
           <SearchForm
             openLocationPicker={this.props.openLocationPicker}
             openGuestsModal={this.props.openGuestsModal}

@@ -9,10 +9,7 @@ import NewAllHotelsSearch from './NewAllHotelsSearch';
 
 export default function NewAllHotels() {
   return (
-    <ScrollView
-      bounces={false}
-      contentContainerStyle={styles.scrollViewContainer}
-    >
+    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
       <FilterStripe />
       <NewAllHotelsSearch />
     </ScrollView>
