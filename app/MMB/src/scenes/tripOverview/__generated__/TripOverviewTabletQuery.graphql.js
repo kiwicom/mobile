@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash a9ed89932d9fd8ed46d4a6738114394c
+ * @relayHash b68c92bc3e4932a6e73b880b0db76d5c
  */
 
 /* eslint-disable */
@@ -139,6 +139,7 @@ fragment TimelineDeparture_arrival on RouteStop {
 }
 
 fragment TimelineDeparture_legInfo on Leg {
+  duration
   flightNumber
   operatingAirline {
     name
@@ -290,11 +291,18 @@ v7 = [
 v8 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "duration",
+  "args": null,
+  "storageKey": null
+},
+v9 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "code",
   "args": null,
   "storageKey": null
 },
-v9 = [
+v10 = [
   v6,
   {
     "kind": "LinkedField",
@@ -308,7 +316,7 @@ v9 = [
       v5,
       v4,
       v2,
-      v8
+      v9
     ]
   },
   {
@@ -319,7 +327,7 @@ v9 = [
     "storageKey": null
   }
 ],
-v10 = [
+v11 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -340,13 +348,7 @@ v10 = [
     "plural": false,
     "selections": v7
   },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "duration",
-    "args": null,
-    "storageKey": null
-  },
+  v8,
   {
     "kind": "LinkedField",
     "alias": null,
@@ -379,7 +381,7 @@ v10 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v9
+        "selections": v10
       },
       {
         "kind": "LinkedField",
@@ -389,8 +391,9 @@ v10 = [
         "args": null,
         "concreteType": "RouteStop",
         "plural": false,
-        "selections": v9
+        "selections": v10
       },
+      v8,
       {
         "kind": "ScalarField",
         "alias": null,
@@ -434,7 +437,7 @@ v10 = [
             "args": null,
             "storageKey": null
           },
-          v8
+          v9
         ]
       },
       {
@@ -470,7 +473,7 @@ return {
   "operationKind": "query",
   "name": "TripOverviewTabletQuery",
   "id": null,
-  "text": "query TripOverviewTabletQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  ...TripTitle\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    id\n  }\n  ...TimelineTrip\n}\n\nfragment TripTitle on Trip {\n  ...MulticityTitle\n  duration\n}\n\nfragment TimelineTrip on Trip {\n  legs {\n    ...TimelineLegWrapper\n    guarantee\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n      ...TimelineDeparture_arrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineLegWrapper on Leg {\n  ...TripStopOver\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n  ...TimelineTerminal\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_arrival on RouteStop {\n  ...TimelineTerminal\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  flightNumber\n  operatingAirline {\n    name\n    iata\n  }\n  airline {\n    name\n    logoUrl\n    code\n  }\n  vehicle {\n    model\n    manufacturer\n  }\n}\n\nfragment TimelineTerminal on RouteStop {\n  terminal\n  airport {\n    code\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TripStopOver on Leg {\n  guarantee\n  stopoverDuration\n}\n\nfragment MulticityTitle on Trip {\n  departure {\n    ...MulticityName\n  }\n  arrival {\n    ...MulticityName\n  }\n}\n\nfragment MulticityName on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n",
+  "text": "query TripOverviewTabletQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...TripOverview\n    id\n  }\n}\n\nfragment TripOverview on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...OneWayTimeline\n  }\n  ... on BookingReturn {\n    ...ReturnTimeline\n  }\n  ... on BookingMulticity {\n    ...MulticityTimeline\n  }\n}\n\nfragment OneWayTimeline on BookingOneWay {\n  trip {\n    ...Timeline\n  }\n}\n\nfragment ReturnTimeline on BookingReturn {\n  outbound {\n    ...Timeline\n  }\n  inbound {\n    ...Timeline\n  }\n}\n\nfragment MulticityTimeline on BookingMulticity {\n  trips {\n    ...Timeline\n  }\n}\n\nfragment Timeline on Trip {\n  ...TripTitle\n  departure {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    localTime\n    airport {\n      locationId\n      city {\n        name\n      }\n      id\n    }\n  }\n  legs {\n    id\n  }\n  ...TimelineTrip\n}\n\nfragment TripTitle on Trip {\n  ...MulticityTitle\n  duration\n}\n\nfragment TimelineTrip on Trip {\n  legs {\n    ...TimelineLegWrapper\n    guarantee\n    departure {\n      ...TimelineDeparture_routeStop\n    }\n    arrival {\n      ...TimelineArrival\n      ...TimelineDeparture_arrival\n    }\n    ...TimelineDeparture_legInfo\n    id\n  }\n}\n\nfragment TimelineLegWrapper on Leg {\n  ...TripStopOver\n}\n\nfragment TimelineDeparture_routeStop on RouteStop {\n  ...TimelineTitle\n  ...TimelineTerminal\n}\n\nfragment TimelineArrival on RouteStop {\n  ...TimelineTitle\n}\n\nfragment TimelineDeparture_arrival on RouteStop {\n  ...TimelineTerminal\n}\n\nfragment TimelineDeparture_legInfo on Leg {\n  duration\n  flightNumber\n  operatingAirline {\n    name\n    iata\n  }\n  airline {\n    name\n    logoUrl\n    code\n  }\n  vehicle {\n    model\n    manufacturer\n  }\n}\n\nfragment TimelineTerminal on RouteStop {\n  terminal\n  airport {\n    code\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TimelineTitle on RouteStop {\n  localTime\n  airport {\n    locationId\n    city {\n      name\n    }\n    id\n  }\n}\n\nfragment TripStopOver on Leg {\n  guarantee\n  stopoverDuration\n}\n\nfragment MulticityTitle on Trip {\n  departure {\n    ...MulticityName\n  }\n  arrival {\n    ...MulticityName\n  }\n}\n\nfragment MulticityName on RouteStop {\n  airport {\n    city {\n      name\n    }\n    id\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -531,7 +534,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v10
+                "selections": v11
               }
             ]
           },
@@ -547,7 +550,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v10
+                "selections": v11
               },
               {
                 "kind": "LinkedField",
@@ -557,7 +560,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v10
+                "selections": v11
               }
             ]
           },
@@ -573,7 +576,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v10
+                "selections": v11
               }
             ]
           }
