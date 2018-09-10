@@ -4,7 +4,12 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { NetworkImage, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import {
+  NetworkImage,
+  StyleSheet,
+  TextIcon,
+  Duration,
+} from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -35,12 +40,22 @@ function TimelineDeparture(props: Props) {
   const flightModel = idx(legInfo, _ => _.vehicle.model) || '';
   const manufacturer = idx(legInfo, _ => _.vehicle.manufacturer) || '';
 
+  const duration = idx(legInfo, _ => _.duration);
   return (
     <React.Fragment>
       <TimelineTitle data={props.routeStop} />
 
       {/* TODO: BUS vs. PLANE */}
-
+      <View style={styleSheet.durationContainer}>
+        <View style={styleSheet.iconWrapper}>
+          <TextIcon code="a" style={styleSheet.durationIcon} />
+        </View>
+        <Duration
+          duration={duration}
+          showIcon={false}
+          style={styleSheet.duration}
+        />
+      </View>
       <View style={styleSheet.row}>
         <View style={styleSheet.detailedInfo}>
           <TimelineRow
@@ -121,6 +136,7 @@ export default createFragmentContainer(
     }
 
     fragment TimelineDeparture_legInfo on Leg {
+      duration
       flightNumber
       operatingAirline {
         name
@@ -158,5 +174,25 @@ const styleSheet = StyleSheet.create({
   },
   carrierIcon: {
     transform: [{ rotate: '45deg' }],
+  },
+  duration: {
+    fontSize: 12,
+    color: defaultTokens.colorTextAttention,
+  },
+  iconWrapper: {
+    backgroundColor: defaultTokens.colorIconSecondary,
+    position: 'absolute',
+    start: -25,
+    top: 8.5,
+    zIndex: 1000,
+    padding: 2,
+    borderRadius: 6,
+  },
+  durationIcon: {
+    color: defaultTokens.paletteWhite,
+    transform: [{ rotate: '225deg' }],
+  },
+  durationContainer: {
+    paddingVertical: 10,
   },
 });
