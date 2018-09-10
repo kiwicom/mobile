@@ -37,14 +37,21 @@ export class AllHotelsSearchList extends React.Component<
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_RESULTS);
 
-    const currentSearchStats = idx(
+    const priceMax = idx(
       this.props,
-      _ => _.data.allAvailableHotels.stats,
+      _ => _.data.allAvailableHotels.stats.maxPrice,
+    );
+    const priceMin = idx(
+      this.props,
+      _ => _.data.allAvailableHotels.stats.minPrice,
     );
     const cityName = idx(this.props.data, _ => _.allAvailableHotels.cityName);
 
-    if (currentSearchStats && currentSearchStats.priceMax) {
-      this.props.setCurrentSearchStats(currentSearchStats);
+    if (priceMax != null && priceMin != null) {
+      this.props.setCurrentSearchStats({
+        priceMax,
+        priceMin,
+      });
     }
 
     if (cityName) {
@@ -150,8 +157,8 @@ export default createPaginationContainer(
             }
           }
           stats {
-            priceMax
-            priceMin
+            maxPrice
+            minPrice
           }
           cityName
         }

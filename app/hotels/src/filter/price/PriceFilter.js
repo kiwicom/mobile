@@ -9,10 +9,12 @@ import FilterButton from '../FilterButton';
 import HotelsSearchContext from '../../HotelsSearchContext';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 import type { CurrentSearchStats } from '../../filter/CurrentSearchStatsType';
+import HotelsContext from '../../HotelsContext';
 
 type PropsWithContext = {
   ...Props,
-  currentSearchStats: CurrentSearchStats,
+  +currentSearchStats: CurrentSearchStats,
+  +currency: string,
 };
 
 type State = {|
@@ -87,10 +89,11 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
     const {
       currentSearchStats: { priceMin, priceMax },
       isActive,
+      currency,
     } = this.props;
     const start = this.props.start || priceMin;
     const end = this.props.end || priceMax;
-    const currency = 'EUR'; // Currently only EUR supported. Should be improved in future release
+
     return (
       <React.Fragment>
         <FilterButton
@@ -115,19 +118,27 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
 }
 
 type Props = {|
-  start: number | null,
-  end: number | null,
-  currency: string,
-  onChange: OnChangeFilterParams => void,
-  isActive: boolean,
+  +start: number | null,
+  +end: number | null,
+  +currency: string,
+  +onChange: OnChangeFilterParams => void,
+  +isActive: boolean,
 |};
 
 export default function PriceFilterWithContext(props: Props) {
   return (
-    <HotelsSearchContext.Consumer>
-      {({ currentSearchStats }) => (
-        <PriceFilter {...props} currentSearchStats={currentSearchStats} />
+    <HotelsContext.Consumer>
+      {({ currency }) => (
+        <HotelsSearchContext.Consumer>
+          {({ currentSearchStats }) => (
+            <PriceFilter
+              {...props}
+              currentSearchStats={currentSearchStats}
+              currency={currency}
+            />
+          )}
+        </HotelsSearchContext.Consumer>
       )}
-    </HotelsSearchContext.Consumer>
+    </HotelsContext.Consumer>
   );
 }

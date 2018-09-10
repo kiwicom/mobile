@@ -26,8 +26,8 @@ export type AllHotelsSearchList_data = {|
       |}
     |}>,
     +stats: ?{|
-      +priceMax: ?number,
-      +priceMin: ?number,
+      +maxPrice: ?number,
+      +minPrice: ?number,
     |},
     +cityName: ?string,
   |},
@@ -207,14 +207,14 @@ const node/*: ConcreteFragment*/ = {
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "priceMax",
+              "name": "maxPrice",
               "args": null,
               "storageKey": null
             },
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "priceMin",
+              "name": "minPrice",
               "args": null,
               "storageKey": null
             }
@@ -232,5 +232,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'bce95f72d27143e7096439904684d32d';
+(node/*: any*/).hash = 'e14a9c211f0b53c74e218646f16a4ecd';
 module.exports = node;
