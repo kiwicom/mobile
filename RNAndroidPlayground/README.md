@@ -17,16 +17,6 @@ yarn start
 
 Finally, you can make changes in both the library and the JS code and test it in the example app.
 
-## Deploy rnkiwimobile and dependencies
-
-GitlabCI will take care of this anytime we merge something to `master`. It will skip it if the version(s) has not changed in the `package.json`.
-
-If we want to trigger it manually, from the root of this repo we can run:
-
-```bash
-ANDROID_DEPLOYMENT_PASSWORD=PASSWORD_HERE yarn release-android
-```
-
 ## Add a new native dependency
 
 When we update a dependency there are no major changes as versions will be taken from `package.json` and a new snapshot will be deployed.
