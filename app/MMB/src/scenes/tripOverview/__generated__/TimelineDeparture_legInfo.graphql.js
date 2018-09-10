@@ -11,6 +11,7 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TimelineDeparture_legInfo$ref: FragmentReference;
 export type TimelineDeparture_legInfo = {|
+  +duration: ?number,
   +flightNumber: ?number,
   +operatingAirline: ?{|
     +name: ?string,
@@ -45,6 +46,13 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "duration",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -126,5 +134,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '66867739322485b5cfd36cc52fc497af';
+(node/*: any*/).hash = 'f3b7054bf3b05fdedafa9ef8c2588778';
 module.exports = node;
