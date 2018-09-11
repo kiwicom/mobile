@@ -4,7 +4,7 @@ The source code can be found in [RNAndroidPlayground](../../RNAndroidPlayground)
 
 ## Test playground app
 
-You can run the `app` using Android Studio. In `app/build.gradle` you need to replace the `SNAPSHOT` for local the library:
+You can run the `app` using Android Studio. In `app/build.gradle` you need to replace the `SNAPSHOT` version of the library for the local one:
 
 ```bash
 implementation project(':rnkiwimobile')
@@ -17,9 +17,9 @@ Then you can run the packager from the root of this repo:
 yarn start
 ```
 
-Finally, you can make changes in both the library and the JS code and test it in the example app.
+Finally, you can make changes in both the library and the JS code and test it in the example `/app`.
 
-## Usage in real app
+## Usage in a real app
 
 ```
 implementation "com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT"
