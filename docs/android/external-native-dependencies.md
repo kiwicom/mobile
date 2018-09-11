@@ -37,11 +37,11 @@ api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT
 // Your new dependency here
 ```
 
-We have a script in [scripts/buildAndroidSnapshots.js](../../scripts/buildAndroidSnapshots.js), we will need to add a line in dependencies like:
+We have a script in [scripts/buildAndroidSnapshots.js](../../scripts/buildAndroidSnapshots.js), we will need to add a line in dependencies similar to (check the script structure):
 
 ```js
-deployToTrinerdis('react-native-maps'),
-deployToTrinerdis('react-native-vector-icons'),
-deployToTrinerdis('react-native-tooltips'),
+deployDependency('react-native-maps', ...),
+deployDependency('react-native-vector-icons', ...),
+deployDependency('react-native-tooltips', ...),
 // Your new dependency here
 ```
