@@ -1,13 +1,16 @@
-## Deploy rnkiwimobile and dependencies
+## Deploy rnkiwimobile and native dependencies
 
-GitlabCI will take care of this anytime we merge something to `master`. It will skip it if the version(s) has not changed in the [.build/package.json](../../.build/package.json#L3).
+GitlabCI will take care of this anytime we merge something to `master`. 
 
-If we want to trigger it manually, we can do so from the root of this repo:
+1. It will check if a new version of a native dependency needs to be deployed into Trinerdis or skip it otherwise if the version has not changed in the [.build/package.json](../../.build/package.json). 
+2. It will deploy `rnkiwimobile` with the same version number (and new JS code) or a new one if we bump the [global version]([.build/package.json](../../.build/package.json#L3))
+
+If we want to trigger all this process manually, we can do so from the root of this repo:
 
 ```bash
 ANDROID_DEPLOYMENT_PASSWORD=PASSWORD_HERE yarn release-android
 ```
 
-### Deploy dependencies manually
+## Deploy manually
 
 TODO
