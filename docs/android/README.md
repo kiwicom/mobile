@@ -17,6 +17,8 @@ Then you can run the packager from the root of this repo:
 yarn start
 ```
 
+**Important**: The packager will only be used if there is no bundle in `.build/android`, if there is, you can safetly delete the whole android directory.
+
 Finally, you can make changes in both the library and the JS code and test it in the example `/app`.
 
 ## Usage in a real app
