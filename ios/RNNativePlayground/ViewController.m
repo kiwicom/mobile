@@ -1,11 +1,13 @@
-
-#import "ViewController.h"
 #import <RNKiwiMobile/RNKiwiMobile.h>
+#import "ViewController.h"
+#import "RNHotelsOptions.h"
+#import "RNNewHotelsOptions.h"
 
-@interface ViewController () <UIGestureRecognizerDelegate, RNKiwiOptions, RNKiwiCurrencyManager, RNKiwiTranslationProvider, RNKiwiViewControllerFlowDelegate>
+@interface ViewController () <UIGestureRecognizerDelegate, RNKiwiViewControllerFlowDelegate, RNKiwiCurrencyManager, RNKiwiTranslationProvider>
 
-@property (nonatomic, strong) RNKiwiViewController *vc;
-@property (nonatomic, strong) NSString *lastNavigationMode;
+@property (nonatomic, strong) RNKiwiViewController *activeVc;
+@property (nonatomic, strong) RNKiwiViewController *hotelsVc;
+@property (nonatomic, strong) RNKiwiViewController *newerHotelsVc;
 
 @end
 
@@ -22,67 +24,60 @@
      * RNKiwiViewController does exactly the same thing for you behind the scenes if you use
      * the former approach.
      */
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:self];
+    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:[[RNHotelsOptions alloc] init]];
+    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:[[RNNewHotelsOptions alloc] init]];
   }
   return self;
 }
 
--(void)setUpVC {
-  __weak typeof(self) weakSelf = self;
-  _vc = [[RNKiwiViewController alloc] initWithOptions:weakSelf];
-  [_vc setCurrencyFormatter:weakSelf];
-  [_vc setTranslationProvider:weakSelf];
-  [_vc setFlowDelegate:weakSelf];
-}
-
-- (IBAction)presentHotelsView:(id)sender {
-    [self setUpVC];
-  
-    _lastNavigationMode = @"present";
-  
-    [[self navigationController] presentViewController:_vc animated:YES completion:nil];
-}
-
-- (IBAction)pushHotelsView:(UIButton *)sender {
-    [self setUpVC];
-  
-    _lastNavigationMode = @"push";
-    
-    [[self navigationController] pushViewController:_vc animated:YES];
-}
-
-
-# pragma mark - RNKiwiOptions
-
-- (NSDictionary<NSString *, NSObject *> *)initialProperties {
-  CGRect windowRect = self.view.window.frame;
-  return @{
-    @"coordinates": @{
-        @"latitude" : @59.9139,
-        @"longitude": @10.7522
-    },
-    @"language": @"en",
-    @"currency": @"EUR",
-    @"lastNavigationMode": _lastNavigationMode,
-    @"dimensions": @{
-        @"width": @(windowRect.size.width),
-        @"height": @(windowRect.size.height)
-    }
-  };
-}
-
-- (NSString *)moduleName {
-  return @"KiwiHotels";
-}
-
-- (NSURL *)jsCodeLocation {
-  return RNKiwiConstants.hotelsBundle;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated{
   self.navigationController.navigationBar.hidden = YES;
   self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
+
+- (NSDictionary *)windowDimensions {
+  CGRect windowRect = self.view.window.frame;
+  return @{
+           @"width": @(windowRect.size.width),
+           @"height": @(windowRect.size.height)
+  };
+}
+
+- (void)setupActiveVC:(RNKiwiViewController *)vc {
+  __weak typeof(self) weakSelf = self;
+
+  [vc setCurrencyFormatter:weakSelf];
+  [vc setTranslationProvider:weakSelf];
+  [vc setFlowDelegate:weakSelf];
+  
+  _activeVc = vc;
+}
+
+- (IBAction)pushOldHotelsView:(id)sender {
+  _hotelsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNHotelsOptions alloc]
+                                               initWithParams:[self windowDimensions] :@"push"]];
+  
+  [self setupActiveVC:_hotelsVc];
+  
+  [[self navigationController] pushViewController:_hotelsVc animated:YES];
+}
+
+- (IBAction)presentOldHotelsView:(id)sender {
+    _hotelsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNHotelsOptions alloc]
+                                                 initWithParams:[self windowDimensions] :@"present"]];
+  
+    [self setupActiveVC:_hotelsVc];
+    [[self navigationController] presentViewController:_hotelsVc animated:YES completion:nil];
+}
+
+- (IBAction)presentNewHotelsView:(id)sender {
+    _newerHotelsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNNewHotelsOptions alloc]
+                                                   initWithParams:[self windowDimensions] :@"present"]];
+    
+    [self setupActiveVC:_newerHotelsVc];
+    [[self navigationController] presentViewController:_newerHotelsVc animated:YES completion:nil];
+}
+
 
 # pragma mark - RNKiwiViewControllerFlowDelegate
 
@@ -108,9 +103,8 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
   
   if (self.navigationController.interactivePopGestureRecognizer == gestureRecognizer) {
-    return [_vc isInteractivePopGestureAllowed];
+    return [_activeVc isInteractivePopGestureAllowed];
   }
-  
   return YES;
 }
 
