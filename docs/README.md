@@ -5,7 +5,7 @@ Documentation describing how to integrate the official native app and React Nati
 ## Index
 
 ### [Android](android)
-On Android we use the a gradle library called `rnkiwimobile`.
+On Android we use a gradle library called `rnkiwimobile`.
 
 ### iOS
 TODO
