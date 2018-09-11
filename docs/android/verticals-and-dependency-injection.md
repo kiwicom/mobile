@@ -24,7 +24,7 @@ override fun getPackages(): MutableList<ReactPackage> {
 }
 ```
 
-As you can see, we specify only the hotels entry point on the Javascript side and we pass only the necessary native dependencies. For some of of them (`react-native-native-modules`), we add a callback which should be implemented by the native consumer.
+As you can see, we specify only the hotels entry point on the Javascript side and we pass only the necessary native dependencies. For some of of them ([Internal native dependencies](./internal-native-dependencies.md)), we add a callback which should be implemented by the native consumer.
 
 ### Using a vertical (and dependency injection)
 
