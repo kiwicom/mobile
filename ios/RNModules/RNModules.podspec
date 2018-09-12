@@ -39,4 +39,8 @@ Pod::Spec.new do |s|
   s.subspec "RNCardManager" do |ss|
     ss.source_files   = 'RNCardManager/RNCardManager/*.{h,m}'
   end
+  
+  s.subspec "RNLocalSearch" do |ss|
+    ss.source_files   = 'RNLocalSearch/RNLocalSearch/*.{h,m}'
+  end
 end
