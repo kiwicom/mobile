@@ -41,7 +41,8 @@ def react_native_modules()
     'RNCurrencyManager',
     'RNDeviceInfo',
     'RNAppleWallet',
-    'RNCardManager'
+    'RNCardManager',
+    'RNLocalSearch'
   ]
 end
 
