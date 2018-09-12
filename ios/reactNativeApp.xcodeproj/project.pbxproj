@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		012E4C1BA8444C8182992EEB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B11306CBC6D24D3C990EAC4B /* Ionicons.ttf */; };
 		038BD3170181472CA3083F7C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */; };
@@ -21,8 +20,6 @@
 		2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2107154420B5677200E6C96B /* RNKiwiGestureController.m */; };
 		2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107154520B5677200E6C96B /* RNKiwiGestureController.h */; };
 		215881F520C7FF140016707A /* RNKiwiMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931B020AD96780053AE19 /* RNKiwiMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		21E8F1AC21466F0200399013 /* RNHotelsOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E8F1AB21466F0200399013 /* RNHotelsOptions.m */; };
-		21E8F1AE2146996800399013 /* RNNewHotelsOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E8F1AD2146996800399013 /* RNNewHotelsOptions.m */; };
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
 		2711985E20B1F7E300C6292B /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 		2711985F20B1F7E300C6292B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */; };
@@ -45,7 +42,6 @@
 		27E931C320AD9A2A0053AE19 /* RNKiwiViewControllerFlowDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931C520AD9A4B0053AE19 /* RNKiwiCurrencyManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27E931C920AD9AE90053AE19 /* RNKiwiOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931CD20AD9EF60053AE19 /* libPods-RNKiwiMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931CC20AD9EF60053AE19 /* libPods-RNKiwiMobile.a */; };
 		27E931D620ADA0600053AE19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931D520ADA0600053AE19 /* AppDelegate.m */; };
 		27E931D920ADA0600053AE19 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931D820ADA0600053AE19 /* ViewController.m */; };
@@ -118,10 +114,6 @@
 		2107154420B5677200E6C96B /* RNKiwiGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNKiwiGestureController.m; sourceTree = "<group>"; };
 		2107154520B5677200E6C96B /* RNKiwiGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		21E8F1AA21466EE700399013 /* RNHotelsOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNHotelsOptions.h; sourceTree = "<group>"; };
-		21E8F1AB21466F0200399013 /* RNHotelsOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNHotelsOptions.m; sourceTree = "<group>"; };
-		21E8F1AD2146996800399013 /* RNNewHotelsOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNNewHotelsOptions.m; sourceTree = "<group>"; };
-		21E8F1AF2146997600399013 /* RNNewHotelsOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNNewHotelsOptions.h; sourceTree = "<group>"; };
 		2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiSharedBridge.h; sourceTree = "<group>"; };
 		2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiSharedBridge.m; sourceTree = "<group>"; };
 		27E931B020AD96780053AE19 /* RNKiwiMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNKiwiMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +124,6 @@
 		27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiViewControllerFlowDelegate.h; sourceTree = "<group>"; };
 		27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiCurrencyManager.h; sourceTree = "<group>"; };
 		27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiTranslationProvider.h; sourceTree = "<group>"; };
-		27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiOptions.h; sourceTree = "<group>"; };
 		27E931CA20AD9EE70053AE19 /* libPods-RNPlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-RNPlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E931CC20AD9EF60053AE19 /* libPods-RNKiwiMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-RNKiwiMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E931D220ADA0600053AE19 /* RNNativePlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNNativePlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,7 +234,6 @@
 				2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */,
 				27E931BE20AD987C0053AE19 /* RNKiwiViewController.h */,
 				27E931BF20AD987C0053AE19 /* RNKiwiViewController.m */,
-				27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */,
 				27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */,
 				27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */,
 				27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */,
@@ -263,10 +253,6 @@
 				27E931DF20ADA0630053AE19 /* LaunchScreen.storyboard */,
 				27E931E220ADA0630053AE19 /* Info.plist */,
 				27E931E320ADA0630053AE19 /* main.m */,
-				21E8F1AB21466F0200399013 /* RNHotelsOptions.m */,
-				21E8F1AA21466EE700399013 /* RNHotelsOptions.h */,
-				21E8F1AD2146996800399013 /* RNNewHotelsOptions.m */,
-				21E8F1AF2146997600399013 /* RNNewHotelsOptions.h */,
 			);
 			path = RNNativePlayground;
 			sourceTree = "<group>";
@@ -344,7 +330,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27E931C920AD9AE90053AE19 /* RNKiwiOptions.h in Headers */,
 				27E931C020AD987C0053AE19 /* RNKiwiViewController.h in Headers */,
 				27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */,
 				2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */,
@@ -545,11 +530,11 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../app/hotels/index.js",
+				"$(SRCROOT)/../app/native.js",
 			);
 			name = "Bundle React Native dependencies";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/hotels.jsbundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/main.jsbundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -733,9 +718,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21E8F1AE2146996800399013 /* RNNewHotelsOptions.m in Sources */,
 				27E931D920ADA0600053AE19 /* ViewController.m in Sources */,
-				21E8F1AC21466F0200399013 /* RNHotelsOptions.m in Sources */,
 				27E931E420ADA0630053AE19 /* main.m in Sources */,
 				27E931D620ADA0600053AE19 /* AppDelegate.m in Sources */,
 			);

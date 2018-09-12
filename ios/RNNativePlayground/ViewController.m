@@ -1,7 +1,5 @@
 #import <RNKiwiMobile/RNKiwiMobile.h>
 #import "ViewController.h"
-#import "RNHotelsOptions.h"
-#import "RNNewHotelsOptions.h"
 
 @interface ViewController () <UIGestureRecognizerDelegate, RNKiwiViewControllerFlowDelegate, RNKiwiCurrencyManager, RNKiwiTranslationProvider>
 
@@ -18,14 +16,10 @@
   
   if (self) {
     /**
-     * In order to create bridge upfront, either create an instance of RNKiwiViewController
-     * ahead of time (here) and store as an instance property, or call this method instead.
-     *
-     * RNKiwiViewController does exactly the same thing for you behind the scenes if you use
-     * the former approach.
+     * In order to create bridge upfront, call this method before showing ViewController. Otherwise,
+     * it's created at the runtime lazily
      */
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:[[RNHotelsOptions alloc] init]];
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:[[RNNewHotelsOptions alloc] init]];
+    [[RNKiwiSharedBridge sharedInstance] initBridge];
   }
   return self;
 }
@@ -38,12 +32,12 @@
 - (NSDictionary *)windowDimensions {
   CGRect windowRect = self.view.window.frame;
   return @{
-           @"width": @(windowRect.size.width),
-           @"height": @(windowRect.size.height)
+    @"width": @(windowRect.size.width),
+    @"height": @(windowRect.size.height)
   };
 }
 
-- (void)setupActiveVC:(RNKiwiViewController *)vc {
+- (void)setActiveViewController:(RNKiwiViewController *)vc {
   __weak typeof(self) weakSelf = self;
 
   [vc setCurrencyFormatter:weakSelf];
@@ -54,28 +48,65 @@
 }
 
 - (IBAction)pushOldHotelsView:(id)sender {
-  _hotelsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNHotelsOptions alloc]
-                                               initWithParams:[self windowDimensions] :@"push"]];
+  RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
+                                         initialProperties:@{
+                                                             @"coordinates": @{
+                                                                 @"latitude" : @59.9139,
+                                                                 @"longitude": @10.7522
+                                                                 },
+                                                             @"language": @"en",
+                                                             @"currency": @"EUR",
+                                                             @"lastNavigationMode": @"push",
+                                                             @"dimensions": [self windowDimensions]
+                                                             }];
   
-  [self setupActiveVC:_hotelsVc];
-  
-  [[self navigationController] pushViewController:_hotelsVc animated:YES];
+  [self setActiveViewController:vc];
+  [[self navigationController] pushViewController:vc animated:YES];
 }
 
 - (IBAction)presentOldHotelsView:(id)sender {
-    _hotelsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNHotelsOptions alloc]
-                                                 initWithParams:[self windowDimensions] :@"present"]];
+    RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
+                                         initialProperties:@{
+                                                             @"coordinates": @{
+                                                               @"latitude" : @59.9139,
+                                                               @"longitude": @10.7522
+                                                             },
+                                                             @"language": @"en",
+                                                             @"currency": @"EUR",
+                                                             @"lastNavigationMode": @"present",
+                                                             @"dimensions": [self windowDimensions]
+                                                           }];
   
-    [self setupActiveVC:_hotelsVc];
-    [[self navigationController] presentViewController:_hotelsVc animated:YES completion:nil];
+    [self setActiveViewController:vc];
+    [[self navigationController] presentViewController:vc animated:YES completion:nil];
 }
 
 - (IBAction)presentNewHotelsView:(id)sender {
-    _newerHotelsVc = [[RNKiwiViewController alloc] initWithOptions:[[RNNewHotelsOptions alloc]
-                                                   initWithParams:[self windowDimensions] :@"present"]];
+    RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
+                                                initialProperties:@{
+                                                                    @"bookingComAffiliate": @"123456",
+                                                                    @"language": @"en",
+                                                                    @"currency": @"EUR",
+                                                                    @"lastNavigationMode": @"present",
+                                                                    @"dimensions": [self windowDimensions],
+                                                                    @"checkin": @"2018-09-20",
+                                                                    @"checkout": @"2018-09-22",
+                                                                    @"version": @"3.7.13-9d55ad66",
+                                                                    @"cityName": @"Barcelona",
+                                                                    @"cityId": @"aG90ZWxDaXR5Oi0zNzI0OTA=",
+                                                                    @"roomsConfiguration": @[
+                                                                        @{
+                                                                          @"adultsCount": @1,
+                                                                          @"children": @[
+                                                                              @{
+                                                                                @"age": @2
+                                                                                }
+                                                                              ]}
+                                                                        ]
+                                                             }];
     
-    [self setupActiveVC:_newerHotelsVc];
-    [[self navigationController] presentViewController:_newerHotelsVc animated:YES completion:nil];
+    [self setActiveViewController:vc];
+    [[self navigationController] presentViewController:vc animated:YES completion:nil];
 }
 
 
@@ -101,7 +132,6 @@
 #pragma mark - UIGestureRecognizer
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-  
   if (self.navigationController.interactivePopGestureRecognizer == gestureRecognizer) {
     return [_activeVc isInteractivePopGestureAllowed];
   }

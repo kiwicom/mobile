@@ -2,14 +2,12 @@
 #import "RNKiwiCurrencyManager.h"
 #import "RNKiwiTranslationProvider.h"
 #import "RNKiwiViewControllerFlowDelegate.h"
-#import "RNKiwiOptions.h"
 
 @interface RNKiwiViewController: UIViewController
 
-- (nonnull instancetype)initWithOptions:(nonnull id<RNKiwiOptions>)properties;
+- (nonnull instancetype)initWithModule:(NSString *)moduleName initialProperties:(NSDictionary*)properties;
 - (nonnull instancetype)init NS_UNAVAILABLE;
 - (BOOL)isInteractivePopGestureAllowed;
-
 
 // Delegates
 @property (nonatomic, weak, nullable) id<RNKiwiCurrencyManager> currencyFormatter;

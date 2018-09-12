@@ -1,5 +1,4 @@
 #import "RNKiwiViewController.h"
-#import "RNKiwiOptions.h"
 #import "RNKiwiSharedBridge.h"
 #import "RNKiwiGestureController.h"
 
@@ -13,7 +12,8 @@
 
 @interface RNKiwiViewController() <RNLogger, RNTranslator, RNCurrencyFormatter, RNKiwiGestureControllerDelegate>
 
-@property (nonatomic, strong) id<RNKiwiOptions> options;
+@property (nonatomic, strong) NSString* moduleName;
+@property (nonatomic, strong) NSDictionary* properties;
 @property (nonatomic) BOOL isGestureAllowed;
 
 @end
@@ -22,14 +22,14 @@
 
 #pragma mark - Setup
 
-- (instancetype)initWithOptions:(id<RNKiwiOptions>)options {
+- (instancetype)initWithModule:(NSString *)moduleName initialProperties:(NSDictionary*)properties {
   self = [super init];
   if (self) {
-    _options = options;
+    _moduleName = moduleName;
+    _properties = properties;
     _isGestureAllowed = YES;
     
     [self setupReactWrappersWithObject:self];
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:options];
   }
   
   return self;
@@ -50,9 +50,9 @@
 #pragma mark - View lifecycle
 
 - (void)loadView {
-  self.view = [[RCTRootView alloc] initWithBridge:[[RNKiwiSharedBridge sharedInstance] bridgeForOptions:_options]
-                                       moduleName:[_options moduleName]
-                                initialProperties:[_options initialProperties]];
+  self.view = [[RCTRootView alloc] initWithBridge:[[RNKiwiSharedBridge sharedInstance] bridge]
+                                       moduleName:_moduleName
+                                initialProperties:_properties];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -116,19 +116,19 @@
 #pragma mark - Gesture Controller Observers
 
 - (void)disableGestures:(NSNotification *)notification {
-  if ([notification.userInfo[@"moduleName"] isEqualToString:[_options moduleName]]) {
+  if ([notification.userInfo[@"moduleName"] isEqualToString:_moduleName]) {
     _isGestureAllowed = NO;
   }
 }
 
 - (void)enableGestures:(NSNotification *)notification {
-  if ([notification.userInfo[@"moduleName"] isEqualToString:[_options moduleName]]) {
+  if ([notification.userInfo[@"moduleName"] isEqualToString:_moduleName]) {
     _isGestureAllowed = YES;
   }
 }
 
 - (void)closeModal:(NSNotification *)notification {
-  if ([notification.userInfo[@"moduleName"] isEqualToString:[_options moduleName]]) {
+  if ([notification.userInfo[@"moduleName"] isEqualToString:_moduleName]) {
      [self dismissViewControllerAnimated:YES completion:nil];
   }
 }

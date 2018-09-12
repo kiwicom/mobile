@@ -4,6 +4,6 @@
 
 @interface RNKiwiConstants: NSObject;
 
-+ (NSURL *)hotelsBundle;
++ (NSURL *)bundleURL;
 
 @end
