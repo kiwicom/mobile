@@ -31,3 +31,7 @@ yarn start
 ```
 
 Then just open the project in XCode (use `reactNativeApp.xcworkspace`) and choose `RNNativePlayground` scheme.
+
+## Usage in a real app
+
+Paste the `.framework` within real app.
