@@ -4,33 +4,27 @@ The source code can be found in [RNNativePlayground](https://github.com/kiwicom/
 
 ## Test playground app
 
-### KiwiHotels
+### KiwiHotels module
 
-To run `KiwiHotels` with the packager, change `RNHotelsOptions.m` like follows:
+1. To run `KiwiHotels` module with the packager, change [`RNKiwiConstants.m`](https://github.com/kiwicom/mobile/blob/master/ios/RNKiwiMobile/RNKiwiConstants.m) like follows:
 
 ```objc
-- (NSURL *)jsCodeLocation {
-  // If you run it in real device, use your IP instead of localhost
-  return [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios&dev=true"];
-  // return RNKiwiConstants.hotelsBundle;
++ (NSURL *)bundleURL {
+  return [NSURL URLWithString:@"http://localhost:8081/app/native.bundle?platform=ios&dev=true"];
 }
 ```
 
-Then go to common steps section.
-
-### NewKiwiHotels
-
-`NewKiwiHotels` package is already using packager. No changes required, check common steps.
-
-### Common Steps
-
-You can run the packager from the root of this repo:
+2. Then run the packager from the root of this repo:
 
 ```bash
 yarn start
 ```
 
-Then just open the project in XCode (use `reactNativeApp.xcworkspace`) and choose `RNNativePlayground` scheme.
+3. Finally just open the project in XCode (use `reactNativeApp.xcworkspace`) and choose `RNNativePlayground` scheme.
+
+TODO - Add screenshot
+
+_NOTE_: If you want to test playground with `jsbundle` go directly to step 3.
 
 ## Usage in a real app
 
