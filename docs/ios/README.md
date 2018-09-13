@@ -4,7 +4,13 @@ The source code can be found in [RNNativePlayground](https://github.com/kiwicom/
 
 ## Test playground app
 
-### KiwiHotels module
+Open the project in XCode (use `reactNativeApp.xcworkspace`). Make sure you have `RNNativePlayground` scheme selected before running.
+
+![](../../.docs/assets/open_playground.gif)
+
+### Running from the packager
+
+Running the app from the packager allows you to reload the Javascript code instantly, every time you make changes in your code.
 
 1. To run `KiwiHotels` module with the packager, change [`RNKiwiConstants.m`](https://github.com/kiwicom/mobile/blob/master/ios/RNKiwiMobile/RNKiwiConstants.m) like follows:
 
@@ -19,13 +25,3 @@ The source code can be found in [RNNativePlayground](https://github.com/kiwicom/
 ```bash
 yarn start
 ```
-
-3. Finally just open the project in XCode (use `reactNativeApp.xcworkspace`) and choose `RNNativePlayground` scheme.
-
-![](../../.docs/assets/open_playground.gif)
-
-_NOTE_: If you want to test playground with `jsbundle` go directly to step 3.
-
-## Usage in a real app
-
-Paste the `.framework` within real app.

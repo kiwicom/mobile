@@ -1,18 +1,18 @@
 # Native dependencies
 
-## Add a new external native dependency
+## Adding a React Native dependency
 
-All iOS code is kept in `ios` folder and using the same `Podfile` that's why process of adding a new external native dependency can be achieved by running a command:
+All iOS code is kept in `ios` folder and using the same `Podfile` that's why process of adding a new React Native dependency can be achieved by running a command:
 
 ```bash
 react-native link NATIVE_DEPENDENCY_NAME
 ```
 
-## Add a new internal native dependecy
+## Add a new internal/external native dependecy
 
-1. Add your dependency folder inside `RNModules`
+1. Add dependency folder inside `RNModules`
 
-2. Define **`YOUR_NEW_DEP`** in `Podfile` file in `subspecs` within `pod 'RNModules'`
+2. Define **`NEW_DEPENDENCY`** in `Podfile` file in `subspecs` within `pod 'RNModules'`
 
 ```
 def react_native_modules()
@@ -23,7 +23,7 @@ def react_native_modules()
     'RNDeviceInfo',
     'RNAppleWallet',
     'RNCardManager',
-    'YOUR_NEW_DEP'
+    'NEW_DEPENDENCY'
   ]
 end
 ```
@@ -31,8 +31,8 @@ end
 3. Define source files for dependency in `RNModules.podspec`:
 
 ```
-  s.subspec "YOUR_NEW_DEP" do |ss|
-    ss.source_files = 'YOUR_NEW_DEP/YOUR_NEW_DEP/*.{h,m}'
+  s.subspec "NEW_DEPENDENCY" do |ss|
+    ss.source_files = 'NEW_DEPENDENCY/NEW_DEPENDENCY/*.{h,m}'
   end
 ```
 

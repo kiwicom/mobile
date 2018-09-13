@@ -12,7 +12,7 @@ To create a new React Native module just:
 
 ## Using a React Native module in a playground
 
-In the [`app/native`](https://github.com/kiwicom/mobile/blob/master/app/native.js) import all views from a module of your choice and register them, which then you can use by the defined name, eg:
+In the [`app/native`](https://github.com/kiwicom/mobile/blob/master/app/native.js) import all views from a module of your choice and register them by name thath you will later refer to form the native side.
 
 ```js
 // Hotels
@@ -23,20 +23,20 @@ AppRegistry.registerComponent(
 );
 ```
 
-Registered module has to be then allocated in along with proper `moduleName` and `initialProperties`, like below:
+Registered module has to be then instantiated in along with proper `moduleName` and `initialProperties`, like below:
 
 ```objc
   RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
-                                         initialProperties:@{
-                                            @"coordinates": @{
-                                                @"latitude" : @59.9139,
-                                                @"longitude": @10.7522
-                                                },
-                                            @"language": @"en",
-                                            @"currency": @"EUR",
-                                            @"lastNavigationMode": @"push",
-                                            @"dimensions": [self windowDimensions]
-                                         }];
+                                                        initialProperties:@{
+                                                          @"coordinates": @{
+                                                              @"latitude" : @59.9139,
+                                                              @"longitude": @10.7522
+                                                              },
+                                                          @"language": @"en",
+                                                          @"currency": @"EUR",
+                                                          @"lastNavigationMode": @"push",
+                                                          @"dimensions": [self windowDimensions]
+                                                        }];
 ```
 
 ## Using React Native module in external app
@@ -53,7 +53,9 @@ Registered module has to be then allocated in along with proper `moduleName` and
 [[RNKiwiSharedBridge sharedInstance] initBridge];
 ```
 
-- alloc `RNKiwiViewController` with `moduleName` and `initialProperties`
+_NOTE_: Creating bridge upfront guarantees that your React Native module will be built once the application is launched.
+
+- create a new instance of `RNKiwiViewController` with `moduleName` and `initialProperties`
 
 - use methods required by an implemented protocols
 
@@ -89,7 +91,7 @@ Registered module has to be then allocated in along with proper `moduleName` and
 
 ## Bridge
 
-Bridge is created once upfront based on `bundleURL` from `RNKiwiConstants`
+There is only one bridge present throughout the lifecycle of the app.
 
 ```objc
 - (void)initBridge {

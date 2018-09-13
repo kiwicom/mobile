@@ -2,11 +2,11 @@
 
 ## Deploy automatically
 
-Every merge to `master` branch will provide a new release and upload the `.framework` into github releases.
+Every merge to `master` branch provides a new release and upload the `.framework` into github releases.
 
 To check current releases [click here](https://github.com/kiwicom/mobile/releases)
 
-If we want to trigger it manually, we can do so from the root of this repo:
+If you want to trigger it manually, you can do so from the root of this repo:
 
 ```bash
 yarn release-ios
