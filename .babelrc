@@ -1,17 +1,7 @@
 {
   "presets": [
-    "react-native",
-    "react-native-dotenv"
+    "module:metro-react-native-babel-preset",
+    "module:react-native-dotenv"
   ],
-  "plugins": [
-    "babel-plugin-idx",
-    ["relay", {"schema": "app/schema.graphql"}]
-  ],
-  "env": {
-    "development": {
-      "plugins": [
-        "transform-react-jsx-source"
-      ]
-    }
-  }
+  "plugins": ["babel-plugin-idx", ["relay", { "schema": "app/schema.graphql" }]]
 }
