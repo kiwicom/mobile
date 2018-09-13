@@ -41,7 +41,51 @@ Registered module has to be then allocated in along with proper `moduleName` and
 
 ## Using React Native module in external app
 
-TODO
+1. Inject `RNKiwiMobile.framework` in new XCode project to `Embedded Binaries`
+
+-> Gif
+
+2. Create a `ViewController` similar to the one existing in playground which contain:
+
+- init with creating a bridge
+
+```objc
+[[RNKiwiSharedBridge sharedInstance] initBridge];
+```
+
+- alloc `RNKiwiViewController` with `moduleName` and `initialProperties`
+
+- use methods required by an implemented protocols
+
+```objc
+# pragma mark - RNKiwiViewControllerFlowDelegate
+
+- (void)RNKiwiViewControllerDidFinish:(nonnull RNKiwiViewController *)viewController {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+# pragma mark - RNKiwiCurrencyManager
+
+- (NSString *)formattedPrice:(NSNumber *)price withCurrency:(NSString *)currencyCode {
+  return [[price stringValue] stringByAppendingString:currencyCode];
+}
+
+#pragma mark - RNKiwiTranslationProvider
+
+- (NSString *)localizedStringWithKey:(NSString *)key {
+  // In real app it would give us the String based on localization
+  return nil;
+}
+
+#pragma mark - UIGestureRecognizer
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+  if (self.navigationController.interactivePopGestureRecognizer == gestureRecognizer) {
+    return [_activeVc isInteractivePopGestureAllowed];
+  }
+  return YES;
+}
+```
 
 ## Bridge
 
