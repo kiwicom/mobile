@@ -22,7 +22,7 @@ yarn start
 
 3. Finally just open the project in XCode (use `reactNativeApp.xcworkspace`) and choose `RNNativePlayground` scheme.
 
--> Gif
+![](../../.docs/assets/open_playground.gif)
 
 _NOTE_: If you want to test playground with `jsbundle` go directly to step 3.
 

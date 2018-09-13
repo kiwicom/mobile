@@ -43,7 +43,7 @@ Registered module has to be then allocated in along with proper `moduleName` and
 
 1. Inject `RNKiwiMobile.framework` in new XCode project to `Embedded Binaries`
 
--> Gif
+![](../../.docs/assets/inject_framework.gif)
 
 2. Create a `ViewController` similar to the one existing in playground which contain:
 
