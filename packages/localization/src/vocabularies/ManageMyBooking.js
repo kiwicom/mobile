@@ -274,6 +274,7 @@ export default {
   'mmb.trip_service.transportation.map.legend.markerB': 'to',
   'mmb.trip_service.transportation.address_picker.current_location_title':
     'Your current location',
+  'mmb.trip_service.transportation.address_picker.all_places': 'All places',
 
   // MMB Support
   'mmb.support.phone.suggested': 'Suggested',

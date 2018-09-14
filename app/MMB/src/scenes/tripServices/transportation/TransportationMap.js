@@ -139,7 +139,10 @@ export class TransportationMap extends React.Component<Props, State> {
   }
 
   openLocationPicker = () => {
-    this.props.navigation.navigate('AddressPickerScreen');
+    this.props.navigation.navigate('AddressPickerScreen', {
+      region: this.state.region,
+      setLocation: this.setLocation,
+    });
   };
 
   onRegionChange = (region: Region) => {
@@ -212,13 +215,29 @@ export class TransportationMap extends React.Component<Props, State> {
     this.setState(state => ({
       markers: {
         ...state.markers,
-        markerB: {
-          latitude,
-          longitude,
-        },
+        markerB: { latitude, longitude },
       },
       formattedAddress,
     }));
+  };
+
+  setLocation = async (location: Coordinate) => {
+    const formattedAddress = await getAddress(
+      location,
+      this.props.googleMapsAPIKey,
+    );
+    this.setState(state => ({
+      region: {
+        ...state.region,
+        ...location,
+      },
+      markers: {
+        ...state.markers,
+        markerB: location,
+      },
+      formattedAddress,
+    }));
+    this.props.navigation.goBack(null);
   };
 
   showUserLocation = (currentLocation: Coordinate) => {

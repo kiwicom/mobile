@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import idx from 'idx';
 import { View, ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
@@ -8,6 +9,7 @@ import {
   TextIcon,
   Text,
   StyleSheet,
+  Touchable,
   withGeolocationContext,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -16,6 +18,7 @@ import memoize from 'memoize-one';
 import { getAddress } from '../helpers/fetchGeocodeData';
 import { withGoogleMapsContext } from '../context/GoogleMapsContext';
 import AddressLocationInput from '../scenes/tripServices/transportation/AddressLocationInput';
+import Addresses from '../scenes/tripServices/transportation/Addresses';
 
 type Coordinate = {|
   +latitude: number,
@@ -36,6 +39,7 @@ type Props = {|
 
 type State = {|
   formattedAddress: string,
+  searchText: string,
 |};
 
 export class AddressPickerScreen extends React.Component<Props, State> {
@@ -44,8 +48,8 @@ export class AddressPickerScreen extends React.Component<Props, State> {
       props.navigation.goBack();
     }
 
-    function todo() {
-      console.warn('todo');
+    function onChangeText(searchText) {
+      props.navigation.setParams({ searchText });
     }
 
     return {
@@ -57,13 +61,16 @@ export class AddressPickerScreen extends React.Component<Props, State> {
           }
         />
       ),
-      headerTitle: <AddressLocationInput onChangeText={todo} />,
+      headerTitle: (
+        <AddressLocationInput autoFocus={true} onChangeText={onChangeText} />
+      ),
       headerStyle: { paddingBottom: 5 },
     };
   };
 
   state = {
     formattedAddress: '',
+    searchText: '',
   };
 
   componentDidMount() {
@@ -95,23 +102,41 @@ export class AddressPickerScreen extends React.Component<Props, State> {
     }
   });
 
+  setLocationToCurrentLocation = () => {
+    const location = this.getCoordinate();
+    if (location != null) {
+      this.props.navigation.state.params.setLocation(location);
+    }
+  };
+
   render() {
+    const searchText =
+      idx(this.props.navigation, _ => _.state.params.searchText) || '';
+    const region = idx(this.props.navigation, _ => _.state.params.region);
     return (
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps="handled">
         {this.state.formattedAddress != '' && (
-          <View style={styles.currentLocationContainer}>
-            <TextIcon code="&quot;" style={styles.currentLocationIcon} />
-            <View>
-              <Text style={styles.currentLocationTitle}>
-                <Translation id="mmb.trip_service.transportation.address_picker.current_location_title" />
-              </Text>
-              <Text style={styles.currentLocationAddress}>
-                <Translation passThrough={this.state.formattedAddress} />
-              </Text>
+          <Touchable onPress={this.setLocationToCurrentLocation}>
+            <View style={styles.currentLocationContainer}>
+              <TextIcon code="&quot;" style={styles.currentLocationIcon} />
+              <View>
+                <Text numberOfLines={1} style={styles.currentLocationTitle}>
+                  <Translation id="mmb.trip_service.transportation.address_picker.current_location_title" />
+                </Text>
+                <Text numberOfLines={1} style={styles.currentLocationAddress}>
+                  <Translation passThrough={this.state.formattedAddress} />
+                </Text>
+              </View>
             </View>
-          </View>
+          </Touchable>
         )}
-        {/* TODO Add first 10 results of search bar */}
+        {region != null && (
+          <Addresses
+            setLocation={this.props.navigation.state.params.setLocation}
+            searchText={searchText}
+            region={region}
+          />
+        )}
       </ScrollView>
     );
   }
@@ -133,11 +158,16 @@ const styles = StyleSheet.create({
   },
   currentLocationTitle: {
     fontWeight: '600',
+    flex: 1,
+    marginBottom: 5,
   },
   currentLocationAddress: {
-    color: defaultTokens.paletteInkLight,
-    fontSize: 12,
-    paddingTop: 4,
+    flex: 1,
+    ios: {
+      flex: 1,
+      color: defaultTokens.paletteInkLight,
+      fontSize: 12,
+    },
   },
 });
 
