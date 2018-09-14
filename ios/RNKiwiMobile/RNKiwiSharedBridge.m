@@ -1,11 +1,11 @@
 #import "RNKiwiSharedBridge.h"
-#import "RNKiwiOptions.h"
+#import "RNKiwiConstants.h"
 #import <React/RCTBridge.h>
 #import <React/RCTRootView.h>
 
 @interface RNKiwiSharedBridge()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString*,RCTBridge*> *bridges;
+@property (nonatomic, strong) RCTBridge* bridge;
 
 @end
 
@@ -20,34 +20,17 @@
   return _sharedObject;
 }
 
-- (instancetype)init {
-  self = [super init];
-  if (self) {
-    _bridges = [NSMutableDictionary new];
-  }
-  return self;
-}
-
-- (NSURL *)resolveBundleURL:(id<RNKiwiOptions>)options {
-  return [options jsCodeLocation];
-}
-
-- (NSString *)keyFromURL:(NSURL *)url {
-  return [url absoluteString];
-}
-
-- (void)initBridgeWithOptions:(id<RNKiwiOptions>)options {
-  NSURL *url = [self resolveBundleURL:options];
-  NSString *key = [self keyFromURL:url];
-  
-  if (!_bridges[key]) {
-    _bridges[key] = [[RCTBridge alloc] initWithBundleURL:url moduleProvider:nil launchOptions:nil];
+- (void)initBridge {
+  if (!_bridge) {
+    _bridge = [[RCTBridge alloc] initWithBundleURL:[RNKiwiConstants bundleURL] moduleProvider:nil launchOptions:nil];
   }  
 }
 
-- (RCTBridge *)bridgeForOptions:(id<RNKiwiOptions>)options {
-  NSString *key = [self keyFromURL:[self resolveBundleURL:options]];
-  return _bridges[key];
+- (RCTBridge *)bridge {
+  if (!_bridge) {
+    [self initBridge];
+  }
+  return _bridge;
 }
 
 @end

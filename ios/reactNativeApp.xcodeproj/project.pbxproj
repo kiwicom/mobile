@@ -42,7 +42,6 @@
 		27E931C320AD9A2A0053AE19 /* RNKiwiViewControllerFlowDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931C520AD9A4B0053AE19 /* RNKiwiCurrencyManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		27E931C920AD9AE90053AE19 /* RNKiwiOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		27E931CD20AD9EF60053AE19 /* libPods-RNKiwiMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931CC20AD9EF60053AE19 /* libPods-RNKiwiMobile.a */; };
 		27E931D620ADA0600053AE19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931D520ADA0600053AE19 /* AppDelegate.m */; };
 		27E931D920ADA0600053AE19 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931D820ADA0600053AE19 /* ViewController.m */; };
@@ -125,7 +124,6 @@
 		27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiViewControllerFlowDelegate.h; sourceTree = "<group>"; };
 		27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiCurrencyManager.h; sourceTree = "<group>"; };
 		27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiTranslationProvider.h; sourceTree = "<group>"; };
-		27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiOptions.h; sourceTree = "<group>"; };
 		27E931CA20AD9EE70053AE19 /* libPods-RNPlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-RNPlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E931CC20AD9EF60053AE19 /* libPods-RNKiwiMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-RNKiwiMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27E931D220ADA0600053AE19 /* RNNativePlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNNativePlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,7 +234,6 @@
 				2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */,
 				27E931BE20AD987C0053AE19 /* RNKiwiViewController.h */,
 				27E931BF20AD987C0053AE19 /* RNKiwiViewController.m */,
-				27E931C820AD9AE90053AE19 /* RNKiwiOptions.h */,
 				27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */,
 				27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */,
 				27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */,
@@ -333,7 +330,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27E931C920AD9AE90053AE19 /* RNKiwiOptions.h in Headers */,
 				27E931C020AD987C0053AE19 /* RNKiwiViewController.h in Headers */,
 				27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */,
 				2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */,
@@ -534,11 +530,11 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../app/hotels/index.js",
+				"$(SRCROOT)/../app/native.js",
 			);
 			name = "Bundle React Native dependencies";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/hotels.jsbundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/main.jsbundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
