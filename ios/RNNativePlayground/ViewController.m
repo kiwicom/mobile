@@ -1,11 +1,9 @@
-
-#import "ViewController.h"
 #import <RNKiwiMobile/RNKiwiMobile.h>
+#import "ViewController.h"
 
-@interface ViewController () <UIGestureRecognizerDelegate, RNKiwiOptions, RNKiwiCurrencyManager, RNKiwiTranslationProvider, RNKiwiViewControllerFlowDelegate>
+@interface ViewController () <UIGestureRecognizerDelegate, RNKiwiViewControllerFlowDelegate, RNKiwiCurrencyManager, RNKiwiTranslationProvider>
 
-@property (nonatomic, strong) RNKiwiViewController *vc;
-@property (nonatomic, strong) NSString *lastNavigationMode;
+@property (nonatomic, strong) RNKiwiViewController *activeVc;
 
 @end
 
@@ -16,73 +14,99 @@
   
   if (self) {
     /**
-     * In order to create bridge upfront, either create an instance of RNKiwiViewController
-     * ahead of time (here) and store as an instance property, or call this method instead.
-     *
-     * RNKiwiViewController does exactly the same thing for you behind the scenes if you use
-     * the former approach.
+     * In order to create bridge upfront, call this method before showing ViewController. Otherwise,
+     * it's created at the runtime lazily
      */
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithOptions:self];
+    [[RNKiwiSharedBridge sharedInstance] initBridge];
   }
   return self;
 }
 
--(void)setUpVC {
-  __weak typeof(self) weakSelf = self;
-  _vc = [[RNKiwiViewController alloc] initWithOptions:weakSelf];
-  [_vc setCurrencyFormatter:weakSelf];
-  [_vc setTranslationProvider:weakSelf];
-  [_vc setFlowDelegate:weakSelf];
-}
-
-- (IBAction)presentHotelsView:(id)sender {
-    [self setUpVC];
-  
-    _lastNavigationMode = @"present";
-  
-    [[self navigationController] presentViewController:_vc animated:YES completion:nil];
-}
-
-- (IBAction)pushHotelsView:(UIButton *)sender {
-    [self setUpVC];
-  
-    _lastNavigationMode = @"push";
-    
-    [[self navigationController] pushViewController:_vc animated:YES];
-}
-
-
-# pragma mark - RNKiwiOptions
-
-- (NSDictionary<NSString *, NSObject *> *)initialProperties {
-  CGRect windowRect = self.view.window.frame;
-  return @{
-    @"coordinates": @{
-        @"latitude" : @59.9139,
-        @"longitude": @10.7522
-    },
-    @"language": @"en",
-    @"currency": @"EUR",
-    @"lastNavigationMode": _lastNavigationMode,
-    @"dimensions": @{
-        @"width": @(windowRect.size.width),
-        @"height": @(windowRect.size.height)
-    }
-  };
-}
-
-- (NSString *)moduleName {
-  return @"KiwiHotels";
-}
-
-- (NSURL *)jsCodeLocation {
-  return RNKiwiConstants.hotelsBundle;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated{
   self.navigationController.navigationBar.hidden = YES;
   self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
+
+- (NSDictionary *)windowDimensions {
+  CGRect windowRect = self.view.window.frame;
+  return @{
+    @"width": @(windowRect.size.width),
+    @"height": @(windowRect.size.height)
+  };
+}
+
+- (void)setActiveViewController:(RNKiwiViewController *)vc {
+  __weak typeof(self) weakSelf = self;
+
+  [vc setCurrencyFormatter:weakSelf];
+  [vc setTranslationProvider:weakSelf];
+  [vc setFlowDelegate:weakSelf];
+  
+  _activeVc = vc;
+}
+
+- (IBAction)pushOldHotelsView:(id)sender {
+  RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
+                                                        initialProperties:@{
+                                                          @"coordinates": @{
+                                                             @"latitude" : @59.9139,
+                                                             @"longitude": @10.7522
+                                                             },
+                                                          @"language": @"en",
+                                                          @"currency": @"EUR",
+                                                          @"lastNavigationMode": @"push",
+                                                          @"dimensions": [self windowDimensions]
+                                                        }];
+  
+  [self setActiveViewController:vc];
+  [[self navigationController] pushViewController:vc animated:YES];
+}
+
+- (IBAction)presentOldHotelsView:(id)sender {
+    RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
+                                                          initialProperties:@{
+                                                            @"coordinates": @{
+                                                                @"latitude" : @59.9139,
+                                                                @"longitude": @10.7522
+                                                                },
+                                                            @"language": @"en",
+                                                            @"currency": @"EUR",
+                                                            @"lastNavigationMode": @"push",
+                                                            @"dimensions": [self windowDimensions]
+                                                          }];
+  
+    [self setActiveViewController:vc];
+    [[self navigationController] presentViewController:vc animated:YES completion:nil];
+}
+
+- (IBAction)presentNewHotelsView:(id)sender {
+    RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
+                                                          initialProperties:@{
+                                                            @"bookingComAffiliate": @"123456",
+                                                            @"language": @"en",
+                                                            @"currency": @"EUR",
+                                                            @"lastNavigationMode": @"present",
+                                                            @"dimensions": [self windowDimensions],
+                                                            @"checkin": @"2018-09-20",
+                                                            @"checkout": @"2018-09-22",
+                                                            @"version": @"3.7.13-9d55ad66",
+                                                            @"cityName": @"Barcelona",
+                                                            @"cityId": @"aG90ZWxDaXR5Oi0zNzI0OTA=",
+                                                            @"roomsConfiguration": @[
+                                                                @{
+                                                                  @"adultsCount": @1,
+                                                                  @"children": @[
+                                                                      @{
+                                                                        @"age": @2
+                                                                        }
+                                                                      ]}
+                                                                ]
+                                                          }];
+    
+    [self setActiveViewController:vc];
+    [[self navigationController] presentViewController:vc animated:YES completion:nil];
+}
+
 
 # pragma mark - RNKiwiViewControllerFlowDelegate
 
@@ -106,11 +130,9 @@
 #pragma mark - UIGestureRecognizer
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-  
   if (self.navigationController.interactivePopGestureRecognizer == gestureRecognizer) {
-    return [_vc isInteractivePopGestureAllowed];
+    return [_activeVc isInteractivePopGestureAllowed];
   }
-  
   return YES;
 }
 

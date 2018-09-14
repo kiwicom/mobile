@@ -7,7 +7,6 @@ FOUNDATION_EXPORT double RNKiwiMobileVersionNumber;
 FOUNDATION_EXPORT const unsigned char RNKiwiMobileVersionString[];
 
 // Headers
-#import "RNKiwiOptions.h"
 #import "RNKiwiViewController.h"
 #import "RNKiwiViewControllerFlowDelegate.h"
 #import "RNKiwiTranslationProvider.h"

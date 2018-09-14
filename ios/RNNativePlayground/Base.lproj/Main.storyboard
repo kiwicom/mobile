@@ -18,24 +18,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJh-yV-LXh">
-                                <rect key="frame" x="106" y="100" width="163" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Present Hotels Package"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tJh-yV-LXh">
+                                <rect key="frame" x="92" y="100" width="191" height="30"/>
+                                <state key="normal" title="Present Old Hotels Package"/>
                                 <connections>
-                                    <action selector="presentHotelsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OzQ-cL-mfe"/>
+                                    <action selector="presentOldHotelsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="isY-Hy-1Qf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GD-7O-2Ie">
-                                <rect key="frame" x="116" y="138" width="145" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Push Hotels Package"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5GD-7O-2Ie">
+                                <rect key="frame" x="102" y="138" width="173" height="30"/>
+                                <state key="normal" title="Push Old Hotels Package"/>
                                 <connections>
-                                    <action selector="pushHotelsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OhK-8A-I70"/>
+                                    <action selector="pushOldHotelsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2gF-R7-zss"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s16-m2-Q3f">
+                                <rect key="frame" x="89" y="176" width="198" height="30"/>
+                                <state key="normal" title="Present New Hotels Package"/>
+                                <connections>
+                                    <action selector="presentNewHotelsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8CQ-mt-YBh"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5GD-7O-2Ie" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="102" id="2gK-h8-Z3O"/>
+                            <constraint firstItem="s16-m2-Q3f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="89" id="EZ0-wL-roF"/>
+                            <constraint firstItem="tJh-yV-LXh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FFZ-rw-TGx"/>
+                            <constraint firstItem="tJh-yV-LXh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="36" id="Z7W-mt-SGx"/>
+                            <constraint firstItem="s16-m2-Q3f" firstAttribute="top" secondItem="5GD-7O-2Ie" secondAttribute="bottom" constant="8" symbolic="YES" id="hRZ-i0-4ur"/>
+                            <constraint firstItem="5GD-7O-2Ie" firstAttribute="top" secondItem="tJh-yV-LXh" secondAttribute="bottom" constant="8" symbolic="YES" id="nuD-4e-sa2"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="0er-u5-jmz"/>
