@@ -1,0 +1,9 @@
+{
+  "name": "@kiwicom/mobile-mapbox",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@mapbox/react-native-mapbox-gl": "^6.1.3"
+  }
+}

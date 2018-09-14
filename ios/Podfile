@@ -33,6 +33,8 @@ def react_native_pods()
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
   pod 'RNReverseGeocode', :path => '../node_modules/@kiwicom/react-native-reverse-geocode'
 
+  pod 'react-native-mapbox-gl', :path => '../node_modules/@mapbox/react-native-mapbox-gl'
+  
 end
 
 def react_native_modules()
