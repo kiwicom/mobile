@@ -4,7 +4,6 @@ import { getLocaleDashed } from './GetDeviceLocale';
 import DateUtils from './DateUtils';
 
 import 'intl'; // Polyfill because of Android
-import 'intl/locale-data/complete';
 
 type FormatterConfig = {|
   +weekday?: 'narrow' | 'short' | 'long',

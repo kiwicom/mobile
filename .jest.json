@@ -6,5 +6,8 @@
   "setupTestFrameworkScriptFile": "<rootDir>/app/core/config/jestSetup.js",
   "testPathIgnorePatterns": ["/node_modules/", "__tests__/__mocks__"],
   "transformIgnorePatterns": ["/node_modules/(?!@kiwicom)/"],
-  "modulePathIgnorePatterns": ["/.build/", "/e2e/"]
+  "modulePathIgnorePatterns": ["/.build/", "/e2e/"],
+  "transform": {
+    "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+  }
 }

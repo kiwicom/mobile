@@ -7,7 +7,7 @@ const renderer = new ShallowRenderer();
 
 import { BoardingPassPdf } from '../BoardingPassPdf';
 
-jest.mock('react-native-fetch-blob', () => {
+jest.mock('rn-fetch-blob', () => {
   return {
     config: () => ({
       fetch: async () => ({

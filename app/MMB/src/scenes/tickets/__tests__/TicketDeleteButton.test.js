@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import { TicketDeleteButton } from '../TicketDeleteButton';
 
-jest.mock('react-native-fetch-blob', () => {
+jest.mock('rn-fetch-blob', () => {
   return {
     config: () => ({
       fetch: async () => ({

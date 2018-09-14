@@ -1,6 +1,6 @@
 // @flow strict
 
-import RNFetchBlob from 'react-native-fetch-blob';
+import RNFetchBlob from 'rn-fetch-blob';
 
 export default async (
   fileName: string,
