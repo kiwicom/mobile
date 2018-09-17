@@ -20,13 +20,13 @@ type Props = {|
 |};
 
 const getReview = review => {
-  if (review && review.count) {
+  if (review && review.count != null) {
     const reviewScore = review.score || 0;
     const reviewDescription = review.description || '';
     const reviewCount = review.count || 0;
 
     const delimiter =
-      Number.isFinite(review.score) || review.description ? ' · ' : '';
+      Number.isFinite(review.score) || review.description != null ? ' · ' : '';
 
     return (
       <Text style={styles.metainfo}>
@@ -72,8 +72,8 @@ export class HotelDetailPreview extends React.Component<Props> {
           </Text>
           {getReview(review)}
           {price &&
-            price.currency &&
-            price.amount && (
+            price.currency != null &&
+            price.amount != null && (
               <Text style={styles.price}>
                 <Price currency={price.currency} amount={price.amount} />
               </Text>

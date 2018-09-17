@@ -42,7 +42,7 @@ export default class Flight extends React.Component<Props> {
           title={
             <Translation
               id={
-                isPastBooking
+                isPastBooking != null
                   ? 'mmb.my_bookings.past_trips'
                   : 'mmb.my_bookings.future_trips'
               }

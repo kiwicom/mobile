@@ -29,9 +29,10 @@ const StatusBadge = (props: Props) => {
 
     case 'CONFIRMED': {
       renderStatus = {
-        translationId: isPastBooking
-          ? 'mmb.status.travelled'
-          : 'mmb.status.confirmed',
+        translationId:
+          isPastBooking != null
+            ? 'mmb.status.travelled'
+            : 'mmb.status.confirmed',
         style: styles.greenBadge,
       };
       break;

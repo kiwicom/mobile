@@ -89,7 +89,9 @@ function TimelineDeparture(props: Props) {
             title={<Translation id="mmb.flight_overview.timeline.flight_no" />}
             value={
               <Translation
-                passThrough={` ${airlineIata || ''} ${flightNumber || ''}`}
+                passThrough={` ${airlineIata || ''} ${
+                  flightNumber != null ? flightNumber : ''
+                }`}
               />
             }
           />
