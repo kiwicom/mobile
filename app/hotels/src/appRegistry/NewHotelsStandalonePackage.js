@@ -31,6 +31,9 @@ type Props = {
 };
 
 class NewHotelsStandalonePackage extends React.Component<Props> {
+  static navigationOptions = {
+    tabBarVisible: false,
+  };
   render = () => (
     <RootComponent
       dimensions={this.props.dimensions}

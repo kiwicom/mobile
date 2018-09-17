@@ -14,6 +14,7 @@ import {
   GestureController,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { SafeAreaView } from 'react-navigation';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
@@ -87,14 +88,16 @@ export default class SearchResultsScreen extends React.Component<Props> {
   render = () => (
     <LayoutDoubleColumn
       menuComponent={
-        <View style={styles.container}>
-          <NewAllHotels />
-          <Button onPress={this.onClosePress} style={styles.button}>
-            <Text style={styles.text}>
-              <Translation id="shared.button.close" />
-            </Text>
-          </Button>
-        </View>
+        <SafeAreaView style={[styles.container, styles.safeArea]}>
+          <View style={styles.container}>
+            <NewAllHotels />
+            <Button onPress={this.onClosePress} style={styles.button}>
+              <Text style={styles.text}>
+                <Translation id="shared.button.close" />
+              </Text>
+            </Button>
+          </View>
+        </SafeAreaView>
       }
       containerComponent={<NewAllHotelsMap />}
     />
@@ -102,6 +105,9 @@ export default class SearchResultsScreen extends React.Component<Props> {
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: defaultTokens.paletteWhite,
+  },
   container: {
     flex: 1,
   },
