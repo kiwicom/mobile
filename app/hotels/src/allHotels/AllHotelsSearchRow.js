@@ -4,25 +4,19 @@ import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import {
-  SimpleCard,
-  NetworkImage,
-  StyleSheet,
-  Touchable,
-} from '@kiwicom/mobile-shared';
+import { NetworkImage, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from './HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
-import HotelsContext from '../HotelsContext';
 
-type PropsWithContext = {|
-  ...Props,
-  +isNew: boolean,
+type Props = {|
+  +openSingleHotel: (id: string) => void,
+  +data: AllHotelsSearchRowProps,
 |};
 
-class AllHotelsSearchRow extends React.Component<PropsWithContext> {
+class AllHotelsSearchRow extends React.Component<Props> {
   onGoToSingleHotel = () => {
     const hotelId = idx(this.props, _ => _.data.hotel.id);
     if (hotelId) {
@@ -30,29 +24,29 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
     }
   };
 
-  renderNew = () => {
+  render = () => {
     const lowResUrl = idx(this.props.data, _ => _.hotel.mainPhoto.lowResUrl);
 
     return (
       <Touchable
         onPress={this.onGoToSingleHotel}
-        style={newStyles.container}
+        style={style.container}
         delayPressIn={100}
       >
         <View style={style.row}>
-          <View style={newStyles.imageContainer}>
+          <View style={style.imageContainer}>
             <NetworkImage
               style={style.image}
               resizeMode="cover"
               source={{ uri: lowResUrl }}
             />
           </View>
-          <View style={newStyles.content}>
-            <View style={newStyles.hotelTitleWrapper}>
+          <View style={style.content}>
+            <View style={style.hotelTitleWrapper}>
               <View style={style.hotelTitle}>
                 <HotelTitle data={this.props.data} />
               </View>
-              <View style={newStyles.hotelReviewScore}>
+              <View style={style.hotelReviewScore}>
                 <HotelReviewScore hotel={idx(this.props.data, _ => _.hotel)} />
               </View>
             </View>
@@ -61,53 +55,10 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
       </Touchable>
     );
   };
-
-  render = () => {
-    const { data, isNew } = this.props;
-    if (isNew) {
-      return this.renderNew();
-    }
-    const lowResUrl = idx(data, _ => _.hotel.mainPhoto.lowResUrl);
-    return (
-      <SimpleCard
-        onPress={this.onGoToSingleHotel}
-        style={style.cardStyle}
-        delayPressIn={100}
-      >
-        <View style={style.row}>
-          <NetworkImage
-            style={style.image}
-            resizeMode="cover"
-            source={{ uri: lowResUrl }}
-          />
-
-          <View style={style.hotelTitleWrapper}>
-            <View style={style.hotelTitle}>
-              <HotelTitle data={data} />
-            </View>
-            <View style={style.hotelReviewScore}>
-              <HotelReviewScore hotel={data.hotel} />
-            </View>
-          </View>
-        </View>
-      </SimpleCard>
-    );
-  };
 }
 
-type Props = {|
-  +openSingleHotel: (id: string) => void,
-  +data: AllHotelsSearchRowProps,
-|};
-
-const AllHotelsSearchRowWithContext = (props: Props) => (
-  <HotelsContext.Consumer>
-    {({ isNew }) => <AllHotelsSearchRow {...props} isNew={isNew} />}
-  </HotelsContext.Consumer>
-);
-
 export default createFragmentContainer(
-  AllHotelsSearchRowWithContext,
+  AllHotelsSearchRow,
   graphql`
     fragment AllHotelsSearchRow on HotelAvailability {
       ...HotelTitle
@@ -122,7 +73,24 @@ export default createFragmentContainer(
   `,
 );
 
-const newStyles = StyleSheet.create({
+const style = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
+  image: {
+    marginEnd: 10,
+    width: 50,
+    borderRadius: 2,
+    android: {
+      height: 80,
+    },
+    ios: {
+      height: 70,
+    },
+  },
+  hotelTitle: {
+    flex: 1,
+  },
   container: {
     backgroundColor: defaultTokens.paletteWhite,
     paddingTop: 8,
@@ -146,37 +114,5 @@ const newStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     paddingBottom: 8,
-  },
-});
-
-const style = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-  },
-  image: {
-    marginEnd: 10,
-    width: 50,
-    borderRadius: 2,
-    android: {
-      height: 80,
-    },
-    ios: {
-      height: 70,
-    },
-  },
-  hotelTitleWrapper: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  hotelTitle: {
-    flex: 1,
-  },
-  hotelReviewScore: {
-    marginStart: 10,
-  },
-  cardStyle: {
-    marginVertical: 0,
-    marginBottom: 5,
   },
 });

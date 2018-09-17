@@ -7,7 +7,7 @@ import {
 } from '@kiwicom/mobile-shared';
 
 import RootComponent from './RootComponent';
-import NewHotelsStack from '../navigation/NewNavigationStack';
+import HotelsStack from '../navigation/HotelsNavigationStack';
 import type { Coordinates } from '../CoordinatesType';
 import type { RoomConfigurationType } from '../HotelsContext';
 
@@ -43,7 +43,7 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
       roomsConfiguration={this.props.roomsConfiguration}
       cityName={this.props.cityName}
     >
-      <NewHotelsStack
+      <HotelsStack
         screenProps={this.props}
         onBackClicked={this.props.onBackClicked}
         onNavigationStateChange={this.props.onNavigationStateChange}

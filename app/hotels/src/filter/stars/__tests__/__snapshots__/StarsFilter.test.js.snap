@@ -2,7 +2,7 @@
 
 exports[`StarsFilter renders 1`] = `
 <React.Fragment>
-  <FilterButtonWithContext
+  <FilterButton
     icon={
       <Icon
         color="#7f91a8"

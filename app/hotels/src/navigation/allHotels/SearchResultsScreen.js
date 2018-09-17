@@ -18,18 +18,16 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
 import MapHeaderButton from './MapHeaderButton';
-import { withHotelsContext } from '../../HotelsContext';
 
 type Props = {|
   +navigation: NavigationType,
   +onBackClicked: () => void,
-  +setIsNew: (isNew: boolean) => void,
   +cityName: string,
   +checkin: string,
   +lastNavigationMode?: 'present' | 'push',
 |};
 
-class SearchResultsScreen extends React.Component<Props> {
+export default class SearchResultsScreen extends React.Component<Props> {
   static navigationOptions = (props: Props) => {
     function goToAllHotelsMap() {
       props.navigation.navigate('AllHotelsMap');
@@ -75,10 +73,6 @@ class SearchResultsScreen extends React.Component<Props> {
         </View>
       ),
     };
-  };
-
-  componentDidMount = () => {
-    this.props.setIsNew(true);
   };
 
   onClosePress = () => {
@@ -142,7 +136,3 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 });
-
-export default withHotelsContext(state => ({
-  setIsNew: state.actions.setIsNew,
-}))(SearchResultsScreen);

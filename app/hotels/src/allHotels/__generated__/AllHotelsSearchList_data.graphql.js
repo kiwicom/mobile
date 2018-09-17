@@ -29,7 +29,6 @@ export type AllHotelsSearchList_data = {|
       +maxPrice: ?number,
       +minPrice: ?number,
     |},
-    +cityName: ?string,
   |},
   +$refType: AllHotelsSearchList_data$ref,
 |};
@@ -219,18 +218,11 @@ const node/*: ConcreteFragment*/ = {
               "storageKey": null
             }
           ]
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "cityName",
-          "args": null,
-          "storageKey": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e14a9c211f0b53c74e218646f16a4ecd';
+(node/*: any*/).hash = '830422a571c04ec163e9c07e18459988';
 module.exports = node;

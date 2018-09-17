@@ -30,7 +30,6 @@ export default class Homepage extends React.Component<Props> {
       </HeaderTitle>
     ),
   };
-  goToAllHotelsPage = () => this.props.navigation.navigate('HotelsPackage');
 
   goToNewHotelsPage = () =>
     this.props.navigation.navigate('NewHotelsPackage', {
@@ -42,33 +41,8 @@ export default class Homepage extends React.Component<Props> {
       roomsConfiguration: [{ adultsCount: 1, children: [] }],
     });
 
-  goToOslo = () => {
-    this.props.navigation.navigate('HotelsPackage', {
-      coordinates: {
-        latitude: 59.9139,
-        longitude: 10.7522,
-      },
-    });
-  };
-
-  goToLima = () => {
-    this.props.navigation.navigate('HotelsPackage', {
-      coordinates: {
-        latitude: -12.046374,
-        longitude: -77.042793,
-      },
-    });
-  };
-
   goToSingleHotel = () => {
     this.props.navigation.navigate('SingleHotelPackage');
-  };
-
-  searchWithDates = () => {
-    this.props.navigation.navigate('HotelsPackage', {
-      checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
-      checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
-    });
   };
 
   render = () => {
@@ -76,40 +50,15 @@ export default class Homepage extends React.Component<Props> {
       <LayoutSingleColumn testID="homePage">
         <Section>
           <TextButton
-            title={<Translation passThrough="New hotels" />}
+            title={<Translation passThrough="Hotels" />}
             onPress={this.goToNewHotelsPage}
           />
         </Section>
-        <Section>
-          <TextButton
-            title={<Translation passThrough="Hotels" />}
-            onPress={this.goToAllHotelsPage}
-          />
-        </Section>
-        <Section>
-          <TextButton
-            title={<Translation passThrough="Hotels in Oslo" />}
-            onPress={this.goToOslo}
-          />
-        </Section>
-        <Section>
-          <TextButton
-            title={<Translation passThrough="Hotels in Lima" />}
-            onPress={this.goToLima}
-          />
-        </Section>
+
         <Section>
           <TextButton
             title={<Translation passThrough="Go to single hotel" />}
             onPress={this.goToSingleHotel}
-          />
-        </Section>
-        <Section>
-          <TextButton
-            title={
-              <Translation passThrough="Search with checkin and checkout dates" />
-            }
-            onPress={this.searchWithDates}
           />
         </Section>
       </LayoutSingleColumn>
