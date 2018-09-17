@@ -10,7 +10,7 @@ import Homepage from '../../screens/hotelsStack/Homepage';
 import SingleHotelsPackageWrapper from '../../screens/hotelsStack/SingleHotelPackageWrapper';
 import NewHotelsPackageWrapper from '../../screens/hotelsStack/NewHotelsPackageWrapper';
 
-export default StackNavigator(
+const Stack = StackNavigator(
   {
     Home: withMappedProps(Homepage),
     SingleHotelPackage: withMappedProps(SingleHotelsPackageWrapper),
@@ -19,5 +19,12 @@ export default StackNavigator(
   {
     initialRouteName: 'Home',
     ...StackNavigatorOptions,
+    mode: 'modal',
   },
 );
+
+Stack.navigationOptions = ({ navigation }) => ({
+  tabBarVisible: navigation.state.index === 0,
+});
+
+export default Stack;
