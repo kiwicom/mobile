@@ -24,7 +24,6 @@ type PropsWithContext = {|
   +activeFilters: ActiveFilters,
   +onChange: OnChangeFilterParams => void,
   +filter: FilterParams,
-  +isNew: boolean,
 |};
 
 /**
@@ -50,12 +49,11 @@ class FilterStripe extends React.Component<PropsWithContext> {
   storeScrollViewRef = ref => (this.scrollViewRef = ref);
 
   render = () => {
-    const newStyle = this.props.isNew ? styles.backgroundNew : null;
     return (
       <View style={styles.view}>
         <ScrollView
           ref={this.storeScrollViewRef}
-          contentContainerStyle={[styles.scrollView, newStyle]}
+          contentContainerStyle={[styles.scrollView, styles.backgroundNew]}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
@@ -115,7 +113,7 @@ const styles = StyleSheet.create({
 export default function FilterStripeWithContext() {
   return (
     <HotelsContext.Consumer>
-      {({ currency, isNew }) => (
+      {({ currency }) => (
         <HotelsFilterContext.Consumer>
           {({ activeFilters, filterParams, actions: { setFilter } }) => (
             <FilterStripe
@@ -123,7 +121,6 @@ export default function FilterStripeWithContext() {
               onChange={setFilter}
               filter={filterParams}
               activeFilters={activeFilters}
-              isNew={isNew}
             />
           )}
         </HotelsFilterContext.Consumer>

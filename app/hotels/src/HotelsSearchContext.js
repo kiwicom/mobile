@@ -1,35 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { DateUtils } from '@kiwicom/mobile-localization';
 
-import type {
-  SearchParams,
-  OnChangeSearchParams,
-} from './allHotels/searchForm/SearchParametersType';
 import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
 
 const InitialContextState = {
-  cityId: null,
-  location: '',
-  searchParams: {
-    checkin: DateUtils(DateUtils.getUTCToday()).addDays(7),
-    checkout: DateUtils(DateUtils.getUTCToday()).addDays(14),
-    roomsConfiguration: {
-      adultsCount: 1,
-      children: [],
-    },
-  },
   currentSearchStats: {
     priceMax: 10000,
     priceMin: 0,
   },
   actions: {
-    setSearch: () => {},
-    setLocation: () => {},
-    setCityId: () => {},
     setCurrentSearchStats: () => {},
-    setCityIdAndLocation: () => {},
   },
 };
 
@@ -42,66 +23,31 @@ type Props = {|
 |};
 
 type State = {|
-  cityId: string | null,
-  location: string,
-  searchParams: SearchParams,
   currentSearchStats: CurrentSearchStats,
   actions: {|
-    setSearch: OnChangeSearchParams => void,
-    setLocation: string => void,
-    setCityId: (string | null) => void,
     setCurrentSearchStats: ({|
       priceMax: number,
       priceMin: number,
     |}) => void,
-    setCityIdAndLocation: (string | null, string) => void,
   |},
 |};
 
 class Provider extends React.Component<Props, State> {
-  setSearch = (search: OnChangeSearchParams) => {
-    this.setState(prevState => ({
-      searchParams: {
-        ...prevState.searchParams,
-        ...search,
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      ...InitialContextState,
+      actions: {
+        setCurrentSearchStats: this.setCurrentSearchStats,
       },
-    }));
-  };
-
-  setLocation = (location: string) => {
-    this.setState({
-      location,
-    });
-  };
-
-  setCityId = (cityId: string | null) => {
-    this.setState({
-      cityId,
-    });
-  };
+    };
+  }
 
   setCurrentSearchStats = (currentSearchStats: CurrentSearchStats) => {
     this.setState({
       currentSearchStats,
     });
-  };
-
-  setCityIdAndLocation = (cityId: string | null, location: string) => {
-    this.setState({
-      cityId,
-      location,
-    });
-  };
-
-  state = {
-    ...InitialContextState,
-    actions: {
-      setSearch: this.setSearch,
-      setLocation: this.setLocation,
-      setCityId: this.setCityId,
-      setCurrentSearchStats: this.setCurrentSearchStats,
-      setCityIdAndLocation: this.setCityIdAndLocation,
-    },
   };
 
   render = () => (
