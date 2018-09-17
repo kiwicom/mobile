@@ -5,7 +5,7 @@ import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mappe
 import { WithStandaloneScreen } from '@kiwicom/mobile-shared';
 
 import SingleHotel from '../../singleHotel/SingleHotelContainer';
-import type { NavigationProps } from '../NavigationStack';
+import type { NavigationProps } from '../HotelsNavigationStack';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import SingleHotelContext from './SingleHotelContext';
 

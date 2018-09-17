@@ -5,7 +5,6 @@ import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import type { SingleHotelContainerQueryResponse } from './__generated__/SingleHotelContainerQuery.graphql';
-import type { SearchParams } from '../allHotels/searchForm/SearchParametersType';
 import type { AvailableHotelSearchInput } from './AvailableHotelSearchInput';
 import { sanitizeDate } from '../GraphQLSanitizers';
 import HotelsContext, { type RoomConfigurationType } from '../HotelsContext';
@@ -32,6 +31,12 @@ export const handleOpenSingleHotel = (
     });
   }
 };
+
+type SearchParams = {|
+  +checkin: Date,
+  +checkout: Date,
+  +roomsConfiguration: RoomConfigurationType,
+|};
 
 type PropsWithContext = {|
   +currency: string,

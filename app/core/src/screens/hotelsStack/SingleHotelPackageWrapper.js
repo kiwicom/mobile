@@ -29,8 +29,8 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
         currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
         onBackClicked={this.goToHomepage}
         dataSaverEnabled={false}
-        checkin={DateFormatter(DateUtils().addDays(1)).formatForMachine()}
-        checkout={DateFormatter(DateUtils().addDays(7)).formatForMachine()}
+        checkin={DateFormatter(DateUtils().addDays(30)).formatForMachine()}
+        checkout={DateFormatter(DateUtils().addDays(37)).formatForMachine()}
         hotelId="aG90ZWw6ODAyMDQ="
         roomsConfiguration={[{ adultsCount: 1, children: [] }]}
         dimensions={this.props.dimensions}
