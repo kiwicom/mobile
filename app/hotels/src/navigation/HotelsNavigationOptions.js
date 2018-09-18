@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform, StatusBar } from 'react-native';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet, AdaptableBadge } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -41,9 +41,14 @@ type Props = {|
   +checkin?: string,
   +checkout?: string,
 |};
+
 export default ({ cityName, checkin, checkout }: Props) => ({
   headerStyle: {
     height: 64,
+    marginTop: Platform.select({
+      ios: 0,
+      android: StatusBar.currentHeight,
+    }),
   },
   headerLeft: (
     <View style={styles.headerLeftcontainer}>
