@@ -7,6 +7,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -30,6 +31,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -53,6 +55,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -76,6 +79,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -99,6 +103,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -122,6 +127,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -145,6 +151,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -168,6 +175,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -191,6 +199,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -214,6 +223,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -237,6 +247,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -260,6 +271,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -283,6 +295,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {
@@ -306,6 +319,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Array [
             Object {

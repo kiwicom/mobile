@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 90acef22c23a00b65c79b3f55cc1bd65
+ * @relayHash d9061d7ed68a5545b4cb9f793e89d203
  */
 
 /* eslint-disable */
@@ -9,7 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type AllHotelsSearchList_data$ref = any;
+type RenderSearchResults$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BRL" | "BSD" | "BTC" | "BTN" | "BWP" | "BYN" | "BYR" | "BZD" | "CAD" | "CDF" | "CHF" | "CLF" | "CLP" | "CNY" | "COP" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EEK" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GGP" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "IMP" | "INR" | "IQD" | "IRR" | "ISK" | "JEP" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LTL" | "LVL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRO" | "MTL" | "MUR" | "MVR" | "MWK" | "MXN" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "QUN" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "STD" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "YER" | "ZAR" | "ZMK" | "ZMW" | "ZWL" | "%future added value";
 export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "engb" | "enus" | "es" | "esar" | "et" | "fi" | "fr" | "he" | "hr" | "hu" | "id" | "is" | "it" | "ja" | "ko" | "lt" | "lv" | "ms" | "nl" | "no" | "pl" | "pt" | "ptbr" | "ptpt" | "ro" | "ru" | "sk" | "sl" | "sr" | "sv" | "th" | "tl" | "tr" | "uk" | "vi" | "zh" | "zhcn" | "zhtw" | "%future added value";
 export type HotelsSearchInput = {
@@ -60,7 +60,7 @@ export type NewAllHotelsSearchQueryVariables = {|
   after?: ?string,
 |};
 export type NewAllHotelsSearchQueryResponse = {|
-  +$fragmentRefs: AllHotelsSearchList_data$ref
+  +$fragmentRefs: RenderSearchResults$ref
 |};
 export type NewAllHotelsSearchQuery = {|
   variables: NewAllHotelsSearchQueryVariables,
@@ -77,7 +77,12 @@ query NewAllHotelsSearchQuery(
   $first: Int
   $after: String
 ) {
+  ...RenderSearchResults
+}
+
+fragment RenderSearchResults on RootQuery {
   ...AllHotelsSearchList_data
+  ...MapScreen
 }
 
 fragment AllHotelsSearchList_data on RootQuery {
@@ -101,6 +106,97 @@ fragment AllHotelsSearchList_data on RootQuery {
       minPrice
     }
   }
+}
+
+fragment MapScreen on RootQuery {
+  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+    edges {
+      node {
+        id
+        __typename
+      }
+      ...MapView
+      ...HotelSwipeList
+      cursor
+    }
+    stats {
+      maxPrice
+      minPrice
+    }
+  }
+}
+
+fragment MapView on HotelAvailabilityEdge {
+  node {
+    id
+    price {
+      ...PriceMarker
+    }
+    hotel {
+      coordinates {
+        lat
+        lng
+      }
+      id
+    }
+  }
+}
+
+fragment HotelSwipeList on HotelAvailabilityEdge {
+  node {
+    id
+    ...HotelSwipeItem
+    hotel {
+      address {
+        ...Address_address
+      }
+      id
+    }
+  }
+}
+
+fragment HotelSwipeItem on HotelAvailability {
+  ...HotelDetailPreview_availability
+  hotel {
+    id
+  }
+}
+
+fragment Address_address on Address {
+  street
+  city
+  zip
+}
+
+fragment HotelDetailPreview_availability on HotelAvailability {
+  price {
+    amount
+    currency
+  }
+  hotel {
+    id
+    name
+    mainPhoto {
+      thumbnailUrl
+      id
+    }
+    review {
+      score
+      description
+      count
+    }
+  }
+}
+
+fragment PriceMarker on Price {
+  amount
+  currency
 }
 
 fragment AllHotelsSearchRow on HotelAvailability {
@@ -218,7 +314,7 @@ return {
   "operationKind": "query",
   "name": "NewAllHotelsSearchQuery",
   "id": null,
-  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...AllHotelsSearchList_data\n}\n\nfragment AllHotelsSearchList_data on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...AllHotelsSearchRow\n        __typename\n      }\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      lowResUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n",
+  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...RenderSearchResults\n}\n\nfragment RenderSearchResults on RootQuery {\n  ...AllHotelsSearchList_data\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList_data on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...AllHotelsSearchRow\n        __typename\n      }\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment MapScreen on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        __typename\n      }\n      ...MapView\n      ...HotelSwipeList\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      lowResUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -229,7 +325,7 @@ return {
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "AllHotelsSearchList_data",
+        "name": "RenderSearchResults",
         "args": null
       }
     ]
@@ -389,7 +485,14 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          v2
+                          v2,
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "thumbnailUrl",
+                            "args": null,
+                            "storageKey": null
+                          }
                         ]
                       },
                       {
@@ -405,6 +508,77 @@ return {
                             "kind": "ScalarField",
                             "alias": null,
                             "name": "score",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "description",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "count",
+                            "args": null,
+                            "storageKey": null
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "coordinates",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Coordinates",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "lat",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "lng",
+                            "args": null,
+                            "storageKey": null
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "address",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Address",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "street",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "city",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "zip",
                             "args": null,
                             "storageKey": null
                           }
@@ -475,5 +649,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '36f2eee87902e7e54f3e59be1cb00aee';
+(node/*: any*/).hash = 'b421c7d7992da1dbd3a374cb9f4b1fba';
 module.exports = node;
