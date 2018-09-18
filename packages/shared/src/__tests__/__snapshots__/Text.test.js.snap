@@ -2,9 +2,6 @@
 
 exports[`applies the styles recursively 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -21,20 +18,13 @@ exports[`applies the styles recursively 1`] = `
   }
 >
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "color": "red",
       }
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       bold and red text
     </Text>
   </Text>
@@ -43,9 +33,6 @@ exports[`applies the styles recursively 1`] = `
 
 exports[`renders with additional style properties 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -61,11 +48,7 @@ exports[`renders with additional style properties 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     bold text
   </Text>
 </Text>
@@ -73,9 +56,6 @@ exports[`renders with additional style properties 1`] = `
 
 exports[`renders with the default properties for iOS 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -89,11 +69,7 @@ exports[`renders with the default properties for iOS 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     normal text
   </Text>
 </Text>
@@ -101,9 +77,6 @@ exports[`renders with the default properties for iOS 1`] = `
 
 exports[`supports multiple nested strings 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -119,29 +92,13 @@ exports[`supports multiple nested strings 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+  <Text>
+    <Text>
       red normal text 
     </Text>
   </Text>
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+  <Text>
+    <Text>
       and red normal text
     </Text>
   </Text>
@@ -150,9 +107,6 @@ exports[`supports multiple nested strings 1`] = `
 
 exports[`supports nested styles 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -168,28 +122,17 @@ exports[`supports nested styles 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
+  <Text>
     bold text 
   </Text>
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Object {
         "color": "red",
       }
     }
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       and bold-red text
     </Text>
   </Text>
@@ -198,9 +141,6 @@ exports[`supports nested styles 1`] = `
 
 exports[`works even with the distant Text nodes 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -216,16 +156,8 @@ exports[`works even with the distant Text nodes 1`] = `
     ]
   }
 >
-  <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
-  >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+  <Text>
+    <Text>
       bold default text
     </Text>
   </Text>
