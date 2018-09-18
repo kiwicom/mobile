@@ -4,22 +4,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 
 import AssetsDownloader from '../AssetsDownloader';
 
-jest.mock('rn-fetch-blob', () => {
-  return {
-    config: () => ({
-      fetch: async () => ({
-        path: () => {},
-      }),
-    }),
-    polyfill: () => {},
-    fs: {
-      dirs: {
-        DocumentDir: 'ait',
-      },
-      exists: () => {},
-    },
-  };
-});
+jest.mock('rn-fetch-blob');
 
 describe('AssetsDownloader', () => {
   it('downloads asset if it does not exist', async () => {

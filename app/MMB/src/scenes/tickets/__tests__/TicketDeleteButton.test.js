@@ -5,24 +5,7 @@ import renderer from 'react-test-renderer';
 
 import { TicketDeleteButton } from '../TicketDeleteButton';
 
-jest.mock('rn-fetch-blob', () => {
-  return {
-    config: () => ({
-      fetch: async () => ({
-        path: () => {},
-      }),
-    }),
-    polyfill: () => {},
-    fs: {
-      dirs: {
-        DocumentDir: 'ait',
-      },
-      exists: async () => true,
-      unlink: async () => true,
-      ls: async () => true,
-    },
-  };
-});
+jest.mock('rn-fetch-blob');
 
 const getWrapper = () =>
   renderer.create(<TicketDeleteButton bookingId={123456} isFocused={true} />);
