@@ -1,8 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { Text, ButtonPopup, Slider } from '@kiwicom/mobile-shared';
+import {
+  Text,
+  ButtonPopup,
+  Slider,
+  StyleSheet,
+  SliderLabels,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { SafeAreaView } from 'react-navigation';
 
 type Props = {|
   onClose: () => void,
@@ -48,33 +56,50 @@ export default class ScorePopup extends React.Component<Props, State> {
       <Translation key="8" id="hotels_search.filter.score_filter.rating.8" />,
       <Translation key="9" id="hotels_search.filter.score_filter.rating.9" />,
     ];
-    return (
-      <Text>
-        <Translation id="hotels_search.filter.score_popup.title" />
-        <Translation passThrough=" " />
-        {labels[sliderValue]}
-      </Text>
-    );
+    return labels[sliderValue];
   };
 
   convertSliderValueToScore = (value: number) =>
     value ? value + SLIDER_SHIFT : null;
 
   render = () => (
-    <ButtonPopup
-      buttonTitle={<Translation id="hotels_search.filter.score_popup.save" />}
-      onSave={this.onSave}
-      onClose={this.props.onClose}
-      isVisible={this.props.isVisible}
-    >
-      <Text>{this.renderLabel(this.state.sliderValue)}</Text>
-      <Slider
-        startValue={this.state.sliderValue}
-        min={0}
-        max={4}
-        onChange={this.handleScoreChanged}
-        snapped={true}
-      />
-    </ButtonPopup>
+    <SafeAreaView>
+      <ButtonPopup
+        buttonTitle={<Translation id="hotels_search.filter.score_popup.save" />}
+        buttonCloseTitle={
+          <Translation id="hotels_search.filter.hotel_facilities_popup.close" />
+        }
+        onSave={this.onSave}
+        onClose={this.props.onClose}
+        isVisible={this.props.isVisible}
+      >
+        <Text style={styles.title}>
+          <Translation id="hotels_search.filter.score_filter.rating" />
+        </Text>
+        <SliderLabels
+          max={4}
+          min={0}
+          startLabel={this.renderLabel(this.state.sliderValue)}
+          startValue={this.state.sliderValue}
+        />
+        <Slider
+          startValue={this.state.sliderValue}
+          min={0}
+          max={4}
+          onChange={this.handleScoreChanged}
+          snapped={true}
+        />
+      </ButtonPopup>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: defaultTokens.colorHeading,
+    fontSize: 16,
+    fontWeight: '500',
+    paddingTop: 15,
+    paddingBottom: 10,
+  },
+});

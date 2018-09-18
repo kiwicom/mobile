@@ -16,13 +16,32 @@ type Props = {|
 |};
 
 export default class Popup extends React.Component<Props> {
+  scrollView: ?React$ElementRef<ScrollView>;
+
+  constructor() {
+    super();
+
+    this.scrollView = null;
+  }
+
   onClose = () => this.props.onClose();
+
+  scrollToEnd = () => {
+    if (this.scrollView) {
+      this.scrollView.scrollToEnd({ animated: true });
+    }
+  };
+
+  saveRef = (ref: React$ElementRef<ScrollView>): void =>
+    (this.scrollView = ref);
 
   render = () => {
     const modalChild = (
       <ScrollView
         contentContainerStyle={styles.content}
         alwaysBounceVertical={false}
+        ref={this.saveRef}
+        onContentSizeChange={this.scrollToEnd}
       >
         <SafeAreaView style={styles.safeArea}>
           {this.props.children}
@@ -64,7 +83,9 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.paletteWhite,
     alignSelf: 'center',
     width: '100%',
-    maxHeight: '75%',
+    maxHeight: '95%',
+    borderTopStartRadius: 8,
+    borderTopEndRadius: 8,
   },
   wideContentContainer: {
     width: '75%',

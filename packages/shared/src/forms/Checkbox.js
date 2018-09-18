@@ -3,10 +3,10 @@
 import * as React from 'react';
 import { View, Platform } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { TextIcon } from '@kiwicom/mobile-shared';
 
 import TouchableWithoutFeedback from '../TouchableWithoutFeedback';
 import StyleSheet from '../PlatformStyleSheet';
-import Icon from '../icons/Icon';
 import type { StylePropType } from '../../types/Styles';
 
 type Props = {|
@@ -17,22 +17,21 @@ type Props = {|
 |};
 
 export default function Checkbox(props: Props) {
+  const icon = (
+    <TextIcon
+      orbit={true}
+      code={Platform.OS === 'ios' ? 'S' : '\ue013'}
+      style={styles.iconStyle}
+    />
+  );
+
   return (
     <TouchableWithoutFeedback onPress={props.onPress}>
       <View style={[styles.wrapper, props.style]}>
         <View style={styles.label}>{props.children}</View>
-        {props.isChecked && (
-          <View style={styles.check}>
-            <Icon
-              name="check"
-              size={Platform.select({
-                android: 25, // solves checkbox row jumping on Android devices
-                ios: 26,
-              })}
-              color={defaultTokens.paletteProductNormal}
-            />
-          </View>
-        )}
+        <View style={styles.checkWrapper}>
+          {props.isChecked ? icon : <View style={styles.notChecked} />}
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -49,9 +48,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 26,
   },
-  check: {
-    flex: 1,
+  checkWrapper: {
     justifyContent: 'center',
     alignItems: 'flex-end',
+  },
+  iconStyle: {
+    color: defaultTokens.paletteProductNormal,
+    ios: {
+      width: 26,
+      height: 26,
+      fontSize: 28,
+    },
+    android: {
+      width: 24,
+      height: 24,
+      borderWidth: 1,
+      borderColor: defaultTokens.paletteProductNormal,
+      borderRadius: 100,
+      fontSize: 24,
+    },
+  },
+  notChecked: {
+    width: 24,
+    height: 24,
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: defaultTokens.paletteInkLighter,
   },
 });

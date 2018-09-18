@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { Icon } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  Translation,
+  TranslationFragment,
+  DateUtils,
+} from '@kiwicom/mobile-localization';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
@@ -15,6 +19,7 @@ type PropsWithContext = {
   ...Props,
   +currentSearchStats: CurrentSearchStats,
   +currency: string,
+  +daysOfStay: number,
 };
 
 type State = {|
@@ -72,17 +77,58 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
     min: number,
     max: number,
     currency: string,
+    daysOfStay: number,
   ) => {
     if (start === min && end === max) {
       return <Translation id="hotels_search.filter.price_filter.price" />;
     }
     if (start === min) {
-      return <Translation passThrough={`< ${end} ${currency}`} />;
+      return (
+        <TranslationFragment>
+          <Translation passThrough="< " />
+          <Translation
+            id="hotels_search.filter.price_popup.price_label"
+            values={{
+              amount: end * daysOfStay,
+              currency: currency,
+            }}
+          />
+        </TranslationFragment>
+      );
     }
     if (end === max) {
-      return <Translation passThrough={`> ${start} ${currency}`} />;
+      return (
+        <TranslationFragment>
+          <Translation passThrough="> " />
+          <Translation
+            id="hotels_search.filter.price_popup.price_label"
+            values={{
+              amount: start * daysOfStay,
+              currency: currency,
+            }}
+          />
+        </TranslationFragment>
+      );
     }
-    return <Translation passThrough={`${start} - ${end} ${currency}`} />;
+    return (
+      <TranslationFragment>
+        <Translation
+          id="hotels_search.filter.price_popup.price_label"
+          values={{
+            amount: start * daysOfStay,
+            currency: currency,
+          }}
+        />
+        <Translation passThrough=" - " />
+        <Translation
+          id="hotels_search.filter.price_popup.price_label"
+          values={{
+            amount: end * daysOfStay,
+            currency: currency,
+          }}
+        />
+      </TranslationFragment>
+    );
   };
 
   render() {
@@ -90,6 +136,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
       currentSearchStats: { priceMin, priceMax },
       isActive,
       currency,
+      daysOfStay,
     } = this.props;
     const start = this.props.start || priceMin;
     const end = this.props.end || priceMax;
@@ -97,7 +144,14 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
     return (
       <React.Fragment>
         <FilterButton
-          title={this.getTitle(start, end, priceMin, priceMax, currency)}
+          title={this.getTitle(
+            start,
+            end,
+            priceMin,
+            priceMax,
+            currency,
+            daysOfStay,
+          )}
           icon={<Icon name="attach-money" size={18} />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
@@ -111,6 +165,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
           start={start}
           end={end}
           currency={currency}
+          daysOfStay={daysOfStay}
         />
       </React.Fragment>
     );
@@ -125,20 +180,34 @@ type Props = {|
   +isActive: boolean,
 |};
 
+const calculateDaysOfStay = (checkin, checkout) => {
+  if (checkin && checkout) {
+    return DateUtils.diffInDays(checkout, checkin);
+  }
+  return null;
+};
+
 export default function PriceFilterWithContext(props: Props) {
   return (
     <HotelsContext.Consumer>
-      {({ currency }) => (
-        <HotelsSearchContext.Consumer>
-          {({ currentSearchStats }) => (
-            <PriceFilter
-              {...props}
-              currentSearchStats={currentSearchStats}
-              currency={currency}
-            />
-          )}
-        </HotelsSearchContext.Consumer>
-      )}
+      {({ currency, checkin, checkout }) => {
+        const daysOfStay = calculateDaysOfStay(checkin, checkout);
+        if (daysOfStay === null) {
+          return null;
+        }
+        return (
+          <HotelsSearchContext.Consumer>
+            {({ currentSearchStats }) => (
+              <PriceFilter
+                {...props}
+                currentSearchStats={currentSearchStats}
+                currency={currency}
+                daysOfStay={daysOfStay}
+              />
+            )}
+          </HotelsSearchContext.Consumer>
+        );
+      }}
     </HotelsContext.Consumer>
   );
 }

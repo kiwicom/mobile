@@ -12,6 +12,7 @@ const renderPopup = (onSave, onClose) =>
     <Dimensions.Provider dimensions={{ width: 500, height: 700 }}>
       <ButtonPopup
         buttonTitle={<Translation passThrough="Save" />}
+        buttonCloseTitle={<Translation passThrough="Close" />}
         isVisible={true}
         onSave={onSave}
         onClose={onClose}
@@ -27,9 +28,11 @@ describe('ButtonPopup', () => {
     const onClose = jest.fn();
     const testRenderer = renderPopup(onSave, onClose);
     const testInstance = testRenderer.root;
-    await testInstance.findByType(Touchable).props.onPress();
+    await testInstance.findAllByType(Touchable).forEach(async child => {
+      await child.props.onPress();
+    });
 
     expect(onSave).toBeCalled();
-    expect(onClose).not.toBeCalled();
+    expect(onClose).toBeCalled();
   });
 });

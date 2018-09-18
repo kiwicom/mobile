@@ -1,8 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { Text, ButtonPopup, Slider } from '@kiwicom/mobile-shared';
+import {
+  Text,
+  ButtonPopup,
+  Slider,
+  StyleSheet,
+  SliderLabels,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { SafeAreaView } from 'react-navigation';
 
 type Props = {|
   onClose: () => void,
@@ -13,6 +21,7 @@ type Props = {|
   start: number,
   end: number,
   currency: string,
+  daysOfStay: number,
 |};
 
 type State = {|
@@ -41,7 +50,9 @@ export default class PricePopup extends React.Component<Props, State> {
         };
 
   handlePriceChanged = ([start, end]: number[]) =>
-    this.setState({ price: { start, end } });
+    this.setState({
+      price: { start, end },
+    });
 
   onSave = () =>
     this.props.onSave({
@@ -49,44 +60,78 @@ export default class PricePopup extends React.Component<Props, State> {
       maxPrice: this.state.price.end,
     });
 
-  renderLabel = () => {
-    const { start, end } = this.state.price;
-    const { currency } = this.props;
-
-    return (
-      <Text>
-        <Translation passThrough={`${start} ${currency}`} />
-        <Translation passThrough=" - " />
-        <Translation passThrough={`${end} ${currency}`} />
-      </Text>
-    );
-  };
-
   render() {
     const { start, end } = this.state.price;
-    const { min, max } = this.props;
+    const { min, max, currency, daysOfStay } = this.props;
 
-    const label = this.renderLabel();
     return (
-      <ButtonPopup
-        buttonTitle={<Translation id="hotels_search.filter.price_popup.save" />}
-        onSave={this.onSave}
-        onClose={this.props.onClose}
-        isVisible={this.props.isVisible}
-      >
-        <Text>
-          <Translation id="hotels_search.filter.price_popup.title" />
-          <Translation passThrough=" " />
-          {label}
-        </Text>
-        <Slider
-          startValue={start}
-          endValue={end}
-          min={min}
-          max={max}
-          onChange={this.handlePriceChanged}
-        />
-      </ButtonPopup>
+      <SafeAreaView>
+        <ButtonPopup
+          buttonTitle={
+            <Translation id="hotels_search.filter.price_popup.save" />
+          }
+          buttonCloseTitle={
+            <Translation id="hotels_search.filter.hotel_facilities_popup.close" />
+          }
+          onSave={this.onSave}
+          onClose={this.props.onClose}
+          isVisible={this.props.isVisible}
+        >
+          <Text style={styles.title}>
+            <Translation id="hotels_search.filter.price_popup.title" />
+            <Translation passThrough=" " />
+            <Text style={styles.subtitle}>
+              <Translation id="hotels_search.filter.price_popup.subtitle" />
+            </Text>
+          </Text>
+          <SliderLabels
+            max={max}
+            min={min}
+            startLabel={
+              <Translation
+                id="hotels_search.filter.price_popup.price_label"
+                values={{
+                  amount: start * daysOfStay,
+                  currency: currency,
+                }}
+              />
+            }
+            startValue={start}
+            endLabel={
+              <Translation
+                id="hotels_search.filter.price_popup.price_label"
+                values={{
+                  amount: end * daysOfStay,
+                  currency: currency,
+                }}
+              />
+            }
+            endValue={end}
+          />
+          <Slider
+            startValue={start}
+            endValue={end}
+            min={min}
+            max={max}
+            onChange={this.handlePriceChanged}
+          />
+        </ButtonPopup>
+      </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: defaultTokens.colorHeading,
+    fontSize: 16,
+    fontWeight: '500',
+    paddingTop: 15,
+    paddingBottom: 10,
+  },
+  subtitle: {
+    fontSize: 14,
+    fontWeight: '200',
+    color: defaultTokens.colorTextSecondary,
+  },
+});
