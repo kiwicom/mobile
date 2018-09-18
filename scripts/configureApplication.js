@@ -55,4 +55,20 @@ fs.writeFileSync(path.join(__dirname, '..', '.env'), envTemplate);
 log('Linking all native dependencies...');
 child_process.execSync('yarn react-native link');
 
+log('Patching intl package');
+const package = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'),
+    'utf-8',
+  ),
+);
+delete package.browser;
+
+fs.writeFileSync(
+  path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'),
+  JSON.stringify(package, null, 2),
+);
+
+fs.unlinkSync(path.join(__dirname, '..', 'node_modules', 'intl', '.babelrc'));
+
 log('Configuration complete!');
