@@ -31,6 +31,7 @@ def react_native_pods()
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+  pod 'RNReverseGeocode', :path => '../node_modules/@kiwicom/react-native-reverse-geocode'
 
 end
 

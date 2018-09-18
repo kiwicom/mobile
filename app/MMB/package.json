@@ -11,6 +11,7 @@
     "@kiwicom/mobile-pdf": "^0",
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/react-native-reverse-geocode": "0.0.1",
     "lodash": "^4.17.10",
     "memoize-one": "^4.0.0",
     "react-native-dash": "^0.0.8",
