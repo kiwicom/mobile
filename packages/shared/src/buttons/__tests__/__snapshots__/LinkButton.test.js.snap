@@ -9,6 +9,7 @@ exports[`Button renders 1`] = `
       "backgroundColor": "transparent",
     }
   }
+  type="primary"
 >
   <ButtonTitle
     style={

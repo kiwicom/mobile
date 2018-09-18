@@ -1,100 +1,159 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StarsPopup should render popup 1`] = `
-<ButtonPopup
-  buttonTitle={
-    <Translation
-      id="hotels_search.filter.stars_popup.save"
-    />
-  }
-  isVisible={true}
-  onClose={[Function]}
-  onSave={[Function]}
->
-  <Text
-    style={
-      Object {
-        "color": "#7f91a8",
-        "fontSize": 12,
-        "paddingBottom": 5,
-      }
+<withOrientation>
+  <ButtonPopup
+    buttonCloseTitle={
+      <Translation
+        id="hotels_search.filter.hotel_facilities_popup.close"
+      />
     }
-  >
-    <Translation
-      id="hotels_search.filter.stars_popup.title"
-    />
-  </Text>
-  <StarsCheckbox
-    isChecked={true}
-    onPress={[Function]}
-    stars={5}
-    style={
-      Object {
-        "borderBottomColor": "#f5f7f9",
-        "borderBottomWidth": 0.5,
-      }
+    buttonTitle={
+      <Translation
+        id="hotels_search.filter.stars_popup.save"
+      />
     }
-  />
-  <StarsCheckbox
-    isChecked={false}
-    onPress={[Function]}
-    stars={4}
-    style={
-      Object {
-        "borderBottomColor": "#f5f7f9",
-        "borderBottomWidth": 0.5,
-      }
-    }
-  />
-  <StarsCheckbox
-    isChecked={false}
-    onPress={[Function]}
-    stars={3}
-    style={
-      Object {
-        "borderBottomColor": "#f5f7f9",
-        "borderBottomWidth": 0.5,
-      }
-    }
-  />
-  <StarsCheckbox
-    isChecked={false}
-    onPress={[Function]}
-    stars={2}
-    style={
-      Object {
-        "borderBottomColor": "#f5f7f9",
-        "borderBottomWidth": 0.5,
-      }
-    }
-  />
-  <StarsCheckbox
-    isChecked={false}
-    onPress={[Function]}
-    stars={1}
-    style={
-      Object {
-        "borderBottomColor": "#f5f7f9",
-        "borderBottomWidth": 0.5,
-      }
-    }
-  />
-  <Checkbox
-    isChecked={false}
-    onPress={[Function]}
+    isVisible={true}
+    onClose={[Function]}
+    onSave={[Function]}
   >
     <Text
       style={
         Object {
+          "color": "#171b1e",
           "fontSize": 16,
-          "marginStart": 3,
+          "fontWeight": "500",
+          "paddingBottom": 10,
+          "paddingTop": 15,
         }
       }
     >
       <Translation
-        id="hotels_search.filter.stars_popup.unrated"
+        id="hotels_search.filter.stars_popup.title"
       />
     </Text>
-  </Checkbox>
-</ButtonPopup>
+    <React.Fragment>
+      <StarsCheckbox
+        isChecked={true}
+        onPress={[Function]}
+        stars={5}
+      />
+      <Component
+        style={
+          Object {
+            "marginEnd": -15,
+          }
+        }
+      >
+        <SeparatorTrimmed
+          color="#bac7d5"
+          gapSizeEnd={0}
+          gapSizeStart={0}
+          height={0.5}
+        />
+      </Component>
+    </React.Fragment>
+    <React.Fragment>
+      <StarsCheckbox
+        isChecked={false}
+        onPress={[Function]}
+        stars={4}
+      />
+      <Component
+        style={
+          Object {
+            "marginEnd": -15,
+          }
+        }
+      >
+        <SeparatorTrimmed
+          color="#bac7d5"
+          gapSizeEnd={0}
+          gapSizeStart={0}
+          height={0.5}
+        />
+      </Component>
+    </React.Fragment>
+    <React.Fragment>
+      <StarsCheckbox
+        isChecked={false}
+        onPress={[Function]}
+        stars={3}
+      />
+      <Component
+        style={
+          Object {
+            "marginEnd": -15,
+          }
+        }
+      >
+        <SeparatorTrimmed
+          color="#bac7d5"
+          gapSizeEnd={0}
+          gapSizeStart={0}
+          height={0.5}
+        />
+      </Component>
+    </React.Fragment>
+    <React.Fragment>
+      <StarsCheckbox
+        isChecked={false}
+        onPress={[Function]}
+        stars={2}
+      />
+      <Component
+        style={
+          Object {
+            "marginEnd": -15,
+          }
+        }
+      >
+        <SeparatorTrimmed
+          color="#bac7d5"
+          gapSizeEnd={0}
+          gapSizeStart={0}
+          height={0.5}
+        />
+      </Component>
+    </React.Fragment>
+    <React.Fragment>
+      <StarsCheckbox
+        isChecked={false}
+        onPress={[Function]}
+        stars={1}
+      />
+      <Component
+        style={
+          Object {
+            "marginEnd": -15,
+          }
+        }
+      >
+        <SeparatorTrimmed
+          color="#bac7d5"
+          gapSizeEnd={0}
+          gapSizeStart={0}
+          height={0.5}
+        />
+      </Component>
+    </React.Fragment>
+    <Checkbox
+      isChecked={false}
+      onPress={[Function]}
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 16,
+            "marginStart": 3,
+          }
+        }
+      >
+        <Translation
+          id="hotels_search.filter.stars_popup.unrated"
+        />
+      </Text>
+    </Checkbox>
+  </ButtonPopup>
+</withOrientation>
 `;

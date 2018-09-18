@@ -3,11 +3,6 @@
 exports[`Slider renders 1`] = `
 <Component
   onLayout={[Function]}
-  style={
-    Object {
-      "paddingHorizontal": 20,
-    }
-  }
 >
   <MultiSlider
     allowOverlap={true}
@@ -29,18 +24,18 @@ exports[`Slider renders 1`] = `
     markerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#7f91a8",
+        "borderColor": "#bac7d5",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
         "shadowColor": "#171b1e",
         "shadowOffset": Object {
-          "height": 3,
+          "height": 2,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
         "width": 30,
       }
     }
@@ -52,27 +47,27 @@ exports[`Slider renders 1`] = `
     pressedMarkerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#7f91a8",
+        "borderColor": "#bac7d5",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
         "shadowColor": "#171b1e",
         "shadowOffset": Object {
-          "height": 3,
+          "height": 2,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
         "width": 30,
       }
     }
     selectedStyle={
       Object {
-        "backgroundColor": "#00a991",
+        "backgroundColor": "#0176D2",
       }
     }
-    sliderLength={-40}
+    sliderLength={0}
     snapped={false}
     step={1}
     touchDimensions={
@@ -86,12 +81,12 @@ exports[`Slider renders 1`] = `
     trackStyle={
       Object {
         "borderRadius": 5,
-        "height": 2,
+        "height": 4,
       }
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#bac7d5",
       }
     }
     values={
@@ -107,11 +102,6 @@ exports[`Slider renders 1`] = `
 exports[`Slider renders correctly with all values equal 1`] = `
 <Component
   onLayout={[Function]}
-  style={
-    Object {
-      "paddingHorizontal": 20,
-    }
-  }
 >
   <MultiSlider
     allowOverlap={true}
@@ -133,18 +123,18 @@ exports[`Slider renders correctly with all values equal 1`] = `
     markerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#7f91a8",
+        "borderColor": "#bac7d5",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
         "shadowColor": "#171b1e",
         "shadowOffset": Object {
-          "height": 3,
+          "height": 2,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
         "width": 30,
       }
     }
@@ -156,27 +146,27 @@ exports[`Slider renders correctly with all values equal 1`] = `
     pressedMarkerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#7f91a8",
+        "borderColor": "#bac7d5",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
         "shadowColor": "#171b1e",
         "shadowOffset": Object {
-          "height": 3,
+          "height": 2,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
         "width": 30,
       }
     }
     selectedStyle={
       Object {
-        "backgroundColor": "#00a991",
+        "backgroundColor": "#0176D2",
       }
     }
-    sliderLength={-40}
+    sliderLength={0}
     snapped={false}
     step={1}
     touchDimensions={
@@ -190,12 +180,12 @@ exports[`Slider renders correctly with all values equal 1`] = `
     trackStyle={
       Object {
         "borderRadius": 5,
-        "height": 2,
+        "height": 4,
       }
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#bac7d5",
       }
     }
     values={
@@ -211,11 +201,6 @@ exports[`Slider renders correctly with all values equal 1`] = `
 exports[`Slider renders with endValue undefined 1`] = `
 <Component
   onLayout={[Function]}
-  style={
-    Object {
-      "paddingHorizontal": 20,
-    }
-  }
 >
   <MultiSlider
     allowOverlap={true}
@@ -237,18 +222,18 @@ exports[`Slider renders with endValue undefined 1`] = `
     markerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#7f91a8",
+        "borderColor": "#bac7d5",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
         "shadowColor": "#171b1e",
         "shadowOffset": Object {
-          "height": 3,
+          "height": 2,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
         "width": 30,
       }
     }
@@ -260,27 +245,27 @@ exports[`Slider renders with endValue undefined 1`] = `
     pressedMarkerStyle={
       Object {
         "backgroundColor": "#fff",
-        "borderColor": "#7f91a8",
+        "borderColor": "#bac7d5",
         "borderRadius": 15,
         "borderWidth": 1,
         "height": 30,
         "margin": 3,
         "shadowColor": "#171b1e",
         "shadowOffset": Object {
-          "height": 3,
+          "height": 2,
           "width": 0,
         },
-        "shadowOpacity": 0.3,
-        "shadowRadius": 2,
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
         "width": 30,
       }
     }
     selectedStyle={
       Object {
-        "backgroundColor": "#00a991",
+        "backgroundColor": "#0176D2",
       }
     }
-    sliderLength={-40}
+    sliderLength={0}
     snapped={false}
     step={1}
     touchDimensions={
@@ -294,12 +279,12 @@ exports[`Slider renders with endValue undefined 1`] = `
     trackStyle={
       Object {
         "borderRadius": 5,
-        "height": 2,
+        "height": 4,
       }
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#bac7d5",
       }
     }
     values={

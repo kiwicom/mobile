@@ -12,6 +12,7 @@ type Props = {|
   +title: TranslationType,
   +onPress: () => void,
   +disabled: boolean,
+  +type: 'primary' | 'secondary',
 |};
 
 /**
@@ -22,12 +23,22 @@ export default function TextButton(props: Props) {
     <Button
       onPress={props.onPress}
       disabled={props.disabled}
-      style={props.disabled && styleSheet.buttonDisabled}
+      style={
+        props.disabled &&
+        (props.type === 'secondary'
+          ? styleSheet.buttonSecondaryDisabled
+          : styleSheet.buttonPrimaryDisabled)
+      }
+      type={props.type}
     >
       <ButtonTitle
         style={[
-          styleSheet.buttonText,
-          props.disabled && styleSheet.buttonTextDisabled,
+          props.type === 'secondary'
+            ? styleSheet.buttonTextSecondary
+            : styleSheet.buttonTextPrimary,
+          props.disabled &&
+            props.type === 'primary' &&
+            styleSheet.buttonTextPrimaryDisabled,
         ]}
         text={props.title}
       />
@@ -37,16 +48,23 @@ export default function TextButton(props: Props) {
 
 TextButton.defaultProps = {
   disabled: false,
+  type: 'primary',
 };
 
 const styleSheet = StyleSheet.create({
-  buttonText: {
+  buttonTextPrimary: {
     color: defaultTokens.paletteWhite,
   },
-  buttonDisabled: {
+  buttonTextSecondary: {
+    color: defaultTokens.colorTextButtonSecondary,
+  },
+  buttonPrimaryDisabled: {
     backgroundColor: defaultTokens.paletteCloudNormal,
   },
-  buttonTextDisabled: {
+  buttonSecondaryDisabled: {
+    opacity: 0.3,
+  },
+  buttonTextPrimaryDisabled: {
     color: defaultTokens.paletteInkDark,
   },
 });

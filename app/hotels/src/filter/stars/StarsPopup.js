@@ -7,8 +7,11 @@ import {
   Checkbox,
   Text,
 } from '@kiwicom/mobile-shared';
+import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { SeparatorTrimmed } from '@kiwicom/mobile-navigation';
+import { SafeAreaView } from 'react-navigation';
 
 import StarsCheckbox from './StarsCheckbox';
 
@@ -34,7 +37,7 @@ export default class StarsPopup extends React.Component<Props, State> {
   handleCheckboxOnPress = (option: number) => () =>
     this.setState(state => {
       let stars = [...state.stars];
-      if (stars.indexOf(option) >= 0) {
+      if (stars.includes(option)) {
         stars = stars.filter(star => star !== option);
       } else {
         stars.push(option);
@@ -47,20 +50,29 @@ export default class StarsPopup extends React.Component<Props, State> {
   renderCheckboxes = (stars: number[]) => {
     const checkboxes = [];
     for (let i = 5; i > 0; i--) {
+      const isStarsRowChecked = stars.includes(i);
       checkboxes.push(
-        <StarsCheckbox
-          key={i}
-          stars={i}
-          isChecked={stars.indexOf(i) >= 0}
-          style={styles.delimiter}
-          onPress={this.handleCheckboxOnPress(i)}
-        />,
+        <React.Fragment key={i}>
+          <StarsCheckbox
+            stars={i}
+            isChecked={isStarsRowChecked}
+            onPress={this.handleCheckboxOnPress(i)}
+          />
+          <View style={styles.separatorEnd}>
+            <SeparatorTrimmed
+              gapSizeStart={0}
+              color={defaultTokens.paletteInkLighter}
+              height={0.5}
+            />
+          </View>
+        </React.Fragment>,
       );
     }
+    const isUnratedChecked = stars.includes(0);
     checkboxes.push(
       <Checkbox
         key={0}
-        isChecked={stars.indexOf(0) >= 0}
+        isChecked={isUnratedChecked}
         onPress={this.handleCheckboxOnPress(0)}
       >
         <Text style={styles.unrated}>
@@ -74,33 +86,41 @@ export default class StarsPopup extends React.Component<Props, State> {
   render() {
     const { stars } = this.state;
     return (
-      <ButtonPopup
-        buttonTitle={<Translation id="hotels_search.filter.stars_popup.save" />}
-        onSave={this.onSave}
-        onClose={this.props.onClose}
-        isVisible={this.props.isVisible}
-      >
-        <Text style={styles.title}>
-          <Translation id="hotels_search.filter.stars_popup.title" />
-        </Text>
-        {this.renderCheckboxes(stars)}
-      </ButtonPopup>
+      <SafeAreaView>
+        <ButtonPopup
+          buttonTitle={
+            <Translation id="hotels_search.filter.stars_popup.save" />
+          }
+          buttonCloseTitle={
+            <Translation id="hotels_search.filter.hotel_facilities_popup.close" />
+          }
+          onSave={this.onSave}
+          onClose={this.props.onClose}
+          isVisible={this.props.isVisible}
+        >
+          <Text style={styles.title}>
+            <Translation id="hotels_search.filter.stars_popup.title" />
+          </Text>
+          {this.renderCheckboxes(stars)}
+        </ButtonPopup>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   title: {
-    color: defaultTokens.colorTextSecondary,
-    paddingBottom: 5,
-    fontSize: 12,
-  },
-  delimiter: {
-    borderBottomWidth: 0.5,
-    borderBottomColor: defaultTokens.paletteCloudLight,
+    color: defaultTokens.colorHeading,
+    fontSize: 16,
+    fontWeight: '500',
+    paddingTop: 15,
+    paddingBottom: 10,
   },
   unrated: {
     marginStart: 3,
     fontSize: 16,
+  },
+  separatorEnd: {
+    marginEnd: -15,
   },
 });
