@@ -74,6 +74,7 @@ export default {
   'hotels_search.location_picker.cancel': 'Cancel',
   'hotels_search.location_picker.header': 'Where',
   'hotels_search.location_picker.recent_search': 'Recent search',
+  'hotels_search.header.to': 'to',
 
   'single_hotel.bedding_info.guests': 'Guests: __numberOfGuests__',
   'single_hotel.book_now': 'Book Now',
