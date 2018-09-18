@@ -1,3 +1,8 @@
+import groovy.json.JsonSlurper
+
+def inputFile = new File("../package.json")
+def packageJson = new JsonSlurper().parseText(inputFile.text)
+
 ext {
     gradlePluginVersion = "3.0.1"
     kotlinVersion = "1.2.31"
@@ -6,7 +11,7 @@ ext {
     targetSdkVersionVar = 27
     buildToolsVersionVar = "27.0.2"
 
-    reactNativeVersion = "0.55.4"
+    reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
     supportVersion = "26.1.0"
     playServicesVersion = "11.8.0"
 }
