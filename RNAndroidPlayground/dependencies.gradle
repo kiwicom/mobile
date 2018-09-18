@@ -23,9 +23,10 @@ ext {
     espressoVersion = "3.0.1"
 
     reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
-    reactNativeVectorIcons = packageJson['dependencies']['react-native-vector-icons'].replace('^', '')
-    reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '')
-    reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '')
+
+    reactNativeVectorIcons = packageJson['dependencies']['react-native-vector-icons'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '') + ".react-native." + reactNativeVersion
 
     reactNativeNativeModules = rnModulesPackageJson['version']
 

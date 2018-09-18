@@ -14,8 +14,5 @@ class MainActivity : AppCompatActivity() {
     button_hotels.setOnClickListener {
       startActivity(Intent(this, HotelsActivity.getViewModelClass()))
     }
-
-    button_new_hotels.setOnClickListener {
-      startActivity(Intent(this, NewHotelActivity.getViewModelClass()))
-    }  }
+  }
 }
