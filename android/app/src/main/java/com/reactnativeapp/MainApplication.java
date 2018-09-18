@@ -16,6 +16,7 @@ import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage;
 import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage;
 import com.skypicker.reactnative.nativemodules.translation.RNTranslationManagerPackage;
+import com.kiwi.reversegeocode.RNReverseGeocodePackage;
 
 import org.wonday.pdf.RCTPdfView;
 
@@ -47,7 +48,8 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
                     new RNTranslationManagerPackage(),
                     new RNCurrencyManagerPackage(),
                     new RNDeviceInfoPackage(),
-                    new RNCardManagerPackage()
+                    new RNCardManagerPackage(),
+                    new RNReverseGeocodePackage()
             );
         }
 
