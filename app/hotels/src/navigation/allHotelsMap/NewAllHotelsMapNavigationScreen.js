@@ -1,32 +1,35 @@
 // @flow strict
 
 import * as React from 'react';
-import { HeaderBackButton } from 'react-navigation';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 
 import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
+import HotelsNavigationOptions from '../HotelsNavigationOptions';
+import { withHotelsContext } from '../../HotelsContext';
 
 type Props = {|
   +navigation: NavigationType,
+  +cityName: string,
+  +checkin: string,
+  +checkout: string,
 |};
 
-export default class NewAllHotelsMapNavigationScreen extends React.Component<
-  Props,
-> {
-  static navigationOptions = ({ navigation }: Props) => {
-    function goBack() {
-      navigation.goBack(null);
-    }
+class NewAllHotelsMapNavigationScreen extends React.Component<Props> {
+  static navigationOptions = ({ checkin, checkout, cityName }: Props) => {
     return {
-      headerLeft: (
-        <HeaderBackButton
-          tintColor={defaultTokens.paletteProductNormal}
-          onPress={goBack}
-        />
-      ),
+      ...HotelsNavigationOptions({
+        checkin,
+        checkout,
+        cityName,
+      }),
     };
   };
 
   render = () => <NewAllHotelsMap />;
 }
+
+export default withHotelsContext(({ checkin, checkout, cityName }) => ({
+  checkin,
+  checkout,
+  cityName,
+}))(NewAllHotelsMapNavigationScreen);

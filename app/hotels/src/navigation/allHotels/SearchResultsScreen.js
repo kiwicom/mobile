@@ -3,14 +3,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+import { Translation } from '@kiwicom/mobile-localization';
 import {
   LayoutDoubleColumn,
   Button,
   Text,
   StyleSheet,
   AdaptableLayout,
-  AdaptableBadge,
   GestureController,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -19,25 +18,33 @@ import { SafeAreaView } from 'react-navigation';
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
 import MapHeaderButton from './MapHeaderButton';
+import HotelsNavigationOptions from '../HotelsNavigationOptions';
 
 type Props = {|
   +navigation: NavigationType,
   +onBackClicked: () => void,
   +cityName: string,
   +checkin: string,
+  +checkout: string,
   +lastNavigationMode?: 'present' | 'push',
 |};
 
 export default class SearchResultsScreen extends React.Component<Props> {
-  static navigationOptions = (props: Props) => {
+  static navigationOptions = ({
+    checkin,
+    checkout,
+    cityName,
+    navigation,
+  }: Props) => {
     function goToAllHotelsMap() {
-      props.navigation.navigate('AllHotelsMap');
+      navigation.navigate('AllHotelsMap');
     }
 
     return {
+      ...HotelsNavigationOptions({ checkin, checkout, cityName }),
       headerRight: (
         <React.Fragment>
-          {props.checkin !== null && (
+          {checkin !== null && (
             <AdaptableLayout
               renderOnNarrow={
                 <MapHeaderButton
@@ -48,30 +55,6 @@ export default class SearchResultsScreen extends React.Component<Props> {
             />
           )}
         </React.Fragment>
-      ),
-      headerLeft: (
-        <View style={styles.headerLeftcontainer}>
-          <Text style={styles.headerLeftText}>
-            <Translation passThrough={props.cityName || ''} />
-          </Text>
-          {props.checkin !== null && (
-            <AdaptableBadge
-              style={styles.badge}
-              textStyle={styles.badgeText}
-              translation={
-                <Translation
-                  passThrough={DateFormatter(
-                    new Date(props.checkin),
-                  ).formatCustom({
-                    weekday: 'long',
-                    day: '2-digit',
-                    month: 'long',
-                  })}
-                />
-              }
-            />
-          )}
-        </View>
       ),
     };
   };
@@ -121,24 +104,5 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: '800',
     fontSize: 16,
-  },
-  headerLeftcontainer: {
-    flexDirection: 'column',
-    paddingStart: 16,
-  },
-  headerLeftText: {
-    fontWeight: '800',
-    fontSize: 16,
-    color: defaultTokens.colorTextAttention,
-    marginBottom: 3,
-    paddingTop: 8,
-  },
-  badgeText: {
-    fontSize: 12,
-    color: defaultTokens.colorTextPrimary,
-  },
-  badge: {
-    backgroundColor: defaultTokens.paletteCloudNormal,
-    marginBottom: 12,
   },
 });
