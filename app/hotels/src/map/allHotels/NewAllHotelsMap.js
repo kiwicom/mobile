@@ -40,10 +40,7 @@ class NewAllHotelsMap extends React.Component<Props> {
   };
 
   renderInnerComponent = (props: NewAllHotelsMapQueryResponse) => (
-    <MapScreen
-      data={props.allAvailableHotels}
-      onOpenSingleHotel={this.openSingleHotel}
-    />
+    <MapScreen data={props} onOpenSingleHotel={this.openSingleHotel} />
   );
 
   render = () => {
@@ -68,14 +65,10 @@ class NewAllHotelsMap extends React.Component<Props> {
                   $search: HotelsSearchInput!
                   $filter: HotelsFilterInput
                   $options: AvailableHotelOptionsInput
+                  $first: Int
+                  $after: String
                 ) {
-                  allAvailableHotels(
-                    search: $search
-                    filter: $filter
-                    options: $options
-                  ) {
-                    ...MapScreen
-                  }
+                  ...MapScreen
                 }
               `}
               variables={{
@@ -91,6 +84,7 @@ class NewAllHotelsMap extends React.Component<Props> {
                     filterParams.hotelFacilities,
                   ),
                 },
+                first: 50,
                 options: {
                   currency,
                 },

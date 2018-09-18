@@ -6,6 +6,7 @@ Array [
     icon={
       <TextIcon
         code=""
+        orbit={false}
         style={
           Object {
             "alignSelf": "flex-end",
@@ -38,6 +39,7 @@ Array [
     icon={
       <TextIcon
         code="'"
+        orbit={false}
         style={
           Object {
             "alignSelf": "flex-end",

@@ -11,6 +11,7 @@ import StyleSheet from '../PlatformStyleSheet';
 type Props = {|
   +code: string,
   style?: StylePropType,
+  +orbit: boolean,
 |};
 
 /**
@@ -24,15 +25,17 @@ type Props = {|
  */
 class TextIcon extends React.Component<Props> {
   static defaultProps = {
-    style: {
-      color: defaultTokens.colorIconSecondary,
-      fontSize: 20,
-    },
+    orbit: false,
   };
-
   render() {
     return (
-      <Text style={[styleSheet.icon, this.props.style]}>
+      <Text
+        style={[
+          styleSheet.icon,
+          this.props.style,
+          this.props.orbit ? styleSheet.orbit : null,
+        ]}
+      >
         <Translation passThrough={this.props.code} />
       </Text>
     );
@@ -46,5 +49,10 @@ const styleSheet = StyleSheet.create({
     fontFamily: 'spfont', // font with all the icons (see Fontastic)
     includeFontPadding: false,
     textAlignVertical: 'center',
+    color: defaultTokens.colorIconSecondary,
+    fontSize: 20,
+  },
+  orbit: {
+    fontFamily: 'orbit-icons',
   },
 });

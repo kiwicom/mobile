@@ -21,7 +21,13 @@ exports[`renders a "not found" message when no hotel is found 1`] = `
 `;
 
 exports[`renders found hotels 1`] = `
-<Component>
+<ScrollView
+  contentContainerStyle={
+    Object {
+      "paddingBottom": 44,
+    }
+  }
+>
   <ForwardRef(Relay(AllHotelsSearchRow))
     data={
       Object {
@@ -38,5 +44,5 @@ exports[`renders found hotels 1`] = `
     }
     openSingleHotel={[Function]}
   />
-</Component>
+</ScrollView>
 `;

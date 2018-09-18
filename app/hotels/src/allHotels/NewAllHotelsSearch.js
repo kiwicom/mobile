@@ -14,9 +14,9 @@ import {
   type RoomConfigurationType,
   withHotelsContext,
 } from '../HotelsContext';
-import AllHotelsSearchList from './AllHotelsSearchList';
 import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
 import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHotelsSearchQuery.graphql';
+import RenderSearchResults from './RenderSearchResults';
 
 type Props = {|
   +navigation: NavigationType,
@@ -41,7 +41,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
     propsFromRenderer: NewAllHotelsSearchQueryResponse,
   ) => {
     return (
-      <AllHotelsSearchList
+      <RenderSearchResults
         data={propsFromRenderer}
         openSingleHotel={this.openSingleHotel}
       />
@@ -56,7 +56,6 @@ class NewAllHotelsSearch extends React.Component<Props> {
       roomsConfiguration,
       currency,
     } = this.props;
-
     if (checkin === null || checkout === null) {
       return (
         <GeneralError
@@ -78,7 +77,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
                 $first: Int
                 $after: String
               ) {
-                ...AllHotelsSearchList_data
+                ...RenderSearchResults
               }
             `}
             variables={{
