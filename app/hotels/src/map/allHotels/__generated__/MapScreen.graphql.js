@@ -13,12 +13,24 @@ type MapView$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapScreen$ref: FragmentReference;
 export type MapScreen = {|
-  +edges: ?$ReadOnlyArray<?{|
-    +node: ?{|
-      +id: string
+  +allAvailableHotels: ?{|
+    +pageInfo: {|
+      +hasNextPage: boolean,
+      +hasPreviousPage: boolean,
+      +startCursor: ?string,
+      +endCursor: ?string,
     |},
-    +$fragmentRefs: MapView$ref & HotelSwipeList$ref,
-  |}>,
+    +edges: ?$ReadOnlyArray<?{|
+      +node: ?{|
+        +id: string
+      |},
+      +$fragmentRefs: MapView$ref & HotelSwipeList$ref,
+    |}>,
+    +stats: ?{|
+      +maxPrice: ?number,
+      +minPrice: ?number,
+    |},
+  |},
   +$refType: MapScreen$ref,
 |};
 */
@@ -27,51 +39,196 @@ export type MapScreen = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "MapScreen",
-  "type": "HotelAvailabilityConnection",
-  "metadata": null,
-  "argumentDefinitions": [],
+  "type": "RootQuery",
+  "metadata": {
+    "connection": [
+      {
+        "count": "first",
+        "cursor": "after",
+        "direction": "forward",
+        "path": [
+          "allAvailableHotels"
+        ]
+      }
+    ]
+  },
+  "argumentDefinitions": [
+    {
+      "kind": "RootArgument",
+      "name": "search",
+      "type": "HotelsSearchInput!"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "filter",
+      "type": "HotelsFilterInput"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "options",
+      "type": "AvailableHotelOptionsInput"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "first",
+      "type": "Int"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "after",
+      "type": "String"
+    }
+  ],
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": null,
-      "name": "edges",
+      "alias": "allAvailableHotels",
+      "name": "__AllHotels_allAvailableHotels_connection",
       "storageKey": null,
-      "args": null,
-      "concreteType": "HotelAvailabilityEdge",
-      "plural": true,
+      "args": [
+        {
+          "kind": "Variable",
+          "name": "filter",
+          "variableName": "filter",
+          "type": "HotelsFilterInput"
+        },
+        {
+          "kind": "Variable",
+          "name": "options",
+          "variableName": "options",
+          "type": "AvailableHotelOptionsInput"
+        },
+        {
+          "kind": "Variable",
+          "name": "search",
+          "variableName": "search",
+          "type": "HotelsSearchInput!"
+        }
+      ],
+      "concreteType": "HotelAvailabilityConnection",
+      "plural": false,
       "selections": [
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "node",
+          "name": "pageInfo",
           "storageKey": null,
           "args": null,
-          "concreteType": "HotelAvailability",
+          "concreteType": "PageInfo",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "id",
+              "name": "hasNextPage",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasPreviousPage",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "startCursor",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "endCursor",
               "args": null,
               "storageKey": null
             }
           ]
         },
         {
-          "kind": "FragmentSpread",
-          "name": "MapView",
-          "args": null
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "edges",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "HotelAvailabilityEdge",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "node",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "HotelAvailability",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "id",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "__typename",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
+            },
+            {
+              "kind": "FragmentSpread",
+              "name": "MapView",
+              "args": null
+            },
+            {
+              "kind": "FragmentSpread",
+              "name": "HotelSwipeList",
+              "args": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "cursor",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         },
         {
-          "kind": "FragmentSpread",
-          "name": "HotelSwipeList",
-          "args": null
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "stats",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "HotelAvailabilityStats",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "maxPrice",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "minPrice",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '9b4ab0921dbdfea4c94e65439a617823';
+(node/*: any*/).hash = '784e78cbe86098d5ca9d79e58e7ff1bd';
 module.exports = node;

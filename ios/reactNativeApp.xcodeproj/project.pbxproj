@@ -64,6 +64,7 @@
 		A96754F560094312A0F7CAB7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB92C0158EB3448ABD260167 /* Entypo.ttf */; };
 		B025D45E10CE4ED9A975D6DF /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 645A06359A464CB0B63845A2 /* MaterialCommunityIcons.ttf */; };
 		C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
+		ACD6B846BABD460FB7D68067 /* orbit-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABF7005A276C4AAF97361BF7 /* orbit-icons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -164,6 +165,7 @@
 		E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		F1CBA12F9C74CC3D03C0D84C /* Pods-reactNativeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp.release.xcconfig"; sourceTree = "<group>"; };
 		F477A1D455304A4EA37DF899 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		ABF7005A276C4AAF97361BF7 /* orbit-icons.ttf */ = {isa = PBXFileReference; name = "orbit-icons.ttf"; path = "../assets/fonts/orbit-icons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 				2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */,
 				E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */,
 				C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */,
+				ABF7005A276C4AAF97361BF7 /* orbit-icons.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				1392EC52BC67478BA7420344 /* CircularPro-Medium.otf in Resources */,
 				6D1003A6ACB9423E80A708C5 /* Roboto-Bold.ttf in Resources */,
 				18FF3A01EB984541A93A4963 /* Roboto-Medium.ttf in Resources */,
+				ACD6B846BABD460FB7D68067 /* orbit-icons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

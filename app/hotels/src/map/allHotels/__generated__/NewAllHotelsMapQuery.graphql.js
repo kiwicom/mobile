@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 281a8d542c24c66c8876704f28ccd716
+ * @relayHash ed8125b0916897691f44a784026507c8
  */
 
 /* eslint-disable */
@@ -56,11 +56,11 @@ export type NewAllHotelsMapQueryVariables = {|
   search: HotelsSearchInput,
   filter?: ?HotelsFilterInput,
   options?: ?AvailableHotelOptionsInput,
+  first?: ?number,
+  after?: ?string,
 |};
 export type NewAllHotelsMapQueryResponse = {|
-  +allAvailableHotels: ?{|
-    +$fragmentRefs: MapScreen$ref
-  |}
+  +$fragmentRefs: MapScreen$ref
 |};
 export type NewAllHotelsMapQuery = {|
   variables: NewAllHotelsMapQueryVariables,
@@ -74,19 +74,33 @@ query NewAllHotelsMapQuery(
   $search: HotelsSearchInput!
   $filter: HotelsFilterInput
   $options: AvailableHotelOptionsInput
+  $first: Int
+  $after: String
 ) {
-  allAvailableHotels(search: $search, filter: $filter, options: $options) {
-    ...MapScreen
-  }
+  ...MapScreen
 }
 
-fragment MapScreen on HotelAvailabilityConnection {
-  edges {
-    node {
-      id
+fragment MapScreen on RootQuery {
+  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
     }
-    ...MapView
-    ...HotelSwipeList
+    edges {
+      node {
+        id
+        __typename
+      }
+      ...MapView
+      ...HotelSwipeList
+      cursor
+    }
+    stats {
+      maxPrice
+      minPrice
+    }
   }
 }
 
@@ -177,14 +191,38 @@ var v0 = [
     "name": "options",
     "type": "AvailableHotelOptionsInput",
     "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "first",
+    "type": "Int",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "after",
+    "type": "String",
+    "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
+    "name": "after",
+    "variableName": "after",
+    "type": "String"
+  },
+  {
+    "kind": "Variable",
     "name": "filter",
     "variableName": "filter",
     "type": "HotelsFilterInput"
+  },
+  {
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "first",
+    "type": "Int"
   },
   {
     "kind": "Variable",
@@ -211,7 +249,7 @@ return {
   "operationKind": "query",
   "name": "NewAllHotelsMapQuery",
   "id": null,
-  "text": "query NewAllHotelsMapQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput\n  $options: AvailableHotelOptionsInput\n) {\n  allAvailableHotels(search: $search, filter: $filter, options: $options) {\n    ...MapScreen\n  }\n}\n\nfragment MapScreen on HotelAvailabilityConnection {\n  edges {\n    node {\n      id\n    }\n    ...MapView\n    ...HotelSwipeList\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n",
+  "text": "query NewAllHotelsMapQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...MapScreen\n}\n\nfragment MapScreen on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        __typename\n      }\n      ...MapView\n      ...HotelSwipeList\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -221,20 +259,9 @@ return {
     "argumentDefinitions": v0,
     "selections": [
       {
-        "kind": "LinkedField",
-        "alias": null,
-        "name": "allAvailableHotels",
-        "storageKey": null,
-        "args": v1,
-        "concreteType": "HotelAvailabilityConnection",
-        "plural": false,
-        "selections": [
-          {
-            "kind": "FragmentSpread",
-            "name": "MapScreen",
-            "args": null
-          }
-        ]
+        "kind": "FragmentSpread",
+        "name": "MapScreen",
+        "args": null
       }
     ]
   },
@@ -252,6 +279,45 @@ return {
         "concreteType": "HotelAvailabilityConnection",
         "plural": false,
         "selections": [
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "pageInfo",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "PageInfo",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "hasNextPage",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "hasPreviousPage",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "startCursor",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "endCursor",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
           {
             "kind": "LinkedField",
             "alias": null,
@@ -422,11 +488,63 @@ return {
                         ]
                       }
                     ]
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "__typename",
+                    "args": null,
+                    "storageKey": null
                   }
                 ]
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "cursor",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "stats",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "HotelAvailabilityStats",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "maxPrice",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "minPrice",
+                "args": null,
+                "storageKey": null
               }
             ]
           }
+        ]
+      },
+      {
+        "kind": "LinkedHandle",
+        "alias": null,
+        "name": "allAvailableHotels",
+        "args": v1,
+        "handle": "connection",
+        "key": "AllHotels_allAvailableHotels",
+        "filters": [
+          "search",
+          "filter",
+          "options"
         ]
       }
     ]
@@ -434,5 +552,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4100278bc2b770ac3c15545fa38c2cdb';
+(node/*: any*/).hash = 'a35f3bd14a79f1e482e2fbba8600f0b9';
 module.exports = node;

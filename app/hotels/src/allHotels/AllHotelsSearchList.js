@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { View } from 'react-native';
-import { Logger, GeneralError } from '@kiwicom/mobile-shared';
+import { ScrollView } from 'react-native';
+import { Logger, GeneralError, StyleSheet } from '@kiwicom/mobile-shared';
 import {
   createPaginationContainer,
   graphql,
@@ -87,7 +87,7 @@ export class AllHotelsSearchList extends React.Component<
     }
 
     return (
-      <View>
+      <ScrollView contentContainerStyle={styles.content}>
         {hotels.map(hotel => (
           <AllHotelsSearchRow
             key={hotel.node.id}
@@ -101,7 +101,7 @@ export class AllHotelsSearchList extends React.Component<
             onPress={this.loadMore}
           />
         )}
-      </View>
+      </ScrollView>
     );
   };
 }
@@ -124,6 +124,12 @@ function AllHotelsSearchListWithContext(props: Props) {
     </HotelsSearchContext.Consumer>
   );
 }
+
+const styles = StyleSheet.create({
+  content: {
+    paddingBottom: 44,
+  },
+});
 
 export default createPaginationContainer(
   AllHotelsSearchListWithContext,

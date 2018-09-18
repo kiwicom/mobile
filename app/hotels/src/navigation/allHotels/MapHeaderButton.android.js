@@ -2,13 +2,12 @@
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { Icon } from '@kiwicom/mobile-shared';
+import { TextIcon } from '@kiwicom/mobile-shared';
 import RNTooltips from 'react-native-tooltips';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: () => void,
-  +iconColor: string,
+  +icon: React.Element<typeof TextIcon>,
 |};
 
 type State = {|
@@ -17,10 +16,6 @@ type State = {|
 |};
 
 export default class MapHeaderButton extends React.Component<Props, State> {
-  static defaultProps = {
-    iconColor: defaultTokens.paletteProductNormal,
-  };
-
   state = {
     isTooltipVisible: false,
     buttonReference: null,
@@ -48,7 +43,7 @@ export default class MapHeaderButton extends React.Component<Props, State> {
   render = () => (
     <React.Fragment>
       <HeaderButton.Right onPress={this.onPress} onLongPress={this.onLongPress}>
-        <Icon name="map" size={24} color={this.props.iconColor} />
+        {this.props.icon}
       </HeaderButton.Right>
       <RNTooltips
         text="Open map"

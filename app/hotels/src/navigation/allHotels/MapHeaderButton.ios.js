@@ -2,22 +2,17 @@
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { Icon } from '@kiwicom/mobile-shared';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { TextIcon } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +onPress: () => void,
-  +iconColor: string,
+  +icon: React.Element<typeof TextIcon>,
 |};
 
 export default function MapHeaderButton(props: Props) {
   return (
     <HeaderButton.Right onPress={props.onPress}>
-      <Icon name="map" size={24} color={props.iconColor} />
+      {props.icon}
     </HeaderButton.Right>
   );
 }
-
-MapHeaderButton.defaultProps = {
-  iconColor: defaultTokens.paletteProductNormal,
-};

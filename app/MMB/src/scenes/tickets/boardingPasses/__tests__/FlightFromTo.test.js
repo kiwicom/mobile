@@ -87,6 +87,7 @@ describe('FlightFromTo', () => {
       </Text>
       <TextIcon
         code=""
+        orbit={false}
         style={
           Object {
             "alignSelf": "center",
@@ -208,6 +209,7 @@ describe('FlightFromTo', () => {
       </Text>
       <TextIcon
         code=""
+        orbit={false}
         style={
           Object {
             "alignSelf": "center",
