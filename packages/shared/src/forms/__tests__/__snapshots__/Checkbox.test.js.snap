@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`checked 1`] = `
+exports[`checked on android 1`] = `
 <TouchableWithoutFeedback
   accessibilityComponentType="button"
   accessibilityTraits="button"
@@ -36,15 +36,78 @@ exports[`checked 1`] = `
       style={
         Object {
           "alignItems": "flex-end",
-          "flex": 1,
           "justifyContent": "center",
         }
       }
     >
-      <Icon
-        color="#00a991"
-        name="check"
-        size={26}
+      <TextIcon
+        code=""
+        orbit={true}
+        style={
+          Object {
+            "color": "#00a991",
+            "fontSize": 28,
+            "height": 26,
+            "width": 26,
+          }
+        }
+      />
+    </Component>
+  </Component>
+</TouchableWithoutFeedback>
+`;
+
+exports[`checked on ios 1`] = `
+<TouchableWithoutFeedback
+  accessibilityComponentType="button"
+  accessibilityTraits="button"
+  disabled={false}
+  onPress={[Function]}
+>
+  <Component
+    style={
+      Array [
+        Object {
+          "flexDirection": "row",
+          "paddingBottom": 8,
+          "paddingTop": 8,
+        },
+        undefined,
+      ]
+    }
+  >
+    <Component
+      style={
+        Object {
+          "flex": 3,
+          "height": 26,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Translation
+        passThrough="Checked"
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <TextIcon
+        code="S"
+        orbit={true}
+        style={
+          Object {
+            "color": "#00a991",
+            "fontSize": 28,
+            "height": 26,
+            "width": 26,
+          }
+        }
       />
     </Component>
   </Component>
@@ -81,6 +144,26 @@ exports[`not checked 1`] = `
     >
       <Translation
         passThrough="Unchecked"
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "alignItems": "flex-end",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Component
+        style={
+          Object {
+            "borderColor": "#bac7d5",
+            "borderRadius": 100,
+            "borderWidth": 1,
+            "height": 24,
+            "width": 24,
+          }
+        }
       />
     </Component>
   </Component>

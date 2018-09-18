@@ -12,6 +12,7 @@ type Props = {|
   +onPress: () => void,
   +style?: StylePropType,
   +disabled?: boolean,
+  +type: 'primary' | 'secondary',
 |};
 
 /**
@@ -26,7 +27,11 @@ export default function Button(props: Props) {
     <Touchable
       disabled={!props.onPress || props.disabled}
       onPress={onPressHandler}
-      style={[styleSheet.buttonWrapper, props.style]}
+      style={[
+        styleSheet.buttonWrapper,
+        props.type === 'secondary' ? styleSheet.secondary : styleSheet.primary,
+        props.style,
+      ]}
       accessibilityComponentType="button"
     >
       {props.children}
@@ -36,6 +41,7 @@ export default function Button(props: Props) {
 
 Button.defaultProps = {
   disabled: false,
+  type: 'primary',
 };
 
 const styleSheet = StyleSheet.create({
@@ -44,14 +50,13 @@ const styleSheet = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 11,
+    height: 44,
+    borderRadius: 6,
+  },
+  primary: {
     backgroundColor: defaultTokens.paletteProductNormal,
-    android: {
-      height: 40,
-      borderRadius: 2,
-    },
-    ios: {
-      height: 44,
-      borderRadius: 6,
-    },
+  },
+  secondary: {
+    backgroundColor: defaultTokens.backgroundButtonSecondary,
   },
 });

@@ -10,6 +10,7 @@ import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
   +buttonTitle: TranslationType,
+  +buttonCloseTitle: TranslationType,
   +children: React.Node,
   +isVisible: boolean,
   +onClose: Function,
@@ -18,7 +19,8 @@ type Props = {|
   +testID?: string,
 |};
 
-const POPUP_PADDING = 20;
+const POPUP_PADDING = 15;
+const POPUP_BUTTONS_MARGIN = 10;
 
 /**
  * Simple popup with confirmation button at the bottom.
@@ -35,8 +37,21 @@ export default class ButtonPopup extends React.Component<Props> {
       >
         {this.props.children}
       </View>
-      <View style={styles.button}>
-        <TextButton title={this.props.buttonTitle} onPress={this.onSave} />
+      <View style={styles.buttonsWrapper}>
+        <View style={[styles.button, styles.buttonFirst]}>
+          <TextButton
+            title={this.props.buttonCloseTitle}
+            onPress={this.onClose}
+            type="secondary"
+          />
+        </View>
+        <View style={styles.button}>
+          <TextButton
+            title={this.props.buttonTitle}
+            onPress={this.onSave}
+            type="primary"
+          />
+        </View>
       </View>
     </Popup>
   );
@@ -47,8 +62,15 @@ const styles = StyleSheet.create({
     padding: POPUP_PADDING,
     paddingBottom: 0,
   },
+  buttonsWrapper: {
+    flexDirection: 'row',
+  },
   button: {
-    marginTop: 20,
-    margin: POPUP_PADDING,
+    margin: POPUP_BUTTONS_MARGIN,
+    marginTop: 15,
+    flex: 1,
+  },
+  buttonFirst: {
+    marginEnd: 0,
   },
 });

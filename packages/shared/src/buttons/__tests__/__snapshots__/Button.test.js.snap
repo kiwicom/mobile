@@ -12,12 +12,14 @@ exports[`Button renders 1`] = `
     Array [
       Object {
         "alignItems": "center",
-        "backgroundColor": "#00a991",
         "borderRadius": 6,
         "flexGrow": 1,
         "height": 44,
         "justifyContent": "center",
         "paddingHorizontal": 11,
+      },
+      Object {
+        "backgroundColor": "#00a991",
       },
       undefined,
     ]

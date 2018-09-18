@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`one label 1`] = `
+<Component
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flexDirection": "row",
+        "marginBottom": 5,
+        "marginTop": 10,
+        "width": "100%",
+      },
+      Object {
+        "justifyContent": "space-between",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+      },
+    ]
+  }
+>
+  <Component
+    onLayout={[Function]}
+  >
+    <Text
+      style={
+        Object {
+          "color": "#0176D2",
+          "fontSize": 14,
+        }
+      }
+    >
+      <Translation
+        passThrough="label"
+      />
+    </Text>
+  </Component>
+</Component>
+`;
+
+exports[`two labels 1`] = `
+<Component
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "flexDirection": "row",
+        "marginBottom": 5,
+        "marginTop": 10,
+        "width": "100%",
+      },
+      Object {
+        "justifyContent": "space-between",
+        "paddingLeft": 0,
+        "paddingRight": 0,
+      },
+    ]
+  }
+>
+  <Component
+    onLayout={[Function]}
+  >
+    <Text
+      style={
+        Object {
+          "color": "#0176D2",
+          "fontSize": 14,
+        }
+      }
+    >
+      <Translation
+        passThrough="start label"
+      />
+    </Text>
+  </Component>
+  <Component
+    onLayout={[Function]}
+  >
+    <Text
+      style={
+        Object {
+          "color": "#0176D2",
+          "fontSize": 14,
+        }
+      }
+    >
+      <Translation
+        passThrough="end label"
+      />
+    </Text>
+  </Component>
+</Component>
+`;

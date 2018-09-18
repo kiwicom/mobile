@@ -10,6 +10,7 @@ exports[`renders 1`] = `
         passThrough="Show age picker"
       />
     }
+    type="primary"
   />
   <AgePicker
     isVisible={false}

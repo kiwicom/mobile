@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import type { OnLayout } from '@kiwicom/mobile-shared';
+import { type OnLayout } from '@kiwicom/mobile-shared';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -75,7 +75,7 @@ export default class Slider extends React.Component<Props, State> {
           snapped={this.props.snapped}
           allowOverlap={true}
           selectedStyle={styles.selected}
-          sliderLength={this.state.width - 2 * SLIDER_PADDING}
+          sliderLength={this.state.width}
           touchDimensions={{
             height: 30,
             width: 30,
@@ -96,18 +96,16 @@ export default class Slider extends React.Component<Props, State> {
   }
 }
 
-const SLIDER_PADDING = 20;
-
 const styles = StyleSheet.create({
   selected: {
-    backgroundColor: defaultTokens.paletteProductNormal,
+    backgroundColor: defaultTokens.paletteBlueNormal,
   },
   unselected: {
-    backgroundColor: defaultTokens.paletteInkLight,
+    backgroundColor: defaultTokens.paletteInkLighter,
   },
   track: {
     borderRadius: 5,
-    height: 2,
+    height: 4,
   },
   marker: {
     height: 30,
@@ -115,14 +113,14 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: defaultTokens.paletteWhite,
     borderWidth: 1,
-    borderColor: defaultTokens.paletteInkLight,
+    borderColor: defaultTokens.paletteInkLighter,
     shadowColor: defaultTokens.paletteInkDark,
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 2,
     },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
     margin: 3, // necessary to see the Android elevation properly
     android: {
       elevation: 1,
@@ -130,8 +128,5 @@ const styles = StyleSheet.create({
   },
   container: {
     justifyContent: 'center',
-  },
-  sliderWrapper: {
-    paddingHorizontal: SLIDER_PADDING,
   },
 });

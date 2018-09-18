@@ -9,7 +9,7 @@ exports[`ButtonPopup playground renders in playground 1`] = `
     style={
       Array [
         Object {
-          "padding": 20,
+          "padding": 15,
           "paddingBottom": 0,
         },
         undefined,
@@ -23,20 +23,55 @@ exports[`ButtonPopup playground renders in playground 1`] = `
   <Component
     style={
       Object {
-        "margin": 20,
-        "marginTop": 20,
+        "flexDirection": "row",
       }
     }
   >
-    <TextButton
-      disabled={false}
-      onPress={[Function]}
-      title={
-        <Translation
-          passThrough="Save"
-        />
+    <Component
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "margin": 10,
+            "marginTop": 15,
+          },
+          Object {
+            "marginEnd": 0,
+          },
+        ]
       }
-    />
+    >
+      <TextButton
+        disabled={false}
+        onPress={[Function]}
+        title={
+          <Translation
+            passThrough="Close"
+          />
+        }
+        type="secondary"
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "flex": 1,
+          "margin": 10,
+          "marginTop": 15,
+        }
+      }
+    >
+      <TextButton
+        disabled={false}
+        onPress={[Function]}
+        title={
+          <Translation
+            passThrough="Save"
+          />
+        }
+        type="primary"
+      />
+    </Component>
   </Component>
 </Popup>
 `;
