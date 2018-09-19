@@ -50,7 +50,7 @@ And if you have Xcode already installed - just run `yarn ios`. It should open iP
 
 You need to make sure that your Android emulator image supports Google Play Store. [Look for this symbol](https://stackoverflow.com/a/43197403/3135248):
 
-![](./.docs/assets/android-emulator-play-store.png)
+![](./docs/assets/android-emulator-play-store.png)
 
 It's also possible to open other devices from command line to test tablets for example:
 
