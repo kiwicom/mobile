@@ -1,44 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`IncrementDecrementButtons render disabled 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "padding": 10,
+    }
+  }
+>
+  <IncrementDecrementButtons
+    max={2}
+    min={1}
+    number={2}
+    numberStyle={
+      Object {
+        "padding": 10,
+      }
+    }
+    onDecrement={[MockFunction]}
+    onIncrement={[MockFunction]}
+    showNumber={true}
+  />
+</View>
+`;
+
 exports[`IncrementDecrementButtons renders 1`] = `
 <Component
   style={
     Object {
-      "backgroundColor": "#fff",
-      "borderColor": "#e8edf1",
-      "borderRadius": 4,
-      "borderWidth": 1,
+      "alignItems": "center",
       "flexDirection": "row",
-      "height": 29,
-      "width": 94,
     }
   }
 >
-  <Component
-    style={
-      Object {
-        "alignItems": "center",
-        "borderColor": "#e8edf1",
-        "borderEndWidth": 1,
-        "paddingBottom": 0,
-      }
-    }
-  >
-    <Button
-      onPress={[MockFunction]}
-      style={
-        Object {
-          "paddingBottom": 32,
-        }
-      }
-      text="–"
-      touchable={true}
-    />
-  </Component>
   <Button
+    icon={
+      <TextIcon
+        code=""
+        orbit={true}
+        style={
+          Object {
+            "color": "#7f91a8",
+            "fontSize": 14,
+          }
+        }
+      />
+    }
     onPress={[MockFunction]}
-    text="+"
+    touchable={true}
+  />
+  <Button
+    icon={
+      <TextIcon
+        code=""
+        orbit={true}
+        style={
+          Object {
+            "color": "#7f91a8",
+            "fontSize": 14,
+          }
+        }
+      />
+    }
+    onPress={[MockFunction]}
     touchable={true}
   />
 </Component>
+`;
+
+exports[`IncrementDecrementButtons shows number 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "padding": 10,
+    }
+  }
+>
+  <IncrementDecrementButtons
+    max={3}
+    min={1}
+    number={2}
+    numberStyle={
+      Object {
+        "padding": 10,
+      }
+    }
+    onDecrement={[MockFunction]}
+    onIncrement={[MockFunction]}
+    showNumber={true}
+  />
+</View>
 `;
