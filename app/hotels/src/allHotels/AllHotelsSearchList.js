@@ -154,6 +154,7 @@ export default createPaginationContainer(
               id
               ...AllHotelsSearchRow
             }
+            ...MapView
           }
           stats {
             maxPrice
