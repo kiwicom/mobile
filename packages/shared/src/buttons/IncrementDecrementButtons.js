@@ -6,34 +6,22 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from '../Text';
+import TextIcon from '../icons/TextIcon';
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
 
-const Button = ({
-  text,
-  touchable,
-  onPress,
-  style,
-}: {|
-  +text: string,
+type ButtonProps = {|
+  +icon: React.Element<typeof TextIcon>,
   +touchable: boolean,
   +onPress: () => void,
   +style?: StylePropType,
-|}) => {
+|};
+
+const Button = ({ icon, touchable, onPress }: ButtonProps) => {
   const inner = (
-    <View
-      style={[styleSheet.button, touchable ? null : styleSheet.buttonDisabled]}
-    >
-      <Text
-        style={[
-          styleSheet.buttonText,
-          touchable ? null : styleSheet.buttonTextDisabled,
-          style,
-        ]}
-      >
-        <Translation passThrough={text} />
-      </Text>
+    <View style={[styles.button, touchable ? null : styles.buttonDisabled]}>
+      {icon}
     </View>
   );
 
@@ -44,28 +32,34 @@ const Button = ({
   return inner;
 };
 
-export default function IncrementDecrementButtons(props: {|
-  onIncrement: () => void,
-  onDecrement: () => void,
-  number: number,
-  min?: number,
-  max?: number,
-|}) {
+type Props = {|
+  +onIncrement: () => void,
+  +onDecrement: () => void,
+  +number: number,
+  +showNumber: boolean,
+  +numberStyle?: StylePropType,
+  +min?: number,
+  +max?: number,
+|};
+
+export default function IncrementDecrementButtons(props: Props) {
   const disableDecrement = props.number === props.min;
   const disableIncrement = props.number === props.max;
 
   return (
-    <View style={styleSheet.buttonsGroup}>
-      <View style={styleSheet.buttonLeft}>
-        <Button
-          text="–"
-          touchable={!disableDecrement}
-          onPress={props.onDecrement}
-          style={styleSheet.minusText}
-        />
-      </View>
+    <View style={styles.row}>
       <Button
-        text="+"
+        icon={<TextIcon code="&#xe118;" orbit={true} style={styles.icon} />}
+        touchable={!disableDecrement}
+        onPress={props.onDecrement}
+      />
+      {props.showNumber && (
+        <Text style={props.numberStyle}>
+          <Translation passThrough={props.number} />
+        </Text>
+      )}
+      <Button
+        icon={<TextIcon code="&#xe122;" orbit={true} style={styles.icon} />}
         touchable={!disableIncrement}
         onPress={props.onIncrement}
       />
@@ -73,50 +67,28 @@ export default function IncrementDecrementButtons(props: {|
   );
 }
 
-const styleSheet = StyleSheet.create({
-  buttonsGroup: {
+IncrementDecrementButtons.defaultProps = {
+  showNumber: false,
+};
+
+const styles = StyleSheet.create({
+  row: {
     flexDirection: 'row',
-    borderWidth: 1,
-    borderColor: defaultTokens.paletteCloudNormal,
-    height: 29,
-    width: 94, // 47 * 2 (see button)
-    borderRadius: 4,
-    backgroundColor: defaultTokens.paletteWhite,
+    alignItems: 'center',
+  },
+  icon: {
+    color: defaultTokens.colorIconSecondary,
+    fontSize: 14,
   },
   button: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 47, // 94 / 2 (see buttonsGroup)
-  },
-  buttonDisabled: {
+    width: 28,
+    height: 28,
+    borderRadius: 6,
     backgroundColor: defaultTokens.paletteCloudNormal,
   },
-  buttonLeft: {
-    alignItems: 'center',
-    borderEndWidth: 1,
-    borderColor: defaultTokens.paletteCloudNormal,
-    paddingBottom: 0,
-  },
-  buttonText: {
-    color: defaultTokens.colorTextAttention,
-    fontSize: 25,
-    ios: {
-      paddingBottom: 33,
-    },
-    android: {
-      paddingBottom: 3,
-    },
-  },
-  buttonTextDisabled: {
-    color: defaultTokens.colorTextSecondary,
-  },
-  minusText: {
-    android: {
-      paddingBottom: 1,
-    },
-    ios: {
-      paddingBottom: 32,
-    },
+  buttonDisabled: {
+    opacity: parseFloat(defaultTokens.opacityButtonDisabled),
   },
 });
