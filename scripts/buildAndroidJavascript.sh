@@ -14,10 +14,11 @@ basicCommand="yarn react-native bundle --dev=false --verbose"
 
 $basicCommand \
     --platform=android \
-    --entry-file=./app/hotels/index.js \
+    --entry-file=./app/native.js \
     --bundle-output=./.build/android/assets/index.android.bundle \
     --assets-dest ./.build/android/res
 
 mkdir -pv ./.build/android/assets/fonts
 cp ./assets/fonts/spfont.ttf ./.build/android/assets/fonts
 cp ./assets/fonts/Roboto-Regular.ttf ./.build/android/assets/fonts
+cp ./assets/fonts/orbit-icons.ttf ./.build/android/assets/fonts
