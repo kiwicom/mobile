@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 38a19b5292ea80545404cb5df0320063
+ * @relayHash 96b07378fa5ba64262a70246172bc853
  */
 
 /* eslint-disable */
@@ -65,7 +65,11 @@ fragment HotelDetailScreen_availableHotel on HotelAvailability {
   }
   availableRooms {
     ...RoomList
-    ...BookNow_availableRooms
+    originalId
+    incrementalPrice {
+      amount
+      currency
+    }
     id
   }
 }
@@ -79,10 +83,6 @@ fragment Header_hotel on Hotel {
   rating {
     stars
     categoryName
-  }
-  review {
-    score
-    description
   }
   photos {
     edges {
@@ -102,19 +102,12 @@ fragment BookNow_hotel on Hotel {
 fragment HotelInformation_hotel on Hotel {
   ...Location_hotel
   ...Description_hotel
+  ...HotelReview
 }
 
 fragment RoomList on HotelRoomAvailability {
   id
   ...RoomRow_availableRoom
-}
-
-fragment BookNow_availableRooms on HotelRoomAvailability {
-  originalId
-  incrementalPrice {
-    amount
-    currency
-  }
 }
 
 fragment RoomRow_availableRoom on HotelRoomAvailability {
@@ -125,7 +118,6 @@ fragment RoomRow_availableRoom on HotelRoomAvailability {
       title
     }
     ...RoomRowTitle_room
-    ...RoomDescription_room
     photos {
       edges {
         node {
@@ -156,20 +148,12 @@ fragment RoomBadges_availableRoom on HotelRoomAvailability {
 }
 
 fragment RoomRowTitle_room on HotelRoom {
-  roomSize
   description {
     title
   }
 }
 
-fragment RoomDescription_room on HotelRoom {
-  description {
-    text
-  }
-}
-
 fragment BeddingInfo_room on HotelRoom {
-  type
   maxPersons
   bedding {
     type
@@ -192,6 +176,20 @@ fragment Description_hotel on Hotel {
   summary
   facilities {
     ...Facilities_facilities
+  }
+}
+
+fragment HotelReview on Hotel {
+  ...HotelReviewScore_hotel
+  review {
+    score
+    count
+  }
+}
+
+fragment HotelReviewScore_hotel on Hotel {
+  review {
+    score
   }
 }
 
@@ -237,54 +235,47 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "originalId",
+  "name": "name",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "lowResUrl",
   "args": null,
   "storageKey": null
 },
 v5 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "lowResUrl",
+  "name": "highResUrl",
   "args": null,
   "storageKey": null
 },
 v6 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "highResUrl",
+  "name": "originalId",
   "args": null,
   "storageKey": null
 },
 v7 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "type",
-  "args": null,
-  "storageKey": null
-},
-v8 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "amount",
   "args": null,
   "storageKey": null
 },
-v9 = [
-  v8,
+v8 = [
+  v7,
   {
     "kind": "ScalarField",
     "alias": null,
@@ -298,7 +289,7 @@ return {
   "operationKind": "query",
   "name": "SingleHotelContainerQuery",
   "id": null,
-  "text": "query SingleHotelContainerQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    ...BookNow_availableRooms\n    id\n  }\n}\n\nfragment Header_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  review {\n    score\n    description\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on Hotel {\n  originalId\n}\n\nfragment HotelInformation_hotel on Hotel {\n  ...Location_hotel\n  ...Description_hotel\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment BookNow_availableRooms on HotelRoomAvailability {\n  originalId\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailability {\n  originalId\n  ...RoomBadges_availableRoom\n  room {\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    ...RoomDescription_room\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          highResUrl\n          lowResUrl\n          id\n        }\n      }\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailability {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoom {\n  roomSize\n  description {\n    title\n  }\n}\n\nfragment RoomDescription_room on HotelRoom {\n  description {\n    text\n  }\n}\n\nfragment BeddingInfo_room on HotelRoom {\n  type\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n",
+  "text": "query SingleHotelContainerQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    originalId\n    incrementalPrice {\n      amount\n      currency\n    }\n    id\n  }\n}\n\nfragment Header_hotel on Hotel {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on Hotel {\n  originalId\n}\n\nfragment HotelInformation_hotel on Hotel {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailability {\n  originalId\n  ...RoomBadges_availableRoom\n  room {\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    photos {\n      edges {\n        node {\n          thumbnailUrl\n          highResUrl\n          lowResUrl\n          id\n        }\n      }\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailability {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoom {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoom {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment HotelReview on Hotel {\n  ...HotelReviewScore_hotel\n  review {\n    score\n    count\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -348,8 +339,32 @@ return {
             "concreteType": "Hotel",
             "plural": false,
             "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "address",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Address",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "street",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "city",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              },
               v2,
-              v3,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -370,31 +385,6 @@ return {
                     "kind": "ScalarField",
                     "alias": null,
                     "name": "categoryName",
-                    "args": null,
-                    "storageKey": null
-                  }
-                ]
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "review",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "HotelReview",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "score",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "description",
                     "args": null,
                     "storageKey": null
                   }
@@ -427,15 +417,16 @@ return {
                         "concreteType": "HotelPhoto",
                         "plural": false,
                         "selections": [
+                          v3,
                           v4,
-                          v5,
-                          v6
+                          v5
                         ]
                       }
                     ]
                   }
                 ]
               },
+              v6,
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -445,33 +436,8 @@ return {
                 "concreteType": "HotelPhoto",
                 "plural": false,
                 "selections": [
-                  v6,
-                  v4
-                ]
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "address",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Address",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "street",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "city",
-                    "args": null,
-                    "storageKey": null
-                  }
+                  v5,
+                  v3
                 ]
               },
               {
@@ -533,15 +499,40 @@ return {
                         "concreteType": "HotelFacility",
                         "plural": false,
                         "selections": [
-                          v4,
-                          v3
+                          v3,
+                          v2
                         ]
                       }
                     ]
                   }
                 ]
               },
-              v4
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "review",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "HotelReview",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "score",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "count",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              },
+              v3
             ]
           },
           {
@@ -553,8 +544,8 @@ return {
             "concreteType": "HotelRoomAvailability",
             "plural": true,
             "selections": [
-              v4,
-              v2,
+              v3,
+              v6,
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -593,22 +584,8 @@ return {
                         "name": "title",
                         "args": null,
                         "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "text",
-                        "args": null,
-                        "storageKey": null
                       }
                     ]
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "roomSize",
-                    "args": null,
-                    "storageKey": null
                   },
                   {
                     "kind": "LinkedField",
@@ -644,9 +621,9 @@ return {
                                 "args": null,
                                 "storageKey": null
                               },
-                              v6,
                               v5,
-                              v4
+                              v4,
+                              v3
                             ]
                           }
                         ]
@@ -660,7 +637,6 @@ return {
                     "args": null,
                     "storageKey": null
                   },
-                  v7,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -670,11 +646,17 @@ return {
                     "concreteType": "HotelRoomBedding",
                     "plural": true,
                     "selections": [
-                      v7,
-                      v8
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "type",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      v7
                     ]
                   },
-                  v4
+                  v3
                 ]
               },
               {
@@ -685,7 +667,7 @@ return {
                 "args": null,
                 "concreteType": "Price",
                 "plural": false,
-                "selections": v9
+                "selections": v8
               },
               {
                 "kind": "LinkedField",
@@ -695,11 +677,11 @@ return {
                 "args": null,
                 "concreteType": "Price",
                 "plural": true,
-                "selections": v9
+                "selections": v8
               }
             ]
           },
-          v4
+          v3
         ]
       }
     ]

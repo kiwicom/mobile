@@ -1,21 +1,20 @@
 // @flow strict
 
 import * as React from 'react';
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 import {
   StyleSheet,
   Text,
   Color,
   type StylePropType,
+  TextIcon,
 } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import icon from './gallery-icon.png';
-
 type Props = {|
-  +count: number,
+  +count: number | null,
   +style?: {
     +container?: StylePropType,
     +icon?: StylePropType,
@@ -29,10 +28,12 @@ export default function GalleryButton({ count, style }: Props) {
   const textStyle = idx(style, _ => _.text) || null;
   return (
     <View style={[styles.container, containerStyle]}>
-      <Image source={icon} style={[styles.icon, iconStyle]} />
-      <Text style={[styles.count, textStyle]}>
-        <Translation passThrough={count} />
-      </Text>
+      <TextIcon code="&#xe064;" orbit={true} style={[styles.icon, iconStyle]} />
+      {count !== null && (
+        <Text style={[styles.count, textStyle]}>
+          <Translation passThrough={count} />
+        </Text>
+      )}
     </View>
   );
 }
@@ -41,13 +42,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     borderRadius: 2,
-    backgroundColor: Color.grey.transparent.outerSpace.$60,
-    paddingVertical: 5,
-    paddingHorizontal: 8,
+    backgroundColor: Color.grey.transparent.outerSpace.$54,
+    padding: 4,
+    alignItems: 'center',
   },
   icon: {
-    width: 14,
-    height: 14,
+    color: defaultTokens.paletteWhite,
   },
   count: {
     backgroundColor: 'transparent',

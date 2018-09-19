@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`doesn't crash on empty input 1`] = `"Some Room"`;
+exports[`doesn't crash on empty input 1`] = `""`;
 
-exports[`formats bedding information 1`] = `"Single Room · 1 Single Bed(s)"`;
+exports[`formats bedding information 1`] = `"1 Single Bed(s)"`;
 
-exports[`pluralizes persons 1`] = `"Double Room · 2 Single Bed(s)"`;
+exports[`pluralizes persons 1`] = `"2 Single Bed(s)"`;
 
-exports[`provides all bedding options 1`] = `"Double or Twin Room · 2 Single Bed(s) or 1 Twin Bed(s)"`;
+exports[`provides all bedding options 1`] = `"2 Single Bed(s) or 1 Twin Bed(s)"`;

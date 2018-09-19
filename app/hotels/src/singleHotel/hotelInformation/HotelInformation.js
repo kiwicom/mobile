@@ -1,13 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { AdaptableLayout, StyleSheet } from '@kiwicom/mobile-shared';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Location from './location/Location';
 import Description from './description/Description';
+import HotelReview from './HotelReview';
 import type { HotelInformation_hotel } from './__generated__/HotelInformation_hotel.graphql';
 
 type ContainerProps = {|
@@ -19,45 +17,13 @@ type Props = {|
   +hotel: ?HotelInformation_hotel,
 |};
 
-export class HotelInformation extends React.Component<Props> {
-  renderDescription = (locationView: React.Node) => (
-    <Description hotel={this.props.hotel} locationView={locationView} />
-  );
-
-  renderLocation = (isWide: boolean) => (
-    <Location hotel={this.props.hotel} isWide={isWide} />
-  );
-
-  render = () => {
-    return (
-      <AdaptableLayout
-        renderOnNarrow={
-          <React.Fragment>
-            {this.renderLocation(false)}
-            {this.renderDescription()}
-          </React.Fragment>
-        }
-        renderOnWide={
-          <React.Fragment>
-            {this.renderDescription(
-              <View style={styles.locationContainer}>
-                {this.renderLocation(true)}
-              </View>,
-            )}
-          </React.Fragment>
-        }
-      />
-    );
-  };
-}
-
-const styles = StyleSheet.create({
-  locationContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: defaultTokens.paletteCloudNormal,
-    marginBottom: 15,
-  },
-});
+const HotelInformation = (props: Props) => (
+  <React.Fragment>
+    <Location hotel={props.hotel} />
+    <Description hotel={props.hotel} />
+    <HotelReview data={props.hotel} />
+  </React.Fragment>
+);
 
 export default (createFragmentContainer(
   HotelInformation,
@@ -65,6 +31,7 @@ export default (createFragmentContainer(
     fragment HotelInformation_hotel on Hotel {
       ...Location_hotel
       ...Description_hotel
+      ...HotelReview
     }
   `,
 ): React.ComponentType<ContainerProps>);

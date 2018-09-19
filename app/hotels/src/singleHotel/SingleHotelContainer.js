@@ -39,6 +39,7 @@ type SearchParams = {|
 |};
 
 type PropsWithContext = {|
+  ...Props,
   +currency: string,
   +hotelId: string,
   +checkin: Date,
@@ -53,6 +54,7 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
     <HotelDetailScreen
       availableHotel={availableHotel}
       roomsConfiguration={this.props.roomsConfiguration}
+      goBack={this.props.goBack}
     />
   );
 
@@ -91,7 +93,11 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
   }
 }
 
-export default function SingleHotelContainerWithContext() {
+type Props = {|
+  +goBack: () => void,
+|};
+
+export default function SingleHotelContainerWithContext(props: Props) {
   return (
     <SingleHotelContext.Consumer>
       {({ checkin, checkout, roomsConfiguration, hotelId }) => (
@@ -103,6 +109,7 @@ export default function SingleHotelContainerWithContext() {
               checkin={checkin}
               checkout={checkout}
               roomsConfiguration={roomsConfiguration}
+              {...props}
             />
           )}
         </HotelsContext.Consumer>

@@ -36,14 +36,7 @@ const ColorPalette = {
     transparent: {
       outerSpace: {
         $60: hexToRgba(defaultTokens.paletteInkDark, 0.6), // opacity works differently on RN, we need to keep this
-      },
-    },
-  },
-
-  green: {
-    transparent: {
-      lapalma: {
-        $15: hexToRgba(defaultTokens.paletteGreenNormal, 0.15), // opacity works differently on RN, we need to keep this
+        $54: hexToRgba(defaultTokens.paletteInkDark, 0.54), // opacity works differently on RN, we need to keep this
       },
     },
   },
