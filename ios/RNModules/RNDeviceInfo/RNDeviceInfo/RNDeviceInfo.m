@@ -5,6 +5,10 @@
 
 RCT_EXPORT_MODULE();
 
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
+
 - (NSString *)currentLanguage {
     
     NSString *localeIdentifier = [[[[NSLocale preferredLanguages] firstObject] componentsSeparatedByString:@"-"] firstObject];
