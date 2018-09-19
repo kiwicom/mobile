@@ -2,12 +2,7 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import {
-  AdaptableBadge,
-  StyleSheet,
-  TextIcon,
-  Color,
-} from '@kiwicom/mobile-shared';
+import { AdaptableBadge, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -30,37 +25,32 @@ export const RoomBadges = (props: Props) => {
   );
   const isRefundable = idx(props.availableRoom, _ => _.isRefundable);
 
-  const badges = [];
-
-  if (isBreakfastIncluded) {
-    badges.push(
-      <AdaptableBadge
-        icon={<TextIcon code="&#xe039;" style={styles.iconStyle} />}
-        key="breakfast-included-badge"
-        translation={
-          <Translation id="single_hotel.room_badges.breakfast_included" />
-        }
-        style={styles.badgeContainer}
-        textStyle={styles.badgeText}
-      />,
-    );
-  }
-
-  if (isRefundable) {
-    badges.push(
-      <AdaptableBadge
-        icon={<TextIcon code={"'"} style={styles.iconStyle} />}
-        key="free-cancellation-badge"
-        translation={
-          <Translation id="single_hotel.room_badges.free_cancellation" />
-        }
-        style={styles.badgeContainer}
-        textStyle={styles.badgeText}
-      />,
-    );
-  }
-
-  return badges;
+  return (
+    <React.Fragment>
+      {isBreakfastIncluded && (
+        <AdaptableBadge
+          icon={
+            <TextIcon code="&#xe02F;" orbit={true} style={styles.iconStyle} />
+          }
+          translation={
+            <Translation id="single_hotel.room_badges.breakfast_included" />
+          }
+          style={styles.badgeContainer}
+          textStyle={styles.badgeText}
+        />
+      )}
+      {isRefundable && (
+        <AdaptableBadge
+          icon={<TextIcon code="r" orbit={true} style={styles.iconStyle} />}
+          translation={
+            <Translation id="single_hotel.room_badges.free_cancellation" />
+          }
+          style={styles.badgeContainer}
+          textStyle={styles.badgeText}
+        />
+      )}
+    </React.Fragment>
+  );
 };
 
 export default (createFragmentContainer(
@@ -75,22 +65,17 @@ export default (createFragmentContainer(
 
 const styles = StyleSheet.create({
   badgeContainer: {
-    backgroundColor: Color.green.transparent.lapalma.$15,
+    backgroundColor: defaultTokens.paletteBlueLight,
     marginTop: 5,
   },
   badgeText: {
-    color: defaultTokens.colorTextBadgeSuccess,
-    fontSize: 10,
+    color: defaultTokens.paletteBlueNormal,
+    fontSize: 12,
   },
   iconStyle: {
-    color: defaultTokens.colorIconSuccess,
-    fontSize: 10,
-    ios: {
-      alignSelf: 'flex-end',
-    },
-    android: {
-      alignSelf: 'center',
-    },
+    color: defaultTokens.paletteBlueNormal,
+    fontSize: 12,
+    alignSelf: 'center',
     marginEnd: 5,
   },
 });

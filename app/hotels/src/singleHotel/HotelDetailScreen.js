@@ -1,19 +1,23 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, StatusBar, Platform } from 'react-native';
 import {
   GeneralError,
   LayoutSingleColumn,
   Logger,
   AdaptableLayout,
   StyleSheet,
+  CloseButton,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import isEqual from 'react-fast-compare';
+import { SafeAreaView } from 'react-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import RoomSummary from './RoomSummary';
 import Header from './header/Header';
 import HotelInformation from './hotelInformation/HotelInformation';
 import RoomList from './roomList/RoomList';
@@ -21,10 +25,12 @@ import BookNow from './bookNow/BookNow';
 import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
+import countBookingPrice from './bookNow/countBookingPrice';
 
 type Props = {|
   +availableHotel: HotelDetailScreen_availableHotel,
   +roomsConfiguration: RoomsConfiguration,
+  +goBack: () => void,
 |};
 
 type State = {|
@@ -32,6 +38,14 @@ type State = {|
     [string]: number, // originalId: count
   },
   maxPersons: number,
+|};
+
+type NativeEvent = {|
+  +nativeEvent: {|
+    +contentOffset: {|
+      +y: number,
+    |},
+  |},
 |};
 
 export class HotelDetailScreen extends React.Component<Props, State> {
@@ -42,6 +56,9 @@ export class HotelDetailScreen extends React.Component<Props, State> {
 
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS);
+    if (Platform.OS === 'ios') {
+      StatusBar.setBarStyle('light-content');
+    }
   };
 
   shouldComponentUpdate = (nextProps: Props, nextState: State) => {
@@ -49,6 +66,20 @@ export class HotelDetailScreen extends React.Component<Props, State> {
     const isStateEqual = isEqual(nextState, this.state);
 
     return !isPropsEqual || !isStateEqual;
+  };
+
+  componentWillUnmount = () => {
+    if (Platform.OS === 'ios') {
+      StatusBar.setBarStyle('dark-content');
+    }
+  };
+
+  onScroll = (e: NativeEvent) => {
+    if (Platform.OS === 'ios' && e.nativeEvent.contentOffset.y > 180) {
+      StatusBar.setBarStyle('dark-content');
+    } else {
+      StatusBar.setBarStyle('light-content');
+    }
   };
 
   updateSelectedCount = (
@@ -78,7 +109,6 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   deselectRoom = (availabilityOriginalId: string, maxPersons: number) => {
     this.updateSelectedCount(availabilityOriginalId, -1, -maxPersons);
   };
-
   getNumberOfRooms = () =>
     Object.keys(this.state.selected).reduce((sum, currentItem) => {
       return this.state.selected[currentItem] + sum;
@@ -100,7 +130,10 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   render() {
     const { availableHotel } = this.props;
     const { selected } = this.state;
-
+    const price = countBookingPrice(
+      idx(this.props, _ => _.availableHotel.availableRooms),
+      selected,
+    );
     if (!availableHotel) {
       return (
         <GeneralError
@@ -112,31 +145,47 @@ export class HotelDetailScreen extends React.Component<Props, State> {
     }
 
     return (
-      <React.Fragment>
-        <ScrollView contentContainerStyle={styles.container}>
-          <LayoutSingleColumn>
-            <AdaptableLayout
-              renderOnWide={<View style={styles.marginView} />}
+      <SafeAreaView style={styles.safeArea} forceInset={{ top: 'never' }}>
+        <View style={styles.safeArea}>
+          <ScrollView
+            contentContainerStyle={styles.container}
+            onScroll={this.onScroll}
+            scrollEventThrottle={500}
+          >
+            <LayoutSingleColumn>
+              <AdaptableLayout
+                renderOnWide={<View style={styles.marginView} />}
+              />
+              <Header hotel={availableHotel.hotel} />
+              <HotelInformation hotel={availableHotel.hotel} />
+              <RoomList
+                data={availableHotel.availableRooms}
+                select={this.selectRoom}
+                deselect={this.deselectRoom}
+                selected={selected}
+              />
+              <BrandLabel />
+            </LayoutSingleColumn>
+          </ScrollView>
+          <View style={styles.buttonContainer}>
+            <RoomSummary
+              guestCount={this.getPersonCount()}
+              roomCount={this.getNumberOfRooms()}
+              price={price}
             />
-            <Header hotel={availableHotel.hotel} />
-            <HotelInformation hotel={availableHotel.hotel} />
-            <RoomList
-              data={availableHotel.availableRooms}
-              select={this.selectRoom}
-              deselect={this.deselectRoom}
-              selected={selected}
-            />
-            <BrandLabel />
-          </LayoutSingleColumn>
-        </ScrollView>
-        <BookNow
-          selected={selected}
-          availableRooms={availableHotel.availableRooms}
-          hotel={availableHotel.hotel}
-          personCount={this.getPersonCount()}
-          numberOfRooms={this.getNumberOfRooms()}
-        />
-      </React.Fragment>
+            <View style={styles.row}>
+              <View style={styles.closeWrapper}>
+                <CloseButton onPress={this.props.goBack} />
+              </View>
+              {this.state.maxPersons > 0 && (
+                <View style={styles.bookNowWrapper}>
+                  <BookNow selected={selected} hotel={availableHotel.hotel} />
+                </View>
+              )}
+            </View>
+          </View>
+        </View>
+      </SafeAreaView>
     );
   }
 }
@@ -152,7 +201,11 @@ export default createFragmentContainer(
       }
       availableRooms {
         ...RoomList
-        ...BookNow_availableRooms
+        originalId
+        incrementalPrice {
+          amount
+          currency
+        }
       }
     }
   `,
@@ -164,5 +217,28 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingBottom: 64,
+  },
+  buttonContainer: {
+    position: 'absolute',
+    end: 0,
+    start: 0,
+    bottom: 0,
+    backgroundColor: defaultTokens.paletteWhite,
+  },
+  row: {
+    flexDirection: 'row',
+    paddingHorizontal: 8,
+    paddingBottom: 8,
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: defaultTokens.paletteWhite,
+  },
+  closeWrapper: {
+    flex: 1,
+    marginEnd: 8,
+  },
+  bookNowWrapper: {
+    flex: 1,
   },
 });

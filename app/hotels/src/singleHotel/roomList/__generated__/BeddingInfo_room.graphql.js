@@ -11,7 +11,6 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type BeddingInfo_room$ref: FragmentReference;
 export type BeddingInfo_room = {|
-  +type: ?string,
   +maxPersons: ?number,
   +bedding: ?$ReadOnlyArray<?{|
     +type: ?string,
@@ -22,22 +21,13 @@ export type BeddingInfo_room = {|
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
-var v0 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "type",
-  "args": null,
-  "storageKey": null
-};
-return {
+const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "BeddingInfo_room",
   "type": "HotelRoom",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    v0,
     {
       "kind": "ScalarField",
       "alias": null,
@@ -54,7 +44,13 @@ return {
       "concreteType": "HotelRoomBedding",
       "plural": true,
       "selections": [
-        v0,
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "type",
+          "args": null,
+          "storageKey": null
+        },
         {
           "kind": "ScalarField",
           "alias": null,
@@ -66,7 +62,6 @@ return {
     }
   ]
 };
-})();
 // prettier-ignore
-(node/*: any*/).hash = 'bae4050720f373f37ddf8934d58ba3b1';
+(node/*: any*/).hash = 'c0c0c0f1049ab0c202880384f2205488';
 module.exports = node;

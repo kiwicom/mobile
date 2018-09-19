@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Platform, Dimensions as RNDimensions } from 'react-native';
+import { Dimensions as RNDimensions } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
   HeaderTitle,
@@ -10,7 +10,6 @@ import {
   createTransparentHeaderStyle,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Dimensions, Device } from '@kiwicom/mobile-shared';
 
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
@@ -23,18 +22,7 @@ export default StackNavigator(
     SingleHotel: {
       screen: SingleHotelNavigationScreen,
       navigationOptions: {
-        headerTitle: (
-          <Dimensions.Consumer>
-            {dimensions => {
-              return Device.isNarrowLayout(dimensions) &&
-                Platform.OS === 'android' ? null : (
-                <HeaderTitle>
-                  <Translation id="hotels.navigation.title.single_hotel" />
-                </HeaderTitle>
-              );
-            }}
-          </Dimensions.Consumer>
-        ),
+        headerLeft: null,
         /**
          * @todo Due to static nature of React Navigation, this configuration
          * will not update when screen width changes (when used with SplitView)

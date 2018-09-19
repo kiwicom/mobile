@@ -28,7 +28,6 @@ import HotelsContext, {
 
 type ContainerProps = {|
   +hotel: any,
-  +isWide: boolean,
 |};
 
 type PropsWithContext = {|
@@ -52,13 +51,13 @@ export class Location extends React.Component<PropsWithContext> {
   };
 
   render = () => {
-    const { hotel, isWide } = this.props;
+    const { hotel } = this.props;
     const address = idx(hotel, _ => _.address);
     const coordinates = idx(hotel, _ => _.coordinates);
     const latitude = idx(coordinates, _ => _.lat);
     const longitude = idx(coordinates, _ => _.lng);
     return (
-      <View style={[styles.background, isWide ? styles.wideContainer : null]}>
+      <View style={styles.background}>
         <TouchableWithoutFeedback onPress={this.goToMap}>
           <View style={styles.container}>
             <View style={styles.leftColumn}>
@@ -147,9 +146,6 @@ export default (createFragmentContainer(
 const styles = StyleSheet.create({
   background: {
     backgroundColor: defaultTokens.paletteWhite,
-  },
-  wideContainer: {
-    borderRadius: 2,
   },
   container: {
     height: 100,

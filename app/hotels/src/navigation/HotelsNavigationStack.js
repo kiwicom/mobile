@@ -6,11 +6,11 @@ import {
   StackNavigatorOptions,
   type NavigationType,
   HeaderTitle,
+  createTransparentHeaderStyle,
 } from '@kiwicom/mobile-navigation';
-import { Platform } from 'react-native';
+import { Dimensions as RNDimensions } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Dimensions, Device } from '@kiwicom/mobile-shared';
 
 import SingleHotel from './singleHotel/SingleHotelNavigationScreen';
 import SearchResults from './allHotels/SearchResultsScreen';
@@ -35,18 +35,8 @@ export default StackNavigator(
     SingleHotel: {
       screen: withMappedProps(SingleHotel),
       navigationOptions: {
-        headerTitle: (
-          <Dimensions.Consumer>
-            {dimensions => {
-              return Device.isNarrowLayout(dimensions) &&
-                Platform.OS === 'android' ? null : (
-                <HeaderTitle>
-                  <Translation id="hotels.navigation.title.single_hotel" />
-                </HeaderTitle>
-              );
-            }}
-          </Dimensions.Consumer>
-        ),
+        headerLeft: null,
+        ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
     AllHotelsMap: {
@@ -87,5 +77,6 @@ export default StackNavigator(
   {
     ...StackNavigatorOptions,
     initialRouteName: 'SearchResults',
+    mode: 'modal',
   },
 );

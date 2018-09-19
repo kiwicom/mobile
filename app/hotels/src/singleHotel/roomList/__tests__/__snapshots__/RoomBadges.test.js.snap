@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`RoomBadges renders 1`] = `
-Array [
+<React.Fragment>
   <AdaptableBadge
     icon={
       <TextIcon
-        code=""
-        orbit={false}
+        code=""
+        orbit={true}
         style={
           Object {
-            "alignSelf": "flex-end",
-            "color": "#46B655",
-            "fontSize": 10,
+            "alignSelf": "center",
+            "color": "#0176D2",
+            "fontSize": 12,
             "marginEnd": 5,
           }
         }
@@ -19,14 +19,14 @@ Array [
     }
     style={
       Object {
-        "backgroundColor": "rgba(70, 182, 85, 0.15)",
+        "backgroundColor": "#e0f6ff",
         "marginTop": 5,
       }
     }
     textStyle={
       Object {
-        "color": "#46B655",
-        "fontSize": 10,
+        "color": "#0176D2",
+        "fontSize": 12,
       }
     }
     translation={
@@ -34,17 +34,17 @@ Array [
         id="single_hotel.room_badges.breakfast_included"
       />
     }
-  />,
+  />
   <AdaptableBadge
     icon={
       <TextIcon
-        code="'"
-        orbit={false}
+        code="r"
+        orbit={true}
         style={
           Object {
-            "alignSelf": "flex-end",
-            "color": "#46B655",
-            "fontSize": 10,
+            "alignSelf": "center",
+            "color": "#0176D2",
+            "fontSize": 12,
             "marginEnd": 5,
           }
         }
@@ -52,14 +52,14 @@ Array [
     }
     style={
       Object {
-        "backgroundColor": "rgba(70, 182, 85, 0.15)",
+        "backgroundColor": "#e0f6ff",
         "marginTop": 5,
       }
     }
     textStyle={
       Object {
-        "color": "#46B655",
-        "fontSize": 10,
+        "color": "#0176D2",
+        "fontSize": 12,
       }
     }
     translation={
@@ -67,6 +67,6 @@ Array [
         id="single_hotel.room_badges.free_cancellation"
       />
     }
-  />,
-]
+  />
+</React.Fragment>
 `;

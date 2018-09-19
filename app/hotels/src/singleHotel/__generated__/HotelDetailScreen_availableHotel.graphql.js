@@ -8,7 +8,6 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type BookNow_availableRooms$ref = any;
 type BookNow_hotel$ref = any;
 type Header_hotel$ref = any;
 type HotelInformation_hotel$ref = any;
@@ -20,7 +19,12 @@ export type HotelDetailScreen_availableHotel = {|
     +$fragmentRefs: Header_hotel$ref & BookNow_hotel$ref & HotelInformation_hotel$ref
   |},
   +availableRooms: ?$ReadOnlyArray<?{|
-    +$fragmentRefs: RoomList$ref & BookNow_availableRooms$ref
+    +originalId: ?string,
+    +incrementalPrice: ?$ReadOnlyArray<?{|
+      +amount: ?number,
+      +currency: ?string,
+    |}>,
+    +$fragmentRefs: RoomList$ref,
   |}>,
   +$refType: HotelDetailScreen_availableHotel$ref,
 |};
@@ -75,14 +79,41 @@ const node/*: ConcreteFragment*/ = {
           "args": null
         },
         {
-          "kind": "FragmentSpread",
-          "name": "BookNow_availableRooms",
-          "args": null
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "originalId",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "incrementalPrice",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "Price",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "amount",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "currency",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'bb740e85b1d4abf7b6ea3f2f85d361a8';
+(node/*: any*/).hash = '3412f045bb72cd404a806303e9c9bf03';
 module.exports = node;

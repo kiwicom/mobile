@@ -25,7 +25,6 @@ const hotelId = 'lol-id';
 
 it('renders without crashing', () => {
   const props = {
-    isWide: false,
     hotel: ({
       hotel: 'asdf',
     }: Object),
@@ -42,7 +41,6 @@ it('renders without crashing', () => {
 
 it('renders without crashing with missing data', () => {
   const props = {
-    isWide: false,
     hotel: undefined,
     navigation,
     checkin,
