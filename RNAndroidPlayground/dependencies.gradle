@@ -28,7 +28,7 @@ ext {
     reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '') + ".react-native." + reactNativeVersion
 
-    reactNativeNativeModules = rnModulesPackageJson['version']
+    reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
 
     loggingVersion = "0.2.2"
     infinarioVersion = "0.2"
