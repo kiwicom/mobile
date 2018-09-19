@@ -40,6 +40,9 @@ const ColorPalette = {
       },
     },
   },
+  dark: {
+    $10: hexToRgba(defaultTokens.paletteInkDark, 0.1),
+  },
 };
 
 // Collection of colors, in multicity trips, this is the only logical place to store them

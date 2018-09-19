@@ -1,203 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders as expected 1`] = `
-<Touchable
-  accessibilityComponentType="button"
-  accessibilityTraits="button"
-  borderlessRipple={false}
-  disabled={false}
-  onPress={[Function]}
-  rippleColor="rgba(0, 0, 0, .32)"
-  style={
-    Array [
-      Object {
-        "backgroundColor": "#9ae5da",
-        "height": 44,
-        "paddingHorizontal": 10,
-        "paddingVertical": 14,
-      },
-      Object {
-        "borderBottomStartRadius": 6,
-        "borderTopStartRadius": 6,
-      },
-      Object {
-        "borderBottomEndRadius": 6,
-        "borderTopEndRadius": 6,
-      },
-    ]
-  }
->
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-        "flexGrow": 1,
-      }
-    }
-  >
-    <ButtonTitle
-      style={
-        Object {
-          "color": "#005448",
-          "fontSize": 14,
-        }
-      }
-      text={
-        <Translation
-          id="single_hotel.room_picker.select"
-        />
-      }
-    />
-    <Component
-      style={
-        Object {
-          "flexDirection": "row",
-          "flexGrow": 1,
-        }
-      }
-    />
-    <Price
-      amount={100}
-      currency="CZK"
-      style={
-        Object {
-          "color": "#005448",
-          "fontSize": 14,
-        }
-      }
-    />
-  </Component>
-</Touchable>
+<SelectButton
+  currency="CZK"
+  increment={[Function]}
+  price={100}
+/>
 `;
 
 exports[`renders as expected 2`] = `
-<Component
-  style={
-    Object {
-      "flexDirection": "row",
-      "flexGrow": 1,
-    }
-  }
->
-  <MinusButton
-    onPress={[Function]}
-  />
-  <Component
-    style={
-      Array [
-        Object {
-          "backgroundColor": "#9ae5da",
-          "height": 44,
-          "paddingHorizontal": 10,
-          "paddingVertical": 14,
-        },
-        Object {
-          "flexDirection": "row",
-          "flexGrow": 1,
-        },
-        Object {
-          "justifyContent": "center",
-        },
-      ]
-    }
-  >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#005448",
-            "fontSize": 14,
-          },
-          Object {
-            "fontWeight": "bold",
-          },
-        ]
-      }
-    >
-      <Translation
-        passThrough="1 × "
-      />
-    </Text>
-    <Price
-      amount={100}
-      currency="CZK"
-      style={
-        Object {
-          "color": "#005448",
-          "fontSize": 14,
-        }
-      }
-    />
-  </Component>
-  <PlusButton
-    disabled={false}
-    onPress={[Function]}
-  />
-</Component>
+<IncrementDecrement
+  currency="CZK"
+  decrement={[Function]}
+  increment={[Function]}
+  price={100}
+  selectableCount={2}
+  selectedCount={1}
+/>
 `;
 
 exports[`renders as expected 3`] = `
-<Component
-  style={
-    Object {
-      "flexDirection": "row",
-      "flexGrow": 1,
-    }
-  }
->
-  <MinusButton
-    onPress={[Function]}
-  />
-  <Component
-    style={
-      Array [
-        Object {
-          "backgroundColor": "#9ae5da",
-          "height": 44,
-          "paddingHorizontal": 10,
-          "paddingVertical": 14,
-        },
-        Object {
-          "flexDirection": "row",
-          "flexGrow": 1,
-        },
-        Object {
-          "justifyContent": "center",
-        },
-      ]
-    }
-  >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#005448",
-            "fontSize": 14,
-          },
-          Object {
-            "fontWeight": "bold",
-          },
-        ]
-      }
-    >
-      <Translation
-        passThrough="2 × "
-      />
-    </Text>
-    <Price
-      amount={100}
-      currency="CZK"
-      style={
-        Object {
-          "color": "#005448",
-          "fontSize": 14,
-        }
-      }
-    />
-  </Component>
-  <PlusButton
-    disabled={true}
-    onPress={[Function]}
-  />
-</Component>
+<IncrementDecrement
+  currency="CZK"
+  decrement={[Function]}
+  increment={[Function]}
+  price={100}
+  selectableCount={2}
+  selectedCount={2}
+/>
 `;

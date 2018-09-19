@@ -99,4 +99,5 @@ export default {
   'single_hotel.hotel_review.rating.8': 'Very good',
   'single_hotel.hotel_review.rating.9': 'Perfect',
   'single_hotel.room_summary.summary': 'Summary',
+  'single_hotel.increment_decrement.count': 'Count',
 };
