@@ -14,7 +14,7 @@ basicCommand="yarn react-native bundle --dev=false --verbose"
 
 $basicCommand \
     --platform=android \
-    --entry-file=./app/hotels/index.js \
+    --entry-file=./app/native.js \
     --bundle-output=./.build/android/assets/index.android.bundle \
     --assets-dest ./.build/android/res
 
