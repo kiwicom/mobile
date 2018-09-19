@@ -21,3 +21,4 @@ $basicCommand \
 mkdir -pv ./.build/android/assets/fonts
 cp ./assets/fonts/spfont.ttf ./.build/android/assets/fonts
 cp ./assets/fonts/Roboto-Regular.ttf ./.build/android/assets/fonts
+cp ./assets/fonts/orbit-icons.ttf ./.build/android/assets/fonts
