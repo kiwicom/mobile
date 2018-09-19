@@ -35,22 +35,16 @@ exports[`RoomImage renders 1`] = `
       }
     >
       <GalleryButton
-        count={32}
+        count={null}
         style={
           Object {
             "container": Object {
               "alignItems": "center",
-              "backgroundColor": "rgba(0, 0, 0, 0.3)",
               "borderRadius": 0,
               "justifyContent": "center",
-              "paddingVertical": 4,
             },
             "icon": Object {
-              "height": 10,
-              "width": 10,
-            },
-            "text": Object {
-              "fontSize": 10,
+              "fontSize": 16,
             },
           }
         }

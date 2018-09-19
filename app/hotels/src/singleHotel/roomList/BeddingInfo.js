@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Text, TextIcon, Icon } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -29,13 +29,13 @@ export class BeddingInfo extends React.Component<Props> {
     return (
       <View>
         <View style={styles.row}>
-          <TextIcon code="&#xe0a5;" style={styles.icon} />
+          <TextIcon code="&#xe085;" orbit={true} style={styles.icon} />
           <Text style={styles.text}>
             <Translation passThrough={` ${info}`} />
           </Text>
         </View>
         <View style={styles.row}>
-          <Icon size={14} name="person" />
+          <TextIcon code="(" orbit={true} style={styles.icon} />
           <Text style={styles.text}>
             <Translation passThrough={' '} />
             <Translation
@@ -53,7 +53,6 @@ export default (createFragmentContainer(
   BeddingInfo,
   graphql`
     fragment BeddingInfo_room on HotelRoom {
-      type
       maxPersons
       bedding {
         type
@@ -75,13 +74,8 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: defaultTokens.colorTextSecondary,
-    fontSize: 12,
+    fontSize: 14,
     marginEnd: 2,
-    android: {
-      alignSelf: 'center',
-    },
-    ios: {
-      alignSelf: 'flex-end',
-    },
+    alignSelf: 'center',
   },
 });

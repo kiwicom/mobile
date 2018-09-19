@@ -19,10 +19,6 @@ export type Header_hotel = {|
     +stars: ?number,
     +categoryName: ?string,
   |},
-  +review: ?{|
-    +score: ?number,
-    +description: ?string,
-  |},
   +photos: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
@@ -99,31 +95,6 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "review",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "HotelReview",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "score",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "description",
-          "args": null,
-          "storageKey": null
-        }
-      ]
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
       "name": "photos",
       "storageKey": null,
       "args": null,
@@ -173,5 +144,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd525c9cb8521862bbeca063836092650';
+(node/*: any*/).hash = 'b63c01773444c38497fc16d4da9a1c49';
 module.exports = node;

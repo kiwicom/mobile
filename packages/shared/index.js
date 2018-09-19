@@ -14,6 +14,7 @@ export { default as Button } from './src/buttons/Button';
 export { default as TextButton } from './src/buttons/TextButton';
 export { default as LinkButton } from './src/buttons/LinkButton';
 export { default as ButtonTitle } from './src/buttons/ButtonTitle';
+export { default as CloseButton } from './src/buttons/CloseButton';
 export {
   default as TouchableWithoutFeedback,
 } from './src/TouchableWithoutFeedback';

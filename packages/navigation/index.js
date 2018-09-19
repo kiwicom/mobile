@@ -56,13 +56,14 @@ export const StackNavigator = (
     [string]: {|
       +screen: mixed,
       +navigationOptions?: {|
-        +headerTitle:
+        +headerTitle?:
           | React.Element<typeof HeaderTitle>
           | null
           | React.Element<typeof Dimensions.Consumer>,
         +headerStyle?: StylePropType,
         +mode?: 'modal',
         +headerTransparent?: boolean,
+        +headerLeft?: Object | null,
       |},
     |},
   },
@@ -93,7 +94,13 @@ export const StackNavigatorOptions = {
 export const createTransparentHeaderStyle = (dim: DimensionType) => {
   if (Platform.OS === 'ios' || Device.isWideLayout(dim)) {
     // normal header on iOS and wide Android
-    return {};
+    return {
+      headerStyle: {
+        backgroundColor: 'transparent',
+        marginTop: 20,
+      },
+      headerTransparent: true,
+    };
   }
 
   return {

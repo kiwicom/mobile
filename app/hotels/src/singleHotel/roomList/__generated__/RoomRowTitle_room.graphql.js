@@ -11,7 +11,6 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomRowTitle_room$ref: FragmentReference;
 export type RoomRowTitle_room = {|
-  +roomSize: ?number,
   +description: ?{|
     +title: ?string
   |},
@@ -27,13 +26,6 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "roomSize",
-      "args": null,
-      "storageKey": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -55,5 +47,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c4cdfeeecc326e0d204dfb5acfdd9a8c';
+(node/*: any*/).hash = '1f0ae1b53499b83972de5c5c85758cd3';
 module.exports = node;

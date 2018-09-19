@@ -3,23 +3,19 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import idx from 'idx';
-import {
-  SimpleCard,
-  StyleSheet,
-  AdaptableLayout,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
 import isEqual from 'react-fast-compare';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import RoomPicker from '../roomPicker/RoomPicker';
 import RoomImage from './RoomImage';
 import BeddingInfo from './BeddingInfo';
 import RoomRowTitle from './RoomRowTitle';
-import RoomDescription from './RoomDescription';
 import RoomBadges from './RoomBadges';
 import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
 
@@ -76,13 +72,12 @@ export class RoomRow extends React.Component<Props> {
     });
   };
 
-  renderRow = (isWide: boolean) => {
+  render = () => {
     const availableRoom = this.props.availableRoom;
     const thumbnailUrl = idx(
       availableRoom,
       _ => _.room.photos.edges[0].node.thumbnailUrl,
     );
-    const photoCount = idx(availableRoom, _ => _.room.photos.edges.length) || 0;
     const price = idx(availableRoom, _ => _.minimalPrice.amount) || null;
     const currency = idx(availableRoom, _ => _.minimalPrice.currency) || null;
     const selectableCount =
@@ -92,13 +87,12 @@ export class RoomRow extends React.Component<Props> {
     const room = idx(availableRoom, _ => _.room);
 
     return (
-      <SimpleCard style={styles.card}>
-        <View style={isWide ? styles.widePadding : null}>
+      <View style={styles.container}>
+        <View>
           <View style={styles.row}>
             <RoomImage
               openGallery={this.openGallery}
               thumbnailUrl={thumbnailUrl}
-              photoCount={photoCount}
             />
             <View style={styles.details}>
               <RoomRowTitle room={room} />
@@ -107,7 +101,6 @@ export class RoomRow extends React.Component<Props> {
           </View>
           <View style={styles.roomDetails}>
             <BeddingInfo room={room} />
-            <RoomDescription room={room} />
           </View>
           <RoomPicker
             price={price}
@@ -118,16 +111,9 @@ export class RoomRow extends React.Component<Props> {
             decrement={this.deselect}
           />
         </View>
-      </SimpleCard>
+      </View>
     );
   };
-
-  render = () => (
-    <AdaptableLayout
-      renderOnNarrow={this.renderRow(false)}
-      renderOnWide={this.renderRow(true)}
-    />
-  );
 }
 
 export default (createFragmentContainer(
@@ -141,7 +127,6 @@ export default (createFragmentContainer(
           title
         }
         ...RoomRowTitle_room
-        ...RoomDescription_room
         photos {
           edges {
             node {
@@ -168,8 +153,10 @@ export default (createFragmentContainer(
 ): React.ComponentType<ContainerProps>);
 
 const styles = StyleSheet.create({
-  card: {
-    marginVertical: 5,
+  container: {
+    padding: 16,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: defaultTokens.paletteInkLighter,
   },
   row: {
     flexDirection: 'row',
@@ -183,8 +170,5 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 10,
     marginBottom: 20,
-  },
-  widePadding: {
-    paddingHorizontal: 5,
   },
 });

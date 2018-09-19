@@ -2,7 +2,7 @@
 
 import idx from 'idx';
 
-import type { BookNow_availableRooms } from './__generated__/BookNow_availableRooms.graphql';
+import type { BookNow_availableRooms } from '../__generated__/HotelDetailScreen_availableHotel.graphql';
 
 type Money = {|
   amount: number,

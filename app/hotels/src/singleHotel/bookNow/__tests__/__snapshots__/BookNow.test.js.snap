@@ -1,52 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders without crashing 1`] = `
-<Component
-  style={
-    Object {
-      "backgroundColor": "#00a991",
-      "bottom": 0,
-      "end": 0,
-      "flex": 1,
-      "position": "absolute",
-      "start": 0,
-    }
-  }
+<Button
+  disabled={false}
+  onPress={[Function]}
 >
-  <Touchable
-    accessibilityComponentType="button"
-    accessibilityTraits="button"
-    borderlessRipple={false}
-    disabled={false}
-    onPress={[Function]}
-    rippleColor="rgba(0, 0, 0, .32)"
+  <Text
+    style={
+      Object {
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "800",
+      }
+    }
   >
-    <BookNowText
-      buttonPriceStyle={
-        Object {
-          "color": "#fff",
-          "fontSize": 12,
-          "textAlign": "center",
-        }
-      }
-      numberOfRooms={1}
-      personCount={2}
-      price={
-        <Price
-          amount={100}
-          currency="EUR"
-          style={
-            Object {
-              "color": "#fff",
-              "fontSize": 12,
-              "textAlign": "center",
-            }
-          }
-        />
-      }
+    <Translation
+      id="single_hotel.book_now"
     />
-  </Touchable>
-</Component>
+  </Text>
+</Button>
 `;
 
-exports[`renders without crashing with missing data 1`] = `null`;
+exports[`renders without crashing with missing data 1`] = `
+<Button
+  disabled={false}
+  onPress={[Function]}
+>
+  <Text
+    style={
+      Object {
+        "color": "#fff",
+        "fontSize": 16,
+        "fontWeight": "800",
+      }
+    }
+  >
+    <Translation
+      id="single_hotel.book_now"
+    />
+  </Text>
+</Button>
+`;

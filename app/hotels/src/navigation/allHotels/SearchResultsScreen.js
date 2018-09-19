@@ -3,15 +3,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { Translation } from '@kiwicom/mobile-localization';
 import {
   LayoutDoubleColumn,
-  Button,
-  Text,
   StyleSheet,
   AdaptableLayout,
   GestureController,
   TextIcon,
+  CloseButton,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
@@ -102,11 +100,9 @@ class SearchResultsScreen extends React.Component<Props> {
         <SafeAreaView style={[styles.container, styles.safeArea]}>
           <View style={styles.container}>
             <NewAllHotels />
-            <Button onPress={this.onClosePress} style={styles.button}>
-              <Text style={styles.text}>
-                <Translation id="shared.button.close" />
-              </Text>
-            </Button>
+            <View style={styles.button}>
+              <CloseButton onPress={this.onClosePress} />
+            </View>
           </View>
         </SafeAreaView>
       }
@@ -127,11 +123,6 @@ const styles = StyleSheet.create({
     bottom: 8,
     start: 8,
     end: 8,
-    backgroundColor: defaultTokens.paletteCloudNormal,
-  },
-  text: {
-    fontWeight: '800',
-    fontSize: 16,
   },
 });
 

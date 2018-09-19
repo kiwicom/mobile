@@ -8,55 +8,52 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type HotelReviewScore_hotel$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type BookNow_availableRooms$ref: FragmentReference;
-export type BookNow_availableRooms = $ReadOnlyArray<{|
-  +originalId: ?string,
-  +incrementalPrice: ?$ReadOnlyArray<?{|
-    +amount: ?number,
-    +currency: ?string,
-  |}>,
-  +$refType: BookNow_availableRooms$ref,
-|}>;
+declare export opaque type HotelReview$ref: FragmentReference;
+export type HotelReview = {|
+  +review: ?{|
+    +score: ?number,
+    +count: ?number,
+  |},
+  +$fragmentRefs: HotelReviewScore_hotel$ref,
+  +$refType: HotelReview$ref,
+|};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "BookNow_availableRooms",
-  "type": "HotelRoomAvailability",
-  "metadata": {
-    "plural": true
-  },
+  "name": "HotelReview",
+  "type": "Hotel",
+  "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "originalId",
-      "args": null,
-      "storageKey": null
+      "kind": "FragmentSpread",
+      "name": "HotelReviewScore_hotel",
+      "args": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "incrementalPrice",
+      "name": "review",
       "storageKey": null,
       "args": null,
-      "concreteType": "Price",
-      "plural": true,
+      "concreteType": "HotelReview",
+      "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "amount",
+          "name": "score",
           "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "currency",
+          "name": "count",
           "args": null,
           "storageKey": null
         }
@@ -65,5 +62,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '20da5274c235be9074e40e81b1647de0';
+(node/*: any*/).hash = '566d898a8069db61943a8b7e6f753a4e';
 module.exports = node;
