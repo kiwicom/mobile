@@ -6,7 +6,7 @@ The source code can be found in [RNNativePlayground](https://github.com/kiwicom/
 
 Open the project in XCode (use `reactNativeApp.xcworkspace`). Make sure you have `RNNativePlayground` scheme selected before running.
 
-![](../../.docs/assets/open_playground.gif)
+![](../../docs/assets/open_playground.gif)
 
 ### Running from the packager
 
