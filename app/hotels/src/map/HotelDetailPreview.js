@@ -20,7 +20,7 @@ type Props = {|
 |};
 
 const getReview = review => {
-  if (review && review.count != null) {
+  if (review && review.count !=== 0) {
     const reviewScore = review.score || 0;
     const reviewDescription = review.description || '';
     const reviewCount = review.count || 0;

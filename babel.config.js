@@ -1,7 +1,13 @@
 // @flow
 
+/*::
+ type API = {|
+  +cache: boolean => void,
+|};
+*/
+
 // $FlowFixMe
-module.exports = api => {
+module.exports = (api /* :API */) => {
   api.cache(false);
 
   const presets = [

@@ -28,7 +28,7 @@ type BookingTypes = {|
 
 export default class Flight extends React.Component<Props> {
   renderInner = (renderProps: FlightQueryResponse) => {
-    const isPastBooking = idx(renderProps.singleBooking, _ => _.isPastBooking);
+    const isPastBooking = idx(renderProps.singleBooking, _ => _.isPastBooking) || '';
     const type = idx(renderProps.singleBooking, _ => _.__typename) || '';
     const types: BookingTypes = {
       BookingOneWay: <OneWayFlight booking={renderProps.singleBooking} />,
@@ -42,7 +42,7 @@ export default class Flight extends React.Component<Props> {
           title={
             <Translation
               id={
-                isPastBooking != null
+                isPastBooking
                   ? 'mmb.my_bookings.past_trips'
                   : 'mmb.my_bookings.future_trips'
               }
