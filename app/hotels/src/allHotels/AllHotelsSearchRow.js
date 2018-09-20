@@ -4,19 +4,25 @@ import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { NetworkImage, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
+import {
+  NetworkImage,
+  StyleSheet,
+  Touchable,
+  AdaptableLayout,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from './HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
+import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
 
-type Props = {|
-  +openSingleHotel: (id: string) => void,
-  +data: AllHotelsSearchRowProps,
+type PropsWithContext = {|
+  ...Props,
+  +setHotelId: (hotelId: string) => void,
 |};
 
-class AllHotelsSearchRow extends React.Component<Props> {
+class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   onGoToSingleHotel = () => {
     const hotelId = idx(this.props, _ => _.data.hotel.id);
     if (hotelId) {
@@ -24,41 +30,74 @@ class AllHotelsSearchRow extends React.Component<Props> {
     }
   };
 
+  setActiveHotelId = () => {
+    const hotelId = idx(this.props, _ => _.data.hotel.id) || '';
+    this.props.setHotelId(hotelId);
+  };
+
   render = () => {
     const lowResUrl = idx(this.props.data, _ => _.hotel.mainPhoto.lowResUrl);
-
-    return (
-      <Touchable
-        onPress={this.onGoToSingleHotel}
-        style={style.container}
-        delayPressIn={100}
-      >
-        <View style={style.row}>
-          <View style={style.imageContainer}>
-            <NetworkImage
-              style={style.image}
-              resizeMode="cover"
-              source={{ uri: lowResUrl }}
-            />
-          </View>
-          <View style={style.content}>
-            <View style={style.hotelTitleWrapper}>
-              <View style={style.hotelTitle}>
-                <HotelTitle data={this.props.data} />
-              </View>
-              <View style={style.hotelReviewScore}>
-                <HotelReviewScore hotel={idx(this.props.data, _ => _.hotel)} />
-              </View>
+    const children = (
+      <View style={style.row}>
+        <View style={style.imageContainer}>
+          <NetworkImage
+            style={style.image}
+            resizeMode="cover"
+            source={{ uri: lowResUrl }}
+          />
+        </View>
+        <View style={style.content}>
+          <View style={style.hotelTitleWrapper}>
+            <View style={style.hotelTitle}>
+              <HotelTitle data={this.props.data} />
+            </View>
+            <View style={style.hotelReviewScore}>
+              <HotelReviewScore hotel={idx(this.props.data, _ => _.hotel)} />
             </View>
           </View>
         </View>
-      </Touchable>
+      </View>
+    );
+    return (
+      <AdaptableLayout
+        renderOnNarrow={
+          <Touchable
+            onPress={this.onGoToSingleHotel}
+            style={style.container}
+            delayPressIn={100}
+          >
+            {children}
+          </Touchable>
+        }
+        renderOnWide={
+          <Touchable
+            onPress={this.setActiveHotelId}
+            style={style.container}
+            delayPressIn={100}
+          >
+            {children}
+          </Touchable>
+        }
+      />
     );
   };
 }
 
+type Props = {|
+  +openSingleHotel: (id: string) => void,
+  +data: AllHotelsSearchRowProps,
+|};
+
+const AllHotelsSearchRowWithContext = (props: Props) => (
+  <SingleHotelContext.Consumer>
+    {({ setHotelId }) => (
+      <AllHotelsSearchRow {...props} setHotelId={setHotelId} />
+    )}
+  </SingleHotelContext.Consumer>
+);
+
 export default createFragmentContainer(
-  AllHotelsSearchRow,
+  AllHotelsSearchRowWithContext,
   graphql`
     fragment AllHotelsSearchRow on HotelAvailability {
       ...HotelTitle
