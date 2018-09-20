@@ -6,7 +6,6 @@
 |};
 */
 
-// $FlowFixMe
 module.exports = (api /* :API */) => {
   api.cache(false);
 
