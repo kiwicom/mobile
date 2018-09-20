@@ -15,7 +15,7 @@ import type { Props } from './DatePickerProps';
 type State = {|
   isPickerOpen: boolean,
   date: Date,
-  previousDate: Date,
+  previousDate: ?Date,
 |};
 
 export default class DatePicker extends React.Component<Props, State> {
