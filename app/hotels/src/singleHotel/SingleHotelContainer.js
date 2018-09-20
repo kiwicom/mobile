@@ -66,6 +66,9 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
       roomsConfiguration,
       hotelId,
     } = this.props;
+    if (hotelId === '') {
+      return null;
+    }
     return (
       <PublicApiRenderer
         query={graphql`

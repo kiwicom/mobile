@@ -10,6 +10,7 @@ const defaultState = {
   checkout: new Date(),
   roomsConfiguration: [],
   bookingComAffiliate: '',
+  setHotelId: () => {},
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
@@ -26,11 +27,12 @@ type Props = {|
 |};
 
 type State = {|
-  +hotelId: string,
+  hotelId: string,
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
   +bookingComAffiliate: string,
+  +setHotelId: (hotelId: string) => void,
 |};
 
 class Provider extends React.Component<Props, State> {
@@ -43,8 +45,13 @@ class Provider extends React.Component<Props, State> {
       checkout: props.checkout,
       roomsConfiguration: props.roomsConfiguration,
       bookingComAffiliate: props.bookingComAffiliate,
+      setHotelId: this.setHotelId,
     };
   }
+
+  setHotelId = (hotelId: string) => {
+    this.setState({ hotelId });
+  };
 
   render = () => (
     <ContextProvider value={this.state}>{this.props.children}</ContextProvider>

@@ -6,9 +6,11 @@ import {
   GeneralError,
   LayoutSingleColumn,
   Logger,
-  AdaptableLayout,
   StyleSheet,
   CloseButton,
+  AdaptableLayout,
+  Dimensions,
+  Device,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -27,10 +29,9 @@ import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInpu
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import countBookingPrice from './bookNow/countBookingPrice';
 
-type Props = {|
-  +availableHotel: HotelDetailScreen_availableHotel,
-  +roomsConfiguration: RoomsConfiguration,
-  +goBack: () => void,
+type PropsWithContext = {|
+  ...Props,
+  +width: number,
 |};
 
 type State = {|
@@ -48,7 +49,10 @@ type NativeEvent = {|
   |},
 |};
 
-export class HotelDetailScreen extends React.Component<Props, State> {
+export class HotelDetailScreen extends React.Component<
+  PropsWithContext,
+  State,
+> {
   state = {
     selected: {},
     maxPersons: 0,
@@ -56,12 +60,12 @@ export class HotelDetailScreen extends React.Component<Props, State> {
 
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS);
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === 'ios' && this.isNarrowLayout()) {
       StatusBar.setBarStyle('light-content');
     }
   };
 
-  shouldComponentUpdate = (nextProps: Props, nextState: State) => {
+  shouldComponentUpdate = (nextProps: PropsWithContext, nextState: State) => {
     const isPropsEqual = isEqual(nextProps, this.props);
     const isStateEqual = isEqual(nextState, this.state);
 
@@ -69,15 +73,22 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   };
 
   componentWillUnmount = () => {
-    if (Platform.OS === 'ios') {
+    if (Platform.OS === 'ios' && this.isNarrowLayout()) {
       StatusBar.setBarStyle('dark-content');
     }
   };
 
+  isNarrowLayout = () => {
+    return this.props.width < Device.DEVICE_THRESHOLD;
+  };
+
   onScroll = (e: NativeEvent) => {
-    if (Platform.OS === 'ios' && e.nativeEvent.contentOffset.y > 180) {
+    const isIOS = Platform.OS === 'ios';
+    const isNarrow = this.isNarrowLayout();
+    const hasScrolledPastImage = e.nativeEvent.contentOffset.y > 180;
+    if (isIOS && isNarrow && hasScrolledPastImage) {
       StatusBar.setBarStyle('dark-content');
-    } else {
+    } else if (isIOS && isNarrow && !hasScrolledPastImage) {
       StatusBar.setBarStyle('light-content');
     }
   };
@@ -153,9 +164,6 @@ export class HotelDetailScreen extends React.Component<Props, State> {
             scrollEventThrottle={500}
           >
             <LayoutSingleColumn>
-              <AdaptableLayout
-                renderOnWide={<View style={styles.marginView} />}
-              />
               <Header hotel={availableHotel.hotel} />
               <HotelInformation hotel={availableHotel.hotel} />
               <RoomList
@@ -174,9 +182,13 @@ export class HotelDetailScreen extends React.Component<Props, State> {
               price={price}
             />
             <View style={styles.row}>
-              <View style={styles.closeWrapper}>
-                <CloseButton onPress={this.props.goBack} />
-              </View>
+              <AdaptableLayout
+                renderOnNarrow={
+                  <View style={styles.closeWrapper}>
+                    <CloseButton onPress={this.props.goBack} />
+                  </View>
+                }
+              />
               {this.state.maxPersons > 0 && (
                 <View style={styles.bookNowWrapper}>
                   <BookNow selected={selected} hotel={availableHotel.hotel} />
@@ -190,8 +202,20 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   }
 }
 
+type Props = {|
+  +availableHotel: HotelDetailScreen_availableHotel,
+  +roomsConfiguration: RoomsConfiguration,
+  +goBack: () => void,
+|};
+
+const HotelDetailScreenWithContext = (props: Props) => (
+  <Dimensions.Consumer>
+    {({ width }) => <HotelDetailScreen {...props} width={width} />}
+  </Dimensions.Consumer>
+);
+
 export default createFragmentContainer(
-  HotelDetailScreen,
+  HotelDetailScreenWithContext,
   graphql`
     fragment HotelDetailScreen_availableHotel on HotelAvailability {
       hotel {
@@ -212,9 +236,6 @@ export default createFragmentContainer(
 );
 
 const styles = StyleSheet.create({
-  marginView: {
-    marginBottom: 15,
-  },
   container: {
     paddingBottom: 64,
   },

@@ -15,13 +15,15 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
-import NewAllHotelsMap from '../../map/allHotels/NewAllHotelsMap';
 import MapHeaderButton from './MapHeaderButton';
 import HotelsNavigationOptions from '../HotelsNavigationOptions';
 import {
   withSearchResultsContext,
   type ResultType,
 } from './SearchResultsContext';
+import SingleHotelContainer from '../../singleHotel/SingleHotelContainer';
+import type { RoomsConfiguration } from '../../singleHotel/AvailableHotelSearchInput';
+import SingleHotelContext from '../singleHotel/SingleHotelContext';
 
 type Props = {|
   +navigation: NavigationType,
@@ -29,10 +31,14 @@ type Props = {|
   +cityName: string,
   +checkin: string,
   +checkout: string,
+  +roomsConfiguration: RoomsConfiguration,
   +lastNavigationMode?: 'present' | 'push',
   +setResultType: (show: ResultType) => void,
   +show: ResultType,
+  +bookingComAffiliate: string,
 |};
+
+const noop = () => {};
 
 class SearchResultsScreen extends React.Component<Props> {
   static navigationOptions = ({
@@ -95,19 +101,27 @@ class SearchResultsScreen extends React.Component<Props> {
   };
 
   render = () => (
-    <LayoutDoubleColumn
-      menuComponent={
-        <SafeAreaView style={[styles.container, styles.safeArea]}>
-          <View style={styles.container}>
-            <NewAllHotels />
-            <View style={styles.button}>
-              <CloseButton onPress={this.onClosePress} />
+    <SingleHotelContext.Provider
+      hotelId={''}
+      checkin={new Date(this.props.checkin)}
+      checkout={new Date(this.props.checkout)}
+      roomsConfiguration={this.props.roomsConfiguration}
+      bookingComAffiliate={this.props.bookingComAffiliate}
+    >
+      <LayoutDoubleColumn
+        menuComponent={
+          <SafeAreaView style={[styles.container, styles.safeArea]}>
+            <View style={styles.container}>
+              <NewAllHotels />
+              <View style={styles.button}>
+                <CloseButton onPress={this.onClosePress} />
+              </View>
             </View>
-          </View>
-        </SafeAreaView>
-      }
-      containerComponent={<NewAllHotelsMap />}
-    />
+          </SafeAreaView>
+        }
+        containerComponent={<SingleHotelContainer goBack={noop} />}
+      />
+    </SingleHotelContext.Provider>
   );
 }
 
