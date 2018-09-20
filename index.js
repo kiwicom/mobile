@@ -13,6 +13,7 @@ YellowBox.ignoreWarnings([
   'Class GenericShare was not exported. Did you forget to use RCT_EXPORT_MODULE()',
   'Class WhatsAppShare was not exported. Did you forget to use RCT_EXPORT_MODULE()',
   'Class GooglePlusShare was not exported. Did you forget to use RCT_EXPORT_MODULE()',
+  'Class InstagramShare was not exported. Did you forget to use RCT_EXPORT_MODULE()',
 ]);
 
 import App from './app/App';
