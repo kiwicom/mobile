@@ -14,7 +14,7 @@
     "@kiwicom/react-native-reverse-geocode": "0.0.1",
     "lodash": "^4.17.10",
     "memoize-one": "^4.0.0",
-    "react-native-dash": "^0.0.8",
+    "react-native-dash": "^0.0.9",
     "react-native-share": "^1.0.27"
   },
   "devDependencies": {

@@ -6283,9 +6283,9 @@ react-native-app-registry-components-to-constants@0.0.1:
     constant-case "^2.0.0"
     dedent "^0.7.0"
 
-react-native-dash@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/react-native-dash/-/react-native-dash-0.0.8.tgz#92cd0259255a7e07e1378463cb5656f74b57ea24"
+react-native-dash@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-dash/-/react-native-dash-0.0.9.tgz#a07eb06a360530e42980e9cf90fd7f862705e2f2"
   dependencies:
     prop-types "^15.5.10"
     react-native-measureme "0.0.1"
