@@ -68,6 +68,12 @@ yarn test
 yarn test --watch
 ```
 
+You can also run tests without all the verbose messages produced by console.(log|warn|error) as such:
+
+```
+yarn test --silent
+```
+
 It's good idea to run the whole test-set using this command:
 
 ```
