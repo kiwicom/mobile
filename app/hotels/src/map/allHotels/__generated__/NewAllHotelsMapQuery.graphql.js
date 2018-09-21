@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ed8125b0916897691f44a784026507c8
+ * @relayHash fa830847d67ae156ba7d4f9b684fc0cf
  */
 
 /* eslint-disable */
@@ -152,17 +152,19 @@ fragment HotelDetailPreview_availability on HotelAvailability {
     currency
   }
   hotel {
+    ...HotelReviewScore_hotel
     id
     name
     mainPhoto {
       thumbnailUrl
       id
     }
-    review {
-      score
-      description
-      count
-    }
+  }
+}
+
+fragment HotelReviewScore_hotel on Hotel {
+  review {
+    score
   }
 }
 
@@ -249,7 +251,7 @@ return {
   "operationKind": "query",
   "name": "NewAllHotelsMapQuery",
   "id": null,
-  "text": "query NewAllHotelsMapQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...MapScreen\n}\n\nfragment MapScreen on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        __typename\n      }\n      ...MapView\n      ...HotelSwipeList\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n",
+  "text": "query NewAllHotelsMapQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...MapScreen\n}\n\nfragment MapScreen on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        __typename\n      }\n      ...MapView\n      ...HotelSwipeList\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelReviewScore_hotel\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -398,6 +400,24 @@ return {
                       },
                       v2,
                       {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "review",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "HotelReview",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "score",
+                            "args": null,
+                            "storageKey": null
+                          }
+                        ]
+                      },
+                      {
                         "kind": "ScalarField",
                         "alias": null,
                         "name": "name",
@@ -421,38 +441,6 @@ return {
                             "storageKey": null
                           },
                           v2
-                        ]
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "review",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "HotelReview",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "score",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "description",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "count",
-                            "args": null,
-                            "storageKey": null
-                          }
                         ]
                       },
                       {
