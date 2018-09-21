@@ -4,7 +4,12 @@ import * as React from 'react';
 import { View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { BottomSheet, Device, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  BottomSheet,
+  Device,
+  StyleSheet,
+  type OnLayout,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
@@ -13,20 +18,28 @@ import Address from '../Address';
 import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
 import { openHeight, closedHeight } from '../bottomSheetDimensions';
 import BottomSheetHandle from '../BottomSheetHandle';
+import { HotelPreviewProvider } from '../hotelDetailPreview/HotelDetailPreviewContext';
 
 type Props = {|
-  data: HotelSwipeListData,
-  selectedIndex: number,
-  onSnapToItem: (index: number) => void,
-  onOpenSingleHotel: (hotelId: string) => void,
+  +data: HotelSwipeListData,
+  +selectedIndex: number,
+  +onSnapToItem: (index: number) => void,
+  +onOpenSingleHotel: (hotelId: string) => void,
+|};
+
+type State = {|
+  containerWidth: number,
 |};
 
 const SNAP_WIDTH = 0.8;
-
+const PADDING_HORIZONTAL = 8;
 const CARD_ITEM_WIDTH = Device.DEVICE_THRESHOLD * SNAP_WIDTH;
 
-class HotelSwipeList extends React.Component<Props> {
+class HotelSwipeList extends React.Component<Props, State> {
   carouselRef: React.ElementRef<typeof Carousel>;
+  state = {
+    containerWidth: 0,
+  };
 
   componentDidUpdate = () => {
     if (this.carouselRef) {
@@ -56,40 +69,49 @@ class HotelSwipeList extends React.Component<Props> {
     this.carouselRef = ref;
   };
 
+  onLayout = (e: OnLayout) => {
+    const containerPadding = PADDING_HORIZONTAL * 2;
+    this.setState({
+      containerWidth: e.nativeEvent.layout.width - containerPadding,
+    });
+  };
+
   render = () => {
     const { data, onSnapToItem } = this.props;
 
     return (
-      <View style={styles.container}>
-        <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
-          <BottomSheetHandle />
-          {data.length ? (
-            <React.Fragment>
-              <View style={styles.sliderWrapper}>
-                <Carousel
-                  ref={this.storeRef}
-                  data={data}
-                  renderItem={this.renderItem}
-                  sliderWidth={Device.DEVICE_THRESHOLD}
-                  itemWidth={CARD_ITEM_WIDTH}
-                  inactiveSlideScale={1}
-                  inactiveSlideOpacity={0.5}
-                  decelerationRate="fast"
-                  activeSlideAlignment="start"
-                  containerCustomStyle={styles.slider}
-                  removeClippedSubviews={false}
-                  onSnapToItem={onSnapToItem}
-                  useScrollView={true}
-                />
+      <View style={styles.container} onLayout={this.onLayout}>
+        <HotelPreviewProvider value={this.state}>
+          <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
+            <BottomSheetHandle />
+            {data.length ? (
+              <React.Fragment>
+                <View style={styles.sliderWrapper}>
+                  <Carousel
+                    ref={this.storeRef}
+                    data={data}
+                    renderItem={this.renderItem}
+                    sliderWidth={Device.DEVICE_THRESHOLD}
+                    itemWidth={CARD_ITEM_WIDTH}
+                    inactiveSlideScale={1}
+                    inactiveSlideOpacity={0.5}
+                    decelerationRate="fast"
+                    activeSlideAlignment="start"
+                    containerCustomStyle={styles.slider}
+                    removeClippedSubviews={false}
+                    onSnapToItem={onSnapToItem}
+                    useScrollView={true}
+                  />
+                </View>
+                <Address address={this.getSelectedAddress()} />
+              </React.Fragment>
+            ) : (
+              <View style={styles.noResultsContainer}>
+                <Translation id="hotels.map.no_results" />
               </View>
-              <Address address={this.getSelectedAddress()} />
-            </React.Fragment>
-          ) : (
-            <View style={styles.noResultsContainer}>
-              <Translation id="hotels.map.no_results" />
-            </View>
-          )}
-        </BottomSheet>
+            )}
+          </BottomSheet>
+        </HotelPreviewProvider>
       </View>
     );
   };
@@ -102,8 +124,8 @@ const styles = StyleSheet.create({
   },
   slider: {
     paddingTop: 5,
-    paddingHorizontal: 10,
-    paddingBottom: 10,
+    paddingHorizontal: PADDING_HORIZONTAL,
+    paddingBottom: 8,
   },
   container: {
     position: 'absolute',

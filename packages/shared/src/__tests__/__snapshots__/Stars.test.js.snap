@@ -3,9 +3,12 @@
 exports[`works with failed rating prop 1`] = `
 <Text
   style={
-    Object {
-      "letterSpacing": 2,
-    }
+    Array [
+      Object {
+        "letterSpacing": 2,
+      },
+      undefined,
+    ]
   }
 >
   <Translation
@@ -17,9 +20,12 @@ exports[`works with failed rating prop 1`] = `
 exports[`works with failed rating prop 2`] = `
 <Text
   style={
-    Object {
-      "letterSpacing": 2,
-    }
+    Array [
+      Object {
+        "letterSpacing": 2,
+      },
+      undefined,
+    ]
   }
 >
   <Translation
@@ -31,9 +37,12 @@ exports[`works with failed rating prop 2`] = `
 exports[`works with rating prop 1`] = `
 <Text
   style={
-    Object {
-      "letterSpacing": 2,
-    }
+    Array [
+      Object {
+        "letterSpacing": 2,
+      },
+      undefined,
+    ]
   }
 >
   <Translation
@@ -45,9 +54,12 @@ exports[`works with rating prop 1`] = `
 exports[`works with rating prop 2`] = `
 <Text
   style={
-    Object {
-      "letterSpacing": 2,
-    }
+    Array [
+      Object {
+        "letterSpacing": 2,
+      },
+      undefined,
+    ]
   }
 >
   <Translation
