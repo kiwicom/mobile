@@ -19,11 +19,11 @@ interface RNHotelsModulesInjection {
 
 abstract class RNHotelsActivity(private val rnHotelsModules: RNHotelsModulesInjection) : RNKiwiActivity() {
   override fun getModuleName(): String {
-    return "KiwiHotels"
+    return "NewKiwiHotels"
   }
 
   override fun getJSEntryPoint(): String {
-    return "app/hotels/index"
+    return "app/native"
   }
 
   override fun getPackages(): MutableList<ReactPackage> {

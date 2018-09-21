@@ -4,7 +4,7 @@ import * as React from 'react';
 import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import RNFetchBlob from 'react-native-fetch-blob';
+import RNFetchBlob from 'rn-fetch-blob';
 import { Alert } from '@kiwicom/mobile-localization';
 import { withNavigationFocus } from 'react-navigation';
 

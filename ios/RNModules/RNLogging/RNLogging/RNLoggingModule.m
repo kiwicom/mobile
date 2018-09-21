@@ -38,12 +38,12 @@
     [[self new] setLogger:logger];
 }
 
-- (BOOL)requiresMainQueueSetup {
-    return YES;
-}
-
 // To export a module named RNLoggingModule
 RCT_EXPORT_MODULE();
+
++ (BOOL)requiresMainQueueSetup {
+    return YES;
+}
 
 - (id<RNLogger>)logger {
     if (!_logger) {

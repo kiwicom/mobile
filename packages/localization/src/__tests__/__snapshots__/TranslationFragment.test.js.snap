@@ -2,9 +2,6 @@
 
 exports[`overwrites the previous textTransform property 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -40,9 +37,6 @@ exports[`throws error for undefined children 1`] = `"'TranslationFragment' canno
 exports[`transforms only translations friendly components 1`] = `
 Array [
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -59,9 +53,6 @@ Array [
     THIS IS GOING TO BE UPPERCASED
   </Text>,
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -82,9 +73,6 @@ Array [
 
 exports[`works with conditionals 1`] = `
 <Text
-  accessible={true}
-  allowFontScaling={true}
-  ellipsizeMode="tail"
   style={
     Array [
       Object {
@@ -105,9 +93,6 @@ exports[`works with conditionals 1`] = `
 exports[`works with nested fragments 1`] = `
 Array [
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -124,9 +109,6 @@ Array [
     level aaa.1
   </Text>,
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -143,9 +125,6 @@ Array [
     level bbb.1
   </Text>,
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -162,9 +141,6 @@ Array [
     level bbb.2
   </Text>,
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {
@@ -187,9 +163,6 @@ exports[`works with string as child 1`] = `
 Array [
   "this is a string",
   <Text
-    accessible={true}
-    allowFontScaling={true}
-    ellipsizeMode="tail"
     style={
       Array [
         Object {

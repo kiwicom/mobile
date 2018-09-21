@@ -27,13 +27,16 @@ elif [[ -x "$(command -v brew)" && -s "$(brew --prefix nvm)/nvm.sh" ]]; then
   . "$(brew --prefix nvm)/nvm.sh"
 fi
 
+# Go to the root of the project where Babel configuration is located
+cd "$SRCROOT/.."
+
 # Set up the nodenv node version manager if present
 if [[ -x "$HOME/.nodenv/bin/nodenv" ]]; then
   eval "$("$HOME/.nodenv/bin/nodenv" init -)"
 fi
 
 [ -z "$NODE_BINARY" ] && export NODE_BINARY="node"
-[ -z "$CLI_PATH" ] && export CLI_PATH="$SRCROOT/../node_modules/react-native/local-cli/cli.js"
+[ -z "$CLI_PATH" ] && export CLI_PATH="./node_modules/react-native/local-cli/cli.js"
 [ -z "$BUNDLE_COMMAND" ] && BUNDLE_COMMAND="bundle"
 
 if [[ -z "$BUNDLE_CONFIG" ]]; then

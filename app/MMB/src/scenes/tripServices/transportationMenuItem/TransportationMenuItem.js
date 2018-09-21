@@ -114,8 +114,8 @@ class TransportationMenuItem extends React.Component<Props, State> {
                       _ => _.location.city.name,
                     );
                     return (
-                      cityName &&
-                      currentCityName &&
+                      cityName != null &&
+                      currentCityName != null &&
                       cityName === currentCityName
                     );
                   }).length !== 1

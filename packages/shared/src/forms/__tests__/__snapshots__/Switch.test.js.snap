@@ -2,18 +2,24 @@
 
 exports[`renders with false 1`] = `
 <Switch
-  disabled={false}
-  onTintColor="#00a991"
   onValueChange={[MockFunction]}
+  trackColor={
+    Object {
+      "true": "#00a991",
+    }
+  }
   value={false}
 />
 `;
 
 exports[`renders with true 1`] = `
 <Switch
-  disabled={false}
-  onTintColor="#00a991"
   onValueChange={[MockFunction]}
+  trackColor={
+    Object {
+      "true": "#00a991",
+    }
+  }
   value={true}
 />
 `;

@@ -15,7 +15,7 @@ const PREFIX = 'mobile.';
 
 const { PHRASE_APP_PROJECT_ID, PHRASE_APP_TOKEN } = process.env; // should be added to ~/.bash_profile
 
-const projectId = PHRASE_APP_PROJECT_ID || '###';
+const projectId = PHRASE_APP_PROJECT_ID != null ? PHRASE_APP_PROJECT_ID : '###';
 const translations = getVocabularies(['HotelsVocabulary', 'SharedVocabulary']); // Add packages here, this is so we don't accidently deploy MMB translations yet
 
 const HttpMethod = {
@@ -45,7 +45,9 @@ const _fetch = async (urlPath, parameters, method) => {
       method,
       headers: {
         'User-Agent': 'React Native App',
-        Authorization: `token ${PHRASE_APP_TOKEN || '###'}`,
+        Authorization: `token ${
+          PHRASE_APP_TOKEN != null ? PHRASE_APP_TOKEN : '###'
+        }`,
       },
       body: parameters,
     },

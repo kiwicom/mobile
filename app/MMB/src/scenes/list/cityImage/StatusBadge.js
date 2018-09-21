@@ -15,7 +15,7 @@ type Props = {|
 
 const StatusBadge = (props: Props) => {
   const status = idx(props.data, _ => _.status) || '';
-  const isPastBooking = idx(props.data, _ => _.isPastBooking);
+  const isPastBooking = idx(props.data, _ => _.isPastBooking) || '';
 
   let renderStatus;
   switch (status) {

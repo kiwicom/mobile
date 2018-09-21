@@ -28,11 +28,11 @@
     [[self new] setFormatter:currencyFormatter];
 }
 
-- (BOOL)requiresMainQueueSetup {
+RCT_EXPORT_MODULE();
+
++ (BOOL)requiresMainQueueSetup {
     return YES;
 }
-
-RCT_EXPORT_MODULE();
 
 - (id<RNCurrencyFormatter>)formatter {
     if (!_formatter) {

@@ -18,16 +18,14 @@ const sharedBlacklist = [
   // /.*\/__tests__\/.*/,
 ];
 
-const config = {
-  getBlacklistRE() {
-    return new RegExp(
+module.exports = {
+  resolver: {
+    blacklistRE: new RegExp(
       '(' +
         sharedBlacklist
           .map(regexp => regexp.source.replace(/\//g, path.sep))
           .join('|') +
         ')$',
-    );
+    ),
   },
 };
-
-module.exports = config;

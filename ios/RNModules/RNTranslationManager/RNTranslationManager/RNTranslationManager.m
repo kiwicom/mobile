@@ -34,11 +34,11 @@
     [[self new] setTranslator:translator];
 }
 
-- (BOOL)requiresMainQueueSetup {
+RCT_EXPORT_MODULE();
+
++ (BOOL)requiresMainQueueSetup {
     return YES;
 }
-
-RCT_EXPORT_MODULE();
 
 - (id<RNTranslator>)translator {
     if (!_translator) {

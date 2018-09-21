@@ -19,6 +19,10 @@ NSString *const RNKiwiCloseModal = @"RNKiwiCloseModal";
 
 RCT_EXPORT_MODULE(RNKiwiGestureController);
 
++ (BOOL)requiresMainQueueSetup {
+  return YES;
+}
+
 RCT_EXPORT_METHOD(disableGestures:(NSString *)moduleName) {
   [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiDisableGestures
                                                       object:nil

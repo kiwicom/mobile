@@ -15,6 +15,7 @@ import type { Props } from './DatePickerProps';
 type State = {|
   isPickerOpen: boolean,
   date: Date,
+  previousDate: ?Date,
 |};
 
 export default class DatePicker extends React.Component<Props, State> {
@@ -24,10 +25,12 @@ export default class DatePicker extends React.Component<Props, State> {
     this.state = {
       isPickerOpen: false,
       date: props.date || DateUtils.getUTCToday(),
+      previousDate: props.date,
     };
   }
 
-  static getDerivedStateFromProps = ({ date }: Props) => ({ date });
+  static getDerivedStateFromProps = (props: Props, state: State) =>
+    props.date !== state.previousDate ? { date: props.date } : null;
 
   static defaultProps = {
     disabled: false,

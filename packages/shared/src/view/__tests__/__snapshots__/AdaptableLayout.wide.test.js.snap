@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders empty element if there is no wide layout 1`] = `
+exports[`renders narrow component if there is no wide one 1`] = `
 <View
   onLayout={[Function]}
   style={

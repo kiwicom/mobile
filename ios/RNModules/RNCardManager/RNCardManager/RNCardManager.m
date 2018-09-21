@@ -39,11 +39,11 @@
     [[self new] setCardSaver:cardSaver];
 }
 
-- (BOOL)requiresMainQueueSetup {
+RCT_EXPORT_MODULE();
+
++ (BOOL)requiresMainQueueSetup {
     return YES;
 }
-
-RCT_EXPORT_MODULE();
 
 - (id<RNCardContainer>)cardSaver {
     if (!_cardSaver) {

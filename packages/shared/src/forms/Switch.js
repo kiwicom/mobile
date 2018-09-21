@@ -14,7 +14,7 @@ export default function Switch(props: Props) {
     <OriginalSwitch
       onValueChange={props.onValueChange}
       value={props.value}
-      onTintColor={defaultTokens.paletteProductNormal}
+      trackColor={{ true: defaultTokens.paletteProductNormal }}
     />
   );
 }
