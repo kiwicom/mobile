@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1328769eb5346ce5ef5fbdae61821a6e
+ * @relayHash 7e293c3b23483bc0afddd287ded5d67e
  */
 
 /* eslint-disable */
@@ -87,16 +87,12 @@ fragment HotelDetailPreview_availability on HotelAvailability {
     currency
   }
   hotel {
+    ...HotelReviewScore_hotel
     id
     name
     mainPhoto {
       thumbnailUrl
       id
-    }
-    review {
-      score
-      description
-      count
     }
   }
 }
@@ -105,6 +101,12 @@ fragment Address_address on Address {
   street
   city
   zip
+}
+
+fragment HotelReviewScore_hotel on Hotel {
+  review {
+    score
+  }
 }
 */
 
@@ -149,7 +151,7 @@ return {
   "operationKind": "query",
   "name": "SingleHotelMapScreenQuery",
   "id": null,
-  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    hotel {\n      ...MapView_hotel\n      id\n    }\n    ...AdditionalInfo\n    id\n  }\n}\n\nfragment MapView_hotel on Hotel {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    address {\n      ...Address_address\n    }\n    id\n  }\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    review {\n      score\n      description\n      count\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    hotel {\n      ...MapView_hotel\n      id\n    }\n    ...AdditionalInfo\n    id\n  }\n}\n\nfragment MapView_hotel on Hotel {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    address {\n      ...Address_address\n    }\n    id\n  }\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelReviewScore_hotel\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -242,6 +244,24 @@ return {
               },
               v2,
               {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "review",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "HotelReview",
+                "plural": false,
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "score",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
+              },
+              {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "name",
@@ -265,38 +285,6 @@ return {
                     "storageKey": null
                   },
                   v2
-                ]
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "review",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "HotelReview",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "score",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "description",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "count",
-                    "args": null,
-                    "storageKey": null
-                  }
                 ]
               },
               {

@@ -19,41 +19,12 @@ type Props = {|
   +availability: ?HotelDetailPreview_availability,
 |};
 
-const getReview = review => {
-  if (review && review.count !== 0) {
-    const reviewScore = review.score || 0;
-    const reviewDescription = review.description || '';
-    const reviewCount = review.count || 0;
-
-    const delimiter =
-      Number.isFinite(review.score) || review.description != null ? ' · ' : '';
-
-    return (
-      <Text style={styles.metainfo}>
-        <Translation passThrough={`${reviewScore} ${reviewDescription}`} />
-        <Translation passThrough={delimiter} />
-        <Translation
-          id="hotels.map.multiple_reviews"
-          values={{ numberOfReviews: reviewCount }}
-        />
-      </Text>
-    );
-  }
-
-  return (
-    <Text style={styles.metainfo}>
-      <Translation id="hotels.map.no_reviews" />
-    </Text>
-  );
-};
-
 export class HotelDetailPreview extends React.Component<Props> {
   render = () => {
     const { availability } = this.props;
     const name = idx(availability, _ => _.hotel.name);
     const price = idx(availability, _ => _.price) || {};
     const image = idx(availability, _ => _.hotel.mainPhoto.thumbnailUrl);
-    const review = idx(availability, _ => _.hotel.review);
 
     return (
       <View style={styles.container}>
@@ -70,7 +41,6 @@ export class HotelDetailPreview extends React.Component<Props> {
           <Text style={styles.hotelName} numberOfLines={1}>
             <Translation passThrough={name} />
           </Text>
-          {getReview(review)}
           {price &&
             price.currency != null &&
             price.amount != null && (
@@ -100,18 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   hotelName: {
-    fontSize: 16,
-    color: defaultTokens.colorTextAttention,
-    android: {
-      lineHeight: 17,
-    },
-  },
-  metainfo: {
-    color: defaultTokens.colorTextSecondary,
-    fontSize: 12,
-    android: {
-      lineHeight: 13,
-    },
+    fontWeight: '500',
   },
   price: {
     color: defaultTokens.paletteProductNormal,
@@ -132,15 +91,11 @@ export default (createFragmentContainer(
         currency
       }
       hotel {
+        ...HotelReviewScore_hotel
         id
         name
         mainPhoto {
           thumbnailUrl
-        }
-        review {
-          score
-          description
-          count
         }
       }
     }

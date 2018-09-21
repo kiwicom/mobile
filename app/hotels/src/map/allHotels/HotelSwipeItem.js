@@ -6,7 +6,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import idx from 'idx';
 import { TouchableWithoutFeedback } from '@kiwicom/mobile-shared';
 
-import HotelDetailPreview from '../HotelDetailPreview';
+import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
 import type { HotelSwipeItem as HotelSwipeItemData } from './__generated__/HotelSwipeItem.graphql';
 
 type ContainerProps = {|
