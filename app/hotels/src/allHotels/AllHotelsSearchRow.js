@@ -25,7 +25,7 @@ type PropsWithContext = {|
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   onGoToSingleHotel = () => {
     const hotelId = idx(this.props, _ => _.data.hotel.id);
-    if (hotelId) {
+    if (hotelId != null) {
       this.props.openSingleHotel(hotelId);
     }
   };

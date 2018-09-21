@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`passes props to the original Image component 1`] = `
-<Image
+<Component
   resizeMode="cover"
   source={
     Object {

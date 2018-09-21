@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1`] = `
-<ActivityIndicator
+<Component
   animating={true}
   color="#00a991"
   hidesWhenStopped={true}

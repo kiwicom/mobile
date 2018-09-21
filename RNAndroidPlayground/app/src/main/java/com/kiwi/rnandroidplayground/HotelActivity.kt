@@ -20,11 +20,19 @@ class HotelsActivity : RNHotelsActivity(HotelsModulesInjection) {
       putString("language", "en")
       putString("currency", "EUR")
       putString("bookingComAffiliate", "")
+      putString("checkin", "2018-12-01")
+      putString("checkout", "2018-12-05")
+      putString("cityName", "Barcelona")
+      putString("cityId", "aG90ZWxDaXR5Oi0zNzI0OTA")
+      putBundle("roomsConfiguration", Bundle()
+              .apply {
+                putInt("adultsCount", 1)
+              })
       putBundle("coordinates", Bundle()
-        .apply {
-          putDouble("latitude", 59.9139)
-          putDouble("longitude", 10.7522)
-        })
+              .apply {
+                putDouble("latitude", 59.9139)
+                putDouble("longitude", 10.7522)
+              })
     }
   }
 }

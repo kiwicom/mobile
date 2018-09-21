@@ -7,11 +7,11 @@
 
 import {
   type ____DangerouslyImpreciseStyleProp_Internal,
-  type DangerouslyImpreciseStyle,
+  type ____DangerouslyImpreciseStyle_Internal,
 } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
 type ReducedDangerouslyImpreciseStyle = $Rest<
-  DangerouslyImpreciseStyle,
+  ____DangerouslyImpreciseStyle_Internal,
   {|
     left: *, // use 'start' instead
     right: *, // use 'end' instead

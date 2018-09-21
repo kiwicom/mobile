@@ -90,34 +90,38 @@ const deployLibrary = (packageName, version) => {
 
 (() => {
   console.log(`Start building Android SNAPSHOT(s)...`);
+  const reactNativeVersion = getDependencyVersion('react-native');
+
   Promise.all([
-    deployDependency(
-      'react-native',
-      FACEBOOK_URL,
-      getDependencyVersion('react-native'),
-    ),
+    deployDependency('react-native', FACEBOOK_URL, reactNativeVersion),
     deployDependency(
       'react-native-maps',
       SKYPICKER_URL,
-      `${getDependencyVersion('react-native-maps')}`,
+      `${getDependencyVersion(
+        'react-native-maps',
+      )}.react-native.${reactNativeVersion}`,
       '-SNAPSHOT',
     ),
     deployDependency(
       'react-native-vector-icons',
       SKYPICKER_URL,
-      `${getDependencyVersion('react-native-vector-icons')}`,
+      `${getDependencyVersion(
+        'react-native-vector-icons',
+      )}.react-native.${reactNativeVersion}`,
       '-SNAPSHOT',
     ),
     deployDependency(
       'react-native-tooltips',
       SKYPICKER_URL,
-      `${getDependencyVersion('react-native-tooltips')}`,
+      `${getDependencyVersion(
+        'react-native-tooltips',
+      )}.react-native.${reactNativeVersion}`,
       '-SNAPSHOT',
     ),
     deployDependency(
       'react-native-native-modules',
       SKYPICKER_URL,
-      `${rnModulesVersion}`,
+      `${rnModulesVersion}.react-native.${reactNativeVersion}`,
       '-SNAPSHOT',
     ),
   ])

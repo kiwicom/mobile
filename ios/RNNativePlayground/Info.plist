@@ -49,6 +49,7 @@
 		<string>spfont.ttf</string>
 		<string>Roboto-Regular.ttf</string>
 		<string>CircularPro-Book.otf</string>
+		<string>orbit-icons.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
