@@ -45,40 +45,6 @@
   _activeVc = vc;
 }
 
-- (IBAction)pushOldHotelsView:(id)sender {
-  RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
-                                                        initialProperties:@{
-                                                          @"coordinates": @{
-                                                             @"latitude" : @59.9139,
-                                                             @"longitude": @10.7522
-                                                             },
-                                                          @"language": @"en",
-                                                          @"currency": @"EUR",
-                                                          @"lastNavigationMode": @"push",
-                                                          @"dimensions": [self windowDimensions]
-                                                        }];
-  
-  [self setActiveViewController:vc];
-  [[self navigationController] pushViewController:vc animated:YES];
-}
-
-- (IBAction)presentOldHotelsView:(id)sender {
-    RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
-                                                          initialProperties:@{
-                                                            @"coordinates": @{
-                                                                @"latitude" : @59.9139,
-                                                                @"longitude": @10.7522
-                                                                },
-                                                            @"language": @"en",
-                                                            @"currency": @"EUR",
-                                                            @"lastNavigationMode": @"push",
-                                                            @"dimensions": [self windowDimensions]
-                                                          }];
-  
-    [self setActiveViewController:vc];
-    [[self navigationController] presentViewController:vc animated:YES completion:nil];
-}
-
 - (IBAction)presentNewHotelsView:(id)sender {
     RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
                                                           initialProperties:@{
