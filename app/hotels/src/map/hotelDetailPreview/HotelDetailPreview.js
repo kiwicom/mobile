@@ -2,13 +2,21 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, NetworkImage, Price, Text } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  NetworkImage,
+  Price,
+  Text,
+  Stars,
+} from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
+import { HotelDetailConsumer } from './HotelDetailPreviewContext';
+import HotelReviewScore from '../../components/HotelReviewScore';
 
 type ContainerProps = {|
   +availability: $FlowFixMeProps,
@@ -19,40 +27,48 @@ type Props = {|
   +availability: ?HotelDetailPreview_availability,
 |};
 
-export class HotelDetailPreview extends React.Component<Props> {
-  render = () => {
-    const { availability } = this.props;
-    const name = idx(availability, _ => _.hotel.name);
-    const price = idx(availability, _ => _.price) || {};
-    const image = idx(availability, _ => _.hotel.mainPhoto.thumbnailUrl);
+export const HotelDetailPreview = ({ availability }: Props) => {
+  const name = idx(availability, _ => _.hotel.name);
+  const price = idx(availability, _ => _.price) || {};
+  const image = idx(availability, _ => _.hotel.mainPhoto.thumbnailUrl);
 
-    return (
-      <View style={styles.container}>
-        <View>
-          <NetworkImage
-            style={styles.image}
-            source={{
-              uri: image,
-            }}
-            resizeMode="contain"
-          />
+  return (
+    <HotelDetailConsumer>
+      {({ containerWidth }) => (
+        <View style={[styles.container, { width: containerWidth }]}>
+          <View>
+            <NetworkImage
+              style={styles.image}
+              source={{
+                uri: image,
+              }}
+              resizeMode="contain"
+            />
+          </View>
+          <View style={styles.description}>
+            <Text style={styles.hotelName} numberOfLines={1}>
+              <Translation passThrough={name} />
+            </Text>
+            <View style={styles.row}>
+              <Stars
+                rating={idx(availability, _ => _.hotel.rating.stars)}
+                style={styles.stars}
+              />
+              <HotelReviewScore hotel={idx(availability, _ => _.hotel)} />
+            </View>
+            {price &&
+              price.currency != null &&
+              price.amount != null && (
+                <Text style={styles.price}>
+                  <Price currency={price.currency} amount={price.amount} />
+                </Text>
+              )}
+          </View>
         </View>
-        <View style={styles.description}>
-          <Text style={styles.hotelName} numberOfLines={1}>
-            <Translation passThrough={name} />
-          </Text>
-          {price &&
-            price.currency != null &&
-            price.amount != null && (
-              <Text style={styles.price}>
-                <Price currency={price.currency} amount={price.amount} />
-              </Text>
-            )}
-        </View>
-      </View>
-    );
-  };
-}
+      )}
+    </HotelDetailConsumer>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -80,6 +96,14 @@ const styles = StyleSheet.create({
       lineHeight: 13,
     },
   },
+  stars: {
+    color: defaultTokens.paletteInkLight,
+  },
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 
 export default (createFragmentContainer(
@@ -96,6 +120,9 @@ export default (createFragmentContainer(
         name
         mainPhoto {
           thumbnailUrl
+        }
+        rating {
+          stars
         }
       }
     }
