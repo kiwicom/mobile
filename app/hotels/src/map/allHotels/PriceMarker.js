@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   price: {
     color: defaultTokens.paletteInkDark,
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: 'bold',
   },
   arrowBorder: {
@@ -88,12 +88,12 @@ const styles = StyleSheet.create({
 
 const selectedStyles = StyleSheet.create({
   bubble: {
-    backgroundColor: defaultTokens.paletteProductNormal,
+    backgroundColor: defaultTokens.paletteBlueNormal,
   },
   price: {
     color: defaultTokens.paletteWhite,
   },
   arrow: {
-    borderTopColor: defaultTokens.paletteProductNormal,
+    borderTopColor: defaultTokens.paletteBlueNormal,
   },
 });
