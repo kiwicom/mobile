@@ -19,14 +19,6 @@ type State = {|
   selectedHotelIndex: number,
 |};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-});
-
 class MapScreen extends React.Component<Props, State> {
   state = {
     selectedHotelIndex: 0,
@@ -80,6 +72,15 @@ class MapScreen extends React.Component<Props, State> {
     );
   };
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: 8,
+  },
+});
 
 export default createFragmentContainer(
   MapScreen,

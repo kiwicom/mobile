@@ -3,7 +3,12 @@
 import * as React from 'react';
 import idx from 'idx';
 import { ScrollView } from 'react-native';
-import { Logger, GeneralError, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  Logger,
+  GeneralError,
+  StyleSheet,
+  Device,
+} from '@kiwicom/mobile-shared';
 import {
   createPaginationContainer,
   graphql,
@@ -127,7 +132,7 @@ function AllHotelsSearchListWithContext(props: Props) {
 
 const styles = StyleSheet.create({
   content: {
-    paddingBottom: 44,
+    paddingBottom: Device.isIPhoneX ? 80 : 44,
   },
 });
 

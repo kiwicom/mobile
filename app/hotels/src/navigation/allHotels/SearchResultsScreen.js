@@ -10,9 +10,8 @@ import {
   GestureController,
   TextIcon,
   CloseButton,
+  Device,
 } from '@kiwicom/mobile-shared';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { SafeAreaView } from 'react-navigation';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import MapHeaderButton from './MapHeaderButton';
@@ -110,14 +109,12 @@ class SearchResultsScreen extends React.Component<Props> {
     >
       <LayoutDoubleColumn
         menuComponent={
-          <SafeAreaView style={[styles.container, styles.safeArea]}>
-            <View style={styles.container}>
-              <NewAllHotels />
-              <View style={styles.button}>
-                <CloseButton onPress={this.onClosePress} />
-              </View>
+          <View style={styles.container}>
+            <NewAllHotels />
+            <View style={styles.button}>
+              <CloseButton onPress={this.onClosePress} />
             </View>
-          </SafeAreaView>
+          </View>
         }
         containerComponent={<SingleHotelContainer goBack={noop} />}
       />
@@ -126,15 +123,12 @@ class SearchResultsScreen extends React.Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    backgroundColor: defaultTokens.paletteWhite,
-  },
   container: {
     flex: 1,
   },
   button: {
     position: 'absolute',
-    bottom: 8,
+    bottom: Device.isIPhoneX ? 36 : 8,
     start: 8,
     end: 8,
   },
