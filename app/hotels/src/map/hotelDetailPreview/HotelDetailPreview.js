@@ -18,12 +18,7 @@ import type { HotelDetailPreview_availability } from './__generated__/HotelDetai
 import { HotelDetailConsumer } from './HotelDetailPreviewContext';
 import HotelReviewScore from '../../components/HotelReviewScore';
 
-type ContainerProps = {|
-  +availability: $FlowFixMeProps,
-|};
-
 type Props = {|
-  ...ContainerProps,
   +availability: ?HotelDetailPreview_availability,
 |};
 
@@ -106,7 +101,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   HotelDetailPreview,
   graphql`
     fragment HotelDetailPreview_availability on HotelAvailability {
@@ -127,4 +122,4 @@ export default (createFragmentContainer(
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
