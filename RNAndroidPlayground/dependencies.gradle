@@ -7,7 +7,7 @@ def rnModulesFile = new File("${projectDir}/../../packages/rnmodules/package.jso
 def rnModulesPackageJson = new JsonSlurper().parseText(rnModulesFile.text)
 
 ext {
-    gradlePluginVersion = "3.0.1"
+    gradlePluginVersion = "3.1.4"
 
     minSdkVersionVar = 16
     compileSdkVersionVar = 27

@@ -4,7 +4,7 @@ import com.kiwi.rnkiwimobile.RNHotelsModulesInjection
 import com.skypicker.reactnative.nativemodules.currency.CurrencyChangeCallback
 import com.skypicker.reactnative.nativemodules.translation.ResourceStringCallback
 
-object HotelsModulesInjection : RNHotelsModulesInjection {
+open class HotelsModulesInjection : RNHotelsModulesInjection {
   override val translationCallback = object: ResourceStringCallback {
     override fun getTranslation(key: String) = key
   }
