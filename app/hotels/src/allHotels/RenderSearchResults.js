@@ -67,6 +67,7 @@ class RenderSearchResults extends React.Component<PropsWithContext> {
       <Animated.View
         style={{
           ...StyleSheet.absoluteFillObject,
+          top: 56,
           transform: [{ translateY: this.listAnimation }],
         }}
       >
@@ -80,6 +81,7 @@ class RenderSearchResults extends React.Component<PropsWithContext> {
           <Animated.View
             style={{
               ...StyleSheet.absoluteFillObject,
+              top: 56,
               transform: [{ translateY: this.mapAnimation }],
             }}
           >
