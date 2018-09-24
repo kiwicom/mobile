@@ -46,6 +46,11 @@
 }
 
 - (IBAction)presentNewHotelsView:(id)sender {
+  NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+  NSString *todayDate = [dateFormatter stringFromDate:[NSDate date]];
+  NSString *tomorrowDate = [dateFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:86400]];
+  
     RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
                                                           initialProperties:@{
                                                             @"bookingComAffiliate": @"123456",
@@ -53,8 +58,8 @@
                                                             @"currency": @"EUR",
                                                             @"lastNavigationMode": @"present",
                                                             @"dimensions": [self windowDimensions],
-                                                            @"checkin": @"2018-09-20",
-                                                            @"checkout": @"2018-09-22",
+                                                            @"checkin": todayDate,
+                                                            @"checkout": tomorrowDate,
                                                             @"version": @"3.7.13-9d55ad66",
                                                             @"cityName": @"Barcelona",
                                                             @"cityId": @"aG90ZWxDaXR5Oi0zNzI0OTA=",
