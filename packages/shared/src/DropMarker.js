@@ -1,15 +1,11 @@
 // @flow strict
 
 import * as React from 'react';
+import { View } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from './PlatformStyleSheet';
-import Icon from './icons/Icon';
-
-type Props = {|
-  +size?: number,
-  +color?: string,
-|};
+import TextIcon from './icons/TextIcon';
 
 /**
  * This drop marker is always pointing to the (0,0) coordinate. It's because
@@ -25,22 +21,70 @@ type Props = {|
  *   |       |
  *   `-------`
  */
-export default function DropMarker({
-  size = 50,
-  color = defaultTokens.paletteProductNormal,
-}: Props) {
-  const styles = createStyles(size);
-  return <Icon name="place" size={size} color={color} style={styles.icon} />;
+export default function DropMarker() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.iconContainer}>
+        <TextIcon code="&#xe085;" orbit={true} style={styles.icon} />
+      </View>
+      <View style={styles.blueArrow} />
+      <View style={styles.whiteArrow} />
+      <View style={styles.arrowBorder} />
+    </View>
+  );
 }
 
-const createStyles = (size: number) =>
-  StyleSheet.create({
-    icon: {
-      ios: {
-        position: 'absolute',
-        left: -size / 2,
-        top: -size,
-      },
-      android: {},
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    height: 24,
+    width: 24,
+    borderRadius: 4,
+    borderColor: defaultTokens.paletteInkLight,
+    borderWidth: 0.5,
+    backgroundColor: defaultTokens.paletteWhite,
+    padding: 2,
+    position: 'absolute',
+    start: -12,
+    top: -24,
+  },
+  iconContainer: {
+    flex: 1,
+    backgroundColor: defaultTokens.paletteBlueNormal,
+    borderRadius: 2,
+  },
+  icon: {
+    color: defaultTokens.paletteWhite,
+    fontSize: 12,
+    padding: 4,
+  },
+  blueArrow: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 8,
+    borderTopColor: defaultTokens.paletteBlueNormal,
+    alignSelf: 'center',
+    zIndex: parseInt(defaultTokens.zIndexModal),
+    bottom: -11,
+    position: 'absolute',
+  },
+  whiteArrow: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 6,
+    borderTopColor: defaultTokens.paletteWhite,
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: -12,
+    zIndex: parseInt(defaultTokens.zIndexDefault),
+  },
+  arrowBorder: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderWidth: 7,
+    borderTopColor: defaultTokens.paletteInkLight,
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: -14,
+    zIndex: 0,
+  },
+});

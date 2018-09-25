@@ -1,31 +1,167 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`calculates the offsets base on icon size 1`] = `
-<Icon
-  color="#00a991"
-  name="place"
-  size={50}
+<Component
   style={
     Object {
-      "left": -25,
+      "backgroundColor": "#fff",
+      "borderColor": "#7f91a8",
+      "borderRadius": 4,
+      "borderWidth": 0.5,
+      "height": 24,
+      "padding": 2,
       "position": "absolute",
-      "top": -50,
+      "start": -12,
+      "top": -24,
+      "width": 24,
     }
   }
-/>
+>
+  <Component
+    style={
+      Object {
+        "backgroundColor": "#0176D2",
+        "borderRadius": 2,
+        "flex": 1,
+      }
+    }
+  >
+    <TextIcon
+      code=""
+      orbit={true}
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 12,
+          "padding": 4,
+        }
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderTopColor": "#0176D2",
+        "borderWidth": 8,
+        "bottom": -11,
+        "position": "absolute",
+        "zIndex": 825,
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderTopColor": "#fff",
+        "borderWidth": 6,
+        "bottom": -12,
+        "position": "absolute",
+        "zIndex": 1,
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderTopColor": "#7f91a8",
+        "borderWidth": 7,
+        "bottom": -14,
+        "position": "absolute",
+        "zIndex": 0,
+      }
+    }
+  />
+</Component>
 `;
 
 exports[`calculates the offsets base on icon size 2`] = `
-<Icon
-  color="#00a991"
-  name="place"
-  size={100}
+<Component
   style={
     Object {
-      "left": -50,
+      "backgroundColor": "#fff",
+      "borderColor": "#7f91a8",
+      "borderRadius": 4,
+      "borderWidth": 0.5,
+      "height": 24,
+      "padding": 2,
       "position": "absolute",
-      "top": -100,
+      "start": -12,
+      "top": -24,
+      "width": 24,
     }
   }
-/>
+>
+  <Component
+    style={
+      Object {
+        "backgroundColor": "#0176D2",
+        "borderRadius": 2,
+        "flex": 1,
+      }
+    }
+  >
+    <TextIcon
+      code=""
+      orbit={true}
+      style={
+        Object {
+          "color": "#fff",
+          "fontSize": 12,
+          "padding": 4,
+        }
+      }
+    />
+  </Component>
+  <Component
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderTopColor": "#0176D2",
+        "borderWidth": 8,
+        "bottom": -11,
+        "position": "absolute",
+        "zIndex": 825,
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderTopColor": "#fff",
+        "borderWidth": 6,
+        "bottom": -12,
+        "position": "absolute",
+        "zIndex": 1,
+      }
+    }
+  />
+  <Component
+    style={
+      Object {
+        "alignSelf": "center",
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderTopColor": "#7f91a8",
+        "borderWidth": 7,
+        "bottom": -14,
+        "position": "absolute",
+        "zIndex": 0,
+      }
+    }
+  />
+</Component>
 `;
