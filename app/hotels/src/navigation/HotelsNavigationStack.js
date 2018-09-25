@@ -55,11 +55,8 @@ export default StackNavigator(
     SingleHotelMap: {
       screen: SingleHotelMapNavigationScreen,
       navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.single_hotel_map" />
-          </HeaderTitle>
-        ),
+        headerLeft: null,
+        ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
     Payment: {

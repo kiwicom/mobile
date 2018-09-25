@@ -37,11 +37,8 @@ export default StackNavigator(
     SingleHotelMap: {
       screen: SingleHotelMapNavigationScreen,
       navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.single_hotel_map" />
-          </HeaderTitle>
-        ),
+        headerLeft: null,
+        ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
     GalleryGrid: {
@@ -50,7 +47,6 @@ export default StackNavigator(
     Payment: {
       screen: withMappedProps(PaymentScreen),
       navigationOptions: {
-        mode: 'modal',
         headerTitle: (
           <HeaderTitle>
             <Translation id="hotels.navigation.title.payment" />
@@ -62,5 +58,6 @@ export default StackNavigator(
   {
     ...StackNavigatorOptions,
     initialRouteName: 'SingleHotel',
+    mode: 'modal',
   },
 );
