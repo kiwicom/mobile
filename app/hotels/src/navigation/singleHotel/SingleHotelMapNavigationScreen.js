@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { StatusBar } from 'react-native';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
@@ -12,6 +13,14 @@ type Props = {
 };
 
 class SingleHotelMapNavigationScreen extends React.Component<Props> {
+  componentDidMount = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  componentWillUnmount = () => {
+    StatusBar.setBarStyle('default');
+  };
+
   render() {
     return (
       <SingleHotelMap

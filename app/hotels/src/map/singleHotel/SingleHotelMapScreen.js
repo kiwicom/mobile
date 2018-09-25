@@ -4,7 +4,11 @@ import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, CloseButton, Device } from '@kiwicom/mobile-shared';
+import {
+  withNavigation,
+  type NavigationType,
+} from '@kiwicom/mobile-navigation';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import MapView from './MapView';
@@ -12,27 +16,25 @@ import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHo
 import { sanitizeDate } from '../../GraphQLSanitizers';
 import AdditionalInfo from './AdditionalInfo';
 
-type ContainerProps = {|
-  currency: string,
-  search: AvailableHotelSearchInput,
+type Props = {|
+  +currency: string,
+  +search: AvailableHotelSearchInput,
+  +navigation: NavigationType,
 |};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-});
-
-export default class SingleHotelMapScreen extends React.Component<
-  ContainerProps,
-> {
+class SingleHotelMapScreen extends React.Component<Props> {
+  goBack = () => {
+    this.props.navigation.goBack(null);
+  };
   renderInnerComponent = ({
     availableHotel,
   }: SingleHotelMapScreenQueryResponse) => (
     <View style={styles.container}>
       <MapView hotel={idx(availableHotel, _ => _.hotel)} />
       <AdditionalInfo data={availableHotel} />
+      <View style={styles.button}>
+        <CloseButton onPress={this.goBack} />
+      </View>
     </View>
   );
 
@@ -66,3 +68,18 @@ export default class SingleHotelMapScreen extends React.Component<
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  button: {
+    position: 'absolute',
+    bottom: Device.isIPhoneX ? 36 : 8,
+    start: 8,
+    end: 8,
+  },
+});
+
+export default withNavigation(SingleHotelMapScreen);
