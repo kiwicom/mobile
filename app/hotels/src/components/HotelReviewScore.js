@@ -13,25 +13,6 @@ type Props = {|
   +hotel: HotelReviewScore_hotel,
 |};
 
-const style = StyleSheet.create({
-  adaptableBadge: {
-    android: {
-      paddingHorizontal: 8,
-    },
-    ios: {
-      paddingHorizontal: 10,
-    },
-  },
-  adaptableBadgeText: {
-    android: {
-      fontWeight: 'bold',
-    },
-    ios: {
-      fontWeight: '600',
-    },
-  },
-});
-
 export class HotelReviewScore extends React.Component<Props> {
   /**
    * One decimal point with trailing zero.
@@ -85,6 +66,25 @@ export class HotelReviewScore extends React.Component<Props> {
     );
   };
 }
+
+const style = StyleSheet.create({
+  adaptableBadge: {
+    android: {
+      paddingHorizontal: 8,
+    },
+    ios: {
+      paddingHorizontal: 10,
+    },
+  },
+  adaptableBadgeText: {
+    android: {
+      fontWeight: 'bold',
+    },
+    ios: {
+      fontWeight: '600',
+    },
+  },
+});
 
 export default createFragmentContainer(
   HotelReviewScore,

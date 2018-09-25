@@ -8,7 +8,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 
-import HotelReviewScore from '../../allHotels/HotelReviewScore';
+import HotelReviewScore from '../../components/HotelReviewScore';
 import type { HotelReview as HotelReviewType } from './__generated__/HotelReview.graphql';
 
 type Props = {|

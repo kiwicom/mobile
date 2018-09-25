@@ -8,6 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
+type HotelReviewScore_hotel$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelDetailPreview_availability$ref: FragmentReference;
 export type HotelDetailPreview_availability = {|
@@ -21,11 +22,10 @@ export type HotelDetailPreview_availability = {|
     +mainPhoto: ?{|
       +thumbnailUrl: ?string
     |},
-    +review: ?{|
-      +score: ?number,
-      +description: ?string,
-      +count: ?number,
+    +rating: ?{|
+      +stars: ?number
     |},
+    +$fragmentRefs: HotelReviewScore_hotel$ref,
   |},
   +$refType: HotelDetailPreview_availability$ref,
 |};
@@ -74,6 +74,11 @@ const node/*: ConcreteFragment*/ = {
       "plural": false,
       "selections": [
         {
+          "kind": "FragmentSpread",
+          "name": "HotelReviewScore_hotel",
+          "args": null
+        },
+        {
           "kind": "ScalarField",
           "alias": null,
           "name": "id",
@@ -108,30 +113,16 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "review",
+          "name": "rating",
           "storageKey": null,
           "args": null,
-          "concreteType": "HotelReview",
+          "concreteType": "HotelRating",
           "plural": false,
           "selections": [
             {
               "kind": "ScalarField",
               "alias": null,
-              "name": "score",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "description",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "count",
+              "name": "stars",
               "args": null,
               "storageKey": null
             }
@@ -142,5 +133,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '7f97f501a2c5c8f1394094641853ce5c';
+(node/*: any*/).hash = 'f7e9077bb6cc45f9e9c9cd130eb48d2f';
 module.exports = node;

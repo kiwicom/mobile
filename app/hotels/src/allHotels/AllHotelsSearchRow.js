@@ -13,7 +13,7 @@ import {
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import HotelTitle from './HotelTitle';
-import HotelReviewScore from './HotelReviewScore';
+import HotelReviewScore from '../components/HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
 import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
 
