@@ -8,7 +8,7 @@ import {
   BottomSheet,
   Device,
   StyleSheet,
-  AdaptableLayout,
+  type OnLayout,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
@@ -18,45 +18,28 @@ import Address from '../Address';
 import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
 import { openHeight, closedHeight } from '../bottomSheetDimensions';
 import BottomSheetHandle from '../BottomSheetHandle';
+import { HotelPreviewProvider } from '../hotelDetailPreview/HotelDetailPreviewContext';
 
 type Props = {|
-  data: HotelSwipeListData,
-  selectedIndex: number,
-  onSnapToItem: (index: number) => void,
-  onOpenSingleHotel: (hotelId: string) => void,
+  +data: HotelSwipeListData,
+  +selectedIndex: number,
+  +onSnapToItem: (index: number) => void,
+  +onOpenSingleHotel: (hotelId: string) => void,
 |};
 
 type State = {|
-  screenWidth: number,
+  containerWidth: number,
 |};
 
 const SNAP_WIDTH = 0.8;
-
-const styles = StyleSheet.create({
-  sliderWrapper: {
-    height: closedHeight,
-  },
-  slider: {
-    paddingTop: 5,
-    paddingHorizontal: 10,
-    paddingBottom: 10,
-  },
-  fullWidth: {
-    width: '100%',
-  },
-  wide: {
-    maxWidth: Device.DEVICE_THRESHOLD,
-  },
-  noResultsContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-  },
-});
-
+const PADDING_HORIZONTAL = 8;
 const CARD_ITEM_WIDTH = Device.DEVICE_THRESHOLD * SNAP_WIDTH;
 
 class HotelSwipeList extends React.Component<Props, State> {
   carouselRef: React.ElementRef<typeof Carousel>;
+  state = {
+    containerWidth: 0,
+  };
 
   componentDidUpdate = () => {
     if (this.carouselRef) {
@@ -86,51 +69,75 @@ class HotelSwipeList extends React.Component<Props, State> {
     this.carouselRef = ref;
   };
 
+  onLayout = (e: OnLayout) => {
+    const containerPadding = PADDING_HORIZONTAL * 2;
+    this.setState({
+      containerWidth: e.nativeEvent.layout.width - containerPadding,
+    });
+  };
+
   render = () => {
     const { data, onSnapToItem } = this.props;
 
-    const child = (
-      <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
-        <BottomSheetHandle />
-        {data.length ? (
-          <React.Fragment>
-            <View style={styles.sliderWrapper}>
-              <Carousel
-                ref={this.storeRef}
-                data={data}
-                renderItem={this.renderItem}
-                sliderWidth={Device.DEVICE_THRESHOLD}
-                itemWidth={CARD_ITEM_WIDTH}
-                inactiveSlideScale={1}
-                inactiveSlideOpacity={0.5}
-                decelerationRate="fast"
-                activeSlideAlignment="start"
-                containerCustomStyle={styles.slider}
-                removeClippedSubviews={false}
-                onSnapToItem={onSnapToItem}
-                useScrollView={true}
-              />
-            </View>
-            <Address address={this.getSelectedAddress()} />
-          </React.Fragment>
-        ) : (
-          <View style={styles.noResultsContainer}>
-            <Translation id="hotels.map.no_results" />
-          </View>
-        )}
-      </BottomSheet>
-    );
-
     return (
-      <AdaptableLayout
-        renderOnWide={
-          <View style={[styles.fullWidth, styles.wide]}>{child}</View>
-        }
-        renderOnNarrow={<View style={styles.fullWidth}>{child}</View>}
-      />
+      <View style={styles.container} onLayout={this.onLayout}>
+        <HotelPreviewProvider value={this.state}>
+          <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
+            <BottomSheetHandle />
+            {data.length ? (
+              <React.Fragment>
+                <View style={styles.sliderWrapper}>
+                  <Carousel
+                    ref={this.storeRef}
+                    data={data}
+                    renderItem={this.renderItem}
+                    sliderWidth={Device.DEVICE_THRESHOLD}
+                    itemWidth={CARD_ITEM_WIDTH}
+                    inactiveSlideScale={1}
+                    inactiveSlideOpacity={0.5}
+                    decelerationRate="fast"
+                    activeSlideAlignment="start"
+                    containerCustomStyle={styles.slider}
+                    removeClippedSubviews={false}
+                    onSnapToItem={onSnapToItem}
+                    useScrollView={true}
+                  />
+                </View>
+                <Address address={this.getSelectedAddress()} />
+              </React.Fragment>
+            ) : (
+              <View style={styles.noResultsContainer}>
+                <Translation id="hotels.map.no_results" />
+              </View>
+            )}
+          </BottomSheet>
+        </HotelPreviewProvider>
+      </View>
     );
   };
 }
+
+const styles = StyleSheet.create({
+  sliderWrapper: {
+    height: closedHeight,
+    borderRadius: 6,
+  },
+  slider: {
+    paddingTop: 5,
+    paddingHorizontal: PADDING_HORIZONTAL,
+    paddingBottom: 8,
+  },
+  container: {
+    position: 'absolute',
+    bottom: Device.isIPhoneX ? 88 : 60,
+    start: 8,
+    end: 8,
+  },
+  noResultsContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+});
 
 export default createFragmentContainer(
   HotelSwipeList,

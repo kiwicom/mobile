@@ -6,6 +6,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from './PlatformStyleSheet';
 import VerticalSwipeResponder from './view/VerticalSwipeResponder';
+import Color from './Color';
 
 type Props = {|
   +children: React.Node,
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: defaultTokens.paletteWhite,
     overflow: 'hidden',
+    borderRadius: 6,
     android: {
       borderTopRightRadius: 3,
       borderTopLeftRadius: 3,
@@ -61,6 +63,15 @@ const styles = StyleSheet.create({
       marginStart: 1,
       marginEnd: 1,
       elevation: 1,
+    },
+    ios: {
+      shadowColor: Color.dark.$10,
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
     },
   },
 });

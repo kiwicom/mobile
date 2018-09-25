@@ -7,7 +7,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import BottomSheet from './BottomSheet';
-import HotelDetailPreview from '../HotelDetailPreview';
+import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
 import Address from '../Address';
 import type { AdditionalInfo as AdditionalInfoData } from './__generated__/AdditionalInfo.graphql';
 import BottomSheetHandle from '../BottomSheetHandle';

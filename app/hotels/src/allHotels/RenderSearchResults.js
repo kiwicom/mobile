@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Animated, View } from 'react-native';
+import { Animated } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, AdaptableLayout } from '@kiwicom/mobile-shared';
 
@@ -63,10 +63,11 @@ class RenderSearchResults extends React.Component<PropsWithContext> {
     }
   };
   render = () => (
-    <View style={styles.container}>
+    <React.Fragment>
       <Animated.View
         style={{
           ...StyleSheet.absoluteFillObject,
+          top: 56,
           transform: [{ translateY: this.listAnimation }],
         }}
       >
@@ -80,7 +81,7 @@ class RenderSearchResults extends React.Component<PropsWithContext> {
           <Animated.View
             style={{
               ...StyleSheet.absoluteFillObject,
-              bottom: 44,
+              top: 56,
               transform: [{ translateY: this.mapAnimation }],
             }}
           >
@@ -91,7 +92,7 @@ class RenderSearchResults extends React.Component<PropsWithContext> {
           </Animated.View>
         }
       />
-    </View>
+    </React.Fragment>
   );
 }
 type Props = {|
@@ -106,12 +107,6 @@ const RenderSearchResultsWithContext = (props: Props) => (
     }}
   </SearchResultsContext.Consumer>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default createFragmentContainer(
   RenderSearchResultsWithContext,
