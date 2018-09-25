@@ -9,7 +9,6 @@ android {
         compileSdkVersion compileSdkVersionVar
         targetSdkVersion targetSdkVersionVar
 
-        buildToolsVersion buildToolsVersionVar
         versionCode 1
         versionName "1.0"
 
@@ -48,7 +47,7 @@ dependencies {
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-vector-icons:$reactNativeVectorIcons-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
-    api "com.trinerdis.skypicker:mapbox-react-native-mapbox-gl:$reactNativeMapbox-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-mapbox-gl:$reactNativeMapbox-SNAPSHOT"
 
     api("com.google.android.gms:play-services-base:$playServicesVersion")
     api("com.google.android.gms:play-services-maps:$playServicesVersion")

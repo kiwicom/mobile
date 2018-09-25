@@ -7,12 +7,11 @@ def rnModulesFile = new File("${projectDir}/../../packages/rnmodules/package.jso
 def rnModulesPackageJson = new JsonSlurper().parseText(rnModulesFile.text)
 
 ext {
-    gradlePluginVersion = "3.0.1"
+    gradlePluginVersion = "3.2.0"
 
     minSdkVersionVar = 16
     compileSdkVersionVar = 27
     targetSdkVersionVar = 27
-    buildToolsVersionVar = "27.0.3"
 
     kotlinVersion = "1.2.31"
 
@@ -27,7 +26,7 @@ ext {
     reactNativeVectorIcons = packageJson['dependencies']['react-native-vector-icons'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '') + ".react-native." + reactNativeVersion
-    reactNativeMapbox = packageJson['dependencies']['mapbox-react-native-mapbox-gl'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeMapbox = packageJson['dependencies']['@mapbox/react-native-mapbox-gl'].replace('^', '') + ".react-native." + reactNativeVersion
 
     reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
 

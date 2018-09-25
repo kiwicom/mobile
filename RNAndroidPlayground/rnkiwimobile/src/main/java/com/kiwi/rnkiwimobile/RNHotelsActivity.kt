@@ -2,6 +2,7 @@ package com.kiwi.rnkiwimobile
 
 import com.airbnb.android.react.maps.MapsPackage
 import com.facebook.react.ReactPackage
+import com.mapbox.rctmgl.RCTMGLPackage
 import com.oblador.vectoricons.VectorIconsPackage
 import com.reactlibrary.RNTooltipsPackage
 import com.skypicker.reactnative.nativemodules.currency.CurrencyChangeCallback
@@ -28,11 +29,13 @@ abstract class RNHotelsActivity(private val rnHotelsModules: RNHotelsModulesInje
 
   override fun getPackages(): MutableList<ReactPackage> {
     return mutableListOf(RNTooltipsPackage(),
-      RNDeviceInfoPackage(),
-      MapsPackage(),
-      RNCurrencyManagerPackage(rnHotelsModules.currencyCallback),
-      RNTranslationManagerPackage(rnHotelsModules.translationCallback),
-      RNLoggingPackage(rnHotelsModules.hasActiveBooking),
-      VectorIconsPackage())
+        RNDeviceInfoPackage(),
+        MapsPackage(),
+        RNCurrencyManagerPackage(rnHotelsModules.currencyCallback),
+        RNTranslationManagerPackage(rnHotelsModules.translationCallback),
+        RNLoggingPackage(rnHotelsModules.hasActiveBooking),
+        VectorIconsPackage(),
+        RCTMGLPackage()
+    )
   }
 }
