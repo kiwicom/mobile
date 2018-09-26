@@ -35,7 +35,9 @@ class EnterDetailsTimelineEvent extends React.Component<Props> {
       <TimelineEvent
         displayTime={false}
         timestamp={almostMidnight}
-        iconVertLines={<TimelineEventIcon icon={<TextIcon code="v" />} />}
+        iconVertLines={
+          <TimelineEventIcon icon={<TextIcon code="v" orbit={true} />} />
+        }
         mainContent={
           <View style={styles.container}>
             <Title>
