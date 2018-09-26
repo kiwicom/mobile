@@ -26,7 +26,7 @@ const CheckedBaggage = (props: Props) => {
   return (
     <BaggageMenuItem
       bagCount={bags.length}
-      icon={<TextIcon code="h" style={styles.icon} />}
+      icon={<TextIcon code="h" style={styles.icon} orbit={true} />}
       value={
         <View>
           <Translation id="mmb.passengers.cabin_bags.checked_baggage" />
@@ -51,6 +51,6 @@ export default createFragmentContainer(
 const styles = StyleSheet.create({
   icon: {
     color: defaultTokens.paletteInkDark,
-    fontSize: 14,
+    fontSize: 16,
   },
 });
