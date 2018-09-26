@@ -40,13 +40,13 @@ const DaySeparator = (props: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 10,
-    paddingBottom: 10,
-    backgroundColor: defaultTokens.paletteCloudLight,
+    paddingVertical: 5,
+    backgroundColor: defaultTokens.paletteCloudNormal,
   },
   date: {
     color: defaultTokens.paletteInkLight,
     fontWeight: 'bold',
+    fontSize: 12,
   },
 });
 

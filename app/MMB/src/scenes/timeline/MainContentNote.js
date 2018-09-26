@@ -20,7 +20,7 @@ export default Note;
 
 const styles = StyleSheet.create({
   note: {
-    fontSize: 13,
+    fontSize: 12,
     color: defaultTokens.paletteInkLight,
   },
 });

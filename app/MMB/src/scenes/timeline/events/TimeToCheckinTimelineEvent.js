@@ -23,7 +23,9 @@ const TimeToCheckinTimelineEvent = (props: Props) => {
     <TimelineEvent
       displayTime={false}
       timestamp={timestamp}
-      iconVertLines={<TimelineEventIcon icon={<TextIcon code="&#xe00f;" />} />}
+      iconVertLines={
+        <TimelineEventIcon icon={<TextIcon code="&#xe00f;" orbit={true} />} />
+      }
       mainContent={
         <View style={styles.container}>
           <Title>
