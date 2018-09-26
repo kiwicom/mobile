@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     color: defaultTokens.colorIconAttention,
     alignSelf: 'center',
     marginEnd: 7,
+    fontSize: 16,
   },
   headerText: {
     color: defaultTokens.colorTextAttention,

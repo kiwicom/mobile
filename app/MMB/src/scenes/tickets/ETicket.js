@@ -44,7 +44,7 @@ class ETicket extends React.Component<Props> {
       <SimpleCard style={styles.card}>
         <View style={styles.header}>
           <TicketHeader
-            icon={<TextIcon code="J" />}
+            icon={<TextIcon code="." orbit={true} />}
             title={<Translation id="mmb.tickets.e_ticket" />}
           />
         </View>

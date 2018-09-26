@@ -56,7 +56,7 @@ export class FlightFromTo extends React.Component<PropsWithContext> {
                 )}
               />
             </Text>
-            <TextIcon code="&#xe099;" style={styles.icon} />
+            <TextIcon code="C" style={styles.icon} orbit={true} />
             <Text style={styles.cityText}>
               <Translation
                 passThrough={idx(
@@ -143,8 +143,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: defaultTokens.colorIconSecondary,
-    fontSize: 8,
-    alignSelf: 'center',
+    fontSize: 18,
     marginHorizontal: 8,
   },
   cityText: {

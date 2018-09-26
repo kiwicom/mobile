@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginEnd: 18,
-    fontSize: 18,
+    fontSize: 24,
   },
   flightItem: {
     marginBottom: 20,

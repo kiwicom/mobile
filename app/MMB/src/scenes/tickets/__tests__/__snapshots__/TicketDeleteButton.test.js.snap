@@ -67,13 +67,15 @@ exports[`TicketDeleteButton renders correctly when booking has local files 1`] =
                 "color": "#00a991",
                 "fontSize": 21,
               },
-              null,
+              Object {
+                "fontFamily": "orbit-icons",
+              },
             ],
           ]
         }
       >
         <Text>
-          O
+          W
         </Text>
       </Text>
     </View>
