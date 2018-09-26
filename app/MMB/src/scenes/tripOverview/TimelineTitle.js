@@ -90,7 +90,7 @@ class TimelineTitle extends React.Component<PropsWithContext> {
             </Text>
             <Translation passThrough=" " />
             {warning != null && (
-              <TextIcon code="4" style={styleSheet.warningStyle} />
+              <TextIcon code="R" orbit={true} style={styleSheet.warningStyle} />
             )}
           </View>
         </Touchable>
@@ -146,6 +146,7 @@ const styleSheet = StyleSheet.create({
     flexDirection: 'row',
   },
   warningStyle: {
+    fontSize: 16,
     color: defaultTokens.paletteRedNormal,
   },
   warningRow: {

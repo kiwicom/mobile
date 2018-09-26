@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
 import MulticityName from './MulticityName';
@@ -15,7 +16,7 @@ type Props = {|
 const MulticityTitle = (props: Props) => (
   <View style={styles.row}>
     <MulticityName data={props.data.departure} />
-    <TextIcon code="o" style={styles.icon} />
+    <TextIcon code="o" orbit={true} style={styles.icon} />
     <MulticityName data={props.data.arrival} />
   </View>
 );
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     marginStart: 8,
     marginEnd: 4,
     paddingTop: 2,
-    fontSize: 14,
+    fontSize: 18,
+    color: defaultTokens.paletteInkNormal,
   },
 });
