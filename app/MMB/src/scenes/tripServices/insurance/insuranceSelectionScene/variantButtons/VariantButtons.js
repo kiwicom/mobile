@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
@@ -47,21 +48,33 @@ class VariantButtons extends React.Component<Props> {
     return (
       <React.Fragment>
         <VariantButton
-          iconComponent={<TextIcon code="'" />}
+          iconComponent={
+            <TextIcon
+              code="'"
+              orbit={true}
+              style={[styles.icon, styles.travelPlus]}
+            />
+          }
           title={<Translation id="mmb.trip_services.insurance.variant.plus" />}
           price={travelPlusPrice}
           isSelected={this.props.selectedVariant === 'TRAVEL_PLUS'}
           onPress={this.selectTravelPlus}
         />
         <VariantButton
-          iconComponent={<TextIcon code="'" />}
+          iconComponent={
+            <TextIcon
+              code="'"
+              orbit={true}
+              style={[styles.icon, styles.travelBasic]}
+            />
+          }
           title={<Translation id="mmb.trip_services.insurance.variant.basic" />}
           price={travelBasicPrice}
           isSelected={this.props.selectedVariant === 'TRAVEL_BASIC'}
           onPress={this.selectTravelBasic}
         />
         <VariantButton
-          iconComponent={<TextIcon code=":" />}
+          iconComponent={<TextIcon code=":" orbit={true} style={styles.icon} />}
           title={<Translation id="mmb.trip_services.insurance.variant.none" />}
           price={nonePrice}
           isSelected={this.props.selectedVariant === 'NONE'}
@@ -71,6 +84,18 @@ class VariantButtons extends React.Component<Props> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    fontSize: 25,
+  },
+  travelPlus: {
+    color: defaultTokens.colorIconWarning,
+  },
+  travelBasic: {
+    color: defaultTokens.colorIconInfo,
+  },
+});
 
 export default createFragmentContainer(
   VariantButtons,

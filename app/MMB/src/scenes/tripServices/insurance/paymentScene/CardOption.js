@@ -20,9 +20,9 @@ type Props = {|
 
 export default function CardOption(props: Props) {
   const leftIconStyle =
-    props.leftIcon.type.displayName === 'Image'
-      ? styles.leftImageStyle
-      : styles.leftIconStyle;
+    props.leftIcon.type.displayName === 'TextIcon'
+      ? styles.leftIconStyle
+      : styles.leftImageStyle;
 
   const leftIcon = React.cloneElement(props.leftIcon, { style: leftIconStyle });
 
@@ -41,7 +41,7 @@ export default function CardOption(props: Props) {
         </View>
 
         {props.isActive && (
-          <TextIcon code="&#xe01e;" style={styles.checkedIcon} />
+          <TextIcon code="V" style={styles.checkedIcon} orbit={true} />
         )}
       </View>
     </TouchableWithoutFeedback>
@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   checkedIcon: {
+    fontSize: 15,
     color: defaultTokens.paletteProductNormal,
   },
   leftIconContainer: {
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     marginEnd: 5,
   },
   leftIconStyle: {
-    fontSize: 10,
+    fontSize: 18,
     color: defaultTokens.paletteInkNormal,
   },
   leftImageStyle: {

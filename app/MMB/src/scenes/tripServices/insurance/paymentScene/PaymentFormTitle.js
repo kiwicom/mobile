@@ -9,8 +9,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 export default function CreditCardNumberInput() {
   return (
     <View style={styles.row}>
-      {/* TODO: change icon to match orbit icon */}
-      <TextIcon code="u" style={styles.icon} />
+      <TextIcon code="u" orbit={true} style={styles.icon} />
       <Text style={styles.text}>
         <Translation passThrough=" " />
         <Translation id="mmb.trip_services.insurance.payment.header" />
