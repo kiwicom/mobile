@@ -26,7 +26,7 @@ export const HotelDetailPreview = ({ availability }: Props) => {
   const name = idx(availability, _ => _.hotel.name);
   const price = idx(availability, _ => _.price) || {};
   const image = idx(availability, _ => _.hotel.mainPhoto.thumbnailUrl);
-
+  const stars = idx(availability, _ => _.hotel.rating.stars) || 0;
   return (
     <HotelDetailConsumer>
       {({ containerWidth }) => (
@@ -45,19 +45,18 @@ export const HotelDetailPreview = ({ availability }: Props) => {
               <Translation passThrough={name} />
             </Text>
             <View style={styles.row}>
-              <Stars
-                rating={idx(availability, _ => _.hotel.rating.stars)}
-                style={styles.stars}
-              />
+              <View>
+                {stars > 0 && <Stars rating={stars} style={styles.stars} />}
+                {price &&
+                  price.currency != null &&
+                  price.amount != null && (
+                    <Text style={styles.price}>
+                      <Price currency={price.currency} amount={price.amount} />
+                    </Text>
+                  )}
+              </View>
               <HotelReviewScore hotel={idx(availability, _ => _.hotel)} />
             </View>
-            {price &&
-              price.currency != null &&
-              price.amount != null && (
-                <Text style={styles.price}>
-                  <Price currency={price.currency} amount={price.amount} />
-                </Text>
-              )}
           </View>
         </View>
       )}
@@ -79,6 +78,7 @@ const styles = StyleSheet.create({
   description: {
     flex: 1,
     justifyContent: 'space-between',
+    alignSelf: 'baseline',
   },
   hotelName: {
     fontWeight: '500',
