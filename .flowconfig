@@ -99,4 +99,4 @@ unsafe-getters-setters
 sketchy-null
 
 [version]
-^0.80.0
+^0.81.0
