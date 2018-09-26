@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: defaultTokens.paletteInkDark,
-    backgroundColor: defaultTokens.paletteCloudNormal,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   sectionText: {
     paddingBottom: 10,
-    color: defaultTokens.paletteCloudNormal,
+    color: defaultTokens.colorTextAttention,
     fontSize: 10,
   },
 });

@@ -26,12 +26,34 @@ describe('calculateColor', () => {
     const ORANGE = defaultTokens.paletteOrangeNormal;
     const GREEN = defaultTokens.paletteGreenNormal;
 
-    expect(HRS.calculateColor(-1)).toBeUndefined();
-    expect(HRS.calculateColor(0)).toBe(RED);
-    expect(HRS.calculateColor(3)).toBe(ORANGE);
-    expect(HRS.calculateColor(7)).toBe(ORANGE);
-    expect(HRS.calculateColor(10)).toBe(GREEN);
-    expect(HRS.calculateColor(11)).toBeUndefined();
+    const RED_BACKGROUND = defaultTokens.paletteRedLight;
+    const ORANGE_BACKGROUND = defaultTokens.paletteOrangeLight;
+    const GREEN_BACKGROUND = defaultTokens.paletteGreenLight;
+
+    expect(HRS.calculateColor(-1)).toEqual({
+      backgroundColor: '',
+      color: '',
+    });
+    expect(HRS.calculateColor(0)).toEqual({
+      backgroundColor: RED_BACKGROUND,
+      color: RED,
+    });
+    expect(HRS.calculateColor(3)).toEqual({
+      backgroundColor: ORANGE_BACKGROUND,
+      color: ORANGE,
+    });
+    expect(HRS.calculateColor(7)).toEqual({
+      backgroundColor: ORANGE_BACKGROUND,
+      color: ORANGE,
+    });
+    expect(HRS.calculateColor(10)).toEqual({
+      backgroundColor: GREEN_BACKGROUND,
+      color: GREEN,
+    });
+    expect(HRS.calculateColor(11)).toEqual({
+      backgroundColor: '',
+      color: '',
+    });
   });
 });
 
