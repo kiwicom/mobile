@@ -18,13 +18,16 @@ export const BoardingPassMultiCity = (props: Props) => {
   const trips = idx(props.data, _ => _.trips) || [];
   return trips.map((trip, index) => {
     const color = Color.tripColorCodes[index] || last(Color.tripColorCodes); // if we have more trips than colors, fallback to last color code
+    const styles = StyleSheet.create({
+      textIcon: {
+        color,
+      },
+    });
     return (
       <FlightSegments
         key={index}
         data={trip}
-        icon={
-          <TextIcon code="&#xe079;" style={[styles.outboundIcon, { color }]} />
-        }
+        icon={<TextIcon code="&#xe103;" style={styles.textIcon} />}
         iconTitle={
           <Translation
             passThrough={idx(trip, _ => _.arrival.airport.city.name)}
@@ -52,9 +55,3 @@ export default createFragmentContainer(
     }
   `,
 );
-
-const styles = StyleSheet.create({
-  outboundIcon: {
-    transform: [{ rotate: '90deg' }],
-  },
-});

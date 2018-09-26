@@ -86,13 +86,12 @@ describe('FlightFromTo', () => {
         <Translation />
       </Text>
       <TextIcon
-        code=""
-        orbit={false}
+        code="C"
+        orbit={true}
         style={
           Object {
-            "alignSelf": "center",
             "color": "#7f91a8",
-            "fontSize": 8,
+            "fontSize": 18,
             "marginHorizontal": 8,
           }
         }
@@ -208,13 +207,12 @@ describe('FlightFromTo', () => {
         <Translation />
       </Text>
       <TextIcon
-        code=""
-        orbit={false}
+        code="C"
+        orbit={true}
         style={
           Object {
-            "alignSelf": "center",
             "color": "#7f91a8",
-            "fontSize": 8,
+            "fontSize": 18,
             "marginHorizontal": 8,
           }
         }

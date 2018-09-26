@@ -18,14 +18,18 @@ export const BoardingPassReturn = (props: Props) => (
   <React.Fragment>
     <FlightSegments
       data={idx(props.data, _ => _.outbound)}
-      icon={<TextIcon code="&#xe079;" style={styles.outboundIcon} />}
+      icon={
+        <TextIcon code="&#xe103;" style={styles.outboundIcon} orbit={true} />
+      }
       iconTitle={
         <Translation id="mmb.boarding_passes.boarding_pass_return.departure" />
       }
     />
     <FlightSegments
       data={idx(props.data, _ => _.inbound)}
-      icon={<TextIcon code="&#xe079;" style={styles.inboundIcon} />}
+      icon={
+        <TextIcon code="&#xe103;" style={styles.inboundIcon} orbit={true} />
+      }
       iconTitle={
         <Translation id="mmb.boarding_passes.boarding_pass_return.return" />
       }
@@ -50,10 +54,9 @@ export default createFragmentContainer(
 const styles = StyleSheet.create({
   outboundIcon: {
     color: defaultTokens.paletteProductNormal,
-    transform: [{ rotate: '90deg' }],
   },
   inboundIcon: {
     color: defaultTokens.paletteOrangeNormal,
-    transform: [{ rotate: '270deg' }],
+    transform: [{ rotate: '180deg' }],
   },
 });

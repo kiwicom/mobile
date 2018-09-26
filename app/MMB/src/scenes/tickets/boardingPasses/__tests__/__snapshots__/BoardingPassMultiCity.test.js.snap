@@ -6,21 +6,12 @@ Array [
     data={1}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#00a991",
-            },
-          ]
+          Object {
+            "color": "#00a991",
+          }
         }
       />
     }
@@ -30,21 +21,12 @@ Array [
     data={2}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#fbad18",
-            },
-          ]
+          Object {
+            "color": "#fbad18",
+          }
         }
       />
     }
@@ -54,21 +36,12 @@ Array [
     data={3}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#d50c6a",
-            },
-          ]
+          Object {
+            "color": "#d50c6a",
+          }
         }
       />
     }
@@ -78,21 +51,12 @@ Array [
     data={4}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#35dc93",
-            },
-          ]
+          Object {
+            "color": "#35dc93",
+          }
         }
       />
     }
@@ -102,21 +66,12 @@ Array [
     data={5}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#ef7209",
-            },
-          ]
+          Object {
+            "color": "#ef7209",
+          }
         }
       />
     }
@@ -126,21 +81,12 @@ Array [
     data={6}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#863ccd",
-            },
-          ]
+          Object {
+            "color": "#863ccd",
+          }
         }
       />
     }
@@ -150,21 +96,12 @@ Array [
     data={7}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#006dc7",
-            },
-          ]
+          Object {
+            "color": "#006dc7",
+          }
         }
       />
     }
@@ -174,21 +111,12 @@ Array [
     data={8}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#4fb52e",
-            },
-          ]
+          Object {
+            "color": "#4fb52e",
+          }
         }
       />
     }
@@ -198,21 +126,12 @@ Array [
     data={9}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#30363d",
-            },
-          ]
+          Object {
+            "color": "#30363d",
+          }
         }
       />
     }
@@ -222,21 +141,12 @@ Array [
     data={10}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#ff80ce",
-            },
-          ]
+          Object {
+            "color": "#ff80ce",
+          }
         }
       />
     }
@@ -246,21 +156,12 @@ Array [
     data={11}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#ff2424",
-            },
-          ]
+          Object {
+            "color": "#ff2424",
+          }
         }
       />
     }
@@ -270,21 +171,12 @@ Array [
     data={12}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#ff2424",
-            },
-          ]
+          Object {
+            "color": "#ff2424",
+          }
         }
       />
     }
@@ -294,21 +186,12 @@ Array [
     data={13}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#ff2424",
-            },
-          ]
+          Object {
+            "color": "#ff2424",
+          }
         }
       />
     }
@@ -318,21 +201,12 @@ Array [
     data={14}
     icon={
       <TextIcon
-        code=""
+        code=""
         orbit={false}
         style={
-          Array [
-            Object {
-              "transform": Array [
-                Object {
-                  "rotate": "90deg",
-                },
-              ],
-            },
-            Object {
-              "color": "#ff2424",
-            },
-          ]
+          Object {
+            "color": "#ff2424",
+          }
         }
       />
     }
