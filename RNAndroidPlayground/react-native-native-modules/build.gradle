@@ -9,7 +9,6 @@ android {
         compileSdkVersion compileSdkVersionVar
         targetSdkVersion targetSdkVersionVar
 
-        buildToolsVersion buildToolsVersionVar
         versionCode 1
         versionName "1.0"
 

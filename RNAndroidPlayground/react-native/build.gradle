@@ -11,7 +11,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "com.android.tools.build:gradle:$gradlePluginVersion"
         // Needed to assemble react-native
         classpath 'de.undercouch:gradle-download-task:3.4.3'
     }
