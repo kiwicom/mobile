@@ -28,7 +28,7 @@ class RNKiwiHost(private val hostApplication: Application, private val jsEntryPo
         .setJSMainModulePath(jsEntryPoint)
         .addPackages(packages)
         .setUseDeveloperSupport(BuildConfig.DEBUG)
-        .setInitialLifecycleState(LifecycleState.BEFORE_CREATE)
+        .setInitialLifecycleState(LifecycleState.BEFORE_RESUME)
         .build()
   }
 }

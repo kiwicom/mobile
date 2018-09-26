@@ -13,8 +13,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.facebook.react.*
+import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactRootView
 import com.facebook.react.devsupport.DoubleTapReloadRecognizer
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.facebook.react.modules.core.PermissionAwareActivity
@@ -32,7 +32,7 @@ abstract class RNKiwiFragment : Fragment(), PermissionAwareActivity {
 
   protected abstract fun getInitialProperties(): Bundle?
 
-  private var mReactRootView: ReactRootView? = null
+  private lateinit var mReactRootView: ReactRootView
 
   private lateinit var nReactNativeHost: ReactNativeHost
 
@@ -51,7 +51,7 @@ abstract class RNKiwiFragment : Fragment(), PermissionAwareActivity {
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-    mReactRootView = ReactRootView(activity) // TODO check context thing here
+    mReactRootView = ReactRootView(activity)
     mReactRootView!!.startReactApplication(
         nReactNativeHost.reactInstanceManager,
         getModuleName(),
@@ -75,22 +75,9 @@ abstract class RNKiwiFragment : Fragment(), PermissionAwareActivity {
 
   override fun onDestroy() {
     super.onDestroy()
-//        if (mReactRootView != null) {
-//            mReactRootView!!.unmountReactApplication()
-//            mReactRootView = null
-//        }
-    // TODO check where to do this
     if (nReactNativeHost.hasInstance()) {
-//            val reactInstanceMgr = nReactNativeHost.reactInstanceManager
-//
-//            // onDestroy may be called on a ReactFragment after another ReactFragment has been
-//            // created and resumed with the same React Instance Manager. Make sure we only clean up
-//            // host's React Instance Manager if no other React Fragment is actively using it.
-//            if (reactInstanceMgr.lifecycleState != LifecycleState.RESUMED) {
-//                reactInstanceMgr.onHostDestroy(activity)
-//                nReactNativeHost.clear()
-//            }
       nReactNativeHost.reactInstanceManager.onHostDestroy(activity!!)
+      mReactRootView.unmountReactApplication()
     }
   }
 

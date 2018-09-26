@@ -1,20 +1,26 @@
 package com.kiwi.rnkiwimobile
 
+import android.annotation.TargetApi
 import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactRootView
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
+import com.facebook.react.modules.core.PermissionAwareActivity
+import com.facebook.react.modules.core.PermissionListener
 
 abstract class RNKiwiActivity :
   Activity(),
-  DefaultHardwareBackBtnHandler {
+  DefaultHardwareBackBtnHandler, PermissionAwareActivity {
 
   // region Private Properties
 
-  private lateinit var reactRootView: ReactRootView
+  private lateinit var mReactRootView: ReactRootView
 
-  private lateinit var reactInstanceManager: ReactInstanceManager
+  private lateinit var mReactInstanceManager: ReactInstanceManager
+
+  private var mPermissionListener: PermissionListener? = null
 
   // endregion
 
@@ -25,7 +31,7 @@ abstract class RNKiwiActivity :
   }
 
   override fun onBackPressed() {
-    reactInstanceManager.onBackPressed()
+    mReactInstanceManager.onBackPressed()
   }
 
   // endregion
@@ -45,26 +51,55 @@ abstract class RNKiwiActivity :
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    reactInstanceManager = getReactNativeInstanceManager()
+    mReactInstanceManager = getReactNativeInstanceManager()
 
-    reactRootView = ReactRootView(this)
-    reactRootView.startReactApplication(reactInstanceManager, getModuleName(), getInitialProperties())
+    mReactRootView = ReactRootView(this)
+    mReactRootView.startReactApplication(mReactInstanceManager, getModuleName(), getInitialProperties())
 
-    setContentView(reactRootView)
+    setContentView(mReactRootView)
   }
 
   override fun onPause() {
     super.onPause()
-    reactInstanceManager.onHostPause(this)
+    mReactInstanceManager.onHostPause(this)
   }
 
   override fun onResume() {
     super.onResume()
-    reactInstanceManager.onHostResume(this, this)
+    mReactInstanceManager.onHostResume(this, this)
   }
 
   override fun onDestroy() {
     super.onDestroy()
-    reactInstanceManager.onHostDestroy(this)
+    mReactInstanceManager.onHostDestroy(this)
+    mReactRootView.unmountReactApplication()
   }
+
+  // endregion
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (mPermissionListener != null && mPermissionListener!!.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
+      mPermissionListener = null
+    }
+  }
+
+  // region PermissionAwareActivity
+
+  override fun checkPermission(permission: String, pid: Int, uid: Int): Int {
+    return checkPermission(permission, pid, uid)
+  }
+
+  @TargetApi(Build.VERSION_CODES.M)
+  override fun checkSelfPermission(permission: String): Int {
+    return checkSelfPermission(permission)
+  }
+
+  @TargetApi(Build.VERSION_CODES.M)
+  override fun requestPermissions(permissions: Array<String>, requestCode: Int, listener: PermissionListener) {
+    mPermissionListener = listener
+    requestPermissions(permissions, requestCode)
+  }
+
+  // endregion
 }

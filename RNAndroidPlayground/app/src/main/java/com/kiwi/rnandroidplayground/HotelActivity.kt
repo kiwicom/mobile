@@ -22,6 +22,7 @@ class HotelsActivity : RNKiwiActivity() {
     return "NewKiwiHotels"
   }
 
+  // TODO extract code repetition and use a POJO for type safety
   override fun getInitialProperties(): Bundle? {
     return Bundle().apply{
       putString("language", "en")
