@@ -12,11 +12,9 @@ export type Props = {|
   +birthday: Date | null,
 |};
 
-const PassengerInfo = ({ title, fullName, birthday }: Props) => (
+const PassengerInfo = ({ fullName, birthday }: Props) => (
   <View style={styles.passenger}>
-    <Text style={styles.passengerText}>
-      <Translation passThrough={`${title}. ${fullName}`} />
-    </Text>
+    <Translation passThrough={fullName} />
     {birthday !== null && (
       <Text style={[styles.passengerText, styles.passengerBirthday]}>
         <Translation
@@ -36,10 +34,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 10,
   },
-  passengerText: {
-    fontSize: 12,
-  },
   passengerBirthday: {
-    color: defaultTokens.colorTextSecondary,
+    color: defaultTokens.paletteInkNormal,
   },
 });
