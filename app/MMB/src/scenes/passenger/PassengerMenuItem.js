@@ -19,7 +19,7 @@ export default function PassengerMenuItem(props: Props) {
     <View style={styleSheet.wrapper}>
       {props.name && (
         <View style={styleSheet.row}>
-          <TextIcon code="w" style={styleSheet.icon} />
+          <TextIcon code="w" style={styleSheet.icon} orbit={true} />
           <Text style={styleSheet.name}>{props.name}</Text>
         </View>
       )}
@@ -46,7 +46,7 @@ const styleSheet = StyleSheet.create({
   },
   icon: {
     color: defaultTokens.colorIconAttention,
-    fontSize: 16,
+    fontSize: 18,
     paddingTop: 2,
     marginEnd: 5,
     alignSelf: 'flex-start',
