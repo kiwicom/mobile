@@ -5,7 +5,9 @@ import {
   Price as OriginalPrice,
   type StylePropType,
   Text,
+  StyleSheet,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type PriceType = {|
@@ -21,7 +23,7 @@ type Props = {|
 
 const Price = (props: Props) => {
   const { price, isSelected, textDisabled } = props;
-  const style = isSelected ? undefined : textDisabled;
+  const style = isSelected ? styles.price : [styles.price, textDisabled];
   if (price === null) {
     return (
       <Text style={style}>
@@ -43,5 +45,12 @@ const Price = (props: Props) => {
     </Text>
   );
 };
+
+const styles = StyleSheet.create({
+  price: {
+    color: defaultTokens.paletteInkNormal,
+    fontSize: 13,
+  },
+});
 
 export default Price;

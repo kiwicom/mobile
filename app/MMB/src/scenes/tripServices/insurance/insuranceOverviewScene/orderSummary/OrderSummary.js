@@ -41,7 +41,11 @@ class OrderSummary extends React.Component<Props, State> {
     return (
       <TouchableWithoutFeedback onPress={this.updateExpanded}>
         <View style={styleSheet.wrapper}>
-          <TextIcon code="l" style={[styleSheet.textIcon, styleExpanded]} />
+          <TextIcon
+            code="&#xe09D;"
+            orbit={true}
+            style={[styleSheet.textIcon, styleExpanded]}
+          />
           {this.state.isExpanded && (
             <React.Fragment>
               <InsuranceRow insuranceType="TRAVEL_PLUS" />

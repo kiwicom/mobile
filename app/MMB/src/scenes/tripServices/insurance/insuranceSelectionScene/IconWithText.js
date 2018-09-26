@@ -15,13 +15,13 @@ type Props = {|
 const IconWithText = (props: Props) => {
   const textStyle = StyleSheet.create({
     text: {
-      fontSize: 12,
+      fontSize: 13,
       color: props.color || defaultTokens.colorTextSecondary,
     },
   });
   return (
     <View style={styles.container}>
-      <TextIcon style={textStyle.text} code={props.textIconCode} />
+      <TextIcon style={textStyle.text} code={props.textIconCode} orbit={true} />
       <Text style={textStyle.text}>
         <Translation passThrough=" " />
         {props.text}
