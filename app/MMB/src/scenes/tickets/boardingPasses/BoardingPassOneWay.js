@@ -17,7 +17,7 @@ type Props = {|
 const BoardingPassOneWay = (props: Props) => (
   <FlightSegments
     data={idx(props.data, _ => _.trip)}
-    icon={<TextIcon code="&#xe079;" style={styles.outboundIcon} />}
+    icon={<TextIcon code="&#xe103;" style={styles.outboundIcon} orbit={true} />}
     iconTitle={
       <Translation id="mmb.boarding_passes.boarding_pass_one_way.departure" />
     }
@@ -38,6 +38,5 @@ export default createFragmentContainer(
 const styles = StyleSheet.create({
   outboundIcon: {
     color: defaultTokens.paletteProductNormal,
-    transform: [{ rotate: '90deg' }],
   },
 });

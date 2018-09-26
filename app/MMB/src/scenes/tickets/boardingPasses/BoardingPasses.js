@@ -20,7 +20,7 @@ const BoardingPasses = (props: Props) => (
   <SimpleCard>
     <View style={styles.header}>
       <TicketHeader
-        icon={<TextIcon code="6" />}
+        icon={<TextIcon code="6" orbit={true} />}
         title={<Translation id="mmb.boarding_passes.boarding_pass" />}
       />
     </View>
