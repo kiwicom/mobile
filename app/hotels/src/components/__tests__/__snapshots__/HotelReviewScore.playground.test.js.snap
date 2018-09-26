@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders with green value 1`] = `
+<AdaptableBadge
+  style={
+    Array [
+      Object {
+        "borderRadius": 3,
+        "paddingHorizontal": 10,
+      },
+      Object {
+        "backgroundColor": "#e7f3e8",
+      },
+    ]
+  }
+  textStyle={
+    Array [
+      Object {
+        "fontWeight": "600",
+      },
+      Object {
+        "color": "#46B655",
+      },
+    ]
+  }
+  translation={
+    <Translation
+      passThrough="9,2"
+    />
+  }
+/>
+`;
+
+exports[`renders with red value 1`] = `
+<AdaptableBadge
+  style={
+    Array [
+      Object {
+        "borderRadius": 3,
+        "paddingHorizontal": 10,
+      },
+      Object {
+        "backgroundColor": "#fae8e8",
+      },
+    ]
+  }
+  textStyle={
+    Array [
+      Object {
+        "fontWeight": "600",
+      },
+      Object {
+        "color": "#d21c1c",
+      },
+    ]
+  }
+  translation={
+    <Translation
+      passThrough="1,2"
+    />
+  }
+/>
+`;
+
+exports[`renders with yellow value 1`] = `
+<AdaptableBadge
+  style={
+    Array [
+      Object {
+        "borderRadius": 3,
+        "paddingHorizontal": 10,
+      },
+      Object {
+        "backgroundColor": "#fcf1cd",
+      },
+    ]
+  }
+  textStyle={
+    Array [
+      Object {
+        "fontWeight": "600",
+      },
+      Object {
+        "color": "#f9971e",
+      },
+    ]
+  }
+  translation={
+    <Translation
+      passThrough="5,8"
+    />
+  }
+/>
+`;

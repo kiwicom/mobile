@@ -13,6 +13,11 @@ type Props = {|
   +hotel: HotelReviewScore_hotel,
 |};
 
+type ColorType = {|
+  +backgroundColor: string,
+  +color: string,
+|};
+
 export class HotelReviewScore extends React.Component<Props> {
   /**
    * One decimal point with trailing zero.
@@ -32,16 +37,29 @@ export class HotelReviewScore extends React.Component<Props> {
    * It doesn't assign color in case of review score out of range.
    * In this case, default color of the badge (grey) is used.
    */
-  calculateColor = (score: number): ?string => {
+  calculateColor = (score: number): ColorType => {
     if (score >= 0 === score < 3) {
-      return defaultTokens.paletteRedNormal;
+      return {
+        backgroundColor: defaultTokens.paletteRedLight,
+        color: defaultTokens.paletteRedNormal,
+      };
     }
     if (score >= 3 === score <= 7) {
-      return defaultTokens.paletteOrangeNormal;
+      return {
+        backgroundColor: defaultTokens.paletteOrangeLight,
+        color: defaultTokens.paletteOrangeNormal,
+      };
     }
     if (score > 7 === score <= 10) {
-      return defaultTokens.paletteGreenNormal;
+      return {
+        backgroundColor: defaultTokens.paletteGreenLight,
+        color: defaultTokens.paletteGreenNormal,
+      };
     }
+    return {
+      backgroundColor: '',
+      color: '',
+    };
   };
 
   render = () => {
@@ -49,7 +67,7 @@ export class HotelReviewScore extends React.Component<Props> {
     if (reviewScore === null) {
       return null;
     }
-
+    const { backgroundColor, color } = this.calculateColor(reviewScore);
     return (
       <AdaptableBadge
         translation={
@@ -58,10 +76,15 @@ export class HotelReviewScore extends React.Component<Props> {
         style={[
           style.adaptableBadge,
           {
-            backgroundColor: this.calculateColor(reviewScore),
+            backgroundColor,
           },
         ]}
-        textStyle={style.adaptableBadgeText}
+        textStyle={[
+          style.adaptableBadgeText,
+          {
+            color,
+          },
+        ]}
       />
     );
   };
@@ -69,6 +92,7 @@ export class HotelReviewScore extends React.Component<Props> {
 
 const style = StyleSheet.create({
   adaptableBadge: {
+    borderRadius: 3,
     android: {
       paddingHorizontal: 8,
     },

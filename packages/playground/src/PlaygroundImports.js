@@ -8,6 +8,7 @@ import '../../../app/hotels/src/singleHotel/bookNow/__tests__/BookNow.test.js';
 import '../../../app/hotels/src/gallery/__tests__/PhotosStripeHeader.test.js';
 import '../../../app/hotels/src/filter/stars/__tests__/StarsPopup.test.js';
 import '../../../app/hotels/src/filter/stars/__tests__/StarsFilter.test.js';
+import '../../../app/hotels/src/components/__tests__/HotelReviewScore.playground.test.js';
 import '../../../app/hotels/src/allHotels/__tests__/LoadMoreButton.test.js';
 import '../../../app/MMB/src/scenes/passenger/visa/__tests__/VisaRequired.test.js';
 import '../../../app/MMB/src/scenes/passenger/__tests__/Passenger.test.js';
