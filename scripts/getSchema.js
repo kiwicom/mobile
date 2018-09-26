@@ -5,7 +5,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const {
   buildClientSchema,
-  introspectionQuery,
+  getIntrospectionQuery,
   printSchema,
 } = require('graphql/utilities');
 
@@ -16,7 +16,7 @@ fetch('https://graphql.kiwi.com/', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    query: introspectionQuery,
+    query: getIntrospectionQuery(),
   }),
 })
   .then(res => res.json())
