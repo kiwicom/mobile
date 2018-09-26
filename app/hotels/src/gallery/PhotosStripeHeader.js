@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
     color: defaultTokens.paletteWhite,
-    fontWeight: 'bold',
+    fontSize: 12,
     textShadowOffset: {
       width: 1,
       height: 1,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     textAlign: 'center',
-    color: defaultTokens.paletteCloudLight,
+    color: defaultTokens.paletteInkLighter,
     fontSize: 12,
   },
   voidRight: {
