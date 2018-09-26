@@ -119,6 +119,14 @@ const deployLibrary = (packageName, version) => {
       '-SNAPSHOT',
     ),
     deployDependency(
+      'mapbox-react-native-mapbox-gl',
+      SKYPICKER_URL,
+      `${getDependencyVersion(
+        'mapbox-react-native-mapbox-gl',
+      )}.react-native.${reactNativeVersion}`,
+      '-SNAPSHOT',
+    ),
+    deployDependency(
       'react-native-native-modules',
       SKYPICKER_URL,
       `${rnModulesVersion}.react-native.${reactNativeVersion}`,

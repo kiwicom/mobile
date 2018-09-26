@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import idx from 'idx';
-import NativeMapView from 'react-native-maps';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { DropMarker, StyleSheet } from '@kiwicom/mobile-shared';
+import { Mapbox } from '@kiwicom/mobile-mapbox';
 
 import type { MapView_hotel } from './__generated__/MapView_hotel.graphql';
 
@@ -24,22 +24,26 @@ export class MapView extends React.Component<Props> {
     const longitude = idx(hotel, _ => _.coordinates.lng);
 
     return (
-      <NativeMapView
-        style={StyleSheet.absoluteFillObject}
-        initialRegion={{
-          latitude: latitude,
-          longitude: longitude,
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01,
-        }}
+      <Mapbox.MapView
+        styleURL={Mapbox.StyleURL.Street}
+        zoomLevel={15}
+        centerCoordinate={[longitude, latitude]}
+        style={styles.mapview}
       >
-        <NativeMapView.Marker coordinate={{ latitude, longitude }}>
+        <Mapbox.PointAnnotation
+          id="hotel-marker"
+          coordinate={[longitude, latitude]}
+        >
           <DropMarker size={50} />
-        </NativeMapView.Marker>
-      </NativeMapView>
+        </Mapbox.PointAnnotation>
+      </Mapbox.MapView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  mapview: { flex: 1 },
+});
 
 export default (createFragmentContainer(
   MapView,

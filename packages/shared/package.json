@@ -6,6 +6,7 @@
   "dependencies": {
     "@kiwicom/mobile-accessibility": "^0",
     "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-mapbox": "^0",
     "@ptomasroos/react-native-multi-slider": "^1.0.0",
     "idx": "^2.4.0",
     "querystring": "^0.2.0",
