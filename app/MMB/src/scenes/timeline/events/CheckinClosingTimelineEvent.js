@@ -22,7 +22,9 @@ const CheckinClosingTimelineEvent = (props: Props) => {
   return (
     <TimelineEvent
       timestamp={timestamp}
-      iconVertLines={<TimelineEventIcon icon={<TextIcon code="&#xe00e;" />} />}
+      iconVertLines={
+        <TimelineEventIcon icon={<TextIcon code="&#xe00e;" orbit={true} />} />
+      }
       mainContent={
         <View style={styles.container}>
           <Title>

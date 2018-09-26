@@ -20,7 +20,9 @@ const NavigateToTerminalTimelineEvent = (props: Props) => {
   return (
     <TimelineEvent
       timestamp={timestamp}
-      iconVertLines={<TimelineEventIcon icon={<TextIcon code="&#xe052;" />} />}
+      iconVertLines={
+        <TimelineEventIcon icon={<TextIcon code="&#xe052;" orbit={true} />} />
+      }
       mainContent={
         <Title>
           <Translation id="mmb.booking_timeline.event.navigate_to_terminal.title" />

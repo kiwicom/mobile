@@ -87,7 +87,7 @@ class DownloadInvoiceTimelineEvent extends React.Component<Props> {
         timestamp={timestamp}
         displayTime={false}
         iconVertLines={
-          <TimelineEventIcon icon={<TextIcon code="&#xe011;" />} />
+          <TimelineEventIcon icon={<TextIcon code="." orbit={true} />} />
         }
         mainContent={
           <View style={styles.container}>
