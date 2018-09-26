@@ -29,6 +29,7 @@ module.exports = {
     "prettier/flowtype"
   ],
   rules: {
+    "no-else-return": ERROR,
     "react/no-did-update-set-state": ERROR,
     "prefer-const": ERROR,
     curly: ERROR,
