@@ -51,14 +51,12 @@ export default new class PlaygroundRenderer {
           this.shallowRenderer.render(React.Children.only(component)),
         ).toMatchSnapshot();
       }
+    } else if (this.components.hasOwnProperty(title)) {
+      this.components[title].components.push(component);
     } else {
-      if (this.components.hasOwnProperty(title)) {
-        this.components[title].components.push(component);
-      } else {
-        this.components[title] = {
-          components: [component],
-        };
-      }
+      this.components[title] = {
+        components: [component],
+      };
     }
   }
 }();
