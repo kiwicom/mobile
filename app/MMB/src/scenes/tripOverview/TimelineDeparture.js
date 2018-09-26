@@ -48,7 +48,7 @@ function TimelineDeparture(props: Props) {
       {/* TODO: BUS vs. PLANE */}
       <View style={styleSheet.durationContainer}>
         <View style={styleSheet.iconWrapper}>
-          <TextIcon code="a" style={styleSheet.durationIcon} />
+          <TextIcon code="a" orbit={true} style={styleSheet.durationIcon} />
         </View>
         <Duration
           duration={duration}
@@ -59,24 +59,14 @@ function TimelineDeparture(props: Props) {
       <View style={styleSheet.row}>
         <View style={styleSheet.detailedInfo}>
           <TimelineRow
-            icon={
-              <TextIcon
-                code="a"
-                style={[styleSheet.icon, styleSheet.carrierIcon]}
-              />
-            }
+            icon={<TextIcon code="a" orbit={true} style={styleSheet.icon} />}
             title={<Translation id="mmb.flight_overview.timeline.carrier" />}
             value={<Translation passThrough={` ${airlineName || ''}`} />}
           />
 
           {airlineIata !== operatingAirlineIata && (
             <TimelineRow
-              icon={
-                <TextIcon
-                  code="a"
-                  style={[styleSheet.icon, styleSheet.carrierIcon]}
-                />
-              }
+              icon={<TextIcon code="a" orbit={true} style={styleSheet.icon} />}
               title={
                 <Translation id="mmb.flight_overview.timeline.operating_airline" />
               }
@@ -85,7 +75,7 @@ function TimelineDeparture(props: Props) {
           )}
 
           <TimelineRow
-            icon={<TextIcon code="R" style={styleSheet.icon} />}
+            icon={<TextIcon code="U" orbit={true} style={styleSheet.icon} />}
             title={<Translation id="mmb.flight_overview.timeline.flight_no" />}
             value={
               <Translation
@@ -99,7 +89,9 @@ function TimelineDeparture(props: Props) {
           {manufacturer !== '' &&
             flightModel !== '' && (
               <TimelineRow
-                icon={<TextIcon code="R" style={styleSheet.icon} />}
+                icon={
+                  <TextIcon code="U" orbit={true} style={styleSheet.icon} />
+                }
                 value={
                   <Translation passThrough={`${manufacturer} ${flightModel}`} />
                 }
@@ -108,12 +100,12 @@ function TimelineDeparture(props: Props) {
 
           <TimelineTerminal
             data={props.routeStop}
-            icon={<TextIcon code="*" style={styleSheet.icon} />}
+            icon={<TextIcon code="*" orbit={true} style={styleSheet.icon} />}
           />
 
           <TimelineTerminal
             data={props.arrival}
-            icon={<TextIcon code="%" style={styleSheet.icon} />}
+            icon={<TextIcon code="%" orbit={true} style={styleSheet.icon} />}
           />
         </View>
 
@@ -174,9 +166,6 @@ const styleSheet = StyleSheet.create({
     color: defaultTokens.colorIconSecondary,
     marginEnd: 5,
   },
-  carrierIcon: {
-    transform: [{ rotate: '45deg' }],
-  },
   duration: {
     fontSize: 12,
     color: defaultTokens.colorTextAttention,
@@ -184,17 +173,21 @@ const styleSheet = StyleSheet.create({
   iconWrapper: {
     backgroundColor: defaultTokens.colorIconSecondary,
     position: 'absolute',
-    start: -25,
-    top: 8.5,
+    start: -26,
     zIndex: 1000,
     padding: 2,
+    paddingBottom: 3,
+    paddingEnd: 3,
     borderRadius: 6,
   },
   durationIcon: {
     color: defaultTokens.paletteWhite,
-    transform: [{ rotate: '225deg' }],
+    fontSize: 16,
+    transform: [{ rotate: '180deg' }],
   },
   durationContainer: {
-    paddingVertical: 10,
+    marginVertical: 10,
+    paddingTop: 4,
+    paddingBottom: 2,
   },
 });

@@ -29,7 +29,11 @@ const TripTitle = ({ type, data, index }: PropsWithContext) => {
         </TripTitleText>
       )}
       <View style={styles.durationContainer}>
-        <Duration showIcon={false} duration={idx(data, _ => _.duration)} />
+        <Duration
+          showIcon={false}
+          duration={idx(data, _ => _.duration)}
+          style={styles.durationText}
+        />
       </View>
     </View>
   );
@@ -65,5 +69,8 @@ const styles = StyleSheet.create({
   },
   durationContainer: {
     marginStart: 5,
+  },
+  durationText: {
+    fontSize: 12,
   },
 });

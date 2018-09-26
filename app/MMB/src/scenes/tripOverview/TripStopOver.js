@@ -44,7 +44,11 @@ class TripStopOver extends React.Component<Props> {
 
         {isKiwiGuarantee && (
           <View style={styles.row}>
-            <TextIcon code="h" style={[styles.icon, styles.iconMargin]} />
+            <TextIcon
+              code="h"
+              orbit={true}
+              style={[styles.icon, styles.iconMargin]}
+            />
             <Touchable onPress={this.onPress}>
               <Text style={styles.buttonText}>
                 <Translation id="mmb.trip_overview.trip_stopover.kiwi_guarantee" />
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   icon: {
-    fontSize: 10,
+    fontSize: 12,
     color: defaultTokens.colorIconSecondary,
   },
   iconMargin: {
