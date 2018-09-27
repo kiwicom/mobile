@@ -5,6 +5,7 @@ import android.support.multidex.MultiDexApplication;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactApplication;
+import com.swmansion.rnscreens.RNScreenPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -38,6 +39,7 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
+                    new RNScreenPackage(),
                     new RNSharePackage(),
                     new RCTPdfView(),
                     new RNFetchBlobPackage(),
