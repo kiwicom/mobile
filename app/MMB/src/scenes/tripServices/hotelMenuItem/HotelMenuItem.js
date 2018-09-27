@@ -154,7 +154,7 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
         <MenuItem
           title={<Translation id="mmb.trip_services.local_services.hotel" />}
           onPress={this.menuItemOnPress}
-          icon={<TextIcon code="&#xe03a;" />}
+          icon={<TextIcon code="&#xe085;" orbit={true} />}
         />
       </React.Fragment>
     );

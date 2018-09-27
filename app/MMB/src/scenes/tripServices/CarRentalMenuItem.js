@@ -109,7 +109,7 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
             <Translation id="mmb.trip_services.local_services.car_rental" />
           }
           onPress={this.openPopup}
-          icon={<TextIcon code="&#xe03a;" />}
+          icon={<TextIcon code="&#xe03a;" orbit={true} />}
         />
       </React.Fragment>
     );
