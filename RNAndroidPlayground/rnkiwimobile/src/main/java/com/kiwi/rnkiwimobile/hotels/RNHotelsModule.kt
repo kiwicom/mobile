@@ -12,6 +12,8 @@ import com.skypicker.reactnative.nativemodules.translation.RNTranslationManagerP
 
 object RNHotelsModule {
   const val jsEntryPoint = "app/native"
+  const val moduleName = "NewKiwiHotels"
+
   fun getPackages(hotelModulesInjection: RNHotelsModulesInjection): MutableList<ReactPackage> {
     return mutableListOf(RNTooltipsPackage(),
         RNDeviceInfoPackage(),
