@@ -34,6 +34,6 @@ export default class PositionMarker extends React.Component<Props> {
     const { size, code, color } = this.props;
 
     const styles = this.createStyles(size, color);
-    return <TextIcon code={code || 'B'} style={styles.icon} />;
+    return <TextIcon code={code || '$'} style={styles.icon} orbit={true} />;
   }
 }

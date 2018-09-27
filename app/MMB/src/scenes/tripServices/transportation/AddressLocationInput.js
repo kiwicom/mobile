@@ -18,7 +18,7 @@ export default function AddressLocationInput(props: Props) {
   return (
     <View style={styles.wrapper}>
       <View style={[styles.iconWrapper, styles.inputWrapperStyle]}>
-        <TextIcon code="B" style={styles.icon} />
+        <TextIcon code="$" style={styles.icon} orbit={true} />
         <Text style={styles.text}>
           <Translation id="mmb.trip_services.transportation.address_picker.input.placeholder" />
         </Text>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     borderBottomStartRadius: 6,
   },
   icon: {
-    fontSize: 14,
+    fontSize: 16,
     padding: 10,
     color: defaultTokens.paletteInkLight,
   },
