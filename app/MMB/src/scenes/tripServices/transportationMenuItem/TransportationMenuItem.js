@@ -133,7 +133,7 @@ class TransportationMenuItem extends React.Component<Props, State> {
             <Translation id="mmb.trip_services.local_services.transportation" />
           }
           onPress={this.openPopup}
-          icon={<TextIcon code=";" />}
+          icon={<TextIcon code=";" orbit={true} />}
         />
       </React.Fragment>
     );
