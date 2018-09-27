@@ -54,7 +54,6 @@ end
 target 'reactNativeApp' do
   react_native_pods()
   react_native_modules()
-  common_modules()
   hotels_package_modules()
   mmb_package_modules()
 end
@@ -62,7 +61,6 @@ end
 target 'RNKiwiMobile' do
   react_native_pods()
   react_native_modules()
-  common_modules()
   hotels_package_modules()
 end
 
