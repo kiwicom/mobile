@@ -63,7 +63,7 @@ class CurrentPositionButton extends React.Component<Props, State> {
       <TouchableWithoutFeedback onPress={this.getLocation}>
         <View style={styles.roundButton}>
           <View>
-            <TextIcon code="&quot;" style={styles.icon} />
+            <TextIcon code="&quot;" style={styles.icon} orbit={true} />
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     color: defaultTokens.paletteProductNormal,
-    fontSize: 20,
+    fontSize: 21,
   },
 });
 
