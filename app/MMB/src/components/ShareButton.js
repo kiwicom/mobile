@@ -10,8 +10,8 @@ export default function ShareButton({ onPress }: {| +onPress: () => void |}) {
   return (
     <HeaderButton.Right onPress={onPress}>
       {Platform.select({
-        ios: <TextIcon code="&#xe083;" style={styles.icon} />,
-        android: <TextIcon code="&#xe068;" style={styles.icon} />,
+        ios: <TextIcon code="&#xe163;" style={styles.icon} orbit={true} />,
+        android: <TextIcon code="&#xe068;" style={styles.icon} orbit={true} />,
       })}
     </HeaderButton.Right>
   );
