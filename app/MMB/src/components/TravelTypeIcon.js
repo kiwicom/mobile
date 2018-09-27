@@ -16,11 +16,17 @@ type Props = {|
 export default function TravelTypeIcon(props: Props) {
   switch (props.type) {
     case 'RETURN':
-      return <TextIcon code="s" style={[styles.icon, props.style]} />;
+      return (
+        <TextIcon code="s" style={[styles.icon, props.style]} orbit={true} />
+      );
     case 'ONE_WAY':
-      return <TextIcon code="&#xe0A9;" style={[styles.icon, props.style]} />;
+      return (
+        <TextIcon code="C" style={[styles.icon, props.style]} orbit={true} />
+      );
     case 'MULTICITY':
-      return <TextIcon code={'>'} style={[styles.icon, props.style]} />;
+      return (
+        <TextIcon code={']'} style={[styles.icon, props.style]} orbit={true} />
+      );
     default:
       return null;
   }
