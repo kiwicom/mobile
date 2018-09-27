@@ -21,7 +21,7 @@ export default function MarkerLocationButton(props: Props) {
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={props.onPress}>
         <View style={styles.locationButton}>
-          <TextIcon code="B" style={styles.icon} />
+          <TextIcon code="$" style={styles.icon} orbit={true} />
           <Text
             numberOfLines={1}
             style={
@@ -73,5 +73,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     alignSelf: 'center',
     color: defaultTokens.paletteInkLight,
+    fontSize: 16,
   },
 });
