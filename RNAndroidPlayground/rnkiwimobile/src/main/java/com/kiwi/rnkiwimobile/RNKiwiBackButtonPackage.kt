@@ -1,5 +1,6 @@
 package com.kiwi.rnkiwimobile
 
+import android.app.Activity
 import android.view.View
 import com.facebook.react.ReactPackage
 import com.facebook.react.bridge.NativeModule
@@ -8,7 +9,11 @@ import com.facebook.react.uimanager.ReactShadowNode
 import com.facebook.react.uimanager.ViewManager
 import java.util.*
 
-class RNKiwiBackButtonPackage: ReactPackage {
+interface RNKiwiBackButtonInterface {
+  var currentActivity: Activity
+}
+
+class RNKiwiBackButtonPackage(): ReactPackage {
 
   override fun createNativeModules(reactContext: ReactApplicationContext): MutableList<NativeModule> {
     return Collections.singletonList(RNKiwiBackButtonModule(reactContext))

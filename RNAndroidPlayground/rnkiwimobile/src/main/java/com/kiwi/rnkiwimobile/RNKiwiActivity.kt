@@ -1,25 +1,26 @@
 package com.kiwi.rnkiwimobile
 
+import android.annotation.TargetApi
 import android.app.Activity
+import android.os.Build
 import android.os.Bundle
 import com.facebook.react.ReactInstanceManager
-import com.facebook.react.ReactPackage
 import com.facebook.react.ReactRootView
-import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
-import com.facebook.react.shell.MainReactPackage
-import com.trinerdis.skypicker.nkiwimobile.BuildConfig
+import com.facebook.react.modules.core.PermissionAwareActivity
+import com.facebook.react.modules.core.PermissionListener
 
-
-abstract class RNKiwiActivity :
+abstract class RNKiwiActivity(private val initialProperties: Bundle?) :
   Activity(),
-  DefaultHardwareBackBtnHandler {
+  DefaultHardwareBackBtnHandler, PermissionAwareActivity {
 
   // region Private Properties
 
-  private lateinit var reactRootView: ReactRootView
+  private lateinit var mReactRootView: ReactRootView
 
-  private lateinit var reactInstanceManager: ReactInstanceManager
+  private lateinit var mReactInstanceManager: ReactInstanceManager
+
+  private var mPermissionListener: PermissionListener? = null
 
   // endregion
 
@@ -30,20 +31,16 @@ abstract class RNKiwiActivity :
   }
 
   override fun onBackPressed() {
-    reactInstanceManager.onBackPressed()
+    mReactInstanceManager.onBackPressed()
   }
 
   // endregion
 
   // region Protected Abstract Methods
 
+  protected abstract fun getReactNativeInstanceManager(): ReactInstanceManager
+
   protected abstract fun getModuleName(): String
-
-  protected abstract fun getPackages(): MutableList<ReactPackage>
-
-  protected abstract fun getJSEntryPoint(): String
-
-  protected abstract fun getInitialProperties(): Bundle?
 
   // endregion
 
@@ -52,50 +49,44 @@ abstract class RNKiwiActivity :
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val properties = getInitialProperties()
+    mReactInstanceManager = getReactNativeInstanceManager()
 
-    val packages = mutableListOf(
-      MainReactPackage(),
-      RNKiwiBackButtonPackage())
+    mReactRootView = ReactRootView(this)
+    mReactRootView.startReactApplication(mReactInstanceManager, getModuleName(), initialProperties)
 
-    packages.addAll(getPackages())
-
-    reactInstanceManager = ReactInstanceManager.builder()
-      .setApplication(application)
-      .setBundleAssetName("index.android.bundle")
-      .setJSMainModulePath(getJSEntryPoint())
-      .addPackages(packages)
-      .setUseDeveloperSupport(BuildConfig.DEBUG)
-      .setInitialLifecycleState(LifecycleState.RESUMED)
-      .build()
-
-    reactRootView = ReactRootView(this)
-    reactRootView.startReactApplication(reactInstanceManager, getModuleName(), properties)
-
-    setContentView(reactRootView)
+    setContentView(mReactRootView)
   }
 
   override fun onPause() {
     super.onPause()
-
-    if (reactInstanceManager !== null) {
-      reactInstanceManager.onHostPause(this)
-    }
+    mReactInstanceManager.onHostPause(this)
   }
 
   override fun onResume() {
     super.onResume()
-
-    if (reactInstanceManager !== null) {
-      reactInstanceManager.onHostResume(this, this)
-    }
+    mReactInstanceManager.onHostResume(this, this)
   }
 
   override fun onDestroy() {
     super.onDestroy()
+    mReactInstanceManager.onHostDestroy(this)
+    mReactRootView.unmountReactApplication()
+  }
 
-    if (reactInstanceManager !== null) {
-      reactInstanceManager.onHostDestroy(this)
+  // endregion
+
+  // region PermissionAwareActivity
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    if (mPermissionListener != null && mPermissionListener!!.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
+      mPermissionListener = null
     }
   }
+
+  @TargetApi(Build.VERSION_CODES.M)
+  override fun requestPermissions(permissions: Array<String>, requestCode: Int, listener: PermissionListener) {
+    mPermissionListener = listener
+    requestPermissions(permissions, requestCode)
+  }
+  // endregion
 }
