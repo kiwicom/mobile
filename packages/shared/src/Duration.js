@@ -36,7 +36,11 @@ export default function Duration(props: Props) {
   return (
     <View style={styleSheet.row}>
       {props.showIcon && (
-        <TextIcon code="e" style={[styleSheet.durationText, props.iconStyle]} />
+        <TextIcon
+          code="e"
+          orbit={true}
+          style={[styleSheet.durationIcon, props.iconStyle]}
+        />
       )}
       <Text style={[styleSheet.durationText, props.style]}>
         <Translation passThrough=" " />
@@ -61,6 +65,10 @@ const styleSheet = StyleSheet.create({
   },
   durationText: {
     fontSize: 10,
+    color: defaultTokens.colorTextSecondary,
+  },
+  durationIcon: {
+    fontSize: 13,
     color: defaultTokens.colorTextSecondary,
   },
 });
