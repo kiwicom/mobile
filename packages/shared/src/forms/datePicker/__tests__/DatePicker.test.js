@@ -25,7 +25,7 @@ class PickerWrapper extends React.Component<{}, {| date: Date |}> {
     <DatePicker
       date={this.state.date}
       onDateChange={this.onDateChange}
-      iconComponent={<TextIcon code="&#xe0a2;" />}
+      iconComponent={<TextIcon code="z" orbit={true} />}
       {...this.props}
     />
   );

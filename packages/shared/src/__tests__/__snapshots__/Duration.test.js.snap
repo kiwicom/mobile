@@ -11,12 +11,12 @@ exports[`works with broken input 1`] = `
 >
   <TextIcon
     code="e"
-    orbit={false}
+    orbit={true}
     style={
       Array [
         Object {
           "color": "#7f91a8",
-          "fontSize": 10,
+          "fontSize": 13,
         },
         undefined,
       ]
@@ -66,12 +66,12 @@ exports[`works with broken input 2`] = `
 >
   <TextIcon
     code="e"
-    orbit={false}
+    orbit={true}
     style={
       Array [
         Object {
           "color": "#7f91a8",
-          "fontSize": 10,
+          "fontSize": 13,
         },
         undefined,
       ]
