@@ -1,4 +1,4 @@
-package com.kiwi.rnkiwimobile
+package com.kiwi.rnkiwimobile.hotels
 
 import com.skypicker.reactnative.nativemodules.currency.CurrencyChangeCallback
 import com.skypicker.reactnative.nativemodules.translation.ResourceStringCallback

@@ -2,8 +2,8 @@ package com.kiwi.rnandroidplayground
 
 import android.app.Application
 import com.facebook.react.ReactNativeHost
-import com.kiwi.rnkiwimobile.RNHotelsModule
 import com.kiwi.rnkiwimobile.RNKiwiHost
+import com.kiwi.rnkiwimobile.hotels.RNHotelsModule
 
 class PlaygroundApplication : Application() {
 

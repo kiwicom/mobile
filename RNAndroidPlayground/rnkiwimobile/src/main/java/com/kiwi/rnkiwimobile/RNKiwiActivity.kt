@@ -10,7 +10,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 
-abstract class RNKiwiActivity :
+abstract class RNKiwiActivity(private val initialProperties: Bundle?) :
   Activity(),
   DefaultHardwareBackBtnHandler, PermissionAwareActivity {
 
@@ -42,8 +42,6 @@ abstract class RNKiwiActivity :
 
   protected abstract fun getModuleName(): String
 
-  protected abstract fun getInitialProperties(): Bundle?
-
   // endregion
 
   // region Activity
@@ -54,7 +52,7 @@ abstract class RNKiwiActivity :
     mReactInstanceManager = getReactNativeInstanceManager()
 
     mReactRootView = ReactRootView(this)
-    mReactRootView.startReactApplication(mReactInstanceManager, getModuleName(), getInitialProperties())
+    mReactRootView.startReactApplication(mReactInstanceManager, getModuleName(), initialProperties)
 
     setContentView(mReactRootView)
   }
@@ -77,6 +75,7 @@ abstract class RNKiwiActivity :
 
   // endregion
 
+  // region PermissionAwareActivity
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     if (mPermissionListener != null && mPermissionListener!!.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
@@ -84,22 +83,10 @@ abstract class RNKiwiActivity :
     }
   }
 
-  // region PermissionAwareActivity
-
-  override fun checkPermission(permission: String, pid: Int, uid: Int): Int {
-    return checkPermission(permission, pid, uid)
-  }
-
-  @TargetApi(Build.VERSION_CODES.M)
-  override fun checkSelfPermission(permission: String): Int {
-    return checkSelfPermission(permission)
-  }
-
   @TargetApi(Build.VERSION_CODES.M)
   override fun requestPermissions(permissions: Array<String>, requestCode: Int, listener: PermissionListener) {
     mPermissionListener = listener
     requestPermissions(permissions, requestCode)
   }
-
   // endregion
 }
