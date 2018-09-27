@@ -895,9 +895,9 @@
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.1.tgz#f3a81587ad8d0ef33cdad6f3b4310774fcc1053e"
 
-"@kiwicom/orbit-design-tokens@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.1.4.tgz#18eb47bd62a78a8109406f91b7d2f0eb000d63fa"
+"@kiwicom/orbit-design-tokens@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.2.0.tgz#ca30ade2fd0917e64d5bd93aa518726925d3ca8c"
 
 "@kiwicom/react-native-reverse-geocode@0.0.1":
   version "0.0.1"
