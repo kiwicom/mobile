@@ -107,7 +107,7 @@ class LoungeMenuItem extends React.Component<Props, State> {
         <MenuItem
           title={<Translation id="mmb.trip_services.local_services.lounge" />}
           onPress={this.openPopup}
-          icon={<TextIcon code="&#xe04e;" />}
+          icon={<TextIcon code="&#xe04e;" orbit={true} />}
         />
       </React.Fragment>
     );

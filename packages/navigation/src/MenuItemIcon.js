@@ -31,10 +31,10 @@ const styleSheet = StyleSheet.create({
   },
   icon: {
     android: {
-      fontSize: 15,
+      fontSize: 20,
     },
     ios: {
-      fontSize: 14,
+      fontSize: 19,
       color: defaultTokens.colorIconSecondary,
     },
   },

@@ -39,7 +39,7 @@ export class InsuranceMenuItem extends React.Component<Props> {
         title={
           <Translation id="mmb.trip_services.general_services.insurance" />
         }
-        icon={<TextIcon code="'" />}
+        icon={<TextIcon code="'" orbit={true} />}
         onPress={this.onPress}
       />
     );

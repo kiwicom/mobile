@@ -47,7 +47,7 @@ class ParkingMenuItem extends React.Component<Props> {
       <MenuItem
         title={<Translation id="mmb.trip_services.local_services.parking" />}
         onPress={this.openLink}
-        icon={<TextIcon code="&#xe03e;" />}
+        icon={<TextIcon code="&#xe03e;" orbit={true} />}
       />
     );
   };

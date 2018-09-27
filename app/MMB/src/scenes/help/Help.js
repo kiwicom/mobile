@@ -77,7 +77,9 @@ class Help extends React.Component<Props> {
             <MenuItem
               title={<Translation id="mmb.sub_menu.help.call_support" />}
               onPress={this.handleOpenCallSupport}
-              actionIcon={<TextIcon code="&#xe058;" style={styles.icon} />}
+              actionIcon={
+                <TextIcon code="&#xe058;" style={styles.icon} orbit={true} />
+              }
               description={<Translation passThrough={`+${number}`} />}
             />
           )}
