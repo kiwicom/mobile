@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 284728f793100f1357f43f9ebf21264c
+ * @relayHash d450a94a10eb5b008d2dd7bf22bab852
  */
 
 /* eslint-disable */
@@ -81,11 +81,6 @@ query NewAllHotelsSearchQuery(
 }
 
 fragment RenderSearchResults on RootQuery {
-  ...AllHotelsSearchList_data
-  ...MapScreen
-}
-
-fragment AllHotelsSearchList_data on RootQuery {
   allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
     pageInfo {
       hasNextPage
@@ -93,44 +88,36 @@ fragment AllHotelsSearchList_data on RootQuery {
       startCursor
       endCursor
     }
-    edges {
-      node {
-        id
-        ...AllHotelsSearchRow
-        __typename
-      }
-      ...MapView
-      cursor
-    }
     stats {
       maxPrice
       minPrice
+    }
+    edges {
+      ...AllHotelsSearchList
+      ...MapScreen
+      cursor
+      node {
+        __typename
+        id
+      }
     }
   }
 }
 
-fragment MapScreen on RootQuery {
-  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
-    pageInfo {
-      hasNextPage
-      hasPreviousPage
-      startCursor
-      endCursor
-    }
-    edges {
-      node {
-        id
-        __typename
-      }
-      ...MapView
-      ...HotelSwipeList
-      cursor
-    }
-    stats {
-      maxPrice
-      minPrice
-    }
+fragment AllHotelsSearchList on HotelAvailabilityEdge {
+  node {
+    id
+    ...AllHotelsSearchRow
   }
+  ...MapView
+}
+
+fragment MapScreen on HotelAvailabilityEdge {
+  node {
+    id
+  }
+  ...MapView
+  ...HotelSwipeList
 }
 
 fragment MapView on HotelAvailabilityEdge {
@@ -314,7 +301,7 @@ return {
   "operationKind": "query",
   "name": "NewAllHotelsSearchQuery",
   "id": null,
-  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...RenderSearchResults\n}\n\nfragment RenderSearchResults on RootQuery {\n  ...AllHotelsSearchList_data\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList_data on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        ...AllHotelsSearchRow\n        __typename\n      }\n      ...MapView\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment MapScreen on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        id\n        __typename\n      }\n      ...MapView\n      ...HotelSwipeList\n      cursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n  }\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelReviewScore_hotel\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      lowResUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n",
+  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...RenderSearchResults\n}\n\nfragment RenderSearchResults on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      ...AllHotelsSearchList\n      ...MapScreen\n      cursor\n      node {\n        __typename\n        id\n      }\n    }\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityEdge {\n  node {\n    id\n    ...AllHotelsSearchRow\n  }\n  ...MapView\n}\n\nfragment MapScreen on HotelAvailabilityEdge {\n  node {\n    id\n  }\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelReviewScore_hotel\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      lowResUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -378,6 +365,31 @@ return {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "endCursor",
+                "args": null,
+                "storageKey": null
+              }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "stats",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "HotelAvailabilityStats",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "maxPrice",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "minPrice",
                 "args": null,
                 "storageKey": null
               }
@@ -585,31 +597,6 @@ return {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "cursor",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "stats",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "HotelAvailabilityStats",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "maxPrice",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "minPrice",
                 "args": null,
                 "storageKey": null
               }
