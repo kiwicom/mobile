@@ -19,6 +19,7 @@ $basicCommand \
     --assets-dest ./.build/android/res
 
 mkdir -pv ./.build/android/assets/fonts
-cp ./assets/fonts/spfont.ttf ./.build/android/assets/fonts
-cp ./assets/fonts/Roboto-Regular.ttf ./.build/android/assets/fonts
-cp ./assets/fonts/orbit-icons.ttf ./.build/android/assets/fonts
+# Copy shared fonts
+cp ./assets/fonts/*.ttf ./.build/android/assets/fonts
+# Copy Android only fonts
+cp ./assets/fonts/android/* ./.build/android/assets/fonts
