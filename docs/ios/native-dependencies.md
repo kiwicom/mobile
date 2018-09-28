@@ -8,6 +8,12 @@ All iOS code is kept in `ios` folder and using the same `Podfile` that's why pro
 react-native link NATIVE_DEPENDENCY_NAME
 ```
 
+To keep the convention of adding new dependency, only where it's exactly needed, you have to move (in `Podfile`) linked library to proper section:
+
+1. Extend `hotels_package_module()` when dependency is used only in hotels package.
+
+2. Extend `mmb_package_module()` when dependency is used only in mmb package.
+
 ## Add a new internal/external native dependecy
 
 1. Add dependency folder inside `RNModules`
