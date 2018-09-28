@@ -1,9 +1,19 @@
 // @flow strict
 
 import * as React from 'react';
-import { Animated } from 'react-native';
-import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, AdaptableLayout } from '@kiwicom/mobile-shared';
+import { Animated, ScrollView } from 'react-native';
+import {
+  graphql,
+  createPaginationContainer,
+  type RelayPaginationProp,
+} from '@kiwicom/mobile-relay';
+import {
+  StyleSheet,
+  AdaptableLayout,
+  Logger,
+  Device,
+} from '@kiwicom/mobile-shared';
+import idx from 'idx';
 
 import MapScreen from '../map/allHotels/MapScreen';
 import AllHotelsSearchList from './AllHotelsSearchList';
@@ -11,109 +21,243 @@ import type { RenderSearchResults as RenderResultsType } from './__generated__/R
 import SearchResultsContext, {
   type ResultType,
 } from '../navigation/allHotels/SearchResultsContext';
+import HotelsSearchContext from '../HotelsSearchContext';
+import LoadMoreButton from './LoadMoreButton';
+import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 
 type PropsWithContext = {|
   ...Props,
   +show: ResultType,
+  +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
 |};
 
-const topValue = 1000;
-const lowValue = -100;
+type State = {|
+  isLoading: boolean,
+|};
 
-class RenderSearchResults extends React.Component<PropsWithContext> {
-  mapAnimation;
-  listAnimation;
+export const topValue = 1000;
+export const lowValue = -100;
 
-  constructor(props) {
+export class RenderSearchResults extends React.Component<
+  PropsWithContext,
+  State,
+> {
+  mapAnimation: Animated.Value;
+  listAnimation: Animated.Value;
+
+  constructor(props: PropsWithContext) {
     super(props);
 
     const showList = props.show === 'list';
     this.mapAnimation = new Animated.Value(showList ? topValue : 0);
     this.listAnimation = new Animated.Value(showList ? 0 : lowValue);
+
+    this.state = {
+      isLoading: false,
+    };
   }
+
+  componentDidMount = () => {
+    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_RESULTS);
+
+    const priceMax = idx(
+      this.props,
+      _ => _.data.allAvailableHotels.stats.maxPrice,
+    );
+    const priceMin = idx(
+      this.props,
+      _ => _.data.allAvailableHotels.stats.minPrice,
+    );
+
+    if (priceMax != null && priceMin != null) {
+      this.props.setCurrentSearchStats({
+        priceMax,
+        priceMin,
+      });
+    }
+  };
 
   componentDidUpdate = (prevProps: PropsWithContext) => {
     if (prevProps.show === 'list' && this.props.show === 'map') {
-      Animated.parallel([
-        Animated.timing(this.mapAnimation, {
-          toValue: 0,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-        Animated.timing(this.listAnimation, {
-          toValue: lowValue,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      this.animateToMap();
     }
     if (prevProps.show === 'map' && this.props.show === 'list') {
-      Animated.parallel([
-        Animated.timing(this.mapAnimation, {
-          toValue: topValue,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-        Animated.timing(this.listAnimation, {
-          toValue: 0,
-          duration: 500,
-          useNativeDriver: true,
-        }),
-      ]).start();
+      this.animateToList();
     }
   };
-  render = () => (
-    <React.Fragment>
-      <Animated.View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          top: 56,
-          transform: [{ translateY: this.listAnimation }],
-        }}
-      >
-        <AllHotelsSearchList
-          data={this.props.data}
-          openSingleHotel={this.props.openSingleHotel}
-        />
-      </Animated.View>
-      <AdaptableLayout
-        renderOnNarrow={
-          <Animated.View
-            style={{
-              ...StyleSheet.absoluteFillObject,
-              top: 56,
-              transform: [{ translateY: this.mapAnimation }],
-            }}
-          >
-            <MapScreen
-              data={this.props.data}
-              onOpenSingleHotel={this.props.openSingleHotel}
+
+  animateToMap = () => {
+    Animated.parallel([
+      Animated.timing(this.mapAnimation, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+      Animated.timing(this.listAnimation, {
+        toValue: lowValue,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  animateToList = () => {
+    Animated.parallel([
+      Animated.timing(this.mapAnimation, {
+        toValue: topValue,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+      Animated.timing(this.listAnimation, {
+        toValue: 0,
+        duration: 500,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  loadMore = () => {
+    if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
+      this.setState(
+        {
+          isLoading: true,
+        },
+        () => {
+          this.props.relay.loadMore(50, () => {
+            this.setState({
+              isLoading: false,
+            });
+          });
+        },
+      );
+    }
+  };
+
+  render = () => {
+    const data = idx(this.props.data, _ => _.allAvailableHotels.edges);
+    return (
+      <React.Fragment>
+        <Animated.View
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            top: 56,
+            transform: [{ translateY: this.listAnimation }],
+          }}
+        >
+          {/*  Note: it's not possible to use FlatList here because it's wrapped with ScrollView and it causes performance issues.*/}
+          <ScrollView contentContainerStyle={styles.content}>
+            <AllHotelsSearchList
+              data={data}
+              openSingleHotel={this.props.openSingleHotel}
             />
-          </Animated.View>
-        }
-      />
-    </React.Fragment>
-  );
+            {this.props.relay.hasMore() && (
+              <LoadMoreButton
+                isLoading={this.state.isLoading}
+                onPress={this.loadMore}
+              />
+            )}
+          </ScrollView>
+        </Animated.View>
+        <AdaptableLayout
+          renderOnNarrow={
+            <Animated.View
+              style={{
+                ...StyleSheet.absoluteFillObject,
+                top: 56,
+                transform: [{ translateY: this.mapAnimation }],
+              }}
+            >
+              <MapScreen
+                data={data}
+                onOpenSingleHotel={this.props.openSingleHotel}
+              />
+            </Animated.View>
+          }
+        />
+      </React.Fragment>
+    );
+  };
 }
+
 type Props = {|
   +data: RenderResultsType,
   +openSingleHotel: () => void,
+  +relay: RelayPaginationProp,
 |};
 
 const RenderSearchResultsWithContext = (props: Props) => (
-  <SearchResultsContext.Consumer>
-    {({ show }) => {
-      return <RenderSearchResults {...props} show={show} />;
-    }}
-  </SearchResultsContext.Consumer>
+  <HotelsSearchContext.Consumer>
+    {({ actions }) => (
+      <SearchResultsContext.Consumer>
+        {({ show }) => {
+          return (
+            <RenderSearchResults
+              {...props}
+              show={show}
+              setCurrentSearchStats={actions.setCurrentSearchStats}
+            />
+          );
+        }}
+      </SearchResultsContext.Consumer>
+    )}
+  </HotelsSearchContext.Consumer>
 );
 
-export default createFragmentContainer(
+const styles = StyleSheet.create({
+  content: {
+    paddingBottom: Device.isIPhoneX ? 80 : 44,
+  },
+});
+
+export default createPaginationContainer(
   RenderSearchResultsWithContext,
   graphql`
     fragment RenderSearchResults on RootQuery {
-      ...AllHotelsSearchList_data
-      ...MapScreen
+      allAvailableHotels(
+        search: $search
+        filter: $filter
+        options: $options
+        first: $first
+        after: $after
+      ) @connection(key: "AllHotels_allAvailableHotels") {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+          startCursor
+          endCursor
+        }
+        stats {
+          maxPrice
+          minPrice
+        }
+        edges {
+          ...AllHotelsSearchList
+          ...MapScreen
+        }
+      }
     }
   `,
+  {
+    getVariables(props, { count, cursor }, fragmentVariables) {
+      const { search, filter, options } = fragmentVariables;
+      return {
+        first: count,
+        after: cursor,
+        search,
+        filter,
+        options,
+      };
+    },
+    query: graphql`
+      query RenderSearchResultsQuery(
+        $search: HotelsSearchInput!
+        $filter: HotelsFilterInput!
+        $options: AvailableHotelOptionsInput
+        $after: String
+        $first: Int
+      ) {
+        ...RenderSearchResults
+      }
+    `,
+  },
 );
