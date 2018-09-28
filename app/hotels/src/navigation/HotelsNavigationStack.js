@@ -14,7 +14,6 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import SingleHotel from './singleHotel/SingleHotelNavigationScreen';
 import SearchResults from './allHotels/SearchResultsScreen';
-import NewAllHotelsMap from './allHotelsMap/NewAllHotelsMapNavigationScreen';
 import AdditionalPropsInjector from './singleHotel/AdditionalPropsInjector';
 import SingleHotelMapNavigationScreen from './singleHotel/SingleHotelMapNavigationScreen';
 import Payment from '../singleHotel/PaymentScreen';
@@ -37,16 +36,6 @@ export default StackNavigator(
       navigationOptions: {
         headerLeft: null,
         ...createTransparentHeaderStyle(RNDimensions.get('screen')),
-      },
-    },
-    AllHotelsMap: {
-      screen: withMappedProps(NewAllHotelsMap),
-      navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.all_hotels_map" />
-          </HeaderTitle>
-        ),
       },
     },
     GalleryGrid: {

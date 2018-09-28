@@ -7,86 +7,50 @@ import { AllHotelsSearchList } from '../AllHotelsSearchList';
 
 const renderer = new ShallowRenderer();
 const voidCallback = () => {};
-const setLocation = jest.fn();
-const relay = {
-  hasMore: jest.fn(),
-  loadMore: jest.fn(),
-  isLoading: jest.fn(),
-  refetchConnection: jest.fn(),
-};
 
+const $fragmentRefs: any = null;
+const $refType: any = null;
 it('renders found hotels', () => {
-  const data = {
-    allAvailableHotels: {
-      edges: [
-        {
-          node: {
-            id: 'hotel1',
-          },
-        },
-        {
-          node: {
-            id: 'hotel2',
-          },
-        },
-      ],
-      stats: {
-        priceMax: 9000,
-        priceMin: 200,
+  const data = [
+    {
+      node: {
+        id: 'hotel1',
+        $fragmentRefs,
       },
+      $fragmentRefs,
+      $refType,
     },
-  };
+    {
+      node: {
+        id: 'hotel2',
+        $fragmentRefs,
+      },
+      $fragmentRefs,
+      $refType,
+    },
+  ];
 
   renderer.render(
-    <AllHotelsSearchList
-      data={data}
-      openSingleHotel={voidCallback}
-      setCurrentSearchStats={jest.fn()}
-      relay={relay}
-      setLocation={setLocation}
-    />,
+    <AllHotelsSearchList data={data} openSingleHotel={voidCallback} />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renders a "not found" message when no hotel is found', () => {
-  const data = {
-    edges: [],
-    stats: {
-      priceMax: 0,
-      priceMin: 0,
-    },
-  };
+  const data = [];
 
   renderer.render(
-    <AllHotelsSearchList
-      data={data}
-      openSingleHotel={voidCallback}
-      setCurrentSearchStats={jest.fn()}
-      relay={relay}
-      setLocation={setLocation}
-    />,
+    <AllHotelsSearchList data={data} openSingleHotel={voidCallback} />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renders a "not found" message when data is missing', () => {
-  const data = {
-    edges: null,
-    stats: {
-      priceMax: 9000,
-      priceMin: 200,
-    },
-  };
+  const data = null;
 
   renderer.render(
-    <AllHotelsSearchList
-      data={data}
-      openSingleHotel={voidCallback}
-      setCurrentSearchStats={jest.fn()}
-      relay={relay}
-      setLocation={setLocation}
-    />,
+    // $FlowExpectedError: Testing bad input
+    <AllHotelsSearchList data={data} openSingleHotel={voidCallback} />,
   );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

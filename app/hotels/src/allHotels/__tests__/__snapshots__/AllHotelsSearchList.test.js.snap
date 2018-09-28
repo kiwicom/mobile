@@ -21,16 +21,11 @@ exports[`renders a "not found" message when no hotel is found 1`] = `
 `;
 
 exports[`renders found hotels 1`] = `
-<ScrollView
-  contentContainerStyle={
-    Object {
-      "paddingBottom": 44,
-    }
-  }
->
+<React.Fragment>
   <ForwardRef(Relay(AllHotelsSearchRowWithContext))
     data={
       Object {
+        "$fragmentRefs": null,
         "id": "hotel1",
       }
     }
@@ -39,10 +34,11 @@ exports[`renders found hotels 1`] = `
   <ForwardRef(Relay(AllHotelsSearchRowWithContext))
     data={
       Object {
+        "$fragmentRefs": null,
         "id": "hotel2",
       }
     }
     openSingleHotel={[Function]}
   />
-</ScrollView>
+</React.Fragment>
 `;

@@ -24,9 +24,7 @@ class MapScreen extends React.Component<Props, State> {
     selectedHotelIndex: 0,
   };
 
-  getHotels = () => {
-    return idx(this.props, _ => _.data.allAvailableHotels.edges) || [];
-  };
+  getHotels = () => this.props.data || [];
 
   selectMarker = (selectedHotelIndex: number) => {
     if (this.state.selectedHotelIndex === selectedHotelIndex) {
@@ -85,32 +83,12 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   MapScreen,
   graphql`
-    fragment MapScreen on RootQuery {
-      allAvailableHotels(
-        search: $search
-        filter: $filter
-        options: $options
-        first: $first
-        after: $after
-      ) @connection(key: "AllHotels_allAvailableHotels") {
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
-        }
-        edges {
-          node {
-            id
-          }
-          ...MapView
-          ...HotelSwipeList
-        }
-        stats {
-          maxPrice
-          minPrice
-        }
+    fragment MapScreen on HotelAvailabilityEdge @relay(plural: true) {
+      node {
+        id
       }
+      ...MapView
+      ...HotelSwipeList
     }
   `,
 );
