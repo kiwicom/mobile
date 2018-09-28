@@ -21,18 +21,23 @@ def react_native_pods()
   ]
 
   pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga/yoga.podspec'
-  pod 'react-native-maps', path: '../node_modules/react-native-maps'
-  
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
-  pod 'RNShare', :path => '../node_modules/react-native-share'
+end
 
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+def mmb_package_modules()
   pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
   pod 'RNReverseGeocode', :path => '../node_modules/@kiwicom/react-native-reverse-geocode'
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+  pod 'react-native-maps', path: '../node_modules/react-native-maps'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+end
 
+def hotels_package_modules()
+  pod 'react-native-maps', path: '../node_modules/react-native-maps'
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 end
 
 def react_native_modules()
@@ -49,11 +54,14 @@ end
 target 'reactNativeApp' do
   react_native_pods()
   react_native_modules()
+  hotels_package_modules()
+  mmb_package_modules()
 end
 
 target 'RNKiwiMobile' do
   react_native_pods()
   react_native_modules()
+  hotels_package_modules()
 end
 
 post_install do |installer|
