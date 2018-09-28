@@ -118,18 +118,11 @@ export class RenderSearchResults extends React.Component<
 
   loadMore = () => {
     if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
-      this.setState(
-        {
-          isLoading: true,
-        },
-        () => {
-          this.props.relay.loadMore(50, () => {
-            this.setState({
-              isLoading: false,
-            });
-          });
-        },
-      );
+      this.setState({ isLoading: true }, () => {
+        this.props.relay.loadMore(50, () => {
+          this.setState({ isLoading: false });
+        });
+      });
     }
   };
 
@@ -219,7 +212,7 @@ export default createPaginationContainer(
         options: $options
         first: $first
         after: $after
-      ) @connection(key: "AllHotels_allAvailableHotels") {
+      ) @connection(key: "RenderSearchResults_allAvailableHotels") {
         pageInfo {
           hasNextPage
           hasPreviousPage

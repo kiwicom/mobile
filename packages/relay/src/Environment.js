@@ -77,36 +77,45 @@ export default function createEnvironment(accessToken: string = '') {
         );
       }
 
-      // try to read content from the cache and use it if possible
-      AsyncStorage.getItem(ASYNC_STORE_KEY)
-        .then(content => {
-          if (content !== null) {
-            store.publish(new RecordSource(JSON.parse(content)));
-            const operationSelector = createOperationSelector(
-              operation,
-              variables,
-            );
-            if (store.check(operationSelector.root)) {
-              // we have all data in the store to fulfill this query so let's
-              // load it from the memory first and call the API after that
-              // this will make the UI feel really fast
-              observer.next(store.lookup(operationSelector.root));
-              if (!ConnectionManager.isConnected()) {
+      if (!ConnectionManager.isConnected()) {
+        // We have some issue with the store and connections, it causes the app to crash because of some race condition.
+        // For now let's just use this appreach if we are offline
+        // try to read content from the cache and use it if possible
+        AsyncStorage.getItem(ASYNC_STORE_KEY)
+          .then(content => {
+            if (content !== null) {
+              store.publish(new RecordSource(JSON.parse(content)));
+              const operationSelector = createOperationSelector(
+                operation,
+                variables,
+              );
+
+              if (store.check(operationSelector.root)) {
+                // This seems to work, but if we discover some problems with it
+                // Maybe we should rather return here
+                // I posted a question about it here: https://discordapp.com/channels/102860784329052160/102861057189490688
+                const root = {
+                  ...operationSelector.root,
+                  node: {
+                    ...operationSelector.root.node,
+                    selections: operationSelector.root.node.selections.filter(
+                      selection => selection.kind !== 'LinkedHandle',
+                    ),
+                  },
+                };
+
+                observer.next(store.lookup(root));
                 observer.complete();
               }
             }
-          }
-        })
-        .catch(error => {
-          // AsyncStorage read wasn't successful - nevermind
-          console.warn(error);
-        })
-        .finally(() => {
-          // Only fetch from network if we are connected
-          if (ConnectionManager.isConnected()) {
-            fetchFromTheNetwork(networkHeaders, operation, variables, observer);
-          }
-        });
+          })
+          .catch(error => {
+            // AsyncStorage read wasn't successful - nevermind
+            console.warn(error);
+          });
+      } else {
+        fetchFromTheNetwork(networkHeaders, operation, variables, observer);
+      }
     });
   };
 
