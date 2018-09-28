@@ -80,7 +80,7 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": "allAvailableHotels",
-      "name": "__AllHotels_allAvailableHotels_connection",
+      "name": "__RenderSearchResults_allAvailableHotels_connection",
       "storageKey": null,
       "args": [
         {
@@ -220,5 +220,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '3b76842627de656b248f453f7cf1e605';
+(node/*: any*/).hash = '1b33ae418f3f684e25815b6f1b127839';
 module.exports = node;

@@ -62,10 +62,10 @@ export type QueryRendererProps = {|
 export type RelayPaginationProp = {|
   +hasMore: () => boolean,
   +isLoading: () => boolean,
-  +loadMore: (pageSize: number, callback: (error: ?Error) => void) => void,
+  +loadMore: (pageSize: number, callback?: (error: ?Error) => void) => void,
   +refetchConnection: (
     totalCount: number,
-    callback: (error: ?Error) => void,
+    callback?: (error: ?Error) => void,
     refetchVariables: ?any,
   ) => void,
 |};
