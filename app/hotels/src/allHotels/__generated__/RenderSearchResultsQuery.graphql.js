@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ab61e06e9fabc3857e18e082ec954f03
+ * @relayHash 24e942bd11f8a169df5ee5ab1f22a0bc
  */
 
 /* eslint-disable */
@@ -610,7 +610,7 @@ return {
         "name": "allAvailableHotels",
         "args": v1,
         "handle": "connection",
-        "key": "AllHotels_allAvailableHotels",
+        "key": "RenderSearchResults_allAvailableHotels",
         "filters": [
           "search",
           "filter",
