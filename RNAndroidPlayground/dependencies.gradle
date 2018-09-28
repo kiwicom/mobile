@@ -26,6 +26,7 @@ ext {
     reactNativeVectorIcons = packageJson['dependencies']['react-native-vector-icons'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeScreens = packageJson['dependencies']['react-native-screens'].replace('^', '.react-native') + reactNativeVersion
 
     reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
 

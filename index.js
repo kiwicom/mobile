@@ -1,7 +1,7 @@
 // @flow
 
 import { AppRegistry, YellowBox } from 'react-native';
-
+import { useScreens } from 'react-native-screens';
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
   'Warning: isMounted(...) is deprecated in plain JavaScript React classes.',
@@ -18,5 +18,7 @@ YellowBox.ignoreWarnings([
 
 import App from './app/App';
 // import App from './packages/playground/src/Navigation';
+
+useScreens();
 
 AppRegistry.registerComponent('reactNativeApp', () => App);

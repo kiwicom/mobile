@@ -47,6 +47,7 @@ dependencies {
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-vector-icons:$reactNativeVectorIcons-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-screens:$reactNativeScreens-SNAPSHOT"
 
     api("com.google.android.gms:play-services-base:$playServicesVersion")
     api("com.google.android.gms:play-services-maps:$playServicesVersion")

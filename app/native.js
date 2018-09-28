@@ -5,6 +5,7 @@ import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
+import { useScreens } from 'react-native-screens';
 
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
@@ -14,6 +15,8 @@ YellowBox.ignoreWarnings([
   'Class GooglePlusShare was not exported. Did you forget to use RCT_EXPORT_MODULE()',
   'Class InstagramShare was not exported. Did you forget to use RCT_EXPORT_MODULE()',
 ]);
+
+useScreens();
 
 // Hotels
 AppRegistry.registerComponent(
