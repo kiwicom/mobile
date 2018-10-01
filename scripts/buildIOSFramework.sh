@@ -13,6 +13,7 @@ FRAMEWORK=RNKiwiMobile.framework
 PATH_IPHONE=build/iphoneos
 PATH_SIMULATOR=build/iphonesimulator
 PATH_UNIVERSAL=build/universal
+PATH_ASSETS=$PATH_UNIVERSAL/$FRAMEWORK/assets/fonts
 
 # Install Javascript dependencies
 yarn
@@ -47,6 +48,18 @@ mv $PATH_UNIVERSAL/$TARGET $PATH_UNIVERSAL/$FRAMEWORK/$TARGET
 
 # Revert node_modules changes
 sed -i -e 's/\/\/RCTLogError/RCTLogError/g' ../node_modules/react-native/React/Modules/RCTStatusBarManager.m
+
+# Create assets folder within framework
+mkdir $PATH_ASSETS
+
+# Copy ios fonts from RN to framework
+shopt -s extglob
+cp -R ../assets/fonts/!(android) $PATH_ASSETS
+
+# Move level up ios fonts 
+mv $PATH_ASSETS/ios/* $PATH_ASSETS
+rm -rf $PATH_ASSETS/ios
+mv $PATH_UNIVERSAL/$FRAMEWORK/*.ttf $PATH_ASSETS
 
 # Print the output file
 echo "ios/$PATH_UNIVERSAL/$FRAMEWORK"
