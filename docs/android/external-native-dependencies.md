@@ -2,7 +2,7 @@
 
 When we update a dependency there are no major changes as versions will be taken from [.build/package.json](../../.build/package.json) and a new [snapshot](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/) will be deployed.
 
-To add a new native dependency though, that is more time consuming. We need to create a separated `SNAPSHOT` for it and upload it to [Trinerdis](http://trinerdis.cz:8000/repository/snapshots/). We need to create a similar structure for a new dependency like in [here](../../RNAndroidPlayground/react-native-tooltips).
+To add a new native dependency though, that is more time consuming. We need to create a separated `SNAPSHOT` for it and upload it to [Trinerdis](http://trinerdis.cz:8000/repository/snapshots/). We need to create a similar structure for a new dependency like in [here](../../android/native/react-native-tooltips).
 
 Usually we only need to change the following part to use the correct dependency name:
 

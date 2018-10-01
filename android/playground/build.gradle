@@ -34,8 +34,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Uncomment next line to develop locally & run "yarn start"
-    // implementation project(':rnkiwimobile')
-    implementation "com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT"
+    implementation project(':rnkiwimobile')
+    // implementation "com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT"
     implementation "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
 
     implementation "com.android.support:multidex:1.0.2"
