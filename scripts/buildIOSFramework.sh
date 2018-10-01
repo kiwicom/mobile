@@ -59,7 +59,10 @@ cp -R ../assets/fonts/!(android) $PATH_ASSETS
 # Move level up ios fonts 
 mv $PATH_ASSETS/ios/* $PATH_ASSETS
 rm -rf $PATH_ASSETS/ios
-mv $PATH_UNIVERSAL/$FRAMEWORK/*.ttf $PATH_ASSETS
+
+# Move other fonts from framework to assets/fonts directory 
+find $PATH_UNIVERSAL/$FRAMEWORK/ -name "*.otf" -maxdepth 1 -exec mv {} $PATH_ASSETS \;
+find $PATH_UNIVERSAL/$FRAMEWORK/ -name "*.ttf" -maxdepth 1 -exec mv {} $PATH_ASSETS \;
 
 # Print the output file
 echo "ios/$PATH_UNIVERSAL/$FRAMEWORK"
