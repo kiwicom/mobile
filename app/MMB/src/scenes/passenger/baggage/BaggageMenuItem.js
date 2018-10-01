@@ -37,7 +37,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   countContainer: {
+    width: 40,
     marginEnd: 8,
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   count: {
     marginEnd: 3,
