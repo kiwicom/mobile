@@ -89,6 +89,18 @@ _NOTE_: Creating bridge upfront guarantees that your React Native module will be
 }
 ```
 
+### Using fonts from frameworks
+
+Within the `RNKiwiMobile.framework` in folder `assets/fonts` you can find all the fonts which have to be added in new XCode project. Follow the steps below to add them:
+
+1. Include fonts in your bundled resources within the Build Phases section
+
+![](../../docs/assets/include_icons_build_phases.gif)
+
+2. Add your fonts to `Info.plist`
+
+![](../../docs/assets/add_fonts_info_plist.png)
+
 ## Bridge
 
 There is only one bridge present throughout the lifecycle of the app.
