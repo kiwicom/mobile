@@ -43,12 +43,12 @@ export const AllHotelsSearchList = (props: Props) => {
 export default createFragmentContainer(
   AllHotelsSearchList,
   graphql`
-    fragment AllHotelsSearchList on HotelAvailabilityEdge @relay(plural: true) {
+    fragment AllHotelsSearchList on AllHotelAvailabilityHotelEdge
+      @relay(plural: true) {
       node {
         id
         ...AllHotelsSearchRow
       }
-      ...MapView
     }
   `,
 );

@@ -17,7 +17,6 @@ it('renders found hotels', () => {
         id: 'hotel1',
         $fragmentRefs,
       },
-      $fragmentRefs,
       $refType,
     },
     {
@@ -25,7 +24,6 @@ it('renders found hotels', () => {
         id: 'hotel2',
         $fragmentRefs,
       },
-      $fragmentRefs,
       $refType,
     },
   ];

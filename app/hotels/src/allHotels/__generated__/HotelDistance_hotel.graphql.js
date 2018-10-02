@@ -20,7 +20,7 @@ export type HotelDistance_hotel = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "HotelDistance_hotel",
-  "type": "Hotel",
+  "type": "AllHotelAvailabilityHotel",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -34,5 +34,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '52165dd85627dfb691660f46ccb1da7b';
+(node/*: any*/).hash = 'f8ed377c6339a4ebb44337ae0bd55f65';
 module.exports = node;

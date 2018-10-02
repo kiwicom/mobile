@@ -24,19 +24,19 @@ type PropsWithContext = {|
 
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   onGoToSingleHotel = () => {
-    const hotelId = idx(this.props, _ => _.data.hotel.id);
+    const hotelId = idx(this.props, _ => _.data.hotelId);
     if (hotelId != null) {
       this.props.openSingleHotel(hotelId);
     }
   };
 
   setActiveHotelId = () => {
-    const hotelId = idx(this.props, _ => _.data.hotel.id) || '';
+    const hotelId = idx(this.props, _ => _.data.hotelId) || '';
     this.props.setHotelId(hotelId);
   };
 
   render = () => {
-    const lowResUrl = idx(this.props.data, _ => _.hotel.mainPhoto.lowResUrl);
+    const lowResUrl = idx(this.props.data, _ => _.mainPhoto.lowResUrl);
     const children = (
       <View style={style.row}>
         <View style={style.imageContainer}>
@@ -52,7 +52,9 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
               <HotelTitle data={this.props.data} />
             </View>
             <View style={style.hotelReviewScore}>
-              <HotelReviewScore hotel={idx(this.props.data, _ => _.hotel)} />
+              <HotelReviewScore
+                score={idx(this.props.data, _ => _.review.score)}
+              />
             </View>
           </View>
         </View>
@@ -99,14 +101,14 @@ const AllHotelsSearchRowWithContext = (props: Props) => (
 export default createFragmentContainer(
   AllHotelsSearchRowWithContext,
   graphql`
-    fragment AllHotelsSearchRow on HotelAvailability {
+    fragment AllHotelsSearchRow on AllHotelAvailabilityHotel {
       ...HotelTitle
-      hotel {
-        id
-        mainPhoto {
-          lowResUrl
-        }
-        ...HotelReviewScore_hotel
+      hotelId
+      mainPhoto {
+        lowResUrl
+      }
+      review {
+        score
       }
     }
   `,

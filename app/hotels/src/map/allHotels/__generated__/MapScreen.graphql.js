@@ -25,7 +25,7 @@ export type MapScreen = $ReadOnlyArray<{|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "MapScreen",
-  "type": "HotelAvailabilityEdge",
+  "type": "AllHotelAvailabilityHotelEdge",
   "metadata": {
     "plural": true
   },
@@ -37,7 +37,7 @@ const node/*: ConcreteFragment*/ = {
       "name": "node",
       "storageKey": null,
       "args": null,
-      "concreteType": "HotelAvailability",
+      "concreteType": "AllHotelAvailabilityHotel",
       "plural": false,
       "selections": [
         {
@@ -62,5 +62,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2126f43c3311a7ac2f147083c81044c5';
+(node/*: any*/).hash = '3a319bc51783ede539706a348e4abc3c';
 module.exports = node;

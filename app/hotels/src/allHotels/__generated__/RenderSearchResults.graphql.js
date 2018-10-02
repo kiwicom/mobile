@@ -13,7 +13,7 @@ type MapScreen$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RenderSearchResults$ref: FragmentReference;
 export type RenderSearchResults = {|
-  +allAvailableHotels: ?{|
+  +allAvailableBookingComHotels: ?{|
     +pageInfo: {|
       +hasNextPage: boolean,
       +hasPreviousPage: boolean,
@@ -44,7 +44,7 @@ const node/*: ConcreteFragment*/ = {
         "cursor": "after",
         "direction": "forward",
         "path": [
-          "allAvailableHotels"
+          "allAvailableBookingComHotels"
         ]
       }
     ]
@@ -79,8 +79,8 @@ const node/*: ConcreteFragment*/ = {
   "selections": [
     {
       "kind": "LinkedField",
-      "alias": "allAvailableHotels",
-      "name": "__RenderSearchResults_allAvailableHotels_connection",
+      "alias": "allAvailableBookingComHotels",
+      "name": "__RenderSearchResults_allAvailableBookingComHotels_connection",
       "storageKey": null,
       "args": [
         {
@@ -102,7 +102,7 @@ const node/*: ConcreteFragment*/ = {
           "type": "HotelsSearchInput!"
         }
       ],
-      "concreteType": "HotelAvailabilityConnection",
+      "concreteType": "AllHotelAvailabilityHotelConnection",
       "plural": false,
       "selections": [
         {
@@ -175,7 +175,7 @@ const node/*: ConcreteFragment*/ = {
           "name": "edges",
           "storageKey": null,
           "args": null,
-          "concreteType": "HotelAvailabilityEdge",
+          "concreteType": "AllHotelAvailabilityHotelEdge",
           "plural": true,
           "selections": [
             {
@@ -201,7 +201,7 @@ const node/*: ConcreteFragment*/ = {
               "name": "node",
               "storageKey": null,
               "args": null,
-              "concreteType": "HotelAvailability",
+              "concreteType": "AllHotelAvailabilityHotel",
               "plural": false,
               "selections": [
                 {
@@ -220,5 +220,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '1b33ae418f3f684e25815b6f1b127839';
+(node/*: any*/).hash = '2eeb8c3d08ea3dfd561b7a449f9e8768';
 module.exports = node;

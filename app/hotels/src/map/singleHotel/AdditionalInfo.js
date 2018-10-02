@@ -34,14 +34,24 @@ export class AdditionalInfo extends React.Component<Props, State> {
 
   render() {
     const { data } = this.props;
-
+    const name = idx(data, _ => _.hotel.name);
+    const price = idx(data, _ => _.price);
+    const thumbnailUrl = idx(data, _ => _.hotel.mainPhoto.thumbnailUrl);
+    const stars = idx(data, _ => _.hotel.rating.stars);
+    const score = idx(data, _ => _.hotel.review.score);
     return (
       <View style={styles.container} onLayout={this.onLayout}>
         <HotelPreviewProvider value={this.state}>
           <BottomSheet>
             <BottomSheetHandle />
             <View style={styles.detailPreviewContainer}>
-              <HotelDetailPreview availability={data} />
+              <HotelDetailPreview
+                name={name}
+                price={price}
+                thumbnailUrl={thumbnailUrl}
+                stars={stars}
+                score={score}
+              />
               <Address address={idx(data, _ => _.hotel.address)} />
             </View>
           </BottomSheet>
@@ -72,10 +82,24 @@ export default createFragmentContainer(
   AdditionalInfo,
   graphql`
     fragment AdditionalInfo on HotelAvailability {
-      ...HotelDetailPreview_availability
+      price {
+        amount
+        currency
+      }
       hotel {
         address {
           ...Address_address
+        }
+        review {
+          score
+        }
+        id
+        name
+        mainPhoto {
+          thumbnailUrl
+        }
+        rating {
+          stars
         }
       }
     }

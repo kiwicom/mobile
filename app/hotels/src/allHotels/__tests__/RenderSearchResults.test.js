@@ -13,7 +13,7 @@ const defaultProps = (stats: Object = { maxPrice: 100, minPrice: 50 }) => ({
   show: 'list',
   setCurrentSearchStats: jest.fn(),
   data: {
-    allAvailableHotels: {
+    allAvailableBookingComHotels: {
       stats,
     },
   },

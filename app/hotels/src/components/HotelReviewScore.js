@@ -1,16 +1,12 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { AdaptableBadge, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { HotelReviewScore_hotel } from './__generated__/HotelReviewScore_hotel.graphql';
-
 type Props = {|
-  +hotel: HotelReviewScore_hotel,
+  +score: ?number,
 |};
 
 type ColorType = {|
@@ -18,7 +14,7 @@ type ColorType = {|
   +color: string,
 |};
 
-export class HotelReviewScore extends React.Component<Props> {
+export default class HotelReviewScore extends React.Component<Props> {
   /**
    * One decimal point with trailing zero.
    */
@@ -63,8 +59,9 @@ export class HotelReviewScore extends React.Component<Props> {
   };
 
   render = () => {
-    const reviewScore = idx(this.props, _ => _.hotel.review.score) || null;
-    if (reviewScore === null) {
+    const reviewScore = this.props.score;
+
+    if (reviewScore == null || reviewScore == 0) {
       return null;
     }
     const { backgroundColor, color } = this.calculateColor(reviewScore);
@@ -109,14 +106,3 @@ const style = StyleSheet.create({
     },
   },
 });
-
-export default createFragmentContainer(
-  HotelReviewScore,
-  graphql`
-    fragment HotelReviewScore_hotel on Hotel {
-      review {
-        score
-      }
-    }
-  `,
-);
