@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { ScrollView, View, StatusBar, Platform } from 'react-native';
+import { ScrollView, View, Platform } from 'react-native';
 import {
   GeneralError,
   LayoutSingleColumn,
@@ -11,6 +11,7 @@ import {
   AdaptableLayout,
   Dimensions,
   Device,
+  type BarStyle,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -39,6 +40,7 @@ type State = {|
     [string]: number, // originalId: count
   },
   maxPersons: number,
+  barStyle: BarStyle,
 |};
 
 type NativeEvent = {|
@@ -53,16 +55,21 @@ export class HotelDetailScreen extends React.Component<
   PropsWithContext,
   State,
 > {
-  state = {
-    selected: {},
-    maxPersons: 0,
-  };
+  constructor(props: PropsWithContext) {
+    super(props);
+
+    this.state = {
+      selected: {},
+      maxPersons: 0,
+      barStyle: Platform.select({
+        android: 'default',
+        ios: 'light-content',
+      }),
+    };
+  }
 
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS);
-    if (Platform.OS === 'ios' && this.isNarrowLayout()) {
-      StatusBar.setBarStyle('light-content');
-    }
   };
 
   shouldComponentUpdate = (nextProps: PropsWithContext, nextState: State) => {
@@ -72,24 +79,29 @@ export class HotelDetailScreen extends React.Component<
     return !isPropsEqual || !isStateEqual;
   };
 
-  componentWillUnmount = () => {
-    if (Platform.OS === 'ios' && this.isNarrowLayout()) {
-      StatusBar.setBarStyle('dark-content');
-    }
-  };
-
   isNarrowLayout = () => {
     return this.props.width < Device.DEVICE_THRESHOLD;
   };
 
+  shouldSetStatusBarDark = (yOffset: number) =>
+    Platform.OS === 'ios' &&
+    this.isNarrowLayout() &&
+    yOffset > 180 &&
+    this.state.barStyle !== 'dark-content';
+
+  shouldSetStatusBarLight = (yOffset: number) =>
+    Platform.OS === 'ios' &&
+    this.isNarrowLayout() &&
+    yOffset <= 180 &&
+    this.state.barStyle !== 'light-content';
+
   onScroll = (e: NativeEvent) => {
-    const isIOS = Platform.OS === 'ios';
-    const isNarrow = this.isNarrowLayout();
-    const hasScrolledPastImage = e.nativeEvent.contentOffset.y > 180;
-    if (isIOS && isNarrow && hasScrolledPastImage) {
-      StatusBar.setBarStyle('dark-content');
-    } else if (isIOS && isNarrow && !hasScrolledPastImage) {
-      StatusBar.setBarStyle('light-content');
+    const yOffset = e.nativeEvent.contentOffset.y;
+
+    if (this.shouldSetStatusBarDark(yOffset)) {
+      this.setState({ barStyle: 'dark-content' });
+    } else if (this.shouldSetStatusBarLight(yOffset)) {
+      this.setState({ barStyle: 'light-content' });
     }
   };
 
@@ -163,7 +175,7 @@ export class HotelDetailScreen extends React.Component<
             onScroll={this.onScroll}
             scrollEventThrottle={500}
           >
-            <LayoutSingleColumn>
+            <LayoutSingleColumn barStyle={this.state.barStyle}>
               <Header hotel={availableHotel.hotel} />
               <HotelInformation hotel={availableHotel.hotel} />
               <RoomList
