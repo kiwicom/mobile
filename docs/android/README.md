@@ -1,6 +1,6 @@
 # rnkiwimobile - Android distribution
 
-The source code can be found in [RNAndroidPlayground](../../RNAndroidPlayground).
+The source code can be found in [rnkiwimobile](../../android/rnkiwimobile).
 
 ## Test playground app
 

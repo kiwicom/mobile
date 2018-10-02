@@ -22,13 +22,13 @@ tasks.create('uploadTrinerdis', Upload.class) {
 }
 ```
 
-We also need to instruct [dependencies.gradle](../../RNAndroidPlayground/dependencies.gradle) to take the correct version:
+We also need to instruct [dependencies.gradle](../../android/dependencies.gradle) to take the correct version:
 
 ```
 ourNativeDependency = packageJson['dependencies']['our-native-dependency'].replace('^', '')
 ```
 
-Then, we add this dependency as part of `rnkiwimobile` like [here](rnkiwimobile/build.gradle#L48-L50):
+Then, we add this dependency as part of `rnkiwimobile` like [here](../../android/rnkiwimobile/build.gradle#L48-L50):
 
 ```gradle
 api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
