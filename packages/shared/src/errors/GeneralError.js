@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import type { TranslationType } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
@@ -26,6 +27,7 @@ const styleSheet = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   text: {
     textAlign: 'center',

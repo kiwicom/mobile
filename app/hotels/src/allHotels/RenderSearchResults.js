@@ -37,6 +37,7 @@ type State = {|
 
 export const topValue = 1000;
 export const lowValue = -100;
+const transitionDuration = 250;
 
 export class RenderSearchResults extends React.Component<
   PropsWithContext,
@@ -90,12 +91,12 @@ export class RenderSearchResults extends React.Component<
     Animated.parallel([
       Animated.timing(this.mapAnimation, {
         toValue: 0,
-        duration: 500,
+        duration: transitionDuration,
         useNativeDriver: true,
       }),
       Animated.timing(this.listAnimation, {
         toValue: lowValue,
-        duration: 500,
+        duration: transitionDuration,
         useNativeDriver: true,
       }),
     ]).start();
@@ -105,12 +106,12 @@ export class RenderSearchResults extends React.Component<
     Animated.parallel([
       Animated.timing(this.mapAnimation, {
         toValue: topValue,
-        duration: 500,
+        duration: transitionDuration,
         useNativeDriver: true,
       }),
       Animated.timing(this.listAnimation, {
         toValue: 0,
-        duration: 500,
+        duration: transitionDuration,
         useNativeDriver: true,
       }),
     ]).start();
