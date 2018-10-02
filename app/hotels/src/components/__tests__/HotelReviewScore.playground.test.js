@@ -3,24 +3,16 @@
 import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 
-import { HotelReviewScore } from '../HotelReviewScore';
-
-const $refType: any = null;
-const getProps = (score: number = 1.2) => ({
-  review: {
-    score,
-  },
-  $refType,
-});
+import HotelReviewScore from '../HotelReviewScore';
 
 it('renders with red value', () => {
-  PlaygroundRenderer.render(<HotelReviewScore hotel={getProps()} />);
+  PlaygroundRenderer.render(<HotelReviewScore score={1.2} />);
 });
 
 it('renders with yellow value', () => {
-  PlaygroundRenderer.render(<HotelReviewScore hotel={getProps(5.8)} />);
+  PlaygroundRenderer.render(<HotelReviewScore score={5.8} />);
 });
 
 it('renders with green value', () => {
-  PlaygroundRenderer.render(<HotelReviewScore hotel={getProps(9.2)} />);
+  PlaygroundRenderer.render(<HotelReviewScore score={9.2} />);
 });

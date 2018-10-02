@@ -8,9 +8,7 @@ const data = coordinates => ({
     id: '1',
     // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     price: {},
-    hotel: {
-      coordinates,
-    },
+    coordinates,
   },
 });
 

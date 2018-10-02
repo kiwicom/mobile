@@ -9,24 +9,30 @@ import {
   Text,
   Stars,
 } from '@kiwicom/mobile-shared';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { HotelDetailPreview_availability } from './__generated__/HotelDetailPreview_availability.graphql';
 import { HotelDetailConsumer } from './HotelDetailPreviewContext';
 import HotelReviewScore from '../../components/HotelReviewScore';
 
 type Props = {|
-  +availability: ?HotelDetailPreview_availability,
+  +name?: ?string,
+  +price?: ?{|
+    +currency?: ?string,
+    +amount?: ?number,
+  |},
+  +thumbnailUrl?: ?string,
+  +stars?: ?number,
+  +score?: ?number,
 |};
 
-export const HotelDetailPreview = ({ availability }: Props) => {
-  const name = idx(availability, _ => _.hotel.name);
-  const price = idx(availability, _ => _.price) || {};
-  const image = idx(availability, _ => _.hotel.mainPhoto.thumbnailUrl);
-  const stars = idx(availability, _ => _.hotel.rating.stars) || 0;
+export default function HotelDetailPreview(props: Props) {
+  const name = idx(props, _ => _.name);
+  const price = idx(props, _ => _.price) || {};
+  const image = idx(props, _ => _.thumbnailUrl);
+  const stars = idx(props, _ => _.stars) || 0;
+  const score = idx(props, _ => _.score);
   return (
     <HotelDetailConsumer>
       {({ containerWidth }) => (
@@ -55,14 +61,14 @@ export const HotelDetailPreview = ({ availability }: Props) => {
                     </Text>
                   )}
               </View>
-              <HotelReviewScore hotel={idx(availability, _ => _.hotel)} />
+              <HotelReviewScore score={score} />
             </View>
           </View>
         </View>
       )}
     </HotelDetailConsumer>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -100,26 +106,3 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
-
-export default createFragmentContainer(
-  HotelDetailPreview,
-  graphql`
-    fragment HotelDetailPreview_availability on HotelAvailability {
-      price {
-        amount
-        currency
-      }
-      hotel {
-        ...HotelReviewScore_hotel
-        id
-        name
-        mainPhoto {
-          thumbnailUrl
-        }
-        rating {
-          stars
-        }
-      }
-    }
-  `,
-);

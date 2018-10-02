@@ -16,8 +16,8 @@ type Props = {|
 |};
 
 function HotelTitle({ data }: Props) {
-  const hotelName = idx(data, _ => _.hotel.name);
-  const hotelStars = idx(data, _ => _.hotel.rating.stars);
+  const hotelName = idx(data, _ => _.name);
+  const hotelStars = idx(data, _ => _.rating.stars);
 
   const price = {
     ...{
@@ -38,7 +38,7 @@ function HotelTitle({ data }: Props) {
       </Text>
 
       <View style={style.distance}>
-        <Distance hotel={data && data.hotel} />
+        <Distance hotel={data} />
       </View>
       <Price
         amount={price.amount}
@@ -52,17 +52,15 @@ function HotelTitle({ data }: Props) {
 export default createFragmentContainer(
   HotelTitle,
   graphql`
-    fragment HotelTitle on HotelAvailability {
+    fragment HotelTitle on AllHotelAvailabilityHotel {
       price {
         amount
         currency
       }
-      hotel {
-        ...HotelDistance_hotel
-        name
-        rating {
-          stars
-        }
+      ...HotelDistance_hotel
+      name
+      rating {
+        stars
       }
     }
   `,

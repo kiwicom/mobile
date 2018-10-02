@@ -49,6 +49,57 @@ enum AllBookingsOnlyEnum {
   PAST
 }
 
+"""Information about hotel availability during selected time period."""
+type AllHotelAvailabilityHotel {
+  """The ID of an object"""
+  id: ID!
+
+  """Name of the hotel."""
+  name: String
+  address: Address
+  review: HotelReview
+
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  price: Price
+  rating: HotelRating
+
+  """Hotel distance from the center in Km."""
+  distanceFromCenter: Float
+
+  """Main photo of the hotel."""
+  mainPhoto: HotelPhoto
+
+  """Id of hotel"""
+  hotelId: ID
+
+  """Location of the hotel."""
+  coordinates: Coordinates
+}
+
+"""A connection to a list of items."""
+type AllHotelAvailabilityHotelConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AllHotelAvailabilityHotelEdge]
+  stats: HotelAvailabilityStats
+
+  """Name of the closest city"""
+  cityName: String
+}
+
+"""An edge in a connection."""
+type AllHotelAvailabilityHotelEdge {
+  """The item at the end of the edge"""
+  node: AllHotelAvailabilityHotel
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 type AllowedBaggage {
   """Extra and overweight baggage."""
   additionalBaggage: [AdditionalBaggage]
@@ -227,6 +278,9 @@ type Booking {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -281,6 +335,13 @@ type BookingContactDetails {
 
   """Documentation and information about the passanger."""
   passenger: Passenger
+}
+
+type BookingCustomerSupport {
+  """
+  Is Guarantee Chat allowed to provide direct contact to customer service.
+  """
+  hasGuaranteeChat: Boolean
 }
 
 enum BookingDestinationImageDimensions {
@@ -343,6 +404,9 @@ interface BookingInterface {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -411,6 +475,9 @@ type BookingMulticity implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -473,6 +540,9 @@ type BookingOneWay implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -525,6 +595,9 @@ type BookingReturn implements BookingInterface & Node {
 
   """All services provided via whitelabels."""
   availableWhitelabeledServices: WhitelabeledServices
+
+  """Support provided by CS for booking."""
+  customerSupport: BookingCustomerSupport
   onlineCheckinIsAvailable: Boolean
   insurancePrices: [InsurancePrice]
   authToken: String
@@ -1216,13 +1289,15 @@ type Hotel {
   """The ID of an object"""
   id: ID!
 
+  """Name of the hotel."""
+  name: String
+  address: Address
+  review: HotelReview
+
   """
   Original (low level ID of the hotel). You are probably looking for "id" field.
   """
   originalId: String @deprecated(reason: "Use field \"id\" instead. This field is used only because of compatibility reasons with old APIs.")
-
-  """Name of the hotel."""
-  name: String
   cityName: String
 
   """URL to our whitelabel page of this hotel."""
@@ -1236,13 +1311,9 @@ type Hotel {
 
   """Location of the hotel."""
   coordinates: Coordinates
-  address: Address
 
   """The star rating of the hotel."""
   rating: HotelRating
-
-  """Hotel review from hotel visitors."""
-  review: HotelReview
 
   """All facilities available in the hotel."""
   facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection
@@ -2047,7 +2118,13 @@ type RootQuery {
   Search for all available hotels in one location. It's necessary to send
   checkin and checkout dates as well as rooms configuration to get availability info.
   """
-  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection
+  allAvailableBookingComHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): AllHotelAvailabilityHotelConnection
+
+  """
+  Search for all available hotels in one location. It's necessary to send
+  checkin and checkout dates as well as rooms configuration to get availability info.
+  """
+  allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection @deprecated(reason: "This query has serious performace issues. That is basically because we are overfeching data\n  from the https://distribution-xml.booking.com/2.0/json/hotels endpoint with way to many extras.\n  Use allAvailableBookingComHotels instead")
 
   """Search for your flight bookings."""
   allBookings(
@@ -2081,11 +2158,11 @@ type RootQuery {
     last: Int
   ): DynamicPackageConnection
 
-  """Retrieve list of FAQ categories."""
+  """
+  DEPRECATED - use "FAQSection" query instead.Retrieve list of FAQ categories.
+  """
   allFAQCategories(
-    """
-    Fetch only subsection of FAQ based on the current situation of customer.
-    """
+    """Fetch only subsection of FAQ based on customer's booking status."""
     section: FAQSection
     after: String
     first: Int
@@ -2200,6 +2277,14 @@ type RootQuery {
   FAQCategory(
     """ID of FAQ category to retrieve."""
     id: ID!
+  ): FAQCategory
+
+  """Retrieve category by section."""
+  FAQSection(
+    """
+    Fetch FAQ category by section according to current customer's booking status.
+    """
+    section: FAQSection!
   ): FAQCategory
 
   """Geography info by an IP address"""
