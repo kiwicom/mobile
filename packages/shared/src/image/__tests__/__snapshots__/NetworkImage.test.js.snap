@@ -49,6 +49,7 @@ exports[`passes props to the original Image component 1`] = `
 
 exports[`returns MissingImage component for invalid URI 1`] = `
 <MissingImage
+  indicator={[Function]}
   source={
     Object {
       "uri": null,
@@ -59,6 +60,7 @@ exports[`returns MissingImage component for invalid URI 1`] = `
 
 exports[`returns MissingImage component for invalid URI 2`] = `
 <MissingImage
+  indicator={[Function]}
   source={
     Object {
       "uri": undefined,
@@ -70,6 +72,7 @@ exports[`returns MissingImage component for invalid URI 2`] = `
 exports[`returns MissingImage component when data saver enabled 1`] = `
 <MissingImage
   dataSaverEnabled={true}
+  indicator={[Function]}
   source={
     Object {
       "uri": "http://image.png",

@@ -49,6 +49,7 @@ export default ({ cityName, checkin, checkout }: Props) => ({
       ios: 0,
       android: StatusBar.currentHeight,
     }),
+    borderBottomColor: defaultTokens.paletteInkLighter,
   },
   headerLeft: (
     <View style={styles.headerLeftcontainer}>

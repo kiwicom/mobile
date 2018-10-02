@@ -12,6 +12,7 @@ import {
   CloseButton,
   Device,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import MapHeaderButton from './MapHeaderButton';
@@ -53,9 +54,9 @@ class SearchResultsScreen extends React.Component<Props> {
     }
     const icon =
       show === 'list' ? (
-        <TextIcon code="&#xe001;" orbit={true} />
+        <TextIcon code="&#xe001;" orbit={true} style={styles.icon} />
       ) : (
-        <TextIcon code="&#xe115;" orbit={true} />
+        <TextIcon code="&#xe115;" orbit={true} style={styles.icon} />
       );
     return {
       ...HotelsNavigationOptions({ checkin, checkout, cityName }),
@@ -125,12 +126,17 @@ class SearchResultsScreen extends React.Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: defaultTokens.paletteWhite,
   },
   button: {
     position: 'absolute',
     bottom: Device.isIPhoneX ? 36 : 8,
     start: 8,
     end: 8,
+  },
+  icon: {
+    marginEnd: 2,
+    fontSize: 22,
   },
 });
 

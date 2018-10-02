@@ -22,6 +22,8 @@ type PropsWithContext = {|
   +setHotelId: (hotelId: string) => void,
 |};
 
+const NetworkIndicator = () => <View style={[style.image, style.loading]} />;
+
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   onGoToSingleHotel = () => {
     const hotelId = idx(this.props, _ => _.data.hotelId);
@@ -44,6 +46,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
             style={style.image}
             resizeMode="cover"
             source={{ uri: lowResUrl }}
+            indicator={NetworkIndicator}
           />
         </View>
         <View style={style.content}>
@@ -128,6 +131,9 @@ const style = StyleSheet.create({
     ios: {
       height: 70,
     },
+  },
+  loading: {
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
   hotelTitle: {
     flex: 1,
