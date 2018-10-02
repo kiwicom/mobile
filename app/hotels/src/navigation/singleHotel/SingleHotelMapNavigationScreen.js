@@ -13,25 +13,20 @@ type Props = {
 };
 
 class SingleHotelMapNavigationScreen extends React.Component<Props> {
-  componentDidMount = () => {
-    StatusBar.setBarStyle('dark-content');
-  };
-
-  componentWillUnmount = () => {
-    StatusBar.setBarStyle('default');
-  };
-
   render() {
     return (
-      <SingleHotelMap
-        search={{
-          hotelId: this.props.hotelId,
-          checkin: this.props.checkin,
-          checkout: this.props.checkout,
-          roomsConfiguration: this.props.roomsConfiguration,
-        }}
-        currency={this.props.currency}
-      />
+      <React.Fragment>
+        <SingleHotelMap
+          search={{
+            hotelId: this.props.hotelId,
+            checkin: this.props.checkin,
+            checkout: this.props.checkout,
+            roomsConfiguration: this.props.roomsConfiguration,
+          }}
+          currency={this.props.currency}
+        />
+        <StatusBar barStyle="dark-content" />
+      </React.Fragment>
     );
   }
 }
