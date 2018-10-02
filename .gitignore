@@ -53,6 +53,7 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+!*playground-key.keystore
 
 # fastlane
 #

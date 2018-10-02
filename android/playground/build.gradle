@@ -18,9 +18,18 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file("playground-key.keystore")
+            storePassword 'kiwireactnative'
+            keyAlias 'my-key-alias'
+            keyPassword 'kiwireactnative'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -33,9 +42,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Uncomment next line to develop locally & run "yarn start"
-    implementation project(':rnkiwimobile')
-    // implementation "com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT"
+    /**
+     * In debug mode, it will use the local rnkiwimobile project.
+     * If we don't have anything in .build/android, then it will also use the packager
+     *
+     * In release mode, it will use the rnkiwimobile from Trinerdis (without packager running)
+     */
+    debugImplementation project(':rnkiwimobile')
+    releaseImplementation "com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT"
+
     implementation "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
 
     implementation "com.android.support:multidex:1.0.2"
