@@ -15,10 +15,8 @@ declare export opaque type HotelSwipeList$ref: FragmentReference;
 export type HotelSwipeList = $ReadOnlyArray<{|
   +node: ?{|
     +id: string,
-    +hotel: ?{|
-      +address: ?{|
-        +$fragmentRefs: Address_address$ref
-      |}
+    +address: ?{|
+      +$fragmentRefs: Address_address$ref
     |},
     +$fragmentRefs: HotelSwipeItem$ref,
   |},
@@ -30,7 +28,7 @@ export type HotelSwipeList = $ReadOnlyArray<{|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "HotelSwipeList",
-  "type": "HotelAvailabilityEdge",
+  "type": "AllHotelAvailabilityHotelEdge",
   "metadata": {
     "plural": true
   },
@@ -42,7 +40,7 @@ const node/*: ConcreteFragment*/ = {
       "name": "node",
       "storageKey": null,
       "args": null,
-      "concreteType": "HotelAvailability",
+      "concreteType": "AllHotelAvailabilityHotel",
       "plural": false,
       "selections": [
         {
@@ -60,27 +58,16 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "hotel",
+          "name": "address",
           "storageKey": null,
           "args": null,
-          "concreteType": "Hotel",
+          "concreteType": "Address",
           "plural": false,
           "selections": [
             {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "address",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "Address",
-              "plural": false,
-              "selections": [
-                {
-                  "kind": "FragmentSpread",
-                  "name": "Address_address",
-                  "args": null
-                }
-              ]
+              "kind": "FragmentSpread",
+              "name": "Address_address",
+              "args": null
             }
           ]
         }
@@ -89,5 +76,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '53be9466d23014954274bec697d36701';
+(node/*: any*/).hash = 'ca4a5da16717692bf1b27d0efd68e473';
 module.exports = node;

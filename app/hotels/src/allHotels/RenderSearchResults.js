@@ -62,11 +62,11 @@ export class RenderSearchResults extends React.Component<
 
     const priceMax = idx(
       this.props,
-      _ => _.data.allAvailableHotels.stats.maxPrice,
+      _ => _.data.allAvailableBookingComHotels.stats.maxPrice,
     );
     const priceMin = idx(
       this.props,
-      _ => _.data.allAvailableHotels.stats.minPrice,
+      _ => _.data.allAvailableBookingComHotels.stats.minPrice,
     );
 
     if (priceMax != null && priceMin != null) {
@@ -127,7 +127,10 @@ export class RenderSearchResults extends React.Component<
   };
 
   render = () => {
-    const data = idx(this.props.data, _ => _.allAvailableHotels.edges);
+    const data = idx(
+      this.props.data,
+      _ => _.allAvailableBookingComHotels.edges,
+    );
     return (
       <React.Fragment>
         <Animated.View
@@ -206,13 +209,13 @@ export default createPaginationContainer(
   RenderSearchResultsWithContext,
   graphql`
     fragment RenderSearchResults on RootQuery {
-      allAvailableHotels(
+      allAvailableBookingComHotels(
         search: $search
         filter: $filter
         options: $options
         first: $first
         after: $after
-      ) @connection(key: "RenderSearchResults_allAvailableHotels") {
+      ) @connection(key: "RenderSearchResults_allAvailableBookingComHotels") {
         pageInfo {
           hasNextPage
           hasPreviousPage

@@ -16,13 +16,11 @@ export type HotelTitle = {|
     +amount: ?number,
     +currency: ?string,
   |},
-  +hotel: ?{|
-    +name: ?string,
-    +rating: ?{|
-      +stars: ?number
-    |},
-    +$fragmentRefs: HotelDistance_hotel$ref,
+  +name: ?string,
+  +rating: ?{|
+    +stars: ?number
   |},
+  +$fragmentRefs: HotelDistance_hotel$ref,
   +$refType: HotelTitle$ref,
 |};
 */
@@ -31,7 +29,7 @@ export type HotelTitle = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "HotelTitle",
-  "type": "HotelAvailability",
+  "type": "AllHotelAvailabilityHotel",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -61,48 +59,37 @@ const node/*: ConcreteFragment*/ = {
       ]
     },
     {
+      "kind": "FragmentSpread",
+      "name": "HotelDistance_hotel",
+      "args": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "name",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
-      "name": "hotel",
+      "name": "rating",
       "storageKey": null,
       "args": null,
-      "concreteType": "Hotel",
+      "concreteType": "HotelRating",
       "plural": false,
       "selections": [
         {
-          "kind": "FragmentSpread",
-          "name": "HotelDistance_hotel",
-          "args": null
-        },
-        {
           "kind": "ScalarField",
           "alias": null,
-          "name": "name",
+          "name": "stars",
           "args": null,
           "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "rating",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "HotelRating",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "stars",
-              "args": null,
-              "storageKey": null
-            }
-          ]
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '631e3e5504362108d74c734ddfd09b09';
+(node/*: any*/).hash = '5f171f76eaf7e60a5afc4fc300174dae';
 module.exports = node;

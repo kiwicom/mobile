@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 24e942bd11f8a169df5ee5ab1f22a0bc
+ * @relayHash dade1672653eed5498b1bfa004ce0b5a
  */
 
 /* eslint-disable */
@@ -81,7 +81,7 @@ query RenderSearchResultsQuery(
 }
 
 fragment RenderSearchResults on RootQuery {
-  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
+  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
     pageInfo {
       hasNextPage
       hasPreviousPage
@@ -104,15 +104,14 @@ fragment RenderSearchResults on RootQuery {
   }
 }
 
-fragment AllHotelsSearchList on HotelAvailabilityEdge {
+fragment AllHotelsSearchList on AllHotelAvailabilityHotelEdge {
   node {
     id
     ...AllHotelsSearchRow
   }
-  ...MapView
 }
 
-fragment MapScreen on HotelAvailabilityEdge {
+fragment MapScreen on AllHotelAvailabilityHotelEdge {
   node {
     id
   }
@@ -120,39 +119,45 @@ fragment MapScreen on HotelAvailabilityEdge {
   ...HotelSwipeList
 }
 
-fragment MapView on HotelAvailabilityEdge {
+fragment MapView on AllHotelAvailabilityHotelEdge {
   node {
     id
     price {
       ...PriceMarker
     }
-    hotel {
-      coordinates {
-        lat
-        lng
-      }
-      id
+    coordinates {
+      lat
+      lng
     }
   }
 }
 
-fragment HotelSwipeList on HotelAvailabilityEdge {
+fragment HotelSwipeList on AllHotelAvailabilityHotelEdge {
   node {
     id
     ...HotelSwipeItem
-    hotel {
-      address {
-        ...Address_address
-      }
-      id
+    address {
+      ...Address_address
     }
   }
 }
 
-fragment HotelSwipeItem on HotelAvailability {
-  ...HotelDetailPreview_availability
-  hotel {
+fragment HotelSwipeItem on AllHotelAvailabilityHotel {
+  hotelId
+  name
+  price {
+    currency
+    amount
+  }
+  mainPhoto {
+    thumbnailUrl
     id
+  }
+  rating {
+    stars
+  }
+  review {
+    score
   }
 }
 
@@ -162,64 +167,36 @@ fragment Address_address on Address {
   zip
 }
 
-fragment HotelDetailPreview_availability on HotelAvailability {
-  price {
-    amount
-    currency
-  }
-  hotel {
-    ...HotelReviewScore_hotel
-    id
-    name
-    mainPhoto {
-      thumbnailUrl
-      id
-    }
-    rating {
-      stars
-    }
-  }
-}
-
-fragment HotelReviewScore_hotel on Hotel {
-  review {
-    score
-  }
-}
-
 fragment PriceMarker on Price {
   amount
   currency
 }
 
-fragment AllHotelsSearchRow on HotelAvailability {
+fragment AllHotelsSearchRow on AllHotelAvailabilityHotel {
   ...HotelTitle
-  hotel {
+  hotelId
+  mainPhoto {
+    lowResUrl
     id
-    mainPhoto {
-      lowResUrl
-      id
-    }
-    ...HotelReviewScore_hotel
+  }
+  review {
+    score
   }
 }
 
-fragment HotelTitle on HotelAvailability {
+fragment HotelTitle on AllHotelAvailabilityHotel {
   price {
     amount
     currency
   }
-  hotel {
-    ...HotelDistance_hotel
-    name
-    rating {
-      stars
-    }
-    id
+  ...HotelDistance_hotel
+  name
+  rating {
+    stars
   }
 }
 
-fragment HotelDistance_hotel on Hotel {
+fragment HotelDistance_hotel on AllHotelAvailabilityHotel {
   distanceFromCenter
 }
 */
@@ -301,7 +278,7 @@ return {
   "operationKind": "query",
   "name": "RenderSearchResultsQuery",
   "id": null,
-  "text": "query RenderSearchResultsQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $after: String\n  $first: Int\n) {\n  ...RenderSearchResults\n}\n\nfragment RenderSearchResults on RootQuery {\n  allAvailableHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      ...AllHotelsSearchList\n      ...MapScreen\n      cursor\n      node {\n        __typename\n        id\n      }\n    }\n  }\n}\n\nfragment AllHotelsSearchList on HotelAvailabilityEdge {\n  node {\n    id\n    ...AllHotelsSearchRow\n  }\n  ...MapView\n}\n\nfragment MapScreen on HotelAvailabilityEdge {\n  node {\n    id\n  }\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on HotelAvailabilityEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    hotel {\n      coordinates {\n        lat\n        lng\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeList on HotelAvailabilityEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    hotel {\n      address {\n        ...Address_address\n      }\n      id\n    }\n  }\n}\n\nfragment HotelSwipeItem on HotelAvailability {\n  ...HotelDetailPreview_availability\n  hotel {\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment HotelDetailPreview_availability on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelReviewScore_hotel\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment HotelReviewScore_hotel on Hotel {\n  review {\n    score\n  }\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on HotelAvailability {\n  ...HotelTitle\n  hotel {\n    id\n    mainPhoto {\n      lowResUrl\n      id\n    }\n    ...HotelReviewScore_hotel\n  }\n}\n\nfragment HotelTitle on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    ...HotelDistance_hotel\n    name\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment HotelDistance_hotel on Hotel {\n  distanceFromCenter\n}\n",
+  "text": "query RenderSearchResultsQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $after: String\n  $first: Int\n) {\n  ...RenderSearchResults\n}\n\nfragment RenderSearchResults on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      ...AllHotelsSearchList\n      ...MapScreen\n      cursor\n      node {\n        __typename\n        id\n      }\n    }\n  }\n}\n\nfragment AllHotelsSearchList on AllHotelAvailabilityHotelEdge {\n  node {\n    id\n    ...AllHotelsSearchRow\n  }\n}\n\nfragment MapScreen on AllHotelAvailabilityHotelEdge {\n  node {\n    id\n  }\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelAvailabilityHotelEdge {\n  node {\n    id\n    price {\n      ...PriceMarker\n    }\n    coordinates {\n      lat\n      lng\n    }\n  }\n}\n\nfragment HotelSwipeList on AllHotelAvailabilityHotelEdge {\n  node {\n    id\n    ...HotelSwipeItem\n    address {\n      ...Address_address\n    }\n  }\n}\n\nfragment HotelSwipeItem on AllHotelAvailabilityHotel {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelAvailabilityHotel {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    lowResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelAvailabilityHotel {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelAvailabilityHotel {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -325,10 +302,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "allAvailableHotels",
+        "name": "allAvailableBookingComHotels",
         "storageKey": null,
         "args": v1,
-        "concreteType": "HotelAvailabilityConnection",
+        "concreteType": "AllHotelAvailabilityHotelConnection",
         "plural": false,
         "selections": [
           {
@@ -401,7 +378,7 @@ return {
             "name": "edges",
             "storageKey": null,
             "args": null,
-            "concreteType": "HotelAvailabilityEdge",
+            "concreteType": "AllHotelAvailabilityHotelEdge",
             "plural": true,
             "selections": [
               {
@@ -410,10 +387,49 @@ return {
                 "name": "node",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "HotelAvailability",
+                "concreteType": "AllHotelAvailabilityHotel",
                 "plural": false,
                 "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "hotelId",
+                    "args": null,
+                    "storageKey": null
+                  },
                   v2,
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "distanceFromCenter",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "name",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "rating",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "HotelRating",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "stars",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -442,145 +458,101 @@ return {
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "hotel",
+                    "name": "mainPhoto",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "Hotel",
+                    "concreteType": "HotelPhoto",
                     "plural": false,
                     "selections": [
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "distanceFromCenter",
+                        "name": "lowResUrl",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      v2,
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "thumbnailUrl",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "review",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "HotelReview",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "score",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "coordinates",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Coordinates",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "lat",
                         "args": null,
                         "storageKey": null
                       },
                       {
                         "kind": "ScalarField",
                         "alias": null,
-                        "name": "name",
+                        "name": "lng",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "address",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Address",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "street",
                         "args": null,
                         "storageKey": null
                       },
                       {
-                        "kind": "LinkedField",
+                        "kind": "ScalarField",
                         "alias": null,
-                        "name": "rating",
-                        "storageKey": null,
+                        "name": "city",
                         "args": null,
-                        "concreteType": "HotelRating",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "stars",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      },
-                      v2,
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "mainPhoto",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "HotelPhoto",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "lowResUrl",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          v2,
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "thumbnailUrl",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
+                        "storageKey": null
                       },
                       {
-                        "kind": "LinkedField",
+                        "kind": "ScalarField",
                         "alias": null,
-                        "name": "review",
-                        "storageKey": null,
+                        "name": "zip",
                         "args": null,
-                        "concreteType": "HotelReview",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "score",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "coordinates",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Coordinates",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "lat",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "lng",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      },
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "address",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "Address",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "street",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "city",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "zip",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
+                        "storageKey": null
                       }
                     ]
                   },
@@ -607,10 +579,10 @@ return {
       {
         "kind": "LinkedHandle",
         "alias": null,
-        "name": "allAvailableHotels",
+        "name": "allAvailableBookingComHotels",
         "args": v1,
         "handle": "connection",
-        "key": "RenderSearchResults_allAvailableHotels",
+        "key": "RenderSearchResults_allAvailableBookingComHotels",
         "filters": [
           "search",
           "filter",

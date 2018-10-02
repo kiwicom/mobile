@@ -9,7 +9,6 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 type AllHotelsSearchRow$ref = any;
-type MapView$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type AllHotelsSearchList$ref: FragmentReference;
 export type AllHotelsSearchList = $ReadOnlyArray<{|
@@ -17,7 +16,6 @@ export type AllHotelsSearchList = $ReadOnlyArray<{|
     +id: string,
     +$fragmentRefs: AllHotelsSearchRow$ref,
   |},
-  +$fragmentRefs: MapView$ref,
   +$refType: AllHotelsSearchList$ref,
 |}>;
 */
@@ -26,7 +24,7 @@ export type AllHotelsSearchList = $ReadOnlyArray<{|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "AllHotelsSearchList",
-  "type": "HotelAvailabilityEdge",
+  "type": "AllHotelAvailabilityHotelEdge",
   "metadata": {
     "plural": true
   },
@@ -38,7 +36,7 @@ const node/*: ConcreteFragment*/ = {
       "name": "node",
       "storageKey": null,
       "args": null,
-      "concreteType": "HotelAvailability",
+      "concreteType": "AllHotelAvailabilityHotel",
       "plural": false,
       "selections": [
         {
@@ -54,14 +52,9 @@ const node/*: ConcreteFragment*/ = {
           "args": null
         }
       ]
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "MapView",
-      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '27b5370ff58499fc503291daf2320715';
+(node/*: any*/).hash = '40ab29e418301787c8e12e7317070f3d';
 module.exports = node;

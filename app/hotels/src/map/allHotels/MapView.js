@@ -71,7 +71,7 @@ export class Map extends React.Component<Props, State> {
   };
 
   getCoordinate = (hotel: Object): LatLng | null => {
-    const coordinate = idx(hotel, _ => _.node.hotel.coordinates);
+    const coordinate = idx(hotel, _ => _.node.coordinates);
 
     if (coordinate) {
       return {
@@ -214,17 +214,15 @@ export class Map extends React.Component<Props, State> {
 export default createFragmentContainer(
   Map,
   graphql`
-    fragment MapView on HotelAvailabilityEdge @relay(plural: true) {
+    fragment MapView on AllHotelAvailabilityHotelEdge @relay(plural: true) {
       node {
         id
         price {
           ...PriceMarker
         }
-        hotel {
-          coordinates {
-            lat
-            lng
-          }
+        coordinates {
+          lat
+          lng
         }
       }
     }

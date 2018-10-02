@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   MapScreen,
   graphql`
-    fragment MapScreen on HotelAvailabilityEdge @relay(plural: true) {
+    fragment MapScreen on AllHotelAvailabilityHotelEdge @relay(plural: true) {
       node {
         id
       }

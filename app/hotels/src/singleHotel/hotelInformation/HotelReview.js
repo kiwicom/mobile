@@ -40,7 +40,7 @@ const HotelReview = (props: Props) => {
     <View style={styles.container}>
       <View style={styles.row}>
         <View style={styles.badgeWrapper}>
-          <HotelReviewScore hotel={props.data} />
+          <HotelReviewScore score={idx(props.data, _ => _.review.score)} />
         </View>
         <View>
           <RenderLabel score={idx(props.data, _ => _.review.score)} />
@@ -86,7 +86,6 @@ export default createFragmentContainer(
   HotelReview,
   graphql`
     fragment HotelReview on Hotel {
-      ...HotelReviewScore_hotel
       review {
         score
         count

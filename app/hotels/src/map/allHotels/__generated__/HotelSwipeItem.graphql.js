@@ -8,14 +8,24 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type HotelDetailPreview_availability$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelSwipeItem$ref: FragmentReference;
 export type HotelSwipeItem = {|
-  +hotel: ?{|
-    +id: string
+  +hotelId: ?string,
+  +name: ?string,
+  +price: ?{|
+    +currency: ?string,
+    +amount: ?number,
   |},
-  +$fragmentRefs: HotelDetailPreview_availability$ref,
+  +mainPhoto: ?{|
+    +thumbnailUrl: ?string
+  |},
+  +rating: ?{|
+    +stars: ?number
+  |},
+  +review: ?{|
+    +score: ?number
+  |},
   +$refType: HotelSwipeItem$ref,
 |};
 */
@@ -24,28 +34,98 @@ export type HotelSwipeItem = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "HotelSwipeItem",
-  "type": "HotelAvailability",
+  "type": "AllHotelAvailabilityHotel",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "FragmentSpread",
-      "name": "HotelDetailPreview_availability",
-      "args": null
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "hotelId",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "name",
+      "args": null,
+      "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "hotel",
+      "name": "price",
       "storageKey": null,
       "args": null,
-      "concreteType": "Hotel",
+      "concreteType": "Price",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "id",
+          "name": "currency",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "amount",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "mainPhoto",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "HotelPhoto",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "thumbnailUrl",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "rating",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "HotelRating",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "stars",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "review",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "HotelReview",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "score",
           "args": null,
           "storageKey": null
         }
@@ -54,5 +134,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '9ed0e348c941d43b7e2e85c3d290460c';
+(node/*: any*/).hash = '84334d01083bdc7458559d612eba9313';
 module.exports = node;

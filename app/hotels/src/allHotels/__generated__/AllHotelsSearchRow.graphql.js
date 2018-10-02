@@ -8,17 +8,16 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type HotelReviewScore_hotel$ref = any;
 type HotelTitle$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type AllHotelsSearchRow$ref: FragmentReference;
 export type AllHotelsSearchRow = {|
-  +hotel: ?{|
-    +id: string,
-    +mainPhoto: ?{|
-      +lowResUrl: ?string
-    |},
-    +$fragmentRefs: HotelReviewScore_hotel$ref,
+  +hotelId: ?string,
+  +mainPhoto: ?{|
+    +lowResUrl: ?string
+  |},
+  +review: ?{|
+    +score: ?number
   |},
   +$fragmentRefs: HotelTitle$ref,
   +$refType: AllHotelsSearchRow$ref,
@@ -29,7 +28,7 @@ export type AllHotelsSearchRow = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "AllHotelsSearchRow",
-  "type": "HotelAvailability",
+  "type": "AllHotelAvailabilityHotel",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -39,48 +38,50 @@ const node/*: ConcreteFragment*/ = {
       "args": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "hotelId",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
-      "name": "hotel",
+      "name": "mainPhoto",
       "storageKey": null,
       "args": null,
-      "concreteType": "Hotel",
+      "concreteType": "HotelPhoto",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "id",
+          "name": "lowResUrl",
           "args": null,
           "storageKey": null
-        },
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "review",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "HotelReview",
+      "plural": false,
+      "selections": [
         {
-          "kind": "LinkedField",
+          "kind": "ScalarField",
           "alias": null,
-          "name": "mainPhoto",
-          "storageKey": null,
+          "name": "score",
           "args": null,
-          "concreteType": "HotelPhoto",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "lowResUrl",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "HotelReviewScore_hotel",
-          "args": null
+          "storageKey": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '496e31541877dc1edf949b5b6c5a869a';
+(node/*: any*/).hash = '881f704de186190b7f8af2f52243c44d';
 module.exports = node;

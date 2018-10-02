@@ -50,7 +50,7 @@ class HotelSwipeList extends React.Component<Props, State> {
   getSelectedAddress = () => {
     const { selectedIndex, data } = this.props;
 
-    return idx(data, _ => _[selectedIndex].node.hotel.address) || {};
+    return idx(data, _ => _[selectedIndex].node.address) || {};
   };
 
   renderItem = ({ item }: { item: Object, index: number }) => {
@@ -142,14 +142,13 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   HotelSwipeList,
   graphql`
-    fragment HotelSwipeList on HotelAvailabilityEdge @relay(plural: true) {
+    fragment HotelSwipeList on AllHotelAvailabilityHotelEdge
+      @relay(plural: true) {
       node {
         id
         ...HotelSwipeItem
-        hotel {
-          address {
-            ...Address_address
-          }
+        address {
+          ...Address_address
         }
       }
     }

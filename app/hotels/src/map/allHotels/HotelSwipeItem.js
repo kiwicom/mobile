@@ -23,7 +23,7 @@ type Props = {
 export class HotelSwipeItem extends React.Component<Props> {
   handlePress = () => {
     const { data } = this.props;
-    const id = idx(data, _ => _.hotel.id);
+    const id = idx(data, _ => _.hotelId);
 
     if (id) {
       this.props.onPress(id);
@@ -32,11 +32,21 @@ export class HotelSwipeItem extends React.Component<Props> {
 
   render = () => {
     const { width, data } = this.props;
-
+    const name = idx(data, _ => _.name);
+    const price = idx(data, _ => _.price);
+    const thumbnailUrl = idx(data, _ => _.mainPhoto.thumbnailUrl);
+    const stars = idx(data, _ => _.rating.stars);
+    const score = idx(data, _ => _.review.score);
     return (
       <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={{ width }}>
-          <HotelDetailPreview availability={data} />
+          <HotelDetailPreview
+            name={name}
+            price={price}
+            thumbnailUrl={thumbnailUrl}
+            stars={stars}
+            score={score}
+          />
         </View>
       </TouchableWithoutFeedback>
     );
@@ -46,10 +56,21 @@ export class HotelSwipeItem extends React.Component<Props> {
 export default (createFragmentContainer(
   HotelSwipeItem,
   graphql`
-    fragment HotelSwipeItem on HotelAvailability {
-      ...HotelDetailPreview_availability
-      hotel {
-        id
+    fragment HotelSwipeItem on AllHotelAvailabilityHotel {
+      hotelId
+      name
+      price {
+        currency
+        amount
+      }
+      mainPhoto {
+        thumbnailUrl
+      }
+      rating {
+        stars
+      }
+      review {
+        score
       }
     }
   `,
