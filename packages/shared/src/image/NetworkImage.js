@@ -17,6 +17,7 @@ type Props = {|
   +resizeMode?:
     | 'cover' // scales the image uniformly - image will be equal or larger
     | 'contain', // scales the image uniformly - image will be equal or smaller
+  +indicator?: React.ElementType,
 |};
 
 /**
@@ -33,7 +34,6 @@ export const NetworkImage = function NetworkImage(imageProps: Props) {
 
   const newProps = {
     ...imageProps,
-    indicator: IconLoading,
     style: [
       imageProps.style,
       {
@@ -42,6 +42,10 @@ export const NetworkImage = function NetworkImage(imageProps: Props) {
     ],
   };
   return <Image {...newProps} />;
+};
+
+NetworkImage.defaultProps = {
+  indicator: IconLoading,
 };
 
 export default function NetworkImageWithContext(props: Props) {
