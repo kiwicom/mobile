@@ -140,3 +140,5 @@ export type {
 export type { CancellablePromiseType } from './src/CancellablePromise';
 
 export type { DimensionType } from './types/Objects';
+
+export type { BarStyle } from './src/view/Layout';

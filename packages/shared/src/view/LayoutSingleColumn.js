@@ -5,11 +5,12 @@ import { View } from 'react-native';
 
 import StyleSheet from '../PlatformStyleSheet';
 import Device from '../Device';
-import Layout from './Layout';
+import Layout, { type BarStyle } from './Layout';
 
 type Props = {|
   +children: React.Node,
   +testID?: string,
+  +barStyle?: BarStyle,
 |};
 
 /**
@@ -24,7 +25,7 @@ export default function LayoutSingleColumn(props: Props) {
   };
 
   return (
-    <Layout>
+    <Layout barStyle={props.barStyle}>
       <View style={styleSheet.wrapper}>
         <View style={innerStyle} testID={props.testID}>
           {props.children}
@@ -33,6 +34,10 @@ export default function LayoutSingleColumn(props: Props) {
     </Layout>
   );
 }
+
+LayoutSingleColumn.defaultProps = {
+  barStyle: 'default',
+};
 
 const styleSheet = StyleSheet.create({
   wrapper: {
