@@ -2,17 +2,18 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import AdaptableLayout from '../view/AdaptableLayout';
 import Modal from '../Modal';
 import StyleSheet from '../PlatformStyleSheet';
+import Device from '../Device';
 
 type Props = {|
   +children: React.Node,
   +isVisible: boolean,
   +onClose: () => void,
+  +bottomContent?: React.Node | React.Node[],
 |};
 
 export default class Popup extends React.Component<Props> {
@@ -20,37 +21,43 @@ export default class Popup extends React.Component<Props> {
 
   render = () => {
     const modalChild = (
-      <ScrollView
-        contentContainerStyle={styles.content}
-        alwaysBounceVertical={false}
-      >
-        <SafeAreaView style={styles.safeArea}>
+      <React.Fragment>
+        <ScrollView alwaysBounceVertical={false}>
           {this.props.children}
-        </SafeAreaView>
-      </ScrollView>
+        </ScrollView>
+        <View style={Device.isIPhoneX && styles.safeArea}>
+          {this.props.bottomContent}
+        </View>
+      </React.Fragment>
     );
 
     return (
-      <Modal
-        isVisible={this.props.isVisible}
-        style={styles.modal}
-        backdropOpacity={0.5}
-        onBackdropPress={this.onClose}
-        onRequestClose={this.onClose}
-      >
-        <AdaptableLayout
-          renderOnWide={
-            <View
-              style={[styles.contentContainer, styles.wideContentContainer]}
-            >
+      <AdaptableLayout
+        renderOnWide={
+          <Modal
+            isVisible={this.props.isVisible}
+            style={[styles.modal, styles.modalWide]}
+            backdropOpacity={0.5}
+            onBackdropPress={this.onClose}
+            onRequestClose={this.onClose}
+          >
+            <View style={[styles.content, styles.wideContentContainer]}>
               {modalChild}
             </View>
-          }
-          renderOnNarrow={
-            <View style={styles.contentContainer}>{modalChild}</View>
-          }
-        />
-      </Modal>
+          </Modal>
+        }
+        renderOnNarrow={
+          <Modal
+            isVisible={this.props.isVisible}
+            style={styles.modal}
+            backdropOpacity={0.5}
+            onBackdropPress={this.onClose}
+            onRequestClose={this.onClose}
+          >
+            <View style={styles.content}>{modalChild}</View>
+          </Modal>
+        }
+      />
     );
   };
 }
@@ -60,22 +67,23 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
-  contentContainer: {
-    backgroundColor: defaultTokens.paletteWhite,
-    alignSelf: 'center',
-    width: '100%',
-    maxHeight: '95%',
-    borderTopStartRadius: 8,
-    borderTopEndRadius: 8,
+  modalWide: {
+    justifyContent: 'center',
   },
   wideContentContainer: {
     width: '75%',
+    alignSelf: 'center',
+    borderBottomStartRadius: 8,
+    borderBottomEndRadius: 8,
   },
   content: {
-    opacity: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: defaultTokens.paletteWhite,
+    marginTop: 20,
+    borderTopStartRadius: 8,
+    borderTopEndRadius: 8,
   },
   safeArea: {
-    flex: 1,
-    justifyContent: 'flex-end',
+    paddingBottom: 36,
   },
 });

@@ -2,6 +2,59 @@
 
 exports[`ButtonPopup playground renders in playground 1`] = `
 <Popup
+  bottomContent={
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Component
+        style={
+          Array [
+            Object {
+              "flex": 1,
+              "margin": 10,
+            },
+            Object {
+              "marginEnd": 0,
+            },
+          ]
+        }
+      >
+        <TextButton
+          disabled={false}
+          onPress={[Function]}
+          title={
+            <Translation
+              passThrough="Close"
+            />
+          }
+          type="secondary"
+        />
+      </Component>
+      <Component
+        style={
+          Object {
+            "flex": 1,
+            "margin": 10,
+          }
+        }
+      >
+        <TextButton
+          disabled={false}
+          onPress={[Function]}
+          title={
+            <Translation
+              passThrough="Save"
+            />
+          }
+          type="primary"
+        />
+      </Component>
+    </Component>
+  }
   isVisible={true}
   onClose={[Function]}
 >
@@ -19,59 +72,6 @@ exports[`ButtonPopup playground renders in playground 1`] = `
     <Translation
       passThrough="Child"
     />
-  </Component>
-  <Component
-    style={
-      Object {
-        "flexDirection": "row",
-      }
-    }
-  >
-    <Component
-      style={
-        Array [
-          Object {
-            "flex": 1,
-            "margin": 10,
-            "marginTop": 15,
-          },
-          Object {
-            "marginEnd": 0,
-          },
-        ]
-      }
-    >
-      <TextButton
-        disabled={false}
-        onPress={[Function]}
-        title={
-          <Translation
-            passThrough="Close"
-          />
-        }
-        type="secondary"
-      />
-    </Component>
-    <Component
-      style={
-        Object {
-          "flex": 1,
-          "margin": 10,
-          "marginTop": 15,
-        }
-      }
-    >
-      <TextButton
-        disabled={false}
-        onPress={[Function]}
-        title={
-          <Translation
-            passThrough="Save"
-          />
-        }
-        type="primary"
-      />
-    </Component>
   </Component>
 </Popup>
 `;
