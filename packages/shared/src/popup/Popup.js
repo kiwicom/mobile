@@ -16,32 +16,13 @@ type Props = {|
 |};
 
 export default class Popup extends React.Component<Props> {
-  scrollView: ?React$ElementRef<ScrollView>;
-
-  constructor() {
-    super();
-
-    this.scrollView = null;
-  }
-
   onClose = () => this.props.onClose();
-
-  scrollToEnd = () => {
-    if (this.scrollView) {
-      this.scrollView.scrollToEnd({ animated: true });
-    }
-  };
-
-  saveRef = (ref: React$ElementRef<ScrollView>): void =>
-    (this.scrollView = ref);
 
   render = () => {
     const modalChild = (
       <ScrollView
         contentContainerStyle={styles.content}
         alwaysBounceVertical={false}
-        ref={this.saveRef}
-        onContentSizeChange={this.scrollToEnd}
       >
         <SafeAreaView style={styles.safeArea}>
           {this.props.children}
