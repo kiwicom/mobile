@@ -19,7 +19,7 @@ export default function PassengerMenuItem(props: Props) {
     <View style={styleSheet.wrapper}>
       {props.name && (
         <View style={styleSheet.row}>
-          <TextIcon code="w" style={styleSheet.icon} orbit={true} />
+          <TextIcon code="w" style={styleSheet.icon} />
           <Text style={styleSheet.name}>{props.name}</Text>
         </View>
       )}

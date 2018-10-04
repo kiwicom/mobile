@@ -121,11 +121,7 @@ export class AddressPickerScreen extends React.Component<Props, State> {
         {this.state.formattedAddress !== '' && (
           <Touchable onPress={this.setLocationToCurrentLocation}>
             <View style={styles.currentLocationContainer}>
-              <TextIcon
-                code="&quot;"
-                orbit={true}
-                style={styles.currentLocationIcon}
-              />
+              <TextIcon code="&quot;" style={styles.currentLocationIcon} />
               <View>
                 <Text numberOfLines={1} style={styles.currentLocationTitle}>
                   <Translation id="mmb.trip_service.transportation.address_picker.current_location_title" />

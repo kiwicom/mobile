@@ -43,7 +43,7 @@ export class ServicesMenuGroup extends React.Component<PropsWithContext> {
         isActive={
           this.props.activeId === 'mmb.main_menu.services.trip_services'
         }
-        icon={<TextIcon code="r" orbit={true} />}
+        icon={<TextIcon code="r" />}
         title={<Translation id="mmb.main_menu.services.trip_services" />}
         description={
           <Translation id="mmb.main_menu.services.trip_services.description" />

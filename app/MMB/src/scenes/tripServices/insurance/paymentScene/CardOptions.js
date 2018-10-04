@@ -64,7 +64,7 @@ export default class PaymentScene extends React.Component<Props> {
         </View>
 
         <CardOption
-          leftIcon={<TextIcon code="&#xe122;" orbit={true} />}
+          leftIcon={<TextIcon code="&#xe122;" />}
           isActive={isAnotherCardActive}
           onPress={this.onPressAnotherCard}
           cardOption={

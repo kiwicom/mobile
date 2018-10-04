@@ -7,7 +7,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#00a991",
@@ -22,7 +21,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#fbad18",
@@ -37,7 +35,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#d50c6a",
@@ -52,7 +49,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#35dc93",
@@ -67,7 +63,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#ef7209",
@@ -82,7 +77,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#863ccd",
@@ -97,7 +91,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#006dc7",
@@ -112,7 +105,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#4fb52e",
@@ -127,7 +119,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#30363d",
@@ -142,7 +133,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#ff80ce",
@@ -157,7 +147,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#ff2424",
@@ -172,7 +161,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#ff2424",
@@ -187,7 +175,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#ff2424",
@@ -202,7 +189,6 @@ Array [
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#ff2424",

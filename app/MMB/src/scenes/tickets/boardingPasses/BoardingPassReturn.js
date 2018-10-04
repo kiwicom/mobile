@@ -18,18 +18,14 @@ export const BoardingPassReturn = (props: Props) => (
   <React.Fragment>
     <FlightSegments
       data={idx(props.data, _ => _.outbound)}
-      icon={
-        <TextIcon code="&#xe103;" style={styles.outboundIcon} orbit={true} />
-      }
+      icon={<TextIcon code="&#xe103;" style={styles.outboundIcon} />}
       iconTitle={
         <Translation id="mmb.boarding_passes.boarding_pass_return.departure" />
       }
     />
     <FlightSegments
       data={idx(props.data, _ => _.inbound)}
-      icon={
-        <TextIcon code="&#xe103;" style={styles.inboundIcon} orbit={true} />
-      }
+      icon={<TextIcon code="&#xe103;" style={styles.inboundIcon} />}
       iconTitle={
         <Translation id="mmb.boarding_passes.boarding_pass_return.return" />
       }

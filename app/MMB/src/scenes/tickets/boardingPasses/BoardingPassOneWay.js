@@ -17,7 +17,7 @@ type Props = {|
 const BoardingPassOneWay = (props: Props) => (
   <FlightSegments
     data={idx(props.data, _ => _.trip)}
-    icon={<TextIcon code="&#xe103;" style={styles.outboundIcon} orbit={true} />}
+    icon={<TextIcon code="&#xe103;" style={styles.outboundIcon} />}
     iconTitle={
       <Translation id="mmb.boarding_passes.boarding_pass_one_way.departure" />
     }

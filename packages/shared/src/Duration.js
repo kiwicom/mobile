@@ -36,11 +36,7 @@ export default function Duration(props: Props) {
   return (
     <View style={styleSheet.row}>
       {props.showIcon && (
-        <TextIcon
-          code="e"
-          orbit={true}
-          style={[styleSheet.durationIcon, props.iconStyle]}
-        />
+        <TextIcon code="e" style={[styleSheet.durationIcon, props.iconStyle]} />
       )}
       <Text style={[styleSheet.durationText, props.style]}>
         <Translation passThrough=" " />

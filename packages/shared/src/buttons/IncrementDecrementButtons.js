@@ -49,7 +49,7 @@ export default function IncrementDecrementButtons(props: Props) {
   return (
     <View style={styles.row}>
       <Button
-        icon={<TextIcon code="&#xe118;" orbit={true} style={styles.icon} />}
+        icon={<TextIcon code="&#xe118;" style={styles.icon} />}
         touchable={!disableDecrement}
         onPress={props.onDecrement}
       />
@@ -59,7 +59,7 @@ export default function IncrementDecrementButtons(props: Props) {
         </Text>
       )}
       <Button
-        icon={<TextIcon code="&#xe122;" orbit={true} style={styles.icon} />}
+        icon={<TextIcon code="&#xe122;" style={styles.icon} />}
         touchable={!disableIncrement}
         onPress={props.onIncrement}
       />

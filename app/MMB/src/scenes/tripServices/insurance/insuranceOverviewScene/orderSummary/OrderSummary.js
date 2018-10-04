@@ -43,7 +43,6 @@ class OrderSummary extends React.Component<Props, State> {
         <View style={styleSheet.wrapper}>
           <TextIcon
             code="&#xe09D;"
-            orbit={true}
             style={[styleSheet.textIcon, styleExpanded]}
           />
           {this.state.isExpanded && (

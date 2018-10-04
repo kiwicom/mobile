@@ -7,7 +7,6 @@ exports[`DatePicker renders in playground 1`] = `
   iconComponent={
     <TextIcon
       code="z"
-      orbit={true}
     />
   }
   onDateChange={[Function]}
@@ -21,7 +20,6 @@ exports[`DatePicker works with max date 1`] = `
   iconComponent={
     <TextIcon
       code="z"
-      orbit={true}
     />
   }
   maxDate={2018-01-01T00:00:00.000Z}
@@ -36,7 +34,6 @@ exports[`DatePicker works with min date 1`] = `
   iconComponent={
     <TextIcon
       code="z"
-      orbit={true}
     />
   }
   minDate={2018-01-01T00:00:00.000Z}
@@ -52,7 +49,6 @@ exports[`DatePicker works with other date formats 1`] = `
   iconComponent={
     <TextIcon
       code="z"
-      orbit={true}
     />
   }
   onDateChange={[Function]}

@@ -21,7 +21,7 @@ const IconWithText = (props: Props) => {
   });
   return (
     <View style={styles.container}>
-      <TextIcon style={textStyle.text} code={props.textIconCode} orbit={true} />
+      <TextIcon style={textStyle.text} code={props.textIconCode} />
       <Text style={textStyle.text}>
         <Translation passThrough=" " />
         {props.text}

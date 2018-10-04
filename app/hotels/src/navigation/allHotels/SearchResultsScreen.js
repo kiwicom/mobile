@@ -54,9 +54,9 @@ class SearchResultsScreen extends React.Component<Props> {
     }
     const icon =
       show === 'list' ? (
-        <TextIcon code="&#xe001;" orbit={true} style={styles.icon} />
+        <TextIcon code="&#xe001;" style={styles.icon} />
       ) : (
-        <TextIcon code="&#xe115;" orbit={true} style={styles.icon} />
+        <TextIcon code="&#xe115;" style={styles.icon} />
       );
     return {
       ...HotelsNavigationOptions({ checkin, checkout, cityName }),

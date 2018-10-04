@@ -11,7 +11,6 @@ exports[`works with broken input 1`] = `
 >
   <TextIcon
     code="e"
-    orbit={true}
     style={
       Array [
         Object {
@@ -66,7 +65,6 @@ exports[`works with broken input 2`] = `
 >
   <TextIcon
     code="e"
-    orbit={true}
     style={
       Array [
         Object {
