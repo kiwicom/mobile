@@ -25,6 +25,8 @@ const buildPackage = require('../.build/package.json');
 // react-native-native-modules version
 const rnModulesPackage = require('../packages/rnmodules/package.json');
 
+const baseFolder = 'android';
+
 // Get versions and remove ^ if necessary
 const getDependencyVersion = packageName => {
   return buildPackage.dependencies[packageName].replace('^', '');
@@ -46,7 +48,7 @@ const deployDependency = (packageName, url, version, extension = '') => {
         console.log(`Deploying ${packageName}/${version}${extension}`);
         try {
           exec(
-            `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
+            `cd ${baseFolder}/native/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
               // $FlowFixMe we already checked in the top that is defined
               process.env.ANDROID_DEPLOYMENT_PASSWORD
             } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
@@ -76,7 +78,7 @@ const deployLibrary = (packageName, version) => {
   console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
     exec(
-      `cd RNAndroidPlayground/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
+      `cd ${baseFolder}/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
         // $FlowFixMe we already checked in the top that is defined
         process.env.ANDROID_DEPLOYMENT_PASSWORD
       } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
