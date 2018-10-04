@@ -22,7 +22,7 @@ AppRegistry.registerComponent(
 );
 ```
 
-Registered module has to be then instantiated in along with proper `moduleName` and required `initialProperties`, like below:
+The registered module has to be then instantiated along with the proper `moduleName` and the required `initialProperties` like below:
 
 ```objc
   RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
