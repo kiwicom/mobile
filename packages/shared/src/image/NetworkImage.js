@@ -6,7 +6,6 @@ import type { StylePropType } from '@kiwicom/mobile-shared';
 import { ConfigContext } from '@kiwicom/mobile-config';
 
 import MissingImage from './MissingImage';
-import IconLoading from '../loaders/IconLoading';
 
 type Props = {|
   +source: {|
@@ -41,11 +40,14 @@ export const NetworkImage = function NetworkImage(imageProps: Props) {
       },
     ],
   };
+
   return <Image {...newProps} />;
 };
 
+const DefaultIndicator = () => null;
+
 NetworkImage.defaultProps = {
-  indicator: IconLoading,
+  indicator: DefaultIndicator,
 };
 
 export default function NetworkImageWithContext(props: Props) {
