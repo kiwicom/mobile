@@ -22,4 +22,4 @@ Running the app from the packager allows you to reload the Javascript code insta
 yarn start
 ```
 
-_NOTE_: Clean build directory (⇧⌘K in XCode) if you are switching directly from `Debug` to `Release` schema to build.
+_NOTE_: Clean build directory (⇧⌘K in XCode) if you are switching directly from `Debug` to `Release` schema.
