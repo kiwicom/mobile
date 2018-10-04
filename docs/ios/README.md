@@ -4,15 +4,33 @@ The source code can be found in [RNNativePlayground](https://github.com/kiwicom/
 
 ## Test playground app
 
-Open the project in XCode (use `reactNativeApp.xcworkspace`). Make sure you have `RNNativePlayground - Release` scheme selected before running. It will run the app from `jsbundle`.
+### Release
+
+In release mode, the `playground` will be ran from `jsbundle`. You do not need the packager running. This is the real version that the native app will be consuming,
+
+You can run it using:
+
+```
+yarn run ios --scheme RNNativePlayground --configuration Release
+```
+
+Or if you prefer you can run it from XCode. Open `reactNativeApp.xcworkspace` and then make sure you have `RNNativePlayground - Release` scheme selected before running.
 
 ![](../../docs/assets/open_schema_release.gif)
 
-### Running from the packager - Debug mode
+### Debug
 
 Running the app from the packager allows you to reload the Javascript code instantly, every time you make changes in your code.
 
-1. To run `KiwiHotels` module with the packager, change the schema for `RNNativePlayground - Debug`
+You can run the playground app using:
+
+```
+yarn run ios --scheme RNNativePlayground --configuration Debug
+```
+
+Or if you prefer you can run it with XCode:
+
+1. Change the schema for `RNNativePlayground - Debug`
 
 ![](../../docs/assets/change_debug_schema.png)
 
