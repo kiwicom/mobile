@@ -6,6 +6,7 @@ import type {
   FilterParams,
   ActiveFilters,
   OnChangeFilterParams,
+  OrderByEnum,
 } from './filter/FilterParametersType';
 
 const defaultFilterParams = {
@@ -22,29 +23,44 @@ const defaultActiveFilters = {
   isStarsFilterActive: false,
   isMinScoreActive: false,
   isHotelFacilitiesActive: false,
+  isOrderFilterActive: false,
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
   filterParams: defaultFilterParams,
   activeFilters: defaultActiveFilters,
+  orderBy: null,
   actions: {
     setFilter: () => {},
   },
 });
 
 type Props = {|
-  children: React.Node,
+  +children: React.Node,
 |};
 
 type State = {|
   filterParams: FilterParams,
   activeFilters: ActiveFilters,
+  orderBy: null | OrderByEnum,
   actions: {|
-    setFilter: OnChangeFilterParams => void,
+    +setFilter: OnChangeFilterParams => void,
   |},
 |};
 
 class Provider extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      filterParams: defaultFilterParams,
+      activeFilters: defaultActiveFilters,
+      orderBy: null,
+      actions: {
+        setFilter: this.setFilter,
+      },
+    };
+  }
   setActiveFilters = () => {
     this.setState(state => {
       const {
@@ -62,30 +78,24 @@ class Provider extends React.Component<Props, State> {
           isStarsFilterActive: starsRating.length > 0,
           isMinScoreActive: minScore !== null,
           isHotelFacilitiesActive: hotelFacilities.length > 0,
+          isOrderFilterActive: state.orderBy != null,
         },
       };
     });
   };
 
-  setFilter = (action: OnChangeFilterParams) => {
-    this.setState(
-      state => ({
+  setFilter = ({ orderBy, ...action }: OnChangeFilterParams) => {
+    this.setState(state => {
+      const nextOrderBy = orderBy === undefined ? state.orderBy : orderBy;
+      return {
         ...state,
         filterParams: {
           ...state.filterParams,
           ...action,
         },
-      }),
-      this.setActiveFilters,
-    );
-  };
-
-  state = {
-    filterParams: defaultFilterParams,
-    activeFilters: defaultActiveFilters,
-    actions: {
-      setFilter: this.setFilter,
-    },
+        orderBy: nextOrderBy,
+      };
+    }, this.setActiveFilters);
   };
 
   render = () => (
