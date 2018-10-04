@@ -20,6 +20,7 @@ android {
     }
     signingConfigs {
         release {
+            // Just a fake keystore / fake password
             storeFile file("playground-key.keystore")
             storePassword 'kiwireactnative'
             keyAlias 'my-key-alias'
