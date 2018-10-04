@@ -110,7 +110,6 @@ def pass = getPassword("rn_hotels","android_keystore")
 
 android {
     compileSdkVersion compileSdkVersionVar
-    buildToolsVersion buildToolsVersionVar
 
     dexOptions {
         javaMaxHeapSize "4g"

@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven'
-apply from: "../dependencies.gradle"
+apply from: "../../dependencies.gradle"
 
 android {
     defaultConfig {
