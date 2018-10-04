@@ -16,27 +16,37 @@ In the [`app/native`](https://github.com/kiwicom/mobile/blob/master/app/native.j
 
 ```js
 // Hotels
-AppRegistry.registerComponent('KiwiHotels', () => HotelsStandalonePackage);
 AppRegistry.registerComponent(
   'NewKiwiHotels',
   () => NewHotelsStandAlonePackage
 );
 ```
 
-Registered module has to be then instantiated in along with proper `moduleName` and `initialProperties`, like below:
+Registered module has to be then instantiated in along with proper `moduleName` and required `initialProperties`, like below:
 
 ```objc
-  RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"KiwiHotels"
-                                                        initialProperties:@{
-                                                          @"coordinates": @{
-                                                              @"latitude" : @59.9139,
-                                                              @"longitude": @10.7522
-                                                              },
-                                                          @"language": @"en",
-                                                          @"currency": @"EUR",
-                                                          @"lastNavigationMode": @"push",
-                                                          @"dimensions": [self windowDimensions]
-                                                        }];
+  RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
+                                                          initialProperties:@{
+                                                            @"bookingComAffiliate": @"123456",
+                                                            @"language": @"en",
+                                                            @"currency": @"EUR",
+                                                            @"lastNavigationMode": @"present",
+                                                            @"dimensions": [self windowDimensions],
+                                                            @"checkin": todayDate,
+                                                            @"checkout": tomorrowDate,
+                                                            @"version": @"3.7.13-9d55ad66",
+                                                            @"cityName": @"Barcelona",
+                                                            @"cityId": @"aG90ZWxDaXR5Oi0zNzI0OTA=",
+                                                            @"roomsConfiguration": @[
+                                                                @{
+                                                                  @"adultsCount": @1,
+                                                                  @"children": @[
+                                                                      @{
+                                                                        @"age": @2
+                                                                        }
+                                                                      ]}
+                                                                ]
+                                                          }];
 ```
 
 ## Using React Native module in external app
