@@ -59,6 +59,7 @@ export default {
   'hotels_search.filter.stars_popup.save': 'Save',
   'hotels_search.filter.stars_popup.title': 'Hotel stars',
   'hotels_search.filter.stars_popup.unrated': 'Unrated',
+  'hotels_search.filter.order_by': 'sort',
   'hotels_search.guests.adults': 'Adults:',
   'hotels_search.guests.age_control.less_than_one': 'Less than year',
   'hotels_search.guests.age_control.select': 'Please select',
