@@ -129,10 +129,25 @@ export { CustomStandalonePackage };
 
 ## Using the package in native side
 
-When your package is ready to use in native side you have to register it in [`native.js`]('https://github.com/kiwicom/mobile/blob/master/app/native.js') file:
+When your package is ready to use in the native side you have to register it in [`native.js`]('https://github.com/kiwicom/mobile/blob/master/app/native.js') file:
 
 ```js
 import { CustomStandalonePackage } from '@kiwicom/custom-app';
 
 AppRegistry.registerComponent('Custom', () => CustomStandalonePackage);
+```
+
+### Closing RN module and going back to native side
+
+To close RN module and go back to native side call the `onClosePress` function on back button.
+
+```js
+onClosePress = () => {
+  // This prop will only come if we launch this screen from a native app
+  if (this.props.lastNavigationMode === 'present') {
+    GestureController.closeModal('Custom');
+  } else {
+    this.props.onBackClicked();
+  }
+};
 ```
