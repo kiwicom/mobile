@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, StyleSheet, Icon } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
@@ -30,7 +30,7 @@ export const DateAndPassengerCount = (props: Props) => {
         <Text style={[styles.text, styles.passengersText]}>
           <Translation passThrough={props.passengerCount} />
         </Text>
-        <Icon name="people" size={15} color={defaultTokens.paletteWhite} />
+        <TextIcon code="(" style={styles.icon} orbit={true} />
       </View>
     </View>
   );
@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
   row: {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    alignItems: 'center',
   },
   text: {
     color: defaultTokens.paletteWhite,
@@ -56,5 +57,9 @@ const styles = StyleSheet.create({
   },
   passengersText: {
     marginEnd: 3,
+  },
+  icon: {
+    fontSize: 14,
+    color: defaultTokens.paletteWhite,
   },
 });
