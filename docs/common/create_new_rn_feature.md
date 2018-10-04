@@ -1,6 +1,6 @@
 # Create new RN feature from the scratch
 
-Within the `app` folder create new folder dedicated for your package eg. `custom` and then follow the structure below:
+Within the `app` folder create new folder dedicated for a new package e.g. `custom` and then follow the structure below:
 
 ```
 .
@@ -17,7 +17,7 @@ Within the `app` folder create new folder dedicated for your package eg. `custom
 
 ### RootComponent
 
-That file is representing the context providers which are passing data through the component tree for your application without having to pass props down manually at every level.
+This file is representing the context providers which are passing data through the component tree for your application without having to pass props down manually at every level.
 
 ```js
 <Dimensions.Provider dimensions={this.props.dimensions}>
@@ -31,7 +31,7 @@ That file is representing the context providers which are passing data through t
 </Dimensions.Provider>
 ```
 
-_For more details check [Context documentation]('https://reactjs.org/docs/context.html')_
+_For more details check the:_ [context documentation]('https://reactjs.org/docs/context.html').
 
 ### CustomStandalonePackage
 
@@ -47,19 +47,15 @@ export default WithNativeNavigation(CustomStandalonePackage, 'Custom');
 
 ### CustomStack
 
-Within `navigation` folder create your `StackNavigator` which provides a way for your app to transition between screens where each new screen is placed on top of a stack.
+Within the `navigation` folder create your `StackNavigator` which provides a way for your app to transition between screens where each new screen is placed on top of the stack.
 
-The example stack navigator should look like:
+The stack navigator example should look like:
 
 ```js
 export default StackNavigator(
   {
     Custom: {
-      screen: CustomScreen,
-      navigationOptions: {
-        headerLeft: null,
-        ...createTransparentHeaderStyle(RNDimensions.get('screen'))
-      }
+      screen: CustomScreen
     }
   },
   {
@@ -70,13 +66,13 @@ export default StackNavigator(
 );
 ```
 
-_For more details check [React Navigation documentation]('https://reactnavigation.org/docs/en/stack-navigator.html')_
+_For more details check:_ [React Navigation documentation]('https://reactnavigation.org/docs/en/stack-navigator.html').
 
 ## scenes
 
 ### CustomScreen
 
-Screen which is on the top of the navigation stack. Within you can define your component, where the only thing that's required is a `render` function which returns some JSX to render.
+This is the screen which is on the top of the navigation stack. Within you can define your component, where the only thing that's required is a `render` function.
 
 The example screen can look like:
 
@@ -88,7 +84,7 @@ export default class CustomScreen extends Component {
   render() {
     return (
       <View>
-        <Text>This is custom screen</Text>
+        <Text>This is a custom screen</Text>
       </View>
     );
   }
@@ -97,7 +93,7 @@ export default class CustomScreen extends Component {
 
 ## package.json
 
-`Package.json` file holds various metadata relevant to the project and handle the project's dependencies.
+The `Package.json` file holds various metadata relevant to the project and handle the project's dependencies.
 
 Define there:
 
@@ -119,7 +115,7 @@ Define there:
 }
 ```
 
-_For more details check [documentation]('https://docs.npmjs.com/files/package.json')_
+_For more details check the :_ [npm documentation]('https://docs.npmjs.com/files/package.json').
 
 ## index.js
 
@@ -131,7 +127,7 @@ import CustomStandalonePackage from './src/appRegistry/CustomStandalonePackage';
 export { CustomStandalonePackage };
 ```
 
-## Using package in native
+## Using the package in native side
 
 When your package is ready to use in native side you have to register it in [`native.js`]('https://github.com/kiwicom/mobile/blob/master/app/native.js') file:
 
