@@ -25,7 +25,7 @@ export default function DropMarker() {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
-        <TextIcon code="&#xe085;" orbit={true} style={styles.icon} />
+        <TextIcon code="&#xe085;" style={styles.icon} />
       </View>
       <View style={styles.blueArrow} />
       <View style={styles.whiteArrow} />

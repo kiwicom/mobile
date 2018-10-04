@@ -24,7 +24,7 @@ export default class ManageMenuGroup extends React.Component<Props> {
       <MenuItem
         onPress={this.handleOpenHelpSubmenu}
         isActive={this.props.activeId === 'mmb.main_menu.manage.help'}
-        icon={<TextIcon code="F" orbit={true} />}
+        icon={<TextIcon code="F" />}
         title={<Translation id="mmb.main_menu.manage.help" />}
         description={<Translation id="mmb.main_menu.manage.help.description" />}
       />
@@ -32,7 +32,7 @@ export default class ManageMenuGroup extends React.Component<Props> {
       <MenuItem
         onPress={this.handleOpenOtherSubmenu}
         isActive={this.props.activeId === 'mmb.main_menu.manage.other'}
-        icon={<TextIcon code="&#xe07d;" orbit={true} />}
+        icon={<TextIcon code="&#xe07d;" />}
         title={<Translation id="mmb.main_menu.manage.other" />}
         description={
           <Translation id="mmb.main_menu.manage.other.description" />

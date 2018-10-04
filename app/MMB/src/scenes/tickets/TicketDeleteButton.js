@@ -101,7 +101,7 @@ export class TicketDeleteButton extends React.Component<
     }
     return (
       <HeaderButton.Right onPress={this.onPress}>
-        <TextIcon code="W" style={styles.icon} orbit={true} />
+        <TextIcon code="W" style={styles.icon} />
       </HeaderButton.Right>
     );
   };

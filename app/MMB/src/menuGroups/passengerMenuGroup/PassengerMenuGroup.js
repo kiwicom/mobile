@@ -32,7 +32,7 @@ class PassengerMenuGroup extends React.Component<Props> {
           isActive={
             this.props.activeId === 'mmb.main_menu.passengers.passenger_details'
           }
-          icon={<TextIcon code="w" orbit={true} />}
+          icon={<TextIcon code="w" />}
         />
       </TitledMenuGroup>
       <PassengerMenuDetail data={this.props.data} />

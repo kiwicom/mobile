@@ -50,11 +50,7 @@ export default function TimelineEventIcon(props: Props) {
   );
   const pastEventIcon = (
     <View style={styles.pastEventIconBorder}>
-      <TextIcon
-        code="V"
-        orbit={true}
-        style={[styles.icon, styles.pastEventIcon]}
-      />
+      <TextIcon code="V" style={[styles.icon, styles.pastEventIcon]} />
     </View>
   );
 

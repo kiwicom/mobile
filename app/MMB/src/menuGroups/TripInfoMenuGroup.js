@@ -25,14 +25,14 @@ export default class TripInfoMenuGroup extends React.Component<Props> {
         onPress={this.handleOpenTicketsSubmenu}
         title={<Translation id="mmb.button.tickets" />}
         isActive={this.props.activeId === 'mmb.main_menu.trip_info.tickets'}
-        icon={<TextIcon code="." orbit={true} />}
+        icon={<TextIcon code="." />}
         description={<Translation id="mmb.tickets.boarding_passes" />}
       />
       <MenuItem
         onPress={this.handleOpenTimelineSubmenu}
         title={<Translation id="mmb.timeline.title" />}
         isActive={this.props.activeId === 'mmb.main_menu.trip_info.timeline'}
-        icon={<TextIcon code="e" orbit={true} />}
+        icon={<TextIcon code="e" />}
         description={<Translation id="mmb.subtitle.trip_schedule" />}
       />
     </TitledMenuGroup>

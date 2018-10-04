@@ -87,7 +87,6 @@ describe('FlightFromTo', () => {
       </Text>
       <TextIcon
         code="C"
-        orbit={true}
         style={
           Object {
             "color": "#7f91a8",
@@ -208,7 +207,6 @@ describe('FlightFromTo', () => {
       </Text>
       <TextIcon
         code="C"
-        orbit={true}
         style={
           Object {
             "color": "#7f91a8",

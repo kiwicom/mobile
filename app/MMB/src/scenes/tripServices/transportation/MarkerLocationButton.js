@@ -21,7 +21,7 @@ export default function MarkerLocationButton(props: Props) {
     <View style={styles.container}>
       <TouchableWithoutFeedback onPress={props.onPress}>
         <View style={styles.locationButton}>
-          <TextIcon code="$" style={styles.icon} orbit={true} />
+          <TextIcon code="$" style={styles.icon} />
           <Text
             numberOfLines={1}
             style={

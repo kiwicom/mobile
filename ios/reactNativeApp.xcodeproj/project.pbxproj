@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		012E4C1BA8444C8182992EEB /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B11306CBC6D24D3C990EAC4B /* Ionicons.ttf */; };
 		038BD3170181472CA3083F7C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6603DB7CD9F34D7AB1AD5B21 /* SimpleLineIcons.ttf */; };
@@ -61,7 +62,6 @@
 		A96754F560094312A0F7CAB7 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB92C0158EB3448ABD260167 /* Entypo.ttf */; };
 		ACD6B846BABD460FB7D68067 /* orbit-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABF7005A276C4AAF97361BF7 /* orbit-icons.ttf */; };
 		B025D45E10CE4ED9A975D6DF /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 645A06359A464CB0B63845A2 /* MaterialCommunityIcons.ttf */; };
-		C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF458A69A33B4401B9E9FCDA /* spfont.ttf */; };
 		DD9F4DDDD70840CBBECA0434 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */; };
 		F42D2DA1998548F1808065BE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */; };
 		FA705002A8FD4F5BBDB4B4F4 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6490E2D178E410C908FF998 /* Roboto-Regular.ttf */; };
@@ -476,7 +476,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				C6E56FC83EC94FBB91AA6A2C /* spfont.ttf in Resources */,
 				A96754F560094312A0F7CAB7 /* Entypo.ttf in Resources */,
 				0897E83159B140B5AD8D8D92 /* EvilIcons.ttf in Resources */,
 				03D20B5071D8480381221201 /* Feather.ttf in Resources */,

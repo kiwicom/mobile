@@ -29,9 +29,7 @@ export const RoomBadges = (props: Props) => {
     <React.Fragment>
       {isBreakfastIncluded && (
         <AdaptableBadge
-          icon={
-            <TextIcon code="&#xe02F;" orbit={true} style={styles.iconStyle} />
-          }
+          icon={<TextIcon code="&#xe02F;" style={styles.iconStyle} />}
           translation={
             <Translation id="single_hotel.room_badges.breakfast_included" />
           }
@@ -41,7 +39,7 @@ export const RoomBadges = (props: Props) => {
       )}
       {isRefundable && (
         <AdaptableBadge
-          icon={<TextIcon code="r" orbit={true} style={styles.iconStyle} />}
+          icon={<TextIcon code="r" style={styles.iconStyle} />}
           translation={
             <Translation id="single_hotel.room_badges.free_cancellation" />
           }

@@ -24,7 +24,7 @@ const CabinBags = (props: Props) => {
   return (
     <BaggageMenuItem
       bagCount={bags.length}
-      icon={<TextIcon code="h" style={styles.icon} orbit={true} />}
+      icon={<TextIcon code="h" style={styles.icon} />}
       value={
         <View>
           <Translation id="mmb.passengers.cabin_bags.cabin_bags" />

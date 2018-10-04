@@ -49,11 +49,7 @@ class VariantButtons extends React.Component<Props> {
       <React.Fragment>
         <VariantButton
           iconComponent={
-            <TextIcon
-              code="'"
-              orbit={true}
-              style={[styles.icon, styles.travelPlus]}
-            />
+            <TextIcon code="'" style={[styles.icon, styles.travelPlus]} />
           }
           title={<Translation id="mmb.trip_services.insurance.variant.plus" />}
           price={travelPlusPrice}
@@ -62,11 +58,7 @@ class VariantButtons extends React.Component<Props> {
         />
         <VariantButton
           iconComponent={
-            <TextIcon
-              code="'"
-              orbit={true}
-              style={[styles.icon, styles.travelBasic]}
-            />
+            <TextIcon code="'" style={[styles.icon, styles.travelBasic]} />
           }
           title={<Translation id="mmb.trip_services.insurance.variant.basic" />}
           price={travelBasicPrice}
@@ -74,7 +66,7 @@ class VariantButtons extends React.Component<Props> {
           onPress={this.selectTravelBasic}
         />
         <VariantButton
-          iconComponent={<TextIcon code=":" orbit={true} style={styles.icon} />}
+          iconComponent={<TextIcon code=":" style={styles.icon} />}
           title={<Translation id="mmb.trip_services.insurance.variant.none" />}
           price={nonePrice}
           isSelected={this.props.selectedVariant === 'NONE'}

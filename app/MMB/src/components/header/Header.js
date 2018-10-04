@@ -85,7 +85,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
               onPress={this.handleOpenTripOverviewSubmenu}
               title={<Translation id="mmb.flight_overview.title" />}
               isActive={this.props.activeId === 'mmb.main_menu.trip_overview'}
-              icon={<TextIcon code="f" orbit={true} />}
+              icon={<TextIcon code="f" />}
             />
           </React.Fragment>
         }

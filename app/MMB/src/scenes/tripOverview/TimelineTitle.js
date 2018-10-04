@@ -90,7 +90,7 @@ class TimelineTitle extends React.Component<PropsWithContext> {
             </Text>
             <Translation passThrough=" " />
             {warning != null && (
-              <TextIcon code="R" orbit={true} style={styleSheet.warningStyle} />
+              <TextIcon code="R" style={styleSheet.warningStyle} />
             )}
           </View>
         </Touchable>

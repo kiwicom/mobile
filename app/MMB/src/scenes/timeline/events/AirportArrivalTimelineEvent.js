@@ -26,9 +26,7 @@ const AirportArrivalTimelineEvent = (props: Props) => {
       <TimelineEvent
         timestamp={timestamp}
         place={code}
-        iconVertLines={
-          <TimelineEventIcon icon={<TextIcon code="a" orbit={true} />} />
-        }
+        iconVertLines={<TimelineEventIcon icon={<TextIcon code="a" />} />}
         mainContent={
           <React.Fragment>
             <Title>

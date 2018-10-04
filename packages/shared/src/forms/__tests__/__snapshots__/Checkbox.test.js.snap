@@ -42,7 +42,6 @@ exports[`checked on android 1`] = `
     >
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "color": "#00a991",
@@ -99,7 +98,6 @@ exports[`checked on ios 1`] = `
     >
       <TextIcon
         code="S"
-        orbit={true}
         style={
           Object {
             "color": "#00a991",

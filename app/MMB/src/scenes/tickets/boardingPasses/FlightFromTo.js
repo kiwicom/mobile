@@ -56,7 +56,7 @@ export class FlightFromTo extends React.Component<PropsWithContext> {
                 )}
               />
             </Text>
-            <TextIcon code="C" style={styles.icon} orbit={true} />
+            <TextIcon code="C" style={styles.icon} />
             <Text style={styles.cityText}>
               <Translation
                 passThrough={idx(

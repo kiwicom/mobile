@@ -131,11 +131,7 @@ export default class HotelFacilitiesPopup extends React.Component<
             onPress={this.handleCheckboxOnPress(key)}
           >
             <View style={styles.checkbox}>
-              <TextIcon
-                code={facility.icon}
-                orbit={true}
-                style={styles.facilityIcon}
-              />
+              <TextIcon code={facility.icon} style={styles.facilityIcon} />
               {facility.text}
             </View>
           </Checkbox>

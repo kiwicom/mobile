@@ -77,7 +77,6 @@ export default class MobileTripOverviewHandle extends React.Component<
             <AnimatedTextIcon
               style={[styleSheet.textIcon, animatedTextIconRotationStyle]}
               code="&#xe09D;"
-              orbit={true}
             />
           </View>
           <View style={animatedChildrenHeightStyle}>{this.props.children}</View>

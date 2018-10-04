@@ -30,7 +30,7 @@ export const DateAndPassengerCount = (props: Props) => {
         <Text style={[styles.text, styles.passengersText]}>
           <Translation passThrough={props.passengerCount} />
         </Text>
-        <TextIcon code="(" style={styles.icon} orbit={true} />
+        <TextIcon code="(" style={styles.icon} />
       </View>
     </View>
   );

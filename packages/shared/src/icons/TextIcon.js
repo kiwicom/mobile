@@ -11,7 +11,6 @@ import StyleSheet from '../PlatformStyleSheet';
 type Props = {|
   +code: string,
   style?: StylePropType,
-  +orbit: boolean,
 |};
 
 /**
@@ -21,21 +20,12 @@ type Props = {|
  * <TextIcon code="&#xe0a3;" />
  * ```
  *
- * We currently support only one font family: "spfont".
+ * We currently support only one font family: "orbit-icons".
  */
 class TextIcon extends React.Component<Props> {
-  static defaultProps = {
-    orbit: false,
-  };
   render() {
     return (
-      <Text
-        style={[
-          styleSheet.icon,
-          this.props.style,
-          this.props.orbit ? styleSheet.orbit : null,
-        ]}
-      >
+      <Text style={[styleSheet.icon, this.props.style]}>
         <Translation passThrough={this.props.code} />
       </Text>
     );
@@ -46,13 +36,10 @@ export default TextIcon;
 
 const styleSheet = StyleSheet.create({
   icon: {
-    fontFamily: 'spfont', // font with all the icons (see Fontastic)
+    fontFamily: 'orbit-icons', // font with all the icons (see Orbit icons)
     includeFontPadding: false,
     textAlignVertical: 'center',
     color: defaultTokens.colorIconSecondary,
     fontSize: 20,
-  },
-  orbit: {
-    fontFamily: 'orbit-icons',
   },
 });

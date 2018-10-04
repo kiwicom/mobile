@@ -29,13 +29,13 @@ export class BeddingInfo extends React.Component<Props> {
     return (
       <View>
         <View style={styles.row}>
-          <TextIcon code="&#xe085;" orbit={true} style={styles.icon} />
+          <TextIcon code="&#xe085;" style={styles.icon} />
           <Text style={styles.text}>
             <Translation passThrough={` ${info}`} />
           </Text>
         </View>
         <View style={styles.row}>
-          <TextIcon code="(" orbit={true} style={styles.icon} />
+          <TextIcon code="(" style={styles.icon} />
           <Text style={styles.text}>
             <Translation passThrough={' '} />
             <Translation
