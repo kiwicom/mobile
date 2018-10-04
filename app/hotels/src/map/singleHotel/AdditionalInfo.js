@@ -52,7 +52,9 @@ export class AdditionalInfo extends React.Component<Props, State> {
                 stars={stars}
                 score={score}
               />
-              <Address address={idx(data, _ => _.hotel.address)} />
+              <View style={styles.addressContainer}>
+                <Address address={idx(data, _ => _.hotel.address)} />
+              </View>
             </View>
           </BottomSheet>
         </HotelPreviewProvider>
@@ -74,7 +76,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 5,
     paddingHorizontal,
-    paddingBottom: 10,
+  },
+  addressContainer: {
+    marginTop: 20,
   },
 });
 
