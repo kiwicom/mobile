@@ -9,9 +9,13 @@ import type {
   OnChangeFilterParams,
   OrderByEnum,
 } from '../FilterParametersType';
+import OrderPopup from './OrderPopup';
 
-const Titles = {
+const orderByOptions = {
   default: <Translation id="hotels_search.filter.order_by" />,
+  PRICE: <Translation id="hotels_search.filter.order_filter.price" />,
+  DISTANCE: <Translation id="hotels_search.filter.order_filter.distance" />,
+  STARS: <Translation id="hotels_search.filter.order_filter.stars" />,
 };
 
 type Props = {|
@@ -30,14 +34,33 @@ export default class OrderFilter extends React.Component<Props, State> {
   };
 
   getTitle = () => {
-    switch (this.props.orderBy) {
-      default:
-        return Titles['default'];
+    if (
+      this.props.orderBy === null ||
+      !orderByOptions.hasOwnProperty(this.props.orderBy)
+    ) {
+      return orderByOptions.default;
     }
+    const order: string = this.props.orderBy;
+    return orderByOptions[order];
   };
 
   filterButtonClicked = () => {
-    this.props.onChange({ orderBy: 'PRICE' }); // TODO: Show modal
+    if (this.props.isActive) {
+      this.props.onChange({ orderBy: null });
+    } else {
+      this.togglePopup();
+    }
+  };
+
+  handleSave = (orderBy: OrderByEnum | null) => {
+    this.props.onChange({ orderBy });
+    this.togglePopup();
+  };
+
+  togglePopup = () => {
+    this.setState(state => ({
+      isPopupOpen: !state.isPopupOpen,
+    }));
   };
 
   render = () => (
@@ -48,7 +71,12 @@ export default class OrderFilter extends React.Component<Props, State> {
         onPress={this.filterButtonClicked}
         icon={<Icon name="format-line-spacing" size={18} />}
       />
-      {/* TODO: Add modal */}
+      <OrderPopup
+        isVisible={this.state.isPopupOpen}
+        onClose={this.togglePopup}
+        onSave={this.handleSave}
+        orderBy={this.props.orderBy}
+      />
     </React.Fragment>
   );
 }
