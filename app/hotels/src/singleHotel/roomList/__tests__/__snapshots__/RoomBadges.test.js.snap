@@ -6,7 +6,6 @@ exports[`RoomBadges renders 1`] = `
     icon={
       <TextIcon
         code=""
-        orbit={true}
         style={
           Object {
             "alignSelf": "center",
@@ -39,7 +38,6 @@ exports[`RoomBadges renders 1`] = `
     icon={
       <TextIcon
         code="r"
-        orbit={true}
         style={
           Object {
             "alignSelf": "center",

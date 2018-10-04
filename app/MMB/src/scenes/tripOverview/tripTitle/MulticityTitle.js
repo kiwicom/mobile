@@ -16,7 +16,7 @@ type Props = {|
 const MulticityTitle = (props: Props) => (
   <View style={styles.row}>
     <MulticityName data={props.data.departure} />
-    <TextIcon code="o" orbit={true} style={styles.icon} />
+    <TextIcon code="o" style={styles.icon} />
     <MulticityName data={props.data.arrival} />
   </View>
 );

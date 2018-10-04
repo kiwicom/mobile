@@ -27,7 +27,7 @@ export const BoardingPassMultiCity = (props: Props) => {
       <FlightSegments
         key={index}
         data={trip}
-        icon={<TextIcon code="&#xe103;" style={styles.textIcon} orbit={true} />}
+        icon={<TextIcon code="&#xe103;" style={styles.textIcon} />}
         iconTitle={
           <Translation
             passThrough={idx(trip, _ => _.arrival.airport.city.name)}

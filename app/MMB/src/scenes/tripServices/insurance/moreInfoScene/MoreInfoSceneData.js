@@ -103,29 +103,29 @@ export default [
     title: (
       <Translation id="mmb.trip_services.insurance.selection.more_info.tourist_assistance" />
     ),
-    travelBasic: <TextIcon style={styles.icon} code="V" orbit={true} />,
-    travelPlus: <TextIcon style={styles.icon} code="V" orbit={true} />,
+    travelBasic: <TextIcon style={styles.icon} code="V" />,
+    travelPlus: <TextIcon style={styles.icon} code="V" />,
   },
   {
     title: (
       <Translation id="mmb.trip_services.insurance.selection.more_info.medical_assistance" />
     ),
-    travelBasic: <TextIcon style={styles.icon} code="V" orbit={true} />,
-    travelPlus: <TextIcon style={styles.icon} code="V" orbit={true} />,
+    travelBasic: <TextIcon style={styles.icon} code="V" />,
+    travelPlus: <TextIcon style={styles.icon} code="V" />,
   },
   {
     title: (
       <Translation id="mmb.trip_services.insurance.selection.more_info.telephone_assistance" />
     ),
-    travelBasic: <TextIcon style={styles.icon} code="V" orbit={true} />,
-    travelPlus: <TextIcon style={styles.icon} code="V" orbit={true} />,
+    travelBasic: <TextIcon style={styles.icon} code="V" />,
+    travelPlus: <TextIcon style={styles.icon} code="V" />,
   },
   {
     title: (
       <Translation id="mmb.trip_services.insurance.selection.more_info.interpretation_and_translation" />
     ),
-    travelBasic: <TextIcon style={styles.icon} code="V" orbit={true} />,
-    travelPlus: <TextIcon style={styles.icon} code="V" orbit={true} />,
+    travelBasic: <TextIcon style={styles.icon} code="V" />,
+    travelPlus: <TextIcon style={styles.icon} code="V" />,
   },
   {
     title: (

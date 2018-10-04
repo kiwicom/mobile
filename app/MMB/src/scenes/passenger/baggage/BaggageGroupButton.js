@@ -24,8 +24,8 @@ class BaggageGroupButton extends React.Component<Props> {
       <View style={styles.row}>
         <View style={styles.children}>{this.props.children}</View>
         {Platform.select({
-          android: <TextIcon code="E" style={styles.icon} orbit={true} />,
-          ios: <TextIcon code="&#xe01F;" style={styles.icon} orbit={true} />,
+          android: <TextIcon code="E" style={styles.icon} />,
+          ios: <TextIcon code="&#xe01F;" style={styles.icon} />,
         })}
       </View>
     </Touchable>

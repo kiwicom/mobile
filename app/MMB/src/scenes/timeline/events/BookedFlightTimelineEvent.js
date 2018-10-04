@@ -21,9 +21,7 @@ const BookedFlightTimelineEvent = (props: Props) => {
   return (
     <TimelineEvent
       timestamp={timestamp}
-      iconVertLines={
-        <TimelineEventIcon icon={<TextIcon code="V" orbit={true} />} />
-      }
+      iconVertLines={<TimelineEventIcon icon={<TextIcon code="V" />} />}
       mainContent={
         <Title>
           <Translation

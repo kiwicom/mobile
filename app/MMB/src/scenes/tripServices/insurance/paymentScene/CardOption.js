@@ -40,9 +40,7 @@ export default function CardOption(props: Props) {
           <Text style={styles.cardOption}>{props.cardOption}</Text>
         </View>
 
-        {props.isActive && (
-          <TextIcon code="V" style={styles.checkedIcon} orbit={true} />
-        )}
+        {props.isActive && <TextIcon code="V" style={styles.checkedIcon} />}
       </View>
     </TouchableWithoutFeedback>
   );

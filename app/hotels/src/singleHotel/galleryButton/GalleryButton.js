@@ -28,7 +28,7 @@ export default function GalleryButton({ count, style }: Props) {
   const textStyle = idx(style, _ => _.text) || null;
   return (
     <View style={[styles.container, containerStyle]}>
-      <TextIcon code="&#xe064;" orbit={true} style={[styles.icon, iconStyle]} />
+      <TextIcon code="&#xe064;" style={[styles.icon, iconStyle]} />
       {count !== null && (
         <Text style={[styles.count, textStyle]}>
           <Translation passThrough={count} />

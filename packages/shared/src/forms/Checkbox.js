@@ -19,7 +19,6 @@ type Props = {|
 export default function Checkbox(props: Props) {
   const icon = (
     <TextIcon
-      orbit={true}
       code={Platform.OS === 'ios' ? 'S' : '\ue013'}
       style={styles.iconStyle}
     />

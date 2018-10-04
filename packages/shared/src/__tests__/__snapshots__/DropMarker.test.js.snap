@@ -28,7 +28,6 @@ exports[`calculates the offsets base on icon size 1`] = `
   >
     <TextIcon
       code=""
-      orbit={true}
       style={
         Object {
           "color": "#fff",
@@ -111,7 +110,6 @@ exports[`calculates the offsets base on icon size 2`] = `
   >
     <TextIcon
       code=""
-      orbit={true}
       style={
         Object {
           "color": "#fff",

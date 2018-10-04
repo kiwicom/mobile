@@ -27,7 +27,7 @@ export const FlightServicesMenuItem = (props: Props) => {
     <MenuItem
       onPress={props.onPress}
       isActive={props.isActive}
-      icon={<TextIcon code="&#xe049;" orbit={true} />}
+      icon={<TextIcon code="&#xe049;" />}
       title={<Translation id="mmb.main_menu.services.flight_services" />}
       description={
         <Translation id="mmb.main_menu.services.flight_services.description" />

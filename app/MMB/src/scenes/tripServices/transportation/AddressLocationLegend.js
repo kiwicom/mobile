@@ -13,7 +13,7 @@ export default function AddressLocationLegend() {
         <Text style={styles.text}>
           <Translation id="mmb.trip_service.transportation.map.legend.long_tap" />
         </Text>
-        <TextIcon code="j" style={[styles.icon, styles.markerA]} orbit={true} />
+        <TextIcon code="j" style={[styles.icon, styles.markerA]} />
         <Text style={styles.text}>
           <Translation id="mmb.trip_service.transportation.map.legend.markerA" />
         </Text>
@@ -22,7 +22,7 @@ export default function AddressLocationLegend() {
         <Text style={styles.text}>
           <Translation id="mmb.trip_service.transportation.map.legend.tap" />
         </Text>
-        <TextIcon code="k" style={[styles.icon, styles.markerB]} orbit={true} />
+        <TextIcon code="k" style={[styles.icon, styles.markerB]} />
         <Text style={styles.text}>
           <Translation id="mmb.trip_service.transportation.map.legend.markerB" />
         </Text>

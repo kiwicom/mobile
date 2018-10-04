@@ -57,7 +57,7 @@ exports[`TicketDeleteButton renders correctly when booking has local files 1`] =
             Array [
               Object {
                 "color": "#7f91a8",
-                "fontFamily": "spfont",
+                "fontFamily": "orbit-icons",
                 "fontSize": 20,
                 "includeFontPadding": false,
                 "textAlignVertical": "center",
@@ -66,9 +66,6 @@ exports[`TicketDeleteButton renders correctly when booking has local files 1`] =
                 "alignSelf": "flex-start",
                 "color": "#00a991",
                 "fontSize": 21,
-              },
-              Object {
-                "fontFamily": "orbit-icons",
               },
             ],
           ]

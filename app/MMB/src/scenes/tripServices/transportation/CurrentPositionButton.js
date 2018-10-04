@@ -63,7 +63,7 @@ class CurrentPositionButton extends React.Component<Props, State> {
       <TouchableWithoutFeedback onPress={this.getLocation}>
         <View style={styles.roundButton}>
           <View>
-            <TextIcon code="&quot;" style={styles.icon} orbit={true} />
+            <TextIcon code="&quot;" style={styles.icon} />
           </View>
         </View>
       </TouchableWithoutFeedback>

@@ -43,7 +43,7 @@ export default class TravelDocumentForm extends React.Component<Props> {
     return (
       <React.Fragment>
         <View style={styles.row}>
-          <TextIcon code="w" orbit={true} style={styles.icon} />
+          <TextIcon code="w" style={styles.icon} />
           <TitleTranslation
             title={this.props.title}
             name={this.props.fullName}

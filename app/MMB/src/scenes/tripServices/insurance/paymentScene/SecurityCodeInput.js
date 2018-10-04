@@ -61,7 +61,7 @@ export default class SecurityCodeInput extends React.Component<Props> {
         />
         <TouchableWithoutFeedback onPress={this.onPress}>
           <View style={[styles.helpIcon, helpIconOffset]}>
-            <TextIcon code="F" orbit={true} style={styles.icon} />
+            <TextIcon code="F" style={styles.icon} />
           </View>
         </TouchableWithoutFeedback>
       </React.Fragment>

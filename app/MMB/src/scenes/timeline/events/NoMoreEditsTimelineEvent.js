@@ -21,9 +21,7 @@ const NoMoreEditsTimelineEvent = (props: Props) => {
     <TimelineEvent
       displayTime={false}
       timestamp={timestamp}
-      iconVertLines={
-        <TimelineEventIcon icon={<TextIcon code="&#xe00d;" orbit={true} />} />
-      }
+      iconVertLines={<TimelineEventIcon icon={<TextIcon code="&#xe00d;" />} />}
       mainContent={
         <Title>
           <Translation id="mmb.booking_timeline.event.no_more_edits.title" />
