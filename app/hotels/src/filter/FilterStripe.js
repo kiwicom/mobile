@@ -11,10 +11,12 @@ import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
 import HotelFacilitiesFilter from './hotelFacilities/HotelFacilitiesFilter';
 import ScoreFilter from './score/ScoreFilter';
+import OrderFilter from './order/OrderFilter';
 import type {
   ActiveFilters,
   FilterParams,
   OnChangeFilterParams,
+  OrderByEnum,
 } from './FilterParametersType';
 import HotelsFilterContext from '../HotelsFilterContext';
 import Filters from './Filters';
@@ -24,6 +26,7 @@ type PropsWithContext = {|
   +activeFilters: ActiveFilters,
   +onChange: OnChangeFilterParams => void,
   +filter: FilterParams,
+  +orderBy: OrderByEnum | null,
 |};
 
 /**
@@ -58,6 +61,11 @@ class FilterStripe extends React.Component<PropsWithContext> {
           showsHorizontalScrollIndicator={false}
         >
           <Filters>
+            <OrderFilter
+              orderBy={this.props.orderBy}
+              isActive={this.props.activeFilters.isOrderFilterActive}
+              onChange={this.onChange}
+            />
             <StarsFilter
               stars={this.props.filter.starsRating}
               onChange={this.onChange}
@@ -115,12 +123,18 @@ export default function FilterStripeWithContext() {
     <HotelsContext.Consumer>
       {({ currency }) => (
         <HotelsFilterContext.Consumer>
-          {({ activeFilters, filterParams, actions: { setFilter } }) => (
+          {({
+            activeFilters,
+            filterParams,
+            orderBy,
+            actions: { setFilter },
+          }) => (
             <FilterStripe
               currency={currency}
               onChange={setFilter}
               filter={filterParams}
               activeFilters={activeFilters}
+              orderBy={orderBy}
             />
           )}
         </HotelsFilterContext.Consumer>

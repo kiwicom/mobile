@@ -67,7 +67,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
     }
     return (
       <HotelsFilterContext.Consumer>
-        {({ filterParams }) => (
+        {({ orderBy, filterParams }) => (
           <PublicApiRenderer
             query={graphql`
               query NewAllHotelsSearchQuery(
@@ -96,6 +96,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
               first: 50,
               options: {
                 currency,
+                orderBy,
               },
             }}
             render={this.renderAllHotelsSearchList}
