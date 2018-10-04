@@ -44,6 +44,7 @@ const SharedVocabulary = {
   'shared.age_picker.done': 'Done',
   'shared.bar_popup.cancel': 'Cancel',
   'shared.button.close': 'Close',
+  'shared.button.save': 'Save',
   'shared.button.cancel': 'Cancel',
   'shared.button.delete': 'Delete',
   'shared.pdf_viewer.load_failed': 'Failed to load pdf',
