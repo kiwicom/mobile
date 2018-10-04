@@ -9,6 +9,14 @@ export type FilterParams = {|
   minScore: number | null,
 |};
 
+export type OrderByEnum =
+  | 'DISTANCE'
+  | 'POPULARITY'
+  | 'PRICE'
+  | 'RANKING'
+  | 'REVIEW_SCORE'
+  | 'STARS';
+
 export type OnChangeFilterParams = {|
   starsRating?: number[],
   minPrice?: ?number,
@@ -16,6 +24,7 @@ export type OnChangeFilterParams = {|
   freeCancellation?: boolean,
   hotelFacilities?: string[],
   minScore?: ?number,
+  orderBy?: ?OrderByEnum,
 |};
 
 export type ActiveFilters = {|
@@ -23,4 +32,5 @@ export type ActiveFilters = {|
   isStarsFilterActive: boolean,
   isMinScoreActive: boolean,
   isHotelFacilitiesActive: boolean,
+  isOrderFilterActive: boolean,
 |};
