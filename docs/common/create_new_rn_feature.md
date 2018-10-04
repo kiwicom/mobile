@@ -76,6 +76,25 @@ _For more details check [React Navigation documentation]('https://reactnavigatio
 
 ### CustomScreen
 
+Screen which is on the top of the navigation stack. Within you can define your component, where the only thing that's required is a `render` function which returns some JSX to render.
+
+The example screen can look like:
+
+```js
+import * as React from 'react';
+import { Text, View } from 'react-native';
+
+export default class CustomScreen extends Component {
+  render() {
+    return (
+      <View>
+        <Text>This is custom screen</Text>
+      </View>
+    );
+  }
+}
+```
+
 ## package.json
 
 `Package.json` file holds various metadata relevant to the project and handle the project's dependencies.
