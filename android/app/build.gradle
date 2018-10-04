@@ -127,12 +127,11 @@ android {
     }
     signingConfigs {
         release {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword pass
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword pass
-            }
+            // Just a fake keystore / fake password
+            storeFile file("app-release-key.keystore")
+            storePassword 'kiwireactnative'
+            keyAlias 'my-key-alias'
+            keyPassword 'kiwireactnative'
         }
     }
     splits {
