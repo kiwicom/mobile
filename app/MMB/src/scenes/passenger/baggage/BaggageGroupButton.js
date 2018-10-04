@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, Platform } from 'react-native';
-import { Touchable, StyleSheet, Icon } from '@kiwicom/mobile-shared';
+import { Touchable, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import {
   type NavigationType,
   withNavigation,
@@ -24,8 +24,8 @@ class BaggageGroupButton extends React.Component<Props> {
       <View style={styles.row}>
         <View style={styles.children}>{this.props.children}</View>
         {Platform.select({
-          android: <Icon name="mode-edit" size={20} style={styles.icon} />,
-          ios: <Icon name="chevron-right" size={26} style={styles.icon} />,
+          android: <TextIcon code="E" style={styles.icon} orbit={true} />,
+          ios: <TextIcon code="&#xe01F;" style={styles.icon} orbit={true} />,
         })}
       </View>
     </Touchable>
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   icon: {
     color: defaultTokens.paletteProductNormal,
     alignSelf: 'center',
+    fontSize: 16,
   },
 });
 
