@@ -76,7 +76,7 @@ export class RoomRow extends React.Component<Props> {
     const availableRoom = this.props.availableRoom;
     const thumbnailUrl = idx(
       availableRoom,
-      _ => _.room.photos.edges[0].node.thumbnailUrl,
+      _ => _.room.photos.edges[0].node.lowResUrl,
     );
     const price = idx(availableRoom, _ => _.minimalPrice.amount) || null;
     const currency = idx(availableRoom, _ => _.minimalPrice.currency) || null;
@@ -130,7 +130,6 @@ export default (createFragmentContainer(
         photos {
           edges {
             node {
-              thumbnailUrl
               highResUrl
               lowResUrl
               id
