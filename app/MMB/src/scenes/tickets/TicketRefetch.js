@@ -32,7 +32,8 @@ class ETicketRefetch extends React.Component<Props, State> {
 
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.id),
+        id: idx(this.props.data, _ => _.databaseId),
+        authToken: idx(this.props.data, _ => _.authToken),
       },
       null,
       () => {
@@ -60,7 +61,8 @@ export default createRefetchContainer(
   ETicketRefetch,
   graphql`
     fragment TicketRefetch on BookingInterface {
-      id
+      databaseId
+      authToken
       ...BoardingPasses
       assets {
         ...ETicket
@@ -68,8 +70,8 @@ export default createRefetchContainer(
     }
   `,
   graphql`
-    query TicketRefetchQuery($id: ID!) {
-      node(id: $id) {
+    query TicketRefetchQuery($id: Int!, $authToken: String!) {
+      singleBooking(id: $id, authToken: $authToken) {
         ... on BookingInterface {
           ...TicketRefetch
         }

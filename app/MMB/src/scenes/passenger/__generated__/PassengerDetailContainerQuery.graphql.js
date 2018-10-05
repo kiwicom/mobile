@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1dba32dc14943bac83e4a6db505ba3a0
+ * @relayHash 2e4d7211bb597e653d82e91d8b6769c0
  */
 
 /* eslint-disable */
@@ -40,6 +40,7 @@ query PassengerDetailContainerQuery(
 
 fragment PassengerDetail_booking on BookingInterface {
   databaseId
+  authToken
   contactDetails {
     ...ContactDetails_contactDetails
   }
@@ -191,7 +192,7 @@ return {
   "operationKind": "query",
   "name": "PassengerDetailContainerQuery",
   "id": null,
-  "text": "query PassengerDetailContainerQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on BookingInterface {\n  databaseId\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n  ...Baggage\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n\nfragment Baggage on BookingInterface {\n  allowedBaggage {\n    ...CabinBags\n    ...CheckedBaggage\n  }\n}\n\nfragment CabinBags on AllowedBaggage {\n  cabin {\n    ...BagInfo\n  }\n}\n\nfragment CheckedBaggage on AllowedBaggage {\n  checked {\n    ...BagInfo\n  }\n}\n\nfragment BagInfo on Baggage {\n  height\n  length\n  width\n  weight\n}\n",
+  "text": "query PassengerDetailContainerQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...PassengerDetail_booking\n    id\n  }\n}\n\nfragment PassengerDetail_booking on BookingInterface {\n  databaseId\n  authToken\n  contactDetails {\n    ...ContactDetails_contactDetails\n  }\n  passengers {\n    databaseId\n    ...Passenger_passenger\n  }\n  ...Baggage\n}\n\nfragment ContactDetails_contactDetails on BookingContactDetails {\n  phone\n  email\n}\n\nfragment Passenger_passenger on Passenger {\n  fullName\n  title\n  birthday\n  nationality\n  travelDocument {\n    idNumber\n  }\n  insuranceType\n  visaInformation {\n    requiredIn {\n      name\n      id\n    }\n    warningIn {\n      name\n      id\n    }\n  }\n}\n\nfragment Baggage on BookingInterface {\n  allowedBaggage {\n    ...CabinBags\n    ...CheckedBaggage\n  }\n}\n\nfragment CabinBags on AllowedBaggage {\n  cabin {\n    ...BagInfo\n  }\n}\n\nfragment CheckedBaggage on AllowedBaggage {\n  checked {\n    ...BagInfo\n  }\n}\n\nfragment BagInfo on Baggage {\n  height\n  length\n  width\n  weight\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -240,6 +241,13 @@ return {
             "storageKey": null
           },
           v2,
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "authToken",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "LinkedField",
             "alias": null,

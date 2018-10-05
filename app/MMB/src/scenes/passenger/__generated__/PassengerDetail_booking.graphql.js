@@ -15,6 +15,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type PassengerDetail_booking$ref: FragmentReference;
 export type PassengerDetail_booking = {|
   +databaseId: ?number,
+  +authToken: ?string,
   +contactDetails: ?{|
     +$fragmentRefs: ContactDetails_contactDetails$ref
   |},
@@ -44,6 +45,13 @@ return {
   "argumentDefinitions": [],
   "selections": [
     v0,
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "authToken",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -86,5 +94,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'd90dcde0bfab9e22e83702356db2b374';
+(node/*: any*/).hash = 'bba468184ab0b288fa7022fdcf4bf01a';
 module.exports = node;

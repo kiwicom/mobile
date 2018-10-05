@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d97bc1de72e7f66849783a866b5cdc01
+ * @relayHash 7fe3b044c06a4162f5e75df7fa3f52dc
  */
 
 /* eslint-disable */
@@ -39,7 +39,8 @@ query FillTravelDocumentContainerQuery(
 }
 
 fragment FillTravelDocument on BookingInterface {
-  id
+  databaseId
+  authToken
   destinationImageUrl(dimensions: _375x165)
   ...TripInfo
   ...PassengerTravelDocumentMenuGroup
@@ -169,18 +170,25 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "databaseId",
   "args": null,
   "storageKey": null
 },
 v3 = {
   "kind": "ScalarField",
   "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
   "name": "localTime",
   "args": null,
   "storageKey": null
 },
-v4 = [
+v5 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -215,19 +223,19 @@ v4 = [
         "args": null,
         "storageKey": null
       },
-      v2
+      v3
     ]
   },
-  v3
+  v4
 ],
-v5 = {
+v6 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "duration",
   "args": null,
   "storageKey": null
 },
-v6 = [
+v7 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -236,7 +244,7 @@ v6 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v4
+    "selections": v5
   },
   {
     "kind": "LinkedField",
@@ -246,19 +254,19 @@ v6 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v4
+    "selections": v5
   },
-  v5
+  v6
 ],
-v7 = [
-  v3
+v8 = [
+  v4
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "FillTravelDocumentContainerQuery",
   "id": null,
-  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...FillTravelDocument\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  id\n  destinationImageUrl(dimensions: _375x165)\n  ...TripInfo\n  ...PassengerTravelDocumentMenuGroup\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment PassengerTravelDocumentMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...TravelDocumentPassengerMenuItem\n  }\n}\n\nfragment TravelDocumentPassengerMenuItem on Passenger {\n  title\n  fullName\n  databaseId\n  travelDocument {\n    idNumber\n    expiration\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query FillTravelDocumentContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...FillTravelDocument\n    id\n  }\n}\n\nfragment FillTravelDocument on BookingInterface {\n  databaseId\n  authToken\n  destinationImageUrl(dimensions: _375x165)\n  ...TripInfo\n  ...PassengerTravelDocumentMenuGroup\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment PassengerTravelDocumentMenuGroup on BookingInterface {\n  passengers {\n    databaseId\n    ...TravelDocumentPassengerMenuItem\n  }\n}\n\nfragment TravelDocumentPassengerMenuItem on Passenger {\n  title\n  fullName\n  databaseId\n  travelDocument {\n    idNumber\n    expiration\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -303,6 +311,13 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
+            "name": "authToken",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
             "name": "destinationImageUrl",
             "args": [
               {
@@ -330,13 +345,7 @@ return {
             "concreteType": "Passenger",
             "plural": true,
             "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "databaseId",
-                "args": null,
-                "storageKey": null
-              },
+              v2,
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -378,6 +387,7 @@ return {
               }
             ]
           },
+          v3,
           {
             "kind": "InlineFragment",
             "type": "BookingMulticity",
@@ -390,7 +400,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v6
+                "selections": v7
               }
             ]
           },
@@ -406,7 +416,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v7
               },
               {
                 "kind": "LinkedField",
@@ -417,7 +427,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v5,
+                  v6,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -426,7 +436,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v7
+                    "selections": v8
                   },
                   {
                     "kind": "LinkedField",
@@ -436,7 +446,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v7
+                    "selections": v8
                   }
                 ]
               }
@@ -454,7 +464,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v7
               }
             ]
           }

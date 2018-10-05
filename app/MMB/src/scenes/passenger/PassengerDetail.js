@@ -35,6 +35,7 @@ export class PassengerDetail extends React.Component<Props, State> {
     this.props.relay.refetch(
       {
         id: idx(this.props.booking, _ => _.databaseId),
+        authToken: idx(this.props.booking, _ => _.authToken),
       },
       null,
       () => {
@@ -81,6 +82,7 @@ export default createRefetchContainer(
   graphql`
     fragment PassengerDetail_booking on BookingInterface {
       databaseId
+      authToken
       contactDetails {
         ...ContactDetails_contactDetails
       }
@@ -92,8 +94,8 @@ export default createRefetchContainer(
     }
   `,
   graphql`
-    query PassengerDetailQuery($id: ID!) {
-      node(id: $id) {
+    query PassengerDetailQuery($id: Int!, $authToken: String!) {
+      singleBooking(id: $id, authToken: $authToken) {
         ... on BookingInterface {
           ...PassengerDetail_booking
         }

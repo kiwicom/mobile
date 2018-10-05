@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 74ded18397e82cb26dc529dad1a15c56
+ * @relayHash 074cb17840b3869bdeb65d656aea81d3
  */
 
 /* eslint-disable */
@@ -40,6 +40,7 @@ query FlightServicesQuery(
 
 fragment FlightServicesMenuGroup_bookedServices on BookingInterface {
   databaseId
+  authToken
   bookedServices {
     category
     status
@@ -81,7 +82,7 @@ return {
   "operationKind": "query",
   "name": "FlightServicesQuery",
   "id": null,
-  "text": "query FlightServicesQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...FlightServicesMenuGroup_bookedServices\n    id\n  }\n}\n\nfragment FlightServicesMenuGroup_bookedServices on BookingInterface {\n  databaseId\n  bookedServices {\n    category\n    status\n  }\n}\n",
+  "text": "query FlightServicesQuery(\n  $id: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $id, authToken: $authToken) {\n    __typename\n    ...FlightServicesMenuGroup_bookedServices\n    id\n  }\n}\n\nfragment FlightServicesMenuGroup_bookedServices on BookingInterface {\n  databaseId\n  authToken\n  bookedServices {\n    category\n    status\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -133,6 +134,13 @@ return {
             "kind": "ScalarField",
             "alias": null,
             "name": "databaseId",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "authToken",
             "args": null,
             "storageKey": null
           },

@@ -33,7 +33,8 @@ class FillTravelDocument extends React.Component<Props, State> {
     this.setState({ isRefreshing: true });
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.id),
+        id: idx(this.props.data, _ => _.databaseId),
+        authToken: idx(this.props.data, _ => _.authToken),
       },
       null,
       () => {
@@ -63,15 +64,16 @@ export default createRefetchContainer(
   FillTravelDocument,
   graphql`
     fragment FillTravelDocument on BookingInterface {
-      id
+      databaseId
+      authToken
       destinationImageUrl(dimensions: _375x165)
       ...TripInfo
       ...PassengerTravelDocumentMenuGroup
     }
   `,
   graphql`
-    query FillTravelDocumentQuery($id: ID!) {
-      node(id: $id) {
+    query FillTravelDocumentQuery($id: Int!, $authToken: String!) {
+      singleBooking(id: $id, authToken: $authToken) {
         ... on BookingInterface {
           ...FillTravelDocument
         }

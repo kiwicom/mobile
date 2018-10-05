@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c81a8202223402b6ccca75459ebd17db
+ * @relayHash fe6e4188dda4a3459be1dcb4210291a9
  */
 
 /* eslint-disable */
@@ -39,7 +39,8 @@ query TicketSceneQuery(
 }
 
 fragment TicketRefetch on BookingInterface {
-  id
+  databaseId
+  authToken
   ...BoardingPasses
   assets {
     ...ETicket
@@ -192,11 +193,18 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "databaseId",
   "args": null,
   "storageKey": null
 },
 v3 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v4 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "airport",
@@ -223,10 +231,10 @@ v3 = {
         }
       ]
     },
-    v2
+    v3
   ]
 },
-v4 = {
+v5 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "arrival",
@@ -235,10 +243,10 @@ v4 = {
   "concreteType": "RouteStop",
   "plural": false,
   "selections": [
-    v3
+    v4
   ]
 },
-v5 = {
+v6 = {
   "kind": "LinkedField",
   "alias": null,
   "name": "legs",
@@ -247,7 +255,7 @@ v5 = {
   "concreteType": "Leg",
   "plural": true,
   "selections": [
-    v2,
+    v3,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -282,10 +290,10 @@ v5 = {
           "args": null,
           "storageKey": null
         },
-        v3
+        v4
       ]
     },
-    v4,
+    v5,
     {
       "kind": "LinkedField",
       "alias": null,
@@ -348,13 +356,7 @@ v5 = {
                   "args": null,
                   "storageKey": null
                 },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "databaseId",
-                  "args": null,
-                  "storageKey": null
-                }
+                v2
               ]
             }
           ]
@@ -363,15 +365,15 @@ v5 = {
     }
   ]
 },
-v6 = [
-  v5
+v7 = [
+  v6
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "TicketSceneQuery",
   "id": null,
-  "text": "query TicketSceneQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TicketRefetch\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  id\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n  ... on BookingMulticity {\n    ...BoardingPassMultiCity\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassMultiCity on BookingMulticity {\n  trips {\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  id\n  airline {\n    logoUrl\n  }\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n    ...AppleWallet\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  ...BoardingPassInformation\n}\n\nfragment AppleWallet on BoardingPass {\n  pkpasses {\n    ...AppleWalletPassenger\n    passenger {\n      databaseId\n    }\n  }\n}\n\nfragment AppleWalletPassenger on Pkpass {\n  url\n  passenger {\n    fullName\n  }\n}\n\nfragment BoardingPassInformation on BoardingPass {\n  availableAt\n  boardingPassUrl\n  ...FutureBookingInformation\n}\n\nfragment FutureBookingInformation on BoardingPass {\n  boardingPassUrl\n}\n",
+  "text": "query TicketSceneQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...TicketRefetch\n    id\n  }\n}\n\nfragment TicketRefetch on BookingInterface {\n  databaseId\n  authToken\n  ...BoardingPasses\n  assets {\n    ...ETicket\n  }\n}\n\nfragment BoardingPasses on Node {\n  __typename\n  ... on BookingReturn {\n    ...BoardingPassReturn\n  }\n  ... on BookingOneWay {\n    ...BoardingPassOneWay\n  }\n  ... on BookingMulticity {\n    ...BoardingPassMultiCity\n  }\n}\n\nfragment ETicket on BookingAssets {\n  ticketUrl\n}\n\nfragment BoardingPassReturn on BookingReturn {\n  outbound {\n    ...FlightSegments\n  }\n  inbound {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassOneWay on BookingOneWay {\n  trip {\n    ...FlightSegments\n  }\n}\n\nfragment BoardingPassMultiCity on BookingMulticity {\n  trips {\n    arrival {\n      airport {\n        city {\n          name\n        }\n        id\n      }\n    }\n    ...FlightSegments\n  }\n}\n\nfragment FlightSegments on Trip {\n  legs {\n    id\n    ...FlightFromTo\n  }\n}\n\nfragment FlightFromTo on Leg {\n  id\n  airline {\n    logoUrl\n  }\n  departure {\n    localTime\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  arrival {\n    airport {\n      city {\n        name\n      }\n      id\n    }\n  }\n  boardingPass {\n    ...DownloadButton\n    ...AppleWallet\n  }\n}\n\nfragment DownloadButton on BoardingPass {\n  flightNumber\n  boardingPassUrl\n  ...BoardingPassInformation\n}\n\nfragment AppleWallet on BoardingPass {\n  pkpasses {\n    ...AppleWalletPassenger\n    passenger {\n      databaseId\n    }\n  }\n}\n\nfragment AppleWalletPassenger on Pkpass {\n  url\n  passenger {\n    fullName\n  }\n}\n\nfragment BoardingPassInformation on BoardingPass {\n  availableAt\n  boardingPassUrl\n  ...FutureBookingInformation\n}\n\nfragment FutureBookingInformation on BoardingPass {\n  boardingPassUrl\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -416,6 +418,13 @@ return {
           {
             "kind": "ScalarField",
             "alias": null,
+            "name": "authToken",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
             "name": "__typename",
             "args": null,
             "storageKey": null
@@ -438,6 +447,7 @@ return {
               }
             ]
           },
+          v3,
           {
             "kind": "InlineFragment",
             "type": "BookingMulticity",
@@ -451,8 +461,8 @@ return {
                 "concreteType": "Trip",
                 "plural": true,
                 "selections": [
-                  v4,
-                  v5
+                  v5,
+                  v6
                 ]
               }
             ]
@@ -469,7 +479,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v7
               }
             ]
           },
@@ -485,7 +495,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v7
               },
               {
                 "kind": "LinkedField",
@@ -495,7 +505,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v6
+                "selections": v7
               }
             ]
           }
