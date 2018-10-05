@@ -16,7 +16,7 @@ project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../
 include ':react-native-native-modules'
 project(':react-native-native-modules').projectDir = new File(rootProject.projectDir, './native/react-native-native-modules/')
 include ':@kiwicom/react-native-reverse-geocode'
-project(':@kiwicom/react-native-reverse-geocode').projectDir = new File(rootProject.projectDir, 	'../node_modules/@kiwicom/react-native-reverse-geocode/android')
+project(':@kiwicom/react-native-reverse-geocode').projectDir = new File(rootProject.projectDir, '../node_modules/@kiwicom/react-native-reverse-geocode/android')
 
 include ':app'
 include ':playground', ':rnkiwimobile'
