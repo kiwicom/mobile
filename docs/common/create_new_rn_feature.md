@@ -33,6 +33,14 @@ This file is representing the context providers which are passing data through t
 
 _For more details check the:_ [context documentation]('https://reactjs.org/docs/context.html').
 
+### StandalonePackage
+
+This is the name we have given to the entry point of any new application. We now have `NewKiwiHotels` 
+and `SingleHotel`. SingleHotel is a subset of views in `NewKiwiHotels`, but it is still considered
+a standalone package since it is an entry point for native. 
+
+We are also working on `MMB` as a new standalone package, and hopefully there will be many more to come. 
+
 ### CustomStandalonePackage
 
 1. Render stack navigator wrapped in `RootComponent`
