@@ -19,7 +19,7 @@ type Props = {|
 
 export default function SelectButton({ increment, price, currency }: Props) {
   return (
-    <Touchable style={styles.container} onPress={increment}>
+    <Touchable style={styles.container} onPress={increment} delayPressIn={40}>
       <View style={styles.row}>
         <ButtonTitle
           style={styles.text}

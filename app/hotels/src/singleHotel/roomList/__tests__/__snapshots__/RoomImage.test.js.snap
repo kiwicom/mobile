@@ -5,6 +5,7 @@ exports[`RoomImage renders 1`] = `
   accessibilityComponentType="button"
   accessibilityTraits="button"
   borderlessRipple={false}
+  delayPressIn={40}
   disabled={false}
   onPress={[MockFunction]}
   rippleColor="rgba(0, 0, 0, .32)"

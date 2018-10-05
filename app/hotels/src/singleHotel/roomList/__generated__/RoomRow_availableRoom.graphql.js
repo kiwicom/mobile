@@ -22,7 +22,6 @@ export type RoomRow_availableRoom = {|
     +photos: ?{|
       +edges: ?$ReadOnlyArray<?{|
         +node: ?{|
-          +thumbnailUrl: ?string,
           +highResUrl: ?string,
           +lowResUrl: ?string,
           +id: string,
@@ -144,13 +143,6 @@ return {
                     {
                       "kind": "ScalarField",
                       "alias": null,
-                      "name": "thumbnailUrl",
-                      "args": null,
-                      "storageKey": null
-                    },
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
                       "name": "highResUrl",
                       "args": null,
                       "storageKey": null
@@ -213,5 +205,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f8d9fcc23dd717b8b3474b69391222e8';
+(node/*: any*/).hash = '64bb202d0291baafe462adeee69d93b8';
 module.exports = node;
