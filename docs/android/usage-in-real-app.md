@@ -1,10 +1,9 @@
 # Usage in real app
 
-This whole example is based on how we could add the [Hotels](../../rnkiwimobile/hotels) app into our Android native app.
+This whole example is based on how we could add the [Hotels](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels) app into our Android native app.
 
-## Initiate the React Native bridge in advance
+## Initiate the React Native app in advance
 
-Usually we can do this in our Splash screen activity or MainActivity. 
 I show here that you can keep it as a variable in your Application instance but that is not mandatory:
 
 ```kt
@@ -39,6 +38,25 @@ class CustomApplication : Application() {
 }
 ```
 
-1. [RNHotelsModuleInjection.kt](../../rnkiwimobile/hotels/RNHotelsModuleInjection) is the interface the consumer of Hotels needs to implement
-2. [RNHotelsModule.kt](../../rnkiwimobile/hotels/RNHotelsModule) includes eveything needed for Hotels
+1. [RNHotelsModuleInjection.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsModuleInjection) is the interface the consumer of Hotels needs to implement
+2. [RNHotelsModule.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsModule) includes eveything needed for Hotels
 
+After that, in any place of your app (usually Splash screen or MainActivity) you would:
+
+```kt
+class MainActivity : AppCompatActivity() {
+  override fun onCreate(savedInstanceState: Bundle?) {
+    (application as CustomApplication).startReactNative()
+
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+  }
+
+  override fun onDestroy() {
+    super.onDestroy()
+    (application as CustomApplication).clearReactNative()
+  }
+}
+```
+
+Then, you can just start the [RNHotelsActivity](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsActivity) wherever you need it.
