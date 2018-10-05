@@ -45,7 +45,10 @@ describe('commitMutation', () => {
   it('does not call network if there is no connection', () => {
     commitMutation(config);
     expect(Relay.commitMutation).not.toHaveBeenCalled();
-    expect(config.onCompleted).toHaveBeenCalledWith(null, 'No connection');
+    expect(config.onCompleted).toHaveBeenCalledWith(
+      { data: null },
+      'No connection',
+    );
   });
 
   it('does calls commit mutation and PrivateEnvironment if there is connection and a token', () => {
