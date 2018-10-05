@@ -33,7 +33,7 @@ type Props = {|
 
 type State = {|
   error: string | null,
-  addresses: AddressType[] | null,
+  addresses: $ReadOnlyArray<AddressType> | null,
 |};
 
 export default class Addresses extends React.Component<Props, State> {
