@@ -31,7 +31,7 @@ export const commitMutation = (
 ) => {
   if (ConnectionManager.isConnected() === false) {
     Alert.translatedAlert(null, { id: 'relay.query_renderer.no_connection' });
-    config.onCompleted(null, 'No connection');
+    config.onCompleted({ data: null }, 'No connection');
     return;
   }
   if (token) {
