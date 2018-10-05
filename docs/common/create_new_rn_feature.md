@@ -6,7 +6,7 @@ Within the `app` folder create new folder dedicated for a new package e.g. `cust
 .
 ├── app/
 │   │── custom/                    - custom application
-│           │── appRegistry/       - place for RootComponent and CustomStandalonePackage
+│           │── appRegistry/       - place for CustomStandalonePackage
 │           │── navigation/        - place for StackNavigator
 │           │── scenes/            - folder with custom package screens
 │           │── index.js           - file which is exporting CustomStandalonePackage
@@ -15,39 +15,25 @@ Within the `app` folder create new folder dedicated for a new package e.g. `cust
 
 ## appRegistry
 
-### RootComponent
-
-This file is representing the context providers which are passing data through the component tree for your application without having to pass props down manually at every level.
-
-```js
-<Dimensions.Provider dimensions={this.props.dimensions}>
-  <AuthContext.Provider
-    accessToken={this.props.accessToken || null}
-    bookingId={this.props.bookingId || null}
-    simpleToken={this.props.simpleToken || null}
-  >
-    {this.props.children}
-  </AuthContext.Provider>
-</Dimensions.Provider>
-```
-
-_For more details check the:_ [context documentation]('https://reactjs.org/docs/context.html').
-
 ### StandalonePackage
 
-This is the name we have given to the entry point of any new application. We now have `NewKiwiHotels` 
+This is the name we have given to the entry point of any new application. We now have `NewKiwiHotels`
 and `SingleHotel`. SingleHotel is a subset of views in `NewKiwiHotels`, but it is still considered
-a standalone package since it is an entry point for native. 
+a standalone package since it is an entry point for native.
 
-We are also working on `MMB` as a new standalone package, and hopefully there will be many more to come. 
+We are also working on `MMB` as a new standalone package, and hopefully there will be many more to come.
 
 ### CustomStandalonePackage
 
-1. Render stack navigator wrapped in `RootComponent`
+1. Render stack navigator
 
 2. To avoid problems on native navigation <-> RN navigation export standalone package wrapped within `WithNativeNavigation` HOC
 
 ```js
+type Props = {||};
+class CustomStandalonePackage extends React.Component<Props> {
+  render = () => <NavigationStack />;
+}
 export default WithNativeNavigation(CustomStandalonePackage, 'Custom');
 ```
 
@@ -68,8 +54,7 @@ export default StackNavigator(
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'Custom',
-    mode: 'modal'
+    initialRouteName: 'Custom'
   }
 );
 ```
