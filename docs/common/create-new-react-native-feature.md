@@ -1,4 +1,4 @@
-# Create new RN feature from the scratch
+# Create new React Native feature from the scratch
 
 Within the `app` folder create new folder dedicated for a new package e.g. `custom` and then follow the structure below:
 
