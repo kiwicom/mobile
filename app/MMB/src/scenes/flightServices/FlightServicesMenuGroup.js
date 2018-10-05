@@ -91,7 +91,10 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
   refetch = () => {
     this.setState({ isLoading: true });
     this.props.relay.refetch(
-      { id: idx(this.props.bookedServices, _ => _.databaseId) },
+      {
+        id: idx(this.props.bookedServices, _ => _.databaseId),
+        authToken: idx(this.props.bookedServices, _ => _.authToken),
+      },
       null,
       () => {
         this.setState({ isLoading: false });
@@ -172,6 +175,7 @@ export default createRefetchContainer(
   graphql`
     fragment FlightServicesMenuGroup_bookedServices on BookingInterface {
       databaseId
+      authToken
       bookedServices {
         category
         status
@@ -179,8 +183,8 @@ export default createRefetchContainer(
     }
   `,
   graphql`
-    query FlightServicesMenuGroupQuery($id: ID!) {
-      node(id: $id) {
+    query FlightServicesMenuGroupQuery($id: Int!, $authToken: String!) {
+      singleBooking(id: $id, authToken: $authToken) {
         ... on BookingInterface {
           ...FlightServicesMenuGroup_bookedServices
         }

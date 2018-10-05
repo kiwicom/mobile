@@ -13,7 +13,8 @@ type ETicket$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TicketRefetch$ref: FragmentReference;
 export type TicketRefetch = {|
-  +id: string,
+  +databaseId: ?number,
+  +authToken: ?string,
   +assets: ?{|
     +$fragmentRefs: ETicket$ref
   |},
@@ -33,7 +34,14 @@ const node/*: ConcreteFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "id",
+      "name": "databaseId",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "authToken",
       "args": null,
       "storageKey": null
     },
@@ -61,5 +69,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'aa36dfaaf38afd496cb88e83da113cfb';
+(node/*: any*/).hash = 'd917b9dbd810ed7fa870967012e0c350';
 module.exports = node;
