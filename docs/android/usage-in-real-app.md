@@ -4,7 +4,7 @@ This whole example is based on how we could add the [Hotels](../../android/rnkiw
 
 ## Initiate the React Native app in advance
 
-I show here that you can keep it as a variable in your Application instance but that is not mandatory:
+I show here that you can keep it as a variable in your `Application` instance but that is not mandatory, just one way to do it:
 
 ```kt
 import android.app.Application
@@ -17,11 +17,11 @@ class CustomApplication : Application() {
   lateinit var reactNativeHost: ReactNativeHost
 
   fun startReactNative() {
-    // (1) In this case, our Hotels app is using some custom modules that need to be implemented
+    // (1) In this case, our Hotels app is using a set of custom modules that need to be implemented
     // by the consumer app
     val hotelModulesInjection = HotelsModulesInjection() // Your own implementation of it
     
-    // (2) RNHotelsModule is provided by rnkiwimobile
+    // (2) RNKiwiHost and RNHotelsModule is provided by rnkiwimobile
     reactNativeHost = RNKiwiHost(
         this,
         RNHotelsModule.jsEntryPoint,
@@ -38,8 +38,10 @@ class CustomApplication : Application() {
 }
 ```
 
-1. [RNHotelsModuleInjection.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsModuleInjection) is the interface the consumer of Hotels needs to implement
-2. [RNHotelsModule.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsModule) includes eveything needed for Hotels
+1. [RNHotelsModuleInjection.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsModuleInjection.kt) is the interface the consumer of Hotels needs to implement
+2. [RNHotelsModule.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsModule.kt) includes eveything needed for Hotels
+
+## Start the React Native view
 
 After that, in any place of your app (usually Splash screen or MainActivity) you would:
 
@@ -59,4 +61,4 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-Then, you can just start the [RNHotelsActivity](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsActivity) wherever you need it.
+Then, you can just start the [RNHotelsActivity.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsActivity.kt) wherever you need it.
