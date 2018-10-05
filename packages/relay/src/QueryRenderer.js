@@ -19,6 +19,11 @@ type RendererResponse = {|
   +props?: Object,
 |};
 
+const noConnectionErrorMessages = [
+  'Network request failed', // See: https://github.com/github/fetch/blob/fcc4e1b48cfb5a2b1625fcd6eac06d954b00ccb6/fetch.js#L438-L444
+  'No network',
+];
+
 export default class QueryRenderer extends React.Component<Props> {
   createEnvironment = () => {
     const accessToken = this.props.accessToken;
@@ -30,18 +35,17 @@ export default class QueryRenderer extends React.Component<Props> {
   };
 
   renderRelayContainer = ({ error, props }: RendererResponse) => {
-    if (error) {
-      if (error.message === 'Network request failed') {
-        // See: https://github.com/github/fetch/blob/fcc4e1b48cfb5a2b1625fcd6eac06d954b00ccb6/fetch.js#L438-L444
-        return (
-          <GeneralError
-            errorMessage={
-              <Translation id="relay.query_renderer.no_connection" />
-            }
-          />
-        );
-      }
-
+    if (error && noConnectionErrorMessages.includes(error.message)) {
+      return (
+        <GeneralError
+          errorMessage={<Translation id="relay.query_renderer.no_connection" />}
+        />
+      );
+    } else if (error && error.message === 'Timeout') {
+      <GeneralError
+        errorMessage={<Translation id="relay.query_renderer.timeout" />}
+      />;
+    } else if (error) {
       // total failure (data == null, errors != null)
       return (
         <GeneralError
