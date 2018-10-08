@@ -8,8 +8,8 @@ object HotelsData {
   fun getInitialProperties(): RNHotelsInitialProperties {
     return RNHotelsInitialProperties(
         "en",
-        "2018-12-01",
-        "2018-12-25",
+        "EUR",
+        "",
         "2018-12-20",
         "2018-12-25",
         "Barcelona",
