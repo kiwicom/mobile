@@ -48,7 +48,7 @@ const styleSheet = StyleSheet.create({
     backgroundColor: defaultTokens.paletteInkNormal,
   },
   buttonGroup: {
-    backgroundColor: defaultTokens.backgroundBody,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     marginEnd: 5,
     borderColor: defaultTokens.borderColorCard,
     borderWidth: StyleSheet.hairlineWidth,
