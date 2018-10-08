@@ -9,20 +9,20 @@
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type AppleWalletPassenger$ref: FragmentReference;
-export type AppleWalletPassenger = {|
+declare export opaque type WalletPassenger$ref: FragmentReference;
+export type WalletPassenger = {|
   +url: ?string,
   +passenger: ?{|
     +fullName: ?string
   |},
-  +$refType: AppleWalletPassenger$ref,
+  +$refType: WalletPassenger$ref,
 |};
 */
 
 
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
-  "name": "AppleWalletPassenger",
+  "name": "WalletPassenger",
   "type": "Pkpass",
   "metadata": null,
   "argumentDefinitions": [],
@@ -55,5 +55,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '61c60dd20c79385de68ba4be12f67a04';
+(node/*: any*/).hash = 'fd0cebd051bc50e5cf19ba7451755c4c';
 module.exports = node;

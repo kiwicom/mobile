@@ -1,22 +1,22 @@
 // @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import AppleWalletPassenger from './AppleWalletPassenger';
-import type { AppleWallet as Pkpasses } from './__generated__/AppleWallet.graphql';
+import WalletPassenger from './WalletPassenger';
+import type { AppleWallet as Pkpasses } from './__generated__/TicketList.graphql';
 
 type Props = {|
   +data: Pkpasses,
   +segmentId: ?string,
 |};
 
-const AppleWallet = (props: Props) => {
+const TicketList = (props: Props) => {
   const pkpasses = idx(props.data, _ => _.pkpasses) || [];
 
   if (pkpasses.length === 0) {
@@ -24,15 +24,29 @@ const AppleWallet = (props: Props) => {
   }
   return (
     <React.Fragment>
-      <Text style={[styles.title, styles.text]}>
-        <Translation id="mmb.boarding_passes.apple_wallet.title" />
-      </Text>
-      <Text style={[styles.text, styles.infoText]}>
-        <Translation id="mmb.boarding_passes.apple_wallet.information_text" />
-      </Text>
+      {Platform.select({
+        ios: (
+          <React.Fragment>
+            <Text style={[styles.title, styles.text]}>
+              <Translation id="mmb.boarding_passes.apple_wallet.title" />
+            </Text>
+            <Text style={[styles.text, styles.infoText]}>
+              <Translation id="mmb.boarding_passes.apple_wallet.information_text" />
+            </Text>
+          </React.Fragment>
+        ),
+        android: (
+          <Text style={[styles.title, styles.text, styles.androidTitle]}>
+            <Translation
+              id="mmb.boarding_passes.android_wallet.title"
+              textTransform="uppercase"
+            />
+          </Text>
+        ),
+      })}
       <View style={styles.passengerContainer}>
         {pkpasses.map(item => (
-          <AppleWalletPassenger
+          <WalletPassenger
             key={idx(item, _ => _.passenger.databaseId)}
             data={item}
             segmentId={props.segmentId}
@@ -44,11 +58,11 @@ const AppleWallet = (props: Props) => {
 };
 
 export default createFragmentContainer(
-  AppleWallet,
+  TicketList,
   graphql`
-    fragment AppleWallet on BoardingPass {
+    fragment TicketList on BoardingPass {
       pkpasses {
-        ...AppleWalletPassenger
+        ...WalletPassenger
         passenger {
           databaseId
         }
@@ -70,5 +84,8 @@ const styles = StyleSheet.create({
   passengerContainer: {
     borderTopWidth: 1,
     borderTopColor: defaultTokens.paletteCloudLight,
+  },
+  androidTitle: {
+    fontWeight: '600',
   },
 });

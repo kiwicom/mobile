@@ -31,7 +31,7 @@ export default createBottomTabNavigator(
         backgroundColor: defaultTokens.paletteProductNormal,
       },
     },
-    initialRouteName: 'Search',
+    initialRouteName: 'Bookings',
     tabBarPosition: 'bottom',
   },
 );
