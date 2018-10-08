@@ -51,6 +51,7 @@ export default {
   'mmb.boarding_passes.future_booking_information.available':
     "We've provided you with a digital boarding pass but you should print it out because some airlines require a physical copy.",
   'mmb.boarding_passes.apple_wallet.title': 'Apple Wallet boarding pass',
+  'mmb.boarding_passes.android_wallet.title': 'Mobile tickets',
   'mmb.boarding_passes.apple_wallet.information_text':
     'Board the plane with an electronic boarding pass from your Apple Wallet',
 

@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, Platform } from 'react-native';
+import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
@@ -9,7 +9,7 @@ import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import BoardingPassRow from '../components/BoardingPassRow';
-import AppleWallet from './appleWallet/AppleWallet';
+import TicketList from './mobileTicket/TicketList';
 import DownloadButton from './DownloadButton';
 import type { FlightFromTo as RouteStopType } from './__generated__/FlightFromTo.graphql';
 import WalletContext, { type Segment } from '../../../context/WalletContext';
@@ -75,14 +75,13 @@ export class FlightFromTo extends React.Component<PropsWithContext> {
                 data={idx(this.props.data, _ => _.boardingPass)}
               />
             </View>
-            {Platform.OS === 'ios' && (
-              <View style={styles.appleWalletContainer}>
-                <AppleWallet
-                  segmentId={idx(this.props.data, _ => _.id)}
-                  data={idx(this.props.data, _ => _.boardingPass)}
-                />
-              </View>
-            )}
+
+            <View style={styles.appleWalletContainer}>
+              <TicketList
+                segmentId={idx(this.props.data, _ => _.id)}
+                data={idx(this.props.data, _ => _.boardingPass)}
+              />
+            </View>
           </View>
         }
       />
@@ -127,7 +126,7 @@ export default createFragmentContainer(
       }
       boardingPass {
         ...DownloadButton
-        ...AppleWallet
+        ...TicketList
       }
     }
   `,

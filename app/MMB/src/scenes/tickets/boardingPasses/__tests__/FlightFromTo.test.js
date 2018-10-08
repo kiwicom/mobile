@@ -119,7 +119,7 @@ describe('FlightFromTo', () => {
           }
         }
       >
-        <ForwardRef(Relay(AppleWallet)) />
+        <ForwardRef(Relay(TicketList)) />
       </Component>
     </Component>
   }
@@ -229,6 +229,15 @@ describe('FlightFromTo', () => {
         }
       >
         <ForwardRef(Relay(withNavigation(DownloadButton))) />
+      </Component>
+      <Component
+        style={
+          Object {
+            "marginTop": 20,
+          }
+        }
+      >
+        <ForwardRef(Relay(TicketList)) />
       </Component>
     </Component>
   }

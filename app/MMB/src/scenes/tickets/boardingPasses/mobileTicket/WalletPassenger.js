@@ -1,9 +1,10 @@
 // @flow strict
 
 import * as React from 'react';
+import { Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Icon, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import {
   type NavigationType,
@@ -11,7 +12,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { AppleWalletPassenger as AppleWalletType } from './__generated__/AppleWalletPassenger.graphql';
+import type { AppleWalletPassenger as AppleWalletType } from './__generated__/WalletPassenger.graphql';
 import WalletContext from './../../../../context/WalletContext';
 
 type PropsWithContext = {|
@@ -24,8 +25,8 @@ type PropsWithContext = {|
   ) => void,
 |};
 
-class AppleWalletPassenger extends React.Component<PropsWithContext> {
-  onPress = () => {
+class WalletPassenger extends React.Component<PropsWithContext> {
+  onPressIos = () => {
     const name = idx(this.props.data, _ => _.passenger.fullName) || '';
     const url = idx(this.props.data, _ => _.url) || '';
 
@@ -37,20 +38,30 @@ class AppleWalletPassenger extends React.Component<PropsWithContext> {
     }
   };
 
-  render = () => (
-    <Touchable onPress={this.onPress} style={styles.row}>
-      <React.Fragment>
-        <Translation
-          passThrough={idx(this.props.data, _ => _.passenger.fullName)}
-        />
-        <Icon
-          name="chevron-right"
-          size={26}
-          color={defaultTokens.paletteProductNormal}
-        />
-      </React.Fragment>
-    </Touchable>
-  );
+  onPressAndroid = () => {
+    console.warn('TODO');
+  };
+
+  render = () => {
+    const onPress = Platform.select({
+      ios: this.onPressIos,
+      android: this.onPressAndroid,
+    });
+
+    return (
+      <Touchable onPress={onPress} style={styles.row}>
+        <React.Fragment>
+          <Translation
+            passThrough={idx(this.props.data, _ => _.passenger.fullName)}
+          />
+          {Platform.select({
+            android: <TextIcon code="&#xe014;" style={styles.icon} />,
+            ios: <TextIcon code="&#xe01F;" style={styles.icon} />,
+          })}
+        </React.Fragment>
+      </Touchable>
+    );
+  };
 }
 
 type Props = {|
@@ -59,18 +70,18 @@ type Props = {|
   +segmentId: ?string,
 |};
 
-const AppleWalletPassengerWithContext = (props: Props) => (
+const WalletPassengerWithContext = (props: Props) => (
   <WalletContext.Consumer>
     {({ actions: { addPkpassData } }) => (
-      <AppleWalletPassenger {...props} addPkpassData={addPkpassData} />
+      <WalletPassenger {...props} addPkpassData={addPkpassData} />
     )}
   </WalletContext.Consumer>
 );
 
 export default createFragmentContainer(
-  withNavigation(AppleWalletPassengerWithContext),
+  withNavigation(WalletPassengerWithContext),
   graphql`
-    fragment AppleWalletPassenger on Pkpass {
+    fragment WalletPassenger on Pkpass {
       url
       passenger {
         fullName
@@ -87,5 +98,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: defaultTokens.paletteCloudLight,
     paddingVertical: 20,
+  },
+  icon: {
+    fontSize: 26,
+    color: defaultTokens.paletteProductNormal,
   },
 });
