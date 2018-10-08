@@ -8,6 +8,7 @@ import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import BoardingPassRow from '../components/BoardingPassRow';
 import AppleWallet from './appleWallet/AppleWallet';
 import DownloadButton from './DownloadButton';
 import type { FlightFromTo as RouteStopType } from './__generated__/FlightFromTo.graphql';
@@ -37,48 +38,54 @@ export class FlightFromTo extends React.Component<PropsWithContext> {
       : '';
     const time = date ? DateFormatter(new Date(date)).formatToTime() : '';
     return (
-      <View style={styles.row}>
-        <View style={styles.dateContainer}>
-          <Text style={styles.dateText}>
-            <Translation passThrough={shortDate} />
-          </Text>
-          <Text style={styles.dateText}>
-            <Translation passThrough={time} />
-          </Text>
-        </View>
-        <View style={styles.rightColumn}>
-          <View style={[styles.row, styles.cityContainer]}>
-            <Text style={styles.cityText}>
-              <Translation
-                passThrough={idx(
-                  this.props.data,
-                  _ => _.departure.airport.city.name,
-                )}
-              />
+      <BoardingPassRow
+        leftColumn={
+          <View style={styles.dateContainer}>
+            <Text style={styles.dateText}>
+              <Translation passThrough={shortDate} />
             </Text>
-            <TextIcon code="C" style={styles.icon} />
-            <Text style={styles.cityText}>
-              <Translation
-                passThrough={idx(
-                  this.props.data,
-                  _ => _.arrival.airport.city.name,
-                )}
-              />
+            <Text style={styles.dateText}>
+              <Translation passThrough={time} />
             </Text>
           </View>
-          <View style={styles.buttonContainer}>
-            <DownloadButton data={idx(this.props.data, _ => _.boardingPass)} />
-          </View>
-          {Platform.OS === 'ios' && (
-            <View style={styles.appleWalletContainer}>
-              <AppleWallet
-                segmentId={idx(this.props.data, _ => _.id)}
+        }
+        rightColumn={
+          <View style={styles.rightColumn}>
+            <View style={[styles.row, styles.cityContainer]}>
+              <Text style={styles.cityText}>
+                <Translation
+                  passThrough={idx(
+                    this.props.data,
+                    _ => _.departure.airport.city.name,
+                  )}
+                />
+              </Text>
+              <TextIcon code="C" style={styles.icon} />
+              <Text style={styles.cityText}>
+                <Translation
+                  passThrough={idx(
+                    this.props.data,
+                    _ => _.arrival.airport.city.name,
+                  )}
+                />
+              </Text>
+            </View>
+            <View style={styles.buttonContainer}>
+              <DownloadButton
                 data={idx(this.props.data, _ => _.boardingPass)}
               />
             </View>
-          )}
-        </View>
-      </View>
+            {Platform.OS === 'ios' && (
+              <View style={styles.appleWalletContainer}>
+                <AppleWallet
+                  segmentId={idx(this.props.data, _ => _.id)}
+                  data={idx(this.props.data, _ => _.boardingPass)}
+                />
+              </View>
+            )}
+          </View>
+        }
+      />
     );
   };
 }
