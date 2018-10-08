@@ -9,6 +9,7 @@ import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import BoardingPassRow from '../components/BoardingPassRow';
 import FlightFromTo from './FlightFromTo';
 import type { FlightSegments as FlightSegmentsType } from './__generated__/FlightSegments.graphql';
 
@@ -25,12 +26,15 @@ const FlightSegments = (props: Props) => {
   });
   return (
     <React.Fragment>
-      <View style={styles.row}>
-        {icon}
-        <Text style={styles.text}>{props.iconTitle}</Text>
-      </View>
+      <BoardingPassRow
+        leftColumn={icon}
+        rightColumn={<Text style={styles.text}>{props.iconTitle}</Text>}
+      />
       <View style={styles.separator}>
-        <SeparatorFullWidth />
+        <SeparatorFullWidth
+          color={defaultTokens.paletteCloudLight}
+          height={1}
+        />
       </View>
       {legs.map(item => (
         <View style={styles.flightItem} key={idx(item, _ => _.id)}>
@@ -54,21 +58,17 @@ export default createFragmentContainer(
 );
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-  },
   separator: {
     marginBottom: 20,
-    marginTop: 9,
+    marginTop: 5,
   },
   text: {
     color: defaultTokens.colorTextSecondary,
     fontSize: 12,
-    alignSelf: 'center',
   },
   icon: {
-    marginEnd: 18,
     fontSize: 24,
+    alignSelf: 'center',
   },
   flightItem: {
     marginBottom: 20,

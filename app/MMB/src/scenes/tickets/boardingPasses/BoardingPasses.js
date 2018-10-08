@@ -38,7 +38,7 @@ const BoardingPasses = (props: Props) => (
 
 const styles = StyleSheet.create({
   header: {
-    marginBottom: 12,
+    marginBottom: 28,
     paddingTop: 4,
   },
 });

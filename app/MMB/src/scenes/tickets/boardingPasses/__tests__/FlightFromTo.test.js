@@ -14,118 +14,116 @@ describe('FlightFromTo', () => {
     const wrapper = renderer.render(<FlightFromTo />);
 
     expect(wrapper).toMatchInlineSnapshot(`
-<Component
-  style={
-    Object {
-      "flexDirection": "row",
-    }
-  }
->
-  <Component
-    style={
-      Object {
-        "marginEnd": 10,
-      }
-    }
-  >
-    <Text
-      style={
-        Object {
-          "color": "#7f91a8",
-          "fontSize": 12,
-          "fontWeight": "600",
-        }
-      }
-    >
-      <Translation
-        passThrough=""
-      />
-    </Text>
-    <Text
-      style={
-        Object {
-          "color": "#7f91a8",
-          "fontSize": 12,
-          "fontWeight": "600",
-        }
-      }
-    >
-      <Translation
-        passThrough=""
-      />
-    </Text>
-  </Component>
-  <Component
-    style={
-      Object {
-        "flex": 1,
-        "marginEnd": 9,
-      }
-    }
-  >
+<BoardingPassRow
+  leftColumn={
     <Component
       style={
-        Array [
-          Object {
-            "flexDirection": "row",
-          },
-          Object {
-            "alignSelf": "flex-start",
-          },
-        ]
+        Object {
+          "marginEnd": 10,
+        }
       }
     >
       <Text
-        style={
-          Object {
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
-        }
-      >
-        <Translation />
-      </Text>
-      <TextIcon
-        code="C"
         style={
           Object {
             "color": "#7f91a8",
-            "fontSize": 18,
-            "marginHorizontal": 8,
-          }
-        }
-      />
-      <Text
-        style={
-          Object {
-            "fontSize": 16,
+            "fontSize": 12,
             "fontWeight": "600",
           }
         }
       >
-        <Translation />
+        <Translation
+          passThrough=""
+        />
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#7f91a8",
+            "fontSize": 12,
+            "fontWeight": "600",
+          }
+        }
+      >
+        <Translation
+          passThrough=""
+        />
       </Text>
     </Component>
+  }
+  rightColumn={
     <Component
       style={
         Object {
-          "marginTop": 15,
+          "flex": 1,
+          "marginEnd": 9,
         }
       }
     >
-      <ForwardRef(Relay(withNavigation(DownloadButton))) />
-    </Component>
-    <Component
-      style={
-        Object {
-          "marginTop": 20,
+      <Component
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            Object {
+              "alignSelf": "flex-start",
+            },
+          ]
         }
-      }
-    >
-      <ForwardRef(Relay(AppleWallet)) />
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          <Translation />
+        </Text>
+        <TextIcon
+          code="C"
+          style={
+            Object {
+              "color": "#7f91a8",
+              "fontSize": 18,
+              "marginHorizontal": 8,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          <Translation />
+        </Text>
+      </Component>
+      <Component
+        style={
+          Object {
+            "marginTop": 15,
+          }
+        }
+      >
+        <ForwardRef(Relay(withNavigation(DownloadButton))) />
+      </Component>
+      <Component
+        style={
+          Object {
+            "marginTop": 20,
+          }
+        }
+      >
+        <ForwardRef(Relay(AppleWallet)) />
+      </Component>
     </Component>
-  </Component>
-</Component>
+  }
+/>
 `);
   });
 
@@ -134,109 +132,107 @@ describe('FlightFromTo', () => {
     Platform.OS = 'android';
     // $FlowExpectedError: https://github.com/flow-typed/flow-typed/issues/2264
     expect(renderer.render(<FlightFromTo />)).toMatchInlineSnapshot(`
-<Component
-  style={
-    Object {
-      "flexDirection": "row",
-    }
-  }
->
-  <Component
-    style={
-      Object {
-        "marginEnd": 10,
-      }
-    }
-  >
-    <Text
-      style={
-        Object {
-          "color": "#7f91a8",
-          "fontSize": 12,
-          "fontWeight": "600",
-        }
-      }
-    >
-      <Translation
-        passThrough=""
-      />
-    </Text>
-    <Text
-      style={
-        Object {
-          "color": "#7f91a8",
-          "fontSize": 12,
-          "fontWeight": "600",
-        }
-      }
-    >
-      <Translation
-        passThrough=""
-      />
-    </Text>
-  </Component>
-  <Component
-    style={
-      Object {
-        "flex": 1,
-        "marginEnd": 9,
-      }
-    }
-  >
+<BoardingPassRow
+  leftColumn={
     <Component
       style={
-        Array [
-          Object {
-            "flexDirection": "row",
-          },
-          Object {
-            "alignSelf": "flex-start",
-          },
-        ]
+        Object {
+          "marginEnd": 10,
+        }
       }
     >
       <Text
-        style={
-          Object {
-            "fontSize": 16,
-            "fontWeight": "600",
-          }
-        }
-      >
-        <Translation />
-      </Text>
-      <TextIcon
-        code="C"
         style={
           Object {
             "color": "#7f91a8",
-            "fontSize": 18,
-            "marginHorizontal": 8,
-          }
-        }
-      />
-      <Text
-        style={
-          Object {
-            "fontSize": 16,
+            "fontSize": 12,
             "fontWeight": "600",
           }
         }
       >
-        <Translation />
+        <Translation
+          passThrough=""
+        />
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#7f91a8",
+            "fontSize": 12,
+            "fontWeight": "600",
+          }
+        }
+      >
+        <Translation
+          passThrough=""
+        />
       </Text>
     </Component>
+  }
+  rightColumn={
     <Component
       style={
         Object {
-          "marginTop": 15,
+          "flex": 1,
+          "marginEnd": 9,
         }
       }
     >
-      <ForwardRef(Relay(withNavigation(DownloadButton))) />
+      <Component
+        style={
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+            Object {
+              "alignSelf": "flex-start",
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          <Translation />
+        </Text>
+        <TextIcon
+          code="C"
+          style={
+            Object {
+              "color": "#7f91a8",
+              "fontSize": 18,
+              "marginHorizontal": 8,
+            }
+          }
+        />
+        <Text
+          style={
+            Object {
+              "fontSize": 16,
+              "fontWeight": "600",
+            }
+          }
+        >
+          <Translation />
+        </Text>
+      </Component>
+      <Component
+        style={
+          Object {
+            "marginTop": 15,
+          }
+        }
+      >
+        <ForwardRef(Relay(withNavigation(DownloadButton))) />
+      </Component>
     </Component>
-  </Component>
-</Component>
+  }
+/>
 `);
     Platform.OS = OriginalPlatform;
   });
