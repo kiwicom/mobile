@@ -2,32 +2,20 @@
 
 import * as React from 'react';
 import { RefreshableScrollView } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import {
   graphql,
   createRefetchContainer,
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
-import {
-  TitledMenuGroup,
-  withNavigation,
-  type NavigationType,
-  type RouteNamesType,
-} from '@kiwicom/mobile-navigation';
 import idx from 'idx';
 
-import HotelMenuItem from './hotelMenuItem/HotelMenuItem';
-import LoungeMenuItem from './LoungeMenuItem';
-import ParkingMenuItem from './ParkingMenuItem';
-import InsuranceMenuItemContainer from './insuranceMenuItem/InsuranceMenuItemContainer';
-import CarRentalMenuItem from './CarRentalMenuItem';
-import TransportationMenuItem from './transportationMenuItem/TransportationMenuItem';
+import GeneralServicesMenuGroup from './GeneralServicesMenuGroup';
+import LocalServicesMenuGroup from './LocalServicesMenuGroup';
 import type { TripServiceRefreshContainer as BookingType } from './__generated__/TripServiceRefreshContainer.graphql';
 
 type Props = {|
   +data: BookingType,
   +relay: RelayRefetchProp,
-  +navigation: NavigationType,
 |};
 
 type State = {|
@@ -37,20 +25,6 @@ type State = {|
 class TripServiceRefreshContainer extends React.Component<Props, State> {
   state = {
     isRefreshing: false,
-  };
-
-  navigate = (key: RouteNamesType, params?: Object) => {
-    this.props.navigation.navigate(key, params);
-  };
-
-  openInsurance = () => {
-    this.navigate('mmb.trip_services.insurance');
-  };
-
-  openWebview = (url: string) => {
-    this.navigate('mmb.trip_services.webview', {
-      url,
-    });
   };
 
   refetch = () => {
@@ -77,55 +51,24 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
     >
       {/* TODO: ordered services - how does it work here? */}
 
-      <TitledMenuGroup
-        title={<Translation id="mmb.trip_services.general_services" />}
-      >
-        <InsuranceMenuItemContainer
-          onOpenInsurance={this.openInsurance}
-          data={this.props.data}
-        />
-      </TitledMenuGroup>
+      <GeneralServicesMenuGroup data={this.props.data} />
 
-      <TitledMenuGroup
-        title={<Translation id="mmb.trip_services.local_services" />}
-      >
-        <CarRentalMenuItem
-          data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
-          onOpenWebview={this.openWebview}
-        />
-        <HotelMenuItem
-          data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
-        />
-        <LoungeMenuItem
-          data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
-          onOpenWebview={this.openWebview}
-        />
-        <ParkingMenuItem
-          data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
-          onOpenWebview={this.openWebview}
-        />
-        <TransportationMenuItem
-          data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
-          onOpenWebview={this.openWebview}
-        />
-      </TitledMenuGroup>
+      <LocalServicesMenuGroup
+        data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
+      />
     </RefreshableScrollView>
   );
 }
 
 export default createRefetchContainer(
-  withNavigation(TripServiceRefreshContainer),
+  TripServiceRefreshContainer,
   graphql`
     fragment TripServiceRefreshContainer on BookingInterface {
       databaseId
       authToken
-      ...InsuranceMenuItemContainer
+      ...GeneralServicesMenuGroup
       availableWhitelabeledServices {
-        ...CarRentalMenuItem
-        ...LoungeMenuItem
-        ...ParkingMenuItem
-        ...HotelMenuItem
-        ...TransportationMenuItem
+        ...LocalServicesMenuGroup
       }
     }
   `,
