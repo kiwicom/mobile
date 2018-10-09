@@ -1,0 +1,18 @@
+import groovy.json.JsonSlurper
+
+def inputFile = new File("${rootDir}/../.build/package.json")
+def packageJson = new JsonSlurper().parseText(inputFile.text)
+
+def rnModulesFile = new File("${rootDir}/../packages/rnmodules/package.json")
+def rnModulesPackageJson = new JsonSlurper().parseText(rnModulesFile.text)
+
+ext {
+    reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
+
+    reactNativeVectorIcons = packageJson['dependencies']['react-native-vector-icons'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeZipArchive = packageJson['dependencies']['react-native-zip-archive'].replace('^', '') + ".react-native." + reactNativeVersion
+
+    reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
+}
