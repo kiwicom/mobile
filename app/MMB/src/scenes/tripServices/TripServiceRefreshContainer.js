@@ -78,12 +78,7 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
       {/* TODO: ordered services - how does it work here? */}
 
       <TitledMenuGroup
-        title={
-          <Translation
-            id="mmb.trip_services.general_services"
-            textTransform="uppercase"
-          />
-        }
+        title={<Translation id="mmb.trip_services.general_services" />}
       >
         <InsuranceMenuItemContainer
           onOpenInsurance={this.openInsurance}
@@ -92,12 +87,7 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
       </TitledMenuGroup>
 
       <TitledMenuGroup
-        title={
-          <Translation
-            id="mmb.trip_services.local_services"
-            textTransform="uppercase"
-          />
-        }
+        title={<Translation id="mmb.trip_services.local_services" />}
       >
         <CarRentalMenuItem
           data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
