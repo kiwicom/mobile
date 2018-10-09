@@ -1,5 +1,6 @@
 buildscript {
-    apply from: "../dependencies.gradle"
+    apply from: "../versions.gradle"
+    apply from: "../../dependencies.gradle"
 
     repositories {
         google()
@@ -28,6 +29,15 @@ subprojects {
         }
         maven {
             url 'http://trinerdis.cz:8000/repository/snapshots/'
+        }
+    }
+
+    android {
+        compileSdkVersion 28
+
+        defaultConfig {
+            minSdkVersion 15
+            targetSdkVersion 28
         }
     }
 
