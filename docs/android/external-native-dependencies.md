@@ -1,4 +1,4 @@
-## Add a new external native dependency
+# Add a new external native dependency
 
 When we update a dependency there are no major changes as versions will be taken from [.build/package.json](../../.build/package.json) and a new [snapshot](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/) will be deployed.
 
@@ -45,3 +45,19 @@ deployDependency('react-native-vector-icons', ...),
 deployDependency('react-native-tooltips', ...),
 // Your new dependency here
 ```
+
+## Check it builds correctly
+
+In order to check if our new dependency builds correctly, we just need to go to our dependency directory:
+
+```shell
+cd /android/native/our-dependency
+```
+
+And run:
+
+```shell
+../../gradlew
+```
+
+It should output `BUILD SUCCESSFUL`.
