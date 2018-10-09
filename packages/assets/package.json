@@ -3,5 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "main": "index.js",
-  "dependencies": {}
+  "dependencies": {
+    "react-native-zip-archive": "^3.0.1"
+  }
 }
