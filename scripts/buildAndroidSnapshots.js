@@ -51,7 +51,7 @@ const deployDependency = (packageName, url, version, extension = '') => {
             `cd ${baseFolder}/native/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
               // $FlowFixMe we already checked in the top that is defined
               process.env.ANDROID_DEPLOYMENT_PASSWORD
-            } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
+            } ../../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
           );
         } catch (err) {
           reject(err);

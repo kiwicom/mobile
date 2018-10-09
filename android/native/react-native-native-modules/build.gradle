@@ -1,3 +1,8 @@
+import groovy.json.JsonSlurper
+
+def inputFile = new File("${rootDir}/../.build/package.json")
+def packageJson = new JsonSlurper().parseText(inputFile.text)
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven'
@@ -15,6 +20,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    project.ext.reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
 
     compileOptions {
         sourceCompatibility 1.8
