@@ -8,21 +8,17 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type CarRentalMenuItem$ref = any;
-type HotelMenuItem$ref = any;
-type InsuranceMenuItemContainer$ref = any;
-type LoungeMenuItem$ref = any;
-type ParkingMenuItem$ref = any;
-type TransportationMenuItem$ref = any;
+type GeneralServicesMenuGroup$ref = any;
+type LocalServicesMenuGroup$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TripServiceRefreshContainer$ref: FragmentReference;
 export type TripServiceRefreshContainer = {|
   +databaseId: ?number,
   +authToken: ?string,
   +availableWhitelabeledServices: ?{|
-    +$fragmentRefs: CarRentalMenuItem$ref & LoungeMenuItem$ref & ParkingMenuItem$ref & HotelMenuItem$ref & TransportationMenuItem$ref
+    +$fragmentRefs: LocalServicesMenuGroup$ref
   |},
-  +$fragmentRefs: InsuranceMenuItemContainer$ref,
+  +$fragmentRefs: GeneralServicesMenuGroup$ref,
   +$refType: TripServiceRefreshContainer$ref,
 |};
 */
@@ -51,7 +47,7 @@ const node/*: ConcreteFragment*/ = {
     },
     {
       "kind": "FragmentSpread",
-      "name": "InsuranceMenuItemContainer",
+      "name": "GeneralServicesMenuGroup",
       "args": null
     },
     {
@@ -65,27 +61,7 @@ const node/*: ConcreteFragment*/ = {
       "selections": [
         {
           "kind": "FragmentSpread",
-          "name": "CarRentalMenuItem",
-          "args": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "LoungeMenuItem",
-          "args": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "ParkingMenuItem",
-          "args": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "HotelMenuItem",
-          "args": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "TransportationMenuItem",
+          "name": "LocalServicesMenuGroup",
           "args": null
         }
       ]
@@ -93,5 +69,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ee259798be67d3e9544405499d5be3c9';
+(node/*: any*/).hash = 'e6313664e261243c75ade3032276f3f1';
 module.exports = node;
