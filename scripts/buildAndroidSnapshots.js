@@ -129,7 +129,9 @@ const deployLibrary = (packageName, version) => {
     deployDependency(
       'react-native-zip-archive',
       SKYPICKER_URL,
-      `${rnModulesVersion}.react-native.${reactNativeVersion}`,
+      `${getDependencyVersion(
+        'react-native-zip-archive',
+      )}.react-native.${reactNativeVersion}`,
       '-SNAPSHOT',
     ),
   ])
