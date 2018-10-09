@@ -1,14 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import {
   WebView,
   Logger,
   type WebViewStateChangeEvent,
 } from '@kiwicom/mobile-shared';
-import { DateUtils } from '@kiwicom/mobile-localization';
+import { DateUtils, Translation } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
+import { HeaderTitle } from '@kiwicom/mobile-navigation';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
 import { withHotelsContext } from '../HotelsContext';
@@ -28,6 +29,13 @@ export type PaymentParameters = {|
 |};
 
 export class PaymentScreen extends React.Component<PaymentParameters> {
+  static navigationOptions = () => ({
+    headerTitle: (
+      <HeaderTitle>
+        <Translation id="hotels.navigation.title.payment" />
+      </HeaderTitle>
+    ),
+  });
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_PAYMENT);
   };
@@ -39,12 +47,15 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
   };
 
   render = () => (
-    <WebView
-      source={{
-        uri: createURI(this.props),
-      }}
-      onNavigationStateChange={this.onNavigationStateChange}
-    />
+    <React.Fragment>
+      <StatusBar barStyle="dark-content" />
+      <WebView
+        source={{
+          uri: createURI(this.props),
+        }}
+        onNavigationStateChange={this.onNavigationStateChange}
+      />
+    </React.Fragment>
   );
 }
 

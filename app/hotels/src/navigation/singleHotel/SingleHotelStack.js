@@ -1,15 +1,12 @@
 // @flow
 
-import * as React from 'react';
 import { Dimensions as RNDimensions } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import {
-  HeaderTitle,
   StackNavigator,
   StackNavigatorOptions,
   createTransparentHeaderStyle,
 } from '@kiwicom/mobile-navigation';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
@@ -17,10 +14,32 @@ import GalleryGrid from '../../gallery/GalleryGrid';
 import { PaymentScreen } from '../../singleHotel/PaymentScreen';
 import AdditionalPropsInjector from './AdditionalPropsInjector';
 
-export default StackNavigator(
+const DetailStack = StackNavigator(
   {
     SingleHotel: {
-      screen: SingleHotelNavigationScreen,
+      screen: withMappedProps(SingleHotelNavigationScreen),
+      navigationOptions: {
+        headerLeft: null,
+        ...createTransparentHeaderStyle(RNDimensions.get('screen')),
+      },
+    },
+    GalleryGrid: {
+      screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
+    },
+    Payment: {
+      screen: withMappedProps(PaymentScreen),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'SingleHotel',
+  },
+);
+
+export default StackNavigator(
+  {
+    DetailStack: {
+      screen: DetailStack,
       navigationOptions: {
         headerLeft: null,
         /**
@@ -41,23 +60,10 @@ export default StackNavigator(
         ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
-    GalleryGrid: {
-      screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
-    },
-    Payment: {
-      screen: withMappedProps(PaymentScreen),
-      navigationOptions: {
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.payment" />
-          </HeaderTitle>
-        ),
-      },
-    },
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'SingleHotel',
+    initialRouteName: 'DetailStack',
     mode: 'modal',
   },
 );
