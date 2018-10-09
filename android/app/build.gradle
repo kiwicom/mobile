@@ -155,6 +155,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-zip-archive')
     implementation project(':react-native-share')
     implementation project(':react-native-pdf')
     implementation project(':rn-fetch-blob')

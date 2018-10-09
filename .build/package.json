@@ -1,12 +1,13 @@
 {
   "name": "@kiwicom/react-native-app-hotels",
-  "version": "0.0.30",
+  "version": "0.0.31",
   "private": false,
   "main": "index.js",
   "dependencies": {
     "react-native": "^0.57.0",
     "react-native-maps": "^0.21.0",
     "react-native-vector-icons": "^5.0.0",
-    "react-native-tooltips": "^0.0.6"
+    "react-native-tooltips": "^0.0.6",
+    "react-native-zip-archive": "^3.0.1"
   }
 }
