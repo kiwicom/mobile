@@ -11,9 +11,10 @@ type Props = {|
 |};
 
 export default function MenuGroupTitle(props: Props) {
+  const title = React.cloneElement(props.title, { textTransform: 'uppercase' });
   return (
     <View style={styleSheet.titleWrapper}>
-      <Text style={styleSheet.title}>{props.title}</Text>
+      <Text style={styleSheet.title}>{title}</Text>
     </View>
   );
 }
@@ -31,6 +32,7 @@ const styleSheet = StyleSheet.create({
   },
   title: {
     color: defaultTokens.colorTextSecondary,
+    fontWeight: '800',
     android: {
       fontSize: 17,
     },
