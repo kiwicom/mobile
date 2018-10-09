@@ -64,6 +64,7 @@ export const StackNavigator = (
         +mode?: 'modal',
         +headerTransparent?: boolean,
         +headerLeft?: Object | null,
+        +header?: Object | null,
       |},
     |},
   },

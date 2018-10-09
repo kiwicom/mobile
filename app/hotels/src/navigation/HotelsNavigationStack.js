@@ -1,16 +1,13 @@
 // @flow strict
 
-import * as React from 'react';
 import {
   StackNavigator,
   StackNavigatorOptions,
   type NavigationType,
-  HeaderTitle,
   createTransparentHeaderStyle,
 } from '@kiwicom/mobile-navigation';
 import { Dimensions as RNDimensions } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import SingleHotel from './singleHotel/SingleHotelNavigationScreen';
 import SearchResults from './allHotels/SearchResultsScreen';
@@ -26,11 +23,8 @@ export type NavigationProps = {|
   currency: string,
 |};
 
-export default StackNavigator(
+const DetailStack = StackNavigator(
   {
-    SearchResults: {
-      screen: withMappedProps(SearchResults),
-    },
     SingleHotel: {
       screen: withMappedProps(SingleHotel),
       navigationOptions: {
@@ -41,22 +35,32 @@ export default StackNavigator(
     GalleryGrid: {
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
     },
+    Payment: {
+      screen: withMappedProps(Payment),
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'SingleHotel',
+  },
+);
+
+export default StackNavigator(
+  {
+    SearchResults: {
+      screen: withMappedProps(SearchResults),
+    },
+    DetailStack: {
+      screen: DetailStack,
+      navigationOptions: {
+        header: null,
+      },
+    },
     SingleHotelMap: {
       screen: SingleHotelMapNavigationScreen,
       navigationOptions: {
         headerLeft: null,
         ...createTransparentHeaderStyle(RNDimensions.get('screen')),
-      },
-    },
-    Payment: {
-      screen: withMappedProps(Payment),
-      navigationOptions: {
-        mode: 'modal',
-        headerTitle: (
-          <HeaderTitle>
-            <Translation id="hotels.navigation.title.payment" />
-          </HeaderTitle>
-        ),
       },
     },
   },

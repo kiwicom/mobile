@@ -21,6 +21,10 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
     isStandAlonePackage: false,
   };
 
+  static navigationOptions = {
+    header: null,
+  };
+
   componentDidMount = () => {
     this.props.navigation.setParams({
       goBack: this.goBack,

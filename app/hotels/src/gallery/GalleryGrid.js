@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, StatusBar } from 'react-native';
 import {
   GeneralError,
   Modal,
@@ -125,6 +125,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
     if (this.props.images) {
       return (
         <React.Fragment>
+          <StatusBar barStyle="dark-content" />
           <FlatList
             data={this.props.images}
             extraData={this.state}
