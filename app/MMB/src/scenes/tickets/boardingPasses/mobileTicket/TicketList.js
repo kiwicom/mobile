@@ -50,6 +50,7 @@ const TicketList = (props: Props) => {
             key={idx(item, _ => _.passenger.databaseId)}
             data={item}
             segmentId={props.segmentId}
+            flightNumber={idx(props.data, _ => _.flightNumber)}
           />
         ))}
       </View>
@@ -61,6 +62,7 @@ export default createFragmentContainer(
   TicketList,
   graphql`
     fragment TicketList on BoardingPass {
+      flightNumber
       pkpasses {
         ...WalletPassenger
         passenger {

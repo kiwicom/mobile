@@ -13,7 +13,8 @@ declare export opaque type WalletPassenger$ref: FragmentReference;
 export type WalletPassenger = {|
   +url: ?string,
   +passenger: ?{|
-    +fullName: ?string
+    +fullName: ?string,
+    +databaseId: ?number,
   |},
   +$refType: WalletPassenger$ref,
 |};
@@ -49,11 +50,18 @@ const node/*: ConcreteFragment*/ = {
           "name": "fullName",
           "args": null,
           "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "databaseId",
+          "args": null,
+          "storageKey": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'fd0cebd051bc50e5cf19ba7451755c4c';
+(node/*: any*/).hash = '29db6d6dae2f405a47adfd4a628b6a51';
 module.exports = node;
