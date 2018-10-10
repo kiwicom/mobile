@@ -21,7 +21,7 @@ export default class Flights extends React.Component<Props> {
           future: customerBookings(only: FUTURE) {
             ...FlightListContainer_future
           }
-          past: customerBookings(only: PAST) {
+          past: customerBookings(only: PAST, order: DESC) {
             ...FlightListContainer_past
           }
         }
