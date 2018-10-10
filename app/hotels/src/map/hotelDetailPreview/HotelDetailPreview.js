@@ -53,13 +53,7 @@ export default function HotelDetailPreview(props: Props) {
             <View style={styles.row}>
               <View>
                 {stars > 0 && <Stars rating={stars} style={styles.stars} />}
-                {price &&
-                  price.currency != null &&
-                  price.amount != null && (
-                    <Text style={styles.price}>
-                      <Price currency={price.currency} amount={price.amount} />
-                    </Text>
-                  )}
+                {price != null && <Price price={price} style={styles.price} />}
               </View>
               <HotelReviewScore score={score} />
             </View>

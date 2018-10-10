@@ -27,15 +27,7 @@ const PriceMarker = (props: Props) => {
   return (
     <View>
       <View style={bubbleStyles}>
-        {price &&
-          price.amount &&
-          price.currency && (
-            <Price
-              amount={price.amount}
-              currency={price.currency}
-              style={priceStyles}
-            />
-          )}
+        {price != null && <Price price={price} style={priceStyles} />}
       </View>
       <View style={[styles.arrowBorder]} />
       <View style={[styles.arrow, isSelected && selectedStyles.arrow]} />

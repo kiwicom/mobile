@@ -78,7 +78,7 @@ export class RoomRow extends React.Component<Props> {
       availableRoom,
       _ => _.room.photos.edges[0].node.lowResUrl,
     );
-    const price = idx(availableRoom, _ => _.minimalPrice.amount) || null;
+    const amount = idx(availableRoom, _ => _.minimalPrice.amount) || null;
     const currency = idx(availableRoom, _ => _.minimalPrice.currency) || null;
     const selectableCount =
       idx(availableRoom, _ => _.incrementalPrice.length) || 0;
@@ -103,8 +103,7 @@ export class RoomRow extends React.Component<Props> {
             <BeddingInfo room={room} />
           </View>
           <RoomPicker
-            price={price}
-            currency={currency}
+            price={{ amount, currency }}
             selectedCount={selectedCount}
             selectableCount={selectableCount}
             increment={this.select}

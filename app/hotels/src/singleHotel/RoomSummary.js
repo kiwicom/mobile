@@ -35,11 +35,7 @@ export default function RoomSummary(props: Props) {
               numberOfRooms: props.roomCount,
             }}
           />
-          <Price
-            amount={props.price.amount}
-            currency={props.price.currency}
-            style={styles.currency}
-          />
+          <Price price={props.price} style={styles.currency} />
         </View>
       </View>
     </View>

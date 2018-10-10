@@ -12,9 +12,13 @@ import {
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-type Props = {|
-  +price: number | null,
+type PriceType = {|
+  +amount: number | null,
   +currency: string | null,
+|};
+
+type Props = {|
+  +price: PriceType | null,
   +selectedCount: number,
   +selectableCount: number,
   +increment: () => void,
@@ -25,7 +29,6 @@ export default function IncrementDecrement({
   decrement,
   selectedCount,
   price,
-  currency,
   increment,
   selectableCount,
 }: Props) {
@@ -43,7 +46,7 @@ export default function IncrementDecrement({
               {...androidProps}
             />
           </Text>
-          <Price amount={price} currency={currency} style={styles.price} />
+          <Price price={price} style={styles.price} />
         </View>
 
         <View style={styles.countContainer}>

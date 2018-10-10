@@ -59,8 +59,8 @@ export function InsuranceRow(props: Props) {
     return null;
   }
 
-  let insuranceCurrency = '';
-  const insuranceAmount = changes
+  let currency = '';
+  const amount = changes
     .filter(
       change => change.to === props.insuranceType && change.from !== change.to,
     )
@@ -78,13 +78,13 @@ export function InsuranceRow(props: Props) {
         _ => _.price,
       );
       if (priceFrom && priceTo && priceFrom.currency === priceTo.currency) {
-        insuranceCurrency = priceFrom.currency;
+        currency = priceFrom.currency;
         return priceTo.amount - priceFrom.amount;
       } else if (priceFrom && priceTo === null) {
-        insuranceCurrency = priceFrom.currency;
+        currency = priceFrom.currency;
         return -priceFrom.amount;
       } else if (priceFrom === null && priceTo) {
-        insuranceCurrency = priceTo.currency;
+        currency = priceTo.currency;
         return priceTo.amount;
       }
       return 0;
@@ -101,11 +101,7 @@ export function InsuranceRow(props: Props) {
           />
         </Text>
       </View>
-      <Price
-        amount={insuranceAmount}
-        currency={insuranceCurrency}
-        style={styleSheet.price}
-      />
+      <Price price={{ amount, currency }} style={styleSheet.price} />
     </View>
   );
 }
