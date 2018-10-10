@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -11,7 +11,10 @@ type Props = {|
 |};
 
 export default function MenuGroupTitle(props: Props) {
-  const title = React.cloneElement(props.title, { textTransform: 'uppercase' });
+  const title = React.cloneElement(
+    props.title,
+    Platform.OS === 'ios' ? { textTransform: 'uppercase' } : {},
+  );
   return (
     <View style={styleSheet.titleWrapper}>
       <Text style={styleSheet.title}>{title}</Text>
