@@ -64,8 +64,17 @@ export class TicketDeleteButton extends React.Component<
 
   deleteFilesPromise = async () => {
     try {
-      await RNFetchBlob.fs.unlink(this.getEticketPath());
-      await RNFetchBlob.fs.unlink(this.getBoardingPassPath());
+      const eticketPath = this.getEticketPath();
+      const boardingPassPath = this.getBoardingPassPath();
+
+      if (await RNFetchBlob.fs.exists(eticketPath)) {
+        await RNFetchBlob.fs.unlink(eticketPath);
+      }
+
+      if (await RNFetchBlob.fs.exists(boardingPassPath)) {
+        await RNFetchBlob.fs.unlink(boardingPassPath);
+      }
+
       this.setState({ hasLocalFiles: false });
     } catch (error) {
       Alert.translatedAlert(null, {
