@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 026fb45cf9a232d1435900d2a04bdb7a
+ * @relayHash a456045733240026ce1f532ba352ed4b
  */
 
 /* eslint-disable */
@@ -406,7 +406,7 @@ v1 = [
     "kind": "Variable",
     "name": "authToken",
     "variableName": "authToken",
-    "type": "String!"
+    "type": "String"
   },
   {
     "kind": "Variable",

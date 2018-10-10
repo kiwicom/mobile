@@ -137,6 +137,9 @@ enum availabilityStatus {
 input AvailableHotelOptionsInput {
   """Three-letters ISO 4217 currency code, e.g. EUR or USD"""
   currency: Currency
+
+  """Order results by this input type"""
+  orderBy: OrderBy
 }
 
 input AvailableHotelSearchInput {
@@ -916,6 +919,11 @@ enum CustomerBookingsOnlyEnum {
   PAST
 }
 
+enum CustomerBookingsOrderEnum {
+  ASC
+  DESC
+}
+
 type CustomerSupportNumber {
   """Customer Support phone number locale territory"""
   localeTerritory: String
@@ -1462,6 +1470,11 @@ type HotelFacilityEdge {
   cursor: String!
 }
 
+"""The urls where the user will be redirected for payment"""
+type HotelPaymentUrls {
+  bookingComPaymentUrl: String
+}
+
 type HotelPhoto {
   """The ID of an object"""
   id: ID!
@@ -1963,6 +1976,15 @@ type OperatingAirline {
   name: String
 }
 
+enum OrderBy {
+  DISTANCE
+  POPULARITY
+  PRICE
+  RANKING
+  REVIEW_SCORE
+  STARS
+}
+
 """Information about pagination in a connection."""
 type PageInfo {
   """When paginating forwards, are there more items?"""
@@ -2258,6 +2280,12 @@ type RootQuery {
     You can skip this argument to fetch all bookings (future and past).
     """
     only: CustomerBookingsOnlyEnum
+
+    """
+    Allows to order bookings in ascending or descending order. You can skip this
+    argument to fetch all bookings in ascendering order.
+    """
+    order: CustomerBookingsOrderEnum
     after: String
     first: Int
     before: String
@@ -2311,6 +2339,9 @@ type RootQuery {
     last: Int
   ): HotelCityConnection
 
+  """Url where user will be redirected for payment"""
+  hotelPaymentUrls: HotelPaymentUrls
+
   """Single location by ID."""
   location(
     id: String!
@@ -2342,7 +2373,7 @@ type RootQuery {
     id: Int!
 
     """Simple auth token that lets you fetch a unique booking."""
-    authToken: String!
+    authToken: String
   ): BookingInterface
 }
 
