@@ -11,12 +11,16 @@ import {
   withNavigation,
 } from '@kiwicom/mobile-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { AssetsDownloader, unzip } from '@kiwicom/mobile-assets';
+import RNFetchBlob from 'rn-fetch-blob';
 
 import type { AppleWalletPassenger as AppleWalletType } from './__generated__/WalletPassenger.graphql';
 import WalletContext from './../../../../context/WalletContext';
+import BookingDetailContext from '../../../../context/BookingDetailContext';
 
 type PropsWithContext = {|
   ...Props,
+  +bookingId: number,
   +addPkpassData: (
     passengerName: string,
     pkpassUrl: string,
@@ -25,7 +29,25 @@ type PropsWithContext = {|
   ) => void,
 |};
 
-class WalletPassenger extends React.Component<PropsWithContext> {
+type State = {|
+  isDownloaded: boolean,
+|};
+
+class WalletPassenger extends React.Component<PropsWithContext, State> {
+  state = {
+    isDownloaded: false,
+  };
+
+  componentDidMount = async () => {
+    if (Platform.OS === 'android') {
+      const folderPath = `${
+        RNFetchBlob.fs.dirs.DocumentDir
+      }/${this.getFolderPath()}`;
+      const exists = await RNFetchBlob.fs.exists(`${folderPath}`);
+      this.setState({ isDownloaded: exists });
+    }
+  };
+
   onPressIos = () => {
     const name = idx(this.props.data, _ => _.passenger.fullName) || '';
     const url = idx(this.props.data, _ => _.url) || '';
@@ -39,7 +61,40 @@ class WalletPassenger extends React.Component<PropsWithContext> {
   };
 
   onPressAndroid = () => {
-    console.warn('TODO');
+    if (this.state.isDownloaded) {
+      console.warn('TODO');
+    } else {
+      this.downloadPkpass();
+    }
+  };
+
+  getFolderPath = () => {
+    const databaseId = idx(this.props.data, _ => _.passenger.databaseId) || '';
+    const flightNumber =
+      this.props.flightNumber == null ? '' : this.props.flightNumber;
+    return `pkpasses/${this.props.bookingId}/${flightNumber}/${databaseId}`;
+  };
+
+  downloadPkpass = async () => {
+    try {
+      const url = idx(this.props.data, _ => _.url) || '';
+      const databaseId = idx(this.props.data, _ => _.passenger.databaseId);
+
+      if (this.props.flightNumber != null && databaseId != null) {
+        const folderPath = this.getFolderPath();
+        const pkPath = `${folderPath}/pass.pkpass`;
+
+        await AssetsDownloader(pkPath, url, true);
+
+        await unzip(pkPath, folderPath);
+        this.setState({ isDownloaded: true });
+      } else {
+        // TODO: Show alert inform about missing data
+      }
+    } catch (err) {
+      // TODO: Clean up, there is a possability that there has been stored an empty file
+      console.warn(err);
+    }
   };
 
   render = () => {
@@ -55,7 +110,11 @@ class WalletPassenger extends React.Component<PropsWithContext> {
             passThrough={idx(this.props.data, _ => _.passenger.fullName)}
           />
           {Platform.select({
-            android: <TextIcon code="&#xe014;" style={styles.icon} />,
+            android: this.state.isDownloaded ? (
+              <TextIcon code="V" style={styles.icon} />
+            ) : (
+              <TextIcon code="&#xe014;" style={styles.icon} />
+            ),
             ios: <TextIcon code="&#xe01F;" style={styles.icon} />,
           })}
         </React.Fragment>
@@ -68,14 +127,23 @@ type Props = {|
   +data: AppleWalletType,
   +navigation: NavigationType,
   +segmentId: ?string,
+  +flightNumber: ?number,
 |};
 
 const WalletPassengerWithContext = (props: Props) => (
-  <WalletContext.Consumer>
-    {({ actions: { addPkpassData } }) => (
-      <WalletPassenger {...props} addPkpassData={addPkpassData} />
+  <BookingDetailContext.Consumer>
+    {({ bookingId }) => (
+      <WalletContext.Consumer>
+        {({ actions: { addPkpassData } }) => (
+          <WalletPassenger
+            {...props}
+            addPkpassData={addPkpassData}
+            bookingId={bookingId}
+          />
+        )}
+      </WalletContext.Consumer>
     )}
-  </WalletContext.Consumer>
+  </BookingDetailContext.Consumer>
 );
 
 export default createFragmentContainer(
@@ -85,6 +153,7 @@ export default createFragmentContainer(
       url
       passenger {
         fullName
+        databaseId
       }
     }
   `,

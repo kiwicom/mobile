@@ -12,6 +12,7 @@ type WalletPassenger$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TicketList$ref: FragmentReference;
 export type TicketList = {|
+  +flightNumber: ?string,
   +pkpasses: ?$ReadOnlyArray<?{|
     +passenger: ?{|
       +databaseId: ?number
@@ -30,6 +31,13 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "flightNumber",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -67,5 +75,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '0304d8d8eba00570c06ba26a38fc4b91';
+(node/*: any*/).hash = '51fd314afde996265961adf6a096204b';
 module.exports = node;
