@@ -19,23 +19,23 @@ const renderer = new ShallowRenderer();
 describe('Price', () => {
   it('renders null values correctly', () => {
     expect(
-      renderer.render(<Price amount={null} currency={null} />),
+      renderer.render(<Price price={{ amount: null, currency: null }} />),
     ).toMatchSnapshot();
     expect(
-      renderer.render(<Price amount={45} currency={null} />),
+      renderer.render(<Price price={{ amount: 45, currency: null }} />),
     ).toMatchSnapshot();
     expect(
-      renderer.render(<Price amount={null} currency="EUR" />),
+      renderer.render(<Price price={{ amount: null, currency: 'EUR' }} />),
     ).toMatchSnapshot();
   });
 
   it('calls Currencyformatter if amount and currency is passed', () => {
-    testRenderer.create(<Price amount={45} currency="EUR" />);
+    testRenderer.create(<Price price={{ amount: 45, currency: 'EUR' }} />);
     expect(CurrencyFormatter).toHaveBeenCalledWith(45, 'EUR');
   });
 
   it('does not call set state if promise is rejected', async () => {
-    const Component = new Price({ amount: 45, currency: 'EUR' });
+    const Component = new Price({ price: { amount: 45, currency: 'EUR' } });
 
     jest.spyOn(Component, 'setState');
     await Component.formatCurrency();

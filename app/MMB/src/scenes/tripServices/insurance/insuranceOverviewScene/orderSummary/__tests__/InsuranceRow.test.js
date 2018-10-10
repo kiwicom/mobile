@@ -51,8 +51,8 @@ describe('InsuranceRow', () => {
       />,
     );
     const price = travelPlus.root.findByType(Price);
-    expect(price.props.amount).toBe(48.96);
-    expect(price.props.currency).toBe('EUR');
+    expect(price.props.price.amount).toBe(48.96);
+    expect(price.props.price.currency).toBe('EUR');
 
     const translations = travelPlus.root.findAllByType(Translation);
     expect(translations[0].props.values.quantity).toBe(2);
@@ -80,8 +80,8 @@ describe('InsuranceRow', () => {
       />,
     );
     const price = travelBasic.root.findByType(Price);
-    expect(price.props.amount).toBe(-18.32);
-    expect(price.props.currency).toBe('EUR');
+    expect(price.props.price.amount).toBe(-18.32);
+    expect(price.props.price.currency).toBe('EUR');
 
     const translations = travelBasic.root.findAllByType(Translation);
     expect(translations[0].props.values.quantity).toBe(1);
@@ -114,8 +114,8 @@ describe('InsuranceRow', () => {
       />,
     );
     const price = none.root.findByType(Price);
-    expect(price.props.amount).toBe(-61.28);
-    expect(price.props.currency).toBe('EUR');
+    expect(price.props.price.amount).toBe(-61.28);
+    expect(price.props.price.currency).toBe('EUR');
 
     const translations = none.root.findAllByType(Translation);
     expect(translations[0].props.values.quantity).toBe(2);

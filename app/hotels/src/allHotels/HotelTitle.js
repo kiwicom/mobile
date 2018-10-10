@@ -19,14 +19,7 @@ function HotelTitle({ data }: Props) {
   const hotelName = idx(data, _ => _.name);
   const hotelStars = idx(data, _ => _.rating.stars);
 
-  const price = {
-    ...{
-      // default null object
-      amount: null,
-      currency: null,
-    },
-    ...data.price,
-  };
+  const price = data.price || null;
 
   return (
     <React.Fragment>
@@ -40,11 +33,7 @@ function HotelTitle({ data }: Props) {
       <View style={style.distance}>
         <Distance hotel={data} />
       </View>
-      <Price
-        amount={price.amount}
-        currency={price.currency}
-        style={style.price}
-      />
+      <Price price={price} style={style.price} />
     </React.Fragment>
   );
 }

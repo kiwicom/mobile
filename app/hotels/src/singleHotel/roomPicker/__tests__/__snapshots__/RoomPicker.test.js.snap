@@ -2,18 +2,26 @@
 
 exports[`renders as expected 1`] = `
 <SelectButton
-  currency="CZK"
   increment={[Function]}
-  price={100}
+  price={
+    Object {
+      "amount": 100,
+      "currency": "CZK",
+    }
+  }
 />
 `;
 
 exports[`renders as expected 2`] = `
 <IncrementDecrement
-  currency="CZK"
   decrement={[Function]}
   increment={[Function]}
-  price={100}
+  price={
+    Object {
+      "amount": 100,
+      "currency": "CZK",
+    }
+  }
   selectableCount={2}
   selectedCount={1}
 />
@@ -21,10 +29,14 @@ exports[`renders as expected 2`] = `
 
 exports[`renders as expected 3`] = `
 <IncrementDecrement
-  currency="CZK"
   decrement={[Function]}
   increment={[Function]}
-  price={100}
+  price={
+    Object {
+      "amount": 100,
+      "currency": "CZK",
+    }
+  }
   selectableCount={2}
   selectedCount={2}
 />
