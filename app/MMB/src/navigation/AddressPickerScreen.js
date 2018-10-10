@@ -64,7 +64,6 @@ export class AddressPickerScreen extends React.Component<Props, State> {
       headerTitle: (
         <AddressLocationInput autoFocus={true} onChangeText={onChangeText} />
       ),
-      headerStyle: { paddingBottom: 5 },
     };
   };
 
