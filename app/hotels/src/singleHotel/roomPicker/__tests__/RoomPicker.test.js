@@ -10,8 +10,7 @@ const VoidAction = () => {};
 it('renders as expected', () => {
   PlaygroundRenderer.render(
     <RoomPicker
-      price={100}
-      currency="CZK"
+      price={{ amount: 100, currency: 'CZK' }}
       selectedCount={0}
       selectableCount={1}
       increment={VoidAction}
@@ -21,8 +20,7 @@ it('renders as expected', () => {
 
   PlaygroundRenderer.render(
     <RoomPicker
-      price={100}
-      currency="CZK"
+      price={{ amount: 100, currency: 'CZK' }}
       selectedCount={1}
       selectableCount={2}
       increment={VoidAction}
@@ -32,8 +30,7 @@ it('renders as expected', () => {
 
   PlaygroundRenderer.render(
     <RoomPicker
-      price={100}
-      currency="CZK"
+      price={{ amount: 100, currency: 'CZK' }}
       selectedCount={2}
       selectableCount={2}
       increment={VoidAction}

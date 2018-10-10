@@ -11,13 +11,17 @@ import {
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-type Props = {|
-  +price: number | null,
+type PriceType = {|
+  +amount: number | null,
   +currency: string | null,
+|};
+
+type Props = {|
+  +price: PriceType,
   +increment: () => void,
 |};
 
-export default function SelectButton({ increment, price, currency }: Props) {
+export default function SelectButton({ increment, price }: Props) {
   return (
     <Touchable style={styles.container} onPress={increment} delayPressIn={40}>
       <View style={styles.row}>
@@ -26,7 +30,7 @@ export default function SelectButton({ increment, price, currency }: Props) {
           text={<Translation id="single_hotel.room_picker.select" />}
         />
         <View style={styles.row} />
-        <Price amount={price} currency={currency} style={styles.price} />
+        <Price price={price} style={styles.price} />
       </View>
     </Touchable>
   );

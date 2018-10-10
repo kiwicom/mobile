@@ -10,9 +10,13 @@ import CancellablePromise, {
   type CancellablePromiseType,
 } from './CancellablePromise';
 
+type PriceType = {
+  +amount?: ?number,
+  +currency?: ?string,
+};
+
 type Props = {|
-  +amount: number | null,
-  +currency: string | null,
+  +price?: ?PriceType,
   +style?: StylePropType,
 |};
 
@@ -36,7 +40,10 @@ export default class Price extends React.Component<Props, State> {
   };
 
   componentDidUpdate = (prevProps: Props) => {
-    if (prevProps.amount !== this.props.amount) {
+    if (
+      (prevProps.price && prevProps.price.amount) !==
+      (this.props.price && this.props.price.amount)
+    ) {
       this.formatCurrency();
     }
   };
@@ -48,10 +55,14 @@ export default class Price extends React.Component<Props, State> {
   };
 
   formatCurrency = async () => {
-    if (this.props.amount != null && this.props.currency != null) {
+    if (
+      this.props.price != null &&
+      this.props.price.amount != null &&
+      this.props.price.currency != null
+    ) {
       try {
         this.cancellablePromise = CancellablePromise(
-          CurrencyFormatter(this.props.amount, this.props.currency),
+          CurrencyFormatter(this.props.price.amount, this.props.price.currency),
         );
         const formattedCurrency = await this.cancellablePromise.promise;
         this.setState({ formattedCurrency });

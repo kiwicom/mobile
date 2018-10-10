@@ -31,13 +31,7 @@ const Price = (props: Props) => {
       </Text>
     );
   } else if (price && price.amount != null && price.currency != null) {
-    return (
-      <OriginalPrice
-        amount={price.amount}
-        currency={price.currency}
-        style={style}
-      />
-    );
+    return <OriginalPrice price={price} style={style} />;
   }
   return (
     <Text style={style}>

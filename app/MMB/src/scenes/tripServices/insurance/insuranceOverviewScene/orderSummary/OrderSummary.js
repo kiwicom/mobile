@@ -16,9 +16,13 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { withInsuranceContext } from '../InsuranceOverviewSceneContext';
 import InsuranceRow from './InsuranceRow';
 
-type Props = {|
+type PriceType = {|
   +amount: number,
   +currency: string,
+|};
+
+type Props = {|
+  +price: PriceType,
 |};
 
 type State = {|
@@ -62,11 +66,7 @@ class OrderSummary extends React.Component<Props, State> {
                 <Translation id="mmb.trip_services.order.total" />
               </Text>
             </View>
-            <Price
-              amount={this.props.amount}
-              currency={this.props.currency}
-              style={styleSheet.price}
-            />
+            <Price price={this.props.price} style={styleSheet.price} />
           </View>
         </View>
       </TouchableWithoutFeedback>
