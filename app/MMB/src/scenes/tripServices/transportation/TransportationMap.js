@@ -112,10 +112,6 @@ export class TransportationMap extends React.Component<Props, State> {
           </HeaderButton.Text>
         </HeaderButton.Right>
       ),
-      headerStyle: {
-        backgroundColor: defaultTokens.paletteWhite,
-        borderBottomWidth: 0,
-      },
     };
   };
 
