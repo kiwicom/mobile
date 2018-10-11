@@ -2,7 +2,6 @@
 import { HotelsStandalonePackage } from '@kiwicom/react-native-app-hotels';
 
 const render = () => <HotelsStandalonePackage
-  bookingComAffiliate="123456"
   language="en"
   currency="EUR"
   onBackClicked={() => goToHomepage()}
@@ -31,7 +30,6 @@ const roomsConfiguration = [{
 }];
 
 const render = () => <NewHotelsStandAlonePackage
-  bookingComAffiliate="123456"
   language="en"
   currency="EUR"
   onBackClicked={() => goToHomepage()}
@@ -56,7 +54,6 @@ const roomsConfiguration = [{
 }];
 
 const render = () => <SingleHotelStandAlonePackage
-  bookingComAffiliate="123456"
   language="en"
   currency="EUR"
   onBackClicked={() => goToHomepage()}

@@ -5,7 +5,6 @@ import { NewHotelsStandAlonePackage } from '@kiwicom/react-native-app-hotels';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { type DimensionType } from '@kiwicom/mobile-shared';
 
-import Config from '../../../config/application';
 import type { RoomConfigurationType } from '../../../../hotels/src/HotelsContext';
 
 type Props = {|
@@ -30,11 +29,8 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
   goToHomepage = () => this.props.navigation.goBack();
 
   render = () => {
-    const affiliate = String(Config.affiliate.bookingCom);
-
     return (
       <NewHotelsStandAlonePackage
-        bookingComAffiliate={affiliate}
         language="en"
         currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
         onBackClicked={this.goToHomepage}
