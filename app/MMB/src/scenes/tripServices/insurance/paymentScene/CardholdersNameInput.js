@@ -5,7 +5,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { TextInput } from '@kiwicom/mobile-shared';
 
 type Props = {|
-  +onCardholdersNameChange: () => void,
+  +onCardholdersNameChange: (cardHoldersName: string) => void,
 |};
 
 export default function CardholdersNameInput(props: Props) {
