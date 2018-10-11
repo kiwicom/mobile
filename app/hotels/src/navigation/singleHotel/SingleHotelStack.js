@@ -11,7 +11,7 @@ import {
 import SingleHotelNavigationScreen from './SingleHotelNavigationScreen';
 import SingleHotelMapNavigationScreen from './SingleHotelMapNavigationScreen';
 import GalleryGrid from '../../gallery/GalleryGrid';
-import { PaymentScreen } from '../../singleHotel/PaymentScreen';
+import PaymentScreen from '../../singleHotel/PaymentScreen';
 import AdditionalPropsInjector from './AdditionalPropsInjector';
 
 const DetailStack = StackNavigator(

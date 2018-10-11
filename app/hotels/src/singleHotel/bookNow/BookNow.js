@@ -31,11 +31,8 @@ export class BookNow extends React.Component<PropsWithContext> {
       this.props.navigation.navigate('Payment', {
         hotelId: Number(hotelId),
         rooms: convertRooms(this.props.selected),
-        checkin: this.props.checkin,
-        checkout: this.props.checkout,
         affiliateId: this.props.bookingComAffiliate,
         language: DeviceInfo.getLanguage(),
-        currency: this.props.currency,
       });
     }
   };
