@@ -41,6 +41,8 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
         dataSaverEnabled={this.props.dataSaverEnabled}
         version={this.props.version}
         currency={this.props.currency}
+        checkin={this.props.checkin}
+        checkout={this.props.checkout}
       >
         <SingleHotelStack
           screenProps={screenProps}
