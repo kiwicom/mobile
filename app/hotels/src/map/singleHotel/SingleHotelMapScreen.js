@@ -4,7 +4,12 @@ import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { StyleSheet, CloseButton, Device } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  CloseButton,
+  Device,
+  StretchedImage,
+} from '@kiwicom/mobile-shared';
 import {
   withNavigation,
   type NavigationType,
@@ -15,6 +20,7 @@ import MapView from './MapView';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
 import { sanitizeDate } from '../../GraphQLSanitizers';
 import AdditionalInfo from './AdditionalInfo';
+import gradient from './gradient.png';
 
 type Props = {|
   +currency: string,
@@ -31,6 +37,9 @@ class SingleHotelMapScreen extends React.Component<Props> {
   }: SingleHotelMapScreenQueryResponse) => (
     <View style={styles.container}>
       <MapView hotel={idx(availableHotel, _ => _.hotel)} />
+      <View style={styles.underlay}>
+        <StretchedImage source={gradient} />
+      </View>
       <AdditionalInfo data={availableHotel} />
       <View style={styles.button}>
         <CloseButton onPress={this.goBack} />
@@ -80,6 +89,7 @@ const styles = StyleSheet.create({
     start: 8,
     end: 8,
   },
+  underlay: { height: 132 },
 });
 
 export default withNavigation(SingleHotelMapScreen);
