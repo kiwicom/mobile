@@ -119,16 +119,12 @@ const style = StyleSheet.create({
     flexDirection: 'row',
   },
   image: {
-    marginEnd: 10,
-    width: 50,
-    borderRadius: 2,
+    marginStart: 16,
+    marginEnd: 12,
+    width: 56,
+    borderRadius: 3,
     backgroundColor: defaultTokens.paletteCloudLight,
-    android: {
-      height: 80,
-    },
-    ios: {
-      height: 70,
-    },
+    height: 72,
   },
   hotelTitle: {
     flex: 1,
@@ -136,7 +132,6 @@ const style = StyleSheet.create({
   container: {
     backgroundColor: defaultTokens.paletteWhite,
     paddingTop: 8,
-    paddingStart: 8,
   },
   content: {
     flex: 1,

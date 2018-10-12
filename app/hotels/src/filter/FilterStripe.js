@@ -106,12 +106,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     paddingVertical: 10,
-    android: {
-      paddingHorizontal: 14,
-    },
-    ios: {
-      paddingHorizontal: 10,
-    },
+    paddingHorizontal: 16,
   },
   backgroundNew: {
     backgroundColor: defaultTokens.paletteWhite,
