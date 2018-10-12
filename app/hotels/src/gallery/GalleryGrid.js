@@ -72,7 +72,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
      * still needed for portrait <-> layout changes.
      */
     tileWidth: getTileWidth(this.props.dimensions.width),
-    stripeVisible: false,
+    stripeVisible: true,
     stripeImageIndex: 0,
   };
 
