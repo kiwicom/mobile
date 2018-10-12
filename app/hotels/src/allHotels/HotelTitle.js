@@ -57,18 +57,14 @@ export default createFragmentContainer(
 
 const style = StyleSheet.create({
   title: {
-    fontWeight: 'bold',
+    fontWeight: '600',
     color: defaultTokens.colorTextAttention,
-    android: {
-      fontSize: 15,
-    },
-    ios: {
-      fontSize: 14,
-    },
+    fontSize: 14,
+    lineHeight: 18,
   },
   rating: {
     color: defaultTokens.colorTextSecondary,
-    fontSize: 9,
+    fontSize: 10,
   },
   distance: {
     marginVertical: 6,
@@ -77,13 +73,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     color: defaultTokens.paletteProductNormal,
     letterSpacing: 0,
-    android: {
-      fontSize: 13,
-      lineHeight: 13,
-    },
-    ios: {
-      fontSize: 12,
-      lineHeight: 12,
-    },
+    fontSize: 14,
+    lineHeight: 18,
   },
 });

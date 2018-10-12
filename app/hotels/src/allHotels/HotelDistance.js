@@ -35,14 +35,8 @@ const style = StyleSheet.create({
   text: {
     letterSpacing: 0.2,
     color: defaultTokens.colorTextSecondary,
-    android: {
-      fontSize: 13,
-      lineHeight: 15,
-    },
-    ios: {
-      fontSize: 12,
-      lineHeight: 12,
-    },
+    fontSize: 12,
+    lineHeight: 15,
   },
 });
 

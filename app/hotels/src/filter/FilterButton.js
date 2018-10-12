@@ -48,20 +48,22 @@ const styleSheet = StyleSheet.create({
     backgroundColor: defaultTokens.paletteInkNormal,
   },
   buttonGroup: {
-    backgroundColor: defaultTokens.paletteCloudNormal,
-    marginEnd: 5,
-    borderColor: defaultTokens.borderColorCard,
+    backgroundColor: defaultTokens.paletteCloudLight,
+    marginEnd: 8,
+    borderColor: defaultTokens.paletteInkLighter,
     borderWidth: StyleSheet.hairlineWidth,
-    ios: {
-      height: 36,
-      borderRadius: 2,
-    },
+    height: 30,
+    borderRadius: 2,
+    paddingVertical: 6,
+    paddingHorizontal: 8,
   },
   activeButtonText: {
     color: defaultTokens.paletteCloudNormal,
   },
   buttonText: {
     color: defaultTokens.colorTextPrimary,
+    fontSize: 12,
+    lineHeight: 15,
   },
   icon: {
     paddingEnd: 5,
