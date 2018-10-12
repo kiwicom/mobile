@@ -68,31 +68,24 @@ export class Location extends React.Component<PropsWithContext> {
                 <Translation passThrough={idx(address, _ => _.city)} />
               </Text>
             </View>
-            <View style={styles.rightColumn}>
-              {typeof latitude === 'number' &&
-                typeof longitude === 'number' && (
-                  <MapView
-                    region={{
-                      latitude: latitude,
-                      longitude: longitude - 0.005, // move center little bit right
-                      latitudeDelta: 0.01,
-                      longitudeDelta: 0.01,
-                    }}
-                    scrollEnabled={false}
-                    style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
-                  >
-                    <MapView.Marker
-                      coordinate={{
-                        latitude,
-                        longitude,
-                      }}
-                    >
-                      <DropMarker size={30} />
-                    </MapView.Marker>
-                  </MapView>
-                )}
-              <StretchedImage source={gradient} />
+            {typeof latitude === 'number' &&
+              typeof longitude === 'number' && (
+                <MapView
+                  region={{
+                    latitude: latitude + 0.001, // move center little bit bottom
+                    longitude: longitude - 0.025, // move center little bit right
+                    latitudeDelta: 0.01,
+                    longitudeDelta: 0.01,
+                  }}
+                  scrollEnabled={false}
+                  style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
+                />
+              )}
+
+            <View style={styles.overlayMarker}>
+              <DropMarker />
             </View>
+            <StretchedImage source={gradient} />
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -148,16 +141,14 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.paletteWhite,
   },
   container: {
-    height: 100,
+    height: 80,
     flexDirection: 'row',
   },
   leftColumn: {
     flex: 1,
     justifyContent: 'center',
     padding: 15,
-  },
-  rightColumn: {
-    flex: 1,
+    zIndex: Number(defaultTokens.zIndexSticky),
   },
   addressLine: {
     fontSize: 14,
@@ -174,5 +165,11 @@ const styles = StyleSheet.create({
     android: {
       bottom: -25,
     },
+  },
+  overlayMarker: {
+    position: 'absolute',
+    top: 48,
+    end: 39,
+    zIndex: Number(defaultTokens.zIndexSticky),
   },
 });
