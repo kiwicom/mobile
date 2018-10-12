@@ -100,6 +100,7 @@ export default {
   'single_hotel.room_picker.select': 'Select',
   'single_hotel.powered_by': 'Powered by',
   'single_hotel.description.description': 'Description',
+  'single_hotel.description.equipment': 'Equipment',
   'single_hotel.description.show_more': 'Show More',
   'single_hotel.description.show_less': 'Show Less',
   'single_hotel.room_description.read_more': 'Read more',
