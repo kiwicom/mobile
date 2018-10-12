@@ -30,7 +30,8 @@
   "dependencies": {
     "react": "16.5.0",
     "react-native": "0.57.0",
-    "react-native-app-registry-components-to-constants": "0.0.1"
+    "react-native-app-registry-components-to-constants": "0.0.1",
+    "react-native-code-push": "^5.4.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
