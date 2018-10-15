@@ -6,6 +6,7 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
+import com.microsoft.codepush.react.CodePush
 import com.trinerdis.skypicker.nkiwimobile.BuildConfig
 
 class RNKiwiHost(private val hostApplication: Application, private val jsEntryPoint: String, private val customPackages: MutableList<ReactPackage>) : ReactNativeHost(hostApplication) {
@@ -13,7 +14,9 @@ class RNKiwiHost(private val hostApplication: Application, private val jsEntryPo
   override fun getPackages(): MutableList<ReactPackage> {
     val packages = mutableListOf(
         MainReactPackage(),
-        RNKiwiBackButtonPackage())
+        RNKiwiBackButtonPackage(),
+        CodePush(BuildConfig.CODEPUSH_KEY, hostApplication, BuildConfig.DEBUG)
+    )
 
     packages.addAll(customPackages)
     return packages
@@ -25,8 +28,9 @@ class RNKiwiHost(private val hostApplication: Application, private val jsEntryPo
     return ReactInstanceManager.builder()
         .setApplication(hostApplication)
         .setBundleAssetName("index.android.bundle")
-        .setJSMainModulePath(jsEntryPoint)
         .addPackages(packages)
+        .setJSMainModulePath(jsEntryPoint)
+        .setJSBundleFile(CodePush.getJSBundleFile())
         .setUseDeveloperSupport(BuildConfig.DEBUG)
         .setInitialLifecycleState(LifecycleState.BEFORE_RESUME)
         .build()

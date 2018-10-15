@@ -1,5 +1,6 @@
 // @flow
 
+import CodePush from 'react-native-code-push';
 import { AppRegistry, YellowBox } from 'react-native';
 import {
   SingleHotelStandalonePackage,
@@ -26,3 +27,6 @@ AppRegistry.registerComponent(
 );
 
 // ManageMyBookings
+
+// CodePush
+CodePush.sync();

@@ -5,6 +5,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: "../dependencies.gradle"
 
+project.ext.react = [
+    entryFile: "app/native.js",
+    jsBundleDirDebug: "${buildDir}/intermediates/merged_assets/debug/mergeDebugAssets/out",
+    jsBundleDirRelease: "${buildDir}/intermediates/merged_assets/release/mergeReleaseAssets/out",
+    jsBundleDirStagingRelease: "${buildDir}/intermediates/merged_assets/stagingRelease/mergeStagingReleaseAssets/out"
+]
+
+apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
+
 def inputFile = new File("${rootDir}/../.build/package.json")
 def packageJson = new JsonSlurper().parseText(inputFile.text)
 
@@ -27,6 +37,13 @@ android {
     project.ext.rnKiwiMobileVersion = packageJson['version']
 
     signingConfigs {
+        stagingRelease {
+            // Just a fake keystore / fake password
+            storeFile file("playground-key.keystore")
+            storePassword 'kiwireactnative'
+            keyAlias 'my-key-alias'
+            keyPassword 'kiwireactnative'
+        }
         release {
             // Just a fake keystore / fake password
             storeFile file("playground-key.keystore")
@@ -36,6 +53,9 @@ android {
         }
     }
     buildTypes {
+        stagingRelease {
+            signingConfig signingConfigs.stagingRelease
+        }
         release {
             minifyEnabled false
             signingConfig signingConfigs.release
