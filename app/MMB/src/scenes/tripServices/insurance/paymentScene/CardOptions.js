@@ -7,7 +7,7 @@ import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 
 import SecurityCodeInput from './SecurityCodeInput';
 import CardOption from './CardOption';
-import VisaLogo from './images/VisaLogo.imageset/visa_logo.png';
+import VisaLogo from './images/VisaLogo.imageset/visa.png';
 
 type Props = {|
   +cardDigits: string,

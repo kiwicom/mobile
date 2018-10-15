@@ -13,7 +13,7 @@ import {
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  +onSecurityCodeChange: () => void,
+  +onSecurityCodeChange: (securityCode: string) => void,
   +inputWrapperStyle?: StylePropType,
   +placeholder?: React.Element<typeof Translation>,
   +placeholderStyle?: StylePropType,
