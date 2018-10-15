@@ -59,19 +59,15 @@ describe('calculateColor', () => {
 
 describe('render', () => {
   it('returns null of falsy score values', () => {
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ score: 0 });
     expect(HRS.render()).toBe(null);
 
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ score: null });
     expect(HRS.render()).toBe(null);
 
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ score: undefined });
     expect(HRS.render()).toBe(null);
 
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     HRS = new HotelReviewScore({ score: 1 });
     expect(HRS.render()).toBeInstanceOf(Object); // actual component
   });

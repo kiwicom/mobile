@@ -34,7 +34,6 @@ type PropsWithContext = {|
   ...Props,
   +currency: string,
   +dimensions: DimensionType,
-  +bookingComAffiliate: string,
   +dataSaverEnabled: boolean,
   +version: string,
   +onNavigationStateChange: () => void,
@@ -82,7 +81,6 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
     const sanitizedDates = this.sanitizeDates({ checkin, checkout });
 
     this.props.navigation.navigate('MMBHotelsStack', {
-      bookingComAffiliate: this.props.bookingComAffiliate,
       language: DeviceInfo.getLanguage(),
       currency: this.props.currency,
       dataSaverEnabled: this.props.dataSaverEnabled,

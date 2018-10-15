@@ -83,7 +83,6 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
           bookingId={this.state.bookingId}
           simpleToken={this.state.simpleToken}
           version="rn-development"
-          bookingComAffiliate={String(Config.affiliate.bookingCom)}
           dataSaverEnabled={false}
           googleMapsAPIKey={String(Config.apiKey.googleMaps)}
         />
@@ -98,7 +97,6 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
           currency="EUR"
           accessToken={this.state.token}
           version="rn-development"
-          bookingComAffiliate={String(Config.affiliate.bookingCom)}
           dataSaverEnabled={false}
           googleMapsAPIKey={String(Config.apiKey.googleMaps)}
         />

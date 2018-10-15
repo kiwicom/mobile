@@ -18,7 +18,6 @@ import GalleryGrid from '../gallery/GalleryGrid';
 
 export type NavigationProps = {|
   navigation: NavigationType,
-  bookingComAffiliate: string,
   language: string,
   currency: string,
 |};

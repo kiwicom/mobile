@@ -27,7 +27,6 @@ The registered module has to be then instantiated along with the proper `moduleN
 ```objc
   RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
                                                           initialProperties:@{
-                                                            @"bookingComAffiliate": @"123456",
                                                             @"language": @"en",
                                                             @"currency": @"EUR",
                                                             @"lastNavigationMode": @"present",

@@ -6,13 +6,17 @@ import {
   WebView,
   Logger,
   type WebViewStateChangeEvent,
+  GeneralError,
 } from '@kiwicom/mobile-shared';
 import { DateUtils, Translation } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
 import { HeaderTitle } from '@kiwicom/mobile-navigation';
+import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import idx from 'idx';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
 import { withHotelsContext } from '../HotelsContext';
+import type { PaymentScreenQueryResponse } from './__generated__/PaymentScreenQuery.graphql';
 
 export type PaymentParameters = {|
   +hotelId: number,
@@ -22,7 +26,6 @@ export type PaymentParameters = {|
     +id: string,
     +count: number, // how many rooms with this ID?
   |}>,
-  +affiliateId: string,
   +language: string,
   +currency: string,
   +version: string,
@@ -46,14 +49,37 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
     }
   };
 
+  renderInner = (props: PaymentScreenQueryResponse) => {
+    const url = idx(props, _ => _.hotelPaymentUrls.bookingComPaymentUrl);
+    if (url == null) {
+      return (
+        <GeneralError
+          errorMessage={<Translation id="hotels.payment_screen.server_error" />}
+        />
+      );
+    }
+    return (
+      <WebView
+        source={{
+          uri: createURI(this.props, url),
+        }}
+        onNavigationStateChange={this.onNavigationStateChange}
+      />
+    );
+  };
+
   render = () => (
     <React.Fragment>
       <StatusBar barStyle="dark-content" />
-      <WebView
-        source={{
-          uri: createURI(this.props),
-        }}
-        onNavigationStateChange={this.onNavigationStateChange}
+      <PublicApiRenderer
+        render={this.renderInner}
+        query={graphql`
+          query PaymentScreenQuery {
+            hotelPaymentUrls {
+              bookingComPaymentUrl
+            }
+          }
+        `}
       />
     </React.Fragment>
   );
@@ -66,7 +92,7 @@ export default withHotelsContext(state => ({
   version: state.version,
 }))(PaymentScreen);
 
-export function createURI(pp: PaymentParameters): string {
+export function createURI(pp: PaymentParameters, url: string): string {
   const checkinQuery = sanitizeDate(pp.checkin);
   const intervalQuery = DateUtils.diffInDays(pp.checkout, pp.checkin);
 
@@ -75,22 +101,13 @@ export function createURI(pp: PaymentParameters): string {
     return acc;
   }, {});
 
-  return (
-    'https://secure.booking.com/book.html?' +
-    querystring.stringify({
-      from_source: 'hotel',
-      hostname: 'hotels.kiwi.com',
-      hotel_id: pp.hotelId,
-      stage: 1, // 0 - room selection, 1 - address editing, 2 - final overview
-      checkin: checkinQuery,
-      interval: intervalQuery,
-      children_extrabeds: '', // ???
-      ...roomsQuery,
-      rt_pos_selected: '', // ???
-      aid: pp.affiliateId,
-      label: `kiwi-${Platform.OS}-react-${pp.version}`,
-      lang: pp.language,
-      selected_currency: pp.currency,
-    })
-  );
+  return `${url}&${querystring.stringify({
+    hotel_id: pp.hotelId,
+    checkin: checkinQuery,
+    interval: intervalQuery,
+    ...roomsQuery,
+    label: `kiwi-${Platform.OS}-react-${pp.version}`,
+    lang: pp.language,
+    selected_currency: pp.currency,
+  })}`;
 }

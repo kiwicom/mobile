@@ -6,8 +6,6 @@ import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
 import { type DimensionType } from '@kiwicom/mobile-shared';
 
-import Config from '../../../config/application';
-
 type Props = {|
   +navigation: NavigationType,
   +dimensions: DimensionType,
@@ -21,10 +19,8 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
   goToHomepage = () => this.props.navigation.goBack();
 
   render = () => {
-    const affiliate = String(Config.affiliate.bookingCom);
     return (
       <SingleHotelStandalonePackage
-        bookingComAffiliate={affiliate}
         language="en"
         currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
         onBackClicked={this.goToHomepage}

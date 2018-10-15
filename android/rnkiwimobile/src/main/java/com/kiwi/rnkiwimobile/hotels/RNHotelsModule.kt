@@ -28,7 +28,6 @@ object RNHotelsModule {
     return Bundle().apply {
       putString("language", initialProperties.language)
       putString("currency", initialProperties.currency)
-      putString("bookingComAffiliate", initialProperties.bookingComAffiliate)
       putString("checkin", initialProperties.checkin)
       putString("checkout", initialProperties.checkout)
       putString("cityName", initialProperties.cityName)

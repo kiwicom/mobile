@@ -19,7 +19,6 @@ const render = () => <ManageMyBookingPackage
           bookingId="<bookingId>" 
           simpleToken="<simpletoken>"
           version="<app-version>"
-          bookingComAffiliate="<booking_com_affialiate>" // For opening hotels from tripservices
           dataSaverEnabled={false}
         />
 
@@ -29,7 +28,6 @@ const render = () => <ManageMyBookingPackage
           currency="EUR"
           accessToken="<token>"
           version="<app-version>"
-          bookingComAffiliate="<booking_com_affialiate>" // For opening hotels from tripservices
           dataSaverEnabled={false}
         />
 ```

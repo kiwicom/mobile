@@ -3,7 +3,6 @@ package com.kiwi.rnkiwimobile.hotels
 data class RNHotelsInitialProperties(
     val language: String,
     val currency: String,
-    val bookingComAffiliate: String,
     val checkin: String,
     val checkout: String,
     val cityName: String,

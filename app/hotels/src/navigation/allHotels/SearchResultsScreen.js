@@ -35,7 +35,6 @@ type Props = {|
   +lastNavigationMode?: 'present' | 'push',
   +setResultType: (show: ResultType) => void,
   +show: ResultType,
-  +bookingComAffiliate: string,
 |};
 
 const noop = () => {};
@@ -106,7 +105,6 @@ class SearchResultsScreen extends React.Component<Props> {
       checkin={new Date(this.props.checkin)}
       checkout={new Date(this.props.checkout)}
       roomsConfiguration={this.props.roomsConfiguration}
-      bookingComAffiliate={this.props.bookingComAffiliate}
     >
       <LayoutDoubleColumn
         menuComponent={

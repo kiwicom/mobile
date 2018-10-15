@@ -41,7 +41,6 @@ it('renders without crashing', () => {
     numberOfRooms: 1,
     checkin: new Date(0),
     checkout: new Date(1),
-    bookingComAffiliate: 'test-lol',
     currency: 'EUR',
     navigation,
   };
@@ -59,7 +58,6 @@ it('renders without crashing with missing data', () => {
     numberOfRooms: 1,
     checkin: new Date(0),
     checkout: new Date(1),
-    bookingComAffiliate: 'test-lol',
     currency: 'EUR',
     navigation,
   };
