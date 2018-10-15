@@ -19,7 +19,7 @@ exports[`RoomImage renders 1`] = `
       }
       style={
         Object {
-          "borderRadius": 2,
+          "borderRadius": 3,
           "height": 80,
           "width": 60,
         }
