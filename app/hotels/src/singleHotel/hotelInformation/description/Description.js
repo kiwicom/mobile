@@ -8,6 +8,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import DescriptionTitle from './DescriptionTitle';
 import Facilities from './Facilities';
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 
@@ -24,12 +25,9 @@ type Props = {
 
 export const Description = (props: Props) => (
   <View style={styles.container}>
-    <Text style={styles.title}>
-      <Translation
-        id="single_hotel.description.description"
-        textTransform="uppercase"
-      />
-    </Text>
+    <DescriptionTitle
+      title={<Translation id="single_hotel.description.description" />}
+    />
     <ReadMore
       numberOfLines={5}
       truncatedText={<Translation id="single_hotel.description.show_more" />}
@@ -39,7 +37,12 @@ export const Description = (props: Props) => (
         <Translation passThrough={idx(props, _ => _.hotel.summary)} />
       </Text>
     </ReadMore>
-    <Facilities facilities={idx(props, _ => _.hotel.facilities)} />
+    <View style={styles.facilitiesContainer}>
+      <DescriptionTitle
+        title={<Translation id="single_hotel.description.equipment" />}
+      />
+      <Facilities facilities={idx(props, _ => _.hotel.facilities)} />
+    </View>
   </View>
 );
 
@@ -48,12 +51,6 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: defaultTokens.paletteWhite,
   },
-  title: {
-    color: defaultTokens.colorTextSecondary,
-    marginBottom: 8,
-    fontWeight: '800',
-    fontSize: 12,
-  },
   summary: {
     android: {
       lineHeight: 21,
@@ -61,6 +58,9 @@ const styles = StyleSheet.create({
     ios: {
       lineHeight: 19,
     },
+  },
+  facilitiesContainer: {
+    paddingTop: 30,
   },
 });
 
