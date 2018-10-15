@@ -1,29 +1,40 @@
 // @flow
 
 import * as React from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextInput, StyleSheet } from '@kiwicom/mobile-shared';
 
+import CardImage from './CardImage';
+
+type CardType =
+  | 'MASTERCARD'
+  | 'VISA'
+  | 'MAESTRO'
+  | 'AMERICAN_EXPRESS'
+  | 'DISCOVER'
+  | 'DINERS_CLUB'
+  | 'MIR'
+  | 'UNKNOWN';
+
 type Props = {|
-  +onCreditCardChange: () => void,
+  +cardType: CardType,
+  +onCardChange: (cardNumber: string) => void,
 |};
 
-export default function CreditCardNumberInput(props: Props) {
+export default function CardNumberInput(props: Props) {
   return (
     <React.Fragment>
       <TextInput
         label={
           <Translation id="mmb.trip_services.insurance.payment.credit_card_number" />
         }
-        onChangeText={props.onCreditCardChange}
+        onChangeText={props.onCardChange}
         keyboardType="number-pad"
       />
       <View style={styles.image}>
-        {/* TODO: CHANGE CARD IMAGE DEPENDING ON INPUT */}
-        <Image source={require('./images/all_cards.imageset/all_cards.png')} />
+        <CardImage cardType={props.cardType} />
       </View>
-      {/* </View> */}
     </React.Fragment>
   );
 }

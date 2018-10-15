@@ -11,6 +11,7 @@ import OrderSummary from '../insuranceOverviewScene/orderSummary/OrderSummary';
 import PaymentFormTitle from './PaymentFormTitle';
 import CardOptions from './CardOptions';
 import PaymentForm from './PaymentForm';
+import InsurancePaymentContext from './InsurancePaymentContext';
 
 const noop = () => {};
 
@@ -57,34 +58,35 @@ export default class PaymentScene extends React.Component<{||}, State> {
 
     return (
       <React.Fragment>
-        <ScrollView>
-          <View style={styles.container}>
-            <View style={styles.formRow}>
-              <PaymentFormTitle />
+        <InsurancePaymentContext.Provider>
+          <ScrollView>
+            <View style={styles.container}>
+              <View style={styles.formRow}>
+                <PaymentFormTitle />
+              </View>
+              {this.state.card != null && (
+                <CardOptions
+                  active={this.state.active}
+                  setActiveCard={this.setActiveCard}
+                  onSavedCardSecurityCodeChange={noop}
+                  cardDigits={cardDigits}
+                />
+              )}
+
+              {isAnotherCardActive && <PaymentForm />}
             </View>
-            {this.state.card != null && (
-              <CardOptions
-                active={this.state.active}
-                setActiveCard={this.setActiveCard}
-                onSavedCardSecurityCodeChange={noop}
-                cardDigits={cardDigits}
+            <View style={[styles.container, styles.buttonContainer]}>
+              <TextButton
+                title={
+                  <Translation id="mmb.trip_services.insurance.payment.pay_now" />
+                }
+                onPress={this.onPressPaymentButton}
+                // TODO
+                disabled={true}
               />
-            )}
-
-            {isAnotherCardActive && <PaymentForm />}
-          </View>
-          <View style={[styles.container, styles.buttonContainer]}>
-            <TextButton
-              title={
-                <Translation id="mmb.trip_services.insurance.payment.pay_now" />
-              }
-              onPress={this.onPressPaymentButton}
-              // TODO
-              disabled={true}
-            />
-          </View>
-        </ScrollView>
-
+            </View>
+          </ScrollView>
+        </InsurancePaymentContext.Provider>
         <OrderSummary />
       </React.Fragment>
     );

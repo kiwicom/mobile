@@ -7,16 +7,20 @@ import { Text, Switch, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  +onRememberCardChange: () => void,
+  +remember: boolean,
+  +onRememberCardChange: (remember: boolean) => void,
 |};
 
-export default function RememberCardSwitch(props: Props) {
+export default function RememberCardSwitch({
+  remember,
+  onRememberCardChange,
+}: Props) {
   return (
     <View style={styles.row}>
       <Text style={styles.label}>
         <Translation id="mmb.trip_services.insurance.payment.remember_card" />
       </Text>
-      <Switch value={false} onValueChange={props.onRememberCardChange} />
+      <Switch value={remember} onValueChange={onRememberCardChange} />
     </View>
   );
 }
