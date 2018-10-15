@@ -7,6 +7,7 @@ import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import isEqual from 'react-fast-compare';
+import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
@@ -40,14 +41,21 @@ class RoomList extends React.Component<Props> {
             textTransform="uppercase"
           />
         </Text>
-        {data.map(availableRoom => (
-          <RoomRow
-            key={availableRoom.id}
-            availableRoom={availableRoom}
-            select={select}
-            deselect={deselect}
-            selected={selected}
-          />
+        {data.map((availableRoom, index) => (
+          <React.Fragment key={availableRoom.id}>
+            {index != 0 && (
+              <SeparatorFullWidth
+                height={StyleSheet.hairlineWidth}
+                color={defaultTokens.paletteInkLighter}
+              />
+            )}
+            <RoomRow
+              availableRoom={availableRoom}
+              select={select}
+              deselect={deselect}
+              selected={selected}
+            />
+          </React.Fragment>
         ))}
       </View>
     );

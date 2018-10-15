@@ -10,7 +10,6 @@ import {
   withNavigation,
 } from '@kiwicom/mobile-navigation';
 import isEqual from 'react-fast-compare';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import RoomPicker from '../roomPicker/RoomPicker';
 import RoomImage from './RoomImage';
@@ -153,8 +152,6 @@ export default (createFragmentContainer(
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: defaultTokens.paletteInkLighter,
   },
   row: {
     flexDirection: 'row',

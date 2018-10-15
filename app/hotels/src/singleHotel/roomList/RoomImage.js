@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   thumbnail: {
     width: 60,
     height: 80,
-    borderRadius: 2,
+    borderRadius: 3,
   },
   icon: {
     fontSize: 16,
