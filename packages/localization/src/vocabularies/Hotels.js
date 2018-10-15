@@ -90,7 +90,7 @@ export default {
   'hotels_search.location_picker.recent_search': 'Recent search',
   'hotels_search.header.to': 'to',
 
-  'single_hotel.bedding_info.guests': 'Guests: __numberOfGuests__',
+  'single_hotel.bedding_info.guests': '__numberOfGuests__ Guests',
   'single_hotel.book_now': 'Book Now',
   'single_hotel.book_now.description':
     '__1_personCount__ Guests · __2_numberOfRooms__ Rooms',
