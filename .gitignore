@@ -2,6 +2,10 @@
 #
 .env
 
+#XCode CODEPUSH_KEYS
+ios/RNKiwiMobile/release.xcconfig
+ios/RNKiwiMobile/staging.xcconfig
+
 # OSX
 #
 .DS_Store
