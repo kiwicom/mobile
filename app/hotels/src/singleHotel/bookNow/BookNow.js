@@ -20,7 +20,6 @@ type PropsWithContext = {
   ...Props,
   +checkin: Date,
   +checkout: Date,
-  +bookingComAffiliate: string,
   +currency: string,
 };
 
@@ -31,7 +30,6 @@ export class BookNow extends React.Component<PropsWithContext> {
       this.props.navigation.navigate('Payment', {
         hotelId: Number(hotelId),
         rooms: convertRooms(this.props.selected),
-        affiliateId: this.props.bookingComAffiliate,
         language: DeviceInfo.getLanguage(),
       });
     }

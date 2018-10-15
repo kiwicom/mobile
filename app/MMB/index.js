@@ -28,7 +28,6 @@ type Props = {|
   +simpleToken?: string,
   +version: string,
   +dataSaverEnabled: boolean,
-  +bookingComAffiliate: string,
   +googleMapsAPIKey: string,
 |};
 
@@ -47,7 +46,6 @@ class ManageMyBookingPackage extends React.Component<Props> {
                 <HotelsContext.Provider
                   version={this.props.version}
                   dataSaverEnabled={this.props.dataSaverEnabled}
-                  bookingComAffiliate={this.props.bookingComAffiliate}
                   onNavigationStateChange={this.props.onNavigationStateChange}
                 >
                   <SplitNavigationContext.Provider>

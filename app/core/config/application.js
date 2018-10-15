@@ -1,7 +1,6 @@
 // @flow
 
 import {
-  AFFILIATE_BOOKINGCOM,
   API_KEY_GOOGLE_MAPS,
   AUTH_ANDROID_GOOGLE_CLIENTID,
   AUTH_IOS_GOOGLE_CLIENTID,
@@ -10,9 +9,6 @@ import {
 } from 'react-native-dotenv';
 
 export default {
-  affiliate: {
-    bookingCom: sanitize(AFFILIATE_BOOKINGCOM),
-  },
   animations: {
     duration: 100, // ms
   },

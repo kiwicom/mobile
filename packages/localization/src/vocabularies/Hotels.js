@@ -14,6 +14,9 @@ export default {
   'hotels.navigation.title.single_hotel': 'Details',
   'hotels.navigation.title.single_hotel_map': 'Map',
 
+  'hotels.payment_screen.server_error':
+    'Failed to get url from the server, please try again.',
+
   'hotels_search.all_hotels.please_search':
     'Please search for your desired destination.',
   'hotels_search.all_hotels_search_list.no_hotels_found': 'No hotels found.',

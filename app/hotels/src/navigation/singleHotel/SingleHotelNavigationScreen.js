@@ -50,7 +50,6 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
         checkin={this.props.checkin}
         checkout={this.props.checkout}
         roomsConfiguration={this.props.roomsConfiguration}
-        bookingComAffiliate={this.props.bookingComAffiliate}
       >
         <SingleHotel goBack={this.goBack} />
       </SingleHotelContext.Provider>

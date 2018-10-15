@@ -16,7 +16,6 @@ type Props = {
   +checkin: string,
   +checkout: string,
   +roomsConfiguration: RoomsConfiguration,
-  +bookingComAffiliate: string,
   +currency: string,
   +language: string,
   +onNavigationStateChange: () => void,

@@ -9,7 +9,6 @@ const defaultState = {
   checkin: new Date(),
   checkout: new Date(),
   roomsConfiguration: [],
-  bookingComAffiliate: '',
   setHotelId: () => {},
 };
 
@@ -23,7 +22,6 @@ type Props = {|
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
-  +bookingComAffiliate: string,
 |};
 
 type State = {|
@@ -31,7 +29,6 @@ type State = {|
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
-  +bookingComAffiliate: string,
   +setHotelId: (hotelId: string) => void,
 |};
 
@@ -44,7 +41,6 @@ class Provider extends React.Component<Props, State> {
       checkin: props.checkin,
       checkout: props.checkout,
       roomsConfiguration: props.roomsConfiguration,
-      bookingComAffiliate: props.bookingComAffiliate,
       setHotelId: this.setHotelId,
     };
   }

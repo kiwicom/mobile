@@ -31,7 +31,7 @@ export default class WebView extends React.Component<Props> {
   render = () => (
     <NativeWebView
       bounces={false}
-      startInLoadingState={false} // it feels faster because we don't have to wait until the page is fully loaded
+      startInLoadingState={true} // Prefer to see loader than blank screen
       renderError={this.renderError}
       onNavigationStateChange={this.onNavigationStateChange}
       {...this.props}

@@ -12,7 +12,6 @@ import type { Coordinates } from '../CoordinatesType';
 import type { RoomConfigurationType } from '../HotelsContext';
 
 type Props = {
-  +bookingComAffiliate: string,
   +language: string,
   +currency: string,
   +dataSaverEnabled: boolean,
