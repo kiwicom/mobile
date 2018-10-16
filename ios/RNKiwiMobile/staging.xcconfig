@@ -1,1 +1,4 @@
-STAGING_CODEPUSH_KEY = ""
+#include "staging_key.xcconfig"
+//Create staging_key.xcconfig within RNKiwiMobile if doesn't exist
+//and add codepush staging key there. That file is added to .gitingore
+//to prevent pushing to git repository.

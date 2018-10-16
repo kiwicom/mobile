@@ -5,6 +5,7 @@ import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
+import CodePush from 'react-native-code-push';
 
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
@@ -24,5 +25,7 @@ AppRegistry.registerComponent(
   'SingleHotel',
   () => SingleHotelStandalonePackage,
 );
+
+CodePush.sync();
 
 // ManageMyBookings

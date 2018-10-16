@@ -3,8 +3,8 @@
 .env
 
 #XCode CODEPUSH_KEYS
-ios/RNKiwiMobile/release.xcconfig
-ios/RNKiwiMobile/staging.xcconfig
+ios/RNKiwiMobile/release_key.xcconfig
+ios/RNKiwiMobile/staging_key.xcconfig
 
 # OSX
 #

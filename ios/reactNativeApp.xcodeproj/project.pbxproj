@@ -101,8 +101,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00DA89B53EF7CDBADBC96DBF /* Pods-RNKiwiMobile.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNKiwiMobile.staging.xcconfig"; path = "Pods/Target Support Files/Pods-RNKiwiMobile/Pods-RNKiwiMobile.staging.xcconfig"; sourceTree = "<group>"; };
 		04E0C4EE593813CA3FA1D99C /* libPods-RNKiwiMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNKiwiMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactNativeApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		061B5B242124401AB0BFCE38 /* Pods-reactNativeApp.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp.staging.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp.staging.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* reactNativeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reactNativeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = reactNativeApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = reactNativeApp/AppDelegate.m; sourceTree = "<group>"; };
@@ -114,6 +116,8 @@
 		2107154520B5677200E6C96B /* RNKiwiGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
 		217466742174BF2300FF1F3A /* staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = staging.xcconfig; sourceTree = "<group>"; };
 		2174667A2174C0B400FF1F3A /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
+		219FCC5721753448008F5428 /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCodePush.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		219FCC5921753450008F5428 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiSharedBridge.h; sourceTree = "<group>"; };
 		2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiSharedBridge.m; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				B4E7213E71A344C5AE638015 /* Pods-RNKiwiMobile.release.xcconfig */,
 				83DEB0A076A11B421C735EE9 /* Pods-RNPlayground.debug.xcconfig */,
 				68A42BBB8E1C6CD26053AC72 /* Pods-RNPlayground.release.xcconfig */,
+				00DA89B53EF7CDBADBC96DBF /* Pods-RNKiwiMobile.staging.xcconfig */,
+				061B5B242124401AB0BFCE38 /* Pods-reactNativeApp.staging.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -325,6 +331,8 @@
 		A2CAAD3C4D5834AF8638A878 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				219FCC5921753450008F5428 /* libz.tbd */,
+				219FCC5721753448008F5428 /* libCodePush.a */,
 				63A8419E20C8538A0093183F /* MessageUI.framework */,
 				63A8419C20C853840093183F /* Social.framework */,
 				27E931CC20AD9EF60053AE19 /* libPods-RNKiwiMobile.a */,
@@ -852,6 +860,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODEPUSH_KEY = "$(STAGING_CODEPUSH_KEY)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = G44VYF3687;
@@ -873,7 +882,7 @@
 		};
 		217466772174BF9600FF1F3A /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F1CBA12F9C74CC3D03C0D84C /* Pods-reactNativeApp.release.xcconfig */;
+			baseConfigurationReference = 061B5B242124401AB0BFCE38 /* Pods-reactNativeApp.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -901,7 +910,7 @@
 		};
 		217466782174BF9600FF1F3A /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4E7213E71A344C5AE638015 /* Pods-RNKiwiMobile.release.xcconfig */;
+			baseConfigurationReference = 00DA89B53EF7CDBADBC96DBF /* Pods-RNKiwiMobile.staging.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1159,6 +1168,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODEPUSH_KEY = "";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = G44VYF3687;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1201,6 +1211,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODEPUSH_KEY = "$(RELEASE_CODEPUSH_KEY)";
 				COPY_PHASE_STRIP = YES;
 				DEVELOPMENT_TEAM = G44VYF3687;
 				ENABLE_NS_ASSERTIONS = NO;

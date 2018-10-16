@@ -7,7 +7,7 @@
 @implementation RNKiwiConstants
 
 + (NSURL *)bundleURL {
-  #if DEBUG
+  #ifdef DEBUG
     return [NSURL URLWithString:@"http://localhost:8081/app/native.bundle?platform=ios&dev=true"];
   #else
    return [CodePush bundleURLForResource:@"main" withExtension:@"jsbundle" subdirectory:nil bundle:[NSBundle bundleWithIdentifier:@"com.kiwi.RNKiwiMobile"]];
