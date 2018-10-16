@@ -10,9 +10,11 @@ import {
 } from '@kiwicom/mobile-shared';
 import { DateUtils, Translation } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
-import { HeaderTitle } from '@kiwicom/mobile-navigation';
+import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import idx from 'idx';
+import { HeaderBackButton } from 'react-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import { sanitizeDate } from '../GraphQLSanitizers';
 import { withHotelsContext } from '../HotelsContext';
@@ -32,13 +34,28 @@ export type PaymentParameters = {|
 |};
 
 export class PaymentScreen extends React.Component<PaymentParameters> {
-  static navigationOptions = () => ({
-    headerTitle: (
-      <HeaderTitle>
-        <Translation id="hotels.navigation.title.payment" />
-      </HeaderTitle>
-    ),
-  });
+  static navigationOptions = ({
+    navigation,
+  }: {
+    navigation: NavigationType,
+  }) => {
+    function goBack() {
+      navigation.goBack(null);
+    }
+    return {
+      headerTitle: (
+        <HeaderTitle>
+          <Translation id="hotels.navigation.title.payment" />
+        </HeaderTitle>
+      ),
+      headerLeft: (
+        <HeaderBackButton
+          onPress={goBack}
+          tintColor={defaultTokens.paletteProductNormal}
+        />
+      ),
+    };
+  };
   componentDidMount = () => {
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_PAYMENT);
   };
