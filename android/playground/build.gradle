@@ -5,25 +5,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: "../dependencies.gradle"
 
-project.ext.react = [
-    entryFile: "app/native.js",
-    jsBundleDirDebug: "${buildDir}/intermediates/merged_assets/debug/mergeDebugAssets/out",
-    jsBundleDirRelease: "${buildDir}/intermediates/merged_assets/release/mergeReleaseAssets/out",
-    jsBundleDirStagingRelease: "${buildDir}/intermediates/merged_assets/stagingRelease/mergeStagingReleaseAssets/out"
-]
-
-apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
-
 def inputFile = new File("${rootDir}/../.build/package.json")
 def packageJson = new JsonSlurper().parseText(inputFile.text)
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion compileSdkVersionVar
     defaultConfig {
         applicationId "com.kiwi.rnandroidplayground"
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion minSdkVersionVar
+        targetSdkVersion targetSdkVersionVar
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
