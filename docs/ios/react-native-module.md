@@ -98,6 +98,13 @@ _NOTE_: Creating bridge upfront guarantees that your React Native module will be
 }
 ```
 
+### Getting updates from CodePush
+
+Once CodePush is integrated in framework it's necessary to add codepush keys to `Info.plist` to receive updates.
+
+![](../../docs/assets/add_code_push_key.png)
+
+
 ### Using fonts from frameworks
 
 Within the `RNKiwiMobile.framework` in folder `assets/fonts` you can find all the fonts which have to be added in new XCode project. Follow the steps below to add them:
