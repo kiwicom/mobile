@@ -7,7 +7,6 @@ import {
   Text,
   StyleSheet,
   IncrementDecrementButtons,
-  Color,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -71,10 +70,11 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 6,
     borderColor: defaultTokens.paletteInkLighter,
-    borderWidth: 1,
+    borderWidth: 0.5,
+    backgroundColor: defaultTokens.paletteWhite,
     height: 44,
     paddingHorizontal: 12,
-    shadowColor: Color.dark.$10,
+    shadowColor: defaultTokens.paletteInkDark,
     shadowOffset: {
       width: 0,
       height: 2,
