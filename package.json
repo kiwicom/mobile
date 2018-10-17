@@ -24,7 +24,8 @@
     "playground": "node ./scripts/activatePlayground.js",
     "flow": "flow app --include-warnings",
     "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js",
-    "e2e": "yarn detox build && yarn detox test",
+    "e2e-iphone": "yarn detox build  --configuration ios.sim.debug && yarn detox test --configuration ios.sim.debug",
+    "e2e-ipad": "yarn detox build  --configuration ios.sim.tablet.debug && yarn detox test --configuration ios.sim.tablet.debug",
     "codepush-ios": "appcenter codepush release-react -a Kiwicom/mobile-ios --entry-file ./app/native.js -d Staging"
   },
   "dependencies": {
@@ -77,9 +78,15 @@
     "configurations": {
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/reactNativeApp.app",
-        "build": "xcodebuild -workspace ios/reactNativeApp.xcworkspace -scheme reactNativeApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "build": "xcodebuild -workspace ios/reactNativeApp.xcworkspace -UseNewBuildSystem=NO -scheme reactNativeApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "name": "iPhone 6"
+      },
+      "ios.sim.tablet.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/reactNativeApp.app",
+        "build": "xcodebuild -workspace ios/reactNativeApp.xcworkspace -UseNewBuildSystem=NO -scheme reactNativeApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPad Air 2"
       }
     },
     "test-runner": "jest"

@@ -37,7 +37,8 @@ export default class Popup extends React.Component<Props> {
           <Modal
             isVisible={this.props.isVisible}
             style={[styles.modal, styles.modalWide]}
-            backdropOpacity={0.5}
+            backdropOpacity={0.2}
+            backdropColor={defaultTokens.paletteInkDark}
             onBackdropPress={this.onClose}
             onRequestClose={this.onClose}
           >
@@ -50,7 +51,8 @@ export default class Popup extends React.Component<Props> {
           <Modal
             isVisible={this.props.isVisible}
             style={styles.modal}
-            backdropOpacity={0.5}
+            backdropOpacity={0.2}
+            backdropColor={defaultTokens.paletteInkDark}
             onBackdropPress={this.onClose}
             onRequestClose={this.onClose}
           >

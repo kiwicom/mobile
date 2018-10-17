@@ -98,10 +98,6 @@ export default (createFragmentContainer(
 
 const styles = StyleSheet.create({
   facilities: {
-    marginTop: 15,
-    paddingTop: 15,
-    borderTopWidth: 1,
-    borderTopColor: defaultTokens.paletteCloudNormal,
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     flexDirection: 'row',
@@ -111,11 +107,13 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   adaptableBadge: {
-    backgroundColor: defaultTokens.paletteCloudLight,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     marginEnd: 5,
     marginBottom: 5,
   },
   adaptableBadgeText: {
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.paletteInkNormal,
+    fontSize: 12,
+    lineHeight: 15,
   },
 });

@@ -90,7 +90,7 @@ export default {
   'hotels_search.location_picker.recent_search': 'Recent search',
   'hotels_search.header.to': 'to',
 
-  'single_hotel.bedding_info.guests': 'Guests: __numberOfGuests__',
+  'single_hotel.bedding_info.guests': '__numberOfGuests__ Guests',
   'single_hotel.book_now': 'Book Now',
   'single_hotel.book_now.description':
     '__1_personCount__ Guests · __2_numberOfRooms__ Rooms',
@@ -103,6 +103,7 @@ export default {
   'single_hotel.room_picker.select': 'Select',
   'single_hotel.powered_by': 'Powered by',
   'single_hotel.description.description': 'Description',
+  'single_hotel.description.equipment': 'Equipment',
   'single_hotel.description.show_more': 'Show More',
   'single_hotel.description.show_less': 'Show Less',
   'single_hotel.room_description.read_more': 'Read more',

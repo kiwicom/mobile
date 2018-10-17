@@ -90,7 +90,7 @@ export class RenderSearchResults extends React.Component<
   animateToMap = () => {
     Animated.parallel([
       Animated.timing(this.mapAnimation, {
-        toValue: 0,
+        toValue: -6,
         duration: transitionDuration,
         useNativeDriver: true,
       }),

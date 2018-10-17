@@ -36,13 +36,11 @@ export default function DropMarker() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 24,
-    width: 24,
     borderRadius: 4,
     borderColor: defaultTokens.paletteInkLight,
     borderWidth: 0.5,
     backgroundColor: defaultTokens.paletteWhite,
-    padding: 2,
+    padding: 1,
     position: 'absolute',
     start: -12,
     top: -24,
@@ -50,17 +48,18 @@ const styles = StyleSheet.create({
   iconContainer: {
     flex: 1,
     backgroundColor: defaultTokens.paletteBlueNormal,
-    borderRadius: 2,
+    borderRadius: 4,
+    padding: 3,
+    paddingBottom: 1,
   },
   icon: {
     color: defaultTokens.paletteWhite,
-    fontSize: 12,
-    padding: 4,
+    fontSize: 18,
   },
   blueArrow: {
     backgroundColor: 'transparent',
     borderColor: 'transparent',
-    borderWidth: 8,
+    borderWidth: 7,
     borderTopColor: defaultTokens.paletteBlueNormal,
     alignSelf: 'center',
     zIndex: parseInt(defaultTokens.zIndexModal),

@@ -23,6 +23,7 @@ type Props = {|
   +selectableCount: number,
   +increment: () => void,
   +decrement: () => void,
+  +testID?: string,
 |};
 
 export default function IncrementDecrement({
