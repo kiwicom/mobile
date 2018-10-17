@@ -3,12 +3,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, StretchedImage } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
 import MapView from './MapView';
 import HotelSwipeList from './HotelSwipeList';
 import type { MapScreen as MapScreenData } from './__generated__/MapScreen.graphql';
+import gradient from '../gradient.png';
 
 type Props = {|
   data: MapScreenData,
@@ -58,6 +59,9 @@ class MapScreen extends React.Component<Props, State> {
           selectedIndex={selectedHotelIndex}
           onSelectMarker={this.onSelectMarker}
         />
+        <View style={styles.underlay}>
+          <StretchedImage source={gradient} />
+        </View>
         <HotelSwipeList
           data={hotels}
           selectedIndex={selectedHotelIndex}
@@ -73,9 +77,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-end',
-    alignItems: 'center',
-    padding: 8,
   },
+  underlay: { height: 132 },
 });
 
 export default createFragmentContainer(

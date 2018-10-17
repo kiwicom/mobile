@@ -42,7 +42,10 @@ type LatLng = {|
 const NO_OF_MARKERS_IN_REGION = 15;
 
 const styles = StyleSheet.create({
-  map: StyleSheet.absoluteFillObject,
+  map: {
+    ...StyleSheet.absoluteFillObject,
+    top: -6,
+  },
 });
 
 export class Map extends React.Component<Props, State> {
