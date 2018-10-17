@@ -21,7 +21,7 @@ import MapView from './MapView';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
 import { sanitizeDate } from '../../GraphQLSanitizers';
 import AdditionalInfo from './AdditionalInfo';
-import gradient from './gradient.png';
+import gradient from '../gradient.png';
 
 type Props = {|
   +currency: string,
