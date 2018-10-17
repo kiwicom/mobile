@@ -48,7 +48,7 @@ platform :ios do
   desc "Build and deploy RNNativePlayground to TestFlight"
   lane :staging do
     build_deploy(
-      app_id: "com.kiwi.rniosplayground",
+      app_id: "com.kiwi.mobile.rniosplayground",
       scheme: "RNNativePlayground - Staging"
     )
   end
