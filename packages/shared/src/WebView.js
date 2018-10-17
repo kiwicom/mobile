@@ -12,6 +12,7 @@ type Props = {|
     +uri: string,
   |},
   onNavigationStateChange?: (event: WebViewStateChangeEvent) => void,
+  testID?: string,
 |};
 
 export default class WebView extends React.Component<Props> {

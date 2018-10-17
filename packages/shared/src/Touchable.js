@@ -26,6 +26,7 @@ type Props = {|
   // Should the ripple render outside of the view bounds?
   +borderlessRipple?: boolean,
   +rippleColor?: string,
+  +testID?: string,
   ...AccessibilityProps,
 |};
 

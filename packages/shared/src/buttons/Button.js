@@ -13,6 +13,7 @@ type Props = {|
   +style?: StylePropType,
   +disabled?: boolean,
   +type: 'primary' | 'secondary',
+  +testID?: string,
 |};
 
 /**
@@ -33,6 +34,7 @@ export default function Button(props: Props) {
         props.style,
       ]}
       accessibilityComponentType="button"
+      testID={props.testID}
     >
       {props.children}
     </Touchable>

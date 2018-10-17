@@ -54,6 +54,7 @@ class RoomList extends React.Component<Props> {
               select={select}
               deselect={deselect}
               selected={selected}
+              testID={index === data.length - 1 ? 'lastAvailableRoom' : ''}
             />
           </React.Fragment>
         ))}
