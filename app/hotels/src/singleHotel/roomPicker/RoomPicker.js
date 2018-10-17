@@ -16,6 +16,7 @@ type Props = {|
   +selectableCount: number,
   +increment: () => void,
   +decrement: () => void,
+  +testID?: string,
 |};
 
 export default function RoomPicker(props: Props) {
@@ -24,7 +25,13 @@ export default function RoomPicker(props: Props) {
   }
 
   if (props.selectedCount === 0) {
-    return <SelectButton price={props.price} increment={props.increment} />;
+    return (
+      <SelectButton
+        price={props.price}
+        increment={props.increment}
+        testID={props.testID}
+      />
+    );
   }
 
   return <IncrementDecrement {...props} />;

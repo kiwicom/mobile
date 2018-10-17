@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Platform, StatusBar } from 'react-native';
+import { Platform, StatusBar, View } from 'react-native';
 import {
   WebView,
   Logger,
@@ -76,12 +76,15 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
       );
     }
     return (
-      <WebView
-        source={{
-          uri: createURI(this.props, url),
-        }}
-        onNavigationStateChange={this.onNavigationStateChange}
-      />
+      <React.Fragment>
+        <View testID="paymentScreenSingleHotel" />
+        <WebView
+          source={{
+            uri: createURI(this.props, url),
+          }}
+          onNavigationStateChange={this.onNavigationStateChange}
+        />
+      </React.Fragment>
     );
   };
 

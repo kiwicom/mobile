@@ -51,6 +51,7 @@ export default class Homepage extends React.Component<Props> {
         <Section>
           <TextButton
             title={<Translation passThrough="Hotels" />}
+            testID="homePage__Hotels-button"
             onPress={this.goToNewHotelsPage}
           />
         </Section>

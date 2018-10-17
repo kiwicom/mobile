@@ -13,6 +13,7 @@ type Props = {|
   +onPress: () => void,
   +disabled: boolean,
   +type: 'primary' | 'secondary',
+  +testID?: string,
 |};
 
 /**
@@ -30,6 +31,7 @@ export default function TextButton(props: Props) {
           : styleSheet.buttonPrimaryDisabled)
       }
       type={props.type}
+      testID={props.testID}
     >
       <ButtonTitle
         style={[

@@ -67,6 +67,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
             onPress={this.onGoToSingleHotel}
             style={style.container}
             delayPressIn={100}
+            testID={this.props.testID}
           >
             {children}
           </Touchable>
@@ -76,6 +77,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
             onPress={this.setActiveHotelId}
             style={style.container}
             delayPressIn={100}
+            testID={this.props.testID}
           >
             {children}
           </Touchable>
@@ -88,6 +90,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
 type Props = {|
   +openSingleHotel: (id: string) => void,
   +data: AllHotelsSearchRowProps,
+  +testID?: string,
 |};
 
 const AllHotelsSearchRowWithContext = (props: Props) => (
