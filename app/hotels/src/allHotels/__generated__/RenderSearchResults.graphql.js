@@ -25,7 +25,9 @@ export type RenderSearchResults = {|
       +minPrice: ?number,
     |},
     +edges: ?$ReadOnlyArray<?{|
-      +$fragmentRefs: AllHotelsSearchList$ref & MapScreen$ref
+      +node: ?{|
+        +$fragmentRefs: AllHotelsSearchList$ref & MapScreen$ref
+      |}
     |}>,
   |},
   +$refType: RenderSearchResults$ref,
@@ -179,23 +181,6 @@ const node/*: ConcreteFragment*/ = {
           "plural": true,
           "selections": [
             {
-              "kind": "FragmentSpread",
-              "name": "AllHotelsSearchList",
-              "args": null
-            },
-            {
-              "kind": "FragmentSpread",
-              "name": "MapScreen",
-              "args": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "cursor",
-              "args": null,
-              "storageKey": null
-            },
-            {
               "kind": "LinkedField",
               "alias": null,
               "name": "node",
@@ -205,6 +190,16 @@ const node/*: ConcreteFragment*/ = {
               "plural": false,
               "selections": [
                 {
+                  "kind": "FragmentSpread",
+                  "name": "AllHotelsSearchList",
+                  "args": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "MapScreen",
+                  "args": null
+                },
+                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
@@ -212,6 +207,13 @@ const node/*: ConcreteFragment*/ = {
                   "storageKey": null
                 }
               ]
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "cursor",
+              "args": null,
+              "storageKey": null
             }
           ]
         }
@@ -220,5 +222,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2eeb8c3d08ea3dfd561b7a449f9e8768';
+(node/*: any*/).hash = 'f95b136dfd49da63af1dfe46435ebf5a';
 module.exports = node;

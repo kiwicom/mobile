@@ -31,8 +31,8 @@ export const AllHotelsSearchList = (props: Props) => {
     <React.Fragment>
       {hotels.map(hotel => (
         <AllHotelsSearchRow
-          key={idx(hotel, _ => _.node.id)}
-          data={hotel.node}
+          key={idx(hotel, _ => _.id)}
+          data={hotel}
           openSingleHotel={props.openSingleHotel}
         />
       ))}
@@ -43,12 +43,9 @@ export const AllHotelsSearchList = (props: Props) => {
 export default createFragmentContainer(
   AllHotelsSearchList,
   graphql`
-    fragment AllHotelsSearchList on AllHotelAvailabilityHotelEdge
-      @relay(plural: true) {
-      node {
-        id
-        ...AllHotelsSearchRow
-      }
+    fragment AllHotelsSearchList on AllHotelsInterface @relay(plural: true) {
+      id
+      ...AllHotelsSearchRow
     }
   `,
 );

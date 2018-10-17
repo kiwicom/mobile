@@ -128,10 +128,10 @@ export class RenderSearchResults extends React.Component<
   };
 
   render = () => {
-    const data = idx(
-      this.props.data,
-      _ => _.allAvailableBookingComHotels.edges,
-    );
+    const edges =
+      idx(this.props.data, _ => _.allAvailableBookingComHotels.edges) || [];
+    const data = edges.map(hotel => idx(hotel, _ => _.node));
+
     return (
       <React.Fragment>
         <Animated.View
@@ -228,8 +228,12 @@ export default createPaginationContainer(
           minPrice
         }
         edges {
-          ...AllHotelsSearchList
-          ...MapScreen
+          node {
+            ... on AllHotelAvailabilityHotel {
+              ...AllHotelsSearchList
+              ...MapScreen
+            }
+          }
         }
       }
     }

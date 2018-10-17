@@ -26,6 +26,7 @@ exports[`renders found hotels 1`] = `
     data={
       Object {
         "$fragmentRefs": null,
+        "$refType": null,
         "id": "hotel1",
       }
     }
@@ -35,6 +36,7 @@ exports[`renders found hotels 1`] = `
     data={
       Object {
         "$fragmentRefs": null,
+        "$refType": null,
         "id": "hotel2",
       }
     }
