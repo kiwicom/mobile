@@ -12,15 +12,13 @@ type PriceMarker$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapView$ref: FragmentReference;
 export type MapView = $ReadOnlyArray<{|
-  +node: ?{|
-    +id: string,
-    +price: ?{|
-      +$fragmentRefs: PriceMarker$ref
-    |},
-    +coordinates: ?{|
-      +lat: ?number,
-      +lng: ?number,
-    |},
+  +id: string,
+  +price: ?{|
+    +$fragmentRefs: PriceMarker$ref
+  |},
+  +coordinates: ?{|
+    +lat: ?number,
+    +lng: ?number,
   |},
   +$refType: MapView$ref,
 |}>;
@@ -30,73 +28,62 @@ export type MapView = $ReadOnlyArray<{|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "MapView",
-  "type": "AllHotelAvailabilityHotelEdge",
+  "type": "AllHotelsInterface",
   "metadata": {
     "plural": true
   },
   "argumentDefinitions": [],
   "selections": [
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
-      "name": "node",
+      "name": "price",
       "storageKey": null,
       "args": null,
-      "concreteType": "AllHotelAvailabilityHotel",
+      "concreteType": "Price",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "PriceMarker",
+          "args": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "coordinates",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Coordinates",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "id",
+          "name": "lat",
           "args": null,
           "storageKey": null
         },
         {
-          "kind": "LinkedField",
+          "kind": "ScalarField",
           "alias": null,
-          "name": "price",
-          "storageKey": null,
+          "name": "lng",
           "args": null,
-          "concreteType": "Price",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "FragmentSpread",
-              "name": "PriceMarker",
-              "args": null
-            }
-          ]
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "coordinates",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "Coordinates",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "lat",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "lng",
-              "args": null,
-              "storageKey": null
-            }
-          ]
+          "storageKey": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'f327332c07ce44dd8954ee20e9d83665';
+(node/*: any*/).hash = '312772446b15825cc823e91d0637679a';
 module.exports = node;

@@ -104,7 +104,7 @@ const AllHotelsSearchRowWithContext = (props: Props) => (
 export default createFragmentContainer(
   AllHotelsSearchRowWithContext,
   graphql`
-    fragment AllHotelsSearchRow on AllHotelAvailabilityHotel {
+    fragment AllHotelsSearchRow on AllHotelsInterface {
       ...HotelTitle
       hotelId
       mainPhoto {

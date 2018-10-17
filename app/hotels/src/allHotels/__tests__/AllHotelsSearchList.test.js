@@ -13,17 +13,13 @@ const $refType: any = null;
 it('renders found hotels', () => {
   const data = [
     {
-      node: {
-        id: 'hotel1',
-        $fragmentRefs,
-      },
+      id: 'hotel1',
+      $fragmentRefs,
       $refType,
     },
     {
-      node: {
-        id: 'hotel2',
-        $fragmentRefs,
-      },
+      id: 'hotel2',
+      $fragmentRefs,
       $refType,
     },
   ];
