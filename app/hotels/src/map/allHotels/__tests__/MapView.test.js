@@ -2,14 +2,15 @@
 
 import { Map } from '../MapView';
 
-// $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
+const $fragmentRefs: any = null;
+const $refType: any = null;
 const data = coordinates => ({
-  node: {
-    id: '1',
-    // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
-    price: {},
-    coordinates,
+  id: '1',
+  price: {
+    $fragmentRefs,
   },
+  coordinates,
+  $refType,
 });
 
 const oldTown = data({

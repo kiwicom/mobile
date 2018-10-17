@@ -36,9 +36,7 @@ class MapScreen extends React.Component<Props, State> {
 
   onSelectMarker = (hotelId: string) => {
     const hotels = this.getHotels();
-    const index = hotels.findIndex(
-      hotel => idx(hotel, _ => _.node.id) === hotelId,
-    );
+    const index = hotels.findIndex(hotel => idx(hotel, _ => _.id) === hotelId);
 
     if (index !== -1) {
       this.selectMarker(index);
@@ -83,10 +81,8 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   MapScreen,
   graphql`
-    fragment MapScreen on AllHotelAvailabilityHotelEdge @relay(plural: true) {
-      node {
-        id
-      }
+    fragment MapScreen on AllHotelsInterface @relay(plural: true) {
+      id
       ...MapView
       ...HotelSwipeList
     }

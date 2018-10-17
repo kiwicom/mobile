@@ -28,7 +28,7 @@ export type AllHotelsSearchRow = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "AllHotelsSearchRow",
-  "type": "AllHotelAvailabilityHotel",
+  "type": "AllHotelsInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -83,5 +83,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '881f704de186190b7f8af2f52243c44d';
+(node/*: any*/).hash = 'edf427bab1c1d0462a25f630bac4a8b1';
 module.exports = node;
