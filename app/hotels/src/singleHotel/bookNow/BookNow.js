@@ -37,7 +37,7 @@ export class BookNow extends React.Component<PropsWithContext> {
 
   render() {
     return (
-      <Button onPress={this.handleGoToPayment}>
+      <Button onPress={this.handleGoToPayment} testID="bookNowButton">
         <Text style={styles.text}>
           <Translation id="single_hotel.book_now" />
         </Text>

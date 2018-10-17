@@ -34,13 +34,22 @@ const DetailStack = StackNavigator(
     GalleryGrid: {
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
     },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'SingleHotel',
+  },
+);
+
+const PaymentStack = StackNavigator(
+  {
     Payment: {
       screen: withMappedProps(Payment),
     },
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'SingleHotel',
+    initialRouteName: 'Payment',
   },
 );
 
@@ -51,6 +60,12 @@ export default StackNavigator(
     },
     DetailStack: {
       screen: DetailStack,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    PaymentStack: {
+      screen: PaymentStack,
       navigationOptions: {
         header: null,
       },

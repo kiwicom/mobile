@@ -174,6 +174,7 @@ export class HotelDetailScreen extends React.Component<
             contentContainerStyle={styles.container}
             onScroll={this.onScroll}
             scrollEventThrottle={500}
+            testID="hotelDetailScrollView"
           >
             <LayoutSingleColumn barStyle={this.state.barStyle}>
               <Header hotel={availableHotel.hotel} />

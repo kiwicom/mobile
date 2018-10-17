@@ -4,6 +4,7 @@ exports[`renders without crashing 1`] = `
 <Button
   disabled={false}
   onPress={[Function]}
+  testID="bookNowButton"
   type="primary"
 >
   <Text
@@ -26,6 +27,7 @@ exports[`renders without crashing with missing data 1`] = `
 <Button
   disabled={false}
   onPress={[Function]}
+  testID="bookNowButton"
   type="primary"
 >
   <Text

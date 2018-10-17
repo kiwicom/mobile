@@ -14,6 +14,7 @@ import {
   withNavigation,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import MapView from './MapView';
@@ -40,7 +41,9 @@ class SingleHotelMapScreen extends React.Component<Props> {
       <View style={styles.underlay}>
         <StretchedImage source={gradient} />
       </View>
-      <AdditionalInfo data={availableHotel} />
+      <View style={styles.dropShadow}>
+        <AdditionalInfo data={availableHotel} />
+      </View>
       <View style={styles.button}>
         <CloseButton onPress={this.goBack} />
       </View>
@@ -90,6 +93,15 @@ const styles = StyleSheet.create({
     end: 8,
   },
   underlay: { height: 132 },
+  dropShadow: {
+    shadowColor: defaultTokens.paletteInkDark,
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    android: {
+      elevation: 1,
+    },
+  },
 });
 
 export default withNavigation(SingleHotelMapScreen);
