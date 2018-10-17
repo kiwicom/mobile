@@ -19,6 +19,7 @@
 		2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2107154420B5677200E6C96B /* RNKiwiGestureController.m */; };
 		2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107154520B5677200E6C96B /* RNKiwiGestureController.h */; };
 		215881F520C7FF140016707A /* RNKiwiMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931B020AD96780053AE19 /* RNKiwiMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21EFD4CD21768D8C00B5F21B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		24FF33FA378944ACA7C85EA8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46C66C53E2B841209A9370D0 /* Zocial.ttf */; };
 		2711986220B1F7E300C6292B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB92C0158EB3448ABD260167 /* Entypo.ttf */; };
 		2711986320B1F7E300C6292B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2B3E92C36254A399220D4DE /* EvilIcons.ttf */; };
@@ -510,6 +511,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21EFD4CD21768D8C00B5F21B /* Images.xcassets in Resources */,
 				68E80E25215E66CD00EB4717 /* CircularPro-Book.otf in Resources */,
 				2711986220B1F7E300C6292B /* Entypo.ttf in Resources */,
 				2711986320B1F7E300C6292B /* EvilIcons.ttf in Resources */,
@@ -955,7 +957,7 @@
 		217466792174BF9600FF1F3A /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "RNNativePlayground-Staging-AppIcon";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -983,7 +985,7 @@
 				INFOPLIST_FILE = RNNativePlayground/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.RNNativePlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.mobile.rniosplayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1080,7 +1082,7 @@
 		27E931E520ADA0630053AE19 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "RNNativePlayground-Staging-AppIcon";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1108,7 +1110,7 @@
 				INFOPLIST_FILE = RNNativePlayground/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.RNNativePlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.mobile.rniosplayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1117,7 +1119,7 @@
 		27E931E620ADA0630053AE19 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "RNNativePlayground-Staging-AppIcon";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1145,7 +1147,7 @@
 				INFOPLIST_FILE = RNNativePlayground/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.RNNativePlayground;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.mobile.rniosplayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

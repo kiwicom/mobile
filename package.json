@@ -24,7 +24,8 @@
     "playground": "node ./scripts/activatePlayground.js",
     "flow": "flow app --include-warnings",
     "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js",
-    "e2e": "yarn detox build && yarn detox test"
+    "e2e": "yarn detox build && yarn detox test",
+    "codepush-ios": "appcenter codepush release-react -a Kiwicom/mobile-ios --entry-file ./app/native.js -d Staging"
   },
   "dependencies": {
     "react": "16.5.0",
