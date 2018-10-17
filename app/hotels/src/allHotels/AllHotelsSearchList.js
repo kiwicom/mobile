@@ -29,11 +29,12 @@ export const AllHotelsSearchList = (props: Props) => {
 
   return (
     <React.Fragment>
-      {hotels.map(hotel => (
+      {hotels.map((hotel, index) => (
         <AllHotelsSearchRow
           key={idx(hotel, _ => _.node.id)}
           data={hotel.node}
           openSingleHotel={props.openSingleHotel}
+          testID={index === 0 ? 'firstHotelResult' : ''}
         />
       ))}
     </React.Fragment>
