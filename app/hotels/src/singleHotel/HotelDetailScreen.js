@@ -63,7 +63,7 @@ export class HotelDetailScreen extends React.Component<
       maxPersons: 0,
       barStyle: Platform.select({
         android: 'default',
-        ios: 'light-content',
+        ios: this.isNarrowLayout() ? 'light-content' : 'dark-content',
       }),
     };
   }
