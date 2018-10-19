@@ -14,6 +14,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapScreen$ref: FragmentReference;
 export type MapScreen = $ReadOnlyArray<{|
   +id: string,
+  +hotelId: ?string,
   +$fragmentRefs: MapView$ref & HotelSwipeList$ref,
   +$refType: MapScreen$ref,
 |}>;
@@ -37,6 +38,13 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "hotelId",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "FragmentSpread",
       "name": "MapView",
       "args": null
@@ -49,5 +57,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '198cfa902f41b93273553afc4ced731d';
+(node/*: any*/).hash = '6ee118ef2da5858b66aa07648b7ae804';
 module.exports = node;
