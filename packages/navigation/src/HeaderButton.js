@@ -26,6 +26,7 @@ type Props = {|
   +left?: boolean,
   +style?: StylePropType,
   +disabled?: boolean,
+  +testID?: string,
 |};
 
 type State = {|
@@ -99,7 +100,7 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
   };
 
   render = () => {
-    const { disabled, onPress, style } = this.props;
+    const { disabled, onPress, style, testID } = this.props;
 
     return (
       <Touchable
@@ -112,6 +113,7 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
         onLongPress={this.onLongPress}
         ref={this.storeReference}
         disabled={disabled}
+        testID={testID}
       >
         <View style={styles.container}>
           <View style={[styles.innerContainer, style]}>

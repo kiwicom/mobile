@@ -30,4 +30,14 @@ describe('Hotels', () => {
     await element(by.id('bookNowButton')).tap();
     await expect(element(by.id('paymentScreenSingleHotel'))).toExist();
   });
+
+  it('should be possible to see the results on the map', async () => {
+    await element(by.id('hotelsTab')).tap();
+    await expect(element(by.id('homePage'))).toBeVisible();
+    await element(by.id('homePage__Hotels-button')).tap();
+    await expect(element(by.id('firstHotelResult'))).toBeVisible();
+    await expect(element(by.id('map-header-button'))).toBeVisible();
+    await element(by.id('map-header-button')).tap();
+    await expect(element(by.id('allHotels-mapScreen'))).toBeVisible();
+  });
 });

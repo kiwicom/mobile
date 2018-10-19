@@ -24,7 +24,6 @@ type Props = {|
   +data: HotelSwipeListData,
   +selectedIndex: number,
   +onSnapToItem: (index: number) => void,
-  +onOpenSingleHotel: (hotelId: string) => void,
 |};
 
 type State = {|
@@ -54,15 +53,7 @@ class HotelSwipeList extends React.Component<Props, State> {
   };
 
   renderItem = ({ item }: { item: Object, index: number }) => {
-    const { onOpenSingleHotel } = this.props;
-
-    return (
-      <HotelSwipeItem
-        width={CARD_ITEM_WIDTH}
-        data={item}
-        onPress={onOpenSingleHotel}
-      />
-    );
+    return <HotelSwipeItem width={CARD_ITEM_WIDTH} data={item} />;
   };
 
   storeRef = (ref: React.ElementRef<typeof Carousel>) => {

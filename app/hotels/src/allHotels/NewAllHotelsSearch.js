@@ -3,10 +3,6 @@
 import * as React from 'react';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { DateFormatter, Translation } from '@kiwicom/mobile-localization';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
 import { GeneralError } from '@kiwicom/mobile-shared';
 
 import HotelsFilterContext from '../HotelsFilterContext';
@@ -19,7 +15,6 @@ import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHote
 import RenderSearchResults from './RenderSearchResults';
 
 type Props = {|
-  +navigation: NavigationType,
   +checkin: Date | null,
   +checkout: Date | null,
   +currency: string,
@@ -28,24 +23,10 @@ type Props = {|
 |};
 
 class NewAllHotelsSearch extends React.Component<Props> {
-  openSingleHotel = (hotelId: string) => {
-    this.props.navigation.navigate('SingleHotel', {
-      hotelId,
-      checkin: this.props.checkin,
-      checkout: this.props.checkout,
-      roomsConfiguration: this.props.roomsConfiguration,
-    });
-  };
-
   renderAllHotelsSearchList = (
     propsFromRenderer: NewAllHotelsSearchQueryResponse,
   ) => {
-    return (
-      <RenderSearchResults
-        data={propsFromRenderer}
-        openSingleHotel={this.openSingleHotel}
-      />
-    );
+    return <RenderSearchResults data={propsFromRenderer} />;
   };
 
   render = () => {
@@ -107,12 +88,10 @@ class NewAllHotelsSearch extends React.Component<Props> {
   };
 }
 
-export default withNavigation(
-  withHotelsContext(state => ({
-    checkin: state.checkin,
-    checkout: state.checkout,
-    currency: state.currency,
-    roomsConfiguration: state.roomsConfiguration,
-    cityId: state.cityId,
-  }))(NewAllHotelsSearch),
-);
+export default withHotelsContext(state => ({
+  checkin: state.checkin,
+  checkout: state.checkout,
+  currency: state.currency,
+  roomsConfiguration: state.roomsConfiguration,
+  cityId: state.cityId,
+}))(NewAllHotelsSearch);

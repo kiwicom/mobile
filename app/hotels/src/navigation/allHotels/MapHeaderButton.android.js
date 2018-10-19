@@ -8,6 +8,7 @@ import RNTooltips from 'react-native-tooltips';
 type Props = {|
   +onPress: () => void,
   +icon: React.Element<typeof TextIcon>,
+  +testID?: string,
 |};
 
 type State = {|
@@ -42,7 +43,11 @@ export default class MapHeaderButton extends React.Component<Props, State> {
 
   render = () => (
     <React.Fragment>
-      <HeaderButton.Right onPress={this.onPress} onLongPress={this.onLongPress}>
+      <HeaderButton.Right
+        onPress={this.onPress}
+        onLongPress={this.onLongPress}
+        testID={this.props.testID}
+      >
         {this.props.icon}
       </HeaderButton.Right>
       <RNTooltips

@@ -12,6 +12,7 @@ type Props = {|
   +disabled: boolean,
   +style?: StylePropType,
   +onLongPress?: () => void,
+  +testID?: string,
   ...AccessibilityProps,
 |};
 

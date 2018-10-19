@@ -7,12 +7,7 @@ import {
   createPaginationContainer,
   type RelayPaginationProp,
 } from '@kiwicom/mobile-relay';
-import {
-  StyleSheet,
-  AdaptableLayout,
-  Logger,
-  Device,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Logger, Device } from '@kiwicom/mobile-shared';
 import idx from 'idx';
 
 import MapScreen from '../map/allHotels/MapScreen';
@@ -143,10 +138,7 @@ export class RenderSearchResults extends React.Component<
         >
           {/*  Note: it's not possible to use FlatList here because it's wrapped with ScrollView and it causes performance issues.*/}
           <ScrollView contentContainerStyle={styles.content}>
-            <AllHotelsSearchList
-              data={data}
-              openSingleHotel={this.props.openSingleHotel}
-            />
+            <AllHotelsSearchList data={data} />
             {this.props.relay.hasMore() && (
               <LoadMoreButton
                 isLoading={this.state.isLoading}
@@ -155,22 +147,15 @@ export class RenderSearchResults extends React.Component<
             )}
           </ScrollView>
         </Animated.View>
-        <AdaptableLayout
-          renderOnNarrow={
-            <Animated.View
-              style={{
-                ...StyleSheet.absoluteFillObject,
-                top: 56,
-                transform: [{ translateY: this.mapAnimation }],
-              }}
-            >
-              <MapScreen
-                data={data}
-                onOpenSingleHotel={this.props.openSingleHotel}
-              />
-            </Animated.View>
-          }
-        />
+        <Animated.View
+          style={{
+            ...StyleSheet.absoluteFillObject,
+            top: 56,
+            transform: [{ translateY: this.mapAnimation }],
+          }}
+        >
+          <MapScreen data={data} />
+        </Animated.View>
       </React.Fragment>
     );
   };
@@ -178,7 +163,6 @@ export class RenderSearchResults extends React.Component<
 
 type Props = {|
   +data: RenderResultsType,
-  +openSingleHotel: () => void,
   +relay: RelayPaginationProp,
 |};
 
