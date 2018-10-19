@@ -13,6 +13,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type AllHotelsSearchList$ref: FragmentReference;
 export type AllHotelsSearchList = $ReadOnlyArray<{|
   +id: string,
+  +hotelId: ?string,
   +$fragmentRefs: AllHotelsSearchRow$ref,
   +$refType: AllHotelsSearchList$ref,
 |}>;
@@ -39,9 +40,16 @@ const node/*: ConcreteFragment*/ = {
       "kind": "FragmentSpread",
       "name": "AllHotelsSearchRow",
       "args": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "hotelId",
+      "args": null,
+      "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '3eee76d3f577bf07e2be1c15ad778705';
+(node/*: any*/).hash = 'a5c6871335e7fdaa11bfe7a769eb8a88';
 module.exports = node;
