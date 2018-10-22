@@ -2,6 +2,8 @@
 
 import * as React from 'react';
 
+import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
+
 const defaultState = {
   version: '',
   cityId: null,
@@ -10,6 +12,13 @@ const defaultState = {
   roomsConfiguration: null,
   currency: '',
   cityName: null,
+  currentSearchStats: {
+    priceMax: 10000,
+    priceMin: 0,
+  },
+  actions: {
+    setCurrentSearchStats: () => {},
+  },
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
@@ -42,6 +51,13 @@ type State = {|
   +checkout: Date | null,
   +roomsConfiguration: RoomConfigurationType | null,
   +currency: string,
+  currentSearchStats: CurrentSearchStats,
+  +actions: {|
+    +setCurrentSearchStats: ({|
+      priceMax: number,
+      priceMin: number,
+    |}) => void,
+  |},
 |};
 
 const validateDate = (input: string): boolean => {
@@ -69,8 +85,21 @@ class Provider extends React.Component<Props, State> {
       roomsConfiguration: props.roomsConfiguration || null,
       currency: props.currency,
       cityName: props.cityName || null,
+      currentSearchStats: {
+        priceMax: 10000,
+        priceMin: 0,
+      },
+      actions: {
+        setCurrentSearchStats: this.setCurrentSearchStats,
+      },
     };
   }
+
+  setCurrentSearchStats = (currentSearchStats: CurrentSearchStats) => {
+    this.setState({
+      currentSearchStats,
+    });
+  };
 
   render = () => (
     <ContextProvider value={this.state}>{this.props.children}</ContextProvider>

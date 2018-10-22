@@ -16,7 +16,7 @@ import type { RenderSearchResults as RenderResultsType } from './__generated__/R
 import SearchResultsContext, {
   type ResultType,
 } from '../navigation/allHotels/SearchResultsContext';
-import HotelsSearchContext from '../HotelsSearchContext';
+import HotelsContext from '../HotelsContext';
 import LoadMoreButton from './LoadMoreButton';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 
@@ -167,7 +167,7 @@ type Props = {|
 |};
 
 const RenderSearchResultsWithContext = (props: Props) => (
-  <HotelsSearchContext.Consumer>
+  <HotelsContext.Consumer>
     {({ actions }) => (
       <SearchResultsContext.Consumer>
         {({ show }) => {
@@ -181,7 +181,7 @@ const RenderSearchResultsWithContext = (props: Props) => (
         }}
       </SearchResultsContext.Consumer>
     )}
-  </HotelsSearchContext.Consumer>
+  </HotelsContext.Consumer>
 );
 
 const styles = StyleSheet.create({
