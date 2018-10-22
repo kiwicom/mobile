@@ -1,35 +1,7 @@
 // @flow strict
 
-import * as React from 'react';
-import renderer from 'react-test-renderer';
-import { translate } from '@kiwicom/rnmodules';
-
 import Translation from '../Translation';
 import { replaceValues } from '../TranslationHelpers';
-
-const CancellableTranslation = require('../CancellableTranslation');
-
-jest.mock('@kiwicom/rnmodules', () => ({
-  translate: jest.fn(),
-}));
-
-let Component;
-beforeEach(() => {
-  Component = new Translation({
-    // $FlowExpectedError: we are not using real key for testing purposes
-    id: 'test.key',
-  });
-});
-
-const getComponent = (id: string = 'test.key') => {
-  // $FlowExpectedError: we are not using real key for testing purposes
-  return renderer.create(<Translation id={id} />);
-};
-
-it('should call getTranslationAsync with the key parameter', () => {
-  getComponent();
-  expect(translate).toBeCalledWith('mobile.test.key');
-});
 
 it('replaces parameter', () => {
   expect(
@@ -87,35 +59,4 @@ it('works with pass through translations and text transformations', () => {
     textTransform: 'uppercase',
   });
   expect(Component.render()).toMatchSnapshot();
-});
-
-it('does not call set state if promise is rejected', async () => {
-  const originalFunction = CancellableTranslation.cancellableTranslation;
-  // $FlowExpectedError: Intentionally overwriting function to test outcome
-  CancellableTranslation.cancellableTranslation = jest.fn(() => ({
-    promise: new Promise((resolve, reject) => {
-      reject();
-    }),
-  }));
-
-  jest.spyOn(Component, 'setState');
-  await Component.setTranslatedString();
-
-  expect(Component.setState).not.toHaveBeenCalled();
-  // $FlowExpectedError: Intentionally resetting function
-  CancellableTranslation.cancellableTranslation = originalFunction;
-});
-
-it('asks for new translation if id changes', () => {
-  jest.spyOn(Component, 'setTranslatedString');
-  Component.componentDidUpdate({ id: 'new.id' });
-
-  expect(Component.setTranslatedString).toHaveBeenCalled();
-});
-
-it('does not ask for new translation if id does not change', () => {
-  jest.spyOn(Component, 'setTranslatedString');
-  Component.componentDidUpdate({ id: 'test.key' });
-
-  expect(Component.setTranslatedString).not.toHaveBeenCalled();
 });
