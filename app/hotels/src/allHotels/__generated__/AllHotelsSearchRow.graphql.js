@@ -14,7 +14,7 @@ declare export opaque type AllHotelsSearchRow$ref: FragmentReference;
 export type AllHotelsSearchRow = {|
   +hotelId: ?string,
   +mainPhoto: ?{|
-    +lowResUrl: ?string
+    +highResUrl: ?string
   |},
   +review: ?{|
     +score: ?number
@@ -56,7 +56,7 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "lowResUrl",
+          "name": "highResUrl",
           "args": null,
           "storageKey": null
         }
@@ -83,5 +83,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'edf427bab1c1d0462a25f630bac4a8b1';
+(node/*: any*/).hash = 'dff6415bc345a6620f40a0e07ab21069';
 module.exports = node;

@@ -28,7 +28,7 @@ type PropsWithContext = {|
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,
-  +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
+  +roomsConfiguration: RoomConfigurationType,
 |};
 
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
@@ -50,14 +50,14 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   };
 
   render = () => {
-    const lowResUrl = idx(this.props.data, _ => _.mainPhoto.lowResUrl);
+    const highResUrl = idx(this.props.data, _ => _.mainPhoto.highResUrl);
     const children = (
       <View style={style.row}>
         <View style={style.imageContainer}>
           <NetworkImage
             style={style.image}
             resizeMode="cover"
-            source={{ uri: lowResUrl }}
+            source={{ uri: highResUrl }}
           />
         </View>
         <View style={style.content}>
@@ -120,7 +120,7 @@ export default createFragmentContainer(
       ...HotelTitle
       hotelId
       mainPhoto {
-        lowResUrl
+        highResUrl
       }
       review {
         score

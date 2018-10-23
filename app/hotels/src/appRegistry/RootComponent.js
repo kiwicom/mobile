@@ -3,10 +3,12 @@
 import * as React from 'react';
 import { ConfigContext } from '@kiwicom/mobile-config';
 import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
+import idx from 'idx';
 
 import HotelsFilterContext from '../HotelsFilterContext';
 import HotelsContext, { type RoomConfigurationType } from '../HotelsContext';
 import SearchResultsContext from '../navigation/allHotels/SearchResultsContext';
+import type { Coordinates } from '../CoordinatesType';
 
 type Props = {|
   +dataSaverEnabled: boolean,
@@ -19,6 +21,7 @@ type Props = {|
   +checkout?: string,
   +roomsConfiguration?: RoomConfigurationType,
   +currency: string,
+  +coordinates?: Coordinates | null,
 |};
 
 export default class RootComponent extends React.Component<Props> {
@@ -34,6 +37,8 @@ export default class RootComponent extends React.Component<Props> {
             roomsConfiguration={this.props.roomsConfiguration}
             currency={this.props.currency}
             cityName={this.props.cityName}
+            latitude={idx(this.props, _ => _.coordinates.latitude) || null}
+            longitude={idx(this.props, _ => _.coordinates.longitude) || null}
           >
             <Dimensions.Provider dimensions={this.props.dimensions}>
               {this.props.children}

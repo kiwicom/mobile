@@ -21,14 +21,14 @@ type Props = {|
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,
-  +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
+  +roomsConfiguration: RoomConfigurationType,
 |};
 
 type State = {|
   hotelId: string,
   +checkin: Date,
   +checkout: Date,
-  +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
+  +roomsConfiguration: RoomConfigurationType,
   +setHotelId: (hotelId: string) => void,
 |};
 
