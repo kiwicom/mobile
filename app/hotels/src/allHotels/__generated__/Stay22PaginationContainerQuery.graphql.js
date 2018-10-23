@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9af503e49ac63ba33800ff1438c1d1d1
+ * @relayHash 9ba8980e4a123ffde402f24144b96357
  */
 
 /* eslint-disable */
@@ -100,7 +100,7 @@ fragment HotelSwipeList on AllHotelsInterface {
   }
 }
 
-fragment HotelSwipeItem on AllHotelAvailabilityHotel {
+fragment HotelSwipeItem on AllHotelsInterface {
   hotelId
   name
   price {
@@ -212,7 +212,7 @@ return {
   "operationKind": "query",
   "name": "Stay22PaginationContainerQuery",
   "id": null,
-  "text": "query Stay22PaginationContainerQuery(\n  $search: Stay22HotelsSearchInput!\n  $after: String\n  $first: Int\n) {\n  ...Stay22PaginationContainer\n}\n\nfragment Stay22PaginationContainer on RootQuery {\n  allAvailableStay22Hotels(search: $search, first: $first, after: $after) {\n    cityName\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelAvailabilityHotel {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
+  "text": "query Stay22PaginationContainerQuery(\n  $search: Stay22HotelsSearchInput!\n  $after: String\n  $first: Int\n) {\n  ...Stay22PaginationContainer\n}\n\nfragment Stay22PaginationContainer on RootQuery {\n  allAvailableStay22Hotels(search: $search, first: $first, after: $after) {\n    cityName\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelsInterface {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -307,23 +307,11 @@ return {
                 "plural": false,
                 "selections": [
                   {
-                    "kind": "LinkedField",
+                    "kind": "ScalarField",
                     "alias": null,
-                    "name": "mainPhoto",
-                    "storageKey": null,
+                    "name": "hotelId",
                     "args": null,
-                    "concreteType": "HotelPhoto",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "highResUrl",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      v2
-                    ]
+                    "storageKey": null
                   },
                   v2,
                   {
@@ -359,13 +347,6 @@ return {
                     ]
                   },
                   {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "hotelId",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "name": "price",
@@ -385,6 +366,32 @@ return {
                         "kind": "ScalarField",
                         "alias": null,
                         "name": "currency",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "mainPhoto",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "HotelPhoto",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "highResUrl",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      v2,
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "thumbnailUrl",
                         "args": null,
                         "storageKey": null
                       }
@@ -471,30 +478,6 @@ return {
                     "name": "__typename",
                     "args": null,
                     "storageKey": null
-                  },
-                  {
-                    "kind": "InlineFragment",
-                    "type": "AllHotelAvailabilityHotel",
-                    "selections": [
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "mainPhoto",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "HotelPhoto",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "thumbnailUrl",
-                            "args": null,
-                            "storageKey": null
-                          }
-                        ]
-                      }
-                    ]
                   }
                 ]
               },

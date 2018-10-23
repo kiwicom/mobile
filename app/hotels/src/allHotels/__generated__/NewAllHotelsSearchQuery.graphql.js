@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9fbc8e7e222b28d645471ad914c81a3e
+ * @relayHash 1aa4a95d1c9da29fe69881d1a551ea08
  */
 
 /* eslint-disable */
@@ -142,7 +142,7 @@ fragment HotelSwipeList on AllHotelsInterface {
   }
 }
 
-fragment HotelSwipeItem on AllHotelAvailabilityHotel {
+fragment HotelSwipeItem on AllHotelsInterface {
   hotelId
   name
   price {
@@ -278,7 +278,7 @@ return {
   "operationKind": "query",
   "name": "NewAllHotelsSearchQuery",
   "id": null,
-  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...HotelsPaginationContainer\n}\n\nfragment HotelsPaginationContainer on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelAvailabilityHotel {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
+  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...HotelsPaginationContainer\n}\n\nfragment HotelsPaginationContainer on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelsInterface {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
