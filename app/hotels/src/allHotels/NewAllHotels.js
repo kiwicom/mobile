@@ -7,6 +7,8 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FilterStripe from '../filter/FilterStripe';
 import NewAllHotelsSearch from './NewAllHotelsSearch';
+import HotelsContext from '../HotelsContext';
+import Stay22HotelsSearch from './Stay22HotelsSearch';
 
 export default function NewAllHotels() {
   return (
@@ -15,7 +17,14 @@ export default function NewAllHotels() {
         <View style={styles.filterContainer}>
           <FilterStripe />
         </View>
-        <NewAllHotelsSearch />
+        <HotelsContext.Consumer>
+          {({ cityId }) => {
+            if (cityId != null) {
+              return <NewAllHotelsSearch />;
+            }
+            return <Stay22HotelsSearch />;
+          }}
+        </HotelsContext.Consumer>
       </View>
     </View>
   );

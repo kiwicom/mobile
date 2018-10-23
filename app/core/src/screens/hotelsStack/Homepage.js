@@ -41,6 +41,16 @@ export default class Homepage extends React.Component<Props> {
       roomsConfiguration: [{ adultsCount: 1, children: [] }],
     });
 
+  goToStay22HotelsPage = () =>
+    this.props.navigation.navigate('NewHotelsPackage', {
+      cityName: 'Split',
+      currency: 'EUR',
+      checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
+      checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
+      roomsConfiguration: [{ adultsCount: 1, children: [] }],
+      coordinates: { latitude: 43.508133, longitude: 16.440193 },
+    });
+
   goToSingleHotel = () => {
     this.props.navigation.navigate('SingleHotelPackage');
   };
@@ -53,6 +63,13 @@ export default class Homepage extends React.Component<Props> {
             title={<Translation passThrough="Hotels" />}
             testID="homePage__Hotels-button"
             onPress={this.goToNewHotelsPage}
+          />
+        </Section>
+
+        <Section>
+          <TextButton
+            title={<Translation passThrough="Stay 22Hotels" />}
+            onPress={this.goToStay22HotelsPage}
           />
         </Section>
 

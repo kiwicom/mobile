@@ -12,6 +12,8 @@ const defaultState = {
   roomsConfiguration: null,
   currency: '',
   cityName: null,
+  latitude: null,
+  longitude: null,
   currentSearchStats: {
     priceMax: 10000,
     priceMin: 0,
@@ -25,12 +27,12 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
   ...defaultState,
 });
 
-export type RoomConfigurationType = {|
+export type RoomConfigurationType = $ReadOnlyArray<{|
   +adultsCount: number,
   +children: $ReadOnlyArray<{|
     +age: number,
   |}>,
-|};
+|}>;
 
 type Props = {|
   +children: React.Node,
@@ -41,6 +43,8 @@ type Props = {|
   +checkout: ?string,
   +roomsConfiguration: ?RoomConfigurationType,
   +currency: string,
+  +latitude: ?number,
+  +longitude: ?number,
 |};
 
 type State = {|
@@ -52,6 +56,8 @@ type State = {|
   +roomsConfiguration: RoomConfigurationType | null,
   +currency: string,
   currentSearchStats: CurrentSearchStats,
+  +latitude: number | null,
+  +longitude: number | null,
   +actions: {|
     +setCurrentSearchStats: ({|
       priceMax: number,
@@ -85,6 +91,8 @@ class Provider extends React.Component<Props, State> {
       roomsConfiguration: props.roomsConfiguration || null,
       currency: props.currency,
       cityName: props.cityName || null,
+      latitude: props.latitude || null,
+      longitude: props.longitude || null,
       currentSearchStats: {
         priceMax: 10000,
         priceMin: 0,

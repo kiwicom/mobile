@@ -1,6 +1,6 @@
 // @flow
 
-export type RoomsConfiguration = Array<{|
+export type RoomsConfiguration = $ReadOnlyArray<{|
   adultsCount: number,
   children: Array<{|
     age: number,
