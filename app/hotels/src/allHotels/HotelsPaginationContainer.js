@@ -76,6 +76,7 @@ export class HotelsPaginationContainer extends React.Component<
         hasMore={this.props.relay.hasMore()}
         isLoading={this.state.isLoading}
         data={data}
+        top={56}
       />
     );
   };
