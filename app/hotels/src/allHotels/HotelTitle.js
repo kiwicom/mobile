@@ -41,7 +41,7 @@ function HotelTitle({ data }: Props) {
 export default createFragmentContainer(
   HotelTitle,
   graphql`
-    fragment HotelTitle on AllHotelAvailabilityHotel {
+    fragment HotelTitle on AllHotelsInterface {
       price {
         amount
         currency

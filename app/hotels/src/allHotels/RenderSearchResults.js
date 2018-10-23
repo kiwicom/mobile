@@ -2,13 +2,8 @@
 
 import * as React from 'react';
 import { Animated, ScrollView } from 'react-native';
-import {
-  graphql,
-  createPaginationContainer,
-  type RelayPaginationProp,
-} from '@kiwicom/mobile-relay';
-import { StyleSheet, Logger, Device } from '@kiwicom/mobile-shared';
-import idx from 'idx';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
+import { StyleSheet, Device } from '@kiwicom/mobile-shared';
 
 import MapScreen from '../map/allHotels/MapScreen';
 import AllHotelsSearchList from './AllHotelsSearchList';
@@ -16,28 +11,18 @@ import type { RenderSearchResults as RenderResultsType } from './__generated__/R
 import SearchResultsContext, {
   type ResultType,
 } from '../navigation/allHotels/SearchResultsContext';
-import HotelsContext from '../HotelsContext';
 import LoadMoreButton from './LoadMoreButton';
-import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 
 type PropsWithContext = {|
   ...Props,
   +show: ResultType,
-  +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
-|};
-
-type State = {|
-  isLoading: boolean,
 |};
 
 export const topValue = 1000;
 export const lowValue = -100;
 const transitionDuration = 250;
 
-export class RenderSearchResults extends React.Component<
-  PropsWithContext,
-  State,
-> {
+export class RenderSearchResults extends React.Component<PropsWithContext> {
   mapAnimation: Animated.Value;
   listAnimation: Animated.Value;
 
@@ -47,31 +32,7 @@ export class RenderSearchResults extends React.Component<
     const showList = props.show === 'list';
     this.mapAnimation = new Animated.Value(showList ? topValue : 0);
     this.listAnimation = new Animated.Value(showList ? 0 : lowValue);
-
-    this.state = {
-      isLoading: false,
-    };
   }
-
-  componentDidMount = () => {
-    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_RESULTS);
-
-    const priceMax = idx(
-      this.props,
-      _ => _.data.allAvailableBookingComHotels.stats.maxPrice,
-    );
-    const priceMin = idx(
-      this.props,
-      _ => _.data.allAvailableBookingComHotels.stats.minPrice,
-    );
-
-    if (priceMax != null && priceMin != null) {
-      this.props.setCurrentSearchStats({
-        priceMax,
-        priceMin,
-      });
-    }
-  };
 
   componentDidUpdate = (prevProps: PropsWithContext) => {
     if (prevProps.show === 'list' && this.props.show === 'map') {
@@ -112,20 +73,8 @@ export class RenderSearchResults extends React.Component<
     ]).start();
   };
 
-  loadMore = () => {
-    if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
-      this.setState({ isLoading: true }, () => {
-        this.props.relay.loadMore(50, () => {
-          this.setState({ isLoading: false });
-        });
-      });
-    }
-  };
-
   render = () => {
-    const edges =
-      idx(this.props.data, _ => _.allAvailableBookingComHotels.edges) || [];
-    const data = edges.map(hotel => idx(hotel, _ => _.node));
+    const data = this.props.data || [];
 
     return (
       <React.Fragment>
@@ -139,10 +88,10 @@ export class RenderSearchResults extends React.Component<
           {/*  Note: it's not possible to use FlatList here because it's wrapped with ScrollView and it causes performance issues.*/}
           <ScrollView contentContainerStyle={styles.content}>
             <AllHotelsSearchList data={data} />
-            {this.props.relay.hasMore() && (
+            {this.props.hasMore && (
               <LoadMoreButton
-                isLoading={this.state.isLoading}
-                onPress={this.loadMore}
+                isLoading={this.props.isLoading}
+                onPress={this.props.onLoadMore}
               />
             )}
           </ScrollView>
@@ -163,25 +112,17 @@ export class RenderSearchResults extends React.Component<
 
 type Props = {|
   +data: RenderResultsType,
-  +relay: RelayPaginationProp,
+  +hasMore: boolean,
+  +isLoading: boolean,
+  +onLoadMore: () => void,
 |};
 
 const RenderSearchResultsWithContext = (props: Props) => (
-  <HotelsContext.Consumer>
-    {({ actions }) => (
-      <SearchResultsContext.Consumer>
-        {({ show }) => {
-          return (
-            <RenderSearchResults
-              {...props}
-              show={show}
-              setCurrentSearchStats={actions.setCurrentSearchStats}
-            />
-          );
-        }}
-      </SearchResultsContext.Consumer>
-    )}
-  </HotelsContext.Consumer>
+  <SearchResultsContext.Consumer>
+    {({ show }) => {
+      return <RenderSearchResults {...props} show={show} />;
+    }}
+  </SearchResultsContext.Consumer>
 );
 
 const styles = StyleSheet.create({
@@ -190,59 +131,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createPaginationContainer(
+export default createFragmentContainer(
   RenderSearchResultsWithContext,
   graphql`
-    fragment RenderSearchResults on RootQuery {
-      allAvailableBookingComHotels(
-        search: $search
-        filter: $filter
-        options: $options
-        first: $first
-        after: $after
-      ) @connection(key: "RenderSearchResults_allAvailableBookingComHotels") {
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
-        }
-        stats {
-          maxPrice
-          minPrice
-        }
-        edges {
-          node {
-            ... on AllHotelAvailabilityHotel {
-              ...AllHotelsSearchList
-              ...MapScreen
-            }
-          }
-        }
-      }
+    fragment RenderSearchResults on AllHotelsInterface @relay(plural: true) {
+      ...AllHotelsSearchList
+      ...MapScreen
     }
   `,
-  {
-    getVariables(props, { count, cursor }, fragmentVariables) {
-      const { search, filter, options } = fragmentVariables;
-      return {
-        first: count,
-        after: cursor,
-        search,
-        filter,
-        options,
-      };
-    },
-    query: graphql`
-      query RenderSearchResultsQuery(
-        $search: HotelsSearchInput!
-        $filter: HotelsFilterInput!
-        $options: AvailableHotelOptionsInput
-        $after: String
-        $first: Int
-      ) {
-        ...RenderSearchResults
-      }
-    `,
-  },
 );
