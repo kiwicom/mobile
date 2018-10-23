@@ -68,7 +68,7 @@ type AllAvailableStay22Hotel implements AllHotelsInterface {
   """Main photo of the hotel."""
   mainPhoto: HotelPhoto
 
-  """Id of hotel with link to fetch hotel details"""
+  """Stay 22 id"""
   hotelId: ID
 
   """Location of the hotel."""
@@ -297,9 +297,8 @@ enum BookedServiceStatus {
 }
 
 """
-You can fetch here almost every information related to the booking itself.
-However when you want to fetch legs you have to use "oneWay", "return" and
-"multicity" fields because they highly depend on the booking type.
+DEPRECATED! Use "customerBookings" query instead. That query will return
+interface instead so you don't have to work with this generic type.
 """
 type Booking {
   arrival: RouteStop @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
@@ -2453,9 +2452,6 @@ type RootQuery {
     """Simple auth token that lets you fetch a unique booking."""
     authToken: String
   ): BookingInterface
-
-  """Single hotel by ID"""
-  stay22HotelDetail(id: ID!): Stay22HotelAvailability
 }
 
 type RouteStop {
@@ -2476,17 +2472,6 @@ type RouteStop {
 type Services {
   """Travel insurance - returns "null" if not available."""
   insurance: InsuranceService
-}
-
-"""Detail information about an available hotel"""
-type Stay22HotelAvailability implements HotelAvailabilityInterface {
-  """The ID of an object"""
-  id: ID!
-
-  """
-  Total price for all guests and nights and in the hotel. (including VAT)
-  """
-  price: Price
 }
 
 input Stay22HotelsSearchInput {

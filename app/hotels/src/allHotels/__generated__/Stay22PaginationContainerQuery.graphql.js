@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 07c2048caf2652ddc4693e7a74bfca7a
+ * @relayHash 9af503e49ac63ba33800ff1438c1d1d1
  */
 
 /* eslint-disable */
@@ -9,90 +9,48 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type HotelsPaginationContainer$ref = any;
+type Stay22PaginationContainer$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
-export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "engb" | "enus" | "es" | "esar" | "et" | "fi" | "fr" | "he" | "hr" | "hu" | "id" | "is" | "it" | "ja" | "ko" | "lt" | "lv" | "ms" | "nl" | "no" | "pl" | "pt" | "ptbr" | "ptpt" | "ro" | "ru" | "sk" | "sl" | "sr" | "sv" | "th" | "tl" | "tr" | "uk" | "vi" | "zh" | "zhcn" | "zhtw" | "%future added value";
-export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
-export type HotelsSearchInput = {
-  latitude?: ?number,
-  longitude?: ?number,
-  cityId?: ?string,
+export type Stay22HotelsSearchInput = {
+  latitude: number,
+  longitude: number,
+  guests: number,
   checkin: any,
   checkout: any,
-  language?: ?Language,
-  roomsConfiguration: $ReadOnlyArray<RoomsConfiguration>,
-};
-export type RoomsConfiguration = {
-  adultsCount: number,
-  children?: ?$ReadOnlyArray<?RoomsChildrenConfiguration>,
-};
-export type RoomsChildrenConfiguration = {
-  age?: ?number
-};
-export type HotelsFilterInput = {
-  starsRating?: ?$ReadOnlyArray<?number>,
-  minPrice?: ?number,
-  maxPrice?: ?number,
-  hotelFacilities?: ?HotelFacilitiesInput,
-  minScore?: ?number,
-  freeCancellation?: ?boolean,
-};
-export type HotelFacilitiesInput = {
-  airportShuttle?: ?boolean,
-  familyRooms?: ?boolean,
-  facilitiesForDisabled?: ?boolean,
-  fitnessCenter?: ?boolean,
-  parking?: ?boolean,
-  freeParking?: ?boolean,
-  valetParking?: ?boolean,
-  indoorPool?: ?boolean,
-  petsAllowed?: ?boolean,
-  spa?: ?boolean,
-  wifi?: ?boolean,
-};
-export type AvailableHotelOptionsInput = {
   currency?: ?Currency,
-  orderBy?: ?OrderBy,
 };
-export type HotelsPaginationContainerQueryVariables = {|
-  search: HotelsSearchInput,
-  filter: HotelsFilterInput,
-  options?: ?AvailableHotelOptionsInput,
+export type Stay22PaginationContainerQueryVariables = {|
+  search: Stay22HotelsSearchInput,
   after?: ?string,
   first?: ?number,
 |};
-export type HotelsPaginationContainerQueryResponse = {|
-  +$fragmentRefs: HotelsPaginationContainer$ref
+export type Stay22PaginationContainerQueryResponse = {|
+  +$fragmentRefs: Stay22PaginationContainer$ref
 |};
-export type HotelsPaginationContainerQuery = {|
-  variables: HotelsPaginationContainerQueryVariables,
-  response: HotelsPaginationContainerQueryResponse,
+export type Stay22PaginationContainerQuery = {|
+  variables: Stay22PaginationContainerQueryVariables,
+  response: Stay22PaginationContainerQueryResponse,
 |};
 */
 
 
 /*
-query HotelsPaginationContainerQuery(
-  $search: HotelsSearchInput!
-  $filter: HotelsFilterInput!
-  $options: AvailableHotelOptionsInput
+query Stay22PaginationContainerQuery(
+  $search: Stay22HotelsSearchInput!
   $after: String
   $first: Int
 ) {
-  ...HotelsPaginationContainer
+  ...Stay22PaginationContainer
 }
 
-fragment HotelsPaginationContainer on RootQuery {
-  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
+fragment Stay22PaginationContainer on RootQuery {
+  allAvailableStay22Hotels(search: $search, first: $first, after: $after) {
+    cityName
     pageInfo {
       hasNextPage
       hasPreviousPage
       startCursor
       endCursor
-    }
-    stats {
-      maxPrice
-      minPrice
     }
     edges {
       node {
@@ -206,19 +164,7 @@ var v0 = [
   {
     "kind": "LocalArgument",
     "name": "search",
-    "type": "HotelsSearchInput!",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "filter",
-    "type": "HotelsFilterInput!",
-    "defaultValue": null
-  },
-  {
-    "kind": "LocalArgument",
-    "name": "options",
-    "type": "AvailableHotelOptionsInput",
+    "type": "Stay22HotelsSearchInput!",
     "defaultValue": null
   },
   {
@@ -243,27 +189,15 @@ v1 = [
   },
   {
     "kind": "Variable",
-    "name": "filter",
-    "variableName": "filter",
-    "type": "HotelsFilterInput"
-  },
-  {
-    "kind": "Variable",
     "name": "first",
     "variableName": "first",
     "type": "Int"
   },
   {
     "kind": "Variable",
-    "name": "options",
-    "variableName": "options",
-    "type": "AvailableHotelOptionsInput"
-  },
-  {
-    "kind": "Variable",
     "name": "search",
     "variableName": "search",
-    "type": "HotelsSearchInput!"
+    "type": "Stay22HotelsSearchInput!"
   }
 ],
 v2 = {
@@ -276,38 +210,45 @@ v2 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "HotelsPaginationContainerQuery",
+  "name": "Stay22PaginationContainerQuery",
   "id": null,
-  "text": "query HotelsPaginationContainerQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $after: String\n  $first: Int\n) {\n  ...HotelsPaginationContainer\n}\n\nfragment HotelsPaginationContainer on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelAvailabilityHotel {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
+  "text": "query Stay22PaginationContainerQuery(\n  $search: Stay22HotelsSearchInput!\n  $after: String\n  $first: Int\n) {\n  ...Stay22PaginationContainer\n}\n\nfragment Stay22PaginationContainer on RootQuery {\n  allAvailableStay22Hotels(search: $search, first: $first, after: $after) {\n    cityName\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelAvailabilityHotel {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "HotelsPaginationContainerQuery",
+    "name": "Stay22PaginationContainerQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "HotelsPaginationContainer",
+        "name": "Stay22PaginationContainer",
         "args": null
       }
     ]
   },
   "operation": {
     "kind": "Operation",
-    "name": "HotelsPaginationContainerQuery",
+    "name": "Stay22PaginationContainerQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "allAvailableBookingComHotels",
+        "name": "allAvailableStay22Hotels",
         "storageKey": null,
         "args": v1,
-        "concreteType": "AllHotelAvailabilityHotelConnection",
+        "concreteType": "AllAvailableStay22HotelConnection",
         "plural": false,
         "selections": [
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "cityName",
+            "args": null,
+            "storageKey": null
+          },
           {
             "kind": "LinkedField",
             "alias": null,
@@ -350,35 +291,10 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "stats",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "HotelAvailabilityStats",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "maxPrice",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "minPrice",
-                "args": null,
-                "storageKey": null
-              }
-            ]
-          },
-          {
-            "kind": "LinkedField",
-            "alias": null,
             "name": "edges",
             "storageKey": null,
             "args": null,
-            "concreteType": "AllHotelAvailabilityHotelEdge",
+            "concreteType": "AllAvailableStay22HotelEdge",
             "plural": true,
             "selections": [
               {
@@ -387,15 +303,27 @@ return {
                 "name": "node",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "AllHotelAvailabilityHotel",
+                "concreteType": "AllAvailableStay22Hotel",
                 "plural": false,
                 "selections": [
                   {
-                    "kind": "ScalarField",
+                    "kind": "LinkedField",
                     "alias": null,
-                    "name": "hotelId",
+                    "name": "mainPhoto",
+                    "storageKey": null,
                     "args": null,
-                    "storageKey": null
+                    "concreteType": "HotelPhoto",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "highResUrl",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      v2
+                    ]
                   },
                   v2,
                   {
@@ -431,6 +359,13 @@ return {
                     ]
                   },
                   {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "hotelId",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  {
                     "kind": "LinkedField",
                     "alias": null,
                     "name": "price",
@@ -450,32 +385,6 @@ return {
                         "kind": "ScalarField",
                         "alias": null,
                         "name": "currency",
-                        "args": null,
-                        "storageKey": null
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "mainPhoto",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "HotelPhoto",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "highResUrl",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      v2,
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "thumbnailUrl",
                         "args": null,
                         "storageKey": null
                       }
@@ -562,6 +471,30 @@ return {
                     "name": "__typename",
                     "args": null,
                     "storageKey": null
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "type": "AllHotelAvailabilityHotel",
+                    "selections": [
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "mainPhoto",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "HotelPhoto",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "thumbnailUrl",
+                            "args": null,
+                            "storageKey": null
+                          }
+                        ]
+                      }
+                    ]
                   }
                 ]
               },
@@ -579,14 +512,12 @@ return {
       {
         "kind": "LinkedHandle",
         "alias": null,
-        "name": "allAvailableBookingComHotels",
+        "name": "allAvailableStay22Hotels",
         "args": v1,
         "handle": "connection",
-        "key": "HotelsPaginationContainer_allAvailableBookingComHotels",
+        "key": "Stay22PaginationContainer_allAvailableStay22Hotels",
         "filters": [
-          "search",
-          "filter",
-          "options"
+          "search"
         ]
       }
     ]
@@ -594,5 +525,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b9db36aad873994eb8fe0e54e6276f85';
+(node/*: any*/).hash = 'c0e69cc7e9ec8297108bdaa2b56163bc';
 module.exports = node;

@@ -44,6 +44,7 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
       currency={this.props.currency}
       roomsConfiguration={this.props.roomsConfiguration}
       cityName={this.props.cityName}
+      coordinates={this.props.coordinates}
     >
       <HotelsStack
         screenProps={this.props}

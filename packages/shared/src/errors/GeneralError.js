@@ -11,11 +11,12 @@ import StyleSheet from '../PlatformStyleSheet';
 type Props = {|
   // error message visible by user
   +errorMessage: TranslationType,
+  +testID?: string,
 |};
 
-export default function GeneralError({ errorMessage }: Props) {
+export default function GeneralError({ errorMessage, testID }: Props) {
   return (
-    <View style={styleSheet.wrapper}>
+    <View style={styleSheet.wrapper} testID={testID}>
       <Text style={styleSheet.text}>{errorMessage}</Text>
     </View>
   );

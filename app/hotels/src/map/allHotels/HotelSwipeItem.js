@@ -26,7 +26,7 @@ type PropsWithContext = {|
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,
-  +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
+  +roomsConfiguration: RoomConfigurationType,
 |};
 
 export class HotelSwipeItemWithContext extends React.Component<
