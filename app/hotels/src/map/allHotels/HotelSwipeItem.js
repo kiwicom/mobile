@@ -106,7 +106,7 @@ const HotelSwipeItem = (props: Props) => (
 export default createFragmentContainer(
   withNavigation(HotelSwipeItem),
   graphql`
-    fragment HotelSwipeItem on AllHotelAvailabilityHotel {
+    fragment HotelSwipeItem on AllHotelsInterface {
       hotelId
       name
       price {
