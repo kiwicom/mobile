@@ -12,21 +12,20 @@ import Stay22HotelsSearch from './Stay22HotelsSearch';
 
 export default function NewAllHotels() {
   return (
-    <View style={styles.container}>
-      <View style={styles.absoluteFill}>
-        <View style={styles.filterContainer}>
-          <FilterStripe />
+    <HotelsContext.Consumer>
+      {({ cityId }) => (
+        <View style={styles.container}>
+          <View style={styles.absoluteFill}>
+            {cityId !== null && (
+              <View style={styles.filterContainer}>
+                <FilterStripe />
+              </View>
+            )}
+            {cityId === null ? <Stay22HotelsSearch /> : <NewAllHotelsSearch />}
+          </View>
         </View>
-        <HotelsContext.Consumer>
-          {({ cityId }) => {
-            if (cityId != null) {
-              return <NewAllHotelsSearch />;
-            }
-            return <Stay22HotelsSearch />;
-          }}
-        </HotelsContext.Consumer>
-      </View>
-    </View>
+      )}
+    </HotelsContext.Consumer>
   );
 }
 

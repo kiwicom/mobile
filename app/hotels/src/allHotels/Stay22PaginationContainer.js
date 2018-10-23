@@ -65,6 +65,7 @@ export class Stay22PaginationContainer extends React.Component<
         onLoadMore={this.loadMore}
         isLoading={this.state.isLoading}
         hasMore={this.props.relay.hasMore()}
+        top={0}
       />
     );
   };
