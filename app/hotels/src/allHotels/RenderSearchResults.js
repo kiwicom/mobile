@@ -81,7 +81,7 @@ export class RenderSearchResults extends React.Component<PropsWithContext> {
         <Animated.View
           style={{
             ...StyleSheet.absoluteFillObject,
-            top: 56,
+            top: this.props.top,
             transform: [{ translateY: this.listAnimation }],
           }}
         >
@@ -99,7 +99,7 @@ export class RenderSearchResults extends React.Component<PropsWithContext> {
         <Animated.View
           style={{
             ...StyleSheet.absoluteFillObject,
-            top: 56,
+            top: this.props.top,
             transform: [{ translateY: this.mapAnimation }],
           }}
         >
@@ -115,6 +115,7 @@ type Props = {|
   +hasMore: boolean,
   +isLoading: boolean,
   +onLoadMore: () => void,
+  +top: number,
 |};
 
 const RenderSearchResultsWithContext = (props: Props) => (
