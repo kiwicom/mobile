@@ -12,7 +12,7 @@ import {
 } from '../HotelsContext';
 import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
 import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHotelsSearchQuery.graphql';
-import RenderSearchResults from './RenderSearchResults';
+import HotelsPaginationContainer from './HotelsPaginationContainer';
 
 type Props = {|
   +checkin: Date | null,
@@ -26,7 +26,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
   renderAllHotelsSearchList = (
     propsFromRenderer: NewAllHotelsSearchQueryResponse,
   ) => {
-    return <RenderSearchResults data={propsFromRenderer} />;
+    return <HotelsPaginationContainer data={propsFromRenderer} />;
   };
 
   render = () => {
@@ -58,7 +58,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
                 $first: Int
                 $after: String
               ) {
-                ...RenderSearchResults
+                ...HotelsPaginationContainer
               }
             `}
             variables={{

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8838e45c72ad7302c0eedddb91e39723
+ * @relayHash 26a2b477a09d24ed1724be8c830b6676
  */
 
 /* eslint-disable */
@@ -9,7 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type RenderSearchResults$ref = any;
+type HotelsPaginationContainer$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
 export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "engb" | "enus" | "es" | "esar" | "et" | "fi" | "fr" | "he" | "hr" | "hu" | "id" | "is" | "it" | "ja" | "ko" | "lt" | "lv" | "ms" | "nl" | "no" | "pl" | "pt" | "ptbr" | "ptpt" | "ro" | "ru" | "sk" | "sl" | "sr" | "sv" | "th" | "tl" | "tr" | "uk" | "vi" | "zh" | "zhcn" | "zhtw" | "%future added value";
 export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
@@ -62,7 +62,7 @@ export type NewAllHotelsSearchQueryVariables = {|
   after?: ?string,
 |};
 export type NewAllHotelsSearchQueryResponse = {|
-  +$fragmentRefs: RenderSearchResults$ref
+  +$fragmentRefs: HotelsPaginationContainer$ref
 |};
 export type NewAllHotelsSearchQuery = {|
   variables: NewAllHotelsSearchQueryVariables,
@@ -79,10 +79,10 @@ query NewAllHotelsSearchQuery(
   $first: Int
   $after: String
 ) {
-  ...RenderSearchResults
+  ...HotelsPaginationContainer
 }
 
-fragment RenderSearchResults on RootQuery {
+fragment HotelsPaginationContainer on RootQuery {
   allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
     pageInfo {
       hasNextPage
@@ -96,14 +96,18 @@ fragment RenderSearchResults on RootQuery {
     }
     edges {
       node {
-        ...AllHotelsSearchList
-        ...MapScreen
+        ...RenderSearchResults
         id
         __typename
       }
       cursor
     }
   }
+}
+
+fragment RenderSearchResults on AllHotelsInterface {
+  ...AllHotelsSearchList
+  ...MapScreen
 }
 
 fragment AllHotelsSearchList on AllHotelsInterface {
@@ -180,7 +184,7 @@ fragment AllHotelsSearchRow on AllHotelsInterface {
   }
 }
 
-fragment HotelTitle on AllHotelAvailabilityHotel {
+fragment HotelTitle on AllHotelsInterface {
   price {
     amount
     currency
@@ -192,7 +196,7 @@ fragment HotelTitle on AllHotelAvailabilityHotel {
   }
 }
 
-fragment HotelDistance_hotel on AllHotelAvailabilityHotel {
+fragment HotelDistance_hotel on AllHotelsInterface {
   distanceFromCenter
 }
 */
@@ -274,7 +278,7 @@ return {
   "operationKind": "query",
   "name": "NewAllHotelsSearchQuery",
   "id": null,
-  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...RenderSearchResults\n}\n\nfragment RenderSearchResults on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...AllHotelsSearchList\n        ...MapScreen\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelAvailabilityHotel {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    lowResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelAvailabilityHotel {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelAvailabilityHotel {\n  distanceFromCenter\n}\n",
+  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...HotelsPaginationContainer\n}\n\nfragment HotelsPaginationContainer on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelAvailabilityHotel {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    lowResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -285,7 +289,7 @@ return {
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "RenderSearchResults",
+        "name": "HotelsPaginationContainer",
         "args": null
       }
     ]
@@ -578,7 +582,7 @@ return {
         "name": "allAvailableBookingComHotels",
         "args": v1,
         "handle": "connection",
-        "key": "RenderSearchResults_allAvailableBookingComHotels",
+        "key": "HotelsPaginationContainer_allAvailableBookingComHotels",
         "filters": [
           "search",
           "filter",
@@ -590,5 +594,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b421c7d7992da1dbd3a374cb9f4b1fba';
+(node/*: any*/).hash = '56d04e399dc2c6c969385b3311563239';
 module.exports = node;
