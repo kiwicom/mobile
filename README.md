@@ -2,8 +2,6 @@
 
 This is not an actual mobile application. This repository contains only React Native (RN) parts of the project. These parts are being used in the original (private) native code. However, you can still run this application to see these parts in the pure React Native.
 
-This application uses our [GraphQL server](https://github.com/kiwicom/graphql) - check it out...
-
 ## Table of Contents
 
 * [Installation and Run](#installation-and-run)
