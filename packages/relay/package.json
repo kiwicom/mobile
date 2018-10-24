@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
+    "@mrtnzlml/fetch": "^1.1.0",
     "react-relay": "^1.6.2"
   },
   "devDependencies": {
