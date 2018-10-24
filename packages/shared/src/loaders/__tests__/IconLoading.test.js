@@ -5,6 +5,6 @@ import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 
 import IconLoading from '../IconLoading';
 
-it('renders', () => {
+it.skip('renders', () => {
   PlaygroundRenderer.render(<IconLoading />);
 });
