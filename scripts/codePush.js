@@ -45,44 +45,14 @@ async function addDescription() {
   }
 }
 
-async function ifAddVersion() {
-  return inquirer.prompt([
-    {
-      type: 'list',
-      name: 'with_version',
-      message: 'Do you want to specify code push version?',
-      choices: ['Yes', 'No'],
-    },
-  ]);
-}
-
-async function addVersion() {
-  const withVersion = await ifAddVersion();
-
-  if (withVersion.with_version === 'Yes') {
-    return inquirer.prompt([
-      {
-        type: 'input',
-        name: 'version',
-        message: 'Type a version:',
-      },
-    ]);
-  }
-}
-
 async function processCommand() {
   const appName = await getAppName();
   const description = await addDescription();
-  const version = await addVersion();
 
   let args = `-a Kiwicom/${appName.app_name} `;
 
   if (description !== undefined) {
     args = args.concat(`--description "${description.description}" `);
-  }
-
-  if (version !== undefined) {
-    args = args.concat(`-t ${version.version}`);
   }
 
   try {
