@@ -78,7 +78,7 @@ async function processCommand() {
   let args = `-a Kiwicom/${appName.app_name} `;
 
   if (description !== undefined) {
-    args = args.concat(`--description ${'description.description'} `);
+    args = args.concat(`--description "${description.description}" `);
   }
 
   if (version !== undefined) {
