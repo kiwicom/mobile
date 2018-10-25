@@ -12,7 +12,7 @@ type AppStateTypes =
   | 'inactive';
 
 type Props = {|
-  children: React.Fragment,
+  children: typeof React.Fragment,
   states: $ReadOnlyArray<AppStateTypes>,
   onStateChange: string => void,
 |};

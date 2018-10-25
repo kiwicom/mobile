@@ -35,7 +35,7 @@ type PropsWithContext = {|
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,
-  +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
+  +roomsConfiguration: RoomConfigurationType,
   +currency: string,
 |};
 

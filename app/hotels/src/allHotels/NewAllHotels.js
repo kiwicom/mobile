@@ -7,17 +7,25 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FilterStripe from '../filter/FilterStripe';
 import NewAllHotelsSearch from './NewAllHotelsSearch';
+import HotelsContext from '../HotelsContext';
+import Stay22HotelsSearch from './Stay22HotelsSearch';
 
 export default function NewAllHotels() {
   return (
-    <View style={styles.container}>
-      <View style={styles.absoluteFill}>
-        <View style={styles.filterContainer}>
-          <FilterStripe />
+    <HotelsContext.Consumer>
+      {({ cityId }) => (
+        <View style={styles.container}>
+          <View style={styles.absoluteFill}>
+            {cityId !== null && (
+              <View style={styles.filterContainer}>
+                <FilterStripe />
+              </View>
+            )}
+            {cityId === null ? <Stay22HotelsSearch /> : <NewAllHotelsSearch />}
+          </View>
         </View>
-        <NewAllHotelsSearch />
-      </View>
-    </View>
+      )}
+    </HotelsContext.Consumer>
   );
 }
 

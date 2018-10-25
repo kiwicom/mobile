@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1aa4a95d1c9da29fe69881d1a551ea08
+ * @relayHash d4529782b5ffb44f32df0743d2bab8db
  */
 
 /* eslint-disable */
@@ -54,30 +54,30 @@ export type AvailableHotelOptionsInput = {
   currency?: ?Currency,
   orderBy?: ?OrderBy,
 };
-export type NewAllHotelsSearchQueryVariables = {|
+export type HotelsPaginationContainerQueryVariables = {|
   search: HotelsSearchInput,
   filter: HotelsFilterInput,
   options?: ?AvailableHotelOptionsInput,
-  first?: ?number,
   after?: ?string,
+  first?: ?number,
 |};
-export type NewAllHotelsSearchQueryResponse = {|
+export type HotelsPaginationContainerQueryResponse = {|
   +$fragmentRefs: HotelsPaginationContainer$ref
 |};
-export type NewAllHotelsSearchQuery = {|
-  variables: NewAllHotelsSearchQueryVariables,
-  response: NewAllHotelsSearchQueryResponse,
+export type HotelsPaginationContainerQuery = {|
+  variables: HotelsPaginationContainerQueryVariables,
+  response: HotelsPaginationContainerQueryResponse,
 |};
 */
 
 
 /*
-query NewAllHotelsSearchQuery(
+query HotelsPaginationContainerQuery(
   $search: HotelsSearchInput!
   $filter: HotelsFilterInput!
   $options: AvailableHotelOptionsInput
-  $first: Int
   $after: String
+  $first: Int
 ) {
   ...HotelsPaginationContainer
 }
@@ -223,14 +223,14 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
-    "name": "first",
-    "type": "Int",
+    "name": "after",
+    "type": "String",
     "defaultValue": null
   },
   {
     "kind": "LocalArgument",
-    "name": "after",
-    "type": "String",
+    "name": "first",
+    "type": "Int",
     "defaultValue": null
   }
 ],
@@ -276,13 +276,13 @@ v2 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "NewAllHotelsSearchQuery",
+  "name": "HotelsPaginationContainerQuery",
   "id": null,
-  "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...HotelsPaginationContainer\n}\n\nfragment HotelsPaginationContainer on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelsInterface {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
+  "text": "query HotelsPaginationContainerQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $after: String\n  $first: Int\n) {\n  ...HotelsPaginationContainer\n}\n\nfragment HotelsPaginationContainer on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n      startCursor\n      endCursor\n    }\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  id\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelsInterface {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "NewAllHotelsSearchQuery",
+    "name": "HotelsPaginationContainerQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -296,7 +296,7 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "NewAllHotelsSearchQuery",
+    "name": "HotelsPaginationContainerQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
@@ -594,5 +594,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '56d04e399dc2c6c969385b3311563239';
+(node/*: any*/).hash = 'b9db36aad873994eb8fe0e54e6276f85';
 module.exports = node;

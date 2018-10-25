@@ -24,7 +24,6 @@ type Props = {|
   +data: HotelSwipeListData,
   +selectedIndex: number,
   +onSnapToItem: (index: number) => void,
-  +onOpenSingleHotel: (hotelId: string) => void,
 |};
 
 type State = {|
@@ -50,19 +49,11 @@ class HotelSwipeList extends React.Component<Props, State> {
   getSelectedAddress = () => {
     const { selectedIndex, data } = this.props;
 
-    return idx(data, _ => _[selectedIndex].node.address) || {};
+    return idx(data, _ => _[selectedIndex].address) || {};
   };
 
   renderItem = ({ item }: { item: Object, index: number }) => {
-    const { onOpenSingleHotel } = this.props;
-
-    return (
-      <HotelSwipeItem
-        width={CARD_ITEM_WIDTH}
-        data={item.node}
-        onPress={onOpenSingleHotel}
-      />
-    );
+    return <HotelSwipeItem width={CARD_ITEM_WIDTH} data={item} />;
   };
 
   storeRef = (ref: React.ElementRef<typeof Carousel>) => {
@@ -142,14 +133,11 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   HotelSwipeList,
   graphql`
-    fragment HotelSwipeList on AllHotelAvailabilityHotelEdge
-      @relay(plural: true) {
-      node {
-        id
-        ...HotelSwipeItem
-        address {
-          ...Address_address
-        }
+    fragment HotelSwipeList on AllHotelsInterface @relay(plural: true) {
+      id
+      ...HotelSwipeItem
+      address {
+        ...Address_address
       }
     }
   `,

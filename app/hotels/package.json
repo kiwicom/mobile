@@ -12,7 +12,7 @@
     "@kiwicom/mobile-shared": "^0",
     "geolib": "^2.0.24",
     "react-fast-compare": "^2.0.2",
-    "react-native-snap-carousel": "^3.7.2",
+    "react-native-snap-carousel": "^3.7.5",
     "react-native-swiper": "^1.5.13",
     "react-native-tooltips": "^0.0.6"
   },

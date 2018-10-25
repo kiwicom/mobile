@@ -11,7 +11,12 @@ import {
   AdaptableLayout,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import {
+  withNavigation,
+  type NavigationType,
+} from '@kiwicom/mobile-navigation';
 
+import { type RoomConfigurationType } from '../HotelsContext';
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from '../components/HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
@@ -20,13 +25,22 @@ import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
 type PropsWithContext = {|
   ...Props,
   +setHotelId: (hotelId: string) => void,
+  +hotelId: string,
+  +checkin: Date,
+  +checkout: Date,
+  +roomsConfiguration: RoomConfigurationType,
 |};
 
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   onGoToSingleHotel = () => {
     const hotelId = idx(this.props, _ => _.data.hotelId);
     if (hotelId != null) {
-      this.props.openSingleHotel(hotelId);
+      this.props.navigation.navigate('SingleHotel', {
+        hotelId,
+        checkin: this.props.checkin,
+        checkout: this.props.checkout,
+        roomsConfiguration: this.props.roomsConfiguration,
+      });
     }
   };
 
@@ -36,14 +50,14 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   };
 
   render = () => {
-    const lowResUrl = idx(this.props.data, _ => _.mainPhoto.lowResUrl);
+    const highResUrl = idx(this.props.data, _ => _.mainPhoto.highResUrl);
     const children = (
       <View style={style.row}>
         <View style={style.imageContainer}>
           <NetworkImage
             style={style.image}
             resizeMode="cover"
-            source={{ uri: lowResUrl }}
+            source={{ uri: highResUrl }}
           />
         </View>
         <View style={style.content}>
@@ -88,27 +102,25 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
 }
 
 type Props = {|
-  +openSingleHotel: (id: string) => void,
+  +navigation: NavigationType,
   +data: AllHotelsSearchRowProps,
   +testID?: string,
 |};
 
 const AllHotelsSearchRowWithContext = (props: Props) => (
   <SingleHotelContext.Consumer>
-    {({ setHotelId }) => (
-      <AllHotelsSearchRow {...props} setHotelId={setHotelId} />
-    )}
+    {context => <AllHotelsSearchRow {...props} {...context} />}
   </SingleHotelContext.Consumer>
 );
 
 export default createFragmentContainer(
-  AllHotelsSearchRowWithContext,
+  withNavigation(AllHotelsSearchRowWithContext),
   graphql`
-    fragment AllHotelsSearchRow on AllHotelAvailabilityHotel {
+    fragment AllHotelsSearchRow on AllHotelsInterface {
       ...HotelTitle
       hotelId
       mainPhoto {
-        lowResUrl
+        highResUrl
       }
       review {
         score

@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import {
   LayoutDoubleColumn,
@@ -64,12 +64,47 @@ class SearchResultsScreen extends React.Component<Props> {
           {checkin !== null && (
             <AdaptableLayout
               renderOnNarrow={
-                <MapHeaderButton onPress={goToAllHotelsMap} icon={icon} />
+                <MapHeaderButton
+                  onPress={goToAllHotelsMap}
+                  icon={icon}
+                  testID="map-header-button"
+                />
               }
+              renderOnWide={Platform.select({
+                android: (
+                  <MapHeaderButton
+                    onPress={goToAllHotelsMap}
+                    icon={icon}
+                    testID="map-header-button"
+                  />
+                ),
+                ios: null,
+              })}
             />
           )}
         </React.Fragment>
       ),
+      headerTitle: Platform.select({
+        ios: (
+          <AdaptableLayout
+            renderOnWide={
+              <View style={styles.headerTitleContainer}>
+                <View style={styles.headerTitleLeft}>
+                  {checkin !== null && (
+                    <MapHeaderButton
+                      onPress={goToAllHotelsMap}
+                      icon={icon}
+                      testID="map-header-button"
+                    />
+                  )}
+                </View>
+                <View style={styles.headerTitleRight} />
+              </View>
+            }
+          />
+        ),
+        android: null,
+      }),
     };
   };
 
@@ -135,6 +170,22 @@ const styles = StyleSheet.create({
   icon: {
     marginEnd: 2,
     fontSize: 22,
+  },
+  headerTitleContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    height: '100%',
+  },
+  headerTitleLeft: {
+    flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  headerTitleRight: {
+    flex: 1,
+    borderStartColor: defaultTokens.paletteInkLight,
+    borderStartWidth: 0.5,
+    paddingStart: 0.5,
   },
 });
 

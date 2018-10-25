@@ -44,13 +44,65 @@ type AirportArrivalTimelineEvent implements TimelineEvent {
   location: RouteStop
 }
 
+"""
+Information about hotel availability during selected time period from Stay22 api.
+"""
+type AllAvailableStay22Hotel implements AllHotelsInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """Name of the hotel."""
+  name: String
+  address: Address
+  review: HotelReview
+
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  price: Price
+  rating: HotelRating
+
+  """Hotel distance from the center in Km."""
+  distanceFromCenter: Float
+
+  """Main photo of the hotel."""
+  mainPhoto: HotelPhoto
+
+  """Stay 22 id"""
+  hotelId: ID
+
+  """Location of the hotel."""
+  coordinates: Coordinates
+}
+
+"""A connection to a list of items."""
+type AllAvailableStay22HotelConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AllAvailableStay22HotelEdge]
+
+  """Name of the closest city"""
+  cityName: String
+}
+
+"""An edge in a connection."""
+type AllAvailableStay22HotelEdge {
+  """The item at the end of the edge"""
+  node: AllAvailableStay22Hotel
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
 enum AllBookingsOnlyEnum {
   FUTURE
   PAST
 }
 
 """Information about hotel availability during selected time period."""
-type AllHotelAvailabilityHotel {
+type AllHotelAvailabilityHotel implements AllHotelsInterface {
   """The ID of an object"""
   id: ID!
 
@@ -98,6 +150,19 @@ type AllHotelAvailabilityHotelEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+interface AllHotelsInterface {
+  id: ID!
+  name: String
+  address: Address
+  review: HotelReview
+  price: Price
+  rating: HotelRating
+  distanceFromCenter: Float
+  mainPhoto: HotelPhoto
+  hotelId: ID
+  coordinates: Coordinates
 }
 
 type AllowedBaggage {
@@ -232,9 +297,8 @@ enum BookedServiceStatus {
 }
 
 """
-You can fetch here almost every information related to the booking itself.
-However when you want to fetch legs you have to use "oneWay", "return" and
-"multicity" fields because they highly depend on the booking type.
+DEPRECATED! Use "customerBookings" query instead. That query will return
+interface instead so you don't have to work with this generic type.
 """
 type Booking {
   arrival: RouteStop @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
@@ -692,179 +756,184 @@ enum CoveredBy {
 }
 
 enum Currency {
-  DZD
-  NAD
-  GHS
-  EGP
-  BGN
-  PAB
-  BOB
-  DKK
-  BWP
-  LBP
-  TZS
-  VND
-  AOA
-  KHR
-  MYR
-  SOS
-  KYD
-  LYD
-  UAH
-  JOD
-  AZN
-  AWG
-  SAR
-  XAG
-  HKD
-  CHF
-  GIP
-  BYR
-  SVC
-  XPD
-  BYN
-  MRO
-  HRK
-  DJF
-  THB
-  XAF
-  BND
-  ETB
-  UYU
-  NIO
-  LAK
-  SYP
-  MAD
-  MZN
-  YER
-  ZAR
-  NPR
-  ZWL
-  NGN
-  CRC
   AED
-  GBP
-  MWK
-  LKR
-  PKR
-  HUF
-  SZL
-  LSL
-  MNT
-  AMD
-  UGX
-  XDR
-  JMD
-  TTD
-  SHP
   AFN
-  MMK
-  KPW
-  TRY
-  BDT
-  HTG
-  SLL
-  MGA
-  PHP
-  LRD
-  XCD
-  NOK
-  MOP
-  INR
-  MXN
-  CZK
-  TJS
-  BTC
-  BTN
-  COP
-  TMT
-  MUR
-  IDR
-  GEL
-  XPF
-  FJD
-  VUV
-  PEN
-  BZD
-  ILS
-  DOP
-  GGP
-  MDL
-  XPT
-  QAR
-  SEK
-  ZMK
-  MVR
-  AUD
-  SRD
-  CUP
-  CLF
-  BBD
-  KMF
-  KRW
-  GMD
-  VEF
-  GTQ
-  ANG
-  CUC
-  CLP
-  ZMW
-  EUR
   ALL
-  RWF
-  KZT
-  RUB
-  ISK
-  CDF
-  RON
-  OMR
+  AMD
+  ANG
+  AOA
+  ARS
+  AUD
+  AWG
+  AZN
+  BAM
+  BBD
+  BDT
+  BGN
+  BHD
+  BIF
+  BMD
+  BND
+  BOB
+  BOV
   BRL
-  SBD
+  BSD
+  BTN
+  BWP
+  BYN
+  BZD
+  CAD
+  CDF
+  CHE
+  CHF
+  CHW
+  CLF
+  CLP
+  CNY
+  COP
+  COU
+  CRC
+  CUC
+  CUP
+  CVE
+  CZK
+  DJF
+  DKK
+  DOP
+  DZD
+  EGP
+  ERN
+  ETB
+  EUR
+  FJD
+  FKP
+  GBP
+  GEL
+  GHS
+  GIP
+  GMD
+  GNF
+  GTQ
+  GYD
+  HKD
+  HNL
+  HRK
+  HTG
+  HUF
+  IDR
+  ILS
+  INR
+  IQD
+  IRR
+  ISK
+  JMD
+  JOD
+  JPY
+  KES
+  KGS
+  KHR
+  KMF
+  KPW
+  KRW
+  KWD
+  KYD
+  KZT
+  LAK
+  LBP
+  LKR
+  LRD
+  LSL
+  LYD
+  MAD
+  MDL
+  MGA
+  MKD
+  MMK
+  MNT
+  MOP
+  MRU
+  MUR
+  MVR
+  MWK
+  MXN
+  MXV
+  MYR
+  MZN
+  NAD
+  NGN
+  NIO
+  NOK
+  NPR
+  NZD
+  OMR
+  PAB
+  PEN
+  PGK
+  PHP
+  PKR
   PLN
   PYG
-  KES
-  QUN
-  MKD
-  EEK
-  TWD
-  TOP
-  JEP
-  GNF
-  WST
-  IQD
-  ERN
-  BAM
-  SCR
-  CAD
-  CVE
-  KWD
-  BIF
-  PGK
-  LTL
-  HNL
-  SGD
-  UZS
-  STD
-  IRR
-  CNY
-  XOF
-  TND
-  GYD
-  MTL
-  NZD
-  FKP
-  LVL
-  USD
-  BSD
-  KGS
-  ARS
-  BMD
-  IMP
+  QAR
+  RON
   RSD
-  BHD
-  JPY
+  RUB
+  RWF
+  SAR
+  SBD
+  SCR
   SDG
+  SEK
+  SGD
+  SHP
+  SLL
+  SOS
+  SRD
+  SSP
+  STN
+  SVC
+  SYP
+  SZL
+  THB
+  TJS
+  TMT
+  TND
+  TOP
+  TRY
+  TTD
+  TWD
+  TZS
+  UAH
+  UGX
+  USD
+  USN
+  UYI
+  UYU
+  UZS
+  VEF
+  VND
+  VUV
+  WST
+  XAF
+  XAG
   XAU
+  XBA
+  XBB
+  XBC
+  XBD
+  XCD
+  XDR
+  XOF
+  XPD
+  XPF
+  XPT
+  XSU
+  XTS
+  XUA
+  XXX
+  YER
+  ZAR
+  ZMW
+  ZWL
 }
 
 type CurrencyDetail implements Node {
@@ -1337,7 +1406,7 @@ type Hotel {
 }
 
 """Information about hotel availability during selected time period."""
-type HotelAvailability {
+type HotelAvailability implements HotelAvailabilityInterface {
   """The ID of an object"""
   id: ID!
 
@@ -1369,6 +1438,11 @@ type HotelAvailabilityEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+interface HotelAvailabilityInterface {
+  id: ID
+  price: Price
 }
 
 """
@@ -2148,6 +2222,9 @@ type RootQuery {
   """
   allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection @deprecated(reason: "This query has serious performace issues. That is basically because we are overfeching data\n  from the https://distribution-xml.booking.com/2.0/json/hotels endpoint with way to many extras.\n  Use allAvailableBookingComHotels instead")
 
+  """All available hotels from provider stay22 for the given time"""
+  allAvailableStay22Hotels(search: Stay22HotelsSearchInput!, after: String, first: Int = 50, before: String, last: Int): AllAvailableStay22HotelConnection
+
   """Search for your flight bookings."""
   allBookings(
     """
@@ -2395,6 +2472,17 @@ type RouteStop {
 type Services {
   """Travel insurance - returns "null" if not available."""
   insurance: InsuranceService
+}
+
+input Stay22HotelsSearchInput {
+  latitude: Float!
+  longitude: Float!
+
+  """Adults and children"""
+  guests: Int!
+  checkin: Date!
+  checkout: Date!
+  currency: Currency = EUR
 }
 
 input StopoversInput {

@@ -31,13 +31,22 @@ const DetailStack = StackNavigator(
         ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'SingleHotel',
+  },
+);
+
+const GalleryStack = StackNavigator(
+  {
     GalleryGrid: {
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
     },
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'SingleHotel',
+    initialRouteName: 'GalleryGrid',
   },
 );
 
@@ -60,6 +69,12 @@ export default StackNavigator(
     },
     DetailStack: {
       screen: DetailStack,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    GalleryStack: {
+      screen: GalleryStack,
       navigationOptions: {
         header: null,
       },

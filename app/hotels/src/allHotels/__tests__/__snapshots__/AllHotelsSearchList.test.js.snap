@@ -22,24 +22,26 @@ exports[`renders a "not found" message when no hotel is found 1`] = `
 
 exports[`renders found hotels 1`] = `
 <React.Fragment>
-  <ForwardRef(Relay(AllHotelsSearchRowWithContext))
+  <ForwardRef(Relay(withNavigation(AllHotelsSearchRowWithContext)))
     data={
       Object {
         "$fragmentRefs": null,
+        "$refType": null,
+        "hotelId": "lol1",
         "id": "hotel1",
       }
     }
-    openSingleHotel={[Function]}
     testID="firstHotelResult"
   />
-  <ForwardRef(Relay(AllHotelsSearchRowWithContext))
+  <ForwardRef(Relay(withNavigation(AllHotelsSearchRowWithContext)))
     data={
       Object {
         "$fragmentRefs": null,
+        "$refType": null,
+        "hotelId": "lol2",
         "id": "hotel2",
       }
     }
-    openSingleHotel={[Function]}
     testID=""
   />
 </React.Fragment>

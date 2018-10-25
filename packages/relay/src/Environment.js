@@ -10,6 +10,7 @@ import {
   createOperationSelector,
 } from 'relay-runtime';
 import { AsyncStorage } from 'react-native';
+import fetchWithRetries from '@mrtnzlml/fetch';
 
 import ConnectionManager from './ConnectionManager';
 
@@ -23,16 +24,6 @@ const GRAPHQL_URL = 'https://graphql.kiwi.com/';
 
 const store = new Store(new RecordSource());
 
-const fetchWithTimeout = (url, config) =>
-  Promise.race([
-    fetch(url, config),
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject({ message: 'Timeout' });
-      }, 15000);
-    }),
-  ]);
-
 async function fetchFromTheNetwork(
   networkHeaders,
   operation,
@@ -40,13 +31,15 @@ async function fetchFromTheNetwork(
   observer,
 ) {
   try {
-    const fetchResponse = await fetchWithTimeout(GRAPHQL_URL, {
+    const fetchResponse = await fetchWithRetries(GRAPHQL_URL, {
       method: 'POST',
       headers: networkHeaders,
       body: JSON.stringify({
         query: operation.text, // TODO: fetch persisted queries instead (based on operation.id)
         variables,
       }),
+      fetchTimeout: 15000,
+      retryDelays: [1000, 3000],
     });
 
     const jsonResponse = await fetchResponse.json();

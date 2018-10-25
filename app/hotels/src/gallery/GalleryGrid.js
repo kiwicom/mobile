@@ -11,6 +11,8 @@ import {
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
+import { HeaderBackButton } from 'react-navigation';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import GalleryGridTile from './GalleryGridTile';
 import PhotosStripe from './PhotosStripe';
@@ -53,14 +55,25 @@ const getTileWidth = (width: number) => {
 };
 
 export default class GalleryGrid extends React.Component<Props, State> {
-  static navigationOptions = ({ navigation }: Props) => ({
-    gesturesEnabled: navigation.state.params.isGesturesEnabled,
-    headerTitle: (
-      <HeaderTitle>
-        <Translation id="hotels.navigation.title.gallery_grid" />
-      </HeaderTitle>
-    ),
-  });
+  static navigationOptions = ({ navigation }: Props) => {
+    function goBack() {
+      navigation.goBack(null);
+    }
+    return {
+      gesturesEnabled: navigation.state.params.isGesturesEnabled,
+      headerTitle: (
+        <HeaderTitle>
+          <Translation id="hotels.navigation.title.gallery_grid" />
+        </HeaderTitle>
+      ),
+      headerLeft: (
+        <HeaderBackButton
+          onPress={goBack}
+          tintColor={defaultTokens.paletteProductNormal}
+        />
+      ),
+    };
+  };
 
   state = {
     /**

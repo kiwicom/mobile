@@ -10,7 +10,6 @@ import {
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
-import HotelsSearchContext from '../../HotelsSearchContext';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 import type { CurrentSearchStats } from '../../filter/CurrentSearchStatsType';
 import HotelsContext from '../../HotelsContext';
@@ -190,22 +189,18 @@ const calculateDaysOfStay = (checkin, checkout) => {
 export default function PriceFilterWithContext(props: Props) {
   return (
     <HotelsContext.Consumer>
-      {({ currency, checkin, checkout }) => {
+      {({ currency, checkin, checkout, currentSearchStats }) => {
         const daysOfStay = calculateDaysOfStay(checkin, checkout);
         if (daysOfStay === null) {
           return null;
         }
         return (
-          <HotelsSearchContext.Consumer>
-            {({ currentSearchStats }) => (
-              <PriceFilter
-                {...props}
-                currentSearchStats={currentSearchStats}
-                currency={currency}
-                daysOfStay={daysOfStay}
-              />
-            )}
-          </HotelsSearchContext.Consumer>
+          <PriceFilter
+            {...props}
+            currentSearchStats={currentSearchStats}
+            currency={currency}
+            daysOfStay={daysOfStay}
+          />
         );
       }}
     </HotelsContext.Consumer>

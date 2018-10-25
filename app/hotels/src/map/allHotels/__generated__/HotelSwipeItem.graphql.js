@@ -34,7 +34,7 @@ export type HotelSwipeItem = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "HotelSwipeItem",
-  "type": "AllHotelAvailabilityHotel",
+  "type": "AllHotelsInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -134,5 +134,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '84334d01083bdc7458559d612eba9313';
+(node/*: any*/).hash = 'c697e54860c5118acd91d54aa6ce84e1';
 module.exports = node;

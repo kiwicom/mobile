@@ -65,7 +65,7 @@ export function getDistanceText(
 export default createFragmentContainer(
   HotelDistance,
   graphql`
-    fragment HotelDistance_hotel on AllHotelAvailabilityHotel {
+    fragment HotelDistance_hotel on AllHotelsInterface {
       distanceFromCenter
     }
   `,

@@ -5,38 +5,9 @@ import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import type { SingleHotelContainerQueryResponse } from './__generated__/SingleHotelContainerQuery.graphql';
-import type { AvailableHotelSearchInput } from './AvailableHotelSearchInput';
 import { sanitizeDate } from '../GraphQLSanitizers';
 import HotelsContext, { type RoomConfigurationType } from '../HotelsContext';
 import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
-
-export const handleOpenSingleHotel = (
-  hotelId: string,
-  searchParams: SearchParams,
-  openSingleHotel: (searchParams: AvailableHotelSearchInput) => void,
-) => {
-  if (searchParams.checkin && searchParams.checkout) {
-    openSingleHotel({
-      hotelId,
-      checkin: searchParams.checkin,
-      checkout: searchParams.checkout,
-      roomsConfiguration: [
-        {
-          adultsCount: searchParams.roomsConfiguration.adultsCount,
-          children: searchParams.roomsConfiguration.children.map(childAge => ({
-            age: childAge.age,
-          })),
-        },
-      ],
-    });
-  }
-};
-
-type SearchParams = {|
-  +checkin: Date,
-  +checkout: Date,
-  +roomsConfiguration: RoomConfigurationType,
-|};
 
 type PropsWithContext = {|
   ...Props,
@@ -44,7 +15,7 @@ type PropsWithContext = {|
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,
-  +roomsConfiguration: $ReadOnlyArray<RoomConfigurationType>,
+  +roomsConfiguration: RoomConfigurationType,
 |};
 
 class SingleHotelContainer extends React.Component<PropsWithContext> {
