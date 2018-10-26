@@ -25,10 +25,10 @@ type PropsWithContext = {
 
 export class BookNow extends React.Component<PropsWithContext> {
   handleGoToPayment = () => {
-    const hotelId = idx(this.props.hotel, _ => _.originalId);
+    const hotelId = idx(this.props.hotel, _ => _.id);
     if (hotelId) {
       this.props.navigation.navigate('Payment', {
-        hotelId: Number(hotelId),
+        hotelId,
         rooms: convertRooms(this.props.selected),
         language: DeviceInfo.getLanguage(),
       });
@@ -71,8 +71,8 @@ export const BookNowWithContext = (props: Props) => {
 export default createFragmentContainer(
   withNavigation(BookNowWithContext),
   graphql`
-    fragment BookNow_hotel on Hotel {
-      originalId
+    fragment BookNow_hotel on HotelInterface {
+      id
     }
   `,
 );

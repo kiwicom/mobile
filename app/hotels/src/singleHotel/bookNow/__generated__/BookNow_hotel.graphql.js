@@ -11,7 +11,7 @@ import type { ConcreteFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type BookNow_hotel$ref: FragmentReference;
 export type BookNow_hotel = {|
-  +originalId: ?string,
+  +id: string,
   +$refType: BookNow_hotel$ref,
 |};
 */
@@ -20,19 +20,19 @@ export type BookNow_hotel = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "BookNow_hotel",
-  "type": "Hotel",
+  "type": "HotelInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "originalId",
+      "name": "id",
       "args": null,
       "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'f2d9e56b4e4a68248cd824ec92c025e7';
+(node/*: any*/).hash = 'c589ef05add75fba8e3a90a800fa7e03';
 module.exports = node;

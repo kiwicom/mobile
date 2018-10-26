@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 5dafec1044a34b2ec2734a78ab2fa1cd
+ * @relayHash 89fa8d8d3392666c9ee8d579b653cc2e
  */
 
 /* eslint-disable */
@@ -9,7 +9,9 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type PaymentScreenQueryVariables = {||};
+export type PaymentScreenQueryVariables = {|
+  hotelId?: ?string
+|};
 export type PaymentScreenQueryResponse = {|
   +hotelPaymentUrls: ?{|
     +bookingComPaymentUrl: ?string
@@ -23,8 +25,10 @@ export type PaymentScreenQuery = {|
 
 
 /*
-query PaymentScreenQuery {
-  hotelPaymentUrls {
+query PaymentScreenQuery(
+  $hotelId: ID
+) {
+  hotelPaymentUrls(hotelId: $hotelId) {
     bookingComPaymentUrl
   }
 }
@@ -33,11 +37,26 @@ query PaymentScreenQuery {
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
+    "kind": "LocalArgument",
+    "name": "hotelId",
+    "type": "ID",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
     "kind": "LinkedField",
     "alias": null,
     "name": "hotelPaymentUrls",
     "storageKey": null,
-    "args": null,
+    "args": [
+      {
+        "kind": "Variable",
+        "name": "hotelId",
+        "variableName": "hotelId",
+        "type": "ID"
+      }
+    ],
     "concreteType": "HotelPaymentUrls",
     "plural": false,
     "selections": [
@@ -56,24 +75,24 @@ return {
   "operationKind": "query",
   "name": "PaymentScreenQuery",
   "id": null,
-  "text": "query PaymentScreenQuery {\n  hotelPaymentUrls {\n    bookingComPaymentUrl\n  }\n}\n",
+  "text": "query PaymentScreenQuery(\n  $hotelId: ID\n) {\n  hotelPaymentUrls(hotelId: $hotelId) {\n    bookingComPaymentUrl\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "PaymentScreenQuery",
     "type": "RootQuery",
     "metadata": null,
-    "argumentDefinitions": [],
-    "selections": v0
+    "argumentDefinitions": v0,
+    "selections": v1
   },
   "operation": {
     "kind": "Operation",
     "name": "PaymentScreenQuery",
-    "argumentDefinitions": [],
-    "selections": v0
+    "argumentDefinitions": v0,
+    "selections": v1
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '894d7dd18175ff2fefc9f746ab946ac9';
+(node/*: any*/).hash = '8b5ada67d5d06bd38230dbd5d6c7cc4c';
 module.exports = node;
