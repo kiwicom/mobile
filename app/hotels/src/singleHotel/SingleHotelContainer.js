@@ -48,7 +48,9 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
             $options: AvailableHotelOptionsInput
           ) {
             availableHotel(search: $search, options: $options) {
-              ...HotelDetailScreen_availableHotel
+              ... on HotelAvailabilityInterface {
+                ...HotelDetailScreen_availableHotel
+              }
             }
           }
         `}

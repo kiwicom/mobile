@@ -14,7 +14,6 @@ import '../../../app/MMB/src/scenes/passenger/visa/__tests__/VisaRequired.test.j
 import '../../../app/MMB/src/scenes/passenger/__tests__/Passenger.test.js';
 import '../../../app/MMB/src/components/alert/__tests__/Alert.test.js';
 import '../../../packages/shared/src/popup/__tests__/ButtonPopupPlayground.test.js';
-import '../../../packages/shared/src/loaders/__tests__/IconLoading.test.js';
 import '../../../packages/shared/src/loaders/__tests__/FullPageLoading.test.js';
 import '../../../packages/shared/src/forms/datePicker/__tests__/DatePicker.test.js';
 import '../../../packages/shared/src/forms/__tests__/TextInput.test.js';

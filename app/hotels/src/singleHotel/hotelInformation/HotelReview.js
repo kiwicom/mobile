@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   HotelReview,
   graphql`
-    fragment HotelReview on Hotel {
+    fragment HotelReview on HotelInterface {
       review {
         score
         count

@@ -44,7 +44,7 @@ var v0 = {
 return {
   "kind": "Fragment",
   "name": "Header_hotel",
-  "type": "Hotel",
+  "type": "HotelInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -144,5 +144,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b63c01773444c38497fc16d4da9a1c49';
+(node/*: any*/).hash = '4d237ca12fb75c478e44259958f9f022';
 module.exports = node;
