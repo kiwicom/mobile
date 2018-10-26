@@ -19,7 +19,7 @@ export default class AdaptableLayout extends React.Component<Props> {
       <Dimensions.Consumer>
         {dimensions => {
           if (!dimensions) {
-            return null;
+            return;
           }
           const wideLayout = Device.isWideLayout(dimensions);
           if (wideLayout === true && this.props.renderOnWide) {
@@ -27,7 +27,6 @@ export default class AdaptableLayout extends React.Component<Props> {
           } else if (wideLayout === false && this.props.renderOnNarrow) {
             return this.props.renderOnNarrow;
           }
-          return null;
         }}
       </Dimensions.Consumer>
     );
