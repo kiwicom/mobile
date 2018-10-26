@@ -19,6 +19,8 @@ test_ci:
 release:
   stage: release
   image: kiwicom/curl
+  only:
+    - master
   script:
    - curl -gX POST $DEPLOY_TRIGGER_URL$CIRCLE_SHA1
 
