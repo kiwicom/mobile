@@ -1362,7 +1362,7 @@ type GeoIP {
 }
 
 """General information about the hotel."""
-type Hotel {
+type Hotel implements HotelInterface {
   """The ID of an object"""
   id: ID!
 
@@ -1443,6 +1443,7 @@ type HotelAvailabilityEdge {
 interface HotelAvailabilityInterface {
   id: ID
   price: Price
+  hotel: HotelInterface
 }
 
 """
@@ -1542,6 +1543,17 @@ type HotelFacilityEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+interface HotelInterface {
+  id: ID!
+  name: String
+  address: Address
+  review: HotelReview
+  summary: String
+  mainPhoto: HotelPhoto
+  rating: HotelRating
+  photos: HotelPhotoConnection
 }
 
 """The urls where the user will be redirected for payment"""
@@ -2452,6 +2464,9 @@ type RootQuery {
     """Simple auth token that lets you fetch a unique booking."""
     authToken: String
   ): BookingInterface
+
+  """Single hotel by ID."""
+  stay22HotelDetail(id: ID!, currency: Currency = EUR): Stay22HotelDetail
 }
 
 type RouteStop {
@@ -2474,6 +2489,39 @@ type Services {
   insurance: InsuranceService
 }
 
+type Stay22Hotel implements HotelInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """Name of the hotel."""
+  name: String
+  address: Address
+  review: HotelReview
+
+  """Main description (summary) of the hotel."""
+  summary: String
+
+  """All available photos of the hotel."""
+  photos(after: String, first: Int, before: String, last: Int): HotelPhotoConnection
+
+  """Main photo of the hotel."""
+  mainPhoto: HotelPhoto
+
+  """The star rating of the hotel."""
+  rating: HotelRating
+}
+
+type Stay22HotelDetail implements HotelAvailabilityInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  price: Price
+  hotel: Stay22Hotel
+}
+
 input Stay22HotelsSearchInput {
   latitude: Float!
   longitude: Float!
@@ -2483,6 +2531,9 @@ input Stay22HotelsSearchInput {
   checkin: Date!
   checkout: Date!
   currency: Currency = EUR
+
+  """Order results by this input type"""
+  orderBy: OrderBy = POPULARITY
 }
 
 input StopoversInput {
