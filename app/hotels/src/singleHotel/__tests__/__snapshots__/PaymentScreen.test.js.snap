@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`creates correct URL 1`] = `"http://test.url.lol&hotel_id=1&checkin=1970-01-02&interval=2&nr_rooms_7709411_91461863_1_1_0=1&nr_rooms_7709404_91461863_0_1_0=2&label=kiwi-ios-react-rn-test&lang=en&selected_currency=EUR"`;
+exports[`creates correct URL 1`] = `"http://test.url.lol&checkin=1970-01-02&interval=2&nr_rooms_7709411_91461863_1_1_0=1&nr_rooms_7709404_91461863_0_1_0=2&label=kiwi-ios-react-rn-test&lang=en&selected_currency=EUR"`;
 
-exports[`creates correct URL 2`] = `"http://test.url.lol&hotel_id=2&checkin=1970-01-03&interval=14&nr_rooms_7709411_91461863_1_1_0=5&label=kiwi-ios-react-rn-test&lang=cs&selected_currency=JPY"`;
+exports[`creates correct URL 2`] = `"http://test.url.lol&checkin=1970-01-03&interval=14&nr_rooms_7709411_91461863_1_1_0=5&label=kiwi-ios-react-rn-test&lang=cs&selected_currency=JPY"`;
