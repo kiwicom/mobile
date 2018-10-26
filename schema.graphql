@@ -2429,7 +2429,7 @@ type RootQuery {
   ): HotelCityConnection
 
   """Url where user will be redirected for payment"""
-  hotelPaymentUrls: HotelPaymentUrls
+  hotelPaymentUrls(hotelId: ID): HotelPaymentUrls
 
   """Single location by ID."""
   location(

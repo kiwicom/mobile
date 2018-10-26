@@ -14,7 +14,7 @@ it('creates correct URL', () => {
   expect(
     createURI(
       {
-        hotelId: 1,
+        hotelId: '1',
         checkin: new Date(ONE_DAY),
         checkout: new Date(3 * ONE_DAY), // 2 days later
         rooms: [
@@ -38,7 +38,7 @@ it('creates correct URL', () => {
   expect(
     createURI(
       {
-        hotelId: 2,
+        hotelId: '2',
         checkin: new Date(2 * ONE_DAY),
         checkout: new Date(16 * ONE_DAY), // 14 days later
         rooms: [
