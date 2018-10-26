@@ -20,7 +20,7 @@ test_ci:
     - yarn test-ci
 
 release:
-  stage: test-ci
+  stage: release
   image: kiwicom/curl
   script:
    - curl -gX POST $DEPLOY_TRIGGER_URL$CIRCLE_SHA1
