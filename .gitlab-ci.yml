@@ -22,6 +22,6 @@ release:
   only:
     - master
   script:
-   - curl -gX POST $DEPLOY_TRIGGER_URL$CIRCLE_SHA1
+   - curl -gX POST $DEPLOY_TRIGGER_URL$CI_COMMIT_SHA
 
 
