@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Icon, StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -28,11 +28,7 @@ class Address extends React.Component<Props> {
     return (
       <View style={styles.container}>
         <View style={styles.mapIcon}>
-          <Icon
-            name="map"
-            size={24}
-            color={defaultTokens.paletteProductNormal}
-          />
+          <TextIcon code="&#xe001;" style={styles.icon} />
         </View>
         <View style={styles.content}>
           <Text style={styles.header}>
@@ -74,5 +70,9 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'center',
+  },
+  icon: {
+    fontSize: 24,
+    color: defaultTokens.paletteProductNormal,
   },
 });

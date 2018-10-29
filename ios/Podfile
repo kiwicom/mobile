@@ -32,12 +32,10 @@ def mmb_package_modules()
   pod 'RNReverseGeocode', :path => '../node_modules/@kiwicom/react-native-reverse-geocode'
   pod 'RNShare', :path => '../node_modules/react-native-share'
   pod 'react-native-maps', path: '../node_modules/react-native-maps'
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 end
 
 def hotels_package_modules()
   pod 'react-native-maps', path: '../node_modules/react-native-maps'
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 end
 
 def react_native_modules()

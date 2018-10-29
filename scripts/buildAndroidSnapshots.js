@@ -105,14 +105,6 @@ const deployLibrary = (packageName, version) => {
       '-SNAPSHOT',
     ),
     deployDependency(
-      'react-native-vector-icons',
-      SKYPICKER_URL,
-      `${getDependencyVersion(
-        'react-native-vector-icons',
-      )}.react-native.${reactNativeVersion}`,
-      '-SNAPSHOT',
-    ),
-    deployDependency(
       'react-native-tooltips',
       SKYPICKER_URL,
       `${getDependencyVersion(

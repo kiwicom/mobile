@@ -8,18 +8,17 @@ exports[`Alert renders alert without children 1`] = `
     }
   }
   icon={
-    <Icon
-      color="#46B655"
-      name="error-outline"
-      size={17}
+    <TextIcon
+      code="U"
       style={
-        Object {
-          "transform": Array [
-            Object {
-              "rotate": "180deg",
-            },
-          ],
-        }
+        Array [
+          Object {
+            "fontSize": 17,
+          },
+          Object {
+            "color": "#46B655",
+          },
+        ]
       }
     />
   }
@@ -47,10 +46,18 @@ exports[`Alert renders danger type 1`] = `
     }
   }
   icon={
-    <Icon
-      color="#d21c1c"
-      name="warning"
-      size={17}
+    <TextIcon
+      code=""
+      style={
+        Array [
+          Object {
+            "fontSize": 17,
+          },
+          Object {
+            "color": "#d21c1c",
+          },
+        ]
+      }
     />
   }
   title={
@@ -81,18 +88,17 @@ exports[`Alert renders success type 1`] = `
     }
   }
   icon={
-    <Icon
-      color="#46B655"
-      name="error-outline"
-      size={17}
+    <TextIcon
+      code="U"
       style={
-        Object {
-          "transform": Array [
-            Object {
-              "rotate": "180deg",
-            },
-          ],
-        }
+        Array [
+          Object {
+            "fontSize": 17,
+          },
+          Object {
+            "color": "#46B655",
+          },
+        ]
       }
     />
   }
@@ -124,10 +130,18 @@ exports[`Alert renders warning type 1`] = `
     }
   }
   icon={
-    <Icon
-      color="#f9971e"
-      name="warning"
-      size={17}
+    <TextIcon
+      code=""
+      style={
+        Array [
+          Object {
+            "fontSize": 17,
+          },
+          Object {
+            "color": "#f9971e",
+          },
+        ]
+      }
     />
   }
   title={
