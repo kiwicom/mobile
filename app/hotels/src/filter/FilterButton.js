@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Button, ButtonTitle, Icon, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  Button,
+  ButtonTitle,
+  StyleSheet,
+  TextIcon,
+} from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -10,18 +15,18 @@ type Props = {|
   +title: TranslationType,
   +isActive: boolean,
   +onPress: () => void,
-  +icon?: React.Element<typeof Icon>,
+  +icon?: React.Element<typeof TextIcon>,
 |};
 
 const FilterButton = ({ title, isActive, onPress, icon }: Props) => {
-  const iconColor = defaultTokens.colorIconPrimary;
-  const iconColorActive = defaultTokens.paletteCloudNormal;
-
   const filterIcon =
     icon == null
       ? null
       : React.cloneElement(icon, {
-          color: isActive ? iconColorActive : iconColor,
+          style: [
+            styleSheet.filterIcon,
+            isActive && styleSheet.filterIconActive,
+          ],
         });
 
   return (
@@ -71,6 +76,13 @@ const styleSheet = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  filterIcon: {
+    fontSize: 18,
+    color: defaultTokens.colorIconPrimary,
+  },
+  filterIconActive: {
+    color: defaultTokens.paletteCloudNormal,
   },
 });
 

@@ -3,7 +3,6 @@ package com.kiwi.rnkiwimobile.hotels
 import android.os.Bundle
 import com.airbnb.android.react.maps.MapsPackage
 import com.facebook.react.ReactPackage
-import com.oblador.vectoricons.VectorIconsPackage
 import com.reactlibrary.RNTooltipsPackage
 import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage
@@ -20,8 +19,7 @@ object RNHotelsModule {
         MapsPackage(),
         RNCurrencyManagerPackage(hotelModulesInjection.currencyCallback),
         RNTranslationManagerPackage(hotelModulesInjection.translationCallback),
-        RNLoggingPackage(hotelModulesInjection.hasActiveBooking),
-        VectorIconsPackage())
+        RNLoggingPackage(hotelModulesInjection.hasActiveBooking))
   }
 
   fun getInitialProperties(initialProperties: RNHotelsInitialProperties): Bundle? {

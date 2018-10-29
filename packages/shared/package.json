@@ -12,8 +12,7 @@
     "react-native-image-progress": "^1.1.1",
     "react-native-maps": "^0.21.0",
     "react-native-modal": "^6.5.0",
-    "react-native-read-more-text": "^1.1.0",
-    "react-native-vector-icons": "^5.0.0"
+    "react-native-read-more-text": "^1.1.0"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
