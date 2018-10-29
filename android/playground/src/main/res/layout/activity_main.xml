@@ -13,20 +13,12 @@
         android:id="@+id/button_hotels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hotels"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:text="Hotels"/>
 
     <Button
         android:id="@+id/button_hotels_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hotels Fragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:text="Hotels Fragment"/>
 
 </LinearLayout>
