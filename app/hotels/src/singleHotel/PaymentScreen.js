@@ -21,7 +21,7 @@ import { withHotelsContext } from '../HotelsContext';
 import type { PaymentScreenQueryResponse } from './__generated__/PaymentScreenQuery.graphql';
 
 export type PaymentParameters = {|
-  +hotelId: number,
+  +hotelId: string,
   +checkin: Date,
   +checkout: Date,
   +rooms: Array<{|
@@ -94,12 +94,13 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
       <PublicApiRenderer
         render={this.renderInner}
         query={graphql`
-          query PaymentScreenQuery {
-            hotelPaymentUrls {
+          query PaymentScreenQuery($hotelId: ID) {
+            hotelPaymentUrls(hotelId: $hotelId) {
               bookingComPaymentUrl
             }
           }
         `}
+        variables={{ hotelId: this.props.hotelId }}
       />
     </React.Fragment>
   );
@@ -122,7 +123,6 @@ export function createURI(pp: PaymentParameters, url: string): string {
   }, {});
 
   return `${url}&${querystring.stringify({
-    hotel_id: pp.hotelId,
     checkin: checkinQuery,
     interval: intervalQuery,
     ...roomsQuery,
