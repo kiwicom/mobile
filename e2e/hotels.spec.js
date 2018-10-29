@@ -40,4 +40,15 @@ describe('Hotels', () => {
     await element(by.id('map-header-button')).tap();
     await expect(element(by.id('allHotels-mapScreen'))).toBeVisible();
   });
+
+  it('should be possible to open the image gallery for specific hotel', async () => {
+    await element(by.id('hotelsTab')).tap();
+    await expect(element(by.id('homePage'))).toBeVisible();
+    await element(by.id('homePage__Hotels-button')).tap();
+    await expect(element(by.id('firstHotelResult'))).toBeVisible();
+    await element(by.id('firstHotelResult')).tap();
+    await expect(element(by.id('hotel-openGallery'))).toBeVisible();
+    await element(by.id('hotel-openGallery')).tap();
+    await expect(element(by.id('galleryGrid'))).toBeVisible();
+  });
 });
