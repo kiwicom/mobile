@@ -81,7 +81,7 @@ export class Header extends React.Component<Props> {
 export default (createFragmentContainer(
   withNavigation(Header),
   graphql`
-    fragment Header_hotel on Hotel {
+    fragment Header_hotel on HotelInterface {
       name
       mainPhoto {
         highResUrl
