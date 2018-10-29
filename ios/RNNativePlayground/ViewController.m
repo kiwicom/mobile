@@ -97,7 +97,7 @@
   return @{
            @"width": @(windowRect.size.width),
            @"height": @(windowRect.size.height)
-           };
+         };
 }
 
 
@@ -116,25 +116,26 @@
   
   RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
                                                         initialProperties:@{
-                                                                            @"language": @"en",
-                                                                            @"currency": @"EUR",
-                                                                            @"lastNavigationMode": @"present",
-                                                                            @"dimensions": [self windowDimensions],
-                                                                            @"checkin": [self selectedStartDate],
-                                                                            @"checkout": [self selectedEndDate],
-                                                                            @"version": @"3.7.13-9d55ad66",
-                                                                            @"cityName": [self selectedCity].cityName,
-                                                                            @"cityId": [self selectedCity].cityId,
-                                                                            @"roomsConfiguration": @[
-                                                                                @{
-                                                                                  @"adultsCount": @1,
-                                                                                  @"children": @[
-                                                                                      @{
-                                                                                        @"age": @2
-                                                                                        }
-                                                                                      ]}
-                                                                                ]
-                                                                            }];
+                                                          @"language": @"en",
+                                                          @"currency": @"EUR",
+                                                          @"lastNavigationMode": @"present",
+                                                          @"dimensions": [self windowDimensions],
+                                                          @"checkin": [self selectedStartDate],
+                                                          @"checkout": [self selectedEndDate],
+                                                          @"version": @"3.7.13-9d55ad66",
+                                                          @"cityName": [self selectedCity].cityName,
+                                                          @"cityId": [self selectedCity].cityId,
+                                                          @"roomsConfiguration": @[
+                                                              @{
+                                                                @"adultsCount": @1,
+                                                                @"children": @[
+                                                                    @{
+                                                                      @"age": @2
+                                                                    }
+                                                                ]
+                                                              }
+                                                          ]
+                                                        }];
   
   [self setActiveViewController:vc];
   [[self navigationController] presentViewController:vc animated:YES completion:nil];
