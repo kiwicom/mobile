@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context="com.kiwi.mobile.rnandroidplayground.MainActivity">
 
     <Button
         android:id="@+id/button_hotels"

@@ -15,21 +15,6 @@ project.ext.react = [
 apply from: "./react-library.gradle"
 apply from: "./codepush-library.gradle"
 
-def getPassword(String currentUser, String keyChain) {
-    def stdout = new ByteArrayOutputStream()
-    def stderr = new ByteArrayOutputStream()
-    exec {
-        commandLine 'security', '-q', 'find-generic-password', '-a', currentUser, '-s', keyChain, '-w'
-        standardOutput = stdout
-        errorOutput = stderr
-        ignoreExitValue true
-    }
-    //noinspection GroovyAssignabilityCheck
-    stdout.toString().trim()
-}
-
-def stageCodePushKey = getPassword("rnkiwimobile-codepush", "staging")
-
 android {
     defaultConfig {
         minSdkVersion minSdkVersionVar
@@ -53,21 +38,11 @@ android {
     }
 
     buildTypes {
-        debug {
-            // Note: CodePush updates should not be tested in Debug mode as they are overriden by the RN packager.
-            // However, because CodePush checks for updates in all modes, we must supply a key.
-            buildConfigField "String", "CODEPUSH_KEY", '""'
-        }
-
         stagingRelease {
-            buildConfigField "String", "CODEPUSH_KEY", "\"${stageCodePushKey}\""
-            // Note: It is a good idea to provide matchingFallbacks for the new buildType you create to prevent build issues
-            // Add the following line if not already there
             matchingFallbacks = ['release']
         }
 
         release {
-            buildConfigField "String", "CODEPUSH_KEY", '""'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -87,7 +62,6 @@ dependencies {
     api("com.google.android.gms:play-services-maps:$playServicesVersion")
 
     api "com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT"
-
 
     implementation "com.trinerdis.skypicker:infinario:$infinarioVersion-SNAPSHOT"
     compileOnly "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"

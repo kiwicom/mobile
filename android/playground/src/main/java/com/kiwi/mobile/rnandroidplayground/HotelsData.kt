@@ -1,4 +1,4 @@
-package com.kiwi.rnandroidplayground
+package com.kiwi.mobile.rnandroidplayground
 
 import android.util.Log
 import com.kiwi.rnkiwimobile.hotels.RNHotelsCoordinates

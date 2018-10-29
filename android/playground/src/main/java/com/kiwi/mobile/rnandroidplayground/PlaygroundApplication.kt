@@ -1,4 +1,4 @@
-package com.kiwi.rnandroidplayground
+package com.kiwi.mobile.rnandroidplayground
 
 import android.app.Application
 import com.facebook.react.ReactNativeHost
@@ -14,7 +14,8 @@ class PlaygroundApplication : Application() {
     reactNativeHost = RNKiwiHost(
         this,
         RNHotelsModule.jsEntryPoint,
-        RNHotelsModule.getPackages(hotelModulesInjection))
+        RNHotelsModule.getPackages(hotelModulesInjection),
+        BuildConfig.CODEPUSH_KEY)
     // Init the bridge and everything in advance
     reactNativeHost.reactInstanceManager.createReactContextInBackground()
   }

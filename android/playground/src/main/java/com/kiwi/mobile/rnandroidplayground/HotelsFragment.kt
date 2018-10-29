@@ -1,4 +1,4 @@
-package com.kiwi.rnandroidplayground
+package com.kiwi.mobile.rnandroidplayground
 
 import com.facebook.react.ReactNativeHost
 import com.kiwi.rnkiwimobile.hotels.RNHotelsFragment

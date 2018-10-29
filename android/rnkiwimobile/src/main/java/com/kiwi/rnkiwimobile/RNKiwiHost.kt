@@ -9,13 +9,15 @@ import com.facebook.react.shell.MainReactPackage
 import com.microsoft.codepush.react.CodePush
 import com.trinerdis.skypicker.nkiwimobile.BuildConfig
 
-class RNKiwiHost(private val hostApplication: Application, private val jsEntryPoint: String, private val customPackages: MutableList<ReactPackage>) : ReactNativeHost(hostApplication) {
+class RNKiwiHost(private val hostApplication: Application, private val jsEntryPoint: String,
+                 private val customPackages: MutableList<ReactPackage>,
+                 private val codePushKey: String) : ReactNativeHost(hostApplication) {
 
   override fun getPackages(): MutableList<ReactPackage> {
     val packages = mutableListOf(
         MainReactPackage(),
         RNKiwiBackButtonPackage(),
-        CodePush(BuildConfig.CODEPUSH_KEY, hostApplication, BuildConfig.DEBUG)
+        CodePush(codePushKey, hostApplication, BuildConfig.DEBUG)
     )
 
     packages.addAll(customPackages)
