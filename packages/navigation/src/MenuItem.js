@@ -8,7 +8,6 @@ import {
   Text,
   Touchable,
   AdaptableLayout,
-  Icon,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -79,11 +78,7 @@ function MenuItem(props: Props) {
             renderOnNarrow={Platform.select({
               ios: (
                 <View style={styleSheet.rightArrow}>
-                  <Icon
-                    name="chevron-right"
-                    size={26}
-                    color={defaultTokens.paletteProductNormal}
-                  />
+                  <TextIcon code="&#xe01F;" style={styles.icon} />
                 </View>
               ),
               android: null,
@@ -98,6 +93,13 @@ function MenuItem(props: Props) {
 AdaptableMenuItem.defaultProps = {
   isActive: false,
 };
+
+const styles = StyleSheet.create({
+  icon: {
+    color: defaultTokens.paletteProductNormal,
+    fontSize: 26,
+  },
+});
 
 export default function AdaptableMenuItem(props: Props) {
   // Menu item can be activated but only on tablets (wide devices). Otherwise

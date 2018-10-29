@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Icon } from '@kiwicom/mobile-shared';
+import { TextIcon } from '@kiwicom/mobile-shared';
 
 import FilterButton from '../FilterButton';
 import type {
@@ -69,7 +69,7 @@ export default class OrderFilter extends React.Component<Props, State> {
         title={this.getTitle()}
         isActive={this.props.isActive}
         onPress={this.filterButtonClicked}
-        icon={<Icon name="format-line-spacing" size={18} />}
+        icon={<TextIcon code="&#xe171;" />}
       />
       <OrderPopup
         isVisible={this.state.isPopupOpen}

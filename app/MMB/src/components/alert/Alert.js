@@ -1,7 +1,11 @@
 // @flow strict
 
 import * as React from 'react';
-import { StyleSheet, Icon, type StylePropType } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  TextIcon,
+  type StylePropType,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -14,18 +18,15 @@ type Props = {|
   +titleStyle?: StylePropType,
 |};
 
-const ICON_SIZE = 17;
-
 export default function Alert(props: Props) {
   switch (props.type) {
     case 'danger':
       return (
         <RenderAlert
           icon={
-            <Icon
-              name="warning"
-              size={ICON_SIZE}
-              color={defaultTokens.colorAlertIconCritical}
+            <TextIcon
+              code="&#xe07F;"
+              style={[styles.icon, styles.iconCritical]}
             />
           }
           title={props.title}
@@ -39,10 +40,9 @@ export default function Alert(props: Props) {
       return (
         <RenderAlert
           icon={
-            <Icon
-              name="warning"
-              size={ICON_SIZE}
-              color={defaultTokens.colorAlertIconWarning}
+            <TextIcon
+              code="&#xe07F;"
+              style={[styles.icon, styles.iconWarning]}
             />
           }
           title={props.title}
@@ -55,14 +55,7 @@ export default function Alert(props: Props) {
     case 'success':
       return (
         <RenderAlert
-          icon={
-            <Icon
-              size={ICON_SIZE}
-              name="error-outline"
-              color={defaultTokens.colorAlertIconSuccess}
-              style={styles.successIcon}
-            />
-          }
+          icon={<TextIcon code="U" style={[styles.icon, styles.successIcon]} />}
           title={props.title}
           titleStyle={[styles.titleSuccess, props.titleStyle]}
           containerStyle={styles.containerSuccess}
@@ -80,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.backgroundAlertCritical,
   },
   successIcon: {
-    transform: [{ rotate: '180deg' }],
+    color: defaultTokens.colorAlertIconSuccess,
   },
   containerSuccess: {
     backgroundColor: defaultTokens.backgroundAlertSuccess,
@@ -96,5 +89,14 @@ const styles = StyleSheet.create({
   },
   titleDanger: {
     color: defaultTokens.colorTextAlertCritical,
+  },
+  icon: {
+    fontSize: 17,
+  },
+  iconWarning: {
+    color: defaultTokens.colorAlertIconWarning,
+  },
+  iconCritical: {
+    color: defaultTokens.colorAlertIconCritical,
   },
 });

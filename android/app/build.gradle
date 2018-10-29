@@ -160,7 +160,6 @@ dependencies {
     implementation project(':react-native-pdf')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-tooltips')
-    implementation project(':react-native-vector-icons')
     implementation project(':react-native-maps')
     implementation project(':react-native-native-modules')
     implementation fileTree(dir: "libs", include: ["*.jar"])

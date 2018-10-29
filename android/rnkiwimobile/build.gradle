@@ -46,7 +46,6 @@ dependencies {
 
     implementation "com.facebook.react:react-native:$reactNativeVersion"
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
-    api "com.trinerdis.skypicker:react-native-vector-icons:$reactNativeVectorIcons-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-zip-archive:$reactNativeZipArchive-SNAPSHOT"
 
