@@ -22,7 +22,6 @@ object HotelsData {
     return RNHotelsInitialProperties(
         "en",
         "EUR",
-        "",
         simpleDateFormat.format(checkIn.time),
         simpleDateFormat.format(checkOut.time),
         "Barcelona",
