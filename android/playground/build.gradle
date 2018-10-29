@@ -22,6 +22,7 @@ def getPassword(String currentUser, String keyChain) {
 }
 
 def stageCodePushKey = getPassword("rnkiwimobile-codepush", "staging")
+def productionCodePushKey = getPassword("rnkiwimobile-codepush", "production")
 
 android {
     compileSdkVersion compileSdkVersionVar
@@ -65,13 +66,15 @@ android {
         }
         stagingRelease {
             buildConfigField "String", "CODEPUSH_KEY", "\"${stageCodePushKey}\""
+            buildConfigField "String", "CODEPUSH_VERSION", "\"1.0.0\""
             // Note: It is a good idea to provide matchingFallbacks for the new buildType you create to prevent build issues
             // Add the following line if not already there
             matchingFallbacks = ['release']
             signingConfig signingConfigs.stagingRelease
         }
         release {
-            buildConfigField "String", "CODEPUSH_KEY", '""'
+            buildConfigField "String", "CODEPUSH_KEY", "\"${productionCodePushKey}\""
+            buildConfigField "String", "CODEPUSH_VERSION", "\"1.0.0\""
             minifyEnabled false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
