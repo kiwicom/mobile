@@ -25,79 +25,60 @@
   return self;
 }
 
--(UIToolbar *)customizeToolbar:(NSString *)dateType {
-  UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-  [toolBar setTintColor:[UIColor grayColor]];
-  
-  UIBarButtonItem *startDoneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                   style:UIBarButtonItemStyleDone
-                                                                  target:self
-                                                                  action:@selector(selectedStartDate)];
-  
-  UIBarButtonItem *endDoneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                 style:UIBarButtonItemStyleDone
-                                                                target:self
-                                                                action:@selector(selectedEndDate)];
-  
-  UIBarButtonItem *pickerDoneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                    style:UIBarButtonItemStyleDone
-                                                                   target:self
-                                                                   action:@selector(selectedCity)];
-  
-  if ([dateType isEqual: @"end"]) {
-    [toolBar setItems:[NSArray arrayWithObjects:endDoneBtn, nil]];
-    return toolBar;
-  } else if ([dateType isEqual: @"start"]) {
-    [toolBar setItems:[NSArray arrayWithObjects:startDoneBtn, nil]];
-    return toolBar;
-  } else {
-    [toolBar setItems:[NSArray arrayWithObjects:pickerDoneBtn, nil]];
-    return toolBar;
-  }
-}
-
-- (void)viewDidLoad{
+- (void)viewDidLoad {
   startDatePicker=[[UIDatePicker alloc] init];
-  startDatePicker.datePickerMode = UIDatePickerModeDate;
+  [startDatePicker setDatePickerMode:UIDatePickerModeDate];
   [self.startDateSelectionTextField setInputView:startDatePicker];
   
   endDatePicker=[[UIDatePicker alloc] init];
-  endDatePicker.datePickerMode = UIDatePickerModeDate;
+  [endDatePicker setDatePickerMode:UIDatePickerModeDate];
+  [endDatePicker setDate:[[NSDate date] dateByAddingTimeInterval:86400]];
   [self.endDateSelectionTextField setInputView:endDatePicker];
+ 
+  cityPicker = [[UIPickerView alloc] init];
+  [cityPicker setDataSource:self];
+  [cityPicker setDelegate:self];
+  [cityPicker setShowsSelectionIndicator:YES];
+  [self.pickerTextField setInputView:cityPicker];
   
   City *Prague = [[City alloc] initWithName:@"Prague" andId:@"aG90ZWxDaXR5Oi01NTMxNzM=“"];
   City *Brno = [[City alloc] initWithName:@"Brno" andId:@"aG90ZWxDaXR5Oi01NDIxODQ="];
   City *Barcelona = [[City alloc] initWithName:@"Barcelona" andId:@"aG90ZWxDaXR5Oi0zNzI0OTA="];
-  
   dataArray=[[NSArray alloc] initWithObjects:Prague,Brno,Barcelona, nil];
-  cityPicker = [[UIPickerView alloc] init];
-  cityPicker.dataSource = self;
-  cityPicker.delegate = self;
-  [cityPicker setShowsSelectionIndicator:YES];
-  [self.pickerTextField setInputView:cityPicker];
   
-  [self.startDateSelectionTextField setInputAccessoryView:[self customizeToolbar:@"start"]];
-  [self.endDateSelectionTextField setInputAccessoryView:[self customizeToolbar:@"end"]];
-  [self.pickerTextField setInputAccessoryView:[self customizeToolbar:@"city"]];
-  
+  [self.startDateSelectionTextField setInputAccessoryView:[self customizeToolbar:@selector(selectedStartDate)]];
+  [self.endDateSelectionTextField setInputAccessoryView:[self customizeToolbar:@selector(selectedEndDate)]];
+  [self.pickerTextField setInputAccessoryView:[self customizeToolbar:@selector(selectedCity)]];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
+- (void)viewDidAppear:(BOOL)animated {
   self.navigationController.navigationBar.hidden = YES;
   self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }
 
--(NSString *)selectedStartDate
-{
-  NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
-  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+- (UIToolbar *)customizeToolbar:(SEL)selector {
+  UIToolbar *toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+  UIBarButtonItem *doneButtton =  [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:selector];
   
-  [self.startDateSelectionTextField resignFirstResponder];
-  return self.startDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:startDatePicker.date]];
+  [toolBar setTintColor:[UIColor grayColor]];
+  [toolBar setItems:[NSArray arrayWithObjects:doneButtton, nil]];
+  
+  return toolBar;
 }
 
--(NSString *)selectedEndDate
-{
+- (NSString *)selectedStartDate {
+  NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+  [dateFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:86400]];
+  
+  [self.startDateSelectionTextField resignFirstResponder];
+  return self.startDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter                                     stringFromDate:startDatePicker.date]];
+}
+
+- (NSString *)selectedEndDate {
   NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"yyyy-MM-dd"];
   
@@ -160,28 +141,24 @@
 }
 
 # pragma mark - UIPickerView DataSource Method
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
   return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
   return [dataArray count];
 }
 
 # pragma mark - UIPickerView Delegate Method
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
   return [dataArray objectAtIndex:row].cityName;
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
   self.pickerTextField.text=[dataArray objectAtIndex:row].cityName;
 }
-
 
 # pragma mark - RNKiwiViewControllerFlowDelegate
 
