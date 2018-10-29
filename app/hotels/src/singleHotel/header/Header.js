@@ -54,7 +54,11 @@ export class Header extends React.Component<Props> {
     const photosCount = idx(hotel, _ => _.photos.edges.length) || 0;
 
     return (
-      <Touchable onPress={this.openGallery} delayPressIn={40}>
+      <Touchable
+        onPress={this.openGallery}
+        delayPressIn={40}
+        testID="hotel-openGallery"
+      >
         <View>
           <NetworkImage style={styles.image} source={{ uri: mainPhotoUrl }} />
           <View style={[styles.nameAndRatingContainer]}>
