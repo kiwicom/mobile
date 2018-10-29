@@ -145,6 +145,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
             renderItem={this.renderItem}
             numColumns={tilesInRow}
             onLayout={this.calculateTileWidth}
+            testID="galleryGrid"
           />
           <Modal
             isVisible={this.state.stripeVisible}
@@ -167,6 +168,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
     return (
       <GeneralError
         errorMessage={<Translation id="hotels.gallery_grid.no_images" />}
+        testID="galleryGrid"
       />
     );
   };
