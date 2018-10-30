@@ -107,12 +107,15 @@ type Props = {|
   +testID?: string,
 |};
 
-const AllHotelsSearchRowWithContext = (props: Props) => (
-  <SingleHotelContext.Consumer>
-    {context => <AllHotelsSearchRow {...props} {...context} />}
-  </SingleHotelContext.Consumer>
-);
+class AllHotelsSearchRowWithContext extends React.Component<Props> {
+  renderInner = context => <AllHotelsSearchRow {...this.props} {...context} />;
 
+  render = () => (
+    <SingleHotelContext.Consumer>
+      {this.renderInner}
+    </SingleHotelContext.Consumer>
+  );
+}
 export default createFragmentContainer(
   withNavigation(AllHotelsSearchRowWithContext),
   graphql`

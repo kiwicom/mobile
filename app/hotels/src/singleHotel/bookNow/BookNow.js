@@ -13,8 +13,12 @@ import { DeviceInfo, Translation } from '@kiwicom/mobile-localization';
 
 import convertRooms from './convertRooms';
 import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
-import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
-import HotelsContext from '../../HotelsContext';
+import SingleHotelContext, {
+  type State as SingleHotelState,
+} from '../../navigation/singleHotel/SingleHotelContext';
+import HotelsContext, {
+  type State as HotelsContextState,
+} from '../../HotelsContext';
 
 type PropsWithContext = {
   ...Props,
@@ -56,17 +60,27 @@ type Props = {|
   +navigation: NavigationType,
 |};
 
-export const BookNowWithContext = (props: Props) => {
-  return (
-    <HotelsContext.Consumer>
-      {({ currency }) => (
-        <SingleHotelContext.Consumer>
-          {state => <BookNow {...props} {...state} currency={currency} />}
-        </SingleHotelContext.Consumer>
-      )}
-    </HotelsContext.Consumer>
+export class BookNowWithContext extends React.Component<Props> {
+  renderHotelsContext = ({ currency }: HotelsContextState) => (
+    <SingleHotelContext.Consumer>
+      {this.renderSingleHotelContext(currency)}
+    </SingleHotelContext.Consumer>
   );
-};
+
+  renderSingleHotelContext = (
+    currency: $PropertyType<HotelsContextState, 'currency'>,
+  ) => (state: SingleHotelState) => (
+    <BookNow {...this.props} {...state} currency={currency} />
+  );
+
+  render() {
+    return (
+      <HotelsContext.Consumer>
+        {this.renderHotelsContext}
+      </HotelsContext.Consumer>
+    );
+  }
+}
 
 export default createFragmentContainer(
   withNavigation(BookNowWithContext),

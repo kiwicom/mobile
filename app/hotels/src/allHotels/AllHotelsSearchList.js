@@ -53,14 +53,17 @@ type Props = {|
   +data: AllHotelsSearchListProps,
 |};
 
-const AllHotelsSearchListWithContext = (props: Props) => (
-  <SingleHotelContext.Consumer>
-    {({ setHotelId }) => (
-      <AllHotelsSearchList {...props} setHotelId={setHotelId} />
-    )}
-  </SingleHotelContext.Consumer>
-);
+class AllHotelsSearchListWithContext extends React.Component<Props> {
+  renderInner = ({ setHotelId }) => (
+    <AllHotelsSearchList {...this.props} setHotelId={setHotelId} />
+  );
 
+  render = () => (
+    <SingleHotelContext.Consumer>
+      {this.renderInner}
+    </SingleHotelContext.Consumer>
+  );
+}
 export default createFragmentContainer(
   AllHotelsSearchListWithContext,
   graphql`
