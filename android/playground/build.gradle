@@ -21,6 +21,9 @@ def getPassword(String currentUser, String keyChain) {
     stdout.toString().trim()
 }
 
+def mainPackageJson = new File("${rootDir}/../package.json")
+def codePushVersion = new JsonSlurper().parseText(mainPackageJson.text)['rnkiwimobile']['code-push-target-binary-version']
+
 def stageCodePushKey = getPassword("rnkiwimobile-codepush", "staging")
 def productionCodePushKey = getPassword("rnkiwimobile-codepush", "production")
 
@@ -45,7 +48,7 @@ android {
     signingConfigs {
         stagingRelease {
             // Just a fake keystore / fake password
-            storeFile file("playground-key.keystore")
+            storeFile file("playground-key-staging.keystore")
             storePassword 'kiwireactnative'
             keyAlias 'my-key-alias'
             keyPassword 'kiwireactnative'
@@ -66,15 +69,13 @@ android {
         }
         stagingRelease {
             buildConfigField "String", "CODEPUSH_KEY", "\"${stageCodePushKey}\""
-            buildConfigField "String", "CODEPUSH_VERSION", "\"1.0.0\""
-            // Note: It is a good idea to provide matchingFallbacks for the new buildType you create to prevent build issues
-            // Add the following line if not already there
-            matchingFallbacks = ['release']
+            buildConfigField "String", "CODEPUSH_VERSION", "\"${codePushVersion}\""
             signingConfig signingConfigs.stagingRelease
+            matchingFallbacks = ['release']
         }
         release {
             buildConfigField "String", "CODEPUSH_KEY", "\"${productionCodePushKey}\""
-            buildConfigField "String", "CODEPUSH_VERSION", "\"1.0.0\""
+            buildConfigField "String", "CODEPUSH_VERSION", "\"${codePushVersion}\""
             minifyEnabled false
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -98,7 +99,8 @@ dependencies {
      *
      * In release mode, it will use the rnkiwimobile from Trinerdis (without packager running)
      */
-    implementation project(':rnkiwimobile')
+    debugImplementation project(':rnkiwimobile')
+    // You can choose staging to use the Staging CodePush key
     stagingReleaseImplementation project(':rnkiwimobile')
     releaseImplementation "com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT"
 
