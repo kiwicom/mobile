@@ -17,10 +17,12 @@
   
   if (self) {
     /**
-     * In order to create bridge upfront, call this method before showing ViewController. Otherwise,
-     * it's created at the runtime lazily
+     * In order to create bridge upfront, call this method before showing ViewController.
+     * If you don't want to call codepush run initBridge.
+     * If you want to use codepush, but dont want to init bridge upfront call initCodePush.
      */
-    [[RNKiwiSharedBridge sharedInstance] initBridge];
+    
+    [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:@""];
   }
   return self;
 }

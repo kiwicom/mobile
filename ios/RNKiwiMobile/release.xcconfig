@@ -1,4 +1,0 @@
-#include "release_key.xcconfig"
-//Create release_key.xcconfig within RNKiwiMobile if doesn't exist
-//and add codepush release key there. That file is added to .gitingore
-//to prevent pushing to git repository.
