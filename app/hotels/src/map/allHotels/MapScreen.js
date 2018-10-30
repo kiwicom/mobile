@@ -103,23 +103,25 @@ const styles = StyleSheet.create({
   underlay: { height: 132 },
 });
 
-const MapScreen = (props: Props) => (
-  <Dimensions.Consumer>
-    {({ width }) => (
-      <SingleHotelContext.Consumer>
-        {({ setHotelId }) => {
-          return (
-            <MapScreenWithContext
-              {...props}
-              setHotelId={setHotelId}
-              deviceWidth={width}
-            />
-          );
-        }}
-      </SingleHotelContext.Consumer>
-    )}
-  </Dimensions.Consumer>
-);
+class MapScreen extends React.Component<Props> {
+  renderDimension = ({ width }) => (
+    <SingleHotelContext.Consumer>
+      {this.renderSingleContext(width)}
+    </SingleHotelContext.Consumer>
+  );
+
+  renderSingleContext = width => ({ setHotelId }) => (
+    <MapScreenWithContext
+      {...this.props}
+      setHotelId={setHotelId}
+      deviceWidth={width}
+    />
+  );
+
+  render() {
+    return <Dimensions.Consumer>{this.renderDimension}</Dimensions.Consumer>;
+  }
+}
 
 export default createFragmentContainer(
   MapScreen,

@@ -47,7 +47,7 @@ type Props = {|
   +longitude: ?number,
 |};
 
-type State = {|
+export type State = {|
   +version: string,
   +cityName: string | null,
   +cityId: string | null,
@@ -118,19 +118,20 @@ export default { Consumer, Provider };
 
 export function withHotelsContext(select: (state: State) => Object) {
   return function(Component: React.ElementType) {
-    const WithHotelsContext = (props: Object) => {
-      const mapStateToProps = state => {
+    class WithHotelsContext extends React.Component<Object> {
+      // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+      static navigationOptions = Component.navigationOptions;
+
+      mapStateToProps = (state: State) => {
         const stateProps = select(state);
-        return <Component {...props} {...stateProps} />;
+        return <Component {...this.props} {...stateProps} />;
       };
 
-      return <Consumer>{mapStateToProps}</Consumer>;
-    };
-
-    // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-    if (Component.navigationOptions) {
-      WithHotelsContext.navigationOptions = Component.navigationOptions;
+      render() {
+        return <Consumer>{this.mapStateToProps}</Consumer>;
+      }
     }
+
     return WithHotelsContext;
   };
 }

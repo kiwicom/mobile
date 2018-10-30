@@ -37,7 +37,7 @@ type Props = {|
   +currency: string,
 |};
 
-type State = {|
+export type State = {|
   ...BookingDetail,
   +isMissingDocumentId: boolean,
   +currency: string,

@@ -76,16 +76,18 @@ type Props = {|
   +relay: RelayPaginationProp,
 |};
 
-const Stay22PaginationContainerWithContext = (props: Props) => (
-  <HotelsContext.Consumer>
-    {({ actions }) => (
-      <Stay22PaginationContainer
-        {...props}
-        setCurrentSearchStats={actions.setCurrentSearchStats}
-      />
-    )}
-  </HotelsContext.Consumer>
-);
+class Stay22PaginationContainerWithContext extends React.Component<Props> {
+  renderInner = ({ actions }) => (
+    <Stay22PaginationContainer
+      {...this.props}
+      setCurrentSearchStats={actions.setCurrentSearchStats}
+    />
+  );
+
+  render() {
+    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
+  }
+}
 
 export default createPaginationContainer(
   Stay22PaginationContainerWithContext,
