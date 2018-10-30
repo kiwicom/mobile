@@ -14,6 +14,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
+  NSString *stagingCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"STAGING_KEY"];
   
   if (self) {
     /**
@@ -21,8 +22,7 @@
      * If you don't want to call codepush run initBridge.
      * If you want to use codepush, but dont want to init bridge upfront call initCodePush.
      */
-    
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:@""];
+    [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:stagingCodePushKey];
   }
   return self;
 }

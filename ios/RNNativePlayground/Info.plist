@@ -75,5 +75,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>STAGING_KEY</key>
+	<string>$(STAGING_KEY)</string>
+	<key>RELEASE_KEY</key>
+	<string>$(RELEASE_KEY)</string>
 </dict>
 </plist>
