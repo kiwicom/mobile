@@ -9,7 +9,7 @@ import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DescriptionTitle from './DescriptionTitle';
-import Facilities from './Facilities';
+import Amenities from './Amenities';
 import type { Description_hotel } from './__generated__/Description_hotel.graphql';
 
 type ContainerProps = {|
@@ -41,7 +41,7 @@ export const Description = (props: Props) => (
       <DescriptionTitle
         title={<Translation id="single_hotel.description.equipment" />}
       />
-      <Facilities facilities={idx(props, _ => _.hotel.facilities)} />
+      <Amenities data={idx(props, _ => _.hotel)} />
     </View>
   </View>
 );
@@ -67,11 +67,9 @@ const styles = StyleSheet.create({
 export default (createFragmentContainer(
   Description,
   graphql`
-    fragment Description_hotel on Hotel {
+    fragment Description_hotel on HotelInterface {
       summary
-      facilities {
-        ...Facilities_facilities
-      }
+      ...Amenities
     }
   `,
 ): React.ComponentType<ContainerProps>);
