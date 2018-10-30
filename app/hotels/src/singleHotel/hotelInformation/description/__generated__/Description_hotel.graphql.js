@@ -8,14 +8,12 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-type Facilities_facilities$ref = any;
+type Amenities$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Description_hotel$ref: FragmentReference;
 export type Description_hotel = {|
   +summary: ?string,
-  +facilities: ?{|
-    +$fragmentRefs: Facilities_facilities$ref
-  |},
+  +$fragmentRefs: Amenities$ref,
   +$refType: Description_hotel$ref,
 |};
 */
@@ -24,7 +22,7 @@ export type Description_hotel = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "Description_hotel",
-  "type": "Hotel",
+  "type": "HotelInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -36,23 +34,12 @@ const node/*: ConcreteFragment*/ = {
       "storageKey": null
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "facilities",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "HotelFacilityConnection",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "FragmentSpread",
-          "name": "Facilities_facilities",
-          "args": null
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "Amenities",
+      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a8dc37c0c1537f8411375bcee3e3aac9';
+(node/*: any*/).hash = 'a4a2a7f7fb192b8fbaa51890d01db222';
 module.exports = node;
