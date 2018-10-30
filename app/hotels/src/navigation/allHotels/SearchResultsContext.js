@@ -47,19 +47,20 @@ export default { Consumer, Provider };
 
 export function withSearchResultsContext(select: (state: State) => Object) {
   return function(Component: React.ElementType) {
-    const WithSearchResultsContext = (props: Object) => {
-      const mapStateToProps = (state: Object) => {
+    class WithSearchResultsContext extends React.Component<Props> {
+      // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+      static navigationOptions = Component.navigationOptions;
+
+      mapStateToProps = (state: Object) => {
         const stateProps = select(state);
-        return <Component {...props} {...stateProps} />;
+        return <Component {...this.props} {...stateProps} />;
       };
 
-      return <Consumer>{mapStateToProps}</Consumer>;
-    };
-
-    // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-    if (Component.navigationOptions) {
-      WithSearchResultsContext.navigationOptions = Component.navigationOptions;
+      render() {
+        return <Consumer>{this.mapStateToProps}</Consumer>;
+      }
     }
+
     return WithSearchResultsContext;
   };
 }

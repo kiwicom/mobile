@@ -29,7 +29,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
     return <HotelsPaginationContainer data={propsFromRenderer} />;
   };
 
-  render = () => {
+  renderContext = ({ orderBy, filterParams }) => {
     const {
       cityId,
       checkin,
@@ -47,45 +47,49 @@ class NewAllHotelsSearch extends React.Component<Props> {
       );
     }
     return (
-      <HotelsFilterContext.Consumer>
-        {({ orderBy, filterParams }) => (
-          <PublicApiRenderer
-            query={graphql`
-              query NewAllHotelsSearchQuery(
-                $search: HotelsSearchInput!
-                $filter: HotelsFilterInput!
-                $options: AvailableHotelOptionsInput
-                $first: Int
-                $after: String
-              ) {
-                ...HotelsPaginationContainer
-              }
-            `}
-            variables={{
-              search: {
-                cityId,
-                checkin: DateFormatter(checkin).formatForMachine(),
-                checkout: DateFormatter(checkout).formatForMachine(),
-                roomsConfiguration,
-              },
-              filter: {
-                ...filterParams,
-                hotelFacilities: sanitizeHotelFacilities(
-                  filterParams.hotelFacilities,
-                ),
-              },
-              first: 50,
-              options: {
-                currency,
-                orderBy,
-              },
-            }}
-            render={this.renderAllHotelsSearchList}
-          />
-        )}
-      </HotelsFilterContext.Consumer>
+      <PublicApiRenderer
+        query={graphql`
+          query NewAllHotelsSearchQuery(
+            $search: HotelsSearchInput!
+            $filter: HotelsFilterInput!
+            $options: AvailableHotelOptionsInput
+            $first: Int
+            $after: String
+          ) {
+            ...HotelsPaginationContainer
+          }
+        `}
+        variables={{
+          search: {
+            cityId,
+            checkin: DateFormatter(checkin).formatForMachine(),
+            checkout: DateFormatter(checkout).formatForMachine(),
+            roomsConfiguration,
+          },
+          filter: {
+            ...filterParams,
+            hotelFacilities: sanitizeHotelFacilities(
+              filterParams.hotelFacilities,
+            ),
+          },
+          first: 50,
+          options: {
+            currency,
+            orderBy,
+          },
+        }}
+        render={this.renderAllHotelsSearchList}
+      />
     );
   };
+
+  render() {
+    return (
+      <HotelsFilterContext.Consumer>
+        {this.renderContext}
+      </HotelsFilterContext.Consumer>
+    );
+  }
 }
 
 export default withHotelsContext(state => ({

@@ -24,7 +24,7 @@ type Props = {|
   +roomsConfiguration: RoomConfigurationType,
 |};
 
-type State = {|
+export type State = {|
   hotelId: string,
   +checkin: Date,
   +checkout: Date,

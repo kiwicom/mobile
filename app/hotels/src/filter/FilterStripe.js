@@ -5,7 +5,9 @@ import { ScrollView, View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import HotelsContext from '../HotelsContext';
+import HotelsContext, {
+  type State as HotelsContextState,
+} from '../HotelsContext';
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
@@ -113,27 +115,22 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function FilterStripeWithContext() {
-  return (
-    <HotelsContext.Consumer>
-      {({ currency }) => (
-        <HotelsFilterContext.Consumer>
-          {({
-            activeFilters,
-            filterParams,
-            orderBy,
-            actions: { setFilter },
-          }) => (
-            <FilterStripe
-              currency={currency}
-              onChange={setFilter}
-              filter={filterParams}
-              activeFilters={activeFilters}
-              orderBy={orderBy}
-            />
-          )}
-        </HotelsFilterContext.Consumer>
+export default class FilterStripeWithContext extends React.Component<{||}> {
+  renderInner = ({ currency }: HotelsContextState) => (
+    <HotelsFilterContext.Consumer>
+      {({ activeFilters, filterParams, orderBy, actions: { setFilter } }) => (
+        <FilterStripe
+          currency={currency}
+          onChange={setFilter}
+          filter={filterParams}
+          activeFilters={activeFilters}
+          orderBy={orderBy}
+        />
       )}
-    </HotelsContext.Consumer>
+    </HotelsFilterContext.Consumer>
   );
+
+  render() {
+    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
+  }
 }

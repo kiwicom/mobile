@@ -6,8 +6,13 @@ import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import HotelDetailScreen from './HotelDetailScreen';
 import type { SingleHotelContainerQueryResponse } from './__generated__/SingleHotelContainerQuery.graphql';
 import { sanitizeDate } from '../GraphQLSanitizers';
-import HotelsContext, { type RoomConfigurationType } from '../HotelsContext';
-import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
+import HotelsContext, {
+  type RoomConfigurationType,
+  type State as HotelsState,
+} from '../HotelsContext';
+import SingleHotelContext, {
+  type State as SingleHotelState,
+} from '../navigation/singleHotel/SingleHotelContext';
 
 type PropsWithContext = {|
   ...Props,
@@ -73,23 +78,36 @@ type Props = {|
   +goBack: () => void,
 |};
 
-export default function SingleHotelContainerWithContext(props: Props) {
-  return (
+export default class SingleHotelContainerWithContext extends React.Component<
+  Props,
+> {
+  renderSingleHotelsContext = ({ currency }: HotelsState) => (
     <SingleHotelContext.Consumer>
-      {({ checkin, checkout, roomsConfiguration, hotelId }) => (
-        <HotelsContext.Consumer>
-          {({ currency }) => (
-            <SingleHotelContainer
-              currency={currency}
-              hotelId={hotelId}
-              checkin={checkin}
-              checkout={checkout}
-              roomsConfiguration={roomsConfiguration}
-              {...props}
-            />
-          )}
-        </HotelsContext.Consumer>
-      )}
+      {this.renderHotelsContext(currency)}
     </SingleHotelContext.Consumer>
   );
+
+  renderHotelsContext = (currency: $PropertyType<HotelsState, 'currency'>) => ({
+    checkin,
+    checkout,
+    roomsConfiguration,
+    hotelId,
+  }: SingleHotelState) => (
+    <SingleHotelContainer
+      currency={currency}
+      hotelId={hotelId}
+      checkin={checkin}
+      checkout={checkout}
+      roomsConfiguration={roomsConfiguration}
+      {...this.props}
+    />
+  );
+
+  render() {
+    return (
+      <HotelsContext.Consumer>
+        {this.renderSingleHotelsContext}
+      </HotelsContext.Consumer>
+    );
+  }
 }

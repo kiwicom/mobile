@@ -99,26 +99,35 @@ type Props = {|
   +navigation: NavigationType,
 |};
 
-const LocationWithContext = (props: Props) => {
-  return (
-    <HotelsContext.Consumer>
-      {({ currency }) => (
-        <SingleHotelContext.Consumer>
-          {({ hotelId, checkin, checkout, roomsConfiguration }) => (
-            <Location
-              {...props}
-              hotelId={hotelId}
-              checkin={checkin}
-              checkout={checkout}
-              currency={currency}
-              roomsConfiguration={roomsConfiguration}
-            />
-          )}
-        </SingleHotelContext.Consumer>
-      )}
-    </HotelsContext.Consumer>
+class LocationWithContext extends React.Component<Props> {
+  renderHotelContext = ({ currency }) => (
+    <SingleHotelContext.Consumer>
+      {this.renderSingleHotelContext(currency)}
+    </SingleHotelContext.Consumer>
   );
-};
+
+  renderSingleHotelContext = currency => ({
+    hotelId,
+    checkin,
+    checkout,
+    roomsConfiguration,
+  }) => (
+    <Location
+      {...this.props}
+      hotelId={hotelId}
+      checkin={checkin}
+      checkout={checkout}
+      currency={currency}
+      roomsConfiguration={roomsConfiguration}
+    />
+  );
+
+  render() {
+    return (
+      <HotelsContext.Consumer>{this.renderHotelContext}</HotelsContext.Consumer>
+    );
+  }
+}
 
 export default (createFragmentContainer(
   withNavigation(LocationWithContext),

@@ -85,23 +85,25 @@ type Props = {|
   +data: ?HotelSwipeItemData,
 |};
 
-const HotelSwipeItem = (props: Props) => (
-  <Dimensions.Consumer>
-    {({ width }) => (
-      <SingleHotelContext.Consumer>
-        {context => {
-          return (
-            <HotelSwipeItemWithContext
-              {...props}
-              {...context}
-              deviceWidth={width}
-            />
-          );
-        }}
-      </SingleHotelContext.Consumer>
-    )}
-  </Dimensions.Consumer>
-);
+class HotelSwipeItem extends React.Component<Props> {
+  renderDimensions = ({ width }) => (
+    <SingleHotelContext.Consumer>
+      {this.renderSingleHotelContext(width)}
+    </SingleHotelContext.Consumer>
+  );
+
+  renderSingleHotelContext = (width: number) => context => (
+    <HotelSwipeItemWithContext
+      {...this.props}
+      {...context}
+      deviceWidth={width}
+    />
+  );
+
+  render() {
+    return <Dimensions.Consumer>{this.renderDimensions}</Dimensions.Consumer>;
+  }
+}
 
 export default createFragmentContainer(
   withNavigation(HotelSwipeItem),
