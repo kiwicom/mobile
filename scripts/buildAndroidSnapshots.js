@@ -71,10 +71,6 @@ const deployDependency = (packageName, url, version, extension = '') => {
 };
 
 const deployLibrary = (packageName, version) => {
-  console.log('Generating Android JS build...');
-  child_process.execSync('scripts/buildAndroidJavascript.sh', {
-    stdio: 'inherit',
-  });
   console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
     exec(
