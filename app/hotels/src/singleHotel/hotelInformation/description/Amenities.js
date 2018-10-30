@@ -10,25 +10,20 @@ import {
   Touchable,
 } from '@kiwicom/mobile-shared';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import idx from 'idx';
 
-import type { Facilities_facilities } from './__generated__/Facilities_facilities.graphql';
+import type { Amenities as AmenitiesType } from './__generated__/Amenities.graphql';
 
-type ContainerProps = {|
-  +facilities: any,
+type Props = {|
+  +data: ?AmenitiesType,
 |};
-
-type Props = {
-  ...ContainerProps,
-  +facilities: ?Facilities_facilities,
-};
 
 type State = {|
   collapsed: boolean,
 |};
 
-export class Facilities extends React.Component<Props, State> {
+export class Amenities extends React.Component<Props, State> {
   state = {
     collapsed: true,
   };
@@ -40,10 +35,9 @@ export class Facilities extends React.Component<Props, State> {
   };
 
   render() {
-    const { facilities } = this.props;
     const { collapsed } = this.state;
-    const edges = idx(facilities, _ => _.edges) || [];
-    const fullList = edges.map(edge => idx(edge, _ => _.node));
+    const fullList = idx(this.props.data, _ => _.amenities) || [];
+
     const shortlist = fullList.slice(0, 9);
     const listToRender = collapsed ? shortlist : fullList;
 
@@ -82,19 +76,17 @@ export class Facilities extends React.Component<Props, State> {
   }
 }
 
-export default (createFragmentContainer(
-  Facilities,
+export default createFragmentContainer(
+  Amenities,
   graphql`
-    fragment Facilities_facilities on HotelFacilityConnection {
-      edges {
-        node {
-          id
-          name
-        }
+    fragment Amenities on HotelInterface {
+      amenities {
+        id
+        name
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   facilities: {
