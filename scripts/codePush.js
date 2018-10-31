@@ -2,19 +2,16 @@
 
 /* eslint-disable no-console */
 
-const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
+
+const packageJson = require('../package');
 
 const exec = (command, options) =>
   child_process.execSync(command, {
     stdio: 'inherit',
     ...options,
   });
-
-const packageJson = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf-8'),
-);
 
 const targetBinaryVersion =
   packageJson['rnkiwimobile']['code-push-target-binary-version'];
