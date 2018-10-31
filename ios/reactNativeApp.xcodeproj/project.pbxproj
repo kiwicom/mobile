@@ -15,6 +15,7 @@
 		2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2107154520B5677200E6C96B /* RNKiwiGestureController.h */; };
 		215881F520C7FF140016707A /* RNKiwiMobile.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27E931B020AD96780053AE19 /* RNKiwiMobile.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		21B8D73221834B830079431F /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B8D73121834B830079431F /* City.m */; };
+		21C5EFBA2189DCFA00F3C098 /* orbit-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */; };
 		21EFD4CD21768D8C00B5F21B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */; };
@@ -91,7 +92,6 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = reactNativeApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = reactNativeApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reactNativeApp/main.m; sourceTree = "<group>"; };
-		210597752189C43200D7EC92 /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
 		210597772189CABD00D7EC92 /* keys_example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys_example.xcconfig; sourceTree = "<group>"; };
 		2107154420B5677200E6C96B /* RNKiwiGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNKiwiGestureController.m; sourceTree = "<group>"; };
 		2107154520B5677200E6C96B /* RNKiwiGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 		83DEB0A076A11B421C735EE9 /* Pods-RNPlayground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.debug.xcconfig"; sourceTree = "<group>"; };
 		A42E4EC96B6B81F2DFC8C869 /* libPods-RNPlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNPlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Book.otf"; path = "../assets/fonts/ios/CircularPro-Book.otf"; sourceTree = "<group>"; };
-		A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "orbit-icons.ttf"; path = "../assets/fonts/orbit-icons.ttf"; sourceTree = "<group>"; };
+		A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "orbit-icons.ttf"; path = "../assets/fonts/orbit-icons.ttf"; sourceTree = "<group>"; };
 		B4E7213E71A344C5AE638015 /* Pods-RNKiwiMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNKiwiMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNKiwiMobile/Pods-RNKiwiMobile.release.xcconfig"; sourceTree = "<group>"; };
 		B6490E2D178E410C908FF998 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/android/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
@@ -221,7 +221,6 @@
 				27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */,
 				27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */,
 				27E931B320AD96790053AE19 /* Info.plist */,
-				210597752189C43200D7EC92 /* keys.xcconfig */,
 			);
 			path = RNKiwiMobile;
 			sourceTree = "<group>";
@@ -458,6 +457,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21C5EFBA2189DCFA00F3C098 /* orbit-icons.ttf in Resources */,
 				21EFD4CD21768D8C00B5F21B /* Images.xcassets in Resources */,
 				68E80E25215E66CD00EB4717 /* CircularPro-Book.otf in Resources */,
 				27E931E120ADA0630053AE19 /* LaunchScreen.storyboard in Resources */,
@@ -496,7 +496,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/../scripts/bundleIOSJavascript.sh";
+			shellScript = $SRCROOT/../scripts/bundleIOSJavascript.sh;
 		};
 		686E005220B305D30013512F /* Remove extraneous assets */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -523,7 +523,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$SRCROOT/../scripts/removeExtraneousAssets.sh";
+			shellScript = $SRCROOT/../scripts/removeExtraneousAssets.sh;
 		};
 		865152EE6DB837951CC87114 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
