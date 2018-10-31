@@ -704,6 +704,7 @@
 		};
 		217466762174BF9600FF1F3A /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21C5EFC7218A060A00F3C098 /* keys_example.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1060,6 +1061,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21C5EFC7218A060A00F3C098 /* keys_example.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
