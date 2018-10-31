@@ -6,8 +6,8 @@
 
 + (RNKiwiSharedBridge*)sharedInstance;
 - (void)initBridge;
-- (void)initBridgeWithCodePush:(NSString *)codePushKey;
-- (void)initCodePush:(NSString *)codePushKey;
+- (void)initBridgeWithCodePush:(NSString *)codePushKey codePushVersion:(NSString *)codePushVersion;
+- (void)initCodePush:(NSString *)codePushKey codePushVersion:(NSString *)codePushVersion;
 - (RCTBridge *)bridge;
 
 

@@ -21,12 +21,14 @@
   return _sharedObject;
 }
 
-- (void)initBridgeWithCodePush:(NSString *)codePushKey {
+- (void)initBridgeWithCodePush:(NSString *)codePushKey codePushVersion:(NSString *)codePushVersion {
+  [CodePush overrideAppVersion:codePushVersion];
   [CodePush setDeploymentKey:codePushKey];
   [self initBridge];
 }
 
-- (void)initCodePush:(NSString *)codePushKey {
+- (void)initCodePush:(NSString *)codePushKey codePushVersion:(NSString *)codePushVersion {
+  [CodePush overrideAppVersion:codePushVersion];
   [CodePush setDeploymentKey:codePushKey];
 }
 

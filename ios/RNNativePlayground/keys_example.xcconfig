@@ -1,0 +1,5 @@
+#include "keys.xcconfig"
+
+// Create file keys.xcconfig within RNNativePlayground and add there two keys:
+// STAGING_KEY=""
+// RELEASE_KEY=""
