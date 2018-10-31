@@ -66,6 +66,12 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
     }
   };
 
+  getRoomConfig = () =>
+    this.props.rooms.map(room => ({
+      roomId: room.id,
+      count: room.count,
+    }));
+
   renderInner = (props: PaymentScreenQueryResponse) => {
     const url = idx(props, _ => _.hotelPaymentUrls.bookingComPaymentUrl);
     if (url == null) {
@@ -94,13 +100,19 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
       <PublicApiRenderer
         render={this.renderInner}
         query={graphql`
-          query PaymentScreenQuery($hotelId: ID) {
-            hotelPaymentUrls(hotelId: $hotelId) {
+          query PaymentScreenQuery(
+            $hotelId: ID
+            $roomConfig: [RoomConfigInput]
+          ) {
+            hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
               bookingComPaymentUrl
             }
           }
         `}
-        variables={{ hotelId: this.props.hotelId }}
+        variables={{
+          hotelId: this.props.hotelId,
+          roomConfig: this.getRoomConfig(),
+        }}
       />
     </React.Fragment>
   );
@@ -117,15 +129,9 @@ export function createURI(pp: PaymentParameters, url: string): string {
   const checkinQuery = sanitizeDate(pp.checkin);
   const intervalQuery = DateUtils.diffInDays(pp.checkout, pp.checkin);
 
-  const roomsQuery = pp.rooms.reduce((acc, curVal) => {
-    acc[`nr_rooms_${curVal.id}`] = curVal.count;
-    return acc;
-  }, {});
-
   return `${url}&${querystring.stringify({
     checkin: checkinQuery,
     interval: intervalQuery,
-    ...roomsQuery,
     label: `kiwi-${Platform.OS}-react-${pp.version}`,
     lang: pp.language,
     selected_currency: pp.currency,
