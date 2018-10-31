@@ -2167,6 +2167,11 @@ type ResetPasswordResponse {
   success: Boolean
 }
 
+input RoomConfigInput {
+  roomId: ID!
+  count: Int!
+}
+
 input RoomsChildrenConfiguration {
   age: Int
 }
@@ -2429,7 +2434,7 @@ type RootQuery {
   ): HotelCityConnection
 
   """Url where user will be redirected for payment"""
-  hotelPaymentUrls(hotelId: ID): HotelPaymentUrls
+  hotelPaymentUrls(hotelId: ID, roomConfig: [RoomConfigInput]): HotelPaymentUrls
 
   """Single location by ID."""
   location(

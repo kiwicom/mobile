@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 89fa8d8d3392666c9ee8d579b653cc2e
+ * @relayHash 28a12649218f3e7a941c619921aa507b
  */
 
 /* eslint-disable */
@@ -9,8 +9,13 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+export type RoomConfigInput = {
+  roomId: string,
+  count: number,
+};
 export type PaymentScreenQueryVariables = {|
-  hotelId?: ?string
+  hotelId?: ?string,
+  roomConfig?: ?$ReadOnlyArray<?RoomConfigInput>,
 |};
 export type PaymentScreenQueryResponse = {|
   +hotelPaymentUrls: ?{|
@@ -27,8 +32,9 @@ export type PaymentScreenQuery = {|
 /*
 query PaymentScreenQuery(
   $hotelId: ID
+  $roomConfig: [RoomConfigInput]
 ) {
-  hotelPaymentUrls(hotelId: $hotelId) {
+  hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
     bookingComPaymentUrl
   }
 }
@@ -40,6 +46,12 @@ var v0 = [
     "kind": "LocalArgument",
     "name": "hotelId",
     "type": "ID",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "roomConfig",
+    "type": "[RoomConfigInput]",
     "defaultValue": null
   }
 ],
@@ -55,6 +67,12 @@ v1 = [
         "name": "hotelId",
         "variableName": "hotelId",
         "type": "ID"
+      },
+      {
+        "kind": "Variable",
+        "name": "roomConfig",
+        "variableName": "roomConfig",
+        "type": "[RoomConfigInput]"
       }
     ],
     "concreteType": "HotelPaymentUrls",
@@ -75,7 +93,7 @@ return {
   "operationKind": "query",
   "name": "PaymentScreenQuery",
   "id": null,
-  "text": "query PaymentScreenQuery(\n  $hotelId: ID\n) {\n  hotelPaymentUrls(hotelId: $hotelId) {\n    bookingComPaymentUrl\n  }\n}\n",
+  "text": "query PaymentScreenQuery(\n  $hotelId: ID\n  $roomConfig: [RoomConfigInput]\n) {\n  hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {\n    bookingComPaymentUrl\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -94,5 +112,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8b5ada67d5d06bd38230dbd5d6c7cc4c';
+(node/*: any*/).hash = '4c45a0c05b4bc8d0dcc000450b0382a1';
 module.exports = node;
