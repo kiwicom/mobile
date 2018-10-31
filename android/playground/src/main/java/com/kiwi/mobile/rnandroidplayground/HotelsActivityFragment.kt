@@ -1,4 +1,4 @@
-package com.kiwi.rnandroidplayground
+package com.kiwi.mobile.rnandroidplayground
 
 import android.annotation.TargetApi
 import android.app.Activity

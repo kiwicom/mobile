@@ -1,4 +1,4 @@
-package com.kiwi.rnandroidplayground
+package com.kiwi.mobile.rnandroidplayground
 
 import com.kiwi.rnkiwimobile.hotels.RNHotelsModulesInjection
 import com.skypicker.reactnative.nativemodules.currency.CurrencyChangeCallback

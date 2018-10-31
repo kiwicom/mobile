@@ -1,12 +1,12 @@
 // Global to all projects and subprojects
 ext {
-    gradlePluginVersion = "3.2.0"
+    gradlePluginVersion = "3.2.1"
 
     minSdkVersionVar = 16
     compileSdkVersionVar = 27
     targetSdkVersionVar = 27
 
-    kotlinVersion = "1.2.61"
+    kotlinVersion = "1.2.71"
 
     supportVersion = "27.0.2"
 

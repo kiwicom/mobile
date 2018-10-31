@@ -2,7 +2,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const child_process = require('child_process');
 
 const log = message => console.log(`➤ ${message}`); // eslint-disable-line no-console
 
@@ -51,9 +50,6 @@ API_KEY_GOOGLE_MAPS=${vault.API_KEY_GOOGLE_MAPS}
 
 log('Setting up ENV variables...');
 fs.writeFileSync(path.join(__dirname, '..', '.env'), envTemplate);
-
-log('Linking all native dependencies...');
-child_process.execSync('yarn react-native link');
 
 log('Patching intl package');
 const packageJson = JSON.parse(

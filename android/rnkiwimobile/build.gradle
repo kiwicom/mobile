@@ -4,6 +4,17 @@ apply plugin: 'maven'
 apply from: "./versions.gradle"
 apply from: "../dependencies.gradle"
 
+project.ext.react = [
+    entryFile: "app/native.js",
+    jsBundleDirStagingRelease: "${projectDir}/src/main/assets",
+    resourcesDirStagingRelease: "${projectDir}/src/main/assets/res",
+    jsBundleDirRelease: "${projectDir}/src/main/assets",
+    resourcesDirRelease: "${projectDir}/src/main/assets/res"
+]
+
+apply from: "./react-library.gradle"
+apply from: "./codepush-library.gradle"
+
 android {
     defaultConfig {
         minSdkVersion minSdkVersionVar
@@ -17,15 +28,8 @@ android {
 
     }
 
-    sourceSets {
-        main {
-            assets {
-                srcDir "../../.build/android/assets"
-            }
-            res {
-                srcDir "../../.build/android/res"
-            }
-        }
+    dexOptions {
+        javaMaxHeapSize "4g"
     }
 
     compileOptions {
@@ -34,6 +38,10 @@ android {
     }
 
     buildTypes {
+        stagingRelease {
+            matchingFallbacks = ['release']
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -48,12 +56,12 @@ dependencies {
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-zip-archive:$reactNativeZipArchive-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-code-push:$reactNativeCodePush-SNAPSHOT"
 
     api("com.google.android.gms:play-services-base:$playServicesVersion")
     api("com.google.android.gms:play-services-maps:$playServicesVersion")
 
     api "com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT"
-
 
     implementation "com.trinerdis.skypicker:infinario:$infinarioVersion-SNAPSHOT"
     compileOnly "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
