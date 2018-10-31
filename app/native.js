@@ -26,7 +26,5 @@ AppRegistry.registerComponent(
   () => SingleHotelStandalonePackage,
 );
 
-// ManageMyBookings
-
-// CodePush
+// This file is only used for native integration and we use CodePush there
 CodePush.sync();

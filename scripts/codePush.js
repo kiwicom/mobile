@@ -19,12 +19,7 @@ const targetBinaryVersion =
 const entryFile = path.join(__dirname, '..', 'app/native.js');
 
 function processCommand() {
-  const flag = process.argv[2];
-  if (!flag || !flag.match(/^(--production|--staging)$/)) {
-    throw new Error('You need to pass either --staging or --production flag.');
-  }
-
-  const target = flag === '--production' ? 'Production' : 'Staging';
+  const target = 'Staging';
   console.log(`Building for ${target}...`);
 
   exec(
