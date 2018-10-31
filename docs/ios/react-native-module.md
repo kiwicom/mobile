@@ -48,11 +48,11 @@ The registered module has to be then instantiated along with the proper `moduleN
                                                           }];
 ```
 
-### CodePush in playground
+### CodePush in a playground
 
 To check codepush updates in `RNNativePlayground` follow the steps:
 
-1. Create a file called `keys.xcconfig` within `RNKiwiMobile` and add there two keys:
+1. Create a file called `keys.xcconfig` within `RNNativePlayground` and add there two keys:
  * `STAGING_KEY=""`
  * `RELEASE_KEY=""`
 

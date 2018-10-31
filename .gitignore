@@ -3,7 +3,7 @@
 .env
 
 #XCode CODEPUSH_KEYS
-ios/RNKiwiMobile/keys.xcconfig
+ios/RNNativePlayground/keys.xcconfig
 
 
 # OSX
