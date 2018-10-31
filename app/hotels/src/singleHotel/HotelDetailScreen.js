@@ -242,7 +242,7 @@ export default createFragmentContainer(
       }
       availableRooms {
         ...RoomList
-        id
+        originalId
         incrementalPrice {
           amount
           currency

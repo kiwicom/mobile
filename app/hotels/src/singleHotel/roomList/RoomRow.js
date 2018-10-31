@@ -37,23 +37,23 @@ type Props = {|
 export class RoomRow extends React.Component<Props> {
   shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
   select = () => {
-    const { id, maxPersons } = this.getIdAndMaxPersons();
-    if (id && maxPersons) {
-      this.props.select(id, maxPersons);
+    const { originalId, maxPersons } = this.getOriginalIdAndMaxPersons();
+    if (originalId && maxPersons) {
+      this.props.select(originalId, maxPersons);
     }
   };
 
   deselect = () => {
-    const { id, maxPersons } = this.getIdAndMaxPersons();
-    if (id && maxPersons) {
-      this.props.deselect(id, maxPersons);
+    const { originalId, maxPersons } = this.getOriginalIdAndMaxPersons();
+    if (originalId && maxPersons) {
+      this.props.deselect(originalId, maxPersons);
     }
   };
 
-  getIdAndMaxPersons = () => {
-    const id = idx(this.props, _ => _.availableRoom.id);
+  getOriginalIdAndMaxPersons = () => {
+    const originalId = idx(this.props, _ => _.availableRoom.originalId);
     const maxPersons = idx(this.props, _ => _.availableRoom.room.maxPersons);
-    return { id, maxPersons };
+    return { originalId, maxPersons };
   };
 
   openGallery = () => {
@@ -82,8 +82,8 @@ export class RoomRow extends React.Component<Props> {
     const currency = idx(availableRoom, _ => _.minimalPrice.currency) || null;
     const selectableCount =
       idx(availableRoom, _ => _.incrementalPrice.length) || 0;
-    const id = idx(availableRoom, _ => _.id) || '';
-    const selectedCount = idx(this.props.selected, _ => _[id]) || 0;
+    const originalId = idx(availableRoom, _ => _.originalId) || '';
+    const selectedCount = idx(this.props.selected, _ => _[originalId]) || 0;
     const room = idx(availableRoom, _ => _.room);
 
     return (
@@ -120,7 +120,7 @@ export default (createFragmentContainer(
   withNavigation(RoomRow),
   graphql`
     fragment RoomRow_availableRoom on HotelRoomAvailability {
-      id
+      originalId
       ...RoomBadges_availableRoom
       room {
         description {

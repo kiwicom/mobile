@@ -28,10 +28,12 @@ export default (
 
   const amount = positiveSelections
     .map((selection: any) => {
-      const [id, count] = selection;
+      const [originalId, count] = selection;
 
       if (availableRooms) {
-        const room = availableRooms.find(room => room.id === id);
+        const room = availableRooms.find(
+          room => room.originalId === originalId,
+        );
         return idx(room, _ => _.incrementalPrice[count - 1].amount);
       }
     })
@@ -39,7 +41,7 @@ export default (
 
   const currency =
     idx(
-      availableRooms.find(room => room.id === positiveSelections[0][0]),
+      availableRooms.find(room => room.originalId === positiveSelections[0][0]),
       _ => _.incrementalPrice[0].currency,
     ) || '';
 
