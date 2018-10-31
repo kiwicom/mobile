@@ -26,8 +26,7 @@
     "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js",
     "e2e-iphone": "yarn detox build  --configuration ios.sim.debug && yarn detox test --configuration ios.sim.debug",
     "e2e-ipad": "yarn detox build  --configuration ios.sim.tablet.debug && yarn detox test --configuration ios.sim.tablet.debug",
-    "code-push-android": "node ./scripts/codePushAndroid.js",
-    "code-push-android-production": "node ./scripts/codePushAndroid.js --prod"
+    "code-push": "node ./scripts/codePush.js"
   },
   "dependencies": {
     "react": "16.5.0",
