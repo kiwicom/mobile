@@ -1,0 +1,62 @@
+// Adapted from https://raw.githubusercontent.com/facebook/react-native/d16ff3bd8b92fa84a9007bf5ebedd8153e4c089d/react.gradle
+def config = project.hasProperty("react") ? project.react : [];
+def bundleAssetName = config.bundleAssetName ?: "index.android.bundle"
+
+void runBefore(String dependentTaskName, Task task) {
+    Task dependentTask = tasks.findByPath(dependentTaskName);
+    if (dependentTask != null) {
+        dependentTask.dependsOn task
+    }
+}
+
+gradle.projectsEvaluated {
+    android.buildTypes.each {
+        // to prevent incorrect long value restoration from strings.xml we need to wrap it with double quotes
+        // https://github.com/Microsoft/cordova-plugin-code-push/issues/264
+        it.resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
+    }
+
+    android.libraryVariants.all { variant ->
+        def nodeModulesPath;
+        if (config.root) {
+            nodeModulesPath = Paths.get(config.root, "/node_modules");
+        } else if (project.hasProperty('nodeModulesPath')) {
+            nodeModulesPath = project.nodeModulesPath
+        } else {
+            nodeModulesPath = "../../node_modules";
+        }
+
+        def targetName = variant.name.capitalize()
+
+        def jsBundleDir;
+        def resourcesDir;
+        def jsBundleFile;
+
+        // Additional node commandline arguments
+        def nodeExecutableAndArgs = config.nodeExecutableAndArgs ?: ["node"]
+        def generateBundledResourcesHash
+
+            jsBundleDir = "${projectDir}/src/main/assets"
+            resourcesDir = "${projectDir}/src/main/assets/res"
+            jsBundleFile = file("$jsBundleDir/$bundleAssetName")
+
+            generateBundledResourcesHash = tasks.create(
+                    name: "generateBundledResourcesHash${targetName}",
+                    type: Exec) {
+
+                commandLine(*nodeExecutableAndArgs, "${nodeModulesPath}/react-native-code-push/scripts/generateBundledResourcesHash.js", resourcesDir, jsBundleFile, jsBundleDir)
+
+                enabled config."bundleIn${targetName}" ||
+                        config."bundleIn${variant.buildType.name.capitalize()}" ?:
+                        targetName.toLowerCase().contains("release")
+            }
+
+        variant.mergeResources.dependsOn(generateBundledResourcesHash)
+        generateBundledResourcesHash.dependsOn("bundle${targetName}JsAndAssets")
+
+        runBefore("processArmeabi-v7a${targetName}Resources", generateBundledResourcesHash)
+        runBefore("processX86${targetName}Resources", generateBundledResourcesHash)
+        runBefore("processUniversal${targetName}Resources", generateBundledResourcesHash)
+        runBefore("process${targetName}Resources", generateBundledResourcesHash)
+    }
+}

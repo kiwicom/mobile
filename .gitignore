@@ -54,6 +54,7 @@ buck-out/
 \.buckd/
 *.keystore
 !*playground-key.keystore
+!*playground-key-staging.keystore
 !*app-release-key.keystore
 
 # fastlane
