@@ -71,10 +71,6 @@ const deployDependency = (packageName, url, version, extension = '') => {
 };
 
 const deployLibrary = (packageName, version) => {
-  console.log('Generating Android JS build...');
-  child_process.execSync('scripts/buildAndroidJavascript.sh', {
-    stdio: 'inherit',
-  });
   console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
     exec(
@@ -123,6 +119,14 @@ const deployLibrary = (packageName, version) => {
       SKYPICKER_URL,
       `${getDependencyVersion(
         'react-native-zip-archive',
+      )}.react-native.${reactNativeVersion}`,
+      '-SNAPSHOT',
+    ),
+    deployDependency(
+      'react-native-code-push',
+      SKYPICKER_URL,
+      `${getDependencyVersion(
+        'react-native-code-push',
       )}.react-native.${reactNativeVersion}`,
       '-SNAPSHOT',
     ),

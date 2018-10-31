@@ -1,11 +1,11 @@
 // @flow
 
+import CodePush from 'react-native-code-push';
 import { AppRegistry, YellowBox } from 'react-native';
 import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
-import CodePush from 'react-native-code-push';
 
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
@@ -26,6 +26,5 @@ AppRegistry.registerComponent(
   () => SingleHotelStandalonePackage,
 );
 
+// This file is only used for native integration and we use CodePush there
 CodePush.sync();
-
-// ManageMyBookings

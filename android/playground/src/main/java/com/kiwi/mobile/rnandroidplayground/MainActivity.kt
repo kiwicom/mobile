@@ -1,4 +1,4 @@
-package com.kiwi.rnandroidplayground
+package com.kiwi.mobile.rnandroidplayground
 
 import android.content.Intent
 import android.os.Bundle

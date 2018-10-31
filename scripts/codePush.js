@@ -1,7 +1,11 @@
 // @flow
 
-const inquirer = require('inquirer');
+/* eslint-disable no-console */
+
+const path = require('path');
 const child_process = require('child_process');
+
+const packageJson = require('../package');
 
 const exec = (command, options) =>
   child_process.execSync(command, {
@@ -9,59 +13,22 @@ const exec = (command, options) =>
     ...options,
   });
 
-async function getAppName() {
-  return inquirer.prompt([
-    {
-      type: 'list',
-      name: 'app_name',
-      message: 'What app would you like to update?',
-      choices: ['mobile-ios', 'mobile-android'],
-    },
-  ]);
-}
+const targetBinaryVersion =
+  packageJson['rnkiwimobile']['code-push-target-binary-version'];
 
-async function ifAddDescription() {
-  return inquirer.prompt([
-    {
-      type: 'list',
-      name: 'with_description',
-      message: 'Do you want to specify code push description?',
-      choices: ['Yes', 'No'],
-    },
-  ]);
-}
+const entryFile = path.join(__dirname, '..', 'app/native.js');
 
-async function addDescription() {
-  const withDescription = await ifAddDescription();
+function processCommand() {
+  const target = 'Staging';
+  console.log(`Building for ${target}...`);
 
-  if (withDescription.with_description === 'Yes') {
-    return inquirer.prompt([
-      {
-        type: 'input',
-        name: 'description',
-        message: 'Type a description:',
-      },
-    ]);
-  }
-}
+  exec(
+    `appcenter codepush release-react -a Kiwicom/mobile-android --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target}`,
+  );
 
-async function processCommand() {
-  const appName = await getAppName();
-  const description = await addDescription();
-
-  let args = `-a Kiwicom/${appName.app_name} `;
-
-  if (description !== undefined) {
-    args = args.concat(`--description "${description.description}" `);
-  }
-
-  try {
-    exec(
-      `appcenter codepush release-react ${args} --entry-file ./app/native.js -d Staging`,
-    );
-  } catch (err) {
-    return err;
-  }
+  exec(
+    `appcenter codepush release-react -a Kiwicom/mobile-ios --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target}`,
+  );
 }
 
 processCommand();
