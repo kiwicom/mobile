@@ -8,24 +8,18 @@ apply from: "../dependencies.gradle"
 def inputFile = new File("${rootDir}/../.build/package.json")
 def packageJson = new JsonSlurper().parseText(inputFile.text)
 
-def getPassword(String currentUser, String keyChain) {
-    def stdout = new ByteArrayOutputStream()
-    def stderr = new ByteArrayOutputStream()
-    exec {
-        commandLine 'security', '-q', 'find-generic-password', '-a', currentUser, '-s', keyChain, '-w'
-        standardOutput = stdout
-        errorOutput = stderr
-        ignoreExitValue true
-    }
-    //noinspection GroovyAssignabilityCheck
-    stdout.toString().trim()
+def codePushPropertiesFile = new File("${rootDir}/playground/codepush.properties")
+def codePushProperties = null
+if (codePushPropertiesFile.exists()) {
+    codePushProperties = new Properties()
+    codePushProperties.load(new FileInputStream(codePushPropertiesFile))
 }
 
 def mainPackageJson = new File("${rootDir}/../package.json")
 def codePushVersion = new JsonSlurper().parseText(mainPackageJson.text)['rnkiwimobile']['code-push-target-binary-version']
 
-def stageCodePushKey = getPassword("rnkiwimobile-codepush", "staging")
-def productionCodePushKey = getPassword("rnkiwimobile-codepush", "production")
+def stageCodePushKey = codePushProperties != null ? codePushProperties["STAGING_KEY"] : ""
+def productionCodePushKey = codePushProperties != null ? codePushProperties["PRODUCTION_KEY"] : ""
 
 android {
     compileSdkVersion compileSdkVersionVar
