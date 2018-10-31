@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 63da141a478319844d8c76cb3ac5928f
+ * @relayHash 2ec31592643b72f697f99e1f08c29484
  */
 
 /* eslint-disable */
@@ -69,12 +69,11 @@ fragment HotelDetailScreen_availableHotel on HotelAvailability {
   }
   availableRooms {
     ...RoomList
-    originalId
+    id
     incrementalPrice {
       amount
       currency
     }
-    id
   }
 }
 
@@ -115,7 +114,7 @@ fragment RoomList on HotelRoomAvailability {
 }
 
 fragment RoomRow_availableRoom on HotelRoomAvailability {
-  originalId
+  id
   ...RoomBadges_availableRoom
   room {
     description {
@@ -278,7 +277,7 @@ return {
   "operationKind": "query",
   "name": "SingleHotelContainerQuery",
   "id": null,
-  "text": "query SingleHotelContainerQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    originalId\n    incrementalPrice {\n      amount\n      currency\n    }\n    id\n  }\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on HotelInterface {\n  id\n}\n\nfragment HotelInformation_hotel on Hotel {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailability {\n  originalId\n  ...RoomBadges_availableRoom\n  room {\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    photos {\n      edges {\n        node {\n          highResUrl\n          lowResUrl\n          id\n        }\n      }\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailability {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoom {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoom {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment HotelReview on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n",
+  "text": "query SingleHotelContainerQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    id\n    incrementalPrice {\n      amount\n      currency\n    }\n  }\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on HotelInterface {\n  id\n}\n\nfragment HotelInformation_hotel on Hotel {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview\n}\n\nfragment RoomList on HotelRoomAvailability {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailability {\n  id\n  ...RoomBadges_availableRoom\n  room {\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    photos {\n      edges {\n        node {\n          highResUrl\n          lowResUrl\n          id\n        }\n      }\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailability {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoom {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoom {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment HotelReview on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -533,13 +532,6 @@ return {
             "plural": true,
             "selections": [
               v4,
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "originalId",
-                "args": null,
-                "storageKey": null
-              },
               {
                 "kind": "ScalarField",
                 "alias": null,
