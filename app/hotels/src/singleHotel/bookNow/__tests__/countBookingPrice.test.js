@@ -4,7 +4,7 @@ import countBookingPrice from '../countBookingPrice';
 
 const availableRooms = [
   {
-    originalId: 'aaa',
+    id: 'aaa',
     incrementalPrice: [
       {
         amount: 500,
@@ -17,7 +17,7 @@ const availableRooms = [
     ],
   },
   {
-    originalId: 'bbb',
+    id: 'bbb',
     incrementalPrice: [
       {
         amount: 333,
@@ -51,11 +51,11 @@ it('returns sum of selected rooms', () => {
 it('takes a currency from the first selected room', () => {
   const czechRooms = [
     {
-      originalId: 'aaa',
+      id: 'aaa',
       incrementalPrice: [],
     },
     {
-      originalId: 'bbb',
+      id: 'bbb',
       incrementalPrice: [
         {
           amount: 123,
