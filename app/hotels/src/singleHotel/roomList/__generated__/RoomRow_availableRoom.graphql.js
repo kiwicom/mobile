@@ -14,7 +14,7 @@ type RoomRowTitle_room$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomRow_availableRoom$ref: FragmentReference;
 export type RoomRow_availableRoom = {|
-  +originalId: ?string,
+  +id: string,
   +room: ?{|
     +description: ?{|
       +title: ?string
@@ -46,7 +46,14 @@ export type RoomRow_availableRoom = {|
 
 
 const node/*: ConcreteFragment*/ = (function(){
-var v0 = [
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v1 = [
   {
     "kind": "ScalarField",
     "alias": null,
@@ -69,13 +76,7 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "originalId",
-      "args": null,
-      "storageKey": null
-    },
+    v0,
     {
       "kind": "FragmentSpread",
       "name": "RoomBadges_availableRoom",
@@ -154,13 +155,7 @@ return {
                       "args": null,
                       "storageKey": null
                     },
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "name": "id",
-                      "args": null,
-                      "storageKey": null
-                    }
+                    v0
                   ]
                 }
               ]
@@ -189,7 +184,7 @@ return {
       "args": null,
       "concreteType": "Price",
       "plural": false,
-      "selections": v0
+      "selections": v1
     },
     {
       "kind": "LinkedField",
@@ -199,11 +194,11 @@ return {
       "args": null,
       "concreteType": "Price",
       "plural": true,
-      "selections": v0
+      "selections": v1
     }
   ]
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '64bb202d0291baafe462adeee69d93b8';
+(node/*: any*/).hash = 'fcfd362b1652beff07d213b21f2e88e1';
 module.exports = node;
