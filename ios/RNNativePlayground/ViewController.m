@@ -14,15 +14,25 @@
 
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super initWithCoder:coder];
-  NSString *stagingCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"STAGING_KEY"];
   
   if (self) {
     /**
-     * In order to create bridge upfront, call this method before showing ViewController.
-     * If you don't want to call codepush run initBridge.
-     * If you want to use codepush, but dont want to init bridge upfront call initCodePush.
+     * In order to create bridge upfront and set up codepush key,
+     * call method `initBridgeWithCodePush` before showing ViewController.
+     * If you don't want to call codepush run `initBridge`.
+     * If you want to use codepush, but don't want to init bridge upfront call `initCodePush`,
+     * and bridge will be created at the runtime lazily.
      */
-    [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:stagingCodePushKey];
+    
+    #ifdef STAGING
+      NSString *stagingCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"STAGING_KEY"];
+      [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:stagingCodePushKey];
+    #elif RELEASE
+      NSString *releaseCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RELEASE_KEY"];
+      [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:releaseCodePushKey];
+    #else
+      [[RNKiwiSharedBridge sharedInstance] initBridge];
+    #endif
   }
   return self;
 }

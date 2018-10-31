@@ -48,6 +48,18 @@ The registered module has to be then instantiated along with the proper `moduleN
                                                           }];
 ```
 
+### CodePush in playground
+
+To check codepush updates in `RNNativePlayground` follow the steps:
+
+1. Create a file called `keys.xcconfig` within `RNKiwiMobile` and add there two keys:
+ * `STAGING_KEY=""`
+ * `RELEASE_KEY=""`
+
+_NOTE_: That file is added to `.gitignore` which prevents from pushing those keys to github repository.
+
+2. Open schema `RNNativePlayground - Staging` for `Staging` configuration or `RNNativePlayground - Release` for `Release` configuration.
+
 ## Using React Native module in external app
 
 1. Inject `RNKiwiMobile.framework` in new XCode project to `Embedded Binaries`
@@ -98,12 +110,19 @@ _NOTE_: Creating bridge upfront guarantees that your React Native module will be
 }
 ```
 
-### Getting updates from CodePush
+### CodePush in external app
 
-Once CodePush is integrated in framework it's necessary to add codepush keys to `Info.plist` to receive updates.
+Once CodePush is integrated in framework it's necessary to set codepush key to receive updates. Choose one of the following options for configuring codepush key.
+
+1. Add codepush key to `Info.plist`.
 
 ![](../../docs/assets/add_code_push_key.png)
 
+2. Initialize the bridge with codepush key.
+
+```objc
+[[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:CODEPUSH_KEY];
+```
 
 ### Using fonts from frameworks
 
