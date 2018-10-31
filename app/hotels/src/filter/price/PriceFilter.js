@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Icon } from '@kiwicom/mobile-shared';
+import { TextIcon } from '@kiwicom/mobile-shared';
 import {
   Translation,
   TranslationFragment,
@@ -12,7 +12,9 @@ import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 import type { CurrentSearchStats } from '../../filter/CurrentSearchStatsType';
-import HotelsContext from '../../HotelsContext';
+import HotelsContext, {
+  type State as HotelsContextState,
+} from '../../HotelsContext';
 
 type PropsWithContext = {
   ...Props,
@@ -151,7 +153,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
             currency,
             daysOfStay,
           )}
-          icon={<Icon name="attach-money" size={18} />}
+          icon={<TextIcon code="@" />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />
@@ -186,23 +188,28 @@ const calculateDaysOfStay = (checkin, checkout) => {
   return null;
 };
 
-export default function PriceFilterWithContext(props: Props) {
-  return (
-    <HotelsContext.Consumer>
-      {({ currency, checkin, checkout, currentSearchStats }) => {
-        const daysOfStay = calculateDaysOfStay(checkin, checkout);
-        if (daysOfStay === null) {
-          return null;
-        }
-        return (
-          <PriceFilter
-            {...props}
-            currentSearchStats={currentSearchStats}
-            currency={currency}
-            daysOfStay={daysOfStay}
-          />
-        );
-      }}
-    </HotelsContext.Consumer>
-  );
+export default class PriceFilterWithContext extends React.Component<Props> {
+  renderInner = ({
+    currency,
+    checkin,
+    checkout,
+    currentSearchStats,
+  }: HotelsContextState) => {
+    const daysOfStay = calculateDaysOfStay(checkin, checkout);
+    if (daysOfStay === null) {
+      return null;
+    }
+    return (
+      <PriceFilter
+        {...this.props}
+        currentSearchStats={currentSearchStats}
+        currency={currency}
+        daysOfStay={daysOfStay}
+      />
+    );
+  };
+
+  render() {
+    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
+  }
 }

@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Icon, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineEventIconContext from '../../context/TimelineEventIconContext';
 import TimelineEventContext from '../../context/TimelineEventContext';
 
 export type Props = {|
-  +icon: React.Element<typeof TextIcon | typeof Icon>,
+  +icon: React.Element<typeof TextIcon>,
 |};
 
 const TopLine = () => (

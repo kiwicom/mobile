@@ -91,7 +91,6 @@ export {
   default as AppleWalletBackgroundTablet,
 } from './images/apple-wallet-image-2x.jpg';
 
-export { default as Icon } from './src/icons/Icon';
 export { default as TextIcon } from './src/icons/TextIcon';
 
 export { default as NetworkImage } from './src/image/NetworkImage';

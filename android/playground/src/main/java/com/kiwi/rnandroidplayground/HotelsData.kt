@@ -3,6 +3,7 @@ package com.kiwi.rnandroidplayground
 import android.util.Log
 import com.kiwi.rnkiwimobile.hotels.RNHotelsCoordinates
 import com.kiwi.rnkiwimobile.hotels.RNHotelsInitialProperties
+import com.kiwi.rnkiwimobile.hotels.RNHotelsRoomsChildrenConfiguration
 import com.kiwi.rnkiwimobile.hotels.RNHotelsRoomsConfiguration
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,16 +21,17 @@ object HotelsData {
     Log.d("HotelsData", simpleDateFormat.format(checkIn.time) + " " + simpleDateFormat.format(checkOut.time))
 
     return RNHotelsInitialProperties(
-        "en",
-        "EUR",
-        simpleDateFormat.format(checkIn.time),
-        simpleDateFormat.format(checkOut.time),
-        "Barcelona",
-        "aG90ZWxDaXR5Oi0zNzI0OTA",
-        RNHotelsRoomsConfiguration(
-            1
-        ),
-        RNHotelsCoordinates(
+        language = "en",
+        currency = "EUR",
+        checkin = simpleDateFormat.format(checkIn.time),
+        checkout = simpleDateFormat.format(checkOut.time),
+        cityName = "Barcelona",
+        cityId = "aG90ZWxDaXR5Oi0zNzI0OTA",
+        roomsConfiguration = ArrayList(listOf(RNHotelsRoomsConfiguration(
+            adultsCount = 1,
+            children = arrayListOf(RNHotelsRoomsChildrenConfiguration(age = 2))
+        ))),
+        hotelsCoordinates = RNHotelsCoordinates(
             59.9139,
             10.7522
         )

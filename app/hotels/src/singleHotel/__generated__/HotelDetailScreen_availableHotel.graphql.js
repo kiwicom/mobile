@@ -19,7 +19,7 @@ export type HotelDetailScreen_availableHotel = {|
     +$fragmentRefs: Header_hotel$ref & BookNow_hotel$ref & HotelInformation_hotel$ref
   |},
   +availableRooms: ?$ReadOnlyArray<?{|
-    +originalId: ?string,
+    +id: string,
     +incrementalPrice: ?$ReadOnlyArray<?{|
       +amount: ?number,
       +currency: ?string,
@@ -81,7 +81,7 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "originalId",
+          "name": "id",
           "args": null,
           "storageKey": null
         },
@@ -115,5 +115,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '3412f045bb72cd404a806303e9c9bf03';
+(node/*: any*/).hash = '90d48bf84aeae56e24dacf5594636cba';
 module.exports = node;

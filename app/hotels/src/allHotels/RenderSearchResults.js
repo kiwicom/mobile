@@ -118,13 +118,18 @@ type Props = {|
   +top: number,
 |};
 
-const RenderSearchResultsWithContext = (props: Props) => (
-  <SearchResultsContext.Consumer>
-    {({ show }) => {
-      return <RenderSearchResults {...props} show={show} />;
-    }}
-  </SearchResultsContext.Consumer>
-);
+class RenderSearchResultsWithContext extends React.Component<Props> {
+  renderInner = ({ show }) => (
+    <RenderSearchResults {...this.props} show={show} />
+  );
+  render() {
+    return (
+      <SearchResultsContext.Consumer>
+        {this.renderInner}
+      </SearchResultsContext.Consumer>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   content: {

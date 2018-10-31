@@ -4,7 +4,7 @@ import * as React from 'react';
 import idx from 'idx';
 import { View, Platform } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Icon, Touchable } from '@kiwicom/mobile-shared';
+import { StyleSheet, TextIcon, Touchable } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
@@ -30,13 +30,7 @@ const PassengerMenuItem = (props: Props) => {
           {menuRightContent}
           {Platform.select({
             android: null,
-            ios: !disabled && (
-              <Icon
-                name="chevron-right"
-                size={26}
-                color={defaultTokens.paletteProductNormal}
-              />
-            ),
+            ios: !disabled && <TextIcon code="&#xe01F;" style={styles.icon} />,
           })}
         </View>
       </View>
@@ -56,5 +50,9 @@ const styles = StyleSheet.create({
   rightContent: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  icon: {
+    fontSize: 26,
+    color: defaultTokens.paletteProductNormal,
   },
 });

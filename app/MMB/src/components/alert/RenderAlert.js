@@ -5,15 +5,15 @@ import { View } from 'react-native';
 import {
   Text,
   StyleSheet,
-  Icon,
   type StylePropType,
+  TextIcon,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   containerStyle: StylePropType,
   titleStyle: StylePropType,
-  icon: React.Element<typeof Icon>,
+  icon: React.Element<typeof TextIcon>,
   title: React.Element<typeof Translation>,
   children?: React.Node,
 |};

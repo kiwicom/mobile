@@ -10,7 +10,6 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactlibrary.RNTooltipsPackage;
 import com.skypicker.reactnative.nativemodules.card.RNCardManagerPackage;
 import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage;
@@ -44,7 +43,6 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
                     new RCTPdfView(),
                     new RNFetchBlobPackage(),
                     new RNTooltipsPackage(),
-                    new VectorIconsPackage(),
                     new MapsPackage(),
                     new RNLoggingPackage(),
                     new RNTranslationManagerPackage(),

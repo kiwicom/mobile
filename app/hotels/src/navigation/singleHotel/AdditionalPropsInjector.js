@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { Dimensions } from '@kiwicom/mobile-shared';
+import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
 
 type InjectorProps = {|
   navigation: NavigationType,
@@ -24,18 +24,19 @@ export default class AdditionalPropsInjecter extends React.Component<
     });
   };
 
-  render = () => {
+  renderInner = (dimensions: DimensionType) => {
     const { WrappedComponent } = this.props;
+
     return (
-      <Dimensions.Consumer>
-        {dimensions => (
-          <WrappedComponent
-            {...this.props}
-            dimensions={dimensions}
-            onGoToGalleryStripe={this.goToGalleryStripe}
-          />
-        )}
-      </Dimensions.Consumer>
+      <WrappedComponent
+        {...this.props}
+        dimensions={dimensions}
+        onGoToGalleryStripe={this.goToGalleryStripe}
+      />
     );
   };
+
+  render() {
+    return <Dimensions.Consumer>{this.renderInner}</Dimensions.Consumer>;
+  }
 }

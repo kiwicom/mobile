@@ -221,11 +221,15 @@ type Props = {|
   +goBack: () => void,
 |};
 
-const HotelDetailScreenWithContext = (props: Props) => (
-  <Dimensions.Consumer>
-    {({ width }) => <HotelDetailScreen {...props} width={width} />}
-  </Dimensions.Consumer>
-);
+class HotelDetailScreenWithContext extends React.Component<Props> {
+  renderInner = ({ width }) => (
+    <HotelDetailScreen {...this.props} width={width} />
+  );
+
+  render() {
+    return <Dimensions.Consumer>{this.renderInner}</Dimensions.Consumer>;
+  }
+}
 
 export default createFragmentContainer(
   HotelDetailScreenWithContext,
@@ -238,7 +242,7 @@ export default createFragmentContainer(
       }
       availableRooms {
         ...RoomList
-        originalId
+        id
         incrementalPrice {
           amount
           currency
