@@ -15,6 +15,11 @@ type Props = {|
 |};
 
 export default class PhotosStripe extends React.Component<Props> {
+  // Necessary to prevent the Swiper component to be re-rendered and re-initialise the index if device rotates
+  shouldComponentUpdate() {
+    return false;
+  }
+
   renderPagination = (index: number, total: number) => {
     return (
       <View style={styles.paginationWrapper}>
