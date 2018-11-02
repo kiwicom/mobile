@@ -131,6 +131,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
       width={this.state.tileWidth}
       lastInRow={(index + 1) % tilesInRow === 0}
       onTilePress={this.openStripe}
+      testID={`galleryGridTile-${index}`}
     />
   );
 
@@ -153,12 +154,14 @@ export default class GalleryGrid extends React.Component<Props, State> {
             backdropOpacity={1}
             style={styles.modal}
             onRequestClose={this.closeStripe}
+            testID="galleryModal"
           >
             <PhotosStripe
               hotelName={this.props.hotelName}
               imageUrls={this.props.images.map(image => image.highRes)}
               index={this.state.stripeImageIndex}
               onClose={this.closeStripe}
+              testID="photosStripe"
             />
           </Modal>
         </React.Fragment>

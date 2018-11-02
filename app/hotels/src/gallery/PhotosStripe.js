@@ -12,6 +12,7 @@ type Props = {|
   +imageUrls: string[],
   +index: number,
   +onClose: () => void,
+  testID?: string,
 |};
 
 export default class PhotosStripe extends React.Component<Props> {
@@ -34,9 +35,17 @@ export default class PhotosStripe extends React.Component<Props> {
   };
 
   render = () => (
-    <Swiper renderPagination={this.renderPagination} index={this.props.index}>
-      {this.props.imageUrls.map(imageUrl => (
-        <View style={styles.slide} key={imageUrl}>
+    <Swiper
+      renderPagination={this.renderPagination}
+      index={this.props.index}
+      testID={this.props.testID}
+    >
+      {this.props.imageUrls.map((imageUrl, index) => (
+        <View
+          style={styles.slide}
+          key={imageUrl}
+          testID={`photosStripeImage-${index}`}
+        >
           <NetworkImage
             source={{ uri: imageUrl }}
             style={styles.networkImage}

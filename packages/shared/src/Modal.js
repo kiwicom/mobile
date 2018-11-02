@@ -18,6 +18,7 @@ type Props = {|
   backdropColor?: string,
   backdropOpacity?: number,
   onBackdropPress?: () => void,
+  testID?: string,
 |};
 
 /**
