@@ -4,7 +4,7 @@ import * as React from 'react';
 import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
 import { FullPageLoading, GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { unstable_TimeoutError } from '@mrtnzlml/fetch';
+import { TimeoutError } from '@mrtnzlml/fetch';
 
 import PublicEnvironment from './PublicEnvironment';
 import PrivateEnvironment from './PrivateEnvironment';
@@ -42,7 +42,7 @@ export default class QueryRenderer extends React.Component<Props> {
           errorMessage={<Translation id="relay.query_renderer.no_connection" />}
         />
       );
-    } else if (error instanceof unstable_TimeoutError) {
+    } else if (error instanceof TimeoutError) {
       return (
         <GeneralError
           errorMessage={<Translation id="relay.query_renderer.timeout" />}
