@@ -54,7 +54,7 @@ export const RoomBadges = (props: Props) => {
 export default (createFragmentContainer(
   RoomBadges,
   graphql`
-    fragment RoomBadges_availableRoom on HotelRoomAvailability {
+    fragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {
       isBreakfastIncluded
       isRefundable
     }

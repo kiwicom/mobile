@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 export default (createFragmentContainer(
   RoomList,
   graphql`
-    fragment RoomList on HotelRoomAvailability @relay(plural: true) {
+    fragment RoomList on HotelRoomAvailabilityInterface @relay(plural: true) {
       id
       ...RoomRow_availableRoom
     }
