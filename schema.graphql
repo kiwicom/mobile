@@ -1443,6 +1443,7 @@ type HotelAvailabilityEdge {
 interface HotelAvailabilityInterface {
   id: ID
   price: Price
+  availableRooms: [HotelRoomAvailabilityInterface]
   hotel: HotelInterface
 }
 
@@ -1606,7 +1607,7 @@ type HotelReview {
   count: Int
 }
 
-type HotelRoom {
+type HotelRoom implements HotelRoomInterface {
   """The ID of an object"""
   id: ID!
 
@@ -1623,23 +1624,32 @@ type HotelRoom {
   roomSize: Float
 }
 
-type HotelRoomAvailability {
+type HotelRoomAvailability implements HotelRoomAvailabilityInterface {
   """The ID of an object"""
   id: ID!
-
-  """Original block ID used to open Booking.com page."""
-  originalId: String @deprecated(reason: "Use \"id\" field whenever possible.")
-
-  """Base price for the room in this configuration."""
-  minimalPrice: Price
-  incrementalPrice: [Price]
 
   """Is the hotelroom refundable"""
   isRefundable: Boolean
 
   """Is breakfast included in the hotelroom"""
   isBreakfastIncluded: Boolean
+
+  """Base price for the room in this configuration."""
+  minimalPrice: Price
+  incrementalPrice: [Price]
+
+  """Original block ID used to open Booking.com page."""
+  originalId: String @deprecated(reason: "Use \"id\" field whenever possible.")
   room: HotelRoom
+}
+
+interface HotelRoomAvailabilityInterface {
+  id: ID!
+  isRefundable: Boolean
+  isBreakfastIncluded: Boolean
+  minimalPrice: Price
+  incrementalPrice: [Price]
+  room: HotelRoomInterface
 }
 
 type HotelRoomBedding {
@@ -1668,6 +1678,10 @@ type HotelRoomEdge {
 
   """A cursor for use in pagination"""
   cursor: String!
+}
+
+interface HotelRoomInterface {
+  id: ID!
 }
 
 """A connection to a list of items."""
@@ -2525,6 +2539,28 @@ type Stay22HotelDetail implements HotelAvailabilityInterface {
   """
   price: Price
   hotel: Stay22Hotel
+  availableRooms: [Stay22HotelRoomAvailability]
+}
+
+type Stay22HotelRoom implements HotelRoomInterface {
+  """The ID of an object"""
+  id: ID!
+}
+
+type Stay22HotelRoomAvailability implements HotelRoomAvailabilityInterface {
+  """The ID of an object"""
+  id: ID!
+
+  """Is the hotelroom refundable"""
+  isRefundable: Boolean
+
+  """Is breakfast included in the hotelroom"""
+  isBreakfastIncluded: Boolean
+
+  """Base price for the room in this configuration."""
+  minimalPrice: Price
+  incrementalPrice: [Price]
+  room: Stay22HotelRoom
 }
 
 input Stay22HotelsSearchInput {

@@ -22,7 +22,7 @@ export type RoomList = $ReadOnlyArray<{|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "RoomList",
-  "type": "HotelRoomAvailability",
+  "type": "HotelRoomAvailabilityInterface",
   "metadata": {
     "plural": true
   },
@@ -43,5 +43,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b8d84e7d3cff94502e4fcb20914d2ac9';
+(node/*: any*/).hash = '4345156d4d91f74aa72076a9623f9f7d';
 module.exports = node;

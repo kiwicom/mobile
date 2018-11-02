@@ -122,6 +122,14 @@ export default (createFragmentContainer(
     fragment RoomRow_availableRoom on HotelRoomAvailability {
       id
       ...RoomBadges_availableRoom
+      minimalPrice {
+        amount
+        currency
+      }
+      incrementalPrice {
+        amount
+        currency
+      }
       room {
         description {
           title
@@ -138,14 +146,6 @@ export default (createFragmentContainer(
         }
         maxPersons
         ...BeddingInfo_room
-      }
-      minimalPrice {
-        amount
-        currency
-      }
-      incrementalPrice {
-        amount
-        currency
       }
     }
   `,
