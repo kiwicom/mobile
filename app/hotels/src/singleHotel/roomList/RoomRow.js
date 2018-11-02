@@ -58,11 +58,12 @@ export class RoomRow extends React.Component<Props> {
 
   openGallery = () => {
     const { availableRoom } = this.props;
-    const photoEdges = idx(availableRoom, _ => _.room.photos.edges) || [];
-    const photos = photoEdges.map(photo => ({
-      key: idx(photo, _ => _.node.id) || '',
-      highRes: idx(photo, _ => _.node.highResUrl) || '',
-      lowRes: idx(photo, _ => _.node.lowResUrl) || '',
+    const photosArray = idx(availableRoom, _ => _.room.roomPhotos) || [];
+
+    const photos = photosArray.map(photo => ({
+      key: idx(photo, _ => _.id) || '',
+      highRes: idx(photo, _ => _.highResUrl) || '',
+      lowRes: idx(photo, _ => _.lowResUrl) || '',
     }));
 
     const roomTitle = idx(availableRoom, _ => _.room.description.title) || '';
@@ -76,7 +77,7 @@ export class RoomRow extends React.Component<Props> {
     const availableRoom = this.props.availableRoom;
     const thumbnailUrl = idx(
       availableRoom,
-      _ => _.room.photos.edges[0].node.lowResUrl,
+      _ => _.room.roomPhotos[0].lowResUrl,
     );
     const amount = idx(availableRoom, _ => _.minimalPrice.amount) || null;
     const currency = idx(availableRoom, _ => _.minimalPrice.currency) || null;
@@ -119,7 +120,7 @@ export class RoomRow extends React.Component<Props> {
 export default (createFragmentContainer(
   withNavigation(RoomRow),
   graphql`
-    fragment RoomRow_availableRoom on HotelRoomAvailability {
+    fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
       id
       ...RoomBadges_availableRoom
       minimalPrice {
@@ -135,14 +136,10 @@ export default (createFragmentContainer(
           title
         }
         ...RoomRowTitle_room
-        photos {
-          edges {
-            node {
-              highResUrl
-              lowResUrl
-              id
-            }
-          }
+        roomPhotos {
+          highResUrl
+          lowResUrl
+          id
         }
         maxPersons
         ...BeddingInfo_room

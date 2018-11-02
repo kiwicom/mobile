@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 26a3d4f61b44c4e1a66d965cea13b545
+ * @relayHash 1cb95df5af3ec5653db0dd03a1acc742
  */
 
 /* eslint-disable */
@@ -113,7 +113,7 @@ fragment RoomList on HotelRoomAvailabilityInterface {
   ...RoomRow_availableRoom
 }
 
-fragment RoomRow_availableRoom on HotelRoomAvailability {
+fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
   id
   ...RoomBadges_availableRoom
   minimalPrice {
@@ -125,18 +125,15 @@ fragment RoomRow_availableRoom on HotelRoomAvailability {
     currency
   }
   room {
+    __typename
     description {
       title
     }
     ...RoomRowTitle_room
-    photos {
-      edges {
-        node {
-          highResUrl
-          lowResUrl
-          id
-        }
-      }
+    roomPhotos {
+      highResUrl
+      lowResUrl
+      id
     }
     maxPersons
     ...BeddingInfo_room
@@ -149,13 +146,13 @@ fragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {
   isRefundable
 }
 
-fragment RoomRowTitle_room on HotelRoom {
+fragment RoomRowTitle_room on HotelRoomInterface {
   description {
     title
   }
 }
 
-fragment BeddingInfo_room on HotelRoom {
+fragment BeddingInfo_room on HotelRoomInterface {
   maxPersons
   bedding {
     type
@@ -277,7 +274,7 @@ return {
   "operationKind": "query",
   "name": "SingleHotelContainerQuery",
   "id": null,
-  "text": "query SingleHotelContainerQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    id\n    incrementalPrice {\n      amount\n      currency\n    }\n  }\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on HotelInterface {\n  id\n}\n\nfragment HotelInformation_hotel on Hotel {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview\n}\n\nfragment RoomList on HotelRoomAvailabilityInterface {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailability {\n  id\n  ...RoomBadges_availableRoom\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n  room {\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    photos {\n      edges {\n        node {\n          highResUrl\n          lowResUrl\n          id\n        }\n      }\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoom {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoom {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment HotelReview on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n",
+  "text": "query SingleHotelContainerQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailability {\n  hotel {\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    ...RoomList\n    id\n    incrementalPrice {\n      amount\n      currency\n    }\n  }\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on HotelInterface {\n  id\n}\n\nfragment HotelInformation_hotel on Hotel {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview\n}\n\nfragment RoomList on HotelRoomAvailabilityInterface {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n  room {\n    __typename\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomInterface {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoomInterface {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on Hotel {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on Hotel {\n  summary\n  facilities {\n    ...Facilities_facilities\n  }\n}\n\nfragment HotelReview on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Facilities_facilities on HotelFacilityConnection {\n  edges {\n    node {\n      id\n      name\n    }\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -572,9 +569,16 @@ return {
                 "name": "room",
                 "storageKey": null,
                 "args": null,
-                "concreteType": "HotelRoom",
+                "concreteType": null,
                 "plural": false,
                 "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "__typename",
+                    "args": null,
+                    "storageKey": null
+                  },
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -596,37 +600,15 @@ return {
                   {
                     "kind": "LinkedField",
                     "alias": null,
-                    "name": "photos",
+                    "name": "roomPhotos",
                     "storageKey": null,
                     "args": null,
-                    "concreteType": "HotelRoomPhotoConnection",
-                    "plural": false,
+                    "concreteType": "HotelPhoto",
+                    "plural": true,
                     "selections": [
-                      {
-                        "kind": "LinkedField",
-                        "alias": null,
-                        "name": "edges",
-                        "storageKey": null,
-                        "args": null,
-                        "concreteType": "HotelRoomPhotoEdge",
-                        "plural": true,
-                        "selections": [
-                          {
-                            "kind": "LinkedField",
-                            "alias": null,
-                            "name": "node",
-                            "storageKey": null,
-                            "args": null,
-                            "concreteType": "HotelPhoto",
-                            "plural": false,
-                            "selections": [
-                              v3,
-                              v5,
-                              v4
-                            ]
-                          }
-                        ]
-                      }
+                      v3,
+                      v5,
+                      v4
                     ]
                   },
                   {

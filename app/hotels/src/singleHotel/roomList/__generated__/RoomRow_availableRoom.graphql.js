@@ -27,15 +27,11 @@ export type RoomRow_availableRoom = {|
     +description: ?{|
       +title: ?string
     |},
-    +photos: ?{|
-      +edges: ?$ReadOnlyArray<?{|
-        +node: ?{|
-          +highResUrl: ?string,
-          +lowResUrl: ?string,
-          +id: string,
-        |}
-      |}>
-    |},
+    +roomPhotos: ?$ReadOnlyArray<?{|
+      +highResUrl: ?string,
+      +lowResUrl: ?string,
+      +id: string,
+    |}>,
     +maxPersons: ?number,
     +$fragmentRefs: RoomRowTitle_room$ref & BeddingInfo_room$ref,
   |},
@@ -72,7 +68,7 @@ v1 = [
 return {
   "kind": "Fragment",
   "name": "RoomRow_availableRoom",
-  "type": "HotelRoomAvailability",
+  "type": "HotelRoomAvailabilityInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -108,7 +104,7 @@ return {
       "name": "room",
       "storageKey": null,
       "args": null,
-      "concreteType": "HotelRoom",
+      "concreteType": null,
       "plural": false,
       "selections": [
         {
@@ -137,49 +133,27 @@ return {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "photos",
+          "name": "roomPhotos",
           "storageKey": null,
           "args": null,
-          "concreteType": "HotelRoomPhotoConnection",
-          "plural": false,
+          "concreteType": "HotelPhoto",
+          "plural": true,
           "selections": [
             {
-              "kind": "LinkedField",
+              "kind": "ScalarField",
               "alias": null,
-              "name": "edges",
-              "storageKey": null,
+              "name": "highResUrl",
               "args": null,
-              "concreteType": "HotelRoomPhotoEdge",
-              "plural": true,
-              "selections": [
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
-                  "name": "node",
-                  "storageKey": null,
-                  "args": null,
-                  "concreteType": "HotelPhoto",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "name": "highResUrl",
-                      "args": null,
-                      "storageKey": null
-                    },
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "name": "lowResUrl",
-                      "args": null,
-                      "storageKey": null
-                    },
-                    v0
-                  ]
-                }
-              ]
-            }
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "lowResUrl",
+              "args": null,
+              "storageKey": null
+            },
+            v0
           ]
         },
         {
@@ -200,5 +174,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8b0824ba7751e3cf1f461edc4b4b6b7a';
+(node/*: any*/).hash = '57f86108a4be2fcefd95d22224110b83';
 module.exports = node;
