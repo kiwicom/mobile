@@ -5,7 +5,6 @@
 #XCode CODEPUSH_KEYS
 ios/RNNativePlayground/keys.xcconfig
 
-
 # OSX
 #
 .DS_Store

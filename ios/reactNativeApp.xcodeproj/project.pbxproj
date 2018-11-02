@@ -37,6 +37,7 @@
 		60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
 		63A8419D20C853840093183F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419C20C853840093183F /* Social.framework */; };
 		63A8419F20C8538A0093183F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419E20C8538A0093183F /* MessageUI.framework */; };
+		68217968218C7C2400F80B06 /* keys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 68217967218C7C2400F80B06 /* keys.xcconfig */; };
 		686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 686E004A20B2E1360013512F /* RNKiwiConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 686E005020B2E24B0013512F /* RNKiwiConstants.m */; };
 		68E80E25215E66CD00EB4717 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */; };
@@ -131,6 +132,7 @@
 		5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/android/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		63A8419C20C853840093183F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		63A8419E20C8538A0093183F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		68217967218C7C2400F80B06 /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
 		686E004A20B2E1360013512F /* RNKiwiConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiConstants.h; sourceTree = "<group>"; };
 		686E005020B2E24B0013512F /* RNKiwiConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiConstants.m; sourceTree = "<group>"; };
 		68A42BBB8E1C6CD26053AC72 /* Pods-RNPlayground.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.release.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				21B8D73121834B830079431F /* City.m */,
 				21B8D73321834BA10079431F /* City.h */,
 				21C5EFC7218A060A00F3C098 /* keys_example.xcconfig */,
+				68217967218C7C2400F80B06 /* keys.xcconfig */,
 			);
 			path = RNNativePlayground;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68217968218C7C2400F80B06 /* keys.xcconfig in Resources */,
 				21C5EFC32189FA0200F3C098 /* package.json in Resources */,
 				21C5EFBA2189DCFA00F3C098 /* orbit-icons.ttf in Resources */,
 				21EFD4CD21768D8C00B5F21B /* Images.xcassets in Resources */,
