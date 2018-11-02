@@ -21,7 +21,7 @@ export type RoomBadges_availableRoom = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "RoomBadges_availableRoom",
-  "type": "HotelRoomAvailability",
+  "type": "HotelRoomAvailabilityInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -42,5 +42,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'cab91ec2f2ffb1204ce18c5b4f5af605';
+(node/*: any*/).hash = 'daa0ecb11f27c4ff85420c25d988f6a4';
 module.exports = node;
