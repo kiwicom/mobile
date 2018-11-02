@@ -10,6 +10,7 @@ type Props = {|
   lastInRow: boolean,
   gap: number,
   imageUrl: string,
+  testID?: string,
 |};
 
 export default class GalleryGridTile extends React.Component<Props> {
@@ -26,7 +27,7 @@ export default class GalleryGridTile extends React.Component<Props> {
     }
 
     return (
-      <Touchable onPress={this.handleTilePress}>
+      <Touchable onPress={this.handleTilePress} testID={this.props.testID}>
         <NetworkImage
           source={{ uri: this.props.imageUrl }}
           style={style}
