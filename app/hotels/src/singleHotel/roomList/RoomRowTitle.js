@@ -31,7 +31,7 @@ export function RoomRowTitle(props: Props) {
 export default (createFragmentContainer(
   RoomRowTitle,
   graphql`
-    fragment RoomRowTitle_room on HotelRoom {
+    fragment RoomRowTitle_room on HotelRoomInterface {
       description {
         title
       }

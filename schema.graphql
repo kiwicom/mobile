@@ -1393,7 +1393,10 @@ type Hotel implements HotelInterface {
   rating: HotelRating
 
   """All facilities available in the hotel."""
-  facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection
+  facilities(after: String, first: Int, before: String, last: Int): HotelFacilityConnection @deprecated(reason: "Use amenities instead")
+
+  """All amenities available in the hotel"""
+  amenities: [HotelAmenity]
 
   """All rooms available in the hotel."""
   rooms(after: String, first: Int, before: String, last: Int): HotelRoomConnection
@@ -1403,6 +1406,14 @@ type Hotel implements HotelInterface {
 
   """Hotel distance from the center in Km."""
   distanceFromCenter: Float
+}
+
+type HotelAmenity {
+  """The ID of an object"""
+  id: ID!
+
+  """Name of the amenity."""
+  name: String
 }
 
 """Information about hotel availability during selected time period."""
@@ -1555,6 +1566,7 @@ interface HotelInterface {
   mainPhoto: HotelPhoto
   rating: HotelRating
   photos: HotelPhotoConnection
+  amenities: [HotelAmenity]
 }
 
 """The urls where the user will be redirected for payment"""
@@ -1617,7 +1629,10 @@ type HotelRoom implements HotelRoomInterface {
   bedding: [HotelRoomBedding]
 
   """All available photos of the hotel room."""
-  photos(after: String, first: Int, before: String, last: Int): HotelRoomPhotoConnection
+  photos(after: String, first: Int, before: String, last: Int): HotelRoomPhotoConnection @deprecated(reason: "use roomPhotos")
+
+  """All available photos of the hotel room."""
+  roomPhotos: [HotelPhoto]
   description: HotelRoomDescription
 
   """The hotelroom size in square meters"""
@@ -1682,6 +1697,10 @@ type HotelRoomEdge {
 
 interface HotelRoomInterface {
   id: ID!
+  description: HotelRoomDescription
+  roomPhotos: [HotelPhoto]
+  maxPersons: Int
+  bedding: [HotelRoomBedding]
 }
 
 """A connection to a list of items."""
@@ -2528,6 +2547,9 @@ type Stay22Hotel implements HotelInterface {
 
   """The star rating of the hotel."""
   rating: HotelRating
+
+  """All amenities available in the hotel"""
+  amenities: [HotelAmenity]
 }
 
 type Stay22HotelDetail implements HotelAvailabilityInterface {
@@ -2545,6 +2567,10 @@ type Stay22HotelDetail implements HotelAvailabilityInterface {
 type Stay22HotelRoom implements HotelRoomInterface {
   """The ID of an object"""
   id: ID!
+  description: HotelRoomDescription
+  roomPhotos: [HotelPhoto]
+  maxPersons: Int
+  bedding: [HotelRoomBedding]
 }
 
 type Stay22HotelRoomAvailability implements HotelRoomAvailabilityInterface {
