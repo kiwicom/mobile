@@ -20,8 +20,8 @@ it('not checked', () => {
 });
 
 let originalPlatform;
-beforeEach(() => (originalPlatform = Platform.OS));
-afterEach(() => (Platform.OS = originalPlatform));
+const setUpTest = () => (originalPlatform = Platform.OS);
+const cleanUpTest = () => (Platform.OS = originalPlatform);
 
 const createStyle = () =>
   StyleSheet.create({
@@ -44,6 +44,7 @@ const createStyle = () =>
   });
 
 it('works with iOS', () => {
+  setUpTest();
   Platform.OS = 'ios';
   expect(createStyle()).toEqual({
     iconStyle: {
@@ -53,9 +54,11 @@ it('works with iOS', () => {
       fontSize: 28,
     },
   });
+  cleanUpTest();
 });
 
 it('works with Android', () => {
+  setUpTest();
   Platform.OS = 'android';
   expect(createStyle()).toEqual({
     iconStyle: {
@@ -68,9 +71,11 @@ it('works with Android', () => {
       fontSize: 24,
     },
   });
+  cleanUpTest();
 });
 
 it('checked on ios', () => {
+  setUpTest();
   Platform.OS = 'ios';
 
   PlaygroundRenderer.render(
@@ -78,9 +83,11 @@ it('checked on ios', () => {
       <Translation passThrough="Checked" />
     </Checkbox>,
   );
+  cleanUpTest();
 });
 
 it('checked on android', () => {
+  setUpTest();
   Platform.OS = 'android';
 
   PlaygroundRenderer.render(
@@ -88,4 +95,5 @@ it('checked on android', () => {
       <Translation passThrough="Checked" />
     </Checkbox>,
   );
+  cleanUpTest();
 });

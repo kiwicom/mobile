@@ -10,6 +10,7 @@ const expectObject = {
   toBeCalled: () => {},
   toHaveBeenCalledWith: () => {},
   toHaveBeenCalled: () => {},
+  toEqual: () => {},
 };
 
 if (it === undefined && process.env.NODE_ENV !== 'test') {
