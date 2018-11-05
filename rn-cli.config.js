@@ -15,6 +15,7 @@ const sharedBlacklist = [
   /website\/node_modules\/.*/,
   /heapCapture\/bundle\.js/,
   /\.build[/\\].*/,
+  /ios[/\\]build[/\\]Build[/\\].*/,
   // /.*\/__tests__\/.*/,
 ];
 
