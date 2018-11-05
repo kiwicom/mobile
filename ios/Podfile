@@ -71,4 +71,12 @@ post_install do |installer|
       end
     end
   end
+
+  # This step is necessary to make it possible
+  # to use other configurations than Debug or Release
+  installer.pods_project.build_configurations.each do |config|
+    if config.name == 'Staging'
+        config.build_settings['CONFIGURATION_BUILD_DIR'] = '$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)'
+    end
+  end
 end

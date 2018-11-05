@@ -52,13 +52,15 @@ The registered module has to be then instantiated along with the proper `moduleN
 
 To check CodePush updates in `RNNativePlayground` follow the steps:
 
-1. Create a file called `keys.xcconfig` within `RNNativePlayground` and add there two keys:
+1. Create two files called `staging.xcconfig` and `release.xcconfig` within `RNNativePlayground` and in each of them and correct key:
 ```
 STAGING_KEY=""
+```
+```
 RELEASE_KEY=""
 ```
 
-_NOTE_: That file is added to the `.gitignore` which prevents from pushing those keys to github.
+_NOTE_: These files are added to the `.gitignore` which prevents from pushing these keys to github.
 
 2. Open the schema `RNNativePlayground - Staging` for `Staging` configuration or `RNNativePlayground - Release` for `Release` configuration.
 

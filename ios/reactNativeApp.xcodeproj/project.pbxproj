@@ -37,7 +37,6 @@
 		60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
 		63A8419D20C853840093183F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419C20C853840093183F /* Social.framework */; };
 		63A8419F20C8538A0093183F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419E20C8538A0093183F /* MessageUI.framework */; };
-		68217968218C7C2400F80B06 /* keys.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 68217967218C7C2400F80B06 /* keys.xcconfig */; };
 		686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 686E004A20B2E1360013512F /* RNKiwiConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 686E005020B2E24B0013512F /* RNKiwiConstants.m */; };
 		68E80E25215E66CD00EB4717 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */; };
@@ -97,13 +96,14 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reactNativeApp/main.m; sourceTree = "<group>"; };
 		2107154420B5677200E6C96B /* RNKiwiGestureController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNKiwiGestureController.m; sourceTree = "<group>"; };
 		2107154520B5677200E6C96B /* RNKiwiGestureController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNKiwiGestureController.h; sourceTree = "<group>"; };
+		21535422219038C3007305B8 /* staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = staging.xcconfig; sourceTree = "<group>"; };
+		2153542321903932007305B8 /* release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = release.xcconfig; sourceTree = "<group>"; };
 		219FCC5721753448008F5428 /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCodePush.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		219FCC5921753450008F5428 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21B8D73121834B830079431F /* City.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		21B8D73321834BA10079431F /* City.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
 		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		21C5EFC12189F86100F3C098 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = package.json; path = ../package.json; sourceTree = "<group>"; };
-		21C5EFC7218A060A00F3C098 /* keys_example.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys_example.xcconfig; sourceTree = "<group>"; };
 		2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiSharedBridge.h; sourceTree = "<group>"; };
 		2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiSharedBridge.m; sourceTree = "<group>"; };
 		27E931B020AD96780053AE19 /* RNKiwiMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RNKiwiMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +132,6 @@
 		5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/android/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		63A8419C20C853840093183F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		63A8419E20C8538A0093183F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		68217967218C7C2400F80B06 /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
 		686E004A20B2E1360013512F /* RNKiwiConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiConstants.h; sourceTree = "<group>"; };
 		686E005020B2E24B0013512F /* RNKiwiConstants.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiConstants.m; sourceTree = "<group>"; };
 		68A42BBB8E1C6CD26053AC72 /* Pods-RNPlayground.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.release.xcconfig"; sourceTree = "<group>"; };
@@ -242,8 +241,8 @@
 				27E931E320ADA0630053AE19 /* main.m */,
 				21B8D73121834B830079431F /* City.m */,
 				21B8D73321834BA10079431F /* City.h */,
-				21C5EFC7218A060A00F3C098 /* keys_example.xcconfig */,
-				68217967218C7C2400F80B06 /* keys.xcconfig */,
+				21535422219038C3007305B8 /* staging.xcconfig */,
+				2153542321903932007305B8 /* release.xcconfig */,
 			);
 			path = RNNativePlayground;
 			sourceTree = "<group>";
@@ -465,7 +464,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68217968218C7C2400F80B06 /* keys.xcconfig in Resources */,
 				21C5EFC32189FA0200F3C098 /* package.json in Resources */,
 				21C5EFBA2189DCFA00F3C098 /* orbit-icons.ttf in Resources */,
 				21EFD4CD21768D8C00B5F21B /* Images.xcassets in Resources */,
@@ -708,7 +706,7 @@
 		};
 		217466762174BF9600FF1F3A /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21C5EFC7218A060A00F3C098 /* keys_example.xcconfig */;
+			baseConfigurationReference = 21535422219038C3007305B8 /* staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1065,7 +1063,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21C5EFC7218A060A00F3C098 /* keys_example.xcconfig */;
+			baseConfigurationReference = 2153542321903932007305B8 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

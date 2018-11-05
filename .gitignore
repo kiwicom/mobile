@@ -3,7 +3,8 @@
 .env
 
 #XCode CODEPUSH_KEYS
-ios/RNNativePlayground/keys.xcconfig
+ios/RNNativePlayground/staging.xcconfig
+ios/RNNativePlayground/release.xcconfig
 
 # OSX
 #
