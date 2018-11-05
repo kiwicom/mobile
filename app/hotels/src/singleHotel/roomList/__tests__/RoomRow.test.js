@@ -30,6 +30,7 @@ it('renders without crashing', () => {
       incrementalPrice: [],
     },
     navigation,
+    disabled: false,
   };
 
   renderer.render(<RoomRow {...props} />);
@@ -42,6 +43,7 @@ it('renders without crashing with missing data', () => {
     selected: {},
     availableRoom: undefined,
     navigation,
+    disabled: false,
   };
 
   renderer.render(<RoomRow {...props} />);

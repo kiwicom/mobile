@@ -20,15 +20,22 @@ type Props = {|
   +price: PriceType,
   +increment: () => void,
   +testID?: string,
+  +disabled: boolean,
 |};
 
-export default function SelectButton({ increment, price, testID }: Props) {
+export default function SelectButton({
+  increment,
+  price,
+  testID,
+  disabled,
+}: Props) {
   return (
     <Touchable
       style={styles.container}
       onPress={increment}
       delayPressIn={40}
       testID={testID}
+      disabled={disabled}
     >
       <View style={styles.row}>
         <ButtonTitle

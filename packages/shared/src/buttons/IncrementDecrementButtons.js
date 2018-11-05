@@ -40,11 +40,13 @@ type Props = {|
   +numberStyle?: StylePropType,
   +min?: number,
   +max?: number,
+  +disableDecrement?: boolean,
+  +disableIncrement?: boolean,
 |};
 
 export default function IncrementDecrementButtons(props: Props) {
-  const disableDecrement = props.number === props.min;
-  const disableIncrement = props.number === props.max;
+  const disableDecrement = props.number === props.min || props.disableDecrement;
+  const disableIncrement = props.number === props.max || props.disableIncrement;
 
   return (
     <View style={styles.row}>

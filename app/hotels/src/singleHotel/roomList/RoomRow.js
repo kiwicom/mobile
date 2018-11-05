@@ -25,6 +25,7 @@ type ContainerProps = {|
   +selected: {
     +[string]: number,
   },
+  +disabled: boolean,
   +testID?: string,
 |};
 
@@ -110,6 +111,7 @@ export class RoomRow extends React.Component<Props> {
             increment={this.select}
             decrement={this.deselect}
             testID={this.props.testID}
+            disabled={this.props.disabled}
           />
         </View>
       </View>

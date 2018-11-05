@@ -15,6 +15,7 @@ it('renders as expected', () => {
       selectableCount={1}
       increment={VoidAction}
       decrement={VoidAction}
+      disabled={false}
     />,
   );
 
@@ -25,6 +26,7 @@ it('renders as expected', () => {
       selectableCount={2}
       increment={VoidAction}
       decrement={VoidAction}
+      disabled={false}
     />,
   );
 
@@ -35,6 +37,18 @@ it('renders as expected', () => {
       selectableCount={2}
       increment={VoidAction}
       decrement={VoidAction}
+      disabled={false}
+    />,
+  );
+
+  PlaygroundRenderer.render(
+    <RoomPicker
+      price={{ amount: 100, currency: 'CZK' }}
+      selectedCount={2}
+      selectableCount={2}
+      increment={VoidAction}
+      decrement={VoidAction}
+      disabled={true}
     />,
   );
 });
