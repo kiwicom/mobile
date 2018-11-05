@@ -24,6 +24,7 @@ def react_native_pods()
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'CodePush', :path => '../node_modules/react-native-code-push'
 end
 
 def mmb_package_modules()
@@ -68,6 +69,14 @@ post_install do |installer|
       target.build_configurations.each do |config|
         config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
       end
+    end
+  end
+
+  # This step is necessary to make it possible
+  # to use other configurations than Debug or Release
+  installer.pods_project.build_configurations.each do |config|
+    if config.name == 'Staging'
+        config.build_settings['CONFIGURATION_BUILD_DIR'] = '$(BUILD_DIR)/Release$(EFFECTIVE_PLATFORM_NAME)'
     end
   end
 end

@@ -20,7 +20,12 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane ios beta
 ```
-Build and deploy to TestFlight
+Build and deploy reactNativeApp to TestFlight
+### ios staging
+```
+fastlane ios staging
+```
+Build and deploy RNNativePlayground to TestFlight
 
 ----
 

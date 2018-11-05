@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,23 +36,20 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMy-op-KJ7">
-                                <rect key="frame" x="16" y="81" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMy-op-KJ7">
+                                <rect key="frame" x="16" y="204" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select end date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oID-K6-8uc">
-                                <rect key="frame" x="16" y="119" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select end date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oID-K6-8uc">
+                                <rect key="frame" x="16" y="242" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select city" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBX-BO-IRW">
-                                <rect key="frame" x="16" y="157" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select city" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBX-BO-IRW">
+                                <rect key="frame" x="16" y="280" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -59,8 +57,17 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="aMy-op-KJ7" firstAttribute="trailing" secondItem="oID-K6-8uc" secondAttribute="trailing" id="0Xz-io-xA3"/>
+                            <constraint firstItem="aMy-op-KJ7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2cH-kL-jFd"/>
+                            <constraint firstItem="oID-K6-8uc" firstAttribute="trailing" secondItem="QBX-BO-IRW" secondAttribute="trailing" id="Agw-z8-gP9"/>
+                            <constraint firstItem="QBX-BO-IRW" firstAttribute="centerX" secondItem="QHj-7e-Fcl" secondAttribute="centerX" id="L5l-lZ-Aws"/>
+                            <constraint firstItem="oID-K6-8uc" firstAttribute="leading" secondItem="QBX-BO-IRW" secondAttribute="leading" id="PeM-fb-uuH"/>
+                            <constraint firstItem="QBX-BO-IRW" firstAttribute="top" secondItem="oID-K6-8uc" secondAttribute="bottom" constant="8" symbolic="YES" id="XIG-fk-LJq"/>
                             <constraint firstItem="QHj-7e-Fcl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="heN-Dh-Vno"/>
+                            <constraint firstItem="QHj-7e-Fcl" firstAttribute="top" secondItem="QBX-BO-IRW" secondAttribute="bottom" constant="8" symbolic="YES" id="nLg-eD-MaA"/>
+                            <constraint firstItem="oID-K6-8uc" firstAttribute="top" secondItem="aMy-op-KJ7" secondAttribute="bottom" constant="8" symbolic="YES" id="oCF-Im-yeo"/>
                             <constraint firstItem="QHj-7e-Fcl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ohf-bq-68v"/>
+                            <constraint firstItem="aMy-op-KJ7" firstAttribute="leading" secondItem="oID-K6-8uc" secondAttribute="leading" id="rAd-Ys-CDp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

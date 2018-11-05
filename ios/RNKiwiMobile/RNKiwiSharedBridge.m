@@ -2,6 +2,7 @@
 #import "RNKiwiConstants.h"
 #import <React/RCTBridge.h>
 #import <React/RCTRootView.h>
+#import <CodePush/CodePush.h>
 
 @interface RNKiwiSharedBridge()
 
@@ -18,6 +19,17 @@
     _sharedObject = [[self alloc] init];
   });
   return _sharedObject;
+}
+
+- (void)initBridgeWithCodePush:(NSString *)codePushKey codePushVersion:(NSString *)codePushVersion {
+  [CodePush overrideAppVersion:codePushVersion];
+  [CodePush setDeploymentKey:codePushKey];
+  [self initBridge];
+}
+
+- (void)initCodePush:(NSString *)codePushKey codePushVersion:(NSString *)codePushVersion {
+  [CodePush overrideAppVersion:codePushVersion];
+  [CodePush setDeploymentKey:codePushKey];
 }
 
 - (void)initBridge {

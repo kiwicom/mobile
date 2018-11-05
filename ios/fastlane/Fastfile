@@ -12,8 +12,7 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Build and deploy to TestFlight"
-  lane :beta do |options|
+  private_lane :build_deploy do |options|
 
     get_certificates(
       username: ENV["APPLE_ID"]
@@ -21,20 +20,37 @@ platform :ios do
 
     get_provisioning_profile(
       username: ENV["APPLE_ID"],
-      app_identifier: "com.kiwi.reactNative"
-    )
-
-    build_ios_app(
-      scheme: "reactNativeApp",
-      workspace: "reactNativeApp.xcworkspace",
-      include_bitcode: true
+      app_identifier: options[:app_id]
     )
 
     increment_build_number
+
+    build_ios_app(
+      scheme: options[:scheme],
+      workspace: "reactNativeApp.xcworkspace",
+      include_bitcode: true
+    )
 
     upload_to_testflight(
       username: ENV["APPLE_ID"],
       skip_waiting_for_build_processing: true,
     )
   end
+
+  desc "Build and deploy reactNativeApp to TestFlight"
+  lane :beta do
+    build_deploy(
+      app_id: "com.kiwi.reactNative",
+      scheme: "reactNativeApp"
+    )
+  end
+
+  desc "Build and deploy RNNativePlayground to TestFlight"
+  lane :staging do
+    build_deploy(
+      app_id: "com.kiwi.mobile.rniosplayground",
+      scheme: "RNNativePlayground - Staging"
+    )
+  end
+
 end
