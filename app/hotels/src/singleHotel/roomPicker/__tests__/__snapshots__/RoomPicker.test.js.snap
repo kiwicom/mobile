@@ -2,6 +2,7 @@
 
 exports[`renders as expected 1`] = `
 <SelectButton
+  disabled={false}
   increment={[Function]}
   price={
     Object {
@@ -15,6 +16,7 @@ exports[`renders as expected 1`] = `
 exports[`renders as expected 2`] = `
 <IncrementDecrement
   decrement={[Function]}
+  disabled={false}
   increment={[Function]}
   price={
     Object {
@@ -30,6 +32,23 @@ exports[`renders as expected 2`] = `
 exports[`renders as expected 3`] = `
 <IncrementDecrement
   decrement={[Function]}
+  disabled={false}
+  increment={[Function]}
+  price={
+    Object {
+      "amount": 100,
+      "currency": "CZK",
+    }
+  }
+  selectableCount={2}
+  selectedCount={2}
+/>
+`;
+
+exports[`renders as expected 4`] = `
+<IncrementDecrement
+  decrement={[Function]}
+  disabled={true}
   increment={[Function]}
   price={
     Object {

@@ -137,13 +137,16 @@ export class HotelDetailScreen extends React.Component<
       return this.state.selected[currentItem] + sum;
     }, 0);
 
-  getPersonCount = () => {
+  getNumberOfGuests = () => {
     const roomsConfiguration = idx(
       this.props,
       _ => _.roomsConfiguration[0],
     ) || { adultsCount: 0, children: [] };
-    const guestTotal =
-      roomsConfiguration.adultsCount + roomsConfiguration.children.length;
+    return roomsConfiguration.adultsCount + roomsConfiguration.children.length;
+  };
+
+  getPersonCount = () => {
+    const guestTotal = this.getNumberOfGuests();
 
     return this.state.maxPersons > guestTotal
       ? guestTotal
@@ -153,6 +156,8 @@ export class HotelDetailScreen extends React.Component<
   render() {
     const { availableHotel } = this.props;
     const { selected } = this.state;
+
+    const disabled = this.getNumberOfGuests() <= this.getNumberOfRooms();
     const price = countBookingPrice(
       idx(this.props, _ => _.availableHotel.availableRooms),
       selected,
@@ -184,6 +189,7 @@ export class HotelDetailScreen extends React.Component<
                 select={this.selectRoom}
                 deselect={this.deselectRoom}
                 selected={selected}
+                disabled={disabled}
               />
               <BrandLabel />
             </LayoutSingleColumn>

@@ -23,6 +23,7 @@ type Props = {|
   +increment: () => void,
   +decrement: () => void,
   +testID?: string,
+  +disabled: boolean,
 |};
 
 export default function IncrementDecrement({
@@ -31,11 +32,14 @@ export default function IncrementDecrement({
   price,
   increment,
   selectableCount,
+  disabled,
 }: Props) {
   const androidProps = Platform.select({
     ios: {},
     android: { textTransform: 'uppercase' },
   });
+  const disableDecrement = disabled && selectedCount <= 0;
+  const disableIncrement = disabled;
   return (
     <View style={styles.container}>
       <View style={styles.row}>
@@ -58,6 +62,8 @@ export default function IncrementDecrement({
             number={selectedCount}
             showNumber={true}
             numberStyle={styles.roomCount}
+            disableDecrement={disableDecrement}
+            disableIncrement={disableIncrement}
           />
         </View>
       </View>
