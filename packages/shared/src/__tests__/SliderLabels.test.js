@@ -1,34 +1,40 @@
 // @flow strict
 
 import * as React from 'react';
-import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 import { Translation } from '@kiwicom/mobile-localization';
 import renderer from 'react-test-renderer';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
 import SliderLabels from '../SliderLabels';
 
+const shallowRenderer = new ShallowRenderer();
+
 it('one label', () => {
-  PlaygroundRenderer.render(
-    <SliderLabels
-      startLabel={<Translation passThrough="label" />}
-      startValue={46}
-      max={1000}
-      min={1}
-    />,
-  );
+  expect(
+    shallowRenderer.render(
+      <SliderLabels
+        startLabel={<Translation passThrough="label" />}
+        startValue={46}
+        max={1000}
+        min={1}
+      />,
+    ),
+  ).toMatchSnapshot();
 });
 
 it('two labels', () => {
-  PlaygroundRenderer.render(
-    <SliderLabels
-      startLabel={<Translation passThrough="start label" />}
-      startValue={46}
-      endLabel={<Translation passThrough="end label" />}
-      endValue={850}
-      max={1000}
-      min={1}
-    />,
-  );
+  expect(
+    shallowRenderer.render(
+      <SliderLabels
+        startLabel={<Translation passThrough="start label" />}
+        startValue={46}
+        endLabel={<Translation passThrough="end label" />}
+        endValue={850}
+        max={1000}
+        min={1}
+      />,
+    ),
+  ).toMatchSnapshot();
 });
 
 const requestAF = global.requestAnimationFrame;
