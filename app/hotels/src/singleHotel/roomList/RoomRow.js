@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import idx from 'idx';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
@@ -52,22 +51,27 @@ export class RoomRow extends React.Component<Props> {
   };
 
   getIdAndMaxPersons = () => {
-    const id = idx(this.props, _ => _.availableRoom.id);
-    const maxPersons = idx(this.props, _ => _.availableRoom.room.maxPersons);
+    const id = this.props?.availableRoom?.id;
+    const maxPersons = this.props?.availableRoom?.room?.maxPersons;
     return { id, maxPersons };
   };
 
   openGallery = () => {
     const { availableRoom } = this.props;
-    const photosArray = idx(availableRoom, _ => _.room.roomPhotos) || [];
+    const photosArray = availableRoom?.room?.roomPhotos ?? [];
 
-    const photos = photosArray.map(photo => ({
-      key: idx(photo, _ => _.id) || '',
-      highRes: idx(photo, _ => _.highResUrl) || '',
-      lowRes: idx(photo, _ => _.lowResUrl) || '',
-    }));
+    const photos = photosArray.map(photo => {
+      const highRes = photo?.highResUrl ?? '';
+      const lowRes = photo?.lowResUrl ?? highRes; // Fallback to highResUrl since stay22 do not provide lowResUrl
+      const key = photo?.id ?? '';
+      return {
+        key,
+        highRes,
+        lowRes,
+      };
+    });
 
-    const roomTitle = idx(availableRoom, _ => _.room.description.title) || '';
+    const roomTitle = availableRoom?.room?.description?.title ?? '';
     this.props.navigation.navigate('GalleryGrid', {
       hotelName: roomTitle,
       images: photos,
@@ -76,17 +80,17 @@ export class RoomRow extends React.Component<Props> {
 
   render = () => {
     const availableRoom = this.props.availableRoom;
-    const thumbnailUrl = idx(
-      availableRoom,
-      _ => _.room.roomPhotos[0].lowResUrl,
-    );
-    const amount = idx(availableRoom, _ => _.minimalPrice.amount) || null;
-    const currency = idx(availableRoom, _ => _.minimalPrice.currency) || null;
-    const selectableCount =
-      idx(availableRoom, _ => _.incrementalPrice.length) || 0;
-    const id = idx(availableRoom, _ => _.id) || '';
-    const selectedCount = idx(this.props.selected, _ => _[id]) || 0;
-    const room = idx(availableRoom, _ => _.room);
+    // New provider currently does not support lowResUrl, fallback to highResUrl in that case
+    // ThumbnailUrl provides to low quality
+    const photo = availableRoom?.room?.roomPhotos?.[0];
+    const thumbnailUrl = photo?.lowResUrl ?? photo?.highResUrl;
+
+    const amount = availableRoom?.minimalPrice?.amount ?? null;
+    const currency = availableRoom?.minimalPrice?.currency ?? null;
+    const selectableCount = availableRoom?.incrementalPrice?.length ?? 0;
+    const id = availableRoom?.id ?? '';
+    const selectedCount = this.props.selected?.[id] ?? 0;
+    const room = availableRoom?.room;
 
     return (
       <View style={styles.container}>

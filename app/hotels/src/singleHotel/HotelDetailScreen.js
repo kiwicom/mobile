@@ -240,7 +240,7 @@ class HotelDetailScreenWithContext extends React.Component<Props> {
 export default createFragmentContainer(
   HotelDetailScreenWithContext,
   graphql`
-    fragment HotelDetailScreen_availableHotel on HotelAvailability {
+    fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
       hotel {
         ...Header_hotel
         ...BookNow_hotel

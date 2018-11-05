@@ -28,7 +28,7 @@ const HotelInformation = (props: Props) => (
 export default (createFragmentContainer(
   HotelInformation,
   graphql`
-    fragment HotelInformation_hotel on Hotel {
+    fragment HotelInformation_hotel on HotelInterface {
       ...Location_hotel
       ...Description_hotel
       ...HotelReview

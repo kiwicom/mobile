@@ -132,7 +132,7 @@ class LocationWithContext extends React.Component<Props> {
 export default (createFragmentContainer(
   withNavigation(LocationWithContext),
   graphql`
-    fragment Location_hotel on Hotel {
+    fragment Location_hotel on HotelInterface {
       address {
         street
         city

@@ -4,12 +4,8 @@ import * as React from 'react';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { DateFormatter, Translation } from '@kiwicom/mobile-localization';
 import { GeneralError } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
-import {
-  type RoomConfigurationType,
-  withHotelsContext,
-} from '../HotelsContext';
+import { withHotelsContext } from '../HotelsContext';
 import type { Stay22HotelsSearchQueryResponse } from './__generated__/Stay22HotelsSearchQuery.graphql';
 import Stay22PaginationContainer from './Stay22PaginationContainer';
 
@@ -17,7 +13,7 @@ type Props = {|
   +checkin: Date | null,
   +checkout: Date | null,
   +currency: string,
-  +roomsConfiguration: RoomConfigurationType | null,
+  +getGuestCount: () => number,
   +longitude: number | null,
   +latitude: number | null,
 |};
@@ -27,17 +23,6 @@ export class Stay22HotelsSearch extends React.Component<Props> {
     propsFromRenderer: Stay22HotelsSearchQueryResponse,
   ) => {
     return <Stay22PaginationContainer data={propsFromRenderer} />;
-  };
-
-  getGuests = () => {
-    if (this.props.roomsConfiguration === null) {
-      return 0;
-    }
-    return this.props.roomsConfiguration.reduce((sum, current) => {
-      const adults = current.adultsCount;
-      const children = idx(current, _ => _.children.length) || 0;
-      return sum + adults + children;
-    }, 0);
   };
 
   render = () => {
@@ -75,7 +60,7 @@ export class Stay22HotelsSearch extends React.Component<Props> {
             longitude,
             checkin: DateFormatter(checkin).formatForMachine(),
             checkout: DateFormatter(checkout).formatForMachine(),
-            guests: this.getGuests(),
+            guests: this.props.getGuestCount(),
             currency,
           },
         }}
@@ -89,7 +74,7 @@ export default withHotelsContext(state => ({
   checkin: state.checkin,
   checkout: state.checkout,
   currency: state.currency,
-  roomsConfiguration: state.roomsConfiguration,
+  getGuestCount: state.getGuestCount,
   latitude: state.latitude,
   longitude: state.longitude,
 }))(Stay22HotelsSearch);

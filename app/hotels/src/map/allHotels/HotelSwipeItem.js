@@ -92,10 +92,20 @@ class HotelSwipeItem extends React.Component<Props> {
     </SingleHotelContext.Consumer>
   );
 
-  renderSingleHotelContext = (width: number) => context => (
+  renderSingleHotelContext = (width: number) => ({
+    setHotelId,
+    hotelId,
+    checkin,
+    checkout,
+    roomsConfiguration,
+  }) => (
     <HotelSwipeItemWithContext
       {...this.props}
-      {...context}
+      setHotelId={setHotelId}
+      hotelId={hotelId}
+      checkin={checkin}
+      checkout={checkout}
+      roomsConfiguration={roomsConfiguration}
       deviceWidth={width}
     />
   );
