@@ -23,7 +23,9 @@ import {
 } from './SearchResultsContext';
 import SingleHotelContainer from '../../singleHotel/SingleHotelContainer';
 import type { RoomsConfiguration } from '../../singleHotel/AvailableHotelSearchInput';
-import SingleHotelContext from '../singleHotel/SingleHotelContext';
+import SingleHotelContext, {
+  type ApiProvider,
+} from '../singleHotel/SingleHotelContext';
 
 type Props = {|
   +navigation: NavigationType,
@@ -35,6 +37,7 @@ type Props = {|
   +lastNavigationMode?: 'present' | 'push',
   +setResultType: (show: ResultType) => void,
   +show: ResultType,
+  +cityId?: string,
 |};
 
 const noop = () => {};
@@ -134,26 +137,33 @@ class SearchResultsScreen extends React.Component<Props> {
     }
   };
 
-  render = () => (
-    <SingleHotelContext.Provider
-      hotelId={''}
-      checkin={new Date(this.props.checkin)}
-      checkout={new Date(this.props.checkout)}
-      roomsConfiguration={this.props.roomsConfiguration}
-    >
-      <LayoutDoubleColumn
-        menuComponent={
-          <View style={styles.container}>
-            <NewAllHotels />
-            <View style={styles.button}>
-              <CloseButton onPress={this.onClosePress} />
+  render() {
+    // Stay 22 only supports searching with gps coordinates, if we get passed a cityId from native
+    // we are using booking.com, if we don't get cityId, we should have coordinates, and we are using stay22 provider
+    const apiProvider: ApiProvider =
+      this.props.cityId == null ? 'stay22' : 'booking';
+    return (
+      <SingleHotelContext.Provider
+        hotelId={''}
+        checkin={new Date(this.props.checkin)}
+        checkout={new Date(this.props.checkout)}
+        roomsConfiguration={this.props.roomsConfiguration}
+        apiProvider={apiProvider}
+      >
+        <LayoutDoubleColumn
+          menuComponent={
+            <View style={styles.container}>
+              <NewAllHotels />
+              <View style={styles.button}>
+                <CloseButton onPress={this.onClosePress} />
+              </View>
             </View>
-          </View>
-        }
-        containerComponent={<SingleHotelContainer goBack={noop} />}
-      />
-    </SingleHotelContext.Provider>
-  );
+          }
+          containerComponent={<SingleHotelContainer goBack={noop} />}
+        />
+      </SingleHotelContext.Provider>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

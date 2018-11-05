@@ -1567,6 +1567,7 @@ interface HotelInterface {
   rating: HotelRating
   photos: HotelPhotoConnection
   amenities: [HotelAmenity]
+  coordinates: Coordinates
 }
 
 """The urls where the user will be redirected for payment"""
@@ -2373,14 +2374,6 @@ type RootQuery {
   """
   availableHotel(search: AvailableHotelSearchInput!, options: AvailableHotelOptionsInput): HotelAvailability
 
-  """Find booking by its id or databaseId."""
-  booking(
-    """
-    Database ID (human readable ID) of the booking. You should use "node" query if you want to use opaque ID.
-    """
-    id: ID!
-  ): Booking @deprecated(reason: "Use \"node\" query instead.")
-
   """Get the timeline for your booking."""
   bookingTimeline(
     """Only Booking id can be used as ID."""
@@ -2504,7 +2497,7 @@ type RootQuery {
   ): BookingInterface
 
   """Single hotel by ID."""
-  stay22HotelDetail(id: ID!, currency: Currency = EUR): Stay22HotelDetail
+  stay22HotelDetail(id: ID!, guests: Int!, checkin: Date!, checkout: Date!, currency: Currency = EUR): Stay22HotelDetail
 }
 
 type RouteStop {
@@ -2550,6 +2543,7 @@ type Stay22Hotel implements HotelInterface {
 
   """All amenities available in the hotel"""
   amenities: [HotelAmenity]
+  coordinates: Coordinates
 }
 
 type Stay22HotelDetail implements HotelAvailabilityInterface {

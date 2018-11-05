@@ -4,12 +4,15 @@ import * as React from 'react';
 
 import type { RoomConfigurationType } from '../../HotelsContext';
 
+export type ApiProvider = 'booking' | 'stay22';
+
 const defaultState = {
   hotelId: '',
   checkin: new Date(),
   checkout: new Date(),
   roomsConfiguration: [],
   setHotelId: () => {},
+  apiProvider: 'booking',
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
@@ -22,6 +25,7 @@ type Props = {|
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: RoomConfigurationType,
+  +apiProvider: ?ApiProvider,
 |};
 
 export type State = {|
@@ -29,6 +33,7 @@ export type State = {|
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: RoomConfigurationType,
+  +apiProvider: ApiProvider,
   +setHotelId: (hotelId: string) => void,
 |};
 
@@ -41,6 +46,7 @@ class Provider extends React.Component<Props, State> {
       checkin: props.checkin,
       checkout: props.checkout,
       roomsConfiguration: props.roomsConfiguration,
+      apiProvider: props.apiProvider ?? 'booking',
       setHotelId: this.setHotelId,
     };
   }

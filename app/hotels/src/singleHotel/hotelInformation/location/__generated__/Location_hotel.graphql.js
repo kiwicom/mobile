@@ -27,7 +27,7 @@ export type Location_hotel = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "Location_hotel",
-  "type": "Hotel",
+  "type": "HotelInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -84,5 +84,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a5f82a0bd11e0cfeb086ea040ca809f6';
+(node/*: any*/).hash = '31c5d4b67f70b638a1019503b8bc7a29';
 module.exports = node;

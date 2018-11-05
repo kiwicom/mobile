@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4bf310410b6a99bf273ad78411720290
+ * @relayHash 0dd032a334f5b0752f9f632eb680eaf6
  */
 
 /* eslint-disable */
@@ -11,51 +11,35 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type HotelDetailScreen_availableHotel$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
-export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "engb" | "enus" | "es" | "esar" | "et" | "fi" | "fr" | "he" | "hr" | "hu" | "id" | "is" | "it" | "ja" | "ko" | "lt" | "lv" | "ms" | "nl" | "no" | "pl" | "pt" | "ptbr" | "ptpt" | "ro" | "ru" | "sk" | "sl" | "sr" | "sv" | "th" | "tl" | "tr" | "uk" | "vi" | "zh" | "zhcn" | "zhtw" | "%future added value";
-export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
-export type AvailableHotelSearchInput = {
-  hotelId: string,
+export type Stay22SingleHotelQueryVariables = {|
+  id: string,
+  guests: number,
+  currency?: ?Currency,
   checkin: any,
   checkout: any,
-  roomsConfiguration: $ReadOnlyArray<RoomsConfiguration>,
-  language?: ?Language,
-};
-export type RoomsConfiguration = {
-  adultsCount: number,
-  children?: ?$ReadOnlyArray<?RoomsChildrenConfiguration>,
-};
-export type RoomsChildrenConfiguration = {
-  age?: ?number
-};
-export type AvailableHotelOptionsInput = {
-  currency?: ?Currency,
-  orderBy?: ?OrderBy,
-};
-export type SingleHotelContainerQueryVariables = {|
-  search: AvailableHotelSearchInput,
-  options?: ?AvailableHotelOptionsInput,
 |};
-export type SingleHotelContainerQueryResponse = {|
-  +availableHotel: ?{|
+export type Stay22SingleHotelQueryResponse = {|
+  +stay22HotelDetail: ?{|
     +$fragmentRefs: HotelDetailScreen_availableHotel$ref
   |}
 |};
-export type SingleHotelContainerQuery = {|
-  variables: SingleHotelContainerQueryVariables,
-  response: SingleHotelContainerQueryResponse,
+export type Stay22SingleHotelQuery = {|
+  variables: Stay22SingleHotelQueryVariables,
+  response: Stay22SingleHotelQueryResponse,
 |};
 */
 
 
 /*
-query SingleHotelContainerQuery(
-  $search: AvailableHotelSearchInput!
-  $options: AvailableHotelOptionsInput
+query Stay22SingleHotelQuery(
+  $id: ID!
+  $guests: Int!
+  $currency: Currency
+  $checkin: Date!
+  $checkout: Date!
 ) {
-  availableHotel(search: $search, options: $options) {
-    ... on HotelAvailabilityInterface {
-      ...HotelDetailScreen_availableHotel
-    }
+  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {
+    ...HotelDetailScreen_availableHotel
     id
   }
 }
@@ -197,29 +181,65 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "search",
-    "type": "AvailableHotelSearchInput!",
+    "name": "id",
+    "type": "ID!",
     "defaultValue": null
   },
   {
     "kind": "LocalArgument",
-    "name": "options",
-    "type": "AvailableHotelOptionsInput",
+    "name": "guests",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "currency",
+    "type": "Currency",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "checkin",
+    "type": "Date!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "checkout",
+    "type": "Date!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
-    "name": "options",
-    "variableName": "options",
-    "type": "AvailableHotelOptionsInput"
+    "name": "checkin",
+    "variableName": "checkin",
+    "type": "Date!"
   },
   {
     "kind": "Variable",
-    "name": "search",
-    "variableName": "search",
-    "type": "AvailableHotelSearchInput!"
+    "name": "checkout",
+    "variableName": "checkout",
+    "type": "Date!"
+  },
+  {
+    "kind": "Variable",
+    "name": "currency",
+    "variableName": "currency",
+    "type": "Currency"
+  },
+  {
+    "kind": "Variable",
+    "name": "guests",
+    "variableName": "guests",
+    "type": "Int!"
+  },
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "id",
+    "type": "ID!"
   }
 ],
 v2 = {
@@ -277,13 +297,13 @@ v8 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "SingleHotelContainerQuery",
+  "name": "Stay22SingleHotelQuery",
   "id": null,
-  "text": "query SingleHotelContainerQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    __typename\n    ...RoomList\n    id\n    incrementalPrice {\n      amount\n      currency\n    }\n  }\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on HotelInterface {\n  id\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview\n}\n\nfragment RoomList on HotelRoomAvailabilityInterface {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n  room {\n    __typename\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomInterface {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoomInterface {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities\n}\n\nfragment HotelReview on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Amenities on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n",
+  "text": "query Stay22SingleHotelQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...HotelDetailScreen_availableHotel\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...Header_hotel\n    ...BookNow_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    __typename\n    ...RoomList\n    id\n    incrementalPrice {\n      amount\n      currency\n    }\n  }\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n    categoryName\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment BookNow_hotel on HotelInterface {\n  id\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview\n}\n\nfragment RoomList on HotelRoomAvailabilityInterface {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n  room {\n    __typename\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n    maxPersons\n    ...BeddingInfo_room\n    id\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomInterface {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoomInterface {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities\n}\n\nfragment HotelReview on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Amenities on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "SingleHotelContainerQuery",
+    "name": "Stay22SingleHotelQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -291,10 +311,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "availableHotel",
+        "name": "stay22HotelDetail",
         "storageKey": null,
         "args": v1,
-        "concreteType": "HotelAvailability",
+        "concreteType": "Stay22HotelDetail",
         "plural": false,
         "selections": [
           {
@@ -308,16 +328,16 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "SingleHotelContainerQuery",
+    "name": "Stay22SingleHotelQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "availableHotel",
+        "name": "stay22HotelDetail",
         "storageKey": null,
         "args": v1,
-        "concreteType": "HotelAvailability",
+        "concreteType": "Stay22HotelDetail",
         "plural": false,
         "selections": [
           {
@@ -629,5 +649,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3cdc8af11247ef2d506535629400b0df';
+(node/*: any*/).hash = '1636debee894167a789c2b90ad303f18';
 module.exports = node;
