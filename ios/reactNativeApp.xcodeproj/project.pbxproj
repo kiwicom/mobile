@@ -706,7 +706,6 @@
 		};
 		217466762174BF9600FF1F3A /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21535422219038C3007305B8 /* staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -820,6 +819,7 @@
 		};
 		217466792174BF9600FF1F3A /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21535422219038C3007305B8 /* staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -983,6 +983,7 @@
 		};
 		27E931E620ADA0630053AE19 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2153542321903932007305B8 /* release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
@@ -1063,7 +1064,6 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2153542321903932007305B8 /* release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
