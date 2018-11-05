@@ -19,6 +19,7 @@ type ContainerProps = {|
   +selected: {
     [string]: number,
   },
+  +disabled: boolean,
 |};
 
 type Props = {|
@@ -30,7 +31,7 @@ class RoomList extends React.Component<Props> {
   shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
 
   render = () => {
-    const { select, deselect, selected } = this.props;
+    const { select, deselect, selected, disabled } = this.props;
     const data = this.props.data || [];
 
     return (
@@ -54,6 +55,7 @@ class RoomList extends React.Component<Props> {
               select={select}
               deselect={deselect}
               selected={selected}
+              disabled={disabled}
               testID={index === data.length - 1 ? 'lastAvailableRoom' : ''}
             />
           </React.Fragment>

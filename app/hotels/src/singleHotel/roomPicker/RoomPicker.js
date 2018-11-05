@@ -17,6 +17,7 @@ type Props = {|
   +increment: () => void,
   +decrement: () => void,
   +testID?: string,
+  +disabled: boolean,
 |};
 
 export default function RoomPicker(props: Props) {
@@ -29,6 +30,7 @@ export default function RoomPicker(props: Props) {
       <SelectButton
         price={props.price}
         increment={props.increment}
+        disabled={props.disabled}
         testID={props.testID}
       />
     );
