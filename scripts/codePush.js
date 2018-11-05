@@ -25,6 +25,10 @@ function processCommand() {
   exec(
     `appcenter codepush release-react -a Kiwicom/mobile-android --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target}`,
   );
+
+  exec(
+    `appcenter codepush release-react -a Kiwicom/mobile-ios --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target}`,
+  );
 }
 
 processCommand();

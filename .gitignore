@@ -2,6 +2,10 @@
 #
 .env
 
+#XCode CODEPUSH_KEYS
+ios/RNNativePlayground/staging.xcconfig
+ios/RNNativePlayground/release.xcconfig
+
 # OSX
 #
 .DS_Store

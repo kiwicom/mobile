@@ -17,10 +17,24 @@
   
   if (self) {
     /**
-     * In order to create bridge upfront, call this method before showing ViewController. Otherwise,
-     * it's created at the runtime lazily
+     * In order to create bridge upfront and set up codepush key,
+     * call method `initBridgeWithCodePush` before showing ViewController.
+     * If you don't want to call codepush run `initBridge`.
+     * If you want to use codepush, but don't want to init bridge upfront call `initCodePush`,
+     * and bridge will be created at the runtime lazily.
      */
-    [[RNKiwiSharedBridge sharedInstance] initBridge];
+    
+    NSString *codePushVersion = [[[self readPackageJSON] valueForKey:@"rnkiwimobile"] valueForKey:@"code-push-target-binary-version"];
+    
+    #ifdef STAGING
+      NSString *stagingCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"STAGING_KEY"];
+      [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:stagingCodePushKey codePushVersion:codePushVersion];
+    #elif RELEASE
+      NSString *releaseCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RELEASE_KEY"];
+      [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:releaseCodePushKey codePushVersion:codePushVersion];
+    #else
+      [[RNKiwiSharedBridge sharedInstance] initBridge];
+    #endif
   }
   return self;
 }
@@ -54,6 +68,12 @@
 - (void)viewDidAppear:(BOOL)animated {
   self.navigationController.navigationBar.hidden = YES;
   self.navigationController.interactivePopGestureRecognizer.delegate = self;
+}
+
+- (NSDictionary *)readPackageJSON {
+  NSString *path = [[NSBundle mainBundle] pathForResource:@"package" ofType:@"json"];
+  NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+  return [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 }
 
 - (UIToolbar *)customizeToolbar:(SEL)selector {
