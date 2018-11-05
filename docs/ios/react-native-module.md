@@ -52,7 +52,7 @@ The registered module has to be then instantiated along with the proper `moduleN
 
 To check CodePush updates in `RNNativePlayground` follow the steps:
 
-1. Create two files called `staging.xcconfig` and `release.xcconfig` within `RNNativePlayground` and in each of them and correct key:
+1. Create two files **manually** (_use e.g. your code editor, but **don't do this via XCode**, because it will overwrite existing references in `project.pbxproj`_) called `staging.xcconfig` and `release.xcconfig` within `RNNativePlayground` and in each of them and correct key:
 ```
 STAGING_KEY=""
 ```
