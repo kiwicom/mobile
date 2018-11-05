@@ -21,6 +21,7 @@ const defaultState = {
   actions: {
     setCurrentSearchStats: () => {},
   },
+  getGuestCount: () => 0,
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
@@ -58,6 +59,7 @@ export type State = {|
   currentSearchStats: CurrentSearchStats,
   +latitude: number | null,
   +longitude: number | null,
+  +getGuestCount: () => number,
   +actions: {|
     +setCurrentSearchStats: ({|
       priceMax: number,
@@ -97,6 +99,7 @@ class Provider extends React.Component<Props, State> {
         priceMax: 10000,
         priceMin: 0,
       },
+      getGuestCount: this.getGuestCount,
       actions: {
         setCurrentSearchStats: this.setCurrentSearchStats,
       },
@@ -107,6 +110,17 @@ class Provider extends React.Component<Props, State> {
     this.setState({
       currentSearchStats,
     });
+  };
+
+  getGuestCount = () => {
+    if (this.state.roomsConfiguration == null) {
+      return 0;
+    }
+    return this.state.roomsConfiguration.reduce((sum, current) => {
+      const adults = current.adultsCount;
+      const children = current?.children?.length ?? 0;
+      return sum + adults + children;
+    }, 0);
   };
 
   render = () => (

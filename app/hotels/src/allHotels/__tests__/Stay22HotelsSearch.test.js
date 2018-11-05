@@ -15,31 +15,6 @@ const getProps = (props: Object = {}) => ({
   ...props,
 });
 
-it('calculates guests correctly', () => {
-  const Component = new Stay22HotelsSearch(getProps());
-  expect(Component.getGuests()).toEqual(2);
-});
-
-it('calculates guests correctly with children', () => {
-  const Component = new Stay22HotelsSearch(
-    getProps({
-      roomsConfiguration: [
-        { adultsCount: 2, children: [{ age: 5 }, { age: 17 }] },
-      ],
-    }),
-  );
-  expect(Component.getGuests()).toEqual(4);
-});
-
-it('calculates guests correctly with missing input', () => {
-  const Component = new Stay22HotelsSearch(
-    getProps({
-      roomsConfiguration: [{ adultsCount: 2 }],
-    }),
-  );
-  expect(Component.getGuests()).toEqual(2);
-});
-
 it('renders error with missing checkin', () => {
   const props = getProps({ checkin: null });
   const instance = renderer.create(<Stay22HotelsSearch {...props} />).root;

@@ -20,7 +20,9 @@ import { type RoomConfigurationType } from '../HotelsContext';
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from '../components/HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
-import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
+import SingleHotelContext, {
+  type ApiProvider,
+} from '../navigation/singleHotel/SingleHotelContext';
 
 type PropsWithContext = {|
   ...Props,
@@ -29,6 +31,7 @@ type PropsWithContext = {|
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: RoomConfigurationType,
+  +apiProvider: ApiProvider,
 |};
 
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
@@ -40,6 +43,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
         checkin: this.props.checkin,
         checkout: this.props.checkout,
         roomsConfiguration: this.props.roomsConfiguration,
+        apiProvider: this.props.apiProvider,
       });
     }
   };

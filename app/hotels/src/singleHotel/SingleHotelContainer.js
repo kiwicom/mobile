@@ -13,6 +13,7 @@ import HotelsContext, {
 import SingleHotelContext, {
   type State as SingleHotelState,
 } from '../navigation/singleHotel/SingleHotelContext';
+import Stay22SingleHotel from './Stay22SingleHotel';
 
 type PropsWithContext = {|
   ...Props,
@@ -81,32 +82,40 @@ type Props = {|
 export default class SingleHotelContainerWithContext extends React.Component<
   Props,
 > {
-  renderSingleHotelsContext = ({ currency }: HotelsState) => (
+  renderHotelsContext = ({ currency, getGuestCount }: HotelsState) => (
     <SingleHotelContext.Consumer>
-      {this.renderHotelsContext(currency)}
+      {this.renderSingleHotelsContext(currency, getGuestCount)}
     </SingleHotelContext.Consumer>
   );
 
-  renderHotelsContext = (currency: $PropertyType<HotelsState, 'currency'>) => ({
+  renderSingleHotelsContext = (
+    currency: $PropertyType<HotelsState, 'currency'>,
+    getGuestCount: $PropertyType<HotelsState, 'getGuestCount'>,
+  ) => ({
     checkin,
     checkout,
     roomsConfiguration,
     hotelId,
-  }: SingleHotelState) => (
-    <SingleHotelContainer
-      currency={currency}
-      hotelId={hotelId}
-      checkin={checkin}
-      checkout={checkout}
-      roomsConfiguration={roomsConfiguration}
-      {...this.props}
-    />
-  );
+    apiProvider,
+  }: SingleHotelState) => {
+    const props = {
+      checkin,
+      checkout,
+      roomsConfiguration,
+      hotelId,
+      currency,
+      ...this.props,
+    };
+    if (apiProvider === 'booking') {
+      return <SingleHotelContainer {...props} />;
+    }
+    return <Stay22SingleHotel {...props} getGuestCount={getGuestCount} />;
+  };
 
   render() {
     return (
       <HotelsContext.Consumer>
-        {this.renderSingleHotelsContext}
+        {this.renderHotelsContext}
       </HotelsContext.Consumer>
     );
   }
