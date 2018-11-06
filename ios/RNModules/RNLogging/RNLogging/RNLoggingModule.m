@@ -7,12 +7,12 @@
 
 @implementation RNDummyLogger
 
-- (void)ancillaryDisplayed:(NSString *)type {
-    NSLog(@"ancillaryDisplayed - type: %@", type);
+- (void)ancillaryDisplayed:(NSString *)type andProvider:(NSString *)provider {
+    NSLog(@"ancillaryDisplayed - type: %@, - provider: %@", type, provider);
 }
 
-- (void)ancillaryPurchased:(NSString *)type {
-    NSLog(@"ancillaryPurchased - type: %@", type);
+- (void)ancillaryPurchased:(NSString *)type  andProvider:(NSString *)provider{
+    NSLog(@"ancillaryPurchased - type: %@, - provider: %@", type, provider);
 }
 
 @end
@@ -52,12 +52,12 @@ RCT_EXPORT_MODULE();
     return _logger;
 }
 
-RCT_EXPORT_METHOD(ancillaryDisplayed:(NSString *)type) {
-    [self.logger ancillaryDisplayed:type];
+RCT_EXPORT_METHOD(ancillaryDisplayed:(NSString *)type  provider:(NSString *)provider) {
+    [self.logger ancillaryDisplayed:type provider:provider];
 }
 
-RCT_EXPORT_METHOD(ancillaryPurchased:(NSString *)type) {
-    [self.logger ancillaryPurchased:type];
+RCT_EXPORT_METHOD(ancillaryPurchased:(NSString *)type provider:(NSString *)provider) {
+    [self.logger ancillaryPurchased:type provider:provider];
 }
 
 - (NSDictionary *)constantsToExport
@@ -66,6 +66,8 @@ RCT_EXPORT_METHOD(ancillaryPurchased:(NSString *)type) {
               @"ANCILLARY_STEP_RESULTS"     : @"results",
               @"ANCILLARY_STEP_DETAILS"     : @"details",
               @"ANCILLARY_STEP_PAYMENT"     : @"payment",
+              @"ANCILLARY_PROVIDER_BOOKINGCOM"     : @"booking.com",
+              @"ANCILLARY_PROVIDER_STAY22"     : @"stay22",
     };
 }
 

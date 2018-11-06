@@ -187,8 +187,14 @@ Usage:
 ```js
 import { Logger } from '@kiwicom/mobile-shared';
 
-Logger.ancillaryDisplayed(Logger.type.ANCILLARY_STEP_DETAILS);
-Logger.ancillaryPurchased(Logger.type.ANCILLARY_STEP_RESULTS);
+Logger.ancillaryDisplayed(
+  Logger.type.ANCILLARY_STEP_DETAILS,
+  Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM
+  );
+Logger.ancillaryPurchased(
+  Logger.type.ANCILLARY_STEP_RESULTS,
+  Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM
+  );
 ```
 
 ### Translation module
