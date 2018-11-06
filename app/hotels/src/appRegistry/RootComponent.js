@@ -3,12 +3,17 @@
 import * as React from 'react';
 import { ConfigContext } from '@kiwicom/mobile-config';
 import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import HotelsFilterContext from '../HotelsFilterContext';
-import HotelsContext, { type RoomConfigurationType } from '../HotelsContext';
+import HotelsContext, {
+  type RoomConfigurationType,
+  getAsUtcDate,
+} from '../HotelsContext';
 import SearchResultsContext from '../navigation/allHotels/SearchResultsContext';
 import type { Coordinates } from '../CoordinatesType';
+import SingleHotelContext, {
+  type ApiProvider,
+} from '../navigation/singleHotel/SingleHotelContext';
 
 type Props = {|
   +dataSaverEnabled: boolean,
@@ -22,6 +27,8 @@ type Props = {|
   +roomsConfiguration?: RoomConfigurationType,
   +currency: string,
   +coordinates?: Coordinates | null,
+  +hotelId?: string,
+  +apiProvider: ApiProvider,
 |};
 
 export default class RootComponent extends React.Component<Props> {
@@ -37,12 +44,20 @@ export default class RootComponent extends React.Component<Props> {
             roomsConfiguration={this.props.roomsConfiguration}
             currency={this.props.currency}
             cityName={this.props.cityName}
-            latitude={idx(this.props, _ => _.coordinates.latitude) || null}
-            longitude={idx(this.props, _ => _.coordinates.longitude) || null}
+            latitude={this.props.coordinates?.latitude ?? null}
+            longitude={this.props.coordinates?.longitude ?? null}
           >
-            <Dimensions.Provider dimensions={this.props.dimensions}>
-              {this.props.children}
-            </Dimensions.Provider>
+            <SingleHotelContext.Provider
+              hotelId={this.props.hotelId ?? ''}
+              checkin={getAsUtcDate(this.props.checkin)}
+              checkout={getAsUtcDate(this.props.checkout)}
+              roomsConfiguration={this.props.roomsConfiguration}
+              apiProvider={this.props.apiProvider}
+            >
+              <Dimensions.Provider dimensions={this.props.dimensions}>
+                {this.props.children}
+              </Dimensions.Provider>
+            </SingleHotelContext.Provider>
           </HotelsContext.Provider>
         </HotelsFilterContext.Provider>
       </ConfigContext.Provider>

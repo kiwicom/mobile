@@ -22,9 +22,9 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
 type Props = {|
   +children: React.Node,
   +hotelId: string,
-  +checkin: Date,
-  +checkout: Date,
-  +roomsConfiguration: RoomConfigurationType,
+  +checkin: ?Date,
+  +checkout: ?Date,
+  +roomsConfiguration: ?RoomConfigurationType,
   +apiProvider: ?ApiProvider,
 |};
 
@@ -43,9 +43,9 @@ class Provider extends React.Component<Props, State> {
 
     this.state = {
       hotelId: props.hotelId,
-      checkin: props.checkin,
-      checkout: props.checkout,
-      roomsConfiguration: props.roomsConfiguration,
+      checkin: props.checkin ?? new Date(), // If we hit the fallback on any of this, there is some error from how native passes props. This should be caught and handled in result screen
+      checkout: props.checkout ?? new Date(),
+      roomsConfiguration: props.roomsConfiguration ?? [],
       apiProvider: props.apiProvider ?? 'booking',
       setHotelId: this.setHotelId,
     };
