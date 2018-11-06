@@ -40,7 +40,10 @@ export class Stay22PaginationContainer extends React.Component<
   }
 
   componentDidMount = () => {
-    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_RESULTS);
+    Logger.ancillaryDisplayed(
+      Logger.Type.ANCILLARY_STEP_RESULTS,
+      Logger.Provider.ANCILLARY_PROVIDER_STAY22,
+    );
     // TODO: Set min max price here when supported by API
   };
 

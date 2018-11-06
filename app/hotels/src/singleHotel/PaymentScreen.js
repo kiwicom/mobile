@@ -57,12 +57,18 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
     };
   };
   componentDidMount = () => {
-    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_PAYMENT);
+    Logger.ancillaryDisplayed(
+      Logger.Type.ANCILLARY_STEP_PAYMENT,
+      Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
+    );
   };
 
   onNavigationStateChange = (event: WebViewStateChangeEvent) => {
     if (!event.loading && event.url.includes('booking.com/confirmation')) {
-      Logger.ancillaryPurchased(Logger.Type.ANCILLARY_STEP_PAYMENT);
+      Logger.ancillaryPurchased(
+        Logger.Type.ANCILLARY_STEP_PAYMENT,
+        Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
+      );
     }
   };
 

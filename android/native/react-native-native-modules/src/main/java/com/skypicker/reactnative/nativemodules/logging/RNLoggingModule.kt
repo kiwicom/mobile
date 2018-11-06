@@ -36,6 +36,17 @@ class RNLoggingModule(reactContext: ReactApplicationContext, activeBooking: Bool
     const val REACT = "react"
   }
 
+  private object AncillaryProviderKey {
+  const val BOOKINGCOM = "ANCILLARY_PROVIDER_BOOKINGCOM"
+  const val STAY22 = "ANCILLARY_PROVIDER_STAY22"
+}
+
+private object AncillaryProvider {
+  const val BOOKINGCOM = "booking.com"
+  const val STAY22 = "stay22"
+}
+
+
   // endregion Public Types
 
   // region Private Constants
@@ -69,21 +80,23 @@ class RNLoggingModule(reactContext: ReactApplicationContext, activeBooking: Bool
     constants[AncillaryStepKey.DETAILS] = AncillaryStep.DETAILS
     constants[AncillaryStepKey.PAYMENT] = AncillaryStep.PAYMENT
     constants[AncillaryTypeKey.HOTEL] = AncillaryType.HOTEL
+    constants[AncillaryProviderKey.BOOKINGCOM] = AncillaryProvider.BOOKINGCOM
+    constants[AncillaryProviderKey.STAY22] = AncillaryProvider.STAY22
     return constants
   }
 
   @ReactMethod
-  fun ancillaryDisplayed(type: String) {
+  fun ancillaryDisplayed(type: String, provider: String) {
 
     eventSenders.sendEvent(
-      AncillaryDisplayed(type, null, null, null, null, hasActiveBooking, Implementation.REACT)
+      AncillaryDisplayed(type, provider, null, null, null, hasActiveBooking, Implementation.REACT)
     )
   }
 
   @ReactMethod
-  fun ancillaryPurchased(type: String) {
+  fun ancillaryPurchased(type: String, provider: String) {
     eventSenders.sendEvent(
-      AncillaryPurchased(type, null, hasActiveBooking, Implementation.REACT)
+      AncillaryPurchased(type, provider, hasActiveBooking, Implementation.REACT)
     )
   }
 
