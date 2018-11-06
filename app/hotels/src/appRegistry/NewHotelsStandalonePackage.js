@@ -45,6 +45,9 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
       roomsConfiguration={this.props.roomsConfiguration}
       cityName={this.props.cityName}
       coordinates={this.props.coordinates}
+      // Stay 22 only supports searching with gps coordinates, if we get passed a cityId from native
+      // we are using booking.com, if we don't get cityId, we should have coordinates, and we are using stay22 provider
+      apiProvider={this.props.cityId == null ? 'stay22' : 'booking'}
     >
       <HotelsStack
         screenProps={this.props}

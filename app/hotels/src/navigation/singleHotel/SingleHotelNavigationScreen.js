@@ -7,14 +7,12 @@ import { WithStandaloneScreen } from '@kiwicom/mobile-shared';
 import SingleHotel from '../../singleHotel/SingleHotelContainer';
 import type { NavigationProps } from '../HotelsNavigationStack';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
-import SingleHotelContext, { type ApiProvider } from './SingleHotelContext';
 
 type Props = {
   ...NavigationProps,
   ...AvailableHotelSearchInput,
   +onBackClicked: () => void,
   +isStandAlonePackage?: boolean,
-  +apiProvider?: ApiProvider,
 };
 
 class SingleHotelNavigationScreen extends React.Component<Props> {
@@ -45,17 +43,7 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
   };
 
   render() {
-    return (
-      <SingleHotelContext.Provider
-        hotelId={this.props.hotelId}
-        checkin={this.props.checkin}
-        checkout={this.props.checkout}
-        roomsConfiguration={this.props.roomsConfiguration}
-        apiProvider={this.props.apiProvider}
-      >
-        <SingleHotel goBack={this.goBack} />
-      </SingleHotelContext.Provider>
-    );
+    return <SingleHotel goBack={this.goBack} />;
   }
 }
 
