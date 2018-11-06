@@ -40,21 +40,55 @@
 }
 
 - (void)viewDidLoad {
+  //  Setting date components
+  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+  NSDate *currentDate = [NSDate date];
+  NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
+
+  //  Initialize start date picker
   startDatePicker=[[UIDatePicker alloc] init];
   [startDatePicker setDatePickerMode:UIDatePickerModeDate];
+  
+  //  Setting default dates
+  //  * minimum checkin date is current day
+  [dateComponent setDay:364];
+  NSDate *startMaxDate = [calendar dateByAddingComponents:dateComponent toDate:currentDate options:0];
+  startDatePicker.minimumDate = currentDate;
+  //  * maximum checkin date is current day + 364 days
+  startDatePicker.maximumDate = startMaxDate;
+  //  * picked checkin date is current day + 30
+  [dateComponent setDay:30];
+  NSDate *defaultStartDate = [calendar dateByAddingComponents:dateComponent toDate:currentDate options:0];
+  startDatePicker.date = defaultStartDate;
+  
+  // Display picked start date
   [self.startDateSelectionTextField setInputView:startDatePicker];
   
+  //  Initialize end date picker
   endDatePicker=[[UIDatePicker alloc] init];
   [endDatePicker setDatePickerMode:UIDatePickerModeDate];
-  [endDatePicker setDate:[[NSDate date] dateByAddingTimeInterval:86400]];
+  
+  //  By default:
+  //  * maximum checkout date is current day + 365 days
+  [dateComponent setDay:365];
+  NSDate *endMaxDate = [calendar dateByAddingComponents:dateComponent toDate:currentDate options:0];
+  endDatePicker.maximumDate = endMaxDate;
+  //  * picked checkout date is current day + 37 days
+  [dateComponent setDay:37];
+  NSDate *defaultEndDate = [calendar dateByAddingComponents:dateComponent toDate:currentDate options:0];
+  endDatePicker.date = defaultEndDate;
+  
+  // Display picked end date
   [self.endDateSelectionTextField setInputView:endDatePicker];
  
+  //  Initialize city picker
   cityPicker = [[UIPickerView alloc] init];
   [cityPicker setDataSource:self];
   [cityPicker setDelegate:self];
   [cityPicker setShowsSelectionIndicator:YES];
   [self.pickerTextField setInputView:cityPicker];
   
+  // Available cities
   City *Prague = [[City alloc] initWithName:@"Prague" andId:@"aG90ZWxDaXR5Oi01NTMxNzM=“"];
   City *Brno = [[City alloc] initWithName:@"Brno" andId:@"aG90ZWxDaXR5Oi01NDIxODQ="];
   City *Barcelona = [[City alloc] initWithName:@"Barcelona" andId:@"aG90ZWxDaXR5Oi0zNzI0OTA="];
@@ -89,20 +123,91 @@
   return toolBar;
 }
 
-- (NSString *)selectedStartDate {
+- (NSString *)resetDescendingDates {
+  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+  NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
   NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-  [dateFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:86400]];
+
+  [dateComponent setDay:1];
+  NSDate *customEndDate = [calendar dateByAddingComponents:dateComponent toDate:startDatePicker.date options:0];
+  endDatePicker.date = customEndDate;
+  
+  self.endDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:customEndDate]];
+  return self.startDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:startDatePicker.date]];
+}
+
+- (NSString *)resetOverEndDate {
+  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+  NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
+  NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+  [dateComponent setDay:-30];
+  NSDate *endDateMinusThirtyDays = [calendar dateByAddingComponents:dateComponent toDate:endDatePicker.date options:0];
+  
+  startDatePicker.date = endDateMinusThirtyDays;
+  
+  self.endDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:endDatePicker.date]];
+  return self.startDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:endDateMinusThirtyDays]];
+}
+
+- (NSString *)selectedStartDate {
+  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+  NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
+  
+  NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
+  [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+  
+  [dateComponent setDay:30];
+  NSDate *startDatePlusThirtyDays = [calendar dateByAddingComponents:dateComponent toDate:startDatePicker.date options:0];
   
   [self.startDateSelectionTextField resignFirstResponder];
-  return self.startDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter                                     stringFromDate:startDatePicker.date]];
+  
+  // Checkin date > checkout date
+  if ([startDatePicker.date compare:endDatePicker.date] == NSOrderedDescending) {
+    [self resetDescendingDates];
+  }
+  
+  // Checkout date > Checkin + 30
+  if (![self.startDateSelectionTextField.text isEqualToString:@""] && [endDatePicker.date compare:startDatePlusThirtyDays] == NSOrderedDescending) {
+    [self resetOverEndDate];
+  }
+  
+  return self.startDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:startDatePicker.date]];
 }
 
 - (NSString *)selectedEndDate {
+  NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+  NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
+  
   NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"yyyy-MM-dd"];
   
+  [dateComponent setDay:30];
+  NSDate *startDatePlusThirtyDays = [calendar dateByAddingComponents:dateComponent toDate:startDatePicker.date options:0];
+
   [self.endDateSelectionTextField resignFirstResponder];
+  
+  // Checkin date > checkout date
+  if ([startDatePicker.date compare:endDatePicker.date] == NSOrderedDescending) {
+    [self resetDescendingDates];
+  }
+  
+  // Checkout date > Checkin + 30
+  if (![self.startDateSelectionTextField.text isEqualToString:@""] && [endDatePicker.date compare:startDatePlusThirtyDays] == NSOrderedDescending) {
+    [self resetOverEndDate];
+  }
+  
+  //  Choosing checkout date before checkin date
+  if ([self.startDateSelectionTextField.text isEqualToString:@""]) {
+    [dateComponent setDay:-1];
+    NSDate *customStartDate = [calendar dateByAddingComponents:dateComponent toDate:endDatePicker.date options:0];
+    startDatePicker.date = customStartDate;
+    
+    self.startDateSelectionTextField.text = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:customStartDate]];
+    return self.endDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:endDatePicker.date]];
+  }
+  
   return self.endDateSelectionTextField.text=[NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:endDatePicker.date]];
 }
 
