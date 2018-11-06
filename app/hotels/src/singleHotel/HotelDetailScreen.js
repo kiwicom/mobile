@@ -69,7 +69,10 @@ export class HotelDetailScreen extends React.Component<
   }
 
   componentDidMount = () => {
-    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS);
+    Logger.ancillaryDisplayed(
+      Logger.Type.ANCILLARY_STEP_DETAILS,
+      Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
+    );
   };
 
   shouldComponentUpdate = (nextProps: PropsWithContext, nextState: State) => {
