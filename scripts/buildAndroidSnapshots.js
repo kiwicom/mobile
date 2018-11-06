@@ -90,54 +90,59 @@ const deployLibrary = (packageName, version) => {
   console.log(`Start building Android SNAPSHOT(s)...`);
   const reactNativeVersion = getDependencyVersion('react-native');
 
-  Promise.all([
-    deployDependency('react-native', FACEBOOK_URL, reactNativeVersion),
-    deployDependency(
-      'react-native-maps',
-      SKYPICKER_URL,
-      `${getDependencyVersion(
-        'react-native-maps',
-      )}.react-native.${reactNativeVersion}`,
-      '-SNAPSHOT',
-    ),
-    deployDependency(
-      'react-native-tooltips',
-      SKYPICKER_URL,
-      `${getDependencyVersion(
-        'react-native-tooltips',
-      )}.react-native.${reactNativeVersion}`,
-      '-SNAPSHOT',
-    ),
-    deployDependency(
-      'react-native-native-modules',
-      SKYPICKER_URL,
-      `${rnModulesVersion}.react-native.${reactNativeVersion}`,
-      '-SNAPSHOT',
-    ),
-    deployDependency(
-      'react-native-zip-archive',
-      SKYPICKER_URL,
-      `${getDependencyVersion(
-        'react-native-zip-archive',
-      )}.react-native.${reactNativeVersion}`,
-      '-SNAPSHOT',
-    ),
-    deployDependency(
-      'react-native-code-push',
-      SKYPICKER_URL,
-      `${getDependencyVersion(
-        'react-native-code-push',
-      )}.react-native.${reactNativeVersion}`,
-      '-SNAPSHOT',
-    ),
-  ])
-    .then(() => {
-      // Main package to publish: rnkiwimobile
-      console.log('-----');
-      deployLibrary('rnkiwimobile', RNKiwiMobileVersion);
-    })
-    .catch(err => {
-      console.log('ERROR:', err);
-      process.exit(-1);
-    });
+  deployDependency('react-native', FACEBOOK_URL, reactNativeVersion).then(
+    () => {
+      // All libraries depend on react-native so in case we update it, we need to
+      // update it first in order for the other libraries to compile
+      Promise.all([
+        deployDependency(
+          'react-native-maps',
+          SKYPICKER_URL,
+          `${getDependencyVersion(
+            'react-native-maps',
+          )}.react-native.${reactNativeVersion}`,
+          '-SNAPSHOT',
+        ),
+        deployDependency(
+          'react-native-tooltips',
+          SKYPICKER_URL,
+          `${getDependencyVersion(
+            'react-native-tooltips',
+          )}.react-native.${reactNativeVersion}`,
+          '-SNAPSHOT',
+        ),
+        deployDependency(
+          'react-native-native-modules',
+          SKYPICKER_URL,
+          `${rnModulesVersion}.react-native.${reactNativeVersion}`,
+          '-SNAPSHOT',
+        ),
+        deployDependency(
+          'react-native-zip-archive',
+          SKYPICKER_URL,
+          `${getDependencyVersion(
+            'react-native-zip-archive',
+          )}.react-native.${reactNativeVersion}`,
+          '-SNAPSHOT',
+        ),
+        deployDependency(
+          'react-native-code-push',
+          SKYPICKER_URL,
+          `${getDependencyVersion(
+            'react-native-code-push',
+          )}.react-native.${reactNativeVersion}`,
+          '-SNAPSHOT',
+        ),
+      ])
+        .then(() => {
+          // Main package to publish: rnkiwimobile
+          console.log('-----');
+          deployLibrary('rnkiwimobile', RNKiwiMobileVersion);
+        })
+        .catch(err => {
+          console.log('ERROR:', err);
+          process.exit(-1);
+        });
+    },
+  );
 })();
