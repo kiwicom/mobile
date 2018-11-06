@@ -41,7 +41,8 @@ Install Xcode and Android Studio. After that clone this repository and install a
 ```
 git clone git@github.com:kiwicom/mobile.git
 cd mobile
-yarn install && yarn pod-install
+yarn install
+cd ios; pod install
 ```
 
 And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application. Similarly for Android (`yarn android`) but you have to open Android emulator first.
