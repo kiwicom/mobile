@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import {
-  AdaptableLayout,
-  LayoutDoubleColumn,
-  StyleSheet,
-} from '@kiwicom/mobile-shared';
+  HeaderTitle,
+  type NavigationType,
+  SplitNavigation,
+} from '@kiwicom/mobile-navigation';
+import { StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { View } from 'react-native';
 
@@ -27,7 +27,6 @@ import TripServices, {
 import PassengerDetailContainer from '../scenes/passenger/PassengerDetailContainer';
 import TripOverviewTablet from '../scenes/tripOverview/TripOverviewTablet';
 import Timeline, { TimelineSubmenuItems } from '../scenes/timeline/Timeline';
-import { withSplitNavigationContext } from '../context/SplitNavigationContext';
 
 export const MenuComponents = {
   'mmb.trip_overview': {
@@ -115,7 +114,6 @@ export const MenuComponents = {
 type Props = {|
   +navigation: NavigationType,
   +activeId: string,
-  +setActiveId: (activeId: string) => void,
 |};
 
 class DetailsScreen extends React.Component<Props> {
@@ -149,54 +147,24 @@ class DetailsScreen extends React.Component<Props> {
     };
   };
 
-  /**
-   * Do proper navigation transition on mobile (narrow) devices.
-   */
-  openMenuOnMobile = (key: string) => {
-    // $FlowExpectedError: Flow type for this navigation seems to be quite challenging. I am skipping it on purpose.
-    this.props.navigation.navigate({
-      routeName: key,
-      key: `key-${key}`,
-    });
-  };
-  /**
-   * Just change container content for tablets. It's also necessary to change
-   * the header title.
-   */
   changeContentOnTablet = (key: string) => {
     this.props.navigation.setParams({ activeContainerComponent: key });
-    this.props.setActiveId(key);
   };
 
-  getContainerComponent = (key: string) => {
-    return MenuComponents[key];
-  };
-
-  render = () => {
-    const ContainerComponent = this.getContainerComponent(this.props.activeId)
-      .screen;
-
+  render() {
     return (
-      <LayoutDoubleColumn
-        menuComponent={
-          <AdaptableLayout
-            renderOnWide={
-              <MainMenuContainer openMenu={this.changeContentOnTablet} />
-            }
-            renderOnNarrow={
-              <MainMenuContainer openMenu={this.openMenuOnMobile} />
-            }
-          />
-        }
-        containerComponent={
-          <ContainerComponent navigation={this.props.navigation} />
-        }
+      <SplitNavigation
+        navigation={this.props.navigation}
+        containerComponents={MenuComponents}
+        menuComponent={<MainMenuContainer />}
+        initialActiveId="mmb.trip_overview"
+        onContentChange={this.changeContentOnTablet}
       />
     );
-  };
+  }
 }
 
-export default withSplitNavigationContext(DetailsScreen);
+export default DetailsScreen;
 
 const styles = StyleSheet.create({
   row: {

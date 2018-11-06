@@ -23,6 +23,10 @@ export { default as TitledMenuGroup } from './src/TitledMenuGroup';
 export { default as HeaderTitle } from './src/HeaderTitle';
 export { default as HeaderButton } from './src/HeaderButton';
 export { withNavigation } from 'react-navigation';
+export {
+  default as SplitNavigation,
+  withSplitNavigationContext,
+} from './src/SplitNavigation';
 
 const createNavigationOptions = () => {
   const navigationOptions: Object = {

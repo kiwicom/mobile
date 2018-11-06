@@ -12,7 +12,6 @@ it('renders without crashing', () => {
     // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     hotel: {
       summary: 'Hotel description',
-      // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
       facilities: {},
     },
   };

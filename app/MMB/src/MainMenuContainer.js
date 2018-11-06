@@ -8,12 +8,15 @@ import BookingDetailContext from './context/BookingDetailContext';
 import { type MainMenuContainerQueryResponse } from './__generated__/MainMenuContainerQuery.graphql';
 
 type Props = {|
-  +openMenu: string => void,
+  +onNavigate?: string => void,
 |};
 
 export default class MainMenuContainer extends React.Component<Props> {
   renderInnerComponent = (renderProps: MainMenuContainerQueryResponse) => (
-    <MainMenu data={renderProps.singleBooking} openMenu={this.props.openMenu} />
+    <MainMenu
+      data={renderProps.singleBooking}
+      openMenu={this.props.onNavigate}
+    />
   );
 
   render = () => (

@@ -16,7 +16,6 @@ import WalletContext from './src/context/WalletContext';
 import TravelDocumentFormContext from './src/scenes/travelDocument/form/TravelDocumentFormContext';
 import InsuranceOverviewContext from './src/scenes/tripServices/insurance/insuranceOverviewScene/InsuranceOverviewSceneContext';
 import HotelsContext from './src/context/HotelsContext';
-import SplitNavigationContext from './src/context/SplitNavigationContext';
 import GoogleMapsContext from './src/context/GoogleMapsContext';
 
 type Props = {|
@@ -48,19 +47,17 @@ class ManageMyBookingPackage extends React.Component<Props> {
                   dataSaverEnabled={this.props.dataSaverEnabled}
                   onNavigationStateChange={this.props.onNavigationStateChange}
                 >
-                  <SplitNavigationContext.Provider>
-                    <GoogleMapsContext.Provider
-                      googleMapsAPIKey={this.props.googleMapsAPIKey}
-                    >
-                      <GeolocationContext.Provider>
-                        <NavigationStack
-                          onNavigationStateChange={
-                            this.props.onNavigationStateChange
-                          }
-                        />
-                      </GeolocationContext.Provider>
-                    </GoogleMapsContext.Provider>
-                  </SplitNavigationContext.Provider>
+                  <GoogleMapsContext.Provider
+                    googleMapsAPIKey={this.props.googleMapsAPIKey}
+                  >
+                    <GeolocationContext.Provider>
+                      <NavigationStack
+                        onNavigationStateChange={
+                          this.props.onNavigationStateChange
+                        }
+                      />
+                    </GeolocationContext.Provider>
+                  </GoogleMapsContext.Provider>
                 </HotelsContext.Provider>
               </InsuranceOverviewContext.Provider>
             </TravelDocumentFormContext.Provider>
