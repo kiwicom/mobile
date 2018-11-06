@@ -42,6 +42,9 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
         currency={this.props.currency}
         checkin={this.props.checkin}
         checkout={this.props.checkout}
+        roomsConfiguration={this.props.roomsConfiguration}
+        hotelId={this.props.hotelId}
+        apiProvider="booking" // Not sure if this is in use by native team, but for now, just support booking.com
       >
         <SingleHotelStack
           screenProps={screenProps}

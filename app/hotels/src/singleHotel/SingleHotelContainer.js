@@ -106,6 +106,7 @@ export default class SingleHotelContainerWithContext extends React.Component<
       currency,
       ...this.props,
     };
+
     if (apiProvider === 'booking') {
       return <SingleHotelContainer {...props} />;
     }
