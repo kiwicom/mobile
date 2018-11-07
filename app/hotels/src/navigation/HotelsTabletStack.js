@@ -9,7 +9,6 @@ import {
 import { Dimensions as RNDimensions } from 'react-native';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 
-import SingleHotel from './singleHotel/SingleHotelNavigationScreen';
 import SearchResults from './allHotels/SearchResultsScreen';
 import AdditionalPropsInjector from './singleHotel/AdditionalPropsInjector';
 import SingleHotelMapNavigationScreen from './singleHotel/SingleHotelMapNavigationScreen';
@@ -22,14 +21,10 @@ export type NavigationProps = {|
   currency: string,
 |};
 
-const DetailStack = StackNavigator(
+const TabletStack = StackNavigator(
   {
-    SingleHotel: {
-      screen: withMappedProps(SingleHotel),
-      navigationOptions: {
-        headerLeft: null,
-        ...createTransparentHeaderStyle(RNDimensions.get('screen')),
-      },
+    SearchResults: {
+      screen: withMappedProps(SearchResults),
     },
     GalleryGrid: {
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
@@ -40,17 +35,14 @@ const DetailStack = StackNavigator(
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'SingleHotel',
+    initialRouteName: 'SearchResults',
   },
 );
 
 export default StackNavigator(
   {
-    SearchResults: {
-      screen: withMappedProps(SearchResults),
-    },
-    DetailStack: {
-      screen: DetailStack,
+    TabletStack: {
+      screen: TabletStack,
       navigationOptions: {
         header: null,
       },
@@ -65,7 +57,7 @@ export default StackNavigator(
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'SearchResults',
+    initialRouteName: 'TabletStack',
     mode: 'modal',
   },
 );
