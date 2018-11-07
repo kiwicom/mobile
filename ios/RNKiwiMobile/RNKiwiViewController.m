@@ -81,15 +81,15 @@
 
 #pragma mark - RNLogger
 
-- (void)ancillaryDisplayed:(NSString *)type {
+- (void)ancillaryDisplayed:(NSString *)type provider:(NSString *)provider {
   if ([self didDisplayAncillary]) {
-    self.didDisplayAncillary(type);
+    self.didDisplayAncillary(type, provider);
   }
 }
 
-- (void)ancillaryPurchased:(NSString *)type {
+- (void)ancillaryPurchased:(NSString *)type provider:(NSString *)provider {
   if ([self didPurchaseAncillary]) {
-    self.didPurchaseAncillary(type);
+    self.didPurchaseAncillary(type, provider);
   }
 }
 
