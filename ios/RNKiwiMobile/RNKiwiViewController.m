@@ -81,15 +81,73 @@
 
 #pragma mark - RNLogger
 
-- (void)ancillaryDisplayed:(NSString *)type {
+- (void)ancillaryDisplayed:(NSString *)type provider:(NSString *)provider {
   if ([self didDisplayAncillary]) {
-    self.didDisplayAncillary(type);
+    self.didDisplayAncillary(type, provider);
   }
 }
 
-- (void)ancillaryPurchased:(NSString *)type {
+- (void)ancillaryPurchased:(NSString *)type provider:(NSString *)provider {
   if ([self didPurchaseAncillary]) {
-    self.didPurchaseAncillary(type);
+    self.didPurchaseAncillary(type, provider);
+  }
+}
+
+- (void)hotelsResultsDisplayed:(id)additionalInfo {
+  if ([self logHotelsResultsDisplayed]) {
+    self.logHotelsResultsDisplayed(additionalInfo);
+  }
+}
+
+- (void)hotelsSelectedFilterTag:(NSString *)filterTag {
+  if ([self logHotelsFilterTagSet]) {
+    self.logHotelsFilterTagSet(filterTag);
+  }
+}
+
+- (void)hotelsDetailOpened {
+  if ([self logHotelsDetailOpened]) {
+    self.logHotelsDetailOpened();
+  }
+}
+
+- (void)hotelsDetailAbandoned {
+  if ([self logHotelsDetailAbandoned]) {
+    self.logHotelsDetailAbandoned();
+  }
+}
+
+- (void)hotelsDescriptionExpanded {
+  if ([self logHotelsDescriptionExpended]) {
+    self.logHotelsDescriptionExpended();
+  }
+}
+
+- (void)hotelsMapOpened {
+  if ([self logHotelsMapOpened]) {
+    self.logHotelsMapOpened();
+  }
+}
+
+- (void)hotelsRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType {
+  if ([self logHotelsRoomSelected]) {
+    self.logHotelsRoomSelected(hotelID, roomType);
+  }
+}
+
+- (void)hotelsGalleryOpened:(NSString *)type {
+  if ([self logHotelsGalleryOpened]) {
+    self.logHotelsGalleryOpened(type);
+  }
+}
+
+- (void)hotelsBookNowPressed:(NSString *)hotelsID
+                       rooms:(NSNumber *)rooms
+                      guests:(NSNumber *)guests
+                       price:(NSNumber *)price
+              formattedPrice:(NSString *)formattedPrice {
+  if ([self logHotelsBookNowPressed]) {
+    self.logHotelsBookNowPressed(hotelsID, rooms, guests, price, formattedPrice);
   }
 }
 

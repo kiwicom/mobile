@@ -1,11 +1,5 @@
 #import <Foundation/Foundation.h>
-
-@protocol RNLogger <NSObject>
-
-- (void)ancillaryDisplayed:(nullable NSString *)type provider:(nullable NSString *)provider;
-- (void)ancillaryPurchased:(nullable NSString *)type provider:(nullable NSString *)provider;
-
-@end
+#import "RNLogger.h"
 
 @interface RNLoggingModule : NSObject
 

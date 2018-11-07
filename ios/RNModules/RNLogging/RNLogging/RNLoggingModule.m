@@ -1,21 +1,7 @@
 #import "RNLoggingModule.h"
+#import "RNLogger.h"
 
 #import <React/RCTBridgeModule.h>
-
-@interface RNDummyLogger: NSObject <RNLogger>
-@end
-
-@implementation RNDummyLogger
-
-- (void)ancillaryDisplayed:(NSString *)type provider:(NSString *)provider {
-    NSLog(@"ancillaryDisplayed - type: %@, - provider: %@", type, provider);
-}
-
-- (void)ancillaryPurchased:(NSString *)type  provider:(NSString *)provider{
-    NSLog(@"ancillaryPurchased - type: %@, - provider: %@", type, provider);
-}
-
-@end
 
 @interface RNLoggingModule() <RCTBridgeModule>
 
@@ -45,14 +31,7 @@ RCT_EXPORT_MODULE();
     return YES;
 }
 
-- (id<RNLogger>)logger {
-    if (!_logger) {
-        return [[RNDummyLogger alloc] init];
-    }
-    return _logger;
-}
-
-RCT_EXPORT_METHOD(ancillaryDisplayed:(NSString *)type  provider:(NSString *)provider) {
+RCT_EXPORT_METHOD(ancillaryDisplayed:(NSString *)type provider:(NSString *)provider) {
     [self.logger ancillaryDisplayed:type provider:provider];
 }
 
@@ -60,14 +39,53 @@ RCT_EXPORT_METHOD(ancillaryPurchased:(NSString *)type provider:(NSString *)provi
     [self.logger ancillaryPurchased:type provider:provider];
 }
 
+RCT_EXPORT_METHOD(hotelsResultsDisplayed:(id)additionalInfo) {
+    [self.logger hotelsResultsDisplayed:additionalInfo];
+}
+
+RCT_EXPORT_METHOD(hotelsSelectedFilterTag:(NSString *)filterTag) {
+    [self.logger hotelsSelectedFilterTag:filterTag];
+}
+
+RCT_EXPORT_METHOD(hotelsDetailOpened) {
+    [self.logger hotelsDetailOpened];
+}
+
+RCT_EXPORT_METHOD(hotelsDetailAbandoned) {
+    [self.logger hotelsDetailAbandoned];
+}
+
+RCT_EXPORT_METHOD(hotelsDescriptionExpanded) {
+    [self.logger hotelsDescriptionExpanded];
+}
+
+RCT_EXPORT_METHOD(hotelsMapOpened) {
+    [self.logger hotelsMapOpened];
+}
+
+RCT_EXPORT_METHOD(hotelsRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType) {
+    [self.logger hotelsRoomSelected:hotelID roomType:roomType];
+}
+
+RCT_EXPORT_METHOD(hotelsGalleryOpened:(NSString *)type) {
+    [self.logger hotelsGalleryOpened:type];
+}
+
+RCT_EXPORT_METHOD(hotelsBookNowPressed:(NSString *)hotelsID rooms:(NSNumber *)rooms guests:(NSNumber *)guests price:(NSNumber *)price formattedPrice:(NSString *)formattedPrice) {
+    [self.logger hotelsBookNowPressed:hotelsID rooms:rooms guests:guests price:price formattedPrice:formattedPrice];
+}
+
 - (NSDictionary *)constantsToExport
 {
-    return @{ @"ANCILLARY_STEP_SEARCH_FORM" : @"searchForm",
-              @"ANCILLARY_STEP_RESULTS"     : @"results",
-              @"ANCILLARY_STEP_DETAILS"     : @"details",
-              @"ANCILLARY_STEP_PAYMENT"     : @"payment",
-              @"ANCILLARY_PROVIDER_BOOKINGCOM"     : @"booking.com",
-              @"ANCILLARY_PROVIDER_STAY22"     : @"stay22",
+    return @{
+        @"ANCILLARY_STEP_SEARCH_FORM"     : @"searchForm",
+        @"ANCILLARY_STEP_RESULTS"         : @"results",
+        @"ANCILLARY_STEP_DETAILS"         : @"details",
+        @"ANCILLARY_STEP_PAYMENT"         : @"payment",
+        @"ANCILLARY_PROVIDER_BOOKINGCOM"  : @"booking.com",
+        @"ANCILLARY_PROVIDER_STAY22"      : @"stay22",
+        @"HOTELS_GALLERY_TYPE_HOTEL"      : @"hotel",
+        @"HOTELS_GALLERY_TYPE_ROOM"       : @"room"
     };
 }
 
