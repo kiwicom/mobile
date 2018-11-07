@@ -7,11 +7,11 @@
 
 @implementation RNDummyLogger
 
-- (void)ancillaryDisplayed:(NSString *)type andProvider:(NSString *)provider {
+- (void)ancillaryDisplayed:(NSString *)type provider:(NSString *)provider {
     NSLog(@"ancillaryDisplayed - type: %@, - provider: %@", type, provider);
 }
 
-- (void)ancillaryPurchased:(NSString *)type  andProvider:(NSString *)provider{
+- (void)ancillaryPurchased:(NSString *)type  provider:(NSString *)provider{
     NSLog(@"ancillaryPurchased - type: %@, - provider: %@", type, provider);
 }
 
