@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const child_process = require('child_process');
 
 const log = message => console.log(`➤ ${message}`); // eslint-disable-line no-console
 
@@ -51,18 +52,50 @@ API_KEY_GOOGLE_MAPS=${vault.API_KEY_GOOGLE_MAPS}
 log('Setting up ENV variables...');
 fs.writeFileSync(path.join(__dirname, '..', '.env'), envTemplate);
 
+// We need to do this patching as react-native-code-push is actually "linked" as part of our native library RNKiwiMobile
+// We might be avoiding this patching when linking is extracted from RN core (with new features)
+// Keep an eye on https://github.com/react-native-community/react-native-cli
+log('Patching react-native-code-push...');
+const rnCodePushPackgeJson = JSON.parse(
+  fs.readFileSync(
+    path.join(
+      __dirname,
+      '..',
+      'node_modules',
+      'react-native-code-push',
+      'package.json',
+    ),
+    'utf-8',
+  ),
+);
+delete rnCodePushPackgeJson.rnpm;
+
+fs.writeFileSync(
+  path.join(
+    __dirname,
+    '..',
+    'node_modules',
+    'react-native-code-push',
+    'package.json',
+  ),
+  JSON.stringify(rnCodePushPackgeJson, null, 2),
+);
+
+log('Linking all native dependencies...');
+child_process.execSync('yarn react-native link');
+
 log('Patching intl package');
-const packageJson = JSON.parse(
+const intlPackageJson = JSON.parse(
   fs.readFileSync(
     path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'),
     'utf-8',
   ),
 );
-delete packageJson.browser;
+delete intlPackageJson.browser;
 
 fs.writeFileSync(
   path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'),
-  JSON.stringify(packageJson, null, 2),
+  JSON.stringify(intlPackageJson, null, 2),
 );
 
 try {
