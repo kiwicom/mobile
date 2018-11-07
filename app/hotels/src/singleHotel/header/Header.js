@@ -11,7 +11,6 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
   withNavigation,
@@ -34,13 +33,20 @@ export type Props = {
 export class Header extends React.Component<Props> {
   openGallery = () => {
     const { hotel } = this.props;
-    const photosEdges = idx(hotel, _ => _.photos.edges) || [];
-    const images = photosEdges.map(edge => ({
-      key: idx(edge, _ => _.node.id) || '',
-      lowRes: idx(edge, _ => _.node.lowResUrl) || '',
-      highRes: idx(edge, _ => _.node.highResUrl) || '',
-    }));
-    const hotelName = idx(hotel, _ => _.name);
+    const photosEdges = hotel?.photos?.edges ?? [];
+
+    const images = photosEdges.map(edge => {
+      const key = edge?.node?.id ?? '';
+      const highRes = edge?.node?.highResUrl ?? '';
+      const lowRes = edge?.node?.lowResUrl ?? highRes; // Fallback to highResUrl since stay22 do not provide lowResUrl
+      return {
+        key,
+        lowRes,
+        highRes,
+      };
+    });
+
+    const hotelName = hotel?.name;
 
     this.props.navigation.navigate('GalleryGrid', {
       hotelName,
@@ -50,8 +56,8 @@ export class Header extends React.Component<Props> {
 
   render = () => {
     const { hotel } = this.props;
-    const mainPhotoUrl = idx(hotel, _ => _.mainPhoto.highResUrl);
-    const photosCount = idx(hotel, _ => _.photos.edges.length) || 0;
+    const mainPhotoUrl = hotel?.mainPhoto?.highResUrl;
+    const photosCount = hotel?.photos?.edges?.length ?? 0;
 
     return (
       <Touchable
@@ -64,10 +70,10 @@ export class Header extends React.Component<Props> {
           <View style={[styles.nameAndRatingContainer]}>
             <View style={styles.nameAndRating}>
               <Text style={styles.hotelName}>
-                <Translation passThrough={idx(hotel, _ => _.name)} />
+                <Translation passThrough={hotel?.name} />
               </Text>
               <Text style={styles.rating}>
-                <Stars rating={idx(hotel, _ => _.rating.stars) || 0} />
+                <Stars rating={hotel?.rating?.stars ?? 0} />
               </Text>
             </View>
           </View>
