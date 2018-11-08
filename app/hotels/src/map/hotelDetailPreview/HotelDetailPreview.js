@@ -10,7 +10,6 @@ import {
   Stars,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import {
@@ -32,11 +31,11 @@ type Props = {|
 
 export default class HotelDetailPreview extends React.Component<Props> {
   renderInner = ({ containerWidth }: HotelDetailState) => {
-    const name = idx(this.props, _ => _.name);
-    const price = idx(this.props, _ => _.price) || {};
-    const image = idx(this.props, _ => _.thumbnailUrl);
-    const stars = idx(this.props, _ => _.stars) || 0;
-    const score = idx(this.props, _ => _.score);
+    const name = this.props?.name;
+    const price = this.props?.price;
+    const image = this.props?.thumbnailUrl;
+    const stars = this.props?.stars ?? 0;
+    const score = this.props?.score;
     return (
       <View style={[styles.container, { width: containerWidth }]}>
         <View>
@@ -55,7 +54,7 @@ export default class HotelDetailPreview extends React.Component<Props> {
           <View style={styles.row}>
             <View>
               {stars > 0 && <Stars rating={stars} style={styles.stars} />}
-              {price != null && <Price price={price} style={styles.price} />}
+              <Price price={price} style={styles.price} />
             </View>
             <HotelReviewScore score={score} />
           </View>
