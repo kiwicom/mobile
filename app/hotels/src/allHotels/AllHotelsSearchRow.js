@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
@@ -36,10 +35,10 @@ type PropsWithContext = {|
 
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   onGoToSingleHotel = () => {
-    const hotelId = idx(this.props, _ => _.data.hotelId);
+    const hotelId = this.props.data?.hotelId;
     if (hotelId != null) {
+      this.props.setHotelId(hotelId);
       this.props.navigation.navigate('SingleHotel', {
-        hotelId,
         checkin: this.props.checkin,
         checkout: this.props.checkout,
         roomsConfiguration: this.props.roomsConfiguration,
@@ -49,12 +48,12 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   };
 
   setActiveHotelId = () => {
-    const hotelId = idx(this.props, _ => _.data.hotelId) || '';
+    const hotelId = this.props.data?.hotelId ?? '';
     this.props.setHotelId(hotelId);
   };
 
   render = () => {
-    const highResUrl = idx(this.props.data, _ => _.mainPhoto.highResUrl);
+    const highResUrl = this.props.data?.mainPhoto?.highResUrl;
     const children = (
       <View style={style.row}>
         <View style={style.imageContainer}>
@@ -70,9 +69,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
               <HotelTitle data={this.props.data} />
             </View>
             <View style={style.hotelReviewScore}>
-              <HotelReviewScore
-                score={idx(this.props.data, _ => _.review.score)}
-              />
+              <HotelReviewScore score={this.props.data?.review?.score} />
             </View>
           </View>
         </View>
