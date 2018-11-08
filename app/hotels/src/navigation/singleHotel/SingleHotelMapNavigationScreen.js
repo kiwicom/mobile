@@ -4,29 +4,31 @@ import * as React from 'react';
 import { StatusBar } from 'react-native';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 
-import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
-import SingleHotelMap from '../../map/singleHotel/SingleHotelMapScreen';
+import SingleHotelMapScreen from '../../map/singleHotel/SingleHotelMapScreen';
+import SingleHotelContext from './SingleHotelContext';
+import Stay22SingleHotelMapScreen from '../../map/singleHotel/Stay22SingleHotelMapScreen';
 
-type Props = {
-  ...AvailableHotelSearchInput,
-  currency: string,
-};
+type Props = {||};
 
 class SingleHotelMapNavigationScreen extends React.Component<Props> {
-  render() {
+  renderInner = ({ apiProvider }) => {
     return (
       <React.Fragment>
-        <SingleHotelMap
-          search={{
-            hotelId: this.props.hotelId,
-            checkin: this.props.checkin,
-            checkout: this.props.checkout,
-            roomsConfiguration: this.props.roomsConfiguration,
-          }}
-          currency={this.props.currency}
-        />
         <StatusBar barStyle="dark-content" />
+        {apiProvider === 'booking' ? (
+          <SingleHotelMapScreen />
+        ) : (
+          <Stay22SingleHotelMapScreen />
+        )}
       </React.Fragment>
+    );
+  };
+
+  render() {
+    return (
+      <SingleHotelContext.Consumer>
+        {this.renderInner}
+      </SingleHotelContext.Consumer>
     );
   }
 }

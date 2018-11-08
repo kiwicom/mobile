@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b5ce6ca3f1712f723032f8b5d1eab09e
+ * @relayHash 036a915c3f5ac54d68f08d8feaf950f2
  */
 
 /* eslint-disable */
@@ -11,48 +11,34 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type SingleMap$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
-export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "engb" | "enus" | "es" | "esar" | "et" | "fi" | "fr" | "he" | "hr" | "hu" | "id" | "is" | "it" | "ja" | "ko" | "lt" | "lv" | "ms" | "nl" | "no" | "pl" | "pt" | "ptbr" | "ptpt" | "ro" | "ru" | "sk" | "sl" | "sr" | "sv" | "th" | "tl" | "tr" | "uk" | "vi" | "zh" | "zhcn" | "zhtw" | "%future added value";
-export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
-export type AvailableHotelSearchInput = {
-  hotelId: string,
+export type Stay22SingleHotelMapScreenQueryVariables = {|
+  id: string,
+  guests: number,
+  currency?: ?Currency,
   checkin: any,
   checkout: any,
-  roomsConfiguration: $ReadOnlyArray<RoomsConfiguration>,
-  language?: ?Language,
-};
-export type RoomsConfiguration = {
-  adultsCount: number,
-  children?: ?$ReadOnlyArray<?RoomsChildrenConfiguration>,
-};
-export type RoomsChildrenConfiguration = {
-  age?: ?number
-};
-export type AvailableHotelOptionsInput = {
-  currency?: ?Currency,
-  orderBy?: ?OrderBy,
-};
-export type SingleHotelMapScreenQueryVariables = {|
-  search: AvailableHotelSearchInput,
-  options?: ?AvailableHotelOptionsInput,
 |};
-export type SingleHotelMapScreenQueryResponse = {|
-  +availableHotel: ?{|
+export type Stay22SingleHotelMapScreenQueryResponse = {|
+  +stay22HotelDetail: ?{|
     +$fragmentRefs: SingleMap$ref
   |}
 |};
-export type SingleHotelMapScreenQuery = {|
-  variables: SingleHotelMapScreenQueryVariables,
-  response: SingleHotelMapScreenQueryResponse,
+export type Stay22SingleHotelMapScreenQuery = {|
+  variables: Stay22SingleHotelMapScreenQueryVariables,
+  response: Stay22SingleHotelMapScreenQueryResponse,
 |};
 */
 
 
 /*
-query SingleHotelMapScreenQuery(
-  $search: AvailableHotelSearchInput!
-  $options: AvailableHotelOptionsInput
+query Stay22SingleHotelMapScreenQuery(
+  $id: ID!
+  $guests: Int!
+  $currency: Currency
+  $checkin: Date!
+  $checkout: Date!
 ) {
-  availableHotel(search: $search, options: $options) {
+  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {
     ...SingleMap
     id
   }
@@ -110,29 +96,65 @@ const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
-    "name": "search",
-    "type": "AvailableHotelSearchInput!",
+    "name": "id",
+    "type": "ID!",
     "defaultValue": null
   },
   {
     "kind": "LocalArgument",
-    "name": "options",
-    "type": "AvailableHotelOptionsInput",
+    "name": "guests",
+    "type": "Int!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "currency",
+    "type": "Currency",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "checkin",
+    "type": "Date!",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
+    "name": "checkout",
+    "type": "Date!",
     "defaultValue": null
   }
 ],
 v1 = [
   {
     "kind": "Variable",
-    "name": "options",
-    "variableName": "options",
-    "type": "AvailableHotelOptionsInput"
+    "name": "checkin",
+    "variableName": "checkin",
+    "type": "Date!"
   },
   {
     "kind": "Variable",
-    "name": "search",
-    "variableName": "search",
-    "type": "AvailableHotelSearchInput!"
+    "name": "checkout",
+    "variableName": "checkout",
+    "type": "Date!"
+  },
+  {
+    "kind": "Variable",
+    "name": "currency",
+    "variableName": "currency",
+    "type": "Currency"
+  },
+  {
+    "kind": "Variable",
+    "name": "guests",
+    "variableName": "guests",
+    "type": "Int!"
+  },
+  {
+    "kind": "Variable",
+    "name": "id",
+    "variableName": "id",
+    "type": "ID!"
   }
 ],
 v2 = {
@@ -145,13 +167,13 @@ v2 = {
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "SingleHotelMapScreenQuery",
+  "name": "Stay22SingleHotelMapScreenQuery",
   "id": null,
-  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...SingleMap\n    id\n  }\n}\n\nfragment SingleMap on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+  "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap\n    id\n  }\n}\n\nfragment SingleMap on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "SingleHotelMapScreenQuery",
+    "name": "Stay22SingleHotelMapScreenQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -159,10 +181,10 @@ return {
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "availableHotel",
+        "name": "stay22HotelDetail",
         "storageKey": null,
         "args": v1,
-        "concreteType": "HotelAvailability",
+        "concreteType": "Stay22HotelDetail",
         "plural": false,
         "selections": [
           {
@@ -176,16 +198,16 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "SingleHotelMapScreenQuery",
+    "name": "Stay22SingleHotelMapScreenQuery",
     "argumentDefinitions": v0,
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
-        "name": "availableHotel",
+        "name": "stay22HotelDetail",
         "storageKey": null,
         "args": v1,
-        "concreteType": "HotelAvailability",
+        "concreteType": "Stay22HotelDetail",
         "plural": false,
         "selections": [
           {
@@ -359,5 +381,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'ebdd43ba89c69e2d571a7e4a852b3f1c';
+(node/*: any*/).hash = 'e4a0010566422a86f8163845af1815cc';
 module.exports = node;

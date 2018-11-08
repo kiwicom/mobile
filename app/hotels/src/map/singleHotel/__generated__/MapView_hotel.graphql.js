@@ -23,7 +23,7 @@ export type MapView_hotel = {|
 const node/*: ConcreteFragment*/ = {
   "kind": "Fragment",
   "name": "MapView_hotel",
-  "type": "Hotel",
+  "type": "HotelInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -55,5 +55,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e27f572a2b782be72991ae55531f6c5f';
+(node/*: any*/).hash = '54d5eb1a9e793be8bced0c546d27f87b';
 module.exports = node;

@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(
   AdditionalInfo,
   graphql`
-    fragment AdditionalInfo on HotelAvailability {
+    fragment AdditionalInfo on HotelAvailabilityInterface {
       price {
         amount
         currency
