@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import {
   withNavigation,
   type NavigationType,
@@ -48,7 +47,7 @@ export class HotelSwipeItemWithContext extends React.Component<
 
   handlePress = () => {
     const { data } = this.props;
-    const id = idx(data, _ => _.hotelId);
+    const id = data?.hotelId;
 
     if (id != null) {
       this.isNarrowLayout()
@@ -59,11 +58,11 @@ export class HotelSwipeItemWithContext extends React.Component<
 
   render = () => {
     const { width, data } = this.props;
-    const name = idx(data, _ => _.name);
-    const price = idx(data, _ => _.price);
-    const thumbnailUrl = idx(data, _ => _.mainPhoto.thumbnailUrl);
-    const stars = idx(data, _ => _.rating.stars);
-    const score = idx(data, _ => _.review.score);
+    const name = data?.name;
+    const price = data?.price;
+    const thumbnailUrl = data?.mainPhoto?.thumbnailUrl;
+    const stars = data?.rating?.stars;
+    const score = data?.review?.score;
     return (
       <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={{ width }}>
