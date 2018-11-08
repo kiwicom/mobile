@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
@@ -9,7 +9,6 @@ import {
   Dimensions,
   Device,
 } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
 import MapView from './MapView';
@@ -51,7 +50,7 @@ class MapScreenWithContext extends React.Component<PropsWithContext, State> {
 
   onSelectMarker = (hotelId: string) => {
     const hotels = this.getHotels();
-    const index = hotels.findIndex(hotel => idx(hotel, _ => _.id) === hotelId);
+    const index = hotels.findIndex(hotel => hotel?.id === hotelId);
 
     if (index !== -1) {
       this.handleActiveIndex(index, hotels);
@@ -60,7 +59,7 @@ class MapScreenWithContext extends React.Component<PropsWithContext, State> {
 
   handleActiveIndex = (index: number, hotels: MapScreenData) => {
     if (!this.isNarrowLayout()) {
-      const hotelHotelId = idx(hotels[index], _ => _.hotelId);
+      const hotelHotelId = hotels[index]?.hotelId;
       hotelHotelId != null && this.props.setHotelId(hotelHotelId);
     }
     this.selectMarker(index);

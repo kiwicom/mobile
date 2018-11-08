@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import {
@@ -37,7 +36,7 @@ class SingleHotelMapScreen extends React.Component<Props> {
     availableHotel,
   }: SingleHotelMapScreenQueryResponse) => (
     <View style={styles.container}>
-      <MapView hotel={idx(availableHotel, _ => _.hotel)} />
+      <MapView hotel={availableHotel?.hotel} />
       <View style={styles.underlay}>
         <StretchedImage source={gradient} />
       </View>

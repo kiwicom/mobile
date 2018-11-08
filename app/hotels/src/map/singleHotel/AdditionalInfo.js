@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, type OnLayout, Device } from '@kiwicom/mobile-shared';
@@ -34,11 +33,11 @@ export class AdditionalInfo extends React.Component<Props, State> {
 
   render() {
     const { data } = this.props;
-    const name = idx(data, _ => _.hotel.name);
-    const price = idx(data, _ => _.price);
-    const thumbnailUrl = idx(data, _ => _.hotel.mainPhoto.thumbnailUrl);
-    const stars = idx(data, _ => _.hotel.rating.stars);
-    const score = idx(data, _ => _.hotel.review.score);
+    const name = data?.hotel?.name;
+    const price = data?.price;
+    const thumbnailUrl = data?.hotel?.mainPhoto?.thumbnailUrl;
+    const stars = data?.hotel?.rating?.stars;
+    const score = data?.hotel?.review?.score;
     return (
       <View style={styles.container} onLayout={this.onLayout}>
         <HotelPreviewProvider value={this.state}>
@@ -53,7 +52,7 @@ export class AdditionalInfo extends React.Component<Props, State> {
                 score={score}
               />
               <View style={styles.addressContainer}>
-                <Address address={idx(data, _ => _.hotel.address)} />
+                <Address address={data?.hotel?.address} />
               </View>
             </View>
           </BottomSheet>
