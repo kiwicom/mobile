@@ -8,7 +8,6 @@ import {
   type RelayPaginationProp,
 } from '@kiwicom/mobile-relay';
 import { Logger } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import type { Stay22PaginationContainer as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer.graphql';
 import HotelsContext from '../HotelsContext';
@@ -39,13 +38,13 @@ export class Stay22PaginationContainer extends React.Component<
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_RESULTS,
       Logger.Provider.ANCILLARY_PROVIDER_STAY22,
     );
     // TODO: Set min max price here when supported by API
-  };
+  }
 
   loadMore = () => {
     if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
@@ -57,10 +56,9 @@ export class Stay22PaginationContainer extends React.Component<
     }
   };
 
-  render = () => {
-    const edges =
-      idx(this.props.data, _ => _.allAvailableStay22Hotels.edges) || [];
-    const data = edges.map(hotel => idx(hotel, _ => _.node));
+  render() {
+    const edges = this.props.data.allAvailableStay22Hotels?.edges ?? [];
+    const data = edges.map(hotel => hotel?.node);
 
     return (
       <RenderSearchResults
@@ -71,7 +69,7 @@ export class Stay22PaginationContainer extends React.Component<
         top={0}
       />
     );
-  };
+  }
 }
 
 type Props = {|

@@ -89,6 +89,11 @@ export default {
   'hotels_search.location_picker.header': 'Where',
   'hotels_search.location_picker.recent_search': 'Recent search',
   'hotels_search.header.to': 'to',
+  'hotels_search.hotel_distance.in_city_center': 'In the city center',
+  'hotels_search.hotel_distance.meters_from_center':
+    '__distance__m from center',
+  'hotels_search.hotel_distance.kilo_meters_from_center':
+    '__distance__km from center',
 
   'single_hotel.bedding_info.guests': '__numberOfGuests__ Guests',
   'single_hotel.book_now': 'Book Now',

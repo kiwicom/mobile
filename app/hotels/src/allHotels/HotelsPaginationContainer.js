@@ -7,7 +7,6 @@ import {
   type RelayPaginationProp,
 } from '@kiwicom/mobile-relay';
 import { Logger } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import type { HotelsPaginationContainer as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer.graphql';
 import HotelsContext from '../HotelsContext';
@@ -35,20 +34,16 @@ export class HotelsPaginationContainer extends React.Component<
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_RESULTS,
       Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
     );
 
-    const priceMax = idx(
-      this.props,
-      _ => _.data.allAvailableBookingComHotels.stats.maxPrice,
-    );
-    const priceMin = idx(
-      this.props,
-      _ => _.data.allAvailableBookingComHotels.stats.minPrice,
-    );
+    const priceMax = this.props.data?.allAvailableBookingComHotels?.stats
+      ?.maxPrice;
+    const priceMin = this.props.data?.allAvailableBookingComHotels?.stats
+      ?.minPrice;
 
     if (priceMax != null && priceMin != null) {
       this.props.setCurrentSearchStats({
@@ -56,7 +51,7 @@ export class HotelsPaginationContainer extends React.Component<
         priceMin,
       });
     }
-  };
+  }
 
   loadMore = () => {
     if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
@@ -68,10 +63,9 @@ export class HotelsPaginationContainer extends React.Component<
     }
   };
 
-  render = () => {
-    const edges =
-      idx(this.props.data, _ => _.allAvailableBookingComHotels.edges) || [];
-    const data = edges.map(hotel => idx(hotel, _ => _.node));
+  render() {
+    const edges = this.props.data?.allAvailableBookingComHotels?.edges ?? [];
+    const data = edges.map(hotel => hotel?.node);
 
     return (
       <RenderSearchResults
@@ -82,7 +76,7 @@ export class HotelsPaginationContainer extends React.Component<
         top={56}
       />
     );
-  };
+  }
 }
 
 type Props = {|
