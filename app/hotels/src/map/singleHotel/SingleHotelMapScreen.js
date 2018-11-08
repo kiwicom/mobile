@@ -1,26 +1,18 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import {
-  StyleSheet,
-  CloseButton,
-  Device,
-  StretchedImage,
-} from '@kiwicom/mobile-shared';
 import {
   withNavigation,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
-import MapView from './MapView';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
 import { sanitizeDate } from '../../GraphQLSanitizers';
-import AdditionalInfo from './AdditionalInfo';
-import gradient from '../gradient.png';
+import SingleMap from './SingleMap';
+import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
+import HotelsContext from '../../HotelsContext';
 
 type Props = {|
   +currency: string,
@@ -35,22 +27,14 @@ class SingleHotelMapScreen extends React.Component<Props> {
   renderInnerComponent = ({
     availableHotel,
   }: SingleHotelMapScreenQueryResponse) => (
-    <View style={styles.container}>
-      <MapView hotel={availableHotel?.hotel} />
-      <View style={styles.underlay}>
-        <StretchedImage source={gradient} />
-      </View>
-      <View style={styles.dropShadow}>
-        <AdditionalInfo data={availableHotel} />
-      </View>
-      <View style={styles.button}>
-        <CloseButton onPress={this.goBack} />
-      </View>
-    </View>
+    <SingleMap goBack={this.goBack} data={availableHotel} />
   );
 
-  render() {
-    const { search, currency } = this.props;
+  renderQuery = (currency, roomsConfiguration) => ({
+    checkin,
+    checkout,
+    hotelId,
+  }) => {
     return (
       <PublicApiRenderer
         query={graphql`
@@ -59,48 +43,37 @@ class SingleHotelMapScreen extends React.Component<Props> {
             $options: AvailableHotelOptionsInput
           ) {
             availableHotel(search: $search, options: $options) {
-              hotel {
-                ...MapView_hotel
-              }
-              ...AdditionalInfo
+              ...SingleMap
             }
           }
         `}
         variables={{
           search: {
-            ...search,
-            checkin: sanitizeDate(search.checkin),
-            checkout: sanitizeDate(search.checkout),
+            hotelId,
+            roomsConfiguration,
+            checkin: sanitizeDate(checkin),
+            checkout: sanitizeDate(checkout),
           },
           options: { currency },
         }}
         render={this.renderInnerComponent}
       />
     );
+  };
+
+  renderHotelsContext = ({ currency, roomsConfiguration }) => (
+    <SingleHotelContext.Consumer>
+      {this.renderQuery(currency, roomsConfiguration)}
+    </SingleHotelContext.Consumer>
+  );
+
+  render() {
+    return (
+      <HotelsContext.Consumer>
+        {this.renderHotelsContext}
+      </HotelsContext.Consumer>
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-end',
-  },
-  button: {
-    position: 'absolute',
-    bottom: Device.isIPhoneX ? 36 : 8,
-    start: 8,
-    end: 8,
-  },
-  underlay: { height: 132 },
-  dropShadow: {
-    shadowColor: defaultTokens.paletteInkDark,
-    shadowOpacity: 0.2,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 4,
-    android: {
-      elevation: 1,
-    },
-  },
-});
 
 export default withNavigation(SingleHotelMapScreen);

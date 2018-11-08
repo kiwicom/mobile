@@ -43,7 +43,7 @@ export class MapView extends React.Component<Props> {
 export default (createFragmentContainer(
   MapView,
   graphql`
-    fragment MapView_hotel on Hotel {
+    fragment MapView_hotel on HotelInterface {
       coordinates {
         lat
         lng
