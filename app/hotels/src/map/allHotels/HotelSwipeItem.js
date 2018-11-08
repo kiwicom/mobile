@@ -33,6 +33,7 @@ export class HotelSwipeItemWithContext extends React.Component<
   PropsWithContext,
 > {
   openSingleHotel = (hotelId: string) => {
+    this.props.setHotelId(hotelId);
     this.props.navigation.navigate('SingleHotel', {
       hotelId,
       checkin: this.props.checkin,
