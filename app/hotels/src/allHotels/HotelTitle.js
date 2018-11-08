@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Price, Stars, Text, StyleSheet } from '@kiwicom/mobile-shared';
@@ -16,15 +15,13 @@ type Props = {|
 |};
 
 function HotelTitle({ data }: Props) {
-  const hotelName = idx(data, _ => _.name);
-  const hotelStars = idx(data, _ => _.rating.stars);
-
-  const price = data.price || null;
+  const hotelName = data.name ?? '';
+  const hotelStars = data.rating?.stars;
 
   return (
     <React.Fragment>
       <Text style={style.title}>
-        <Translation passThrough={`${hotelName || ''} `} />
+        <Translation passThrough={`${hotelName} `} />
         <Text style={style.rating}>
           <Stars rating={hotelStars} />
         </Text>
@@ -33,7 +30,7 @@ function HotelTitle({ data }: Props) {
       <View style={style.distance}>
         <Distance hotel={data} />
       </View>
-      <Price price={price} style={style.price} />
+      <Price price={data.price} style={style.price} />
     </React.Fragment>
   );
 }

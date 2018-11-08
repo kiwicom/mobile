@@ -4,7 +4,6 @@ import * as React from 'react';
 import { GeneralError } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
@@ -16,13 +15,15 @@ type PropsWithContext = {|
 |};
 
 export class AllHotelsSearchList extends React.Component<PropsWithContext> {
-  componentDidMount = () => {
-    const hotelId = idx(this.props.data, _ => _[0].hotelId);
+  componentDidMount() {
+    const hotelId = this.props.data?.[0]?.hotelId;
+
     if (hotelId != null) {
       this.props.setHotelId(hotelId);
     }
-  };
-  render = () => {
+  }
+
+  render() {
     const hotels = this.props.data || [];
 
     if (hotels.length === 0) {
@@ -39,14 +40,14 @@ export class AllHotelsSearchList extends React.Component<PropsWithContext> {
       <React.Fragment>
         {hotels.map((hotel, index) => (
           <AllHotelsSearchRow
-            key={idx(hotel, _ => _.id)}
+            key={hotel?.id}
             data={hotel}
             testID={index === 0 ? 'firstHotelResult' : ''}
           />
         ))}
       </React.Fragment>
     );
-  };
+  }
 }
 
 type Props = {|
