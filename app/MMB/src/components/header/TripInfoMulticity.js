@@ -1,11 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Color } from '@kiwicom/mobile-shared';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 import last from 'lodash/last';
 
 import ColorStrip from './ColorStrip';
@@ -18,10 +17,10 @@ type Props = {|
 |};
 
 function TripInfoMulticity(props: Props) {
-  const trips = idx(props, _ => _.data.trips) || [];
+  const trips = props.data?.trips ?? [];
 
   return trips.map((trip, index) => {
-    const color = Color.tripColorCodes[index] || last(Color.tripColorCodes);
+    const color = Color.tripColorCodes[index] ?? last(Color.tripColorCodes);
     const row = (
       <View style={styleSheet.row} key={index}>
         <ColorStrip color={color} />
