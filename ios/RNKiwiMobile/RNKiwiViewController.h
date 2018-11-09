@@ -15,7 +15,7 @@
 @property (nonatomic, weak, nullable) id<RNKiwiViewControllerFlowDelegate> flowDelegate;
 
 // Logging
-@property (nonatomic, copy, nullable) void (^didDisplayAncillary)(NSString * _Nonnull type);
-@property (nonatomic, copy, nullable) void (^didPurchaseAncillary)(NSString * _Nonnull type);
+@property (nonatomic, copy, nullable) void (^didDisplayAncillary)(NSString * _Nonnull type, NSString *provider);
+@property (nonatomic, copy, nullable) void (^didPurchaseAncillary)(NSString * _Nonnull type, NSString *provider);
 
 @end

@@ -11,7 +11,7 @@
     NSLog(@"ancillaryDisplayed - type: %@, - provider: %@", type, provider);
 }
 
-- (void)ancillaryPurchased:(NSString *)type  provider:(NSString *)provider{
+- (void)ancillaryPurchased:(NSString *)type provider:(NSString *)provider{
     NSLog(@"ancillaryPurchased - type: %@, - provider: %@", type, provider);
 }
 
@@ -52,7 +52,7 @@ RCT_EXPORT_MODULE();
     return _logger;
 }
 
-RCT_EXPORT_METHOD(ancillaryDisplayed:(NSString *)type  provider:(NSString *)provider) {
+RCT_EXPORT_METHOD(ancillaryDisplayed:(NSString *)type provider:(NSString *)provider) {
     [self.logger ancillaryDisplayed:type provider:provider];
 }
 
@@ -62,12 +62,12 @@ RCT_EXPORT_METHOD(ancillaryPurchased:(NSString *)type provider:(NSString *)provi
 
 - (NSDictionary *)constantsToExport
 {
-    return @{ @"ANCILLARY_STEP_SEARCH_FORM" : @"searchForm",
-              @"ANCILLARY_STEP_RESULTS"     : @"results",
-              @"ANCILLARY_STEP_DETAILS"     : @"details",
-              @"ANCILLARY_STEP_PAYMENT"     : @"payment",
-              @"ANCILLARY_PROVIDER_BOOKINGCOM"     : @"booking.com",
-              @"ANCILLARY_PROVIDER_STAY22"     : @"stay22",
+    return @{ @"ANCILLARY_STEP_SEARCH_FORM"     : @"searchForm",
+              @"ANCILLARY_STEP_RESULTS"         : @"results",
+              @"ANCILLARY_STEP_DETAILS"         : @"details",
+              @"ANCILLARY_STEP_PAYMENT"         : @"payment",
+              @"ANCILLARY_PROVIDER_BOOKINGCOM"  : @"booking.com",
+              @"ANCILLARY_PROVIDER_STAY22"      : @"stay22",
     };
 }
 
