@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon } from '@kiwicom/mobile-shared';
@@ -16,10 +15,10 @@ type Props = {|
   +data: ArrivalTimelineEventType,
 |};
 
-const ArrivalTimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
-  const airport = idx(props, _ => _.data.location.airport.city.name);
-  const code = idx(props, _ => _.data.location.airport.locationId) || '';
+const ArrivalTimelineEvent = ({ data }: Props) => {
+  const timestamp = data.timestamp;
+  const airport = data.location?.airport?.city?.name;
+  const code = data.location?.airport?.locationId ?? '';
   return (
     <TimelineEventDateLocationContext.Provider value={{ highlightText: true }}>
       <TimelineEvent

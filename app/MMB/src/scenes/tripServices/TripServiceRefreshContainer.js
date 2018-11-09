@@ -7,7 +7,6 @@ import {
   createRefetchContainer,
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import GeneralServicesMenuGroup from './GeneralServicesMenuGroup';
 import LocalServicesMenuGroup from './LocalServicesMenuGroup';
@@ -28,11 +27,12 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
   };
 
   refetch = () => {
+    const { data } = this.props;
     this.setState({ isRefreshing: true });
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.databaseId),
-        authToken: idx(this.props.data, _ => _.authToken),
+        id: data.databaseId,
+        authToken: data.authToken,
       },
       null,
       () => {
@@ -44,20 +44,22 @@ class TripServiceRefreshContainer extends React.Component<Props, State> {
     );
   };
 
-  render = () => (
-    <RefreshableScrollView
-      refreshing={this.state.isRefreshing}
-      onRefresh={this.refetch}
-    >
-      {/* TODO: ordered services - how does it work here? */}
+  render() {
+    return (
+      <RefreshableScrollView
+        refreshing={this.state.isRefreshing}
+        onRefresh={this.refetch}
+      >
+        {/* TODO: ordered services - how does it work here? */}
 
-      <GeneralServicesMenuGroup data={this.props.data} />
+        <GeneralServicesMenuGroup data={this.props.data} />
 
-      <LocalServicesMenuGroup
-        data={idx(this.props.data, _ => _.availableWhitelabeledServices)}
-      />
-    </RefreshableScrollView>
-  );
+        <LocalServicesMenuGroup
+          data={this.props.data.availableWhitelabeledServices}
+        />
+      </RefreshableScrollView>
+    );
+  }
 }
 
 export default createRefetchContainer(

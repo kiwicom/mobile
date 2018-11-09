@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import {
   type NavigationType,
   withNavigation,
@@ -26,9 +25,9 @@ type Props = {|
 |};
 
 const PassengerInsuranceMenuItem = (props: Props) => {
-  const passenger = idx(props, _ => _.passenger);
-  const fullName = idx(passenger, _ => _.fullName) || '';
-  const insuranceType = idx(passenger, _ => _.insuranceType);
+  const passenger = props.passenger;
+  const fullName = passenger.fullName ?? '';
+  const insuranceType = passenger.insuranceType;
 
   function onPress() {
     props.navigation.navigate('mmb.trip_services.insurance.selection', {

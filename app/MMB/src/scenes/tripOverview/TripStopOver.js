@@ -16,7 +16,6 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import type { TripStopOver as TripStopOverType } from './__generated__/TripStopOver.graphql';
 
@@ -30,10 +29,10 @@ class TripStopOver extends React.Component<Props> {
     this.props.navigation.navigate('GuaranteeScreen');
   };
 
-  render = () => {
-    const isKiwiGuarantee =
-      idx(this.props, _ => _.data.guarantee) === 'KIWICOM';
-    const duration = idx(this.props, _ => _.data.stopoverDuration);
+  render() {
+    const { data } = this.props;
+    const isKiwiGuarantee = data.guarantee === 'KIWICOM';
+    const duration = data.stopoverDuration;
     return (
       <View style={styles.container}>
         <Duration
@@ -54,7 +53,7 @@ class TripStopOver extends React.Component<Props> {
         )}
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

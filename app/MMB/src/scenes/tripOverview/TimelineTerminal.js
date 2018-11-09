@@ -4,7 +4,6 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import TimelineRow from './TimelineRow';
 import type { TimelineTerminal as TimelineTerminalType } from './__generated__/TimelineTerminal.graphql';
@@ -14,17 +13,17 @@ type Props = {|
   +data: TimelineTerminalType,
 |};
 
-const TimelineTerminal = (props: Props) => {
-  const terminal = idx(props.data, _ => _.terminal);
-  const iata = idx(props.data, _ => _.airport.code) || '';
-  const city = idx(props.data, _ => _.airport.city.name) || '';
+const TimelineTerminal = ({ data, icon }: Props) => {
+  const terminal = data.terminal;
+  const iata = data.airport?.code ?? '';
+  const city = data.airport?.city?.name ?? '';
 
   if (terminal == null) {
     return null;
   }
   return (
     <TimelineRow
-      icon={props.icon}
+      icon={icon}
       value={
         <Translation
           id="mmb.flight_overview.timeline.terminal"

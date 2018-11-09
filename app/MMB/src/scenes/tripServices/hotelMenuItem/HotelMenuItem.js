@@ -18,7 +18,6 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import LocationItem from './LocationItem';
 import LocationsPopup from '../LocationsPopup';
@@ -77,7 +76,7 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
 
   openHotelsModal = ({ cityId, cityName, checkin, checkout }: HotelData) => {
     const roomsConfiguration =
-      idx(this.props.data, _ => _.hotel.roomsConfiguration) || null;
+      this.props.data.hotel?.roomsConfiguration ?? null;
     const sanitizedDates = this.sanitizeDates({ checkin, checkout });
 
     this.props.navigation.navigate('MMBHotelsStack', {
@@ -98,14 +97,13 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
   };
 
   menuItemOnPress = () => {
-    const relevantLocations =
-      idx(this.props.data, _ => _.hotel.relevantLocations) || [];
+    const relevantLocations = this.props.data.hotel?.relevantLocations ?? [];
 
     if (relevantLocations.length === 1) {
-      const cityId = idx(relevantLocations, _ => _[0].hotelCity.id) || '';
-      const cityName = idx(relevantLocations, _ => _[0].hotelCity.name) || '';
-      const checkin = idx(relevantLocations, _ => _[0].checkin) || null;
-      const checkout = idx(relevantLocations, _ => _[0].checkout) || null;
+      const cityId = relevantLocations[0]?.hotelCity?.id ?? '';
+      const cityName = relevantLocations[0]?.hotelCity?.name ?? '';
+      const checkin = relevantLocations[0]?.checkin ?? null;
+      const checkout = relevantLocations[0]?.checkout ?? null;
       this.openHotelsModal({
         cityId,
         cityName,
@@ -128,9 +126,8 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
     }));
   };
 
-  render = () => {
-    const relevantLocations =
-      idx(this.props.data, _ => _.hotel.relevantLocations) || [];
+  render() {
+    const relevantLocations = this.props.data.hotel?.relevantLocations ?? [];
 
     return (
       <React.Fragment>
@@ -139,10 +136,10 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
           onClose={this.togglePopup}
         >
           {relevantLocations.map((relevantLocation, index) => {
+            const key = relevantLocation?.location?.id ?? '';
             return (
               <LocationItem
-                key={`${idx(relevantLocation, _ => _.location.id) ||
-                  ''}-${index}`}
+                key={`${key}-${index}`}
                 data={relevantLocation}
                 onPress={this.onLocationPress}
               />
@@ -156,7 +153,7 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
         />
       </React.Fragment>
     );
-  };
+  }
 }
 
 type Props = {|

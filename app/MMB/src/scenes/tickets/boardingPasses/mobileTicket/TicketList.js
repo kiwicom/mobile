@@ -5,7 +5,6 @@ import { View, Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import WalletPassenger from './WalletPassenger';
@@ -16,8 +15,8 @@ type Props = {|
   +segmentId: ?string,
 |};
 
-const TicketList = (props: Props) => {
-  const pkpasses = idx(props.data, _ => _.pkpasses) || [];
+const TicketList = ({ data, segmentId }: Props) => {
+  const pkpasses = data.pkpasses ?? [];
 
   if (pkpasses.length === 0) {
     return null;
@@ -47,10 +46,10 @@ const TicketList = (props: Props) => {
       <View style={styles.passengerContainer}>
         {pkpasses.map(item => (
           <WalletPassenger
-            key={idx(item, _ => _.passenger.databaseId)}
+            key={item.passenger?.databaseId}
             data={item}
-            segmentId={props.segmentId}
-            flightNumber={idx(props.data, _ => _.flightNumber)}
+            segmentId={segmentId}
+            flightNumber={data.flightNumber}
           />
         ))}
       </View>

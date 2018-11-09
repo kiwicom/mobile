@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
@@ -17,8 +16,8 @@ type Props = {|
   +data: CheckinClosingTimelineEventType,
 |};
 
-const CheckinClosingTimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
+const CheckinClosingTimelineEvent = ({ data }: Props) => {
+  const timestamp = data.timestamp;
   return (
     <TimelineEvent
       timestamp={timestamp}

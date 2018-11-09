@@ -6,7 +6,6 @@ import { Text, StyleSheet, DatePicker, Switch } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import max from 'lodash/max';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TravelDocumentFormContext from '../TravelDocumentFormContext';
@@ -21,9 +20,9 @@ type PropsWithContext = {|
 |};
 
 export const ExpiryDatePicker = (props: PropsWithContext) => {
-  const segments = idx(props, _ => _.data.legs) || [];
+  const segments = props.data.legs ?? [];
   const minDate = max(
-    segments.map(item => new Date(idx(item, _ => _.departure.time) || 0)),
+    segments.map(item => new Date(item?.departure?.time ?? 0)),
   );
   return (
     <React.Fragment>

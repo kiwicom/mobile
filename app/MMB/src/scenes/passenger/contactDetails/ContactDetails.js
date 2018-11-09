@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   TitledMenuGroup,
@@ -26,15 +25,11 @@ const ContactDetails = (props: Props) => (
     >
       <ContactMenuItem
         title={<Translation id="mmb.passengers.email" />}
-        value={
-          <Translation passThrough={idx(props.contactDetails, _ => _.email)} />
-        }
+        value={<Translation passThrough={props.contactDetails.email} />}
       />
       <ContactMenuItem
         title={<Translation id="mmb.passengers.phone" />}
-        value={
-          <Translation passThrough={idx(props.contactDetails, _ => _.phone)} />
-        }
+        value={<Translation passThrough={props.contactDetails.phone} />}
       />
     </MenuGroup>
   </TitledMenuGroup>

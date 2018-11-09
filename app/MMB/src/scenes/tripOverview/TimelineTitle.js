@@ -10,7 +10,6 @@ import {
   type AlertTranslationType,
 } from '@kiwicom/mobile-localization';
 import { StyleSheet, Text, Touchable, TextIcon } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import memoize from 'memoize-one';
 
@@ -41,10 +40,10 @@ class TimelineTitle extends React.Component<PropsWithContext> {
   );
 
   onPress = () => {
-    const data = this.props.data;
-    const localTime = idx(data, _ => _.localTime);
-    const iataCode = idx(data, _ => _.airport.locationId);
-    const warnings = idx(this.props, _ => _.warnings) || [];
+    const { data } = this.props;
+    const localTime = data.localTime;
+    const iataCode = data.airport?.locationId;
+    const warnings = this.props.warnings ?? [];
 
     const warning = this.getWarning(warnings, localTime, iataCode);
     if (warning) {
@@ -53,12 +52,11 @@ class TimelineTitle extends React.Component<PropsWithContext> {
   };
 
   render() {
-    const data = this.props.data;
-    const localTime = idx(data, _ => _.localTime);
-    const cityName = idx(data, _ => _.airport.city.name);
-    const iataCode = idx(data, _ => _.airport.locationId);
-    const warnings = idx(this.props, _ => _.warnings) || [];
-    const warning = this.getWarning(warnings, localTime, iataCode);
+    const { data, warnings } = this.props;
+    const localTime = data.localTime;
+    const cityName = data.airport?.city?.name;
+    const iataCode = data.airport?.locationId;
+    const warning = this.getWarning(warnings ?? [], localTime, iataCode);
 
     const warningStyle = warning != null ? styleSheet.warningStyle : null;
     return (

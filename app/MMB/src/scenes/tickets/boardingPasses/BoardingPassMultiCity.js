@@ -4,7 +4,6 @@ import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { TextIcon, StyleSheet, Color } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import last from 'lodash/last';
 
 import type { BoardingPassMultiCity as BookingType } from './__generated__/BoardingPassMultiCity.graphql';
@@ -15,7 +14,7 @@ type Props = {|
 |};
 
 export const BoardingPassMultiCity = (props: Props) => {
-  const trips = idx(props.data, _ => _.trips) || [];
+  const trips = props.data.trips ?? [];
   return trips.map((trip, index) => {
     const color = Color.tripColorCodes[index] || last(Color.tripColorCodes); // if we have more trips than colors, fallback to last color code
     const styles = StyleSheet.create({
@@ -29,9 +28,7 @@ export const BoardingPassMultiCity = (props: Props) => {
         data={trip}
         icon={<TextIcon code="&#xe103;" style={styles.textIcon} />}
         iconTitle={
-          <Translation
-            passThrough={idx(trip, _ => _.arrival.airport.city.name)}
-          />
+          <Translation passThrough={trip?.arrival?.airport?.city?.name} />
         }
       />
     );

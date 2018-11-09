@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
@@ -18,7 +17,7 @@ type Props = {|
 |};
 
 const TimeToCheckinTimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
+  const timestamp = props.data.timestamp;
   return (
     <TimelineEvent
       displayTime={false}

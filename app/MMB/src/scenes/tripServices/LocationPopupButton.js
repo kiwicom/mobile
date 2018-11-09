@@ -6,7 +6,6 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Touchable, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import CountryFlag from '../../components/CountryFlag';
 import type { LocationPopupButton as LocationPopupButtonType } from './__generated__/LocationPopupButton.graphql';
@@ -30,11 +29,10 @@ class LocationPopupButton extends React.Component<Props> {
     this.props.onPress(this.props.whitelabelURL);
   };
 
-  render = () => {
-    const cityName = idx(this.props, _ => _.data.city.name);
-    const locationId = idx(this.props, _ => _.data.locationId);
-    const date = idx(this.props, _ => _.date);
-    const displayDate = idx(this.props, _ => _.displayDate);
+  render() {
+    const { data, date, displayDate } = this.props;
+    const cityName = data.city?.name;
+    const locationId = data.locationId;
 
     return (
       <Touchable onPress={this.openWhitelabel} style={styleSheet.wrapper}>
@@ -59,7 +57,7 @@ class LocationPopupButton extends React.Component<Props> {
         </React.Fragment>
       </Touchable>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

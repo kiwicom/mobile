@@ -4,7 +4,6 @@ import * as React from 'react';
 import { AdaptableBadge, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { StatusBadge as StatusBadgeType } from './__generated__/StatusBadge.graphql';
@@ -14,8 +13,8 @@ type Props = {|
 |};
 
 const StatusBadge = (props: Props) => {
-  const status = idx(props.data, _ => _.status) || '';
-  const isPastBooking = idx(props.data, _ => _.isPastBooking) || '';
+  const status = props.data.status ?? '';
+  const isPastBooking = Boolean(props.data.isPastBooking);
 
   let renderStatus;
   switch (status) {
