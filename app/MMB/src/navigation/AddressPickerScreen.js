@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View, ScrollView } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
@@ -78,10 +77,10 @@ export class AddressPickerScreen extends React.Component<Props, State> {
     this.updateFormattedAddress(coordinate);
   }
 
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     const coordinate = this.getCoordinate();
     this.updateFormattedAddress(coordinate);
-  };
+  }
 
   getCoordinate = () =>
     this.props.lat != null && this.props.lng != null
@@ -109,9 +108,8 @@ export class AddressPickerScreen extends React.Component<Props, State> {
   };
 
   render() {
-    const searchText =
-      idx(this.props.navigation, _ => _.state.params.searchText) || '';
-    const region = idx(this.props.navigation, _ => _.state.params.region);
+    const searchText = this.props.navigation.state.params.searchText ?? '';
+    const region = this.props.navigation.state.params.region;
     return (
       <ScrollView
         keyboardDismissMode="on-drag"
