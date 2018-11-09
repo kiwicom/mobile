@@ -7,7 +7,6 @@ import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
-import idx from 'idx';
 
 import LocationsPopup from './LocationsPopup';
 import LocationPopupButton from './LocationPopupButton';
@@ -52,12 +51,11 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
   };
 
   openPopup = () => {
-    const relevantCities =
-      idx(this.props, _ => _.data.carRental.relevantCities) || [];
+    const relevantCities = this.props.data.carRental?.relevantCities ?? [];
 
     if (relevantCities.length === 1) {
       // do not open the modal for only one whitelabel URL (open it directly)
-      const whitelabelURL = idx(relevantCities, _ => _[0].whitelabelURL);
+      const whitelabelURL = relevantCities[0]?.whitelabelURL;
       this.openLink(whitelabelURL || '');
       return;
     }
@@ -73,15 +71,15 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
     });
   };
 
-  render = () => {
-    const carRental = idx(this.props, _ => _.data.carRental);
+  render() {
+    const carRental = this.props.data.carRental;
 
     if (!carRental) {
       // no car rental service available for this trip (do not render the menu item at all)
       return null;
     }
 
-    const relevantCities = idx(carRental, _ => _.relevantCities) || [];
+    const relevantCities = carRental.relevantCities ?? [];
 
     return (
       <React.Fragment>
@@ -113,7 +111,7 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
         />
       </React.Fragment>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

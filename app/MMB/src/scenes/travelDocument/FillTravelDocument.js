@@ -8,7 +8,6 @@ import {
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
 import { RefreshableScrollView, StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import CityImage from '../../components/CityImage';
 import TripInfo from '../../components/header/TripInfo';
@@ -30,11 +29,12 @@ class FillTravelDocument extends React.Component<Props, State> {
   };
 
   refetch = () => {
+    const { data } = this.props;
     this.setState({ isRefreshing: true });
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.databaseId),
-        authToken: idx(this.props.data, _ => _.authToken),
+        id: data.databaseId,
+        authToken: data.authToken,
       },
       null,
       () => {

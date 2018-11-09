@@ -5,7 +5,6 @@ import { Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon, StyleSheet, Touchable } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import {
   type NavigationType,
   withNavigation,
@@ -49,12 +48,13 @@ class WalletPassenger extends React.Component<PropsWithContext, State> {
   };
 
   onPressIos = () => {
-    const name = idx(this.props.data, _ => _.passenger.fullName) || '';
-    const url = idx(this.props.data, _ => _.url) || '';
+    const { data, segmentId } = this.props;
+    const name = data.passenger?.fullName ?? '';
+    const url = data.url ?? '';
 
-    if (this.props.segmentId != null) {
+    if (segmentId != null) {
       // We cannot navigate before selected segment has been set
-      this.props.addPkpassData(name, url, this.props.segmentId, () => {
+      this.props.addPkpassData(name, url, segmentId, () => {
         this.props.navigation.navigate('AppleWalletScreen');
       });
     }
@@ -69,7 +69,7 @@ class WalletPassenger extends React.Component<PropsWithContext, State> {
   };
 
   getFolderPath = () => {
-    const databaseId = idx(this.props.data, _ => _.passenger.databaseId) || '';
+    const databaseId = this.props.data.passenger?.databaseId ?? '';
     const flightNumber =
       this.props.flightNumber == null ? '' : this.props.flightNumber;
     return `pkpasses/${this.props.bookingId}/${flightNumber}/${databaseId}`;
@@ -77,10 +77,11 @@ class WalletPassenger extends React.Component<PropsWithContext, State> {
 
   downloadPkpass = async () => {
     try {
-      const url = idx(this.props.data, _ => _.url) || '';
-      const databaseId = idx(this.props.data, _ => _.passenger.databaseId);
+      const { data, flightNumber } = this.props;
+      const url = data.url ?? '';
+      const databaseId = data.passenger?.databaseId;
 
-      if (this.props.flightNumber != null && databaseId != null) {
+      if (flightNumber != null && databaseId != null) {
         const folderPath = this.getFolderPath();
         const pkPath = `${folderPath}/pass.pkpass`;
 
@@ -97,7 +98,7 @@ class WalletPassenger extends React.Component<PropsWithContext, State> {
     }
   };
 
-  render = () => {
+  render() {
     const onPress = Platform.select({
       ios: this.onPressIos,
       android: this.onPressAndroid,
@@ -106,9 +107,7 @@ class WalletPassenger extends React.Component<PropsWithContext, State> {
     return (
       <Touchable onPress={onPress} style={styles.row}>
         <React.Fragment>
-          <Translation
-            passThrough={idx(this.props.data, _ => _.passenger.fullName)}
-          />
+          <Translation passThrough={this.props.data.passenger?.fullName} />
           {Platform.select({
             android: this.state.isDownloaded ? (
               <TextIcon code="V" style={styles.icon} />
@@ -120,7 +119,7 @@ class WalletPassenger extends React.Component<PropsWithContext, State> {
         </React.Fragment>
       </Touchable>
     );
-  };
+  }
 }
 
 type Props = {|

@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
 
@@ -105,7 +104,7 @@ function renderChildren(events: Events) {
   if (events) {
     const renderedEventsByDate = events.reduce((acc: Acc, curr: Event) => {
       const event = getValidTimelineEvent(curr);
-      const timestamp = idx(curr, _ => _.timestamp);
+      const timestamp = curr?.timestamp;
       if (!event || !timestamp) {
         return acc;
       }
@@ -143,8 +142,7 @@ function renderChildren(events: Events) {
               isLastDate && index === renderedEvents.length - 1
             ),
           };
-          const typename =
-            idx(renderedEvent, _ => _.props.data.__typename) || '';
+          const typename = renderedEvent?.props.data.__typename ?? '';
 
           return (
             <TimelineEventIconContext.Provider
@@ -168,7 +166,7 @@ function renderChildren(events: Events) {
 
 export default class Timeline extends React.Component<{||}> {
   renderInner = (renderProps: TimelineQueryResponse) => {
-    const events = idx(renderProps, _ => _.bookingTimeline.events);
+    const events = renderProps.bookingTimeline?.events;
     const children = renderChildren(events);
     return <SectionListScrollTo data={children} />;
   };

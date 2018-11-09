@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { StyleSheet, Duration } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import TripOverviewContext, { type BookingType } from '../TripOverviewContext';
 import type { TripTitle as TripTitleType } from './__generated__/TripTitle.graphql';
@@ -31,7 +30,7 @@ const TripTitle = ({ type, data, index }: PropsWithContext) => {
       <View style={styles.durationContainer}>
         <Duration
           showIcon={false}
-          duration={idx(data, _ => _.duration)}
+          duration={data.duration}
           style={styles.durationText}
         />
       </View>

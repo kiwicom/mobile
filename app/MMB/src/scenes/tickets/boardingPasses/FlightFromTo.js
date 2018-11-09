@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import BoardingPassRow from '../components/BoardingPassRow';
@@ -20,19 +19,21 @@ type PropsWithContext = {|
 |};
 
 export class FlightFromTo extends React.Component<PropsWithContext> {
-  componentDidMount = () => {
-    const id = idx(this.props.data, _ => _.id) || '';
-    const airlineLogoUrl = idx(this.props.data, _ => _.airline.logoUrl) || '';
-    const flightDate = idx(this.props.data, _ => _.departure.localTime) || null;
+  componentDidMount() {
+    const { data } = this.props;
+    const id = data?.id ?? '';
+    const airlineLogoUrl = data?.airline?.logoUrl ?? '';
+    const flightDate = data?.departure?.localTime ?? null;
     this.props.addSegment({
       id,
       airlineLogoUrl, // TODO: This is not the correct logo. Fix when images have been added to images.kiwi.com
       flightDate,
     });
-  };
+  }
 
-  render = () => {
-    const date = idx(this.props.data, _ => _.departure.localTime);
+  render() {
+    const { data } = this.props;
+    const date = data?.departure?.localTime;
     const shortDate = date
       ? DateFormatter(new Date(date)).formatToShortDate()
       : '';
@@ -54,43 +55,30 @@ export class FlightFromTo extends React.Component<PropsWithContext> {
             <View style={[styles.row, styles.cityContainer]}>
               <Text style={styles.cityText}>
                 <Translation
-                  passThrough={idx(
-                    this.props.data,
-                    _ => _.departure.airport.city.name,
-                  )}
+                  passThrough={data?.departure?.airport?.city?.name}
                 />
               </Text>
               <TextIcon code="C" style={styles.icon} />
               <Text style={styles.cityText}>
-                <Translation
-                  passThrough={idx(
-                    this.props.data,
-                    _ => _.arrival.airport.city.name,
-                  )}
-                />
+                <Translation passThrough={data?.arrival?.airport?.city?.name} />
               </Text>
             </View>
             <View style={styles.buttonContainer}>
-              <DownloadButton
-                data={idx(this.props.data, _ => _.boardingPass)}
-              />
+              <DownloadButton data={data?.boardingPass} />
             </View>
 
             <View style={styles.appleWalletContainer}>
-              <TicketList
-                segmentId={idx(this.props.data, _ => _.id)}
-                data={idx(this.props.data, _ => _.boardingPass)}
-              />
+              <TicketList segmentId={data?.id} data={data?.boardingPass} />
             </View>
           </View>
         }
       />
     );
-  };
+  }
 }
 
 type Props = {|
-  +data: RouteStopType,
+  +data: ?RouteStopType,
 |};
 
 const FlightFromToWithContext = (props: Props) => (

@@ -6,7 +6,6 @@ import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import BoardingPassRow from '../components/BoardingPassRow';
@@ -20,7 +19,7 @@ type Props = {|
 |};
 
 const FlightSegments = (props: Props) => {
-  const legs = idx(props.data, _ => _.legs) || [];
+  const legs = props.data.legs ?? [];
   const icon = React.cloneElement(props.icon, {
     style: StyleSheet.flatten([styles.icon, props.icon.props.style]),
   });
@@ -37,7 +36,7 @@ const FlightSegments = (props: Props) => {
         />
       </View>
       {legs.map(item => (
-        <View style={styles.flightItem} key={idx(item, _ => _.id)}>
+        <View style={styles.flightItem} key={item?.id}>
           <FlightFromTo data={item} />
         </View>
       ))}

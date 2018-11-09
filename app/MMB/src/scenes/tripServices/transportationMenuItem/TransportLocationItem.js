@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Alert } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import LocationPopupButton from '../LocationPopupButton';
 import type { LocationItem as LocationItemType } from './__generated__/TransportLocationItem.graphql';
@@ -21,10 +20,11 @@ type Props = {|
 
 class LocationItem extends React.Component<Props> {
   onPress = () => {
-    const lat = idx(this.props.data, _ => _.location.lat);
-    const lng = idx(this.props.data, _ => _.location.lng);
+    const { data, whitelabelURL } = this.props;
+    const lat = data.location.lat;
+    const lng = data.location.lng;
+
     if (lat != null && lng != null) {
-      const whitelabelURL = this.props.whitelabelURL;
       const date = this.props.date;
       this.props.onPress({ location: { lat, lng }, whitelabelURL, date });
     } else {
@@ -32,8 +32,8 @@ class LocationItem extends React.Component<Props> {
     }
   };
 
-  render = () => {
-    const location = idx(this.props.data, _ => _.location);
+  render() {
+    const location = this.props.data.location;
     if (!location) {
       return null;
     }
@@ -48,7 +48,7 @@ class LocationItem extends React.Component<Props> {
         displayDate={this.props.displayDate}
       />
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

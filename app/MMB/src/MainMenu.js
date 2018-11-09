@@ -7,7 +7,6 @@ import {
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
 import { RefreshableScrollView } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import Header from './components/header/Header';
 import ManageMenuGroup from './menuGroups/ManageMenuGroup';
@@ -45,11 +44,11 @@ class MainMenu extends React.Component<Props, State> {
 
   refetch = () => {
     this.setState({ isRefreshing: true });
-
+    const { data } = this.props;
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.databaseId),
-        authToken: idx(this.props.data, _ => _.authToken),
+        id: data.databaseId,
+        authToken: data.authToken,
       },
       null,
       () => {
@@ -61,9 +60,9 @@ class MainMenu extends React.Component<Props, State> {
     );
   };
 
-  render = () => {
+  render() {
     const { activeId } = this.state;
-    const isPastBooking = idx(this.props.data, _ => _.isPastBooking);
+    const isPastBooking = this.props.data.isPastBooking;
     return (
       <RefreshableScrollView
         refreshing={this.state.isRefreshing}
@@ -104,7 +103,7 @@ class MainMenu extends React.Component<Props, State> {
         />
       </RefreshableScrollView>
     );
-  };
+  }
 }
 
 export default createRefetchContainer(

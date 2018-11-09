@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import LocationPopupButton from '../LocationPopupButton';
 import type { LocationItem as LocationItemType } from './__generated__/LocationItem.graphql';
@@ -15,10 +14,11 @@ type Props = {|
 
 class LocationItem extends React.Component<Props> {
   onPress = () => {
-    const cityId = idx(this.props.data, _ => _.hotelCity.id) || '';
-    const cityName = idx(this.props.data, _ => _.hotelCity.name) || '';
-    const checkin = idx(this.props.data, _ => _.checkin) || null;
-    const checkout = idx(this.props.data, _ => _.checkout) || null;
+    const { data } = this.props;
+    const cityId = data.hotelCity?.id ?? '';
+    const cityName = data.hotelCity?.name ?? '';
+    const checkin = data.checkin ?? null;
+    const checkout = data.checkout ?? null;
 
     this.props.onPress({
       cityId,
@@ -28,8 +28,8 @@ class LocationItem extends React.Component<Props> {
     });
   };
 
-  render = () => {
-    const location = idx(this.props.data, _ => _.location);
+  render() {
+    const location = this.props.data.location;
     if (!location) {
       return null;
     }
@@ -41,7 +41,7 @@ class LocationItem extends React.Component<Props> {
         displayIata={false}
       />
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

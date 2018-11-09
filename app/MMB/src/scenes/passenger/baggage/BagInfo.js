@@ -4,7 +4,6 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BagInfo as BagInfoType } from './__generated__/BagInfo.graphql';
@@ -13,11 +12,11 @@ type Props = {|
   +data: BagInfoType,
 |};
 
-const BagInfo = (props: Props) => {
-  const height = idx(props.data, _ => _.height) || '';
-  const length = idx(props.data, _ => _.length) || '';
-  const width = idx(props.data, _ => _.width) || '';
-  const weight = idx(props.data, _ => _.weight) || '';
+const BagInfo = ({ data }: Props) => {
+  const height = data.height ?? '';
+  const length = data.length ?? '';
+  const width = data.width ?? '';
+  const weight = data.weight ?? '';
   return (
     <Text style={styles.text}>
       <Translation

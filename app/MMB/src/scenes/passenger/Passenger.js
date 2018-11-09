@@ -1,11 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { StyleSheet, SimpleCard } from '@kiwicom/mobile-shared';
 import { MenuGroup, SeparatorTrimmed } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 import { View } from 'react-native';
 import startCase from 'lodash/startCase';
 
@@ -25,19 +24,19 @@ type Props = {|
 |};
 
 export const Passenger = ({ passenger }: Props) => {
-  const title = idx(passenger, _ => _.title) || '';
-  const fullName = idx(passenger, _ => _.fullName) || '';
-  const birthday = idx(passenger, _ => _.birthday) || '';
-  const nationality = idx(passenger, _ => _.nationality) || '';
-  const idNumber = idx(passenger, _ => _.travelDocument.idNumber) || '';
+  const title = passenger.title ?? '';
+  const fullName = passenger.fullName ?? '';
+  const birthday = passenger.birthday ?? '';
+  const nationality = passenger.nationality ?? '';
+  const idNumber = passenger.travelDocument?.idNumber ?? '';
   const insuranceType = startCase(
-    (idx(passenger, _ => _.insuranceType) || '').toLowerCase(),
+    (passenger.insuranceType ?? '').toLowerCase(),
   );
 
-  let requiredIn = idx(passenger, _ => _.visaInformation.requiredIn) || [];
-  requiredIn = requiredIn.map(item => idx(item, _ => _.name) || '');
-  let warningIn = idx(passenger, _ => _.visaInformation.warningIn) || [];
-  warningIn = warningIn.map(item => idx(item, _ => _.name) || '');
+  let requiredIn = passenger.visaInformation?.requiredIn ?? [];
+  requiredIn = requiredIn.map(item => item?.name ?? '');
+  let warningIn = passenger.visaInformation?.warningIn ?? [];
+  warningIn = warningIn.map(item => item?.name ?? '');
 
   return (
     <SimpleCard style={styles.card}>

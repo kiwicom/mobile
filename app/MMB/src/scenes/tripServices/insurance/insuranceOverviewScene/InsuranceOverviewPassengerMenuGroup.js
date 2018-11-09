@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { TitledMenuGroup } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import PassengerInsuranceMenuItem from './menuItem/PassengerInsuranceMenuItem';
 
@@ -22,13 +21,13 @@ type Props = {|
 |};
 
 const InsuranceOverviewPassengerMenuGroup = (props: Props) => {
-  const passengers = idx(props, _ => _.passengers) || [];
+  const passengers = props.passengers ?? [];
   return (
     <TitledMenuGroup title={<Translation id="mmb.trip_services.order.pax" />}>
       {passengers.map(passenger => (
         <PassengerInsuranceMenuItem
           passenger={passenger}
-          key={idx(passenger, _ => _.databaseId)}
+          key={passenger.databaseId}
         />
       ))}
     </TitledMenuGroup>

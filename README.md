@@ -238,15 +238,14 @@ props.user.friends[0] &&
 props.user.friends[0].friends
 ```
 
-But that's not very friendly and this is why we have `idx` function. You can use it like this:
+But that's not very friendly and this is why we have `optional chaining` . You can use it like this:
 
 ```js
-import idx from 'idx';
 
-idx(props, _ => _.user.friends[0].friends)
+const friends = props.user?.friends?.[0]?.friends;
 ```
 
-**Do not use `_.get(...)` from Lodash!** For more information please read [documentation here](https://github.com/facebookincubator/idx).
+**Do not use `_.get(...)` from Lodash!**
 
 ### Error handling
 

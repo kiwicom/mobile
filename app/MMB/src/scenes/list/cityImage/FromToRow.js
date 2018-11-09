@@ -1,11 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TravelTypeIcon from '../../../components/TravelTypeIcon';
@@ -22,9 +21,7 @@ export const FromToRow = (props: Props) => (
   <View style={styles.row}>
     <View style={styles.flexItem}>
       <Text style={[styles.text, styles.cityText]}>
-        <Translation
-          passThrough={idx(props.departure, _ => _.airport.city.name)}
-        />
+        <Translation passThrough={props.departure.airport?.city?.name} />
       </Text>
     </View>
     <View style={[styles.flexItem, styles.iconWrapper]}>
@@ -32,9 +29,7 @@ export const FromToRow = (props: Props) => (
     </View>
     <View style={[styles.flexItem, styles.arrivalWrapper]}>
       <Text style={[styles.text, styles.cityText]}>
-        <Translation
-          passThrough={idx(props.arrival, _ => _.airport.city.name)}
-        />
+        <Translation passThrough={props.arrival.airport?.city?.name} />
       </Text>
     </View>
   </View>

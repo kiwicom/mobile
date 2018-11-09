@@ -4,7 +4,6 @@ import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Button, StyleSheet, Text } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import {
   type NavigationType,
   withNavigation,
@@ -21,14 +20,18 @@ type Props = {|
 
 class DownloadButton extends React.Component<Props> {
   navigateToBoardingPass = () => {
+    const { data } = this.props;
+
     this.props.navigation.navigate('mmb.tickets.boarding_pass', {
-      boardingPassUrl: idx(this.props, _ => _.data.boardingPassUrl),
-      flightNumber: idx(this.props, _ => _.data.flightNumber),
+      boardingPassUrl: data.boardingPassUrl,
+      flightNumber: data.flightNumber,
     });
   };
 
-  render = () => {
-    const isDisabled = !idx(this.props.data, _ => _.boardingPassUrl);
+  render() {
+    const isDisabled =
+      this.props.data.boardingPassUrl == null ||
+      this.props.data.boardingPassUrl === '';
     return (
       <React.Fragment>
         <BoardingPassInformation data={this.props.data} />
@@ -43,7 +46,7 @@ class DownloadButton extends React.Component<Props> {
         </Button>
       </React.Fragment>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

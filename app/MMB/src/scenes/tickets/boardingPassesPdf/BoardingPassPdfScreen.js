@@ -4,7 +4,6 @@ import * as React from 'react';
 import Share from 'react-native-share';
 import { documentDir } from '@kiwicom/mobile-assets';
 import type { NavigationType } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 
 import BoardingPassesPdf from './BoardingPassPdf';
 import ShareButton from '../../../components/ShareButton';
@@ -44,11 +43,8 @@ type ShareButtonProps = {|
 |};
 
 export function BoardingPassShareButtonWithContext(props: ShareButtonProps) {
-  const boardingPassUrl = idx(
-    props,
-    _ => _.navigation.state.params.boardingPassUrl,
-  );
-  const flightNumber = idx(props, _ => _.navigation.state.params.flightNumber);
+  const boardingPassUrl = props.navigation?.state.params.boardingPassUrl;
+  const flightNumber = props.navigation?.state.params.flightNumber;
 
   if (boardingPassUrl == null || flightNumber == null) {
     return null;

@@ -8,7 +8,6 @@ import {
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
 import { RefreshableScrollView, StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import type { PassengerDetail_booking as PassengersType } from './__generated__/PassengerDetail_booking.graphql';
 import Passenger from './Passenger';
@@ -31,11 +30,12 @@ export class PassengerDetail extends React.Component<Props, State> {
   };
 
   refetch = () => {
+    const { booking } = this.props;
     this.setState({ isRefreshing: true });
     this.props.relay.refetch(
       {
-        id: idx(this.props.booking, _ => _.databaseId),
-        authToken: idx(this.props.booking, _ => _.authToken),
+        id: booking.databaseId,
+        authToken: booking.authToken,
       },
       null,
       () => {
@@ -47,8 +47,9 @@ export class PassengerDetail extends React.Component<Props, State> {
     );
   };
 
-  render = () => {
-    const passengers = idx(this.props.booking, _ => _.passengers) || [];
+  render() {
+    const { booking } = this.props;
+    const passengers = booking.passengers ?? [];
 
     return (
       <RefreshableScrollView
@@ -56,25 +57,20 @@ export class PassengerDetail extends React.Component<Props, State> {
         onRefresh={this.refetch}
       >
         {passengers.map(passenger => (
-          <View
-            key={idx(passenger, _ => _.databaseId)}
-            style={styles.passengerContainer}
-          >
+          <View key={passenger?.databaseId} style={styles.passengerContainer}>
             <Passenger passenger={passenger} />
           </View>
         ))}
         <Baggage data={this.props.booking} />
         <View style={styles.contactDetailsWrapper}>
-          <ContactDetails
-            contactDetails={idx(this.props.booking, _ => _.contactDetails)}
-          />
+          <ContactDetails contactDetails={booking.contactDetails} />
         </View>
         <View style={styles.visaDisclaimerContainer}>
           <VisaDisclaimer />
         </View>
       </RefreshableScrollView>
     );
-  };
+  }
 }
 
 export default createRefetchContainer(
