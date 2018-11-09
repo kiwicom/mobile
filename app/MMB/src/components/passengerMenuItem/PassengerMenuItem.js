@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View, Platform } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, TextIcon, Touchable } from '@kiwicom/mobile-shared';
@@ -16,21 +15,23 @@ type Props = {|
 |};
 
 const PassengerMenuItem = (props: Props) => {
-  const disabled = idx(props, _ => _.disabled) || false;
-  const passengerSubtitle = idx(props, _ => _.passengerSubtitle) || null;
-  const menuRightContent = idx(props, _ => _.menuRightContent) || null;
+  const disabled = props?.disabled ?? false;
+  const passengerSubtitle = props.passengerSubtitle ?? null;
+  const menuRightContent = props?.menuRightContent ?? null;
   return (
     <Touchable onPress={props.onPress} disabled={disabled}>
       <View style={styles.container}>
         <View>
           <Translation passThrough={props.passengerFullName} />
-          {passengerSubtitle || null}
+          {passengerSubtitle}
         </View>
         <View style={styles.rightContent}>
           {menuRightContent}
           {Platform.select({
             android: null,
-            ios: !disabled && <TextIcon code="&#xe01F;" style={styles.icon} />,
+            ios: disabled === false && (
+              <TextIcon code="&#xe01F;" style={styles.icon} />
+            ),
           })}
         </View>
       </View>

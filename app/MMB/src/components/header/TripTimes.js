@@ -1,10 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Duration } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import DateTime from './DateTime';
 import type { TripTimes as TripTimesType } from './__generated__/TripTimes.graphql';
@@ -24,7 +23,7 @@ function TripTimes({ data }: Props) {
       </View>
 
       <View style={styleSheet.duration}>
-        <Duration duration={idx(data, _ => _.duration)} />
+        <Duration duration={data.duration} />
       </View>
 
       <View style={styleSheet.arrival}>
