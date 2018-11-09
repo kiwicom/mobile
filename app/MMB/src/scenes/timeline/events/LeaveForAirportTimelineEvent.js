@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
@@ -17,7 +16,7 @@ type Props = {|
 |};
 
 const LeaveForAirportTimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
+  const timestamp = props.data.timestamp;
   return (
     <TimelineEvent
       timestamp={timestamp}

@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -26,14 +25,10 @@ type Props = {|
 
 class VariantButtons extends React.Component<Props> {
   getPriceOfType = (insuranceType: InsuranceType): ?PriceType => {
-    const insurancePrices = idx(this.props, _ => _.data.insurancePrices) || [];
-    return idx(
-      insurancePrices.find(
-        insurancePrice =>
-          idx(insurancePrice, _ => _.insuranceType) === insuranceType,
-      ),
-      _ => _.price,
-    );
+    const insurancePrices = this.props.data.insurancePrices ?? [];
+    return insurancePrices.find(
+      insurancePrice => insurancePrice?.insuranceType === insuranceType,
+    )?.price;
   };
 
   selectTravelPlus = () => this.props.selectVariant('TRAVEL_PLUS');

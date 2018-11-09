@@ -39,7 +39,6 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.5",
     "babel-jest": "^23.6.0",
-    "babel-plugin-idx": "^2.4.0",
     "detox": "^9.0.5",
     "eslint": "^5.8.0",
     "eslint-config-prettier": "^3.1.0",

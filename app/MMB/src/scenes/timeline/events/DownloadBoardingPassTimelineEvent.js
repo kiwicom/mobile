@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, TextButton, TextIcon } from '@kiwicom/mobile-shared';
@@ -29,26 +28,19 @@ class DownloadBoardingPassTimelineEvent extends React.Component<Props> {
   };
 
   handleOpenBoardingPass = () => {
+    const { data } = this.props;
     this.navigate('mmb.tickets.boarding_pass', {
-      boardingPassUrl: idx(
-        this.props,
-        _ => _.data.leg.boardingPass.boardingPassUrl,
-      ),
-      flightNumber: idx(this.props, _ => _.data.leg.boardingPass.flightNumber),
+      boardingPassUrl: data.leg?.boardingPass?.boardingPassUrl,
+      flightNumber: data.leg?.boardingPass?.flightNumber,
     });
   };
 
   render() {
-    const timestamp = idx(this.props, _ => _.data.timestamp);
-    const boardingPassUrl = idx(
-      this.props,
-      _ => _.data.leg.boardingPass.boardingPassUrl,
-    );
-    const origin = idx(this.props, _ => _.data.leg.departure.airport.city.name);
-    const destination = idx(
-      this.props,
-      _ => _.data.leg.arrival.airport.city.name,
-    );
+    const { data } = this.props;
+    const timestamp = data.timestamp;
+    const boardingPassUrl = data.leg?.boardingPass?.boardingPassUrl;
+    const origin = data.leg?.departure?.airport?.city?.name;
+    const destination = data.leg?.arrival?.airport?.city?.name;
     const disabled = !boardingPassUrl;
 
     let noteContent = null;

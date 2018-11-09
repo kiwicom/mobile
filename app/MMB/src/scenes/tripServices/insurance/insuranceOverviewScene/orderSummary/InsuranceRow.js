@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import idx from 'idx';
 import { StyleSheet, Text, Price } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -65,26 +64,24 @@ export function InsuranceRow(props: Props) {
       change => change.to === props.insuranceType && change.from !== change.to,
     )
     .map(change => {
-      const priceFrom = idx(
-        insurancePrices.find(
-          insurancePrice => insurancePrice.insuranceType === change.from,
-        ),
-        _ => _.price,
-      );
-      const priceTo = idx(
-        insurancePrices.find(
-          insurancePrice => insurancePrice.insuranceType === change.to,
-        ),
-        _ => _.price,
-      );
+      const priceFrom = insurancePrices.find(
+        insurancePrice => insurancePrice.insuranceType === change.from,
+      )?.price;
+      const priceTo = insurancePrices.find(
+        insurancePrice => insurancePrice.insuranceType === change.to,
+      )?.price;
+
       if (priceFrom && priceTo && priceFrom.currency === priceTo.currency) {
         currency = priceFrom.currency;
+
         return priceTo.amount - priceFrom.amount;
       } else if (priceFrom && priceTo === null) {
         currency = priceFrom.currency;
+
         return -priceFrom.amount;
       } else if (priceFrom === null && priceTo) {
         currency = priceTo.currency;
+
         return priceTo.amount;
       }
       return 0;

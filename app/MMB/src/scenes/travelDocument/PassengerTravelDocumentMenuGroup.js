@@ -4,7 +4,6 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { TitledMenuGroup } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import TravelDocumentPassengerMenuItem from './menuItem/TravelDocumentPassengerMenuItem';
 import type { PassengerTravelDocumentMenuGroup as PassengersType } from './__generated__/PassengerTravelDocumentMenuGroup.graphql';
@@ -14,7 +13,7 @@ type Props = {|
 |};
 
 const PassengerTravelDocumentMenuGroup = (props: Props) => {
-  const passengers = idx(props.data, _ => _.passengers) || [];
+  const passengers = props.data.passengers ?? [];
   return (
     <TitledMenuGroup
       title={
@@ -24,7 +23,7 @@ const PassengerTravelDocumentMenuGroup = (props: Props) => {
       {passengers.map(passenger => (
         <TravelDocumentPassengerMenuItem
           data={passenger}
-          key={idx(passenger, _ => _.databaseId)}
+          key={passenger?.databaseId}
         />
       ))}
     </TitledMenuGroup>

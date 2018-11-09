@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation, DateUtils, Alert } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
@@ -16,7 +15,7 @@ type Props = {|
 
 export class InsuranceMenuItem extends React.Component<Props> {
   isMoreThan48HoursBefore = () => {
-    const departureTime = idx(this.props.data, _ => _.departure.time);
+    const departureTime = this.props.data.departure?.time;
     return (
       departureTime &&
       DateUtils.diffInHours(new Date(departureTime), DateUtils.getUTCNow()) > 48

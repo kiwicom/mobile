@@ -9,7 +9,6 @@ import {
   withNavigation,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 
 import LocationsPopup from '../LocationsPopup';
 import TransportLocationItem from './TransportLocationItem';
@@ -46,13 +45,12 @@ class TransportationMenuItem extends React.Component<Props, State> {
 
   openPopup = () => {
     const relevantLocations =
-      idx(this.props, _ => _.data.transportation.relevantLocations) || [];
+      this.props.data.transportation?.relevantLocations ?? [];
     if (relevantLocations.length === 1) {
       // do not open the modal for only one whitelabel URL (open it directly)
-      const whitelabelURL =
-        idx(relevantLocations, _ => _[0].whitelabelURL) || '';
+      const whitelabelURL = relevantLocations[0]?.whitelabelURL ?? '';
 
-      const location = idx(relevantLocations, _ => _[0].location.location);
+      const location = relevantLocations[0]?.location?.location;
 
       if (location != null) {
         this.openTransportationMap({ location, whitelabelURL });
@@ -81,14 +79,14 @@ class TransportationMenuItem extends React.Component<Props, State> {
     });
   };
 
-  render = () => {
-    const transport = idx(this.props, _ => _.data.transportation);
+  render() {
+    const transport = this.props.data.transportation;
 
     if (!transport) {
       return null;
     }
 
-    const relevantLocations = idx(transport, _ => _.relevantLocations) || [];
+    const relevantLocations = transport.relevantLocations ?? [];
 
     return (
       <React.Fragment>
@@ -101,7 +99,7 @@ class TransportationMenuItem extends React.Component<Props, State> {
               return null;
             }
             const { whitelabelURL, location, date } = relevantLocation;
-            const currentCityName = idx(location, _ => _.city.name);
+            const currentCityName = location?.city?.name;
             return (
               <TransportLocationItem
                 key={whitelabelURL}
@@ -109,10 +107,7 @@ class TransportationMenuItem extends React.Component<Props, State> {
                 date={date}
                 displayDate={
                   relevantLocations.filter(_relevantLocation => {
-                    const cityName = idx(
-                      _relevantLocation,
-                      _ => _.location.city.name,
-                    );
+                    const cityName = _relevantLocation?.location?.city?.name;
                     return (
                       cityName != null &&
                       currentCityName != null &&
@@ -137,7 +132,7 @@ class TransportationMenuItem extends React.Component<Props, State> {
         />
       </React.Fragment>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

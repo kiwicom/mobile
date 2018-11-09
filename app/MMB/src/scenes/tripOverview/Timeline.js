@@ -4,7 +4,6 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { type AlertTranslationType } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import TripOverviewContext, { type BookingType } from './TripOverviewContext';
@@ -36,16 +35,13 @@ class Timeline extends React.Component<PropsWithContext> {
 
   departureDifferentFromPreviousArrival(trip, index) {
     if (index > 0) {
-      const trips = idx(this.props, _ => _.data) || [];
-      const arrivalPreviousTrip = idx(trips, _ => _[index - 1].arrival);
-      const departure = idx(trip, _ => _.departure);
-      const arrivalLocationId =
-        idx(arrivalPreviousTrip, _ => _.airport.locationId) || '';
-      const departureLocationId =
-        idx(departure, _ => _.airport.locationId) || '';
-      const arrivalCityName =
-        idx(arrivalPreviousTrip, _ => _.airport.city.name) || '';
-      const departureCityName = idx(departure, _ => _.airport.city.name) || '';
+      const trips = this.props.data ?? [];
+      const arrivalPreviousTrip = trips[index - 1].arrival;
+      const departure = trip.departure;
+      const arrivalLocationId = arrivalPreviousTrip?.airport?.locationId ?? '';
+      const departureLocationId = departure?.airport?.locationId ?? '';
+      const arrivalCityName = arrivalPreviousTrip?.airport?.city?.name ?? '';
+      const departureCityName = departure?.airport?.city?.name ?? '';
 
       if (arrivalLocationId !== departureLocationId) {
         const warning = {
@@ -57,7 +53,7 @@ class Timeline extends React.Component<PropsWithContext> {
             },
           },
           timelineTitle: {
-            localTime: idx(departure, _ => _.localTime),
+            localTime: departure?.localTime,
             iataCode: departureLocationId,
           },
         };
@@ -67,13 +63,13 @@ class Timeline extends React.Component<PropsWithContext> {
   }
 
   lastArrivalDifferentFromFirstDeparture() {
-    const trips = idx(this.props, _ => _.data) || [];
-    const arrival = idx(trips, _ => _[trips.length - 1].arrival);
-    const departure = idx(trips, _ => _[0].departure);
-    const arrivalLocationId = idx(arrival, _ => _.airport.locationId) || '';
-    const departureLocationId = idx(departure, _ => _.airport.locationId) || '';
-    const arrivalCityName = idx(arrival, _ => _.airport.city.name) || '';
-    const departureCityName = idx(departure, _ => _.airport.city.name) || '';
+    const trips = this.props.data ?? [];
+    const arrival = trips[trips.length - 1].arrival;
+    const departure = trips[0].departure;
+    const arrivalLocationId = arrival?.airport?.locationId ?? '';
+    const departureLocationId = departure?.airport?.locationId ?? '';
+    const arrivalCityName = arrival?.airport?.city?.name ?? '';
+    const departureCityName = departure?.airport?.city?.name ?? '';
     if (arrivalLocationId !== departureLocationId) {
       const warning = {
         text: {
@@ -85,7 +81,7 @@ class Timeline extends React.Component<PropsWithContext> {
           },
         },
         timelineTitle: {
-          localTime: idx(arrival, _ => _.localTime),
+          localTime: arrival?.localTime,
           iataCode: arrivalLocationId,
         },
       };
@@ -94,7 +90,7 @@ class Timeline extends React.Component<PropsWithContext> {
   }
 
   addWarnings() {
-    const trips = idx(this.props, _ => _.data) || [];
+    const trips = this.props.data ?? [];
     trips.forEach((trip, index) => {
       this.departureDifferentFromPreviousArrival(trip, index);
     });
@@ -104,13 +100,13 @@ class Timeline extends React.Component<PropsWithContext> {
   }
 
   render() {
-    const trips = idx(this.props, _ => _.data) || [];
+    const trips = this.props.data ?? [];
 
     let legsCounted = 0;
     return (
       <React.Fragment>
         {trips.map((trip, index) => {
-          const legs = idx(trip, _ => _.legs) || [];
+          const legs = trip.legs ?? [];
           const legsCount = legsCounted;
           legsCounted += legs.length;
           return (

@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import React from 'react';
-import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon } from '@kiwicom/mobile-shared';
@@ -16,12 +15,13 @@ type Props = {|
   +data: ?BoardingTimelineEventType,
 |};
 
-const BoardingTimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
-  const terminal = idx(props, _ => _.data.terminal);
-  const noteTranslationId = terminal
-    ? 'mmb.booking_timeline.event.gate_arrival.note_terminal'
-    : 'mmb.booking_timeline.event.gate_arrival.note';
+const BoardingTimelineEvent = ({ data }: Props) => {
+  const timestamp = data?.timestamp;
+  const terminal = data?.terminal;
+  const noteTranslationId =
+    terminal != null
+      ? 'mmb.booking_timeline.event.gate_arrival.note_terminal'
+      : 'mmb.booking_timeline.event.gate_arrival.note';
   return (
     <TimelineEvent
       timestamp={timestamp}

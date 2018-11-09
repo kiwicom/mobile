@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import {
@@ -13,7 +13,6 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 
 import FromToRow from './FromToRow';
 import DateAndPassengerCount from './DateAndPassengerCount';
@@ -35,13 +34,13 @@ class CityImageContainer extends React.Component<PropsWithContext> {
   goToDetail = () => {
     const props = this.props;
 
-    const id = idx(props.image, _ => _.id) || '';
-    const bookingId = idx(props.image, _ => _.databaseId) || 0;
-    const isPastBooking = Boolean(idx(props.image, _ => _.isPastBooking));
-    const arrivalCityId = idx(props.arrival, _ => _.cityId) || '';
-    const arrivalTime = idx(props.arrival, _ => _.time) || '';
-    const departureTime = idx(props.departure, _ => _.time) || '';
-    const authToken = idx(props.image, _ => _.authToken) || '';
+    const id = props.image.id ?? '';
+    const bookingId = props.image?.databaseId ?? 0;
+    const isPastBooking = Boolean(props.image?.isPastBooking);
+    const arrivalCityId = props.arrival?.cityId ?? '';
+    const arrivalTime = props.arrival?.time ?? '';
+    const departureTime = props.departure?.time ?? '';
+    const authToken = props.image?.authToken ?? '';
 
     this.props.setBookingDetail({
       id,

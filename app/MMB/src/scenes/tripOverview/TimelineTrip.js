@@ -1,8 +1,7 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { Color } from '@kiwicom/mobile-shared';
 import last from 'lodash/last';
 
@@ -17,7 +16,7 @@ type Props = {|
 |};
 
 function TimelineTrip(props: Props) {
-  const legs = idx(props.data, _ => _.legs) || [];
+  const legs = props.data.legs ?? [];
 
   return (
     <React.Fragment>
@@ -49,7 +48,7 @@ function TimelineTrip(props: Props) {
               shouldDrawDashedLine={index + 1 !== legs.length}
               shouldDrawSolidLine={false}
               color={arrivalColorCode}
-              data={idx(legs, _ => _[index + 1]) || null} // Guarantee field is on next leg
+              data={legs[index + 1] ?? null} // Guarantee field is on next leg
             >
               <TimelineArrival data={leg.arrival} />
             </TimelineLegWrapper>

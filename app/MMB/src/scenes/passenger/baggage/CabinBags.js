@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { CabinBags as Bags } from './__generated__/CabinBags.graphql';
@@ -16,8 +15,8 @@ type Props = {|
   +data: Bags,
 |};
 
-const CabinBags = (props: Props) => {
-  const bags = idx(props.data, _ => _.cabin) || [];
+const CabinBags = ({ data }: Props) => {
+  const bags = data.cabin ?? [];
   if (bags.length === 0) {
     return null;
   }

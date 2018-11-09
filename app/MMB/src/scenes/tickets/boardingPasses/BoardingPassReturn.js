@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -14,17 +13,17 @@ type Props = {|
   +data: BoardingPassReturnType,
 |};
 
-export const BoardingPassReturn = (props: Props) => (
+export const BoardingPassReturn = ({ data }: Props) => (
   <React.Fragment>
     <FlightSegments
-      data={idx(props.data, _ => _.outbound)}
+      data={data.outbound}
       icon={<TextIcon code="&#xe103;" style={styles.outboundIcon} />}
       iconTitle={
         <Translation id="mmb.boarding_passes.boarding_pass_return.departure" />
       }
     />
     <FlightSegments
-      data={idx(props.data, _ => _.inbound)}
+      data={data.inbound}
       icon={<TextIcon code="&#xe103;" style={styles.inboundIcon} />}
       iconTitle={
         <Translation id="mmb.boarding_passes.boarding_pass_return.return" />

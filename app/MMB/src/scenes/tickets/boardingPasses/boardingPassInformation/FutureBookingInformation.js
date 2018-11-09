@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import BookingDetailContext from '../../../../context/BookingDetailContext';
 import type { FutureBookingInformation as BoardingPass } from './__generated__/FutureBookingInformation.graphql';
@@ -14,7 +13,7 @@ type PropsWithContext = {|
 |};
 
 export const FutureBookingInformation = (props: PropsWithContext) => {
-  const isAvailable = Boolean(idx(props.data, _ => _.boardingPassUrl));
+  const isAvailable = Boolean(props.data.boardingPassUrl);
 
   if (!isAvailable && props.boardingPassAvailableDate !== null) {
     return (

@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   type NavigationType,
@@ -18,15 +17,15 @@ type Props = {|
   +navigation: NavigationType,
 |};
 
-const TravelDocumentPassengerMenuItem = (props: Props) => {
-  const title = idx(props.data, _ => _.title) || '';
-  const fullName = idx(props.data, _ => _.fullName) || '';
-  const idNumber = idx(props.data, _ => _.travelDocument.idNumber) || null;
-  const expiryDate = idx(props.data, _ => _.travelDocument.expiration) || null;
-  const passengerId = idx(props.data, _ => _.databaseId) || null;
+const TravelDocumentPassengerMenuItem = ({ data, navigation }: Props) => {
+  const title = data.title ?? '';
+  const fullName = data.fullName ?? '';
+  const idNumber = data.travelDocument?.idNumber ?? null;
+  const expiryDate = data.travelDocument?.expiration ?? null;
+  const passengerId = data.databaseId ?? null;
 
   function onPress() {
-    props.navigation.navigate('TravelDocumentModalScreen', {
+    navigation.navigate('TravelDocumentModalScreen', {
       title,
       fullName,
       passengerId,
@@ -35,7 +34,7 @@ const TravelDocumentPassengerMenuItem = (props: Props) => {
 
   return (
     <PassengerMenuItem
-      passengerFullName={idx(props.data, _ => _.fullName) || ''}
+      passengerFullName={data.fullName ?? ''}
       onPress={onPress}
       disabled={idNumber !== null}
       passengerSubtitle={
