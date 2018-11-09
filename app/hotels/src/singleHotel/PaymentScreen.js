@@ -12,7 +12,6 @@ import { DateUtils, Translation } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { HeaderBackButton } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -79,7 +78,7 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
     }));
 
   renderInner = (props: PaymentScreenQueryResponse) => {
-    const url = idx(props, _ => _.hotelPaymentUrls.bookingComPaymentUrl);
+    const url = props.hotelPaymentUrls?.bookingComPaymentUrl;
     if (url == null) {
       return (
         <GeneralError

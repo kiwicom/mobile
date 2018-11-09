@@ -12,7 +12,6 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
   withNavigation,
@@ -52,20 +51,20 @@ export class Location extends React.Component<PropsWithContext> {
 
   render = () => {
     const { hotel } = this.props;
-    const address = idx(hotel, _ => _.address);
-    const coordinates = idx(hotel, _ => _.coordinates);
-    const latitude = idx(coordinates, _ => _.lat);
-    const longitude = idx(coordinates, _ => _.lng);
+    const address = hotel?.address;
+    const coordinates = hotel?.coordinates;
+    const latitude = coordinates?.lat;
+    const longitude = coordinates?.lng;
     return (
       <View style={styles.background}>
         <TouchableWithoutFeedback onPress={this.goToMap}>
           <View style={styles.container}>
             <View style={styles.leftColumn}>
               <Text style={[styles.addressLine, styles.streetLine]}>
-                <Translation passThrough={idx(address, _ => _.street)} />
+                <Translation passThrough={address?.street} />
               </Text>
               <Text style={[styles.addressLine, styles.cityLine]}>
-                <Translation passThrough={idx(address, _ => _.city)} />
+                <Translation passThrough={address?.city} />
               </Text>
             </View>
             {typeof latitude === 'number' &&

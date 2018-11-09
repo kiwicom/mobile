@@ -11,7 +11,6 @@ import {
 } from '@kiwicom/mobile-shared';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import idx from 'idx';
 
 import type { Amenities as AmenitiesType } from './__generated__/Amenities.graphql';
 
@@ -36,7 +35,7 @@ export class Amenities extends React.Component<Props, State> {
 
   render() {
     const { collapsed } = this.state;
-    const fullList = idx(this.props.data, _ => _.amenities) || [];
+    const fullList = this.props.data?.amenities ?? [];
 
     const shortlist = fullList.slice(0, 9);
     const listToRender = collapsed ? shortlist : fullList;
