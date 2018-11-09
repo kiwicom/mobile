@@ -31,11 +31,11 @@ type Props = {|
 
 export default class HotelDetailPreview extends React.Component<Props> {
   renderInner = ({ containerWidth }: HotelDetailState) => {
-    const name = this.props?.name;
-    const price = this.props?.price;
-    const image = this.props?.thumbnailUrl;
-    const stars = this.props?.stars ?? 0;
-    const score = this.props?.score;
+    const name = this.props.name;
+    const price = this.props.price;
+    const image = this.props.thumbnailUrl;
+    const stars = this.props.stars ?? 0;
+    const score = this.props.score;
     return (
       <View style={[styles.container, { width: containerWidth }]}>
         <View>

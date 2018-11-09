@@ -51,8 +51,8 @@ export class RoomRow extends React.Component<Props> {
   };
 
   getIdAndMaxPersons = () => {
-    const id = this.props?.availableRoom?.id;
-    const maxPersons = this.props?.availableRoom?.room?.maxPersons;
+    const id = this.props.availableRoom?.id;
+    const maxPersons = this.props.availableRoom?.room?.maxPersons;
     return { id, maxPersons };
   };
 
@@ -89,7 +89,7 @@ export class RoomRow extends React.Component<Props> {
     const currency = availableRoom?.minimalPrice?.currency ?? null;
     const selectableCount = availableRoom?.incrementalPrice?.length ?? 0;
     const id = availableRoom?.id ?? '';
-    const selectedCount = this.props.selected?.[id] ?? 0;
+    const selectedCount = this.props.selected[id] ?? 0;
     const room = availableRoom?.room;
 
     return (

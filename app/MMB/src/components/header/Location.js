@@ -14,7 +14,7 @@ type Props = {|
 |};
 
 function Location(props: Props) {
-  const airport = props.data?.airport;
+  const airport = props.data.airport;
   const cityName = airport?.city?.name;
 
   return (

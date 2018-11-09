@@ -16,7 +16,7 @@ type Props = {|
 const CITY_CENTER_RADIUS = 1.5;
 
 function HotelDistance({ hotel }: Props) {
-  const distance = hotel?.distanceFromCenter ?? null;
+  const distance = hotel.distanceFromCenter ?? null;
 
   if (distance === null) {
     return null;

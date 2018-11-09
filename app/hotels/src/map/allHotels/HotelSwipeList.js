@@ -48,7 +48,7 @@ class HotelSwipeList extends React.Component<Props, State> {
   getSelectedAddress = () => {
     const { selectedIndex, data } = this.props;
 
-    return data?.[selectedIndex]?.address ?? {};
+    return data[selectedIndex].address ?? {};
   };
 
   renderItem = ({ item }: { item: Object, index: number }) => {

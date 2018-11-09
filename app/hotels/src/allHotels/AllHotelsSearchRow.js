@@ -35,7 +35,7 @@ type PropsWithContext = {|
 
 class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   onGoToSingleHotel = () => {
-    const hotelId = this.props.data?.hotelId;
+    const hotelId = this.props.data.hotelId;
     if (hotelId != null) {
       this.props.setHotelId(hotelId);
       this.props.navigation.navigate('SingleHotel', {
@@ -48,12 +48,12 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   };
 
   setActiveHotelId = () => {
-    const hotelId = this.props.data?.hotelId ?? '';
+    const hotelId = this.props.data.hotelId ?? '';
     this.props.setHotelId(hotelId);
   };
 
   render = () => {
-    const highResUrl = this.props.data?.mainPhoto?.highResUrl;
+    const highResUrl = this.props.data.mainPhoto?.highResUrl;
     const children = (
       <View style={style.row}>
         <View style={style.imageContainer}>
@@ -69,7 +69,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
               <HotelTitle data={this.props.data} />
             </View>
             <View style={style.hotelReviewScore}>
-              <HotelReviewScore score={this.props.data?.review?.score} />
+              <HotelReviewScore score={this.props.data.review?.score} />
             </View>
           </View>
         </View>

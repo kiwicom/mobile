@@ -15,9 +15,9 @@ type Props = {|
 |};
 
 const PassengerMenuItem = (props: Props) => {
-  const disabled = props?.disabled ?? false;
+  const disabled = props.disabled ?? false;
   const passengerSubtitle = props.passengerSubtitle ?? null;
-  const menuRightContent = props?.menuRightContent ?? null;
+  const menuRightContent = props.menuRightContent ?? null;
   return (
     <Touchable onPress={props.onPress} disabled={disabled}>
       <View style={styles.container}>
