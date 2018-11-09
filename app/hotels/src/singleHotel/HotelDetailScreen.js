@@ -15,7 +15,6 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import isEqual from 'react-fast-compare';
 import { SafeAreaView } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -29,10 +28,12 @@ import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import countBookingPrice from './bookNow/countBookingPrice';
+import HotelsContext from '../HotelsContext';
 
 type PropsWithContext = {|
   ...Props,
   +width: number,
+  +getGuestCount: () => number,
 |};
 
 type State = {|
@@ -114,8 +115,7 @@ export class HotelDetailScreen extends React.Component<
     maxPersons: number,
   ) => {
     this.setState(state => {
-      const previousCount =
-        idx(state, _ => _.selected[availabilityOriginalId]) || 0;
+      const previousCount = state?.selected?.[availabilityOriginalId] ?? 0;
 
       return {
         ...state,
@@ -140,16 +140,8 @@ export class HotelDetailScreen extends React.Component<
       return this.state.selected[currentItem] + sum;
     }, 0);
 
-  getNumberOfGuests = () => {
-    const roomsConfiguration = idx(
-      this.props,
-      _ => _.roomsConfiguration[0],
-    ) || { adultsCount: 0, children: [] };
-    return roomsConfiguration.adultsCount + roomsConfiguration.children.length;
-  };
-
   getPersonCount = () => {
-    const guestTotal = this.getNumberOfGuests();
+    const guestTotal = this.props.getGuestCount();
 
     return this.state.maxPersons > guestTotal
       ? guestTotal
@@ -160,9 +152,9 @@ export class HotelDetailScreen extends React.Component<
     const { availableHotel } = this.props;
     const { selected } = this.state;
 
-    const disabled = this.getNumberOfGuests() <= this.getNumberOfRooms();
+    const disabled = this.props.getGuestCount() <= this.getNumberOfRooms();
     const price = countBookingPrice(
-      idx(this.props, _ => _.availableHotel.availableRooms),
+      this.props.availableHotel?.availableRooms,
       selected,
     );
     if (!availableHotel) {
@@ -231,12 +223,22 @@ type Props = {|
 |};
 
 class HotelDetailScreenWithContext extends React.Component<Props> {
-  renderInner = ({ width }) => (
-    <HotelDetailScreen {...this.props} width={width} />
+  renderDimensions = ({ width }) => (
+    <HotelsContext.Consumer>
+      {this.renderHotelsContext(width)}
+    </HotelsContext.Consumer>
+  );
+
+  renderHotelsContext = width => ({ getGuestCount }) => (
+    <HotelDetailScreen
+      {...this.props}
+      width={width}
+      getGuestCount={getGuestCount}
+    />
   );
 
   render() {
-    return <Dimensions.Consumer>{this.renderInner}</Dimensions.Consumer>;
+    return <Dimensions.Consumer>{this.renderDimensions}</Dimensions.Consumer>;
   }
 }
 
