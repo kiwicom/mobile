@@ -16,7 +16,7 @@ type PropsWithContext = {|
 
 export class AllHotelsSearchList extends React.Component<PropsWithContext> {
   componentDidMount() {
-    const hotelId = this.props.data?.[0]?.hotelId;
+    const hotelId = this.props.data[0].hotelId;
 
     if (hotelId != null) {
       this.props.setHotelId(hotelId);
@@ -40,7 +40,7 @@ export class AllHotelsSearchList extends React.Component<PropsWithContext> {
       <React.Fragment>
         {hotels.map((hotel, index) => (
           <AllHotelsSearchRow
-            key={hotel?.id}
+            key={hotel.id}
             data={hotel}
             testID={index === 0 ? 'firstHotelResult' : ''}
           />

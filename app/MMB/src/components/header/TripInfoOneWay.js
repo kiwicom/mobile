@@ -15,7 +15,7 @@ type Props = {|
 |};
 
 function TripInfoOneWay(props: Props) {
-  const trip = props.data?.trip;
+  const trip = props.data.trip;
 
   return (
     <View style={styles.row}>

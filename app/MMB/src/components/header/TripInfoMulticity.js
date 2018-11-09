@@ -17,7 +17,7 @@ type Props = {|
 |};
 
 function TripInfoMulticity(props: Props) {
-  const trips = props.data?.trips ?? [];
+  const trips = props.data.trips ?? [];
 
   return trips.map((trip, index) => {
     const color = Color.tripColorCodes[index] ?? last(Color.tripColorCodes);

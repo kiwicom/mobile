@@ -16,7 +16,7 @@ type Props = {|
 |};
 
 function StatusBar(props: Props) {
-  const id = props.data?.databaseId ?? '';
+  const id = props.data.databaseId ?? '';
 
   return (
     <View style={styleSheet.row}>

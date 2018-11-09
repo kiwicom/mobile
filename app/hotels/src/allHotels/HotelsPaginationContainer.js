@@ -40,9 +40,9 @@ export class HotelsPaginationContainer extends React.Component<
       Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
     );
 
-    const priceMax = this.props.data?.allAvailableBookingComHotels?.stats
+    const priceMax = this.props.data.allAvailableBookingComHotels?.stats
       ?.maxPrice;
-    const priceMin = this.props.data?.allAvailableBookingComHotels?.stats
+    const priceMin = this.props.data.allAvailableBookingComHotels?.stats
       ?.minPrice;
 
     if (priceMax != null && priceMin != null) {
@@ -64,7 +64,7 @@ export class HotelsPaginationContainer extends React.Component<
   };
 
   render() {
-    const edges = this.props.data?.allAvailableBookingComHotels?.edges ?? [];
+    const edges = this.props.data.allAvailableBookingComHotels?.edges ?? [];
     const data = edges.map(hotel => hotel?.node);
 
     return (

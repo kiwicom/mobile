@@ -17,8 +17,8 @@ type Props = {|
 |};
 
 function TripInfoReturn({ data }: Props) {
-  const outbound = data?.outbound;
-  const inbound = data?.inbound;
+  const outbound = data.outbound;
+  const inbound = data.inbound;
 
   return (
     <View style={styleSheet.row}>
