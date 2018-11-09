@@ -1,10 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TripInfoOneWay from './TripInfoOneWay';
@@ -17,8 +16,8 @@ type Props = {|
 |};
 
 function TripInfo(props: Props) {
-  const data = idx(props, _ => _.data);
-  const type = idx(data, _ => _.__typename);
+  const data = props.data;
+  const type = data?.__typename;
 
   return (
     <View style={styleSheet.wrapper}>

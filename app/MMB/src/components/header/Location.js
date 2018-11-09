@@ -1,11 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import CountryFlag from '../CountryFlag';
 import type { Location as LocationDataType } from './__generated__/Location.graphql';
@@ -15,8 +14,8 @@ type Props = {|
 |};
 
 function Location(props: Props) {
-  const airport = idx(props, _ => _.data.airport);
-  const cityName = idx(airport, _ => _.city.name);
+  const airport = props.data?.airport;
+  const cityName = airport?.city?.name;
 
   return (
     <View style={styleSheet.wrapper}>

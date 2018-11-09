@@ -8,7 +8,6 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 import { StyleSheet, SimpleCard, Text, Button } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -27,9 +26,9 @@ export class MissingInformation extends React.Component<PropsWithContext> {
   };
 
   isSomePassengerMissingId = () => {
-    const passengers = idx(this.props.data, _ => _.passengers) || [];
+    const passengers = this.props.data.passengers ?? [];
     return passengers.some(
-      passenger => idx(passenger, _ => _.travelDocument.idNumber) == null,
+      passenger => passenger?.travelDocument?.idNumber == null,
     );
   };
 

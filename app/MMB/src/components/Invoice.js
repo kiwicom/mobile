@@ -1,20 +1,21 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import PdfViewer from '@kiwicom/mobile-pdf';
-import idx from 'idx';
 
-import BookingDetailContext from '../context/BookingDetailContext';
+import BookingDetailContext, {
+  type State as BoookingDetailState,
+} from '../context/BookingDetailContext';
 import type { InvoiceQueryResponse } from './__generated__/InvoiceQuery.graphql';
 
 export default class Invoice extends React.Component<{||}> {
   renderInnerComponent = (renderProps: InvoiceQueryResponse) => {
-    const uri = idx(renderProps, _ => _.singleBooking.assets.invoiceUrl);
+    const uri = renderProps.singleBooking?.assets?.invoiceUrl;
 
-    if (!uri) {
+    if (uri == null) {
       return (
         <GeneralError
           errorMessage={<Translation id="mmb.invoices.not_available" />}
@@ -25,28 +26,32 @@ export default class Invoice extends React.Component<{||}> {
     return <PdfViewer uri={uri} />;
   };
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          render={this.renderInnerComponent}
-          query={graphql`
-            query InvoiceQuery($bookingId: Int!, $authToken: String!) {
-              singleBooking(id: $bookingId, authToken: $authToken) {
-                ... on BookingInterface {
-                  assets {
-                    invoiceUrl
-                  }
-                }
+  renderContext = ({ bookingId, authToken }: BoookingDetailState) => (
+    <PublicApiRenderer
+      render={this.renderInnerComponent}
+      query={graphql`
+        query InvoiceQuery($bookingId: Int!, $authToken: String!) {
+          singleBooking(id: $bookingId, authToken: $authToken) {
+            ... on BookingInterface {
+              assets {
+                invoiceUrl
               }
             }
-          `}
-          variables={{
-            bookingId,
-            authToken,
-          }}
-        />
-      )}
-    </BookingDetailContext.Consumer>
+          }
+        }
+      `}
+      variables={{
+        bookingId,
+        authToken,
+      }}
+    />
   );
+
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {this.renderContext}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }

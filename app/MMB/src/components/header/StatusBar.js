@@ -1,11 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import ColorStrip from './ColorStrip';
@@ -17,7 +16,7 @@ type Props = {|
 |};
 
 function StatusBar(props: Props) {
-  const id = idx(props, _ => _.data.databaseId);
+  const id = props.data?.databaseId ?? '';
 
   return (
     <View style={styleSheet.row}>
@@ -27,7 +26,7 @@ function StatusBar(props: Props) {
           <StatusBarIcon data={props.data} />
         </View>
         <Text style={styleSheet.bid}>
-          <Translation passThrough={`#${id || ''}`} />
+          <Translation passThrough={`#${id}`} />
         </Text>
       </View>
     </View>
