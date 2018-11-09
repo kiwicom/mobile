@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Text, StyleSheet, ReadMore } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DescriptionTitle from './DescriptionTitle';
@@ -34,14 +33,14 @@ export const Description = (props: Props) => (
       revealedText={<Translation id="single_hotel.description.show_less" />}
     >
       <Text style={styles.summary}>
-        <Translation passThrough={idx(props, _ => _.hotel.summary)} />
+        <Translation passThrough={props.hotel?.summary} />
       </Text>
     </ReadMore>
     <View style={styles.facilitiesContainer}>
       <DescriptionTitle
         title={<Translation id="single_hotel.description.equipment" />}
       />
-      <Amenities data={idx(props, _ => _.hotel)} />
+      <Amenities data={props.hotel} />
     </View>
   </View>
 );

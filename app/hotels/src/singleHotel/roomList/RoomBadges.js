@@ -4,7 +4,6 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { AdaptableBadge, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomBadges_availableRoom as RoomBadgesTypes } from './__generated__/RoomBadges_availableRoom.graphql';
@@ -19,11 +18,8 @@ type Props = {|
 |};
 
 export const RoomBadges = (props: Props) => {
-  const isBreakfastIncluded = idx(
-    props.availableRoom,
-    _ => _.isBreakfastIncluded,
-  );
-  const isRefundable = idx(props.availableRoom, _ => _.isRefundable);
+  const isBreakfastIncluded = props.availableRoom.isBreakfastIncluded;
+  const isRefundable = props.availableRoom.isRefundable;
 
   return (
     <React.Fragment>

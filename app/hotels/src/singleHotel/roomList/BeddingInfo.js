@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
@@ -24,7 +23,7 @@ export class BeddingInfo extends React.Component<Props> {
   render = () => {
     const { room } = this.props;
     const info = formatBeddingInfo(room);
-    const maxPersons = idx(this.props.room, _ => _.maxPersons);
+    const maxPersons = this.props.room?.maxPersons;
 
     return (
       <View>

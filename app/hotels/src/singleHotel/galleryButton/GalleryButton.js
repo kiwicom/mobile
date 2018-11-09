@@ -9,7 +9,6 @@ import {
   type StylePropType,
   TextIcon,
 } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -23,9 +22,9 @@ type Props = {|
 |};
 
 export default function GalleryButton({ count, style }: Props) {
-  const containerStyle = idx(style, _ => _.container) || null;
-  const iconStyle = idx(style, _ => _.icon) || null;
-  const textStyle = idx(style, _ => _.text) || null;
+  const containerStyle = style?.container ?? null;
+  const iconStyle = style?.icon ?? null;
+  const textStyle = style?.text ?? null;
   return (
     <View style={[styles.container, containerStyle]}>
       <TextIcon code="&#xe064;" style={[styles.icon, iconStyle]} />
