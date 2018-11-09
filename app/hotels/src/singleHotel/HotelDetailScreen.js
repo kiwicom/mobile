@@ -115,7 +115,7 @@ export class HotelDetailScreen extends React.Component<
     maxPersons: number,
   ) => {
     this.setState(state => {
-      const previousCount = state?.selected?.[availabilityOriginalId] ?? 0;
+      const previousCount = state.selected[availabilityOriginalId] ?? 0;
 
       return {
         ...state,
@@ -154,7 +154,7 @@ export class HotelDetailScreen extends React.Component<
 
     const disabled = this.props.getGuestCount() <= this.getNumberOfRooms();
     const price = countBookingPrice(
-      this.props.availableHotel?.availableRooms,
+      this.props.availableHotel.availableRooms,
       selected,
     );
     if (!availableHotel) {

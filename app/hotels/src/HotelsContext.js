@@ -30,7 +30,7 @@ const { Consumer, Provider: ContextProvider } = React.createContext({
 
 export type RoomConfigurationType = $ReadOnlyArray<{|
   +adultsCount: number,
-  +children: $ReadOnlyArray<{|
+  +children?: $ReadOnlyArray<{|
     +age: number,
   |}>,
 |}>;
@@ -118,7 +118,7 @@ class Provider extends React.Component<Props, State> {
     }
     return this.state.roomsConfiguration.reduce((sum, current) => {
       const adults = current.adultsCount;
-      const children = current?.children?.length ?? 0;
+      const children = current.children?.length ?? 0;
       return sum + adults + children;
     }, 0);
   };

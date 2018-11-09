@@ -24,7 +24,7 @@ type Props = {|
 const SingleMap = (props: Props) => {
   return (
     <View style={styles.container}>
-      <MapView hotel={props.data?.hotel} />
+      <MapView hotel={props.data.hotel} />
       <View style={styles.underlay}>
         <StretchedImage source={gradient} />
       </View>

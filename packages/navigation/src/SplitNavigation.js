@@ -55,7 +55,7 @@ export default class SplitNavigation extends React.Component<Props, State> {
   };
 
   getContainerComponent = () =>
-    this.props.containerComponents[this.state.activeId]?.screen;
+    this.props.containerComponents[this.state.activeId].screen;
 
   render() {
     const MainMenuContainerWide = React.cloneElement(this.props.menuComponent, {

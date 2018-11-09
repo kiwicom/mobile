@@ -17,7 +17,7 @@ type Props = {|
 
 function TripInfo(props: Props) {
   const data = props.data;
-  const type = data?.__typename;
+  const type = data.__typename;
 
   return (
     <View style={styleSheet.wrapper}>
