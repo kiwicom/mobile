@@ -1,8 +1,7 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import Alert from '../../components/alert/Alert';
@@ -14,19 +13,19 @@ type Props = {|
 |};
 
 const Visa = ({ data }: Props) => {
-  const passengers = idx(data, _ => _.passengers) || [];
+  const passengers = data.passengers ?? [];
   const { requiredIn, warningIn } = passengers.reduce(
     (acc, curr) => {
-      const requiredIn = idx(curr, _ => _.visaInformation.requiredIn) || [];
-      const warningIn = idx(curr, _ => _.visaInformation.warningIn) || [];
+      const requiredIn = curr?.visaInformation?.requiredIn ?? [];
+      const warningIn = curr?.visaInformation?.warningIn ?? [];
       return {
         requiredIn: [
           ...acc.requiredIn,
-          ...requiredIn.map(item => idx(item, _ => _.name) || ''),
+          ...requiredIn.map(item => item?.name ?? ''),
         ],
         warningIn: [
           ...acc.warningIn,
-          ...warningIn.map(item => idx(item, _ => _.name) || ''),
+          ...warningIn.map(item => item?.name ?? ''),
         ],
       };
     },

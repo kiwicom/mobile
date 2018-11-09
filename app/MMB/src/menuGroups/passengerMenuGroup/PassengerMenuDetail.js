@@ -1,10 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import Passenger from './Passenger';
 import Visa from './Visa';
@@ -15,13 +14,13 @@ type Props = {|
 |};
 
 const PassengerMenuDetail = (props: Props) => {
-  const passengers = idx(props.data, _ => _.passengers) || [];
+  const passengers = props.data.passengers ?? [];
 
   return (
     <React.Fragment>
       <View style={styles.container}>
         {passengers.map(passenger => (
-          <Passenger data={passenger} key={idx(passenger, _ => _.databaseId)} />
+          <Passenger data={passenger} key={passenger?.databaseId} />
         ))}
       </View>
       <Visa data={props.data} />
