@@ -21,7 +21,7 @@ export default function withContext<T>(
        * props are changing
        */
       shouldComponentUpdate(nextProps: T) {
-        return !isEqual(select(nextProps), select(this.props));
+        return !isEqual(nextProps, this.props);
       }
 
       render() {
