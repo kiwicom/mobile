@@ -34,7 +34,7 @@ class ParkingMenuItem extends React.Component<Props> {
   };
 
   render() {
-    const parking = this.props.data.parking;
+    const { parking } = this.props.data;
 
     if (!parking) {
       // no parking available for this trip (do not render the menu item at all)
