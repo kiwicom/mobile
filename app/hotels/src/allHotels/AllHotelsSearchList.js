@@ -7,14 +7,14 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
-import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
+import { withHotelsContext } from '../HotelsContext';
 
-type PropsWithContext = {|
-  ...Props,
+type Props = {|
+  +data: AllHotelsSearchListProps,
   setHotelId: (id: string) => void,
 |};
 
-export class AllHotelsSearchList extends React.Component<PropsWithContext> {
+export class AllHotelsSearchList extends React.Component<Props> {
   componentDidMount() {
     const hotelId = this.props.data[0].hotelId;
 
@@ -50,23 +50,10 @@ export class AllHotelsSearchList extends React.Component<PropsWithContext> {
   }
 }
 
-type Props = {|
-  +data: AllHotelsSearchListProps,
-|};
+const select = ({ setHotelId }) => ({ setHotelId });
 
-class AllHotelsSearchListWithContext extends React.Component<Props> {
-  renderInner = ({ setHotelId }) => (
-    <AllHotelsSearchList {...this.props} setHotelId={setHotelId} />
-  );
-
-  render = () => (
-    <SingleHotelContext.Consumer>
-      {this.renderInner}
-    </SingleHotelContext.Consumer>
-  );
-}
 export default createFragmentContainer(
-  AllHotelsSearchListWithContext,
+  withHotelsContext(select)(AllHotelsSearchList),
   graphql`
     fragment AllHotelsSearchList on AllHotelsInterface @relay(plural: true) {
       id

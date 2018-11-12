@@ -15,16 +15,19 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import { type RoomConfigurationType } from '../HotelsContext';
+import {
+  type RoomConfigurationType,
+  type ApiProvider,
+  withHotelsContext,
+} from '../HotelsContext';
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from '../components/HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
-import SingleHotelContext, {
-  type ApiProvider,
-} from '../navigation/singleHotel/SingleHotelContext';
 
-type PropsWithContext = {|
-  ...Props,
+type Props = {|
+  +navigation: NavigationType,
+  +data: AllHotelsSearchRowProps,
+  +testID?: string,
   +setHotelId: (hotelId: string) => void,
   +hotelId: string,
   +checkin: Date,
@@ -33,11 +36,13 @@ type PropsWithContext = {|
   +apiProvider: ApiProvider,
 |};
 
-class AllHotelsSearchRow extends React.Component<PropsWithContext> {
+class AllHotelsSearchRow extends React.Component<Props> {
   onGoToSingleHotel = () => {
-    const hotelId = this.props.data.hotelId;
+    const { hotelId } = this.props.data;
+
     if (hotelId != null) {
       this.props.setHotelId(hotelId);
+
       this.props.navigation.navigate('SingleHotel', {
         checkin: this.props.checkin,
         checkout: this.props.checkout,
@@ -102,23 +107,16 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   };
 }
 
-type Props = {|
-  +navigation: NavigationType,
-  +data: AllHotelsSearchRowProps,
-  +testID?: string,
-|};
+const select = ({
+  setHotelId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+  apiProvider,
+}) => ({ setHotelId, checkin, checkout, roomsConfiguration, apiProvider });
 
-class AllHotelsSearchRowWithContext extends React.Component<Props> {
-  renderInner = context => <AllHotelsSearchRow {...this.props} {...context} />;
-
-  render = () => (
-    <SingleHotelContext.Consumer>
-      {this.renderInner}
-    </SingleHotelContext.Consumer>
-  );
-}
 export default createFragmentContainer(
-  withNavigation(AllHotelsSearchRowWithContext),
+  withHotelsContext(select)(withNavigation(AllHotelsSearchRow)),
   graphql`
     fragment AllHotelsSearchRow on AllHotelsInterface {
       ...HotelTitle

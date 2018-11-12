@@ -10,19 +10,14 @@ import {
   Device,
 } from '@kiwicom/mobile-shared';
 
-import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
+import { withHotelsContext } from '../../HotelsContext';
 import MapView from './MapView';
 import HotelSwipeList from './HotelSwipeList';
 import type { MapScreen as MapScreenData } from './__generated__/MapScreen.graphql';
 import gradient from '../gradient.png';
 
-type Props = {|
-  +data: MapScreenData,
-|};
-
 type PropsWithContext = {|
   ...Props,
-  +setHotelId: (hotelId: string) => void,
   +deviceWidth: number,
 |};
 
@@ -102,17 +97,16 @@ const styles = StyleSheet.create({
   underlay: { height: 132 },
 });
 
+type Props = {|
+  +data: MapScreenData,
+  +setHotelId: (hotelId: string) => void,
+|};
+
 class MapScreen extends React.Component<Props> {
   renderDimension = ({ width }) => (
-    <SingleHotelContext.Consumer>
-      {this.renderSingleContext(width)}
-    </SingleHotelContext.Consumer>
-  );
-
-  renderSingleContext = width => ({ setHotelId }) => (
     <MapScreenWithContext
       {...this.props}
-      setHotelId={setHotelId}
+      setHotelId={this.props.setHotelId}
       deviceWidth={width}
     />
   );
@@ -122,8 +116,10 @@ class MapScreen extends React.Component<Props> {
   }
 }
 
+const select = ({ setHotelId }) => ({ setHotelId });
+
 export default createFragmentContainer(
-  MapScreen,
+  withHotelsContext(select)(MapScreen),
   graphql`
     fragment MapScreen on AllHotelsInterface @relay(plural: true) {
       id

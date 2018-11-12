@@ -6,6 +6,8 @@ import { withContext } from '@kiwicom/mobile-shared';
 import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
 
 const defaultState = {
+  hotelId: '',
+  apiProvider: 'booking',
   version: '',
   cityId: null,
   checkin: null,
@@ -23,11 +25,14 @@ const defaultState = {
     setCurrentSearchStats: () => {},
   },
   getGuestCount: () => 0,
+  setHotelId: () => {},
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext({
   ...defaultState,
 });
+
+export type ApiProvider = 'booking' | 'stay22';
 
 export type RoomConfigurationType = $ReadOnlyArray<{|
   +adultsCount: number,
@@ -47,9 +52,13 @@ type Props = {|
   +currency: string,
   +latitude: ?number,
   +longitude: ?number,
+  +hotelId: ?string,
+  +apiProvider: ApiProvider,
 |};
 
 export type State = {|
+  hotelId: string,
+  +apiProvider: ApiProvider,
   +version: string,
   +cityName: string | null,
   +cityId: string | null,
@@ -61,6 +70,7 @@ export type State = {|
   +latitude: number | null,
   +longitude: number | null,
   +getGuestCount: () => number,
+  +setHotelId: (hotelId: string) => void,
   +actions: {|
     +setCurrentSearchStats: ({|
       priceMax: number,
@@ -87,6 +97,8 @@ class Provider extends React.Component<Props, State> {
     super(props);
 
     this.state = {
+      hotelId: props.hotelId ?? '',
+      apiProvider: props.apiProvider,
       version: props.version,
       cityId: props.cityId || null,
       checkin: getAsUtcDate(props.checkin),
@@ -101,6 +113,7 @@ class Provider extends React.Component<Props, State> {
         priceMin: 0,
       },
       getGuestCount: this.getGuestCount,
+      setHotelId: this.setHotelId,
       actions: {
         setCurrentSearchStats: this.setCurrentSearchStats,
       },
@@ -112,6 +125,8 @@ class Provider extends React.Component<Props, State> {
       currentSearchStats,
     });
   };
+
+  setHotelId = (hotelId: string) => this.setState({ hotelId });
 
   getGuestCount = () => {
     if (this.state.roomsConfiguration == null) {

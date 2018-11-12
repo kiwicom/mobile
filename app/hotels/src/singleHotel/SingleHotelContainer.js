@@ -8,19 +8,20 @@ import type { SingleHotelContainerQueryResponse } from './__generated__/SingleHo
 import { sanitizeDate } from '../GraphQLSanitizers';
 import {
   type RoomConfigurationType,
+  type ApiProvider,
   withHotelsContext,
 } from '../HotelsContext';
-import SingleHotelContext, {
-  type State as SingleHotelState,
-} from '../navigation/singleHotel/SingleHotelContext';
 import Stay22SingleHotel from './Stay22SingleHotel';
 
 type PropsWithContext = {|
-  ...Props,
+  +goBack: () => void,
+  +currency: string,
+  +getGuestCount: () => number,
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: RoomConfigurationType,
+  +apiProvider: ApiProvider,
 |};
 
 class SingleHotelContainer extends React.Component<PropsWithContext> {
@@ -35,15 +36,12 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
   );
 
   render() {
-    const {
-      currency,
-      checkin,
-      checkout,
-      roomsConfiguration,
-      hotelId,
-    } = this.props;
-    if (hotelId === '') {
+    const { apiProvider, ...rest } = this.props;
+    if (this.props.hotelId === '') {
       return null;
+    }
+    if (apiProvider === 'stay22') {
+      return <Stay22SingleHotel {...rest} />;
     }
     return (
       <PublicApiRenderer
@@ -61,12 +59,12 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
         `}
         variables={{
           search: {
-            hotelId,
-            roomsConfiguration,
-            checkin: sanitizeDate(checkin),
-            checkout: sanitizeDate(checkout),
+            hotelId: this.props.hotelId,
+            roomsConfiguration: this.props.roomsConfiguration,
+            checkin: sanitizeDate(this.props.checkin),
+            checkout: sanitizeDate(this.props.checkout),
           },
-          options: { currency },
+          options: { currency: this.props.currency },
         }}
         render={this.renderInnerComponent}
       />
@@ -74,43 +72,22 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
   }
 }
 
-type Props = {|
-  +goBack: () => void,
-  +currency: string,
-  +getGuestCount: () => number,
-|};
+const select = ({
+  currency,
+  getGuestCount,
+  checkin,
+  checkout,
+  roomsConfiguration,
+  hotelId,
+  apiProvider,
+}) => ({
+  currency,
+  getGuestCount,
+  checkin,
+  checkout,
+  roomsConfiguration,
+  hotelId,
+  apiProvider,
+});
 
-class SingleHotelContainerWithContext extends React.Component<Props> {
-  renderInner = ({
-    checkin,
-    checkout,
-    roomsConfiguration,
-    hotelId,
-    apiProvider,
-  }: SingleHotelState) => {
-    const props = {
-      checkin,
-      checkout,
-      roomsConfiguration,
-      hotelId,
-      ...this.props,
-    };
-
-    if (apiProvider === 'booking') {
-      return <SingleHotelContainer {...props} />;
-    }
-    return <Stay22SingleHotel {...props} />;
-  };
-
-  render() {
-    return (
-      <SingleHotelContext.Consumer>
-        {this.renderInner}
-      </SingleHotelContext.Consumer>
-    );
-  }
-}
-
-const select = ({ currency, getGuestCount }) => ({ currency, getGuestCount });
-
-export default withHotelsContext(select)(SingleHotelContainerWithContext);
+export default withHotelsContext(select)(SingleHotelContainer);
