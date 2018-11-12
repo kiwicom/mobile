@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { withContext } from '@kiwicom/mobile-shared';
 
 import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
 
@@ -130,22 +131,5 @@ class Provider extends React.Component<Props, State> {
 
 export default { Consumer, Provider };
 
-export function withHotelsContext(select: (state: State) => Object) {
-  return function(Component: React.ElementType) {
-    class WithHotelsContext extends React.Component<Object> {
-      // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-      static navigationOptions = Component.navigationOptions;
-
-      mapStateToProps = (state: State) => {
-        const stateProps = select(state);
-        return <Component {...this.props} {...stateProps} />;
-      };
-
-      render() {
-        return <Consumer>{this.mapStateToProps}</Consumer>;
-      }
-    }
-
-    return WithHotelsContext;
-  };
-}
+export const withHotelsContext = (select: (state: State) => Object) =>
+  withContext<State>(select, Consumer);
