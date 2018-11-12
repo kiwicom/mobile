@@ -5,34 +5,26 @@ import { StatusBar } from 'react-native';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 
 import SingleHotelMapScreen from '../../map/singleHotel/SingleHotelMapScreen';
-import SingleHotelContext from './SingleHotelContext';
+import { withHotelsContext, type ApiProvider } from '../../HotelsContext';
 import Stay22SingleHotelMapScreen from '../../map/singleHotel/Stay22SingleHotelMapScreen';
 
-type Props = {||};
+type Props = {|
+  +apiProvider: ApiProvider,
+|};
 
-class SingleHotelMapNavigationScreen extends React.Component<Props> {
-  renderInner = ({ apiProvider }) => {
-    return (
-      <React.Fragment>
-        <StatusBar barStyle="dark-content" />
-        {apiProvider === 'booking' ? (
-          <SingleHotelMapScreen />
-        ) : (
-          <Stay22SingleHotelMapScreen />
-        )}
-      </React.Fragment>
-    );
-  };
+const SingleHotelMapNavigationScreen = ({ apiProvider }: Props) => (
+  <React.Fragment>
+    <StatusBar barStyle="dark-content" />
+    {apiProvider === 'booking' ? (
+      <SingleHotelMapScreen />
+    ) : (
+      <Stay22SingleHotelMapScreen />
+    )}
+  </React.Fragment>
+);
 
-  render() {
-    return (
-      <SingleHotelContext.Consumer>
-        {this.renderInner}
-      </SingleHotelContext.Consumer>
-    );
-  }
-}
+const select = ({ apiProvider }) => ({ apiProvider });
 
 export default withMappedNavigationAndConfigProps(
-  SingleHotelMapNavigationScreen,
+  withHotelsContext(select)(SingleHotelMapNavigationScreen),
 );

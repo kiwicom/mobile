@@ -17,6 +17,8 @@ const props = {
   checkout: null,
   cityId: null,
   cityName: null,
+  apiProvider: 'booking',
+  hotelId: '',
 };
 
 const Child = () => null;
