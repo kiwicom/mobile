@@ -8,7 +8,6 @@ import {
 } from '@kiwicom/mobile-navigation';
 
 import { sanitizeDate } from '../../GraphQLSanitizers';
-import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
 import { withHotelsContext } from '../../HotelsContext';
 import type { Stay22SingleHotelMapScreenQueryResponse } from './__generated__/Stay22SingleHotelMapScreenQuery.graphql';
 import SingleMap from './SingleMap';
@@ -17,6 +16,9 @@ type Props = {|
   +navigation: NavigationType,
   +currency: string,
   +getGuestCount: () => number,
+  +hotelId: string,
+  +checkin: Date,
+  +checkout: Date,
 |};
 
 class Stay22SingleHotelMapScreen extends React.Component<Props> {
@@ -28,8 +30,8 @@ class Stay22SingleHotelMapScreen extends React.Component<Props> {
     <SingleMap data={props.stay22HotelDetail} goBack={this.goBack} />
   );
 
-  renderSingleHotelContext = ({ hotelId, checkin, checkout }) => {
-    const { getGuestCount, currency } = this.props;
+  render() {
+    const { getGuestCount, currency, hotelId, checkin, checkout } = this.props;
     return (
       <PublicApiRenderer
         query={graphql`
@@ -61,18 +63,16 @@ class Stay22SingleHotelMapScreen extends React.Component<Props> {
         render={this.renderInner}
       />
     );
-  };
-
-  render() {
-    return (
-      <SingleHotelContext.Consumer>
-        {this.renderSingleHotelContext}
-      </SingleHotelContext.Consumer>
-    );
   }
 }
 
-const select = ({ getGuestCount, currency }) => ({ getGuestCount, currency });
+const select = ({ getGuestCount, currency, hotelId, checkin, checkout }) => ({
+  getGuestCount,
+  currency,
+  hotelId,
+  checkin,
+  checkout,
+});
 
 export default withHotelsContext(select)(
   withNavigation(Stay22SingleHotelMapScreen),

@@ -7,13 +7,10 @@ import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
 import HotelsFilterContext from '../HotelsFilterContext';
 import HotelsContext, {
   type RoomConfigurationType,
-  getAsUtcDate,
+  type ApiProvider,
 } from '../HotelsContext';
 import SearchResultsContext from '../navigation/allHotels/SearchResultsContext';
 import type { Coordinates } from '../CoordinatesType';
-import SingleHotelContext, {
-  type ApiProvider,
-} from '../navigation/singleHotel/SingleHotelContext';
 
 type Props = {|
   +dataSaverEnabled: boolean,
@@ -46,18 +43,12 @@ export default class RootComponent extends React.Component<Props> {
             cityName={this.props.cityName}
             latitude={this.props.coordinates?.latitude ?? null}
             longitude={this.props.coordinates?.longitude ?? null}
+            hotelId={this.props.hotelId}
+            apiProvider={this.props.apiProvider}
           >
-            <SingleHotelContext.Provider
-              hotelId={this.props.hotelId ?? ''}
-              checkin={getAsUtcDate(this.props.checkin)}
-              checkout={getAsUtcDate(this.props.checkout)}
-              roomsConfiguration={this.props.roomsConfiguration}
-              apiProvider={this.props.apiProvider}
-            >
-              <Dimensions.Provider dimensions={this.props.dimensions}>
-                {this.props.children}
-              </Dimensions.Provider>
-            </SingleHotelContext.Provider>
+            <Dimensions.Provider dimensions={this.props.dimensions}>
+              {this.props.children}
+            </Dimensions.Provider>
           </HotelsContext.Provider>
         </HotelsFilterContext.Provider>
       </ConfigContext.Provider>
