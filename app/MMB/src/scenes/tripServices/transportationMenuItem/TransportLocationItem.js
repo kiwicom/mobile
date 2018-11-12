@@ -21,7 +21,7 @@ type Props = {|
 class LocationItem extends React.Component<Props> {
   onPress = () => {
     const { data, whitelabelURL } = this.props;
-    const lat = data.location.lat;
+    const { lat, lng } = data.location;
     const lng = data.location.lng;
 
     if (lat != null && lng != null) {
