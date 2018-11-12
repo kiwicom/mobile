@@ -33,7 +33,7 @@ export default function withContext<T>(
       }
     }
 
-    class WithContext extends React.Component<{||}> {
+    class WithContext extends React.Component<Object> {
       renderInner = (state: T) => {
         const stateProps = select(state);
         return (

@@ -28,12 +28,11 @@ import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import countBookingPrice from './bookNow/countBookingPrice';
-import HotelsContext from '../HotelsContext';
+import { withHotelsContext } from '../HotelsContext';
 
 type PropsWithContext = {|
   ...Props,
   +width: number,
-  +getGuestCount: () => number,
 |};
 
 type State = {|
@@ -220,30 +219,23 @@ type Props = {|
   +availableHotel: HotelDetailScreen_availableHotel,
   +roomsConfiguration: RoomsConfiguration,
   +goBack: () => void,
+  +getGuestCount: () => number,
 |};
 
 class HotelDetailScreenWithContext extends React.Component<Props> {
-  renderDimensions = ({ width }) => (
-    <HotelsContext.Consumer>
-      {this.renderHotelsContext(width)}
-    </HotelsContext.Consumer>
-  );
-
-  renderHotelsContext = width => ({ getGuestCount }) => (
-    <HotelDetailScreen
-      {...this.props}
-      width={width}
-      getGuestCount={getGuestCount}
-    />
+  renderInner = ({ width }) => (
+    <HotelDetailScreen {...this.props} width={width} />
   );
 
   render() {
-    return <Dimensions.Consumer>{this.renderDimensions}</Dimensions.Consumer>;
+    return <Dimensions.Consumer>{this.renderInner}</Dimensions.Consumer>;
   }
 }
 
+const select = ({ getGuestCount }) => ({ getGuestCount });
+
 export default createFragmentContainer(
-  HotelDetailScreenWithContext,
+  withHotelsContext(select)(HotelDetailScreenWithContext),
   graphql`
     fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
       hotel {

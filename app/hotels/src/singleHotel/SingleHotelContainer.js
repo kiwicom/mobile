@@ -6,9 +6,9 @@ import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import HotelDetailScreen from './HotelDetailScreen';
 import type { SingleHotelContainerQueryResponse } from './__generated__/SingleHotelContainerQuery.graphql';
 import { sanitizeDate } from '../GraphQLSanitizers';
-import HotelsContext, {
+import {
   type RoomConfigurationType,
-  type State as HotelsState,
+  withHotelsContext,
 } from '../HotelsContext';
 import SingleHotelContext, {
   type State as SingleHotelState,
@@ -17,7 +17,6 @@ import Stay22SingleHotel from './Stay22SingleHotel';
 
 type PropsWithContext = {|
   ...Props,
-  +currency: string,
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,
@@ -77,21 +76,12 @@ class SingleHotelContainer extends React.Component<PropsWithContext> {
 
 type Props = {|
   +goBack: () => void,
+  +currency: string,
+  +getGuestCount: () => number,
 |};
 
-export default class SingleHotelContainerWithContext extends React.Component<
-  Props,
-> {
-  renderHotelsContext = ({ currency, getGuestCount }: HotelsState) => (
-    <SingleHotelContext.Consumer>
-      {this.renderSingleHotelsContext(currency, getGuestCount)}
-    </SingleHotelContext.Consumer>
-  );
-
-  renderSingleHotelsContext = (
-    currency: $PropertyType<HotelsState, 'currency'>,
-    getGuestCount: $PropertyType<HotelsState, 'getGuestCount'>,
-  ) => ({
+class SingleHotelContainerWithContext extends React.Component<Props> {
+  renderInner = ({
     checkin,
     checkout,
     roomsConfiguration,
@@ -103,21 +93,24 @@ export default class SingleHotelContainerWithContext extends React.Component<
       checkout,
       roomsConfiguration,
       hotelId,
-      currency,
       ...this.props,
     };
 
     if (apiProvider === 'booking') {
       return <SingleHotelContainer {...props} />;
     }
-    return <Stay22SingleHotel {...props} getGuestCount={getGuestCount} />;
+    return <Stay22SingleHotel {...props} />;
   };
 
   render() {
     return (
-      <HotelsContext.Consumer>
-        {this.renderHotelsContext}
-      </HotelsContext.Consumer>
+      <SingleHotelContext.Consumer>
+        {this.renderInner}
+      </SingleHotelContext.Consumer>
     );
   }
 }
+
+const select = ({ currency, getGuestCount }) => ({ currency, getGuestCount });
+
+export default withHotelsContext(select)(SingleHotelContainerWithContext);
