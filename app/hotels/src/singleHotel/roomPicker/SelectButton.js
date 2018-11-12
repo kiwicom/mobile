@@ -31,11 +31,10 @@ export default function SelectButton({
 }: Props) {
   return (
     <Touchable
-      style={styles.container}
+      style={[styles.container, disabled && styles.containerDisabled]}
       onPress={increment}
       delayPressIn={40}
       testID={testID}
-      disabled={disabled}
     >
       <View style={styles.row}>
         <ButtonTitle
@@ -59,6 +58,9 @@ const styles = StyleSheet.create({
     height: 44,
     paddingHorizontal: 10,
     borderRadius: 6,
+  },
+  containerDisabled: {
+    backgroundColor: defaultTokens.paletteCloudLight,
   },
   text: {
     color: defaultTokens.paletteProductNormal,
