@@ -21,8 +21,9 @@ import {
 import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel } from './__generated__/Location_hotel.graphql';
 import SingleHotelContext from '../../../navigation/singleHotel/SingleHotelContext';
-import HotelsContext, {
+import {
   type RoomConfigurationType,
+  withHotelsContext,
 } from '../../../HotelsContext';
 
 type ContainerProps = {|
@@ -35,7 +36,6 @@ type PropsWithContext = {|
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: RoomConfigurationType,
-  +currency: string,
 |};
 
 export class Location extends React.Component<PropsWithContext> {
@@ -96,40 +96,33 @@ type Props = {|
   ...ContainerProps,
   +hotel: ?Location_hotel,
   +navigation: NavigationType,
+  +currency: string,
 |};
 
 class LocationWithContext extends React.Component<Props> {
-  renderHotelContext = ({ currency }) => (
-    <SingleHotelContext.Consumer>
-      {this.renderSingleHotelContext(currency)}
-    </SingleHotelContext.Consumer>
-  );
-
-  renderSingleHotelContext = currency => ({
-    hotelId,
-    checkin,
-    checkout,
-    roomsConfiguration,
-  }) => (
+  renderInner = ({ hotelId, checkin, checkout, roomsConfiguration }) => (
     <Location
       {...this.props}
       hotelId={hotelId}
       checkin={checkin}
       checkout={checkout}
-      currency={currency}
       roomsConfiguration={roomsConfiguration}
     />
   );
 
   render() {
     return (
-      <HotelsContext.Consumer>{this.renderHotelContext}</HotelsContext.Consumer>
+      <SingleHotelContext.Consumer>
+        {this.renderInner}
+      </SingleHotelContext.Consumer>
     );
   }
 }
 
+const select = ({ currency }) => ({ currency });
+
 export default (createFragmentContainer(
-  withNavigation(LocationWithContext),
+  withHotelsContext(select)(withNavigation(LocationWithContext)),
   graphql`
     fragment Location_hotel on HotelInterface {
       address {

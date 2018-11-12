@@ -10,12 +10,13 @@ import {
 import { Logger } from '@kiwicom/mobile-shared';
 
 import type { Stay22PaginationContainer as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer.graphql';
-import HotelsContext from '../HotelsContext';
+import { withHotelsContext } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
 
-type PropsWithContext = {|
-  ...Props,
+type Props = {|
+  +data: Stay22PaginationContainerType,
+  +relay: RelayPaginationProp,
   +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
 |};
 
@@ -23,14 +24,11 @@ type State = {|
   isLoading: boolean,
 |};
 
-export class Stay22PaginationContainer extends React.Component<
-  PropsWithContext,
-  State,
-> {
+export class Stay22PaginationContainer extends React.Component<Props, State> {
   mapAnimation: Animated.Value;
   listAnimation: Animated.Value;
 
-  constructor(props: PropsWithContext) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -72,26 +70,12 @@ export class Stay22PaginationContainer extends React.Component<
   }
 }
 
-type Props = {|
-  +data: Stay22PaginationContainerType,
-  +relay: RelayPaginationProp,
-|};
-
-class Stay22PaginationContainerWithContext extends React.Component<Props> {
-  renderInner = ({ actions }) => (
-    <Stay22PaginationContainer
-      {...this.props}
-      setCurrentSearchStats={actions.setCurrentSearchStats}
-    />
-  );
-
-  render() {
-    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
-  }
-}
+const select = ({ actions }) => ({
+  setCurrentSearchStats: actions.setCurrentSearchStats,
+});
 
 export default createPaginationContainer(
-  Stay22PaginationContainerWithContext,
+  withHotelsContext(select)(Stay22PaginationContainer),
   graphql`
     fragment Stay22PaginationContainer on RootQuery {
       allAvailableStay22Hotels(search: $search, first: $first, after: $after)

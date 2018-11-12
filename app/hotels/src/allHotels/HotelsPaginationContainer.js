@@ -9,7 +9,7 @@ import {
 import { Logger } from '@kiwicom/mobile-shared';
 
 import type { HotelsPaginationContainer as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer.graphql';
-import HotelsContext from '../HotelsContext';
+import { withHotelsContext } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
 
@@ -84,21 +84,12 @@ type Props = {|
   +relay: RelayPaginationProp,
 |};
 
-class HotelsPaginationContainerWithContext extends React.Component<Props> {
-  renderInner = ({ actions }) => (
-    <HotelsPaginationContainer
-      {...this.props}
-      setCurrentSearchStats={actions.setCurrentSearchStats}
-    />
-  );
-
-  render = () => (
-    <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>
-  );
-}
+const select = ({ actions }) => ({
+  setCurrentSearchStats: actions.setCurrentSearchStats,
+});
 
 export default createPaginationContainer(
-  HotelsPaginationContainerWithContext,
+  withHotelsContext(select)(HotelsPaginationContainer),
   graphql`
     fragment HotelsPaginationContainer on RootQuery {
       allAvailableBookingComHotels(
