@@ -12,7 +12,10 @@ import { DeviceInfo, Translation } from '@kiwicom/mobile-localization';
 
 import convertRooms from './convertRooms';
 import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
-import { withHotelsContext } from '../../HotelsContext';
+import {
+  withHotelsContext,
+  type HotelsContextState,
+} from '../../HotelsContext';
 
 type Props = {
   +selected: {
@@ -46,7 +49,7 @@ export class BookNow extends React.Component<Props> {
   }
 }
 
-const select = ({ currency }) => ({ currency });
+const select = ({ currency }: HotelsContextState) => ({ currency });
 
 export default createFragmentContainer(
   withHotelsContext(select)(withNavigation(BookNow)),

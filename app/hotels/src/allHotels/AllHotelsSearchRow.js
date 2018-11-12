@@ -18,6 +18,7 @@ import {
 import {
   type RoomConfigurationType,
   type ApiProvider,
+  type HotelsContextState,
   withHotelsContext,
 } from '../HotelsContext';
 import HotelTitle from './HotelTitle';
@@ -113,7 +114,13 @@ const select = ({
   checkout,
   roomsConfiguration,
   apiProvider,
-}) => ({ setHotelId, checkin, checkout, roomsConfiguration, apiProvider });
+}: HotelsContextState) => ({
+  setHotelId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+  apiProvider,
+});
 
 export default createFragmentContainer(
   withHotelsContext(select)(withNavigation(AllHotelsSearchRow)),

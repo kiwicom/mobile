@@ -10,7 +10,10 @@ import {
   Device,
 } from '@kiwicom/mobile-shared';
 
-import { withHotelsContext } from '../../HotelsContext';
+import {
+  withHotelsContext,
+  type HotelsContextState,
+} from '../../HotelsContext';
 import MapView from './MapView';
 import HotelSwipeList from './HotelSwipeList';
 import type { MapScreen as MapScreenData } from './__generated__/MapScreen.graphql';
@@ -116,7 +119,7 @@ class MapScreen extends React.Component<Props> {
   }
 }
 
-const select = ({ setHotelId }) => ({ setHotelId });
+const select = ({ setHotelId }: HotelsContextState) => ({ setHotelId });
 
 export default createFragmentContainer(
   withHotelsContext(select)(MapScreen),

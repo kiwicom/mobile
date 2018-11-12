@@ -22,6 +22,7 @@ import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel } from './__generated__/Location_hotel.graphql';
 import {
   type RoomConfigurationType,
+  type HotelsContextState,
   withHotelsContext,
 } from '../../../HotelsContext';
 
@@ -100,7 +101,13 @@ const select = ({
   checkin,
   checkout,
   roomsConfiguration,
-}) => ({ currency, hotelId, checkin, checkout, roomsConfiguration });
+}: HotelsContextState) => ({
+  currency,
+  hotelId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+});
 
 export default (createFragmentContainer(
   withHotelsContext(select)(withNavigation(Location)),
