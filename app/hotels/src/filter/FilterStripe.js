@@ -5,9 +5,7 @@ import { ScrollView, View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import HotelsContext, {
-  type State as HotelsContextState,
-} from '../HotelsContext';
+import { withHotelsContext } from '../HotelsContext';
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
@@ -20,10 +18,10 @@ import type {
   OnChangeFilterParams,
   OrderByEnum,
 } from './FilterParametersType';
-import HotelsFilterContext from '../HotelsFilterContext';
+import { withHotelsFilterContext } from '../HotelsFilterContext';
 import Filters from './Filters';
 
-type PropsWithContext = {|
+type Props = {|
   +currency: string,
   +activeFilters: ActiveFilters,
   +onChange: OnChangeFilterParams => void,
@@ -36,7 +34,7 @@ type PropsWithContext = {|
  * rendered first.
  * The Filters component will handle this ordering.
  */
-class FilterStripe extends React.Component<PropsWithContext> {
+class FilterStripe extends React.Component<Props> {
   scrollViewRef: React.ElementRef<typeof ScrollView>;
 
   onChange = (params: OnChangeFilterParams) => {
@@ -115,22 +113,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class FilterStripeWithContext extends React.Component<{||}> {
-  renderInner = ({ currency }: HotelsContextState) => (
-    <HotelsFilterContext.Consumer>
-      {({ activeFilters, filterParams, orderBy, actions: { setFilter } }) => (
-        <FilterStripe
-          currency={currency}
-          onChange={setFilter}
-          filter={filterParams}
-          activeFilters={activeFilters}
-          orderBy={orderBy}
-        />
-      )}
-    </HotelsFilterContext.Consumer>
-  );
+const selectHotelsProps = ({ currency }) => ({ currency });
+const selectFilterProps = ({
+  activeFilters,
+  filterParams,
+  orderBy,
+  actions: { setFilter },
+}) => ({
+  onChange: setFilter,
+  filter: filterParams,
+  activeFilters,
+  orderBy,
+});
 
-  render() {
-    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
-  }
-}
+export default withHotelsContext(selectHotelsProps)(
+  withHotelsFilterContext(selectFilterProps)(FilterStripe),
+);

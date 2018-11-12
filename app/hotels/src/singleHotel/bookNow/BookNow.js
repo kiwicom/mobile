@@ -12,16 +12,18 @@ import { DeviceInfo, Translation } from '@kiwicom/mobile-localization';
 
 import convertRooms from './convertRooms';
 import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
-import HotelsContext, {
-  type State as HotelsContextState,
-} from '../../HotelsContext';
+import { withHotelsContext } from '../../HotelsContext';
 
-type PropsWithContext = {
-  ...Props,
+type Props = {
+  +selected: {
+    [string]: number,
+  },
+  +hotel: ?BookNow_hotel,
+  +navigation: NavigationType,
   +currency: string,
 };
 
-export class BookNow extends React.Component<PropsWithContext> {
+export class BookNow extends React.Component<Props> {
   handleGoToPayment = () => {
     const hotelId = this.props.hotel?.id;
     if (hotelId != null) {
@@ -44,26 +46,10 @@ export class BookNow extends React.Component<PropsWithContext> {
   }
 }
 
-type Props = {|
-  +selected: {
-    [string]: number,
-  },
-  +hotel: ?BookNow_hotel,
-  +navigation: NavigationType,
-|};
-
-export class BookNowWithContext extends React.Component<Props> {
-  renderInner = ({ currency }: HotelsContextState) => (
-    <BookNow {...this.props} currency={currency} />
-  );
-
-  render() {
-    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
-  }
-}
+const select = ({ currency }) => ({ currency });
 
 export default createFragmentContainer(
-  withNavigation(BookNowWithContext),
+  withHotelsContext(select)(withNavigation(BookNow)),
   graphql`
     fragment BookNow_hotel on HotelInterface {
       id

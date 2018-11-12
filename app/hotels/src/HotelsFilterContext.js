@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { withContext } from '@kiwicom/mobile-shared';
 
 import type {
   FilterParams,
@@ -98,9 +99,16 @@ class Provider extends React.Component<Props, State> {
     }, this.setActiveFilters);
   };
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
+
+export const withHotelsFilterContext = (select: State => Object) =>
+  withContext<State>(select, Consumer);
 
 export default { Consumer, Provider };

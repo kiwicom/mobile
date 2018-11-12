@@ -12,29 +12,31 @@ import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHo
 import { sanitizeDate } from '../../GraphQLSanitizers';
 import SingleMap from './SingleMap';
 import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
-import HotelsContext from '../../HotelsContext';
+import {
+  withHotelsContext,
+  type RoomConfigurationType,
+} from '../../HotelsContext';
 
 type Props = {|
   +currency: string,
   +search: AvailableHotelSearchInput,
   +navigation: NavigationType,
+  +roomsConfiguration: RoomConfigurationType,
 |};
 
 class SingleHotelMapScreen extends React.Component<Props> {
   goBack = () => {
     this.props.navigation.goBack(null);
   };
+
   renderInnerComponent = ({
     availableHotel,
   }: SingleHotelMapScreenQueryResponse) => (
     <SingleMap goBack={this.goBack} data={availableHotel} />
   );
 
-  renderQuery = (currency, roomsConfiguration) => ({
-    checkin,
-    checkout,
-    hotelId,
-  }) => {
+  renderQuery = ({ checkin, checkout, hotelId }) => {
+    const { currency, roomsConfiguration } = this.props;
     return (
       <PublicApiRenderer
         query={graphql`
@@ -61,19 +63,18 @@ class SingleHotelMapScreen extends React.Component<Props> {
     );
   };
 
-  renderHotelsContext = ({ currency, roomsConfiguration }) => (
-    <SingleHotelContext.Consumer>
-      {this.renderQuery(currency, roomsConfiguration)}
-    </SingleHotelContext.Consumer>
-  );
-
   render() {
     return (
-      <HotelsContext.Consumer>
-        {this.renderHotelsContext}
-      </HotelsContext.Consumer>
+      <SingleHotelContext.Consumer>
+        {this.renderQuery}
+      </SingleHotelContext.Consumer>
     );
   }
 }
 
-export default withNavigation(SingleHotelMapScreen);
+const select = ({ currency, roomsConfiguration }) => ({
+  currency,
+  roomsConfiguration,
+});
+
+export default withHotelsContext(select)(withNavigation(SingleHotelMapScreen));
