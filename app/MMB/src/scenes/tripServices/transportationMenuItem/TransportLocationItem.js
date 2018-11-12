@@ -32,7 +32,7 @@ class LocationItem extends React.Component<Props> {
   };
 
   render() {
-    const location = this.props.data.location;
+    const { location } = this.props.data;
     if (!location) {
       return null;
     }
