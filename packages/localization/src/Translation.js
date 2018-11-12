@@ -71,6 +71,9 @@ export default class Translation extends React.Component<Props> {
     if (this.props.id === undefined) {
       // ID prop is missing so let's assume it's "pass through" translation
       // (property passThrough may be undefined)
+      if (this.props.passThrough == null) {
+        return null;
+      }
       return (
         <Text style={containerStyle}>
           {/* $FlowExpectedError: we do not allow to use 'string' in the 'Text' components but translations are exceptions. */}
