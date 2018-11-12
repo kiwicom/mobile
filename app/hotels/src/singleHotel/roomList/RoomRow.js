@@ -8,6 +8,7 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
+import { Alert } from '@kiwicom/mobile-localization';
 import isEqual from 'react-fast-compare';
 
 import RoomPicker from '../roomPicker/RoomPicker';
@@ -37,9 +38,15 @@ type Props = {|
 export class RoomRow extends React.Component<Props> {
   shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
   select = () => {
-    const { id, maxPersons } = this.getIdAndMaxPersons();
-    if (id && maxPersons) {
-      this.props.select(id, maxPersons);
+    if (this.props.disabled) {
+      Alert.translatedAlert(null, {
+        id: 'single_hotel.alert.cannot_book_more_rooms_than_guests',
+      });
+    } else {
+      const { id, maxPersons } = this.getIdAndMaxPersons();
+      if (id && maxPersons) {
+        this.props.select(id, maxPersons);
+      }
     }
   };
 
