@@ -53,7 +53,6 @@ describe('HotelsContext', () => {
   it('calculates number of guests correctly', () => {
     const wrapper = getWrapper([
       { adultsCount: 2, children: [] },
-      // $FlowExpectedError: testing with missing children
       { adultsCount: 1 },
       { adultsCount: 1, children: [{ age: 0 }, { age: 2 }, { age: 17 }] },
     ]);
