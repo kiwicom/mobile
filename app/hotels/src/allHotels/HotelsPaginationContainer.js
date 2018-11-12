@@ -9,7 +9,7 @@ import {
 import { Logger } from '@kiwicom/mobile-shared';
 
 import type { HotelsPaginationContainer as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer.graphql';
-import { withHotelsContext } from '../HotelsContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
 
@@ -84,7 +84,7 @@ type Props = {|
   +relay: RelayPaginationProp,
 |};
 
-const select = ({ actions }) => ({
+const select = ({ actions }: HotelsContextState) => ({
   setCurrentSearchStats: actions.setCurrentSearchStats,
 });
 

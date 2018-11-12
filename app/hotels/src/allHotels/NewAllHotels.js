@@ -7,7 +7,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FilterStripe from '../filter/FilterStripe';
 import NewAllHotelsSearch from './NewAllHotelsSearch';
-import { withHotelsContext } from '../HotelsContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import Stay22HotelsSearch from './Stay22HotelsSearch';
 
 type Props = {|
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const select = ({ cityId }) => ({ cityId });
+const select = ({ cityId }: HotelsContextState) => ({ cityId });
 
 export default withHotelsContext(select)(NewAllHotels);

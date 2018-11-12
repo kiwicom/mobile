@@ -7,7 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
-import { withHotelsContext } from '../HotelsContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 
 type Props = {|
   +data: AllHotelsSearchListProps,
@@ -50,7 +50,7 @@ export class AllHotelsSearchList extends React.Component<Props> {
   }
 }
 
-const select = ({ setHotelId }) => ({ setHotelId });
+const select = ({ setHotelId }: HotelsContextState) => ({ setHotelId });
 
 export default createFragmentContainer(
   withHotelsContext(select)(AllHotelsSearchList),

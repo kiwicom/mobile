@@ -10,7 +10,7 @@ import {
 import { Logger } from '@kiwicom/mobile-shared';
 
 import type { Stay22PaginationContainer as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer.graphql';
-import { withHotelsContext } from '../HotelsContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
 
@@ -70,7 +70,7 @@ export class Stay22PaginationContainer extends React.Component<Props, State> {
   }
 }
 
-const select = ({ actions }) => ({
+const select = ({ actions }: HotelsContextState) => ({
   setCurrentSearchStats: actions.setCurrentSearchStats,
 });
 

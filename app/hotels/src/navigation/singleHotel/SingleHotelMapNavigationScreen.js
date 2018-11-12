@@ -5,7 +5,11 @@ import { StatusBar } from 'react-native';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
 
 import SingleHotelMapScreen from '../../map/singleHotel/SingleHotelMapScreen';
-import { withHotelsContext, type ApiProvider } from '../../HotelsContext';
+import {
+  withHotelsContext,
+  type ApiProvider,
+  type HotelsContextState,
+} from '../../HotelsContext';
 import Stay22SingleHotelMapScreen from '../../map/singleHotel/Stay22SingleHotelMapScreen';
 
 type Props = {|
@@ -23,7 +27,7 @@ const SingleHotelMapNavigationScreen = ({ apiProvider }: Props) => (
   </React.Fragment>
 );
 
-const select = ({ apiProvider }) => ({ apiProvider });
+const select = ({ apiProvider }: HotelsContextState) => ({ apiProvider });
 
 export default withMappedNavigationAndConfigProps(
   withHotelsContext(select)(SingleHotelMapNavigationScreen),
