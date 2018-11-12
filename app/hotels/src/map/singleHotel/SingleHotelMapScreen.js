@@ -14,6 +14,7 @@ import SingleMap from './SingleMap';
 import {
   withHotelsContext,
   type RoomConfigurationType,
+  type HotelsContextState,
 } from '../../HotelsContext';
 
 type Props = {|
@@ -78,7 +79,7 @@ const select = ({
   hotelId,
   checkin,
   checkout,
-}) => ({
+}: HotelsContextState) => ({
   currency,
   roomsConfiguration,
   hotelId,

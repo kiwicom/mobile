@@ -28,7 +28,7 @@ import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import countBookingPrice from './bookNow/countBookingPrice';
-import { withHotelsContext } from '../HotelsContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 
 type PropsWithContext = {|
   ...Props,
@@ -232,7 +232,7 @@ class HotelDetailScreenWithContext extends React.Component<Props> {
   }
 }
 
-const select = ({ getGuestCount }) => ({ getGuestCount });
+const select = ({ getGuestCount }: HotelsContextState) => ({ getGuestCount });
 
 export default createFragmentContainer(
   withHotelsContext(select)(HotelDetailScreenWithContext),

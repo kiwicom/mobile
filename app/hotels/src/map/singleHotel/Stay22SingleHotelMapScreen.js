@@ -8,7 +8,10 @@ import {
 } from '@kiwicom/mobile-navigation';
 
 import { sanitizeDate } from '../../GraphQLSanitizers';
-import { withHotelsContext } from '../../HotelsContext';
+import {
+  withHotelsContext,
+  type HotelsContextState,
+} from '../../HotelsContext';
 import type { Stay22SingleHotelMapScreenQueryResponse } from './__generated__/Stay22SingleHotelMapScreenQuery.graphql';
 import SingleMap from './SingleMap';
 
@@ -66,7 +69,13 @@ class Stay22SingleHotelMapScreen extends React.Component<Props> {
   }
 }
 
-const select = ({ getGuestCount, currency, hotelId, checkin, checkout }) => ({
+const select = ({
+  getGuestCount,
+  currency,
+  hotelId,
+  checkin,
+  checkout,
+}: HotelsContextState) => ({
   getGuestCount,
   currency,
   hotelId,

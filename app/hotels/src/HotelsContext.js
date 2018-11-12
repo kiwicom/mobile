@@ -56,7 +56,7 @@ type Props = {|
   +apiProvider: ApiProvider,
 |};
 
-export type State = {|
+type State = {|
   hotelId: string,
   +apiProvider: ApiProvider,
   +version: string,
@@ -148,3 +148,5 @@ export default { Consumer, Provider };
 
 export const withHotelsContext = (select: (state: State) => Object) =>
   withContext<State>(select, Consumer);
+
+export type HotelsContextState = State;

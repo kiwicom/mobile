@@ -9,6 +9,7 @@ import { sanitizeDate } from '../GraphQLSanitizers';
 import {
   type RoomConfigurationType,
   type ApiProvider,
+  type HotelsContextState,
   withHotelsContext,
 } from '../HotelsContext';
 import Stay22SingleHotel from './Stay22SingleHotel';
@@ -80,7 +81,7 @@ const select = ({
   roomsConfiguration,
   hotelId,
   apiProvider,
-}) => ({
+}: HotelsContextState) => ({
   currency,
   getGuestCount,
   checkin,

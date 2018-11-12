@@ -12,7 +12,10 @@ import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 import type { CurrentSearchStats } from '../../filter/CurrentSearchStatsType';
-import { withHotelsContext } from '../../HotelsContext';
+import {
+  withHotelsContext,
+  type HotelsContextState,
+} from '../../HotelsContext';
 
 type PropsWithContext = {
   ...Props,
@@ -188,7 +191,12 @@ const calculateDaysOfStay = (checkin, checkout) => {
   return null;
 };
 
-const select = ({ currency, checkin, checkout, currentSearchStats }) => ({
+const select = ({
+  currency,
+  checkin,
+  checkout,
+  currentSearchStats,
+}: HotelsContextState) => ({
   currency,
   checkin,
   checkout,

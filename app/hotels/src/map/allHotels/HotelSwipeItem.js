@@ -15,6 +15,7 @@ import {
 
 import {
   type RoomConfigurationType,
+  type HotelsContextState,
   withHotelsContext,
 } from '../../HotelsContext';
 import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
@@ -120,7 +121,7 @@ const select = ({
   checkin,
   checkout,
   roomsConfiguration,
-}) => ({
+}: HotelsContextState) => ({
   setHotelId,
   hotelId,
   checkin,
