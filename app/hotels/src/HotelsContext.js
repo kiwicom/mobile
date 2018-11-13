@@ -17,6 +17,7 @@ const defaultState = {
   cityName: null,
   latitude: null,
   longitude: null,
+  paymentLink: null,
   currentSearchStats: {
     priceMax: 10000,
     priceMin: 0,
@@ -26,6 +27,7 @@ const defaultState = {
   },
   getGuestCount: () => 0,
   setHotelId: () => {},
+  setPaymentLink: () => {},
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext<State>({
@@ -69,6 +71,8 @@ type State = {|
   currentSearchStats: CurrentSearchStats,
   +latitude: number | null,
   +longitude: number | null,
+  paymentLink: ?string,
+  +setPaymentLink: (?string) => void,
   +getGuestCount: () => number,
   +setHotelId: (hotelId: string) => void,
   +actions: {|
@@ -108,12 +112,14 @@ class Provider extends React.Component<Props, State> {
       cityName: props.cityName || null,
       latitude: props.latitude || null,
       longitude: props.longitude || null,
+      paymentLink: null,
       currentSearchStats: {
         priceMax: 10000,
         priceMin: 0,
       },
       getGuestCount: this.getGuestCount,
       setHotelId: this.setHotelId,
+      setPaymentLink: this.setPaymentLink,
       actions: {
         setCurrentSearchStats: this.setCurrentSearchStats,
       },
@@ -138,6 +144,8 @@ class Provider extends React.Component<Props, State> {
       return sum + adults + children;
     }, 0);
   };
+
+  setPaymentLink = (paymentLink: ?string) => this.setState({ paymentLink });
 
   render = () => (
     <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
