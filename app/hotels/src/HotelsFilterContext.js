@@ -62,6 +62,7 @@ class Provider extends React.Component<Props, State> {
       },
     };
   }
+
   setActiveFilters = () => {
     this.setState(state => {
       const {

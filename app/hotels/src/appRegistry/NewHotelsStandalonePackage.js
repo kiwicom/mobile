@@ -35,6 +35,7 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
   static navigationOptions = {
     tabBarVisible: false,
   };
+
   render() {
     const props = {
       screenProps: this.props,

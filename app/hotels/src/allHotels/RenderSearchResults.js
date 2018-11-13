@@ -122,6 +122,7 @@ class RenderSearchResultsWithContext extends React.Component<Props> {
   renderInner = ({ show }) => (
     <RenderSearchResults {...this.props} show={show} />
   );
+
   render() {
     return (
       <SearchResultsContext.Consumer>

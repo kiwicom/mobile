@@ -91,6 +91,7 @@ export const withSplitNavigationContext = (Component: React.ElementType) => {
     renderInner = ({ activeId }: State) => (
       <Component {...this.props} activeId={activeId} />
     );
+
     render() {
       return <Consumer>{this.renderInner}</Consumer>;
     }
