@@ -28,7 +28,11 @@ import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import countBookingPrice from './bookNow/countBookingPrice';
-import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
+import {
+  withHotelsContext,
+  type HotelsContextState,
+  type ApiProvider,
+} from '../HotelsContext';
 
 type PropsWithContext = {|
   ...Props,
@@ -68,12 +72,21 @@ export class HotelDetailScreen extends React.Component<
     };
   }
 
-  componentDidMount = () => {
-    Logger.ancillaryDisplayed(
-      Logger.Type.ANCILLARY_STEP_DETAILS,
-      Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
-    );
-  };
+  componentDidMount() {
+    const {
+      ANCILLARY_PROVIDER_BOOKINGCOM,
+      ANCILLARY_PROVIDER_STAY22,
+    } = Logger.Provider;
+
+    const provider =
+      this.props.apiProvider === 'booking'
+        ? ANCILLARY_PROVIDER_BOOKINGCOM
+        : ANCILLARY_PROVIDER_STAY22;
+
+    Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS, provider);
+
+    this.props.setPaymentLink(this.props.paymentLink);
+  }
 
   shouldComponentUpdate = (nextProps: PropsWithContext, nextState: State) => {
     const isPropsEqual = isEqual(nextProps, this.props);
@@ -221,6 +234,9 @@ type Props = {|
   +roomsConfiguration: RoomsConfiguration,
   +goBack: () => void,
   +getGuestCount: () => number,
+  +paymentLink?: ?string,
+  +setPaymentLink: (?string) => void,
+  +apiProvider: ApiProvider,
 |};
 
 class HotelDetailScreenWithContext extends React.Component<Props> {
@@ -233,7 +249,15 @@ class HotelDetailScreenWithContext extends React.Component<Props> {
   }
 }
 
-const select = ({ getGuestCount }: HotelsContextState) => ({ getGuestCount });
+const select = ({
+  getGuestCount,
+  setPaymentLink,
+  apiProvider,
+}: HotelsContextState) => ({
+  getGuestCount,
+  setPaymentLink,
+  apiProvider,
+});
 
 export default createFragmentContainer(
   withHotelsContext(select)(HotelDetailScreenWithContext),

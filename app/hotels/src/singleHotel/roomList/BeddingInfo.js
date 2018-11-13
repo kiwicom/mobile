@@ -8,7 +8,6 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
-import formatBeddingInfo from './formatBeddingInfo';
 
 type ContainerProps = {|
   room: any,
@@ -20,17 +19,28 @@ type Props = {
 };
 
 export class BeddingInfo extends React.Component<Props> {
+  formatBeddingInfo = (): string => {
+    const { room } = this.props;
+    const beddingOptions = room?.bedding ?? [];
+    return beddingOptions
+      .map(beddingOption => {
+        const type = beddingOption?.type;
+        const amount = beddingOption?.amount;
+        return [amount, type].filter(value => value != null).join(' ');
+      })
+      .join(' or '); // TODO: Translate
+  };
+
   render = () => {
     const { room } = this.props;
-    const info = formatBeddingInfo(room);
-    const maxPersons = this.props.room?.maxPersons;
+    const maxPersons = room?.maxPersons;
 
     return (
       <View>
         <View style={styles.row}>
           <TextIcon code="&#xe085;" style={styles.icon} />
           <Text style={styles.text}>
-            <Translation passThrough={` ${info}`} />
+            <Translation passThrough={` ${this.formatBeddingInfo()}`} />
           </Text>
         </View>
         <View style={styles.row}>

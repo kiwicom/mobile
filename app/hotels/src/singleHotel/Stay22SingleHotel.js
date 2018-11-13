@@ -24,6 +24,7 @@ export default class Stay22SingleHotel extends React.Component<Props> {
       availableHotel={stay22HotelDetail}
       roomsConfiguration={this.props.roomsConfiguration}
       goBack={this.props.goBack}
+      paymentLink={stay22HotelDetail?.paymentLink}
     />
   );
 
@@ -50,6 +51,7 @@ export default class Stay22SingleHotel extends React.Component<Props> {
               checkout: $checkout
             ) {
               ...HotelDetailScreen_availableHotel
+              paymentLink
             }
           }
         `}
