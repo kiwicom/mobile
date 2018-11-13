@@ -134,6 +134,7 @@ export class HotelDetailScreen extends React.Component<
   deselectRoom = (availabilityOriginalId: string, maxPersons: number) => {
     this.updateSelectedCount(availabilityOriginalId, -1, -maxPersons);
   };
+
   getNumberOfRooms = () =>
     Object.keys(this.state.selected).reduce((sum, currentItem) => {
       return this.state.selected[currentItem] + sum;

@@ -55,6 +55,7 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
       ),
     };
   };
+
   componentDidMount = () => {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_PAYMENT,

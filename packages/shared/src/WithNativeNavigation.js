@@ -30,6 +30,7 @@ function withNativeNavigation<Props: {}>(
       this.lastCall = 'enabled';
       GestureController.enableGestures(moduleName);
     }
+
     onNavigationStateChange = (
       previousState: NavigationState,
       currentState: NavigationState,

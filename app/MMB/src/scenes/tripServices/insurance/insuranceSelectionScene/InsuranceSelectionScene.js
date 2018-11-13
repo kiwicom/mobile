@@ -61,6 +61,7 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
       });
     });
   };
+
   render = () => {
     const { passenger } = this.props.navigation.state.params;
 

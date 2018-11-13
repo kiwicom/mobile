@@ -35,6 +35,7 @@ class Provider extends React.Component<Props, State> {
       onNavigationStateChange: props.onNavigationStateChange,
     };
   }
+
   render = () => (
     <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
   );
