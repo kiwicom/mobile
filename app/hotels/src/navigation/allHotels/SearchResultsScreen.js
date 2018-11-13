@@ -57,6 +57,11 @@ class SearchResultsScreen extends React.Component<Props> {
       ) : (
         <TextIcon code="&#xe115;" style={styles.icon} />
       );
+
+    const text =
+      show === 'list'
+        ? { id: 'hotels_search.all_hotels_search_list.show_map' }
+        : { id: 'hotels_search.all_hotels_search_list.show_list' };
     return {
       ...HotelsNavigationOptions({ checkin, checkout, cityName }),
       headerRight: (
@@ -67,6 +72,7 @@ class SearchResultsScreen extends React.Component<Props> {
                 <MapHeaderButton
                   onPress={goToAllHotelsMap}
                   icon={icon}
+                  text={text}
                   testID="map-header-button"
                 />
               }
@@ -75,6 +81,7 @@ class SearchResultsScreen extends React.Component<Props> {
                   <MapHeaderButton
                     onPress={goToAllHotelsMap}
                     icon={icon}
+                    text={text}
                     testID="map-header-button"
                   />
                 ),
@@ -94,6 +101,7 @@ class SearchResultsScreen extends React.Component<Props> {
                     <MapHeaderButton
                       onPress={goToAllHotelsMap}
                       icon={icon}
+                      text={text}
                       testID="map-header-button"
                     />
                   )}

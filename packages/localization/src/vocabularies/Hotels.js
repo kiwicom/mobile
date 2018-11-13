@@ -94,6 +94,8 @@ export default {
     '__distance__m from center',
   'hotels_search.hotel_distance.kilo_meters_from_center':
     '__distance__km from center',
+  'hotels_search.all_hotels_search_list.show_map': 'Show map',
+  'hotels_search.all_hotels_search_list.show_list': 'Show list',
 
   'single_hotel.bedding_info.guests': '__numberOfGuests__ Guests',
   'single_hotel.book_now': 'Book Now',

@@ -8,6 +8,9 @@ import TranslationFragment from './src/TranslationFragment';
 import DateFormatter from './src/DateFormatter';
 import DateUtils from './src/DateUtils';
 import DeviceInfo from './src/GetDeviceLocale';
+import Tooltips, {
+  type Translation as TooltipsTranslation,
+} from './src/Tooltips';
 import type { TranslationKeys } from './src/DefaultVocabulary';
 
 export {
@@ -17,10 +20,12 @@ export {
   DeviceInfo,
   Translation,
   Alert,
+  Tooltips,
 };
 
 export type TranslationKeysType = TranslationKeys;
 export type AlertTranslationType = AlertTranslation;
+export type TooltipsTranslationType = TooltipsTranslation;
 
 export type DateFormatterFunctions =
   | 'formatToDate'
