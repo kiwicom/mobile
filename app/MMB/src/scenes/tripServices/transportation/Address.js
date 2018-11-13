@@ -26,6 +26,7 @@ export default class Address extends React.Component<Props> {
   setLocation = () => {
     this.props.setLocation(this.props.address.location);
   };
+
   render() {
     return (
       <Touchable onPress={this.setLocation}>
