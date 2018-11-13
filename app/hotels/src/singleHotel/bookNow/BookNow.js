@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Button, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Button, ButtonTitle } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
   withNavigation,
@@ -38,9 +38,10 @@ export class BookNow extends React.Component<Props> {
   render() {
     return (
       <Button onPress={this.handleGoToPayment} testID="bookNowButton">
-        <Text style={styles.text}>
-          <Translation id="single_hotel.book_now" />
-        </Text>
+        <ButtonTitle
+          text={<Translation id="single_hotel.book_now" />}
+          style={styles.text}
+        />
       </Button>
     );
   }
