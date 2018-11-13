@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import {
   Text,
   ButtonPopup,
@@ -82,13 +83,15 @@ export default class ScorePopup extends React.Component<Props, State> {
           startLabel={this.renderLabel(this.state.sliderValue)}
           startValue={this.state.sliderValue}
         />
-        <Slider
-          startValue={this.state.sliderValue}
-          min={0}
-          max={4}
-          onChange={this.handleScoreChanged}
-          snapped={true}
-        />
+        <View style={styles.sliderContainer}>
+          <Slider
+            startValue={this.state.sliderValue}
+            min={0}
+            max={4}
+            onChange={this.handleScoreChanged}
+            snapped={true}
+          />
+        </View>
       </ButtonPopup>
     </SafeAreaView>
   );
@@ -101,5 +104,8 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     paddingTop: 15,
     paddingBottom: 10,
+  },
+  sliderContainer: {
+    paddingHorizontal: 10,
   },
 });
