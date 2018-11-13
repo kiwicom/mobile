@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import {
   Text,
   ButtonPopup,
@@ -108,13 +109,15 @@ export default class PricePopup extends React.Component<Props, State> {
             }
             endValue={end}
           />
-          <Slider
-            startValue={start}
-            endValue={end}
-            min={min}
-            max={max}
-            onChange={this.handlePriceChanged}
-          />
+          <View style={styles.sliderContainer}>
+            <Slider
+              startValue={start}
+              endValue={end}
+              min={min}
+              max={max}
+              onChange={this.handlePriceChanged}
+            />
+          </View>
         </ButtonPopup>
       </SafeAreaView>
     );
@@ -133,5 +136,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '200',
     color: defaultTokens.colorTextSecondary,
+  },
+  sliderContainer: {
+    paddingHorizontal: 10,
   },
 });
