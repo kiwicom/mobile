@@ -3,11 +3,15 @@
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
 import { TextIcon } from '@kiwicom/mobile-shared';
-import RNTooltips from 'react-native-tooltips';
+import {
+  Tooltips,
+  type TooltipsTranslationType,
+} from '@kiwicom/mobile-localization';
 
 type Props = {|
   +onPress: () => void,
   +icon: React.Element<typeof TextIcon>,
+  +text: TooltipsTranslationType,
   +testID?: string,
 |};
 
@@ -50,8 +54,8 @@ export default class MapHeaderButton extends React.Component<Props, State> {
       >
         {this.props.icon}
       </HeaderButton.Right>
-      <RNTooltips
-        text="Open map"
+      <Tooltips
+        text={this.props.text}
         visible={this.state.isTooltipVisible}
         reference={this.state.buttonReference}
         corner={100}
