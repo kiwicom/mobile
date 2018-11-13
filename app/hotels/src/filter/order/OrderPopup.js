@@ -64,8 +64,13 @@ export default class OrderPopup extends React.Component<Props, State> {
       <Text style={styles.title}>
         <Translation id="hotels_search.filter.order_popup.title" />
       </Text>
-      {ordersOptions.map(option => (
+      {ordersOptions.map((option, index) => (
         <React.Fragment key={option.key}>
+          {index !== 0 && (
+            <View style={styles.separator}>
+              <SeparatorFullWidth color={defaultTokens.paletteInkLighter} />
+            </View>
+          )}
           <OrderCheckbox
             onPress={this.setOrder}
             isChecked={this.state.currentOrder === option.key}
@@ -73,9 +78,6 @@ export default class OrderPopup extends React.Component<Props, State> {
           >
             {option.title}
           </OrderCheckbox>
-          <View style={styles.separator}>
-            <SeparatorFullWidth color={defaultTokens.paletteInkLighter} />
-          </View>
         </React.Fragment>
       ))}
     </ButtonPopup>
