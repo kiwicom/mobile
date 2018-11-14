@@ -1,7 +1,8 @@
 // @flow
 
+/* eslint-disable no-restricted-imports  */
 import * as React from 'react';
-import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
+import Relay from 'react-relay';
 import { Alert } from '@kiwicom/mobile-localization';
 
 import PublicEnvironment from './src/PublicEnvironment';

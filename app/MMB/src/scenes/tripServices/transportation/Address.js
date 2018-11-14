@@ -31,14 +31,13 @@ export default class Address extends React.Component<Props> {
     return (
       <Touchable onPress={this.setLocation}>
         <View style={styles.wrapper}>
-          {Platform.OS === 'ios' &&
-            this.props.address.name != null && (
-              <View style={styles.addressItemWrapper}>
-                <Text numberOfLines={1} style={styles.name}>
-                  <Translation passThrough={this.props.address.name} />
-                </Text>
-              </View>
-            )}
+          {Platform.OS === 'ios' && this.props.address.name != null && (
+            <View style={styles.addressItemWrapper}>
+              <Text numberOfLines={1} style={styles.name}>
+                <Translation passThrough={this.props.address.name} />
+              </Text>
+            </View>
+          )}
           <View style={styles.addressItemWrapper}>
             <Text numberOfLines={1} style={styles.address}>
               <Translation passThrough={this.props.address.address} />

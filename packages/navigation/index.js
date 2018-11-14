@@ -22,7 +22,7 @@ export { SeparatorTrimmed, SeparatorFullWidth } from './src/Separators';
 export { default as TitledMenuGroup } from './src/TitledMenuGroup';
 export { default as HeaderTitle } from './src/HeaderTitle';
 export { default as HeaderButton } from './src/HeaderButton';
-export { withNavigation } from 'react-navigation';
+export { withNavigation } from 'react-navigation'; // eslint-disable-line no-restricted-imports
 export {
   default as SplitNavigation,
   withSplitNavigationContext,
