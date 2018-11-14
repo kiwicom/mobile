@@ -27,7 +27,9 @@ class DetailShareButton extends React.Component<PropsWithContext> {
     });
   };
 
-  render = () => <ShareButton onPress={this.onPress} />;
+  render() {
+    return <ShareButton onPress={this.onPress} />;
+  }
 }
 
 export default function HeaderShareButtonWithContext() {

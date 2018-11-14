@@ -6,7 +6,9 @@ import renderer from 'react-test-renderer';
 import InsuranceOverviewSceneContext from '../InsuranceOverviewSceneContext';
 
 class ContextConsumer extends React.Component<{}> {
-  render = () => null;
+  render() {
+    return null;
+  }
 }
 
 const getWrapper = () =>

@@ -17,12 +17,14 @@ export default class FlightServiceMenuItem extends React.Component<Props> {
     this.props.navigate(this.props.routeName);
   };
 
-  render = () => (
-    <MenuItem
-      title={this.props.title}
-      isActive={false}
-      onPress={this.onPress}
-      icon={this.props.icon}
-    />
-  );
+  render() {
+    return (
+      <MenuItem
+        title={this.props.title}
+        isActive={false}
+        onPress={this.onPress}
+        icon={this.props.icon}
+      />
+    );
+  }
 }

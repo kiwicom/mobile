@@ -63,20 +63,22 @@ export default class OrderFilter extends React.Component<Props, State> {
     }));
   };
 
-  render = () => (
-    <React.Fragment>
-      <FilterButton
-        title={this.getTitle()}
-        isActive={this.props.isActive}
-        onPress={this.filterButtonClicked}
-        icon={<TextIcon code="&#xe171;" />}
-      />
-      <OrderPopup
-        isVisible={this.state.isPopupOpen}
-        onClose={this.togglePopup}
-        onSave={this.handleSave}
-        orderBy={this.props.orderBy}
-      />
-    </React.Fragment>
-  );
+  render() {
+    return (
+      <React.Fragment>
+        <FilterButton
+          title={this.getTitle()}
+          isActive={this.props.isActive}
+          onPress={this.filterButtonClicked}
+          icon={<TextIcon code="&#xe171;" />}
+        />
+        <OrderPopup
+          isVisible={this.state.isPopupOpen}
+          onClose={this.togglePopup}
+          onSave={this.handleSave}
+          orderBy={this.props.orderBy}
+        />
+      </React.Fragment>
+    );
+  }
 }

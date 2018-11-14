@@ -23,9 +23,11 @@ export default class PlaygroundListItem extends React.Component<Props> {
     this.props.onPress(this.props.name);
   };
 
-  render = () => (
-    <Touchable style={styles.row} onPress={this.onPress}>
-      <Translation passThrough={this.props.name} />
-    </Touchable>
-  );
+  render() {
+    return (
+      <Touchable style={styles.row} onPress={this.onPress}>
+        <Translation passThrough={this.props.name} />
+      </Touchable>
+    );
+  }
 }

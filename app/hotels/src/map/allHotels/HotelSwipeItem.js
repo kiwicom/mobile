@@ -52,7 +52,7 @@ export class HotelSwipeItemWithContext extends React.Component<PropsWithContext>
     }
   };
 
-  render = () => {
+  render() {
     const { width, data } = this.props;
     const name = data?.name;
     const price = data?.price;
@@ -72,7 +72,7 @@ export class HotelSwipeItemWithContext extends React.Component<PropsWithContext>
         </View>
       </TouchableWithoutFeedback>
     );
-  };
+  }
 }
 
 type Props = {|

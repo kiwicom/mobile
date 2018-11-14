@@ -58,7 +58,7 @@ export default class HotelReviewScore extends React.Component<Props> {
     };
   };
 
-  render = () => {
+  render() {
     const reviewScore = this.props.score;
 
     if (reviewScore == null || reviewScore == 0) {
@@ -84,7 +84,7 @@ export default class HotelReviewScore extends React.Component<Props> {
         ]}
       />
     );
-  };
+  }
 }
 
 const style = StyleSheet.create({

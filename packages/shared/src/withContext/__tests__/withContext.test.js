@@ -60,7 +60,9 @@ type CountProps = {|
 |};
 
 class MyComponent extends React.Component<CountProps> {
-  render = () => null;
+  render() {
+    return null;
+  }
 }
 const MyComponentWithContext = myWithContext(
   ({ count, incrementCount, setNote }) => ({ count, incrementCount, setNote }),

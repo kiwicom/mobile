@@ -40,7 +40,7 @@ export default class PdfViewer extends React.Component<Props, State> {
     }
   };
 
-  render = () => {
+  render() {
     return (
       <React.Fragment>
         <Pdf
@@ -60,5 +60,5 @@ export default class PdfViewer extends React.Component<Props, State> {
         )}
       </React.Fragment>
     );
-  };
+  }
 }

@@ -68,7 +68,7 @@ class MapScreenWithContext extends React.Component<PropsWithContext, State> {
     this.handleActiveIndex(index, hotels);
   };
 
-  render = () => {
+  render() {
     const { selectedHotelIndex } = this.state;
     const hotels = this.getHotels();
 
@@ -89,7 +89,7 @@ class MapScreenWithContext extends React.Component<PropsWithContext, State> {
         />
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

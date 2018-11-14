@@ -59,46 +59,48 @@ export default class TravelDocumentForm extends React.Component<Props> {
     );
   };
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          query={graphql`
-            query TravelDocumentFormQuery(
-              $bookingId: Int!
-              $authToken: String!
-            ) {
-              singleBooking(id: $bookingId, authToken: $authToken) {
-                __typename
-                ... on BookingOneWay {
-                  trip {
-                    ...ExpiryDatePicker
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
+            query={graphql`
+              query TravelDocumentFormQuery(
+                $bookingId: Int!
+                $authToken: String!
+              ) {
+                singleBooking(id: $bookingId, authToken: $authToken) {
+                  __typename
+                  ... on BookingOneWay {
+                    trip {
+                      ...ExpiryDatePicker
+                    }
                   }
-                }
 
-                ... on BookingReturn {
-                  inbound {
-                    ...ExpiryDatePicker
+                  ... on BookingReturn {
+                    inbound {
+                      ...ExpiryDatePicker
+                    }
                   }
-                }
 
-                ... on BookingMulticity {
-                  trips {
-                    ...ExpiryDatePicker
+                  ... on BookingMulticity {
+                    trips {
+                      ...ExpiryDatePicker
+                    }
                   }
                 }
               }
-            }
-          `}
-          render={this.renderInner}
-          variables={{
-            bookingId,
-            authToken,
-          }}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            render={this.renderInner}
+            variables={{
+              bookingId,
+              authToken,
+            }}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

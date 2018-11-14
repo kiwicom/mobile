@@ -19,17 +19,19 @@ class BaggageGroupButton extends React.Component<Props> {
     this.props.navigation.navigate('mmb.flight_services.checked_baggage');
   };
 
-  render = () => (
-    <Touchable onPress={this.goToBaggage}>
-      <View style={styles.row}>
-        <View style={styles.children}>{this.props.children}</View>
-        {Platform.select({
-          android: <TextIcon code="E" style={styles.icon} />,
-          ios: <TextIcon code="&#xe01F;" style={styles.icon} />,
-        })}
-      </View>
-    </Touchable>
-  );
+  render() {
+    return (
+      <Touchable onPress={this.goToBaggage}>
+        <View style={styles.row}>
+          <View style={styles.children}>{this.props.children}</View>
+          {Platform.select({
+            android: <TextIcon code="E" style={styles.icon} />,
+            ios: <TextIcon code="&#xe01F;" style={styles.icon} />,
+          })}
+        </View>
+      </Touchable>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

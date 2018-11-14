@@ -31,7 +31,7 @@ export class BeddingInfo extends React.Component<Props> {
       .join(' or '); // TODO: Translate
   };
 
-  render = () => {
+  render() {
     const { room } = this.props;
     const maxPersons = room?.maxPersons;
 
@@ -55,7 +55,7 @@ export class BeddingInfo extends React.Component<Props> {
         </View>
       </View>
     );
-  };
+  }
 }
 
 export default (createFragmentContainer(

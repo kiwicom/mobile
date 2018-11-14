@@ -38,26 +38,31 @@ class LocalServicesMenuGroup extends React.Component<Props> {
     });
   };
 
-  render = () => (
-    <TitledMenuGroup
-      title={<Translation id="mmb.trip_services.local_services" />}
-    >
-      <CarRentalMenuItem
-        data={this.props.data}
-        onOpenWebview={this.openWebview}
-      />
-      <HotelMenuItem data={this.props.data} />
-      <LoungeMenuItem data={this.props.data} onOpenWebview={this.openWebview} />
-      <ParkingMenuItem
-        data={this.props.data}
-        onOpenWebview={this.openWebview}
-      />
-      <TransportationMenuItem
-        data={this.props.data}
-        onOpenWebview={this.openWebview}
-      />
-    </TitledMenuGroup>
-  );
+  render() {
+    return (
+      <TitledMenuGroup
+        title={<Translation id="mmb.trip_services.local_services" />}
+      >
+        <CarRentalMenuItem
+          data={this.props.data}
+          onOpenWebview={this.openWebview}
+        />
+        <HotelMenuItem data={this.props.data} />
+        <LoungeMenuItem
+          data={this.props.data}
+          onOpenWebview={this.openWebview}
+        />
+        <ParkingMenuItem
+          data={this.props.data}
+          onOpenWebview={this.openWebview}
+        />
+        <TransportationMenuItem
+          data={this.props.data}
+          onOpenWebview={this.openWebview}
+        />
+      </TitledMenuGroup>
+    );
+  }
 }
 
 export default createFragmentContainer(

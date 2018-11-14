@@ -54,7 +54,7 @@ export class Header extends React.Component<Props> {
     });
   };
 
-  render = () => {
+  render() {
     const { hotel } = this.props;
     const mainPhotoUrl = hotel?.mainPhoto?.highResUrl;
     const photosCount = hotel?.photos?.edges?.length ?? 0;
@@ -85,7 +85,7 @@ export class Header extends React.Component<Props> {
         </View>
       </Touchable>
     );
-  };
+  }
 }
 
 export default (createFragmentContainer(

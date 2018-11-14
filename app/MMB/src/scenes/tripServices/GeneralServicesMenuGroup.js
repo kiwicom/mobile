@@ -49,7 +49,7 @@ class GeneralServicesMenuGroup extends React.Component<Props> {
   displayInsuranceMenuItem = () =>
     !this.isPastBooking() && this.isStatusConfirmed() && this.noUSPassengers();
 
-  render = () => {
+  render() {
     if (!this.displayInsuranceMenuItem()) {
       return null;
     }
@@ -63,7 +63,7 @@ class GeneralServicesMenuGroup extends React.Component<Props> {
         />
       </TitledMenuGroup>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

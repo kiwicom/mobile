@@ -61,7 +61,7 @@ export default class Translation extends React.Component<Props> {
   // use this property to highlight translations for screenshoting or debugging
   highlightTranslations = false;
 
-  render = () => {
+  render() {
     const containerStyle = this.highlightTranslations
       ? {
           backgroundColor: this.props.id ? 'orange' : 'pink',
@@ -95,5 +95,5 @@ export default class Translation extends React.Component<Props> {
         )}
       </Text>
     );
-  };
+  }
 }

@@ -34,7 +34,7 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
 
   willFocusSubscription: { remove: () => void };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.willFocusSubscription = this.props.navigation.addListener(
       'willFocus',
       () => {
@@ -42,7 +42,7 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
       },
     );
     this.fetchToken();
-  };
+  }
 
   componentWillUnmount() {
     this.willFocusSubscription.remove();
@@ -62,7 +62,7 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
     }
   };
 
-  render = () => {
+  render() {
     if (
       !this.state.token &&
       (!this.state.bookingId && !this.state.simpleToken)
@@ -103,7 +103,7 @@ export default class MMBPackageWrapper extends React.Component<Props, State> {
       );
     }
     return null;
-  };
+  }
 }
 
 const styles = StyleSheet.create({

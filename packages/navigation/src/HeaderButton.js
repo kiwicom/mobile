@@ -93,7 +93,7 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
     }
   };
 
-  render = () => {
+  render() {
     const { disabled, onPress, style, testID } = this.props;
 
     return (
@@ -119,7 +119,7 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
         </View>
       </Touchable>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

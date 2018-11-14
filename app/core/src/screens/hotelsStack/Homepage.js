@@ -55,7 +55,7 @@ export default class Homepage extends React.Component<Props> {
     this.props.navigation.navigate('SingleHotelPackage');
   };
 
-  render = () => {
+  render() {
     return (
       <LayoutSingleColumn testID="homePage">
         <Section>
@@ -81,5 +81,5 @@ export default class Homepage extends React.Component<Props> {
         </Section>
       </LayoutSingleColumn>
     );
-  };
+  }
 }

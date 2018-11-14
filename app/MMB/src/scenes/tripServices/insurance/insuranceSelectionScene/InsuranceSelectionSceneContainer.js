@@ -12,7 +12,7 @@ export default class InsuranceSelectionSceneContainer extends React.Component<{}
     return <InsuranceSelectionScene data={response.singleBooking} />;
   };
 
-  render = () => {
+  render() {
     return (
       <BookingDetailContext.Consumer>
         {({ bookingId, authToken }) => (
@@ -38,5 +38,5 @@ export default class InsuranceSelectionSceneContainer extends React.Component<{}
         )}
       </BookingDetailContext.Consumer>
     );
-  };
+  }
 }

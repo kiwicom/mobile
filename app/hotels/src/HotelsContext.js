@@ -147,9 +147,13 @@ class Provider extends React.Component<Props, State> {
 
   setPaymentLink = (paymentLink: ?string) => this.setState({ paymentLink });
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
 
 export default { Consumer, Provider };
