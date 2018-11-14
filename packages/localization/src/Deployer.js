@@ -4,7 +4,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import fetch from '@mrtnzlml/fetch';
+import fetch from 'node-fetch';
 import FormData from 'form-data';
 
 import { getVocabularies } from './DefaultVocabulary';
