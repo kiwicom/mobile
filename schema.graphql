@@ -1606,6 +1606,7 @@ interface HotelInterface {
 """The urls where the user will be redirected for payment"""
 type HotelPaymentUrls {
   bookingComPaymentUrl: String
+  stay22PaymentUrl(paymentLink: String!): String
 }
 
 type HotelPhoto {

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 28a12649218f3e7a941c619921aa507b
+ * @relayHash 5d92fb044f70f4e64e8d7f64d9402ada
  */
 
 /* eslint-disable */
@@ -13,24 +13,24 @@ export type RoomConfigInput = {
   roomId: string,
   count: number,
 };
-export type PaymentScreenQueryVariables = {|
+export type BookingPaymentScreenQueryVariables = {|
   hotelId?: ?string,
   roomConfig?: ?$ReadOnlyArray<?RoomConfigInput>,
 |};
-export type PaymentScreenQueryResponse = {|
+export type BookingPaymentScreenQueryResponse = {|
   +hotelPaymentUrls: ?{|
     +bookingComPaymentUrl: ?string
   |}
 |};
-export type PaymentScreenQuery = {|
-  variables: PaymentScreenQueryVariables,
-  response: PaymentScreenQueryResponse,
+export type BookingPaymentScreenQuery = {|
+  variables: BookingPaymentScreenQueryVariables,
+  response: BookingPaymentScreenQueryResponse,
 |};
 */
 
 
 /*
-query PaymentScreenQuery(
+query BookingPaymentScreenQuery(
   $hotelId: ID
   $roomConfig: [RoomConfigInput]
 ) {
@@ -91,13 +91,13 @@ v1 = [
 return {
   "kind": "Request",
   "operationKind": "query",
-  "name": "PaymentScreenQuery",
+  "name": "BookingPaymentScreenQuery",
   "id": null,
-  "text": "query PaymentScreenQuery(\n  $hotelId: ID\n  $roomConfig: [RoomConfigInput]\n) {\n  hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {\n    bookingComPaymentUrl\n  }\n}\n",
+  "text": "query BookingPaymentScreenQuery(\n  $hotelId: ID\n  $roomConfig: [RoomConfigInput]\n) {\n  hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {\n    bookingComPaymentUrl\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
-    "name": "PaymentScreenQuery",
+    "name": "BookingPaymentScreenQuery",
     "type": "RootQuery",
     "metadata": null,
     "argumentDefinitions": v0,
@@ -105,12 +105,12 @@ return {
   },
   "operation": {
     "kind": "Operation",
-    "name": "PaymentScreenQuery",
+    "name": "BookingPaymentScreenQuery",
     "argumentDefinitions": v0,
     "selections": v1
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4c45a0c05b4bc8d0dcc000450b0382a1';
+(node/*: any*/).hash = '2237324bd3f3dab3ca90d1a90e28e5d1';
 module.exports = node;
