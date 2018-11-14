@@ -46,13 +46,11 @@ class LocationPopupButton extends React.Component<Props> {
             ) : (
               <Translation passThrough={cityName || ''} />
             )}
-            {date != null &&
-              displayDate != null &&
-              displayDate && (
-                <Text style={styleSheet.date}>
-                  <Translation passThrough={date} />
-                </Text>
-              )}
+            {date != null && displayDate != null && displayDate && (
+              <Text style={styleSheet.date}>
+                <Translation passThrough={date} />
+              </Text>
+            )}
           </View>
         </React.Fragment>
       </Touchable>

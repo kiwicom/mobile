@@ -26,9 +26,7 @@ type PropsWithContext = {|
   +deviceWidth: number,
 |};
 
-export class HotelSwipeItemWithContext extends React.Component<
-  PropsWithContext,
-> {
+export class HotelSwipeItemWithContext extends React.Component<PropsWithContext> {
   openSingleHotel = (hotelId: string) => {
     this.props.setHotelId(hotelId);
     this.props.navigation.navigate('SingleHotel', {

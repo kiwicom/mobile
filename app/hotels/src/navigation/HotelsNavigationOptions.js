@@ -56,36 +56,35 @@ export default ({ cityName, checkin, checkout }: Props) => ({
       <Text style={styles.headerLeftText}>
         <Translation passThrough={cityName || ''} />
       </Text>
-      {checkin != null &&
-        checkout != null && (
-          <View style={styles.row}>
-            <AdaptableBadge
-              style={styles.badge}
-              textStyle={styles.badgeText}
-              translation={
-                <Translation
-                  passThrough={DateFormatter(new Date(checkin)).formatCustom(
-                    dateFormat,
-                  )}
-                />
-              }
-            />
-            <Translation passThrough=" " />
-            <Translation id="hotels_search.header.to" />
-            <Translation passThrough=" " />
-            <AdaptableBadge
-              style={styles.badge}
-              textStyle={styles.badgeText}
-              translation={
-                <Translation
-                  passThrough={DateFormatter(new Date(checkout)).formatCustom(
-                    dateFormat,
-                  )}
-                />
-              }
-            />
-          </View>
-        )}
+      {checkin != null && checkout != null && (
+        <View style={styles.row}>
+          <AdaptableBadge
+            style={styles.badge}
+            textStyle={styles.badgeText}
+            translation={
+              <Translation
+                passThrough={DateFormatter(new Date(checkin)).formatCustom(
+                  dateFormat,
+                )}
+              />
+            }
+          />
+          <Translation passThrough=" " />
+          <Translation id="hotels_search.header.to" />
+          <Translation passThrough=" " />
+          <AdaptableBadge
+            style={styles.badge}
+            textStyle={styles.badgeText}
+            translation={
+              <Translation
+                passThrough={DateFormatter(new Date(checkout)).formatCustom(
+                  dateFormat,
+                )}
+              />
+            }
+          />
+        </View>
+      )}
     </View>
   ),
 });

@@ -15,9 +15,7 @@ type ShareButtonPropsWithContext = {|
   +flightNumber: string,
 |};
 
-class BoardingPassShareButton extends React.Component<
-  ShareButtonPropsWithContext,
-> {
+class BoardingPassShareButton extends React.Component<ShareButtonPropsWithContext> {
   onPress = () => {
     this.sharePromise();
   };

@@ -66,19 +66,18 @@ export default class TextInput extends React.Component<Props, State> {
           style={[styleSheet.text, styleSheet.input]}
         />
 
-        {this.props.placeholder &&
-          this.state.displayPlaceholder && (
-            <Text
-              style={[
-                styleSheet.text,
-                styleSheet.placeholder,
-                this.props.placeholderStyle,
-              ]}
-              pointerEvents="none"
-            >
-              {this.props.placeholder}
-            </Text>
-          )}
+        {this.props.placeholder && this.state.displayPlaceholder && (
+          <Text
+            style={[
+              styleSheet.text,
+              styleSheet.placeholder,
+              this.props.placeholderStyle,
+            ]}
+            pointerEvents="none"
+          >
+            {this.props.placeholder}
+          </Text>
+        )}
       </View>
     </React.Fragment>
   );

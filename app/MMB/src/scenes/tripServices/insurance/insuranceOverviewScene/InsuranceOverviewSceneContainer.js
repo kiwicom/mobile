@@ -13,9 +13,7 @@ type ContainerProps = {|
   +navigation: NavigationType,
 |};
 
-export default class InsuranceOverviewSceneContainer extends React.Component<
-  ContainerProps,
-> {
+export default class InsuranceOverviewSceneContainer extends React.Component<ContainerProps> {
   static navigationOptions = () => {
     return {
       headerTitle: function TripServicesHeaderTitle() {
