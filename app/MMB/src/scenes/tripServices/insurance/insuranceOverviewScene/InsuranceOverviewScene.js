@@ -85,7 +85,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
     this.navigate('mmb.trip_services.insurance.refund');
   };
 
-  render = () => {
+  render() {
     const { data, passengers, amount } = this.props;
     const hasChanged = this.props.hasChanged();
     return (
@@ -127,7 +127,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
         {hasChanged && <OrderSummary />}
       </React.Fragment>
     );
-  };
+  }
 }
 
 export default withInsuranceContext(state => ({

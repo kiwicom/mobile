@@ -22,25 +22,27 @@ export default class TicketScene extends React.Component<Props> {
     <TicketRefetch data={renderProps.singleBooking} />
   );
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          query={graphql`
-            query TicketSceneQuery($bookingId: Int!, $authToken: String!) {
-              singleBooking(id: $bookingId, authToken: $authToken) {
-                ... on BookingInterface {
-                  ...TicketRefetch
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
+            query={graphql`
+              query TicketSceneQuery($bookingId: Int!, $authToken: String!) {
+                singleBooking(id: $bookingId, authToken: $authToken) {
+                  ... on BookingInterface {
+                    ...TicketRefetch
+                  }
                 }
               }
-            }
-          `}
-          variables={{ bookingId, authToken }}
-          render={this.renderInner}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            variables={{ bookingId, authToken }}
+            render={this.renderInner}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }
 
 export const TicketSceneSubMenus = {

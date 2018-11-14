@@ -61,7 +61,7 @@ export default class DatePicker extends React.Component<Props, State> {
     });
   };
 
-  render = () => {
+  render() {
     const {
       date,
       minDate,
@@ -101,5 +101,5 @@ export default class DatePicker extends React.Component<Props, State> {
         </BarPopup>
       </React.Fragment>
     );
-  };
+  }
 }

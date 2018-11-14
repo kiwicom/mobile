@@ -18,7 +18,7 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
 
   goToHomepage = () => this.props.navigation.goBack();
 
-  render = () => {
+  render() {
     return (
       <SingleHotelStandalonePackage
         language="en"
@@ -33,5 +33,5 @@ export default class SingleHotelPackageWrapper extends React.Component<Props> {
         version="rn-development"
       />
     );
-  };
+  }
 }

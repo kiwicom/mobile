@@ -73,7 +73,7 @@ export class RenderSearchResults extends React.Component<PropsWithContext> {
     ]).start();
   };
 
-  render = () => {
+  render() {
     const data = this.props.data || [];
 
     return (
@@ -107,7 +107,7 @@ export class RenderSearchResults extends React.Component<PropsWithContext> {
         </Animated.View>
       </React.Fragment>
     );
-  };
+  }
 }
 
 type Props = {|

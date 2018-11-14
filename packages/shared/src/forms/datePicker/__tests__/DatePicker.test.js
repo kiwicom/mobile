@@ -21,14 +21,16 @@ class PickerWrapper extends React.Component<{}, {| date: Date |}> {
     this.setState({ date });
   };
 
-  render = () => (
-    <DatePicker
-      date={this.state.date}
-      onDateChange={this.onDateChange}
-      iconComponent={<TextIcon code="z" />}
-      {...this.props}
-    />
-  );
+  render() {
+    return (
+      <DatePicker
+        date={this.state.date}
+        onDateChange={this.onDateChange}
+        iconComponent={<TextIcon code="z" />}
+        {...this.props}
+      />
+    );
+  }
 }
 
 describe('DatePicker', () => {

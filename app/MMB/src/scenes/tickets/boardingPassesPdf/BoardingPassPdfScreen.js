@@ -33,7 +33,9 @@ class BoardingPassShareButton extends React.Component<ShareButtonPropsWithContex
     }
   };
 
-  render = () => <ShareButton onPress={this.onPress} />;
+  render() {
+    return <ShareButton onPress={this.onPress} />;
+  }
 }
 
 type ShareButtonProps = {|

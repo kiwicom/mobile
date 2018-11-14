@@ -35,9 +35,9 @@ export default class Price extends React.Component<Props, State> {
     formattedCurrency: '',
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.formatCurrency();
-  };
+  }
 
   componentDidUpdate = (prevProps: Props) => {
     if (
@@ -73,11 +73,11 @@ export default class Price extends React.Component<Props, State> {
     }
   };
 
-  render = () => {
+  render() {
     return (
       <Text style={this.props.style}>
         <Translation passThrough={this.state.formattedCurrency} />
       </Text>
     );
-  };
+  }
 }

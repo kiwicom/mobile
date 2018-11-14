@@ -25,7 +25,7 @@ export class Stay22HotelsSearch extends React.Component<Props> {
     return <Stay22PaginationContainer data={propsFromRenderer} />;
   };
 
-  render = () => {
+  render() {
     const { checkin, checkout, latitude, longitude, currency } = this.props;
     if (
       checkin === null ||
@@ -67,7 +67,7 @@ export class Stay22HotelsSearch extends React.Component<Props> {
         render={this.renderAllHotelsSearchList}
       />
     );
-  };
+  }
 }
 
 export default withHotelsContext(state => ({

@@ -28,21 +28,23 @@ class Wrapper extends React.Component<{||}, State> {
     this.setState({ number });
   };
 
-  render = () => (
-    <React.Fragment>
-      <TextButton
-        title={<Translation passThrough="Show age picker" />}
-        onPress={this.toggle}
-      />
-      <AgePicker
-        isVisible={this.state.isVisible}
-        onClose={this.toggle}
-        max={3}
-        min={1}
-        onChange={this.onChange}
-      />
-    </React.Fragment>
-  );
+  render() {
+    return (
+      <React.Fragment>
+        <TextButton
+          title={<Translation passThrough="Show age picker" />}
+          onPress={this.toggle}
+        />
+        <AgePicker
+          isVisible={this.state.isVisible}
+          onClose={this.toggle}
+          max={3}
+          min={1}
+          onChange={this.onChange}
+        />
+      </React.Fragment>
+    );
+  }
 }
 
 it('renders', () => {

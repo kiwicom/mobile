@@ -28,29 +28,31 @@ export class ServicesMenuGroup extends React.Component<PropsWithContext> {
     );
   };
 
-  render = () => (
-    <TitledMenuGroup title={<Translation id="mmb.main_menu.services" />}>
-      <FlightServices
-        onPress={this.handleOpenFlightServicesSubmenu}
-        isActive={
-          this.props.activeId === 'mmb.main_menu.services.flight_services'
-        }
-        data={this.props.data}
-      />
+  render() {
+    return (
+      <TitledMenuGroup title={<Translation id="mmb.main_menu.services" />}>
+        <FlightServices
+          onPress={this.handleOpenFlightServicesSubmenu}
+          isActive={
+            this.props.activeId === 'mmb.main_menu.services.flight_services'
+          }
+          data={this.props.data}
+        />
 
-      <MenuItem
-        onPress={this.handleOpenTripServicesSubmenu}
-        isActive={
-          this.props.activeId === 'mmb.main_menu.services.trip_services'
-        }
-        icon={<TextIcon code="r" />}
-        title={<Translation id="mmb.main_menu.services.trip_services" />}
-        description={
-          <Translation id="mmb.main_menu.services.trip_services.description" />
-        }
-      />
-    </TitledMenuGroup>
-  );
+        <MenuItem
+          onPress={this.handleOpenTripServicesSubmenu}
+          isActive={
+            this.props.activeId === 'mmb.main_menu.services.trip_services'
+          }
+          icon={<TextIcon code="r" />}
+          title={<Translation id="mmb.main_menu.services.trip_services" />}
+          description={
+            <Translation id="mmb.main_menu.services.trip_services.description" />
+          }
+        />
+      </TitledMenuGroup>
+    );
+  }
 }
 
 type Props = {|

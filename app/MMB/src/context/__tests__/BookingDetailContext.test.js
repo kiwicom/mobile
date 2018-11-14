@@ -7,7 +7,9 @@ import { DateFormatter } from '@kiwicom/mobile-localization';
 import BookingDetailContext from '../BookingDetailContext';
 
 class ContextConsumer extends React.Component<{}> {
-  render = () => null;
+  render() {
+    return null;
+  }
 }
 
 const getWrapper = () =>

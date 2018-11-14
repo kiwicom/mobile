@@ -49,38 +49,40 @@ export default class TextInput extends React.Component<Props, State> {
     );
   };
 
-  render = () => (
-    <React.Fragment>
-      {this.props.label != null && (
-        <Text style={[styleSheet.label, this.props.labelStyle]}>
-          {this.props.label}
-        </Text>
-      )}
-      <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
-        <OriginalTextInput
-          underlineColorAndroid="transparent"
-          autoCorrect={false}
-          {...this.props}
-          placeholder={null}
-          onChangeText={this.handlePlaceholder}
-          style={[styleSheet.text, styleSheet.input]}
-        />
-
-        {this.props.placeholder && this.state.displayPlaceholder && (
-          <Text
-            style={[
-              styleSheet.text,
-              styleSheet.placeholder,
-              this.props.placeholderStyle,
-            ]}
-            pointerEvents="none"
-          >
-            {this.props.placeholder}
+  render() {
+    return (
+      <React.Fragment>
+        {this.props.label != null && (
+          <Text style={[styleSheet.label, this.props.labelStyle]}>
+            {this.props.label}
           </Text>
         )}
-      </View>
-    </React.Fragment>
-  );
+        <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
+          <OriginalTextInput
+            underlineColorAndroid="transparent"
+            autoCorrect={false}
+            {...this.props}
+            placeholder={null}
+            onChangeText={this.handlePlaceholder}
+            style={[styleSheet.text, styleSheet.input]}
+          />
+
+          {this.props.placeholder && this.state.displayPlaceholder && (
+            <Text
+              style={[
+                styleSheet.text,
+                styleSheet.placeholder,
+                this.props.placeholderStyle,
+              ]}
+              pointerEvents="none"
+            >
+              {this.props.placeholder}
+            </Text>
+          )}
+        </View>
+      </React.Fragment>
+    );
+  }
 }
 
 const styleSheet = StyleSheet.create({

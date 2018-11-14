@@ -51,7 +51,7 @@ class FilterStripe extends React.Component<Props> {
 
   storeScrollViewRef = ref => (this.scrollViewRef = ref);
 
-  render = () => {
+  render() {
     return (
       <View style={styles.view}>
         <ScrollView
@@ -96,7 +96,7 @@ class FilterStripe extends React.Component<Props> {
         </ScrollView>
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

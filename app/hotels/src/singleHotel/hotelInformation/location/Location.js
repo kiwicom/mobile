@@ -52,7 +52,7 @@ export class Location extends React.Component<Props> {
     });
   };
 
-  render = () => {
+  render() {
     const { hotel } = this.props;
     const address = hotel?.address;
     const coordinates = hotel?.coordinates;
@@ -91,7 +91,7 @@ export class Location extends React.Component<Props> {
         </TouchableWithoutFeedback>
       </View>
     );
-  };
+  }
 }
 
 const select = ({

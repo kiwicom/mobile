@@ -171,72 +171,74 @@ export default class Timeline extends React.Component<{||}> {
     return <SectionListScrollTo data={children} />;
   };
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ id, authToken }) => (
-        <PublicApiRenderer
-          query={graphql`
-            query TimelineQuery($id: ID!, $authToken: String!) {
-              bookingTimeline(id: $id, authToken: $authToken) {
-                events {
-                  __typename
-                  timestamp
-                  ... on BookedFlightTimelineEvent {
-                    ...BookedFlightTimelineEvent
-                  }
-                  ... on LeaveForAirportTimelineEvent {
-                    ...LeaveForAirportTimelineEvent
-                  }
-                  ... on AirportArrivalTimelineEvent {
-                    ...AirportArrivalTimelineEvent
-                  }
-                  ... on DownloadInvoiceTimelineEvent {
-                    ...DownloadInvoiceTimelineEvent
-                  }
-                  ... on DownloadETicketTimelineEvent {
-                    ...DownloadETicketTimelineEvent
-                  }
-                  ... on BoardingTimelineEvent {
-                    ...BoardingTimelineEvent
-                  }
-                  ... on DepartureTimelineEvent {
-                    ...DepartureTimelineEvent
-                  }
-                  ... on ArrivalTimelineEvent {
-                    ...ArrivalTimelineEvent
-                  }
-                  ... on TransportFromAirportTimelineEvent {
-                    ...TransportFromAirportTimelineEvent
-                  }
-                  ... on DownloadBoardingPassTimelineEvent {
-                    ...DownloadBoardingPassTimelineEvent
-                  }
-                  ... on NoMoreEditsTimelineEvent {
-                    ...NoMoreEditsTimelineEvent
-                  }
-                  ... on NavigateToTerminalTimelineEvent {
-                    ...NavigateToTerminalTimelineEvent
-                  }
-                  ... on TimeToCheckinTimelineEvent {
-                    ...TimeToCheckinTimelineEvent
-                  }
-                  ... on CheckinClosingTimelineEvent {
-                    ...CheckinClosingTimelineEvent
-                  }
-                  ... on EnterDetailsTimelineEvent {
-                    ...EnterDetailsTimelineEvent
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ id, authToken }) => (
+          <PublicApiRenderer
+            query={graphql`
+              query TimelineQuery($id: ID!, $authToken: String!) {
+                bookingTimeline(id: $id, authToken: $authToken) {
+                  events {
+                    __typename
+                    timestamp
+                    ... on BookedFlightTimelineEvent {
+                      ...BookedFlightTimelineEvent
+                    }
+                    ... on LeaveForAirportTimelineEvent {
+                      ...LeaveForAirportTimelineEvent
+                    }
+                    ... on AirportArrivalTimelineEvent {
+                      ...AirportArrivalTimelineEvent
+                    }
+                    ... on DownloadInvoiceTimelineEvent {
+                      ...DownloadInvoiceTimelineEvent
+                    }
+                    ... on DownloadETicketTimelineEvent {
+                      ...DownloadETicketTimelineEvent
+                    }
+                    ... on BoardingTimelineEvent {
+                      ...BoardingTimelineEvent
+                    }
+                    ... on DepartureTimelineEvent {
+                      ...DepartureTimelineEvent
+                    }
+                    ... on ArrivalTimelineEvent {
+                      ...ArrivalTimelineEvent
+                    }
+                    ... on TransportFromAirportTimelineEvent {
+                      ...TransportFromAirportTimelineEvent
+                    }
+                    ... on DownloadBoardingPassTimelineEvent {
+                      ...DownloadBoardingPassTimelineEvent
+                    }
+                    ... on NoMoreEditsTimelineEvent {
+                      ...NoMoreEditsTimelineEvent
+                    }
+                    ... on NavigateToTerminalTimelineEvent {
+                      ...NavigateToTerminalTimelineEvent
+                    }
+                    ... on TimeToCheckinTimelineEvent {
+                      ...TimeToCheckinTimelineEvent
+                    }
+                    ... on CheckinClosingTimelineEvent {
+                      ...CheckinClosingTimelineEvent
+                    }
+                    ... on EnterDetailsTimelineEvent {
+                      ...EnterDetailsTimelineEvent
+                    }
                   }
                 }
               }
-            }
-          `}
-          variables={{
-            id,
-            authToken,
-          }}
-          render={this.renderInner}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            variables={{
+              id,
+              authToken,
+            }}
+            render={this.renderInner}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }

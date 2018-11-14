@@ -14,30 +14,35 @@ type Props = {|
 |};
 
 export default class PhotosStripeHeader extends React.Component<Props> {
-  render = () => (
-    <View style={styles.wrapper}>
-      <Touchable style={styles.closeButtonWrapper} onPress={this.props.onClose}>
-        <Text style={styles.closeButton}>
-          <Translation passThrough="&times;" />
-        </Text>
-      </Touchable>
-      <View style={styles.titleWrapper}>
-        <Text style={styles.title}>
-          <Translation passThrough={this.props.hotelName} />
-        </Text>
-        <Text style={styles.subTitle}>
-          <Translation
-            id="hotels.gallery.pagination"
-            values={{
-              photoNumber: this.props.photoNumber,
-              totalPhotos: this.props.totalPhotos,
-            }}
-          />
-        </Text>
+  render() {
+    return (
+      <View style={styles.wrapper}>
+        <Touchable
+          style={styles.closeButtonWrapper}
+          onPress={this.props.onClose}
+        >
+          <Text style={styles.closeButton}>
+            <Translation passThrough="&times;" />
+          </Text>
+        </Touchable>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.title}>
+            <Translation passThrough={this.props.hotelName} />
+          </Text>
+          <Text style={styles.subTitle}>
+            <Translation
+              id="hotels.gallery.pagination"
+              values={{
+                photoNumber: this.props.photoNumber,
+                totalPhotos: this.props.totalPhotos,
+              }}
+            />
+          </Text>
+        </View>
+        <View style={styles.voidRight} />
       </View>
-      <View style={styles.voidRight} />
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({

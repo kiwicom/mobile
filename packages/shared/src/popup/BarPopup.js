@@ -30,23 +30,25 @@ export default class BarPopup extends React.Component<Props> {
     this.onClose();
   };
 
-  render = () => (
-    <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
-      <View style={styleSheet.bar}>
-        <View style={styleSheet.leftButton}>
-          <LinkButton
-            title={<Translation id="shared.bar_popup.cancel" />}
-            onPress={this.onClose}
-          />
-        </View>
+  render() {
+    return (
+      <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
+        <View style={styleSheet.bar}>
+          <View style={styleSheet.leftButton}>
+            <LinkButton
+              title={<Translation id="shared.bar_popup.cancel" />}
+              onPress={this.onClose}
+            />
+          </View>
 
-        <View style={styleSheet.rightButton}>
-          <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
+          <View style={styleSheet.rightButton}>
+            <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
+          </View>
         </View>
-      </View>
-      <View style={styleSheet.children}>{this.props.children}</View>
-    </Popup>
-  );
+        <View style={styleSheet.children}>{this.props.children}</View>
+      </Popup>
+    );
+  }
 }
 
 const styleSheet = StyleSheet.create({

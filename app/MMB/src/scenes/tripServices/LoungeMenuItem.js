@@ -69,7 +69,7 @@ class LoungeMenuItem extends React.Component<Props, State> {
     });
   };
 
-  render = () => {
+  render() {
     const lounge = this.props.data.lounge;
 
     if (!lounge) {
@@ -109,7 +109,7 @@ class LoungeMenuItem extends React.Component<Props, State> {
         />
       </React.Fragment>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

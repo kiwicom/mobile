@@ -21,9 +21,9 @@ type PropsWithContext = {|
 |};
 
 export class MissingInformation extends React.Component<PropsWithContext> {
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.setIsMissingDocumentId(this.isSomePassengerMissingId());
-  };
+  }
 
   isSomePassengerMissingId = () => {
     const passengers = this.props.data.passengers ?? [];
@@ -36,7 +36,7 @@ export class MissingInformation extends React.Component<PropsWithContext> {
     this.props.navigation.navigate('TravelDocumentScreen');
   };
 
-  render = () => {
+  render() {
     if (!this.isSomePassengerMissingId()) {
       return null;
     }
@@ -71,7 +71,7 @@ export class MissingInformation extends React.Component<PropsWithContext> {
         </SimpleCard>
       </View>
     );
-  };
+  }
 }
 
 type Props = {|

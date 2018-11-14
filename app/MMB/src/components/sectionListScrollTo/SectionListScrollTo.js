@@ -239,7 +239,7 @@ export default class SectionListScrollTo extends React.Component<Props> {
 
   keyExtractor = (item: React.Node[], index: number) => index;
 
-  render = () => {
+  render() {
     if (!this.props.data) {
       return null;
     }
@@ -254,5 +254,5 @@ export default class SectionListScrollTo extends React.Component<Props> {
         keyExtractor={this.keyExtractor}
       />
     );
-  };
+  }
 }

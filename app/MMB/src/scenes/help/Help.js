@@ -57,7 +57,7 @@ class Help extends React.Component<Props> {
     }
   };
 
-  render = () => {
+  render() {
     const number = this.props.data.number ?? '';
 
     return (
@@ -83,7 +83,7 @@ class Help extends React.Component<Props> {
         </MenuGroup>
       </ScrollView>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

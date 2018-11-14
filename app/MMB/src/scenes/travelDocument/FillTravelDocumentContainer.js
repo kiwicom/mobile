@@ -12,26 +12,28 @@ export default class FillTravelDocumentContainer extends React.Component<{||}> {
     <FillTravelDocument data={renderProps.singleBooking} />
   );
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          render={this.renderInner}
-          query={graphql`
-            query FillTravelDocumentContainerQuery(
-              $bookingId: Int!
-              $authToken: String!
-            ) {
-              singleBooking(id: $bookingId, authToken: $authToken) {
-                ... on BookingInterface {
-                  ...FillTravelDocument
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
+            render={this.renderInner}
+            query={graphql`
+              query FillTravelDocumentContainerQuery(
+                $bookingId: Int!
+                $authToken: String!
+              ) {
+                singleBooking(id: $bookingId, authToken: $authToken) {
+                  ... on BookingInterface {
+                    ...FillTravelDocument
+                  }
                 }
               }
-            }
-          `}
-          variables={{ bookingId, authToken }}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            variables={{ bookingId, authToken }}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }

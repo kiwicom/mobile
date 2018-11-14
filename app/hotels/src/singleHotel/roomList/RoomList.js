@@ -30,7 +30,7 @@ type Props = {|
 class RoomList extends React.Component<Props> {
   shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
 
-  render = () => {
+  render() {
     const { select, deselect, selected, disabled } = this.props;
     const data = this.props.data || [];
 
@@ -62,7 +62,7 @@ class RoomList extends React.Component<Props> {
         ))}
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

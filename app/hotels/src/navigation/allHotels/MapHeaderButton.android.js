@@ -45,26 +45,28 @@ export default class MapHeaderButton extends React.Component<Props, State> {
     });
   };
 
-  render = () => (
-    <React.Fragment>
-      <HeaderButton.Right
-        onPress={this.onPress}
-        onLongPress={this.onLongPress}
-        testID={this.props.testID}
-      >
-        {this.props.icon}
-      </HeaderButton.Right>
-      <Tooltips
-        text={this.props.text}
-        visible={this.state.isTooltipVisible}
-        reference={this.state.buttonReference}
-        corner={100}
-        tintColor="#505c5e"
-        arrow={false}
-        textSize={16}
-        shadow={true}
-        onHide={this.onTooltipClose}
-      />
-    </React.Fragment>
-  );
+  render() {
+    return (
+      <React.Fragment>
+        <HeaderButton.Right
+          onPress={this.onPress}
+          onLongPress={this.onLongPress}
+          testID={this.props.testID}
+        >
+          {this.props.icon}
+        </HeaderButton.Right>
+        <Tooltips
+          text={this.props.text}
+          visible={this.state.isTooltipVisible}
+          reference={this.state.buttonReference}
+          corner={100}
+          tintColor="#505c5e"
+          arrow={false}
+          textSize={16}
+          shadow={true}
+          onHide={this.onTooltipClose}
+        />
+      </React.Fragment>
+    );
+  }
 }

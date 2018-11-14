@@ -11,7 +11,7 @@ type Props = {|
 |};
 
 export default class DimensionsConsumer extends React.Component<Props> {
-  render = () => {
+  render() {
     return (
       <Context.Consumer>
         {({ dimensions }) => {
@@ -28,5 +28,5 @@ export default class DimensionsConsumer extends React.Component<Props> {
         }}
       </Context.Consumer>
     );
-  };
+  }
 }

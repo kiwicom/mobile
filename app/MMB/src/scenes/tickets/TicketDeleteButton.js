@@ -28,9 +28,9 @@ export class TicketDeleteButton extends React.Component<
     hasLocalFiles: false,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.hasLocalFiles();
-  };
+  }
 
   componentDidUpdate = (prevProps: PropsWithContext) => {
     if (prevProps.isFocused === false && this.props.isFocused === true) {
@@ -104,7 +104,7 @@ export class TicketDeleteButton extends React.Component<
     return `${DocumentDir}/boardingPasses/${this.props.bookingId}`;
   };
 
-  render = () => {
+  render() {
     if (this.state.hasLocalFiles === false) {
       return null;
     }
@@ -113,7 +113,7 @@ export class TicketDeleteButton extends React.Component<
         <TextIcon code="W" style={styles.icon} />
       </HeaderButton.Right>
     );
-  };
+  }
 }
 type Props = {|
   +isFocused: boolean,

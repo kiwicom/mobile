@@ -58,19 +58,21 @@ export default class HotelFacilitiesFilter extends React.Component<
     </TranslationFragment>
   );
 
-  render = () => (
-    <React.Fragment>
-      <FilterButton
-        title={this.getTitle(this.props.facilities)}
-        isActive={this.props.isActive}
-        onPress={this.filterButtonClicked}
-      />
-      <HotelFacilitiesPopup
-        isVisible={this.state.isPopupOpen}
-        onClose={this.closePopup}
-        onSave={this.handleSave}
-        facilities={this.props.facilities}
-      />
-    </React.Fragment>
-  );
+  render() {
+    return (
+      <React.Fragment>
+        <FilterButton
+          title={this.getTitle(this.props.facilities)}
+          isActive={this.props.isActive}
+          onPress={this.filterButtonClicked}
+        />
+        <HotelFacilitiesPopup
+          isVisible={this.state.isPopupOpen}
+          onClose={this.closePopup}
+          onSave={this.handleSave}
+          facilities={this.props.facilities}
+        />
+      </React.Fragment>
+    );
+  }
 }

@@ -16,7 +16,7 @@ type Props = {|
 export default class GalleryGridTile extends React.Component<Props> {
   handleTilePress = () => this.props.onTilePress(this.props.imageIndex);
 
-  render = () => {
+  render() {
     const style: Object = {
       width: this.props.width,
       height: this.props.width, // width is intentional because we want square tiles
@@ -35,5 +35,5 @@ export default class GalleryGridTile extends React.Component<Props> {
         />
       </Touchable>
     );
-  };
+  }
 }

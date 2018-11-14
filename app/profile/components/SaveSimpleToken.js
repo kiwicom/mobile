@@ -31,21 +31,23 @@ export default class SaveSimpleToken extends React.Component<Props, State> {
   onSave = () =>
     this.props.onSave(this.state.simpleToken, this.state.bookingId);
 
-  render = () => (
-    <View>
-      <TextInput
-        onChangeText={this.onBookingIdChange}
-        placeholder={<Translation passThrough="Booking id" />}
-      />
-      <TextInput
-        onChangeText={this.onSimpleTokenChange}
-        placeholder={<Translation passThrough="simple token" />}
-      />
+  render() {
+    return (
+      <View>
+        <TextInput
+          onChangeText={this.onBookingIdChange}
+          placeholder={<Translation passThrough="Booking id" />}
+        />
+        <TextInput
+          onChangeText={this.onSimpleTokenChange}
+          placeholder={<Translation passThrough="simple token" />}
+        />
 
-      <TextButton
-        onPress={this.onSave}
-        title={<Translation passThrough="Use simple login" />}
-      />
-    </View>
-  );
+        <TextButton
+          onPress={this.onSave}
+          title={<Translation passThrough="Use simple login" />}
+        />
+      </View>
+    );
+  }
 }

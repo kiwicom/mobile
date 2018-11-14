@@ -15,28 +15,30 @@ export default class FlightServices extends React.Component<Props> {
     <FlightServicesMenuGroup bookedServices={renderProps.singleBooking} />
   );
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          query={graphql`
-            query FlightServicesQuery($id: Int!, $authToken: String!) {
-              singleBooking(id: $id, authToken: $authToken) {
-                ... on BookingInterface {
-                  ...FlightServicesMenuGroup_bookedServices
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
+            query={graphql`
+              query FlightServicesQuery($id: Int!, $authToken: String!) {
+                singleBooking(id: $id, authToken: $authToken) {
+                  ... on BookingInterface {
+                    ...FlightServicesMenuGroup_bookedServices
+                  }
                 }
               }
-            }
-          `}
-          variables={{
-            id: bookingId,
-            authToken,
-          }}
-          render={this.renderInner}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            variables={{
+              id: bookingId,
+              authToken,
+            }}
+            render={this.renderInner}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }
 
 export const FlightServicesSubmenuItems = {

@@ -26,7 +26,7 @@ export default class SaveCustomToken extends React.Component<Props, State> {
     this.props.onPress(this.state.token);
   };
 
-  render = () => {
+  render() {
     return (
       <React.Fragment>
         <TextInput
@@ -40,7 +40,7 @@ export default class SaveCustomToken extends React.Component<Props, State> {
         </Button>
       </React.Fragment>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

@@ -29,7 +29,9 @@ class ETicketShareButton extends React.Component<ShareButtonProps> {
     }
   };
 
-  render = () => <ShareButton onPress={this.onPress} />;
+  render() {
+    return <ShareButton onPress={this.onPress} />;
+  }
 }
 
 export function ShareButtonWithContext() {

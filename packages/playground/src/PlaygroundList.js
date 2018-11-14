@@ -24,15 +24,15 @@ export class PlaygroundList extends React.Component<Props> {
     title: 'Playground components',
   });
 
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     if (this.props.storageValue !== null) {
       this.navigateToPlayground(this.props.storageValue);
     }
-  };
+  }
 
-  componentDidCatch = () => {
+  componentDidCatch() {
     this.props.saveToStorage(null);
-  };
+  }
 
   keyExtractor = (item: PlaygroundComponent) => item;
 
@@ -67,16 +67,18 @@ export class PlaygroundList extends React.Component<Props> {
     return sortedComponents;
   };
 
-  render = () => (
-    <View>
-      <FlatList
-        data={this.getPlaygroundComponents()}
-        keyExtractor={this.keyExtractor}
-        renderItem={this.renderItem}
-        bounces={false}
-      />
-    </View>
-  );
+  render() {
+    return (
+      <View>
+        <FlatList
+          data={this.getPlaygroundComponents()}
+          keyExtractor={this.keyExtractor}
+          renderItem={this.renderItem}
+          bounces={false}
+        />
+      </View>
+    );
+  }
 }
 
 export default WithStorage(PlaygroundList, 'Playground:currentComponent', null);

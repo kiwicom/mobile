@@ -46,18 +46,20 @@ class FillTravelDocument extends React.Component<Props, State> {
     );
   };
 
-  render = () => (
-    <RefreshableScrollView
-      refreshing={this.state.isRefreshing}
-      onRefresh={this.refetch}
-    >
-      <View style={styles.imageContainer}>
-        <CityImage url={this.props.data.destinationImageUrl} />
-      </View>
-      <TripInfo data={this.props.data} />
-      <PassengerTravelDocumentMenuGroup data={this.props.data} />
-    </RefreshableScrollView>
-  );
+  render() {
+    return (
+      <RefreshableScrollView
+        refreshing={this.state.isRefreshing}
+        onRefresh={this.refetch}
+      >
+        <View style={styles.imageContainer}>
+          <CityImage url={this.props.data.destinationImageUrl} />
+        </View>
+        <TripInfo data={this.props.data} />
+        <PassengerTravelDocumentMenuGroup data={this.props.data} />
+      </RefreshableScrollView>
+    );
+  }
 }
 
 export default createRefetchContainer(
