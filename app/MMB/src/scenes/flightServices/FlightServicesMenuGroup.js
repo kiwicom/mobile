@@ -115,15 +115,23 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
       .filter(item => item?.status !== 'OPEN')
       .map(item => item?.category);
 
-    const ordered = offeredFlightServices.filter(item =>
-      orderedCategories.includes(item.key),
-    );
+    return offeredFlightServices.reduce(
+      (acc, currentValue) => {
+        const includesKey = orderedCategories.includes(currentValue.key);
+        if (includesKey) {
+          return {
+            ordered: [...acc.ordered, currentValue],
+            rest: acc.rest,
+          };
+        }
 
-    const rest = offeredFlightServices.filter(
-      item => !orderedCategories.includes(item.key),
+        return {
+          ordered: acc.ordered,
+          rest: [...acc.rest, currentValue],
+        };
+      },
+      { ordered: [], rest: [] },
     );
-
-    return { ordered, rest };
   };
 
   render = () => {

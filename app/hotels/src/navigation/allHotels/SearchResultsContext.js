@@ -6,14 +6,12 @@ export type ResultType = 'list' | 'map';
 
 const defaultValue = {
   show: 'list',
-  actions: {
-    setResultType: () => {},
-  },
+  setResultType: () => {},
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext(
-  defaultValue,
-);
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
+  ...defaultValue,
+});
 
 type Props = {|
   +children: React.Node,

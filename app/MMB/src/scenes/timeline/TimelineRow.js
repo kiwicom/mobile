@@ -13,7 +13,13 @@ type Props = {|
   +rowStyle?: StylePropType,
 |};
 
-const ViewWithIsPastEventContext = ({ children, style }) => (
+const ViewWithIsPastEventContext = ({
+  children,
+  style,
+}: {|
+  +children: React.Node,
+  style: StylePropType,
+|}) => (
   <IsPastEventContext.Consumer>
     {({ isPastEvent }) => (
       <View style={[style, isPastEvent && styles.isPastEvent]}>{children}</View>

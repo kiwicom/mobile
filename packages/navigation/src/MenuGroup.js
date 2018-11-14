@@ -42,7 +42,7 @@ export default function MenuGroup(props: Props) {
     ? props.children
     : [props.children];
 
-  return children.map((child, index) => {
+  return children.map<React.Node>((child, index) => {
     const wrappedChild = (
       <React.Fragment key={index}>
         {separator}

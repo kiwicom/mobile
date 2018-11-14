@@ -27,7 +27,7 @@ const defaultActiveFilters = {
   isOrderFilterActive: false,
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   filterParams: defaultFilterParams,
   activeFilters: defaultActiveFilters,
   orderBy: null,

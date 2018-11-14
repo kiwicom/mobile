@@ -8,8 +8,6 @@ type ContextType = {|
   +dimensions: ?DimensionType,
 |};
 
-export default React.createContext(
-  ({
-    dimensions: null,
-  }: ContextType),
-);
+export default React.createContext<ContextType>({
+  dimensions: null,
+});

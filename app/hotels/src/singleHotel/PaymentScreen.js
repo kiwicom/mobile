@@ -32,6 +32,11 @@ export type PaymentParameters = {|
   +version: string,
 |};
 
+type RoomConfig = {|
+  +roomId: string,
+  +count: number,
+|};
+
 export class PaymentScreen extends React.Component<PaymentParameters> {
   static navigationOptions = ({
     navigation,
@@ -73,7 +78,7 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
   };
 
   getRoomConfig = () =>
-    this.props.rooms.map(room => ({
+    this.props.rooms.map<RoomConfig>(room => ({
       roomId: room.id,
       count: room.count,
     }));

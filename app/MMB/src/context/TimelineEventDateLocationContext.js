@@ -6,8 +6,10 @@ const defaultState = {
   highlightText: false,
 };
 
-const { Consumer, Provider } = React.createContext({
-  ...defaultState,
-});
+type State = {|
+  +highlightText: boolean,
+|};
+
+const { Consumer, Provider } = React.createContext<State>(defaultState);
 
 export default { Consumer, Provider };

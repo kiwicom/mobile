@@ -9,7 +9,7 @@ const defaultState = {
   actions: { updateGeolocation: () => {} },
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   ...defaultState,
 });
 
