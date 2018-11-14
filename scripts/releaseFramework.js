@@ -11,7 +11,7 @@
  */
 const fs = require('fs');
 const child_process = require('child_process');
-const fetch = require('@mrtnzlml/fetch');
+const fetch = require('node-fetch');
 const path = require('path');
 
 const version = child_process
