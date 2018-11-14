@@ -13,7 +13,7 @@ import SingleHotel from './singleHotel/SingleHotelNavigationScreen';
 import SearchResults from './allHotels/SearchResultsScreen';
 import AdditionalPropsInjector from './singleHotel/AdditionalPropsInjector';
 import SingleHotelMapNavigationScreen from './singleHotel/SingleHotelMapNavigationScreen';
-import Payment from '../singleHotel/PaymentScreen';
+import Payment from '../singleHotel/paymentScreen/PaymentScreen';
 import GalleryGrid from '../gallery/GalleryGrid';
 
 export type NavigationProps = {|
