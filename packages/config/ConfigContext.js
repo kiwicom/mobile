@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   dataSaverEnabled: false,
   actions: {
     toggleDataSaver: () => {},
