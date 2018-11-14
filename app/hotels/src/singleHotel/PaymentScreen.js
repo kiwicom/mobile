@@ -61,12 +61,12 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
     };
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_PAYMENT,
       Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
     );
-  };
+  }
 
   onNavigationStateChange = (event: WebViewStateChangeEvent) => {
     if (!event.loading && event.url.includes('booking.com/confirmation')) {
@@ -105,28 +105,30 @@ export class PaymentScreen extends React.Component<PaymentParameters> {
     );
   };
 
-  render = () => (
-    <React.Fragment>
-      <StatusBar barStyle="dark-content" />
-      <PublicApiRenderer
-        render={this.renderInner}
-        query={graphql`
-          query PaymentScreenQuery(
-            $hotelId: ID
-            $roomConfig: [RoomConfigInput]
-          ) {
-            hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
-              bookingComPaymentUrl
+  render() {
+    return (
+      <React.Fragment>
+        <StatusBar barStyle="dark-content" />
+        <PublicApiRenderer
+          render={this.renderInner}
+          query={graphql`
+            query PaymentScreenQuery(
+              $hotelId: ID
+              $roomConfig: [RoomConfigInput]
+            ) {
+              hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
+                bookingComPaymentUrl
+              }
             }
-          }
-        `}
-        variables={{
-          hotelId: this.props.hotelId,
-          roomConfig: this.getRoomConfig(),
-        }}
-      />
-    </React.Fragment>
-  );
+          `}
+          variables={{
+            hotelId: this.props.hotelId,
+            roomConfig: this.getRoomConfig(),
+          }}
+        />
+      </React.Fragment>
+    );
+  }
 }
 
 export default withHotelsContext(state => ({

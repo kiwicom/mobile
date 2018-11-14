@@ -54,7 +54,7 @@ export default class Playground extends React.Component<Props> {
     this.props.onGoBack();
   };
 
-  render = () => {
+  render() {
     if (!PlaygroundRenderer.components.hasOwnProperty(this.props.name)) {
       return (
         <Translation
@@ -77,7 +77,7 @@ export default class Playground extends React.Component<Props> {
         </ScrollView>
       </Dimensions.Provider>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

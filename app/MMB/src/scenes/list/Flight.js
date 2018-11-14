@@ -53,34 +53,36 @@ export default class Flight extends React.Component<Props> {
     );
   };
 
-  render = () => (
-    <PublicApiRenderer
-      query={graphql`
-        query FlightQuery($id: Int!, $authToken: String!) {
-          singleBooking(id: $id, authToken: $authToken) {
-            ... on BookingInterface {
-              __typename
-              isPastBooking
-            }
-            ... on BookingOneWay {
-              ...OneWayFlight_booking
-            }
-            ... on BookingReturn {
-              ...ReturnFlight_booking
-            }
-            ... on BookingMulticity {
-              ...MulticityFlight_booking
+  render() {
+    return (
+      <PublicApiRenderer
+        query={graphql`
+          query FlightQuery($id: Int!, $authToken: String!) {
+            singleBooking(id: $id, authToken: $authToken) {
+              ... on BookingInterface {
+                __typename
+                isPastBooking
+              }
+              ... on BookingOneWay {
+                ...OneWayFlight_booking
+              }
+              ... on BookingReturn {
+                ...ReturnFlight_booking
+              }
+              ... on BookingMulticity {
+                ...MulticityFlight_booking
+              }
             }
           }
-        }
-      `}
-      variables={{
-        id: this.props.bookingId,
-        authToken: this.props.simpleToken,
-      }}
-      render={this.renderInner}
-    />
-  );
+        `}
+        variables={{
+          id: this.props.bookingId,
+          authToken: this.props.simpleToken,
+        }}
+        render={this.renderInner}
+      />
+    );
+  }
 }
 
 const styles = StyleSheet.create({

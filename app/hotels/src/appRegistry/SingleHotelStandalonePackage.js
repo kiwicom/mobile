@@ -25,7 +25,7 @@ type Props = {
 };
 
 class SingleHotelStandAlonePackage extends React.Component<Props> {
-  render = () => {
+  render() {
     const screenProps = {
       ...this.props,
       // Better to pass strings than date object from native,
@@ -53,7 +53,7 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
         />
       </RootComponent>
     );
-  };
+  }
 }
 
 export default WithNativeNavigation(

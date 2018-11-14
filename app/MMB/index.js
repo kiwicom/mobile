@@ -31,41 +31,43 @@ type Props = {|
 |};
 
 class ManageMyBookingPackage extends React.Component<Props> {
-  render = () => (
-    <Dimensions.Provider dimensions={this.props.dimensions}>
-      <AuthContext.Provider
-        accessToken={this.props.accessToken || null}
-        bookingId={this.props.bookingId || null}
-        simpleToken={this.props.simpleToken || null}
-      >
-        <WalletContext.Provider>
-          <BookingDetailContext.Provider currency={this.props.currency}>
-            <TravelDocumentFormContext.Provider>
-              <InsuranceOverviewContext.Provider>
-                <HotelsContext.Provider
-                  version={this.props.version}
-                  dataSaverEnabled={this.props.dataSaverEnabled}
-                  onNavigationStateChange={this.props.onNavigationStateChange}
-                >
-                  <GoogleMapsContext.Provider
-                    googleMapsAPIKey={this.props.googleMapsAPIKey}
+  render() {
+    return (
+      <Dimensions.Provider dimensions={this.props.dimensions}>
+        <AuthContext.Provider
+          accessToken={this.props.accessToken || null}
+          bookingId={this.props.bookingId || null}
+          simpleToken={this.props.simpleToken || null}
+        >
+          <WalletContext.Provider>
+            <BookingDetailContext.Provider currency={this.props.currency}>
+              <TravelDocumentFormContext.Provider>
+                <InsuranceOverviewContext.Provider>
+                  <HotelsContext.Provider
+                    version={this.props.version}
+                    dataSaverEnabled={this.props.dataSaverEnabled}
+                    onNavigationStateChange={this.props.onNavigationStateChange}
                   >
-                    <GeolocationContext.Provider>
-                      <NavigationStack
-                        onNavigationStateChange={
-                          this.props.onNavigationStateChange
-                        }
-                      />
-                    </GeolocationContext.Provider>
-                  </GoogleMapsContext.Provider>
-                </HotelsContext.Provider>
-              </InsuranceOverviewContext.Provider>
-            </TravelDocumentFormContext.Provider>
-          </BookingDetailContext.Provider>
-        </WalletContext.Provider>
-      </AuthContext.Provider>
-    </Dimensions.Provider>
-  );
+                    <GoogleMapsContext.Provider
+                      googleMapsAPIKey={this.props.googleMapsAPIKey}
+                    >
+                      <GeolocationContext.Provider>
+                        <NavigationStack
+                          onNavigationStateChange={
+                            this.props.onNavigationStateChange
+                          }
+                        />
+                      </GeolocationContext.Provider>
+                    </GoogleMapsContext.Provider>
+                  </HotelsContext.Provider>
+                </InsuranceOverviewContext.Provider>
+              </TravelDocumentFormContext.Provider>
+            </BookingDetailContext.Provider>
+          </WalletContext.Provider>
+        </AuthContext.Provider>
+      </Dimensions.Provider>
+    );
+  }
 }
 
 AppRegistry.registerComponent('ManageMyBooking', () =>

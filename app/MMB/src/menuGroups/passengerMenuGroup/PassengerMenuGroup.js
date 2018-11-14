@@ -23,21 +23,24 @@ class PassengerMenuGroup extends React.Component<Props> {
     );
   };
 
-  render = () => (
-    <React.Fragment>
-      <TitledMenuGroup title={<Translation id="mmb.main_menu.passengers" />}>
-        <MenuItem
-          onPress={this.handleOnPassengerDetailPress}
-          title={<Translation id="mmb.main_menu.details" />}
-          isActive={
-            this.props.activeId === 'mmb.main_menu.passengers.passenger_details'
-          }
-          icon={<TextIcon code="w" />}
-        />
-      </TitledMenuGroup>
-      <PassengerMenuDetail data={this.props.data} />
-    </React.Fragment>
-  );
+  render() {
+    return (
+      <React.Fragment>
+        <TitledMenuGroup title={<Translation id="mmb.main_menu.passengers" />}>
+          <MenuItem
+            onPress={this.handleOnPassengerDetailPress}
+            title={<Translation id="mmb.main_menu.details" />}
+            isActive={
+              this.props.activeId ===
+              'mmb.main_menu.passengers.passenger_details'
+            }
+            icon={<TextIcon code="w" />}
+          />
+        </TitledMenuGroup>
+        <PassengerMenuDetail data={this.props.data} />
+      </React.Fragment>
+    );
+  }
 }
 
 export default createFragmentContainer(

@@ -19,7 +19,7 @@ type Props = {|
 export default class Popup extends React.Component<Props> {
   onClose = () => this.props.onClose();
 
-  render = () => {
+  render() {
     const modalChild = (
       <React.Fragment>
         <ScrollView alwaysBounceVertical={false}>
@@ -61,7 +61,7 @@ export default class Popup extends React.Component<Props> {
         }
       />
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

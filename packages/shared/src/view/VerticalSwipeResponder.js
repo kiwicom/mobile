@@ -125,7 +125,7 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
     );
   };
 
-  render = () => {
+  render() {
     return <Animated.View {...this.props} {...this.panResponder.panHandlers} />;
-  };
+  }
 }

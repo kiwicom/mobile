@@ -134,7 +134,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
     );
   };
 
-  render = () => {
+  render() {
     const { ordered, rest } = this.getOrderedAndNotOrderedServices();
     return (
       <RefreshableScrollView
@@ -173,7 +173,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
         )}
       </RefreshableScrollView>
     );
-  };
+  }
 }
 
 export default createRefetchContainer(

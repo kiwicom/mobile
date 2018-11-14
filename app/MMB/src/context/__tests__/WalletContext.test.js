@@ -9,7 +9,9 @@ import WalletContext from '../WalletContext';
 MockDate.set('2018-01-01');
 
 class ContextConsumer extends React.Component<{}> {
-  render = () => null;
+  render() {
+    return null;
+  }
 }
 
 const getWrapper = () =>

@@ -85,7 +85,7 @@ export class RoomRow extends React.Component<Props> {
     });
   };
 
-  render = () => {
+  render() {
     const availableRoom = this.props.availableRoom;
     // New provider currently does not support lowResUrl, fallback to highResUrl in that case
     // ThumbnailUrl provides to low quality
@@ -127,7 +127,7 @@ export class RoomRow extends React.Component<Props> {
         </View>
       </View>
     );
-  };
+  }
 }
 
 export default (createFragmentContainer(

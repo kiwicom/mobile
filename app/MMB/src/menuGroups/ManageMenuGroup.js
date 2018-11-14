@@ -19,25 +19,29 @@ export default class ManageMenuGroup extends React.Component<Props> {
     this.props.openSubmenu('mmb.main_menu.manage.other', 'mmb.other');
   };
 
-  render = () => (
-    <TitledMenuGroup title={<Translation id="mmb.main_menu.manage" />}>
-      <MenuItem
-        onPress={this.handleOpenHelpSubmenu}
-        isActive={this.props.activeId === 'mmb.main_menu.manage.help'}
-        icon={<TextIcon code="F" />}
-        title={<Translation id="mmb.main_menu.manage.help" />}
-        description={<Translation id="mmb.main_menu.manage.help.description" />}
-      />
+  render() {
+    return (
+      <TitledMenuGroup title={<Translation id="mmb.main_menu.manage" />}>
+        <MenuItem
+          onPress={this.handleOpenHelpSubmenu}
+          isActive={this.props.activeId === 'mmb.main_menu.manage.help'}
+          icon={<TextIcon code="F" />}
+          title={<Translation id="mmb.main_menu.manage.help" />}
+          description={
+            <Translation id="mmb.main_menu.manage.help.description" />
+          }
+        />
 
-      <MenuItem
-        onPress={this.handleOpenOtherSubmenu}
-        isActive={this.props.activeId === 'mmb.main_menu.manage.other'}
-        icon={<TextIcon code="&#xe07d;" />}
-        title={<Translation id="mmb.main_menu.manage.other" />}
-        description={
-          <Translation id="mmb.main_menu.manage.other.description" />
-        }
-      />
-    </TitledMenuGroup>
-  );
+        <MenuItem
+          onPress={this.handleOpenOtherSubmenu}
+          isActive={this.props.activeId === 'mmb.main_menu.manage.other'}
+          icon={<TextIcon code="&#xe07d;" />}
+          title={<Translation id="mmb.main_menu.manage.other" />}
+          description={
+            <Translation id="mmb.main_menu.manage.other.description" />
+          }
+        />
+      </TitledMenuGroup>
+    );
+  }
 }

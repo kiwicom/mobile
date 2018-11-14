@@ -34,7 +34,7 @@ export default class PdfViewAndStore extends React.Component<Props, State> {
     this.setState({ url: addedFileName });
   };
 
-  render = () => {
+  render() {
     const { url } = this.state;
 
     if (url === null) {
@@ -42,5 +42,5 @@ export default class PdfViewAndStore extends React.Component<Props, State> {
     }
 
     return <PdfViewer uri={url} cache={false} />;
-  };
+  }
 }

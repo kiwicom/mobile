@@ -43,7 +43,7 @@ class FlightListContainer extends React.Component<Props, State> {
     );
   };
 
-  render = () => {
+  render() {
     return (
       <RefreshableScrollView
         contentContainerStyle={styles.container}
@@ -60,7 +60,7 @@ class FlightListContainer extends React.Component<Props, State> {
         />
       </RefreshableScrollView>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

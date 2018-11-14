@@ -32,7 +32,7 @@ export class InsuranceMenuItem extends React.Component<Props> {
     }
   };
 
-  render = () => {
+  render() {
     return (
       <MenuItem
         title={
@@ -42,7 +42,7 @@ export class InsuranceMenuItem extends React.Component<Props> {
         onPress={this.onPress}
       />
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

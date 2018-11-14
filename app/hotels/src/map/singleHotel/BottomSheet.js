@@ -27,7 +27,7 @@ type Props = {|
 |};
 
 export default class BottomSheet extends React.Component<Props> {
-  render = () => {
+  render() {
     const content = (
       <CommonBottomSheet openHeight={openHeight} closedHeight={closedHeight}>
         {this.props.children}
@@ -40,5 +40,5 @@ export default class BottomSheet extends React.Component<Props> {
         renderOnNarrow={<View style={styles.narrowContainer}>{content}</View>}
       />
     );
-  };
+  }
 }

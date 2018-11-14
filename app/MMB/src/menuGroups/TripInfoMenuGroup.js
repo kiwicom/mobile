@@ -19,22 +19,24 @@ export default class TripInfoMenuGroup extends React.Component<Props> {
     this.props.openSubmenu('mmb.main_menu.trip_info.timeline', 'mmb.timeline');
   };
 
-  render = () => (
-    <TitledMenuGroup title={<Translation id="mmb.title.trip_info" />}>
-      <MenuItem
-        onPress={this.handleOpenTicketsSubmenu}
-        title={<Translation id="mmb.button.tickets" />}
-        isActive={this.props.activeId === 'mmb.main_menu.trip_info.tickets'}
-        icon={<TextIcon code="." />}
-        description={<Translation id="mmb.tickets.boarding_passes" />}
-      />
-      <MenuItem
-        onPress={this.handleOpenTimelineSubmenu}
-        title={<Translation id="mmb.timeline.title" />}
-        isActive={this.props.activeId === 'mmb.main_menu.trip_info.timeline'}
-        icon={<TextIcon code="e" />}
-        description={<Translation id="mmb.subtitle.trip_schedule" />}
-      />
-    </TitledMenuGroup>
-  );
+  render() {
+    return (
+      <TitledMenuGroup title={<Translation id="mmb.title.trip_info" />}>
+        <MenuItem
+          onPress={this.handleOpenTicketsSubmenu}
+          title={<Translation id="mmb.button.tickets" />}
+          isActive={this.props.activeId === 'mmb.main_menu.trip_info.tickets'}
+          icon={<TextIcon code="." />}
+          description={<Translation id="mmb.tickets.boarding_passes" />}
+        />
+        <MenuItem
+          onPress={this.handleOpenTimelineSubmenu}
+          title={<Translation id="mmb.timeline.title" />}
+          isActive={this.props.activeId === 'mmb.main_menu.trip_info.timeline'}
+          icon={<TextIcon code="e" />}
+          description={<Translation id="mmb.subtitle.trip_schedule" />}
+        />
+      </TitledMenuGroup>
+    );
+  }
 }

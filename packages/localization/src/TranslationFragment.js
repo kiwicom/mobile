@@ -40,7 +40,7 @@ export default class TranslationFragment extends React.Component<{|
     return child.type === Translation || child.type === TranslationFragment;
   };
 
-  render = () => {
+  render() {
     if (this.props.children === undefined) {
       throw new Error("'TranslationFragment' cannot be used without children.");
     }
@@ -60,5 +60,5 @@ export default class TranslationFragment extends React.Component<{|
         textTransform: child.props.textTransform || this.props.textTransform,
       });
     });
-  };
+  }
 }

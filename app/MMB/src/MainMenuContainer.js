@@ -19,29 +19,31 @@ export default class MainMenuContainer extends React.Component<Props> {
     />
   );
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          render={this.renderInnerComponent}
-          query={graphql`
-            query MainMenuContainerQuery(
-              $bookingId: Int!
-              $authToken: String!
-            ) {
-              singleBooking(id: $bookingId, authToken: $authToken) {
-                ... on BookingInterface {
-                  ...MainMenu
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
+            render={this.renderInnerComponent}
+            query={graphql`
+              query MainMenuContainerQuery(
+                $bookingId: Int!
+                $authToken: String!
+              ) {
+                singleBooking(id: $bookingId, authToken: $authToken) {
+                  ... on BookingInterface {
+                    ...MainMenu
+                  }
                 }
               }
-            }
-          `}
-          variables={{
-            bookingId,
-            authToken,
-          }}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            variables={{
+              bookingId,
+              authToken,
+            }}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }

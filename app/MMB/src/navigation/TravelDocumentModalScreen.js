@@ -69,9 +69,9 @@ export class TravelDocumentModalScreen extends React.Component<Props, State> {
     };
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.navigation.setParams({ onSave: this.onSave, disabled: true });
-  };
+  }
 
   componentDidUpdate = (prevProps: Props) => {
     if (
@@ -125,7 +125,7 @@ export class TravelDocumentModalScreen extends React.Component<Props, State> {
     );
   };
 
-  render = () => {
+  render() {
     const { title, fullName } = this.props;
     return (
       <View style={styles.container}>
@@ -133,7 +133,7 @@ export class TravelDocumentModalScreen extends React.Component<Props, State> {
         {this.state.isSubmitting && <IconLoading />}
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

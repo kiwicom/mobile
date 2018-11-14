@@ -59,7 +59,7 @@ export default class Text extends React.Component<Props> {
     isNested: true,
   });
 
-  render = () => {
+  render() {
     let style = this.props.style;
 
     if (this.context.isNested === undefined) {
@@ -73,7 +73,7 @@ export default class Text extends React.Component<Props> {
         {this.props.children}
       </ReactNative.Text>
     );
-  };
+  }
 }
 
 const styleSheet = StyleSheet.create({

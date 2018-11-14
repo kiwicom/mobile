@@ -31,9 +31,9 @@ type Props = {|
  * ```
  */
 export default class AppStateChange extends React.Component<Props> {
-  componentDidMount = () => {
+  componentDidMount() {
     AppState.addEventListener('change', this.handleAppStateChange);
-  };
+  }
 
   componentWillUnmount = () => {
     AppState.removeEventListener('change', this.handleAppStateChange);
@@ -45,5 +45,7 @@ export default class AppStateChange extends React.Component<Props> {
     }
   };
 
-  render = () => this.props.children;
+  render() {
+    return this.props.children;
+  }
 }

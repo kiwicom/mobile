@@ -55,31 +55,33 @@ class CityImageContainer extends React.Component<PropsWithContext> {
     this.props.navigation.navigate('DetailScreen');
   };
 
-  render = () => (
-    <Touchable onPress={this.goToDetail}>
-      <View style={styles.container}>
-        <CityImage
-          style={styles.image}
-          url={this.props.image.destinationImageUrl}
-        />
-        <StretchedImage source={gradient} style={styles.stretchedImage} />
-        <View style={[styles.row, styles.padding]}>
-          <ImageBadges data={this.props.image} />
-        </View>
-        <View style={[styles.bottomContainer, styles.padding]}>
-          <FromToRow
-            departure={this.props.departure}
-            arrival={this.props.arrival}
-            type={this.props.type}
+  render() {
+    return (
+      <Touchable onPress={this.goToDetail}>
+        <View style={styles.container}>
+          <CityImage
+            style={styles.image}
+            url={this.props.image.destinationImageUrl}
           />
-          <DateAndPassengerCount
-            departure={this.props.departure}
-            passengerCount={this.props.image.passengerCount}
-          />
+          <StretchedImage source={gradient} style={styles.stretchedImage} />
+          <View style={[styles.row, styles.padding]}>
+            <ImageBadges data={this.props.image} />
+          </View>
+          <View style={[styles.bottomContainer, styles.padding]}>
+            <FromToRow
+              departure={this.props.departure}
+              arrival={this.props.arrival}
+              type={this.props.type}
+            />
+            <DateAndPassengerCount
+              departure={this.props.departure}
+              passengerCount={this.props.image.passengerCount}
+            />
+          </View>
         </View>
-      </View>
-    </Touchable>
-  );
+      </Touchable>
+    );
+  }
 }
 
 type Props = {|

@@ -66,7 +66,7 @@ export default class QueryRenderer extends React.Component<Props> {
     return <FullPageLoading />;
   };
 
-  render = () => {
+  render() {
     return (
       <Relay.QueryRenderer
         environment={this.createEnvironment()}
@@ -75,5 +75,5 @@ export default class QueryRenderer extends React.Component<Props> {
         render={this.renderRelayContainer}
       />
     );
-  };
+  }
 }

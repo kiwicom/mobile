@@ -14,26 +14,28 @@ export default class PassengerDetailContainer extends React.Component<Props> {
     return <PassengerDetail booking={renderProps.singleBooking} />;
   };
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          query={graphql`
-            query PassengerDetailContainerQuery(
-              $id: Int!
-              $authToken: String!
-            ) {
-              singleBooking(id: $id, authToken: $authToken) {
-                ... on BookingInterface {
-                  ...PassengerDetail_booking
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
+            query={graphql`
+              query PassengerDetailContainerQuery(
+                $id: Int!
+                $authToken: String!
+              ) {
+                singleBooking(id: $id, authToken: $authToken) {
+                  ... on BookingInterface {
+                    ...PassengerDetail_booking
+                  }
                 }
               }
-            }
-          `}
-          variables={{ id: bookingId, authToken }}
-          render={this.renderInner}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            variables={{ id: bookingId, authToken }}
+            render={this.renderInner}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }

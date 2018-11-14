@@ -28,13 +28,15 @@ class DimensionsProvider extends React.Component<Props, State> {
     });
   };
 
-  render = () => (
-    <View style={styleSheet.providerWrapper} onLayout={this.onLayout}>
-      <Context.Provider value={this.state}>
-        {this.state.dimensions !== null && this.props.children}
-      </Context.Provider>
-    </View>
-  );
+  render() {
+    return (
+      <View style={styleSheet.providerWrapper} onLayout={this.onLayout}>
+        <Context.Provider value={this.state}>
+          {this.state.dimensions !== null && this.props.children}
+        </Context.Provider>
+      </View>
+    );
+  }
 }
 
 /**

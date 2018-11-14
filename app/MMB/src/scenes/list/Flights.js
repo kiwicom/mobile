@@ -13,19 +13,21 @@ export default class Flights extends React.Component<Props> {
     <FlightListContainer {...innerProps} />
   );
 
-  render = () => (
-    <PrivateApiRenderer
-      render={this.renderInner}
-      query={graphql`
-        query FlightsQuery {
-          future: customerBookings(only: FUTURE) {
-            ...FlightListContainer_future
+  render() {
+    return (
+      <PrivateApiRenderer
+        render={this.renderInner}
+        query={graphql`
+          query FlightsQuery {
+            future: customerBookings(only: FUTURE) {
+              ...FlightListContainer_future
+            }
+            past: customerBookings(only: PAST, order: DESC) {
+              ...FlightListContainer_past
+            }
           }
-          past: customerBookings(only: PAST, order: DESC) {
-            ...FlightListContainer_past
-          }
-        }
-      `}
-    />
-  );
+        `}
+      />
+    );
+  }
 }

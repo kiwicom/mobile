@@ -58,7 +58,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
     this.props.setHotelId(hotelId);
   };
 
-  render = () => {
+  render() {
     const highResUrl = this.props.data.mainPhoto?.highResUrl;
     const children = (
       <View style={style.row}>
@@ -105,7 +105,7 @@ class AllHotelsSearchRow extends React.Component<Props> {
         }
       />
     );
-  };
+  }
 }
 
 const select = ({

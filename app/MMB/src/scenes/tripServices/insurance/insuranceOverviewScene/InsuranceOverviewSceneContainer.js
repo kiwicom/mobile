@@ -35,7 +35,7 @@ export default class InsuranceOverviewSceneContainer extends React.Component<Con
     );
   };
 
-  render = () => {
+  render() {
     return (
       <BookingDetailContext.Consumer>
         {({ bookingId, authToken }) => (
@@ -76,5 +76,5 @@ export default class InsuranceOverviewSceneContainer extends React.Component<Con
         )}
       </BookingDetailContext.Consumer>
     );
-  };
+  }
 }

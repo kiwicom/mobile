@@ -34,27 +34,29 @@ export default class PhotosStripe extends React.Component<Props> {
     );
   };
 
-  render = () => (
-    <Swiper
-      renderPagination={this.renderPagination}
-      index={this.props.index}
-      testID={this.props.testID}
-    >
-      {this.props.imageUrls.map((imageUrl, index) => (
-        <View
-          style={styles.slide}
-          key={imageUrl}
-          testID={`photosStripeImage-${index}`}
-        >
-          <NetworkImage
-            source={{ uri: imageUrl }}
-            style={styles.networkImage}
-            resizeMode="contain"
-          />
-        </View>
-      ))}
-    </Swiper>
-  );
+  render() {
+    return (
+      <Swiper
+        renderPagination={this.renderPagination}
+        index={this.props.index}
+        testID={this.props.testID}
+      >
+        {this.props.imageUrls.map((imageUrl, index) => (
+          <View
+            style={styles.slide}
+            key={imageUrl}
+            testID={`photosStripeImage-${index}`}
+          >
+            <NetworkImage
+              source={{ uri: imageUrl }}
+              style={styles.networkImage}
+              resizeMode="contain"
+            />
+          </View>
+        ))}
+      </Swiper>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

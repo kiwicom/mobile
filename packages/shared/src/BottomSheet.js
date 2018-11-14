@@ -38,7 +38,7 @@ export default class BottomSheet extends React.Component<Props, State> {
     this.animate(this.props.closedHeight);
   };
 
-  render = () => {
+  render() {
     return (
       <VerticalSwipeResponder
         style={[styles.container, { height: this.state.height }]}
@@ -48,7 +48,7 @@ export default class BottomSheet extends React.Component<Props, State> {
         {this.props.children}
       </VerticalSwipeResponder>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({
