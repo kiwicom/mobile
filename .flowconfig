@@ -37,6 +37,9 @@
 <PROJECT_ROOT>/node_modules/react-native/Libraries/Lists/.+
 <PROJECT_ROOT>/node_modules/react-native/Libraries/ReactNative/.+
 <PROJECT_ROOT>/node_modules/react-native/Libraries/Utilities/.+
+<PROJECT_ROOT>/node_modules/react-native/Libraries/Text/TextAncestor.js
+<PROJECT_ROOT>/node_modules/react-native/Libraries/StyleSheet/StyleSheetValidation.js
+<PROJECT_ROOT>/node_modules/react-native/Libraries/LayoutAnimation/LayoutAnimation.js
 <PROJECT_ROOT>/node_modules/graphql/.+
 <PROJECT_ROOT>/node_modules/react-native-share/.+
 
@@ -102,4 +105,4 @@ unsafe-getters-setters
 sketchy-null
 
 [version]
-^0.84.0
+^0.86.0

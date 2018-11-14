@@ -18,9 +18,9 @@ const defaultState = {
   },
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext(
-  defaultState,
-);
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
+  ...defaultState,
+});
 
 type InsuranceType = 'NONE' | 'TRAVEL_BASIC' | 'TRAVEL_PLUS';
 

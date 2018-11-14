@@ -2,7 +2,12 @@
 
 import * as React from 'react';
 
-export default React.createContext({
+type State = {|
+  +displayTopLine: boolean,
+  +displayBottomLine: boolean,
+|};
+
+export default React.createContext<State>({
   displayTopLine: true,
   displayBottomLine: true,
 });

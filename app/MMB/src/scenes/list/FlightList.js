@@ -25,7 +25,7 @@ export class FlightList extends React.Component<Props, State> {
       return null;
     }
 
-    return flights.map(flight => {
+    return flights.map<React.Element<typeof FlightItemLayout>>(flight => {
       const key = flight?.node?.id;
       const type = flight?.node?.__typename;
       const variants: Object = {

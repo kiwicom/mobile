@@ -23,7 +23,7 @@ type State = {|
   activeId: string,
 |};
 
-const { Provider, Consumer } = React.createContext({
+const { Provider, Consumer } = React.createContext<State>({
   activeId: '',
 });
 

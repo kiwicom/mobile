@@ -6,7 +6,7 @@ const defaultState = {
   googleMapsAPIKey: '',
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   ...defaultState,
 });
 

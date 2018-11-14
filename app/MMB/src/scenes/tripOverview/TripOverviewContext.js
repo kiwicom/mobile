@@ -10,9 +10,9 @@ const defaultState = {
     addWarningData: () => {},
   },
 };
-const { Consumer, Provider: ContextProvider } = React.createContext(
-  defaultState,
-);
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
+  ...defaultState,
+});
 
 export type BookingType =
   | 'BookingReturn'
