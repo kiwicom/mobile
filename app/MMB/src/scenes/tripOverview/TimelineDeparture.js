@@ -85,15 +85,14 @@ function TimelineDeparture(props: Props) {
             }
           />
 
-          {manufacturer !== '' &&
-            flightModel !== '' && (
-              <TimelineRow
-                icon={<TextIcon code="U" style={styleSheet.icon} />}
-                value={
-                  <Translation passThrough={`${manufacturer} ${flightModel}`} />
-                }
-              />
-            )}
+          {manufacturer !== '' && flightModel !== '' && (
+            <TimelineRow
+              icon={<TextIcon code="U" style={styleSheet.icon} />}
+              value={
+                <Translation passThrough={`${manufacturer} ${flightModel}`} />
+              }
+            />
+          )}
 
           <TimelineTerminal
             data={props.routeStop}

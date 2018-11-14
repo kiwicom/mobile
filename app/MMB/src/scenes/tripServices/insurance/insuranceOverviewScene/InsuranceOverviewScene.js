@@ -101,17 +101,16 @@ class InsuranceOverviewScene extends React.Component<Props> {
 
             <InsuranceOverviewPassengerMenuGroup passengers={passengers} />
 
-            {hasChanged &&
-              amount <= 0 && (
-                <View style={styles.buttonWrapper}>
-                  <TextButton
-                    title={
-                      <Translation id="mmb.trip_services.order.process_to_refund" />
-                    }
-                    onPress={this.goToTheInsuranceRefund}
-                  />
-                </View>
-              )}
+            {hasChanged && amount <= 0 && (
+              <View style={styles.buttonWrapper}>
+                <TextButton
+                  title={
+                    <Translation id="mmb.trip_services.order.process_to_refund" />
+                  }
+                  onPress={this.goToTheInsuranceRefund}
+                />
+              </View>
+            )}
 
             {amount > 0 && (
               <View style={styles.buttonWrapper}>

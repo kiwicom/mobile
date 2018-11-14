@@ -70,19 +70,18 @@ export class Location extends React.Component<Props> {
                 <Translation passThrough={address?.city} />
               </Text>
             </View>
-            {typeof latitude === 'number' &&
-              typeof longitude === 'number' && (
-                <MapView
-                  region={{
-                    latitude: latitude + 0.001, // move center little bit bottom
-                    longitude: longitude - 0.025, // move center little bit right
-                    latitudeDelta: 0.01,
-                    longitudeDelta: 0.01,
-                  }}
-                  scrollEnabled={false}
-                  style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
-                />
-              )}
+            {typeof latitude === 'number' && typeof longitude === 'number' && (
+              <MapView
+                region={{
+                  latitude: latitude + 0.001, // move center little bit bottom
+                  longitude: longitude - 0.025, // move center little bit right
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
+                }}
+                scrollEnabled={false}
+                style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
+              />
+            )}
 
             <View style={styles.overlayMarker}>
               <DropMarker />
