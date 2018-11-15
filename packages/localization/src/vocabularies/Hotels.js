@@ -98,6 +98,7 @@ export default {
   'hotels_search.all_hotels_search_list.show_list': 'Show list',
 
   'single_hotel.bedding_info.guests': '__numberOfGuests__ Guests',
+  'single_hotel.bedding_info.or': ' or ',
   'single_hotel.book_now': 'Book Now',
   'single_hotel.book_now.description':
     '__1_personCount__ Guests · __2_numberOfRooms__ Rooms',

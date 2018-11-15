@@ -58,7 +58,7 @@ it('provides all bedding options', () => {
 });
 
 it("doesn't crash on empty input", () => {
-  expect(new BeddingInfo({ room: null }).formatBeddingInfo()).toEqual('');
+  expect(new BeddingInfo({ room: null }).formatBeddingInfo()).toMatchSnapshot();
   expect(
     // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     new BeddingInfo({
