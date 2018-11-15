@@ -19,16 +19,29 @@ type Props = {
 };
 
 export class BeddingInfo extends React.Component<Props> {
-  formatBeddingInfo = (): string => {
+  formatBeddingInfo = (): $ReadOnlyArray<React.Element<typeof Translation>> => {
     const { room } = this.props;
     const beddingOptions = room?.bedding ?? [];
-    return beddingOptions
-      .map(beddingOption => {
-        const type = beddingOption?.type;
-        const amount = beddingOption?.amount;
-        return [amount, type].filter(value => value != null).join(' ');
-      })
-      .join(' or '); // TODO: Translate
+    const beddingTranslation = [];
+    beddingOptions.forEach((beddingOption, index) => {
+      const type = beddingOption?.type;
+      const amount = beddingOption?.amount;
+      if (index > 0) {
+        beddingTranslation.push(
+          <Translation
+            key={`key-${index}`}
+            id="single_hotel.bedding_info.or"
+          />,
+        );
+      }
+      beddingTranslation.push(
+        <Translation
+          key={`${type || ''}-${amount || ''}`}
+          passThrough={[amount, type].filter(value => value != null).join(' ')}
+        />,
+      );
+    });
+    return beddingTranslation;
   };
 
   render() {
@@ -39,9 +52,7 @@ export class BeddingInfo extends React.Component<Props> {
       <View>
         <View style={styles.row}>
           <TextIcon code="&#xe085;" style={styles.icon} />
-          <Text style={styles.text}>
-            <Translation passThrough={` ${this.formatBeddingInfo()}`} />
-          </Text>
+          <Text style={styles.text}>{this.formatBeddingInfo()}</Text>
         </View>
         <View style={styles.row}>
           <TextIcon code="(" style={styles.icon} />
