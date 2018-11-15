@@ -5,9 +5,13 @@ import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
 import { DateFormatter, Translation } from '@kiwicom/mobile-localization';
 import { GeneralError } from '@kiwicom/mobile-shared';
 
-import HotelsFilterContext from '../HotelsFilterContext';
+import {
+  withHotelsFilterContext,
+  type HotelsFilterState,
+} from '../HotelsFilterContext';
 import {
   type RoomConfigurationType,
+  type HotelsContextState,
   withHotelsContext,
 } from '../HotelsContext';
 import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
@@ -20,6 +24,8 @@ type Props = {|
   +currency: string,
   +roomsConfiguration: RoomConfigurationType | null,
   +cityId: string | null,
+  +orderBy: $PropertyType<HotelsFilterState, 'orderBy'>,
+  +filterParams: $PropertyType<HotelsFilterState, 'filterParams'>,
 |};
 
 class NewAllHotelsSearch extends React.Component<Props> {
@@ -29,13 +35,15 @@ class NewAllHotelsSearch extends React.Component<Props> {
     return <HotelsPaginationContainer data={propsFromRenderer} />;
   };
 
-  renderContext = ({ orderBy, filterParams }) => {
+  render() {
     const {
       cityId,
       checkin,
       checkout,
       roomsConfiguration,
       currency,
+      orderBy,
+      filterParams,
     } = this.props;
     if (checkin === null || checkout === null) {
       return (
@@ -81,21 +89,25 @@ class NewAllHotelsSearch extends React.Component<Props> {
         render={this.renderAllHotelsSearchList}
       />
     );
-  };
-
-  render() {
-    return (
-      <HotelsFilterContext.Consumer>
-        {this.renderContext}
-      </HotelsFilterContext.Consumer>
-    );
   }
 }
 
-export default withHotelsContext(state => ({
+const selectHotelsFilterContext = ({
+  orderBy,
+  filterParams,
+}: HotelsFilterState) => ({
+  orderBy,
+  filterParams,
+});
+
+const selectHotelsContext = (state: HotelsContextState) => ({
   checkin: state.checkin,
   checkout: state.checkout,
   currency: state.currency,
   roomsConfiguration: state.roomsConfiguration,
   cityId: state.cityId,
-}))(NewAllHotelsSearch);
+});
+
+export default withHotelsContext(selectHotelsContext)(
+  withHotelsFilterContext(selectHotelsFilterContext)(NewAllHotelsSearch),
+);

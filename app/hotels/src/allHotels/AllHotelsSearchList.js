@@ -16,7 +16,8 @@ type Props = {|
 
 export class AllHotelsSearchList extends React.Component<Props> {
   componentDidMount() {
-    const hotelId = this.props.data[0].hotelId;
+    // $FlowExpectedError: Yes, this can be undefined
+    const hotelId = this.props.data[0]?.hotelId;
 
     if (hotelId != null) {
       this.props.setHotelId(hotelId);
