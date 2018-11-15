@@ -6,16 +6,9 @@ import { IconLoading, LinkButton, StyleSheet } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
-  isLoading: boolean,
-  onPress: () => void,
+  +isLoading: boolean,
+  +onPress: () => void,
 |};
-
-const styleSheet = StyleSheet.create({
-  wrapper: {
-    height: 50,
-    justifyContent: 'center',
-  },
-});
 
 /**
  * This button is used as a "Load More" button at the end of the list of all hotels.
@@ -34,3 +27,10 @@ export default function LoadMoreButton({ isLoading, onPress }: Props) {
     </View>
   );
 }
+
+const styleSheet = StyleSheet.create({
+  wrapper: {
+    height: 50,
+    justifyContent: 'center',
+  },
+});
