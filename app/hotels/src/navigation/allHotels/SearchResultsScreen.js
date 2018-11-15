@@ -20,6 +20,7 @@ import HotelsNavigationOptions from '../HotelsNavigationOptions';
 import {
   withSearchResultsContext,
   type ResultType,
+  type SearchResultState,
 } from './SearchResultsContext';
 import SingleHotelContainer from '../../singleHotel/SingleHotelContainer';
 import type { RoomsConfiguration } from '../../singleHotel/AvailableHotelSearchInput';
@@ -192,7 +193,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withSearchResultsContext(state => ({
+export default withSearchResultsContext((state: SearchResultState) => ({
   setResultType: state.setResultType,
   show: state.show,
 }))(SearchResultsScreen);

@@ -12,9 +12,6 @@ export default function withContext<T>(
       ...T,
       +children: React.Element<any>,
     |}> {
-      // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-      static navigationOptions = Component.navigationOptions;
-
       /**
        * All components that subscribes to context would re render even when props they are not subsrcibing
        * too changes. This shouldComponentUpdate should make the subscriber only re render when its
@@ -34,6 +31,8 @@ export default function withContext<T>(
     }
 
     class WithContext extends React.Component<Object> {
+      // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+      static navigationOptions = Component.navigationOptions;
       renderInner = (state: T) => {
         const stateProps = select(state);
         return (
