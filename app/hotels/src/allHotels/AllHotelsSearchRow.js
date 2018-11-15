@@ -60,13 +60,14 @@ class AllHotelsSearchRow extends React.Component<Props> {
 
   render() {
     const highResUrl = this.props.data.mainPhoto?.highResUrl;
+    const imageUrl = this.props.data.mainPhoto?.lowResUrl ?? highResUrl; // stay 22 don't provide lowResUrl, thumbnail url has to low quality, fallback to highResUrl
     const children = (
       <View style={style.row}>
         <View style={style.imageContainer}>
           <NetworkImage
             style={style.image}
             resizeMode="cover"
-            source={{ uri: highResUrl }}
+            source={{ uri: imageUrl }}
           />
         </View>
         <View style={style.content}>
@@ -130,6 +131,7 @@ export default createFragmentContainer(
       hotelId
       mainPhoto {
         highResUrl
+        lowResUrl
       }
       review {
         score

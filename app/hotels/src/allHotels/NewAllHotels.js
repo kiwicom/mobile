@@ -11,7 +11,7 @@ import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import Stay22HotelsSearch from './Stay22HotelsSearch';
 
 type Props = {|
-  cityId: string | null,
+  +cityId: string | null,
 |};
 
 const NewAllHotels = ({ cityId }: Props) => (
