@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { withContext } from '@kiwicom/mobile-shared';
 
 export type ResultType = 'list' | 'map';
 
@@ -48,21 +49,7 @@ class Provider extends React.Component<Props, State> {
 export default { Consumer, Provider };
 
 export function withSearchResultsContext(select: (state: State) => Object) {
-  return function(Component: React.ElementType) {
-    class WithSearchResultsContext extends React.Component<Props> {
-      // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-      static navigationOptions = Component.navigationOptions;
-
-      mapStateToProps = (state: Object) => {
-        const stateProps = select(state);
-        return <Component {...this.props} {...stateProps} />;
-      };
-
-      render() {
-        return <Consumer>{this.mapStateToProps}</Consumer>;
-      }
-    }
-
-    return WithSearchResultsContext;
-  };
+  return withContext<State>(select, Consumer);
 }
+
+export type SearchResultState = State;
