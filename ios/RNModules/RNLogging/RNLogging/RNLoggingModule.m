@@ -1,5 +1,7 @@
 #import "RNLoggingModule.h"
 #import "RNLogger.h"
+#import "RNMessageLogger.h"
+#import "RNDummyLogger.h"
 
 #import <React/RCTBridgeModule.h>
 
@@ -22,6 +24,17 @@
 
 + (void)setLogger:(id<RNLogger>)logger {
     [[self new] setLogger:logger];
+}
+
+- (id<RNLogger>)logger {
+    if (!_logger) {
+        #ifdef DEBUG
+            return (id<RNLogger>) [[RNMessageLogger alloc] initWithTarget:[[RNDummyLogger alloc] init]];
+        #else
+            return [[RNDummyLogger alloc] init];
+        #endif
+    }
+    return _logger;
 }
 
 // To export a module named RNLoggingModule
