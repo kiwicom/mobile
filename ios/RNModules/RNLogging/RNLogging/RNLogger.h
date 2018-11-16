@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)hotelsSelectedFilterTag:(NSString *)filterTag;
 - (void)hotelsDetailOpened;
 - (void)hotelsDetailAbandoned;
-- (void)hotelsDescriptionExpanded;
-- (void)hotelsMapOpened;
-- (void)hotelsRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType;
+- (void)hotelsDetailDescriptionExpanded;
+- (void)hotelsDetailMapOpened;
+- (void)hotelsDetailRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType;
 - (void)hotelsGalleryOpened:(NSString *)type;
-- (void)hotelsBookNowPressed:(NSString *)hotelsID
+- (void)hotelsBookNowPressed:(NSString *)hotelID
                        rooms:(NSNumber *)rooms
                       guests:(NSNumber *)guests
                        price:(NSNumber *)price

@@ -55,24 +55,24 @@ RCT_EXPORT_METHOD(hotelsDetailAbandoned) {
     [self.logger hotelsDetailAbandoned];
 }
 
-RCT_EXPORT_METHOD(hotelsDescriptionExpanded) {
-    [self.logger hotelsDescriptionExpanded];
+RCT_EXPORT_METHOD(hotelsDetailDescriptionExpanded) {
+    [self.logger hotelsDetailDescriptionExpanded];
 }
 
-RCT_EXPORT_METHOD(hotelsMapOpened) {
-    [self.logger hotelsMapOpened];
+RCT_EXPORT_METHOD(hotelsDetailMapOpened) {
+    [self.logger hotelsDetailMapOpened];
 }
 
-RCT_EXPORT_METHOD(hotelsRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType) {
-    [self.logger hotelsRoomSelected:hotelID roomType:roomType];
+RCT_EXPORT_METHOD(hotelsDetailRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType) {
+    [self.logger hotelsDetailRoomSelected:hotelID roomType:roomType];
 }
 
 RCT_EXPORT_METHOD(hotelsGalleryOpened:(NSString *)type) {
     [self.logger hotelsGalleryOpened:type];
 }
 
-RCT_EXPORT_METHOD(hotelsBookNowPressed:(NSString *)hotelsID rooms:(NSNumber *)rooms guests:(NSNumber *)guests price:(NSNumber *)price formattedPrice:(NSString *)formattedPrice) {
-    [self.logger hotelsBookNowPressed:hotelsID rooms:rooms guests:guests price:price formattedPrice:formattedPrice];
+RCT_EXPORT_METHOD(hotelsBookNowPressed:(NSString *)hotelID rooms:(NSNumber *)rooms guests:(NSNumber *)guests price:(NSNumber *)price formattedPrice:(NSString *)formattedPrice) {
+    [self.logger hotelsBookNowPressed:hotelID rooms:rooms guests:guests price:price formattedPrice:formattedPrice];
 }
 
 - (NSDictionary *)constantsToExport

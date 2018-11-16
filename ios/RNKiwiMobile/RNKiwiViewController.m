@@ -117,19 +117,19 @@
   }
 }
 
-- (void)hotelsDescriptionExpanded {
+- (void)hotelsDetailDescriptionExpanded {
   if ([self logHotelsDescriptionExpended]) {
     self.logHotelsDescriptionExpended();
   }
 }
 
-- (void)hotelsMapOpened {
+- (void)hotelsDetailMapOpened {
   if ([self logHotelsMapOpened]) {
     self.logHotelsMapOpened();
   }
 }
 
-- (void)hotelsRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType {
+- (void)hotelsDetailRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType {
   if ([self logHotelsRoomSelected]) {
     self.logHotelsRoomSelected(hotelID, roomType);
   }
@@ -141,13 +141,13 @@
   }
 }
 
-- (void)hotelsBookNowPressed:(NSString *)hotelsID
+- (void)hotelsBookNowPressed:(NSString *)hotelID
                        rooms:(NSNumber *)rooms
                       guests:(NSNumber *)guests
                        price:(NSNumber *)price
               formattedPrice:(NSString *)formattedPrice {
   if ([self logHotelsBookNowPressed]) {
-    self.logHotelsBookNowPressed(hotelsID, rooms, guests, price, formattedPrice);
+    self.logHotelsBookNowPressed(hotelID, rooms, guests, price, formattedPrice);
   }
 }
 
