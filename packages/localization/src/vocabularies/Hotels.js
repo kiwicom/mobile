@@ -4,26 +4,16 @@ export default {
   'hotels.gallery_grid.no_images': 'No images available.',
   'hotels.gallery.pagination': '__1_photoNumber__ of __2_totalPhotos__',
   'hotels.map.address': 'Address',
-  'hotels.map.multiple_reviews': 'Total reviews: __numberOfReviews__',
   'hotels.map.no_results': 'No results. Please try using a different filter.',
-  'hotels.map.no_reviews': 'No reviews',
-  'hotels.navigation.title.all_hotels': 'Hotels',
-  'hotels.navigation.title.all_hotels_map': 'Map',
   'hotels.navigation.title.gallery_grid': 'Photos',
   'hotels.navigation.title.payment': 'Hotel',
-  'hotels.navigation.title.single_hotel': 'Details',
-  'hotels.navigation.title.single_hotel_map': 'Map',
 
   'hotels.payment_screen.server_error':
     'Failed to get url from the server, please try again.',
 
-  'hotels_search.all_hotels.please_search':
-    'Please search for your desired destination.',
   'hotels_search.all_hotels_search_list.no_hotels_found': 'No hotels found.',
   'hotels_search.all_hotels_search.date_error':
     'Oops, there seems to be something wrong with the chosen dates',
-  'hotels_search.all_hotels_map.allow_localization_or_search':
-    'Please go to settings and allow localization, or go back and search for your desired destination',
   'hotels_search.date_picker.select_date': 'Select date',
   'hotels_search.filter.free_cancellation': 'Free cancellation',
   'hotels_search.filter.hotel_facilities_filter.airport_shuttle':
@@ -56,7 +46,6 @@ export default {
   'hotels_search.filter.score_filter.rating.9': 'superb 9+',
   'hotels_search.filter.score_filter.rating.any': 'any',
   'hotels_search.filter.score_popup.save': 'Save',
-  'hotels_search.filter.score_popup.title': 'Rating:',
   'hotels_search.filter.stars_filter.stars': 'Stars',
   'hotels_search.filter.stars_filter.unrated': 'unrated',
   'hotels_search.filter.stars_popup.save': 'Save',
@@ -70,24 +59,7 @@ export default {
   'hotels_search.filter.order_popup.distance': 'Distance from center',
   'hotels_search.filter.order_popup.title': 'Sort by',
   'hotels_search.filter.order_popup.stars': 'Stars',
-  'hotels_search.guests.adults': 'Adults:',
-  'hotels_search.guests.age_control.less_than_one': 'Less than year',
-  'hotels_search.guests.age_control.select': 'Please select',
-  'hotels_search.guests.children': 'Children:',
-  'hotels_search.guests_number_controls.adults': 'Adults',
-  'hotels_search.guests_number_controls.children': 'Children',
-  'hotels_search.guests_modal.child_age_title': "Child's age at check-out",
-  'hotels_search.guests_modal.children.error_age':
-    "Please provide the child's age first.",
-  'hotels_search.guests_modal.children_index': 'Child __index__',
-  'hotels_search.guests_modal.close': 'Close',
-  'hotels_search.guests_modal.header': 'Guests',
-  'hotels_search.guests_modal.save': 'Save',
   'hotels_search.load_more': 'Load more...',
-  'hotels_search.location_button.placeholder': 'Where?',
-  'hotels_search.location_picker.cancel': 'Cancel',
-  'hotels_search.location_picker.header': 'Where',
-  'hotels_search.location_picker.recent_search': 'Recent search',
   'hotels_search.header.to': 'to',
   'hotels_search.hotel_distance.in_city_center': 'In the city center',
   'hotels_search.hotel_distance.meters_from_center':
@@ -114,8 +86,6 @@ export default {
   'single_hotel.description.equipment': 'Equipment',
   'single_hotel.description.show_more': 'Show More',
   'single_hotel.description.show_less': 'Show Less',
-  'single_hotel.room_description.read_more': 'Read more',
-  'single_hotel.room_description.hide': 'Hide',
   'single_hotel.hotel_review.reviews': '__count__ Reviews',
   'single_hotel.hotel_review.rating.6': 'Pleasant',
   'single_hotel.hotel_review.rating.7': 'Good',
