@@ -39,8 +39,8 @@ RCT_EXPORT_METHOD(ancillaryPurchased:(NSString *)type provider:(NSString *)provi
     [self.logger ancillaryPurchased:type provider:provider];
 }
 
-RCT_EXPORT_METHOD(hotelsResultsDisplayed:(id)additionalInfo) {
-    [self.logger hotelsResultsDisplayed:additionalInfo];
+RCT_EXPORT_METHOD(hotelsResultsDisplayed:(NSString *)searchQuery params:(NSString *)parameters) {
+    [self.logger hotelsResultsDisplayed:searchQuery params:parameters];
 }
 
 RCT_EXPORT_METHOD(hotelsSelectedFilterTag:(NSString *)filterTag) {

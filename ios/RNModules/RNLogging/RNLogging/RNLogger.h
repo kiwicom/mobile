@@ -7,7 +7,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)ancillaryDisplayed:(nullable NSString *)type provider:(nullable NSString *)provider;
 - (void)ancillaryPurchased:(nullable NSString *)type provider:(nullable NSString *)provider;
 
-- (void)hotelsResultsDisplayed:(id)additionalInfo;
+- (void)hotelsResultsDisplayed:(nullable NSString *)searchQuery params:(nullable NSString *)parameters;
 - (void)hotelsSelectedFilterTag:(NSString *)filterTag;
 - (void)hotelsDetailOpened;
 - (void)hotelsDetailAbandoned;

@@ -93,9 +93,9 @@
   }
 }
 
-- (void)hotelsResultsDisplayed:(id)additionalInfo {
+- (void)hotelsResultsDisplayed:(NSString *)searchQuery params:(NSString *)parameters {
   if ([self logHotelsResultsDisplayed]) {
-    self.logHotelsResultsDisplayed(additionalInfo);
+    self.logHotelsResultsDisplayed(searchQuery, parameters);
   }
 }
 
@@ -130,8 +130,8 @@
 }
 
 - (void)hotelsDetailRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType {
-  if ([self logHotelsRoomSelected]) {
-    self.logHotelsRoomSelected(hotelID, roomType);
+  if ([self logHotelsDetailRoomSelected]) {
+    self.logHotelsDetailRoomSelected(hotelID, roomType);
   }
 }
 
