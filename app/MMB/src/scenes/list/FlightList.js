@@ -10,7 +10,7 @@ import FlightItemLayout from './FlightItemLayout';
 import type { FlightList as FlightListType } from './__generated__/FlightList.graphql';
 
 type Props = {|
-  data: FlightListType,
+  data: ?FlightListType,
 |};
 
 type State = {|
@@ -19,7 +19,7 @@ type State = {|
 
 export class FlightList extends React.Component<Props, State> {
   render() {
-    const flights = this.props.data.edges;
+    const flights = this.props.data?.edges;
 
     if (!flights) {
       return null;
