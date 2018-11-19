@@ -7,14 +7,16 @@ import { Translation } from '@kiwicom/mobile-localization';
 import Button from './Button';
 import ButtonTitle from './ButtonTitle';
 import StyleSheet from '../PlatformStyleSheet';
+import type { StylePropType } from '../../';
 
 type Props = {|
   +onPress: () => void,
+  +style?: StylePropType,
 |};
 
-export default function CloseButton({ onPress }: Props) {
+export default function CloseButton({ onPress, style }: Props) {
   return (
-    <Button onPress={onPress} style={styles.button}>
+    <Button onPress={onPress} style={[styles.button, style]}>
       <ButtonTitle
         style={styles.text}
         text={<Translation id="shared.button.close" />}
