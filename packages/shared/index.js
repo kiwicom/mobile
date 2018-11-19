@@ -49,6 +49,7 @@ export { default as Text } from './src/Text';
 export { default as Duration } from './src/Duration';
 
 export { default as SliderLabels } from './src/SliderLabels';
+export { default as OfflineScreen } from './src/offlineScreen/OfflineScreen';
 
 /**
  * Layout components:
