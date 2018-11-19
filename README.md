@@ -276,12 +276,18 @@ it('Works!', () => {
 });
 ```
 
-The `PlaygroundRenderer` allows you to see the tests in the Playground and it automatically creates shallow snapshots of the component. You can start the Playground in the `index.js`:
+The `PlaygroundRenderer` allows you to see the tests in the Playground and it automatically creates shallow snapshots of the component. 
+
+To start the Playground, you need to switch which `App` is imported in the `index.js` file at the root of this repository. Comment the line importing the file `app/App` and uncomment the following line, which imports `packages/playground/src/Navigation`. That means you should now see 
 
 ```js
-// import App from './app/App';
-import App from './app/Playground';
+//import App from './app/App';
+import App from './packages/playground/src/Navigation';
 ```
+
+in `index.js`. Start the app like you would normally do, i.e. by running `yarn ios`, and you should see the following screen:
+
+![](./docs/assets/playground-welcome-screen.png)
 
 ### Working with GraphQL API
 
