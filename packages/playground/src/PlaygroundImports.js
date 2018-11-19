@@ -30,4 +30,5 @@ import '../../../packages/shared/src/__tests__/SimpleCard.test.js';
 import '../../../packages/shared/src/__tests__/ReadMore.test.js';
 import '../../../packages/shared/src/__tests__/DropMarker.playground.test.js';
 import '../../../packages/shared/src/__tests__/AdaptableBadge.test.js';
+import '../../../packages/shared/src/offlineScreen/__tests__/OfflineScreen.test';
 import '../../../packages/pdf/src/__tests__/PdfViewer.test.js';
