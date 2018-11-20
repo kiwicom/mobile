@@ -22,6 +22,7 @@ type Props = {
   +checkout?: string,
   +onNavigationStateChange: () => void,
   +onBackClicked: () => void,
+  +lastNavigationMode?: string,
   +dimensions: DimensionType,
   +version: string,
   +cityName: string,
@@ -57,6 +58,8 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
         // Stay 22 only supports searching with gps coordinates, if we get passed a cityId from native
         // we are using booking.com, if we don't get cityId, we should have coordinates, and we are using stay22 provider
         apiProvider={this.props.cityId == null ? 'stay22' : 'booking'}
+        onBackClicked={this.props.onBackClicked}
+        lastNavigationMode={this.props.lastNavigationMode}
       >
         <AdaptableLayout
           renderOnNarrow={<HotelsStack {...props} />}

@@ -19,6 +19,7 @@ const props = {
   cityName: null,
   apiProvider: 'booking',
   hotelId: '',
+  closeHotels: jest.fn(),
 };
 
 const Child = () => null;
