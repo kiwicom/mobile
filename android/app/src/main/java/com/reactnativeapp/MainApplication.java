@@ -39,7 +39,6 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
-            new RNGestureHandlerPackage(),
                     new RNZipArchivePackage(),
                     new RNSharePackage(),
                     new RCTPdfView(),
@@ -51,7 +50,8 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
                     new RNCurrencyManagerPackage(),
                     new RNDeviceInfoPackage(),
                     new RNCardManagerPackage(),
-                    new RNReverseGeocodePackage()
+                    new RNReverseGeocodePackage(),
+                    new RNGestureHandlerPackage()
             );
         }
 
