@@ -3,9 +3,10 @@
 import * as React from 'react';
 import { HeaderBackButton } from 'react-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import { GestureController } from '@kiwicom/mobile-shared';
 import { HeaderButton, type NavigationType } from '@kiwicom/mobile-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+
+import GestureController from './GestureController';
 
 type NavProps = {
   ...NavigationType,

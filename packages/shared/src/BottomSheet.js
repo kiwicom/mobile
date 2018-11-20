@@ -1,12 +1,12 @@
 // @flow strict
 
 import * as React from 'react';
-import { LayoutAnimation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from './PlatformStyleSheet';
 import VerticalSwipeResponder from './view/VerticalSwipeResponder';
 import Color from './Color';
+import LayoutAnimation from './LayoutAnimation';
 
 type Props = {|
   +children: React.Node,
