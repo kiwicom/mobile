@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 workspace 'reactNativeApp.xcworkspace'
 
-def react_native_pods() 
+def react_native_pods()
   pod 'React', path: '../node_modules/react-native', subspecs: [
     'Core',
     'RCTActionSheet',
@@ -25,6 +25,7 @@ def react_native_pods()
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
+  pod 'RNGestureHandler', path: '../node_modules/react-native-gesture-handler/ios'
 end
 
 def mmb_package_modules()
