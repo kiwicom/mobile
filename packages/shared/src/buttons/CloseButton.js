@@ -7,7 +7,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import Button from './Button';
 import ButtonTitle from './ButtonTitle';
 import StyleSheet from '../PlatformStyleSheet';
-import type { StylePropType } from '../../';
+import type { StylePropType } from '../../types/Styles';
 
 type Props = {|
   +onPress: () => void,
