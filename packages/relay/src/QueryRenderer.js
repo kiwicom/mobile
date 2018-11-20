@@ -18,6 +18,7 @@ type Props = {|
 type RendererResponse = {|
   +error?: Object,
   +props?: Object,
+  +retry: () => void,
 |};
 
 const noConnectionErrorMessages = [
@@ -35,22 +36,26 @@ export default class QueryRenderer extends React.Component<Props> {
     return PrivateEnvironment.getEnvironment(accessToken);
   };
 
-  renderRelayContainer = ({ error, props }: RendererResponse) => {
+  renderRelayContainer = ({ error, props, retry }: RendererResponse) => {
+    let Component = <FullPageLoading />; // no data or errors yet
     if (error && noConnectionErrorMessages.includes(error.message)) {
-      return (
+      if (this.props.renderOfflineScreen != null) {
+        return this.props.renderOfflineScreen(retry);
+      }
+      Component = (
         <GeneralError
           errorMessage={<Translation id="relay.query_renderer.no_connection" />}
         />
       );
     } else if (error instanceof TimeoutError) {
-      return (
+      Component = (
         <GeneralError
           errorMessage={<Translation id="relay.query_renderer.timeout" />}
         />
       );
     } else if (error) {
       // total failure (data == null, errors != null)
-      return (
+      Component = (
         <GeneralError
           errorMessage={<Translation passThrough={error.message} />}
         />
@@ -59,11 +64,15 @@ export default class QueryRenderer extends React.Component<Props> {
 
     if (props) {
       // success (data != null, errors == null)
-      return this.props.render(props);
+      Component = this.props.render(props);
     }
 
-    // no data or errors yet
-    return <FullPageLoading />;
+    return (
+      <React.Fragment>
+        {Component}
+        {this.props.footer}
+      </React.Fragment>
+    );
   };
 
   render() {

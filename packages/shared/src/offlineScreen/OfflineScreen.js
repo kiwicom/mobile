@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { SafeAreaView } from 'react-navigation';
 
 import OfflineImage from './offline.png';
 import StyleSheet from '../PlatformStyleSheet';
@@ -19,40 +20,51 @@ type Props = {|
 
 export default function OfflineScreen(props: Props) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        <Translation id="shared.offline_screen.offline_title" />
-      </Text>
-      <Text style={styles.text}>
-        <Translation id="shared_offline_screen.offline_text" />
-      </Text>
-      <View style={styles.imageContainer}>
-        <Image source={OfflineImage} />
+    <SafeAreaView style={styles.flexItem}>
+      <View style={styles.container}>
+        <View style={styles.flexItem} />
+        <View style={styles.flexItem}>
+          <Text style={styles.title}>
+            <Translation id="shared.offline_screen.offline_title" />
+          </Text>
+          <Text style={styles.text}>
+            <Translation id="shared_offline_screen.offline_text" />
+          </Text>
+        </View>
+        <View style={styles.imageContainer}>
+          <Image source={OfflineImage} />
+        </View>
+        <View style={styles.buttonContainer}>
+          <CloseButton onPress={props.onClose} style={styles.closeButton} />
+          <TextButton
+            title={<Translation id="shared_offline_screen.try_again" />}
+            onPress={props.onTryAgain}
+          />
+        </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <CloseButton onPress={props.onClose} style={styles.closeButton} />
-        <TextButton
-          title={<Translation id="shared_offline_screen.try_again" />}
-          onPress={props.onTryAgain}
-        />
-      </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  flexItem: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   imageContainer: {
     height: 163,
     width: '100%',
+    marginBottom: 40,
+    paddingHorizontal: 22,
   },
   title: {
     fontWeight: '500',
     color: defaultTokens.colorTextAttention,
+    textAlign: 'center',
   },
   text: {
     color: defaultTokens.colorTextSecondary,

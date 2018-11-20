@@ -1,23 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`QueryRenderer renders footerComponent if passed 1`] = `
+<React.Fragment>
+  <FullPageLoading />
+  <Footer />
+</React.Fragment>
+`;
+
 exports[`QueryRenderer returns general error component for network failure 1`] = `
-<GeneralError
-  errorMessage={
-    <Translation
-      id="relay.query_renderer.no_connection"
-    />
-  }
-/>
+<React.Fragment>
+  <GeneralError
+    errorMessage={
+      <Translation
+        id="relay.query_renderer.no_connection"
+      />
+    }
+  />
+</React.Fragment>
 `;
 
 exports[`QueryRenderer returns general error for other errors 1`] = `
-<GeneralError
-  errorMessage={
-    <Translation
-      passThrough="custom message"
-    />
-  }
-/>
+<React.Fragment>
+  <GeneralError
+    errorMessage={
+      <Translation
+        passThrough="custom message"
+      />
+    }
+  />
+</React.Fragment>
 `;
 
-exports[`QueryRenderer returns loader if no props and no errors 1`] = `<FullPageLoading />`;
+exports[`QueryRenderer returns loader if no props and no errors 1`] = `
+<React.Fragment>
+  <FullPageLoading />
+</React.Fragment>
+`;

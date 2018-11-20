@@ -34,70 +34,49 @@ type Props = {|
  * rendered first.
  * The Filters component will handle this ordering.
  */
-class FilterStripe extends React.Component<Props> {
-  scrollViewRef: React.ElementRef<typeof ScrollView>;
-
-  onChange = (params: OnChangeFilterParams) => {
-    this.props.onChange(params);
-    // setTimeout will make it run after the re-render and it scrolls to correct position
-    setTimeout(() => {
-      this.scrollViewRef.scrollTo({
-        x: 0,
-        y: 0,
-        animated: true,
-      });
-    });
-  };
-
-  storeScrollViewRef = ref => (this.scrollViewRef = ref);
-
-  render() {
-    return (
-      <View style={styles.view}>
-        <ScrollView
-          ref={this.storeScrollViewRef}
-          contentContainerStyle={[styles.scrollView, styles.backgroundNew]}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          <Filters>
-            <OrderFilter
-              orderBy={this.props.orderBy}
-              isActive={this.props.activeFilters.isOrderFilterActive}
-              onChange={this.onChange}
-            />
-            <StarsFilter
-              stars={this.props.filter.starsRating}
-              onChange={this.onChange}
-              isActive={this.props.activeFilters.isStarsFilterActive}
-            />
-            <PriceFilter
-              currency={this.props.currency}
-              start={this.props.filter.minPrice}
-              end={this.props.filter.maxPrice}
-              onChange={this.onChange}
-              isActive={this.props.activeFilters.isPriceFilterActive}
-            />
-            <ScoreFilter
-              minScore={this.props.filter.minScore}
-              onChange={this.onChange}
-              isActive={this.props.activeFilters.isMinScoreActive}
-            />
-            <HotelFacilitiesFilter
-              onChange={this.onChange}
-              facilities={this.props.filter.hotelFacilities}
-              isActive={this.props.activeFilters.isHotelFacilitiesActive}
-            />
-            <FreeCancellationFilter
-              onChange={this.onChange}
-              isActive={this.props.filter.freeCancellation}
-            />
-          </Filters>
-        </ScrollView>
-      </View>
-    );
-  }
-}
+const FilterStripe = (props: Props) => (
+  <View style={styles.view}>
+    <ScrollView
+      contentContainerStyle={[styles.scrollView, styles.backgroundNew]}
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+    >
+      <Filters>
+        <OrderFilter
+          orderBy={props.orderBy}
+          isActive={props.activeFilters.isOrderFilterActive}
+          onChange={props.onChange}
+        />
+        <StarsFilter
+          stars={props.filter.starsRating}
+          onChange={props.onChange}
+          isActive={props.activeFilters.isStarsFilterActive}
+        />
+        <PriceFilter
+          currency={props.currency}
+          start={props.filter.minPrice}
+          end={props.filter.maxPrice}
+          onChange={props.onChange}
+          isActive={props.activeFilters.isPriceFilterActive}
+        />
+        <ScoreFilter
+          minScore={props.filter.minScore}
+          onChange={props.onChange}
+          isActive={props.activeFilters.isMinScoreActive}
+        />
+        <HotelFacilitiesFilter
+          onChange={props.onChange}
+          facilities={props.filter.hotelFacilities}
+          isActive={props.activeFilters.isHotelFacilitiesActive}
+        />
+        <FreeCancellationFilter
+          onChange={props.onChange}
+          isActive={props.filter.freeCancellation}
+        />
+      </Filters>
+    </ScrollView>
+  </View>
+);
 
 const styles = StyleSheet.create({
   view: {

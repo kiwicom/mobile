@@ -57,7 +57,9 @@ type CommitMutationConfig = {|
 export type QueryRendererProps = {|
   +query: string,
   +render: (props: Object) => React.Node,
+  +renderOfflineScreen?: ?(retry: () => void) => React.Node,
   +variables?: Object,
+  +footer?: ?React.Node,
 |};
 
 export type RelayPaginationProp = {|

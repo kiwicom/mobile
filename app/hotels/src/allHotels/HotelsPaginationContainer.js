@@ -1,17 +1,20 @@
 // @flow strict
 
 import * as React from 'react';
+import { View } from 'react-native';
 import {
   graphql,
   createPaginationContainer,
   type RelayPaginationProp,
 } from '@kiwicom/mobile-relay';
-import { Logger } from '@kiwicom/mobile-shared';
+import { Logger, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelsPaginationContainer as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer.graphql';
 import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
+import FilterStripe from '../filter/FilterStripe';
 
 type PropsWithContext = {|
   ...Props,
@@ -68,13 +71,18 @@ export class HotelsPaginationContainer extends React.Component<
     const data = edges.map(hotel => hotel?.node);
 
     return (
-      <RenderSearchResults
-        onLoadMore={this.loadMore}
-        hasMore={this.props.relay.hasMore()}
-        isLoading={this.state.isLoading}
-        data={data}
-        top={56}
-      />
+      <React.Fragment>
+        <View style={styles.filterContainer}>
+          <FilterStripe />
+        </View>
+        <RenderSearchResults
+          onLoadMore={this.loadMore}
+          hasMore={this.props.relay.hasMore()}
+          isLoading={this.state.isLoading}
+          data={data}
+          top={56}
+        />
+      </React.Fragment>
     );
   }
 }
@@ -86,6 +94,12 @@ type Props = {|
 
 const select = ({ actions }: HotelsContextState) => ({
   setCurrentSearchStats: actions.setCurrentSearchStats,
+});
+
+const styles = StyleSheet.create({
+  filterContainer: {
+    zIndex: parseInt(defaultTokens.zIndexSticky),
+  },
 });
 
 export default createPaginationContainer(

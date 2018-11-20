@@ -2,7 +2,11 @@
 
 import * as React from 'react';
 import { ConfigContext } from '@kiwicom/mobile-config';
-import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
+import {
+  Dimensions,
+  type DimensionType,
+  GestureController,
+} from '@kiwicom/mobile-shared';
 
 import HotelsFilterContext from '../HotelsFilterContext';
 import HotelsContext, {
@@ -26,9 +30,20 @@ type Props = {|
   +coordinates?: Coordinates | null,
   +hotelId?: string,
   +apiProvider: ApiProvider,
+  +onBackClicked: () => void,
+  +lastNavigationMode?: string,
 |};
 
 export default class RootComponent extends React.Component<Props> {
+  onClosePress = () => {
+    // This prop will only come if we launch this screen from a native app
+    if (this.props.lastNavigationMode === 'present') {
+      GestureController.closeModal('NewKiwiHotels');
+    } else {
+      this.props.onBackClicked();
+    }
+  };
+
   render() {
     return (
       <SearchResultsContext.Provider>
@@ -46,6 +61,7 @@ export default class RootComponent extends React.Component<Props> {
               longitude={this.props.coordinates?.longitude ?? null}
               hotelId={this.props.hotelId}
               apiProvider={this.props.apiProvider}
+              closeHotels={this.onClosePress}
             >
               <Dimensions.Provider dimensions={this.props.dimensions}>
                 {this.props.children}

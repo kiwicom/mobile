@@ -1,5 +1,7 @@
 // @flow
 
+import * as React from 'react';
+
 import QueryRenderer from '../QueryRenderer';
 import PrivateEnvironment from '../PrivateEnvironment';
 import PublicEnvironment from '../PublicEnvironment';
@@ -11,26 +13,60 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
+const retry = () => {};
+
 describe('QueryRenderer', () => {
   it('returns general error component for network failure', () => {
-    const QR = new QueryRenderer();
+    // $FlowExpectedError: Don't need all props for this test
+    const QR = new QueryRenderer({});
     expect(
       QR.renderRelayContainer({
         error: new TypeError('Network request failed'),
+        retry,
       }),
     ).toMatchSnapshot();
   });
 
   it('returns general error for other errors', () => {
-    const QR = new QueryRenderer();
+    // $FlowExpectedError: Don't need all props for this test
+    const QR = new QueryRenderer({});
     expect(
-      QR.renderRelayContainer({ error: new Error('custom message') }),
+      QR.renderRelayContainer({ error: new Error('custom message'), retry }),
     ).toMatchSnapshot();
   });
 
   it('returns loader if no props and no errors', () => {
-    const QR = new QueryRenderer();
-    expect(QR.renderRelayContainer({})).toMatchSnapshot();
+    // $FlowExpectedError: Don't need all props for this test
+    const QR = new QueryRenderer({});
+    expect(
+      QR.renderRelayContainer({
+        retry,
+      }),
+    ).toMatchSnapshot();
+  });
+
+  it('calls renderOfflineScreen if passed', () => {
+    const renderOfflineScreen = jest.fn();
+
+    // $FlowExpectedError: Don't need all props for this test
+    const QR = new QueryRenderer({ renderOfflineScreen });
+    QR.renderRelayContainer({
+      error: new TypeError('Network request failed'),
+      retry,
+    });
+    expect(renderOfflineScreen).toHaveBeenCalledWith(retry);
+  });
+
+  it('renders footerComponent if passed', () => {
+    const Footer = () => 'test';
+
+    // $FlowExpectedError: Don't need all props for this test
+    const QR = new QueryRenderer({ footer: <Footer /> });
+    expect(
+      QR.renderRelayContainer({
+        retry,
+      }),
+    ).toMatchSnapshot();
   });
 
   it('calls PublicEnvironment.getEnvironment if no token is passed', () => {
