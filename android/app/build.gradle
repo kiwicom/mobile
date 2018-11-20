@@ -94,7 +94,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion compileSdkVersionVar
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -102,7 +102,7 @@ android {
     defaultConfig {
         applicationId "com.reactnativeapp"
         minSdkVersion 16
-        targetSdkVersion targetSdkVersionVar
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -165,11 +165,11 @@ dependencies {
     implementation project(':react-native-native-modules')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:$supportVersion"
-    implementation "com.facebook.react:react-native:+"
-    implementation "com.android.support:multidex:1.0.2"
-    implementation "com.trinerdis.skypicker:logging:0.2.1-SNAPSHOT"
-    implementation("com.google.android.gms:play-services-base:$playServicesVersion")
-    implementation("com.google.android.gms:play-services-maps:$playServicesVersion")
+    implementation "com.facebook.react:react-native:$reactNativeVersion"
+    implementation "com.android.support:multidex:$multidexVersion"
+    implementation "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
+    implementation("com.google.android.gms:play-services-base:$playServicesBaseVersion")
+    implementation("com.google.android.gms:play-services-maps:$playServicesMapsVersion")
     implementation project(':@kiwicom/react-native-reverse-geocode')
 }
 

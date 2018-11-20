@@ -6,7 +6,9 @@ import com.facebook.FacebookSdk;
 import com.facebook.react.ReactActivity;
 import com.trinerdis.skypicker.logging.configuration.DeviceInfo;
 import com.trinerdis.skypicker.logging.sender.EventSender;
+import io.reactivex.subjects.BehaviorSubject;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class MainActivity extends ReactActivity {
@@ -31,10 +33,21 @@ public class MainActivity extends ReactActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
 
         String visitorId = UUID.randomUUID().toString();
+        String affilsId = "react_native";
         DeviceInfo deviceInfo = new DeviceInfo();
 
         EventSender.defaultInitialize(
-                getApplication(), deviceInfo, new String[]{}, visitorId, "123456", BuildConfig.DEBUG
+                getApplication(),
+                deviceInfo,
+                BehaviorSubject.create(),
+                new String[]{},
+                visitorId,
+                affilsId,
+                "123456",
+                new ArrayList<>(),
+                BuildConfig.DEBUG,
+                BuildConfig.DEBUG,
+                null
         );
     }
 }

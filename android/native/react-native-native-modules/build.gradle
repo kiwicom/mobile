@@ -1,26 +1,13 @@
-import groovy.json.JsonSlurper
-
-def inputFile = new File("${rootDir}/../.build/package.json")
-def packageJson = new JsonSlurper().parseText(inputFile.text)
-
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'maven'
-apply from: "../../dependencies.gradle"
 
 android {
     defaultConfig {
-        minSdkVersion minSdkVersionVar
-        compileSdkVersion compileSdkVersionVar
-        targetSdkVersion targetSdkVersionVar
-
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
-    project.ext.reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
 
     compileOptions {
         sourceCompatibility 1.8
@@ -33,7 +20,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
@@ -48,20 +34,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 
-tasks.create('uploadTrinerdis', Upload.class) {
-    configuration = project.configurations.archives
-    repositories {
-        mavenDeployer {
-            repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
-                authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
-                pom.version = "$version-SNAPSHOT"
-                pom.artifactId = "react-native-native-modules"
-                pom.groupId = "com.trinerdis.skypicker"
-            }
-        }
-    }
-}
-
-repositories {
-    mavenCentral()
-}
+publishAndroidLibrary("com.trinerdis.skypicker", "react-native-native-modules", "$reactNativeNativeModules-SNAPSHOT")

@@ -1,0 +1,65 @@
+def gitLabRepositoryUrl = "https://gitlab.skypicker.com/api/v4/projects/301/packages/maven"
+
+ext.reactNativeFromNodeModules = {
+    it.maven {
+        // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+        url "$rootDir/../node_modules/react-native/android"
+    }
+}
+
+ext.reactNativeFromUnpkg = { it, version ->
+    it.maven {
+        url "https://unpkg.com/react-native@$version/android/"
+    }
+}
+
+ext.fabric = {
+    it.maven {
+        url 'https://maven.fabric.io/public'
+    }
+}
+
+ext.kiwi = {
+    it.maven {
+        url = gitLabRepositoryUrl
+        credentials(HttpHeaderCredentials) {
+            name = "Private-Token"
+            value = System.getenv("DEPLOYMENT_TOKEN")
+        }
+        authentication {
+            header(HttpHeaderAuthentication)
+        }
+    }
+}
+
+ext.publishCustomLibrary = { _groupId, _artifactId, _version, closure ->
+    publishing {
+        repositories {
+            kiwi(it)
+        }
+
+        publications {
+            maven(MavenPublication) {
+                groupId = _groupId
+                artifactId = _artifactId
+                version = _version
+
+                closure(it)
+            }
+        }
+    }
+
+    publish {
+        dependsOn 'assemble'
+    }
+
+    tasks.create('uploadKiwi') {
+        dependsOn 'publish'
+    }
+}
+
+ext.publishAndroidLibrary = { groupId, artifactId, version ->
+    publishCustomLibrary(groupId, artifactId, version) {
+        it.from components.android
+    }
+}
