@@ -167,7 +167,7 @@ export class HotelDetailScreen extends React.Component<
 
     const disabled = this.props.getGuestCount() <= this.getNumberOfRooms();
     const price = countBookingPrice(
-      this.props.availableHotel.availableRooms,
+      this.props.availableHotel?.availableRooms,
       selected,
     );
     if (!availableHotel) {
@@ -230,7 +230,7 @@ export class HotelDetailScreen extends React.Component<
 }
 
 type Props = {|
-  +availableHotel: HotelDetailScreen_availableHotel,
+  +availableHotel: ?HotelDetailScreen_availableHotel,
   +roomsConfiguration: RoomsConfiguration,
   +goBack: () => void,
   +getGuestCount: () => number,
