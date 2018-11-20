@@ -1,13 +1,13 @@
 // @flow strict
 
 import * as React from 'react';
-import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { DateFormatter, Translation } from '@kiwicom/mobile-localization';
-import { GeneralError } from '@kiwicom/mobile-shared';
+import { graphql } from '@kiwicom/mobile-relay';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import { withHotelsContext } from '../HotelsContext';
 import type { Stay22HotelsSearchQueryResponse } from './__generated__/Stay22HotelsSearchQuery.graphql';
 import Stay22PaginationContainer from './Stay22PaginationContainer';
+import HotelsSearch from './HotelsSearch';
 
 type Props = {|
   +checkin: Date | null,
@@ -16,7 +16,18 @@ type Props = {|
   +getGuestCount: () => number,
   +longitude: number | null,
   +latitude: number | null,
+  +onClose: () => void,
 |};
+
+const query = graphql`
+  query Stay22HotelsSearchQuery(
+    $search: Stay22HotelsSearchInput!
+    $first: Int
+    $after: String
+  ) {
+    ...Stay22PaginationContainer
+  }
+`;
 
 export class Stay22HotelsSearch extends React.Component<Props> {
   renderAllHotelsSearchList = (
@@ -27,39 +38,24 @@ export class Stay22HotelsSearch extends React.Component<Props> {
 
   render() {
     const { checkin, checkout, latitude, longitude, currency } = this.props;
-    if (
+    const shouldRenderDateError =
       checkin === null ||
       checkout === null ||
       latitude === null ||
-      longitude === null
-    ) {
-      return (
-        <GeneralError
-          testID="render-error"
-          errorMessage={
-            <Translation id="hotels_search.all_hotels_search.date_error" />
-          }
-        />
-      );
-    }
+      longitude === null;
+
     return (
-      <PublicApiRenderer
-        query={graphql`
-          query Stay22HotelsSearchQuery(
-            $search: Stay22HotelsSearchInput!
-            $first: Int
-            $after: String
-          ) {
-            ...Stay22PaginationContainer
-          }
-        `}
+      <HotelsSearch
+        onClose={this.props.onClose}
+        shouldRenderDateError={shouldRenderDateError}
+        query={query}
         variables={{
           first: 50,
           search: {
             latitude,
             longitude,
-            checkin: DateFormatter(checkin).formatForMachine(),
-            checkout: DateFormatter(checkout).formatForMachine(),
+            checkin: DateFormatter(checkin ?? new Date()).formatForMachine(),
+            checkout: DateFormatter(checkout ?? new Date()).formatForMachine(),
             guests: this.props.getGuestCount(),
             currency,
           },
@@ -77,4 +73,5 @@ export default withHotelsContext(state => ({
   getGuestCount: state.getGuestCount,
   latitude: state.latitude,
   longitude: state.longitude,
+  onClose: state.closeHotels,
 }))(Stay22HotelsSearch);

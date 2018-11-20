@@ -28,6 +28,7 @@ const defaultState = {
   getGuestCount: () => 0,
   setHotelId: () => {},
   setPaymentLink: () => {},
+  closeHotels: () => {},
 };
 
 const { Consumer, Provider: ContextProvider } = React.createContext<State>({
@@ -56,6 +57,7 @@ type Props = {|
   +longitude: ?number,
   +hotelId: ?string,
   +apiProvider: ApiProvider,
+  +closeHotels: () => void,
 |};
 
 type State = {|
@@ -75,6 +77,7 @@ type State = {|
   +setPaymentLink: (?string) => void,
   +getGuestCount: () => number,
   +setHotelId: (hotelId: string) => void,
+  +closeHotels: () => void,
   +actions: {|
     +setCurrentSearchStats: ({|
       priceMax: number,
@@ -120,6 +123,7 @@ class Provider extends React.Component<Props, State> {
       getGuestCount: this.getGuestCount,
       setHotelId: this.setHotelId,
       setPaymentLink: this.setPaymentLink,
+      closeHotels: props.closeHotels,
       actions: {
         setCurrentSearchStats: this.setCurrentSearchStats,
       },

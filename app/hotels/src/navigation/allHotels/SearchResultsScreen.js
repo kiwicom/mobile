@@ -7,10 +7,7 @@ import {
   LayoutDoubleColumn,
   StyleSheet,
   AdaptableLayout,
-  GestureController,
   TextIcon,
-  CloseButton,
-  Device,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -134,24 +131,12 @@ class SearchResultsScreen extends React.Component<Props> {
 
   toggleShowMap = (show: ResultType) => this.props.setResultType(show);
 
-  onClosePress = () => {
-    // This prop will only come if we launch this screen from a native app
-    if (this.props.lastNavigationMode === 'present') {
-      GestureController.closeModal('NewKiwiHotels');
-    } else {
-      this.props.onBackClicked();
-    }
-  };
-
   render() {
     return (
       <LayoutDoubleColumn
         menuComponent={
           <View style={styles.container}>
             <NewAllHotels />
-            <View style={styles.button}>
-              <CloseButton onPress={this.onClosePress} />
-            </View>
           </View>
         }
         containerComponent={<SingleHotelContainer goBack={noop} />}
@@ -164,12 +149,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: defaultTokens.paletteWhite,
-  },
-  button: {
-    position: 'absolute',
-    bottom: Device.isIPhoneX ? 36 : 8,
-    start: 8,
-    end: 8,
   },
   icon: {
     marginEnd: 2,

@@ -23,6 +23,8 @@ export function PrivateApiRenderer(props: PropsWithContext) {
       variables={props.variables}
       render={props.render}
       accessToken={props.accessToken}
+      renderOfflineScreen={props.renderOfflineScreen}
+      footer={props.footer}
     />
   );
 }

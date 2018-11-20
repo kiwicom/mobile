@@ -22,6 +22,7 @@ type Props = {
   +onBackClicked: () => void,
   +dimensions: DimensionType,
   +version: string,
+  +lastNavigationMode?: string,
 };
 
 class SingleHotelStandAlonePackage extends React.Component<Props> {
@@ -45,6 +46,8 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
         roomsConfiguration={this.props.roomsConfiguration}
         hotelId={this.props.hotelId}
         apiProvider="booking" // Not sure if this is in use by native team, but for now, just support booking.com
+        lastNavigationMode={this.props.lastNavigationMode}
+        onBackClicked={this.props.onBackClicked}
       >
         <SingleHotelStack
           screenProps={screenProps}
