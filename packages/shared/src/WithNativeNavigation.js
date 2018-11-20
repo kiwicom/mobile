@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { GestureController } from '@kiwicom/mobile-shared';
+
+import GestureController from './GestureController';
 
 type NavigationState = {|
   +index: number,

@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { View, Platform } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { TextIcon } from '@kiwicom/mobile-shared';
 
 import TouchableWithoutFeedback from '../TouchableWithoutFeedback';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
+import TextIcon from '../icons/TextIcon';
 
 type Props = {|
   +onPress: () => void,
