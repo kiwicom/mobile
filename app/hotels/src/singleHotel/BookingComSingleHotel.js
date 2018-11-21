@@ -31,7 +31,6 @@ export default class BookingComSingleHotel extends React.Component<Props> {
   );
 
   render() {
-    console.warn('render', this.props.hotelId);
     return (
       <SingleHotelSearch
         onClose={this.props.goBack}
