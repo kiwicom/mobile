@@ -16,7 +16,7 @@ type Props = {|
   +resizeMode?:
     | 'cover' // scales the image uniformly - image will be equal or larger
     | 'contain', // scales the image uniformly - image will be equal or smaller
-  +indicator?: React.ElementType,
+  +indicator?: Function,
 |};
 
 /**
