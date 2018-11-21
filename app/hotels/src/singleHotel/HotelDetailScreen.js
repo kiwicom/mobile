@@ -15,7 +15,6 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import isEqual from 'react-fast-compare';
 import { SafeAreaView } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -27,7 +26,10 @@ import BookNow from './bookNow/BookNow';
 import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
-import countBookingPrice from './bookNow/countBookingPrice';
+import {
+  withHotelDetailScreenContext,
+  type HotelDetailScreenState,
+} from './HotelDetailScreenContext';
 import {
   withHotelsContext,
   type HotelsContextState,
@@ -40,10 +42,6 @@ type PropsWithContext = {|
 |};
 
 type State = {|
-  selected: {
-    [string]: number, // originalId: count
-  },
-  maxPersons: number,
   barStyle: BarStyle,
 |};
 
@@ -63,8 +61,6 @@ export class HotelDetailScreen extends React.Component<
     super(props);
 
     this.state = {
-      selected: {},
-      maxPersons: 0,
       barStyle: Platform.select({
         android: 'default',
         ios: this.isNarrowLayout() ? 'light-content' : 'dark-content',
@@ -88,12 +84,9 @@ export class HotelDetailScreen extends React.Component<
     this.props.setPaymentLink(this.props.paymentLink);
   }
 
-  shouldComponentUpdate = (nextProps: PropsWithContext, nextState: State) => {
-    const isPropsEqual = isEqual(nextProps, this.props);
-    const isStateEqual = isEqual(nextState, this.state);
-
-    return !isPropsEqual || !isStateEqual;
-  };
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   isNarrowLayout = () => {
     return this.props.width < Device.DEVICE_THRESHOLD;
@@ -121,55 +114,9 @@ export class HotelDetailScreen extends React.Component<
     }
   };
 
-  updateSelectedCount = (
-    availabilityOriginalId: string,
-    amount: number,
-    maxPersons: number,
-  ) => {
-    this.setState(state => {
-      const previousCount = state.selected[availabilityOriginalId] ?? 0;
-
-      return {
-        ...state,
-        selected: {
-          ...state.selected,
-          [availabilityOriginalId]: previousCount + amount,
-        },
-        maxPersons: state.maxPersons + maxPersons,
-      };
-    });
-  };
-
-  selectRoom = (availabilityOriginalId: string, maxPersons: number) => {
-    this.updateSelectedCount(availabilityOriginalId, 1, maxPersons);
-  };
-
-  deselectRoom = (availabilityOriginalId: string, maxPersons: number) => {
-    this.updateSelectedCount(availabilityOriginalId, -1, -maxPersons);
-  };
-
-  getNumberOfRooms = () =>
-    Object.keys(this.state.selected).reduce((sum, currentItem) => {
-      return this.state.selected[currentItem] + sum;
-    }, 0);
-
-  getPersonCount = () => {
-    const guestTotal = this.props.getGuestCount();
-
-    return this.state.maxPersons > guestTotal
-      ? guestTotal
-      : this.state.maxPersons;
-  };
-
   render() {
     const { availableHotel } = this.props;
-    const { selected } = this.state;
 
-    const disabled = this.props.getGuestCount() <= this.getNumberOfRooms();
-    const price = countBookingPrice(
-      this.props.availableHotel?.availableRooms,
-      selected,
-    );
     if (!availableHotel) {
       return (
         <GeneralError
@@ -192,22 +139,12 @@ export class HotelDetailScreen extends React.Component<
             <LayoutSingleColumn barStyle={this.state.barStyle}>
               <Header hotel={availableHotel.hotel} />
               <HotelInformation hotel={availableHotel.hotel} />
-              <RoomList
-                data={availableHotel.availableRooms}
-                select={this.selectRoom}
-                deselect={this.deselectRoom}
-                selected={selected}
-                disabled={disabled}
-              />
+              <RoomList data={availableHotel.availableRooms} />
               <BrandLabel />
             </LayoutSingleColumn>
           </ScrollView>
           <View style={styles.buttonContainer}>
-            <RoomSummary
-              guestCount={this.getPersonCount()}
-              roomCount={this.getNumberOfRooms()}
-              price={price}
-            />
+            <RoomSummary availableRooms={availableHotel.availableRooms} />
             <View style={styles.row}>
               <AdaptableLayout
                 renderOnNarrow={
@@ -216,9 +153,9 @@ export class HotelDetailScreen extends React.Component<
                   </View>
                 }
               />
-              {this.state.maxPersons > 0 && (
+              {this.props.maxPersons > 0 && (
                 <View style={styles.bookNowWrapper}>
-                  <BookNow selected={selected} hotel={availableHotel.hotel} />
+                  <BookNow hotel={availableHotel.hotel} />
                 </View>
               )}
             </View>
@@ -237,6 +174,8 @@ type Props = {|
   +paymentLink?: ?string,
   +setPaymentLink: (?string) => void,
   +apiProvider: ApiProvider,
+  +maxPersons: number,
+  +reset: () => void,
 |};
 
 class HotelDetailScreenWithContext extends React.Component<Props> {
@@ -259,8 +198,20 @@ const select = ({
   apiProvider,
 });
 
+const selectHotelDetailScreen = ({
+  maxPersons,
+  actions: { reset },
+}: HotelDetailScreenState) => ({
+  maxPersons,
+  reset,
+});
+
 export default createFragmentContainer(
-  withHotelsContext(select)(HotelDetailScreenWithContext),
+  withHotelsContext(select)(
+    withHotelDetailScreenContext(selectHotelDetailScreen)(
+      HotelDetailScreenWithContext,
+    ),
+  ),
   graphql`
     fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
       hotel {

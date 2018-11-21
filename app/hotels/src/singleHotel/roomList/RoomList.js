@@ -14,12 +14,6 @@ import type { RoomList as RoomListType } from './__generated__/RoomList.graphql'
 
 type ContainerProps = {|
   +data: any,
-  +select: (availabilityId: string, maxPersons: number) => void,
-  +deselect: (availabilityId: string, maxPersons: number) => void,
-  +selected: {
-    [string]: number,
-  },
-  +disabled: boolean,
 |};
 
 type Props = {|
@@ -31,8 +25,7 @@ class RoomList extends React.Component<Props> {
   shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
 
   render() {
-    const { select, deselect, selected, disabled } = this.props;
-    const data = this.props.data || [];
+    const data = this.props.data ?? [];
 
     return (
       <View style={styles.container}>
@@ -52,10 +45,6 @@ class RoomList extends React.Component<Props> {
             )}
             <RoomRow
               availableRoom={availableRoom}
-              select={select}
-              deselect={deselect}
-              selected={selected}
-              disabled={disabled}
               testID={index === data.length - 1 ? 'lastAvailableRoom' : ''}
             />
           </React.Fragment>
