@@ -121,13 +121,13 @@ class SearchResultsScreen extends React.Component<Props> {
     });
   }
 
-  componentDidUpdate = (prevProps: Props) => {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.show !== this.props.show) {
       this.props.navigation.setParams({
         show: this.props.show,
       });
     }
-  };
+  }
 
   toggleShowMap = (show: ResultType) => this.props.setResultType(show);
 

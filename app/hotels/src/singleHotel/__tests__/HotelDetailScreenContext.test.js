@@ -69,5 +69,9 @@ describe('HotelDetailScreenContext', () => {
     expect(wrapper.state.selected).toEqual({});
     expect(wrapper.state.maxPersons).toEqual(0);
     expect(wrapper.state.numberOfRooms).toEqual(0);
+    expect(wrapper.state.price).toEqual({
+      amount: 0,
+      currency: '',
+    });
   });
 });
