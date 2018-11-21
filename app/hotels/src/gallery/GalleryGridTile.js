@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { NetworkImage, Touchable } from '@kiwicom/mobile-shared';
+import { NetworkImage, Touchable, IconLoading } from '@kiwicom/mobile-shared';
 
 type Props = {|
   onTilePress: (imageIndex: number) => void,
@@ -15,7 +15,7 @@ type Props = {|
 
 export default class GalleryGridTile extends React.Component<Props> {
   handleTilePress = () => this.props.onTilePress(this.props.imageIndex);
-
+  renderLoadingIndicator = () => <IconLoading />;
   render() {
     const style: Object = {
       width: this.props.width,
@@ -32,6 +32,7 @@ export default class GalleryGridTile extends React.Component<Props> {
           source={{ uri: this.props.imageUrl }}
           style={style}
           resizeMode="cover"
+          indicator={this.renderLoadingIndicator}
         />
       </Touchable>
     );
