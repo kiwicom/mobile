@@ -2,8 +2,10 @@
 
 import countBookingPrice from '../countBookingPrice';
 
+const $fragmentRefs: any = null;
 const availableRooms = [
   {
+    $fragmentRefs,
     id: 'aaa',
     incrementalPrice: [
       {
@@ -17,6 +19,7 @@ const availableRooms = [
     ],
   },
   {
+    $fragmentRefs,
     id: 'bbb',
     incrementalPrice: [
       {
@@ -51,10 +54,12 @@ it('returns sum of selected rooms', () => {
 it('takes a currency from the first selected room', () => {
   const czechRooms = [
     {
+      $fragmentRefs,
       id: 'aaa',
       incrementalPrice: [],
     },
     {
+      $fragmentRefs,
       id: 'bbb',
       incrementalPrice: [
         {

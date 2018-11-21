@@ -9,7 +9,6 @@ import {
   withNavigation,
 } from '@kiwicom/mobile-navigation';
 import { Alert } from '@kiwicom/mobile-localization';
-import isEqual from 'react-fast-compare';
 
 import RoomPicker from '../roomPicker/RoomPicker';
 import RoomImage from './RoomImage';
@@ -17,15 +16,17 @@ import BeddingInfo from './BeddingInfo';
 import RoomRowTitle from './RoomRowTitle';
 import RoomBadges from './RoomBadges';
 import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
+import {
+  withHotelDetailScreenContext,
+  type HotelDetailScreenState,
+} from '../HotelDetailScreenContext';
+import {
+  withHotelsContext,
+  type HotelsContextState,
+} from '../../HotelsContext';
 
 type ContainerProps = {|
   +availableRoom: ?Object,
-  +select: (availabilityId: string, maxPersons: number) => void,
-  +deselect: (availabilityId: string, maxPersons: number) => void,
-  +selected: {
-    +[string]: number,
-  },
-  +disabled: boolean,
   +testID?: string,
 |};
 
@@ -33,12 +34,20 @@ type Props = {|
   ...ContainerProps,
   +availableRoom: ?RoomRow_availableRoom,
   +navigation: NavigationType,
+  +select: (availabilityId: string, maxPersons: number) => void,
+  +deselect: (availabilityId: string, maxPersons: number) => void,
+  +selected: {
+    +[string]: number,
+  },
+  +numberOfRooms: number,
+  +getGuestCount: () => number,
 |};
 
 export class RoomRow extends React.Component<Props> {
-  shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
+  isDisabled = () => this.props.getGuestCount() <= this.props.numberOfRooms;
+
   select = () => {
-    if (this.props.disabled) {
+    if (this.isDisabled()) {
       Alert.translatedAlert(null, {
         id: 'single_hotel.alert.cannot_book_more_rooms_than_guests',
       });
@@ -122,7 +131,7 @@ export class RoomRow extends React.Component<Props> {
             increment={this.select}
             decrement={this.deselect}
             testID={this.props.testID}
-            disabled={this.props.disabled}
+            disabled={this.isDisabled()}
           />
         </View>
       </View>
@@ -130,8 +139,27 @@ export class RoomRow extends React.Component<Props> {
   }
 }
 
+const select = ({
+  selected,
+  numberOfRooms,
+  actions: { selectRoom, deselectRoom },
+}: HotelDetailScreenState) => ({
+  select: selectRoom,
+  deselect: deselectRoom,
+  selected,
+  numberOfRooms,
+});
+
+const selectHotelsContext = ({ getGuestCount }: HotelsContextState) => ({
+  getGuestCount,
+});
+
 export default (createFragmentContainer(
-  withNavigation(RoomRow),
+  withNavigation(
+    withHotelDetailScreenContext(select)(
+      withHotelsContext(selectHotelsContext)(RoomRow),
+    ),
+  ),
   graphql`
     fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
       id

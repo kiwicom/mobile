@@ -16,6 +16,10 @@ import {
   withHotelsContext,
   type HotelsContextState,
 } from '../../HotelsContext';
+import {
+  withHotelDetailScreenContext,
+  type HotelDetailScreenState,
+} from '../HotelDetailScreenContext';
 
 type Props = {
   +selected: {
@@ -51,9 +55,14 @@ export class BookNow extends React.Component<Props> {
 }
 
 const select = ({ currency }: HotelsContextState) => ({ currency });
+const selectHotelDetailScreen = ({ selected }: HotelDetailScreenState) => ({
+  selected,
+});
 
 export default createFragmentContainer(
-  withHotelsContext(select)(withNavigation(BookNow)),
+  withHotelDetailScreenContext(selectHotelDetailScreen)(
+    withHotelsContext(select)(withNavigation(BookNow)),
+  ),
   graphql`
     fragment BookNow_hotel on HotelInterface {
       id

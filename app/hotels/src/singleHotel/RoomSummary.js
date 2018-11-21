@@ -6,21 +6,30 @@ import { Text, StyleSheet, Price } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { View } from 'react-native';
 
-type PriceType = {|
-  amount: number,
-  currency: string,
-|};
+import {
+  withHotelDetailScreenContext,
+  type HotelDetailScreenState,
+} from './HotelDetailScreenContext';
+import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
+import countBookingPrice from './bookNow/countBookingPrice';
 
 type Props = {|
-  +guestCount: number,
-  +roomCount: number,
-  +price: ?PriceType,
+  +getPersonCount: () => number,
+  +numberOfRooms: number,
+  +availableRooms: ?$PropertyType<
+    HotelDetailScreen_availableHotel,
+    'availableRooms',
+  >,
+  +selected: $PropertyType<HotelDetailScreenState, 'selected'>,
 |};
 
-export default function RoomSummary(props: Props) {
-  if (props.roomCount === 0 || props.price == null) {
+function RoomSummary(props: Props) {
+  const price = countBookingPrice(props.availableRooms, props.selected);
+
+  if (props.numberOfRooms === 0 || price == null) {
     return null;
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -31,11 +40,11 @@ export default function RoomSummary(props: Props) {
           <Translation
             id="single_hotel.book_now.description"
             values={{
-              personCount: props.guestCount,
-              numberOfRooms: props.roomCount,
+              personCount: props.getPersonCount(),
+              numberOfRooms: props.numberOfRooms,
             }}
           />
-          <Price price={props.price} style={styles.currency} />
+          <Price price={price} style={styles.currency} />
         </View>
       </View>
     </View>
@@ -68,3 +77,15 @@ const styles = StyleSheet.create({
     fontWeight: '800',
   },
 });
+
+const select = ({
+  numberOfRooms,
+  selected,
+  getPersonCount,
+}: HotelDetailScreenState) => ({
+  numberOfRooms,
+  selected,
+  getPersonCount,
+});
+
+export default withHotelDetailScreenContext(select)(RoomSummary);

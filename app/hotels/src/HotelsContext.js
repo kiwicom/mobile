@@ -58,6 +58,7 @@ type Props = {|
   +hotelId: ?string,
   +apiProvider: ApiProvider,
   +closeHotels: () => void,
+  +guestCount: number,
 |};
 
 type State = {|
@@ -138,16 +139,7 @@ class Provider extends React.Component<Props, State> {
 
   setHotelId = (hotelId: string) => this.setState({ hotelId });
 
-  getGuestCount = () => {
-    if (this.state.roomsConfiguration == null) {
-      return 0;
-    }
-    return this.state.roomsConfiguration.reduce((sum, current) => {
-      const adults = current.adultsCount;
-      const children = current.children?.length ?? 0;
-      return sum + adults + children;
-    }, 0);
-  };
+  getGuestCount = () => this.props.guestCount;
 
   setPaymentLink = (paymentLink: ?string) => this.setState({ paymentLink });
 
