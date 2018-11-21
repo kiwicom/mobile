@@ -9,24 +9,16 @@ import { View } from 'react-native';
 import {
   withHotelDetailScreenContext,
   type HotelDetailScreenState,
-} from './HotelDetailScreenContext';
-import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
-import countBookingPrice from './bookNow/countBookingPrice';
+} from '../HotelDetailScreenContext';
 
 type Props = {|
   +getPersonCount: () => number,
   +numberOfRooms: number,
-  +availableRooms: ?$PropertyType<
-    HotelDetailScreen_availableHotel,
-    'availableRooms',
-  >,
-  +selected: $PropertyType<HotelDetailScreenState, 'selected'>,
+  +price: $PropertyType<HotelDetailScreenState, 'price'>,
 |};
 
 function RoomSummary(props: Props) {
-  const price = countBookingPrice(props.availableRooms, props.selected);
-
-  if (props.numberOfRooms === 0 || price == null) {
+  if (props.numberOfRooms === 0 || props.price == null) {
     return null;
   }
 
@@ -44,7 +36,7 @@ function RoomSummary(props: Props) {
               numberOfRooms: props.numberOfRooms,
             }}
           />
-          <Price price={price} style={styles.currency} />
+          <Price price={props.price} style={styles.currency} />
         </View>
       </View>
     </View>
@@ -80,12 +72,12 @@ const styles = StyleSheet.create({
 
 const select = ({
   numberOfRooms,
-  selected,
   getPersonCount,
+  price,
 }: HotelDetailScreenState) => ({
   numberOfRooms,
-  selected,
   getPersonCount,
+  price,
 });
 
 export default withHotelDetailScreenContext(select)(RoomSummary);
