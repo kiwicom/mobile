@@ -1,16 +1,17 @@
 // @flow strict
 
 import * as React from 'react';
-import { Platform, StatusBar } from 'react-native';
+import { Platform } from 'react-native';
 import { Logger } from '@kiwicom/mobile-shared';
 import { DateUtils, DeviceInfo } from '@kiwicom/mobile-localization';
 import querystring from 'querystring';
-import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql } from '@kiwicom/mobile-relay';
 
 import { sanitizeDate } from '../../GraphQLSanitizers';
 import { withHotelsContext } from '../../HotelsContext';
 import type { BookingPaymentScreenQueryResponse } from './__generated__/BookingPaymentScreenQuery.graphql';
 import PaymentWebView from './PaymentWebView';
+import PaymentQueryRenderer from './PaymentQueryRenderer';
 
 type Props = {|
   +hotelId: string,
@@ -60,26 +61,23 @@ export class BookingPaymentScreen extends React.Component<Props> {
 
   render() {
     return (
-      <React.Fragment>
-        <StatusBar barStyle="dark-content" />
-        <PublicApiRenderer
-          render={this.renderInner}
-          query={graphql`
-            query BookingPaymentScreenQuery(
-              $hotelId: ID
-              $roomConfig: [RoomConfigInput]
-            ) {
-              hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
-                bookingComPaymentUrl
-              }
+      <PaymentQueryRenderer
+        render={this.renderInner}
+        query={graphql`
+          query BookingPaymentScreenQuery(
+            $hotelId: ID
+            $roomConfig: [RoomConfigInput]
+          ) {
+            hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
+              bookingComPaymentUrl
             }
-          `}
-          variables={{
-            hotelId: this.props.hotelId,
-            roomConfig: this.props.roomConfig,
-          }}
-        />
-      </React.Fragment>
+          }
+        `}
+        variables={{
+          hotelId: this.props.hotelId,
+          roomConfig: this.props.roomConfig,
+        }}
+      />
     );
   }
 }
