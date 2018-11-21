@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql } from '@kiwicom/mobile-relay';
 import {
   withNavigation,
   type NavigationType,
@@ -16,6 +16,7 @@ import {
   type RoomConfigurationType,
   type HotelsContextState,
 } from '../../HotelsContext';
+import SingleMapQueryRenderer from './SingleMapQueryRenderer';
 
 type Props = {|
   +currency: string,
@@ -34,9 +35,7 @@ class SingleHotelMapScreen extends React.Component<Props> {
 
   renderInnerComponent = ({
     availableHotel,
-  }: SingleHotelMapScreenQueryResponse) => (
-    <SingleMap goBack={this.goBack} data={availableHotel} />
-  );
+  }: SingleHotelMapScreenQueryResponse) => <SingleMap data={availableHotel} />;
 
   render() {
     const {
@@ -47,7 +46,8 @@ class SingleHotelMapScreen extends React.Component<Props> {
       hotelId,
     } = this.props;
     return (
-      <PublicApiRenderer
+      <SingleMapQueryRenderer
+        onClose={this.goBack}
         query={graphql`
           query SingleHotelMapScreenQuery(
             $search: AvailableHotelSearchInput!
