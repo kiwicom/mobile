@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { Logger } from '@kiwicom/mobile-shared';
-import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql } from '@kiwicom/mobile-relay';
 
 import { withHotelsContext } from '../../HotelsContext';
 import PaymentWebView from './PaymentWebView';
 import type { Stay22PaymentScreenQueryResponse } from './__generated__/Stay22PaymentScreenQuery.graphql';
+import PaymentQueryRenderer from './PaymentQueryRenderer';
 
 type Props = {|
   +paymentLink: ?string,
@@ -30,7 +31,7 @@ class Stay22PaymentScreen extends React.Component<Props> {
 
   render() {
     return (
-      <PublicApiRenderer
+      <PaymentQueryRenderer
         render={this.renderInner}
         query={graphql`
           query Stay22PaymentScreenQuery(
