@@ -30,7 +30,8 @@ it('renders without crashing', () => {
       incrementalPrice: [],
     },
     navigation,
-    disabled: false,
+    getGuestCount: () => 2,
+    numberOfRooms: 2,
   };
 
   renderer.render(<RoomRow {...props} />);
@@ -43,7 +44,8 @@ it('renders without crashing with missing data', () => {
     selected: {},
     availableRoom: undefined,
     navigation,
-    disabled: false,
+    getGuestCount: () => 2,
+    numberOfRooms: 2,
   };
 
   renderer.render(<RoomRow {...props} />);
