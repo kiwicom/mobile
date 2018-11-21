@@ -10,6 +10,7 @@ exports[`renders with marginEnd if not last in the row 1`] = `
   rippleColor="rgba(0, 0, 0, .32)"
 >
   <NetworkImageWithContext
+    indicator={[Function]}
     resizeMode="cover"
     source={
       Object {
@@ -38,6 +39,7 @@ exports[`renders without marginEnd if last in the row 1`] = `
   rippleColor="rgba(0, 0, 0, .32)"
 >
   <NetworkImageWithContext
+    indicator={[Function]}
     resizeMode="cover"
     source={
       Object {
