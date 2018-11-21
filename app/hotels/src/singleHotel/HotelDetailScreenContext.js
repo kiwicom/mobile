@@ -10,10 +10,15 @@ const defaultState = {
   maxPersons: 0,
   numberOfRooms: 0,
   getPersonCount: () => 0,
+  price: {
+    amount: 0,
+    currency: '',
+  },
   actions: {
     selectRoom: noop,
     deselectRoom: noop,
     reset: noop,
+    setPrice: noop,
   },
 };
 
@@ -26,10 +31,16 @@ type Props = {|
   +guestCount: number,
 |};
 
+type Money = {|
+  amount: number,
+  currency: string,
+|};
+
 type State = {|
   selected: {
     [string]: number, // originalId: count
   },
+  price: Money,
   maxPersons: number,
   numberOfRooms: number,
   +getPersonCount: () => number,
@@ -37,6 +48,7 @@ type State = {|
     +selectRoom: (id: string, maxPersons: number) => void,
     +deselectRoom: (id: string, maxPersons: number) => void,
     +reset: () => void,
+    +setPrice: (price: Money) => void,
   |},
 |};
 
@@ -51,6 +63,7 @@ export class Provider extends React.Component<Props, State> {
         selectRoom: this.selectRoom,
         deselectRoom: this.deselectRoom,
         reset: this.reset,
+        setPrice: this.setPrice,
       },
     };
   }
@@ -94,11 +107,19 @@ export class Provider extends React.Component<Props, State> {
       : this.state.maxPersons;
   };
 
+  setPrice = (price: Money) => {
+    this.setState({ price });
+  };
+
   reset = () => {
     this.setState({
       selected: {},
       maxPersons: 0,
       numberOfRooms: 0,
+      price: {
+        amount: 0,
+        currency: '',
+      },
     });
   };
 

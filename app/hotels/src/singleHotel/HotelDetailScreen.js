@@ -7,22 +7,17 @@ import {
   LayoutSingleColumn,
   Logger,
   StyleSheet,
-  CloseButton,
-  AdaptableLayout,
   Dimensions,
   Device,
   type BarStyle,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import { SafeAreaView } from 'react-navigation';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
+import isEqual from 'react-fast-compare';
 
-import RoomSummary from './RoomSummary';
 import Header from './header/Header';
 import HotelInformation from './hotelInformation/HotelInformation';
 import RoomList from './roomList/RoomList';
-import BookNow from './bookNow/BookNow';
 import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
@@ -35,6 +30,7 @@ import {
   type HotelsContextState,
   type ApiProvider,
 } from '../HotelsContext';
+import countBookingPrice from './bookNow/countBookingPrice';
 
 type PropsWithContext = {|
   ...Props,
@@ -84,6 +80,18 @@ export class HotelDetailScreen extends React.Component<
     this.props.setPaymentLink(this.props.paymentLink);
   }
 
+  componentDidUpdate(prevProps: PropsWithContext) {
+    if (!isEqual(prevProps.selected, this.props.selected)) {
+      const price = countBookingPrice(
+        this.props.availableHotel?.availableRooms,
+        this.props.selected,
+      );
+      if (price != null) {
+        this.props.setPrice(price);
+      }
+    }
+  }
+
   componentWillUnmount() {
     this.props.reset();
   }
@@ -128,40 +136,21 @@ export class HotelDetailScreen extends React.Component<
     }
 
     return (
-      <SafeAreaView style={styles.safeArea} forceInset={{ top: 'never' }}>
-        <View style={styles.safeArea}>
-          <ScrollView
-            contentContainerStyle={styles.container}
-            onScroll={this.onScroll}
-            scrollEventThrottle={500}
-            testID="hotelDetailScrollView"
-          >
-            <LayoutSingleColumn barStyle={this.state.barStyle}>
-              <Header hotel={availableHotel.hotel} />
-              <HotelInformation hotel={availableHotel.hotel} />
-              <RoomList data={availableHotel.availableRooms} />
-              <BrandLabel />
-            </LayoutSingleColumn>
-          </ScrollView>
-          <View style={styles.buttonContainer}>
-            <RoomSummary availableRooms={availableHotel.availableRooms} />
-            <View style={styles.row}>
-              <AdaptableLayout
-                renderOnNarrow={
-                  <View style={styles.closeWrapper}>
-                    <CloseButton onPress={this.props.goBack} />
-                  </View>
-                }
-              />
-              {this.props.maxPersons > 0 && (
-                <View style={styles.bookNowWrapper}>
-                  <BookNow hotel={availableHotel.hotel} />
-                </View>
-              )}
-            </View>
-          </View>
-        </View>
-      </SafeAreaView>
+      <View style={styles.safeArea}>
+        <ScrollView
+          contentContainerStyle={styles.container}
+          onScroll={this.onScroll}
+          scrollEventThrottle={500}
+          testID="hotelDetailScrollView"
+        >
+          <LayoutSingleColumn barStyle={this.state.barStyle}>
+            <Header hotel={availableHotel.hotel} />
+            <HotelInformation hotel={availableHotel.hotel} />
+            <RoomList data={availableHotel.availableRooms} />
+            <BrandLabel />
+          </LayoutSingleColumn>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -176,6 +165,8 @@ type Props = {|
   +apiProvider: ApiProvider,
   +maxPersons: number,
   +reset: () => void,
+  +setPrice: (price: $PropertyType<HotelDetailScreenState, 'price'>) => void,
+  +selected: $PropertyType<HotelDetailScreenState, 'selected'>,
 |};
 
 class HotelDetailScreenWithContext extends React.Component<Props> {
@@ -200,10 +191,13 @@ const select = ({
 
 const selectHotelDetailScreen = ({
   maxPersons,
-  actions: { reset },
+  actions: { reset, setPrice },
+  selected,
 }: HotelDetailScreenState) => ({
   maxPersons,
   reset,
+  setPrice,
+  selected,
 });
 
 export default createFragmentContainer(
@@ -216,7 +210,6 @@ export default createFragmentContainer(
     fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
       hotel {
         ...Header_hotel
-        ...BookNow_hotel
         ...HotelInformation_hotel
       }
       availableRooms {
@@ -235,27 +228,7 @@ const styles = StyleSheet.create({
   container: {
     paddingBottom: 64,
   },
-  buttonContainer: {
-    position: 'absolute',
-    end: 0,
-    start: 0,
-    bottom: 0,
-    backgroundColor: defaultTokens.paletteWhite,
-  },
-  row: {
-    flexDirection: 'row',
-    paddingHorizontal: 8,
-    paddingBottom: 8,
-  },
   safeArea: {
-    flex: 1,
-    backgroundColor: defaultTokens.paletteWhite,
-  },
-  closeWrapper: {
-    flex: 1,
-    marginEnd: 8,
-  },
-  bookNowWrapper: {
     flex: 1,
   },
 });

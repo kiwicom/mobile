@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Button, ButtonTitle } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
@@ -11,7 +10,6 @@ import {
 import { DeviceInfo, Translation } from '@kiwicom/mobile-localization';
 
 import convertRooms from './convertRooms';
-import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
 import {
   withHotelsContext,
   type HotelsContextState,
@@ -25,14 +23,14 @@ type Props = {
   +selected: {
     [string]: number,
   },
-  +hotel: ?BookNow_hotel,
   +navigation: NavigationType,
   +currency: string,
+  +hotelId: ?string,
 };
 
 export class BookNow extends React.Component<Props> {
   handleGoToPayment = () => {
-    const hotelId = this.props.hotel?.id;
+    const hotelId = this.props.hotelId;
     if (hotelId != null) {
       this.props.navigation.navigate('Payment', {
         hotelId,
@@ -54,20 +52,16 @@ export class BookNow extends React.Component<Props> {
   }
 }
 
-const select = ({ currency }: HotelsContextState) => ({ currency });
+const select = ({ currency, hotelId }: HotelsContextState) => ({
+  currency,
+  hotelId,
+});
 const selectHotelDetailScreen = ({ selected }: HotelDetailScreenState) => ({
   selected,
 });
 
-export default createFragmentContainer(
-  withHotelDetailScreenContext(selectHotelDetailScreen)(
-    withHotelsContext(select)(withNavigation(BookNow)),
-  ),
-  graphql`
-    fragment BookNow_hotel on HotelInterface {
-      id
-    }
-  `,
+export default withHotelDetailScreenContext(selectHotelDetailScreen)(
+  withHotelsContext(select)(withNavigation(BookNow)),
 );
 
 const styles = StyleSheet.create({

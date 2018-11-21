@@ -15,7 +15,7 @@ import CloseButton from '../buttons/CloseButton';
 
 type Props = {|
   +onTryAgain: () => void,
-  +onClose: () => void,
+  +onClose?: () => void,
 |};
 
 export default function OfflineScreen(props: Props) {
@@ -35,7 +35,9 @@ export default function OfflineScreen(props: Props) {
           <Image source={OfflineImage} />
         </View>
         <View style={styles.buttonContainer}>
-          <CloseButton onPress={props.onClose} style={styles.closeButton} />
+          {props.onClose != null && (
+            <CloseButton onPress={props.onClose} style={styles.closeButton} />
+          )}
           <TextButton
             title={<Translation id="shared_offline_screen.try_again" />}
             onPress={props.onTryAgain}
