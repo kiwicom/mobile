@@ -66,14 +66,14 @@ const handleNoNetworkNoCachedResponse = observer => {
 
 const asyncStoreRead = async (observer, operation, variables) => {
   try {
-    const cachedData = CacheManager.get(operation.name, variables);
+    const cachedData = await CacheManager.get(operation.name, variables);
 
     if (cachedData) {
       // It loads smoother if we do this in a set timeout
       // If we don't the UI freezes for a while
       setTimeout(() => {
         observer.next(cachedData);
-        if (ConnectionManager.isConnected === false) {
+        if (ConnectionManager.isConnected() === false) {
           observer.complete();
         }
       });

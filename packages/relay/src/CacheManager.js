@@ -36,7 +36,9 @@ export default new class CacheManager {
     this.restoreCache();
   }
 
-  get = (queryId: string, variables: Object) =>
+  // Note this function needs to be async for readFromAsyncStore function in environment to work
+  // If this call is done sync, app will crash when we call observer.error on retry
+  get = async (queryId: string, variables: Object) =>
     this.cache.get(queryId, variables);
 
   set = (queryId: string, variables: Object, payload: any) => {
