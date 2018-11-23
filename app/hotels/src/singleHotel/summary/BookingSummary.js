@@ -6,9 +6,9 @@ import {
   StyleSheet,
   AdaptableLayout,
   CloseButton,
+  Device,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { SafeAreaView } from 'react-navigation';
 
 import RoomSummary from './RoomSummary';
 import BookNow from '../bookNow/BookNow';
@@ -25,34 +25,28 @@ type Props = {|
 const BookingSummary = (props: Props) => {
   return (
     <View style={styles.buttonContainer}>
-      <SafeAreaView style={styles.safeArea} forceInset={{ top: 'never' }}>
-        <RoomSummary />
+      <RoomSummary />
 
-        <View style={styles.row}>
-          <AdaptableLayout
-            renderOnNarrow={
-              <View style={styles.closeWrapper}>
-                <CloseButton onPress={props.goBack} />
-              </View>
-            }
-          />
-
-          {props.maxPersons > 0 && (
-            <View style={styles.bookNowWrapper}>
-              <BookNow />
+      <View style={styles.row}>
+        <AdaptableLayout
+          renderOnNarrow={
+            <View style={styles.closeWrapper}>
+              <CloseButton onPress={props.goBack} />
             </View>
-          )}
-        </View>
-      </SafeAreaView>
+          }
+        />
+
+        {props.maxPersons > 0 && (
+          <View style={styles.bookNowWrapper}>
+            <BookNow />
+          </View>
+        )}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    backgroundColor: defaultTokens.paletteWhite,
-  },
   buttonContainer: {
     position: 'absolute',
     end: 0,
@@ -63,7 +57,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     paddingHorizontal: 8,
-    paddingBottom: 8,
+    paddingBottom: Device.isIPhoneX ? 36 : 8,
   },
   closeWrapper: {
     flex: 1,
