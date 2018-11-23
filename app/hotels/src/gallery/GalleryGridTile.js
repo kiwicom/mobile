@@ -15,7 +15,9 @@ type Props = {|
 
 export default class GalleryGridTile extends React.Component<Props> {
   handleTilePress = () => this.props.onTilePress(this.props.imageIndex);
+
   renderLoadingIndicator = () => <IconLoading />;
+
   render() {
     const style: Object = {
       width: this.props.width,
@@ -27,7 +29,11 @@ export default class GalleryGridTile extends React.Component<Props> {
     }
 
     return (
-      <Touchable onPress={this.handleTilePress} testID={this.props.testID}>
+      <Touchable
+        onPress={this.handleTilePress}
+        testID={this.props.testID}
+        delayPressIn={40}
+      >
         <NetworkImage
           source={{ uri: this.props.imageUrl }}
           style={style}
