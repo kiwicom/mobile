@@ -42,7 +42,6 @@ it('renders without crashing', () => {
     currency: 'EUR',
     navigation,
   };
-  // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
   PlaygroundRenderer.render(<BookNow {...props} />);
 });
 
