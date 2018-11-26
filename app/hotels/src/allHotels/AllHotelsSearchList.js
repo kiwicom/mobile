@@ -10,13 +10,12 @@ import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__genera
 import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 
 type Props = {|
-  +data: AllHotelsSearchListProps,
+  +data: AllHotelsSearchListProps | Array<?empty>,
   setHotelId: (id: string) => void,
 |};
 
 export class AllHotelsSearchList extends React.Component<Props> {
   componentDidMount() {
-    // $FlowExpectedError: Yes, this can be undefined
     const hotelId = this.props.data[0]?.hotelId;
 
     if (hotelId != null) {
@@ -41,7 +40,7 @@ export class AllHotelsSearchList extends React.Component<Props> {
       <React.Fragment>
         {hotels.map((hotel, index) => (
           <AllHotelsSearchRow
-            key={hotel.id}
+            key={hotel?.id}
             data={hotel}
             testID={index === 0 ? 'firstHotelResult' : ''}
           />

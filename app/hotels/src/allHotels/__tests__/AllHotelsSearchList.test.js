@@ -3,6 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
+import type { AllHotelsSearchList as AllHotelsSearchListType } from '../__generated__/AllHotelsSearchList.graphql';
 import { AllHotelsSearchList } from '../AllHotelsSearchList';
 
 const renderer = new ShallowRenderer();
@@ -10,7 +11,7 @@ const renderer = new ShallowRenderer();
 const $fragmentRefs: any = null;
 const $refType: any = null;
 it('renders found hotels', () => {
-  const data = [
+  const data: AllHotelsSearchListType = [
     {
       id: 'hotel1',
       hotelId: 'lol1',
@@ -30,7 +31,7 @@ it('renders found hotels', () => {
 });
 
 it('renders a "not found" message when no hotel is found', () => {
-  const data = [];
+  const data: Array<empty> = [];
 
   renderer.render(<AllHotelsSearchList data={data} setHotelId={jest.fn()} />);
   expect(renderer.getRenderOutput()).toMatchSnapshot();
