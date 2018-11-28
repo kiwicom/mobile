@@ -24,7 +24,7 @@ ext.kiwi = {
         url = gitLabRepositoryUrl
         credentials(HttpHeaderCredentials) {
             name = "Private-Token"
-            value = System.getenv("DEPLOYMENT_TOKEN")
+            value = System.getenv("RNKIWIMOBILE_DEPLOYMENT_TOKEN")
         }
         authentication {
             header(HttpHeaderAuthentication)

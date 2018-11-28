@@ -29,8 +29,8 @@ const exec = (command, options) =>
 const SKYPICKER_URL =
   'https://gitlab.skypicker.com/api/v4/projects/301/packages/maven/';
 
-if (!process.env.DEPLOYMENT_TOKEN) {
-  throw Error('You need to pass DEPLOYMENT_TOKEN.');
+if (!process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN) {
+  throw Error('You need to pass RNKIWIMOBILE_DEPLOYMENT_TOKEN.');
 }
 
 // Read native dependencies versions from package.json (maps, vector icons...)
@@ -52,21 +52,21 @@ const RNKiwiMobileVersion = buildPackage.version;
 
 const deployDependency = (packageName, url, version, extension = '') => {
   return new Promise(async (resolve, reject) => {
-    var downloadUrl = `${url}com/trinerdis/skypicker/${packageName}/${version}${extension}/maven-metadata.xml`;
+    const downloadUrl = `${url}com/trinerdis/skypicker/${packageName}/${version}${extension}/maven-metadata.xml`;
 
     log(`Checking if ${downloadUrl} exists.`);
 
     const exists = await urlExists(downloadUrl, {
-      'Private-Token': process.env.DEPLOYMENT_TOKEN,
+      'Private-Token': process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN,
     });
 
     if (!exists) {
       log(`Deploying ${packageName}/${version}${extension}`);
       try {
         exec(
-          `cd ${baseFolder} && DEPLOYMENT_TOKEN=${
+          `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
             // $FlowFixMe we already checked in the top that is defined
-            process.env.DEPLOYMENT_TOKEN
+            process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
           } ./gradlew --no-daemon :${packageName}:uploadKiwi`,
         );
       } catch (err) {
@@ -85,9 +85,9 @@ const deployLibrary = (packageName, version) => {
   log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
     exec(
-      `cd ${baseFolder}/${packageName} && DEPLOYMENT_TOKEN=${
+      `cd ${baseFolder}/${packageName} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
         // $FlowFixMe we already checked in the top that is defined
-        process.env.DEPLOYMENT_TOKEN
+        process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
       } ../gradlew --no-daemon :${packageName}:uploadKiwi`,
     );
   } catch (err) {
