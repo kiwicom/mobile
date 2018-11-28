@@ -33,7 +33,7 @@ export class MapView extends React.Component<Props> {
         }}
       >
         <NativeMapView.Marker coordinate={{ latitude, longitude }}>
-          <DropMarker size={50} />
+          <DropMarker />
         </NativeMapView.Marker>
       </NativeMapView>
     );
