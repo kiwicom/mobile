@@ -1,8 +1,6 @@
 // @flow
 
-import idx from 'idx';
-
-import type { BookNow_availableRooms } from '../__generated__/HotelDetailScreen_availableHotel.graphql';
+import type { HotelDetailScreen_availableHotel } from '../__generated__/HotelDetailScreen_availableHotel.graphql';
 
 type Money = {|
   amount: number,
@@ -10,7 +8,10 @@ type Money = {|
 |};
 
 export default (
-  availableRooms: ?BookNow_availableRooms,
+  availableRooms: ?$PropertyType<
+    HotelDetailScreen_availableHotel,
+    'availableRooms',
+  >,
   selected: {
     [string]: number,
   },
@@ -31,17 +32,15 @@ export default (
       const [id, count] = selection;
 
       if (availableRooms) {
-        const room = availableRooms.find(room => room.id === id);
-        return idx(room, _ => _.incrementalPrice[count - 1].amount);
+        const room = availableRooms.find(room => room?.id === id);
+        return room?.incrementalPrice?.[count - 1]?.amount;
       }
     })
     .reduce((a, b) => a + b, 0);
 
   const currency =
-    idx(
-      availableRooms.find(room => room.id === positiveSelections[0][0]),
-      _ => _.incrementalPrice[0].currency,
-    ) || '';
+    availableRooms.find(room => room?.id === positiveSelections[0][0])
+      ?.incrementalPrice?.[0]?.currency ?? '';
 
   return {
     amount,

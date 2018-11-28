@@ -1,10 +1,13 @@
 // @flow
 
 import * as React from 'react';
+import { withContext } from '@kiwicom/mobile-shared';
 
 import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
 
 const defaultState = {
+  hotelId: '',
+  apiProvider: 'booking',
   version: '',
   cityId: null,
   checkin: null,
@@ -14,6 +17,7 @@ const defaultState = {
   cityName: null,
   latitude: null,
   longitude: null,
+  paymentLink: null,
   currentSearchStats: {
     priceMax: 10000,
     priceMin: 0,
@@ -22,15 +26,20 @@ const defaultState = {
     setCurrentSearchStats: () => {},
   },
   getGuestCount: () => 0,
+  setHotelId: () => {},
+  setPaymentLink: () => {},
+  closeHotels: () => {},
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   ...defaultState,
 });
 
+export type ApiProvider = 'booking' | 'stay22';
+
 export type RoomConfigurationType = $ReadOnlyArray<{|
   +adultsCount: number,
-  +children: $ReadOnlyArray<{|
+  +children?: $ReadOnlyArray<{|
     +age: number,
   |}>,
 |}>;
@@ -46,9 +55,15 @@ type Props = {|
   +currency: string,
   +latitude: ?number,
   +longitude: ?number,
+  +hotelId: ?string,
+  +apiProvider: ApiProvider,
+  +closeHotels: () => void,
+  +guestCount: number,
 |};
 
-export type State = {|
+type State = {|
+  hotelId: string,
+  +apiProvider: ApiProvider,
   +version: string,
   +cityName: string | null,
   +cityId: string | null,
@@ -59,7 +74,11 @@ export type State = {|
   currentSearchStats: CurrentSearchStats,
   +latitude: number | null,
   +longitude: number | null,
+  paymentLink: ?string,
+  +setPaymentLink: (?string) => void,
   +getGuestCount: () => number,
+  +setHotelId: (hotelId: string) => void,
+  +closeHotels: () => void,
   +actions: {|
     +setCurrentSearchStats: ({|
       priceMax: number,
@@ -86,6 +105,8 @@ class Provider extends React.Component<Props, State> {
     super(props);
 
     this.state = {
+      hotelId: props.hotelId ?? '',
+      apiProvider: props.apiProvider,
       version: props.version,
       cityId: props.cityId || null,
       checkin: getAsUtcDate(props.checkin),
@@ -95,11 +116,15 @@ class Provider extends React.Component<Props, State> {
       cityName: props.cityName || null,
       latitude: props.latitude || null,
       longitude: props.longitude || null,
+      paymentLink: null,
       currentSearchStats: {
         priceMax: 10000,
         priceMin: 0,
       },
       getGuestCount: this.getGuestCount,
+      setHotelId: this.setHotelId,
+      setPaymentLink: this.setPaymentLink,
+      closeHotels: props.closeHotels,
       actions: {
         setCurrentSearchStats: this.setCurrentSearchStats,
       },
@@ -112,40 +137,24 @@ class Provider extends React.Component<Props, State> {
     });
   };
 
-  getGuestCount = () => {
-    if (this.state.roomsConfiguration == null) {
-      return 0;
-    }
-    return this.state.roomsConfiguration.reduce((sum, current) => {
-      const adults = current.adultsCount;
-      const children = current?.children?.length ?? 0;
-      return sum + adults + children;
-    }, 0);
-  };
+  setHotelId = (hotelId: string) => this.setState({ hotelId });
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  getGuestCount = () => this.props.guestCount;
+
+  setPaymentLink = (paymentLink: ?string) => this.setState({ paymentLink });
+
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
 
 export default { Consumer, Provider };
 
-export function withHotelsContext(select: (state: State) => Object) {
-  return function(Component: React.ElementType) {
-    class WithHotelsContext extends React.Component<Object> {
-      // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-      static navigationOptions = Component.navigationOptions;
+export const withHotelsContext = (select: (state: State) => Object) =>
+  withContext<State>(select, Consumer);
 
-      mapStateToProps = (state: State) => {
-        const stateProps = select(state);
-        return <Component {...this.props} {...stateProps} />;
-      };
-
-      render() {
-        return <Consumer>{this.mapStateToProps}</Consumer>;
-      }
-    }
-
-    return WithHotelsContext;
-  };
-}
+export type HotelsContextState = State;

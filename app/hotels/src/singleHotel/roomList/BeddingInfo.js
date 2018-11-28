@@ -5,11 +5,9 @@ import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
-import formatBeddingInfo from './formatBeddingInfo';
 
 type ContainerProps = {|
   room: any,
@@ -21,18 +19,40 @@ type Props = {
 };
 
 export class BeddingInfo extends React.Component<Props> {
-  render = () => {
+  formatBeddingInfo = (): $ReadOnlyArray<React.Element<typeof Translation>> => {
     const { room } = this.props;
-    const info = formatBeddingInfo(room);
-    const maxPersons = idx(this.props.room, _ => _.maxPersons);
+    const beddingOptions = room?.bedding ?? [];
+    const beddingTranslation = [];
+    beddingOptions.forEach((beddingOption, index) => {
+      const type = beddingOption?.type;
+      const amount = beddingOption?.amount;
+      if (index > 0) {
+        beddingTranslation.push(
+          <Translation
+            key={`key-${index}`}
+            id="single_hotel.bedding_info.or"
+          />,
+        );
+      }
+      beddingTranslation.push(
+        <Translation
+          key={`${type || ''}-${amount || ''}`}
+          passThrough={[amount, type].filter(value => value != null).join(' ')}
+        />,
+      );
+    });
+    return beddingTranslation;
+  };
+
+  render() {
+    const { room } = this.props;
+    const maxPersons = room?.maxPersons;
 
     return (
       <View>
         <View style={styles.row}>
           <TextIcon code="&#xe085;" style={styles.icon} />
-          <Text style={styles.text}>
-            <Translation passThrough={` ${info}`} />
-          </Text>
+          <Text style={styles.text}>{this.formatBeddingInfo()}</Text>
         </View>
         <View style={styles.row}>
           <TextIcon code="(" style={styles.icon} />
@@ -46,7 +66,7 @@ export class BeddingInfo extends React.Component<Props> {
         </View>
       </View>
     );
-  };
+  }
 }
 
 export default (createFragmentContainer(

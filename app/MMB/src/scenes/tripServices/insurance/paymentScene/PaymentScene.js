@@ -39,9 +39,11 @@ export default class PaymentScene extends React.Component<{||}, State> {
       this.setState({ card, active: 'SAVED_CARD' });
     }
   }
+
   onPressPaymentButton = () => {
     console.warn('TODO');
   };
+
   setActiveCard = (pressed: 'SAVED_CARD' | 'ANOTHER_CARD') => {
     if (this.state.active !== pressed) {
       this.setState({

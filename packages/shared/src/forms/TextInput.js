@@ -49,25 +49,25 @@ export default class TextInput extends React.Component<Props, State> {
     );
   };
 
-  render = () => (
-    <React.Fragment>
-      {this.props.label != null && (
-        <Text style={[styleSheet.label, this.props.labelStyle]}>
-          {this.props.label}
-        </Text>
-      )}
-      <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
-        <OriginalTextInput
-          underlineColorAndroid="transparent"
-          autoCorrect={false}
-          {...this.props}
-          placeholder={null}
-          onChangeText={this.handlePlaceholder}
-          style={[styleSheet.text, styleSheet.input]}
-        />
+  render() {
+    return (
+      <React.Fragment>
+        {this.props.label != null && (
+          <Text style={[styleSheet.label, this.props.labelStyle]}>
+            {this.props.label}
+          </Text>
+        )}
+        <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
+          <OriginalTextInput
+            underlineColorAndroid="transparent"
+            autoCorrect={false}
+            {...this.props}
+            placeholder={null}
+            onChangeText={this.handlePlaceholder}
+            style={[styleSheet.text, styleSheet.input]}
+          />
 
-        {this.props.placeholder &&
-          this.state.displayPlaceholder && (
+          {this.props.placeholder && this.state.displayPlaceholder && (
             <Text
               style={[
                 styleSheet.text,
@@ -79,9 +79,10 @@ export default class TextInput extends React.Component<Props, State> {
               {this.props.placeholder}
             </Text>
           )}
-      </View>
-    </React.Fragment>
-  );
+        </View>
+      </React.Fragment>
+    );
+  }
 }
 
 const styleSheet = StyleSheet.create({

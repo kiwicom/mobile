@@ -14,7 +14,7 @@ type Props = {|
 // 1. renderOnWide set but we have narrow layout
 // 2. renderOnNarrow set but we have wide layout
 export default class AdaptableLayout extends React.Component<Props> {
-  render = () => {
+  render() {
     return (
       <Dimensions.Consumer>
         {dimensions => {
@@ -31,5 +31,5 @@ export default class AdaptableLayout extends React.Component<Props> {
         }}
       </Dimensions.Consumer>
     );
-  };
+  }
 }

@@ -122,7 +122,7 @@ const defaultState = {
   },
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   ...defaultState,
 });
 
@@ -169,22 +169,30 @@ class Provider extends React.Component<Props, State> {
     const cardType = detectCardType(cardNumber);
     this.setState({ cardNumber, cardType });
   };
+
   onExpiryDateChange = (expiryDate: {| month: string, year: string |}) => {
     this.setState({ expiryDate });
   };
+
   onSecurityCodeChange = (securityCode: string) => {
     this.setState({ securityCode });
   };
+
   onCardholderNameChange = (cardholderName: string) => {
     this.setState({ cardholderName });
   };
+
   onRememberCardChange = (remember: boolean) => {
     this.setState({ remember });
   };
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
 
 export default { Consumer, Provider };

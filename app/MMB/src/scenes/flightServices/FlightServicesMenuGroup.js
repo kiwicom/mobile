@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -14,7 +14,6 @@ import {
   graphql,
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import FlightServiceMenuItem from './FlightServiceMenuItem';
 import type { FlightServicesMenuGroup_bookedServices } from './__generated__/FlightServicesMenuGroup_bookedServices.graphql';
@@ -84,7 +83,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
 
   navigate = (key: RouteNamesType) => {
     this.props.navigation.navigate(key, {
-      bookingId: idx(this.props.bookedServices, _ => _.databaseId),
+      bookingId: this.props.bookedServices.databaseId,
     });
   };
 
@@ -92,8 +91,8 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
     this.setState({ isLoading: true });
     this.props.relay.refetch(
       {
-        id: idx(this.props.bookedServices, _ => _.databaseId),
-        authToken: idx(this.props.bookedServices, _ => _.authToken),
+        id: this.props.bookedServices.databaseId,
+        authToken: this.props.bookedServices.authToken,
       },
       null,
       () => {
@@ -110,25 +109,32 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
    * and status is not 'OPEN'.
    */
   getOrderedAndNotOrderedServices = () => {
-    const bookedServices =
-      idx(this.props.bookedServices, _ => _.bookedServices) || [];
+    const bookedServices = this.props.bookedServices.bookedServices ?? [];
 
     const orderedCategories = bookedServices
-      .filter(item => idx(item, _ => _.status) !== 'OPEN')
-      .map(item => idx(item, _ => _.category));
+      .filter(item => item?.status !== 'OPEN')
+      .map(item => item?.category);
 
-    const ordered = offeredFlightServices.filter(item =>
-      orderedCategories.includes(item.key),
+    return offeredFlightServices.reduce(
+      (acc, currentValue) => {
+        const includesKey = orderedCategories.includes(currentValue.key);
+        if (includesKey) {
+          return {
+            ordered: [...acc.ordered, currentValue],
+            rest: acc.rest,
+          };
+        }
+
+        return {
+          ordered: acc.ordered,
+          rest: [...acc.rest, currentValue],
+        };
+      },
+      { ordered: [], rest: [] },
     );
-
-    const rest = offeredFlightServices.filter(
-      item => !orderedCategories.includes(item.key),
-    );
-
-    return { ordered, rest };
   };
 
-  render = () => {
+  render() {
     const { ordered, rest } = this.getOrderedAndNotOrderedServices();
     return (
       <RefreshableScrollView
@@ -167,7 +173,7 @@ export class FlightServicesMenuGroup extends React.Component<Props, State> {
         )}
       </RefreshableScrollView>
     );
-  };
+  }
 }
 
 export default createRefetchContainer(

@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import NativeMapView from 'react-native-maps';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { DropMarker, StyleSheet } from '@kiwicom/mobile-shared';
@@ -20,8 +19,8 @@ type Props = {
 export class MapView extends React.Component<Props> {
   render() {
     const { hotel } = this.props;
-    const latitude = idx(hotel, _ => _.coordinates.lat);
-    const longitude = idx(hotel, _ => _.coordinates.lng);
+    const latitude = hotel?.coordinates?.lat;
+    const longitude = hotel?.coordinates?.lng;
 
     return (
       <NativeMapView
@@ -44,7 +43,7 @@ export class MapView extends React.Component<Props> {
 export default (createFragmentContainer(
   MapView,
   graphql`
-    fragment MapView_hotel on Hotel {
+    fragment MapView_hotel on HotelInterface {
       coordinates {
         lat
         lng

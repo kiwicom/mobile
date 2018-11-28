@@ -7,7 +7,6 @@ import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
-import idx from 'idx';
 
 import type { ParkingMenuItem as ParkingMenuItemType } from './__generated__/ParkingMenuItem.graphql';
 
@@ -18,8 +17,7 @@ type Props = {|
 
 class ParkingMenuItem extends React.Component<Props> {
   openLink = () => {
-    const whitelabelURL =
-      idx(this.props, _ => _.data.parking.whitelabelURL) || '';
+    const whitelabelURL = this.props.data.parking?.whitelabelURL ?? '';
 
     this.props.onOpenWebview(
       whitelabelURL +
@@ -35,8 +33,8 @@ class ParkingMenuItem extends React.Component<Props> {
     );
   };
 
-  render = () => {
-    const parking = idx(this.props, _ => _.data.parking);
+  render() {
+    const { parking } = this.props.data;
 
     if (!parking) {
       // no parking available for this trip (do not render the menu item at all)
@@ -50,7 +48,7 @@ class ParkingMenuItem extends React.Component<Props> {
         icon={<TextIcon code="&#xe03e;" />}
       />
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

@@ -54,6 +54,10 @@ const SharedVocabulary = {
     'No internet connection, please check your internet settings or try it later.',
   'shared.hours_short': 'h',
   'shared.minutes_short': 'm',
+  'shared.offline_screen.offline_title': "Looks like you're offline",
+  'shared_offline_screen.offline_text':
+    "Bummer. Make sure you're connected to the internet and try again",
+  'shared_offline_screen.try_again': 'Try again',
 };
 
 const Translations = {

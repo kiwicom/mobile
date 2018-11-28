@@ -7,11 +7,10 @@
     "@kiwicom/mobile-accessibility": "^0",
     "@kiwicom/mobile-localization": "^0",
     "@ptomasroos/react-native-multi-slider": "^1.0.0",
-    "idx": "^2.4.0",
     "querystring": "^0.2.0",
     "react-native-image-progress": "^1.1.1",
     "react-native-maps": "0.22.0",
-    "react-native-modal": "^6.5.0",
+    "react-native-modal": "^7.0.0",
     "react-native-read-more-text": "^1.1.0"
   },
   "devDependencies": {

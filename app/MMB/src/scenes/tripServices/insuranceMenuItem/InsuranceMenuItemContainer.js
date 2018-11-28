@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
 import type { InsuranceMenuItemContainer as InsuranceMenuItemContainerType } from './__generated__/InsuranceMenuItemContainer.graphql';
@@ -13,11 +12,11 @@ type Props = {|
 |};
 
 export class InsuranceMenuItemContainer extends React.Component<Props> {
-  isPastBooking = () => idx(this.props.data, _ => _.isPastBooking);
-  isStatusConfirmed = () => idx(this.props.data, _ => _.status) === 'CONFIRMED';
+  isPastBooking = () => this.props.data.isPastBooking;
+  isStatusConfirmed = () => this.props.data.status === 'CONFIRMED';
 
   noUSPassengers = () => {
-    const passengers = idx(this.props.data, _ => _.passengers);
+    const passengers = this.props.data.passengers;
     return (
       passengers != null &&
       passengers.every(passenger => {
@@ -31,19 +30,20 @@ export class InsuranceMenuItemContainer extends React.Component<Props> {
     !this.isPastBooking() && this.isStatusConfirmed() && this.noUSPassengers();
 
   getData = () => {
-    switch (this.props.data.__typename) {
+    const { data } = this.props;
+    switch (data.__typename) {
       case 'BookingOneWay':
-        return idx(this.props.data, _ => _.trip);
+        return data.trip;
       case 'BookingReturn':
-        return idx(this.props.data, _ => _.outbound);
+        return data.outbound;
       case 'BookingMulticity':
-        return idx(this.props.data, _ => _.trips[0]);
+        return data.trips?.[0];
       default:
         return null;
     }
   };
 
-  render = () => {
+  render() {
     if (!this.displayMenuItem()) {
       return null;
     }
@@ -54,7 +54,7 @@ export class InsuranceMenuItemContainer extends React.Component<Props> {
         data={this.getData()}
       />
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

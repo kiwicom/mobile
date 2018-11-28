@@ -18,28 +18,30 @@ export default class TripServices extends React.Component<Props> {
     return <TripServiceRefreshContainer data={rendererProps.singleBooking} />;
   };
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {({ bookingId, authToken }) => (
-        <PublicApiRenderer
-          query={graphql`
-            query TripServicesQuery($bookingId: Int!, $authToken: String!) {
-              singleBooking(id: $bookingId, authToken: $authToken) {
-                ... on BookingInterface {
-                  ...TripServiceRefreshContainer
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {({ bookingId, authToken }) => (
+          <PublicApiRenderer
+            query={graphql`
+              query TripServicesQuery($bookingId: Int!, $authToken: String!) {
+                singleBooking(id: $bookingId, authToken: $authToken) {
+                  ... on BookingInterface {
+                    ...TripServiceRefreshContainer
+                  }
                 }
               }
-            }
-          `}
-          variables={{
-            bookingId,
-            authToken,
-          }}
-          render={this.renderLocalServices}
-        />
-      )}
-    </BookingDetailContext.Consumer>
-  );
+            `}
+            variables={{
+              bookingId,
+              authToken,
+            }}
+            render={this.renderLocalServices}
+          />
+        )}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }
 
 export const TripServicesSubmenuItems = {

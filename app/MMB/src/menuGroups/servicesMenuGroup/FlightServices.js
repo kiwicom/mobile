@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import FlightServicesOneWay from './FlightServicesOneWay';
 import FlightServicesReturn from './FlightServicesReturn';
@@ -16,10 +15,10 @@ type Props = {|
 |};
 
 export const FlightServices = (props: Props) => {
-  if (idx(props, _ => _.data.isPastBooking)) {
+  if (props.data.isPastBooking === true) {
     return null;
   }
-  const type = idx(props, _ => _.data.__typename);
+  const type = props.data.__typename;
   return (
     <React.Fragment>
       {type === 'BookingOneWay' && <FlightServicesOneWay {...props} />}

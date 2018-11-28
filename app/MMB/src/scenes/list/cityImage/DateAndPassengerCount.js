@@ -1,11 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { Text, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { DateAndPassengerCount_departure as DepartureType } from './__generated__/DateAndPassengerCount_departure.graphql';
@@ -16,7 +15,7 @@ type Props = {|
 |};
 
 export const DateAndPassengerCount = (props: Props) => {
-  let departureDate = idx(props, _ => _.departure.time);
+  let departureDate = props.departure.time;
   if (departureDate) {
     departureDate = DateFormatter(new Date(departureDate)).formatToDate();
   }

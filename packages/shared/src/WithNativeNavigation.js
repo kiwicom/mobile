@@ -1,7 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { GestureController } from '@kiwicom/mobile-shared';
+
+import GestureController from './GestureController';
 
 type NavigationState = {|
   +index: number,
@@ -30,6 +31,7 @@ function withNativeNavigation<Props: {}>(
       this.lastCall = 'enabled';
       GestureController.enableGestures(moduleName);
     }
+
     onNavigationStateChange = (
       previousState: NavigationState,
       currentState: NavigationState,

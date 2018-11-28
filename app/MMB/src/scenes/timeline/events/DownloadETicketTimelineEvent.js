@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, TextButton, TextIcon } from '@kiwicom/mobile-shared';
@@ -29,13 +28,14 @@ class DownloadETicketTimelineEvent extends React.Component<Props> {
 
   handleOpenETicket = () => {
     this.navigate('mmb.tickets.e_ticket', {
-      ticketUrl: idx(this.props.data, _ => _.ticketUrl),
+      ticketUrl: this.props.data.ticketUrl,
     });
   };
 
   render() {
-    const timestamp = idx(this.props, _ => _.data.timestamp);
-    const ticketUrl = idx(this.props, _ => _.data.ticketUrl);
+    const { data } = this.props;
+    const timestamp = data.timestamp;
+    const ticketUrl = data.ticketUrl;
     const disabled = !ticketUrl;
 
     const buttonTitle = disabled ? (

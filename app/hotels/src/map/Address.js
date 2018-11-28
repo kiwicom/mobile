@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
@@ -20,10 +19,10 @@ type Props = {
 };
 
 class Address extends React.Component<Props> {
-  render = () => {
-    const street = idx(this.props, _ => _.address.street) || '';
-    const city = idx(this.props, _ => _.address.city) || '';
-    const zip = idx(this.props, _ => _.address.zip) || '';
+  render() {
+    const street = this.props.address?.street ?? '';
+    const city = this.props.address?.city ?? '';
+    const zip = this.props.address?.zip ?? '';
 
     return (
       <View style={styles.container}>
@@ -40,7 +39,7 @@ class Address extends React.Component<Props> {
         </View>
       </View>
     );
-  };
+  }
 }
 
 export default (createFragmentContainer(

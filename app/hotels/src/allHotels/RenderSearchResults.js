@@ -8,13 +8,19 @@ import { StyleSheet, Device } from '@kiwicom/mobile-shared';
 import MapScreen from '../map/allHotels/MapScreen';
 import AllHotelsSearchList from './AllHotelsSearchList';
 import type { RenderSearchResults as RenderResultsType } from './__generated__/RenderSearchResults.graphql';
-import SearchResultsContext, {
+import {
+  withSearchResultsContext,
+  type SearchResultState,
   type ResultType,
 } from '../navigation/allHotels/SearchResultsContext';
 import LoadMoreButton from './LoadMoreButton';
 
-type PropsWithContext = {|
-  ...Props,
+type Props = {|
+  +data: RenderResultsType,
+  +hasMore: boolean,
+  +isLoading: boolean,
+  +onLoadMore: () => void,
+  +top: number,
   +show: ResultType,
 |};
 
@@ -22,11 +28,11 @@ export const topValue = 1000;
 export const lowValue = -100;
 const transitionDuration = 250;
 
-export class RenderSearchResults extends React.Component<PropsWithContext> {
+export class RenderSearchResults extends React.Component<Props> {
   mapAnimation: Animated.Value;
   listAnimation: Animated.Value;
 
-  constructor(props: PropsWithContext) {
+  constructor(props: Props) {
     super(props);
 
     const showList = props.show === 'list';
@@ -34,14 +40,14 @@ export class RenderSearchResults extends React.Component<PropsWithContext> {
     this.listAnimation = new Animated.Value(showList ? 0 : lowValue);
   }
 
-  componentDidUpdate = (prevProps: PropsWithContext) => {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.show === 'list' && this.props.show === 'map') {
       this.animateToMap();
     }
     if (prevProps.show === 'map' && this.props.show === 'list') {
       this.animateToList();
     }
-  };
+  }
 
   animateToMap = () => {
     Animated.parallel([
@@ -73,7 +79,7 @@ export class RenderSearchResults extends React.Component<PropsWithContext> {
     ]).start();
   };
 
-  render = () => {
+  render() {
     const data = this.props.data || [];
 
     return (
@@ -107,27 +113,6 @@ export class RenderSearchResults extends React.Component<PropsWithContext> {
         </Animated.View>
       </React.Fragment>
     );
-  };
-}
-
-type Props = {|
-  +data: RenderResultsType,
-  +hasMore: boolean,
-  +isLoading: boolean,
-  +onLoadMore: () => void,
-  +top: number,
-|};
-
-class RenderSearchResultsWithContext extends React.Component<Props> {
-  renderInner = ({ show }) => (
-    <RenderSearchResults {...this.props} show={show} />
-  );
-  render() {
-    return (
-      <SearchResultsContext.Consumer>
-        {this.renderInner}
-      </SearchResultsContext.Consumer>
-    );
   }
 }
 
@@ -137,8 +122,10 @@ const styles = StyleSheet.create({
   },
 });
 
+const select = ({ show }: SearchResultState) => ({ show });
+
 export default createFragmentContainer(
-  RenderSearchResultsWithContext,
+  withSearchResultsContext(select)(RenderSearchResults),
   graphql`
     fragment RenderSearchResults on AllHotelsInterface @relay(plural: true) {
       ...AllHotelsSearchList

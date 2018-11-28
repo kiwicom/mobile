@@ -13,7 +13,6 @@ import {
   type NavigationType,
   type RouteNamesType,
 } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 
 import InsuranceMenuItemContainer from './insuranceMenuItem/InsuranceMenuItemContainer';
 import type { GeneralServicesMenuGroup as GeneralServicesMenuGroupType } from './__generated__/GeneralServicesMenuGroup.graphql';
@@ -33,11 +32,11 @@ class GeneralServicesMenuGroup extends React.Component<Props> {
     this.navigate('mmb.trip_services.insurance');
   };
 
-  isPastBooking = () => idx(this.props.data, _ => _.isPastBooking);
-  isStatusConfirmed = () => idx(this.props.data, _ => _.status) === 'CONFIRMED';
+  isPastBooking = () => this.props.data.isPastBooking;
+  isStatusConfirmed = () => this.props.data.status === 'CONFIRMED';
 
   noUSPassengers = () => {
-    const passengers = idx(this.props.data, _ => _.passengers);
+    const passengers = this.props.data.passengers;
     return (
       passengers != null &&
       passengers.every(passenger => {
@@ -50,7 +49,7 @@ class GeneralServicesMenuGroup extends React.Component<Props> {
   displayInsuranceMenuItem = () =>
     !this.isPastBooking() && this.isStatusConfirmed() && this.noUSPassengers();
 
-  render = () => {
+  render() {
     if (!this.displayInsuranceMenuItem()) {
       return null;
     }
@@ -64,7 +63,7 @@ class GeneralServicesMenuGroup extends React.Component<Props> {
         />
       </TitledMenuGroup>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

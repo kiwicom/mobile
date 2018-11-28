@@ -1,6 +1,5 @@
 // @flow
 
-import idx from 'idx';
 import * as React from 'react';
 import MapView from 'react-native-maps';
 import { orderByDistance, getBounds } from 'geolib';
@@ -61,20 +60,20 @@ export class Map extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     const { selectedIndex } = this.props;
     // it's necessary to call showCallout to bring selected marker to foreground
     this.markers[selectedIndex] && this.markers[selectedIndex].showCallout();
-  };
+  }
 
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     this.animateToCoordinate(this.props.selectedIndex);
     this.markers[this.props.selectedIndex] &&
       this.markers[this.props.selectedIndex].showCallout();
-  };
+  }
 
   getCoordinate = (hotel: Object): LatLng | null => {
-    const coordinate = idx(hotel, _ => _.coordinates);
+    const coordinate = hotel?.coordinates;
 
     if (coordinate) {
       return {
@@ -182,8 +181,8 @@ export class Map extends React.Component<Props, State> {
 
   renderHotelMarker = (hotel: Object, index: number) => {
     const { selectedIndex } = this.props;
-    const price = idx(hotel, _ => _.price);
-    const id = idx(hotel, _ => _.id);
+    const price = hotel?.price;
+    const id = hotel?.id;
     const coordinate = this.getCoordinate(hotel);
 
     return (

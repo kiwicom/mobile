@@ -53,33 +53,37 @@ export default class OrderPopup extends React.Component<Props, State> {
     this.setState({ currentOrder });
   };
 
-  render = () => (
-    <ButtonPopup
-      buttonTitle={<Translation id="shared.button.save" />}
-      buttonCloseTitle={<Translation id="shared.button.close" />}
-      onSave={this.onSave}
-      onClose={this.onClose}
-      isVisible={this.props.isVisible}
-    >
-      <Text style={styles.title}>
-        <Translation id="hotels_search.filter.order_popup.title" />
-      </Text>
-      {ordersOptions.map(option => (
-        <React.Fragment key={option.key}>
-          <OrderCheckbox
-            onPress={this.setOrder}
-            isChecked={this.state.currentOrder === option.key}
-            checkKey={option.key}
-          >
-            {option.title}
-          </OrderCheckbox>
-          <View style={styles.separator}>
-            <SeparatorFullWidth color={defaultTokens.paletteInkLighter} />
-          </View>
-        </React.Fragment>
-      ))}
-    </ButtonPopup>
-  );
+  render() {
+    return (
+      <ButtonPopup
+        buttonTitle={<Translation id="shared.button.save" />}
+        buttonCloseTitle={<Translation id="shared.button.close" />}
+        onSave={this.onSave}
+        onClose={this.onClose}
+        isVisible={this.props.isVisible}
+      >
+        <Text style={styles.title}>
+          <Translation id="hotels_search.filter.order_popup.title" />
+        </Text>
+        {ordersOptions.map((option, index) => (
+          <React.Fragment key={option.key}>
+            {index !== 0 && (
+              <View style={styles.separator}>
+                <SeparatorFullWidth color={defaultTokens.paletteInkLighter} />
+              </View>
+            )}
+            <OrderCheckbox
+              onPress={this.setOrder}
+              isChecked={this.state.currentOrder === option.key}
+              checkKey={option.key}
+            >
+              {option.title}
+            </OrderCheckbox>
+          </React.Fragment>
+        ))}
+      </ButtonPopup>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

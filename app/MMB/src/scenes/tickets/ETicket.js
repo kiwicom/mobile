@@ -11,7 +11,6 @@ import {
 } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 import {
   type NavigationType,
   type RouteNamesType,
@@ -34,12 +33,12 @@ class ETicket extends React.Component<Props> {
 
   openDocument = () => {
     this.navigate('mmb.tickets.e_ticket', {
-      ticketUrl: idx(this.props.data, _ => _.ticketUrl),
+      ticketUrl: this.props.data.ticketUrl,
     });
   };
 
-  render = () => {
-    const isTicketConfirmed = Boolean(idx(this.props.data, _ => _.ticketUrl));
+  render() {
+    const isTicketConfirmed = Boolean(this.props.data.ticketUrl);
     return (
       <SimpleCard style={styles.card}>
         <View style={styles.header}>
@@ -74,7 +73,7 @@ class ETicket extends React.Component<Props> {
         </View>
       </SimpleCard>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TextIcon } from '@kiwicom/mobile-shared';
@@ -17,24 +16,24 @@ type Props = {|
   +data: DeparturelineEventType,
 |};
 
-const DepartureTimelineEvent = (props: Props) => {
-  const timestamp = idx(props, _ => _.data.timestamp);
-  const destination = idx(props, _ => _.data.location.airport.city.name);
-  const duration = idx(props, _ => _.data.duration);
-  const airlineCode = idx(props, _ => _.data.airline.code);
-  const airlineName = idx(props, _ => _.data.airline.name);
-  const flightNumber = idx(props, _ => _.data.flightNumber);
+const DepartureTimelineEvent = ({ data }: Props) => {
+  const timestamp = data.timestamp;
+  const destination = data.location?.airport?.city?.name;
+  const duration = data.duration;
+  const airlineCode = data.airline?.code;
+  const airlineName = data.airline?.name;
+  const flightNumber = data.flightNumber;
 
   let flight = '';
-  if (airlineCode && flightNumber) {
+  if (airlineCode != null && flightNumber != null) {
     flight = `${airlineCode} ${flightNumber}`;
   }
-  if (flight.length > 9 && airlineCode) {
+  if (flight.length > 9 && airlineCode != null) {
     flight = airlineCode;
   }
 
   let flightIdentifier = '';
-  if (airlineCode && flightNumber) {
+  if (airlineCode != null && flightNumber != null) {
     flightIdentifier = `${airlineCode}${flightNumber}`;
   }
 

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 9e60687c947b774bf8b57af9375193d6
+ * @relayHash b5ce6ca3f1712f723032f8b5d1eab09e
  */
 
 /* eslint-disable */
@@ -9,8 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type AdditionalInfo$ref = any;
-type MapView_hotel$ref = any;
+type SingleMap$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
 export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "engb" | "enus" | "es" | "esar" | "et" | "fi" | "fr" | "he" | "hr" | "hu" | "id" | "is" | "it" | "ja" | "ko" | "lt" | "lv" | "ms" | "nl" | "no" | "pl" | "pt" | "ptbr" | "ptpt" | "ro" | "ru" | "sk" | "sl" | "sr" | "sv" | "th" | "tl" | "tr" | "uk" | "vi" | "zh" | "zhcn" | "zhtw" | "%future added value";
 export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
@@ -38,10 +37,7 @@ export type SingleHotelMapScreenQueryVariables = {|
 |};
 export type SingleHotelMapScreenQueryResponse = {|
   +availableHotel: ?{|
-    +hotel: ?{|
-      +$fragmentRefs: MapView_hotel$ref
-    |},
-    +$fragmentRefs: AdditionalInfo$ref,
+    +$fragmentRefs: SingleMap$ref
   |}
 |};
 export type SingleHotelMapScreenQuery = {|
@@ -57,28 +53,34 @@ query SingleHotelMapScreenQuery(
   $options: AvailableHotelOptionsInput
 ) {
   availableHotel(search: $search, options: $options) {
-    hotel {
-      ...MapView_hotel
-      id
-    }
-    ...AdditionalInfo
+    ...SingleMap
     id
   }
 }
 
-fragment MapView_hotel on Hotel {
+fragment SingleMap on HotelAvailabilityInterface {
+  hotel {
+    __typename
+    ...MapView_hotel
+    id
+  }
+  ...AdditionalInfo
+}
+
+fragment MapView_hotel on HotelInterface {
   coordinates {
     lat
     lng
   }
 }
 
-fragment AdditionalInfo on HotelAvailability {
+fragment AdditionalInfo on HotelAvailabilityInterface {
   price {
     amount
     currency
   }
   hotel {
+    __typename
     address {
       ...Address_address
     }
@@ -145,7 +147,7 @@ return {
   "operationKind": "query",
   "name": "SingleHotelMapScreenQuery",
   "id": null,
-  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    hotel {\n      ...MapView_hotel\n      id\n    }\n    ...AdditionalInfo\n    id\n  }\n}\n\nfragment MapView_hotel on Hotel {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailability {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+  "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...SingleMap\n    id\n  }\n}\n\nfragment SingleMap on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -164,24 +166,8 @@ return {
         "plural": false,
         "selections": [
           {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "hotel",
-            "storageKey": null,
-            "args": null,
-            "concreteType": "Hotel",
-            "plural": false,
-            "selections": [
-              {
-                "kind": "FragmentSpread",
-                "name": "MapView_hotel",
-                "args": null
-              }
-            ]
-          },
-          {
             "kind": "FragmentSpread",
-            "name": "AdditionalInfo",
+            "name": "SingleMap",
             "args": null
           }
         ]
@@ -208,9 +194,16 @@ return {
             "name": "hotel",
             "storageKey": null,
             "args": null,
-            "concreteType": "Hotel",
+            "concreteType": null,
             "plural": false,
             "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "__typename",
+                "args": null,
+                "storageKey": null
+              },
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -366,5 +359,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '98d1dc98cd2b3fa571422d30bdde8086';
+(node/*: any*/).hash = 'ebdd43ba89c69e2d571a7e4a852b3f1c';
 module.exports = node;

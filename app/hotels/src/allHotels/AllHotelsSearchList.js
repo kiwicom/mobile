@@ -4,25 +4,26 @@ import * as React from 'react';
 import { GeneralError } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
-import SingleHotelContext from '../navigation/singleHotel/SingleHotelContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 
-type PropsWithContext = {|
-  ...Props,
+type Props = {|
+  +data: AllHotelsSearchListProps | Array<?empty>,
   setHotelId: (id: string) => void,
 |};
 
-export class AllHotelsSearchList extends React.Component<PropsWithContext> {
-  componentDidMount = () => {
-    const hotelId = idx(this.props.data, _ => _[0].hotelId);
+export class AllHotelsSearchList extends React.Component<Props> {
+  componentDidMount() {
+    const hotelId = this.props.data[0]?.hotelId;
+
     if (hotelId != null) {
       this.props.setHotelId(hotelId);
     }
-  };
-  render = () => {
+  }
+
+  render() {
     const hotels = this.props.data || [];
 
     if (hotels.length === 0) {
@@ -39,33 +40,20 @@ export class AllHotelsSearchList extends React.Component<PropsWithContext> {
       <React.Fragment>
         {hotels.map((hotel, index) => (
           <AllHotelsSearchRow
-            key={idx(hotel, _ => _.id)}
+            key={hotel?.id}
             data={hotel}
             testID={index === 0 ? 'firstHotelResult' : ''}
           />
         ))}
       </React.Fragment>
     );
-  };
+  }
 }
 
-type Props = {|
-  +data: AllHotelsSearchListProps,
-|};
+const select = ({ setHotelId }: HotelsContextState) => ({ setHotelId });
 
-class AllHotelsSearchListWithContext extends React.Component<Props> {
-  renderInner = ({ setHotelId }) => (
-    <AllHotelsSearchList {...this.props} setHotelId={setHotelId} />
-  );
-
-  render = () => (
-    <SingleHotelContext.Consumer>
-      {this.renderInner}
-    </SingleHotelContext.Consumer>
-  );
-}
 export default createFragmentContainer(
-  AllHotelsSearchListWithContext,
+  withHotelsContext(select)(AllHotelsSearchList),
   graphql`
     fragment AllHotelsSearchList on AllHotelsInterface @relay(plural: true) {
       id

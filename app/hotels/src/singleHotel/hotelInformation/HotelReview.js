@@ -6,7 +6,6 @@ import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import HotelReviewScore from '../../components/HotelReviewScore';
 import type { HotelReview as HotelReviewType } from './__generated__/HotelReview.graphql';
@@ -35,15 +34,15 @@ const RenderLabel = ({ score }: {| +score: ?number |}) => {
 };
 
 const HotelReview = (props: Props) => {
-  const reviews = idx(props.data, _ => _.review.count);
+  const reviews = props.data.review?.count;
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <View style={styles.badgeWrapper}>
-          <HotelReviewScore score={idx(props.data, _ => _.review.score)} />
+          <HotelReviewScore score={props.data.review?.score} />
         </View>
         <View>
-          <RenderLabel score={idx(props.data, _ => _.review.score)} />
+          <RenderLabel score={props.data.review?.score} />
           {reviews != null && (
             <Text style={styles.score}>
               <Translation

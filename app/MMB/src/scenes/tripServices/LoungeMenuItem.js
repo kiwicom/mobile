@@ -7,7 +7,6 @@ import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
-import idx from 'idx';
 
 import LocationsPopup from './LocationsPopup';
 import LocationPopupButton from './LocationPopupButton';
@@ -50,12 +49,11 @@ class LoungeMenuItem extends React.Component<Props, State> {
   };
 
   openPopup = () => {
-    const relevantAirports =
-      idx(this.props, _ => _.data.lounge.relevantAirports) || [];
+    const relevantAirports = this.props.data.lounge?.relevantAirports ?? [];
 
     if (relevantAirports.length === 1) {
       // do not open the modal for only one whitelabel URL (open it directly)
-      const whitelabelURL = idx(relevantAirports, _ => _[0].whitelabelURL);
+      const whitelabelURL = relevantAirports[0]?.whitelabelURL;
       this.openLoungeLink(whitelabelURL || '');
       return;
     }
@@ -71,15 +69,15 @@ class LoungeMenuItem extends React.Component<Props, State> {
     });
   };
 
-  render = () => {
-    const lounge = idx(this.props, _ => _.data.lounge);
+  render() {
+    const lounge = this.props.data.lounge;
 
     if (!lounge) {
       // no lounges available on this trip (do not render the menu item at all)
       return null;
     }
 
-    const relevantAirports = idx(lounge, _ => _.relevantAirports) || [];
+    const relevantAirports = lounge.relevantAirports ?? [];
 
     return (
       <React.Fragment>
@@ -111,7 +109,7 @@ class LoungeMenuItem extends React.Component<Props, State> {
         />
       </React.Fragment>
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

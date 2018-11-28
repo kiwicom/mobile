@@ -1,8 +1,7 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import CityImageContainer from './cityImage/CityImageContainer';
 import type { MulticityFlight_booking as MulticityFlightType } from './__generated__/MulticityFlight_booking.graphql';
@@ -16,8 +15,8 @@ type Props = {|
 const MulticityFlight = (props: Props) => (
   <CityImageContainer
     image={props.booking}
-    arrival={idx(props.booking, _ => _.end)}
-    departure={idx(props.booking, _ => _.start)}
+    arrival={props.booking.end}
+    departure={props.booking.start}
     type="MULTICITY"
   />
 );

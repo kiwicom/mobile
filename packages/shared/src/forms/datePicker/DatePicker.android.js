@@ -29,13 +29,15 @@ export default class DatePicker extends React.Component<Props> {
     }
   };
 
-  render = () => (
-    <DatePickerButton
-      onPress={this.openDatePicker}
-      date={this.props.date}
-      iconComponent={this.props.iconComponent}
-      formatFunction={this.props.formatFunction}
-      disabled={this.props.disabled}
-    />
-  );
+  render() {
+    return (
+      <DatePickerButton
+        onPress={this.openDatePicker}
+        date={this.props.date}
+        iconComponent={this.props.iconComponent}
+        formatFunction={this.props.formatFunction}
+        disabled={this.props.disabled}
+      />
+    );
+  }
 }

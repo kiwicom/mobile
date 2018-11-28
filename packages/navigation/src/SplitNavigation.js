@@ -23,7 +23,7 @@ type State = {|
   activeId: string,
 |};
 
-const { Provider, Consumer } = React.createContext({
+const { Provider, Consumer } = React.createContext<State>({
   activeId: '',
 });
 
@@ -55,7 +55,7 @@ export default class SplitNavigation extends React.Component<Props, State> {
   };
 
   getContainerComponent = () =>
-    this.props.containerComponents[this.state.activeId]?.screen;
+    this.props.containerComponents[this.state.activeId].screen;
 
   render() {
     const MainMenuContainerWide = React.cloneElement(this.props.menuComponent, {
@@ -91,6 +91,7 @@ export const withSplitNavigationContext = (Component: React.ElementType) => {
     renderInner = ({ activeId }: State) => (
       <Component {...this.props} activeId={activeId} />
     );
+
     render() {
       return <Consumer>{this.renderInner}</Consumer>;
     }

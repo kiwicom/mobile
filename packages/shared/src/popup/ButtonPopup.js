@@ -30,36 +30,38 @@ export default class ButtonPopup extends React.Component<Props> {
 
   onSave = () => this.props.onSave();
 
-  render = () => (
-    <Popup
-      isVisible={this.props.isVisible}
-      onClose={this.onClose}
-      bottomContent={
-        <View style={styles.buttonsWrapper}>
-          <View style={[styles.button, styles.buttonFirst]}>
-            <TextButton
-              title={this.props.buttonCloseTitle}
-              onPress={this.onClose}
-              type="secondary"
-            />
+  render() {
+    return (
+      <Popup
+        isVisible={this.props.isVisible}
+        onClose={this.onClose}
+        bottomContent={
+          <View style={styles.buttonsWrapper}>
+            <View style={[styles.button, styles.buttonFirst]}>
+              <TextButton
+                title={this.props.buttonCloseTitle}
+                onPress={this.onClose}
+                type="secondary"
+              />
+            </View>
+            <View style={styles.button}>
+              <TextButton
+                title={this.props.buttonTitle}
+                onPress={this.onSave}
+                type="primary"
+              />
+            </View>
           </View>
-          <View style={styles.button}>
-            <TextButton
-              title={this.props.buttonTitle}
-              onPress={this.onSave}
-              type="primary"
-            />
-          </View>
-        </View>
-      }
-    >
-      <View
-        style={[styles.content, this.props.style && this.props.style.content]}
+        }
       >
-        {this.props.children}
-      </View>
-    </Popup>
-  );
+        <View
+          style={[styles.content, this.props.style && this.props.style.content]}
+        >
+          {this.props.children}
+        </View>
+      </Popup>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

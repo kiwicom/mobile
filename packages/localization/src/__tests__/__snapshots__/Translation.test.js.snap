@@ -1,10 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`works with optional pass through parameter 1`] = `
-<Text>
-  undefined
-</Text>
-`;
+exports[`works with optional pass through parameter 1`] = `null`;
 
 exports[`works with pass through translations 1`] = `
 <Text>

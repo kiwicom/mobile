@@ -1,6 +1,7 @@
 # rnkiwimobile - Android distribution
 
-The source code can be found in [rnkiwimobile](../../android/rnkiwimobile). This library contains everything that the Android Kiwi native app needs in order to run React Native including the JavaScript code.
+The source code can be found in [rnkiwimobile](../../android/rnkiwimobile). This library contains everything that the 
+Android Kiwi native app needs in order to run React Native including the JavaScript code.
 
 ## Test playground app
 
@@ -23,9 +24,35 @@ Or if you prefer you can run if from Android Studio:
 **Important**: The packager will only be used if there is no bundle in `.build/android`, if there is,
 you can safely delete the whole directory.
 
-### Release
+### Setting up CodePush keys
 
-In release mode, the `playground` is going to use `rnkiwimobile` from [Trinerdis](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/rnkiwimobile/). The version is defined [here](../../.build/package.json#L3). 
+In order to run the app in `stagingRelease` mode or in `release` mode, we need to set up CodePush keys. If you didn't 
+download the CLI and log in to CodePush and make sure to [set it up](../common/code-push.md). After that, you can get
+the keys by running:
+
+```bash
+appcenter codepush deployment list -a Kiwicom/mobile-android
+```
+
+You need to create a file named `codepush.properties` inside [playground](../../android/playground):
+
+```bash
+STAGING_KEY=""
+PRODUCTION=KEY=""
+```
+
+#### Staging
+
+If you set up the STAGING_KEY from previous step, you can just run:
+
+```bash
+yarn android --appFolder playground --variant stagingRelease
+```
+
+#### Production
+
+In `release` mode, the `playground` is going to use `rnkiwimobile` from [Trinerdis](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/rnkiwimobile/). The version is defined [here](../../.build/package.json#L3).
+It will also you the `Production` version of CodePush. 
 You do not need the packager running. This is the real version that the native app wil be consuming.
 
 You can run it using:

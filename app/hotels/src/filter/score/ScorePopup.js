@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { View } from 'react-native';
 import {
   Text,
   ButtonPopup,
@@ -62,36 +63,42 @@ export default class ScorePopup extends React.Component<Props, State> {
   convertSliderValueToScore = (value: number) =>
     value ? value + SLIDER_SHIFT : null;
 
-  render = () => (
-    <SafeAreaView>
-      <ButtonPopup
-        buttonTitle={<Translation id="hotels_search.filter.score_popup.save" />}
-        buttonCloseTitle={
-          <Translation id="hotels_search.filter.hotel_facilities_popup.close" />
-        }
-        onSave={this.onSave}
-        onClose={this.props.onClose}
-        isVisible={this.props.isVisible}
-      >
-        <Text style={styles.title}>
-          <Translation id="hotels_search.filter.score_filter.rating" />
-        </Text>
-        <SliderLabels
-          max={4}
-          min={0}
-          startLabel={this.renderLabel(this.state.sliderValue)}
-          startValue={this.state.sliderValue}
-        />
-        <Slider
-          startValue={this.state.sliderValue}
-          min={0}
-          max={4}
-          onChange={this.handleScoreChanged}
-          snapped={true}
-        />
-      </ButtonPopup>
-    </SafeAreaView>
-  );
+  render() {
+    return (
+      <SafeAreaView>
+        <ButtonPopup
+          buttonTitle={
+            <Translation id="hotels_search.filter.score_popup.save" />
+          }
+          buttonCloseTitle={
+            <Translation id="hotels_search.filter.hotel_facilities_popup.close" />
+          }
+          onSave={this.onSave}
+          onClose={this.props.onClose}
+          isVisible={this.props.isVisible}
+        >
+          <Text style={styles.title}>
+            <Translation id="hotels_search.filter.score_filter.rating" />
+          </Text>
+          <SliderLabels
+            max={4}
+            min={0}
+            startLabel={this.renderLabel(this.state.sliderValue)}
+            startValue={this.state.sliderValue}
+          />
+          <View style={styles.sliderContainer}>
+            <Slider
+              startValue={this.state.sliderValue}
+              min={0}
+              max={4}
+              onChange={this.handleScoreChanged}
+              snapped={true}
+            />
+          </View>
+        </ButtonPopup>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -101,5 +108,8 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     paddingTop: 15,
     paddingBottom: 10,
+  },
+  sliderContainer: {
+    paddingHorizontal: 10,
   },
 });

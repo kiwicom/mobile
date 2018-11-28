@@ -14,7 +14,7 @@ const defaultState = {
   },
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   ...defaultState,
 });
 
@@ -67,9 +67,13 @@ class Provider extends React.Component<Props, State> {
     this.setState({ idNumber: '', noExpiry: false, expiryDate: null });
   };
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
 
 export default { Consumer, Provider };

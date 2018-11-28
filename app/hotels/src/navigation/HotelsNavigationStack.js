@@ -13,7 +13,7 @@ import SingleHotel from './singleHotel/SingleHotelNavigationScreen';
 import SearchResults from './allHotels/SearchResultsScreen';
 import AdditionalPropsInjector from './singleHotel/AdditionalPropsInjector';
 import SingleHotelMapNavigationScreen from './singleHotel/SingleHotelMapNavigationScreen';
-import Payment from '../singleHotel/PaymentScreen';
+import Payment from '../singleHotel/paymentScreen/PaymentScreen';
 import GalleryGrid from '../gallery/GalleryGrid';
 
 export type NavigationProps = {|
@@ -31,34 +31,16 @@ const DetailStack = StackNavigator(
         ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
-  },
-  {
-    ...StackNavigatorOptions,
-    initialRouteName: 'SingleHotel',
-  },
-);
-
-const GalleryStack = StackNavigator(
-  {
     GalleryGrid: {
       screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
     },
-  },
-  {
-    ...StackNavigatorOptions,
-    initialRouteName: 'GalleryGrid',
-  },
-);
-
-const PaymentStack = StackNavigator(
-  {
     Payment: {
       screen: withMappedProps(Payment),
     },
   },
   {
     ...StackNavigatorOptions,
-    initialRouteName: 'Payment',
+    initialRouteName: 'SingleHotel',
   },
 );
 
@@ -69,18 +51,6 @@ export default StackNavigator(
     },
     DetailStack: {
       screen: DetailStack,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    GalleryStack: {
-      screen: GalleryStack,
-      navigationOptions: {
-        header: null,
-      },
-    },
-    PaymentStack: {
-      screen: PaymentStack,
       navigationOptions: {
         header: null,
       },

@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { withContext } from '@kiwicom/mobile-shared';
 
 import type {
   FilterParams,
@@ -26,7 +27,7 @@ const defaultActiveFilters = {
   isOrderFilterActive: false,
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext({
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
   filterParams: defaultFilterParams,
   activeFilters: defaultActiveFilters,
   orderBy: null,
@@ -61,6 +62,7 @@ class Provider extends React.Component<Props, State> {
       },
     };
   }
+
   setActiveFilters = () => {
     this.setState(state => {
       const {
@@ -98,9 +100,18 @@ class Provider extends React.Component<Props, State> {
     }, this.setActiveFilters);
   };
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
 
+export const withHotelsFilterContext = (select: State => Object) =>
+  withContext<State>(select, Consumer);
+
 export default { Consumer, Provider };
+
+export type HotelsFilterState = State;

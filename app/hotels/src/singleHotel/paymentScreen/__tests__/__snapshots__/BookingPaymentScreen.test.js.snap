@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`creates correct URL 1`] = `"http://test.url.lol&checkin=1970-01-02&interval=2&label=kiwi-ios-react-rn-test&lang=en&selected_currency=EUR"`;
+
+exports[`creates correct URL 2`] = `"http://test.url.lol&checkin=1970-01-03&interval=14&label=kiwi-ios-react-rn-test&lang=en&selected_currency=JPY"`;

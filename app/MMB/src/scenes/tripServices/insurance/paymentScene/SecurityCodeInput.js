@@ -24,6 +24,7 @@ export default class SecurityCodeInput extends React.Component<Props> {
   static defaultProps = {
     displayLabel: true,
   };
+
   onPress = () => {
     Alert.translatedAlert(
       { id: 'mmb.trip_services.insurance.payment.security_code' },

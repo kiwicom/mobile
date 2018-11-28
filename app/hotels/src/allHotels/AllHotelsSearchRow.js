@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
@@ -16,16 +15,20 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import { type RoomConfigurationType } from '../HotelsContext';
+import {
+  type RoomConfigurationType,
+  type ApiProvider,
+  type HotelsContextState,
+  withHotelsContext,
+} from '../HotelsContext';
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from '../components/HotelReviewScore';
 import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
-import SingleHotelContext, {
-  type ApiProvider,
-} from '../navigation/singleHotel/SingleHotelContext';
 
-type PropsWithContext = {|
-  ...Props,
+type Props = {|
+  +navigation: NavigationType,
+  +data: AllHotelsSearchRowProps,
+  +testID?: string,
   +setHotelId: (hotelId: string) => void,
   +hotelId: string,
   +checkin: Date,
@@ -34,12 +37,14 @@ type PropsWithContext = {|
   +apiProvider: ApiProvider,
 |};
 
-class AllHotelsSearchRow extends React.Component<PropsWithContext> {
+class AllHotelsSearchRow extends React.Component<Props> {
   onGoToSingleHotel = () => {
-    const hotelId = idx(this.props, _ => _.data.hotelId);
+    const { hotelId } = this.props.data;
+
     if (hotelId != null) {
+      this.props.setHotelId(hotelId);
+
       this.props.navigation.navigate('SingleHotel', {
-        hotelId,
         checkin: this.props.checkin,
         checkout: this.props.checkout,
         roomsConfiguration: this.props.roomsConfiguration,
@@ -49,19 +54,20 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
   };
 
   setActiveHotelId = () => {
-    const hotelId = idx(this.props, _ => _.data.hotelId) || '';
+    const hotelId = this.props.data.hotelId ?? '';
     this.props.setHotelId(hotelId);
   };
 
-  render = () => {
-    const highResUrl = idx(this.props.data, _ => _.mainPhoto.highResUrl);
+  render() {
+    const highResUrl = this.props.data.mainPhoto?.highResUrl;
+    const imageUrl = this.props.data.mainPhoto?.lowResUrl ?? highResUrl; // stay 22 don't provide lowResUrl, thumbnail url has to low quality, fallback to highResUrl
     const children = (
       <View style={style.row}>
         <View style={style.imageContainer}>
           <NetworkImage
             style={style.image}
             resizeMode="cover"
-            source={{ uri: highResUrl }}
+            source={{ uri: imageUrl }}
           />
         </View>
         <View style={style.content}>
@@ -70,9 +76,7 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
               <HotelTitle data={this.props.data} />
             </View>
             <View style={style.hotelReviewScore}>
-              <HotelReviewScore
-                score={idx(this.props.data, _ => _.review.score)}
-              />
+              <HotelReviewScore score={this.props.data.review?.score} />
             </View>
           </View>
         </View>
@@ -102,32 +106,32 @@ class AllHotelsSearchRow extends React.Component<PropsWithContext> {
         }
       />
     );
-  };
+  }
 }
 
-type Props = {|
-  +navigation: NavigationType,
-  +data: AllHotelsSearchRowProps,
-  +testID?: string,
-|};
+const select = ({
+  setHotelId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+  apiProvider,
+}: HotelsContextState) => ({
+  setHotelId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+  apiProvider,
+});
 
-class AllHotelsSearchRowWithContext extends React.Component<Props> {
-  renderInner = context => <AllHotelsSearchRow {...this.props} {...context} />;
-
-  render = () => (
-    <SingleHotelContext.Consumer>
-      {this.renderInner}
-    </SingleHotelContext.Consumer>
-  );
-}
 export default createFragmentContainer(
-  withNavigation(AllHotelsSearchRowWithContext),
+  withHotelsContext(select)(withNavigation(AllHotelsSearchRow)),
   graphql`
     fragment AllHotelsSearchRow on AllHotelsInterface {
       ...HotelTitle
       hotelId
       mainPhoto {
         highResUrl
+        lowResUrl
       }
       review {
         score

@@ -12,15 +12,16 @@ import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 import type { CurrentSearchStats } from '../../filter/CurrentSearchStatsType';
-import HotelsContext, {
-  type State as HotelsContextState,
+import {
+  withHotelsContext,
+  type HotelsContextState,
 } from '../../HotelsContext';
 
 type PropsWithContext = {
   ...Props,
   +currentSearchStats: CurrentSearchStats,
   +currency: string,
-  +daysOfStay: number,
+  +daysOfStay: number | null,
 };
 
 type State = {|
@@ -141,7 +142,9 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
     } = this.props;
     const start = this.props.start || priceMin;
     const end = this.props.end || priceMax;
-
+    if (daysOfStay === null) {
+      return null;
+    }
     return (
       <React.Fragment>
         <FilterButton
@@ -188,28 +191,17 @@ const calculateDaysOfStay = (checkin, checkout) => {
   return null;
 };
 
-export default class PriceFilterWithContext extends React.Component<Props> {
-  renderInner = ({
-    currency,
-    checkin,
-    checkout,
-    currentSearchStats,
-  }: HotelsContextState) => {
-    const daysOfStay = calculateDaysOfStay(checkin, checkout);
-    if (daysOfStay === null) {
-      return null;
-    }
-    return (
-      <PriceFilter
-        {...this.props}
-        currentSearchStats={currentSearchStats}
-        currency={currency}
-        daysOfStay={daysOfStay}
-      />
-    );
-  };
+const select = ({
+  currency,
+  checkin,
+  checkout,
+  currentSearchStats,
+}: HotelsContextState) => ({
+  currency,
+  checkin,
+  checkout,
+  currentSearchStats,
+  daysOfStay: calculateDaysOfStay(checkin, checkout),
+});
 
-  render() {
-    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
-  }
-}
+export default withHotelsContext(select)(PriceFilter);

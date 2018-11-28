@@ -8,7 +8,7 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
-import isEqual from 'react-fast-compare';
+import { Alert } from '@kiwicom/mobile-localization';
 
 import RoomPicker from '../roomPicker/RoomPicker';
 import RoomImage from './RoomImage';
@@ -16,15 +16,17 @@ import BeddingInfo from './BeddingInfo';
 import RoomRowTitle from './RoomRowTitle';
 import RoomBadges from './RoomBadges';
 import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
+import {
+  withHotelDetailScreenContext,
+  type HotelDetailScreenState,
+} from '../HotelDetailScreenContext';
+import {
+  withHotelsContext,
+  type HotelsContextState,
+} from '../../HotelsContext';
 
 type ContainerProps = {|
   +availableRoom: ?Object,
-  +select: (availabilityId: string, maxPersons: number) => void,
-  +deselect: (availabilityId: string, maxPersons: number) => void,
-  +selected: {
-    +[string]: number,
-  },
-  +disabled: boolean,
   +testID?: string,
 |};
 
@@ -32,14 +34,28 @@ type Props = {|
   ...ContainerProps,
   +availableRoom: ?RoomRow_availableRoom,
   +navigation: NavigationType,
+  +select: (availabilityId: string, maxPersons: number) => void,
+  +deselect: (availabilityId: string, maxPersons: number) => void,
+  +selected: {
+    +[string]: number,
+  },
+  +numberOfRooms: number,
+  +getGuestCount: () => number,
 |};
 
 export class RoomRow extends React.Component<Props> {
-  shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
+  isDisabled = () => this.props.getGuestCount() <= this.props.numberOfRooms;
+
   select = () => {
-    const { id, maxPersons } = this.getIdAndMaxPersons();
-    if (id && maxPersons) {
-      this.props.select(id, maxPersons);
+    if (this.isDisabled()) {
+      Alert.translatedAlert(null, {
+        id: 'single_hotel.alert.cannot_book_more_rooms_than_guests',
+      });
+    } else {
+      const { id, maxPersons } = this.getIdAndMaxPersons();
+      if (id && maxPersons) {
+        this.props.select(id, maxPersons);
+      }
     }
   };
 
@@ -51,8 +67,8 @@ export class RoomRow extends React.Component<Props> {
   };
 
   getIdAndMaxPersons = () => {
-    const id = this.props?.availableRoom?.id;
-    const maxPersons = this.props?.availableRoom?.room?.maxPersons;
+    const id = this.props.availableRoom?.id;
+    const maxPersons = this.props.availableRoom?.room?.maxPersons;
     return { id, maxPersons };
   };
 
@@ -78,7 +94,7 @@ export class RoomRow extends React.Component<Props> {
     });
   };
 
-  render = () => {
+  render() {
     const availableRoom = this.props.availableRoom;
     // New provider currently does not support lowResUrl, fallback to highResUrl in that case
     // ThumbnailUrl provides to low quality
@@ -89,7 +105,7 @@ export class RoomRow extends React.Component<Props> {
     const currency = availableRoom?.minimalPrice?.currency ?? null;
     const selectableCount = availableRoom?.incrementalPrice?.length ?? 0;
     const id = availableRoom?.id ?? '';
-    const selectedCount = this.props.selected?.[id] ?? 0;
+    const selectedCount = this.props.selected[id] ?? 0;
     const room = availableRoom?.room;
 
     return (
@@ -115,16 +131,35 @@ export class RoomRow extends React.Component<Props> {
             increment={this.select}
             decrement={this.deselect}
             testID={this.props.testID}
-            disabled={this.props.disabled}
+            disabled={this.isDisabled()}
           />
         </View>
       </View>
     );
-  };
+  }
 }
 
+const select = ({
+  selected,
+  numberOfRooms,
+  actions: { selectRoom, deselectRoom },
+}: HotelDetailScreenState) => ({
+  select: selectRoom,
+  deselect: deselectRoom,
+  selected,
+  numberOfRooms,
+});
+
+const selectHotelsContext = ({ getGuestCount }: HotelsContextState) => ({
+  getGuestCount,
+});
+
 export default (createFragmentContainer(
-  withNavigation(RoomRow),
+  withNavigation(
+    withHotelDetailScreenContext(select)(
+      withHotelsContext(selectHotelsContext)(RoomRow),
+    ),
+  ),
   graphql`
     fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
       id

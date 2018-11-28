@@ -1,18 +1,22 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import { DateFormatter, Translation } from '@kiwicom/mobile-localization';
-import { GeneralError } from '@kiwicom/mobile-shared';
+import { graphql } from '@kiwicom/mobile-relay';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 
-import HotelsFilterContext from '../HotelsFilterContext';
+import {
+  withHotelsFilterContext,
+  type HotelsFilterState,
+} from '../HotelsFilterContext';
 import {
   type RoomConfigurationType,
+  type HotelsContextState,
   withHotelsContext,
 } from '../HotelsContext';
 import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
 import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHotelsSearchQuery.graphql';
 import HotelsPaginationContainer from './HotelsPaginationContainer';
+import HotelsSearch from './HotelsSearch';
 
 type Props = {|
   +checkin: Date | null,
@@ -20,7 +24,25 @@ type Props = {|
   +currency: string,
   +roomsConfiguration: RoomConfigurationType | null,
   +cityId: string | null,
+  +orderBy: $PropertyType<HotelsFilterState, 'orderBy'>,
+  +filterParams: $PropertyType<HotelsFilterState, 'filterParams'>,
+  +renderOfflineScreen: (retry: () => void) => React.Node,
+  +onClose: () => void,
+  +renderDateError: () => React.Node,
+  +renderFooter: () => React.Node,
 |};
+
+const query = graphql`
+  query NewAllHotelsSearchQuery(
+    $search: HotelsSearchInput!
+    $filter: HotelsFilterInput!
+    $options: AvailableHotelOptionsInput
+    $first: Int
+    $after: String
+  ) {
+    ...HotelsPaginationContainer
+  }
+`;
 
 class NewAllHotelsSearch extends React.Component<Props> {
   renderAllHotelsSearchList = (
@@ -29,41 +51,27 @@ class NewAllHotelsSearch extends React.Component<Props> {
     return <HotelsPaginationContainer data={propsFromRenderer} />;
   };
 
-  renderContext = ({ orderBy, filterParams }) => {
+  render() {
     const {
       cityId,
       checkin,
       checkout,
       roomsConfiguration,
       currency,
+      orderBy,
+      filterParams,
     } = this.props;
-    if (checkin === null || checkout === null) {
-      return (
-        <GeneralError
-          errorMessage={
-            <Translation id="hotels_search.all_hotels_search.date_error" />
-          }
-        />
-      );
-    }
+
     return (
-      <PublicApiRenderer
-        query={graphql`
-          query NewAllHotelsSearchQuery(
-            $search: HotelsSearchInput!
-            $filter: HotelsFilterInput!
-            $options: AvailableHotelOptionsInput
-            $first: Int
-            $after: String
-          ) {
-            ...HotelsPaginationContainer
-          }
-        `}
+      <HotelsSearch
+        shouldRenderDateError={checkin === null || checkout === null}
+        onClose={this.props.onClose}
+        query={query}
         variables={{
           search: {
             cityId,
-            checkin: DateFormatter(checkin).formatForMachine(),
-            checkout: DateFormatter(checkout).formatForMachine(),
+            checkin: DateFormatter(checkin ?? new Date()).formatForMachine(),
+            checkout: DateFormatter(checkout ?? new Date()).formatForMachine(),
             roomsConfiguration,
           },
           filter: {
@@ -81,21 +89,26 @@ class NewAllHotelsSearch extends React.Component<Props> {
         render={this.renderAllHotelsSearchList}
       />
     );
-  };
-
-  render() {
-    return (
-      <HotelsFilterContext.Consumer>
-        {this.renderContext}
-      </HotelsFilterContext.Consumer>
-    );
   }
 }
 
-export default withHotelsContext(state => ({
+const selectHotelsFilterContext = ({
+  orderBy,
+  filterParams,
+}: HotelsFilterState) => ({
+  orderBy,
+  filterParams,
+});
+
+const selectHotelsContext = (state: HotelsContextState) => ({
   checkin: state.checkin,
   checkout: state.checkout,
   currency: state.currency,
   roomsConfiguration: state.roomsConfiguration,
   cityId: state.cityId,
-}))(NewAllHotelsSearch);
+  onClose: state.closeHotels,
+});
+
+export default withHotelsContext(selectHotelsContext)(
+  withHotelsFilterContext(selectHotelsFilterContext)(NewAllHotelsSearch),
+);

@@ -29,13 +29,15 @@ export default class WebView extends React.Component<Props> {
     }
   };
 
-  render = () => (
-    <NativeWebView
-      bounces={false}
-      startInLoadingState={true} // Prefer to see loader than blank screen
-      renderError={this.renderError}
-      onNavigationStateChange={this.onNavigationStateChange}
-      {...this.props}
-    />
-  );
+  render() {
+    return (
+      <NativeWebView
+        bounces={false}
+        startInLoadingState={true} // Prefer to see loader than blank screen
+        renderError={this.renderError}
+        onNavigationStateChange={this.onNavigationStateChange}
+        {...this.props}
+      />
+    );
+  }
 }

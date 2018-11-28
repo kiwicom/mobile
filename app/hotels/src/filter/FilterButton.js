@@ -2,12 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Button,
-  ButtonTitle,
-  StyleSheet,
-  TextIcon,
-} from '@kiwicom/mobile-shared';
+import { Button, Text, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
 import type { TranslationType } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -36,13 +31,14 @@ const FilterButton = ({ title, isActive, onPress, icon }: Props) => {
     >
       <View style={styleSheet.row}>
         <View style={styleSheet.icon}>{filterIcon}</View>
-        <ButtonTitle
-          text={title}
+        <Text
           style={[
             styleSheet.buttonText,
             isActive && styleSheet.activeButtonText,
           ]}
-        />
+        >
+          {title}
+        </Text>
       </View>
     </Button>
   );
@@ -66,6 +62,7 @@ const styleSheet = StyleSheet.create({
     color: defaultTokens.paletteCloudNormal,
   },
   buttonText: {
+    fontWeight: '500',
     color: defaultTokens.colorTextPrimary,
     fontSize: 12,
     lineHeight: 15,

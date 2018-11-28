@@ -40,36 +40,38 @@ export default class Other extends React.Component<Props> {
     this.navigate('mmb.other.cancellation');
   };
 
-  render = () => (
-    <ScrollView>
-      <MenuGroup
-        customSeparator={Platform.select({
-          android: <SeparatorFullWidth />,
-          ios: <SeparatorTrimmed gapSizeStart={15} />,
-        })}
-      >
-        <MenuItem
-          title={<Translation id="mmb.sub_menu.manage.other.invoice" />}
-          onPress={this.handleOpenInvoice}
-        />
-        <MenuItem
-          title={<Translation id="mmb.sub_menu.manage.other.open_on_web" />}
-          onPress={this.handleOpenOnWeb}
-        />
-        <MenuItem
-          title={<Translation id="mmb.sub_menu.manage.other.refund_form" />}
-          description={
-            <Translation id="mmb.sub_menu.manage.other.apply_for_refund" />
-          }
-          onPress={this.handleOpenRefund}
-        />
-        <MenuItem
-          title={<Translation id="mmb.sub_menu.manage.other.cancellation" />}
-          onPress={this.handleCancellation}
-        />
-      </MenuGroup>
-    </ScrollView>
-  );
+  render() {
+    return (
+      <ScrollView>
+        <MenuGroup
+          customSeparator={Platform.select({
+            android: <SeparatorFullWidth />,
+            ios: <SeparatorTrimmed gapSizeStart={15} />,
+          })}
+        >
+          <MenuItem
+            title={<Translation id="mmb.sub_menu.manage.other.invoice" />}
+            onPress={this.handleOpenInvoice}
+          />
+          <MenuItem
+            title={<Translation id="mmb.sub_menu.manage.other.open_on_web" />}
+            onPress={this.handleOpenOnWeb}
+          />
+          <MenuItem
+            title={<Translation id="mmb.sub_menu.manage.other.refund_form" />}
+            description={
+              <Translation id="mmb.sub_menu.manage.other.apply_for_refund" />
+            }
+            onPress={this.handleOpenRefund}
+          />
+          <MenuItem
+            title={<Translation id="mmb.sub_menu.manage.other.cancellation" />}
+            onPress={this.handleCancellation}
+          />
+        </MenuGroup>
+      </ScrollView>
+    );
+  }
 }
 
 export const OtherSubmenuItems = {

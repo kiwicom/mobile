@@ -1,9 +1,7 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Button, Text } from '@kiwicom/mobile-shared';
-import idx from 'idx';
+import { StyleSheet, Button, ButtonTitle } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
   withNavigation,
@@ -12,25 +10,28 @@ import {
 import { DeviceInfo, Translation } from '@kiwicom/mobile-localization';
 
 import convertRooms from './convertRooms';
-import type { BookNow_hotel } from './__generated__/BookNow_hotel.graphql';
-import SingleHotelContext, {
-  type State as SingleHotelState,
-} from '../../navigation/singleHotel/SingleHotelContext';
-import HotelsContext, {
-  type State as HotelsContextState,
+import {
+  withHotelsContext,
+  type HotelsContextState,
 } from '../../HotelsContext';
+import {
+  withHotelDetailScreenContext,
+  type HotelDetailScreenState,
+} from '../HotelDetailScreenContext';
 
-type PropsWithContext = {
-  ...Props,
-  +checkin: Date,
-  +checkout: Date,
+type Props = {
+  +selected: {
+    [string]: number,
+  },
+  +navigation: NavigationType,
   +currency: string,
+  +hotelId: ?string,
 };
 
-export class BookNow extends React.Component<PropsWithContext> {
+export class BookNow extends React.Component<Props> {
   handleGoToPayment = () => {
-    const hotelId = idx(this.props.hotel, _ => _.id);
-    if (hotelId) {
+    const hotelId = this.props.hotelId;
+    if (hotelId != null) {
       this.props.navigation.navigate('Payment', {
         hotelId,
         rooms: convertRooms(this.props.selected),
@@ -42,53 +43,25 @@ export class BookNow extends React.Component<PropsWithContext> {
   render() {
     return (
       <Button onPress={this.handleGoToPayment} testID="bookNowButton">
-        <Text style={styles.text}>
-          <Translation id="single_hotel.book_now" />
-        </Text>
+        <ButtonTitle
+          text={<Translation id="single_hotel.book_now" />}
+          style={styles.text}
+        />
       </Button>
     );
   }
 }
 
-type Props = {|
-  +selected: {
-    [string]: number,
-  },
-  +availableRooms: any,
-  +hotel: any,
-  +hotel: ?BookNow_hotel,
-  +navigation: NavigationType,
-|};
+const select = ({ currency, hotelId }: HotelsContextState) => ({
+  currency,
+  hotelId,
+});
+const selectHotelDetailScreen = ({ selected }: HotelDetailScreenState) => ({
+  selected,
+});
 
-export class BookNowWithContext extends React.Component<Props> {
-  renderHotelsContext = ({ currency }: HotelsContextState) => (
-    <SingleHotelContext.Consumer>
-      {this.renderSingleHotelContext(currency)}
-    </SingleHotelContext.Consumer>
-  );
-
-  renderSingleHotelContext = (
-    currency: $PropertyType<HotelsContextState, 'currency'>,
-  ) => (state: SingleHotelState) => (
-    <BookNow {...this.props} {...state} currency={currency} />
-  );
-
-  render() {
-    return (
-      <HotelsContext.Consumer>
-        {this.renderHotelsContext}
-      </HotelsContext.Consumer>
-    );
-  }
-}
-
-export default createFragmentContainer(
-  withNavigation(BookNowWithContext),
-  graphql`
-    fragment BookNow_hotel on HotelInterface {
-      id
-    }
-  `,
+export default withHotelDetailScreenContext(selectHotelDetailScreen)(
+  withHotelsContext(select)(withNavigation(BookNow)),
 );
 
 const styles = StyleSheet.create({

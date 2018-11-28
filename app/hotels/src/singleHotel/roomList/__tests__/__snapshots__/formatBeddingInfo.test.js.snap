@@ -1,9 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`doesn't crash on empty input 1`] = `""`;
+exports[`doesn't crash on empty input 1`] = `Array []`;
 
-exports[`formats bedding information 1`] = `"1 Single Bed(s)"`;
+exports[`doesn't crash on empty input 2`] = `Array []`;
 
-exports[`pluralizes persons 1`] = `"2 Single Bed(s)"`;
+exports[`formats bedding information 1`] = `
+Array [
+  <Translation
+    passThrough="1 Single Bed(s)"
+  />,
+]
+`;
 
-exports[`provides all bedding options 1`] = `"2 Single Bed(s) or 1 Twin Bed(s)"`;
+exports[`pluralizes persons 1`] = `
+Array [
+  <Translation
+    passThrough="2 Single Bed(s)"
+  />,
+]
+`;
+
+exports[`provides all bedding options 1`] = `
+Array [
+  <Translation
+    passThrough="2 Single Bed(s)"
+  />,
+  <Translation
+    id="single_hotel.bedding_info.or"
+  />,
+  <Translation
+    passThrough="1 Twin Bed(s)"
+  />,
+]
+`;

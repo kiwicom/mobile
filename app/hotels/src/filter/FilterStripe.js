@@ -5,9 +5,7 @@ import { ScrollView, View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import HotelsContext, {
-  type State as HotelsContextState,
-} from '../HotelsContext';
+import { withHotelsContext } from '../HotelsContext';
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
@@ -20,10 +18,10 @@ import type {
   OnChangeFilterParams,
   OrderByEnum,
 } from './FilterParametersType';
-import HotelsFilterContext from '../HotelsFilterContext';
+import { withHotelsFilterContext } from '../HotelsFilterContext';
 import Filters from './Filters';
 
-type PropsWithContext = {|
+type Props = {|
   +currency: string,
   +activeFilters: ActiveFilters,
   +onChange: OnChangeFilterParams => void,
@@ -36,70 +34,49 @@ type PropsWithContext = {|
  * rendered first.
  * The Filters component will handle this ordering.
  */
-class FilterStripe extends React.Component<PropsWithContext> {
-  scrollViewRef: React.ElementRef<typeof ScrollView>;
-
-  onChange = (params: OnChangeFilterParams) => {
-    this.props.onChange(params);
-    // setTimeout will make it run after the re-render and it scrolls to correct position
-    setTimeout(() => {
-      this.scrollViewRef.scrollTo({
-        x: 0,
-        y: 0,
-        animated: true,
-      });
-    });
-  };
-
-  storeScrollViewRef = ref => (this.scrollViewRef = ref);
-
-  render = () => {
-    return (
-      <View style={styles.view}>
-        <ScrollView
-          ref={this.storeScrollViewRef}
-          contentContainerStyle={[styles.scrollView, styles.backgroundNew]}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          <Filters>
-            <OrderFilter
-              orderBy={this.props.orderBy}
-              isActive={this.props.activeFilters.isOrderFilterActive}
-              onChange={this.onChange}
-            />
-            <StarsFilter
-              stars={this.props.filter.starsRating}
-              onChange={this.onChange}
-              isActive={this.props.activeFilters.isStarsFilterActive}
-            />
-            <PriceFilter
-              currency={this.props.currency}
-              start={this.props.filter.minPrice}
-              end={this.props.filter.maxPrice}
-              onChange={this.onChange}
-              isActive={this.props.activeFilters.isPriceFilterActive}
-            />
-            <ScoreFilter
-              minScore={this.props.filter.minScore}
-              onChange={this.onChange}
-              isActive={this.props.activeFilters.isMinScoreActive}
-            />
-            <HotelFacilitiesFilter
-              onChange={this.onChange}
-              facilities={this.props.filter.hotelFacilities}
-              isActive={this.props.activeFilters.isHotelFacilitiesActive}
-            />
-            <FreeCancellationFilter
-              onChange={this.onChange}
-              isActive={this.props.filter.freeCancellation}
-            />
-          </Filters>
-        </ScrollView>
-      </View>
-    );
-  };
-}
+const FilterStripe = (props: Props) => (
+  <View style={styles.view}>
+    <ScrollView
+      contentContainerStyle={[styles.scrollView, styles.backgroundNew]}
+      horizontal={true}
+      showsHorizontalScrollIndicator={false}
+    >
+      <Filters>
+        <OrderFilter
+          orderBy={props.orderBy}
+          isActive={props.activeFilters.isOrderFilterActive}
+          onChange={props.onChange}
+        />
+        <StarsFilter
+          stars={props.filter.starsRating}
+          onChange={props.onChange}
+          isActive={props.activeFilters.isStarsFilterActive}
+        />
+        <PriceFilter
+          currency={props.currency}
+          start={props.filter.minPrice}
+          end={props.filter.maxPrice}
+          onChange={props.onChange}
+          isActive={props.activeFilters.isPriceFilterActive}
+        />
+        <ScoreFilter
+          minScore={props.filter.minScore}
+          onChange={props.onChange}
+          isActive={props.activeFilters.isMinScoreActive}
+        />
+        <HotelFacilitiesFilter
+          onChange={props.onChange}
+          facilities={props.filter.hotelFacilities}
+          isActive={props.activeFilters.isHotelFacilitiesActive}
+        />
+        <FreeCancellationFilter
+          onChange={props.onChange}
+          isActive={props.filter.freeCancellation}
+        />
+      </Filters>
+    </ScrollView>
+  </View>
+);
 
 const styles = StyleSheet.create({
   view: {
@@ -115,22 +92,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class FilterStripeWithContext extends React.Component<{||}> {
-  renderInner = ({ currency }: HotelsContextState) => (
-    <HotelsFilterContext.Consumer>
-      {({ activeFilters, filterParams, orderBy, actions: { setFilter } }) => (
-        <FilterStripe
-          currency={currency}
-          onChange={setFilter}
-          filter={filterParams}
-          activeFilters={activeFilters}
-          orderBy={orderBy}
-        />
-      )}
-    </HotelsFilterContext.Consumer>
-  );
+const selectHotelsProps = ({ currency }) => ({ currency });
+const selectFilterProps = ({
+  activeFilters,
+  filterParams,
+  orderBy,
+  actions: { setFilter },
+}) => ({
+  onChange: setFilter,
+  filter: filterParams,
+  activeFilters,
+  orderBy,
+});
 
-  render() {
-    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
-  }
-}
+export default withHotelsContext(selectHotelsProps)(
+  withHotelsFilterContext(selectFilterProps)(FilterStripe),
+);

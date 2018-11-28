@@ -1,12 +1,13 @@
 // @flow strict
 
 import * as React from 'react';
-import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
+import { graphql } from '@kiwicom/mobile-relay';
 
 import HotelDetailScreen from './HotelDetailScreen';
 import { type RoomConfigurationType } from '../HotelsContext';
 import { sanitizeDate } from '../GraphQLSanitizers';
 import type { Stay22SingleHotelQueryResponse } from './__generated__/Stay22SingleHotelQuery.graphql';
+import SingleHotelSearch from './SingleHotelSearch';
 
 type Props = {|
   +goBack: () => void,
@@ -24,16 +25,18 @@ export default class Stay22SingleHotel extends React.Component<Props> {
       availableHotel={stay22HotelDetail}
       roomsConfiguration={this.props.roomsConfiguration}
       goBack={this.props.goBack}
+      paymentLink={stay22HotelDetail?.paymentLink}
     />
   );
 
   render() {
-    const { currency, checkin, checkout, hotelId } = this.props;
+    const { currency, checkin, checkout, hotelId, goBack } = this.props;
     if (hotelId === '') {
       return null;
     }
     return (
-      <PublicApiRenderer
+      <SingleHotelSearch
+        onClose={goBack}
         query={graphql`
           query Stay22SingleHotelQuery(
             $id: ID!
@@ -50,6 +53,7 @@ export default class Stay22SingleHotel extends React.Component<Props> {
               checkout: $checkout
             ) {
               ...HotelDetailScreen_availableHotel
+              paymentLink
             }
           }
         `}

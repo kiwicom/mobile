@@ -56,7 +56,7 @@ export default class Touchable extends React.Component<Props> {
     return Platform.OS === 'android' && Platform.Version >= 21;
   };
 
-  render = () => {
+  render() {
     // React.Children.only is only necessary for TouchableNativeFeedback
     // but since we are building for both platforms it is here as well
     // to discover this mistake as soon as possible
@@ -91,5 +91,5 @@ export default class Touchable extends React.Component<Props> {
         {children}
       </TouchableOpacity>
     );
-  };
+  }
 }

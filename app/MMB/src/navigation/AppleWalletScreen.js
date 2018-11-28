@@ -13,15 +13,17 @@ type PropsWithContext = {|
 |};
 
 class AppleWalletScreen extends React.Component<PropsWithContext> {
-  componentWillUnmount = () => {
+  componentWillUnmount() {
     this.props.setSelectedSegment(null);
-  };
+  }
 
-  render = () => (
-    <View style={styles.container}>
-      <AppleWalletScene />
-    </View>
-  );
+  render() {
+    return (
+      <View style={styles.container}>
+        <AppleWalletScene />
+      </View>
+    );
+  }
 }
 
 export default function AppleWalletScreenWithContext() {

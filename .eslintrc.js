@@ -29,6 +29,7 @@ module.exports = {
     "prettier/flowtype"
   ],
   rules: {
+    "lines-between-class-members": [ERROR, "always", { exceptAfterSingleLine: true }],
     "no-lonely-if": ERROR,
     "no-else-return": ERROR,
     "react/no-did-update-set-state": ERROR,

@@ -1,11 +1,10 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import ColorStrip from './ColorStrip';
@@ -17,10 +16,9 @@ type Props = {|
   +data: TripInfoReturnType,
 |};
 
-function TripInfoReturn(props: Props) {
-  const data = idx(props, _ => _.data);
-  const outbound = idx(data, _ => _.outbound);
-  const inbound = idx(data, _ => _.inbound);
+function TripInfoReturn({ data }: Props) {
+  const outbound = data.outbound;
+  const inbound = data.inbound;
 
   return (
     <View style={styleSheet.row}>

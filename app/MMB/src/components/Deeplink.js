@@ -1,9 +1,8 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { WebView } from '@kiwicom/mobile-shared';
 import { graphql, PublicApiRenderer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import BookingDetailContext, {
   type State as BookingDetailState,
@@ -20,8 +19,7 @@ type Props = {|
 export default class Deeplink extends React.Component<Props> {
   renderInnerComponent = (renderProps: DeeplinkQueryResponse) => {
     const uri =
-      idx(renderProps, _ => _.singleBooking.directAccessURL) ||
-      'https://www.kiwi.com/';
+      renderProps.singleBooking?.directAccessURL ?? 'https://www.kiwi.com/';
 
     return <WebView source={{ uri }} />;
   };
@@ -50,9 +48,11 @@ export default class Deeplink extends React.Component<Props> {
     />
   );
 
-  render = () => (
-    <BookingDetailContext.Consumer>
-      {this.renderInner}
-    </BookingDetailContext.Consumer>
-  );
+  render() {
+    return (
+      <BookingDetailContext.Consumer>
+        {this.renderInner}
+      </BookingDetailContext.Consumer>
+    );
+  }
 }

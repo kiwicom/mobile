@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
@@ -15,7 +15,6 @@ import {
   MenuItem,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import ColorStrip from './ColorStrip';
 import StatusBar from './StatusBar';
@@ -30,7 +29,7 @@ type HeaderSharedProps = {|
 |};
 
 function HeaderShared(props: HeaderSharedProps) {
-  const booking = idx(props, _ => _.data);
+  const booking = props.data;
 
   return (
     <React.Fragment>
@@ -71,8 +70,8 @@ class Header extends React.Component<HeaderProps, HeaderState> {
     this.props.openSubmenu('mmb.main_menu.trip_overview', 'mmb.trip_overview');
   };
 
-  render = () => {
-    const booking = idx(this.props, _ => _.data);
+  render() {
+    const booking = this.props.data;
 
     return (
       <AdaptableLayout
@@ -104,7 +103,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         }
       />
     );
-  };
+  }
 }
 
 export default createFragmentContainer(

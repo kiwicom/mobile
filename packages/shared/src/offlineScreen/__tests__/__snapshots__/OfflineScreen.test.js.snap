@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<withOrientation
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <Component
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "flex-start",
+      }
+    }
+  >
+    <Component
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    />
+    <Component
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#171b1e",
+            "fontWeight": "500",
+            "textAlign": "center",
+          }
+        }
+      >
+        <Translation
+          id="shared.offline_screen.offline_title"
+        />
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#7f91a8",
+            "marginHorizontal": 32,
+            "marginTop": 16,
+            "textAlign": "center",
+          }
+        }
+      >
+        <Translation
+          id="shared_offline_screen.offline_text"
+        />
+      </Text>
+    </Component>
+    <Component
+      style={
+        Object {
+          "height": 163,
+          "marginBottom": 40,
+          "paddingHorizontal": 22,
+          "width": "100%",
+        }
+      }
+    >
+      <StretchedImage
+        source={
+          Object {
+            "testUri": "../../../packages/shared/src/offlineScreen/offline.png",
+          }
+        }
+      />
+    </Component>
+    <Component
+      style={
+        Object {
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "padding": 8,
+        }
+      }
+    >
+      <CloseButton
+        onPress={[MockFunction]}
+        style={
+          Object {
+            "marginEnd": 8,
+          }
+        }
+      />
+      <TextButton
+        disabled={false}
+        onPress={[MockFunction]}
+        title={
+          <Translation
+            id="shared_offline_screen.try_again"
+          />
+        }
+        type="primary"
+      />
+    </Component>
+  </Component>
+</withOrientation>
+`;

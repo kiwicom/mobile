@@ -34,9 +34,7 @@ it('renders without crashing', () => {
         ],
       },
     ],
-    hotel: {
-      originalId: 'abc',
-    },
+    hotelId: 'abc',
     personCount: 2,
     numberOfRooms: 1,
     checkin: new Date(0),
@@ -44,7 +42,6 @@ it('renders without crashing', () => {
     currency: 'EUR',
     navigation,
   };
-  // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
   PlaygroundRenderer.render(<BookNow {...props} />);
 });
 
@@ -53,7 +50,7 @@ it('renders without crashing with missing data', () => {
     onGoToPayment() {},
     selected: {},
     availableRooms: undefined,
-    hotel: undefined,
+    hotelId: undefined,
     personCount: 2,
     numberOfRooms: 1,
     checkin: new Date(0),

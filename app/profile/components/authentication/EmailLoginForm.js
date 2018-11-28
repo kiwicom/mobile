@@ -57,33 +57,35 @@ export default class EmailLoginForm extends React.Component<Props, State> {
     });
   };
 
-  render = () => (
-    <View>
-      <TextInput
-        onChangeText={this.handleEmailChange}
-        keyboardType="email-address"
-        placeholder={<Translation id="core.authentication.email" />}
-        defaultValue={this.state.username}
-      />
-      <TextInput
-        onChangeText={this.handlePasswordChange}
-        placeholder={<Translation id="core.authentication.password" />}
-        secureTextEntry={true}
-      />
+  render() {
+    return (
+      <View>
+        <TextInput
+          onChangeText={this.handleEmailChange}
+          keyboardType="email-address"
+          placeholder={<Translation id="core.authentication.email" />}
+          defaultValue={this.state.username}
+        />
+        <TextInput
+          onChangeText={this.handlePasswordChange}
+          placeholder={<Translation id="core.authentication.password" />}
+          secureTextEntry={true}
+        />
 
-      <TextButton
-        onPress={this.handleFormSubmit}
-        disabled={this.state.loading}
-        title={
-          <Translation
-            id={
-              this.state.loading
-                ? 'core.authentication.logging_in'
-                : 'core.authentication.login'
-            }
-          />
-        }
-      />
-    </View>
-  );
+        <TextButton
+          onPress={this.handleFormSubmit}
+          disabled={this.state.loading}
+          title={
+            <Translation
+              id={
+                this.state.loading
+                  ? 'core.authentication.logging_in'
+                  : 'core.authentication.login'
+              }
+            />
+          }
+        />
+      </View>
+    );
+  }
 }

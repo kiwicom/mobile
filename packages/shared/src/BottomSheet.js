@@ -1,12 +1,12 @@
 // @flow strict
 
 import * as React from 'react';
-import { LayoutAnimation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from './PlatformStyleSheet';
 import VerticalSwipeResponder from './view/VerticalSwipeResponder';
 import Color from './Color';
+import LayoutAnimation from './LayoutAnimation';
 
 type Props = {|
   +children: React.Node,
@@ -38,7 +38,7 @@ export default class BottomSheet extends React.Component<Props, State> {
     this.animate(this.props.closedHeight);
   };
 
-  render = () => {
+  render() {
     return (
       <VerticalSwipeResponder
         style={[styles.container, { height: this.state.height }]}
@@ -48,7 +48,7 @@ export default class BottomSheet extends React.Component<Props, State> {
         {this.props.children}
       </VerticalSwipeResponder>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

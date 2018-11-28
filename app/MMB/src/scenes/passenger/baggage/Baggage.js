@@ -8,7 +8,6 @@ import {
   SeparatorTrimmed,
 } from '@kiwicom/mobile-navigation';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import CabinBags from './CabinBags';
 import CheckedBaggage from './CheckedBaggage';
@@ -19,14 +18,14 @@ type Props = {|
   +data: BaggageType,
 |};
 
-const Baggage = (props: Props) => (
+const Baggage = ({ data }: Props) => (
   <TitledMenuGroup title={<Translation passThrough="Baggage" />}>
     <BaggageGroupButton>
       <MenuGroup
         customSeparator={<SeparatorTrimmed gapSizeStart={15} gapSizeEnd={15} />}
       >
-        <CabinBags data={idx(props.data, _ => _.allowedBaggage)} />
-        <CheckedBaggage data={idx(props.data, _ => _.allowedBaggage)} />
+        <CabinBags data={data.allowedBaggage} />
+        <CheckedBaggage data={data.allowedBaggage} />
       </MenuGroup>
     </BaggageGroupButton>
   </TitledMenuGroup>

@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import OneWayFlight from './OneWayFlight';
 import ReturnFlight from './ReturnFlight';
@@ -11,7 +10,7 @@ import FlightItemLayout from './FlightItemLayout';
 import type { FlightList as FlightListType } from './__generated__/FlightList.graphql';
 
 type Props = {|
-  data: FlightListType,
+  data: ?FlightListType,
 |};
 
 type State = {|
@@ -19,22 +18,20 @@ type State = {|
 |};
 
 export class FlightList extends React.Component<Props, State> {
-  render = () => {
-    const flights = idx(this.props, _ => _.data.edges);
+  render() {
+    const flights = this.props.data?.edges;
 
     if (!flights) {
       return null;
     }
 
-    return flights.map(flight => {
-      const key = idx(flight, _ => _.node.id);
-      const type = idx(flight, _ => _.node.__typename);
+    return flights.map<React.Element<typeof FlightItemLayout>>(flight => {
+      const key = flight?.node?.id;
+      const type = flight?.node?.__typename;
       const variants: Object = {
-        BookingOneWay: <OneWayFlight booking={idx(flight, _ => _.node)} />,
-        BookingReturn: <ReturnFlight booking={idx(flight, _ => _.node)} />,
-        BookingMulticity: (
-          <MulticityFlight booking={idx(flight, _ => _.node)} />
-        ),
+        BookingOneWay: <OneWayFlight booking={flight?.node} />,
+        BookingReturn: <ReturnFlight booking={flight?.node} />,
+        BookingMulticity: <MulticityFlight booking={flight?.node} />,
       };
 
       let Component = variants.ONE_WAY;
@@ -44,7 +41,7 @@ export class FlightList extends React.Component<Props, State> {
 
       return <FlightItemLayout key={key}>{Component}</FlightItemLayout>;
     });
-  };
+  }
 }
 
 export default createFragmentContainer(

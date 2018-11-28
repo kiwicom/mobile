@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, TextButton, TextIcon } from '@kiwicom/mobile-shared';
@@ -23,6 +22,8 @@ type Props = {|
   +data: DownloadInvoiceTimelineEventType,
   +navigation: NavigationType,
 |};
+
+type Legs = $PropertyType<DownloadInvoiceTimelineEventType, 'legs'>;
 
 function renderNote(
   disabled: boolean,
@@ -48,15 +49,15 @@ function renderNote(
 }
 
 function renderLeg(leg) {
-  const departureCity = idx(leg, _ => _.departure.airport.city.name);
-  const arrivalCity = idx(leg, _ => _.arrival.airport.city.name);
+  const departureCity = leg?.departure?.airport?.city?.name;
+  const arrivalCity = leg?.arrival?.airport?.city?.name;
   if (departureCity && arrivalCity) {
     return departureCity + ' - ' + arrivalCity;
   }
   return '';
 }
 
-function renderLegs(legs) {
+function renderLegs(legs: Legs) {
   if (!legs) {
     return '';
   }
@@ -73,10 +74,11 @@ class DownloadInvoiceTimelineEvent extends React.Component<Props> {
   };
 
   render() {
-    const timestamp = idx(this.props, _ => _.data.timestamp);
-    const invoiceUrl = idx(this.props, _ => _.data.invoiceUrl);
-    const numberPassengers = idx(this.props, _ => _.data.numberPassengers);
-    const legs = idx(this.props, _ => _.data.legs);
+    const { data } = this.props;
+    const timestamp = data.timestamp;
+    const invoiceUrl = data.invoiceUrl;
+    const numberPassengers = data.numberPassengers;
+    const legs = data.legs;
     const disabled = !invoiceUrl;
 
     const route = renderLegs(legs);

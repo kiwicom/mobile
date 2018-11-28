@@ -89,11 +89,11 @@ export default class GalleryGrid extends React.Component<Props, State> {
     stripeImageIndex: 0,
   };
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.navigation.setParams({
       isGesturesEnabled: true,
     });
-  };
+  }
 
   calculateTileWidth = (event: OnLayout) => {
     const width = event.nativeEvent.layout.width;
@@ -135,7 +135,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
     />
   );
 
-  render = () => {
+  render() {
     if (this.props.images) {
       return (
         <React.Fragment>
@@ -174,5 +174,5 @@ export default class GalleryGrid extends React.Component<Props, State> {
         testID="galleryGrid"
       />
     );
-  };
+  }
 }

@@ -17,9 +17,11 @@ export default class OrderCheckbox extends React.Component<Props> {
     this.props.onPress(this.props.isChecked ? null : this.props.checkKey);
   };
 
-  render = () => (
-    <Checkbox onPress={this.onPress} isChecked={this.props.isChecked}>
-      {this.props.children}
-    </Checkbox>
-  );
+  render() {
+    return (
+      <Checkbox onPress={this.onPress} isChecked={this.props.isChecked}>
+        {this.props.children}
+      </Checkbox>
+    );
+  }
 }

@@ -725,6 +725,17 @@ type Carrier {
   isLowCost: Boolean
 }
 
+type CheckEmailResponse {
+  result: CheckEmailResult
+}
+
+type CheckEmailResult {
+  hasKiwiAccount: Boolean
+  hasFacebook: Boolean
+  hasGoogle: Boolean
+  hasBooking: Boolean
+}
+
 type CheckinClosingTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
@@ -753,6 +764,28 @@ input CoordinatesInput {
 enum CoveredBy {
   KIWICOM
   CARRIER
+}
+
+enum CreateAccountError {
+  WEAK_PASSWORD
+  ACCOUNT_EXISTS
+  INVALID_EMAIL
+}
+
+input CreateAccountInput {
+  email: String!
+  password: String!
+
+  """Username for login. Email is used if not provided."""
+  login: String
+  firstName: String = ""
+  lastName: String = ""
+}
+
+type CreateAccountResponse {
+  success: Boolean
+  error: CreateAccountError
+  identity: Identity
 }
 
 enum Currency {
@@ -1573,6 +1606,7 @@ interface HotelInterface {
 """The urls where the user will be redirected for payment"""
 type HotelPaymentUrls {
   bookingComPaymentUrl: String
+  stay22PaymentUrl(paymentLink: String!): String
 }
 
 type HotelPhoto {
@@ -2224,7 +2258,12 @@ type RoomsConfigurationOutput {
 """Root Mutation."""
 type RootMutation {
   login(email: String!, password: String!): User
+  createAccount(credentials: CreateAccountInput!, brand: String = "kiwicom"): CreateAccountResponse
   resetPassword(email: String!): ResetPasswordResponse
+  checkEmail(email: String!): CheckEmailResponse
+
+  """Sends time limited link on given e-mail to log in."""
+  sendMagicLink(email: String!, brand: String = "kiwicom"): SendMagicLinkResponse
   updatePassenger(
     """The global booking id"""
     id: ID!
@@ -2236,6 +2275,7 @@ type RootMutation {
     id: ID!
     simpleToken: String!
     passengers: [PassengerInsuranceInput!]!
+    brand: String = "kiwicom"
   ): Booking
   voteFAQArticle(
     """ID of FAQ article to receive vote."""
@@ -2379,6 +2419,7 @@ type RootQuery {
     """Only Booking id can be used as ID."""
     id: ID!
     authToken: String
+    brand: String = "kiwicom"
   ): BookingTimeline
 
   """Currencies used on Kiwi.com frontend"""
@@ -2406,6 +2447,7 @@ type RootQuery {
     argument to fetch all bookings in ascendering order.
     """
     order: CustomerBookingsOrderEnum
+    brand: String = "kiwicom"
     after: String
     first: Int
     before: String
@@ -2477,7 +2519,7 @@ type RootQuery {
   the smallest difference between current time and arrival time of one of its
   Legs. If no future booking is found, then the nearest past booking is returned.
   """
-  nearestBooking: BookingInterface
+  nearestBooking(brand: String = "kiwicom"): BookingInterface
 
   """Fetches an object given its ID"""
   node(
@@ -2494,6 +2536,7 @@ type RootQuery {
 
     """Simple auth token that lets you fetch a unique booking."""
     authToken: String
+    brand: String = "kiwicom"
   ): BookingInterface
 
   """Single hotel by ID."""
@@ -2513,6 +2556,10 @@ type RouteStop {
 
   """Gate for the route stop"""
   gate: String
+}
+
+type SendMagicLinkResponse {
+  success: Boolean
 }
 
 type Services {
@@ -2556,6 +2603,7 @@ type Stay22HotelDetail implements HotelAvailabilityInterface {
   price: Price
   hotel: Stay22Hotel
   availableRooms: [Stay22HotelRoomAvailability]
+  paymentLink: String
 }
 
 type Stay22HotelRoom implements HotelRoomInterface {

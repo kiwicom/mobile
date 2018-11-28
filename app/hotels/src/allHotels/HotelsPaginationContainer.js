@@ -1,18 +1,20 @@
 // @flow strict
 
 import * as React from 'react';
+import { View } from 'react-native';
 import {
   graphql,
   createPaginationContainer,
   type RelayPaginationProp,
 } from '@kiwicom/mobile-relay';
-import { Logger } from '@kiwicom/mobile-shared';
-import idx from 'idx';
+import { Logger, StyleSheet } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelsPaginationContainer as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer.graphql';
-import HotelsContext from '../HotelsContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
+import FilterStripe from '../filter/FilterStripe';
 
 type PropsWithContext = {|
   ...Props,
@@ -35,20 +37,16 @@ export class HotelsPaginationContainer extends React.Component<
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_RESULTS,
       Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
     );
 
-    const priceMax = idx(
-      this.props,
-      _ => _.data.allAvailableBookingComHotels.stats.maxPrice,
-    );
-    const priceMin = idx(
-      this.props,
-      _ => _.data.allAvailableBookingComHotels.stats.minPrice,
-    );
+    const priceMax = this.props.data.allAvailableBookingComHotels?.stats
+      ?.maxPrice;
+    const priceMin = this.props.data.allAvailableBookingComHotels?.stats
+      ?.minPrice;
 
     if (priceMax != null && priceMin != null) {
       this.props.setCurrentSearchStats({
@@ -56,7 +54,7 @@ export class HotelsPaginationContainer extends React.Component<
         priceMin,
       });
     }
-  };
+  }
 
   loadMore = () => {
     if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
@@ -68,21 +66,25 @@ export class HotelsPaginationContainer extends React.Component<
     }
   };
 
-  render = () => {
-    const edges =
-      idx(this.props.data, _ => _.allAvailableBookingComHotels.edges) || [];
-    const data = edges.map(hotel => idx(hotel, _ => _.node));
+  render() {
+    const edges = this.props.data.allAvailableBookingComHotels?.edges ?? [];
+    const data = edges.map(hotel => hotel?.node);
 
     return (
-      <RenderSearchResults
-        onLoadMore={this.loadMore}
-        hasMore={this.props.relay.hasMore()}
-        isLoading={this.state.isLoading}
-        data={data}
-        top={56}
-      />
+      <React.Fragment>
+        <View style={styles.filterContainer}>
+          <FilterStripe />
+        </View>
+        <RenderSearchResults
+          onLoadMore={this.loadMore}
+          hasMore={this.props.relay.hasMore()}
+          isLoading={this.state.isLoading}
+          data={data}
+          top={56}
+        />
+      </React.Fragment>
     );
-  };
+  }
 }
 
 type Props = {|
@@ -90,21 +92,18 @@ type Props = {|
   +relay: RelayPaginationProp,
 |};
 
-class HotelsPaginationContainerWithContext extends React.Component<Props> {
-  renderInner = ({ actions }) => (
-    <HotelsPaginationContainer
-      {...this.props}
-      setCurrentSearchStats={actions.setCurrentSearchStats}
-    />
-  );
+const select = ({ actions }: HotelsContextState) => ({
+  setCurrentSearchStats: actions.setCurrentSearchStats,
+});
 
-  render = () => (
-    <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>
-  );
-}
+const styles = StyleSheet.create({
+  filterContainer: {
+    zIndex: parseInt(defaultTokens.zIndexSticky),
+  },
+});
 
 export default createPaginationContainer(
-  HotelsPaginationContainerWithContext,
+  withHotelsContext(select)(HotelsPaginationContainer),
   graphql`
     fragment HotelsPaginationContainer on RootQuery {
       allAvailableBookingComHotels(

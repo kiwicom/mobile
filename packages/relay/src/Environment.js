@@ -7,19 +7,17 @@ import {
   RecordSource,
   Store,
   Observable,
-  createOperationSelector,
 } from 'relay-runtime';
-import { AsyncStorage } from 'react-native';
 import fetchWithRetries from '@mrtnzlml/fetch';
 
 import ConnectionManager from './ConnectionManager';
+import CacheManager from './CacheManager';
 
 type FetcherResponse = {|
   +data: Object,
   +errors?: $ReadOnlyArray<Object>,
 |};
 
-const ASYNC_STORE_KEY = '@OfflineStore:key';
 const GRAPHQL_URL = 'https://graphql.kiwi.com/';
 
 const store = new Store(new RecordSource());
@@ -46,6 +44,9 @@ async function fetchFromTheNetwork(
     if (jsonResponse.errors) {
       jsonResponse.errors.forEach(error => console.warn(error));
     }
+    if (operation.operationKind !== 'mutation') {
+      CacheManager.set(operation.name, variables, jsonResponse);
+    }
 
     observer.next(jsonResponse);
     observer.complete();
@@ -55,7 +56,6 @@ async function fetchFromTheNetwork(
     observer.complete();
     console.warn(error);
   }
-  AsyncStorage.setItem(ASYNC_STORE_KEY, JSON.stringify(store.getSource()));
 }
 
 const handleNoNetworkNoCachedResponse = observer => {
@@ -66,31 +66,19 @@ const handleNoNetworkNoCachedResponse = observer => {
 
 const asyncStoreRead = async (observer, operation, variables) => {
   try {
-    const content = await AsyncStorage.getItem(ASYNC_STORE_KEY);
-    if (content === null) {
+    const cachedData = await CacheManager.get(operation.name, variables);
+
+    if (cachedData) {
+      // It loads smoother if we do this in a set timeout
+      // If we don't the UI freezes for a while
+      setTimeout(() => {
+        observer.next(cachedData);
+        if (ConnectionManager.isConnected() === false) {
+          observer.complete();
+        }
+      });
+    } else if (ConnectionManager.isConnected() === false) {
       return handleNoNetworkNoCachedResponse(observer);
-    }
-    store.publish(new RecordSource(JSON.parse(content)));
-    const operationSelector = createOperationSelector(operation, variables);
-
-    if (store.check(operationSelector.root)) {
-      // This seems to work, but if we discover some problems with it
-      // Maybe we should rather return here
-      // I posted a question about it here: https://discordapp.com/channels/102860784329052160/102861057189490688
-      const root = {
-        ...operationSelector.root,
-        node: {
-          ...operationSelector.root.node,
-          selections: operationSelector.root.node.selections.filter(
-            selection => selection.kind !== 'LinkedHandle',
-          ),
-        },
-      };
-
-      observer.next(store.lookup(root));
-      observer.complete();
-    } else {
-      handleNoNetworkNoCachedResponse(observer);
     }
   } catch (error) {
     //   // AsyncStorage read wasn't successful - nevermind
@@ -111,13 +99,11 @@ export default function createEnvironment(accessToken: string = '') {
 
   const fetchQuery = (operation, variables): Promise<FetcherResponse> => {
     return Observable.create(observer => {
+      if (operation.operationKind !== 'mutation') {
+        asyncStoreRead(observer, operation, variables);
+      }
       if (ConnectionManager.isConnected()) {
         fetchFromTheNetwork(networkHeaders, operation, variables, observer);
-      } else if (operation.operationKind !== 'mutation') {
-        // We have some issue with the store and connections, it causes the app to crash because of some race condition.
-        // For now let's just use this appreach if we are offline
-        // try to read content from the cache and use it if possible
-        asyncStoreRead(observer, operation, variables);
       }
     });
   };

@@ -15,7 +15,6 @@ module.exports = (api /* :API */) => {
   ];
   const plugins = [
     '@babel/plugin-transform-runtime',
-    'babel-plugin-idx',
     ['relay', { schema: 'app/schema.graphql' }],
   ];
 

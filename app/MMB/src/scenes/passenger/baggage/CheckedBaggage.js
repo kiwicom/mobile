@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import BagInfo from './BagInfo';
@@ -16,8 +15,8 @@ type Props = {|
   +data: Bags,
 |};
 
-const CheckedBaggage = (props: Props) => {
-  const bags = idx(props.data, _ => _.checked) || [];
+const CheckedBaggage = ({ data }: Props) => {
+  const bags = data.checked ?? [];
 
   if (bags.length === 0) {
     return null;

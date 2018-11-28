@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import { StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import type { FlightQueryResponse } from './__generated__/FlightQuery.graphql';
 import OneWayFlight from './OneWayFlight';
@@ -28,9 +27,8 @@ type BookingTypes = {|
 
 export default class Flight extends React.Component<Props> {
   renderInner = (renderProps: FlightQueryResponse) => {
-    const isPastBooking =
-      idx(renderProps.singleBooking, _ => _.isPastBooking) || '';
-    const type = idx(renderProps.singleBooking, _ => _.__typename) || '';
+    const isPastBooking = renderProps.singleBooking?.isPastBooking ?? '';
+    const type = renderProps.singleBooking?.__typename ?? '';
     const types: BookingTypes = {
       BookingOneWay: <OneWayFlight booking={renderProps.singleBooking} />,
       BookingReturn: <ReturnFlight booking={renderProps.singleBooking} />,
@@ -55,34 +53,36 @@ export default class Flight extends React.Component<Props> {
     );
   };
 
-  render = () => (
-    <PublicApiRenderer
-      query={graphql`
-        query FlightQuery($id: Int!, $authToken: String!) {
-          singleBooking(id: $id, authToken: $authToken) {
-            ... on BookingInterface {
-              __typename
-              isPastBooking
-            }
-            ... on BookingOneWay {
-              ...OneWayFlight_booking
-            }
-            ... on BookingReturn {
-              ...ReturnFlight_booking
-            }
-            ... on BookingMulticity {
-              ...MulticityFlight_booking
+  render() {
+    return (
+      <PublicApiRenderer
+        query={graphql`
+          query FlightQuery($id: Int!, $authToken: String!) {
+            singleBooking(id: $id, authToken: $authToken) {
+              ... on BookingInterface {
+                __typename
+                isPastBooking
+              }
+              ... on BookingOneWay {
+                ...OneWayFlight_booking
+              }
+              ... on BookingReturn {
+                ...ReturnFlight_booking
+              }
+              ... on BookingMulticity {
+                ...MulticityFlight_booking
+              }
             }
           }
-        }
-      `}
-      variables={{
-        id: this.props.bookingId,
-        authToken: this.props.simpleToken,
-      }}
-      render={this.renderInner}
-    />
-  );
+        `}
+        variables={{
+          id: this.props.bookingId,
+          authToken: this.props.simpleToken,
+        }}
+        render={this.renderInner}
+      />
+    );
+  }
 }
 
 const styles = StyleSheet.create({

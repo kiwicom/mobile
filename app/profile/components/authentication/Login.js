@@ -13,9 +13,9 @@ export default class Login extends React.Component<Props> {
     this.props.onLogin(accessToken);
   };
 
-  render = () => {
+  render() {
     return (
       <EmailLoginForm key="email" onSuccess={this.handleSuccessfulLogin} />
     );
-  };
+  }
 }

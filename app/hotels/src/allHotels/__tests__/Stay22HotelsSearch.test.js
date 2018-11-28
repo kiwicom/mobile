@@ -12,6 +12,7 @@ const getProps = (props: Object = {}) => ({
   roomsConfiguration: [{ adultsCount: 2, children: [] }],
   longitude: 0,
   latitude: 0,
+  getGuestCount: jest.fn(),
   ...props,
 });
 

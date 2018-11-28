@@ -61,7 +61,8 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
       });
     });
   };
-  render = () => {
+
+  render() {
     const { passenger } = this.props.navigation.state.params;
 
     return (
@@ -106,7 +107,7 @@ class InsuranceSelectionScene extends React.Component<Props, State> {
         </TouchableWithoutFeedback>
       </View>
     );
-  };
+  }
 }
 
 export default withNavigation(

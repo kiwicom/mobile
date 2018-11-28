@@ -5,7 +5,6 @@ import { View } from 'react-native';
 import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TitleTranslation from '../../components/TitleTranslation';
@@ -16,18 +15,22 @@ type Props = {|
 |};
 
 const Passenger = ({ data }: Props) => {
-  const title = idx(data, _ => _.title) || '';
-  const fullName = idx(data, _ => _.fullName) || '';
-  const birthday = new Date(idx(data, _ => _.birthday) || '');
+  const title = data.title ?? '';
+  const fullName = data.fullName ?? '';
+  const birthday = data.birthday == null ? null : new Date(data.birthday);
 
   return (
     <View style={styles.passenger}>
       <Text style={styles.passengerText}>
         <TitleTranslation title={title} name={fullName} />
       </Text>
-      <Text style={[styles.passengerText, styles.passengerBirthday]}>
-        <Translation passThrough={DateFormatter(birthday).formatToBirthday()} />
-      </Text>
+      {birthday !== null && (
+        <Text style={[styles.passengerText, styles.passengerBirthday]}>
+          <Translation
+            passThrough={DateFormatter(birthday).formatToBirthday()}
+          />
+        </Text>
+      )}
     </View>
   );
 };

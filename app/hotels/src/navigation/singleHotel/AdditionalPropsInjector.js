@@ -9,9 +9,7 @@ type InjectorProps = {|
   WrappedComponent: React.ElementType,
 |};
 
-export default class AdditionalPropsInjecter extends React.Component<
-  InjectorProps,
-> {
+export default class AdditionalPropsInjecter extends React.Component<InjectorProps> {
   goToGalleryStripe = (
     hotelName: string,
     highResImages: string[],

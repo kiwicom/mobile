@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import idx from 'idx';
 
 const defaultState = {
   passengers: [],
@@ -19,9 +18,9 @@ const defaultState = {
   },
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext(
-  defaultState,
-);
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
+  ...defaultState,
+});
 
 type InsuranceType = 'NONE' | 'TRAVEL_BASIC' | 'TRAVEL_PLUS';
 
@@ -35,7 +34,7 @@ type Passenger = {|
 
 type InsurancePrice = {|
   +insuranceType: InsuranceType,
-  +price: {|
+  +price?: {|
     +amount: number,
     +currency: string,
   |},
@@ -104,12 +103,8 @@ class Provider extends React.Component<Props, State> {
       }));
       // TODO test whether all currencies are the same and do something if not?
       const currency =
-        idx(
-          insurancePrices.find(insurancePrice =>
-            idx(insurancePrice, _ => _.price.currency),
-          ),
-          _ => _.price.currency,
-        ) || '';
+        insurancePrices.find(insurancePrice => insurancePrice.price?.currency)
+          ?.price?.currency ?? '';
       this.setState({
         passengers,
         insurancePrices,
@@ -177,21 +172,15 @@ class Provider extends React.Component<Props, State> {
         let originalPrice = 0;
         if (change.to !== 'NONE') {
           newPrice =
-            idx(
-              this.state.insurancePrices.find(
-                insurancePrice => insurancePrice.insuranceType === change.to,
-              ),
-              _ => _.price.amount,
-            ) || 0;
+            this.state.insurancePrices.find(
+              insurancePrice => insurancePrice.insuranceType === change.to,
+            )?.price?.amount ?? 0;
         }
         if (change.from !== 'NONE') {
           originalPrice =
-            idx(
-              this.state.insurancePrices.find(
-                insurancePrice => insurancePrice.insuranceType === change.from,
-              ),
-              _ => _.price.amount,
-            ) || 0;
+            this.state.insurancePrices.find(
+              insurancePrice => insurancePrice.insuranceType === change.from,
+            )?.price?.amount ?? 0;
         }
         return newPrice - originalPrice;
       })
@@ -215,9 +204,13 @@ class Provider extends React.Component<Props, State> {
     });
   };
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
 
 export default { Consumer, Provider };

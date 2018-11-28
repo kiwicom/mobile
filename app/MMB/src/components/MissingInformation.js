@@ -8,7 +8,6 @@ import {
   type NavigationType,
   withNavigation,
 } from '@kiwicom/mobile-navigation';
-import idx from 'idx';
 import { StyleSheet, SimpleCard, Text, Button } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -22,14 +21,14 @@ type PropsWithContext = {|
 |};
 
 export class MissingInformation extends React.Component<PropsWithContext> {
-  componentDidMount = () => {
+  componentDidMount() {
     this.props.setIsMissingDocumentId(this.isSomePassengerMissingId());
-  };
+  }
 
   isSomePassengerMissingId = () => {
-    const passengers = idx(this.props.data, _ => _.passengers) || [];
+    const passengers = this.props.data.passengers ?? [];
     return passengers.some(
-      passenger => idx(passenger, _ => _.travelDocument.idNumber) == null,
+      passenger => passenger?.travelDocument?.idNumber == null,
     );
   };
 
@@ -37,7 +36,7 @@ export class MissingInformation extends React.Component<PropsWithContext> {
     this.props.navigation.navigate('TravelDocumentScreen');
   };
 
-  render = () => {
+  render() {
     if (!this.isSomePassengerMissingId()) {
       return null;
     }
@@ -72,7 +71,7 @@ export class MissingInformation extends React.Component<PropsWithContext> {
         </SimpleCard>
       </View>
     );
-  };
+  }
 }
 
 type Props = {|

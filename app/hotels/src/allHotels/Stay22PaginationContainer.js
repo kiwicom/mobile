@@ -8,15 +8,15 @@ import {
   type RelayPaginationProp,
 } from '@kiwicom/mobile-relay';
 import { Logger } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import type { Stay22PaginationContainer as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer.graphql';
-import HotelsContext from '../HotelsContext';
+import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
 
-type PropsWithContext = {|
-  ...Props,
+type Props = {|
+  +data: Stay22PaginationContainerType,
+  +relay: RelayPaginationProp,
   +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
 |};
 
@@ -24,14 +24,11 @@ type State = {|
   isLoading: boolean,
 |};
 
-export class Stay22PaginationContainer extends React.Component<
-  PropsWithContext,
-  State,
-> {
+export class Stay22PaginationContainer extends React.Component<Props, State> {
   mapAnimation: Animated.Value;
   listAnimation: Animated.Value;
 
-  constructor(props: PropsWithContext) {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -39,13 +36,13 @@ export class Stay22PaginationContainer extends React.Component<
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_RESULTS,
       Logger.Provider.ANCILLARY_PROVIDER_STAY22,
     );
     // TODO: Set min max price here when supported by API
-  };
+  }
 
   loadMore = () => {
     if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
@@ -57,10 +54,9 @@ export class Stay22PaginationContainer extends React.Component<
     }
   };
 
-  render = () => {
-    const edges =
-      idx(this.props.data, _ => _.allAvailableStay22Hotels.edges) || [];
-    const data = edges.map(hotel => idx(hotel, _ => _.node));
+  render() {
+    const edges = this.props.data.allAvailableStay22Hotels?.edges ?? [];
+    const data = edges.map(hotel => hotel?.node);
 
     return (
       <RenderSearchResults
@@ -71,29 +67,15 @@ export class Stay22PaginationContainer extends React.Component<
         top={0}
       />
     );
-  };
-}
-
-type Props = {|
-  +data: Stay22PaginationContainerType,
-  +relay: RelayPaginationProp,
-|};
-
-class Stay22PaginationContainerWithContext extends React.Component<Props> {
-  renderInner = ({ actions }) => (
-    <Stay22PaginationContainer
-      {...this.props}
-      setCurrentSearchStats={actions.setCurrentSearchStats}
-    />
-  );
-
-  render() {
-    return <HotelsContext.Consumer>{this.renderInner}</HotelsContext.Consumer>;
   }
 }
 
+const select = ({ actions }: HotelsContextState) => ({
+  setCurrentSearchStats: actions.setCurrentSearchStats,
+});
+
 export default createPaginationContainer(
-  Stay22PaginationContainerWithContext,
+  withHotelsContext(select)(Stay22PaginationContainer),
   graphql`
     fragment Stay22PaginationContainer on RootQuery {
       allAvailableStay22Hotels(search: $search, first: $first, after: $after)

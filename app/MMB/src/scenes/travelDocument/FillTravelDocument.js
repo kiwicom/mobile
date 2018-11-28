@@ -8,7 +8,6 @@ import {
   type RelayRefetchProp,
 } from '@kiwicom/mobile-relay';
 import { RefreshableScrollView, StyleSheet } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 
 import CityImage from '../../components/CityImage';
 import TripInfo from '../../components/header/TripInfo';
@@ -30,11 +29,12 @@ class FillTravelDocument extends React.Component<Props, State> {
   };
 
   refetch = () => {
+    const { data } = this.props;
     this.setState({ isRefreshing: true });
     this.props.relay.refetch(
       {
-        id: idx(this.props.data, _ => _.databaseId),
-        authToken: idx(this.props.data, _ => _.authToken),
+        id: data.databaseId,
+        authToken: data.authToken,
       },
       null,
       () => {
@@ -46,18 +46,20 @@ class FillTravelDocument extends React.Component<Props, State> {
     );
   };
 
-  render = () => (
-    <RefreshableScrollView
-      refreshing={this.state.isRefreshing}
-      onRefresh={this.refetch}
-    >
-      <View style={styles.imageContainer}>
-        <CityImage url={this.props.data.destinationImageUrl} />
-      </View>
-      <TripInfo data={this.props.data} />
-      <PassengerTravelDocumentMenuGroup data={this.props.data} />
-    </RefreshableScrollView>
-  );
+  render() {
+    return (
+      <RefreshableScrollView
+        refreshing={this.state.isRefreshing}
+        onRefresh={this.refetch}
+      >
+        <View style={styles.imageContainer}>
+          <CityImage url={this.props.data.destinationImageUrl} />
+        </View>
+        <TripInfo data={this.props.data} />
+        <PassengerTravelDocumentMenuGroup data={this.props.data} />
+      </RefreshableScrollView>
+    );
+  }
 }
 
 export default createRefetchContainer(

@@ -85,7 +85,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
     this.navigate('mmb.trip_services.insurance.refund');
   };
 
-  render = () => {
+  render() {
     const { data, passengers, amount } = this.props;
     const hasChanged = this.props.hasChanged();
     return (
@@ -101,17 +101,16 @@ class InsuranceOverviewScene extends React.Component<Props> {
 
             <InsuranceOverviewPassengerMenuGroup passengers={passengers} />
 
-            {hasChanged &&
-              amount <= 0 && (
-                <View style={styles.buttonWrapper}>
-                  <TextButton
-                    title={
-                      <Translation id="mmb.trip_services.order.process_to_refund" />
-                    }
-                    onPress={this.goToTheInsuranceRefund}
-                  />
-                </View>
-              )}
+            {hasChanged && amount <= 0 && (
+              <View style={styles.buttonWrapper}>
+                <TextButton
+                  title={
+                    <Translation id="mmb.trip_services.order.process_to_refund" />
+                  }
+                  onPress={this.goToTheInsuranceRefund}
+                />
+              </View>
+            )}
 
             {amount > 0 && (
               <View style={styles.buttonWrapper}>
@@ -128,7 +127,7 @@ class InsuranceOverviewScene extends React.Component<Props> {
         {hasChanged && <OrderSummary />}
       </React.Fragment>
     );
-  };
+  }
 }
 
 export default withInsuranceContext(state => ({

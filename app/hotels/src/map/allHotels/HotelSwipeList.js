@@ -11,7 +11,6 @@ import {
   type OnLayout,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';
@@ -40,16 +39,16 @@ class HotelSwipeList extends React.Component<Props, State> {
     containerWidth: 0,
   };
 
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     if (this.carouselRef) {
       this.carouselRef.snapToItem(this.props.selectedIndex, false);
     }
-  };
+  }
 
   getSelectedAddress = () => {
     const { selectedIndex, data } = this.props;
 
-    return idx(data, _ => _[selectedIndex].address) || {};
+    return data[selectedIndex].address ?? {};
   };
 
   renderItem = ({ item }: { item: Object, index: number }) => {
@@ -67,7 +66,7 @@ class HotelSwipeList extends React.Component<Props, State> {
     });
   };
 
-  render = () => {
+  render() {
     const { data, onSnapToItem } = this.props;
 
     return (
@@ -105,7 +104,7 @@ class HotelSwipeList extends React.Component<Props, State> {
         </HotelPreviewProvider>
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

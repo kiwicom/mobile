@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import FutureBookingInformation from './FutureBookingInformation';
 import BookingDetailContext from '../../../../context/BookingDetailContext';
@@ -14,26 +13,26 @@ type PropsWithContext = {|
   +isPastBooking: boolean,
 |};
 
-const BoardingPassInformation = (props: PropsWithContext) => {
-  const availableAt = idx(props.data, _ => _.availableAt) || '';
+const BoardingPassInformation = ({ data, isPastBooking }: PropsWithContext) => {
+  const availableAt = data.availableAt ?? '';
   const [year, month, day] = availableAt.split('-');
-  const date = availableAt
+  const boardingPassAvailableDate = availableAt
     ? new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)))
     : null;
 
-  if (props.isPastBooking) {
+  if (isPastBooking) {
     return (
       <PastBookingInformation
-        boardingPassAvailableDate={date}
-        boardingPassUrl={idx(props.data, _ => _.boardingPassUrl)}
+        boardingPassAvailableDate={boardingPassAvailableDate}
+        boardingPassUrl={data.boardingPassUrl}
       />
     );
   }
 
   return (
     <FutureBookingInformation
-      boardingPassAvailableDate={date}
-      data={props.data}
+      boardingPassAvailableDate={boardingPassAvailableDate}
+      data={data}
     />
   );
 };

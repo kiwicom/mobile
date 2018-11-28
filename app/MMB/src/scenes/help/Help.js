@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { ScrollView, Platform, Linking } from 'react-native';
 import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
@@ -34,7 +33,7 @@ class Help extends React.Component<Props> {
   };
 
   handleOpenCallSupport = () => {
-    const number = idx(this.props.data, _ => _.number) || '';
+    const number = this.props.data.number ?? '';
     const sanitizedNumber = number.replace(/\s/g, '');
     const url =
       Platform.OS === 'ios'
@@ -58,8 +57,8 @@ class Help extends React.Component<Props> {
     }
   };
 
-  render = () => {
-    const number = idx(this.props.data, _ => _.number) || '';
+  render() {
+    const number = this.props.data.number ?? '';
 
     return (
       <ScrollView>
@@ -84,7 +83,7 @@ class Help extends React.Component<Props> {
         </MenuGroup>
       </ScrollView>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

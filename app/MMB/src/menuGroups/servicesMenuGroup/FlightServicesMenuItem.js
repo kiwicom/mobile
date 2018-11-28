@@ -5,7 +5,6 @@ import { MenuItem } from '@kiwicom/mobile-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import idx from 'idx';
 
 import type { FlightServicesMenuItem as BookingType } from './__generated__/FlightServicesMenuItem.graphql';
 
@@ -17,8 +16,8 @@ type Props = {|
 
 export const FlightServicesMenuItem = (props: Props) => {
   const hasFlights = props.data.some(trip => {
-    const legs = idx(trip, _ => _.legs) || [];
-    return legs.some(leg => idx(leg, _ => _.type) === 'AIRCRAFT');
+    const legs = trip.legs ?? [];
+    return legs.some(leg => leg?.type === 'AIRCRAFT');
   });
   if (hasFlights === false) {
     return null;

@@ -56,7 +56,7 @@ export default class LoginScreen extends React.Component<{||}, State> {
     this.setState({ isLoggedIn: false });
   };
 
-  render = () => {
+  render() {
     return (
       <View style={styles.container}>
         <DismissKeyboardView>
@@ -82,7 +82,7 @@ export default class LoginScreen extends React.Component<{||}, State> {
         </DismissKeyboardView>
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

@@ -1,10 +1,9 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 
 import TripCities from './TripCities';
 import TripTimes from './TripTimes';
@@ -16,7 +15,7 @@ type Props = {|
 |};
 
 function TripInfoOneWay(props: Props) {
-  const trip = idx(props, _ => _.data.trip);
+  const trip = props.data.trip;
 
   return (
     <View style={styles.row}>

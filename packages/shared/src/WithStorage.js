@@ -20,9 +20,9 @@ export default function withStorage(
     // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
     static navigationOptions = WrappedComponent.navigationOptions;
 
-    componentDidMount = () => {
+    componentDidMount() {
       this.getStoredValue();
-    };
+    }
 
     async getStoredValue() {
       const value = await AsyncStorage.getItem(storageKey);
@@ -35,12 +35,14 @@ export default function withStorage(
       await AsyncStorage.setItem(storageKey, JSON.stringify(value));
     }
 
-    render = () => (
-      <WrappedComponent
-        {...this.props}
-        storageValue={this.state.savedValue}
-        saveToStorage={this.saveValue}
-      />
-    );
+    render() {
+      return (
+        <WrappedComponent
+          {...this.props}
+          storageValue={this.state.savedValue}
+          saveToStorage={this.saveValue}
+        />
+      );
+    }
   };
 }

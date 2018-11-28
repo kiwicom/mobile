@@ -10,9 +10,9 @@ const defaultState = {
     addWarningData: () => {},
   },
 };
-const { Consumer, Provider: ContextProvider } = React.createContext(
-  defaultState,
-);
+const { Consumer, Provider: ContextProvider } = React.createContext<State>({
+  ...defaultState,
+});
 
 export type BookingType =
   | 'BookingReturn'
@@ -58,9 +58,13 @@ class Provider extends React.Component<Props, State> {
     this.setState({ warnings: [...warnings, warning] });
   };
 
-  render = () => (
-    <ContextProvider value={this.state}>{this.props.children}</ContextProvider>
-  );
+  render() {
+    return (
+      <ContextProvider value={this.state}>
+        {this.props.children}
+      </ContextProvider>
+    );
+  }
 }
 
 export default { Consumer, Provider };

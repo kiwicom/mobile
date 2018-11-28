@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import idx from 'idx';
 import {
   withNavigation,
   type NavigationType,
@@ -14,25 +13,22 @@ import {
   Device,
 } from '@kiwicom/mobile-shared';
 
-import { type RoomConfigurationType } from '../../HotelsContext';
-import SingleHotelContext from '../../navigation/singleHotel/SingleHotelContext';
+import {
+  type RoomConfigurationType,
+  type HotelsContextState,
+  withHotelsContext,
+} from '../../HotelsContext';
 import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
 import type { HotelSwipeItem as HotelSwipeItemData } from './__generated__/HotelSwipeItem.graphql';
 
 type PropsWithContext = {|
   ...Props,
   +deviceWidth: number,
-  +setHotelId: (hotelId: string) => void,
-  +hotelId: string,
-  +checkin: Date,
-  +checkout: Date,
-  +roomsConfiguration: RoomConfigurationType,
 |};
 
-export class HotelSwipeItemWithContext extends React.Component<
-  PropsWithContext,
-> {
+export class HotelSwipeItemWithContext extends React.Component<PropsWithContext> {
   openSingleHotel = (hotelId: string) => {
+    this.props.setHotelId(hotelId);
     this.props.navigation.navigate('SingleHotel', {
       hotelId,
       checkin: this.props.checkin,
@@ -47,7 +43,7 @@ export class HotelSwipeItemWithContext extends React.Component<
 
   handlePress = () => {
     const { data } = this.props;
-    const id = idx(data, _ => _.hotelId);
+    const id = data?.hotelId;
 
     if (id != null) {
       this.isNarrowLayout()
@@ -56,13 +52,13 @@ export class HotelSwipeItemWithContext extends React.Component<
     }
   };
 
-  render = () => {
+  render() {
     const { width, data } = this.props;
-    const name = idx(data, _ => _.name);
-    const price = idx(data, _ => _.price);
-    const thumbnailUrl = idx(data, _ => _.mainPhoto.thumbnailUrl);
-    const stars = idx(data, _ => _.rating.stars);
-    const score = idx(data, _ => _.review.score);
+    const name = data?.name;
+    const price = data?.price;
+    const thumbnailUrl = data?.mainPhoto?.thumbnailUrl;
+    const stars = data?.rating?.stars;
+    const score = data?.review?.score;
     return (
       <TouchableWithoutFeedback onPress={this.handlePress}>
         <View style={{ width }}>
@@ -76,47 +72,63 @@ export class HotelSwipeItemWithContext extends React.Component<
         </View>
       </TouchableWithoutFeedback>
     );
-  };
+  }
 }
 
 type Props = {|
   +width: number,
   +navigation: NavigationType,
   +data: ?HotelSwipeItemData,
+  +setHotelId: (hotelId: string) => void,
+  +hotelId: string,
+  +checkin: Date,
+  +checkout: Date,
+  +roomsConfiguration: RoomConfigurationType,
 |};
 
 class HotelSwipeItem extends React.Component<Props> {
-  renderDimensions = ({ width }) => (
-    <SingleHotelContext.Consumer>
-      {this.renderSingleHotelContext(width)}
-    </SingleHotelContext.Consumer>
-  );
-
-  renderSingleHotelContext = (width: number) => ({
-    setHotelId,
-    hotelId,
-    checkin,
-    checkout,
-    roomsConfiguration,
-  }) => (
-    <HotelSwipeItemWithContext
-      {...this.props}
-      setHotelId={setHotelId}
-      hotelId={hotelId}
-      checkin={checkin}
-      checkout={checkout}
-      roomsConfiguration={roomsConfiguration}
-      deviceWidth={width}
-    />
-  );
+  renderDimensions = ({ width }) => {
+    const {
+      setHotelId,
+      hotelId,
+      checkin,
+      checkout,
+      roomsConfiguration,
+    } = this.props;
+    return (
+      <HotelSwipeItemWithContext
+        {...this.props}
+        setHotelId={setHotelId}
+        hotelId={hotelId}
+        checkin={checkin}
+        checkout={checkout}
+        roomsConfiguration={roomsConfiguration}
+        deviceWidth={width}
+      />
+    );
+  };
 
   render() {
     return <Dimensions.Consumer>{this.renderDimensions}</Dimensions.Consumer>;
   }
 }
 
+const select = ({
+  setHotelId,
+  hotelId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+}: HotelsContextState) => ({
+  setHotelId,
+  hotelId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+});
+
 export default createFragmentContainer(
-  withNavigation(HotelSwipeItem),
+  withHotelsContext(select)(withNavigation(HotelSwipeItem)),
   graphql`
     fragment HotelSwipeItem on AllHotelsInterface {
       hotelId

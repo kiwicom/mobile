@@ -1,7 +1,6 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
-import idx from 'idx';
 import { View } from 'react-native';
 import { Translation, DateUtils } from '@kiwicom/mobile-localization';
 import { TextIcon, TextButton, StyleSheet } from '@kiwicom/mobile-shared';
@@ -28,7 +27,7 @@ class EnterDetailsTimelineEvent extends React.Component<Props> {
   };
 
   render() {
-    const timestamp = idx(this.props, _ => _.data.timestamp) || Date.now();
+    const timestamp = this.props.data.timestamp ?? Date.now();
     // Trick to have the event not show as past event
     const almostMidnight = DateUtils.latestTimeOfDay(new Date(timestamp));
     return (

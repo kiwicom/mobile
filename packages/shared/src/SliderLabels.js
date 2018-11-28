@@ -40,13 +40,13 @@ export default class SliderLabels extends React.Component<Props, State> {
     };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     if (this.props.endValue) {
       requestAnimationFrame(this.setPaddingForTwoLabels);
     } else {
       requestAnimationFrame(this.setPaddingForOneLabel);
     }
-  };
+  }
 
   getMaxPadding = (gap: number): number => {
     return Math.floor(
@@ -166,7 +166,7 @@ export default class SliderLabels extends React.Component<Props, State> {
     this.setState({ labelEndWidth: Math.floor(e.nativeEvent.layout.width) });
   };
 
-  render = () => {
+  render() {
     return (
       <View
         style={[
@@ -191,7 +191,7 @@ export default class SliderLabels extends React.Component<Props, State> {
         )}
       </View>
     );
-  };
+  }
 }
 
 const styles = StyleSheet.create({

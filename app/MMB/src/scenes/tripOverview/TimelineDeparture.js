@@ -10,7 +10,6 @@ import {
   TextIcon,
   Duration,
 } from '@kiwicom/mobile-shared';
-import idx from 'idx';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TimelineRow from './TimelineRow';
@@ -29,18 +28,18 @@ type Props = {|
 function TimelineDeparture(props: Props) {
   const legInfo = props.legInfo;
 
-  const flightNumber = idx(legInfo, _ => _.flightNumber);
-  const airlineLogoUrl = idx(legInfo, _ => _.airline.logoUrl);
-  const airlineName = idx(legInfo, _ => _.airline.name);
-  const airlineIata = idx(legInfo, _ => _.airline.code);
+  const flightNumber = legInfo.flightNumber;
+  const airlineLogoUrl = legInfo.airline?.logoUrl;
+  const airlineName = legInfo.airline?.name;
+  const airlineIata = legInfo.airline?.code;
 
-  const operatingAirline = idx(legInfo, _ => _.operatingAirline.name) || '';
-  const operatingAirlineIata = idx(legInfo, _ => _.operatingAirline.iata);
+  const operatingAirline = legInfo.operatingAirline?.name ?? '';
+  const operatingAirlineIata = legInfo.operatingAirline?.iata;
 
-  const flightModel = idx(legInfo, _ => _.vehicle.model) || '';
-  const manufacturer = idx(legInfo, _ => _.vehicle.manufacturer) || '';
+  const flightModel = legInfo.vehicle?.model ?? '';
+  const manufacturer = legInfo.vehicle?.manufacturer ?? '';
 
-  const duration = idx(legInfo, _ => _.duration);
+  const duration = legInfo.duration;
   return (
     <React.Fragment>
       <TimelineTitle data={props.routeStop} />
@@ -86,15 +85,14 @@ function TimelineDeparture(props: Props) {
             }
           />
 
-          {manufacturer !== '' &&
-            flightModel !== '' && (
-              <TimelineRow
-                icon={<TextIcon code="U" style={styleSheet.icon} />}
-                value={
-                  <Translation passThrough={`${manufacturer} ${flightModel}`} />
-                }
-              />
-            )}
+          {manufacturer !== '' && flightModel !== '' && (
+            <TimelineRow
+              icon={<TextIcon code="U" style={styleSheet.icon} />}
+              value={
+                <Translation passThrough={`${manufacturer} ${flightModel}`} />
+              }
+            />
+          )}
 
           <TimelineTerminal
             data={props.routeStop}
