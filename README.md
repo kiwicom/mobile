@@ -45,17 +45,26 @@ yarn install
 cd ios; pod install
 ```
 
-And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application. Similarly for Android (`yarn android`) but you have to open Android emulator first.
-
-You need to make sure that your Android emulator image supports Google Play Store. [Look for this symbol](https://stackoverflow.com/a/43197403/3135248):
-
-![](./docs/assets/android-emulator-play-store.png)
+And if you have Xcode already installed - just run `yarn ios`. It should open iPhone emulator with our application. 
 
 It's also possible to open other devices from command line to test tablets for example:
 
 ```
 xcrun simctl list devices
 yarn ios --simulator="iPad Pro (10.5-inch)"
+```
+
+Similarly for Android (`yarn android`) but you have to open Android emulator first.
+
+You need to make sure that your Android emulator image supports Google Play Store. [Look for this symbol](https://stackoverflow.com/a/43197403/3135248):
+
+![](./docs/assets/android-emulator-play-store.png)
+
+Moreover, make sure you have a valid [personal Gitlab token](https://gitlab.skypicker.com/profile/personal_access_tokens)
+and set it as your environment variable:
+
+```bash
+export RNKIWIMOBILE_DEPLOYMENT_TOKEN="YOUR_TOKEN_HERE"
 ```
 
 ## Testing
