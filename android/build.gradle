@@ -4,8 +4,6 @@ buildscript {
     apply from: "$rootDir/rnkiwimobile/versions.gradle"
 
     repositories {
-        // this line will fix Could not find com.android.tools.build:gradle:3.0.1
-        // https://stackoverflow.com/a/47456492/3135248
         mavenLocal()
         google()
         reactNativeFromUnpkg(it, reactNativeVersion)
@@ -19,7 +17,6 @@ buildscript {
     }
 }
 
-// https://github.com/corymsmith/react-native-fabric/issues/200
 subprojects {
     buildscript {
         apply from: "$rootDir/deployment.gradle"
