@@ -1,8 +1,7 @@
 # Add a new external native dependency
 
 When we update a dependency there are no major changes as versions will be taken from 
-[.build/package.json](../../.build/package.json) and a new 
-[snapshot](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/) will be deployed.
+[.build/package.json](../../.build/package.json) and a new snapshot will be deployed.
 
 To add a new native dependency though, that is more time consuming. We need to modify the 
 `[android/build.gradle](../../android/build.gradle)`.
@@ -45,3 +44,17 @@ deployDependency('react-native-vector-icons', ...),
 deployDependency('react-native-tooltips', ...),
 // Your new dependency here
 ```
+
+You can [deploy](../android/deploy.md) the new dependency manually or it will be deployed when merging your PR to
+master.
+
+## Naming
+
+Dependencies will be deployed following the convention:
+
+```bash
+[dependencyName]-[dependencyVersion].react-native.[reactNativeVersion]-SNAPSHOT
+```
+
+The reason to add `react-native` is that all dependencies should share the same version of it, therefore, when we update
+`react-native` all dependencies will be deployed with its new version.
