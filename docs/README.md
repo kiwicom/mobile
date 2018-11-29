@@ -12,6 +12,6 @@ On Android we use a gradle library called `rnkiwimobile`.
 
 On iOS, we use a `.framework` called `RNKiwiMobile`.
 
-### JS
+### [JS](common/create-new-react-native-feature.md)
 
-TODO (navigation, create new vertical, etc)
+Related to create a module that can consume Android and iOS libraries.
