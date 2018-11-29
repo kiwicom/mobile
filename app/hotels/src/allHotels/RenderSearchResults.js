@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Animated, ScrollView } from 'react-native';
+import { Animated, View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Device } from '@kiwicom/mobile-shared';
 
@@ -91,16 +91,19 @@ export class RenderSearchResults extends React.Component<Props> {
             transform: [{ translateY: this.listAnimation }],
           }}
         >
-          {/*  Note: it's not possible to use FlatList here because it's wrapped with ScrollView and it causes performance issues.*/}
-          <ScrollView contentContainerStyle={styles.content}>
-            <AllHotelsSearchList data={data} />
-            {this.props.hasMore && (
-              <LoadMoreButton
-                isLoading={this.props.isLoading}
-                onPress={this.props.onLoadMore}
-              />
-            )}
-          </ScrollView>
+          <View style={styles.content}>
+            <AllHotelsSearchList
+              data={data}
+              ListFooterComponent={
+                this.props.hasMore && (
+                  <LoadMoreButton
+                    isLoading={this.props.isLoading}
+                    onPress={this.props.onLoadMore}
+                  />
+                )
+              }
+            />
+          </View>
         </Animated.View>
         <Animated.View
           style={{

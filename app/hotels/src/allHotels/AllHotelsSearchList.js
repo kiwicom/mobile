@@ -1,6 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
+import { FlatList } from 'react-native';
 import { GeneralError } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -11,7 +12,12 @@ import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 
 type Props = {|
   +data: AllHotelsSearchListProps | Array<?empty>,
-  setHotelId: (id: string) => void,
+  +setHotelId: (id: string) => void,
+  +ListFooterComponent: React.Node,
+|};
+
+type HotelType = {|
+  +id: string,
 |};
 
 export class AllHotelsSearchList extends React.Component<Props> {
@@ -22,6 +28,16 @@ export class AllHotelsSearchList extends React.Component<Props> {
       this.props.setHotelId(hotelId);
     }
   }
+
+  keyExtractor = (item: ?HotelType) => item?.id;
+
+  renderItem = ({ item, index }: {| +item: ?HotelType, +index: number |}) => (
+    <AllHotelsSearchRow
+      key={item?.id}
+      data={item}
+      testID={index === 0 ? 'firstHotelResult' : ''}
+    />
+  );
 
   render() {
     const hotels = this.props.data || [];
@@ -37,15 +53,12 @@ export class AllHotelsSearchList extends React.Component<Props> {
     }
 
     return (
-      <React.Fragment>
-        {hotels.map((hotel, index) => (
-          <AllHotelsSearchRow
-            key={hotel?.id}
-            data={hotel}
-            testID={index === 0 ? 'firstHotelResult' : ''}
-          />
-        ))}
-      </React.Fragment>
+      <FlatList
+        keyExtractor={this.keyExtractor}
+        renderItem={this.renderItem}
+        data={this.props.data ?? []}
+        ListFooterComponent={this.props.ListFooterComponent}
+      />
     );
   }
 }

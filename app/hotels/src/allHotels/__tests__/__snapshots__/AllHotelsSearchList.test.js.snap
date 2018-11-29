@@ -21,28 +21,34 @@ exports[`renders a "not found" message when no hotel is found 1`] = `
 `;
 
 exports[`renders found hotels 1`] = `
-<React.Fragment>
-  <ForwardRef(Relay(WithContext))
-    data={
+<FlatList
+  ListFooterComponent={<Footer />}
+  data={
+    Array [
       Object {
         "$fragmentRefs": null,
         "$refType": null,
         "hotelId": "lol1",
         "id": "hotel1",
-      }
-    }
-    testID="firstHotelResult"
-  />
-  <ForwardRef(Relay(WithContext))
-    data={
+      },
       Object {
         "$fragmentRefs": null,
         "$refType": null,
         "hotelId": "lol2",
         "id": "hotel2",
-      }
-    }
-    testID=""
-  />
-</React.Fragment>
+      },
+    ]
+  }
+  disableVirtualization={false}
+  horizontal={false}
+  initialNumToRender={10}
+  keyExtractor={[Function]}
+  maxToRenderPerBatch={10}
+  numColumns={1}
+  onEndReachedThreshold={2}
+  renderItem={[Function]}
+  scrollEventThrottle={50}
+  updateCellsBatchingPeriod={50}
+  windowSize={21}
+/>
 `;
