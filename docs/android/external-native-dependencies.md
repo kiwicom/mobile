@@ -4,7 +4,8 @@ When we update a dependency there are no major changes as versions will be taken
 [.build/package.json](../../.build/package.json) and a new 
 [snapshot](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/) will be deployed.
 
-To add a new native dependency though, that is more time consuming. We need to modify `[android/build.gradle]()`.
+To add a new native dependency though, that is more time consuming. We need to modify the 
+`[android/build.gradle](../../android/build.gradle)`.
 This will deploy a new `SNAPSHOT` for it and upload it to 
 [Gitlab packages](https://gitlab.skypicker.com/mobile/android/-/packages).
 
