@@ -8,6 +8,7 @@
     "react-native-maps": "^0.22.0",
     "react-native-tooltips": "^0.0.6",
     "react-native-zip-archive": "^3.0.1",
-    "react-native-code-push": "^5.4.2"
+    "react-native-code-push": "^5.4.2",
+    "react-native-gesture-handler": "1.0.9"
   }
 }

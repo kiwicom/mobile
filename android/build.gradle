@@ -102,5 +102,10 @@ allprojects {
                 publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeZipArchive-SNAPSHOT")
             }
             break
+        case 'react-native-gesture-handler':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeGestureHandler-SNAPSHOT")
+            }
+            break
     }
 }
