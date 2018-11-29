@@ -16,7 +16,7 @@ project(':react-native-tooltips').projectDir = new File("$rootDir/../node_module
 include ':react-native-maps'
 project(':react-native-maps').projectDir = new File("$rootDir/../node_modules/react-native-maps/lib/android")
 include ':react-native-native-modules'
-project(':react-native-native-modules').projectDir = new File("$rootDir/native/react-native-native-modules/")
+project(':react-native-native-modules').projectDir = new File("$rootDir/react-native-native-modules/")
 include ':@kiwicom/react-native-reverse-geocode'
 project(':@kiwicom/react-native-reverse-geocode').projectDir = new File(rootProject.projectDir, '../node_modules/@kiwicom/react-native-reverse-geocode/android')
 
