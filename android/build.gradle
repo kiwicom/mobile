@@ -1,37 +1,106 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    apply from: "dependencies.gradle"
+    apply from: "$rootDir/dependencies.gradle"
+    apply from: "$rootDir/deployment.gradle"
+    apply from: "$rootDir/rnkiwimobile/versions.gradle"
 
     repositories {
-        // this line will fix Could not find com.android.tools.build:gradle:3.0.1
-        // https://stackoverflow.com/a/47456492/3135248
+        mavenLocal()
         google()
+        reactNativeFromUnpkg(it, reactNativeVersion)
         jcenter()
     }
+
     dependencies {
         classpath "com.android.tools.build:gradle:$gradlePluginVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "digital.wup:android-maven-publish:$androidMavenPublishVersion"
     }
 }
 
-allprojects {
+subprojects {
+    buildscript {
+        apply from: "$rootDir/deployment.gradle"
+
+        repositories {
+            mavenLocal()
+            google()
+            reactNativeFromUnpkg(it, reactNativeVersion)
+            fabric(it)
+            kiwi(it)
+            jcenter()
+        }
+
+        dependencies {
+            classpath "com.android.tools.build:gradle:3.4.0-alpha04"
+            classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+            classpath "digital.wup:android-maven-publish:$androidMavenPublishVersion"
+        }
+    }
+
+    apply plugin: 'digital.wup.android-maven-publish'
+
     repositories {
         mavenLocal()
-        jcenter()
         google()
-        maven {
-            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url "$rootDir/../node_modules/react-native/android"
+        reactNativeFromUnpkg(it, reactNativeVersion)
+        fabric(it)
+        kiwi(it)
+        jcenter()
+    }
+}
+
+// Override configuration for external sub-projects.
+allprojects {
+    buildDir = "$rootDir/${project.name}/build"
+
+    afterEvaluate {
+        def androidConfiguration = {
+            android {
+                compileSdkVersion = rootProject.ext.compileSdkVersion
+                buildToolsVersion = rootProject.ext.buildToolsVersion
+
+                defaultConfig {
+                    minSdkVersion rootProject.ext.minSdkVersion
+                    targetSdkVersion rootProject.ext.targetSdkVersion
+                }
+
+                lintOptions {
+                    abortOnError false
+                }
+            }
         }
-        maven {
-            url "http://trinerdis.cz:8000/repository/snapshots/"
-        }
-        maven {
-            url 'https://maven.fabric.io/public'
-        }
+
+        pluginManager.withPlugin("com.android.library", androidConfiguration)
+        pluginManager.withPlugin("com.android.application", androidConfiguration)
+    }
+
+    switch (project.name) {
+        case 'react-native':
+            configure(project) {
+                publishAndroidLibrary("com.facebook.react", project.name, "$reactNativeVersion")
+            }
+            break
+        case 'react-native-code-push':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeCodePush-SNAPSHOT")
+            }
+            break
+        case 'react-native-maps':
+            configure(project) {
+                publishCustomLibrary("com.trinerdis.skypicker", project.name, "$reactNativeMaps-SNAPSHOT") {
+                    it.artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+                }
+            }
+            break
+        case 'react-native-tooltips':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeTooltips-SNAPSHOT")
+            }
+            break
+        case 'react-native-zip-archive':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeZipArchive-SNAPSHOT")
+            }
+            break
     }
 }

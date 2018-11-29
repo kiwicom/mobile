@@ -1,12 +1,6 @@
-import groovy.json.JsonSlurper
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from: "../dependencies.gradle"
-
-def inputFile = new File("${rootDir}/../.build/package.json")
-def packageJson = new JsonSlurper().parseText(inputFile.text)
 
 def codePushPropertiesFile = new File("${rootDir}/playground/codepush.properties")
 def codePushProperties = null
@@ -15,18 +9,14 @@ if (codePushPropertiesFile.exists()) {
     codePushProperties.load(new FileInputStream(codePushPropertiesFile))
 }
 
-def mainPackageJson = new File("${rootDir}/../package.json")
-def codePushVersion = new JsonSlurper().parseText(mainPackageJson.text)['rnkiwimobile']['code-push-target-binary-version']
-
 def stageCodePushKey = codePushProperties != null ? codePushProperties["STAGING_KEY"] : ""
 def productionCodePushKey = codePushProperties != null ? codePushProperties["PRODUCTION_KEY"] : ""
 
 android {
-    compileSdkVersion compileSdkVersionVar
+    useLibrary 'org.apache.http.legacy'
+
     defaultConfig {
         applicationId "com.kiwi.mobile.rnandroidplayground"
-        minSdkVersion minSdkVersionVar
-        targetSdkVersion targetSdkVersionVar
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -36,8 +26,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-
-    project.ext.rnKiwiMobileVersion = packageJson['version']
 
     signingConfigs {
         stagingRelease {
@@ -88,23 +76,38 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    implementation "com.android.support:multidex:$multidexVersion"
+
     /**
      * In debug mode, it will use the local rnkiwimobile project.
      * If we don't have anything in .build/android, then it will also use the packager
      *
      * In release mode, it will use the rnkiwimobile from Trinerdis (without packager running)
      */
-    debugImplementation project(':rnkiwimobile')
+    debugImplementation(project(':rnkiwimobile')) {
+        exclude group: "com.google.android.gms"
+        exclude group: "com.google.firebase"
+    }
+
     // You can choose staging to use the Staging CodePush key
-    stagingReleaseImplementation project(':rnkiwimobile')
-    releaseImplementation "com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT"
+    stagingReleaseImplementation(project(':rnkiwimobile')) {
+        exclude group: "com.android.support"
+        exclude group: "com.google.android.gms"
+        exclude group: "com.google.firebase"
+    }
+
+    releaseImplementation("com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT") {
+        exclude group: "com.android.support"
+        exclude group: "com.google.android.gms"
+        exclude group: "com.google.firebase"
+    }
+
+    implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
 
     implementation "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
 
-    implementation "com.android.support:multidex:1.0.3"
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
 }
