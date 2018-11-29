@@ -81,7 +81,9 @@ export default new class CacheManager {
         keysToDelete.push(key);
       }
     });
-    AsyncStorage.multiRemove(keysToDelete);
+    if (keysToDelete.length > 0) {
+      AsyncStorage.multiRemove(keysToDelete);
+    }
   };
 
   isCurrent(fetchTime: Date) {

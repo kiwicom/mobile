@@ -55,14 +55,13 @@ export default class Price extends React.Component<Props, State> {
   };
 
   formatCurrency = async () => {
-    if (
-      this.props.price != null &&
-      this.props.price.amount != null &&
-      this.props.price.currency != null
-    ) {
+    const amount = this.props.price?.amount ?? null;
+    const currency = this.props.price?.currency || null;
+
+    if (amount !== null && currency !== null) {
       try {
         this.cancellablePromise = CancellablePromise(
-          CurrencyFormatter(this.props.price.amount, this.props.price.currency),
+          CurrencyFormatter(amount, currency),
         );
         const formattedCurrency = await this.cancellablePromise.promise;
         this.setState({ formattedCurrency });
