@@ -1,34 +1,32 @@
 # Add a new external native dependency
 
-When we update a dependency there are no major changes as versions will be taken from [.build/package.json](../../.build/package.json) and a new [snapshot](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/) will be deployed.
+When we update a dependency there are no major changes as versions will be taken from 
+[.build/package.json](../../.build/package.json) and a new 
+[snapshot](http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/) will be deployed.
 
-To add a new native dependency though, that is more time consuming. We need to create a separated `SNAPSHOT` for it and upload it to [Trinerdis](http://trinerdis.cz:8000/repository/snapshots/). We need to create a similar structure for a new dependency like in [android/native/react-native-tooltips](../../android/native/react-native-tooltips).
+To add a new native dependency though, that is more time consuming. We need to modify `[android/build.gradle]()`.
+This will deploy a new `SNAPSHOT` for it and upload it to 
+[Gitlab packages](https://gitlab.skypicker.com/mobile/android/-/packages).
 
-Usually we only need to change the following part to use the correct dependency name:
+We need to add a new case on the [gradle switch-case](../../android/build.gradle#L77) similar to:
 
 ```gradle
-tasks.create('uploadTrinerdis', Upload.class) {
-    configuration = project.configurations.archives
-    repositories {
-        mavenDeployer {
-            repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
-                authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
-                pom.version = "$version-SNAPSHOT"
-                pom.artifactId = "NAME_OF_THE_DEPENDENCY
-                pom.groupId = "com.trinerdis.skypicker"
-            }
-        }
+case 'react-native-tooltips':
+    configure(project) {
+        publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeTooltips-SNAPSHOT")
     }
-}
+    break
 ```
 
-We also need to instruct [rnkiwimobile/versions.gradle](../../android/rnkiwimobile/versions.gradle) to take the correct version:
+We also need to instruct [rnkiwimobile/versions.gradle](../../android/rnkiwimobile/versions.gradle) to take the 
+correct version:
 
 ```
 ourNativeDependency = packageJson['dependencies']['our-native-dependency'].replace('^', '')
 ```
 
-Then, we add this dependency as part of `rnkiwimobile` like [android/rnkiwimobile/build.gradle](../../android/rnkiwimobile/build.gradle#L48-L50):
+Then, we add this dependency as part of `rnkiwimobile` like 
+[android/rnkiwimobile/build.gradle](../../android/rnkiwimobile/build.gradle#L48-L50):
 
 ```gradle
 api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
@@ -37,7 +35,8 @@ api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT
 // Your new dependency here
 ```
 
-We have a script in [scripts/buildAndroidSnapshots.js](../../scripts/buildAndroidSnapshots.js), we will need to add a line in dependencies similar to (check the script structure):
+We have a script in [scripts/buildAndroidSnapshots.js](../../scripts/buildAndroidSnapshots.js), we will need to add a 
+line in dependencies similar to (check the script structure):
 
 ```js
 deployDependency('react-native-maps', ...),
@@ -45,19 +44,3 @@ deployDependency('react-native-vector-icons', ...),
 deployDependency('react-native-tooltips', ...),
 // Your new dependency here
 ```
-
-## Check it builds correctly
-
-In order to check if our new dependency builds correctly, we just need to go to our dependency directory:
-
-```shell
-cd /android/native/our-dependency
-```
-
-And run:
-
-```shell
-../../gradlew
-```
-
-It should output `BUILD SUCCESSFUL`.
