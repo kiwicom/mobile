@@ -1,8 +1,0 @@
-import groovy.json.JsonSlurper
-
-def inputFile = new File("${rootDir}/../../../.build/package.json")
-def packageJson = new JsonSlurper().parseText(inputFile.text)
-
-ext {
-    reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
-}

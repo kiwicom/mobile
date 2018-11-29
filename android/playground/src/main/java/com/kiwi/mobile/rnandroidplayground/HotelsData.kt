@@ -16,7 +16,7 @@ object HotelsData {
     val checkOut = Calendar.getInstance()
     checkOut.add(Calendar.DATE, 14)
 
-    val simpleDateFormat = SimpleDateFormat("YYYY-MM-dd", Locale.US)
+    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
     Log.d("HotelsData", simpleDateFormat.format(checkIn.time) + " " + simpleDateFormat.format(checkOut.time))
 
