@@ -16,6 +16,7 @@ ext {
     reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeZipArchive = packageJson['dependencies']['react-native-zip-archive'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeCodePush = packageJson['dependencies']['react-native-code-push'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeGestureHandler = packageJson['dependencies']['react-native-gesture-handler'].replace('^', '') + ".react-native." + reactNativeVersion
 
     reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
     rnKiwiMobileVersion = packageJson['version']

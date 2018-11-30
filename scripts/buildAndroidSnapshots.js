@@ -141,6 +141,14 @@ const deployLibrary = (packageName, version) => {
         )}.react-native.${reactNativeVersion}`,
         '-SNAPSHOT',
       ),
+      deployDependency(
+        'react-native-gesture-handler',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
+          'react-native-gesture-handler',
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
     ]);
     // Main package to publish: rnkiwimobile
     log('-----');

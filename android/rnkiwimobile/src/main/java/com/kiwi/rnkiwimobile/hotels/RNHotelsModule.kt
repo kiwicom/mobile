@@ -9,6 +9,7 @@ import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage
 import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage
 import com.skypicker.reactnative.nativemodules.translation.RNTranslationManagerPackage
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage
 
 object RNHotelsModule {
   const val jsEntryPoint = "app/native"
@@ -18,6 +19,7 @@ object RNHotelsModule {
     return mutableListOf(RNTooltipsPackage(),
         RNDeviceInfoPackage(),
         MapsPackage(),
+        RNGestureHandlerPackage(),
         RNCurrencyManagerPackage(hotelModulesInjection.currencyCallback),
         RNTranslationManagerPackage(hotelModulesInjection.translationCallback),
         RNLoggingPackage(hotelModulesInjection.hasActiveBooking))

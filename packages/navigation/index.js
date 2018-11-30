@@ -74,23 +74,23 @@ export const StackNavigator = (
   },
   StackNavigatorConfig: {|
     +initialRouteName: string,
-    +navigationOptions: {|
+    +defaultNavigationOptions: {|
       +header: null,
+      +headerStyle?: StylePropType,
     |},
     +cardStyle?: StylePropType,
     +mode?: 'modal',
     +headerMode?: 'none',
   |},
 ) => {
-  return ReactNavigation.createStackNavigator(
-    RouteConfigs,
-    StackNavigatorConfig,
+  return ReactNavigation.createAppContainer(
+    ReactNavigation.createStackNavigator(RouteConfigs, StackNavigatorConfig),
   );
 };
 
 export const StackNavigatorOptions = {
   initialRouteName: 'Home',
-  navigationOptions: createNavigationOptions(),
+  defaultNavigationOptions: createNavigationOptions(),
   cardStyle: {
     backgroundColor: defaultTokens.paletteCloudLight,
   },
