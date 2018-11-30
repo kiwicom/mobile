@@ -54,12 +54,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mO0-5n-Vye">
+                                <rect key="frame" x="136" y="356" width="103" height="30"/>
+                                <state key="normal" title="Present stay22"/>
+                                <connections>
+                                    <action selector="present22stay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ujy-xz-cvG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="aMy-op-KJ7" firstAttribute="trailing" secondItem="oID-K6-8uc" secondAttribute="trailing" id="0Xz-io-xA3"/>
+                            <constraint firstItem="mO0-5n-Vye" firstAttribute="top" secondItem="QHj-7e-Fcl" secondAttribute="bottom" constant="8" symbolic="YES" id="1Sl-QI-Jm4"/>
                             <constraint firstItem="aMy-op-KJ7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="2cH-kL-jFd"/>
                             <constraint firstItem="oID-K6-8uc" firstAttribute="trailing" secondItem="QBX-BO-IRW" secondAttribute="trailing" id="Agw-z8-gP9"/>
+                            <constraint firstItem="mO0-5n-Vye" firstAttribute="centerX" secondItem="QHj-7e-Fcl" secondAttribute="centerX" id="DaK-IS-uUf"/>
                             <constraint firstItem="QBX-BO-IRW" firstAttribute="centerX" secondItem="QHj-7e-Fcl" secondAttribute="centerX" id="L5l-lZ-Aws"/>
                             <constraint firstItem="oID-K6-8uc" firstAttribute="leading" secondItem="QBX-BO-IRW" secondAttribute="leading" id="PeM-fb-uuH"/>
                             <constraint firstItem="QBX-BO-IRW" firstAttribute="top" secondItem="oID-K6-8uc" secondAttribute="bottom" constant="8" symbolic="YES" id="XIG-fk-LJq"/>

@@ -89,9 +89,15 @@
   [self.pickerTextField setInputView:cityPicker];
   
   // Available cities
-  City *Prague = [[City alloc] initWithName:@"Prague" andId:@"aG90ZWxDaXR5Oi01NTMxNzM=“"];
-  City *Brno = [[City alloc] initWithName:@"Brno" andId:@"aG90ZWxDaXR5Oi01NDIxODQ="];
-  City *Barcelona = [[City alloc] initWithName:@"Barcelona" andId:@"aG90ZWxDaXR5Oi0zNzI0OTA="];
+  City *Prague = [[City alloc] initWithName:@"Prague"
+                                      andId:@"aG90ZWxDaXR5Oi01NTMxNzM=“"
+                             andCoordinates:@{@"latitude": @50.08804, @"longitude": @14.42076}];
+  City *Brno = [[City alloc] initWithName:@"Brno"
+                                    andId:@"aG90ZWxDaXR5Oi01NDIxODQ="
+                           andCoordinates:@{@"latitude": @49.195061, @"longitude": @16.606836}];
+  City *Barcelona = [[City alloc] initWithName:@"Barcelona"
+                                         andId:@"aG90ZWxDaXR5Oi0zNzI0OTA="
+                                andCoordinates:@{@"latitude": @12.123, @"longitude": @321.321}];
   dataArray=[[NSArray alloc] initWithObjects:Prague,Brno,Barcelona, nil];
   
   [self.startDateSelectionTextField setInputAccessoryView:[self customizeToolbar:@selector(selectedStartDate)]];
@@ -237,6 +243,7 @@
   _activeVc = vc;
 }
 
+// Offer search is based on city ID
 - (IBAction)presentNewHotelsView:(id)sender {
   
   RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
@@ -262,6 +269,35 @@
                                                           ]
                                                         }];
   
+  [self setActiveViewController:vc];
+  [[self navigationController] presentViewController:vc animated:YES completion:nil];
+}
+
+// Offer search is based on coordinates
+- (IBAction)present22stay:(id)sender {
+  
+  RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
+                                                        initialProperties:@{
+                                                                            @"language": @"en",
+                                                                            @"currency": @"EUR",
+                                                                            @"lastNavigationMode": @"present",
+                                                                            @"dimensions": [self windowDimensions],
+                                                                            @"checkin": [self selectedStartDate],
+                                                                            @"checkout": [self selectedEndDate],
+                                                                            @"version": @"3.7.13-9d55ad66",
+                                                                            @"cityName": [self selectedCity].cityName,
+                                                                            @"coordinates": [self selectedCity].cityCoordinates,
+                                                                            @"roomsConfiguration": @[
+                                                                                @{
+                                                                                  @"adultsCount": @1,
+                                                                                  @"children": @[
+                                                                                      @{
+                                                                                        @"age": @2
+                                                                                        }
+                                                                                      ]
+                                                                                  }
+                                                                                ]
+                                                                            }];
   [self setActiveViewController:vc];
   [[self navigationController] presentViewController:vc animated:YES completion:nil];
 }
