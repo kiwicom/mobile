@@ -50,6 +50,7 @@ dependencies {
     api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-zip-archive:$reactNativeZipArchive-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-code-push:$reactNativeCodePush-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-gesture-handler:$reactNativeGestureHandler-SNAPSHOT"
 
     api("com.google.android.gms:play-services-base:$playServicesBaseVersion")
     api("com.google.android.gms:play-services-maps:$playServicesMapsVersion")

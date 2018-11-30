@@ -18,8 +18,12 @@ const Stack = StackNavigator(
   },
   {
     initialRouteName: 'Home',
-    ...StackNavigatorOptions,
     mode: 'modal',
+    ...StackNavigatorOptions,
+    defaultNavigationOptions: {
+      ...StackNavigatorOptions.defaultNavigationOptions,
+      gesturesEnabled: false,
+    },
   },
 );
 
