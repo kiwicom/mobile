@@ -44,8 +44,8 @@ appcenter codepush deployment list -a Kiwicom/mobile-android
 You need to create a file named `codepush.properties` inside [playground](../../android/playground):
 
 ```bash
-STAGING_KEY=""
-PRODUCTION=KEY=""
+STAGING_KEY=<my-key>
+PRODUCTION=KEY=<my-key>
 ```
 
 #### Staging
