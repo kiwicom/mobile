@@ -1,6 +1,5 @@
 package com.kiwi.mobile.rnandroidplayground
 
-import android.util.Log
 import com.kiwi.rnkiwimobile.hotels.RNHotelsCoordinates
 import com.kiwi.rnkiwimobile.hotels.RNHotelsInitialProperties
 import com.kiwi.rnkiwimobile.hotels.RNHotelsRoomsChildrenConfiguration
@@ -18,8 +17,6 @@ object HotelsData {
 
     val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.US)
 
-    Log.d("HotelsData", simpleDateFormat.format(checkIn.time) + " " + simpleDateFormat.format(checkOut.time))
-
     return RNHotelsInitialProperties(
         language = "en",
         currency = "EUR",
@@ -31,10 +28,16 @@ object HotelsData {
             adultsCount = 1,
             children = arrayListOf(RNHotelsRoomsChildrenConfiguration(age = 2))
         ))),
-        hotelsCoordinates = RNHotelsCoordinates(
+        coordinates = RNHotelsCoordinates(
             59.9139,
             10.7522
         )
     )
+  }
+
+  fun getInitialPropertiesStay22(): RNHotelsInitialProperties {
+    val properties = getInitialProperties()
+    properties.cityId = null
+    return properties
   }
 }

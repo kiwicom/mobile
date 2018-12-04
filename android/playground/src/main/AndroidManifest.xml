@@ -34,6 +34,7 @@
         </activity>
         <activity android:name="com.kiwi.mobile.rnandroidplayground.HotelsActivityFragment">
         </activity>
+        <activity android:name=".HotelsStay22Activity" />
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 
