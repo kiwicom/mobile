@@ -6,9 +6,7 @@ apply from: "../dependencies.gradle"
 
 project.ext.react = [
     entryFile: "app/native.js",
-    jsBundleDirStagingRelease: "${projectDir}/src/main/assets",
     resourcesDirStagingRelease: "${projectDir}/src/main/assets/res",
-    jsBundleDirRelease: "${projectDir}/src/main/assets",
     resourcesDirRelease: "${projectDir}/src/main/assets/res"
 ]
 
@@ -17,15 +15,10 @@ apply from: "./codepush-library.gradle"
 
 android {
     defaultConfig {
-        minSdkVersion minSdkVersionVar
-        compileSdkVersion compileSdkVersionVar
-        targetSdkVersion targetSdkVersionVar
-
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     dexOptions {
@@ -57,13 +50,13 @@ dependencies {
     api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-zip-archive:$reactNativeZipArchive-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-code-push:$reactNativeCodePush-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-gesture-handler:$reactNativeGestureHandler-SNAPSHOT"
 
-    api("com.google.android.gms:play-services-base:$playServicesVersion")
-    api("com.google.android.gms:play-services-maps:$playServicesVersion")
+    api("com.google.android.gms:play-services-base:$playServicesBaseVersion")
+    api("com.google.android.gms:play-services-maps:$playServicesMapsVersion")
 
     api "com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT"
 
-    implementation "com.trinerdis.skypicker:infinario:$infinarioVersion-SNAPSHOT"
     compileOnly "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
 
     testImplementation "junit:junit:$junitVersion"
@@ -72,22 +65,4 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
 
-buildDir = "$rootProject.projectDir/build"
-
-tasks.create('uploadTrinerdis', Upload.class) {
-    configuration = project.configurations.archives
-    repositories {
-        mavenDeployer {
-            repository(url: "http://trinerdis.cz:8000/repository/snapshots/") {
-                authentication(userName: "deployment", password: System.getenv("ANDROID_DEPLOYMENT_PASSWORD"))
-                pom.version = "$version-SNAPSHOT"
-                pom.artifactId = "rnkiwimobile"
-                pom.groupId = "com.trinerdis.skypicker"
-            }
-        }
-    }
-}
-
-repositories {
-    mavenCentral()
-}
+publishAndroidLibrary("com.trinerdis.skypicker", "rnkiwimobile", "$rnKiwiMobileVersion-SNAPSHOT")

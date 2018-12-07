@@ -6,6 +6,9 @@ def packageJson = new JsonSlurper().parseText(inputFile.text)
 def rnModulesFile = new File("${rootDir}/../packages/rnmodules/package.json")
 def rnModulesPackageJson = new JsonSlurper().parseText(rnModulesFile.text)
 
+def mainFile = new File("${rootDir}/../package.json")
+def mainPackageJson = new JsonSlurper().parseText(mainFile.text)
+
 ext {
     reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
 
@@ -13,6 +16,10 @@ ext {
     reactNativeTooltips = packageJson['dependencies']['react-native-tooltips'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeZipArchive = packageJson['dependencies']['react-native-zip-archive'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeCodePush = packageJson['dependencies']['react-native-code-push'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeGestureHandler = packageJson['dependencies']['react-native-gesture-handler'].replace('^', '') + ".react-native." + reactNativeVersion
 
     reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
+    rnKiwiMobileVersion = packageJson['version']
+
+    codePushVersion = mainPackageJson['rnkiwimobile']['code-push-target-binary-version']
 }

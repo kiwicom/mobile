@@ -5,6 +5,7 @@ import android.support.multidex.MultiDexApplication;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactApplication;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.rnziparchive.RNZipArchivePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -49,7 +50,8 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
                     new RNCurrencyManagerPackage(),
                     new RNDeviceInfoPackage(),
                     new RNCardManagerPackage(),
-                    new RNReverseGeocodePackage()
+                    new RNReverseGeocodePackage(),
+                    new RNGestureHandlerPackage()
             );
         }
 

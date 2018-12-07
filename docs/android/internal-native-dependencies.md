@@ -1,14 +1,17 @@
 # Internal native dependencies
 
-These dependencies can be found in [react-native-native-modules](../../android/native/react-native-native-modules/src/main/java/com/skypicker/reactnative/nativemodules).
+These dependencies can be found in 
+[react-native-native-modules](../../android/react-native-native-modules/src/main/java/com/skypicker/reactnative/nativemodules).
 
 ## Create a new internal native module
 
-The process is the same as creating a normal [Android native module in React Native](https://facebook.github.io/react-native/docs/native-modules-android).
+The process is the same as creating a normal 
+[Android native module in React Native](https://facebook.github.io/react-native/docs/native-modules-android).
 We use Kotlin. 
 
-See for example [Logging module](../../android/native/react-native-native-modules/src/main/java/com/skypicker/reactnative/nativemodules/logging). 
-Once is created and released, we can use it in a vertical just like how we be adding a native module. See for example how our [RNHotelsActivity is using Logging module](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/RNHotelsActivity.kt#L35).
+See for example [Logging module](../../android/react-native-native-modules/src/main/java/com/skypicker/reactnative/nativemodules/logging). 
+Once is created and released, we can use it in a vertical just like how we be adding a native module. 
+See for example how our [RNHotelsActivity is using Logging module](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/RNHotelsActivity.kt#L35).
 
 Basically, overriding `getPackages`:
 

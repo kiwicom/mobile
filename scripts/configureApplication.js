@@ -105,3 +105,27 @@ try {
 }
 
 log('Configuration complete!');
+
+// Needed before 0.22.0 for Android Studio to sync
+log('Patching react-native-maps');
+const androidManifestReactNativeMaps = fs.readFileSync(
+  path.join(
+    __dirname,
+    '..',
+    'node_modules/react-native-maps/lib/android/src/main/AndroidManifest.xml',
+  ),
+  'utf-8',
+);
+const newAndroidManifestReactNativeMaps = androidManifestReactNativeMaps.replace(
+  '<uses-sdk android:minSdkVersion="16" />',
+  '',
+);
+
+fs.writeFileSync(
+  path.join(
+    __dirname,
+    '..',
+    'node_modules/react-native-maps/lib/android/src/main/AndroidManifest.xml',
+  ),
+  newAndroidManifestReactNativeMaps,
+);

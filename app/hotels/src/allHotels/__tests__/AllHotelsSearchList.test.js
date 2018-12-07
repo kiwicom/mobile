@@ -10,6 +10,8 @@ const renderer = new ShallowRenderer();
 
 const $fragmentRefs: any = null;
 const $refType: any = null;
+const Footer = () => null;
+
 it('renders found hotels', () => {
   const data: AllHotelsSearchListType = [
     {
@@ -26,14 +28,26 @@ it('renders found hotels', () => {
     },
   ];
 
-  renderer.render(<AllHotelsSearchList data={data} setHotelId={jest.fn()} />);
+  renderer.render(
+    <AllHotelsSearchList
+      data={data}
+      setHotelId={jest.fn()}
+      ListFooterComponent={<Footer />}
+    />,
+  );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renders a "not found" message when no hotel is found', () => {
   const data: Array<empty> = [];
 
-  renderer.render(<AllHotelsSearchList data={data} setHotelId={jest.fn()} />);
+  renderer.render(
+    <AllHotelsSearchList
+      data={data}
+      setHotelId={jest.fn()}
+      ListFooterComponent={<Footer />}
+    />,
+  );
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 

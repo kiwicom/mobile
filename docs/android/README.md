@@ -5,6 +5,13 @@ Android Kiwi native app needs in order to run React Native including the JavaScr
 
 ## Test playground app
 
+First make sure you have a valid [personal Gitlab token](https://gitlab.skypicker.com/profile/personal_access_tokens)
+and set it as your environment variable:
+
+```bash
+export RNKIWIMOBILE_DEPLOYMENT_TOKEN="YOUR_TOKEN_HERE"
+```
+
 ### Debug
 
 In debug mode, you will be running a local copy of `rnkiwimobile`. 
@@ -37,8 +44,8 @@ appcenter codepush deployment list -a Kiwicom/mobile-android
 You need to create a file named `codepush.properties` inside [playground](../../android/playground):
 
 ```bash
-STAGING_KEY=""
-PRODUCTION=KEY=""
+STAGING_KEY=<my-key>
+PRODUCTION=KEY=<my-key>
 ```
 
 #### Staging

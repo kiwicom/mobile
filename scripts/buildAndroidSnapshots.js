@@ -1,23 +1,36 @@
-/* eslint-disable no-console */
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow
 
-const urlExists = require('url-exists');
-const child_process = require('child_process');
+import { execSync } from 'child_process';
+import fetch from 'node-fetch';
+
+const log = (...params) => {
+  console.log(...params); // eslint-disable-line no-console
+};
+
+async function urlExists(url, headers) {
+  try {
+    const res = await fetch(url, {
+      method: 'HEAD',
+      headers,
+    });
+    return res.ok;
+  } catch (err) {
+    log(err);
+    return false;
+  }
+}
 
 const exec = (command, options) =>
-  child_process.execSync(command, {
+  execSync(command, {
     stdio: 'inherit',
     ...options,
   });
 
 const SKYPICKER_URL =
-  'http://trinerdis.cz:8000/repository/snapshots/com/trinerdis/skypicker/';
+  'https://gitlab.skypicker.com/api/v4/projects/301/packages/maven/';
 
-const FACEBOOK_URL =
-  'http://trinerdis.cz:8000/repository/snapshots/com/facebook/react/';
-
-if (!process.env.ANDROID_DEPLOYMENT_PASSWORD) {
-  throw Error('You need to pass ANDROID_DEPLOYMENT_PASSWORD.');
+if (!process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN) {
+  throw Error('You need to pass RNKIWIMOBILE_DEPLOYMENT_TOKEN.');
 }
 
 // Read native dependencies versions from package.json (maps, vector icons...)
@@ -38,111 +51,110 @@ const rnModulesVersion = rnModulesPackage['version'];
 const RNKiwiMobileVersion = buildPackage.version;
 
 const deployDependency = (packageName, url, version, extension = '') => {
-  return new Promise((resolve, reject) =>
-    urlExists(`${url}${packageName}/${version}${extension}/`, (err, exists) => {
-      if (err) {
+  return new Promise(async (resolve, reject) => {
+    const downloadUrl = `${url}com/trinerdis/skypicker/${packageName}/${version}${extension}/maven-metadata.xml`;
+
+    log(`Checking if ${downloadUrl} exists.`);
+
+    const exists = await urlExists(downloadUrl, {
+      'Private-Token': process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN,
+    });
+
+    if (!exists) {
+      log(`Deploying ${packageName}/${version}${extension}`);
+      try {
+        exec(
+          `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
+            // $FlowFixMe we already checked in the top that is defined
+            process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
+          } ./gradlew --no-daemon :${packageName}:uploadKiwi`,
+        );
+      } catch (err) {
         reject(err);
         return;
       }
-      if (!exists) {
-        console.log(`Deploying ${packageName}/${version}${extension}`);
-        try {
-          exec(
-            `cd ${baseFolder}/native/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
-              // $FlowFixMe we already checked in the top that is defined
-              process.env.ANDROID_DEPLOYMENT_PASSWORD
-            } ../../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
-          );
-        } catch (err) {
-          reject(err);
-          return;
-        }
-        console.log(
-          `${packageName}/${version}${extension} was successfully deployed.`,
-        );
-      } else {
-        console.log(
-          `Skipping ${packageName}/${version}${extension} (already deployed).`,
-        );
-      }
-      resolve();
-    }),
-  );
+      log(`${packageName}/${version}${extension} was successfully deployed.`);
+    } else {
+      log(`Skipping ${packageName}/${version}${extension} (already deployed).`);
+    }
+    resolve();
+  });
 };
 
 const deployLibrary = (packageName, version) => {
-  console.log(`Deploying ${packageName}/${version}-SNAPSHOT`);
+  log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
     exec(
-      `cd ${baseFolder}/${packageName} && ANDROID_DEPLOYMENT_PASSWORD=${
+      `cd ${baseFolder}/${packageName} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
         // $FlowFixMe we already checked in the top that is defined
-        process.env.ANDROID_DEPLOYMENT_PASSWORD
-      } ../gradlew --no-daemon uploadTrinerdis -Pversion=${version}`,
+        process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
+      } ../gradlew --no-daemon :${packageName}:uploadKiwi`,
     );
   } catch (err) {
-    console.log('ERROR:', err);
+    log('ERROR:', err);
     process.exit(-1);
   }
-  console.log(`${packageName}/${version}-SNAPSHOT was successfully deployed.`);
+  log(`${packageName}/${version}-SNAPSHOT was successfully deployed.`);
 };
 
-(() => {
-  console.log(`Start building Android SNAPSHOT(s)...`);
-  const reactNativeVersion = getDependencyVersion('react-native');
+(async () => {
+  try {
+    log(`Start building Android SNAPSHOT(s)...`);
+    const reactNativeVersion = getDependencyVersion('react-native');
 
-  deployDependency('react-native', FACEBOOK_URL, reactNativeVersion).then(
-    () => {
-      // All libraries depend on react-native so in case we update it, we need to
-      // update it first in order for the other libraries to compile
-      Promise.all([
-        deployDependency(
+    await Promise.all([
+      deployDependency(
+        'react-native-maps',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
           'react-native-maps',
-          SKYPICKER_URL,
-          `${getDependencyVersion(
-            'react-native-maps',
-          )}.react-native.${reactNativeVersion}`,
-          '-SNAPSHOT',
-        ),
-        deployDependency(
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
+      deployDependency(
+        'react-native-tooltips',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
           'react-native-tooltips',
-          SKYPICKER_URL,
-          `${getDependencyVersion(
-            'react-native-tooltips',
-          )}.react-native.${reactNativeVersion}`,
-          '-SNAPSHOT',
-        ),
-        deployDependency(
-          'react-native-native-modules',
-          SKYPICKER_URL,
-          `${rnModulesVersion}.react-native.${reactNativeVersion}`,
-          '-SNAPSHOT',
-        ),
-        deployDependency(
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
+      deployDependency(
+        'react-native-native-modules',
+        SKYPICKER_URL,
+        `${rnModulesVersion}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
+      deployDependency(
+        'react-native-zip-archive',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
           'react-native-zip-archive',
-          SKYPICKER_URL,
-          `${getDependencyVersion(
-            'react-native-zip-archive',
-          )}.react-native.${reactNativeVersion}`,
-          '-SNAPSHOT',
-        ),
-        deployDependency(
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
+      deployDependency(
+        'react-native-code-push',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
           'react-native-code-push',
-          SKYPICKER_URL,
-          `${getDependencyVersion(
-            'react-native-code-push',
-          )}.react-native.${reactNativeVersion}`,
-          '-SNAPSHOT',
-        ),
-      ])
-        .then(() => {
-          // Main package to publish: rnkiwimobile
-          console.log('-----');
-          deployLibrary('rnkiwimobile', RNKiwiMobileVersion);
-        })
-        .catch(err => {
-          console.log('ERROR:', err);
-          process.exit(-1);
-        });
-    },
-  );
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
+      deployDependency(
+        'react-native-gesture-handler',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
+          'react-native-gesture-handler',
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
+    ]);
+    // Main package to publish: rnkiwimobile
+    log('-----');
+    deployLibrary('rnkiwimobile', RNKiwiMobileVersion);
+  } catch (err) {
+    log('ERROR:', err);
+    process.exit(-1);
+  }
 })();

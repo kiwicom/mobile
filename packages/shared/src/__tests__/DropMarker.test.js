@@ -3,11 +3,10 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import DropMarker from '../DropMarker';
+import DropMarker from '../dropMarker/DropMarker';
 
 const renderer = new ShallowRenderer();
 
-it('calculates the offsets base on icon size', () => {
+it('matches', () => {
   expect(renderer.render(<DropMarker />)).toMatchSnapshot();
-  expect(renderer.render(<DropMarker size={100} />)).toMatchSnapshot();
 });

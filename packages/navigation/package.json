@@ -6,7 +6,8 @@
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-shared": "^0",
-    "react-navigation": "^2.18.1",
+    "react-native-gesture-handler": "^1.0.9",
+    "react-navigation": "3.0.0",
     "react-navigation-props-mapper": "^0.1.2"
   }
 }

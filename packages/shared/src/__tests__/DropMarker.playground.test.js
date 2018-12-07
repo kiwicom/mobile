@@ -4,7 +4,7 @@ import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 import { View } from 'react-native';
 
-import DropMarker from '../DropMarker';
+import DropMarker from '../dropMarker/DropMarker';
 
 it('renders', () => {
   PlaygroundRenderer.render(

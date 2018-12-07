@@ -8,7 +8,7 @@ def entryFile = config.entryFile ?: "index.android.js"
 def bundleCommand = config.bundleCommand ?: "bundle"
 def reactRoot = file(config.root ?: "../../")
 def inputExcludes = config.inputExcludes ?: ["android/**", "ios/**"]
-def bundleConfig = config.bundleConfig ? "${reactRoot}/${config.bundleConfig}" : null ;
+def bundleConfig = config.bundleConfig ? "${reactRoot}/${config.bundleConfig}" : null
 
 
 afterEvaluate {
@@ -107,7 +107,7 @@ afterEvaluate {
                 enabled currentBundleTask.enabled
             }
 
-           packageTask.dependsOn(currentCopyResTask)
+            packageTask.dependsOn(currentCopyResTask)
         }
 
         def currentAssetsCopyTask = tasks.create(
@@ -117,15 +117,15 @@ afterEvaluate {
             description = "copy bundled JS into ${targetName}."
 
             from jsBundleDir
-            into file(config."jsBundleDir${targetName}" ?:
-                    "$buildDir/intermediates/assets/${targetPath}")
+            into file("$buildDir/intermediates/library_assets/${targetPath}/package${targetName}Assets/out/")
 
-            // mergeAssets must run first, as it clears the intermediates directory
-            dependsOn(variant.mergeAssets)
+            dependsOn(currentBundleTask)
 
             enabled currentBundleTask.enabled
         }
 
-        packageTask.dependsOn(currentAssetsCopyTask)
+        variant.mergeAssets.doLast {
+            currentAssetsCopyTask.execute()
+        }
     }
 }

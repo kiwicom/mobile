@@ -1,163 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`calculates the offsets base on icon size 1`] = `
+exports[`matches 1`] = `
 <Component
-  style={
+  resizeMode="contain"
+  source={
     Object {
-      "backgroundColor": "#fff",
-      "borderColor": "#7f91a8",
-      "borderRadius": 4,
-      "borderWidth": 0.5,
-      "padding": 1,
-      "position": "absolute",
-      "start": -12,
-      "top": -24,
+      "testUri": "../../../packages/shared/src/dropMarker/dropmarker.png",
     }
   }
->
-  <Component
-    style={
-      Object {
-        "backgroundColor": "#0176D2",
-        "borderRadius": 4,
-        "flex": 1,
-        "padding": 3,
-        "paddingBottom": 1,
-      }
-    }
-  >
-    <TextIcon
-      code=""
-      style={
-        Object {
-          "color": "#fff",
-          "fontSize": 18,
-        }
-      }
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "alignSelf": "center",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderTopColor": "#0176D2",
-        "borderWidth": 7,
-        "bottom": -11,
-        "position": "absolute",
-        "zIndex": 825,
-      }
-    }
-  />
-  <Component
-    style={
-      Object {
-        "alignSelf": "center",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderTopColor": "#fff",
-        "borderWidth": 6,
-        "bottom": -12,
-        "position": "absolute",
-        "zIndex": 1,
-      }
-    }
-  />
-  <Component
-    style={
-      Object {
-        "alignSelf": "center",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderTopColor": "#7f91a8",
-        "borderWidth": 7,
-        "bottom": -14,
-        "position": "absolute",
-        "zIndex": 0,
-      }
-    }
-  />
-</Component>
-`;
-
-exports[`calculates the offsets base on icon size 2`] = `
-<Component
   style={
     Object {
-      "backgroundColor": "#fff",
-      "borderColor": "#7f91a8",
-      "borderRadius": 4,
-      "borderWidth": 0.5,
-      "padding": 1,
+      "height": 38,
       "position": "absolute",
-      "start": -12,
-      "top": -24,
+      "start": -16,
+      "top": -27,
+      "width": 38,
     }
   }
->
-  <Component
-    style={
-      Object {
-        "backgroundColor": "#0176D2",
-        "borderRadius": 4,
-        "flex": 1,
-        "padding": 3,
-        "paddingBottom": 1,
-      }
-    }
-  >
-    <TextIcon
-      code=""
-      style={
-        Object {
-          "color": "#fff",
-          "fontSize": 18,
-        }
-      }
-    />
-  </Component>
-  <Component
-    style={
-      Object {
-        "alignSelf": "center",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderTopColor": "#0176D2",
-        "borderWidth": 7,
-        "bottom": -11,
-        "position": "absolute",
-        "zIndex": 825,
-      }
-    }
-  />
-  <Component
-    style={
-      Object {
-        "alignSelf": "center",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderTopColor": "#fff",
-        "borderWidth": 6,
-        "bottom": -12,
-        "position": "absolute",
-        "zIndex": 1,
-      }
-    }
-  />
-  <Component
-    style={
-      Object {
-        "alignSelf": "center",
-        "backgroundColor": "transparent",
-        "borderColor": "transparent",
-        "borderTopColor": "#7f91a8",
-        "borderWidth": 7,
-        "bottom": -14,
-        "position": "absolute",
-        "zIndex": 0,
-      }
-    }
-  />
-</Component>
+/>
 `;

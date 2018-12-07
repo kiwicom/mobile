@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "android": "yarn react-native run-android",
+    "android-playground": "yarn react-native run-android --appFolder playground",
     "code-push": "node ./scripts/codePush.js",
     "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js",
     "e2e-iphone": "yarn detox build  --configuration ios.sim.debug && yarn detox test --configuration ios.sim.debug",
@@ -18,7 +19,7 @@
     "lint": "yarn eslint . --report-unused-disable-directives",
     "postinstall": "node ./scripts/configureApplication.js",
     "relay": "yarn relay-compiler --src . --schema ./schema.graphql",
-    "release-android": "node ./scripts/buildAndroidSnapshots.js",
+    "release-android": "yarn babel-node ./scripts/buildAndroidSnapshots.js",
     "release-ios": "node ./scripts/releaseFramework.js",
     "start": "yarn react-native start",
     "test": "node node_modules/jest/bin/jest.js --config=.jest.json",
@@ -59,8 +60,7 @@
     "react-native-code-push": "^5.4.2",
     "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.6.0-alpha.8af6728",
-    "regenerator-runtime": "^0.12.1",
-    "url-exists": "^1.0.3"
+    "regenerator-runtime": "^0.12.1"
   },
   "resolutions": {
     "**/babel-core": "7.0.0-bridge.0"

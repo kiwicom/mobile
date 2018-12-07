@@ -32,7 +32,6 @@ Object.entries(MenuComponents).forEach(
         headerRight:
           headerRight == null ? null : React.cloneElement(headerRight, props),
         headerStyle: {
-          ...StackNavigatorOptions.navigationOptions.headerStyle,
           ...headerStyle,
           backgroundColor: defaultTokens.paletteWhite,
         },

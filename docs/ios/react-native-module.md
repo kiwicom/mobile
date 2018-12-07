@@ -54,10 +54,10 @@ To check CodePush updates in `RNNativePlayground` follow the steps:
 
 1. Create two files **manually** (_use e.g. your code editor, but **don't do this via XCode**, because it will overwrite existing references in `project.pbxproj`_) called `staging.xcconfig` and `release.xcconfig` within `RNNativePlayground` and in each of them and correct key:
 ```
-STAGING_KEY=""
+STAGING_KEY=<my-key>
 ```
 ```
-RELEASE_KEY=""
+RELEASE_KEY=<my-key>
 ```
 
 _NOTE_: These files are added to the `.gitignore` which prevents from pushing these keys to github.

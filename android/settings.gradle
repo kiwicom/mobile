@@ -1,8 +1,11 @@
 apply from: "dependencies.gradle"
+
+include ':react-native-gesture-handler'
+project(':react-native-gesture-handler').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-gesture-handler/android')
 include ':react-native-code-push'
-project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
+project(':react-native-code-push').projectDir = new File("$rootDir/../node_modules/react-native-code-push/android/app")
 include ':react-native-zip-archive'
-project(':react-native-zip-archive').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-zip-archive/android')
+project(':react-native-zip-archive').projectDir = new File("$rootDir/../node_modules/react-native-zip-archive/android")
 include ':react-native-share'
 project(':react-native-share').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-share/android')
 include ':react-native-pdf'
@@ -10,15 +13,16 @@ project(':react-native-pdf').projectDir = new File(rootProject.projectDir, '../n
 include ':rn-fetch-blob'
 project(':rn-fetch-blob').projectDir = new File(rootProject.projectDir, '../node_modules/rn-fetch-blob/android')
 include ':react-native-tooltips'
-project(':react-native-tooltips').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-tooltips/android')
+project(':react-native-tooltips').projectDir = new File("$rootDir/../node_modules/react-native-tooltips/android")
 
-rootProject.name = 'reactNativeApp'
 include ':react-native-maps'
-project(':react-native-maps').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-maps/lib/android')
+project(':react-native-maps').projectDir = new File("$rootDir/../node_modules/react-native-maps/lib/android")
 include ':react-native-native-modules'
-project(':react-native-native-modules').projectDir = new File(rootProject.projectDir, './native/react-native-native-modules/')
+project(':react-native-native-modules').projectDir = new File("$rootDir/react-native-native-modules/")
 include ':@kiwicom/react-native-reverse-geocode'
 project(':@kiwicom/react-native-reverse-geocode').projectDir = new File(rootProject.projectDir, '../node_modules/@kiwicom/react-native-reverse-geocode/android')
 
+include ':rnkiwimobile'
+
 include ':app'
-include ':playground', ':rnkiwimobile'
+include ':playground'
