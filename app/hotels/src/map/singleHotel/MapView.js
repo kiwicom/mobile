@@ -3,7 +3,7 @@
 import * as React from 'react';
 import NativeMapView from 'react-native-maps';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { DropMarker, StyleSheet } from '@kiwicom/mobile-shared';
+import { DropMarkerImage, StyleSheet } from '@kiwicom/mobile-shared';
 
 import type { MapView_hotel } from './__generated__/MapView_hotel.graphql';
 
@@ -32,9 +32,10 @@ export class MapView extends React.Component<Props> {
           longitudeDelta: 0.01,
         }}
       >
-        <NativeMapView.Marker coordinate={{ latitude, longitude }}>
-          <DropMarker />
-        </NativeMapView.Marker>
+        <NativeMapView.Marker
+          coordinate={{ latitude, longitude }}
+          image={DropMarkerImage}
+        />
       </NativeMapView>
     );
   }
