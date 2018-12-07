@@ -6,9 +6,9 @@ data class RNHotelsInitialProperties(
     val checkin: String,
     val checkout: String,
     val cityName: String,
-    val cityId: String,
+    var cityId: String?,
     val roomsConfiguration: ArrayList<RNHotelsRoomsConfiguration>,
-    val hotelsCoordinates: RNHotelsCoordinates
+    val coordinates: RNHotelsCoordinates
 )
 
 data class RNHotelsRoomsConfiguration(
