@@ -60,8 +60,8 @@ object RNHotelsModule {
       )
       putBundle("coordinates", Bundle()
           .apply {
-            putDouble("latitude", initialProperties.hotelsCoordinates.latitude)
-            putDouble("longitude", initialProperties.hotelsCoordinates.longitude)
+            putDouble("latitude", initialProperties.coordinates.latitude)
+            putDouble("longitude", initialProperties.coordinates.longitude)
           })
     }
   }

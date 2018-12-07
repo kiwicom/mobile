@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     button_hotels_fragment.setOnClickListener {
       startActivity(Intent(this, HotelsActivityFragment.getViewModelClass()))
     }
+
+    button_stay22_hotels.setOnClickListener {
+      startActivity(Intent(this, HotelsStay22Activity.getViewModelClass()))
+    }
   }
 
   override fun onDestroy() {
