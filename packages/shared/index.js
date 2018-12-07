@@ -96,6 +96,7 @@ export { default as TextIcon } from './src/icons/TextIcon';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 export { default as StretchedImage } from './src/image/StretchedImage';
+export { default as DropMarkerImage } from './src/dropMarker/dropmarker.png';
 
 /**
  * Non-UI components (components without render output):
