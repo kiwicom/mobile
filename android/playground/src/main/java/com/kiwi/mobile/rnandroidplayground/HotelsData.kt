@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object HotelsData {
-  fun getInitialProperties(): RNHotelsInitialProperties {
+  fun getInitialProperties(cityName: String = "Barcelona"): RNHotelsInitialProperties {
     val checkIn = Calendar.getInstance()
     checkIn.add(Calendar.DATE, 12)
 
@@ -22,7 +22,7 @@ object HotelsData {
         currency = "EUR",
         checkin = simpleDateFormat.format(checkIn.time),
         checkout = simpleDateFormat.format(checkOut.time),
-        cityName = "Barcelona",
+        cityName = cityName,
         cityId = "aG90ZWxDaXR5Oi0zNzI0OTA",
         roomsConfiguration = ArrayList(listOf(RNHotelsRoomsConfiguration(
             adultsCount = 1,
@@ -36,7 +36,7 @@ object HotelsData {
   }
 
   fun getInitialPropertiesStay22(): RNHotelsInitialProperties {
-    val properties = getInitialProperties()
+    val properties = getInitialProperties("Oslo")
     properties.cityId = null
     return properties
   }
