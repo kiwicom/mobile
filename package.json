@@ -88,6 +88,6 @@
     "test-runner": "jest"
   },
   "rnkiwimobile": {
-    "code-push-target-binary-version": "3.0.0"
+    "code-push-target-binary-version": "4.0.0"
   }
 }

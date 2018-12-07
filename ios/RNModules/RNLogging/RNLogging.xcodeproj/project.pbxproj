@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2C0F16952031DADA0042FFEA /* RNLoggingModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0F16932031DADA0042FFEA /* RNLoggingModule.m */; };
+		2CB79943219F54B200CE7790 /* RNMessageLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB79942219F54B200CE7790 /* RNMessageLogger.m */; };
+		2CB79946219F54C100CE7790 /* RNDummyLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB79945219F54C100CE7790 /* RNDummyLogger.m */; };
 		D049D43AD1B9327C11C9BF07 /* libPods-RNLogging.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13B8E595CDC8D3ED79F2F209 /* libPods-RNLogging.a */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,12 @@
 		2C0F16872031DAB00042FFEA /* libRNLogging.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNLogging.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0F16932031DADA0042FFEA /* RNLoggingModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNLoggingModule.m; sourceTree = "<group>"; };
 		2C0F16942031DADA0042FFEA /* RNLoggingModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNLoggingModule.h; sourceTree = "<group>"; };
+		2CB79941219F54B200CE7790 /* RNMessageLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMessageLogger.h; sourceTree = "<group>"; };
+		2CB79942219F54B200CE7790 /* RNMessageLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMessageLogger.m; sourceTree = "<group>"; };
+		2CB79944219F54C100CE7790 /* RNDummyLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNDummyLogger.h; sourceTree = "<group>"; };
+		2CB79945219F54C100CE7790 /* RNDummyLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNDummyLogger.m; sourceTree = "<group>"; };
+		2CD79B3821938CAB001705B5 /* RNLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNLogger.h; sourceTree = "<group>"; };
+		2CD79B3C21938EF4001705B5 /* RNLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNLogging.h; sourceTree = "<group>"; };
 		36EDE1E57F09685555821BB5 /* Pods-RNLogging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNLogging.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNLogging/Pods-RNLogging.release.xcconfig"; sourceTree = "<group>"; };
 		541B4401C866A776BFD988DD /* Pods-RNLogging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNLogging.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNLogging/Pods-RNLogging.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,8 +90,14 @@
 		2C0F16892031DAB00042FFEA /* RNLogging */ = {
 			isa = PBXGroup;
 			children = (
+				2CD79B3C21938EF4001705B5 /* RNLogging.h */,
+				2CD79B3821938CAB001705B5 /* RNLogger.h */,
 				2C0F16942031DADA0042FFEA /* RNLoggingModule.h */,
 				2C0F16932031DADA0042FFEA /* RNLoggingModule.m */,
+				2CB79944219F54C100CE7790 /* RNDummyLogger.h */,
+				2CB79945219F54C100CE7790 /* RNDummyLogger.m */,
+				2CB79941219F54B200CE7790 /* RNMessageLogger.h */,
+				2CB79942219F54B200CE7790 /* RNMessageLogger.m */,
 			);
 			path = RNLogging;
 			sourceTree = "<group>";
@@ -184,6 +198,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C0F16952031DADA0042FFEA /* RNLoggingModule.m in Sources */,
+				2CB79943219F54B200CE7790 /* RNMessageLogger.m in Sources */,
+				2CB79946219F54C100CE7790 /* RNDummyLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
