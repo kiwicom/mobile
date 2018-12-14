@@ -93,6 +93,7 @@ export {
 } from './images/apple-wallet-image-2x.jpg';
 
 export { default as TextIcon } from './src/icons/TextIcon';
+export { default as Icon } from './src/icons/Icon';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 export { default as StretchedImage } from './src/image/StretchedImage';
