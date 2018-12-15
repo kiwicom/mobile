@@ -43,7 +43,7 @@ function hotelsResultsDisplayed(searchQuery: ?string, params: ?string) {
 }
 
 function hotelsFilterTagSet(filterTag: string) {
-  LoggingModule.hotelsFilterTagSet(filterTag);
+  LoggingModule.hotelsSelectedFilterTag(filterTag);
 }
 
 function hotelsDetailOpened() {

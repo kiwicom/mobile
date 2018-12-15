@@ -24,6 +24,7 @@ export type RoomRow_availableRoom = {|
     +currency: ?string,
   |}>,
   +room: ?{|
+    +id: string,
     +description: ?{|
       +title: ?string
     |},
@@ -107,6 +108,7 @@ return {
       "concreteType": null,
       "plural": false,
       "selections": [
+        v0,
         {
           "kind": "LinkedField",
           "alias": null,
@@ -174,5 +176,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '57f86108a4be2fcefd95d22224110b83';
+(node/*: any*/).hash = 'fbd7c495ebab8dc3c39eae6386da62a1';
 module.exports = node;

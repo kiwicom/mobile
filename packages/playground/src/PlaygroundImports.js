@@ -27,7 +27,7 @@ import '../../../packages/shared/src/buttons/__tests__/IncrementDecrementButtons
 import '../../../packages/shared/src/buttons/__tests__/Button.test.js';
 import '../../../packages/shared/src/__tests__/Text.test.js';
 import '../../../packages/shared/src/__tests__/SimpleCard.test.js';
-import '../../../packages/shared/src/__tests__/ReadMore.test.js';
+import '../../../packages/shared/src/readMore/__tests__/ReadMore.test.js';
 import '../../../packages/shared/src/__tests__/DropMarker.playground.test.js';
 import '../../../packages/shared/src/__tests__/AdaptableBadge.test.js';
 import '../../../packages/shared/src/offlineScreen/__tests__/OfflineScreen.test';

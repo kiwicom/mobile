@@ -74,7 +74,7 @@ export { default as SimpleCard } from './src/SimpleCard';
 export { default as GeneralError } from './src/errors/GeneralError';
 export { default as ErrorMessage } from './src/errors/ErrorMessage';
 
-export { default as ReadMore } from './src/ReadMore';
+export { default as ReadMore } from './src/readMore/ReadMore';
 export { default as BottomSheet } from './src/BottomSheet';
 export { default as RefreshableScrollView } from './src/RefreshableScrollView';
 

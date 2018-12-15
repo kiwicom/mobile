@@ -9,6 +9,7 @@ import {
   DropMarker,
   Text,
   TouchableWithoutFeedback,
+  Logger,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -50,6 +51,7 @@ export class Location extends React.Component<Props> {
       roomsConfiguration: this.props.roomsConfiguration,
       currency: this.props.currency,
     });
+    Logger.hotelsDetailMapOpened();
   };
 
   render() {

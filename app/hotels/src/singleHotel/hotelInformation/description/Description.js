@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Text, StyleSheet, ReadMore } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, ReadMore, Logger } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -31,6 +31,7 @@ export const Description = (props: Props) => (
       numberOfLines={5}
       truncatedText={<Translation id="single_hotel.description.show_more" />}
       revealedText={<Translation id="single_hotel.description.show_less" />}
+      onExpandText={Logger.hotelsDetailDescriptionExpanded}
     >
       <Text style={styles.summary}>
         <Translation passThrough={props.hotel?.summary} />

@@ -1,15 +1,11 @@
 // @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
 import OriginalReadMore from 'react-native-read-more-text'; // eslint-disable-line no-restricted-imports
 import { Translation } from '@kiwicom/mobile-localization';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Text from './Text';
-import Touchable from './Touchable';
-import StyleSheet from './PlatformStyleSheet';
-import type { StylePropType } from '../types/Styles';
+import ReadMoreLink from './ReadMoreLink';
+import type { StylePropType } from '../../types/Styles';
 
 type Props = {|
   +numberOfLines: number,
@@ -17,38 +13,30 @@ type Props = {|
   +truncatedText: React.Element<typeof Translation>,
   +revealedText: React.Element<typeof Translation>,
   +style?: StylePropType,
+  +onExpandText?: () => void,
+  +onHideText?: () => void,
 |};
-
-const Link = ({
-  label,
-  handlePress,
-  style,
-}: {|
-  label: React.Element<typeof Translation>,
-  handlePress: () => void,
-  style?: StylePropType,
-|}) => (
-  <View style={styles.linkView}>
-    <Touchable onPress={handlePress} noRipple={true}>
-      <Text style={[styles.linkText, style]}>{label}</Text>
-    </Touchable>
-  </View>
-);
 
 export default class ReadMore extends React.Component<Props> {
   renderTruncatedFooter = (handlePress: () => void) => (
-    <Link
+    <ReadMoreLink
       style={this.props.style}
       label={this.props.truncatedText}
       handlePress={handlePress}
+      type="truncated"
+      onExpandText={this.props.onExpandText}
+      onHideText={this.props.onHideText}
     />
   );
 
   renderRevealedFooter = (handlePress: () => void) => (
-    <Link
+    <ReadMoreLink
       style={this.props.style}
       label={this.props.revealedText}
       handlePress={handlePress}
+      type="revealed"
+      onExpandText={this.props.onExpandText}
+      onHideText={this.props.onHideText}
     />
   );
 
@@ -64,13 +52,3 @@ export default class ReadMore extends React.Component<Props> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  linkView: {
-    flexDirection: 'row',
-  },
-  linkText: {
-    color: defaultTokens.paletteProductNormal,
-    fontWeight: '500',
-  },
-});

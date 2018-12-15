@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon, Logger } from '@kiwicom/mobile-shared';
 
 import FilterButton from '../FilterButton';
 import type {
@@ -55,6 +55,7 @@ export default class OrderFilter extends React.Component<Props, State> {
   handleSave = (orderBy: OrderByEnum | null) => {
     this.props.onChange({ orderBy });
     this.togglePopup();
+    Logger.hotelsFilterTagSet('Sort');
   };
 
   togglePopup = () => {

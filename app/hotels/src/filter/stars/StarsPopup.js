@@ -6,6 +6,7 @@ import {
   ButtonPopup,
   Checkbox,
   Text,
+  Logger,
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -45,7 +46,10 @@ export default class StarsPopup extends React.Component<Props, State> {
       return { stars };
     });
 
-  onSave = () => this.props.onSave(this.state.stars);
+  onSave = () => {
+    this.props.onSave(this.state.stars);
+    Logger.hotelsFilterTagSet('Stars');
+  };
 
   renderCheckboxes = (stars: number[]) => {
     const checkboxes = [];
