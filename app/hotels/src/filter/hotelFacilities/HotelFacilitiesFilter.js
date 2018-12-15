@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
+import { Logger } from '@kiwicom/mobile-shared';
 
 import HotelFacilitiesPopup from './HotelFacilitiesPopup';
 import FilterButton from '../FilterButton';
@@ -47,7 +48,12 @@ export default class HotelFacilitiesFilter extends React.Component<
   };
 
   handleSave = (hotelFacilities: string[]) =>
-    this.closePopup(() => this.props.onChange({ hotelFacilities }));
+    this.closePopup(() => {
+      this.props.onChange({ hotelFacilities });
+      if (hotelFacilities.length > 0) {
+        Logger.hotelsFilterTagSet('Amenities');
+      }
+    });
 
   getTitle = (facilities: string[]) => (
     <TranslationFragment>

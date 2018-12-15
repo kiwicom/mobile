@@ -8,6 +8,7 @@ import {
   Text,
   Touchable,
   Stars,
+  Logger,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -52,6 +53,9 @@ export class Header extends React.Component<Props> {
       hotelName,
       images,
     });
+    Logger.hotelsGalleryOpened(
+      Logger.HotelGalleryType.HOTELS_GALLERY_TYPE_HOTEL,
+    );
   };
 
   render() {

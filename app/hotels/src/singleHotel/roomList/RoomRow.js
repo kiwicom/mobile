@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet } from '@kiwicom/mobile-shared';
+import { StyleSheet, Logger } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import {
   type NavigationType,
@@ -52,24 +52,27 @@ export class RoomRow extends React.Component<Props> {
         id: 'single_hotel.alert.cannot_book_more_rooms_than_guests',
       });
     } else {
-      const { id, maxPersons } = this.getIdAndMaxPersons();
+      const { id, maxPersons, type, roomId } = this.getSelectData();
       if (id && maxPersons) {
         this.props.select(id, maxPersons);
+        Logger.hotelsDetailRoomSelected(roomId, type);
       }
     }
   };
 
   deselect = () => {
-    const { id, maxPersons } = this.getIdAndMaxPersons();
+    const { id, maxPersons } = this.getSelectData();
     if (id && maxPersons) {
       this.props.deselect(id, maxPersons);
     }
   };
 
-  getIdAndMaxPersons = () => {
+  getSelectData = () => {
     const id = this.props.availableRoom?.id;
     const maxPersons = this.props.availableRoom?.room?.maxPersons;
-    return { id, maxPersons };
+    const type = this.props.availableRoom?.room?.description?.title ?? '';
+    const roomId = this.props.availableRoom?.room?.id ?? '';
+    return { id, maxPersons, type, roomId };
   };
 
   openGallery = () => {
@@ -92,6 +95,9 @@ export class RoomRow extends React.Component<Props> {
       hotelName: roomTitle,
       images: photos,
     });
+    Logger.hotelsGalleryOpened(
+      Logger.HotelGalleryType.HOTELS_GALLERY_TYPE_ROOM,
+    );
   };
 
   render() {
@@ -173,6 +179,7 @@ export default (createFragmentContainer(
         currency
       }
       room {
+        id
         description {
           title
         }

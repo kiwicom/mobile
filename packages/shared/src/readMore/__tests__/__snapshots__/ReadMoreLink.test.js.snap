@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#171b1e",
+            "fontFamily": "CircularPro-Book",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "letterSpacing": -0.15,
+          },
+          Array [
+            Object {
+              "color": "#00a991",
+              "fontWeight": "500",
+            },
+            undefined,
+          ],
+        ]
+      }
+    >
+      <Text>
+        test
+      </Text>
+    </Text>
+  </View>
+</View>
+`;

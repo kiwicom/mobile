@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { GeneralError, OfflineScreen } from '@kiwicom/mobile-shared';
+import { GeneralError, OfflineScreen, Logger } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { PublicApiRenderer } from '@kiwicom/mobile-relay';
 
@@ -16,6 +16,12 @@ type Props = {|
 |};
 
 export default class HotelsSearch extends React.Component<Props> {
+  componentDidMount() {
+    // $FlowExpectedError: Query is actually a function (tagged literal)
+    const { text: query } = this.props.query();
+    Logger.hotelsResultsDisplayed(query, JSON.stringify(this.props.variables));
+  }
+
   renderOfflineScreen = (retry: () => void) => {
     return <OfflineScreen onClose={this.props.onClose} onTryAgain={retry} />;
   };

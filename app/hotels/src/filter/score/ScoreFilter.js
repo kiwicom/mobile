@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon, Logger } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import ScorePopup from './ScorePopup';
@@ -52,7 +52,12 @@ export default class ScoreFilter extends React.Component<Props, State> {
   };
 
   handleSave = (minScore: number | null) =>
-    this.closePopup(() => this.props.onChange({ minScore }));
+    this.closePopup(() => {
+      this.props.onChange({ minScore });
+      if (minScore !== null) {
+        Logger.hotelsFilterTagSet('Rating');
+      }
+    });
 
   getTitle = (minScore: number | null) =>
     minScore ? (

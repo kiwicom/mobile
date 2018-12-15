@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { TextIcon, Logger } from '@kiwicom/mobile-shared';
 import {
   Translation,
   TranslationFragment,
@@ -70,7 +70,10 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
       maxPrice:
         maxPrice !== this.props.currentSearchStats.priceMax ? maxPrice : null,
     };
-    this.closePopup(() => this.props.onChange(filter));
+    this.closePopup(() => {
+      this.props.onChange(filter);
+      Logger.hotelsFilterTagSet('Price');
+    });
   };
 
   getTitle = (
