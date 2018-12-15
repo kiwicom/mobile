@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
+import { Logger } from '@kiwicom/mobile-shared';
 
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
@@ -12,8 +13,12 @@ type Props = {|
 |};
 
 export default class FreeCancellationFilter extends React.Component<Props> {
-  onChange = () =>
+  onChange = () => {
     this.props.onChange({ freeCancellation: !this.props.isActive });
+    if (this.props.isActive === false) {
+      Logger.hotelsFilterTagSet('Free cancellation');
+    }
+  };
 
   render() {
     return (

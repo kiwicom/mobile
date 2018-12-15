@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
-import { WithStandaloneScreen } from '@kiwicom/mobile-shared';
+import { WithStandaloneScreen, Logger } from '@kiwicom/mobile-shared';
 
 import SingleHotel from '../../singleHotel/SingleHotelContainer';
 import type { NavigationProps } from '../HotelsNavigationStack';
@@ -29,6 +29,7 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
       goBack: this.goBack,
       isStandAlonePackage: this.props.isStandAlonePackage,
     });
+    Logger.hotelsDetailOpened();
   }
 
   goBack = () => {
