@@ -1,13 +1,17 @@
 //@flow
 
-import DefaultVocabulary, { type TranslationKeys } from './DefaultVocabulary';
+import DefaultVocabulary, {
+  type TranslationKeys,
+  type TranslationKeysObject,
+} from './DefaultVocabulary';
 
 export const getTranslation = (
   translatedString: ?string,
   translationId: TranslationKeys,
+  vocabulary: TranslationKeysObject = DefaultVocabulary,
 ): string => {
   const nativeKey = `mobile.${translationId}`;
-  const defaultTranslation = DefaultVocabulary[translationId];
+  const defaultTranslation = vocabulary[translationId];
 
   if (translatedString === nativeKey) {
     // fallback to our dummy vocabulary because native code didn't provide translation
