@@ -27,4 +27,6 @@ AppRegistry.registerComponent(
 );
 
 // This file is only used for native integration and we use CodePush there
-CodePush.sync();
+CodePush.sync({
+  installMode: CodePush.InstallMode.IMMEDIATE,
+});
