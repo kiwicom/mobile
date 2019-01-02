@@ -44,19 +44,19 @@ RCT_EXPORT_MODULE();
     return YES;
 }
 
-RCT_EXPORT_METHOD(ancillaryDisplayed:(NSString *)type provider:(NSString *)provider) {
+RCT_EXPORT_METHOD(ancillaryDisplayed:(nullable NSString *)type provider:(nullable NSString *)provider) {
     [self.logger ancillaryDisplayed:type provider:provider];
 }
 
-RCT_EXPORT_METHOD(ancillaryPurchased:(NSString *)type provider:(NSString *)provider) {
+RCT_EXPORT_METHOD(ancillaryPurchased:(nullable NSString *)type provider:(nullable NSString *)provider) {
     [self.logger ancillaryPurchased:type provider:provider];
 }
 
-RCT_EXPORT_METHOD(hotelsResultsDisplayed:(NSString *)searchQuery params:(NSString *)parameters) {
+RCT_EXPORT_METHOD(hotelsResultsDisplayed:(nullable NSString *)searchQuery params:(nullable NSString *)parameters) {
     [self.logger hotelsResultsDisplayed:searchQuery params:parameters];
 }
 
-RCT_EXPORT_METHOD(hotelsSelectedFilterTag:(NSString *)filterTag) {
+RCT_EXPORT_METHOD(hotelsSelectedFilterTag:(nonnull NSString *)filterTag) {
     [self.logger hotelsSelectedFilterTag:filterTag];
 }
 
@@ -76,15 +76,15 @@ RCT_EXPORT_METHOD(hotelsDetailMapOpened) {
     [self.logger hotelsDetailMapOpened];
 }
 
-RCT_EXPORT_METHOD(hotelsDetailRoomSelected:(NSString *)hotelID roomType:(NSString *)roomType) {
+RCT_EXPORT_METHOD(hotelsDetailRoomSelected:(nonnull NSString *)hotelID roomType:(nonnull NSString *)roomType) {
     [self.logger hotelsDetailRoomSelected:hotelID roomType:roomType];
 }
 
-RCT_EXPORT_METHOD(hotelsGalleryOpened:(NSString *)type) {
+RCT_EXPORT_METHOD(hotelsGalleryOpened:(nonnull NSString *)type) {
     [self.logger hotelsGalleryOpened:type];
 }
 
-RCT_EXPORT_METHOD(hotelsBookNowPressed:(NSString *)hotelID rooms:(NSNumber *)rooms guests:(NSNumber *)guests price:(NSNumber *)price formattedPrice:(NSString *)formattedPrice) {
+RCT_EXPORT_METHOD(hotelsBookNowPressed:(nonnull NSString *)hotelID rooms:(nonnull NSNumber *)rooms guests:(nonnull NSNumber *)guests price:(nonnull NSNumber *)price formattedPrice:(nonnull NSString *)formattedPrice) {
     [self.logger hotelsBookNowPressed:hotelID rooms:rooms guests:guests price:price formattedPrice:formattedPrice];
 }
 
