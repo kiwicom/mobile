@@ -5,6 +5,8 @@ import { getTranslation } from '../TranslationHelpers';
 const vocabulary = {
   'single_hotel.hotel_review.reviews': '__count__ Reviews',
   'hotels.gallery.pagination': '__1_photoNumber__ of __2_totalPhotos__',
+  'single_hotel.book_now.description':
+    '__1_personCount__ Guests · __2_numberOfRooms__ Rooms',
 };
 
 describe('getTranslation:', () => {
@@ -40,12 +42,20 @@ describe('getTranslation:', () => {
     );
   });
 
+  it('handles changed translations', () => {
+    const translationId = 'single_hotel.book_now.description';
+    const translatedString = 'Počet hostů: %1$@ · Počet pokojů: %2$@ · %3$@';
+    expect(getTranslation(translatedString, translationId, vocabulary)).toBe(
+      'Počet hostů: __1_personCount__ · Počet pokojů: __2_numberOfRooms__ · ',
+    );
+  });
+
   it('returns translated string if parameter matching is not possible', () => {
     const translationId = 'hotels.gallery.pagination';
     const translatedString = '%1$@ of %2$@';
     const mistake = ' and MISTAKE %3$@';
     expect(
       getTranslation(translatedString + mistake, translationId, vocabulary),
-    ).toBe(translatedString + mistake);
+    ).toBe('__1_photoNumber__ of __2_totalPhotos__ and MISTAKE ');
   });
 });
