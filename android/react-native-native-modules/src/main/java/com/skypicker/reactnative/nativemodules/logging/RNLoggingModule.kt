@@ -53,8 +53,8 @@ class RNLoggingModule(reactContext: ReactApplicationContext, activeBooking: Bool
     }
 
     private object HotelsGalleryType {
-        const val HOTEL = "HOTEL"
-        const val ROOM = "ROOM"
+        const val HOTEL = "hotel"
+        const val ROOM = "room"
     }
 
     // endregion Public Types
@@ -163,9 +163,9 @@ class RNLoggingModule(reactContext: ReactApplicationContext, activeBooking: Bool
     }
 
     @ReactMethod
-    fun hotelsGalleryOpened(type: String) {
+    fun hotelsGalleryOpened(type: HotelsGalleryOpened.Type) {
         eventSenders.sendEvent(
-                HotelsGalleryOpened(HotelsGalleryOpened.Type.valueOf(type))
+                HotelsGalleryOpened(type)
         )
     }
 
