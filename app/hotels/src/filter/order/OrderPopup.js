@@ -69,7 +69,10 @@ export default class OrderPopup extends React.Component<Props, State> {
           <React.Fragment key={option.key}>
             {index !== 0 && (
               <View style={styles.separator}>
-                <SeparatorFullWidth color={defaultTokens.paletteInkLighter} />
+                <SeparatorFullWidth
+                  color={defaultTokens.paletteInkLighter}
+                  height={0.5}
+                />
               </View>
             )}
             <OrderCheckbox
