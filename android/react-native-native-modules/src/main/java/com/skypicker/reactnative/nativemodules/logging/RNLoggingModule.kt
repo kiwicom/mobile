@@ -53,8 +53,8 @@ class RNLoggingModule(reactContext: ReactApplicationContext, activeBooking: Bool
     }
 
     private object HotelsGalleryType {
-        const val HOTEL = "hotel"
-        const val ROOM = "room"
+        const val HOTEL = "HOTEL"
+        const val ROOM = "ROOM"
     }
 
     // endregion Public Types
