@@ -1,7 +1,13 @@
-# Internal native dependencies
+# react-native-native-modules
+
+Our own internal native dependencies.
 
 These dependencies can be found in 
 [react-native-native-modules](../../android/react-native-native-modules/src/main/java/com/skypicker/reactnative/nativemodules).
+
+## Releasing a new version
+
+When changing code from one of these modules, you will need to bump the version from [rnmodules/package.json#version](../../packages/rnmodules/package.json#L3). Moreover, you need to bump `rnkiwimobile` version at [.buid/package.json#version](../../.build/package.json##L3).
 
 ## Create a new internal native module
 
