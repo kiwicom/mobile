@@ -8,6 +8,7 @@ import {
   Slider,
   StyleSheet,
   SliderLabels,
+  Price,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -89,21 +90,19 @@ export default class PricePopup extends React.Component<Props, State> {
             max={max}
             min={min}
             startLabel={
-              <Translation
-                id="hotels_search.filter.price_popup.price_label"
-                values={{
+              <Price
+                price={{
                   amount: start * daysOfStay,
-                  currency: currency,
+                  currency,
                 }}
               />
             }
             startValue={start}
             endLabel={
-              <Translation
-                id="hotels_search.filter.price_popup.price_label"
-                values={{
+              <Price
+                price={{
                   amount: end * daysOfStay,
-                  currency: currency,
+                  currency,
                 }}
               />
             }

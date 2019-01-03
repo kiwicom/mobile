@@ -38,7 +38,6 @@ export default {
   'hotels_search.filter.price_popup.save': 'Save',
   'hotels_search.filter.price_popup.title': 'Price range',
   'hotels_search.filter.price_popup.subtitle': 'per stay',
-  'hotels_search.filter.price_popup.price_label': '__1_amount__ __2_currency__',
   'hotels_search.filter.score_filter.rating': 'Rating',
   'hotels_search.filter.score_filter.rating.6': 'pleasant 6+',
   'hotels_search.filter.score_filter.rating.7': 'good 7+',
