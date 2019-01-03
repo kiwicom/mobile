@@ -163,9 +163,9 @@ class RNLoggingModule(reactContext: ReactApplicationContext, activeBooking: Bool
     }
 
     @ReactMethod
-    fun hotelsGalleryOpened(type: HotelsGalleryOpened.Type) {
+    fun hotelsGalleryOpened(type: String) {
         eventSenders.sendEvent(
-                HotelsGalleryOpened(type)
+            HotelsGalleryOpened(HotelsGalleryOpened.Type.valueOf(type))
         )
     }
 
