@@ -3,16 +3,16 @@
 import * as React from 'react';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { View } from 'react-native';
-import type { OnLayout } from '@kiwicom/mobile-shared';
+import { type OnLayout, Price } from '@kiwicom/mobile-shared';
 import { type TranslationType } from '@kiwicom/mobile-localization';
 
 import Text from './Text';
 import StyleSheet from './PlatformStyleSheet';
 
 type Props = {|
-  +startLabel: TranslationType,
+  +startLabel: TranslationType | React.Element<typeof Price>,
   +startValue: number,
-  +endLabel?: TranslationType,
+  +endLabel?: TranslationType | React.Element<typeof Price>,
   +endValue?: number,
   +max: number,
   +min: number,
