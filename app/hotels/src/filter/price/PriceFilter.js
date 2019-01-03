@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon, Logger } from '@kiwicom/mobile-shared';
+import { TextIcon, Logger, Price } from '@kiwicom/mobile-shared';
 import {
   Translation,
   TranslationFragment,
@@ -91,9 +91,8 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
       return (
         <TranslationFragment>
           <Translation passThrough="< " />
-          <Translation
-            id="hotels_search.filter.price_popup.price_label"
-            values={{
+          <Price
+            price={{
               amount: end * daysOfStay,
               currency: currency,
             }}
@@ -105,9 +104,8 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
       return (
         <TranslationFragment>
           <Translation passThrough="> " />
-          <Translation
-            id="hotels_search.filter.price_popup.price_label"
-            values={{
+          <Price
+            price={{
               amount: start * daysOfStay,
               currency: currency,
             }}
@@ -117,17 +115,15 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
     }
     return (
       <TranslationFragment>
-        <Translation
-          id="hotels_search.filter.price_popup.price_label"
-          values={{
+        <Price
+          price={{
             amount: start * daysOfStay,
             currency: currency,
           }}
         />
         <Translation passThrough=" - " />
-        <Translation
-          id="hotels_search.filter.price_popup.price_label"
-          values={{
+        <Price
+          price={{
             amount: end * daysOfStay,
             currency: currency,
           }}
