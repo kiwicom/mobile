@@ -5,6 +5,8 @@ import DefaultVocabulary, {
   type TranslationKeysObject,
 } from './DefaultVocabulary';
 
+const NATIVE_TRANSLATION_PARAM_REGEX = /%([0-9]+)\$@/g;
+
 export const getTranslation = (
   translatedString: ?string,
   translationId: TranslationKeys,
@@ -28,7 +30,6 @@ export const getTranslation = (
   // %1$@, so we lose information about the variables.
   // We add this information back in:
   try {
-    const NATIVE_TRANSLATION_PARAM_REGEX = /%([0-9]+)\$@/g;
     const compatibleTranslatedString = translatedString.replace(
       NATIVE_TRANSLATION_PARAM_REGEX,
       (match, variableIndex) => {
@@ -41,9 +42,11 @@ export const getTranslation = (
         );
 
         if (originalParamMatches == null || originalParamMatches.length !== 1) {
-          throw new Error(
-            `There was a problem with translationId ${translationId}`,
+          console.warn(
+            `Missing translation parameter for ${translationId} variableIndex = ${variableIndex}`,
           );
+          // Translation has probably changed, but not been upated on phraseApp
+          return '';
         }
 
         return originalParamMatches[0];
