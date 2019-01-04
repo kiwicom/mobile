@@ -8,6 +8,7 @@ import PublicEnvironment from '../PublicEnvironment';
 
 jest.mock('../PrivateEnvironment');
 jest.mock('../PublicEnvironment');
+jest.mock('AsyncStorage');
 
 afterEach(() => {
   jest.resetAllMocks();
