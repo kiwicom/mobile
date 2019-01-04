@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Animated, View } from 'react-native';
+import { Animated, Dimensions, View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, Device } from '@kiwicom/mobile-shared';
 
@@ -24,7 +24,7 @@ type Props = {|
   +show: ResultType,
 |};
 
-export const topValue = 1000;
+export const topValue = Dimensions.get('window').height;
 export const lowValue = -100;
 const transitionDuration = 250;
 
