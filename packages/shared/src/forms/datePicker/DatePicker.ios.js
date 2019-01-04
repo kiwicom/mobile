@@ -53,9 +53,9 @@ export default class DatePicker extends React.Component<Props, State> {
     this.setState({
       date: new Date(
         Date.UTC(
-          selectedDate.getFullYear(),
-          selectedDate.getMonth(),
-          selectedDate.getDate(),
+          selectedDate.getUTCFullYear(),
+          selectedDate.getUTCMonth(),
+          selectedDate.getUTCDate(),
         ),
       ),
     });

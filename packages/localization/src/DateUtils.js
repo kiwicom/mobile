@@ -2,7 +2,7 @@
 
 // test immutability
 function addDays(date: Date, days: number): Date {
-  const result = new Date(date);
+  const result = toUTCFullDate(date);
   result.setDate(result.getDate() + days);
   return result;
 }
@@ -23,13 +23,13 @@ const toUTCDate = (inDate: Date) => {
 const toUTCFullDate = (inDate: Date) => {
   return new Date(
     Date.UTC(
-      inDate.getFullYear(),
-      inDate.getMonth(),
-      inDate.getDate(),
-      inDate.getHours(),
-      inDate.getMinutes(),
-      inDate.getSeconds(),
-      inDate.getMilliseconds(),
+      inDate.getUTCFullYear(),
+      inDate.getUTCMonth(),
+      inDate.getUTCDate(),
+      inDate.getUTCHours(),
+      inDate.getUTCMinutes(),
+      inDate.getUTCSeconds(),
+      inDate.getUTCMilliseconds(),
     ),
   );
 };
@@ -115,7 +115,9 @@ DateUtils.isBeforeDate = (firstDate: Date, secondDate: Date): boolean => {
 
 DateUtils.getUTCToday = () => {
   const now = new Date();
-  return new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()));
+  return new Date(
+    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
+  );
 };
 
 DateUtils.getUTCNow = getUTCNow;
@@ -124,5 +126,7 @@ DateUtils.latestTimeOfDay = (day: Date) => {
   const { year, month, date } = getUTCYearMonthDate(day);
   return new Date(Date.UTC(year, month, date, 23, 59, 59, 999));
 };
+
+DateUtils.toUTCDate = toUTCDate;
 
 export default DateUtils;
