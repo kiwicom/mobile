@@ -65,7 +65,7 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
     const checkout =
       dates.checkout === null
         ? DateFormatter(
-            DateUtils(new Date(checkin)).addDays(1),
+            DateUtils(DateUtils.toUTCDate(new Date(checkin))).addDays(1),
           ).formatForMachine()
         : dates.checkout;
     return {
