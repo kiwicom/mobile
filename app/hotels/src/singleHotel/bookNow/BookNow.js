@@ -7,7 +7,7 @@ import {
   withNavigation,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
-import { DeviceInfo, Translation } from '@kiwicom/mobile-localization';
+import { DeviceInfo, Translation, Alert } from '@kiwicom/mobile-localization';
 
 import convertRooms from './convertRooms';
 import {
@@ -26,6 +26,8 @@ type Props = {
   +navigation: NavigationType,
   +currency: string,
   +hotelId: ?string,
+  +getGuestCount: () => number,
+  +maxPersons: number,
 };
 
 export class BookNow extends React.Component<Props> {
@@ -40,9 +42,38 @@ export class BookNow extends React.Component<Props> {
     }
   };
 
+  onPress = () => {
+    const numberOfGuests = this.props.getGuestCount();
+    if (numberOfGuests > this.props.maxPersons) {
+      Alert.translatedAlert(
+        {
+          id: 'single_hotel.book_now.alert_title',
+        },
+        {
+          id: 'single_hotel.book_now.alert_body',
+          values: { numberOfGuests },
+        },
+        [
+          {
+            text: { id: 'shared.button.cancel' },
+            style: 'destructive',
+          },
+          {
+            text: {
+              id: 'single_hotel.book_now.alert_ok',
+            },
+            onPress: this.handleGoToPayment,
+          },
+        ],
+      );
+    } else {
+      this.handleGoToPayment();
+    }
+  };
+
   render() {
     return (
-      <Button onPress={this.handleGoToPayment} testID="bookNowButton">
+      <Button onPress={this.onPress} testID="bookNowButton">
         <ButtonTitle
           text={<Translation id="single_hotel.book_now" />}
           style={styles.text}
@@ -52,12 +83,17 @@ export class BookNow extends React.Component<Props> {
   }
 }
 
-const select = ({ currency, hotelId }: HotelsContextState) => ({
+const select = ({ currency, hotelId, getGuestCount }: HotelsContextState) => ({
   currency,
   hotelId,
+  getGuestCount,
 });
-const selectHotelDetailScreen = ({ selected }: HotelDetailScreenState) => ({
+const selectHotelDetailScreen = ({
   selected,
+  maxPersons,
+}: HotelDetailScreenState) => ({
+  selected,
+  maxPersons,
 });
 
 export default withHotelDetailScreenContext(selectHotelDetailScreen)(

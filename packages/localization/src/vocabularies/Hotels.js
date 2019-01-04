@@ -73,6 +73,10 @@ export default {
   'single_hotel.book_now': 'Book Now',
   'single_hotel.book_now.description':
     '__1_personCount__ Guests · __2_numberOfRooms__ Rooms',
+  'single_hotel.book_now.alert_title': 'Not enough beds for everyone',
+  'single_hotel.book_now.alert_body':
+    'Your selection accommodates less than __numberOfGuests__ persons',
+  'single_hotel.book_now.alert_ok': "Thats's fine",
   'single_hotel.description.facilities.show_less': 'Show less',
   'single_hotel.description.facilities.show_more': 'More',
   'single_hotel.hotel_detail_screen.hotel_not_found': 'Hotel not found.',

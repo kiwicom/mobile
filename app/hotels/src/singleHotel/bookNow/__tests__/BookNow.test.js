@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
+import { Alert } from '@kiwicom/mobile-localization';
 
 import { BookNow } from '../BookNow';
 
@@ -41,6 +42,8 @@ it('renders without crashing', () => {
     checkout: new Date(1),
     currency: 'EUR',
     navigation,
+    getGuestCount: jest.fn(),
+    maxPersons: 2,
   };
   PlaygroundRenderer.render(<BookNow {...props} />);
 });
@@ -57,7 +60,39 @@ it('renders without crashing with missing data', () => {
     checkout: new Date(1),
     currency: 'EUR',
     navigation,
+    getGuestCount: jest.fn(),
+    maxPersons: 2,
   };
 
   PlaygroundRenderer.render(<BookNow {...props} />);
+});
+
+it('calls handleGoToPayment when numberOfGuests = maxPersons', () => {
+  // $FlowExpectedError: Passing just props needed to run test
+  const Component = new BookNow({
+    getGuestCount: () => 5,
+    maxPersons: 5,
+  });
+
+  const handleGoToPayment = jest.fn();
+  Component.handleGoToPayment = handleGoToPayment;
+  Component.onPress();
+
+  expect(handleGoToPayment).toHaveBeenCalled();
+});
+
+it('should show an alert if numberOfGuests > maxPersons', () => {
+  // $FlowExpectedError: Passing just props needed to run test
+  const Component = new BookNow({
+    getGuestCount: () => 6,
+    maxPersons: 5,
+  });
+
+  const spy = jest.spyOn(Alert, 'translatedAlert');
+  const handleGoToPayment = jest.fn();
+  Component.handleGoToPayment = handleGoToPayment;
+  Component.onPress();
+
+  expect(handleGoToPayment).not.toHaveBeenCalled();
+  expect(spy).toHaveBeenCalled();
 });
