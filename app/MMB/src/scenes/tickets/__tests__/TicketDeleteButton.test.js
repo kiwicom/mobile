@@ -28,11 +28,11 @@ describe('TicketDeleteButton', () => {
       bookingId: 123456,
       isFocused: true,
     });
-
-    const spy = jest.spyOn(Component, 'hasLocalFiles');
+    const hasLocalFiles = jest.fn();
+    Component.hasLocalFiles = hasLocalFiles;
 
     Component.componentDidUpdate({ isFocused: false, bookingId: 123456 });
-    expect(spy).toHaveBeenCalled();
+    expect(hasLocalFiles).toHaveBeenCalled();
   });
 
   it('should not call hasLocalFiles when component is not focused', () => {
@@ -41,10 +41,11 @@ describe('TicketDeleteButton', () => {
       isFocused: false,
     });
 
-    const spy = jest.spyOn(Component, 'hasLocalFiles');
+    const hasLocalFiles = jest.fn();
+    Component.hasLocalFiles = hasLocalFiles;
 
     Component.componentDidUpdate({ isFocused: false, bookingId: 123456 });
-    expect(spy).not.toHaveBeenCalled();
+    expect(hasLocalFiles).not.toHaveBeenCalled();
   });
 
   it('should not call hasLocalFiles when component is already focused', () => {
@@ -53,9 +54,10 @@ describe('TicketDeleteButton', () => {
       isFocused: true,
     });
 
-    const spy = jest.spyOn(Component, 'hasLocalFiles');
+    const hasLocalFiles = jest.fn();
+    Component.hasLocalFiles = hasLocalFiles;
 
     Component.componentDidUpdate({ isFocused: true, bookingId: 123456 });
-    expect(spy).not.toHaveBeenCalled();
+    expect(hasLocalFiles).not.toHaveBeenCalled();
   });
 });

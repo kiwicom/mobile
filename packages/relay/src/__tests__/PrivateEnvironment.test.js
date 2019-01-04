@@ -4,6 +4,7 @@ import PrivateEnvironment from '../PrivateEnvironment';
 import createEnvironment from '../Environment';
 
 jest.mock('../Environment');
+jest.mock('AsyncStorage');
 
 let count = 0;
 // $FlowExpectedError: mockImplementation does exists, but flow does not know about it
