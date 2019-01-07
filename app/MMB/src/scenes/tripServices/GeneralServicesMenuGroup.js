@@ -70,8 +70,6 @@ export default createFragmentContainer(
   withNavigation(GeneralServicesMenuGroup),
   graphql`
     fragment GeneralServicesMenuGroup on BookingInterface {
-      databaseId
-      authToken
       status
       passengers {
         nationality

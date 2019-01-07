@@ -13,12 +13,12 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type VariantButtons$ref: FragmentReference;
 export type VariantButtons = {|
   +insurancePrices: ?$ReadOnlyArray<?{|
-    +insuranceType: ?InsuranceType,
-    +price: ?{|
-      +amount: ?number,
-      +currency: ?string,
-    |},
+    +insuranceType: ?InsuranceType
   |}>,
+  +price: ?{|
+    +amount: ?number,
+    +currency: ?string,
+  |},
   +$refType: VariantButtons$ref,
 |};
 */
@@ -46,36 +46,36 @@ const node/*: ConcreteFragment*/ = {
           "name": "insuranceType",
           "args": null,
           "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "price",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Price",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "amount",
+          "args": null,
+          "storageKey": null
         },
         {
-          "kind": "LinkedField",
+          "kind": "ScalarField",
           "alias": null,
-          "name": "price",
-          "storageKey": null,
+          "name": "currency",
           "args": null,
-          "concreteType": "Price",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "amount",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "currency",
-              "args": null,
-              "storageKey": null
-            }
-          ]
+          "storageKey": null
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '1e87a1a953da25c22551c7b44f08d28e';
+(node/*: any*/).hash = 'e340e64c745691406260e24369a099dc';
 module.exports = node;

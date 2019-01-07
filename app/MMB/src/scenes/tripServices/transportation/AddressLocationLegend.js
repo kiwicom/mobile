@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 45,
     shadowOpacity: 0.1,
     shadowRadius: 4,
-    shadowColor: Color.black, //TODO
+    shadowColor: Color.black, // TODO
     shadowOffset: { height: 0, width: 0 },
   },
   icon: {

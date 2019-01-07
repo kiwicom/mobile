@@ -19,7 +19,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 
 import GalleryButton from '../galleryButton/GalleryButton';
-import type { Header_hotel } from './__generated__/Header_hotel.graphql';
+import type { Header_hotel as HotelType } from './__generated__/Header_hotel.graphql';
 
 type ContainerProps = {|
   +hotel: any,
@@ -27,7 +27,7 @@ type ContainerProps = {|
 
 export type Props = {
   ...ContainerProps,
-  +hotel: ?Header_hotel,
+  +hotel: ?HotelType,
   +navigation: NavigationType,
 };
 
@@ -102,7 +102,6 @@ export default (createFragmentContainer(
       }
       rating {
         stars
-        categoryName
       }
       photos {
         edges {

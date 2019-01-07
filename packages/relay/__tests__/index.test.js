@@ -2,7 +2,8 @@
 
 import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
 
-import { commitMutation } from '../';
+import { commitMutation } from '..';
+
 import ConnectionManager from '../src/ConnectionManager';
 import PrivateEnvironment from '../src/PrivateEnvironment';
 import PublicEnvironment from '../src/PublicEnvironment';

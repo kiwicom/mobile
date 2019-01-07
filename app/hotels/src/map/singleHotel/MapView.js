@@ -5,7 +5,7 @@ import NativeMapView from 'react-native-maps';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { DropMarkerImage, StyleSheet } from '@kiwicom/mobile-shared';
 
-import type { MapView_hotel } from './__generated__/MapView_hotel.graphql';
+import type { MapView_hotel as HotelType } from './__generated__/MapView_hotel.graphql';
 
 type ContainerProps = {|
   hotel: any,
@@ -13,7 +13,7 @@ type ContainerProps = {|
 
 type Props = {
   ...ContainerProps,
-  hotel: ?MapView_hotel,
+  hotel: ?HotelType,
 };
 
 export class MapView extends React.Component<Props> {

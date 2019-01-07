@@ -26,7 +26,7 @@ describe('ServicesMenuGroup', () => {
       <FlightServices onPress={jest.fn()} isActive={false} data={props} />,
     );
 
-    expect(wrapper).toMatchInlineSnapshot(`"BookingOneWay"`);
+    expect(wrapper).toMatchInlineSnapshot('"BookingOneWay"');
   });
 
   it('renders with past trip', () => {
@@ -41,6 +41,6 @@ describe('ServicesMenuGroup', () => {
       />,
     );
 
-    expect(wrapper).toMatchInlineSnapshot(`null`);
+    expect(wrapper).toMatchInlineSnapshot('null');
   });
 });

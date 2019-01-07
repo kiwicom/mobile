@@ -5,5 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "react-native-zip-archive": "^3.0.1"
+  },
+  "peerDependencies": {
+    "react-native": "^0.57",
+    "rn-fetch-blob": "^0"
   }
 }

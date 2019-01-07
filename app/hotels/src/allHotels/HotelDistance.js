@@ -6,10 +6,10 @@ import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { HotelDistance_hotel } from './__generated__/HotelDistance_hotel.graphql';
+import type { HotelDistance_hotel as HotelType } from './__generated__/HotelDistance_hotel.graphql';
 
 type Props = {|
-  +hotel: HotelDistance_hotel,
+  +hotel: HotelType,
 |};
 
 // 1.5 km city center radius

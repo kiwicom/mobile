@@ -162,7 +162,7 @@ class Provider extends React.Component<Props, State> {
   };
 
   computeUpdatedAmount = (updatedChanges: Change[]) => {
-    //TODO deal with edge case when all provided insurance prices are not in the same currency
+    // TODO deal with edge case when all provided insurance prices are not in the same currency
     return updatedChanges
       .map(change => {
         if (change.to === change.from) {

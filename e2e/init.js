@@ -1,5 +1,6 @@
 // @flow
 
+/* eslint-disable import/no-extraneous-dependencies */ // TODO: Fix
 import detox from 'detox';
 import adapter from 'detox/runners/jest/adapter';
 

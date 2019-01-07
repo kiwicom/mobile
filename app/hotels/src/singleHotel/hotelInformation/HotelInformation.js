@@ -6,7 +6,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import Location from './location/Location';
 import Description from './description/Description';
 import HotelReview from './HotelReview';
-import type { HotelInformation_hotel } from './__generated__/HotelInformation_hotel.graphql';
+import type { HotelInformation_hotel as HotelType } from './__generated__/HotelInformation_hotel.graphql';
 
 type ContainerProps = {|
   +hotel: any,
@@ -14,7 +14,7 @@ type ContainerProps = {|
 
 type Props = {|
   ...ContainerProps,
-  +hotel: ?HotelInformation_hotel,
+  +hotel: ?HotelType,
 |};
 
 const HotelInformation = (props: Props) => (

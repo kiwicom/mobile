@@ -110,7 +110,6 @@ export default createFragmentContainer(
   Header,
   graphql`
     fragment Header on BookingInterface {
-      isPastBooking
       ...StatusBar
       ...TripInfo
       ...TripOverview

@@ -13,18 +13,11 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type Stay22PaginationContainer$ref: FragmentReference;
 export type Stay22PaginationContainer = {|
   +allAvailableStay22Hotels: ?{|
-    +cityName: ?string,
-    +pageInfo: {|
-      +hasNextPage: boolean,
-      +hasPreviousPage: boolean,
-      +startCursor: ?string,
-      +endCursor: ?string,
-    |},
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +$fragmentRefs: RenderSearchResults$ref
       |}
-    |}>,
+    |}>
   |},
   +$refType: Stay22PaginationContainer$ref,
 |};
@@ -82,52 +75,6 @@ const node/*: ConcreteFragment*/ = {
       "plural": false,
       "selections": [
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "cityName",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "pageInfo",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "PageInfo",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasNextPage",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasPreviousPage",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "startCursor",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "endCursor",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        },
-        {
           "kind": "LinkedField",
           "alias": null,
           "name": "edges",
@@ -167,11 +114,36 @@ const node/*: ConcreteFragment*/ = {
               "storageKey": null
             }
           ]
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "endCursor",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasNextPage",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'd6c7ee1d60d2d3cb339d49352afc7e62';
+(node/*: any*/).hash = 'd5951cedf413a0d9588856613bf85959';
 module.exports = node;

@@ -1,6 +1,6 @@
 // @flow
 
-import type { HotelDetailScreen_availableHotel } from '../__generated__/HotelDetailScreen_availableHotel.graphql';
+import type { HotelDetailScreen_availableHotel as HotelType } from '../__generated__/HotelDetailScreen_availableHotel.graphql';
 
 type Money = {|
   amount: number,
@@ -8,10 +8,7 @@ type Money = {|
 |};
 
 export default (
-  availableRooms: ?$PropertyType<
-    HotelDetailScreen_availableHotel,
-    'availableRooms',
-  >,
+  availableRooms: ?$PropertyType<HotelType, 'availableRooms'>,
   selected: {
     [string]: number,
   },
@@ -28,6 +25,7 @@ export default (
   }
 
   const amount = positiveSelections
+    // eslint-disable-next-line consistent-return
     .map((selection: any) => {
       const [id, count] = selection;
 

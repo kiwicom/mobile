@@ -17,7 +17,13 @@ const BoardingPassInformation = ({ data, isPastBooking }: PropsWithContext) => {
   const availableAt = data.availableAt ?? '';
   const [year, month, day] = availableAt.split('-');
   const boardingPassAvailableDate = availableAt
-    ? new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)))
+    ? new Date(
+        Date.UTC(
+          parseInt(year, 10),
+          parseInt(month, 10) - 1,
+          parseInt(day, 10),
+        ),
+      )
     : null;
 
   if (isPastBooking) {

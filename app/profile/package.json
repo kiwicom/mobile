@@ -5,6 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
-    "@kiwicom/mobile-shared": "^0"
+    "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-orbit": "^0",
+    "@kiwicom/mobile-relay": "^0"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-native": "^0.57"
   }
 }

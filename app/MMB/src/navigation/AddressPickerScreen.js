@@ -82,13 +82,14 @@ export class AddressPickerScreen extends React.Component<Props, State> {
     this.updateFormattedAddress(coordinate);
   }
 
-  getCoordinate = () =>
-    this.props.lat != null && this.props.lng != null
+  getCoordinate = () => {
+    return this.props.lat != null && this.props.lng != null
       ? {
           latitude: this.props.lat,
           longitude: this.props.lng,
         }
       : null;
+  };
 
   updateFormattedAddress = memoize(async (coordinate: ?Coordinate) => {
     const formattedAddress = await getAddress(

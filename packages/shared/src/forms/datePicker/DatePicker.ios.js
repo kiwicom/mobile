@@ -29,8 +29,9 @@ export default class DatePicker extends React.Component<Props, State> {
     };
   }
 
-  static getDerivedStateFromProps = (props: Props, state: State) =>
-    props.date !== state.previousDate ? { date: props.date } : null;
+  static getDerivedStateFromProps = (props: Props, state: State) => {
+    return props.date !== state.previousDate ? { date: props.date } : null;
+  };
 
   static defaultProps = {
     disabled: false,

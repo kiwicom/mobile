@@ -13,12 +13,6 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelsPaginationContainer$ref: FragmentReference;
 export type HotelsPaginationContainer = {|
   +allAvailableBookingComHotels: ?{|
-    +pageInfo: {|
-      +hasNextPage: boolean,
-      +hasPreviousPage: boolean,
-      +startCursor: ?string,
-      +endCursor: ?string,
-    |},
     +stats: ?{|
       +maxPrice: ?number,
       +minPrice: ?number,
@@ -109,45 +103,6 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "pageInfo",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "PageInfo",
-          "plural": false,
-          "selections": [
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasNextPage",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "hasPreviousPage",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "startCursor",
-              "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "endCursor",
-              "args": null,
-              "storageKey": null
-            }
-          ]
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
           "name": "stats",
           "storageKey": null,
           "args": null,
@@ -210,11 +165,36 @@ const node/*: ConcreteFragment*/ = {
               "storageKey": null
             }
           ]
+        },
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "pageInfo",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "PageInfo",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "endCursor",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "hasNextPage",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2b2648ac086d19fe1dc8214f2812480f';
+(node/*: any*/).hash = '21da7f26b98a713de9abac294b205f8d';
 module.exports = node;

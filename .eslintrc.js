@@ -19,22 +19,17 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ["import", "prettier", "react", "react-native", "flowtype", "detox"],
+  plugins: ["prettier", "react", "react-native", "detox", "import"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:flowtype/recommended",
     "prettier",
     "prettier/react",
-    "prettier/flowtype"
+    "prettier/flowtype",
+    "@kiwicom/eslint-config"
   ],
   rules: {
-    "lines-between-class-members": [ERROR, "always", { exceptAfterSingleLine: true }],
-    "no-lonely-if": ERROR,
-    "no-else-return": ERROR,
     "react/no-did-update-set-state": ERROR,
-    "prefer-const": ERROR,
-    curly: ERROR,
     "no-console": [ERROR, { allow: ["warn", "error"] }],
     "no-duplicate-imports": ERROR,
     "no-underscore-dangle": [
@@ -91,26 +86,11 @@ module.exports = {
         ]
       }
     ],
-    "import/order": [
-      ERROR,
-      {
-        groups: [["builtin", "external"], ["parent", "sibling"], "index"],
-        "newlines-between": "always"
-      }
-    ],
-    "import/newline-after-import": ERROR,
-    "import/no-mutable-exports": ERROR,
-    "import/no-absolute-path": ERROR,
     "prettier/prettier": [
       ERROR,
       { singleQuote: true, trailingComma: "all", jsxBracketSameLine: false }
     ],
     "react/jsx-boolean-value": [ERROR, "always"],
-    "react/jsx-no-bind": ERROR,
-    "react/no-access-state-in-setstate": ERROR,
-    "react/prop-types": OFF, // we use Flow instead,
     "react-native/no-unused-styles": ERROR,
-    "flowtype/require-valid-file-annotation": [ERROR, "always"],
-    "flowtype/newline-after-flow-annotation": [ERROR, "always"]
   }
 };

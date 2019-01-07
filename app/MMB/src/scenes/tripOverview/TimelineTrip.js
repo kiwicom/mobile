@@ -65,7 +65,6 @@ export default createFragmentContainer(
     fragment TimelineTrip on Trip {
       legs {
         ...TimelineLegWrapper
-        guarantee
         departure {
           ...TimelineDeparture_routeStop
         }

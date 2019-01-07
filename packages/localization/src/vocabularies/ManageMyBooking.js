@@ -55,7 +55,7 @@ export default {
   'mmb.boarding_passes.apple_wallet.information_text':
     'Board the plane with an electronic boarding pass from your Apple Wallet',
 
-  //MMB Apple Wallet
+  // MMB Apple Wallet
   'mmb.apple_wallet.apple_wallet_scene.passenger': 'Passenger',
   'mmb.apple_wallet.apple_wallet_scene.departure_date': 'Departure date',
   'mmb.apple_wallet.apple_wallet_scene.departure_time': 'Departure time',

@@ -16,10 +16,6 @@ export type TransportationMenuItem = {|
     +relevantLocations: ?$ReadOnlyArray<?{|
       +whitelabelURL: ?string,
       +location: ?{|
-        +location: ?{|
-          +lat: ?number,
-          +lng: ?number,
-        |},
         +city: ?{|
           +name: ?string
         |},
@@ -82,31 +78,6 @@ const node/*: ConcreteFragment*/ = {
                 {
                   "kind": "LinkedField",
                   "alias": null,
-                  "name": "location",
-                  "storageKey": null,
-                  "args": null,
-                  "concreteType": "Coordinates",
-                  "plural": false,
-                  "selections": [
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "name": "lat",
-                      "args": null,
-                      "storageKey": null
-                    },
-                    {
-                      "kind": "ScalarField",
-                      "alias": null,
-                      "name": "lng",
-                      "args": null,
-                      "storageKey": null
-                    }
-                  ]
-                },
-                {
-                  "kind": "LinkedField",
-                  "alias": null,
                   "name": "city",
                   "storageKey": null,
                   "args": null,
@@ -138,5 +109,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'f8796db8c8a942834c038508976b30f6';
+(node/*: any*/).hash = '26b6b6d402b76e3028788c12a89b273e';
 module.exports = node;

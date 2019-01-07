@@ -32,8 +32,9 @@ export default class StarsPopup extends React.Component<Props, State> {
     stars: this.props.stars,
   };
 
-  static getDerivedStateFromProps = ({ stars, isVisible }: Props) =>
-    isVisible ? null : stars;
+  static getDerivedStateFromProps = ({ stars, isVisible }: Props) => {
+    return isVisible ? null : stars;
+  };
 
   handleCheckboxOnPress = (option: number) => () =>
     this.setState(state => {

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 20de62aa4299321937015bf6a56901eb
+ * @relayHash 7b36a30f73df8062b3106546e5d8c38c
  */
 
 /* eslint-disable */
@@ -11,28 +11,13 @@
 import type { ConcreteRequest } from 'relay-runtime';
 type DestinationImage$ref = any;
 type TripInfo$ref = any;
-export type InsuranceType = "NONE" | "TRAVEL_BASIC" | "TRAVEL_PLUS" | "%future added value";
 export type InsuranceOverviewSceneContainerQueryVariables = {|
   bookingId: number,
   authToken: string,
 |};
 export type InsuranceOverviewSceneContainerQueryResponse = {|
   +singleBooking: ?{|
-    +passengers: ?$ReadOnlyArray<?{|
-      +fullName: ?string,
-      +title: ?string,
-      +birthday: ?any,
-      +databaseId: ?number,
-      +insuranceType: ?InsuranceType,
-    |}>,
-    +insurancePrices: ?$ReadOnlyArray<?{|
-      +insuranceType: ?InsuranceType,
-      +price: ?{|
-        +amount: ?number,
-        +currency: ?string,
-      |},
-    |}>,
-    +$fragmentRefs: DestinationImage$ref & TripInfo$ref,
+    +$fragmentRefs: DestinationImage$ref & TripInfo$ref
   |}
 |};
 export type InsuranceOverviewSceneContainerQuery = {|
@@ -51,20 +36,6 @@ query InsuranceOverviewSceneContainerQuery(
     __typename
     ...DestinationImage
     ...TripInfo
-    passengers {
-      fullName
-      title
-      birthday
-      databaseId
-      insuranceType
-    }
-    insurancePrices {
-      insuranceType
-      price {
-        amount
-        currency
-      }
-    }
     id
   }
 }
@@ -180,102 +151,18 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "insuranceType",
-  "args": null,
-  "storageKey": null
-},
-v3 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "passengers",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "Passenger",
-  "plural": true,
-  "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "fullName",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "title",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "birthday",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "databaseId",
-      "args": null,
-      "storageKey": null
-    },
-    v2
-  ]
-},
-v4 = {
-  "kind": "LinkedField",
-  "alias": null,
-  "name": "insurancePrices",
-  "storageKey": null,
-  "args": null,
-  "concreteType": "InsurancePrice",
-  "plural": true,
-  "selections": [
-    v2,
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "price",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Price",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "amount",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "currency",
-          "args": null,
-          "storageKey": null
-        }
-      ]
-    }
-  ]
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "id",
   "args": null,
   "storageKey": null
 },
-v6 = {
+v3 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "localTime",
   "args": null,
   "storageKey": null
 },
-v7 = [
+v4 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -310,19 +197,19 @@ v7 = [
         "args": null,
         "storageKey": null
       },
-      v5
+      v2
     ]
   },
-  v6
+  v3
 ],
-v8 = {
+v5 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "duration",
   "args": null,
   "storageKey": null
 },
-v9 = [
+v6 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -331,7 +218,7 @@ v9 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v7
+    "selections": v4
   },
   {
     "kind": "LinkedField",
@@ -341,19 +228,19 @@ v9 = [
     "args": null,
     "concreteType": "RouteStop",
     "plural": false,
-    "selections": v7
+    "selections": v4
   },
-  v8
+  v5
 ],
-v10 = [
-  v6
+v7 = [
+  v3
 ];
 return {
   "kind": "Request",
   "operationKind": "query",
   "name": "InsuranceOverviewSceneContainerQuery",
   "id": null,
-  "text": "query InsuranceOverviewSceneContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...DestinationImage\n    ...TripInfo\n    passengers {\n      fullName\n      title\n      birthday\n      databaseId\n      insuranceType\n    }\n    insurancePrices {\n      insuranceType\n      price {\n        amount\n        currency\n      }\n    }\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
+  "text": "query InsuranceOverviewSceneContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...DestinationImage\n    ...TripInfo\n    id\n  }\n}\n\nfragment DestinationImage on BookingInterface {\n  destinationImageUrl(dimensions: _375x165)\n}\n\nfragment TripInfo on BookingInterface {\n  __typename\n  ... on BookingOneWay {\n    ...TripInfoOneWay\n  }\n  ... on BookingReturn {\n    ...TripInfoReturn\n  }\n  ... on BookingMulticity {\n    ...TripInfoMulticity\n  }\n}\n\nfragment TripInfoOneWay on BookingOneWay {\n  trip {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripInfoReturn on BookingReturn {\n  outbound {\n    ...TripCities\n    ...TripTimes\n  }\n  inbound {\n    ...TripTimes\n  }\n}\n\nfragment TripInfoMulticity on BookingMulticity {\n  trips {\n    ...TripCities\n    ...TripTimes\n  }\n}\n\nfragment TripCities on Trip {\n  departure {\n    ...Location\n  }\n  arrival {\n    ...Location\n  }\n}\n\nfragment TripTimes on Trip {\n  duration\n  departure {\n    ...DateTime\n  }\n  arrival {\n    ...DateTime\n  }\n}\n\nfragment DateTime on RouteStop {\n  localTime\n}\n\nfragment Location on RouteStop {\n  airport {\n    city {\n      name\n    }\n    ...CountryFlag\n    id\n  }\n}\n\nfragment CountryFlag on Location {\n  countryFlagURL\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -380,9 +267,7 @@ return {
             "kind": "FragmentSpread",
             "name": "TripInfo",
             "args": null
-          },
-          v3,
-          v4
+          }
         ]
       }
     ]
@@ -422,9 +307,7 @@ return {
             "args": null,
             "storageKey": null
           },
-          v3,
-          v4,
-          v5,
+          v2,
           {
             "kind": "InlineFragment",
             "type": "BookingMulticity",
@@ -437,7 +320,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": true,
-                "selections": v9
+                "selections": v6
               }
             ]
           },
@@ -453,7 +336,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v9
+                "selections": v6
               },
               {
                 "kind": "LinkedField",
@@ -464,7 +347,7 @@ return {
                 "concreteType": "Trip",
                 "plural": false,
                 "selections": [
-                  v8,
+                  v5,
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -473,7 +356,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v10
+                    "selections": v7
                   },
                   {
                     "kind": "LinkedField",
@@ -483,7 +366,7 @@ return {
                     "args": null,
                     "concreteType": "RouteStop",
                     "plural": false,
-                    "selections": v10
+                    "selections": v7
                   }
                 ]
               }
@@ -501,7 +384,7 @@ return {
                 "args": null,
                 "concreteType": "Trip",
                 "plural": false,
-                "selections": v9
+                "selections": v6
               }
             ]
           }
@@ -512,5 +395,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '0a26f8835031982177ac297e7c92ef03';
+(node/*: any*/).hash = '00dd4828a4461f2aa48cfac1b1117825';
 module.exports = node;

@@ -1,7 +1,8 @@
 // @flow strict
 
 import { Platform, Dimensions } from 'react-native';
-import { type DimensionType } from '@kiwicom/mobile-shared';
+
+import { type DimensionType } from '../types/Objects';
 
 // Borrowed this code from https://github.com/react-community/react-native-safe-area-view
 const X_WIDTH = 375;

@@ -18,5 +18,13 @@
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-native": "^0.57",
+    "react-test-renderer": "^16",
+    "react-navigation": "^3",
+    "react-native-maps": "^0",
+    "react-navigation-props-mapper": "^0"
   }
 }

@@ -96,7 +96,7 @@ export const getAsUtcDate = (input: ?string): Date | null => {
   if (input == null || !validateDate(input)) {
     return null;
   }
-  const [year, month, date] = input.split('-').map(item => parseInt(item));
+  const [year, month, date] = input.split('-').map(item => parseInt(item, 10));
   return new Date(Date.UTC(year, month - 1, date));
 };
 

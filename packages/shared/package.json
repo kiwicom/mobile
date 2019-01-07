@@ -6,12 +6,24 @@
   "dependencies": {
     "@kiwicom/mobile-accessibility": "^0",
     "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-navigation": "^0",
+    "@kiwicom/mobile-orbit": "^0",
+    "@kiwicom/mobile-config": "^0",
+    "@kiwicom/rnmodules": "^0",
     "@ptomasroos/react-native-multi-slider": "^1.0.0",
+    "prop-types": "^15.6.2",
     "querystring": "^0.2.0",
     "react-native-image-progress": "^1.1.1",
     "react-native-maps": "0.21.0",
     "react-native-modal": "^7.0.0",
     "react-native-read-more-text": "^1.1.0"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-fast-compare": "^2",
+    "react-native": "^0.57",
+    "react-navigation": "^3",
+    "react-test-renderer": "^16"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",

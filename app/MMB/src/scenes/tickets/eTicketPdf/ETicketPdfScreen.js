@@ -25,7 +25,6 @@ class ETicketShareButton extends React.Component<ShareButtonProps> {
       await Share.open({ url: eTicketPath });
     } catch (err) {
       // No worries, user just canceled share
-      return;
     }
   };
 

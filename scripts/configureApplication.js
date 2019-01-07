@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const child_process = require('child_process');
+const childProcess = require('child_process');
 
 const log = message => console.log(`➤ ${message}`); // eslint-disable-line no-console
 
@@ -82,7 +82,7 @@ fs.writeFileSync(
 );
 
 log('Linking all native dependencies...');
-child_process.execSync('yarn react-native link');
+childProcess.execSync('yarn react-native link');
 
 log('Patching intl package');
 const intlPackageJson = JSON.parse(

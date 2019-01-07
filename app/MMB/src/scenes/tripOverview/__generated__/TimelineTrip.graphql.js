@@ -13,12 +13,10 @@ type TimelineDeparture_arrival$ref = any;
 type TimelineDeparture_legInfo$ref = any;
 type TimelineDeparture_routeStop$ref = any;
 type TimelineLegWrapper$ref = any;
-export type CoveredBy = "CARRIER" | "KIWICOM" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type TimelineTrip$ref: FragmentReference;
 export type TimelineTrip = {|
   +legs: ?$ReadOnlyArray<?{|
-    +guarantee: ?CoveredBy,
     +departure: ?{|
       +$fragmentRefs: TimelineDeparture_routeStop$ref
     |},
@@ -52,13 +50,6 @@ const node/*: ConcreteFragment*/ = {
           "kind": "FragmentSpread",
           "name": "TimelineLegWrapper",
           "args": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "guarantee",
-          "args": null,
-          "storageKey": null
         },
         {
           "kind": "LinkedField",
@@ -107,5 +98,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'd57713f20d3b3e977c39b79d0c5f9efb';
+(node/*: any*/).hash = 'c9f059c300520bf6baa129b9df1e2c28';
 module.exports = node;
