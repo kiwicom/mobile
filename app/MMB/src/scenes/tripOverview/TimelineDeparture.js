@@ -1,5 +1,6 @@
 // @flow strict
 
+/* eslint-disable babel/camelcase */
 import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';

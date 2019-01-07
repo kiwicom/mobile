@@ -1,5 +1,7 @@
 // @flow
 
+/* eslint-disable relay/unused-fields */
+// TODO: Fix ^^
 import * as React from 'react';
 import { ScrollView, View, Platform } from 'react-native';
 import {
@@ -19,8 +21,8 @@ import Header from './header/Header';
 import HotelInformation from './hotelInformation/HotelInformation';
 import RoomList from './roomList/RoomList';
 import BrandLabel from './brandLabel/BrandLabel';
-import type { RoomsConfiguration } from '../singleHotel/AvailableHotelSearchInput';
-import type { HotelDetailScreen_availableHotel } from './__generated__/HotelDetailScreen_availableHotel.graphql';
+import type { RoomsConfiguration } from './AvailableHotelSearchInput';
+import type { HotelDetailScreen_availableHotel as HotelType } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import {
   withHotelDetailScreenContext,
   type HotelDetailScreenState,
@@ -49,6 +51,8 @@ type NativeEvent = {|
   |},
 |};
 
+// TODO: Fix
+// eslint-disable-next-line relay/generated-flow-types
 export class HotelDetailScreen extends React.Component<
   PropsWithContext,
   State,
@@ -156,7 +160,7 @@ export class HotelDetailScreen extends React.Component<
 }
 
 type Props = {|
-  +availableHotel: ?HotelDetailScreen_availableHotel,
+  +availableHotel: ?HotelType,
   +roomsConfiguration: RoomsConfiguration,
   +goBack: () => void,
   +getGuestCount: () => number,

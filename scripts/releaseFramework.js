@@ -1,6 +1,7 @@
 // @flow strict
 
 /* eslint-disable no-console */
+/* eslint-disable babel/camelcase */
 
 /**
  * Script for releasing a new version of the framework
@@ -26,7 +27,7 @@ const version = child_process
       throw new Error('Missing GITHUB_TOKEN');
     }
 
-    console.log(`Start building FAT framework...`);
+    console.log('Start building FAT framework...');
 
     // Build FAT framework
     child_process.execSync('scripts/buildIOSFramework.sh', {
@@ -36,9 +37,9 @@ const version = child_process
     // Last line is empty
     const fatFramework = 'ios/build/universal/RNKiwiMobile.framework';
     const frameworkFolder = path.dirname(fatFramework);
-    const zippedFatFramework = `RNKiwiMobile.framework.zip`;
+    const zippedFatFramework = 'RNKiwiMobile.framework.zip';
 
-    console.log(`FAT framework was correctly zipped.`);
+    console.log('FAT framework was correctly zipped.');
 
     /**
      * Zip file to its destination to prepare for upload
@@ -94,7 +95,7 @@ const version = child_process
 
     console.log(`Release ${version} successfully created.`);
   } catch (e) {
-    console.log(`releaseFramework failed.`, e.message);
+    console.log('releaseFramework failed.', e.message);
     process.exit(1);
   }
 })();

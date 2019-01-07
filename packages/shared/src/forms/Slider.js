@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { type OnLayout } from '@kiwicom/mobile-shared';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import { type OnLayout } from '../../types/Events';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|

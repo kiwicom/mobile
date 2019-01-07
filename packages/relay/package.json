@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-shared": "^0",
     "@mrtnzlml/fetch": "^1.3.0",
     "react-relay": "^1.7.0"
   },
@@ -12,5 +13,12 @@
     "babel-plugin-relay": "^1.7.0",
     "graphql": "^14.0.2",
     "relay-compiler": "^1.7.0"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "relay-runtime": "1.7",
+    "react-native": "^0.57",
+    "mockdate": "^2",
+    "react-test-renderer": "^16"
   }
 }

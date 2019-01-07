@@ -8,8 +8,8 @@ import {
 import { createSwitchNavigator } from 'react-navigation';
 import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { NewHotelsStandAlonePackage } from '@kiwicom/react-native-app-hotels';
 
-import { NewHotelsStandAlonePackage } from '../../../hotels';
 import DetailScreen, { MenuComponents } from './DetailScreen';
 import ListScreen from './ListScreen';
 import FillTravelDocumentScreen from './FillTravelDocumentScreen';

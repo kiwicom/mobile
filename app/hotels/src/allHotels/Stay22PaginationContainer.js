@@ -80,13 +80,6 @@ export default createPaginationContainer(
     fragment Stay22PaginationContainer on RootQuery {
       allAvailableStay22Hotels(search: $search, first: $first, after: $after)
         @connection(key: "Stay22PaginationContainer_allAvailableStay22Hotels") {
-        cityName
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
-        }
         edges {
           node {
             ... on AllAvailableStay22Hotel {

@@ -15,7 +15,7 @@ import RoomImage from './RoomImage';
 import BeddingInfo from './BeddingInfo';
 import RoomRowTitle from './RoomRowTitle';
 import RoomBadges from './RoomBadges';
-import type { RoomRow_availableRoom } from './__generated__/RoomRow_availableRoom.graphql';
+import type { RoomRow_availableRoom as RoomType } from './__generated__/RoomRow_availableRoom.graphql';
 import {
   withHotelDetailScreenContext,
   type HotelDetailScreenState,
@@ -32,7 +32,7 @@ type ContainerProps = {|
 
 type Props = {|
   ...ContainerProps,
-  +availableRoom: ?RoomRow_availableRoom,
+  +availableRoom: ?RoomType,
   +navigation: NavigationType,
   +select: (availabilityId: string, maxPersons: number) => void,
   +deselect: (availabilityId: string, maxPersons: number) => void,

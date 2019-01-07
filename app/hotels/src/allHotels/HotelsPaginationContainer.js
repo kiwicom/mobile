@@ -98,7 +98,7 @@ const select = ({ actions }: HotelsContextState) => ({
 
 const styles = StyleSheet.create({
   filterContainer: {
-    zIndex: parseInt(defaultTokens.zIndexSticky),
+    zIndex: parseInt(defaultTokens.zIndexSticky, 10),
   },
 });
 
@@ -116,12 +116,6 @@ export default createPaginationContainer(
         @connection(
           key: "HotelsPaginationContainer_allAvailableBookingComHotels"
         ) {
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
-        }
         stats {
           maxPrice
           minPrice

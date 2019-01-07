@@ -27,8 +27,6 @@ type Props = {
   +version: string,
   +cityName: string,
   +cityId: string,
-  +checkin: string,
-  +checkout: string,
   +roomsConfiguration: RoomConfigurationType,
 };
 

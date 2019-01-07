@@ -11,7 +11,7 @@ import {
 import { StyleSheet, SimpleCard, Text, Button } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import Alert from '../components/alert/Alert';
+import Alert from './alert/Alert';
 import BookingDetailContext from '../context/BookingDetailContext';
 import type { MissingInformation as PassengerType } from './__generated__/MissingInformation.graphql';
 

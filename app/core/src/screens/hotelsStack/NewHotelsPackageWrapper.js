@@ -1,11 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { NewHotelsStandAlonePackage } from '@kiwicom/react-native-app-hotels';
+import {
+  NewHotelsStandAlonePackage,
+  type RoomConfigurationType,
+} from '@kiwicom/react-native-app-hotels';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { type DimensionType } from '@kiwicom/mobile-shared';
-
-import type { RoomConfigurationType } from '../../../../hotels/src/HotelsContext';
 
 type Props = {|
   +navigation: NavigationType,

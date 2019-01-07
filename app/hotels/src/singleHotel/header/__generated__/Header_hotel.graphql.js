@@ -16,8 +16,7 @@ export type Header_hotel = {|
     +highResUrl: ?string
   |},
   +rating: ?{|
-    +stars: ?number,
-    +categoryName: ?string,
+    +stars: ?number
   |},
   +photos: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -82,13 +81,6 @@ return {
           "name": "stars",
           "args": null,
           "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "categoryName",
-          "args": null,
-          "storageKey": null
         }
       ]
     },
@@ -144,5 +136,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '4d237ca12fb75c478e44259958f9f022';
+(node/*: any*/).hash = '3780aeaa38467bedc5db18e37f6ebec0';
 module.exports = node;

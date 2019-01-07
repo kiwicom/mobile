@@ -102,7 +102,7 @@ const updateKey = async (keyId, keyName) => {
   if (translations[unPrefixedKey] === undefined) {
     // Not our translation
     _log('not our translation');
-    return;
+    return null;
   }
   const formData = new FormData();
   const screenshotPath = _getScreenshotPath(keyName);
@@ -126,7 +126,7 @@ const createKey = async keyName => {
   } else {
     missingScreenshots.push(keyName);
   }
-  return _fetch(`/keys`, formData, HttpMethod.POST);
+  return _fetch('/keys', formData, HttpMethod.POST);
 };
 
 const createTranslation = async (keyId, translationString) => {
@@ -135,7 +135,7 @@ const createTranslation = async (keyId, translationString) => {
   formData.append('locale_id', 'en-GB'); // en-GB is the main language maintained automatically
   formData.append('key_id', keyId);
   formData.append('content', translationString);
-  return _fetch(`/translations`, formData, HttpMethod.POST);
+  return _fetch('/translations', formData, HttpMethod.POST);
 };
 
 const deleteKey = async (keyId, keyName) => {
@@ -143,6 +143,7 @@ const deleteKey = async (keyId, keyName) => {
     _log(`Deleting key ${keyName} with id ${keyId}`);
     return _fetch(`/keys/${keyId}`, null, HttpMethod.DELETE);
   }
+  return null;
 };
 
 const findNumberOfOccurrences = (translationKey: string) =>

@@ -13,8 +13,6 @@ export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type GeneralServicesMenuGroup$ref: FragmentReference;
 export type GeneralServicesMenuGroup = {|
-  +databaseId: ?number,
-  +authToken: ?string,
   +status: ?BookingStatus,
   +passengers: ?$ReadOnlyArray<?{|
     +nationality: ?string
@@ -33,20 +31,6 @@ const node/*: ConcreteFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "databaseId",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "authToken",
-      "args": null,
-      "storageKey": null
-    },
     {
       "kind": "ScalarField",
       "alias": null,
@@ -87,5 +71,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4f09be7f3be6a16acb643c1e359bdc9e';
+(node/*: any*/).hash = 'd3e40c47d763e6a0145af8d0e9f31579';
 module.exports = node;

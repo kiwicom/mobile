@@ -20,7 +20,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 
 import gradient from './white-to-alpha-horizontal.png';
-import type { Location_hotel } from './__generated__/Location_hotel.graphql';
+import type { Location_hotel as HotelType } from './__generated__/Location_hotel.graphql';
 import {
   type RoomConfigurationType,
   type HotelsContextState,
@@ -33,7 +33,7 @@ type ContainerProps = {|
 
 type Props = {|
   ...ContainerProps,
-  +hotel: ?Location_hotel,
+  +hotel: ?HotelType,
   +navigation: NavigationType,
   +currency: string,
   +hotelId: string,

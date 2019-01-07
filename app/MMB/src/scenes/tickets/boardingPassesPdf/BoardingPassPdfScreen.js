@@ -29,7 +29,6 @@ class BoardingPassShareButton extends React.Component<ShareButtonPropsWithContex
       await Share.open({ url: boardingPassUrl });
     } catch (err) {
       // No worries, user just canceled share
-      return;
     }
   };
 

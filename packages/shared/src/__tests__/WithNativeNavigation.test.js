@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { GestureController } from '@kiwicom/mobile-shared';
 
+import GestureController from '../GestureController';
 import WithNativeNavigation from '../WithNativeNavigation';
 
 type Props = {

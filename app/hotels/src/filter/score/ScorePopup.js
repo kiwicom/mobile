@@ -25,20 +25,22 @@ type State = {|
 |};
 
 const SLIDER_SHIFT = 5;
-const convertScoreToSliderValue = (minScore: number | null) =>
-  minScore ? minScore - SLIDER_SHIFT : 0;
+const convertScoreToSliderValue = (minScore: number | null) => {
+  return minScore ? minScore - SLIDER_SHIFT : 0;
+};
 
 export default class ScorePopup extends React.Component<Props, State> {
   state = {
     sliderValue: 0,
   };
 
-  static getDerivedStateFromProps = ({ minScore, isVisible }: Props) =>
-    isVisible
+  static getDerivedStateFromProps = ({ minScore, isVisible }: Props) => {
+    return isVisible
       ? null
       : {
           sliderValue: convertScoreToSliderValue(minScore),
         };
+  };
 
   handleScoreChanged = ([minScore]: number[]) =>
     this.setState({ sliderValue: minScore });
@@ -60,8 +62,9 @@ export default class ScorePopup extends React.Component<Props, State> {
     return labels[sliderValue];
   };
 
-  convertSliderValueToScore = (value: number) =>
-    value ? value + SLIDER_SHIFT : null;
+  convertSliderValueToScore = (value: number) => {
+    return value ? value + SLIDER_SHIFT : null;
+  };
 
   render() {
     return (

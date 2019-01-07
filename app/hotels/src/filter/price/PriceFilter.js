@@ -11,7 +11,7 @@ import {
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
-import type { CurrentSearchStats } from '../../filter/CurrentSearchStatsType';
+import type { CurrentSearchStats } from '../CurrentSearchStatsType';
 import {
   withHotelsContext,
   type HotelsContextState,

@@ -14,7 +14,7 @@ import { AssetsDownloader, unzip } from '@kiwicom/mobile-assets';
 import RNFetchBlob from 'rn-fetch-blob';
 
 import type { AppleWalletPassenger as AppleWalletType } from './__generated__/WalletPassenger.graphql';
-import WalletContext from './../../../../context/WalletContext';
+import WalletContext from '../../../../context/WalletContext';
 import BookingDetailContext from '../../../../context/BookingDetailContext';
 
 type PropsWithContext = {|

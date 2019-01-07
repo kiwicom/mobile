@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { Touchable, Dimensions } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import ButtonPopup from '../ButtonPopup';
+import Touchable from '../../Touchable';
+import Dimensions from '../../view/Dimensions';
 
 const renderPopup = (onSave, onClose) =>
   renderer.create(

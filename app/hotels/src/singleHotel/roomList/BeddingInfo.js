@@ -7,7 +7,7 @@ import { StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { BeddingInfo_room } from './__generated__/BeddingInfo_room.graphql';
+import type { BeddingInfo_room as RoomType } from './__generated__/BeddingInfo_room.graphql';
 
 type ContainerProps = {|
   room: any,
@@ -15,7 +15,7 @@ type ContainerProps = {|
 
 type Props = {
   ...ContainerProps,
-  room: ?BeddingInfo_room,
+  room: ?RoomType,
 };
 
 export class BeddingInfo extends React.Component<Props> {
