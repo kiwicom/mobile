@@ -26,7 +26,7 @@ describe('FlightServicesMenuItem', () => {
         data={data}
       />,
     );
-    expect(wrapper).toMatchInlineSnapshot(`null`);
+    expect(wrapper).toMatchInlineSnapshot('null');
   });
 
   it('renders MenuItem if any leg contains a flight', () => {

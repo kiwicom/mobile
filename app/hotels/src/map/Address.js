@@ -7,7 +7,7 @@ import { TextIcon, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { Address_address } from './__generated__/Address_address.graphql';
+import type { Address_address as AddressType } from './__generated__/Address_address.graphql';
 
 type ContainerProps = {|
   +address: $FlowFixMeProps,
@@ -15,7 +15,7 @@ type ContainerProps = {|
 
 type Props = {
   ...ContainerProps,
-  +address: ?Address_address,
+  +address: ?AddressType,
 };
 
 class Address extends React.Component<Props> {

@@ -13,9 +13,9 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 
-import InsuranceOverviewPassengerMenuGroup from '../insuranceOverviewScene/InsuranceOverviewPassengerMenuGroup';
-import DestinationImage from '../insuranceOverviewScene/DestinationImage';
-import OrderSummary from '../insuranceOverviewScene/orderSummary/OrderSummary';
+import InsuranceOverviewPassengerMenuGroup from './InsuranceOverviewPassengerMenuGroup';
+import DestinationImage from './DestinationImage';
+import OrderSummary from './orderSummary/OrderSummary';
 import TripInfo from '../../../../components/header/TripInfo';
 import type { InsuranceOverviewSceneQueryResponse } from './__generated__/InsuranceOverviewSceneContainerQuery.graphql';
 import { withInsuranceContext } from './InsuranceOverviewSceneContext';

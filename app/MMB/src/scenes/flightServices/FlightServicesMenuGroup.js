@@ -16,7 +16,7 @@ import {
 } from '@kiwicom/mobile-relay';
 
 import FlightServiceMenuItem from './FlightServiceMenuItem';
-import type { FlightServicesMenuGroup_bookedServices } from './__generated__/FlightServicesMenuGroup_bookedServices.graphql';
+import type { FlightServicesMenuGroup_bookedServices as FlightServicesMenuGroupType } from './__generated__/FlightServicesMenuGroup_bookedServices.graphql';
 
 type OfferedFlightServicesType = {|
   key: string,
@@ -68,7 +68,7 @@ type Props = {|
   bookingId: string,
   id: string,
   navigation: NavigationType,
-  bookedServices: FlightServicesMenuGroup_bookedServices,
+  bookedServices: FlightServicesMenuGroupType,
   relay: RelayRefetchProp,
 |};
 

@@ -9,7 +9,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DescriptionTitle from './DescriptionTitle';
 import Amenities from './Amenities';
-import type { Description_hotel } from './__generated__/Description_hotel.graphql';
+import type { Description_hotel as HotelType } from './__generated__/Description_hotel.graphql';
 
 type ContainerProps = {|
   +hotel: any,
@@ -18,7 +18,7 @@ type ContainerProps = {|
 
 type Props = {
   ...ContainerProps,
-  +hotel: ?Description_hotel,
+  +hotel: ?HotelType,
   +locationView?: React.Node,
 };
 

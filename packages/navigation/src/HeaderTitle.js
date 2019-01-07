@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-
-import type { TranslationType } from '../../localization';
+import type { TranslationType } from '@kiwicom/mobile-localization';
 
 const HeaderTitle = ({ children }: {| children: TranslationType |}) => (
   <Text style={styles.title}>{children}</Text>

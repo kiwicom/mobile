@@ -2,6 +2,7 @@
 
 import CodePush from 'react-native-code-push';
 import { AppRegistry, YellowBox } from 'react-native';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,

@@ -1,4 +1,4 @@
-//@flow
+// @flow
 
 import * as React from 'react';
 import { type AlertTranslationType } from '@kiwicom/mobile-localization';

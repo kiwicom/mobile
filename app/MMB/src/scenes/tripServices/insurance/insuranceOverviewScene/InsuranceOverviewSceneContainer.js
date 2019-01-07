@@ -50,20 +50,6 @@ export default class InsuranceOverviewSceneContainer extends React.Component<Con
                   ... on BookingInterface {
                     ...DestinationImage
                     ...TripInfo
-                    passengers {
-                      fullName
-                      title
-                      birthday
-                      databaseId
-                      insuranceType
-                    }
-                    insurancePrices {
-                      insuranceType
-                      price {
-                        amount
-                        currency
-                      }
-                    }
                   }
                 }
               }

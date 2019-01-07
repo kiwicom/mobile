@@ -30,6 +30,7 @@ type PropsWithContext = {|
   +setBookingDetail: (booking: BookingDetail) => void,
 |};
 
+// eslint-disable-next-line relay/generated-flow-types
 class CityImageContainer extends React.Component<PropsWithContext> {
   goToDetail = () => {
     const props = this.props;

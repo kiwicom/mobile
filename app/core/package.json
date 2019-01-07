@@ -8,6 +8,15 @@
     "@kiwicom/mobile-profile": "^0",
     "@kiwicom/mobile-navigation": "^0",
     "@kiwicom/mobile-relay": "^0",
-    "@kiwicom/mobile-shared": "^0"
+    "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-orbit": "^0"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-native": "^0.57",
+    "react-navigation-props-mapper": "^0",
+    "react-navigation": "^3",
+    "react-native-dotenv": "^0"
   }
 }

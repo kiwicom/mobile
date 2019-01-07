@@ -50,7 +50,7 @@ class TransportationMenuItem extends React.Component<Props, State> {
       // do not open the modal for only one whitelabel URL (open it directly)
       const whitelabelURL = relevantLocations[0]?.whitelabelURL ?? '';
 
-      const location = relevantLocations[0]?.location?.location;
+      const location = null; // relevantLocations[0]?.location?.location; TODO: Fix
 
       if (location != null) {
         this.openTransportationMap({ location, whitelabelURL });
@@ -144,10 +144,6 @@ export default createFragmentContainer(
           whitelabelURL
           location {
             ...TransportLocationItem
-            location {
-              lat
-              lng
-            }
             city {
               name
             }

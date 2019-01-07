@@ -23,13 +23,13 @@ type AccessibilityTraitsValues =
 export type AccessibilityProps = {|
   accessible?: boolean,
   accessibilityLabel?: string,
-  accessibilityTraits?:  // iOS only
+  accessibilityTraits?:
     | AccessibilityTraitsValues
     | $ReadOnlyArray<AccessibilityTraitsValues>,
-  accessibilityViewIsModal?: boolean, //iOS only
+  accessibilityViewIsModal?: boolean, // iOS only
   onAccessibilityTap?: () => void, // iOS only
   onMagicTap?: () => void, // iOS only
-  accessibilityComponentType?:  // Android only
+  accessibilityComponentType?:
     | 'none'
     | 'button'
     | 'radiobutton_checked'

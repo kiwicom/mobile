@@ -1,5 +1,6 @@
 // @flow
 
+/* eslint-disable relay/unused-fields */
 import * as React from 'react';
 import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -26,9 +27,10 @@ type Props = {|
 class VariantButtons extends React.Component<Props> {
   getPriceOfType = (insuranceType: InsuranceType): ?PriceType => {
     const insurancePrices = this.props.data.insurancePrices ?? [];
-    return insurancePrices.find(
-      insurancePrice => insurancePrice?.insuranceType === insuranceType,
-    )?.price;
+    return { amount: 0, currency: 'EUR' }; // TODO: Fix
+    // insurancePrices.find(
+    //   insurancePrice => insurancePrice?.insuranceType === insuranceType,
+    // )?.price;
   };
 
   selectTravelPlus = () => this.props.selectVariant('TRAVEL_PLUS');
@@ -90,10 +92,10 @@ export default createFragmentContainer(
     fragment VariantButtons on BookingInterface {
       insurancePrices {
         insuranceType
-        price {
-          amount
-          currency
-        }
+      }
+      price {
+        amount
+        currency
       }
     }
   `,

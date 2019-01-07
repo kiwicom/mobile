@@ -3,18 +3,18 @@
 /* eslint-disable no-console */
 
 const path = require('path');
-const child_process = require('child_process');
+const childProcess = require('child_process');
 
-const packageJson = require('../package');
+const packageJson = require('../package.json');
 
 const exec = (command, options) =>
-  child_process.execSync(command, {
+  childProcess.execSync(command, {
     stdio: 'inherit',
     ...options,
   });
 
 const targetBinaryVersion =
-  packageJson['rnkiwimobile']['code-push-target-binary-version'];
+  packageJson.rnkiwimobile['code-push-target-binary-version'];
 
 const entryFile = path.join(__dirname, '..', 'app/native.js');
 

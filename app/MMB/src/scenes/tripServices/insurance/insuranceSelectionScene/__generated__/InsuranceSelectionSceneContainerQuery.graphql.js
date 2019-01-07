@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8bfe3b0246f129aa1510ebaab9da602f
+ * @relayHash 8620eedbe91096f3e32204910a826138
  */
 
 /* eslint-disable */
@@ -41,10 +41,10 @@ query InsuranceSelectionSceneContainerQuery(
 fragment VariantButtons on BookingInterface {
   insurancePrices {
     insuranceType
-    price {
-      amount
-      currency
-    }
+  }
+  price {
+    amount
+    currency
   }
 }
 */
@@ -83,7 +83,7 @@ return {
   "operationKind": "query",
   "name": "InsuranceSelectionSceneContainerQuery",
   "id": null,
-  "text": "query InsuranceSelectionSceneContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...VariantButtons\n    id\n  }\n}\n\nfragment VariantButtons on BookingInterface {\n  insurancePrices {\n    insuranceType\n    price {\n      amount\n      currency\n    }\n  }\n}\n",
+  "text": "query InsuranceSelectionSceneContainerQuery(\n  $bookingId: Int!\n  $authToken: String!\n) {\n  singleBooking(id: $bookingId, authToken: $authToken) {\n    __typename\n    ...VariantButtons\n    id\n  }\n}\n\nfragment VariantButtons on BookingInterface {\n  insurancePrices {\n    insuranceType\n  }\n  price {\n    amount\n    currency\n  }\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",
@@ -146,31 +146,31 @@ return {
                 "name": "insuranceType",
                 "args": null,
                 "storageKey": null
+              }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
+            "name": "price",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "Price",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "amount",
+                "args": null,
+                "storageKey": null
               },
               {
-                "kind": "LinkedField",
+                "kind": "ScalarField",
                 "alias": null,
-                "name": "price",
-                "storageKey": null,
+                "name": "currency",
                 "args": null,
-                "concreteType": "Price",
-                "plural": false,
-                "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "amount",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "currency",
-                    "args": null,
-                    "storageKey": null
-                  }
-                ]
+                "storageKey": null
               }
             ]
           },

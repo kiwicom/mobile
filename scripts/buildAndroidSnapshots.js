@@ -45,7 +45,7 @@ const getDependencyVersion = packageName => {
   return buildPackage.dependencies[packageName].replace('^', '');
 };
 
-const rnModulesVersion = rnModulesPackage['version'];
+const rnModulesVersion = rnModulesPackage.version;
 
 // Get rnkiwimobile version
 const RNKiwiMobileVersion = buildPackage.version;
@@ -99,7 +99,7 @@ const deployLibrary = (packageName, version) => {
 
 (async () => {
   try {
-    log(`Start building Android SNAPSHOT(s)...`);
+    log('Start building Android SNAPSHOT(s)...');
     const reactNativeVersion = getDependencyVersion('react-native');
 
     await Promise.all([

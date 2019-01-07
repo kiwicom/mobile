@@ -11,6 +11,8 @@
     "@kiwicom/mobile-pdf": "^0",
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/rnmodules": "^0",
+    "@kiwicom/react-native-app-hotels":"^0",
     "@kiwicom/react-native-reverse-geocode": "0.0.2",
     "lodash": "^4.17.11",
     "memoize-one": "^4.0.2",
@@ -19,5 +21,15 @@
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-native": "^0.57",
+    "react-native-maps": "^0",
+    "react-navigation": "^3",
+    "mockdate": "^2",
+    "react-navigation-props-mapper": "^0",
+    "react-test-renderer": "^16",
+    "rn-fetch-blob": "^0"
   }
 }

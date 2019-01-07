@@ -7,7 +7,12 @@
     "@kiwicom/mobile-assets": "^0",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-playground": "^0",
     "rn-fetch-blob": "^0.10.13",
     "react-native-pdf": "^5.0.4"
+  },
+  "peerDependencies": {
+    "react": "^16",
+    "react-native":"^0.57"
   }
 }

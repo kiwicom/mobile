@@ -133,7 +133,6 @@ export default createFragmentContainer(
   HotelSwipeList,
   graphql`
     fragment HotelSwipeList on AllHotelsInterface @relay(plural: true) {
-      id
       ...HotelSwipeItem
       address {
         ...Address_address

@@ -17,7 +17,7 @@ import WalletContext from '../../context/WalletContext';
 
 const createAddHandler = pkpassUrl => async () => {
   try {
-    await PassBook.addPass(pkpassUrl);
+    return await PassBook.addPass(pkpassUrl);
   } catch (err) {
     return Alert.translatedAlert(undefined, {
       id: 'mmb.apple_wallet.apple_wallet_scene.add_pass_error',

@@ -59,12 +59,13 @@ export default class ScoreFilter extends React.Component<Props, State> {
       }
     });
 
-  getTitle = (minScore: number | null) =>
-    minScore ? (
+  getTitle = (minScore: number | null) => {
+    return minScore ? (
       ratingLabels[minScore]
     ) : (
       <Translation id="hotels_search.filter.score_filter.rating" />
     );
+  };
 
   render() {
     const { minScore, isActive } = this.props;

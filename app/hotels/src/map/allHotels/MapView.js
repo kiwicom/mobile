@@ -112,7 +112,7 @@ export class Map extends React.Component<Props, State> {
         : distances;
 
     const coordsByDistance = validDistances
-      .map(({ key }) => coordinates[parseInt(key)])
+      .map(({ key }) => coordinates[parseInt(key, 10)])
       .filter(Boolean);
     const boundaries = getBounds(coordsByDistance);
     const latitudeDelta = boundaries.maxLat - boundaries.minLat;
@@ -126,13 +126,13 @@ export class Map extends React.Component<Props, State> {
     const selectedHotel = hotels[selectedIndex];
 
     if (!selectedHotel) {
-      return;
+      return null;
     }
 
     const coordinate = this.getCoordinate(selectedHotel);
 
     if (!coordinate) {
-      return;
+      return null;
     }
 
     const delta = this.getDelta(coordinate, this.getCoordinates(hotels));

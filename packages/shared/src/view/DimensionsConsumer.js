@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { Dimensions } from 'react-native';
-import { type DimensionType } from '@kiwicom/mobile-shared';
 
+import { type DimensionType } from '../../types/Objects';
 import Context from './DimensionsContext';
 
 type Props = {|

@@ -5,8 +5,8 @@ import { Platform } from 'react-native';
 import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import StyleSheet from '@kiwicom/mobile-shared/src/PlatformStyleSheet';
 
+import StyleSheet from '../../PlatformStyleSheet';
 import Checkbox from '../Checkbox';
 
 const noop = () => {};
