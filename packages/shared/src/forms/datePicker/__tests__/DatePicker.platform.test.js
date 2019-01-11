@@ -59,7 +59,7 @@ describe('DatePicker ios', () => {
     const wrapper = getIOSComponent();
     const instance = wrapper.getInstance();
 
-    instance.onDateChange(new Date(2018, 1, 1));
+    instance.onDateChange(new Date(Date.UTC(2018, 1, 1)));
     expect(instance.state.date.getUTCFullYear()).toEqual(2018);
     expect(instance.state.date.getUTCMonth()).toEqual(1);
     expect(instance.state.date.getUTCDate()).toEqual(1);

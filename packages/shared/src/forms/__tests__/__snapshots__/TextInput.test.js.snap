@@ -2,7 +2,7 @@
 
 exports[`renders 1`] = `
 <React.Fragment>
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -34,13 +34,13 @@ exports[`renders 1`] = `
       }
       underlineColorAndroid="transparent"
     />
-  </Component>
+  </View>
 </React.Fragment>
 `;
 
 exports[`renders with default value 1`] = `
 <React.Fragment>
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -73,7 +73,7 @@ exports[`renders with default value 1`] = `
       }
       underlineColorAndroid="transparent"
     />
-  </Component>
+  </View>
 </React.Fragment>
 `;
 
@@ -93,7 +93,7 @@ exports[`renders with label 1`] = `
       passThrough="label"
     />
   </Text>
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -131,13 +131,13 @@ exports[`renders with label 1`] = `
       }
       underlineColorAndroid="transparent"
     />
-  </Component>
+  </View>
 </React.Fragment>
 `;
 
 exports[`renders with placeholder 1`] = `
 <React.Fragment>
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -190,6 +190,6 @@ exports[`renders with placeholder 1`] = `
         passThrough="Placeholder"
       />
     </Text>
-  </Component>
+  </View>
 </React.Fragment>
 `;

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`one label 1`] = `
-<Component
+<View
   onLayout={[Function]}
   style={
     Array [
@@ -19,7 +19,7 @@ exports[`one label 1`] = `
     ]
   }
 >
-  <Component
+  <View
     onLayout={[Function]}
   >
     <Text
@@ -34,12 +34,12 @@ exports[`one label 1`] = `
         passThrough="label"
       />
     </Text>
-  </Component>
-</Component>
+  </View>
+</View>
 `;
 
 exports[`two labels 1`] = `
-<Component
+<View
   onLayout={[Function]}
   style={
     Array [
@@ -57,7 +57,7 @@ exports[`two labels 1`] = `
     ]
   }
 >
-  <Component
+  <View
     onLayout={[Function]}
   >
     <Text
@@ -72,8 +72,8 @@ exports[`two labels 1`] = `
         passThrough="start label"
       />
     </Text>
-  </Component>
-  <Component
+  </View>
+  <View
     onLayout={[Function]}
   >
     <Text
@@ -88,6 +88,6 @@ exports[`two labels 1`] = `
         passThrough="end label"
       />
     </Text>
-  </Component>
-</Component>
+  </View>
+</View>
 `;

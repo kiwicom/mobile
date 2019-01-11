@@ -7,7 +7,7 @@ exports[`render disabled 1`] = `
 `;
 
 exports[`renders 1`] = `
-<Component
+<View
   style={
     Object {
       "alignItems": "center",
@@ -45,7 +45,7 @@ exports[`renders 1`] = `
     onPress={[MockFunction]}
     touchable={true}
   />
-</Component>
+</View>
 `;
 
 exports[`shows number 1`] = `
