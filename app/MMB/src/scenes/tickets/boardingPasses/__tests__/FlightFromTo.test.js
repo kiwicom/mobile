@@ -1,15 +1,15 @@
 // @flow strict
 
-import * as React from "react";
-import { Platform } from "react-native";
-import ShallowRenderer from "react-test-renderer/shallow";
+import * as React from 'react';
+import { Platform } from 'react-native';
+import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { FlightFromTo } from "../FlightFromTo";
+import { FlightFromTo } from '../FlightFromTo';
 
 const renderer = new ShallowRenderer();
 
-describe("FlightFromTo", () => {
-  it("renders", () => {
+describe('FlightFromTo', () => {
+  it('renders', () => {
     // $FlowExpectedError: Props not needed for this test
     const wrapper = renderer.render(<FlightFromTo />);
 
@@ -127,9 +127,9 @@ describe("FlightFromTo", () => {
 `);
   });
 
-  it("Renders correctly with Platform = Android", () => {
+  it('Renders correctly with Platform = Android', () => {
     const OriginalPlatform = Platform.OS;
-    Platform.OS = "android";
+    Platform.OS = 'android';
     // $FlowExpectedError: https://github.com/flow-typed/flow-typed/issues/2264
     expect(renderer.render(<FlightFromTo />)).toMatchInlineSnapshot(`
 <BoardingPassRow
