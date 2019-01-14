@@ -98,7 +98,7 @@ export function InsuranceRow(props: Props) {
           />
         </Text>
       </View>
-      <Price price={{ amount, currency }} style={styleSheet.price} />
+      <Price amount={amount} currency={currency} style={styleSheet.price} />
     </View>
   );
 }

@@ -42,7 +42,11 @@ export default function SelectButton({
           text={<Translation id="single_hotel.room_picker.select" />}
         />
         <View style={styles.row} />
-        <Price price={price} style={styles.price} />
+        <Price
+          amount={price.amount}
+          currency={price.currency}
+          style={styles.price}
+        />
       </View>
     </Touchable>
   );

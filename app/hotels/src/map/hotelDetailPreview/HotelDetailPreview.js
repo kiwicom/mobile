@@ -20,10 +20,8 @@ import HotelReviewScore from '../../components/HotelReviewScore';
 
 type Props = {|
   +name?: ?string,
-  +price?: ?{|
-    +currency?: ?string,
-    +amount?: ?number,
-  |},
+  +currency?: ?string,
+  +amount?: ?number,
   +thumbnailUrl?: ?string,
   +stars?: ?number,
   +score?: ?number,
@@ -31,11 +29,8 @@ type Props = {|
 
 export default class HotelDetailPreview extends React.Component<Props> {
   renderInner = ({ containerWidth }: HotelDetailState) => {
-    const name = this.props.name;
-    const price = this.props.price;
-    const image = this.props.thumbnailUrl;
+    const { name, amount, currency, thumbnailUrl: image, score } = this.props;
     const stars = this.props.stars ?? 0;
-    const score = this.props.score;
     return (
       <View style={[styles.container, { width: containerWidth }]}>
         <View>
@@ -54,7 +49,7 @@ export default class HotelDetailPreview extends React.Component<Props> {
           <View style={styles.row}>
             <View>
               {stars > 0 && <Stars rating={stars} style={styles.stars} />}
-              <Price price={price} style={styles.price} />
+              <Price amount={amount} currency={currency} style={styles.price} />
             </View>
             <HotelReviewScore score={score} />
           </View>

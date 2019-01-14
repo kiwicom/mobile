@@ -36,7 +36,11 @@ function RoomSummary(props: Props) {
               numberOfRooms: props.numberOfRooms,
             }}
           />
-          <Price price={props.price} style={styles.currency} />
+          <Price
+            amount={props.price.amount}
+            currency={props.price.currency}
+            style={styles.currency}
+          />
         </View>
       </View>
     </View>

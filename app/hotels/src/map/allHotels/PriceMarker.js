@@ -1,7 +1,5 @@
 // @flow
 
-/* eslint-disable relay/unused-fields */
-
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
@@ -16,7 +14,10 @@ type Props = {|
 |};
 
 const PriceMarker = (props: Props) => {
-  const { isSelected, data: price } = props;
+  const {
+    isSelected,
+    data: { amount, currency },
+  } = props;
   const bubbleStyles = StyleSheet.flatten([
     styles.bubble,
     isSelected && selectedStyles.bubble,
@@ -29,7 +30,9 @@ const PriceMarker = (props: Props) => {
   return (
     <View>
       <View style={bubbleStyles}>
-        {price != null && <Price price={price} style={priceStyles} />}
+        {props.data != null && (
+          <Price amount={amount} currency={currency} style={priceStyles} />
+        )}
       </View>
       <View style={[styles.arrowBorder]} />
       <View style={[styles.arrow, isSelected && selectedStyles.arrow]} />

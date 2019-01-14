@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 036a915c3f5ac54d68f08d8feaf950f2
+ * @relayHash c2f3da45d4308d1a7b30036505f5ddd5
  */
 
 /* eslint-disable */
@@ -73,7 +73,6 @@ fragment AdditionalInfo on HotelAvailabilityInterface {
     review {
       score
     }
-    id
     name
     mainPhoto {
       thumbnailUrl
@@ -82,6 +81,7 @@ fragment AdditionalInfo on HotelAvailabilityInterface {
     rating {
       stars
     }
+    id
   }
 }
 
@@ -169,7 +169,7 @@ return {
   "operationKind": "query",
   "name": "Stay22SingleHotelMapScreenQuery",
   "id": null,
-  "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap\n    id\n  }\n}\n\nfragment SingleMap on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    id\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+  "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap\n    id\n  }\n}\n\nfragment SingleMap on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
   "metadata": {},
   "fragment": {
     "kind": "Fragment",

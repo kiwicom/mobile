@@ -50,7 +50,11 @@ export default function IncrementDecrement({
               {...androidProps}
             />
           </Text>
-          <Price price={price} style={styles.price} />
+          <Price
+            amount={price?.amount}
+            currency={price?.currency}
+            style={styles.price}
+          />
         </View>
 
         <View style={styles.countContainer}>

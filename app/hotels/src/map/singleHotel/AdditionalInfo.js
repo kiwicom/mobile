@@ -1,6 +1,5 @@
 // @flow strict
 
-/* eslint-disable relay/unused-fields */
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
@@ -47,7 +46,8 @@ export class AdditionalInfo extends React.Component<Props, State> {
             <View style={styles.detailPreviewContainer}>
               <HotelDetailPreview
                 name={name}
-                price={price}
+                amount={price?.amount}
+                currency={price?.currency}
                 thumbnailUrl={thumbnailUrl}
                 stars={stars}
                 score={score}
@@ -97,7 +97,6 @@ export default createFragmentContainer(
         review {
           score
         }
-        id
         name
         mainPhoto {
           thumbnailUrl

@@ -91,22 +91,10 @@ export default class PricePopup extends React.Component<Props, State> {
             max={max}
             min={min}
             startLabel={
-              <Price
-                price={{
-                  amount: start * daysOfStay,
-                  currency,
-                }}
-              />
+              <Price amount={start * daysOfStay} currency={currency} />
             }
             startValue={start}
-            endLabel={
-              <Price
-                price={{
-                  amount: end * daysOfStay,
-                  currency,
-                }}
-              />
-            }
+            endLabel={<Price amount={end * daysOfStay} currency={currency} />}
             endValue={end}
           />
           <View style={styles.sliderContainer}>
