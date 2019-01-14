@@ -1,7 +1,5 @@
 // @flow
 
-/* eslint-disable relay/unused-fields */
-// TODO: Fix ^^
 import * as React from 'react';
 import { ScrollView, View, Platform } from 'react-native';
 import {
@@ -32,7 +30,11 @@ import {
   type HotelsContextState,
   type ApiProvider,
 } from '../HotelsContext';
-import countBookingPrice from './bookNow/countBookingPrice';
+
+type Price = {|
+  +amount: number,
+  +currency: string,
+|};
 
 type PropsWithContext = {|
   ...Props,
@@ -86,10 +88,7 @@ export class HotelDetailScreen extends React.Component<
 
   componentDidUpdate(prevProps: PropsWithContext) {
     if (!isEqual(prevProps.selected, this.props.selected)) {
-      const price = countBookingPrice(
-        this.props.availableHotel?.availableRooms,
-        this.props.selected,
-      );
+      const price = this.countBookingPrice();
       if (price != null) {
         this.props.setPrice(price);
       }
@@ -99,6 +98,40 @@ export class HotelDetailScreen extends React.Component<
   componentWillUnmount() {
     this.props.reset();
   }
+
+  countBookingPrice = (): ?Price => {
+    const availableRooms = this.props.availableHotel?.availableRooms;
+    const selected = this.props.selected;
+
+    if (!availableRooms) {
+      return null;
+    }
+    const positiveSelections = Object.entries(selected).filter(
+      (selection: any) => selection[1] > 0,
+    );
+
+    if (positiveSelections.length === 0) {
+      return null;
+    }
+
+    const amount = positiveSelections
+      .map((selection: any) => {
+        const [id, count] = selection;
+
+        const room = availableRooms.find(room => room?.id === id);
+        return room?.incrementalPrice?.[count - 1]?.amount;
+      })
+      .reduce((a, b) => a + b, 0);
+
+    const currency =
+      availableRooms.find(room => room?.id === positiveSelections[0][0])
+        ?.incrementalPrice?.[0]?.currency ?? '';
+
+    return {
+      amount,
+      currency,
+    };
+  };
 
   isNarrowLayout = () => {
     return this.props.width < Device.DEVICE_THRESHOLD;

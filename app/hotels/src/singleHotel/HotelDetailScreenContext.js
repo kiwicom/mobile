@@ -31,16 +31,16 @@ type Props = {|
   +guestCount: number,
 |};
 
-type Money = {|
-  amount: number,
-  currency: string,
+type Price = {|
+  +amount: number,
+  +currency: string,
 |};
 
 type State = {|
   selected: {
     [string]: number, // originalId: count
   },
-  price: Money,
+  price: Price,
   maxPersons: number,
   numberOfRooms: number,
   +getPersonCount: () => number,
@@ -48,7 +48,7 @@ type State = {|
     +selectRoom: (id: string, maxPersons: number) => void,
     +deselectRoom: (id: string, maxPersons: number) => void,
     +reset: () => void,
-    +setPrice: (price: Money) => void,
+    +setPrice: (price: Price) => void,
   |},
 |};
 
@@ -107,7 +107,7 @@ export class Provider extends React.Component<Props, State> {
       : this.state.maxPersons;
   };
 
-  setPrice = (price: Money) => {
+  setPrice = (price: Price) => {
     this.setState({ price });
   };
 
