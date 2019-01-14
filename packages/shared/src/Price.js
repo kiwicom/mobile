@@ -10,13 +10,9 @@ import CancellablePromise, {
   type CancellablePromiseType,
 } from './CancellablePromise';
 
-type PriceType = {
+type Props = {|
   +amount?: ?number,
   +currency?: ?string,
-};
-
-type Props = {|
-  +price?: ?PriceType,
   +style?: StylePropType,
 |};
 
@@ -39,14 +35,11 @@ export default class Price extends React.Component<Props, State> {
     this.formatCurrency();
   }
 
-  componentDidUpdate = (prevProps: Props) => {
-    if (
-      (prevProps.price && prevProps.price.amount) !==
-      (this.props.price && this.props.price.amount)
-    ) {
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.amount !== this.props.amount) {
       this.formatCurrency();
     }
-  };
+  }
 
   componentWillUnmount = () => {
     if (this.cancellablePromise !== null) {
@@ -55,8 +48,8 @@ export default class Price extends React.Component<Props, State> {
   };
 
   formatCurrency = async () => {
-    const amount = this.props.price?.amount ?? null;
-    const currency = this.props.price?.currency || null;
+    const amount = this.props.amount ?? null;
+    const currency = this.props.currency || null;
 
     if (amount !== null && currency !== null) {
       try {

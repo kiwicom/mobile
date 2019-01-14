@@ -91,12 +91,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
       return (
         <TranslationFragment>
           <Translation passThrough="< " />
-          <Price
-            price={{
-              amount: end * daysOfStay,
-              currency: currency,
-            }}
-          />
+          <Price amount={end * daysOfStay} currency={currency} />
         </TranslationFragment>
       );
     }
@@ -104,30 +99,15 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
       return (
         <TranslationFragment>
           <Translation passThrough="> " />
-          <Price
-            price={{
-              amount: start * daysOfStay,
-              currency: currency,
-            }}
-          />
+          <Price amount={start * daysOfStay} currency={currency} />
         </TranslationFragment>
       );
     }
     return (
       <TranslationFragment>
-        <Price
-          price={{
-            amount: start * daysOfStay,
-            currency: currency,
-          }}
-        />
+        <Price amount={start * daysOfStay} currency={currency} />
         <Translation passThrough=" - " />
-        <Price
-          price={{
-            amount: end * daysOfStay,
-            currency: currency,
-          }}
-        />
+        <Price amount={end * daysOfStay} currency={currency} />
       </TranslationFragment>
     );
   };

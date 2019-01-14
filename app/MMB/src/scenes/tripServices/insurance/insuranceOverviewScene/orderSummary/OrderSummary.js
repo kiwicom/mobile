@@ -66,7 +66,11 @@ class OrderSummary extends React.Component<Props, State> {
                 <Translation id="mmb.trip_services.order.total" />
               </Text>
             </View>
-            <Price price={this.props.price} style={styleSheet.price} />
+            <Price
+              amount={this.props.price.amount}
+              currency={this.props.price.currency}
+              style={styleSheet.price}
+            />
           </View>
         </View>
       </TouchableWithoutFeedback>

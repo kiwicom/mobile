@@ -1,6 +1,5 @@
 // @flow strict
 
-/* eslint-disable relay/unused-fields */
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
@@ -31,7 +30,11 @@ function HotelTitle({ data }: Props) {
       <View style={style.distance}>
         <Distance hotel={data} />
       </View>
-      <Price price={data.price} style={style.price} />
+      <Price
+        amount={data.price?.amount}
+        currency={data.price?.currency}
+        style={style.price}
+      />
     </React.Fragment>
   );
 }

@@ -23,7 +23,6 @@ export type AdditionalInfo = {|
     +review: ?{|
       +score: ?number
     |},
-    +id: string,
     +name: ?string,
     +mainPhoto: ?{|
       +thumbnailUrl: ?string
@@ -115,13 +114,6 @@ const node/*: ConcreteFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "id",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
           "name": "name",
           "args": null,
           "storageKey": null
@@ -167,5 +159,5 @@ const node/*: ConcreteFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'f96f53c45e6c3ee4ad30f1d0ae3a3527';
+(node/*: any*/).hash = '1a8956ae64cf9872541efd73f28b5c10';
 module.exports = node;
