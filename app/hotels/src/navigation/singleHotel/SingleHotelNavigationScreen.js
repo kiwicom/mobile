@@ -32,6 +32,10 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
     Logger.hotelsDetailOpened();
   }
 
+  componentWillUnmount() {
+    Logger.hotelsDetailAbandoned();
+  }
+
   goBack = () => {
     if (this.props.isStandAlonePackage) {
       // onBackClick is passed down, even from `KiwiHotelsPackage`
