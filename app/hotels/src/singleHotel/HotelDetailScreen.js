@@ -228,9 +228,12 @@ export default createFragmentContainer(
   `,
 );
 
+const paddingBottom = 64;
+const iphoneXPadding = paddingBottom + 28;
+
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 64,
+    paddingBottom: Device.isIPhoneX ? iphoneXPadding : paddingBottom,
   },
   safeArea: {
     flex: 1,
