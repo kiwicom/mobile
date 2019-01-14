@@ -44,6 +44,10 @@ it('renders without crashing', () => {
     navigation,
     getGuestCount: jest.fn(),
     maxPersons: 2,
+    price: {
+      amount: 2,
+      currency: 'EUR',
+    },
   };
   PlaygroundRenderer.render(<BookNow {...props} />);
 });
@@ -62,6 +66,10 @@ it('renders without crashing with missing data', () => {
     navigation,
     getGuestCount: jest.fn(),
     maxPersons: 2,
+    price: {
+      amount: 2,
+      currency: 'EUR',
+    },
   };
 
   PlaygroundRenderer.render(<BookNow {...props} />);

@@ -2,6 +2,8 @@
 
 import { NativeModules } from 'react-native';
 
+import currencyFormatter from './CurrencyFormatter';
+
 const LoggingModule = NativeModules.RNLoggingModule;
 
 const {
@@ -72,23 +74,33 @@ const HotelGalleryType = {
 };
 
 type LogHotelGalleryType = $Keys<typeof HotelGalleryType>;
+type HotelsBookNowArgs = {|
+  +hotelID: string,
+  +rooms: number,
+  +guests: number,
+  +price: {|
+    +amount: number,
+    +currency: string,
+  |},
+|};
 
 function hotelsGalleryOpened(type: LogHotelGalleryType) {
   LoggingModule.hotelsGalleryOpened(type);
 }
 
-function hotelsBookNowPressed(
-  hotelID: string,
-  rooms: number,
-  guests: number,
-  price: number,
-  formattedPrice: string,
-) {
+async function hotelsBookNowPressed({
+  hotelID,
+  rooms,
+  guests,
+  price,
+}: HotelsBookNowArgs) {
+  const { amount, currency } = price;
+  const formattedPrice = await currencyFormatter(amount, currency);
   LoggingModule.hotelsBookNowPressed(
     hotelID,
     rooms,
     guests,
-    price,
+    amount,
     formattedPrice,
   );
 }
