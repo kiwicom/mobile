@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders text 1`] = `
-<Component
+<View
   style={
     Array [
       Object {
@@ -31,11 +31,11 @@ exports[`renders text 1`] = `
       passThrough="default badge"
     />
   </Text>
-</Component>
+</View>
 `;
 
 exports[`renders text with color 1`] = `
-<Component
+<View
   style={
     Array [
       Object {
@@ -67,11 +67,11 @@ exports[`renders text with color 1`] = `
       passThrough="badge with color"
     />
   </Text>
-</Component>
+</View>
 `;
 
 exports[`renders very long texts 1`] = `
-<Component
+<View
   style={
     Array [
       Object {
@@ -101,5 +101,5 @@ exports[`renders very long texts 1`] = `
       passThrough="very very very very very long badge (adaptable width)"
     />
   </Text>
-</Component>
+</View>
 `;
