@@ -1,7 +1,12 @@
 // @flow strict
 
 import * as React from 'react';
-import { StyleSheet, Button, ButtonTitle } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  Button,
+  ButtonTitle,
+  Logger,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
   withNavigation,
@@ -28,15 +33,26 @@ type Props = {
   +hotelId: ?string,
   +getGuestCount: () => number,
   +maxPersons: number,
+  +price: {|
+    +amount: number,
+    +currency: string,
+  |},
 };
 
 export class BookNow extends React.Component<Props> {
   handleGoToPayment = () => {
     const hotelId = this.props.hotelId;
     if (hotelId != null) {
+      const rooms = convertRooms(this.props.selected);
+      Logger.hotelsBookNowPressed({
+        hotelID: hotelId,
+        rooms: rooms.reduce((prev, curr) => prev + curr.count, 0),
+        guests: this.props.getGuestCount(),
+        price: this.props.price,
+      });
       this.props.navigation.navigate('Payment', {
         hotelId,
-        rooms: convertRooms(this.props.selected),
+        rooms,
         language: DeviceInfo.getLanguage(),
       });
     }
@@ -91,9 +107,11 @@ const select = ({ currency, hotelId, getGuestCount }: HotelsContextState) => ({
 const selectHotelDetailScreen = ({
   selected,
   maxPersons,
+  price,
 }: HotelDetailScreenState) => ({
   selected,
   maxPersons,
+  price,
 });
 
 export default withHotelDetailScreenContext(selectHotelDetailScreen)(
