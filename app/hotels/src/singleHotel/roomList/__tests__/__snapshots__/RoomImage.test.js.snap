@@ -10,7 +10,7 @@ exports[`RoomImage renders 1`] = `
   onPress={[MockFunction]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
-  <Component>
+  <View>
     <NetworkImageWithContext
       source={
         Object {
@@ -25,7 +25,7 @@ exports[`RoomImage renders 1`] = `
         }
       }
     />
-    <Component
+    <View
       style={
         Object {
           "bottom": 0,
@@ -50,7 +50,7 @@ exports[`RoomImage renders 1`] = `
           }
         }
       />
-    </Component>
-  </Component>
+    </View>
+  </View>
 </Touchable>
 `;

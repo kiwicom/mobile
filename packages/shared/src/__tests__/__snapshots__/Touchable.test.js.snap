@@ -26,14 +26,14 @@ exports[`Touchable with children throws error for multiple children 2`] = `
   onPress={[Function]}
   rippleColor="rgba(0, 0, 0, .32)"
 >
-  <Component>
+  <View>
     <Translation
       passThrough="line 1"
     />
     <Translation
       passThrough="line 2"
     />
-  </Component>
+  </View>
 </TouchableOpacity>
 `;
 

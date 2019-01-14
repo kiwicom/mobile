@@ -3,14 +3,14 @@
 exports[`ButtonPopup playground renders in playground 1`] = `
 <Popup
   bottomContent={
-    <Component
+    <View
       style={
         Object {
           "flexDirection": "row",
         }
       }
     >
-      <Component
+      <View
         style={
           Array [
             Object {
@@ -33,8 +33,8 @@ exports[`ButtonPopup playground renders in playground 1`] = `
           }
           type="secondary"
         />
-      </Component>
-      <Component
+      </View>
+      <View
         style={
           Object {
             "flex": 1,
@@ -52,13 +52,13 @@ exports[`ButtonPopup playground renders in playground 1`] = `
           }
           type="primary"
         />
-      </Component>
-    </Component>
+      </View>
+    </View>
   }
   isVisible={true}
   onClose={[Function]}
 >
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -72,6 +72,6 @@ exports[`ButtonPopup playground renders in playground 1`] = `
     <Translation
       passThrough="Child"
     />
-  </Component>
+  </View>
 </Popup>
 `;

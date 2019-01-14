@@ -8,7 +8,7 @@ exports[`renders 1`] = `
     }
   }
 >
-  <Component
+  <View
     style={
       Object {
         "alignItems": "center",
@@ -17,14 +17,14 @@ exports[`renders 1`] = `
       }
     }
   >
-    <Component
+    <View
       style={
         Object {
           "flex": 1,
         }
       }
     />
-    <Component
+    <View
       style={
         Object {
           "flex": 1,
@@ -58,8 +58,8 @@ exports[`renders 1`] = `
           id="shared_offline_screen.offline_text"
         />
       </Text>
-    </Component>
-    <Component
+    </View>
+    <View
       style={
         Object {
           "height": 163,
@@ -76,8 +76,8 @@ exports[`renders 1`] = `
           }
         }
       />
-    </Component>
-    <Component
+    </View>
+    <View
       style={
         Object {
           "flexDirection": "row",
@@ -104,7 +104,7 @@ exports[`renders 1`] = `
         }
         type="primary"
       />
-    </Component>
-  </Component>
+    </View>
+  </View>
 </withOrientation>
 `;

@@ -38,7 +38,7 @@ exports[`StarsPopup should render popup 1`] = `
         onPress={[Function]}
         stars={5}
       />
-      <Component
+      <View
         style={
           Object {
             "marginEnd": -15,
@@ -51,7 +51,7 @@ exports[`StarsPopup should render popup 1`] = `
           gapSizeStart={0}
           height={0.5}
         />
-      </Component>
+      </View>
     </React.Fragment>
     <React.Fragment>
       <StarsCheckbox
@@ -59,7 +59,7 @@ exports[`StarsPopup should render popup 1`] = `
         onPress={[Function]}
         stars={4}
       />
-      <Component
+      <View
         style={
           Object {
             "marginEnd": -15,
@@ -72,7 +72,7 @@ exports[`StarsPopup should render popup 1`] = `
           gapSizeStart={0}
           height={0.5}
         />
-      </Component>
+      </View>
     </React.Fragment>
     <React.Fragment>
       <StarsCheckbox
@@ -80,7 +80,7 @@ exports[`StarsPopup should render popup 1`] = `
         onPress={[Function]}
         stars={3}
       />
-      <Component
+      <View
         style={
           Object {
             "marginEnd": -15,
@@ -93,7 +93,7 @@ exports[`StarsPopup should render popup 1`] = `
           gapSizeStart={0}
           height={0.5}
         />
-      </Component>
+      </View>
     </React.Fragment>
     <React.Fragment>
       <StarsCheckbox
@@ -101,7 +101,7 @@ exports[`StarsPopup should render popup 1`] = `
         onPress={[Function]}
         stars={2}
       />
-      <Component
+      <View
         style={
           Object {
             "marginEnd": -15,
@@ -114,7 +114,7 @@ exports[`StarsPopup should render popup 1`] = `
           gapSizeStart={0}
           height={0.5}
         />
-      </Component>
+      </View>
     </React.Fragment>
     <React.Fragment>
       <StarsCheckbox
@@ -122,7 +122,7 @@ exports[`StarsPopup should render popup 1`] = `
         onPress={[Function]}
         stars={1}
       />
-      <Component
+      <View
         style={
           Object {
             "marginEnd": -15,
@@ -135,7 +135,7 @@ exports[`StarsPopup should render popup 1`] = `
           gapSizeStart={0}
           height={0.5}
         />
-      </Component>
+      </View>
     </React.Fragment>
     <Checkbox
       isChecked={false}

@@ -16,7 +16,7 @@ describe('FlightFromTo', () => {
     expect(wrapper).toMatchInlineSnapshot(`
 <BoardingPassRow
   leftColumn={
-    <Component
+    <View
       style={
         Object {
           "marginEnd": 10,
@@ -49,10 +49,10 @@ describe('FlightFromTo', () => {
           passThrough=""
         />
       </Text>
-    </Component>
+    </View>
   }
   rightColumn={
-    <Component
+    <View
       style={
         Object {
           "flex": 1,
@@ -60,7 +60,7 @@ describe('FlightFromTo', () => {
         }
       }
     >
-      <Component
+      <View
         style={
           Array [
             Object {
@@ -102,8 +102,8 @@ describe('FlightFromTo', () => {
         >
           <Translation />
         </Text>
-      </Component>
-      <Component
+      </View>
+      <View
         style={
           Object {
             "marginTop": 15,
@@ -111,8 +111,8 @@ describe('FlightFromTo', () => {
         }
       >
         <ForwardRef(Relay(withNavigation(DownloadButton))) />
-      </Component>
-      <Component
+      </View>
+      <View
         style={
           Object {
             "marginTop": 20,
@@ -120,8 +120,8 @@ describe('FlightFromTo', () => {
         }
       >
         <ForwardRef(Relay(TicketList)) />
-      </Component>
-    </Component>
+      </View>
+    </View>
   }
 />
 `);
@@ -134,7 +134,7 @@ describe('FlightFromTo', () => {
     expect(renderer.render(<FlightFromTo />)).toMatchInlineSnapshot(`
 <BoardingPassRow
   leftColumn={
-    <Component
+    <View
       style={
         Object {
           "marginEnd": 10,
@@ -167,10 +167,10 @@ describe('FlightFromTo', () => {
           passThrough=""
         />
       </Text>
-    </Component>
+    </View>
   }
   rightColumn={
-    <Component
+    <View
       style={
         Object {
           "flex": 1,
@@ -178,7 +178,7 @@ describe('FlightFromTo', () => {
         }
       }
     >
-      <Component
+      <View
         style={
           Array [
             Object {
@@ -220,8 +220,8 @@ describe('FlightFromTo', () => {
         >
           <Translation />
         </Text>
-      </Component>
-      <Component
+      </View>
+      <View
         style={
           Object {
             "marginTop": 15,
@@ -229,8 +229,8 @@ describe('FlightFromTo', () => {
         }
       >
         <ForwardRef(Relay(withNavigation(DownloadButton))) />
-      </Component>
-      <Component
+      </View>
+      <View
         style={
           Object {
             "marginTop": 20,
@@ -238,8 +238,8 @@ describe('FlightFromTo', () => {
         }
       >
         <ForwardRef(Relay(TicketList)) />
-      </Component>
-    </Component>
+      </View>
+    </View>
   }
 />
 `);
