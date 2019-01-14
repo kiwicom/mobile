@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders header with title 1`] = `
-<Component
+<View
   style={
     Object {
       "flex": 1,
@@ -38,7 +38,7 @@ exports[`renders header with title 1`] = `
       />
     </Text>
   </Touchable>
-  <Component
+  <View
     style={
       Object {
         "flex": 1,
@@ -83,19 +83,19 @@ exports[`renders header with title 1`] = `
         }
       />
     </Text>
-  </Component>
-  <Component
+  </View>
+  <View
     style={
       Object {
         "width": 50,
       }
     }
   />
-</Component>
+</View>
 `;
 
 exports[`renders header with very long title 1`] = `
-<Component
+<View
   style={
     Object {
       "flex": 1,
@@ -132,7 +132,7 @@ exports[`renders header with very long title 1`] = `
       />
     </Text>
   </Touchable>
-  <Component
+  <View
     style={
       Object {
         "flex": 1,
@@ -177,13 +177,13 @@ exports[`renders header with very long title 1`] = `
         }
       />
     </Text>
-  </Component>
-  <Component
+  </View>
+  <View
     style={
       Object {
         "width": 50,
       }
     }
   />
-</Component>
+</View>
 `;

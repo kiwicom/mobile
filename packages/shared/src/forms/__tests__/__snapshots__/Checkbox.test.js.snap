@@ -7,7 +7,7 @@ exports[`checked on android 1`] = `
   disabled={false}
   onPress={[Function]}
 >
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -19,7 +19,7 @@ exports[`checked on android 1`] = `
       ]
     }
   >
-    <Component
+    <View
       style={
         Object {
           "flex": 3,
@@ -31,8 +31,8 @@ exports[`checked on android 1`] = `
       <Translation
         passThrough="Checked"
       />
-    </Component>
-    <Component
+    </View>
+    <View
       style={
         Object {
           "alignItems": "flex-end",
@@ -51,8 +51,8 @@ exports[`checked on android 1`] = `
           }
         }
       />
-    </Component>
-  </Component>
+    </View>
+  </View>
 </TouchableWithoutFeedback>
 `;
 
@@ -63,7 +63,7 @@ exports[`checked on ios 1`] = `
   disabled={false}
   onPress={[Function]}
 >
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -75,7 +75,7 @@ exports[`checked on ios 1`] = `
       ]
     }
   >
-    <Component
+    <View
       style={
         Object {
           "flex": 3,
@@ -87,8 +87,8 @@ exports[`checked on ios 1`] = `
       <Translation
         passThrough="Checked"
       />
-    </Component>
-    <Component
+    </View>
+    <View
       style={
         Object {
           "alignItems": "flex-end",
@@ -107,8 +107,8 @@ exports[`checked on ios 1`] = `
           }
         }
       />
-    </Component>
-  </Component>
+    </View>
+  </View>
 </TouchableWithoutFeedback>
 `;
 
@@ -119,7 +119,7 @@ exports[`not checked 1`] = `
   disabled={false}
   onPress={[Function]}
 >
-  <Component
+  <View
     style={
       Array [
         Object {
@@ -131,7 +131,7 @@ exports[`not checked 1`] = `
       ]
     }
   >
-    <Component
+    <View
       style={
         Object {
           "flex": 3,
@@ -143,8 +143,8 @@ exports[`not checked 1`] = `
       <Translation
         passThrough="Unchecked"
       />
-    </Component>
-    <Component
+    </View>
+    <View
       style={
         Object {
           "alignItems": "flex-end",
@@ -152,7 +152,7 @@ exports[`not checked 1`] = `
         }
       }
     >
-      <Component
+      <View
         style={
           Object {
             "borderColor": "#bac7d5",
@@ -163,7 +163,7 @@ exports[`not checked 1`] = `
           }
         }
       />
-    </Component>
-  </Component>
+    </View>
+  </View>
 </TouchableWithoutFeedback>
 `;
