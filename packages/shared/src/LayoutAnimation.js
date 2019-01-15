@@ -4,8 +4,10 @@ import { LayoutAnimation, NativeModules } from 'react-native'; // eslint-disable
 
 // see: https://facebook.github.io/react-native/docs/layoutanimation.html
 const { UIManager } = NativeModules;
-UIManager.setLayoutAnimationEnabledExperimental &&
+
+if (UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 
 const linear = (animationSpeedMs: number = 50) =>
   LayoutAnimation.configureNext(

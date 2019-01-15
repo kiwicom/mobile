@@ -25,12 +25,12 @@ export default function MarkerLocationButton(props: Props) {
           <Text
             numberOfLines={1}
             style={
-              props.formattedAddress != ''
+              props.formattedAddress !== ''
                 ? styles.locationText
                 : styles.placeholderText
             }
           >
-            {props.formattedAddress != '' ? (
+            {props.formattedAddress !== '' ? (
               <Translation passThrough={props.formattedAddress} />
             ) : (
               <Translation id="mmb.trip_services.transportation.map.marker_location_button" />

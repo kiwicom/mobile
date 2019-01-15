@@ -73,10 +73,10 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
     const { onSwipeUp, onSwipeDown } = this.props;
     const swipeDirection = this.getSwipeDirection(gestureState);
 
-    if (swipeDirection === swipeDirections.SWIPE_DOWN) {
-      onSwipeDown && onSwipeDown(gestureState);
-    } else {
-      onSwipeUp && onSwipeUp(gestureState);
+    if (swipeDirection === swipeDirections.SWIPE_DOWN && onSwipeDown) {
+      onSwipeDown(gestureState);
+    } else if (swipeDirection === swipeDirections.SWIPE_UP && onSwipeUp) {
+      onSwipeUp(gestureState);
     }
   };
 

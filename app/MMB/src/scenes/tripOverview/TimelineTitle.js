@@ -34,8 +34,8 @@ class TimelineTitle extends React.Component<PropsWithContext> {
     (warnings: $ReadOnlyArray<Warning>, localTime: ?Date, iataCode: ?string) =>
       warnings.find(
         _warning =>
-          _warning.timelineTitle.localTime == localTime &&
-          _warning.timelineTitle.iataCode == iataCode,
+          _warning.timelineTitle.localTime === localTime &&
+          _warning.timelineTitle.iataCode === iataCode,
       ),
   );
 

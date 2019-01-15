@@ -33,12 +33,16 @@ export default class PaymentScene extends React.Component<{||}, State> {
     active: 'ANOTHER_CARD',
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.getSavedCard();
+  }
+
+  getSavedCard = async () => {
     const card = await getCard();
     if (card != null) {
       this.setState({ card, active: 'SAVED_CARD' });
     }
-  }
+  };
 
   onPressPaymentButton = () => {
     console.warn('TODO');

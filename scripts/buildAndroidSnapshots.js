@@ -50,35 +50,29 @@ const rnModulesVersion = rnModulesPackage.version;
 // Get rnkiwimobile version
 const RNKiwiMobileVersion = buildPackage.version;
 
-const deployDependency = (packageName, url, version, extension = '') => {
-  return new Promise(async (resolve, reject) => {
-    const downloadUrl = `${url}com/trinerdis/skypicker/${packageName}/${version}${extension}/maven-metadata.xml`;
+const deployDependency = async (packageName, url, version, extension = '') => {
+  const downloadUrl = `${url}com/trinerdis/skypicker/${packageName}/${version}${extension}/maven-metadata.xml`;
 
-    log(`Checking if ${downloadUrl} exists.`);
+  log(`Checking if ${downloadUrl} exists.`);
 
-    const exists = await urlExists(downloadUrl, {
-      'Private-Token': process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN,
-    });
-
-    if (!exists) {
-      log(`Deploying ${packageName}/${version}${extension}`);
-      try {
-        exec(
-          `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
-            // $FlowFixMe we already checked in the top that is defined
-            process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
-          } ./gradlew --no-daemon :${packageName}:uploadKiwi`,
-        );
-      } catch (err) {
-        reject(err);
-        return;
-      }
-      log(`${packageName}/${version}${extension} was successfully deployed.`);
-    } else {
-      log(`Skipping ${packageName}/${version}${extension} (already deployed).`);
-    }
-    resolve();
+  const exists = await urlExists(downloadUrl, {
+    'Private-Token': process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN,
   });
+
+  if (!exists) {
+    log(`Deploying ${packageName}/${version}${extension}`);
+
+    exec(
+      `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
+        // $FlowFixMe we already checked in the top that is defined
+        process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
+      } ./gradlew --no-daemon :${packageName}:uploadKiwi`,
+    );
+
+    log(`${packageName}/${version}${extension} was successfully deployed.`);
+  } else {
+    log(`Skipping ${packageName}/${version}${extension} (already deployed).`);
+  }
 };
 
 const deployLibrary = (packageName, version) => {
