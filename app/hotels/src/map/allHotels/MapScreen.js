@@ -56,9 +56,8 @@ class MapScreenWithContext extends React.Component<PropsWithContext, State> {
   };
 
   handleActiveIndex = (index: number, hotels: MapScreenData) => {
-    if (!this.isNarrowLayout()) {
-      const hotelHotelId = hotels[index].hotelId;
-      hotelHotelId != null && this.props.setHotelId(hotelHotelId);
+    if (!this.isNarrowLayout() && hotels[index].hotelId != null) {
+      this.props.setHotelId(hotels[index].hotelId);
     }
     this.selectMarker(index);
   };

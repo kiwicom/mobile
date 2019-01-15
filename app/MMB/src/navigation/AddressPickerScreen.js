@@ -96,7 +96,7 @@ export class AddressPickerScreen extends React.Component<Props, State> {
       coordinate,
       this.props.googleMapsAPIKey,
     );
-    if (formattedAddress != this.state.formattedAddress) {
+    if (formattedAddress !== this.state.formattedAddress) {
       this.setState({ formattedAddress });
     }
   });

@@ -25,7 +25,7 @@ it('it initiales correctly when it should show list', () => {
   expect(Component.listAnimation).toEqual(new Animated.Value(0));
 });
 
-it('it initiales correctly when it should show list', () => {
+it('it initiales correctly when it should show map', () => {
   // $FlowExpectedError: Passing only props needed for this test
   const Component = new RenderSearchResults({ show: 'map' });
   expect(Component.mapAnimation).toEqual(new Animated.Value(0));

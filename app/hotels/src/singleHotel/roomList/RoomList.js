@@ -37,7 +37,7 @@ class RoomList extends React.Component<Props> {
         </Text>
         {data.map((availableRoom, index) => (
           <React.Fragment key={availableRoom.id}>
-            {index != 0 && (
+            {index !== 0 && (
               <SeparatorFullWidth
                 height={StyleSheet.hairlineWidth}
                 color={defaultTokens.paletteInkLighter}

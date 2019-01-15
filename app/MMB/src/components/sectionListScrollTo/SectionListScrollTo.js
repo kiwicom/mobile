@@ -78,6 +78,8 @@ export default class SectionListScrollTo extends React.Component<Props> {
   storeSectionListRef = (ref: React.ElementRef<typeof SectionList>) =>
     (this.sectionListRef = ref);
 
+  verifyAndScroll: IntervalID;
+
   constructor(props: Props) {
     super(props);
 
@@ -86,10 +88,28 @@ export default class SectionListScrollTo extends React.Component<Props> {
       0,
     );
     this.layoutInfo = generateDefaultLayoutInfo(layoutInfoLength);
-  }
 
-  componentDidMount() {
-    this.verifyAndScroll;
+    this.verifyAndScroll = setInterval(() => {
+      if (this.layoutInfo.every(info => info.rendered)) {
+        const { data } = this.props;
+        const section = data.find(_section => _section.shouldScroll);
+        if (section) {
+          const layoutInfoIndex = this.getLayoutInfoIndex({
+            section,
+            type: 'HEADER',
+          });
+          const currentOffset = this.computeOffset(layoutInfoIndex);
+
+          const layoutFinishedComputing = currentOffset === this.pastOffset;
+
+          if (layoutFinishedComputing) {
+            this.scrollToRelevantSection();
+            clearInterval(this.verifyAndScroll);
+          }
+          this.pastOffset = this.computeOffset(layoutInfoIndex);
+        }
+      }
+    }, 50);
   }
 
   componentWillUnmount() {
@@ -163,28 +183,6 @@ export default class SectionListScrollTo extends React.Component<Props> {
       viewOffset,
     });
   };
-
-  verifyAndScroll = setInterval(() => {
-    if (this.layoutInfo.every(info => info.rendered)) {
-      const { data } = this.props;
-      const section = data.find(_section => _section.shouldScroll);
-      if (section) {
-        const layoutInfoIndex = this.getLayoutInfoIndex({
-          section,
-          type: 'HEADER',
-        });
-        const currentOffset = this.computeOffset(layoutInfoIndex);
-
-        const layoutFinishedComputing = currentOffset === this.pastOffset;
-
-        if (layoutFinishedComputing) {
-          this.scrollToRelevantSection();
-          clearInterval(this.verifyAndScroll);
-        }
-        this.pastOffset = this.computeOffset(layoutInfoIndex);
-      }
-    }
-  }, 50);
 
   getItemLayout = (data: ?(Section[]), index: number) => {
     const ITEM_LENGTH_ESTIMATE = 100;
