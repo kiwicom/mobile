@@ -44,11 +44,12 @@ export class HotelSwipeItemWithContext extends React.Component<PropsWithContext>
   handlePress = () => {
     const { data } = this.props;
     const id = data?.hotelId;
+    const isNarrowLayout = this.isNarrowLayout();
 
-    if (id != null) {
-      this.isNarrowLayout()
-        ? this.openSingleHotel(id)
-        : this.props.setHotelId(id);
+    if (id != null && isNarrowLayout) {
+      this.openSingleHotel(id);
+    } else if (id != null && !isNarrowLayout) {
+      this.props.setHotelId(id);
     }
   };
 

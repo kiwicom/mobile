@@ -63,13 +63,16 @@ export class Map extends React.Component<Props, State> {
   componentDidMount() {
     const { selectedIndex } = this.props;
     // it's necessary to call showCallout to bring selected marker to foreground
-    this.markers[selectedIndex] && this.markers[selectedIndex].showCallout();
+    if (this.markers[selectedIndex]) {
+      this.markers[selectedIndex].showCallout();
+    }
   }
 
   componentDidUpdate() {
     this.animateToCoordinate(this.props.selectedIndex);
-    this.markers[this.props.selectedIndex] &&
+    if (this.markers[this.props.selectedIndex]) {
       this.markers[this.props.selectedIndex].showCallout();
+    }
   }
 
   getCoordinate = (hotel: Object): LatLng | null => {

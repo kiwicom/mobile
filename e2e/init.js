@@ -1,6 +1,6 @@
 // @flow
 
-/* eslint-disable import/no-extraneous-dependencies */ // TODO: Fix
+/* eslint-disable jest/no-jasmine-globals */ // detox uses jasmine, so this is ok
 import detox from 'detox';
 import adapter from 'detox/runners/jest/adapter';
 

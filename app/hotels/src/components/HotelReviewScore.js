@@ -61,7 +61,7 @@ export default class HotelReviewScore extends React.Component<Props> {
   render() {
     const reviewScore = this.props.score;
 
-    if (reviewScore == null || reviewScore == 0) {
+    if (reviewScore == null || reviewScore === 0) {
       return null;
     }
     const { backgroundColor, color } = this.calculateColor(reviewScore);

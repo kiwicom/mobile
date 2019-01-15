@@ -6,5 +6,5 @@ import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 import BrandLabel from '../BrandLabel';
 
 it('renders as expected', () => {
-  expect(PlaygroundRenderer.render(<BrandLabel />));
+  PlaygroundRenderer.render(<BrandLabel />);
 });

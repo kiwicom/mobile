@@ -26,7 +26,7 @@ type Props = {|
 
 class VariantButtons extends React.Component<Props> {
   getPriceOfType = (insuranceType: InsuranceType): ?PriceType => {
-    const insurancePrices = this.props.data.insurancePrices ?? [];
+    // const insurancePrices = this.props.data.insurancePrices ?? [];
     return { amount: 0, currency: 'EUR' }; // TODO: Fix
     // insurancePrices.find(
     //   insurancePrice => insurancePrice?.insuranceType === insuranceType,
