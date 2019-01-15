@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<Icon
+  color="#7f91a8"
+  name="map"
+/>
+`;
