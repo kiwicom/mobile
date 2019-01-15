@@ -1,3 +1,2 @@
 *.pbxproj -text
 *.graphql.js linguist-generated
-packages/localization/screenshots/*.jpg filter=lfs diff=lfs merge=lfs -text
