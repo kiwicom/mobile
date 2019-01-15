@@ -64,8 +64,6 @@ const handleNoNetworkNoCachedResponse = observer => {
   observer.complete();
 };
 
-// TODO: Fix eslint disable
-// eslint-disable-next-line consistent-return
 const asyncStoreRead = async (observer, operation, variables) => {
   try {
     const cachedData = await CacheManager.get(operation.name, variables);
@@ -80,7 +78,7 @@ const asyncStoreRead = async (observer, operation, variables) => {
         }
       });
     } else if (ConnectionManager.isConnected() === false) {
-      return handleNoNetworkNoCachedResponse(observer);
+      handleNoNetworkNoCachedResponse(observer);
     }
   } catch (error) {
     //   // AsyncStorage read wasn't successful - nevermind

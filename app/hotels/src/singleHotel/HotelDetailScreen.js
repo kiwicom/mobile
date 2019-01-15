@@ -39,6 +39,7 @@ type Price = {|
 type PropsWithContext = {|
   ...Props,
   +width: number,
+  +availableHotel: ?HotelType,
 |};
 
 type State = {|
@@ -53,8 +54,6 @@ type NativeEvent = {|
   |},
 |};
 
-// TODO: Fix
-// eslint-disable-next-line relay/generated-flow-types
 export class HotelDetailScreen extends React.Component<
   PropsWithContext,
   State,
