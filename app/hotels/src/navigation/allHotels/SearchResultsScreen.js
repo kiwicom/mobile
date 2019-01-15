@@ -7,7 +7,7 @@ import {
   LayoutDoubleColumn,
   StyleSheet,
   AdaptableLayout,
-  TextIcon,
+  Icon,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -51,9 +51,9 @@ class SearchResultsScreen extends React.Component<Props> {
     }
     const icon =
       show === 'list' ? (
-        <TextIcon code="&#xe001;" style={styles.icon} />
+        <Icon name="map" style={styles.icon} />
       ) : (
-        <TextIcon code="&#xe115;" style={styles.icon} />
+        <Icon name="list" style={styles.icon} />
       );
 
     const text =
