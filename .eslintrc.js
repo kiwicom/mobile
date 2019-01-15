@@ -94,5 +94,6 @@ module.exports = {
     "react-native/no-unused-styles": ERROR,
     "comma-dangle": OFF, // Handled by prettier, vscode adds double comma
     'babel/semi': OFF, // Handled by prettier, vscode adds double semi-colon
+    "flowtype/delimiter-dangle": OFF, // Handled by prettier, vscode adds double comma
   }
 };
