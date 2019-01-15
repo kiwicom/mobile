@@ -8,8 +8,6 @@ import {
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
 
-import './polyfills/setPrototypeOf';
-
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
   // react-native-share warnings. Should be gone with the version 1.1.3
