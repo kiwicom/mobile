@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import {
   Tooltips,
   type TooltipsTranslationType,
@@ -10,7 +10,7 @@ import {
 
 type Props = {|
   +onPress: () => void,
-  +icon: React.Element<typeof TextIcon>,
+  +icon: React.Element<typeof Icon>,
   +text: TooltipsTranslationType,
   +testID?: string,
 |};
