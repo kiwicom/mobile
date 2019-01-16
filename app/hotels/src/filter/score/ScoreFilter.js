@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon, Logger } from '@kiwicom/mobile-shared';
+import { Icon, Logger } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import ScorePopup from './ScorePopup';
@@ -73,7 +73,7 @@ export default class ScoreFilter extends React.Component<Props, State> {
       <React.Fragment>
         <FilterButton
           title={this.getTitle(minScore)}
-          icon={<TextIcon code="&#xe01B;" />}
+          icon={<Icon name="thumb-up" />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />

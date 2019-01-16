@@ -4,8 +4,9 @@ exports[`StarsFilter renders 1`] = `
 <React.Fragment>
   <FilterButton
     icon={
-      <TextIcon
-        code="#"
+      <Icon
+        color="#7f91a8"
+        name="star-full"
       />
     }
     isActive={false}
