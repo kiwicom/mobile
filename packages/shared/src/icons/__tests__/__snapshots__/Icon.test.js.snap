@@ -1,8 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1`] = `
-<Icon
-  color="#7f91a8"
-  name="map"
-/>
+<Text
+  style={
+    Array [
+      Object {
+        "fontFamily": "orbit-icons",
+      },
+      Object {
+        "fontSize": 24,
+        "height": 24,
+        "lineHeight": 24,
+        "width": 24,
+      },
+      Object {
+        "color": "#7f91a8",
+      },
+      undefined,
+    ]
+  }
+>
+  
+</Text>
+`;
+
+exports[`renders for small and large 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontFamily": "orbit-icons",
+      },
+      Object {
+        "fontSize": 16,
+        "height": 16,
+        "lineHeight": 16,
+        "width": 16,
+      },
+      Object {
+        "color": "#7f91a8",
+      },
+      undefined,
+    ]
+  }
+>
+  
+</Text>
+`;
+
+exports[`renders for small and large 2`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontFamily": "orbit-icons",
+      },
+      Object {
+        "fontSize": 32,
+        "height": 32,
+        "lineHeight": 32,
+        "width": 32,
+      },
+      Object {
+        "color": "#7f91a8",
+      },
+      undefined,
+    ]
+  }
+>
+  
+</Text>
 `;

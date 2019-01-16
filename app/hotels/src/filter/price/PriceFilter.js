@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon, Logger, Price } from '@kiwicom/mobile-shared';
+import { Icon, Logger, Price } from '@kiwicom/mobile-shared';
 import {
   Translation,
   TranslationFragment,
@@ -135,7 +135,7 @@ class PriceFilter extends React.Component<PropsWithContext, State> {
             currency,
             daysOfStay,
           )}
-          icon={<TextIcon code="@" />}
+          icon={<Icon name="money" />}
           isActive={isActive}
           onPress={this.filterButtonClicked}
         />

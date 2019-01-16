@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import {
   Translation,
   TranslationFragment,
@@ -88,7 +88,7 @@ export default class StarsFilter extends React.Component<Props, State> {
       <React.Fragment>
         <FilterButton
           title={this.getTitle(this.props.stars)}
-          icon={<TextIcon code="#" />}
+          icon={<Icon name="star-full" />}
           isActive={this.props.isActive}
           onPress={this.filterButtonClicked}
         />

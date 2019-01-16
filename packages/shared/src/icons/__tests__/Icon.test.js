@@ -1,12 +1,15 @@
 // @flow
 
 import * as React from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import renderer from 'react-test-renderer';
 
 import Icon from '../Icon';
 
-const shallow = new ShallowRenderer();
-
 it('renders', () => {
-  expect(shallow.render(<Icon name="map" />)).toMatchSnapshot();
+  expect(renderer.create(<Icon name="map" />)).toMatchSnapshot();
+});
+
+it('renders for small and large', () => {
+  expect(renderer.create(<Icon name="map" size="small" />)).toMatchSnapshot();
+  expect(renderer.create(<Icon name="map" size="large" />)).toMatchSnapshot();
 });
