@@ -9,7 +9,7 @@ import { withHotelsContext } from '../HotelsContext';
 import StarsFilter from './stars/StarsFilter';
 import PriceFilter from './price/PriceFilter';
 import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
-import HotelFacilitiesFilter from './hotelFacilities/HotelFacilitiesFilter';
+import HotelAmenitiesFilter from './hotelAmenities/HotelAmenitiesFilter';
 import ScoreFilter from './score/ScoreFilter';
 import OrderFilter from './order/OrderFilter';
 import type {
@@ -18,7 +18,10 @@ import type {
   OnChangeFilterParams,
   OrderByEnum,
 } from './FilterParametersType';
-import { withHotelsFilterContext } from '../HotelsFilterContext';
+import {
+  withHotelsFilterContext,
+  type HotelsFilterState,
+} from '../HotelsFilterContext';
 import Filters from './Filters';
 
 type Props = {|
@@ -64,10 +67,10 @@ const FilterStripe = (props: Props) => (
           onChange={props.onChange}
           isActive={props.activeFilters.isMinScoreActive}
         />
-        <HotelFacilitiesFilter
+        <HotelAmenitiesFilter
           onChange={props.onChange}
-          facilities={props.filter.hotelFacilities}
-          isActive={props.activeFilters.isHotelFacilitiesActive}
+          amenities={props.filter.hotelAmenities}
+          isActive={props.activeFilters.isHotelAmenitiesActive}
         />
         <FreeCancellationFilter
           onChange={props.onChange}
@@ -98,7 +101,7 @@ const selectFilterProps = ({
   filterParams,
   orderBy,
   actions: { setFilter },
-}) => ({
+}: HotelsFilterState) => ({
   onChange: setFilter,
   filter: filterParams,
   activeFilters,

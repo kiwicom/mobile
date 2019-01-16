@@ -59,7 +59,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
       roomsConfiguration,
       currency,
       orderBy,
-      filterParams,
+      filterParams: { hotelAmenities, ...filterParamsRest },
     } = this.props;
 
     return (
@@ -75,10 +75,8 @@ class NewAllHotelsSearch extends React.Component<Props> {
             roomsConfiguration,
           },
           filter: {
-            ...filterParams,
-            hotelFacilities: sanitizeHotelFacilities(
-              filterParams.hotelFacilities,
-            ),
+            ...filterParamsRest,
+            hotelFacilities: sanitizeHotelFacilities(hotelAmenities),
           },
           first: 50,
           options: {

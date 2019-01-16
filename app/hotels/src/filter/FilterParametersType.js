@@ -1,12 +1,12 @@
 // @flow
 
 export type FilterParams = {|
-  starsRating: number[],
-  minPrice: number | null,
-  maxPrice: number | null,
-  freeCancellation: boolean,
-  hotelFacilities: string[],
-  minScore: number | null,
+  +starsRating: number[],
+  +minPrice: number | null,
+  +maxPrice: number | null,
+  +freeCancellation: boolean,
+  +hotelAmenities: string[],
+  +minScore: number | null,
 |};
 
 export type OrderByEnum =
@@ -18,19 +18,19 @@ export type OrderByEnum =
   | 'STARS';
 
 export type OnChangeFilterParams = {|
-  starsRating?: number[],
-  minPrice?: ?number,
-  maxPrice?: ?number,
-  freeCancellation?: boolean,
-  hotelFacilities?: string[],
-  minScore?: ?number,
-  orderBy?: ?OrderByEnum,
+  +starsRating?: number[],
+  +minPrice?: ?number,
+  +maxPrice?: ?number,
+  +freeCancellation?: boolean,
+  +hotelAmenities?: string[],
+  +minScore?: ?number,
+  +orderBy?: ?OrderByEnum,
 |};
 
 export type ActiveFilters = {|
-  isPriceFilterActive: boolean,
-  isStarsFilterActive: boolean,
-  isMinScoreActive: boolean,
-  isHotelFacilitiesActive: boolean,
-  isOrderFilterActive: boolean,
+  +isPriceFilterActive: boolean,
+  +isStarsFilterActive: boolean,
+  +isMinScoreActive: boolean,
+  +isHotelAmenitiesActive: boolean,
+  +isOrderFilterActive: boolean,
 |};
