@@ -1,9 +1,15 @@
 # Code-push version changelog
 
-Due to some initial testing, ios is one version behind android.
+- Due to some initial testing, ios is one version behind android.
 v22/v21 means v22 for android and v21 for ios
 
+this will be evened out from v24
+
 ## Target version 7.0.0
+
+### v23(ios only)
+
+- Small refactor in filter button icons 
 
 ### v23/v22
 
