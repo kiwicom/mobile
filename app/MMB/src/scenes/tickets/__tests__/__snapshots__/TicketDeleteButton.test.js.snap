@@ -48,32 +48,24 @@ exports[`TicketDeleteButton renders correctly when booking has local files 1`] =
         style={
           Array [
             Object {
-              "color": "#171b1e",
-              "fontFamily": "CircularPro-Book",
-              "fontSize": 14,
-              "fontWeight": "normal",
-              "letterSpacing": -0.15,
+              "fontFamily": "orbit-icons",
             },
-            Array [
-              Object {
-                "color": "#7f91a8",
-                "fontFamily": "orbit-icons",
-                "fontSize": 20,
-                "includeFontPadding": false,
-                "textAlignVertical": "center",
-              },
-              Object {
-                "alignSelf": "flex-start",
-                "color": "#00a991",
-                "fontSize": 21,
-              },
-            ],
+            Object {
+              "fontSize": 16,
+              "height": 16,
+              "lineHeight": 16,
+              "width": 16,
+            },
+            Object {
+              "color": "#00a991",
+            },
+            Object {
+              "alignSelf": "flex-start",
+            },
           ]
         }
       >
-        <Text>
-          W
-        </Text>
+        W
       </Text>
     </View>
   </View>

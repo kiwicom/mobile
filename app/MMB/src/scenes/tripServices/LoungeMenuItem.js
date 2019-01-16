@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
@@ -105,7 +105,7 @@ class LoungeMenuItem extends React.Component<Props, State> {
         <MenuItem
           title={<Translation id="mmb.trip_services.local_services.lounge" />}
           onPress={this.openPopup}
-          icon={<TextIcon code="&#xe04e;" />}
+          icon={<Icon name="lounge" />}
         />
       </React.Fragment>
     );

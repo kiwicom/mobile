@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View, Platform } from 'react-native';
 import {
-  TextIcon,
+  Icon,
   StyleSheet,
   Text,
   Touchable,
@@ -20,10 +20,10 @@ type Props = {|
   isActive: boolean,
 
   // icon on the left
-  icon?: React.Element<typeof TextIcon>,
+  icon?: React.Element<typeof Icon>,
 
   // icon on the right (arrow by default)
-  actionIcon?: React.Element<typeof TextIcon>,
+  actionIcon?: React.Element<typeof Icon>,
   description?: React.Element<typeof Translation>,
   testID?: string,
 |};
@@ -78,7 +78,10 @@ function MenuItem(props: Props) {
             renderOnNarrow={Platform.select({
               ios: (
                 <View style={styleSheet.rightArrow}>
-                  <TextIcon code="&#xe01F;" style={styles.icon} />
+                  <Icon
+                    name="chevron-right"
+                    color={defaultTokens.paletteProductNormal}
+                  />
                 </View>
               ),
               android: null,
@@ -93,14 +96,6 @@ function MenuItem(props: Props) {
 AdaptableMenuItem.defaultProps = {
   isActive: false,
 };
-
-const styles = StyleSheet.create({
-  icon: {
-    color: defaultTokens.paletteProductNormal,
-    fontSize: 26,
-  },
-});
-
 export default function AdaptableMenuItem(props: Props) {
   // Menu item can be activated but only on tablets (wide devices). Otherwise
   // it's not possible to activate it because new scene should always open

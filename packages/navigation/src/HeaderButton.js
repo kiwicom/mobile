@@ -6,7 +6,6 @@ import {
   Touchable,
   StyleSheet,
   Text,
-  TextIcon,
   Icon,
   type StylePropType,
 } from '@kiwicom/mobile-shared';
@@ -21,7 +20,6 @@ type Props = {|
   +onLongPress?: (React.ElementRef<typeof Touchable>) => void,
   +children:
     | React.Element<typeof HeaderButton.Text>
-    | React.Element<typeof TextIcon>
     | React.Element<typeof Icon>,
   +left?: boolean,
   +style?: StylePropType,
@@ -68,7 +66,7 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
   static CloseModal = ({ onPress, text }: CloseModalProps) => (
     <HeaderButton.Left onPress={onPress}>
       {Platform.OS === 'android' ? (
-        <TextIcon code="X" style={styles.closeIcon} />
+        <Icon name="close" color={defaultTokens.paletteProductNormal} />
       ) : (
         <HeaderButton.Text>
           {text || <Translation id="shared.button.close" />}
@@ -161,10 +159,6 @@ const styles = StyleSheet.create({
   },
   disabledButton: {
     color: defaultTokens.paletteCloudNormal,
-  },
-  closeIcon: {
-    fontSize: 24,
-    color: defaultTokens.paletteProductNormal,
   },
 });
 

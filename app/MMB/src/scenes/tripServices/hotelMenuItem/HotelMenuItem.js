@@ -8,11 +8,7 @@ import {
   DateUtils,
   DateFormatter,
 } from '@kiwicom/mobile-localization';
-import {
-  TextIcon,
-  Dimensions,
-  type DimensionType,
-} from '@kiwicom/mobile-shared';
+import { Icon, Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
 import {
   MenuItem,
   withNavigation,
@@ -150,7 +146,7 @@ export class HotelMenuItem extends React.Component<PropsWithContext, State> {
         <MenuItem
           title={<Translation id="mmb.trip_services.local_services.hotel" />}
           onPress={this.menuItemOnPress}
-          icon={<TextIcon code="&#xe085;" />}
+          icon={<Icon name="accommodation" />}
         />
       </React.Fragment>
     );
