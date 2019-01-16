@@ -7,7 +7,7 @@ import {
   Text,
   Color,
   type StylePropType,
-  TextIcon,
+  Icon,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -16,18 +16,17 @@ type Props = {|
   +count: number | null,
   +style?: {
     +container?: StylePropType,
-    +icon?: StylePropType,
     +text?: StylePropType,
   },
+  +iconSize?: 'small' | 'medium' | 'large',
 |};
 
-export default function GalleryButton({ count, style }: Props) {
+export default function GalleryButton({ count, style, iconSize }: Props) {
   const containerStyle = style?.container ?? null;
-  const iconStyle = style?.icon ?? null;
   const textStyle = style?.text ?? null;
   return (
     <View style={[styles.container, containerStyle]}>
-      <TextIcon code="&#xe064;" style={[styles.icon, iconStyle]} />
+      <Icon name="gallery" color={defaultTokens.paletteWhite} size={iconSize} />
       {count !== null && (
         <Text style={[styles.count, textStyle]}>
           <Translation passThrough={count} />
@@ -37,6 +36,10 @@ export default function GalleryButton({ count, style }: Props) {
   );
 }
 
+GalleryButton.defaultProps = {
+  iconSize: 'medium',
+};
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
@@ -44,9 +47,6 @@ const styles = StyleSheet.create({
     backgroundColor: Color.grey.transparent.outerSpace.$54,
     padding: 4,
     alignItems: 'center',
-  },
-  icon: {
-    color: defaultTokens.paletteWhite,
   },
   count: {
     backgroundColor: 'transparent',

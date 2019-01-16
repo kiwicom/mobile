@@ -4,14 +4,17 @@ exports[`RoomBadges renders 1`] = `
 <React.Fragment>
   <AdaptableBadge
     icon={
-      <TextIcon
-        code=""
+      <Icon
+        color="#0176D2"
+        name="coffee"
         style={
           Object {
             "alignSelf": "center",
-            "color": "#0176D2",
             "fontSize": 12,
+            "height": 12,
+            "lineHeight": 12,
             "marginEnd": 5,
+            "width": 12,
           }
         }
       />
@@ -36,14 +39,17 @@ exports[`RoomBadges renders 1`] = `
   />
   <AdaptableBadge
     icon={
-      <TextIcon
-        code="r"
+      <Icon
+        color="#0176D2"
+        name="information-circle"
         style={
           Object {
             "alignSelf": "center",
-            "color": "#0176D2",
             "fontSize": 12,
+            "height": 12,
+            "lineHeight": 12,
             "marginEnd": 5,
+            "width": 12,
           }
         }
       />

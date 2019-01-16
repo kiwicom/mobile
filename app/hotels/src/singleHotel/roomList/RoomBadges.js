@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { AdaptableBadge, StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { AdaptableBadge, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -25,7 +25,13 @@ export const RoomBadges = (props: Props) => {
     <React.Fragment>
       {isBreakfastIncluded && (
         <AdaptableBadge
-          icon={<TextIcon code="&#xe02F;" style={styles.iconStyle} />}
+          icon={
+            <Icon
+              name="coffee"
+              color={defaultTokens.paletteBlueNormal}
+              style={styles.iconStyle}
+            />
+          }
           translation={
             <Translation id="single_hotel.room_badges.breakfast_included" />
           }
@@ -35,7 +41,13 @@ export const RoomBadges = (props: Props) => {
       )}
       {isRefundable && (
         <AdaptableBadge
-          icon={<TextIcon code="r" style={styles.iconStyle} />}
+          icon={
+            <Icon
+              name="information-circle"
+              color={defaultTokens.paletteBlueNormal}
+              style={styles.iconStyle}
+            />
+          }
           translation={
             <Translation id="single_hotel.room_badges.free_cancellation" />
           }
@@ -67,8 +79,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   iconStyle: {
-    color: defaultTokens.paletteBlueNormal,
     fontSize: 12,
+    width: 12,
+    height: 12,
+    lineHeight: 12,
     alignSelf: 'center',
     marginEnd: 5,
   },
