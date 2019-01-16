@@ -122,6 +122,7 @@ export class RenderSearchResults extends React.Component<Props> {
 const styles = StyleSheet.create({
   content: {
     paddingBottom: Device.isIPhoneX ? 80 : 44,
+    flex: 1,
   },
 });
 
