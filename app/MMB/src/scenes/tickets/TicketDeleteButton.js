@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
+import { Icon, StyleSheet } from '@kiwicom/mobile-shared';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import RNFetchBlob from 'rn-fetch-blob';
@@ -110,7 +110,12 @@ export class TicketDeleteButton extends React.Component<
     }
     return (
       <HeaderButton.Right onPress={this.onPress}>
-        <TextIcon code="W" style={styles.icon} />
+        <Icon
+          name="remove"
+          color={defaultTokens.paletteProductNormal}
+          style={styles.icon}
+          size="small"
+        />
       </HeaderButton.Right>
     );
   }
@@ -133,8 +138,6 @@ export default withNavigationFocus(TicketDeleteButtonWithContext);
 
 const styles = StyleSheet.create({
   icon: {
-    fontSize: 21,
-    color: defaultTokens.paletteProductNormal,
     alignSelf: 'flex-start',
   },
 });

@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation, DateUtils, Alert } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
@@ -38,7 +38,7 @@ export class InsuranceMenuItem extends React.Component<Props> {
         title={
           <Translation id="mmb.trip_services.general_services.insurance" />
         }
-        icon={<TextIcon code="'" />}
+        icon={<Icon name="insurance" />}
         onPress={this.onPress}
       />
     );

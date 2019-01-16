@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
@@ -26,14 +26,14 @@ export default class TripInfoMenuGroup extends React.Component<Props> {
           onPress={this.handleOpenTicketsSubmenu}
           title={<Translation id="mmb.button.tickets" />}
           isActive={this.props.activeId === 'mmb.main_menu.trip_info.tickets'}
-          icon={<TextIcon code="." />}
+          icon={<Icon name="ticket" />}
           description={<Translation id="mmb.tickets.boarding_passes" />}
         />
         <MenuItem
           onPress={this.handleOpenTimelineSubmenu}
           title={<Translation id="mmb.timeline.title" />}
           isActive={this.props.activeId === 'mmb.main_menu.trip_info.timeline'}
-          icon={<TextIcon code="e" />}
+          icon={<Icon name="clock" />}
           description={<Translation id="mmb.subtitle.trip_schedule" />}
         />
       </TitledMenuGroup>

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 
 import { FlightServicesMenuGroup } from '../FlightServicesMenuGroup';
 
@@ -29,7 +29,7 @@ it('should split ordered services from not ordered services', () => {
         key: 'BAGS',
         title: <Translation id="mmb.flight_services.additional_baggage" />,
         routeName: 'mmb.flight_services.checked_baggage',
-        icon: <TextIcon code="h" />,
+        icon: <Icon name="baggage-checked" />,
       },
     ],
     rest: [
@@ -37,31 +37,31 @@ it('should split ordered services from not ordered services', () => {
         key: 'ALLOCATED_SEATING',
         title: <Translation id="mmb.flight_services.allocated_seating" />,
         routeName: 'mmb.flight_services.allocated_seating',
-        icon: <TextIcon code="&#xe02a;" />,
+        icon: <Icon name="seat" />,
       },
       {
         key: 'SPORTS_EQUIPMENT',
         title: <Translation id="mmb.flight_services.sports_equipment" />,
         routeName: 'mmb.flight_services.sports_equipment',
-        icon: <TextIcon code="&#xe089;" />,
+        icon: <Icon name="gym" />,
       },
       {
         key: 'MUSICAL_EQUIPMENT',
         title: <Translation id="mmb.flight_services.musical_equipment" />,
         routeName: 'mmb.flight_services.musical_equipment',
-        icon: <TextIcon code="&#xe086;" />,
+        icon: <Icon name="musical-instruments" />,
       },
       {
         key: 'SPECIAL_ASSISTANCE',
         title: <Translation id="mmb.flight_services.special_assistance" />,
         routeName: 'mmb.flight_services.special_assistance',
-        icon: <TextIcon code="&#xe088;" />,
+        icon: <Icon name="wheelchair" />,
       },
       {
         key: 'TRAVELLING_WITH_PETS',
         title: <Translation id="mmb.flight_services.traveling_with_pets" />,
         routeName: 'mmb.flight_services.pets',
-        icon: <TextIcon code="&#xe043;" />,
+        icon: <Icon name="pet" />,
       },
     ],
   });

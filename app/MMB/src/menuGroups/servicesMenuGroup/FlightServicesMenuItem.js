@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import type { FlightServicesMenuItem as BookingType } from './__generated__/FlightServicesMenuItem.graphql';
@@ -26,7 +26,7 @@ export const FlightServicesMenuItem = (props: Props) => {
     <MenuItem
       onPress={props.onPress}
       isActive={props.isActive}
-      icon={<TextIcon code="&#xe049;" />}
+      icon={<Icon name="flight-services" />}
       title={<Translation id="mmb.main_menu.services.flight_services" />}
       description={
         <Translation id="mmb.main_menu.services.flight_services.description" />

@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import {
   AdaptableLayout,
-  TextIcon,
+  Icon,
   StyleSheet,
   TouchableWithoutFeedback,
 } from '@kiwicom/mobile-shared';
@@ -84,7 +84,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
               onPress={this.handleOpenTripOverviewSubmenu}
               title={<Translation id="mmb.flight_overview.title" />}
               isActive={this.props.activeId === 'mmb.main_menu.trip_overview'}
-              icon={<TextIcon code="f" />}
+              icon={<Icon name="calendar" />}
             />
           </React.Fragment>
         }
