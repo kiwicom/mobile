@@ -15,7 +15,7 @@ const defaultFilterParams = {
   minPrice: null,
   maxPrice: null,
   freeCancellation: false,
-  hotelFacilities: [],
+  hotelAmenities: [],
   minScore: null,
 };
 
@@ -23,7 +23,7 @@ const defaultActiveFilters = {
   isPriceFilterActive: false,
   isStarsFilterActive: false,
   isMinScoreActive: false,
-  isHotelFacilitiesActive: false,
+  isHotelAmenitiesActive: false,
   isOrderFilterActive: false,
 };
 
@@ -63,41 +63,37 @@ class Provider extends React.Component<Props, State> {
     };
   }
 
-  setActiveFilters = () => {
+  setFilter = ({ orderBy, ...action }: OnChangeFilterParams) => {
     this.setState(state => {
+      const nextOrderBy = orderBy === undefined ? state.orderBy : orderBy;
+      const filterParams = {
+        ...state.filterParams,
+        ...action,
+      };
+
       const {
         minPrice,
         maxPrice,
         starsRating,
         minScore,
-        hotelFacilities,
-      } = state.filterParams;
+        hotelAmenities,
+      } = filterParams;
+
+      const activeFilters = {
+        isPriceFilterActive: minPrice !== null || maxPrice !== null,
+        isStarsFilterActive: starsRating.length > 0,
+        isMinScoreActive: minScore !== null,
+        isHotelAmenitiesActive: hotelAmenities.length > 0,
+        isOrderFilterActive: nextOrderBy != null,
+      };
 
       return {
         ...state,
-        activeFilters: {
-          isPriceFilterActive: minPrice !== null || maxPrice !== null,
-          isStarsFilterActive: starsRating.length > 0,
-          isMinScoreActive: minScore !== null,
-          isHotelFacilitiesActive: hotelFacilities.length > 0,
-          isOrderFilterActive: state.orderBy != null,
-        },
+        filterParams,
+        orderBy: nextOrderBy,
+        activeFilters,
       };
     });
-  };
-
-  setFilter = ({ orderBy, ...action }: OnChangeFilterParams) => {
-    this.setState(state => {
-      const nextOrderBy = orderBy === undefined ? state.orderBy : orderBy;
-      return {
-        ...state,
-        filterParams: {
-          ...state.filterParams,
-          ...action,
-        },
-        orderBy: nextOrderBy,
-      };
-    }, this.setActiveFilters);
   };
 
   render() {
