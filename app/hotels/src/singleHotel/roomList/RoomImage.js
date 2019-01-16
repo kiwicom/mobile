@@ -25,8 +25,8 @@ export default function RoomImage({ thumbnailUrl, openGallery }: Props) {
             count={null}
             style={{
               container: styles.galleryButtonContainer,
-              icon: styles.icon,
             }}
+            iconSize="small"
           />
         </View>
       </View>
@@ -50,8 +50,5 @@ const styles = StyleSheet.create({
     width: 60,
     height: 80,
     borderRadius: 3,
-  },
-  icon: {
-    fontSize: 16,
   },
 });

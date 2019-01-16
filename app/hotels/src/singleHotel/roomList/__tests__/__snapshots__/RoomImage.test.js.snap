@@ -37,15 +37,13 @@ exports[`RoomImage renders 1`] = `
     >
       <GalleryButton
         count={null}
+        iconSize="small"
         style={
           Object {
             "container": Object {
               "alignItems": "center",
               "borderRadius": 0,
               "justifyContent": "center",
-            },
-            "icon": Object {
-              "fontSize": 16,
             },
           }
         }

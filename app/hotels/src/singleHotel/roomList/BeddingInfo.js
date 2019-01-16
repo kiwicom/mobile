@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Text, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -51,11 +51,19 @@ export class BeddingInfo extends React.Component<Props> {
     return (
       <View>
         <View style={styles.row}>
-          <TextIcon code="&#xe085;" style={styles.icon} />
+          <Icon
+            name="accommodation"
+            style={styles.icon}
+            color={defaultTokens.colorTextSecondary}
+          />
           <Text style={styles.text}>{this.formatBeddingInfo()}</Text>
         </View>
         <View style={styles.row}>
-          <TextIcon code="(" style={styles.icon} />
+          <Icon
+            name="passengers"
+            style={styles.icon}
+            color={defaultTokens.colorTextSecondary}
+          />
           <Text style={styles.text}>
             <Translation passThrough={' '} />
             <Translation
@@ -93,9 +101,11 @@ const styles = StyleSheet.create({
     color: defaultTokens.colorTextSecondary,
   },
   icon: {
-    color: defaultTokens.colorTextSecondary,
     fontSize: 14,
     marginEnd: 2,
     alignSelf: 'center',
+    width: 14,
+    height: 14,
+    lineHeight: 14,
   },
 });
