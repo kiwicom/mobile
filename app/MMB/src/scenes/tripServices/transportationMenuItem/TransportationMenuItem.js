@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import {
   MenuItem,
@@ -128,7 +128,7 @@ class TransportationMenuItem extends React.Component<Props, State> {
             <Translation id="mmb.trip_services.local_services.transportation" />
           }
           onPress={this.openPopup}
-          icon={<TextIcon code=";" />}
+          icon={<Icon name="taxi" />}
         />
       </React.Fragment>
     );

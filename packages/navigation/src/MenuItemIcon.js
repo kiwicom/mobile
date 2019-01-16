@@ -2,12 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, TextIcon } from '@kiwicom/mobile-shared';
+import { StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +invertColors: boolean,
-  +iconComponent: React.Element<typeof TextIcon>,
+  +iconComponent: React.Element<typeof Icon>,
 |};
 
 export default function MenuItemIcon(props: Props) {
@@ -32,9 +32,15 @@ const styleSheet = StyleSheet.create({
   icon: {
     android: {
       fontSize: 20,
+      height: 20,
+      width: 20,
+      lineHeight: 20,
     },
     ios: {
       fontSize: 19,
+      height: 19,
+      width: 19,
+      lineHeight: 19,
       color: defaultTokens.colorIconSecondary,
     },
   },

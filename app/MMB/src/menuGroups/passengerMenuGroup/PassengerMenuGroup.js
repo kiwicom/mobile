@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
@@ -34,7 +34,7 @@ class PassengerMenuGroup extends React.Component<Props> {
               this.props.activeId ===
               'mmb.main_menu.passengers.passenger_details'
             }
-            icon={<TextIcon code="w" />}
+            icon={<Icon name="passenger" />}
           />
         </TitledMenuGroup>
         <PassengerMenuDetail data={this.props.data} />

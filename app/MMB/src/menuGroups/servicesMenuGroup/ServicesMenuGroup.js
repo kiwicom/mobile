@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
@@ -44,7 +44,7 @@ export class ServicesMenuGroup extends React.Component<PropsWithContext> {
           isActive={
             this.props.activeId === 'mmb.main_menu.services.trip_services'
           }
-          icon={<TextIcon code="r" />}
+          icon={<Icon name="insurance-confirmed" />}
           title={<Translation id="mmb.main_menu.services.trip_services" />}
           description={
             <Translation id="mmb.main_menu.services.trip_services.description" />

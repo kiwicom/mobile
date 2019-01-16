@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { ScrollView, Platform, Linking } from 'react-native';
-import { TextIcon, StyleSheet } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation, Alert } from '@kiwicom/mobile-localization';
 import {
   MenuItem,
@@ -76,7 +76,9 @@ class Help extends React.Component<Props> {
             <MenuItem
               title={<Translation id="mmb.sub_menu.help.call_support" />}
               onPress={this.handleOpenCallSupport}
-              actionIcon={<TextIcon code="&#xe058;" style={styles.icon} />}
+              actionIcon={
+                <Icon name="phone" color={defaultTokens.paletteProductNormal} />
+              }
               description={<Translation passThrough={`+${number}`} />}
             />
           )}
@@ -85,13 +87,6 @@ class Help extends React.Component<Props> {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    color: defaultTokens.paletteProductNormal,
-    fontSize: 22,
-  },
-});
 
 export default createFragmentContainer(
   withNavigation(Help),

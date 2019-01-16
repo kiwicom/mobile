@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem, TitledMenuGroup } from '@kiwicom/mobile-navigation';
 
@@ -25,7 +25,7 @@ export default class ManageMenuGroup extends React.Component<Props> {
         <MenuItem
           onPress={this.handleOpenHelpSubmenu}
           isActive={this.props.activeId === 'mmb.main_menu.manage.help'}
-          icon={<TextIcon code="F" />}
+          icon={<Icon name="question-circle" />}
           title={<Translation id="mmb.main_menu.manage.help" />}
           description={
             <Translation id="mmb.main_menu.manage.help.description" />
@@ -35,7 +35,7 @@ export default class ManageMenuGroup extends React.Component<Props> {
         <MenuItem
           onPress={this.handleOpenOtherSubmenu}
           isActive={this.props.activeId === 'mmb.main_menu.manage.other'}
-          icon={<TextIcon code="&#xe07d;" />}
+          icon={<Icon name="menu-meatballs" />}
           title={<Translation id="mmb.main_menu.manage.other" />}
           description={
             <Translation id="mmb.main_menu.manage.other.description" />

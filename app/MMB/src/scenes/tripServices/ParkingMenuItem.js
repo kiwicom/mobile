@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation, DeviceInfo } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
@@ -45,7 +45,7 @@ class ParkingMenuItem extends React.Component<Props> {
       <MenuItem
         title={<Translation id="mmb.trip_services.local_services.parking" />}
         onPress={this.openLink}
-        icon={<TextIcon code="&#xe03e;" />}
+        icon={<Icon name="parking" />}
       />
     );
   }

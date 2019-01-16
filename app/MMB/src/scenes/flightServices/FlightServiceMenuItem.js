@@ -2,14 +2,14 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { type RouteNamesType, MenuItem } from '@kiwicom/mobile-navigation';
 
 type Props = {|
   +title: React.Element<typeof Translation>,
   +navigate: (routeName: RouteNamesType) => void,
   +routeName: RouteNamesType,
-  +icon: React.Element<typeof TextIcon>,
+  +icon: React.Element<typeof Icon>,
 |};
 
 export default class FlightServiceMenuItem extends React.Component<Props> {

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Platform } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { TextIcon } from '@kiwicom/mobile-shared';
+import { Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { MenuItem } from '@kiwicom/mobile-navigation';
 import querystring from 'querystring';
@@ -107,7 +107,7 @@ export class CarRentalMenuItem extends React.Component<Props, State> {
             <Translation id="mmb.trip_services.local_services.car_rental" />
           }
           onPress={this.openPopup}
-          icon={<TextIcon code="&#xe03a;" />}
+          icon={<Icon name="car" />}
         />
       </React.Fragment>
     );
