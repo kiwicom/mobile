@@ -1,18 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
-import {
-  ButtonPopup,
-  Checkbox,
-  StyleSheet,
-  Text,
-  TextIcon,
-} from '@kiwicom/mobile-shared';
+import { ButtonPopup, StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { SeparatorTrimmed } from '@kiwicom/mobile-navigation';
 import { SafeAreaView } from 'react-navigation';
+
+import HotelAmenities from './HotelAmenities';
 
 type Props = {|
   +amenities: string[],
@@ -22,134 +16,112 @@ type Props = {|
 |};
 
 type State = {|
-  facilities: string[],
+  amenities: string[],
 |};
 
-const amenitiesList = {
-  airportShuttle: {
+const amenitiesList = [
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.airport_shuttle" />
     ),
-    icon: '<',
+    icon: 'bus',
+    amenityName: 'airportShuttle',
   },
-  familyRooms: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.family_rooms" />
     ),
-    icon: '\ue05d',
+    icon: 'child-friendly',
+    amenityName: 'familyRooms',
   },
-  facilitiesForDisabled: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.facilities_for_disabled" />
     ),
-    icon: '\uE088',
+    icon: 'wheelchair',
+    amenityName: 'facilitiesForDisabled',
   },
-  fitnessCenter: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.fitness_center" />
     ),
-    icon: '\uE089',
+    icon: 'gym',
+    amenityName: 'fitnessCenter',
   },
-  parking: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.parking" />
     ),
-    icon: '\uE03E',
+    icon: 'parking',
+    amenityName: 'parking',
   },
-  freeParking: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.free_parking" />
     ),
-    icon: '\uE03E',
+    icon: 'parking',
+    amenityName: 'freeParking',
   },
-  valetParking: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.valet_parking" />
     ),
-    icon: '\uE03E',
+    icon: 'parking',
+    amenityName: 'valetParking',
   },
-  indoorPool: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.indoor_pool" />
     ),
-    icon: '\uE123',
+    icon: 'pool',
+    amenityName: 'indoorPool',
   },
-  petsAllowed: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.pets_allowed" />
     ),
-    icon: '\uE043',
+    icon: 'pet',
+    amenityName: 'petsAllowed',
   },
-  spa: {
+  {
     text: <Translation id="hotels_search.filter.hotel_facilities_filter.spa" />,
-    icon: '\uE04A',
+    icon: 'spa',
+    amenityName: 'spa',
   },
-  wifi: {
+  {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.wifi" />
     ),
-    icon: '\uE062',
+    icon: 'wifi',
+    amenityName: 'wifi',
   },
-};
+];
 
 export default class HotelAmenitiesPopup extends React.Component<Props, State> {
   state = {
-    facilities: this.props.amenities,
+    amenities: this.props.amenities,
   };
 
   static getDerivedStateFromProps = ({ amenities, isVisible }: Props) => {
     return isVisible ? null : amenities;
   };
 
-  handleCheckboxOnPress = (option: string) => () =>
+  handleCheckboxOnPress = (option: string) => {
     this.setState(state => {
-      let facilities = [...state.facilities];
-      if (facilities.includes(option)) {
-        facilities = facilities.filter(facility => facility !== option);
-      } else {
-        facilities.push(option);
+      if (state.amenities.includes(option)) {
+        return {
+          amenities: state.amenities.filter(amenity => amenity !== option),
+        };
       }
-      return { facilities };
+      return {
+        amenities: [...state.amenities, option],
+      };
     });
-
-  onSave = () => this.props.onSave(this.state.facilities);
-
-  renderCheckboxes = (facilities: string[]) => {
-    const checkboxes = [];
-    const facilitiesListKeys = Object.keys(amenitiesList);
-    const facilitiesListLength = facilitiesListKeys.length;
-    facilitiesListKeys.forEach((key, i) => {
-      const facility = amenitiesList[key];
-      const isFacilityChecked = facilities.includes(key);
-      const isNotLastRow = i < facilitiesListLength - 1;
-      checkboxes.push(
-        <React.Fragment key={i}>
-          <Checkbox
-            isChecked={isFacilityChecked}
-            onPress={this.handleCheckboxOnPress(key)}
-          >
-            <View style={styles.checkbox}>
-              <TextIcon code={facility.icon} style={styles.facilityIcon} />
-              {facility.text}
-            </View>
-          </Checkbox>
-          {isNotLastRow && (
-            <View style={styles.separatorEnd}>
-              <SeparatorTrimmed
-                gapSizeStart={31}
-                color={defaultTokens.paletteInkLighter}
-                height={0.5}
-              />
-            </View>
-          )}
-        </React.Fragment>,
-      );
-    });
-    return checkboxes;
   };
 
+  onSave = () => this.props.onSave(this.state.amenities);
+
   render() {
-    const { facilities } = this.state;
     return (
       <SafeAreaView>
         <ButtonPopup
@@ -166,7 +138,11 @@ export default class HotelAmenitiesPopup extends React.Component<Props, State> {
           <Text style={styles.title}>
             <Translation id="hotels_search.filter.hotel_facilities_popup.title" />
           </Text>
-          {this.renderCheckboxes(facilities)}
+          <HotelAmenities
+            onPress={this.handleCheckboxOnPress}
+            amenities={amenitiesList}
+            selectedAmenities={this.state.amenities}
+          />
         </ButtonPopup>
       </SafeAreaView>
     );
@@ -180,15 +156,5 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     paddingTop: 15,
     paddingBottom: 10,
-  },
-  checkbox: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  facilityIcon: {
-    marginEnd: 10,
-  },
-  separatorEnd: {
-    marginEnd: -15,
   },
 });
