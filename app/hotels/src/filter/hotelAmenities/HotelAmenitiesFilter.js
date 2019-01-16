@@ -4,21 +4,21 @@ import * as React from 'react';
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 import { Logger } from '@kiwicom/mobile-shared';
 
-import HotelFacilitiesPopup from './HotelFacilitiesPopup';
+import HotelAmenitiesPopup from './HotelAmenitiesPopup';
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 
 type Props = {|
-  facilities: string[],
-  onChange: OnChangeFilterParams => void,
-  isActive: boolean,
+  +amenities: string[],
+  +onChange: OnChangeFilterParams => void,
+  +isActive: boolean,
 |};
 
 type State = {|
   isPopupOpen: boolean,
 |};
 
-export default class HotelFacilitiesFilter extends React.Component<
+export default class HotelAmenitiesFilter extends React.Component<
   Props,
   State,
 > {
@@ -47,36 +47,39 @@ export default class HotelFacilitiesFilter extends React.Component<
     }
   };
 
-  handleSave = (hotelFacilities: string[]) =>
+  handleSave = (hotelAmenities: string[]) =>
     this.closePopup(() => {
-      this.props.onChange({ hotelFacilities });
-      if (hotelFacilities.length > 0) {
+      this.props.onChange({ hotelAmenities });
+      if (hotelAmenities.length > 0) {
         Logger.hotelsFilterTagSet('Amenities');
       }
     });
 
-  getTitle = (facilities: string[]) => (
-    <TranslationFragment>
-      <Translation id="hotels_search.filter.hotel_facilities_filter.title" />
-      <Translation
-        passThrough={facilities.length ? ` (${facilities.length})` : ''}
-      />
-    </TranslationFragment>
-  );
+  getTitle = () => {
+    const length = this.props.amenities.length
+      ? ` (${this.props.amenities.length})`
+      : '';
+    return (
+      <TranslationFragment>
+        <Translation id="hotels_search.filter.hotel_facilities_filter.title" />
+        <Translation passThrough={length} />
+      </TranslationFragment>
+    );
+  };
 
   render() {
     return (
       <React.Fragment>
         <FilterButton
-          title={this.getTitle(this.props.facilities)}
+          title={this.getTitle()}
           isActive={this.props.isActive}
           onPress={this.filterButtonClicked}
         />
-        <HotelFacilitiesPopup
+        <HotelAmenitiesPopup
           isVisible={this.state.isPopupOpen}
           onClose={this.closePopup}
           onSave={this.handleSave}
-          facilities={this.props.facilities}
+          amenities={this.props.amenities}
         />
       </React.Fragment>
     );

@@ -15,7 +15,7 @@ import { SeparatorTrimmed } from '@kiwicom/mobile-navigation';
 import { SafeAreaView } from 'react-navigation';
 
 type Props = {|
-  +facilities: string[],
+  +amenities: string[],
   +onClose: () => void,
   +onSave: (string[]) => void,
   +isVisible: boolean,
@@ -25,7 +25,7 @@ type State = {|
   facilities: string[],
 |};
 
-const facilitiesList = {
+const amenitiesList = {
   airportShuttle: {
     text: (
       <Translation id="hotels_search.filter.hotel_facilities_filter.airport_shuttle" />
@@ -92,16 +92,13 @@ const facilitiesList = {
   },
 };
 
-export default class HotelFacilitiesPopup extends React.Component<
-  Props,
-  State,
-> {
+export default class HotelAmenitiesPopup extends React.Component<Props, State> {
   state = {
-    facilities: this.props.facilities,
+    facilities: this.props.amenities,
   };
 
-  static getDerivedStateFromProps = ({ facilities, isVisible }: Props) => {
-    return isVisible ? null : facilities;
+  static getDerivedStateFromProps = ({ amenities, isVisible }: Props) => {
+    return isVisible ? null : amenities;
   };
 
   handleCheckboxOnPress = (option: string) => () =>
@@ -119,10 +116,10 @@ export default class HotelFacilitiesPopup extends React.Component<
 
   renderCheckboxes = (facilities: string[]) => {
     const checkboxes = [];
-    const facilitiesListKeys = Object.keys(facilitiesList);
+    const facilitiesListKeys = Object.keys(amenitiesList);
     const facilitiesListLength = facilitiesListKeys.length;
     facilitiesListKeys.forEach((key, i) => {
-      const facility = facilitiesList[key];
+      const facility = amenitiesList[key];
       const isFacilityChecked = facilities.includes(key);
       const isNotLastRow = i < facilitiesListLength - 1;
       checkboxes.push(
