@@ -38,7 +38,7 @@ export default class Homepage extends React.Component<Props> {
       currency: 'EUR',
       checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
       checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
-      roomsConfiguration: [{ adultsCount: 3, children: [] }],
+      roomsConfiguration: [{ adultsCount: 1, children: [] }],
     });
 
   goToStay22HotelsPage = () =>
