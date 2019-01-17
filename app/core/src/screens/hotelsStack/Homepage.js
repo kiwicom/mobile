@@ -1,17 +1,34 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { TextButton, LayoutSingleColumn } from '@kiwicom/mobile-shared';
 import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
+import { Translation, DateFormatter } from '@kiwicom/mobile-localization';
+
+import PlacepickerModal from './placepicker/PlacepickerModal';
+import HotelsForm from './HotelsForm';
 import {
-  Translation,
-  DateFormatter,
-  DateUtils,
-} from '@kiwicom/mobile-localization';
+  withHotelsFormContext,
+  type HotelsFormContextType,
+} from './HotelsFormContext';
 
 type Props = {|
   +navigation: NavigationType,
+  +cityName: string,
+  +cityId: string,
+  +checkin: Date,
+  +checkout: Date,
+  +coordinates: {|
+    +lat: number,
+    +lng: number,
+  |},
+  +adultsCount: number,
+  +childrenCount: Array<{| +age: number |}>,
+|};
+
+type State = {|
+  showPlacepicker: boolean,
 |};
 
 function Section({ children }: { children: React.Node }) {
@@ -22,7 +39,7 @@ function Section({ children }: { children: React.Node }) {
   return <View style={sectionStyle}>{children}</View>;
 }
 
-export default class Homepage extends React.Component<Props> {
+class Homepage extends React.Component<Props, State> {
   static navigationOptions = {
     headerTitle: (
       <HeaderTitle>
@@ -31,55 +48,114 @@ export default class Homepage extends React.Component<Props> {
     ),
   };
 
-  goToNewHotelsPage = () =>
-    this.props.navigation.navigate('NewHotelsPackage', {
-      cityId: 'aG90ZWxDaXR5Oi0zNzI0OTA=',
-      cityName: 'Barcelona',
-      currency: 'EUR',
-      checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
-      checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
-      roomsConfiguration: [{ adultsCount: 1, children: [] }],
-    });
+  state = {
+    showPlacepicker: false,
+  };
 
-  goToStay22HotelsPage = () =>
+  goToNewHotelsPage = () => {
+    const {
+      cityId,
+      cityName,
+      checkin,
+      checkout,
+      adultsCount,
+      childrenCount: children,
+    } = this.props;
     this.props.navigation.navigate('NewHotelsPackage', {
-      cityName: 'Split',
+      cityId,
+      cityName,
       currency: 'EUR',
-      checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
-      checkout: DateFormatter(DateUtils().addDays(36)).formatForMachine(),
-      roomsConfiguration: [{ adultsCount: 1, children: [] }],
-      coordinates: { latitude: 43.508133, longitude: 16.440193 },
+      checkin: DateFormatter(checkin).formatForMachine(),
+      checkout: DateFormatter(checkout).formatForMachine(),
+      roomsConfiguration: [{ adultsCount, children }],
     });
+  };
+
+  goToStay22HotelsPage = () => {
+    const {
+      coordinates: { lat, lng },
+      cityName,
+      checkin,
+      checkout,
+      adultsCount,
+      childrenCount: children,
+    } = this.props;
+    this.props.navigation.navigate('NewHotelsPackage', {
+      cityName,
+      currency: 'EUR',
+      checkin: DateFormatter(checkin).formatForMachine(),
+      checkout: DateFormatter(checkout).formatForMachine(),
+      roomsConfiguration: [{ adultsCount, children }],
+      coordinates: { latitude: lat, longitude: lng },
+    });
+  };
 
   goToSingleHotel = () => {
     this.props.navigation.navigate('SingleHotelPackage');
   };
 
+  togglePlacepicker = () => {
+    this.setState(state => ({
+      showPlacepicker: !state.showPlacepicker,
+    }));
+  };
+
   render() {
     return (
       <LayoutSingleColumn testID="homePage">
-        <Section>
-          <TextButton
-            title={<Translation passThrough="Hotels" />}
-            testID="homePage__Hotels-button"
-            onPress={this.goToNewHotelsPage}
-          />
-        </Section>
+        <ScrollView>
+          <Section>
+            <HotelsForm togglePlacepicker={this.togglePlacepicker} />
+          </Section>
+          <Section>
+            <TextButton
+              title={<Translation passThrough="Open hotels" />}
+              testID="homePage__Hotels-button"
+              onPress={this.goToNewHotelsPage}
+            />
+          </Section>
 
-        <Section>
-          <TextButton
-            title={<Translation passThrough="Stay 22Hotels" />}
-            onPress={this.goToStay22HotelsPage}
-          />
-        </Section>
+          <Section>
+            <TextButton
+              title={<Translation passThrough="Open Stay 22Hotels" />}
+              onPress={this.goToStay22HotelsPage}
+            />
+          </Section>
 
-        <Section>
-          <TextButton
-            title={<Translation passThrough="Go to single hotel" />}
-            onPress={this.goToSingleHotel}
+          <Section>
+            <TextButton
+              title={<Translation passThrough="Go to single hotel" />}
+              onPress={this.goToSingleHotel}
+            />
+          </Section>
+          <PlacepickerModal
+            isVisible={this.state.showPlacepicker}
+            onClose={this.togglePlacepicker}
+            onSave={this.togglePlacepicker}
+            cityName={this.props.cityName}
           />
-        </Section>
+        </ScrollView>
       </LayoutSingleColumn>
     );
   }
 }
+
+const select = ({
+  cityName,
+  cityId,
+  checkin,
+  checkout,
+  coordinates,
+  adultsCount,
+  children,
+}: HotelsFormContextType) => ({
+  cityName,
+  cityId,
+  checkin,
+  checkout,
+  coordinates,
+  adultsCount,
+  childrenCount: children,
+});
+
+export default withHotelsFormContext(select)(Homepage);
