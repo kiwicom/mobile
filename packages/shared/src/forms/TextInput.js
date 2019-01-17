@@ -10,6 +10,7 @@ import StyleSheet from '../PlatformStyleSheet';
 import Text from '../Text';
 
 type Props = {|
+  +value?: string,
   +placeholder?: React.Element<typeof Translation>,
   +placeholderStyle?: StylePropType,
   +defaultValue?: string,
