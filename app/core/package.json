@@ -17,6 +17,7 @@
     "react-native": "^0.57",
     "react-navigation-props-mapper": "^0",
     "react-navigation": "^3",
-    "react-native-dotenv": "^0"
+    "react-native-dotenv": "^0",
+    "lodash": ">=4"
   }
 }
