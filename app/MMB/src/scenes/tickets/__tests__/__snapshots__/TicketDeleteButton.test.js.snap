@@ -59,9 +59,12 @@ exports[`TicketDeleteButton renders correctly when booking has local files 1`] =
             Object {
               "color": "#00a991",
             },
-            Object {
-              "alignSelf": "flex-start",
-            },
+            Array [
+              Object {
+                "alignSelf": "flex-start",
+              },
+              null,
+            ],
           ]
         }
       >
