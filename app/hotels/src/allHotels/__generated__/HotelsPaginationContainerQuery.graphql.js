@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash e2ef5a035446610f13d2ba2e572a8fce
+ * @relayHash b7290e095db357ddee6168ed1e13d5c1
  */
 
 /* eslint-disable */
@@ -34,10 +34,24 @@ export type HotelsFilterInput = {
   minPrice?: ?number,
   maxPrice?: ?number,
   hotelFacilities?: ?HotelFacilitiesInput,
+  hotelAmenities?: ?HotelAmenitiesInput,
   minScore?: ?number,
   freeCancellation?: ?boolean,
 };
 export type HotelFacilitiesInput = {
+  airportShuttle?: ?boolean,
+  familyRooms?: ?boolean,
+  facilitiesForDisabled?: ?boolean,
+  fitnessCenter?: ?boolean,
+  parking?: ?boolean,
+  freeParking?: ?boolean,
+  valetParking?: ?boolean,
+  indoorPool?: ?boolean,
+  petsAllowed?: ?boolean,
+  spa?: ?boolean,
+  wifi?: ?boolean,
+};
+export type HotelAmenitiesInput = {
   airportShuttle?: ?boolean,
   familyRooms?: ?boolean,
   facilitiesForDisabled?: ?boolean,
