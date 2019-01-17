@@ -157,9 +157,10 @@ const styles = StyleSheet.create({
     },
   },
   overlayMarker: {
-    position: 'absolute',
-    top: 48,
-    end: 39,
+    marginVertical: 20,
+    marginEnd: 20,
+    height: 40,
+    width: 40,
     zIndex: Number(defaultTokens.zIndexSticky),
   },
 });
