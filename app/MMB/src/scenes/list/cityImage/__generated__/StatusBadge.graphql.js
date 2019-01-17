@@ -8,7 +8,7 @@
 
 /*::
 import type { ConcreteFragment } from 'relay-runtime';
-export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "EXPIRED" | "NEW" | "PENDING" | "REFUNDED" | "%future added value";
+export type BookingStatus = "CANCELLED" | "CLOSED" | "CONFIRMED" | "DELETED" | "EXPIRED" | "IN_PROCESS" | "NEW" | "PENDING" | "REFUNDED" | "%future added value";
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type StatusBadge$ref: FragmentReference;
 export type StatusBadge = {|

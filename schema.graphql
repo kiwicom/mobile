@@ -48,8 +48,12 @@ type AirportArrivalTimelineEvent implements TimelineEvent {
 Information about hotel availability during selected time period from Stay22 api.
 """
 type AllAvailableStay22Hotel implements AllHotelsInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Name of the hotel."""
   name: String
@@ -101,10 +105,19 @@ enum AllBookingsOnlyEnum {
   PAST
 }
 
+enum AllDynamicPackagesProviderEnum {
+  LOGITRAVEL
+  BEDFINDER
+}
+
 """Information about hotel availability during selected time period."""
 type AllHotelAvailabilityHotel implements AllHotelsInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Name of the hotel."""
   name: String
@@ -123,7 +136,7 @@ type AllHotelAvailabilityHotel implements AllHotelsInterface {
   """Main photo of the hotel."""
   mainPhoto: HotelPhoto
 
-  """Id of hotel"""
+  """ID of hotel"""
   hotelId: ID
 
   """Location of the hotel."""
@@ -307,11 +320,15 @@ type Booking {
   """Flight segments, e.g. stopover, change of aircraft, etc."""
   legs: [Leg] @deprecated(reason: "Use \"oneWay\", \"return\" & \"multicity\"  fields to retrieve booking info.")
 
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Unique number identifying the booking in communication with support."""
-  databaseId: Int
+  databaseId: Int @deprecated(reason: "Use field \"id\" directly (with opaque parameter)")
   type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
@@ -321,7 +338,7 @@ type Booking {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
-  unstable_baggage: [BookingBaggage]
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -409,6 +426,9 @@ type BookingCustomerSupport {
   Is Guarantee Chat allowed to provide direct contact to customer service.
   """
   hasGuaranteeChat: Boolean
+
+  """Localised phone number of customer service."""
+  phoneNumber: String
 }
 
 enum BookingDestinationImageDimensions {
@@ -433,11 +453,15 @@ type BookingEdge {
 }
 
 interface BookingInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Unique number identifying the booking in communication with support."""
-  databaseId: Int
+  databaseId: Int @deprecated(reason: "Use field \"id\" directly (with opaque parameter)")
   type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
@@ -447,7 +471,7 @@ interface BookingInterface {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
-  unstable_baggage: [BookingBaggage]
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -504,11 +528,15 @@ type BookingInterfaceEdge {
 }
 
 type BookingMulticity implements BookingInterface & Node {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Unique number identifying the booking in communication with support."""
-  databaseId: Int
+  databaseId: Int @deprecated(reason: "Use field \"id\" directly (with opaque parameter)")
   type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
@@ -518,7 +546,7 @@ type BookingMulticity implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
-  unstable_baggage: [BookingBaggage]
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -569,11 +597,15 @@ type BookingMulticity implements BookingInterface & Node {
 Booking with simple trip from origin to destination, with possible stopovers.
 """
 type BookingOneWay implements BookingInterface & Node {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Unique number identifying the booking in communication with support."""
-  databaseId: Int
+  databaseId: Int @deprecated(reason: "Use field \"id\" directly (with opaque parameter)")
   type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
@@ -583,7 +615,7 @@ type BookingOneWay implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
-  unstable_baggage: [BookingBaggage]
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -624,11 +656,15 @@ type BookingOneWay implements BookingInterface & Node {
 
 """Booking with return trip. A <-> B"""
 type BookingReturn implements BookingInterface & Node {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Unique number identifying the booking in communication with support."""
-  databaseId: Int
+  databaseId: Int @deprecated(reason: "Use field \"id\" directly (with opaque parameter)")
   type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
   status: BookingStatus
 
@@ -638,7 +674,7 @@ type BookingReturn implements BookingInterface & Node {
   """Date of the booking creation"""
   bookingDate: Date
   allowedBaggage: AllowedBaggage
-  unstable_baggage: [BookingBaggage]
+  baggage: [BookingBaggage]
 
   """Static assets related to this booking."""
   assets: BookingAssets
@@ -683,10 +719,11 @@ type BookingReturn implements BookingInterface & Node {
 }
 
 enum BookingStatus {
-  CLOSED
+  IN_PROCESS
   CONFIRMED
   REFUNDED
   NEW @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
+  CLOSED @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
   PENDING @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
   CANCELLED @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
   DELETED @deprecated(reason: "Never valid value for Booking Status, only for Booking Extra Status")
@@ -703,6 +740,9 @@ enum BookingType {
   RETURN
   MULTICITY
 }
+
+"""String code of Kiwi.com partner or "kiwicom"."""
+scalar Brand
 
 type CarRentalService {
   relevantCities: [CarRentalServiceRelevantCities]
@@ -786,6 +826,28 @@ type CreateAccountResponse {
   success: Boolean
   error: CreateAccountError
   identity: Identity
+}
+
+interface CSPhoneAvailabilityInterface {
+  """Customer support availability type"""
+  type: CSPhoneAvailabilityType
+}
+
+"""Possible customer support availabilites types"""
+enum CSPhoneAvailabilityType {
+  WORKING_DAYS
+  NONSTOP
+}
+
+type CSPhoneAvailabilityWorkingDays implements CSPhoneAvailabilityInterface {
+  """Customer support availability type"""
+  type: CSPhoneAvailabilityType
+
+  """Opening hour"""
+  from: String
+
+  """Closing hour"""
+  to: String
 }
 
 enum Currency {
@@ -970,8 +1032,12 @@ enum Currency {
 }
 
 type CurrencyDetail implements Node {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """The code of the currency as used on Kiwi.com frontend"""
   code: String
@@ -1032,6 +1098,9 @@ type CustomerSupportNumber {
 
   """Customer Support phone number"""
   number: String
+
+  """Languages supported by customer service and availability hours"""
+  supportedLanguages: [SupportedLanguage]
 }
 
 """
@@ -1161,8 +1230,12 @@ input DurationInput {
 
 """Combination of flight and hotel"""
 type DynamicPackage {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Accommodation part of the package"""
   hotel: Hotel
@@ -1224,8 +1297,12 @@ type EnterDetailsTimelineEvent implements TimelineEvent {
 }
 
 type FAQArticle {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Original numeric id of the article"""
   originalId: Int
@@ -1265,8 +1342,12 @@ type FAQArticleEdge {
 }
 
 type FAQCategory {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Original numeric id of the FAQ category"""
   originalId: Int
@@ -1313,6 +1394,13 @@ enum FAQCommentType {
   OTHER
 }
 
+type FAQFeedbackResponse {
+  article: FAQArticle
+
+  """true if posting the response failed due to rate limit exhaustion"""
+  isRateLimitExhausted: Boolean
+}
+
 enum FAQSection {
   BEFORE_BOOKING
   UPCOMING_BOOKING
@@ -1321,8 +1409,12 @@ enum FAQSection {
 }
 
 type Flight {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """List of all Airlines involved."""
   airlines: [Airline]
@@ -1396,8 +1488,12 @@ type GeoIP {
 
 """General information about the hotel."""
 type Hotel implements HotelInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Name of the hotel."""
   name: String
@@ -1441,9 +1537,48 @@ type Hotel implements HotelInterface {
   distanceFromCenter: Float
 }
 
+input HotelAmenitiesInput {
+  """Show only hotels having airport shuttle as a service."""
+  airportShuttle: Boolean
+
+  """Show only hotels having family rooms."""
+  familyRooms: Boolean
+
+  """Show only hotels having facilities for disabled."""
+  facilitiesForDisabled: Boolean
+
+  """Show only hotels having fitness room."""
+  fitnessCenter: Boolean
+
+  """Show only hotels having any parking."""
+  parking: Boolean
+
+  """Show only hotels having free parking."""
+  freeParking: Boolean
+
+  """Show only hotels having valet parking."""
+  valetParking: Boolean
+
+  """Show only hotels having indoor swimming pool."""
+  indoorPool: Boolean
+
+  """Show only hotels having pets allowed."""
+  petsAllowed: Boolean
+
+  """Show only hotels having spa."""
+  spa: Boolean
+
+  """Show only hotels having wifi."""
+  wifi: Boolean
+}
+
 type HotelAmenity {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Name of the amenity."""
   name: String
@@ -1451,8 +1586,12 @@ type HotelAmenity {
 
 """Information about hotel availability during selected time period."""
 type HotelAvailability implements HotelAvailabilityInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """
   Total price for all guests and nights and in the hotel. (including VAT)
@@ -1502,8 +1641,12 @@ type HotelAvailabilityStats {
 }
 
 type HotelCity {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Name of the hotel."""
   name: String
@@ -1529,6 +1672,7 @@ type HotelCityEdge {
   cursor: String!
 }
 
+"""Use HotelAmenitiesInput instead"""
 input HotelFacilitiesInput {
   """Show only hotels having airport shuttle as a service."""
   airportShuttle: Boolean
@@ -1565,8 +1709,12 @@ input HotelFacilitiesInput {
 }
 
 type HotelFacility {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Name of the facility."""
   name: String
@@ -1610,8 +1758,12 @@ type HotelPaymentUrls {
 }
 
 type HotelPhoto {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
   lowResUrl: String
   highResUrl: String
   thumbnailUrl: String
@@ -1655,8 +1807,12 @@ type HotelReview {
 }
 
 type HotelRoom implements HotelRoomInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Type of the hotel room."""
   type: String
@@ -1675,8 +1831,12 @@ type HotelRoom implements HotelRoomInterface {
 }
 
 type HotelRoomAvailability implements HotelRoomAvailabilityInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Is the hotelroom refundable"""
   isRefundable: Boolean
@@ -1782,8 +1942,11 @@ input HotelsFilterInput {
   """
   maxPrice: Float
 
-  """Show only hotels having specified hotel facilities"""
+  """Deprecated -> use hotelAmenities instead."""
   hotelFacilities: HotelFacilitiesInput
+
+  """Show only hotels having specified hotel amenities"""
+  hotelAmenities: HotelAmenitiesInput
 
   """
   Show only hotels having minimum review score higher than or equal to this value. Score must be between 1 and 10.
@@ -1811,8 +1974,12 @@ input HotelsSearchInput {
 }
 
 type Identity {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Internal database ID."""
   databaseId: String @deprecated(reason: "Use id field instead.")
@@ -1918,8 +2085,12 @@ type LeaveForAirportTimelineEvent implements TimelineEvent {
 Leg is the operation of an aircraft from one scheduled departure station to its next scheduled arrival station.
 """
 type Leg {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
   airline: Airline
   operatingAirline: OperatingAirline
   arrival: RouteStop
@@ -2023,8 +2194,12 @@ enum Locale {
 }
 
 type Location {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """3-letter IATA code of airport or internal city code."""
   locationId: String
@@ -2092,7 +2267,7 @@ input LocationsOptionsInput {
 enum LocationType {
   airport
   autonomous_territory
-  bus_station
+  bus_station @deprecated(reason: "This type has been removed and there is no replacement for it.")
   city
   country
   station
@@ -2257,13 +2432,20 @@ type RoomsConfigurationOutput {
 
 """Root Mutation."""
 type RootMutation {
-  login(email: String!, password: String!): User
-  createAccount(credentials: CreateAccountInput!, brand: String = "kiwicom"): CreateAccountResponse
-  resetPassword(email: String!): ResetPasswordResponse
-  checkEmail(email: String!): CheckEmailResponse
+  login(email: String!, password: String!): User @deprecated(reason: "Use \"signIn\" mutation instead.")
+
+  """Log into Kiwi.com account with email & password."""
+  signIn(email: String!, password: String!, brand: Brand = "kiwicom"): SignInResponse
+
+  """Create Kiwi.com user account."""
+  createAccount(credentials: CreateAccountInput!, brand: Brand = "kiwicom"): CreateAccountResponse
+  resetPassword(email: String!, brand: String = "kiwicom"): ResetPasswordResponse
+
+  """Check whether given e-mail has any associated account or bookings."""
+  checkEmail(email: String!, brand: Brand = "kiwicom"): CheckEmailResponse
 
   """Sends time limited link on given e-mail to log in."""
-  sendMagicLink(email: String!, brand: String = "kiwicom"): SendMagicLinkResponse
+  sendMagicLink(email: String!, brand: Brand = "kiwicom"): SendMagicLinkResponse
   updatePassenger(
     """The global booking id"""
     id: ID!
@@ -2294,6 +2476,16 @@ type RootMutation {
     """Comment text"""
     comment: String!
   ): FAQArticle
+  _addFAQArticleComment(
+    """ID of FAQ article to receive vote."""
+    id: ID!
+
+    """Value indicating the comment type."""
+    type: FAQCommentType!
+
+    """Comment text"""
+    comment: String!
+  ): FAQFeedbackResponse
 }
 
 """Root Query"""
@@ -2342,6 +2534,7 @@ type RootQuery {
 
     """An ISO-4217 currency code."""
     currency: Currency
+    provider: AllDynamicPackagesProviderEnum = LOGITRAVEL
     after: String
     first: Int
     before: String
@@ -2443,8 +2636,8 @@ type RootQuery {
     only: CustomerBookingsOnlyEnum
 
     """
-    Allows to order bookings in ascending or descending order. You can skip this
-    argument to fetch all bookings in ascendering order.
+    Allows to order bookings in ascending or descending order by departure date.
+    You can skip this argument to fetch all bookings in ascendering order.
     """
     order: CustomerBookingsOrderEnum
     brand: String = "kiwicom"
@@ -2456,6 +2649,9 @@ type RootQuery {
 
   """Get customer support number for your locale"""
   customerSupportNumber: CustomerSupportNumber
+
+  """Get all customer support numbers"""
+  allCustomerSupportNumbers: [CustomerSupportNumber]
 
   """Retrieve single FAQ article."""
   FAQArticle(
@@ -2505,21 +2701,21 @@ type RootQuery {
   hotelPaymentUrls(hotelId: ID, roomConfig: [RoomConfigInput]): HotelPaymentUrls
 
   """Single location by ID."""
-  location(
-    id: String!
-
-    """
-    DEPRECATED - use "Accept-Language" HTTP header to specify locale.Language tag in the format of the RFC 5646.
-    """
-    locale: Locale
-  ): Location
+  location(id: ID!): Location
 
   """
   Find most relevant booking relative to current time. That is a booking with
   the smallest difference between current time and arrival time of one of its
   Legs. If no future booking is found, then the nearest past booking is returned.
   """
-  nearestBooking(brand: String = "kiwicom"): BookingInterface
+  nearestBooking(
+    brand: String = "kiwicom"
+
+    """
+    Filter out only the one which has upcoming leg covered by specified guarantee.
+    """
+    guarantee: CoveredBy
+  ): BookingInterface
 
   """Fetches an object given its ID"""
   node(
@@ -2567,9 +2763,18 @@ type Services {
   insurance: InsuranceService
 }
 
+type SignInResponse {
+  user: User
+  success: Boolean
+}
+
 type Stay22Hotel implements HotelInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Name of the hotel."""
   name: String
@@ -2594,8 +2799,12 @@ type Stay22Hotel implements HotelInterface {
 }
 
 type Stay22HotelDetail implements HotelAvailabilityInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """
   Total price for all guests and nights and in the hotel. (including VAT)
@@ -2607,8 +2816,12 @@ type Stay22HotelDetail implements HotelAvailabilityInterface {
 }
 
 type Stay22HotelRoom implements HotelRoomInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
   description: HotelRoomDescription
   roomPhotos: [HotelPhoto]
   maxPersons: Int
@@ -2616,8 +2829,12 @@ type Stay22HotelRoom implements HotelRoomInterface {
 }
 
 type Stay22HotelRoomAvailability implements HotelRoomAvailabilityInterface {
-  """The ID of an object"""
-  id: ID!
+  """
+  The globally unique ID of an object. You can unmask this ID to get original
+  value but please note that this unmasked ID is not globally unique anymore and
+  therefore it cannot be used as a cache key.
+  """
+  id(opaque: Boolean = true): ID!
 
   """Is the hotelroom refundable"""
   isRefundable: Boolean
@@ -2651,6 +2868,17 @@ input StopoversInput {
 
   """Maximum number of hours of stopover duration."""
   to: Int
+}
+
+type SupportedLanguage {
+  """Customer support language"""
+  language: String
+
+  """Customer support language code"""
+  languageCode: String
+
+  """Customer support availability schedule"""
+  phoneLanguageAvailability: CSPhoneAvailabilityWorkingDays
 }
 
 interface TimelineEvent {

@@ -13,7 +13,7 @@ import {
   type HotelsContextState,
   withHotelsContext,
 } from '../HotelsContext';
-import { sanitizeHotelFacilities } from '../GraphQLSanitizers';
+import { sanitizeHotelAmenities } from '../GraphQLSanitizers';
 import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHotelsSearchQuery.graphql';
 import HotelsPaginationContainer from './HotelsPaginationContainer';
 import HotelsSearch from './HotelsSearch';
@@ -59,7 +59,7 @@ class NewAllHotelsSearch extends React.Component<Props> {
       roomsConfiguration,
       currency,
       orderBy,
-      filterParams: { hotelAmenities, ...filterParamsRest },
+      filterParams,
     } = this.props;
 
     return (
@@ -75,8 +75,8 @@ class NewAllHotelsSearch extends React.Component<Props> {
             roomsConfiguration,
           },
           filter: {
-            ...filterParamsRest,
-            hotelFacilities: sanitizeHotelFacilities(hotelAmenities),
+            ...filterParams,
+            hotelAmenities: sanitizeHotelAmenities(filterParams.hotelAmenities),
           },
           first: 50,
           options: {

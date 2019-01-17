@@ -1,6 +1,6 @@
 // @flow
 
-import { sanitizeDate, sanitizeHotelFacilities } from '../GraphQLSanitizers';
+import { sanitizeDate, sanitizeHotelAmenities } from '../GraphQLSanitizers';
 
 describe('sanitizeDate', () => {
   it('Formats Date object into a ISO date string', () => {
@@ -14,15 +14,15 @@ describe('sanitizeDate', () => {
   });
 });
 
-describe('sanitizeHotelFacilities', () => {
+describe('sanitizeHotelAmenities', () => {
   it('Format facilities to string', () => {
-    expect(sanitizeHotelFacilities(['spa', 'wifi'])).toEqual({
+    expect(sanitizeHotelAmenities(['spa', 'wifi'])).toEqual({
       spa: true,
       wifi: true,
     });
   });
 
   it('Returns null for an empty value', () => {
-    expect(sanitizeHotelFacilities([])).toBeNull();
+    expect(sanitizeHotelAmenities([])).toBeNull();
   });
 });
