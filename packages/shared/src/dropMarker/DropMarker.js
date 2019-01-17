@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Image } from 'react-native';
 
-import dropmarker from './dropmarker.png';
+import dropmarker from './images/dropmarker.png';
 import StyleSheet from '../PlatformStyleSheet';
 
 /**
@@ -21,17 +21,14 @@ import StyleSheet from '../PlatformStyleSheet';
  *   `-------`
  */
 export default function DropMarker() {
-  return (
-    <Image source={dropmarker} style={styles.image} resizeMode="contain" />
-  );
+  return <Image source={dropmarker} style={styles.image} />;
 }
 
 const styles = StyleSheet.create({
   image: {
-    width: 38,
-    height: 38,
-    position: 'absolute',
-    start: -16,
-    top: -27,
+    flex: 1,
+    alignSelf: 'stretch',
+    width: undefined,
+    height: undefined,
   },
 });

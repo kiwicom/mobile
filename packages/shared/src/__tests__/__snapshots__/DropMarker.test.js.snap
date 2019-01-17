@@ -2,19 +2,17 @@
 
 exports[`matches 1`] = `
 <Component
-  resizeMode="contain"
   source={
     Object {
-      "testUri": "../../../packages/shared/src/dropMarker/dropmarker.png",
+      "testUri": "../../../packages/shared/src/dropMarker/images/dropmarker.png",
     }
   }
   style={
     Object {
-      "height": 38,
-      "position": "absolute",
-      "start": -16,
-      "top": -27,
-      "width": 38,
+      "alignSelf": "stretch",
+      "flex": 1,
+      "height": undefined,
+      "width": undefined,
     }
   }
 />
