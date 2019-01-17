@@ -12,6 +12,7 @@ type Props = {|
   +size?: 'small' | 'medium' | 'large',
   +color?: string,
   +style?: StylePropType,
+  +fontSize?: number,
 |};
 
 export default class Icon extends React.Component<Props> {
@@ -19,7 +20,27 @@ export default class Icon extends React.Component<Props> {
     color: defaultTokens.colorIconSecondary,
   };
 
+  getCustomFontSizeStyle = () => {
+    // Universal-components adds these values based on size. We have some custom sizes in mobile
+    // So we have to override these values
+    const { fontSize } = this.props;
+
+    if (fontSize == null) {
+      return null;
+    }
+
+    return {
+      fontSize,
+      height: fontSize,
+      width: fontSize,
+      lineHeight: fontSize,
+    };
+  };
+
   render() {
-    return <UniversalIcon {...this.props} />;
+    const { style, ...rest } = this.props;
+    return (
+      <UniversalIcon {...rest} style={[style, this.getCustomFontSizeStyle()]} />
+    );
   }
 }

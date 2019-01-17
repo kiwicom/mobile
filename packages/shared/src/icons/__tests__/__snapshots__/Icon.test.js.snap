@@ -1,5 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`genereates correct styles for custom fontSize 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "fontFamily": "orbit-icons",
+      },
+      Object {
+        "fontSize": 24,
+        "height": 24,
+        "lineHeight": 24,
+        "width": 24,
+      },
+      Object {
+        "color": "#7f91a8",
+      },
+      Array [
+        undefined,
+        Object {
+          "fontSize": 12,
+          "height": 12,
+          "lineHeight": 12,
+          "width": 12,
+        },
+      ],
+    ]
+  }
+>
+  
+</Text>
+`;
+
 exports[`renders 1`] = `
 <Text
   style={
@@ -16,7 +48,10 @@ exports[`renders 1`] = `
       Object {
         "color": "#7f91a8",
       },
-      undefined,
+      Array [
+        undefined,
+        null,
+      ],
     ]
   }
 >
@@ -40,7 +75,10 @@ exports[`renders for small and large 1`] = `
       Object {
         "color": "#7f91a8",
       },
-      undefined,
+      Array [
+        undefined,
+        null,
+      ],
     ]
   }
 >
@@ -64,7 +102,10 @@ exports[`renders for small and large 2`] = `
       Object {
         "color": "#7f91a8",
       },
-      undefined,
+      Array [
+        undefined,
+        null,
+      ],
     ]
   }
 >
