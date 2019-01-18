@@ -40,6 +40,6 @@ it('sets orderBy filter inactive', () => {
   expect(wrapper.state.activeFilters.isOrderFilterActive).toBe(true);
 
   wrapper.setFilter({ orderBy: null });
-  expect(wrapper.state.orderBy).toEqual(null);
+  expect(wrapper.state.orderBy).toBeNull();
   expect(wrapper.state.activeFilters.isOrderFilterActive).toBe(false);
 });
