@@ -40,16 +40,11 @@ exports[`checked on android 1`] = `
         }
       }
     >
-      <TextIcon
-        code=""
-        style={
-          Object {
-            "color": "#00a991",
-            "fontSize": 28,
-            "height": 26,
-            "width": 26,
-          }
-        }
+      <Icon
+        color="#00a991"
+        fontSize={26}
+        name="circle"
+        style={Object {}}
       />
     </View>
   </View>
@@ -96,23 +91,18 @@ exports[`checked on ios 1`] = `
         }
       }
     >
-      <TextIcon
-        code="S"
-        style={
-          Object {
-            "color": "#00a991",
-            "fontSize": 28,
-            "height": 26,
-            "width": 26,
-          }
-        }
+      <Icon
+        color="#00a991"
+        fontSize={26}
+        name="check-circle"
+        style={Object {}}
       />
     </View>
   </View>
 </TouchableWithoutFeedback>
 `;
 
-exports[`not checked 1`] = `
+exports[`renders 1`] = `
 <TouchableWithoutFeedback
   accessibilityComponentType="button"
   accessibilityTraits="button"

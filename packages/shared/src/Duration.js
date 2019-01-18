@@ -6,7 +6,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from './PlatformStyleSheet';
-import TextIcon from './icons/TextIcon';
+import Icon from './icons/Icon';
 import Text from './Text';
 import type { StylePropType } from '../types/Styles';
 
@@ -36,7 +36,12 @@ export default function Duration(props: Props) {
   return (
     <View style={styleSheet.row}>
       {props.showIcon && (
-        <TextIcon code="e" style={[styleSheet.durationIcon, props.iconStyle]} />
+        <Icon
+          name="clock"
+          fontSize={13}
+          color={defaultTokens.colorTextSecondary}
+          style={props.iconStyle}
+        />
       )}
       <Text style={[styleSheet.durationText, props.style]}>
         <Translation passThrough=" " />
@@ -61,10 +66,6 @@ const styleSheet = StyleSheet.create({
   },
   durationText: {
     fontSize: 10,
-    color: defaultTokens.colorTextSecondary,
-  },
-  durationIcon: {
-    fontSize: 13,
     color: defaultTokens.colorTextSecondary,
   },
 });

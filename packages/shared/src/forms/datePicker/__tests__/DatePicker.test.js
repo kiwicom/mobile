@@ -5,7 +5,7 @@ import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
 import MockDate from 'mockdate';
 
 import DatePicker from '../DatePicker';
-import TextIcon from '../../../icons/TextIcon';
+import Icon from '../../../icons/Icon';
 
 MockDate.set('2018-01-01');
 
@@ -26,7 +26,7 @@ class PickerWrapper extends React.Component<{}, {| date: Date |}> {
       <DatePicker
         date={this.state.date}
         onDateChange={this.onDateChange}
-        iconComponent={<TextIcon code="z" />}
+        iconComponent={<Icon name="wifi-off" />}
         {...this.props}
       />
     );

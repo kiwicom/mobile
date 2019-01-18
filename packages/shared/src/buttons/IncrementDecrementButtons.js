@@ -6,13 +6,13 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from '../Text';
-import TextIcon from '../icons/TextIcon';
+import Icon from '../icons/Icon';
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
 
 type ButtonProps = {|
-  +icon: React.Element<typeof TextIcon>,
+  +icon: React.Element<typeof Icon>,
   +touchable: boolean,
   +onPress: () => void,
   +style?: StylePropType,
@@ -51,7 +51,13 @@ export default function IncrementDecrementButtons(props: Props) {
   return (
     <View style={styles.row}>
       <Button
-        icon={<TextIcon code="&#xe118;" style={styles.icon} />}
+        icon={
+          <Icon
+            name="minus"
+            color={defaultTokens.colorIconSecondary}
+            fontSize={14}
+          />
+        }
         touchable={!disableDecrement}
         onPress={props.onDecrement}
       />
@@ -61,7 +67,13 @@ export default function IncrementDecrementButtons(props: Props) {
         </Text>
       )}
       <Button
-        icon={<TextIcon code="&#xe122;" style={styles.icon} />}
+        icon={
+          <Icon
+            name="plus"
+            color={defaultTokens.colorIconSecondary}
+            fontSize={14}
+          />
+        }
         touchable={!disableIncrement}
         onPress={props.onIncrement}
       />
@@ -77,10 +89,6 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  icon: {
-    color: defaultTokens.colorIconSecondary,
-    fontSize: 14,
   },
   button: {
     justifyContent: 'center',
