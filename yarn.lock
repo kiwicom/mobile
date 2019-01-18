@@ -767,11 +767,6 @@
   dependencies:
     ramda "^0.25.0"
 
-"@kiwicom/react-native-reverse-geocode@0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@kiwicom/react-native-reverse-geocode/-/react-native-reverse-geocode-0.0.2.tgz#af6e5f03ed165d712bea9aafe199a63c76d5fdb2"
-  integrity sha512-O3DsA7zNt0v6dv9lmJAENjPF9SOtJmU5PVdaKz4MuGOHSNtkA2kaKqvySrpVSFAjg/MGcgrub+4vF6Xdwm6ZgA==
-
 "@kiwicom/universal-components@^0.0.8":
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@kiwicom/universal-components/-/universal-components-0.0.8.tgz#aca69fa51aea9edc6b6787a04fba66577c3b6dce"
@@ -5407,7 +5402,7 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-memoize-one@^4.0.0, memoize-one@^4.0.2:
+memoize-one@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/memoize-one/-/memoize-one-4.1.0.tgz#a2387c58c03fff27ca390c31b764a79addf3f906"
   integrity sha512-2GApq0yI/b22J2j9rhbrAlsHb0Qcz+7yWxeLG8h+95sl1XPUgeLimQSOdur4Vw7cUhrBHwaUZxWFZueojqNRzA==
@@ -6891,14 +6886,6 @@ react-native-code-push@^5.5.1:
     plist "3.0.1"
     xcode "1.0.0"
 
-react-native-dash@^0.0.9:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/react-native-dash/-/react-native-dash-0.0.9.tgz#a07eb06a360530e42980e9cf90fd7f862705e2f2"
-  integrity sha1-oH6wajYFMOQpgOnPkP1/hicF4vI=
-  dependencies:
-    prop-types "^15.5.10"
-    react-native-measureme "0.0.1"
-
 react-native-dotenv@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-native-dotenv/-/react-native-dotenv-0.2.0.tgz#311551cb6a35a3dcfede648bded55c0e3ece579d"
@@ -6929,11 +6916,6 @@ react-native-maps@0.21.0:
   dependencies:
     babel-plugin-module-resolver "^2.3.0"
     babel-preset-react-native "1.9.0"
-
-react-native-measureme@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-measureme/-/react-native-measureme-0.0.1.tgz#8b1c5595cdbb1cfdf85bff98fe36d33e98b6162c"
-  integrity sha1-ixxVlc27HP34W/+Y/jbTPpi2Fiw=
 
 react-native-modal@^7.0.0:
   version "7.0.2"
@@ -6967,11 +6949,6 @@ react-native-safe-area-view@^0.11.0:
   version "1.0.0-alpha.16"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-1.0.0-alpha.16.tgz#e3651b7077ea8fa04e8dd3265ad9b87f1f77a758"
   integrity sha512-t+/aq5jQa+Is6afiQHa1P+2UPnwPGY9NT0pSqNr2zQ5llCn8TcPq6GN8xDMuEc08g+y/9R5zWo32hlVStwWn1A==
-
-react-native-share@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-share/-/react-native-share-1.1.2.tgz#f205265b9a3563eb20b9e247f17b8cab574a38dc"
-  integrity sha512-8NJG792gW89tE/pDdv67E7ABrNLUPMdbQUKeSad2vQHYYuiZhlfzuIozP5/M5OIezrihgDZX3mGRvGgHSs9pHw==
 
 react-native-snap-carousel@^3.7.5:
   version "3.7.5"
