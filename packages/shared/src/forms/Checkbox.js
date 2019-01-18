@@ -7,7 +7,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import TouchableWithoutFeedback from '../TouchableWithoutFeedback';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
-import TextIcon from '../icons/TextIcon';
+import Icon from '../icons/Icon';
 
 type Props = {|
   +onPress: () => void,
@@ -18,9 +18,11 @@ type Props = {|
 
 export default function Checkbox(props: Props) {
   const icon = (
-    <TextIcon
-      code={Platform.OS === 'ios' ? 'S' : '\ue013'}
+    <Icon
+      name={Platform.OS === 'ios' ? 'check-circle' : 'circle'}
       style={styles.iconStyle}
+      color={defaultTokens.paletteProductNormal}
+      fontSize={Platform.select({ ios: 26, android: 24 })}
     />
   );
 
@@ -52,19 +54,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   iconStyle: {
-    color: defaultTokens.paletteProductNormal,
-    ios: {
-      width: 26,
-      height: 26,
-      fontSize: 28,
-    },
     android: {
-      width: 24,
-      height: 24,
       borderWidth: 1,
       borderColor: defaultTokens.paletteProductNormal,
       borderRadius: 100,
-      fontSize: 24,
     },
   },
   notChecked: {

@@ -9,17 +9,10 @@ exports[`works with broken input 1`] = `
     }
   }
 >
-  <TextIcon
-    code="e"
-    style={
-      Array [
-        Object {
-          "color": "#7f91a8",
-          "fontSize": 13,
-        },
-        undefined,
-      ]
-    }
+  <Icon
+    color="#7f91a8"
+    fontSize={13}
+    name="clock"
   />
   <Text
     style={
@@ -63,17 +56,10 @@ exports[`works with broken input 2`] = `
     }
   }
 >
-  <TextIcon
-    code="e"
-    style={
-      Array [
-        Object {
-          "color": "#7f91a8",
-          "fontSize": 13,
-        },
-        undefined,
-      ]
-    }
+  <Icon
+    color="#7f91a8"
+    fontSize={13}
+    name="clock"
   />
   <Text
     style={
