@@ -6,8 +6,6 @@ include ':react-native-code-push'
 project(':react-native-code-push').projectDir = new File("$rootDir/../node_modules/react-native-code-push/android/app")
 include ':react-native-zip-archive'
 project(':react-native-zip-archive').projectDir = new File("$rootDir/../node_modules/react-native-zip-archive/android")
-include ':react-native-share'
-project(':react-native-share').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-share/android')
 include ':react-native-pdf'
 project(':react-native-pdf').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-pdf/android')
 include ':rn-fetch-blob'
@@ -19,8 +17,6 @@ include ':react-native-maps'
 project(':react-native-maps').projectDir = new File("$rootDir/../node_modules/react-native-maps/lib/android")
 include ':react-native-native-modules'
 project(':react-native-native-modules').projectDir = new File("$rootDir/react-native-native-modules/")
-include ':@kiwicom/react-native-reverse-geocode'
-project(':@kiwicom/react-native-reverse-geocode').projectDir = new File(rootProject.projectDir, '../node_modules/@kiwicom/react-native-reverse-geocode/android')
 
 include ':rnkiwimobile'
 
