@@ -17,17 +17,14 @@ import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage;
 import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage;
 import com.skypicker.reactnative.nativemodules.translation.RNTranslationManagerPackage;
-import com.kiwi.reversegeocode.RNReverseGeocodePackage;
 
 import org.wonday.pdf.RCTPdfView;
 
 import java.util.Arrays;
 import java.util.List;
 
-import cl.json.RNSharePackage;
-import cl.json.ShareApplication;
 
-public class MainApplication extends MultiDexApplication implements ShareApplication, ReactApplication {
+public class MainApplication extends MultiDexApplication implements ReactApplication {
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
@@ -40,7 +37,6 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
             return Arrays.asList(
                     new MainReactPackage(),
                     new RNZipArchivePackage(),
-                    new RNSharePackage(),
                     new RCTPdfView(),
                     new RNFetchBlobPackage(),
                     new RNTooltipsPackage(),
@@ -50,7 +46,6 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
                     new RNCurrencyManagerPackage(),
                     new RNDeviceInfoPackage(),
                     new RNCardManagerPackage(),
-                    new RNReverseGeocodePackage(),
                     new RNGestureHandlerPackage()
             );
         }
@@ -70,10 +65,5 @@ public class MainApplication extends MultiDexApplication implements ShareApplica
     public void onCreate() {
         super.onCreate();
         SoLoader.init(this, /* native exopackage */ false);
-    }
-
-    @Override
-    public String getFileProviderAuthority() {
-        return "com.reactnativeapp.provider";
     }
 }
