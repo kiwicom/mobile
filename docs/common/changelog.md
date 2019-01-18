@@ -7,6 +7,10 @@ this will be evened out from v24
 
 ## Target version 7.0.0
 
+### v24
+
+- Fix MOBILE-2259, big icon in map
+
 ### v23(ios only)
 
 - Small refactor in filter button icons 
