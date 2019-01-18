@@ -17,14 +17,10 @@ exports[`renders 1`] = `
 >
   <Button
     icon={
-      <TextIcon
-        code=""
-        style={
-          Object {
-            "color": "#7f91a8",
-            "fontSize": 14,
-          }
-        }
+      <Icon
+        color="#7f91a8"
+        fontSize={14}
+        name="minus"
       />
     }
     onPress={[MockFunction]}
@@ -32,14 +28,10 @@ exports[`renders 1`] = `
   />
   <Button
     icon={
-      <TextIcon
-        code=""
-        style={
-          Object {
-            "color": "#7f91a8",
-            "fontSize": 14,
-          }
-        }
+      <Icon
+        color="#7f91a8"
+        fontSize={14}
+        name="plus"
       />
     }
     onPress={[MockFunction]}

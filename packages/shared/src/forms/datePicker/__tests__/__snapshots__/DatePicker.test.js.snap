@@ -5,8 +5,9 @@ exports[`DatePicker renders in playground 1`] = `
   date={2018-01-01T00:00:00.000Z}
   disabled={false}
   iconComponent={
-    <TextIcon
-      code="z"
+    <Icon
+      color="#7f91a8"
+      name="wifi-off"
     />
   }
   onDateChange={[Function]}
@@ -18,8 +19,9 @@ exports[`DatePicker works with max date 1`] = `
   date={2018-01-01T00:00:00.000Z}
   disabled={false}
   iconComponent={
-    <TextIcon
-      code="z"
+    <Icon
+      color="#7f91a8"
+      name="wifi-off"
     />
   }
   maxDate={2018-01-01T00:00:00.000Z}
@@ -32,8 +34,9 @@ exports[`DatePicker works with min date 1`] = `
   date={2018-01-01T00:00:00.000Z}
   disabled={false}
   iconComponent={
-    <TextIcon
-      code="z"
+    <Icon
+      color="#7f91a8"
+      name="wifi-off"
     />
   }
   minDate={2018-01-01T00:00:00.000Z}
@@ -47,8 +50,9 @@ exports[`DatePicker works with other date formats 1`] = `
   disabled={false}
   format="L"
   iconComponent={
-    <TextIcon
-      code="z"
+    <Icon
+      color="#7f91a8"
+      name="wifi-off"
     />
   }
   onDateChange={[Function]}

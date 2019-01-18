@@ -1,10 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import { Alert } from '@kiwicom/mobile-localization';
 
 import { BookNow } from '../BookNow';
+
+const renderer = new ShallowRenderer();
 
 const navigation = {
   navigate: jest.fn(),
@@ -49,7 +51,7 @@ it('renders without crashing', () => {
       currency: 'EUR',
     },
   };
-  PlaygroundRenderer.render(<BookNow {...props} />);
+  expect(renderer.render(<BookNow {...props} />)).toMatchSnapshot();
 });
 
 it('renders without crashing with missing data', () => {
@@ -72,7 +74,7 @@ it('renders without crashing with missing data', () => {
     },
   };
 
-  PlaygroundRenderer.render(<BookNow {...props} />);
+  expect(renderer.render(<BookNow {...props} />)).toMatchSnapshot();
 });
 
 it('calls handleGoToPayment when numberOfGuests = maxPersons', () => {

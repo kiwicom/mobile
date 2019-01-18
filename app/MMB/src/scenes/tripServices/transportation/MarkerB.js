@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { Icon } from '@kiwicom/mobile-shared';
 
 import TransportationMapMarker from './TransportationMapMarker';
 
@@ -16,8 +17,9 @@ export default function MarkerB(props: Props) {
   return (
     <TransportationMapMarker
       coordinate={props.coordinate}
-      code="k"
-      color={defaultTokens.colorAlertIconWarning}
+      icon={
+        <Icon name="location-b" color={defaultTokens.colorAlertIconWarning} />
+      }
     />
   );
 }

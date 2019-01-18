@@ -42,7 +42,6 @@ export { default as ModalWithLoader } from './src/ModalWithLoader';
 
 export { default as AdaptableBadge } from './src/AdaptableBadge';
 export { default as DropMarker } from './src/dropMarker/DropMarker';
-export { default as PositionMarker } from './src/PositionMarker';
 export { default as Price } from './src/Price';
 export { default as Stars } from './src/Stars';
 export { default as Text } from './src/Text';
