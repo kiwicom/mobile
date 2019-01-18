@@ -1,6 +1,6 @@
 // @flow
 
-/* eslint-disable */
+/* eslint-disable monorepo/no-relative-import */
 import '../../../app/hotels/src/singleHotel/roomPicker/__tests__/RoomPicker.test.js';
 import '../../../app/hotels/src/singleHotel/roomList/__tests__/RoomImage.test.js';
 import '../../../app/hotels/src/singleHotel/roomList/__tests__/RoomBadges.test.js';

@@ -197,10 +197,10 @@ describe('InsuranceRow', () => {
       />,
     );
     const instanceNone = none.getInstance();
-    expect(instanceNone).toBe(null);
+    expect(instanceNone).toBeNull();
     const instanceTravelBasic = travelBasic.getInstance();
-    expect(instanceTravelBasic).toBe(null);
+    expect(instanceTravelBasic).toBeNull();
     const instanceTravelPlus = travelPlus.getInstance();
-    expect(instanceTravelPlus).toBe(null);
+    expect(instanceTravelPlus).toBeNull();
   });
 });

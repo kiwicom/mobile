@@ -50,7 +50,7 @@ describe('WalletContext', () => {
 
     const instance = wrapper.root.findByType(ContextConsumer);
     expect(instance.props.segments).toEqual([]);
-    expect(instance.props.selectedSegment).toBe(null);
+    expect(instance.props.selectedSegment).toBeNull();
 
     expect(typeof instance.props.addSegment).toBe('function');
     expect(typeof instance.props.addPkpassData).toBe('function');
@@ -96,6 +96,6 @@ describe('WalletContext', () => {
     expect(instance.props.selectedSegment).toEqual(segment1);
 
     instance.props.setSelectedSegment(null);
-    expect(instance.props.selectedSegment).toBe(null);
+    expect(instance.props.selectedSegment).toBeNull();
   });
 });

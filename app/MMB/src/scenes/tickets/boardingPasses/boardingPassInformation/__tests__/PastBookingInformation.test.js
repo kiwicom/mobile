@@ -21,15 +21,15 @@ const getWrapper = (
 describe('PastBoookingInformation', () => {
   it('returns null if boarding pass available is null', () => {
     const wrapper = getWrapper(null, 'some string');
-    expect(wrapper).toBe(null);
+    expect(wrapper).toBeNull();
   });
 
   it('returns null if boarding pass url is not defined', () => {
     const wrapper = getWrapper(new Date(), undefined);
-    expect(wrapper).toBe(null);
+    expect(wrapper).toBeNull();
 
     const wrapper2 = getWrapper(new Date(), null);
-    expect(wrapper2).toBe(null);
+    expect(wrapper2).toBeNull();
   });
 
   it('returns a translation if boardingPassAvailable and boarding pass url is defined', () => {
