@@ -50,16 +50,16 @@ describe('countBookingPrice', () => {
 
     const UndefinedComponent = getComponent(null, { aaa: 1 });
 
-    expect(NullComponent.countBookingPrice()).toBe(null);
-    expect(UndefinedComponent.countBookingPrice()).toBe(null);
+    expect(NullComponent.countBookingPrice()).toBeNull();
+    expect(UndefinedComponent.countBookingPrice()).toBeNull();
   });
 
   it('returns null when no room is selected', () => {
     const ComponentA = getComponent(availableRooms, {});
     const ComponentB = getComponent(availableRooms, { aaa: 0, bbb: 0 });
 
-    expect(ComponentA.countBookingPrice()).toBe(null);
-    expect(ComponentB.countBookingPrice()).toBe(null);
+    expect(ComponentA.countBookingPrice()).toBeNull();
+    expect(ComponentB.countBookingPrice()).toBeNull();
   });
 
   it('returns sum of selected rooms', () => {

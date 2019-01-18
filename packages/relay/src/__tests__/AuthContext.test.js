@@ -28,7 +28,7 @@ describe('AuthContext', () => {
     const consumerProps = wrapper.toTree().rendered.props;
 
     expect(consumerProps.setAccessToken).toBeDefined();
-    expect(consumerProps.accessToken).toBe(null);
+    expect(consumerProps.accessToken).toBeNull();
   });
 
   it('sets the accessToken', () => {
