@@ -24,7 +24,7 @@ describe('VisaInformation', () => {
       <VisaInformation {...props}>{false}</VisaInformation>,
     );
 
-    expect(wrapper.toTree().rendered).toBe(null);
+    expect(wrapper.toTree().rendered).toBeNull();
   });
 
   it('renders visa ok when requiredIn and warningIn contains no elements', () => {

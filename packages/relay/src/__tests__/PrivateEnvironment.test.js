@@ -20,8 +20,8 @@ afterEach(() => {
 
 describe('PrivateEnvironment', () => {
   it('should be initiated without values', () => {
-    expect(PrivateEnvironment.environment).toBe(null);
-    expect(PrivateEnvironment.token).toBe(null);
+    expect(PrivateEnvironment.environment).toBeNull();
+    expect(PrivateEnvironment.token).toBeNull();
     expect(createEnvironment).not.toHaveBeenCalled();
   });
 

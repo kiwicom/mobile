@@ -10,7 +10,7 @@ describe('sanitizeDate', () => {
   });
 
   it('Returns null for an empty value', () => {
-    expect(sanitizeDate(null)).toBe(null);
+    expect(sanitizeDate(null)).toBeNull();
   });
 });
 
@@ -23,6 +23,6 @@ describe('sanitizeHotelFacilities', () => {
   });
 
   it('Returns null for an empty value', () => {
-    expect(sanitizeHotelFacilities([])).toBe(null);
+    expect(sanitizeHotelFacilities([])).toBeNull();
   });
 });
