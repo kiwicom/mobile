@@ -108,13 +108,36 @@ const updateKey = async (keyId, keyName) => {
   const formData = new FormData();
   const screenshotPath = _getScreenshotPath(keyName);
   formData.append('name', keyName);
-  formData.append('content', translations[unPrefixedKey]);
+
   if (fs.existsSync(screenshotPath)) {
     formData.append('screenshot', fs.createReadStream(screenshotPath));
   } else {
     missingScreenshots.push(unPrefixedKey);
   }
-  return _fetch(`/keys/${keyId}`, formData, HttpMethod.PATCH);
+  await _fetch(`/keys/${keyId}`, formData, HttpMethod.PATCH);
+  return updateTranslation(keyId, unPrefixedKey);
+};
+
+const updateTranslation = async (keyId: string, unPrefixedKey: string) => {
+  const translations = await _fetch(`/keys/${keyId}/translations`);
+  const defaultLocale = translations.find(
+    translation => translation.locale.code === 'en-GB', // Our default locale
+  );
+
+  if (defaultLocale == null) {
+    _log(`No translation found for key ${keyId}`);
+    return null;
+  }
+  if (translations[unPrefixedKey] !== defaultLocale.content) {
+    _log(`updating content for ${unPrefixedKey}`);
+
+    return _fetch(
+      `/translations/${defaultLocale.id}`,
+      JSON.stringify({ content: translations[unPrefixedKey] }),
+      HttpMethod.PATCH,
+    );
+  }
+  return null;
 };
 
 const createKey = async keyName => {
