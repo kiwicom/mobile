@@ -7,10 +7,10 @@ import type { TranslationType } from '@kiwicom/mobile-localization';
 import Popup from './Popup';
 import TextButton from '../buttons/TextButton';
 import StyleSheet from '../PlatformStyleSheet';
+import CloseButton from '../buttons/CloseButton';
 
 type Props = {|
   +buttonTitle: TranslationType,
-  +buttonCloseTitle: TranslationType,
   +children: React.Node,
   +isVisible: boolean,
   +onClose: Function,
@@ -38,11 +38,7 @@ export default class ButtonPopup extends React.Component<Props> {
         bottomContent={
           <View style={styles.buttonsWrapper}>
             <View style={[styles.button, styles.buttonFirst]}>
-              <TextButton
-                title={this.props.buttonCloseTitle}
-                onPress={this.onClose}
-                type="secondary"
-              />
+              <CloseButton onPress={this.onClose} />
             </View>
             <View style={styles.button}>
               <TextButton
