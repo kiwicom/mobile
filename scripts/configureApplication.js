@@ -104,8 +104,6 @@ try {
   // Ignore error - file doesn't exist
 }
 
-log('Configuration complete!');
-
 // Needed before 0.22.0 for Android Studio to sync
 log('Patching react-native-maps');
 const androidManifestReactNativeMaps = fs.readFileSync(
@@ -129,3 +127,34 @@ fs.writeFileSync(
   ),
   newAndroidManifestReactNativeMaps,
 );
+
+// Patching react-native-utils see https://github.com/Microsoft/react-native-code-push/issues/1276#issuecomment-424720093 for more info
+const RCTUtilsMPath = path.join(
+  __dirname,
+  '..',
+  'node_modules',
+  'react-native',
+  'React',
+  'Base',
+  'RCTUtils.m',
+);
+
+log('Patching RCTUtils.m....');
+const RCTUtilsM = fs.readFileSync(RCTUtilsMPath, 'utf-8');
+
+fs.writeFileSync(
+  RCTUtilsMPath,
+  RCTUtilsM.replace(
+    'image = [UIImage imageWithData:fileData];',
+    `CGFloat scale = 1.0;
+    if ([[imageURL absoluteString] hasSuffix: @"@3x.png"]) {
+      scale = 3.0;
+    } else if ([[imageURL absoluteString] hasSuffix: @"@2x.png"]) {
+      scale = 2.0;
+    }
+    image = [UIImage imageWithData:fileData scale: scale];`,
+  ),
+);
+log('Done patching RCTUtils.m');
+
+log('Configuration complete!');
