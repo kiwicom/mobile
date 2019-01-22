@@ -73,9 +73,6 @@ export default class PricePopup extends React.Component<Props, State> {
           buttonTitle={
             <Translation id="hotels_search.filter.price_popup.save" />
           }
-          buttonCloseTitle={
-            <Translation id="hotels_search.filter.hotel_facilities_popup.close" />
-          }
           onSave={this.onSave}
           onClose={this.props.onClose}
           isVisible={this.props.isVisible}

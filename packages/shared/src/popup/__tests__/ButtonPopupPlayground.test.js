@@ -13,7 +13,6 @@ describe('ButtonPopup playground', () => {
     PlaygroundRenderer.render(
       <ButtonPopup
         buttonTitle={<Translation passThrough="Save" />}
-        buttonCloseTitle={<Translation passThrough="Close" />}
         isVisible={true}
         onSave={noop}
         onClose={noop}
