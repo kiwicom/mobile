@@ -3,11 +3,6 @@
 exports[`StarsPopup should render popup 1`] = `
 <withOrientation>
   <ButtonPopup
-    buttonCloseTitle={
-      <Translation
-        id="hotels_search.filter.hotel_facilities_popup.close"
-      />
-    }
     buttonTitle={
       <Translation
         id="hotels_search.filter.stars_popup.save"

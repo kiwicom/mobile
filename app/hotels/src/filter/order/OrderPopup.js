@@ -57,7 +57,6 @@ export default class OrderPopup extends React.Component<Props, State> {
     return (
       <ButtonPopup
         buttonTitle={<Translation id="shared.button.save" />}
-        buttonCloseTitle={<Translation id="shared.button.close" />}
         onSave={this.onSave}
         onClose={this.onClose}
         isVisible={this.props.isVisible}

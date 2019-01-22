@@ -23,15 +23,8 @@ exports[`ButtonPopup playground renders in playground 1`] = `
           ]
         }
       >
-        <TextButton
-          disabled={false}
+        <CloseButton
           onPress={[Function]}
-          title={
-            <Translation
-              passThrough="Close"
-            />
-          }
-          type="secondary"
         />
       </View>
       <View
