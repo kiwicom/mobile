@@ -52,7 +52,9 @@ subprojects {
 // Override configuration for external sub-projects.
 allprojects {
     buildDir = "$rootDir/${project.name}/build"
-
+    repositories {
+        google()
+    }
     afterEvaluate {
         def androidConfiguration = {
             android {

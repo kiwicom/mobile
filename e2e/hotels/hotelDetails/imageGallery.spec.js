@@ -37,6 +37,9 @@ describe('Hotel details - Image Gallery', () => {
   });
 
   it('should display the same image after device rotation', async () => {
+    // This test might fail depending on your emulator. If you run on an emulator
+    // that has width >= 668 after rotating, the test will fail
+    // TODO: Figure out how to run on tablet only
     await device.setOrientation('landscape');
     await expect(element(by.id('photosStripeImage-1'))).toBeVisible();
     await device.setOrientation('portrait');
@@ -44,6 +47,9 @@ describe('Hotel details - Image Gallery', () => {
   });
 
   it('should be possible to swipe right to see first image in the modal again', async () => {
+    // This test might fail depending on your emulator. If you run on an emulator
+    // that has width >= 668 after rotating, the test will fail
+    // TODO: Figure out how to run on tablet only
     await element(by.id('photosStripe')).swipe('right');
     await expect(element(by.id('photosStripeImage-0'))).toBeVisible();
   });

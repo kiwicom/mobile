@@ -12,6 +12,7 @@ ext {
     targetSdkVersion = 27
 
     kotlinVersion = "1.2.71"
+    detoxKotlinVersion = "1.2.71"
 
     multidexVersion = "1.0.3"
     supportVersion = "27.0.2"
