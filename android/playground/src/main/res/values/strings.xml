@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">RNAndroidPlayground</string>
+    <string name="facebook_app_id">Your Facebook App ID Here</string>
+    <string name="google_maps_key">Your Google maps API Key Here</string>
+</resources>
