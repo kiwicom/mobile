@@ -80,6 +80,7 @@ class HotelsForm extends React.Component<Props> {
             onDecrement={this.decrementAdults}
             number={this.props.adultsCount}
             showNumber={true}
+            plusButtonTestID="adultsIncrement"
           />
           <Translation passThrough="Children" />
           <IncrementDecrementButtons
