@@ -48,7 +48,6 @@ dependencies {
     implementation "com.facebook.react:react-native:$reactNativeVersion"
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-tooltips:$reactNativeTooltips-SNAPSHOT"
-    api "com.trinerdis.skypicker:react-native-zip-archive:$reactNativeZipArchive-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-code-push:$reactNativeCodePush-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-gesture-handler:$reactNativeGestureHandler-SNAPSHOT"
 
