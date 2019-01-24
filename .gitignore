@@ -43,6 +43,8 @@ android/app/bin/
 .project
 .classpath
 .settings
+android/app/src/main/res/values/strings.xml
+android/playground/src/main/res/values/strings.xml
 
 # Visual studio code
 .vscode
