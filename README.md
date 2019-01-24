@@ -67,6 +67,24 @@ and set it as your environment variable:
 export RNKIWIMOBILE_DEPLOYMENT_TOKEN="YOUR_TOKEN_HERE"
 ```
 
+
+also you should add two files `android/app/src/main/res/values/secrets.xml` 
+```
+<resources>
+    <string name="facebook_app_id">Your Facebook App ID Here</string>
+    <string name="google_maps_key">Your Google maps API Key Here</string>
+</resources>
+```
+
+and `android/playground/src/main/res/values/secrets.xml`
+
+```
+<resources>
+    <string name="facebook_app_id">Your Facebook App ID Here</string>
+    <string name="google_maps_key">Your Google maps API Key Here</string>
+</resources>
+```
+
 ## Testing
 
 You will usually need only this during development:
