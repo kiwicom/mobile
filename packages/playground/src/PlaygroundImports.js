@@ -28,4 +28,3 @@ import '../../shared/src/readMore/__tests__/ReadMore.test.js';
 import '../../shared/src/__tests__/DropMarker.playground.test.js';
 import '../../shared/src/__tests__/AdaptableBadge.test.js';
 import '../../shared/src/offlineScreen/__tests__/OfflineScreen.test';
-import '../../pdf/src/__tests__/PdfViewer.test.js';
