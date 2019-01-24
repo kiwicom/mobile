@@ -17,6 +17,8 @@ include ':react-native-maps'
 project(':react-native-maps').projectDir = new File("$rootDir/../node_modules/react-native-maps/lib/android")
 include ':react-native-native-modules'
 project(':react-native-native-modules').projectDir = new File("$rootDir/react-native-native-modules/")
+include ':detox'
+project(':detox').projectDir = new File(rootProject.projectDir, '../node_modules/detox/android/detox')
 
 include ':rnkiwimobile'
 
