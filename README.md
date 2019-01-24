@@ -24,6 +24,9 @@ This is not an actual mobile application. This repository contains only React Na
   * [Working with GraphQL API](#working-with-graphql-api)
   * [Working with translations](#working-with-translations)
   * [Upgrading dependencies](#upgrading-dependencies)
+* [e2e testing](#e2e-testing)
+  * [Android](#android)
+  * [ios](#ios)
 
 ## Installation and Run
 
@@ -395,3 +398,19 @@ Check all dependencies with `outdated` Yarn command. This will tell you how behi
 yarn outdated
 yarn upgrade-interactive --latest
 ```
+
+## E2e testing
+
+We use [detox](https://github.com/wix/Detox) for e2e testing. 
+Note: One of our tests `imageGallery.spec.js` might fail depending on device. See comment in that file.
+
+### Android
+
+Detox is currently stable for android on RN-versions <=0.56. It runs on android, but there might be some quirks. 
+To run, first create an emulator in Android Studio with the name `e2e_emulator`. Then you can run `yarn e2e-aphone`.
+Because we have an absolutely positioned close button on the bottom of the detail view, android will click
+this button when trying to scroll. You might want to comment line 34 in `BookingSummary.js`
+
+### ios
+
+ios should work just fine. Just do `e2e-iphone` or `e2e-ipad` to run the tests
