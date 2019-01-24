@@ -43,6 +43,8 @@ android/app/bin/
 .project
 .classpath
 .settings
+android/app/src/main/res/values/secrets.xml
+android/playground/src/main/res/values/secrets.xml
 
 # Visual studio code
 .vscode
