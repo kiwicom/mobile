@@ -16,9 +16,10 @@ type ButtonProps = {|
   +touchable: boolean,
   +onPress: () => void,
   +style?: StylePropType,
+  +testID?: string,
 |};
 
-const Button = ({ icon, touchable, onPress }: ButtonProps) => {
+const Button = ({ icon, touchable, onPress, testID }: ButtonProps) => {
   const inner = (
     <View style={[styles.button, touchable ? null : styles.buttonDisabled]}>
       {icon}
@@ -26,7 +27,11 @@ const Button = ({ icon, touchable, onPress }: ButtonProps) => {
   );
 
   if (touchable) {
-    return <Touchable onPress={onPress}>{inner}</Touchable>;
+    return (
+      <Touchable testID={testID} onPress={onPress}>
+        {inner}
+      </Touchable>
+    );
   }
 
   return inner;
@@ -42,6 +47,7 @@ type Props = {|
   +max?: number,
   +disableDecrement?: boolean,
   +disableIncrement?: boolean,
+  +plusButtonTestID?: string,
 |};
 
 export default function IncrementDecrementButtons(props: Props) {
@@ -76,6 +82,7 @@ export default function IncrementDecrementButtons(props: Props) {
         }
         touchable={!disableIncrement}
         onPress={props.onIncrement}
+        testID={props.plusButtonTestID}
       />
     </View>
   );
