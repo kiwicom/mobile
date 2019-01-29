@@ -1,18 +1,12 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, Platform } from 'react-native';
+import { View } from 'react-native';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import {
-  LayoutDoubleColumn,
-  StyleSheet,
-  AdaptableLayout,
-  Icon,
-} from '@kiwicom/mobile-shared';
+import { LayoutDoubleColumn, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
-import MapHeaderButton from './MapHeaderButton';
 import HotelsNavigationOptions from '../HotelsNavigationOptions';
 import {
   withSearchResultsContext,
@@ -60,58 +54,14 @@ class SearchResultsScreen extends React.Component<Props> {
       show === 'list'
         ? { id: 'hotels_search.all_hotels_search_list.show_map' }
         : { id: 'hotels_search.all_hotels_search_list.show_list' };
-    return {
-      ...HotelsNavigationOptions({ checkin, checkout, cityName }),
-      headerRight: (
-        <React.Fragment>
-          {checkin !== null && (
-            <AdaptableLayout
-              renderOnNarrow={
-                <MapHeaderButton
-                  onPress={goToAllHotelsMap}
-                  icon={icon}
-                  text={text}
-                  testID="map-header-button"
-                />
-              }
-              renderOnWide={Platform.select({
-                android: (
-                  <MapHeaderButton
-                    onPress={goToAllHotelsMap}
-                    icon={icon}
-                    text={text}
-                    testID="map-header-button"
-                  />
-                ),
-                ios: null,
-              })}
-            />
-          )}
-        </React.Fragment>
-      ),
-      headerTitle: Platform.select({
-        ios: (
-          <AdaptableLayout
-            renderOnWide={
-              <View style={styles.headerTitleContainer}>
-                <View style={styles.headerTitleLeft}>
-                  {checkin !== null && (
-                    <MapHeaderButton
-                      onPress={goToAllHotelsMap}
-                      icon={icon}
-                      text={text}
-                      testID="map-header-button"
-                    />
-                  )}
-                </View>
-                <View style={styles.headerTitleRight} />
-              </View>
-            }
-          />
-        ),
-        android: null,
-      }),
-    };
+    return HotelsNavigationOptions({
+      checkin,
+      checkout,
+      cityName,
+      text,
+      icon,
+      goToAllHotelsMap,
+    });
   };
 
   componentDidMount() {
@@ -153,22 +103,6 @@ const styles = StyleSheet.create({
   icon: {
     marginEnd: 2,
     fontSize: 22,
-  },
-  headerTitleContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    height: '100%',
-  },
-  headerTitleLeft: {
-    flex: 1,
-    alignItems: 'flex-end',
-    justifyContent: 'center',
-  },
-  headerTitleRight: {
-    flex: 1,
-    borderStartColor: defaultTokens.paletteInkLight,
-    borderStartWidth: 0.5,
-    paddingStart: 0.5,
   },
 });
 
