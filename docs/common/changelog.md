@@ -7,6 +7,10 @@ this will be evened out from v24
 
 ## Target version 7.0.0
 
+### v25
+
+- Move map/list button to the right of the header on iPad, MOBILE-2427
+
 ### v24
 
 - Fix MOBILE-2259, big icon in map
