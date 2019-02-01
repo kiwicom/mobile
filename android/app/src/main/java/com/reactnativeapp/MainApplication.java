@@ -9,7 +9,6 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.reactlibrary.RNTooltipsPackage;
 import com.skypicker.reactnative.nativemodules.card.RNCardManagerPackage;
 import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage;
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage;
@@ -32,7 +31,6 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
-                    new RNTooltipsPackage(),
                     new MapsPackage(),
                     new RNLoggingPackage(),
                     new RNTranslationManagerPackage(),

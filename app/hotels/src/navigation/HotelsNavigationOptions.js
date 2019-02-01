@@ -5,7 +5,7 @@ import { View, Platform, StatusBar } from 'react-native';
 import {
   Translation,
   DateFormatter,
-  type TranslationKeysType,
+  type TranslationType,
 } from '@kiwicom/mobile-localization';
 import { Text, StyleSheet, AdaptableBadge, Icon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -22,7 +22,7 @@ type Props = {|
   +checkin?: string,
   +checkout?: string,
   +icon: React.Element<typeof Icon>,
-  +text: {| +id: TranslationKeysType |},
+  +text: TranslationType,
   +goToAllHotelsMap: () => void,
 |};
 

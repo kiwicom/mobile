@@ -94,11 +94,6 @@ allprojects {
                 }
             }
             break
-        case 'react-native-tooltips':
-            configure(project) {
-                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeTooltips-SNAPSHOT")
-            }
-            break
         case 'react-native-gesture-handler':
             configure(project) {
                 publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeGestureHandler-SNAPSHOT")

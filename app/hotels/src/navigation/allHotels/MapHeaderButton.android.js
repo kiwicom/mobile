@@ -2,28 +2,25 @@
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { Icon } from '@kiwicom/mobile-shared';
-import {
-  Tooltips,
-  type TooltipsTranslationType,
-} from '@kiwicom/mobile-localization';
+import { Icon, Text, StyleSheet } from '@kiwicom/mobile-shared';
+import { type TranslationType } from '@kiwicom/mobile-localization';
+import { Tooltip } from '@kiwicom/universal-components';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: () => void,
   +icon: React.Element<typeof Icon>,
-  +text: TooltipsTranslationType,
+  +text: TranslationType,
   +testID?: string,
 |};
 
 type State = {|
   isTooltipVisible: boolean,
-  buttonReference: React.ElementRef<*> | null,
 |};
 
 export default class MapHeaderButton extends React.Component<Props, State> {
   state = {
     isTooltipVisible: false,
-    buttonReference: null,
   };
 
   onPress = () => {
@@ -31,23 +28,29 @@ export default class MapHeaderButton extends React.Component<Props, State> {
     this.props.onPress();
   };
 
-  onLongPress = (buttonReference: React.ElementRef<*>) => {
-    this.setState({
-      isTooltipVisible: true,
-      buttonReference,
-    });
+  onLongPress = () => {
+    this.setState(
+      {
+        isTooltipVisible: true,
+      },
+      () => {
+        setTimeout(this.onTooltipClose, 3000);
+      },
+    );
   };
 
   onTooltipClose = () => {
     this.setState({
       isTooltipVisible: false,
-      buttonReference: null,
     });
   };
 
   render() {
     return (
-      <React.Fragment>
+      <Tooltip
+        text={<Text style={styles.tooltipText}>{this.props.text}</Text>}
+        isActive={this.state.isTooltipVisible}
+      >
         <HeaderButton.Right
           onPress={this.onPress}
           onLongPress={this.onLongPress}
@@ -55,18 +58,13 @@ export default class MapHeaderButton extends React.Component<Props, State> {
         >
           {this.props.icon}
         </HeaderButton.Right>
-        <Tooltips
-          text={this.props.text}
-          visible={this.state.isTooltipVisible}
-          reference={this.state.buttonReference}
-          corner={100}
-          tintColor="#505c5e"
-          arrow={false}
-          textSize={16}
-          shadow={true}
-          onHide={this.onTooltipClose}
-        />
-      </React.Fragment>
+      </Tooltip>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  tooltipText: {
+    color: defaultTokens.paletteWhite,
+  },
+});
