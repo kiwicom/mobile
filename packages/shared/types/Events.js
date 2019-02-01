@@ -59,19 +59,19 @@ export type GestureState = {
   y0: number,
 };
 
-export type PanResponderEvent = {
-  nativeEvent: {
-    changedTouches: [],
+export type PressEvent = {
+  +nativeEvent: $ReadOnly<{|
+    changedTouches: $ReadOnlyArray<$PropertyType<PressEvent, 'nativeEvent'>>,
     force: number,
     identifier: number,
     locationX: number,
     locationY: number,
     pageX: number,
     pageY: number,
-    target: number,
+    target: ?number,
     timestamp: number,
-    touches: [],
-  },
+    touches: $ReadOnlyArray<$PropertyType<PressEvent, 'nativeEvent'>>,
+  |}>,
 };
 
 export type WebViewStateChangeEvent = {|

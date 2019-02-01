@@ -34,6 +34,9 @@
 		27E931E420ADA0630053AE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931E320ADA0630053AE19 /* main.m */; };
 		51A8F6BE673D4671A3545CD8 /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */; };
 		60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
+		63738759220D81E600665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
+		6373875A220D81F200665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
+		6373875B220D820200665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
 		63A8419D20C853840093183F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419C20C853840093183F /* Social.framework */; };
 		63A8419F20C8538A0093183F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A8419E20C8538A0093183F /* MessageUI.framework */; };
 		686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 686E004A20B2E1360013512F /* RNKiwiConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -129,6 +132,7 @@
 		34003FC5EE453F3F2C072F56 /* libPods-RNNativePlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNNativePlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Medium.otf"; path = "../assets/fonts/ios/CircularPro-Medium.otf"; sourceTree = "<group>"; };
 		5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/android/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		63738758220D81E600665942 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		63A8419C20C853840093183F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		63A8419E20C8538A0093183F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		686E004A20B2E1360013512F /* RNKiwiConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiConstants.h; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63738759220D81E600665942 /* JavaScriptCore.framework in Frameworks */,
 				63A8419F20C8538A0093183F /* MessageUI.framework in Frameworks */,
 				63A8419D20C853840093183F /* Social.framework in Frameworks */,
 				60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */,
@@ -165,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6373875A220D81F200665942 /* JavaScriptCore.framework in Frameworks */,
 				27E931CD20AD9EF60053AE19 /* libPods-RNKiwiMobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +179,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6373875B220D820200665942 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +303,7 @@
 		A2CAAD3C4D5834AF8638A878 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63738758220D81E600665942 /* JavaScriptCore.framework */,
 				219FCC5921753450008F5428 /* libz.tbd */,
 				219FCC5721753448008F5428 /* libCodePush.a */,
 				63A8419E20C8538A0093183F /* MessageUI.framework */,

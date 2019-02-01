@@ -31,10 +31,10 @@
     "@kiwicom/react-native-app-hotels": "^0",
     "@kiwicom/react-native-fast-track": "^0",
     "react": "16.6.3",
-    "react-native": "^0.57.8",
+    "react-native": "^0.58.3",
     "react-native-app-registry-components-to-constants": "0.0.1",
     "detox": "^10.0.2",
-    "react-native-code-push": "^5.5.1"
+    "react-native-code-push": "^5.5.2"
   },
   "peerDependencies": {
     "graphql": "^14",
@@ -101,6 +101,6 @@
     "test-runner": "jest"
   },
   "rnkiwimobile": {
-    "code-push-target-binary-version": "7.0.0"
+    "code-push-target-binary-version": "8.0.0"
   }
 }

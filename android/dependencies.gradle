@@ -5,7 +5,7 @@ ext {
     fabricPluginVersion = "1.25.4"
     androidMavenPublishVersion = "3.6.2"
 
-    compileSdkVersion = 27
+    compileSdkVersion = 28
     buildToolsVersion = "28.0.3"
 
     minSdkVersion = 19

@@ -5,6 +5,15 @@ v22/v21 means v22 for android and v21 for ios
 
 this will be evened out from v24
 
+## Target version 8.0.0
+
+- Upgrade rnkiwimobile to version `0.0.42`
+
+### v26
+
+- Upgraded react-native, react-native-code-push, react-native-gesture-handler and react-navigtion
+- Replace `react-native-tooltips` with tooltips from `universal-components`
+
 ## Target version 7.0.0
 
 ### v25

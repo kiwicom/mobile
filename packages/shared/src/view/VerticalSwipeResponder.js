@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Animated, PanResponder } from 'react-native';
 import type { StylePropType } from '@kiwicom/mobile-shared';
 
-import type { GestureState, PanResponderEvent } from '../../types/Events';
+import type { GestureState, PressEvent } from '../../types/Events';
 
 type SwipeConfig = {|
   velocityThreshold: number,
@@ -52,7 +52,7 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
   }
 
   handleShouldSetPanResponder = (
-    evt: PanResponderEvent,
+    evt: PressEvent,
     gestureState: GestureState,
   ) => {
     return (
@@ -66,10 +66,7 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
     return Math.abs(gestureState.dx) < 5 && Math.abs(gestureState.dy) < 5;
   };
 
-  handlePanResponderEnd = (
-    evt: PanResponderEvent,
-    gestureState: GestureState,
-  ) => {
+  handlePanResponderEnd = (evt: PressEvent, gestureState: GestureState) => {
     const { onSwipeUp, onSwipeDown } = this.props;
     const swipeDirection = this.getSwipeDirection(gestureState);
 

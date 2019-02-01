@@ -25,7 +25,7 @@ def react_native_pods()
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
-  pod 'RNGestureHandler', path: '../node_modules/react-native-gesture-handler/ios'
+  pod 'RNGestureHandler', path: '../node_modules/react-native-gesture-handler'
 end
 
 def hotels_package_modules()

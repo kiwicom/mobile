@@ -129,7 +129,7 @@ export type {
   OnLayout,
   OnDimensionsChange,
   GestureState,
-  PanResponderEvent,
+  PressEvent,
   WebViewStateChangeEvent,
 } from './types/Events';
 
