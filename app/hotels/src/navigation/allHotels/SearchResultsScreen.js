@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { LayoutDoubleColumn, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { Translation } from '@kiwicom/mobile-localization';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import HotelsNavigationOptions from '../HotelsNavigationOptions';
@@ -50,15 +51,16 @@ class SearchResultsScreen extends React.Component<Props> {
         <Icon name="list" style={styles.icon} />
       );
 
-    const text =
+    const translationKey =
       show === 'list'
-        ? { id: 'hotels_search.all_hotels_search_list.show_map' }
-        : { id: 'hotels_search.all_hotels_search_list.show_list' };
+        ? 'hotels_search.all_hotels_search_list.show_map'
+        : 'hotels_search.all_hotels_search_list.show_list';
+
     return HotelsNavigationOptions({
       checkin,
       checkout,
       cityName,
-      text,
+      text: <Translation id={translationKey} />,
       icon,
       goToAllHotelsMap,
     });

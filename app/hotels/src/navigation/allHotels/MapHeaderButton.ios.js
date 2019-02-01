@@ -3,12 +3,12 @@
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
 import { Icon } from '@kiwicom/mobile-shared';
-import type { TooltipsTranslationType } from '@kiwicom/mobile-localization';
+import type { TranslationType } from '@kiwicom/mobile-localization';
 
 type Props = {|
   +onPress: () => void,
   +icon: React.Element<typeof Icon>,
-  +text: TooltipsTranslationType,
+  +text: TranslationType,
   +testID?: string,
 |};
 

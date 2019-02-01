@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.os.Parcelable
 import com.airbnb.android.react.maps.MapsPackage
 import com.facebook.react.ReactPackage
-import com.reactlibrary.RNTooltipsPackage
 import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage
 import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage
@@ -16,8 +15,7 @@ object RNHotelsModule {
   const val moduleName = "NewKiwiHotels"
 
   fun getPackages(hotelModulesInjection: RNHotelsModulesInjection): MutableList<ReactPackage> {
-    return mutableListOf(RNTooltipsPackage(),
-        RNDeviceInfoPackage(),
+    return mutableListOf(RNDeviceInfoPackage(),
         MapsPackage(),
         RNGestureHandlerPackage(),
         RNCurrencyManagerPackage(hotelModulesInjection.currencyCallback),

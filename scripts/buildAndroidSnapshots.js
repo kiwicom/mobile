@@ -106,14 +106,6 @@ const deployLibrary = (packageName, version) => {
         '-SNAPSHOT',
       ),
       deployDependency(
-        'react-native-tooltips',
-        SKYPICKER_URL,
-        `${getDependencyVersion(
-          'react-native-tooltips',
-        )}.react-native.${reactNativeVersion}`,
-        '-SNAPSHOT',
-      ),
-      deployDependency(
         'react-native-native-modules',
         SKYPICKER_URL,
         `${rnModulesVersion}.react-native.${reactNativeVersion}`,

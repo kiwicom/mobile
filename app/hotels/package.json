@@ -13,8 +13,7 @@
     "geolib": "^2.0.24",
     "react-fast-compare": "^2.0.2",
     "react-native-snap-carousel": "^3.7.5",
-    "react-native-swiper": "^1.5.13",
-    "react-native-tooltips": "^0.0.6"
+    "react-native-swiper": "^1.5.13"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0"
@@ -25,6 +24,7 @@
     "react-test-renderer": "^16",
     "react-navigation": "^3",
     "react-native-maps": "^0",
-    "react-navigation-props-mapper": "^0"
+    "react-navigation-props-mapper": "^0",
+    "@kiwicom/universal-components": "^0"
   }
 }

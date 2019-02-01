@@ -6940,11 +6940,6 @@ react-native-tab-view@^1.2.0:
   dependencies:
     prop-types "^15.6.1"
 
-react-native-tooltips@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/react-native-tooltips/-/react-native-tooltips-0.0.6.tgz#52ba0f3611597ed9a13abb207d77012c914d0c9e"
-  integrity sha512-c9LE5QSssHW+5tV3rNYNPcboGr+VO/3DQtqUeoPDUDIwm4xweOBEi4PBzISkhppATWvO1fhO/J9L91EDoH7c6A==
-
 react-native@^0.57.8:
   version "0.57.8"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.57.8.tgz#1a840fbe144cd3902cc14313a783ce28efc48cb9"
