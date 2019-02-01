@@ -1,12 +1,12 @@
 {
   "name": "@kiwicom/react-native-app-hotels",
-  "version": "0.0.41",
+  "version": "0.0.42",
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "react-native": "^0.57.8",
+    "react-native": "^0.58.3",
     "react-native-maps": "^0.21.0",
-    "react-native-code-push": "^5.5.1",
-    "react-native-gesture-handler": "1.0.9"
+    "react-native-code-push": "^5.5.2",
+    "react-native-gesture-handler": "^1.0.15"
   }
 }

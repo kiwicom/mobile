@@ -27,6 +27,7 @@ This is not an actual mobile application. This repository contains only React Na
 * [e2e testing](#e2e-testing)
   * [Android](#android)
   * [ios](#ios)
+* [Upgrading react-native](#upgrading-react-native)
 
 ## Installation and Run
 
@@ -414,3 +415,9 @@ this button when trying to scroll. You might want to comment line 34 in `Booking
 ### ios
 
 ios should work just fine. Just do `e2e-iphone` or `e2e-ipad` to run the tests
+
+## Upgrade react-native
+
+Since we upload our dependencies to maven, and these depends on the current version of react-native, there are no maven packages whenever we upgrade react-native version. In order to test it locally, you need to replace all occurrences of `reactNativeFromUnpkg(it, reactNativeVersion)` with `reactNativeFromNodeModules(it)` and you need to comment `include ':rnkiwimobile'` and `include ':playground'` in settings.gradle. 
+
+Remember to undo this changes before commiting. This is just to be able to test after upgrade
