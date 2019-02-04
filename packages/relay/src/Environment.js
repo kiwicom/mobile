@@ -8,7 +8,7 @@ import {
   Store,
   Observable,
 } from 'relay-runtime';
-import fetchWithRetries from '@mrtnzlml/fetch';
+import fetchWithRetries from '@kiwicom/fetch';
 
 import ConnectionManager from './ConnectionManager';
 import CacheManager from './CacheManager';

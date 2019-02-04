@@ -4,9 +4,9 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "@kiwicom/fetch": "^2.0.1",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-shared": "^0",
-    "@mrtnzlml/fetch": "^1.5.2",
     "react-relay": "^1.7.0"
   },
   "devDependencies": {

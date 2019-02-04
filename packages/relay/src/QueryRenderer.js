@@ -4,7 +4,7 @@ import * as React from 'react';
 import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
 import { FullPageLoading, GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { TimeoutError } from '@mrtnzlml/fetch';
+import { TimeoutError } from '@kiwicom/fetch';
 
 import PublicEnvironment from './PublicEnvironment';
 import PrivateEnvironment from './PrivateEnvironment';
