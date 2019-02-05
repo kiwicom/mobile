@@ -760,6 +760,14 @@
     strip-ansi "^5.0.0"
     text-table "^0.2.0"
 
+"@kiwicom/fetch@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@kiwicom/fetch/-/fetch-2.0.1.tgz#8615b5479d17ffc3defa7df7b42234b0d3ee93f3"
+  integrity sha512-3rhD4Wg8MuNYTq1OJwYbZnBXuDZ/ysmCirGEdHsg0dxHcvJ9fYhMquUjhEpWlnPwZTJlNHI2+AqxC02cfpNaUg==
+  dependencies:
+    "@mrtnzlml/utils" "^1.1.1"
+    cross-fetch "^3.0.0"
+
 "@kiwicom/orbit-design-tokens@^0.2.5":
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.2.5.tgz#b945e5f792d321aa66ef23bc327000e4ff702e50"
@@ -784,18 +792,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@mrtnzlml/fetch@^1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@mrtnzlml/fetch/-/fetch-1.5.2.tgz#6809cb1afdbc77a371b55303c2c2834bd94b4965"
-  integrity sha512-dCh7FHwKWaF4V2jbuymk244usjkDiMshzhpiY58yNM7GOQQCV7RrNQksqTmS9E5toFLexnpmvfy5Rz+PFQRieA==
-  dependencies:
-    "@mrtnzlml/utils" "^1.1.0"
-    cross-fetch "^2.2.2"
-
-"@mrtnzlml/utils@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@mrtnzlml/utils/-/utils-1.1.0.tgz#89070a49537094650ab34a73c6588b4f324b532f"
-  integrity sha512-D+tKuz+yLI9UeFU6KUaKZOtn7xr8b4nLhf4I8xxgpt7n70vLIC85FwArLUx376eonER8CsamMHPRTsARxGXM5Q==
+"@mrtnzlml/utils@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@mrtnzlml/utils/-/utils-1.1.1.tgz#70182ddb12825ecbb494bffe8596b3ad2b0869ee"
+  integrity sha512-FFvgqzJO4kiVQj6Hb1Qp+PGB7NY32bW95jxietxEnoYe79sUNr4MCWsV7pU7e1UHZ4XsSF2lTh0agr2edEvw2A==
 
 "@nodelib/fs.stat@^1.0.1":
   version "1.1.2"
@@ -2427,13 +2427,13 @@ create-react-context@^0.2.3:
     fbjs "^0.8.0"
     gud "^1.0.0"
 
-cross-fetch@^2.2.2:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-2.2.3.tgz#e8a0b3c54598136e037f8650f8e823ccdfac198e"
-  integrity sha512-PrWWNH3yL2NYIb/7WF/5vFG3DCQiXDOVf8k3ijatbrtnwNuhMWLC7YF7uqf53tbTFDzHIUD8oITw4Bxt8ST3Nw==
+cross-fetch@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.1.tgz#3f207bbd829a76e9aa2a953348bd1f2a3cf388a7"
+  integrity sha512-qWtpgBAF8ioqBOddRD+pHhrdzm/UWOArkrlIU7c08DlNbOxo5GfUbSY2vr90ZypWf0raW+HNN1F38pi5CEOjiQ==
   dependencies:
-    node-fetch "2.1.2"
-    whatwg-fetch "2.0.4"
+    node-fetch "2.3.0"
+    whatwg-fetch "3.0.0"
 
 cross-spawn@^4.0.2:
   version "4.0.2"
@@ -5975,10 +5975,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-node-fetch@2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.1.2.tgz#ab884e8e7e57e38a944753cec706f788d1768bb5"
-  integrity sha1-q4hOjn5X44qUR1POxwb3iNF2i7U=
+node-fetch@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.3.0.tgz#1a1d940bbfb916a1d3e0219f037e89e71f8c5fa5"
+  integrity sha512-MOd8pV3fxENbryESLgVIeaGKrdl+uaYhCSSVkjeOb/31/njTpcis5aWfdqgNlHIrKOLRbMnfPINPOML2CIFeXA==
 
 node-fetch@^1.0.1:
   version "1.7.3"
@@ -8508,12 +8508,7 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3:
   dependencies:
     iconv-lite "0.4.23"
 
-whatwg-fetch@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
-  integrity sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng==
-
-whatwg-fetch@>=0.10.0:
+whatwg-fetch@3.0.0, whatwg-fetch@>=0.10.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
   integrity sha512-9GSJUgz1D4MfyKU7KRqwOjXCXTqWdFNvEr7eUBYchQiVc744mqK/MzXPNR2WsPkmkOa4ywfg8C2n8h+13Bey1Q==
