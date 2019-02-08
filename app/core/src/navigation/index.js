@@ -6,6 +6,7 @@ import { createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import HotelsStack from './stacks/HotelsStack';
 import VoidStack from './stacks/VoidStack';
 import ProfileStack from './stacks/ProfileStack';
+import BookingStack from './stacks/BookingsStack';
 
 export default createAppContainer(
   createBottomTabNavigator(
@@ -16,7 +17,9 @@ export default createAppContainer(
           tabBarTestID: 'hotelsTab',
         },
       },
-      Bookings: { screen: VoidStack },
+      Bookings: {
+        screen: BookingStack,
+      },
       Message: { screen: VoidStack },
       Profile: { screen: ProfileStack },
     },

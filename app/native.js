@@ -2,11 +2,11 @@
 
 import CodePush from 'react-native-code-push';
 import { AppRegistry, YellowBox } from 'react-native';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
+import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
 
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
@@ -25,6 +25,9 @@ AppRegistry.registerComponent(
   'SingleHotel',
   () => SingleHotelStandalonePackage,
 );
+
+// Fast Track
+AppRegistry.registerComponent('FastTrackBanner', () => FastTrackBanner);
 
 // This file is only used for native integration and we use CodePush there
 CodePush.sync({
