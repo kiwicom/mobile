@@ -2,6 +2,7 @@
 
 import HotelsVocabulary from './vocabularies/Hotels';
 import ManageMyBookingVocabulary from './vocabularies/ManageMyBooking';
+import FastTrackVocabulary from './vocabularies/FastTrack';
 
 /**
  * This is just a dummy vocabulary used for development. It should be in
@@ -65,6 +66,7 @@ const Translations = {
   ...HotelsVocabulary,
   ...ManageMyBookingVocabulary,
   ...SharedVocabulary,
+  ...FastTrackVocabulary,
 };
 
 export type TranslationKeys = $Keys<typeof Translations>;
@@ -75,7 +77,8 @@ export type TranslationPackages =
   | 'HotelsVocabulary'
   | 'ManageMyBookingVocabulary'
   | 'SharedVocabulary'
-  | 'CoreVocabulary';
+  | 'CoreVocabulary'
+  | 'FastTrackVocabulary';
 
 export const getVocabularies = (vocabularies: TranslationPackages[]) => {
   const translationPackages = {
@@ -83,6 +86,7 @@ export const getVocabularies = (vocabularies: TranslationPackages[]) => {
     ManageMyBookingVocabulary,
     SharedVocabulary,
     CoreVocabulary,
+    FastTrackVocabulary,
   };
   return vocabularies.reduce((acc, curr) => {
     return {
