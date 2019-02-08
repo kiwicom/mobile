@@ -1,20 +1,70 @@
 // @flow strict
 
 import * as React from 'react';
-import { WithNativeNavigation } from '@kiwicom/mobile-shared';
+import {
+  SimpleCard,
+  Text,
+  TextButton,
+  StyleSheet,
+} from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-// This will be prop types passed from native app
-type Props = {||};
+import FastTrackModal from '../components/FastTrackModal';
 
-class FastTrackBanner extends React.Component<Props> {
+type Props = {|
+  +height: number,
+|};
+
+type State = {|
+  +isModalVisible: boolean,
+|};
+
+class FastTrackBanner extends React.Component<Props, State> {
+  state = {
+    isModalVisible: false,
+  };
+
+  onOpenModal = () => {
+    this.setState({
+      isModalVisible: true,
+    });
+  };
+
+  onCloseModal = () => {
+    this.setState({
+      isModalVisible: false,
+    });
+  };
+
   render() {
-    return <Translation passThrough="Put code here" />;
+    return (
+      <SimpleCard style={{ height: this.props.height }}>
+        <Text style={style.title}>
+          <Translation passThrough="Fast Track Banner test" />
+        </Text>
+        <TextButton
+          type="primary"
+          onPress={this.onOpenModal}
+          title={<Translation passThrough="Open Modal" />}
+        />
+        <FastTrackModal
+          isVisible={this.state.isModalVisible}
+          onOpenModal={this.onOpenModal}
+          onCloseModal={this.onCloseModal}
+        />
+      </SimpleCard>
+    );
   }
 }
 
-// With navigation solves problem with swipe gestures, back button
-// And navigation between native app and RN app.
-// I am not 100% sure you need it if you will just run as a fragment.
-// You can experiment without to to verify
-export default WithNativeNavigation(FastTrackBanner, 'FastTrackBanner');
+export default FastTrackBanner;
+
+const style = StyleSheet.create({
+  title: {
+    marginBottom: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: defaultTokens.colorTextPrimary,
+  },
+});
