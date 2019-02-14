@@ -3,7 +3,9 @@
 import Provider from './DimensionsProvider';
 import Consumer from './DimensionsConsumer';
 
-export default {
+const Dimensions = {
   Provider,
   Consumer,
 };
+
+export default Dimensions;

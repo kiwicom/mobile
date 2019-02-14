@@ -25,9 +25,6 @@ type State = {|
 |};
 
 export class Stay22PaginationContainer extends React.Component<Props, State> {
-  mapAnimation: Animated.Value;
-  listAnimation: Animated.Value;
-
   constructor(props: Props) {
     super(props);
 
@@ -43,6 +40,9 @@ export class Stay22PaginationContainer extends React.Component<Props, State> {
     );
     // TODO: Set min max price here when supported by API
   }
+
+  mapAnimation: Animated.Value;
+  listAnimation: Animated.Value;
 
   loadMore = () => {
     if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {

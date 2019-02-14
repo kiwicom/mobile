@@ -34,7 +34,6 @@ const PADDING_HORIZONTAL = 8;
 const CARD_ITEM_WIDTH = Device.DEVICE_THRESHOLD * SNAP_WIDTH;
 
 class HotelSwipeList extends React.Component<Props, State> {
-  carouselRef: React.ElementRef<typeof Carousel>;
   state = {
     containerWidth: 0,
   };
@@ -44,6 +43,8 @@ class HotelSwipeList extends React.Component<Props, State> {
       this.carouselRef.snapToItem(this.props.selectedIndex, false);
     }
   }
+
+  carouselRef: React.ElementRef<typeof Carousel>;
 
   getSelectedAddress = () => {
     const { selectedIndex, data } = this.props;

@@ -14,9 +14,11 @@ export const getTerritory = () => nativeGetTerritory;
 export const getLocaleUnderscored = () => nativeGetLocaleUnderscored;
 export const getLocaleDashed = () => nativeGetLocaleDashed;
 
-export default {
+const DeviceLocale = {
   getLanguage,
   getTerritory,
   getLocaleUnderscored,
   getLocaleDashed,
 };
+
+export default DeviceLocale;

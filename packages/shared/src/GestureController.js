@@ -21,10 +21,12 @@ const {
     ? NativeModules.RNKiwiGestureController || {}
     : NativeModules.RNKiwiBackButton || {};
 
-export default {
+const GestureController = {
   enableGestures,
   disableGestures,
   closeModal,
   invokeDefaultBackButton,
   isNativeGestureModule: isNativeGestureModule(),
 };
+
+export default GestureController;

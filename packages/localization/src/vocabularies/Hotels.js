@@ -1,6 +1,6 @@
 // @flow strict
 
-export default {
+const HotelsVocabulary = {
   'hotels.gallery_grid.no_images': 'No images available.',
   'hotels.gallery.pagination': '__1_photoNumber__ of __2_totalPhotos__',
   'hotels.map.address': 'Address',
@@ -99,3 +99,5 @@ export default {
   'single_hotel.alert.cannot_book_more_rooms_than_guests':
     'You cannot book more rooms than there are guests.',
 };
+
+export default HotelsVocabulary;

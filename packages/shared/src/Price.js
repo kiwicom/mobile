@@ -26,7 +26,6 @@ type State = {|
  * all prices should be wrapped in this component so the future changes are easy.
  */
 export default class Price extends React.Component<Props, State> {
-  cancellablePromise: CancellablePromiseType | null = null;
   state = {
     formattedCurrency: '',
   };
@@ -46,6 +45,8 @@ export default class Price extends React.Component<Props, State> {
       this.cancellablePromise.cancel();
     }
   };
+
+  cancellablePromise: CancellablePromiseType | null = null;
 
   formatCurrency = async () => {
     const amount = this.props.amount ?? null;

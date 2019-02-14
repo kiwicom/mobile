@@ -2,7 +2,7 @@
 
 export type SupportedTransformationsType = 'lowercase' | 'uppercase';
 
-export default (
+const CaseTransform = (
   text: string,
   transformation?: SupportedTransformationsType,
 ): string => {
@@ -15,3 +15,5 @@ export default (
       return text;
   }
 };
+
+export default CaseTransform;

@@ -26,7 +26,7 @@ type Props = {|
   +goToAllHotelsMap: () => void,
 |};
 
-export default ({
+const hotelsNavigationOptions = ({
   cityName,
   checkin,
   checkout,
@@ -117,3 +117,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
+
+export default hotelsNavigationOptions;

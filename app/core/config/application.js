@@ -8,7 +8,7 @@ import {
   SENTRY_DSN,
 } from 'react-native-dotenv';
 
-export default {
+const application = {
   animations: {
     duration: 100, // ms
   },
@@ -58,3 +58,5 @@ function sanitize(environmentVariable: string) {
       return environmentVariable;
   }
 }
+
+export default application;

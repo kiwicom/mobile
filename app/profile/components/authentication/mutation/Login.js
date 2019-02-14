@@ -23,7 +23,7 @@ export type Callback = (
   errors: ?[Error],
 ) => void;
 
-export default (input: LoginMutationVariables, callback: Callback) => {
+const LoginMutation = (input: LoginMutationVariables, callback: Callback) => {
   commitMutation({
     mutation,
     variables: input,
@@ -32,3 +32,5 @@ export default (input: LoginMutationVariables, callback: Callback) => {
     },
   });
 };
+
+export default LoginMutation;

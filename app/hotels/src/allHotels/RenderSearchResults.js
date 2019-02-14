@@ -29,9 +29,6 @@ export const lowValue = -100;
 const transitionDuration = 250;
 
 export class RenderSearchResults extends React.Component<Props> {
-  mapAnimation: Animated.Value;
-  listAnimation: Animated.Value;
-
   constructor(props: Props) {
     super(props);
 
@@ -48,6 +45,9 @@ export class RenderSearchResults extends React.Component<Props> {
       this.animateToList();
     }
   }
+
+  mapAnimation: Animated.Value;
+  listAnimation: Animated.Value;
 
   animateToMap = () => {
     Animated.parallel([

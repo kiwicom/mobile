@@ -46,10 +46,12 @@ class Provider extends React.Component<Props, State> {
   }
 }
 
-export default { Consumer, Provider };
-
 export function withSearchResultsContext(select: (state: State) => Object) {
   return withContext<State>(select, Consumer);
 }
 
 export type SearchResultState = State;
+
+const SearchResultsContext = { Consumer, Provider };
+
+export default SearchResultsContext;

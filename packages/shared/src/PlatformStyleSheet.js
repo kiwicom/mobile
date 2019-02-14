@@ -19,7 +19,7 @@ import type { StyleObjectType, PlatformStyleObjectType } from '../index';
  *   }
  * })
  */
-export default {
+const PlaformStyleSheet = {
   absoluteFill: StyleSheet.absoluteFill,
 
   absoluteFillObject: {
@@ -49,3 +49,5 @@ export default {
     return StyleSheet.create(platformStyles);
   },
 };
+
+export default PlaformStyleSheet;
