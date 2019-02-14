@@ -105,7 +105,7 @@ async function hotelsBookNowPressed({
   );
 }
 
-export default {
+const Logger = {
   Type,
   Provider,
   HotelGalleryType,
@@ -121,3 +121,5 @@ export default {
   hotelsDetailRoomSelected,
   hotelsBookNowPressed,
 };
+
+export default Logger;

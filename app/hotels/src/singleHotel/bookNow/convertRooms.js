@@ -1,6 +1,6 @@
 // @flow
 
-export default (selection: {
+const convertRooms = (selection: {
   [string]: number,
 }): Array<{| id: string, count: number |}> => {
   return Object.entries(selection)
@@ -10,3 +10,5 @@ export default (selection: {
       count: entry[1],
     }));
 };
+
+export default convertRooms;

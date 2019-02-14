@@ -1,3 +1,5 @@
 // @flow
 
-export default () => null;
+export default function AppleWalletAndroid() {
+  return null;
+}

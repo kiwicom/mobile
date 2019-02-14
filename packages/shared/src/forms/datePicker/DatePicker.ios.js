@@ -19,6 +19,14 @@ type State = {|
 |};
 
 export default class DatePicker extends React.Component<Props, State> {
+  static getDerivedStateFromProps = (props: Props, state: State) => {
+    return props.date !== state.previousDate ? { date: props.date } : null;
+  };
+
+  static defaultProps = {
+    disabled: false,
+  };
+
   constructor(props: Props) {
     super(props);
 
@@ -28,14 +36,6 @@ export default class DatePicker extends React.Component<Props, State> {
       previousDate: props.date,
     };
   }
-
-  static getDerivedStateFromProps = (props: Props, state: State) => {
-    return props.date !== state.previousDate ? { date: props.date } : null;
-  };
-
-  static defaultProps = {
-    disabled: false,
-  };
 
   togglePopup = () => {
     this.setState(state => ({

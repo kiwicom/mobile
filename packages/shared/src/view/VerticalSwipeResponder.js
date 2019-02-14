@@ -36,9 +36,6 @@ const swipeConfig: SwipeConfig = {
  * @see https://gist.github.com/teameh/dd055d546a3bd8f85b9516840e3a45f3
  */
 export default class VerticalSwipeResponder extends React.Component<Props> {
-  swipeConfig: SwipeConfig;
-  panResponder: any;
-
   constructor(props: Props) {
     super(props);
 
@@ -50,6 +47,9 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
       onPanResponderTerminate: this.handlePanResponderEnd,
     });
   }
+
+  swipeConfig: SwipeConfig;
+  panResponder: any;
 
   handleShouldSetPanResponder = (
     evt: PressEvent,

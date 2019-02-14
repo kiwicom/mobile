@@ -5,4 +5,6 @@ import { NativeModules } from 'react-native';
 const noop: (x: *) => void = () => {};
 const { addPass = noop } = NativeModules.RNKiwiAppleWalletManager || {};
 
-export default { addPass };
+const PassBook = { addPass };
+
+export default PassBook;

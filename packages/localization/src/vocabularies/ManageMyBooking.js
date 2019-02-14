@@ -1,6 +1,6 @@
 // @flow strict
 
-export default {
+const MMBVocabulary = {
   'mmb.my_bookings.title.bookings': 'My Bookings',
   'mmb.my_bookings.future_trips': 'Future trips',
   'mmb.my_bookings.past_trips': 'Past trips',
@@ -467,3 +467,5 @@ export default {
   'mmb.trip_overview.trip_title.inbound': 'Inbound',
   'mmb.trip_overview.trip_stopover.kiwi_guarantee': 'Kiwi.com Guarantee',
 };
+
+export default MMBVocabulary;

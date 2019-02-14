@@ -22,8 +22,6 @@ type State = {|
 |};
 
 class Provider extends React.Component<Props, State> {
-  toggleDataSaver: () => void;
-
   constructor(props: Props) {
     super(props);
 
@@ -42,6 +40,8 @@ class Provider extends React.Component<Props, State> {
     };
   }
 
+  toggleDataSaver: () => void;
+
   render() {
     return (
       <ContextProvider value={this.state}>
@@ -51,4 +51,6 @@ class Provider extends React.Component<Props, State> {
   }
 }
 
-export default { Consumer, Provider };
+const ConfigContext = { Consumer, Provider };
+
+export default ConfigContext;

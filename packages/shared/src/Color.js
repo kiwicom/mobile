@@ -60,7 +60,9 @@ const tripColorCodes = [
   '#ff2424',
 ];
 
-export default {
+const Colors = {
   ...ColorPalette,
   tripColorCodes,
 };
+
+export default Colors;

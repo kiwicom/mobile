@@ -18,6 +18,8 @@ const linear = (animationSpeedMs: number = 50) =>
     ),
   );
 
-export default {
+const Linear = {
   linear,
 };
+
+export default Linear;

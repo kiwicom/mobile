@@ -108,6 +108,8 @@ class Provider extends React.Component<Props, State> {
 export const withHotelsFilterContext = (select: State => Object) =>
   withContext<State>(select, Consumer);
 
-export default { Consumer, Provider };
-
 export type HotelsFilterState = State;
+
+const HotelsFilterContext = { Consumer, Provider };
+
+export default HotelsFilterContext;

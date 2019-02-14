@@ -26,7 +26,7 @@ const isIPhoneX = (() => {
   );
 })();
 
-export default {
+const Device = {
   /**
    * .---.
    * |   |
@@ -74,3 +74,5 @@ export default {
 
   isIPhoneX,
 };
+
+export default Device;

@@ -21,9 +21,6 @@ function withNativeNavigation<Props: {}>(
   moduleName: string,
 ): React.ComponentType<$Diff<Props, InjectedProps>> {
   return class WithNativeNavigation extends React.Component<*> {
-    isEnabled: boolean;
-    lastCall: '' | 'disabled' | 'enabled';
-
     constructor(props) {
       super(props);
       // First time we open the app, it should be enabled
@@ -31,6 +28,9 @@ function withNativeNavigation<Props: {}>(
       this.lastCall = 'enabled';
       GestureController.enableGestures(moduleName);
     }
+
+    isEnabled: boolean;
+    lastCall: '' | 'disabled' | 'enabled';
 
     onNavigationStateChange = (
       previousState: NavigationState,

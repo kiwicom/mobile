@@ -85,8 +85,6 @@ class Provider extends React.Component<Props, State> {
   }
 }
 
-export default { Consumer, Provider };
-
 export const withGeolocationContext = (Component: React.ElementType) => {
   const withGeolocationContext = (props: {}) => {
     return (
@@ -103,3 +101,7 @@ export const withGeolocationContext = (Component: React.ElementType) => {
   }
   return withGeolocationContext;
 };
+
+const GeolocationContext = { Consumer, Provider };
+
+export default GeolocationContext;

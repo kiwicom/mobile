@@ -1,3 +1,5 @@
 // @flow strict
 
-export default {};
+const FastTrackVocabulary = {};
+
+export default FastTrackVocabulary;

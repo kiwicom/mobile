@@ -13,12 +13,12 @@ export default function withStorage(
   initialValue: any,
 ) {
   return class WithStorage extends React.Component<{}, State> {
+    // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
+    static navigationOptions = WrappedComponent.navigationOptions;
+
     state = {
       savedValue: initialValue,
     };
-
-    // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-    static navigationOptions = WrappedComponent.navigationOptions;
 
     componentDidMount() {
       this.getStoredValue();
