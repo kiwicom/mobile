@@ -6,6 +6,9 @@
     "app/*",
     "packages/*"
   ],
+  "engines": {
+    "node": ">=11.0.0"
+  },
   "scripts": {
     "android": "yarn react-native run-android",
     "android-playground": "yarn react-native run-android --appFolder playground",
