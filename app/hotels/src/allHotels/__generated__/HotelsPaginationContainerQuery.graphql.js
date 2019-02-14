@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b7290e095db357ddee6168ed1e13d5c1
+ * @relayHash 058b203b1835ddf4aedb8eb43e0710d1
  */
 
 /* eslint-disable */
@@ -363,14 +363,32 @@ return {
                 "concreteType": "AllHotelAvailabilityHotel",
                 "plural": false,
                 "selections": [
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "hotelId",
-                    "args": null,
-                    "storageKey": null
-                  },
                   v2,
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "price",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Price",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "amount",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "currency",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
                   {
                     "kind": "ScalarField",
                     "alias": null,
@@ -404,29 +422,11 @@ return {
                     ]
                   },
                   {
-                    "kind": "LinkedField",
+                    "kind": "ScalarField",
                     "alias": null,
-                    "name": "price",
-                    "storageKey": null,
+                    "name": "hotelId",
                     "args": null,
-                    "concreteType": "Price",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "amount",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "currency",
-                        "args": null,
-                        "storageKey": null
-                      }
-                    ]
+                    "storageKey": null
                   },
                   {
                     "kind": "LinkedField",
