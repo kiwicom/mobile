@@ -33,7 +33,7 @@ describe('ButtonPopup', () => {
       await child.props.onPress();
     });
 
-    expect(onSave).toBeCalled();
+    expect(onSave).toBeCalledWith();
     expect(onClose).not.toBeCalled();
   });
 
@@ -47,6 +47,6 @@ describe('ButtonPopup', () => {
     });
 
     expect(onSave).not.toBeCalled();
-    expect(onClose).toBeCalled();
+    expect(onClose).toBeCalledWith();
   });
 });

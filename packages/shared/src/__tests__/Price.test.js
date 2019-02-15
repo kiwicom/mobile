@@ -49,7 +49,7 @@ describe('Price', () => {
 
     Component.componentDidUpdate({ amount: 46 });
 
-    expect(Component.formatCurrency).toHaveBeenCalled();
+    expect(Component.formatCurrency).toHaveBeenCalledWith();
   });
 
   it('does not call formatCurrency if amount is the same', () => {
@@ -67,7 +67,7 @@ describe('Price', () => {
 
     Component.componentDidUpdate({});
 
-    expect(Component.formatCurrency).toHaveBeenCalled();
+    expect(Component.formatCurrency).toHaveBeenCalledWith();
   });
 
   it('calls formatCurrency if current price is undefined', () => {
@@ -76,6 +76,6 @@ describe('Price', () => {
 
     Component.componentDidUpdate({ amount: 45, currency: 'EUR' });
 
-    expect(Component.formatCurrency).toHaveBeenCalled();
+    expect(Component.formatCurrency).toHaveBeenCalledWith();
   });
 });

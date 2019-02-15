@@ -88,7 +88,7 @@ it('calls handleGoToPayment when numberOfGuests = maxPersons', () => {
   Component.handleGoToPayment = handleGoToPayment;
   Component.onPress();
 
-  expect(handleGoToPayment).toHaveBeenCalled();
+  expect(handleGoToPayment).toHaveBeenCalledWith();
 });
 
 it('should show an alert if numberOfGuests > maxPersons', () => {
@@ -104,5 +104,15 @@ it('should show an alert if numberOfGuests > maxPersons', () => {
   Component.onPress();
 
   expect(handleGoToPayment).not.toHaveBeenCalled();
-  expect(spy).toHaveBeenCalled();
+  expect(spy).toHaveBeenCalledWith(
+    { id: 'single_hotel.book_now.alert_title' },
+    { id: 'single_hotel.book_now.alert_body', values: { numberOfGuests: 6 } },
+    [
+      { style: 'destructive', text: { id: 'shared.button.cancel' } },
+      {
+        onPress: handleGoToPayment,
+        text: { id: 'single_hotel.book_now.alert_ok' },
+      },
+    ],
+  );
 });

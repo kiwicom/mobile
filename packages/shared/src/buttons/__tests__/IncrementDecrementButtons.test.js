@@ -31,7 +31,7 @@ describe('IncrementDecrementButtons', () => {
 
     testInstance.findAllByType(Touchable)[1].props.onPress();
 
-    expect(onIncrement).toBeCalled();
+    expect(onIncrement).toBeCalledWith();
     expect(onDecrement).not.toBeCalled();
   });
 
@@ -43,7 +43,7 @@ describe('IncrementDecrementButtons', () => {
 
     testInstance.findAllByType(Touchable)[0].props.onPress();
 
-    expect(onDecrement).toBeCalled();
+    expect(onDecrement).toBeCalledWith();
     expect(onIncrement).not.toBeCalled();
   });
 
