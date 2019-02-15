@@ -1,8 +1,8 @@
 // @flow
 
-/* eslint-disable no-restricted-imports  */
 import * as React from 'react';
-import Relay from 'react-relay';
+import Relay from '@kiwicom/relay';
+import { type GraphQLTaggedNode as _GraphQLTaggedNode } from 'react-relay'; // eslint-disable-line
 import { Alert } from '@kiwicom/mobile-localization';
 
 import PublicEnvironment from './src/PublicEnvironment';
@@ -13,18 +13,11 @@ export {
   graphql,
   createPaginationContainer,
   createRefetchContainer,
-} from 'react-relay';
+  createFragmentContainer,
+} from '@kiwicom/relay';
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
 export { default as AuthContext, withAuthContext } from './src/AuthContext';
-
-// just a very simple Flow types - doesn't work very well yet (better than nothing)
-export const createFragmentContainer = (
-  component: React.ComponentType<*>,
-  fragmentSpec: Object,
-): React.ComponentType<*> => {
-  return Relay.createFragmentContainer(component, fragmentSpec);
-};
 
 export const commitMutation = (
   config: CommitMutationConfig,
@@ -48,14 +41,14 @@ export const commitMutation = (
 
 type CommitMutationConfig = {|
   // please extend this type if needed
-  +mutation: string,
+  +mutation: _GraphQLTaggedNode,
   +variables: Object,
   +onCompleted: Function,
   +updater?: Function,
 |};
 
 export type QueryRendererProps = {|
-  +query: string,
+  +query: _GraphQLTaggedNode,
   +render: (props: Object) => React.Node,
   +renderOfflineScreen?: ?(retry: () => void) => React.Node,
   +variables?: Object,
@@ -89,3 +82,5 @@ export type RelayRefetchProp = {|
     options: RefetchOptions,
   ) => Disposable,
 |};
+
+export type GraphQLTaggedNode = _GraphQLTaggedNode;

@@ -12,13 +12,13 @@ import gradient from '../gradient.png';
 import type { SingleMap as HotelType } from './__generated__/SingleMap.graphql';
 
 type Props = {|
-  +data: HotelType,
+  +data: ?HotelType,
 |};
 
 const SingleMap = (props: Props) => {
   return (
     <View style={styles.container}>
-      <MapView hotel={props.data.hotel} />
+      <MapView hotel={props.data?.hotel} />
       <View style={styles.underlay}>
         <StretchedImage source={gradient} />
       </View>

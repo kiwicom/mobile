@@ -9,14 +9,9 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Address_address as AddressType } from './__generated__/Address_address.graphql';
 
-type ContainerProps = {|
-  +address: $FlowFixMeProps,
-|};
-
-type Props = {
-  ...ContainerProps,
+type Props = {|
   +address: ?AddressType,
-};
+|};
 
 class Address extends React.Component<Props> {
   render() {
@@ -42,7 +37,7 @@ class Address extends React.Component<Props> {
   }
 }
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   Address,
   graphql`
     fragment Address_address on Address {
@@ -51,7 +46,7 @@ export default (createFragmentContainer(
       zip
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   container: {

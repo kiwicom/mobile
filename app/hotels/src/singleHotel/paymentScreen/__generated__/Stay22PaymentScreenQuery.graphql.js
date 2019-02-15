@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 12cdddc336c8166c26e51d5e7296a907
+ * @relayHash db275bd1ce83d7d7d1cd2d55edeca241
  */
 
 /* eslint-disable */
@@ -9,10 +9,10 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-export type RoomConfigInput = {
+export type RoomConfigInput = {|
   roomId: string,
   count: number,
-};
+|};
 export type Stay22PaymentScreenQueryVariables = {|
   paymentLink: string,
   roomConfig?: ?$ReadOnlyArray<?RoomConfigInput>,
@@ -91,24 +91,26 @@ v1 = [
 ];
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "Stay22PaymentScreenQuery",
-  "id": null,
-  "text": "query Stay22PaymentScreenQuery(\n  $paymentLink: String!\n  $roomConfig: [RoomConfigInput]\n) {\n  hotelPaymentUrls(roomConfig: $roomConfig) {\n    stay22PaymentUrl(paymentLink: $paymentLink)\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "Stay22PaymentScreenQuery",
     "type": "RootQuery",
     "metadata": null,
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "Stay22PaymentScreenQuery",
-    "argumentDefinitions": v0,
-    "selections": v1
+    "argumentDefinitions": (v0/*: any*/),
+    "selections": (v1/*: any*/)
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "Stay22PaymentScreenQuery",
+    "id": null,
+    "text": "query Stay22PaymentScreenQuery(\n  $paymentLink: String!\n  $roomConfig: [RoomConfigInput]\n) {\n  hotelPaymentUrls(roomConfig: $roomConfig) {\n    stay22PaymentUrl(paymentLink: $paymentLink)\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

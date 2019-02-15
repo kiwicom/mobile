@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
+import { QueryRenderer as KiwicomQueryRenderer } from '@kiwicom/relay';
 import { FullPageLoading, GeneralError } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { TimeoutError } from '@kiwicom/fetch';
@@ -76,13 +76,16 @@ export default class QueryRenderer extends React.Component<Props> {
   };
 
   render() {
-    return (
-      <Relay.QueryRenderer
+    const queryRenderer = (
+      // $FlowExpectedError: Yes, I can pass variables to this component
+      <KiwicomQueryRenderer
         environment={this.createEnvironment()}
         query={this.props.query}
         variables={this.props.variables}
         render={this.renderRelayContainer}
       />
     );
+
+    return queryRenderer;
   }
 }

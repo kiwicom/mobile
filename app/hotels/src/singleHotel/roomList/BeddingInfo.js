@@ -9,13 +9,8 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BeddingInfo_room as RoomType } from './__generated__/BeddingInfo_room.graphql';
 
-type ContainerProps = {|
-  room: any,
-|};
-
 type Props = {
-  ...ContainerProps,
-  room: ?RoomType,
+  +room: ?RoomType,
 };
 
 export class BeddingInfo extends React.Component<Props> {
@@ -77,7 +72,7 @@ export class BeddingInfo extends React.Component<Props> {
   }
 }
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   BeddingInfo,
   graphql`
     fragment BeddingInfo_room on HotelRoomInterface {
@@ -88,7 +83,7 @@ export default (createFragmentContainer(
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   row: {

@@ -21,10 +21,6 @@
 
 ; Custom Kiwi.com ignores
 <PROJECT_ROOT>/\.git/
-.*/node_modules/babel-plugin-relay/.+
-.*/node_modules/react-relay/lib/.+
-.*/node_modules/relay-compiler/lib/.+
-.*/node_modules/relay-runtime/lib/.+
 
 [include]
 

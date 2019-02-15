@@ -9,7 +9,7 @@ import type { HotelCityList as Cities } from './__generated__/HotelCityList.grap
 import HotelCityItem from './HotelCityItem';
 
 type Props = {|
-  +data: Cities,
+  +data: ?Cities,
   +onPress: () => void,
 |};
 
@@ -25,7 +25,7 @@ class HotelCityList extends React.Component<Props> {
   );
 
   render() {
-    const data = this.props.data.edges ?? [];
+    const data = this.props.data?.edges ?? [];
     return (
       <>
         <Translation passThrough="Results" />

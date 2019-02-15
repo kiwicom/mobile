@@ -8,12 +8,7 @@ import Description from './description/Description';
 import HotelReview from './HotelReview';
 import type { HotelInformation_hotel as HotelType } from './__generated__/HotelInformation_hotel.graphql';
 
-type ContainerProps = {|
-  +hotel: any,
-|};
-
 type Props = {|
-  ...ContainerProps,
   +hotel: ?HotelType,
 |};
 
@@ -25,7 +20,7 @@ const HotelInformation = (props: Props) => (
   </React.Fragment>
 );
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   HotelInformation,
   graphql`
     fragment HotelInformation_hotel on HotelInterface {
@@ -34,4 +29,4 @@ export default (createFragmentContainer(
       ...HotelReview
     }
   `,
-): React.ComponentType<ContainerProps>);
+);

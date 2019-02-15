@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 7aee9fe5eb8272165d7f773927ca60f7
+ * @relayHash 091890a7e9e8c946141ff1875a218d1d
  */
 
 /* eslint-disable */
@@ -88,28 +88,23 @@ v3 = {
 };
 return {
   "kind": "Request",
-  "operationKind": "mutation",
-  "name": "LoginMutation",
-  "id": null,
-  "text": "mutation LoginMutation(\n  $email: String!\n  $password: String!\n) {\n  login(email: $email, password: $password) {\n    token\n    identity {\n      fullName\n      id\n    }\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "LoginMutation",
     "type": "RootMutation",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "login",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -119,7 +114,7 @@ return {
             "concreteType": "Identity",
             "plural": false,
             "selections": [
-              v3
+              (v3/*: any*/)
             ]
           }
         ]
@@ -129,18 +124,18 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "LoginMutation",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "login",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "User",
         "plural": false,
         "selections": [
-          v2,
+          (v2/*: any*/),
           {
             "kind": "LinkedField",
             "alias": null,
@@ -150,7 +145,7 @@ return {
             "concreteType": "Identity",
             "plural": false,
             "selections": [
-              v3,
+              (v3/*: any*/),
               {
                 "kind": "ScalarField",
                 "alias": null,
@@ -163,6 +158,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "mutation",
+    "name": "LoginMutation",
+    "id": null,
+    "text": "mutation LoginMutation(\n  $email: String!\n  $password: String!\n) {\n  login(email: $email, password: $password) {\n    token\n    identity {\n      fullName\n      id\n    }\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

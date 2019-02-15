@@ -3,13 +3,16 @@
 import * as React from 'react';
 import { GeneralError, OfflineScreen, Logger } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
-import { PublicApiRenderer } from '@kiwicom/mobile-relay';
+import {
+  PublicApiRenderer,
+  type GraphQLTaggedNode,
+} from '@kiwicom/mobile-relay';
 
 import CloseModal from '../components/CloseModal';
 
 type Props = {|
   +onClose: () => void,
-  +query: string,
+  +query: GraphQLTaggedNode,
   +variables: Object,
   +render: (props: Object) => React.Node,
   +shouldRenderDateError: boolean,
@@ -17,7 +20,6 @@ type Props = {|
 
 export default class HotelsSearch extends React.Component<Props> {
   componentDidMount() {
-    // $FlowExpectedError: Query is actually a function (tagged literal)
     const { text: query } = this.props.query();
     Logger.hotelsResultsDisplayed(query, JSON.stringify(this.props.variables));
   }

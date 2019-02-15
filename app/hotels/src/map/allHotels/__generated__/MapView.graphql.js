@@ -7,7 +7,7 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type PriceMarker$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapView$ref: FragmentReference;
@@ -25,7 +25,7 @@ export type MapView = $ReadOnlyArray<{|
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "MapView",
   "type": "AllHotelsInterface",

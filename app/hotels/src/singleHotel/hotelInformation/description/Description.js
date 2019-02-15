@@ -11,13 +11,7 @@ import DescriptionTitle from './DescriptionTitle';
 import Amenities from './Amenities';
 import type { Description_hotel as HotelType } from './__generated__/Description_hotel.graphql';
 
-type ContainerProps = {|
-  +hotel: any,
-  +locationView?: any,
-|};
-
 type Props = {
-  ...ContainerProps,
   +hotel: ?HotelType,
   +locationView?: React.Node,
 };
@@ -64,7 +58,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   Description,
   graphql`
     fragment Description_hotel on HotelInterface {
@@ -72,4 +66,4 @@ export default (createFragmentContainer(
       ...Amenities
     }
   `,
-): React.ComponentType<ContainerProps>);
+);

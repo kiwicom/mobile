@@ -11,7 +11,7 @@ import HotelReviewScore from '../../components/HotelReviewScore';
 import type { HotelReview as HotelReviewType } from './__generated__/HotelReview.graphql';
 
 type Props = {|
-  +data: HotelReviewType,
+  +data: ?HotelReviewType,
 |};
 
 const ratingLabels = {
@@ -34,15 +34,15 @@ const RenderLabel = ({ score }: {| +score: ?number |}) => {
 };
 
 const HotelReview = (props: Props) => {
-  const reviews = props.data.review?.count;
+  const reviews = props.data?.review?.count;
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <View style={styles.badgeWrapper}>
-          <HotelReviewScore score={props.data.review?.score} />
+          <HotelReviewScore score={props.data?.review?.score} />
         </View>
         <View>
-          <RenderLabel score={props.data.review?.score} />
+          <RenderLabel score={props.data?.review?.score} />
           {reviews != null && (
             <Text style={styles.score}>
               <Translation
