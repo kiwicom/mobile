@@ -15,10 +15,10 @@
     "relay-compiler": "^1.7.0"
   },
   "peerDependencies": {
-    "react": "^16",
-    "relay-runtime": "1.7",
-    "react-native": "^0.57",
     "mockdate": "^2",
-    "react-test-renderer": "^16"
+    "react": "^16",
+    "react-native": "^0.57",
+    "react-test-renderer": "^16",
+    "relay-runtime": "1.7"
   }
 }

@@ -93,6 +93,6 @@ describe('QueryRenderer', () => {
     // $FlowExpectedError: Don't need to pass all props for this test
     const Component = new QueryRenderer({ accessToken: 'token' });
     Component.createEnvironment();
-    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalled();
+    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith('token');
   });
 });

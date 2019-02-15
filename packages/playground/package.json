@@ -2,5 +2,19 @@
   "name": "@kiwicom/mobile-playground",
   "version": "0.0.0",
   "private": true,
-  "main": "index.js"
+  "main": "index.js",
+  "dependencies": {
+    "@kiwicom/mobile-localization": "^0",
+    "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-orbit": "^0",
+    "@kiwicom/mobile-navigation": "^0"
+  },
+  "peerDependencies": {
+    "react": "^",
+    "react-native": "^",
+    "react-test-renderer": "^",
+    "global": "^",
+    "react-navigation": "^",
+    "react-navigation-props-mapper": "^"
+  }
 }

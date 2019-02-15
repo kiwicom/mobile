@@ -18,7 +18,10 @@ it('calls Logger when mounted', () => {
   // $FlowExpectedError: Passing only props needed for this test
   const Component = new HotelsPaginationContainer(defaultProps());
   Component.componentDidMount();
-  expect(spy).toHaveBeenCalled();
+  expect(spy).toHaveBeenCalledWith(
+    'ANCILLARY_STEP_RESULTS',
+    'ANCILLARY_PROVIDER_BOOKINGCOM',
+  );
 });
 
 it('calls setCurrentSearchStats when minPrice and maxPrice are defined', () => {
@@ -26,7 +29,10 @@ it('calls setCurrentSearchStats when minPrice and maxPrice are defined', () => {
   // $FlowExpectedError: Passing only props needed for this test
   const Component = new HotelsPaginationContainer(props);
   Component.componentDidMount();
-  expect(props.setCurrentSearchStats).toHaveBeenCalled();
+  expect(props.setCurrentSearchStats).toHaveBeenCalledWith({
+    priceMax: 100,
+    priceMin: 50,
+  });
 });
 
 it('calls setCurrentSearchStats when minPrice and maxPrice are 0', () => {
@@ -34,7 +40,10 @@ it('calls setCurrentSearchStats when minPrice and maxPrice are 0', () => {
   // $FlowExpectedError: Passing only props needed for this test
   const Component = new HotelsPaginationContainer(props);
   Component.componentDidMount();
-  expect(props.setCurrentSearchStats).toHaveBeenCalled();
+  expect(props.setCurrentSearchStats).toHaveBeenCalledWith({
+    priceMax: 0,
+    priceMin: 0,
+  });
 });
 
 it('calls does not call setCurrentSearchStats when minPrice is null', () => {

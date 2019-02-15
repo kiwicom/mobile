@@ -32,7 +32,7 @@ it('calls onExpandText', () => {
   const wrapper = renderer.create(<ReadMoreLink {...props} />).getInstance();
   wrapper.handlePress();
 
-  expect(props.onExpandText).toHaveBeenCalled();
+  expect(props.onExpandText).toHaveBeenCalledWith();
   expect(props.onHideText).not.toHaveBeenCalled();
 });
 
@@ -44,6 +44,6 @@ it('calls onHideText', () => {
   const wrapper = renderer.create(<ReadMoreLink {...props} />).getInstance();
   wrapper.handlePress();
 
-  expect(props.onHideText).toHaveBeenCalled();
+  expect(props.onHideText).toHaveBeenCalledWith();
   expect(props.onExpandText).not.toHaveBeenCalled();
 });

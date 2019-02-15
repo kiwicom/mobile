@@ -29,10 +29,10 @@ jest.mock('../src/ConnectionManager.js', () => {
 });
 
 jest.mock('../src/PublicEnvironment.js', () => ({
-  getEnvironment: jest.fn(),
+  getEnvironment: jest.fn(() => 'public environment'),
 }));
 jest.mock('../src/PrivateEnvironment.js', () => ({
-  getEnvironment: jest.fn(),
+  getEnvironment: jest.fn(() => 'private environment'),
 }));
 jest.mock('../src/Environment.js');
 
@@ -56,7 +56,11 @@ describe('commitMutation', () => {
     // $FlowExpectedError: method does not exist on class, but in mock
     ConnectionManager.setDesiredReturn(true);
     commitMutation(config, 'token');
-    expect(Relay.commitMutation).toHaveBeenCalled();
+    expect(Relay.commitMutation).toHaveBeenCalledWith('private environment', {
+      mutation: 'test',
+      onCompleted: config.onCompleted,
+      variables: {},
+    });
     expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith('token');
   });
 
@@ -64,7 +68,11 @@ describe('commitMutation', () => {
     // $FlowExpectedError: method does not exist on class, but in mock
     ConnectionManager.setDesiredReturn(true);
     commitMutation(config);
-    expect(Relay.commitMutation).toHaveBeenCalled();
+    expect(Relay.commitMutation).toHaveBeenCalledWith('public environment', {
+      mutation: 'test',
+      onCompleted: config.onCompleted,
+      variables: {},
+    });
     expect(PublicEnvironment.getEnvironment).toHaveBeenCalledWith();
   });
 });
