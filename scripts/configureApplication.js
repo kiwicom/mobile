@@ -3,8 +3,10 @@
 const fs = require('fs');
 const path = require('path');
 const childProcess = require('child_process');
+const chalk = require('chalk');
 
 const log = message => console.log(`➤ ${message}`); // eslint-disable-line no-console
+const error = message => console.log(chalk.red(`➤ ${message}`)); // eslint-disable-line no-console
 
 // TODO: fetch .env variables from Vault (or maybe just store the .env file itself in the Vault - this is painful)
 const vault = {
@@ -156,5 +158,13 @@ fs.writeFileSync(
   ),
 );
 log('Done patching RCTUtils.m');
+
+log('Checking node version');
+const version = process.versions.node;
+
+if (parseInt(version.split('.')[0], 10) < 11) {
+  // TODO: Remove this and use engines in package.json when we have upgraded node version on mobile CI
+  error('Please use node version 11.0.0 or greater for this project');
+}
 
 log('Configuration complete!');
