@@ -10,6 +10,7 @@ module.exports = (api /* :API */) => {
   api.cache(false);
 
   const presets = [
+    '@kiwicom/babel-preset-kiwicom',
     'module:metro-react-native-babel-preset',
     'module:react-native-dotenv',
   ];
