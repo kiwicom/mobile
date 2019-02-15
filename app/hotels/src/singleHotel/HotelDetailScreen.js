@@ -182,6 +182,7 @@ export class HotelDetailScreen extends React.Component<
           <LayoutSingleColumn barStyle={this.state.barStyle}>
             <Header hotel={availableHotel.hotel} />
             <HotelInformation hotel={availableHotel.hotel} />
+            {/* $FlowExpectedError: I don't understand this error TODO: Fix */}
             <RoomList data={availableHotel.availableRooms} />
             <BrandLabel />
           </LayoutSingleColumn>

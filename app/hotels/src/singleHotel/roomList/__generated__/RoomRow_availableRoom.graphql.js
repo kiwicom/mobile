@@ -7,7 +7,7 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type BeddingInfo_room$ref = any;
 type RoomBadges_availableRoom$ref = any;
 type RoomRowTitle_room$ref = any;
@@ -42,7 +42,7 @@ export type RoomRow_availableRoom = {|
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -73,7 +73,7 @@ return {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    v0,
+    (v0/*: any*/),
     {
       "kind": "FragmentSpread",
       "name": "RoomBadges_availableRoom",
@@ -87,7 +87,7 @@ return {
       "args": null,
       "concreteType": "Price",
       "plural": false,
-      "selections": v1
+      "selections": (v1/*: any*/)
     },
     {
       "kind": "LinkedField",
@@ -97,7 +97,7 @@ return {
       "args": null,
       "concreteType": "Price",
       "plural": true,
-      "selections": v1
+      "selections": (v1/*: any*/)
     },
     {
       "kind": "LinkedField",
@@ -108,7 +108,7 @@ return {
       "concreteType": null,
       "plural": false,
       "selections": [
-        v0,
+        (v0/*: any*/),
         {
           "kind": "LinkedField",
           "alias": null,
@@ -155,7 +155,7 @@ return {
               "args": null,
               "storageKey": null
             },
-            v0
+            (v0/*: any*/)
           ]
         },
         {

@@ -12,12 +12,7 @@ import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 import RoomRow from './RoomRow';
 import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
 
-type ContainerProps = {|
-  +data: any,
-|};
-
 type Props = {|
-  ...ContainerProps,
   +data: ?RoomListType,
 |};
 
@@ -67,7 +62,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   RoomList,
   graphql`
     fragment RoomList on HotelRoomAvailabilityInterface @relay(plural: true) {
@@ -75,4 +70,4 @@ export default (createFragmentContainer(
       ...RoomRow_availableRoom
     }
   `,
-): React.ComponentType<ContainerProps>);
+);

@@ -1,13 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { PublicApiRenderer } from '@kiwicom/mobile-relay';
+import {
+  PublicApiRenderer,
+  type GraphQLTaggedNode,
+} from '@kiwicom/mobile-relay';
 import { OfflineScreen, AdaptableLayout } from '@kiwicom/mobile-shared';
 
 import BookingSummary from './summary/BookingSummary';
 
 type Props = {|
-  +query: string,
+  +query: GraphQLTaggedNode,
   +variables: Object,
   +render: (props: Object) => React.Node,
   +onClose: () => void,

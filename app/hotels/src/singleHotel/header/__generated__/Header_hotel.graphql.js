@@ -7,7 +7,7 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Header_hotel$ref: FragmentReference;
 export type Header_hotel = {|
@@ -32,7 +32,7 @@ export type Header_hotel = {|
 */
 
 
-const node/*: ConcreteFragment*/ = (function(){
+const node/*: ReaderFragment*/ = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -63,7 +63,7 @@ return {
       "concreteType": "HotelPhoto",
       "plural": false,
       "selections": [
-        v0
+        (v0/*: any*/)
       ]
     },
     {
@@ -125,7 +125,7 @@ return {
                   "args": null,
                   "storageKey": null
                 },
-                v0
+                (v0/*: any*/)
               ]
             }
           ]

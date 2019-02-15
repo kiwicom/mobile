@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 362f8f028a053ff5353b0b6313a4c171
+ * @relayHash b53b2bf8f91654d800cd60e0e6df1416
  */
 
 /* eslint-disable */
@@ -72,24 +72,19 @@ v1 = [
 ];
 return {
   "kind": "Request",
-  "operationKind": "query",
-  "name": "HotelCityQuery",
-  "id": null,
-  "text": "query HotelCityQuery(\n  $query: String!\n) {\n  hotelCities(prefix: $query) {\n    ...HotelCityList\n  }\n}\n\nfragment HotelCityList on HotelCityConnection {\n  edges {\n    node {\n      id\n      ...HotelCityItem\n    }\n  }\n}\n\nfragment HotelCityItem on HotelCity {\n  id\n  name\n  location {\n    lat\n    lng\n  }\n}\n",
-  "metadata": {},
   "fragment": {
     "kind": "Fragment",
     "name": "HotelCityQuery",
     "type": "RootQuery",
     "metadata": null,
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "hotelCities",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "HotelCityConnection",
         "plural": false,
         "selections": [
@@ -105,14 +100,14 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "HotelCityQuery",
-    "argumentDefinitions": v0,
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
         "alias": null,
         "name": "hotelCities",
         "storageKey": null,
-        "args": v1,
+        "args": (v1/*: any*/),
         "concreteType": "HotelCityConnection",
         "plural": false,
         "selections": [
@@ -180,6 +175,13 @@ return {
         ]
       }
     ]
+  },
+  "params": {
+    "operationKind": "query",
+    "name": "HotelCityQuery",
+    "id": null,
+    "text": "query HotelCityQuery(\n  $query: String!\n) {\n  hotelCities(prefix: $query) {\n    ...HotelCityList\n  }\n}\n\nfragment HotelCityList on HotelCityConnection {\n  edges {\n    node {\n      id\n      ...HotelCityItem\n    }\n  }\n}\n\nfragment HotelCityItem on HotelCity {\n  id\n  name\n  location {\n    lat\n    lng\n  }\n}\n",
+    "metadata": {}
   }
 };
 })();

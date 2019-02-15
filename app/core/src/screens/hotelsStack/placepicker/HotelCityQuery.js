@@ -1,14 +1,18 @@
 // @flow strict
 
 import * as React from 'react';
-import { PublicApiRenderer, graphql } from '@kiwicom/mobile-relay';
+import {
+  PublicApiRenderer,
+  graphql,
+  type GraphQLTaggedNode,
+} from '@kiwicom/mobile-relay';
 
 import type { HotelCityQueryResponse as HotelCityType } from './__generated__/HotelCityQuery.graphql';
 import HotelCityList from './HotelCityList';
 
 type Props = {|
   +onPress: () => void,
-  +query: string,
+  +query: GraphQLTaggedNode,
 |};
 
 export default class HotelCityQuery extends React.Component<Props> {

@@ -1,6 +1,6 @@
 // @flow strict
 
-import Relay from 'react-relay'; // eslint-disable-line no-restricted-imports
+import Relay from '@kiwicom/relay';
 
 import { commitMutation } from '..';
 
@@ -8,7 +8,7 @@ import ConnectionManager from '../src/ConnectionManager';
 import PrivateEnvironment from '../src/PrivateEnvironment';
 import PublicEnvironment from '../src/PublicEnvironment';
 
-jest.mock('react-relay', () => ({
+jest.mock('@kiwicom/relay', () => ({
   commitMutation: jest.fn(),
 }));
 

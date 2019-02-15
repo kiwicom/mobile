@@ -1,13 +1,16 @@
 // @flow
 
 import * as React from 'react';
-import { PublicApiRenderer } from '@kiwicom/mobile-relay';
+import {
+  PublicApiRenderer,
+  type GraphQLTaggedNode,
+} from '@kiwicom/mobile-relay';
 import { OfflineScreen } from '@kiwicom/mobile-shared';
 import { StatusBar } from 'react-native';
 
 type Props = {|
   +render: (props: Object) => React.Node,
-  +query: string,
+  +query: GraphQLTaggedNode,
   +variables: Object,
 |};
 

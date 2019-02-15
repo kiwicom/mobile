@@ -7,7 +7,7 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type HotelSwipeList$ref = any;
 type MapView$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -21,7 +21,7 @@ export type MapScreen = $ReadOnlyArray<{|
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "MapScreen",
   "type": "AllHotelsInterface",

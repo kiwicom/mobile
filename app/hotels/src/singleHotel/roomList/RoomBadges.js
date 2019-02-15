@@ -8,18 +8,13 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomBadges_availableRoom as RoomBadgesTypes } from './__generated__/RoomBadges_availableRoom.graphql';
 
-type ContainerProps = {|
-  availableRoom: ?Object,
-|};
-
 type Props = {|
-  ...ContainerProps,
-  availableRoom: RoomBadgesTypes,
+  +availableRoom: ?RoomBadgesTypes,
 |};
 
 export const RoomBadges = (props: Props) => {
-  const isBreakfastIncluded = props.availableRoom.isBreakfastIncluded;
-  const isRefundable = props.availableRoom.isRefundable;
+  const isBreakfastIncluded = props.availableRoom?.isBreakfastIncluded;
+  const isRefundable = props.availableRoom?.isRefundable;
 
   return (
     <React.Fragment>
@@ -59,7 +54,7 @@ export const RoomBadges = (props: Props) => {
   );
 };
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   RoomBadges,
   graphql`
     fragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {
@@ -67,7 +62,7 @@ export default (createFragmentContainer(
       isRefundable
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   badgeContainer: {

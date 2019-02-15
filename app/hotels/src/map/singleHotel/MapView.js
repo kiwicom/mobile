@@ -7,13 +7,8 @@ import { DropMarkerImage, StyleSheet } from '@kiwicom/mobile-shared';
 
 import type { MapView_hotel as HotelType } from './__generated__/MapView_hotel.graphql';
 
-type ContainerProps = {|
-  hotel: any,
-|};
-
 type Props = {
-  ...ContainerProps,
-  hotel: ?HotelType,
+  +hotel: ?HotelType,
 };
 
 export class MapView extends React.Component<Props> {
@@ -41,7 +36,7 @@ export class MapView extends React.Component<Props> {
   }
 }
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   MapView,
   graphql`
     fragment MapView_hotel on HotelInterface {
@@ -51,4 +46,4 @@ export default (createFragmentContainer(
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);

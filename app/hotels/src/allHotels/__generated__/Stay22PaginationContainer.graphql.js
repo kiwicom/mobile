@@ -7,7 +7,7 @@
 'use strict';
 
 /*::
-import type { ConcreteFragment } from 'relay-runtime';
+import type { ReaderFragment } from 'relay-runtime';
 type RenderSearchResults$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Stay22PaginationContainer$ref: FragmentReference;
@@ -24,7 +24,7 @@ export type Stay22PaginationContainer = {|
 */
 
 
-const node/*: ConcreteFragment*/ = {
+const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "Stay22PaginationContainer",
   "type": "RootQuery",
