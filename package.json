@@ -33,7 +33,7 @@
     "chalk": "^2.4.2",
     "detox": "^10.0.2",
     "react": "16.6.3",
-    "react-native": "^0.58.3",
+    "react-native": "^0.58.5",
     "react-native-app-registry-components-to-constants": "0.0.1",
     "react-native-code-push": "^5.5.2"
   },
@@ -103,6 +103,6 @@
     "test-runner": "jest"
   },
   "rnkiwimobile": {
-    "code-push-target-binary-version": "8.0.0"
+    "code-push-target-binary-version": "9.0.0"
   }
 }

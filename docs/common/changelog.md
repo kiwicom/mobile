@@ -5,6 +5,13 @@ v22/v21 means v22 for android and v21 for ios
 
 this will be evened out from v24
 
+## Target version 9.0.0
+
+- Upgrade rnkiwimobile to version `0.0.43`
+
+### v27
+- Upgraded react-native to version `0.58.5`
+
 ## Target version 8.0.0
 
 - Upgrade rnkiwimobile to version `0.0.42`
