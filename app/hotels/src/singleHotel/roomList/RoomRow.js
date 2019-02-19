@@ -25,13 +25,8 @@ import {
   type HotelsContextState,
 } from '../../HotelsContext';
 
-type ContainerProps = {|
-  +availableRoom: ?Object,
-  +testID?: string,
-|};
-
 type Props = {|
-  ...ContainerProps,
+  +testID?: string,
   +availableRoom: ?RoomType,
   +navigation: NavigationType,
   +select: (availabilityId: string, maxPersons: number) => void,
@@ -160,7 +155,7 @@ const selectHotelsContext = ({ getGuestCount }: HotelsContextState) => ({
   getGuestCount,
 });
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   withNavigation(
     withHotelDetailScreenContext(select)(
       withHotelsContext(selectHotelsContext)(RoomRow),
@@ -194,7 +189,7 @@ export default (createFragmentContainer(
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   container: {

@@ -27,12 +27,7 @@ import {
   withHotelsContext,
 } from '../../../HotelsContext';
 
-type ContainerProps = {|
-  +hotel: any,
-|};
-
 type Props = {|
-  ...ContainerProps,
   +hotel: ?HotelType,
   +navigation: NavigationType,
   +currency: string,
@@ -110,7 +105,7 @@ const select = ({
   roomsConfiguration,
 });
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   withHotelsContext(select)(withNavigation(Location)),
   graphql`
     fragment Location_hotel on HotelInterface {
@@ -124,7 +119,7 @@ export default (createFragmentContainer(
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   background: {

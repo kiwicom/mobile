@@ -8,12 +8,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomRowTitle_room as RoomRowTitleType } from './__generated__/RoomRowTitle_room.graphql';
 
-type ContainerProps = {|
-  room: ?Object,
-|};
-
 type Props = {|
-  ...ContainerProps,
   room: ?RoomRowTitleType,
 |};
 
@@ -27,7 +22,7 @@ export function RoomRowTitle(props: Props) {
   );
 }
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   RoomRowTitle,
   graphql`
     fragment RoomRowTitle_room on HotelRoomInterface {
@@ -36,7 +31,7 @@ export default (createFragmentContainer(
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   title: {
