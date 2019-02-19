@@ -1,21 +1,21 @@
 // Global to all projects and subprojects
 ext {
     gradlePluginVersion = "3.2.1"
-    googleServicesPluginVersion = "4.1.0"
-    fabricPluginVersion = "1.25.4"
+    googleServicesPluginVersion = "4.2.0"
+    fabricPluginVersion = "1.26.1"
     androidMavenPublishVersion = "3.6.2"
 
     compileSdkVersion = 28
     buildToolsVersion = "28.0.3"
 
     minSdkVersion = 19
-    targetSdkVersion = 27
+    targetSdkVersion = 28
 
-    kotlinVersion = "1.2.71"
-    detoxKotlinVersion = "1.2.71"
+    kotlinVersion = "1.3.21"
+    detoxKotlinVersion = "1.3.21"
 
     multidexVersion = "1.0.3"
-    supportVersion = "27.0.2"
+    supportVersion = "28.0.0"
     gsonVersion = "2.8.5"
 
     playServicesBaseVersion = "15.0.1"
@@ -30,6 +30,6 @@ ext {
     testRunnerVersion = "1.0.2"
     espressoVersion = "3.0.2"
 
-    loggingVersion = "0.2.5"
+    loggingVersion = "0.2.10"
     trinerdisUtilsVersion = "0.2.15"
 }

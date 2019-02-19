@@ -1,15 +1,13 @@
 package com.reactnativeapp;
 
 import android.os.Bundle;
-
+import android.preference.*;
 import com.facebook.FacebookSdk;
 import com.facebook.react.ReactActivity;
-import com.trinerdis.skypicker.logging.configuration.DeviceInfo;
+import com.trinerdis.skypicker.logging.configuration.*;
 import com.trinerdis.skypicker.logging.sender.EventSender;
-import io.reactivex.subjects.BehaviorSubject;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class MainActivity extends ReactActivity {
 
@@ -32,22 +30,20 @@ public class MainActivity extends ReactActivity {
     private void setupEventSender() {
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        String visitorId = UUID.randomUUID().toString();
-        String affilsId = "react_native";
         DeviceInfo deviceInfo = new DeviceInfo();
+        UserInfo userInfo = new UserInfo();
 
         EventSender.defaultInitialize(
-                getApplication(),
-                deviceInfo,
-                BehaviorSubject.create(),
-                new String[]{},
-                visitorId,
-                affilsId,
-                "123456",
-                new ArrayList<>(),
-                BuildConfig.DEBUG,
-                BuildConfig.DEBUG,
-                null
+          getApplication(),
+          PreferenceManager.getDefaultSharedPreferences(this),
+          deviceInfo,
+          userInfo,
+          new String[]{},
+          "123456",
+          new ArrayList<>(),
+          BuildConfig.DEBUG,
+          BuildConfig.DEBUG,
+          null
         );
     }
 }
