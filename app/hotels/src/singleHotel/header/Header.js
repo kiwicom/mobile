@@ -21,12 +21,7 @@ import {
 import GalleryButton from '../galleryButton/GalleryButton';
 import type { Header_hotel as HotelType } from './__generated__/Header_hotel.graphql';
 
-type ContainerProps = {|
-  +hotel: any,
-|};
-
-export type Props = {
-  ...ContainerProps,
+type Props = {
   +hotel: ?HotelType,
   +navigation: NavigationType,
 };
@@ -92,7 +87,7 @@ export class Header extends React.Component<Props> {
   }
 }
 
-export default (createFragmentContainer(
+export default createFragmentContainer(
   withNavigation(Header),
   graphql`
     fragment Header_hotel on HotelInterface {
@@ -114,7 +109,7 @@ export default (createFragmentContainer(
       }
     }
   `,
-): React.ComponentType<ContainerProps>);
+);
 
 const styles = StyleSheet.create({
   nameAndRating: {
