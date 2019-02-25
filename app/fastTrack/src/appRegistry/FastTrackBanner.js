@@ -41,7 +41,7 @@ class FastTrackBanner extends React.Component<Props, State> {
     return (
       <SimpleCard style={{ height: this.props.height }}>
         <Text style={style.title}>
-          <Translation passThrough="Fast Track Banner test" />
+          <Translation passThrough="Testing new content" />
         </Text>
         <TextButton
           type="primary"
