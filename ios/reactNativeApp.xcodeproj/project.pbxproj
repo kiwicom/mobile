@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -44,6 +45,10 @@
 		68E80E25215E66CD00EB4717 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */; };
 		6AC23FDF8E5142199F66BC24 /* CircularPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71A4A2C5C6994635AF8475F2 /* CircularPro-Bold.otf */; };
 		898C440300784E69B91D0ED6 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D1E4633998A4228B3B7F222 /* Roboto-Medium.ttf */; };
+		9327670022253E5D00599402 /* AncillaryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 932766FE22253E5D00599402 /* AncillaryViewController.h */; };
+		9327670122253E5D00599402 /* AncillaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932766FF22253E5D00599402 /* AncillaryViewController.m */; };
+		93E4538322244B890082561A /* AncillarySharedBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 93E4538122244B890082561A /* AncillarySharedBridge.h */; };
+		93E4538422244B890082561A /* AncillarySharedBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 93E4538222244B890082561A /* AncillarySharedBridge.m */; };
 		AE942438053B4672A7E086F8 /* orbit-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */; };
 		DD9F4DDDD70840CBBECA0434 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */; };
 		F42D2DA1998548F1808065BE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */; };
@@ -141,6 +146,10 @@
 		71A4A2C5C6994635AF8475F2 /* CircularPro-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Bold.otf"; path = "../assets/fonts/ios/CircularPro-Bold.otf"; sourceTree = "<group>"; };
 		7362EE36714587FAF8D16632 /* Pods-RNKiwiMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNKiwiMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNKiwiMobile/Pods-RNKiwiMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		83DEB0A076A11B421C735EE9 /* Pods-RNPlayground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.debug.xcconfig"; sourceTree = "<group>"; };
+		932766FE22253E5D00599402 /* AncillaryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AncillaryViewController.h; sourceTree = "<group>"; };
+		932766FF22253E5D00599402 /* AncillaryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AncillaryViewController.m; sourceTree = "<group>"; };
+		93E4538122244B890082561A /* AncillarySharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AncillarySharedBridge.h; sourceTree = "<group>"; };
+		93E4538222244B890082561A /* AncillarySharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AncillarySharedBridge.m; sourceTree = "<group>"; };
 		A42E4EC96B6B81F2DFC8C869 /* libPods-RNPlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNPlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Book.otf"; path = "../assets/fonts/ios/CircularPro-Book.otf"; sourceTree = "<group>"; };
 		A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "orbit-icons.ttf"; path = "../assets/fonts/orbit-icons.ttf"; sourceTree = "<group>"; };
@@ -230,6 +239,10 @@
 				27E931C420AD9A480053AE19 /* RNKiwiCurrencyManager.h */,
 				27E931C620AD9A620053AE19 /* RNKiwiTranslationProvider.h */,
 				27E931B320AD96790053AE19 /* Info.plist */,
+				93E4538122244B890082561A /* AncillarySharedBridge.h */,
+				93E4538222244B890082561A /* AncillarySharedBridge.m */,
+				932766FE22253E5D00599402 /* AncillaryViewController.h */,
+				932766FF22253E5D00599402 /* AncillaryViewController.m */,
 			);
 			path = RNKiwiMobile;
 			sourceTree = "<group>";
@@ -326,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E931C020AD987C0053AE19 /* RNKiwiViewController.h in Headers */,
+				93E4538322244B890082561A /* AncillarySharedBridge.h in Headers */,
 				27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */,
 				2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */,
 				27E931C320AD9A2A0053AE19 /* RNKiwiViewControllerFlowDelegate.h in Headers */,
@@ -333,6 +347,7 @@
 				2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */,
 				686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */,
 				27E931B420AD96790053AE19 /* RNKiwiMobile.h in Headers */,
+				9327670022253E5D00599402 /* AncillaryViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -595,6 +610,8 @@
 				27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */,
 				2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */,
 				686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */,
+				93E4538422244B890082561A /* AncillarySharedBridge.m in Sources */,
+				9327670122253E5D00599402 /* AncillaryViewController.m in Sources */,
 				2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
