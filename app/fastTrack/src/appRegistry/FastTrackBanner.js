@@ -1,19 +1,16 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  SimpleCard,
-  Text,
-  TextButton,
-  StyleSheet,
-} from '@kiwicom/mobile-shared';
+import { View } from 'react-native';
+import { Text, TextButton, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FastTrackModal from '../components/FastTrackModal';
+import Services from '../components/Services';
 
 type Props = {|
-  +height: number,
+  +bookingId: number,
 |};
 
 type State = {|
@@ -39,21 +36,28 @@ class FastTrackBanner extends React.Component<Props, State> {
 
   render() {
     return (
-      <SimpleCard style={{ height: this.props.height }}>
-        <Text style={style.title}>
-          <Translation passThrough="Testing new content" />
+      <View style={style.container}>
+        <View style={style.header}>
+          <Icon name="deals" color={defaultTokens.colorIconSecondary} />
+          <Text style={style.title}>
+            <Translation passThrough="Milano Bergamo Stopover Bundle" />
+          </Text>
+        </View>
+        <Text style={style.description}>
+          <Translation passThrough="VIP treatment is waiting for you at Milan Bergamo Airport with Fast Track and baggage assistance." />
         </Text>
+        <Services />
         <TextButton
           type="primary"
           onPress={this.onOpenModal}
-          title={<Translation passThrough="Open Modal" />}
+          title={<Translation passThrough="Show QR Code" />}
         />
         <FastTrackModal
           isVisible={this.state.isModalVisible}
           onOpenModal={this.onOpenModal}
           onCloseModal={this.onCloseModal}
         />
-      </SimpleCard>
+      </View>
     );
   }
 }
@@ -61,10 +65,25 @@ class FastTrackBanner extends React.Component<Props, State> {
 export default FastTrackBanner;
 
 const style = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
   title: {
     marginBottom: 16,
+    marginStart: 8,
     textAlign: 'center',
+    fontSize: 16,
     fontWeight: 'bold',
-    color: defaultTokens.colorTextPrimary,
+    color: defaultTokens.paletteInkDark,
+  },
+  description: {
+    fontSize: 14,
+    lineHeight: 19,
+    color: defaultTokens.paletteInkNormal,
+    marginBottom: 24,
   },
 });
