@@ -6,7 +6,7 @@ import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
-import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
+import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
 
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
@@ -27,7 +27,7 @@ AppRegistry.registerComponent(
 );
 
 // Fast Track
-AppRegistry.registerComponent('FastTrackBanner', () => FastTrackBanner);
+AppRegistry.registerComponent('AncillaryFactory', () => AncillaryFactory);
 
 // This file is only used for native integration and we use CodePush there
 CodePush.sync({
