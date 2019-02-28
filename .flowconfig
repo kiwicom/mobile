@@ -69,6 +69,7 @@ module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|we
 
 ; app/relay/scripts/RelayCompiler.js:
 module.name_mapper='^relay-compiler/lib/GraphQLWatchmanClient$' -> 'emptyObject'
+module.name_mapper='^@kiwicom/universal-components$' -> '@kiwicom/universal-components/lib/native'
 
 module.file_ext=.js
 module.file_ext=.android.js
