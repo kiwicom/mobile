@@ -86,14 +86,17 @@ exports[`renders 1`] = `
         }
       }
     >
-      <CloseButton
-        onPress={[MockFunction]}
+      <View
         style={
           Object {
             "marginEnd": 8,
           }
         }
-      />
+      >
+        <CloseButton
+          onPress={[MockFunction]}
+        />
+      </View>
       <TextButton
         disabled={false}
         onPress={[MockFunction]}
