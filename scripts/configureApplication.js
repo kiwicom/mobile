@@ -159,6 +159,23 @@ fs.writeFileSync(
 );
 log('Done patching RCTUtils.m');
 
+log('Patching universal-components');
+const universalComponentsPath = path.join(
+  __dirname,
+  '..',
+  'node_modules',
+  '@kiwicom',
+  'universal-components',
+  'package.json',
+);
+// $FlowExpectedError: It is a string that is beeing passed to require
+const universalPackageJson = require(universalComponentsPath);
+universalPackageJson.main = universalPackageJson['react-native'];
+fs.writeFileSync(
+  universalComponentsPath,
+  JSON.stringify(universalPackageJson, null, 2),
+);
+
 log('Checking node version');
 const version = process.versions.node;
 

@@ -36,7 +36,9 @@ export default function OfflineScreen(props: Props) {
         </View>
         <View style={styles.buttonContainer}>
           {props.onClose != null && (
-            <CloseButton onPress={props.onClose} style={styles.closeButton} />
+            <View style={styles.closeButton}>
+              <CloseButton onPress={props.onClose} />
+            </View>
           )}
           <TextButton
             title={<Translation id="shared_offline_screen.try_again" />}
