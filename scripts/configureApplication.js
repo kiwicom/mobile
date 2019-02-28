@@ -157,4 +157,29 @@ fs.writeFileSync(
 );
 log('Done patching RCTUtils.m');
 
+log('Patching universal-components');
+const universalComponentsPath = path.join(
+  __dirname,
+  '..',
+  'node_modules',
+  '@kiwicom',
+  'universal-components',
+  'package.json',
+);
+// $FlowExpectedError: It is a string that is beeing passed to require
+const universalPackageJson = require(universalComponentsPath);
+universalPackageJson.main = universalPackageJson['react-native'];
+fs.writeFileSync(
+  universalComponentsPath,
+  JSON.stringify(universalPackageJson, null, 2),
+);
+
+log('Checking node version');
+const version = process.versions.node;
+
+if (parseInt(version.split('.')[0], 10) < 11) {
+  // TODO: Remove this and use engines in package.json when we have upgraded node version on mobile CI
+  error('Please use node version 11.0.0 or greater for this project');
+}
+
 log('Configuration complete!');

@@ -48,6 +48,7 @@ export default class MapHeaderButton extends React.Component<Props, State> {
   render() {
     return (
       <Tooltip
+        /* $FlowExpectedError: Flow type is to strict, no error with text component though */
         text={<Text style={styles.tooltipText}>{this.props.text}</Text>}
         isActive={this.state.isTooltipVisible}
       >

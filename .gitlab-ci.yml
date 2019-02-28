@@ -13,7 +13,7 @@ cache:
 test_ci:
   stage: test_ci
   script:
-    - yarn install
+    - yarn install --network-concurrency 1
     - yarn test-ci
 
 release:

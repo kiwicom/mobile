@@ -40,7 +40,13 @@ export default class Icon extends React.Component<Props> {
   render() {
     const { style, ...rest } = this.props;
     return (
-      <UniversalIcon {...rest} style={[style, this.getCustomFontSizeStyle()]} />
+      <>
+        {/* $FlowExpectedError: string is good enough for now */}
+        <UniversalIcon
+          {...rest}
+          style={[style, this.getCustomFontSizeStyle()]}
+        />
+      </>
     );
   }
 }
