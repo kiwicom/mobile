@@ -31,12 +31,7 @@ export const Description = (props: Props) => (
         <Translation passThrough={props.hotel?.summary} />
       </Text>
     </ReadMore>
-    <View style={styles.facilitiesContainer}>
-      <DescriptionTitle
-        title={<Translation id="single_hotel.description.equipment" />}
-      />
-      <Amenities data={props.hotel} />
-    </View>
+    <Amenities data={props.hotel} />
   </View>
 );
 
@@ -52,9 +47,6 @@ const styles = StyleSheet.create({
     ios: {
       lineHeight: 19,
     },
-  },
-  facilitiesContainer: {
-    paddingTop: 30,
   },
 });
 

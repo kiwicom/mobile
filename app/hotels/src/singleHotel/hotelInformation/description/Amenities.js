@@ -13,6 +13,7 @@ import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Amenities as AmenitiesType } from './__generated__/Amenities.graphql';
+import DescriptionTitle from './DescriptionTitle';
 
 type Props = {|
   +data: ?AmenitiesType,
@@ -40,36 +41,42 @@ export class Amenities extends React.Component<Props, State> {
     const shortlist = fullList.slice(0, 9);
     const listToRender = collapsed ? shortlist : fullList;
 
+    if (fullList.length === 0) {
+      return null;
+    }
     return (
-      <View style={styles.facilities}>
-        {listToRender.map(facility => {
-          return (
-            facility && (
+      <View style={styles.amenitiesContainer}>
+        <DescriptionTitle
+          title={<Translation id="single_hotel.description.equipment" />}
+        />
+        <View style={styles.amenities}>
+          {listToRender.map(amenity => {
+            return (
               <AdaptableBadge
-                key={facility.id}
-                translation={<Translation passThrough={facility.name} />}
+                key={amenity?.id}
+                translation={<Translation passThrough={amenity?.name} />}
                 style={styles.adaptableBadge}
                 textStyle={styles.adaptableBadgeText}
               />
-            )
-          );
-        })}
-        {fullList.length > shortlist.length && (
-          <Touchable onPress={this.toggle} noRipple={true}>
-            <Text style={styles.lessMoreButton}>
-              {collapsed ? (
-                <TranslationFragment>
-                  <Translation
-                    passThrough={`+${fullList.length - shortlist.length} `}
-                  />
-                  <Translation id="single_hotel.description.facilities.show_more" />
-                </TranslationFragment>
-              ) : (
-                <Translation id="single_hotel.description.facilities.show_less" />
-              )}
-            </Text>
-          </Touchable>
-        )}
+            );
+          })}
+          {fullList.length > shortlist.length && (
+            <Touchable onPress={this.toggle} noRipple={true}>
+              <Text style={styles.lessMoreButton}>
+                {collapsed ? (
+                  <TranslationFragment>
+                    <Translation
+                      passThrough={`+${fullList.length - shortlist.length} `}
+                    />
+                    <Translation id="single_hotel.description.facilities.show_more" />
+                  </TranslationFragment>
+                ) : (
+                  <Translation id="single_hotel.description.facilities.show_less" />
+                )}
+              </Text>
+            </Touchable>
+          )}
+        </View>
       </View>
     );
   }
@@ -88,7 +95,10 @@ export default createFragmentContainer(
 );
 
 const styles = StyleSheet.create({
-  facilities: {
+  amenitiesContainer: {
+    paddingTop: 30,
+  },
+  amenities: {
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     flexDirection: 'row',
