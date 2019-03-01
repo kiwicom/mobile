@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d44be94863417ad9f772d3862c869b7e
+ * @relayHash 21f0af9e5e7d704bb442862ee82fc8ca
  */
 
 /* eslint-disable */
@@ -9,7 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type SingleMap$ref = any;
+type SingleMap_hotel$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
 export type Stay22SingleHotelMapScreenQueryVariables = {|
   id: string,
@@ -20,7 +20,7 @@ export type Stay22SingleHotelMapScreenQueryVariables = {|
 |};
 export type Stay22SingleHotelMapScreenQueryResponse = {|
   +stay22HotelDetail: ?{|
-    +$fragmentRefs: SingleMap$ref
+    +$fragmentRefs: SingleMap_hotel$ref
   |}
 |};
 export type Stay22SingleHotelMapScreenQuery = {|
@@ -39,18 +39,18 @@ query Stay22SingleHotelMapScreenQuery(
   $checkout: Date!
 ) {
   stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {
-    ...SingleMap
+    ...SingleMap_hotel
     id
   }
 }
 
-fragment SingleMap on HotelAvailabilityInterface {
+fragment SingleMap_hotel on HotelAvailabilityInterface {
   hotel {
     __typename
     ...MapView_hotel
     id
   }
-  ...AdditionalInfo
+  ...AdditionalInfo_data
 }
 
 fragment MapView_hotel on HotelInterface {
@@ -60,7 +60,7 @@ fragment MapView_hotel on HotelInterface {
   }
 }
 
-fragment AdditionalInfo on HotelAvailabilityInterface {
+fragment AdditionalInfo_data on HotelAvailabilityInterface {
   price {
     amount
     currency
@@ -184,7 +184,7 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "SingleMap",
+            "name": "SingleMap_hotel",
             "args": null
           }
         ]
@@ -377,11 +377,11 @@ return {
     "operationKind": "query",
     "name": "Stay22SingleHotelMapScreenQuery",
     "id": null,
-    "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap\n    id\n  }\n}\n\nfragment SingleMap on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+    "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'e4a0010566422a86f8163845af1815cc';
+(node/*: any*/).hash = 'f05556c3d6eb1ec25b81878f9cfd9be7';
 module.exports = node;

@@ -8,81 +8,81 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type HotelTitle$ref = any;
+type HotelDistance_hotel$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type AllHotelsSearchRow$ref: FragmentReference;
-export type AllHotelsSearchRow = {|
-  +hotelId: ?string,
-  +mainPhoto: ?{|
-    +highResUrl: ?string,
-    +lowResUrl: ?string,
+declare export opaque type HotelTitle_data$ref: FragmentReference;
+export type HotelTitle_data = {|
+  +price: ?{|
+    +amount: ?number,
+    +currency: ?string,
   |},
-  +review: ?{|
-    +score: ?number
+  +name: ?string,
+  +rating: ?{|
+    +stars: ?number
   |},
-  +$fragmentRefs: HotelTitle$ref,
-  +$refType: AllHotelsSearchRow$ref,
+  +$fragmentRefs: HotelDistance_hotel$ref,
+  +$refType: HotelTitle_data$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "AllHotelsSearchRow",
+  "name": "HotelTitle_data",
   "type": "AllHotelsInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "FragmentSpread",
-      "name": "HotelTitle",
-      "args": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "hotelId",
-      "args": null,
-      "storageKey": null
-    },
-    {
       "kind": "LinkedField",
       "alias": null,
-      "name": "mainPhoto",
+      "name": "price",
       "storageKey": null,
       "args": null,
-      "concreteType": "HotelPhoto",
+      "concreteType": "Price",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "highResUrl",
+          "name": "amount",
           "args": null,
           "storageKey": null
         },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "lowResUrl",
+          "name": "currency",
           "args": null,
           "storageKey": null
         }
       ]
     },
     {
+      "kind": "FragmentSpread",
+      "name": "HotelDistance_hotel",
+      "args": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "name",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
-      "name": "review",
+      "name": "rating",
       "storageKey": null,
       "args": null,
-      "concreteType": "HotelReview",
+      "concreteType": "HotelRating",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "score",
+          "name": "stars",
           "args": null,
           "storageKey": null
         }
@@ -91,5 +91,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '84a03fb2055259870208e994bf73af60';
+(node/*: any*/).hash = 'd40f231d8da5898af8a9b388b951cd14';
 module.exports = node;

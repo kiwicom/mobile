@@ -19,7 +19,7 @@ import {
   withHotelsContext,
 } from '../../HotelsContext';
 import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
-import type { HotelSwipeItem as HotelSwipeItemData } from './__generated__/HotelSwipeItem.graphql';
+import type { HotelSwipeItem_data as HotelSwipeItemData } from './__generated__/HotelSwipeItem_data.graphql';
 
 type PropsWithContext = {|
   ...Props,
@@ -131,23 +131,25 @@ const select = ({
 
 export default createFragmentContainer(
   withHotelsContext(select)(withNavigation(HotelSwipeItem)),
-  graphql`
-    fragment HotelSwipeItem on AllHotelsInterface {
-      hotelId
-      name
-      price {
-        currency
-        amount
+  {
+    data: graphql`
+      fragment HotelSwipeItem_data on AllHotelsInterface {
+        hotelId
+        name
+        price {
+          currency
+          amount
+        }
+        mainPhoto {
+          thumbnailUrl
+        }
+        rating {
+          stars
+        }
+        review {
+          score
+        }
       }
-      mainPhoto {
-        thumbnailUrl
-      }
-      rating {
-        stars
-      }
-      review {
-        score
-      }
-    }
-  `,
+    `,
+  },
 );

@@ -10,18 +10,18 @@
 import type { ReaderFragment } from 'relay-runtime';
 type RoomRow_availableRoom$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type RoomList$ref: FragmentReference;
-export type RoomList = $ReadOnlyArray<{|
+declare export opaque type RoomList_data$ref: FragmentReference;
+export type RoomList_data = $ReadOnlyArray<{|
   +id: string,
   +$fragmentRefs: RoomRow_availableRoom$ref,
-  +$refType: RoomList$ref,
+  +$refType: RoomList_data$ref,
 |}>;
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "RoomList",
+  "name": "RoomList_data",
   "type": "HotelRoomAvailabilityInterface",
   "metadata": {
     "plural": true
@@ -43,5 +43,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4345156d4d91f74aa72076a9623f9f7d';
+(node/*: any*/).hash = '16d35faa290c6d3a179c5ffe126447dd';
 module.exports = node;

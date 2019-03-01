@@ -38,8 +38,8 @@ export default new class CacheManager {
 
   // Note this function needs to be async for readFromAsyncStore function in environment to work
   // If this call is done sync, app will crash when we call observer.error on retry
-  get = async (queryId: string, variables: Object) =>
-    this.cache.get(queryId, variables);
+  get = (queryId: string, variables: Object) =>
+    Promise.resolve(this.cache.get(queryId, variables));
 
   set = (queryId: string, variables: Object, payload: any) => {
     this.cache.set(queryId, variables, payload);
@@ -47,12 +47,12 @@ export default new class CacheManager {
   };
 
   // Do this async so we don't block the UI
-  persistCache = async () => {
+  persistCache = () => {
     const keyValuePairs = [];
     this.cache._responses.forEach((value, key) => {
       keyValuePairs.push([`${CACHE_KEY}${key}`, JSON.stringify(value)]);
     });
-    AsyncStorage.multiSet(keyValuePairs);
+    return AsyncStorage.multiSet(keyValuePairs);
   };
 
   restoreCache = async () => {

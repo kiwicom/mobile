@@ -8,24 +8,24 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type HotelCityItem$ref = any;
+type HotelCityItem_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type HotelCityList$ref: FragmentReference;
-export type HotelCityList = {|
+declare export opaque type HotelCityList_data$ref: FragmentReference;
+export type HotelCityList_data = {|
   +edges: ?$ReadOnlyArray<?{|
     +node: ?{|
       +id: string,
-      +$fragmentRefs: HotelCityItem$ref,
+      +$fragmentRefs: HotelCityItem_data$ref,
     |}
   |}>,
-  +$refType: HotelCityList$ref,
+  +$refType: HotelCityList_data$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "HotelCityList",
+  "name": "HotelCityList_data",
   "type": "HotelCityConnection",
   "metadata": null,
   "argumentDefinitions": [],
@@ -57,7 +57,7 @@ const node/*: ReaderFragment*/ = {
             },
             {
               "kind": "FragmentSpread",
-              "name": "HotelCityItem",
+              "name": "HotelCityItem_data",
               "args": null
             }
           ]
@@ -67,5 +67,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'fe3ab7b4dee2ecbcde18565a85d1ce92';
+(node/*: any*/).hash = '706aa63e4215c06387f1ed7388a7075b';
 module.exports = node;

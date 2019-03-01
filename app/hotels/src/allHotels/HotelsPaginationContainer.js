@@ -10,7 +10,7 @@ import {
 import { Logger, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { HotelsPaginationContainer as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer.graphql';
+import type { HotelsPaginationContainer_data as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer_data.graphql';
 import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
@@ -18,6 +18,7 @@ import FilterStripe from '../filter/FilterStripe';
 
 type PropsWithContext = {|
   ...Props,
+  +data: ?HotelsPaginationContainerType,
   +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
 |};
 
@@ -43,9 +44,9 @@ export class HotelsPaginationContainer extends React.Component<
       Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
     );
 
-    const priceMax = this.props.data.allAvailableBookingComHotels?.stats
+    const priceMax = this.props.data?.allAvailableBookingComHotels?.stats
       ?.maxPrice;
-    const priceMin = this.props.data.allAvailableBookingComHotels?.stats
+    const priceMin = this.props.data?.allAvailableBookingComHotels?.stats
       ?.minPrice;
 
     if (priceMax != null && priceMin != null) {
@@ -67,7 +68,7 @@ export class HotelsPaginationContainer extends React.Component<
   };
 
   render() {
-    const edges = this.props.data.allAvailableBookingComHotels?.edges ?? [];
+    const edges = this.props.data?.allAvailableBookingComHotels?.edges ?? [];
     const data = edges.map(hotel => hotel?.node);
 
     return (
@@ -88,7 +89,7 @@ export class HotelsPaginationContainer extends React.Component<
 }
 
 type Props = {|
-  +data: HotelsPaginationContainerType,
+  +data: ?HotelsPaginationContainerType,
   +relay: RelayPaginationProp,
 |};
 
@@ -104,32 +105,34 @@ const styles = StyleSheet.create({
 
 export default createPaginationContainer(
   withHotelsContext(select)(HotelsPaginationContainer),
-  graphql`
-    fragment HotelsPaginationContainer on RootQuery {
-      allAvailableBookingComHotels(
-        search: $search
-        filter: $filter
-        options: $options
-        first: $first
-        after: $after
-      )
-        @connection(
-          key: "HotelsPaginationContainer_allAvailableBookingComHotels"
-        ) {
-        stats {
-          maxPrice
-          minPrice
-        }
-        edges {
-          node {
-            ... on AllHotelAvailabilityHotel {
-              ...RenderSearchResults
+  {
+    data: graphql`
+      fragment HotelsPaginationContainer_data on RootQuery {
+        allAvailableBookingComHotels(
+          search: $search
+          filter: $filter
+          options: $options
+          first: $first
+          after: $after
+        )
+          @connection(
+            key: "HotelsPaginationContainer_allAvailableBookingComHotels"
+          ) {
+          stats {
+            maxPrice
+            minPrice
+          }
+          edges {
+            node {
+              ... on AllHotelAvailabilityHotel {
+                ...RenderSearchResults_data
+              }
             }
           }
         }
       }
-    }
-  `,
+    `,
+  },
   {
     getVariables(props, { count, cursor }, fragmentVariables) {
       const { search, filter, options } = fragmentVariables;
@@ -149,7 +152,7 @@ export default createPaginationContainer(
         $after: String
         $first: Int
       ) {
-        ...HotelsPaginationContainer
+        ...HotelsPaginationContainer_data
       }
     `,
   },

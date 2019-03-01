@@ -8,74 +8,42 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type HotelTitle_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type HotelSwipeItem$ref: FragmentReference;
-export type HotelSwipeItem = {|
+declare export opaque type AllHotelsSearchRow_data$ref: FragmentReference;
+export type AllHotelsSearchRow_data = {|
   +hotelId: ?string,
-  +name: ?string,
-  +price: ?{|
-    +currency: ?string,
-    +amount: ?number,
-  |},
   +mainPhoto: ?{|
-    +thumbnailUrl: ?string
-  |},
-  +rating: ?{|
-    +stars: ?number
+    +highResUrl: ?string,
+    +lowResUrl: ?string,
   |},
   +review: ?{|
     +score: ?number
   |},
-  +$refType: HotelSwipeItem$ref,
+  +$fragmentRefs: HotelTitle_data$ref,
+  +$refType: AllHotelsSearchRow_data$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "HotelSwipeItem",
+  "name": "AllHotelsSearchRow_data",
   "type": "AllHotelsInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "FragmentSpread",
+      "name": "HotelTitle_data",
+      "args": null
+    },
     {
       "kind": "ScalarField",
       "alias": null,
       "name": "hotelId",
       "args": null,
       "storageKey": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "name",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "price",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Price",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "currency",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "amount",
-          "args": null,
-          "storageKey": null
-        }
-      ]
     },
     {
       "kind": "LinkedField",
@@ -89,25 +57,14 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "thumbnailUrl",
+          "name": "highResUrl",
           "args": null,
           "storageKey": null
-        }
-      ]
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "rating",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "HotelRating",
-      "plural": false,
-      "selections": [
+        },
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "stars",
+          "name": "lowResUrl",
           "args": null,
           "storageKey": null
         }
@@ -134,5 +91,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c697e54860c5118acd91d54aa6ce84e1';
+(node/*: any*/).hash = '68131eab1938ecfec1a0a121b85585c4';
 module.exports = node;

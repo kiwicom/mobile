@@ -40,7 +40,7 @@ const query = graphql`
     $first: Int
     $after: String
   ) {
-    ...HotelsPaginationContainer
+    ...HotelsPaginationContainer_data
   }
 `;
 

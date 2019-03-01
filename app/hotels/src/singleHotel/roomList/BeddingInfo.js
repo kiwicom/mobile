@@ -72,9 +72,8 @@ export class BeddingInfo extends React.Component<Props> {
   }
 }
 
-export default createFragmentContainer(
-  BeddingInfo,
-  graphql`
+export default createFragmentContainer(BeddingInfo, {
+  room: graphql`
     fragment BeddingInfo_room on HotelRoomInterface {
       maxPersons
       bedding {
@@ -83,7 +82,7 @@ export default createFragmentContainer(
       }
     }
   `,
-);
+});
 
 const styles = StyleSheet.create({
   row: {

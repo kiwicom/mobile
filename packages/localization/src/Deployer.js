@@ -83,12 +83,12 @@ const _getScreenshotPath = (keyName: string) => {
 };
 
 // fetching existing keys from phrase app
-const findKeys = async page => {
+const findKeys = page => {
   _log(`Fetching keys on page ${page}`);
   return _fetch(`/keys?page=${page}&per_page=100`, null, HttpMethod.GET);
 };
 
-const findKeyIdByName = (keyName: string) => async page => {
+const findKeyIdByName = (keyName: string) => page => {
   _log(`Fetching the id of key ${keyName} on page ${page}`);
   return _fetch(
     `/keys?page=${page}&per_page=100&q=name:${_addPrefix(keyName)}`,
@@ -140,7 +140,7 @@ const updateTranslation = async (keyId: string, unPrefixedKey: string) => {
   return null;
 };
 
-const createKey = async keyName => {
+const createKey = keyName => {
   _log(`Creating key ${keyName}`);
   const formData = new FormData();
   const screenshotPath = _getScreenshotPath(keyName);
@@ -153,7 +153,7 @@ const createKey = async keyName => {
   return _fetch('/keys', formData, HttpMethod.POST);
 };
 
-const createTranslation = async (keyId, translationString) => {
+const createTranslation = (keyId, translationString) => {
   _log(`Creating translation for key ${keyId} = ${translationString}`);
   const formData = new FormData();
   formData.append('locale_id', 'en-GB'); // en-GB is the main language maintained automatically
@@ -162,12 +162,12 @@ const createTranslation = async (keyId, translationString) => {
   return _fetch('/translations', formData, HttpMethod.POST);
 };
 
-const deleteKey = async (keyId, keyName) => {
+const deleteKey = (keyId, keyName) => {
   if (keyId != null && keyId !== '') {
     _log(`Deleting key ${keyName} with id ${keyId}`);
     return _fetch(`/keys/${keyId}`, null, HttpMethod.DELETE);
   }
-  return null;
+  return Promise.resolve(null);
 };
 
 const findNumberOfOccurrences = (translationKey: string) =>

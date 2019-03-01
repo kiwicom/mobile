@@ -14,7 +14,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';
-import type { HotelSwipeList as HotelSwipeListData } from './__generated__/HotelSwipeList.graphql';
+import type { HotelSwipeList_data as HotelSwipeListData } from './__generated__/HotelSwipeList_data.graphql';
 import { openHeight, closedHeight } from '../bottomSheetDimensions';
 import BottomSheetHandle from '../BottomSheetHandle';
 import { HotelPreviewProvider } from '../hotelDetailPreview/HotelDetailPreviewContext';
@@ -130,14 +130,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createFragmentContainer(
-  HotelSwipeList,
-  graphql`
-    fragment HotelSwipeList on AllHotelsInterface @relay(plural: true) {
-      ...HotelSwipeItem
+export default createFragmentContainer(HotelSwipeList, {
+  data: graphql`
+    fragment HotelSwipeList_data on AllHotelsInterface @relay(plural: true) {
+      ...HotelSwipeItem_data
       address {
         ...Address_address
       }
     }
   `,
-);
+});

@@ -28,7 +28,7 @@ export default class HotelCityQuery extends React.Component<Props> {
         query={graphql`
           query HotelCityQuery($query: String!) {
             hotelCities(prefix: $query) {
-              ...HotelCityList
+              ...HotelCityList_data
             }
           }
         `}

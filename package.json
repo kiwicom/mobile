@@ -48,7 +48,7 @@
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/runtime": "^7.3.1",
     "@kiwicom/babel-preset-kiwicom": "^2.2.0",
-    "@kiwicom/eslint-config": "^2.11.0",
+    "@kiwicom/eslint-config": "^3.1.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",

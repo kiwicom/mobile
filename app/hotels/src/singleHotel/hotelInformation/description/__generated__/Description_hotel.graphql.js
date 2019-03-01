@@ -8,12 +8,12 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type Amenities$ref = any;
+type Amenities_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Description_hotel$ref: FragmentReference;
 export type Description_hotel = {|
   +summary: ?string,
-  +$fragmentRefs: Amenities$ref,
+  +$fragmentRefs: Amenities_data$ref,
   +$refType: Description_hotel$ref,
 |};
 */
@@ -35,11 +35,11 @@ const node/*: ReaderFragment*/ = {
     },
     {
       "kind": "FragmentSpread",
-      "name": "Amenities",
+      "name": "Amenities_data",
       "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a4a2a7f7fb192b8fbaa51890d01db222';
+(node/*: any*/).hash = '4763051216be9c6d70e158bf7572ce14';
 module.exports = node;

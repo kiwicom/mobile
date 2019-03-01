@@ -22,16 +22,15 @@ export function RoomRowTitle(props: Props) {
   );
 }
 
-export default createFragmentContainer(
-  RoomRowTitle,
-  graphql`
+export default createFragmentContainer(RoomRowTitle, {
+  room: graphql`
     fragment RoomRowTitle_room on HotelRoomInterface {
       description {
         title
       }
     }
   `,
-);
+});
 
 const styles = StyleSheet.create({
   title: {

@@ -8,7 +8,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Distance from './HotelDistance';
-import type { HotelTitle as HotelTitleType } from './__generated__/HotelTitle.graphql';
+import type { HotelTitle_data as HotelTitleType } from './__generated__/HotelTitle_data.graphql';
 
 type Props = {|
   +data: HotelTitleType,
@@ -39,10 +39,9 @@ function HotelTitle({ data }: Props) {
   );
 }
 
-export default createFragmentContainer(
-  HotelTitle,
-  graphql`
-    fragment HotelTitle on AllHotelsInterface {
+export default createFragmentContainer(HotelTitle, {
+  data: graphql`
+    fragment HotelTitle_data on AllHotelsInterface {
       price {
         amount
         currency
@@ -54,7 +53,7 @@ export default createFragmentContainer(
       }
     }
   `,
-);
+});
 
 const style = StyleSheet.create({
   title: {

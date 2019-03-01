@@ -8,7 +8,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelReviewScore from '../../components/HotelReviewScore';
-import type { HotelReview as HotelReviewType } from './__generated__/HotelReview.graphql';
+import type { HotelReview_data as HotelReviewType } from './__generated__/HotelReview_data.graphql';
 
 type Props = {|
   +data: ?HotelReviewType,
@@ -81,14 +81,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createFragmentContainer(
-  HotelReview,
-  graphql`
-    fragment HotelReview on HotelInterface {
+export default createFragmentContainer(HotelReview, {
+  data: graphql`
+    fragment HotelReview_data on HotelInterface {
       review {
         score
         count
       }
     }
   `,
-);
+});

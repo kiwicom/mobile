@@ -87,9 +87,8 @@ export class Header extends React.Component<Props> {
   }
 }
 
-export default createFragmentContainer(
-  withNavigation(Header),
-  graphql`
+export default createFragmentContainer(withNavigation(Header), {
+  hotel: graphql`
     fragment Header_hotel on HotelInterface {
       name
       mainPhoto {
@@ -109,7 +108,7 @@ export default createFragmentContainer(
       }
     }
   `,
-);
+});
 
 const styles = StyleSheet.create({
   nameAndRating: {

@@ -54,15 +54,14 @@ export const RoomBadges = (props: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  RoomBadges,
-  graphql`
+export default createFragmentContainer(RoomBadges, {
+  availableRoom: graphql`
     fragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {
       isBreakfastIncluded
       isRefundable
     }
   `,
-);
+});
 
 const styles = StyleSheet.create({
   badgeContainer: {

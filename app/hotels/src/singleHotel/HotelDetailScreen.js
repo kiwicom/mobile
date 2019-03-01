@@ -243,22 +243,24 @@ export default createFragmentContainer(
       HotelDetailScreenWithContext,
     ),
   ),
-  graphql`
-    fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
-      hotel {
-        ...Header_hotel
-        ...HotelInformation_hotel
-      }
-      availableRooms {
-        ...RoomList
-        id
-        incrementalPrice {
-          amount
-          currency
+  {
+    availableHotel: graphql`
+      fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
+        hotel {
+          ...Header_hotel
+          ...HotelInformation_hotel
+        }
+        availableRooms {
+          ...RoomList_data
+          id
+          incrementalPrice {
+            amount
+            currency
+          }
         }
       }
-    }
-  `,
+    `,
+  },
 );
 
 const paddingBottom = 64;

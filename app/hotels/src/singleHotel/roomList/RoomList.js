@@ -10,7 +10,7 @@ import isEqual from 'react-fast-compare';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 
 import RoomRow from './RoomRow';
-import type { RoomList as RoomListType } from './__generated__/RoomList.graphql';
+import type { RoomList_data as RoomListType } from './__generated__/RoomList_data.graphql';
 
 type Props = {|
   +data: ?RoomListType,
@@ -62,12 +62,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createFragmentContainer(
-  RoomList,
-  graphql`
-    fragment RoomList on HotelRoomAvailabilityInterface @relay(plural: true) {
+export default createFragmentContainer(RoomList, {
+  data: graphql`
+    fragment RoomList_data on HotelRoomAvailabilityInterface
+      @relay(plural: true) {
       id
       ...RoomRow_availableRoom
     }
   `,
-);
+});

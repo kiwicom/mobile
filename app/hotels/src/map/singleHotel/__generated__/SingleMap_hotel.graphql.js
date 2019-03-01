@@ -8,23 +8,23 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type AdditionalInfo$ref = any;
+type AdditionalInfo_data$ref = any;
 type MapView_hotel$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type SingleMap$ref: FragmentReference;
-export type SingleMap = {|
+declare export opaque type SingleMap_hotel$ref: FragmentReference;
+export type SingleMap_hotel = {|
   +hotel: ?{|
     +$fragmentRefs: MapView_hotel$ref
   |},
-  +$fragmentRefs: AdditionalInfo$ref,
-  +$refType: SingleMap$ref,
+  +$fragmentRefs: AdditionalInfo_data$ref,
+  +$refType: SingleMap_hotel$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "SingleMap",
+  "name": "SingleMap_hotel",
   "type": "HotelAvailabilityInterface",
   "metadata": null,
   "argumentDefinitions": [],
@@ -47,11 +47,11 @@ const node/*: ReaderFragment*/ = {
     },
     {
       "kind": "FragmentSpread",
-      "name": "AdditionalInfo",
+      "name": "AdditionalInfo_data",
       "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ef00405f0bd4f6acb78f36eaa583ea9b';
+(node/*: any*/).hash = 'edd4d5d42b70359a56be5dfe4e347adf';
 module.exports = node;

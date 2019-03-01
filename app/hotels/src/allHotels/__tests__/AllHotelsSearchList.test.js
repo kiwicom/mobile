@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import type { AllHotelsSearchList as AllHotelsSearchListType } from '../__generated__/AllHotelsSearchList.graphql';
+import type { AllHotelsSearchList_data as AllHotelsSearchListType } from '../__generated__/AllHotelsSearchList_data.graphql';
 import { AllHotelsSearchList } from '../AllHotelsSearchList';
 
 const renderer = new ShallowRenderer();

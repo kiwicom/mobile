@@ -25,7 +25,7 @@ const query = graphql`
     $first: Int
     $after: String
   ) {
-    ...Stay22PaginationContainer
+    ...Stay22PaginationContainer_data
   }
 `;
 

@@ -23,7 +23,7 @@ import {
 } from '../HotelsContext';
 import HotelTitle from './HotelTitle';
 import HotelReviewScore from '../components/HotelReviewScore';
-import type { AllHotelsSearchRow as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow.graphql';
+import type { AllHotelsSearchRow_data as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow_data.graphql';
 
 type Props = {|
   +navigation: NavigationType,
@@ -125,19 +125,21 @@ const select = ({
 
 export default createFragmentContainer(
   withHotelsContext(select)(withNavigation(AllHotelsSearchRow)),
-  graphql`
-    fragment AllHotelsSearchRow on AllHotelsInterface {
-      ...HotelTitle
-      hotelId
-      mainPhoto {
-        highResUrl
-        lowResUrl
+  {
+    data: graphql`
+      fragment AllHotelsSearchRow_data on AllHotelsInterface {
+        ...HotelTitle_data
+        hotelId
+        mainPhoto {
+          highResUrl
+          lowResUrl
+        }
+        review {
+          score
+        }
       }
-      review {
-        score
-      }
-    }
-  `,
+    `,
+  },
 );
 
 const style = StyleSheet.create({

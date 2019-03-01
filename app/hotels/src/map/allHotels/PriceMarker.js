@@ -6,7 +6,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Price, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { PriceMarker as PriceMarkerData } from './__generated__/PriceMarker.graphql';
+import type { PriceMarker_data as PriceMarkerData } from './__generated__/PriceMarker_data.graphql';
 
 type Props = {|
   +isSelected?: boolean,
@@ -40,15 +40,14 @@ const PriceMarker = (props: Props) => {
   );
 };
 
-export default createFragmentContainer(
-  PriceMarker,
-  graphql`
-    fragment PriceMarker on Price {
+export default createFragmentContainer(PriceMarker, {
+  data: graphql`
+    fragment PriceMarker_data on Price {
       amount
       currency
     }
   `,
-);
+});
 
 const styles = StyleSheet.create({
   bubble: {

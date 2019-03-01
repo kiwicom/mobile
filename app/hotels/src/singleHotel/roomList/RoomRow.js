@@ -161,34 +161,36 @@ export default createFragmentContainer(
       withHotelsContext(selectHotelsContext)(RoomRow),
     ),
   ),
-  graphql`
-    fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
-      id
-      ...RoomBadges_availableRoom
-      minimalPrice {
-        amount
-        currency
-      }
-      incrementalPrice {
-        amount
-        currency
-      }
-      room {
+  {
+    availableRoom: graphql`
+      fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
         id
-        description {
-          title
+        ...RoomBadges_availableRoom
+        minimalPrice {
+          amount
+          currency
         }
-        ...RoomRowTitle_room
-        roomPhotos {
-          highResUrl
-          lowResUrl
+        incrementalPrice {
+          amount
+          currency
+        }
+        room {
           id
+          description {
+            title
+          }
+          ...RoomRowTitle_room
+          roomPhotos {
+            highResUrl
+            lowResUrl
+            id
+          }
+          maxPersons
+          ...BeddingInfo_room
         }
-        maxPersons
-        ...BeddingInfo_room
       }
-    }
-  `,
+    `,
+  },
 );
 
 const styles = StyleSheet.create({

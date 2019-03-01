@@ -107,18 +107,20 @@ const select = ({
 
 export default createFragmentContainer(
   withHotelsContext(select)(withNavigation(Location)),
-  graphql`
-    fragment Location_hotel on HotelInterface {
-      address {
-        street
-        city
+  {
+    hotel: graphql`
+      fragment Location_hotel on HotelInterface {
+        address {
+          street
+          city
+        }
+        coordinates {
+          lat
+          lng
+        }
       }
-      coordinates {
-        lat
-        lng
-      }
-    }
-  `,
+    `,
+  },
 );
 
 const styles = StyleSheet.create({
