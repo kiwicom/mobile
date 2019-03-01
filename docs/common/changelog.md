@@ -9,6 +9,11 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.43`
 
+### v28
+
+- Get rid of Equipment part in detail(stay 22), MOBILE-2963
+- Enable date change in the header, MOBILE-2972
+
 ### v27
 - Upgraded react-native to version `0.58.5`
 
