@@ -7,7 +7,13 @@ import {
   DateFormatter,
   type TranslationType,
 } from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, AdaptableBadge, Icon } from '@kiwicom/mobile-shared';
+import {
+  Text,
+  StyleSheet,
+  AdaptableBadge,
+  Icon,
+  Touchable,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MapHeaderButton from './allHotels/MapHeaderButton';
@@ -19,11 +25,13 @@ const dateFormat = {
 
 type Props = {|
   +cityName?: string,
-  +checkin?: string,
-  +checkout?: string,
+  +checkin: ?Date,
+  +checkout: ?Date,
   +icon: React.Element<typeof Icon>,
   +text: TranslationType,
   +goToAllHotelsMap: () => void,
+  +onCheckoutDateClicked: () => void,
+  +onCheckinDateClicked: () => void,
 |};
 
 const hotelsNavigationOptions = ({
@@ -33,6 +41,8 @@ const hotelsNavigationOptions = ({
   text,
   goToAllHotelsMap,
   icon,
+  onCheckinDateClicked,
+  onCheckoutDateClicked,
 }: Props) => ({
   headerStyle: {
     height: 64,
@@ -49,31 +59,31 @@ const hotelsNavigationOptions = ({
       </Text>
       {checkin != null && checkout != null && (
         <View style={styles.row}>
-          <AdaptableBadge
-            style={styles.badge}
-            textStyle={styles.badgeText}
-            translation={
-              <Translation
-                passThrough={DateFormatter(new Date(checkin)).formatCustom(
-                  dateFormat,
-                )}
-              />
-            }
-          />
+          <Touchable onPress={onCheckinDateClicked}>
+            <AdaptableBadge
+              style={styles.badge}
+              textStyle={styles.badgeText}
+              translation={
+                <Translation
+                  passThrough={DateFormatter(checkin).formatCustom(dateFormat)}
+                />
+              }
+            />
+          </Touchable>
           <Translation passThrough=" " />
           <Translation id="hotels_search.header.to" />
           <Translation passThrough=" " />
-          <AdaptableBadge
-            style={styles.badge}
-            textStyle={styles.badgeText}
-            translation={
-              <Translation
-                passThrough={DateFormatter(new Date(checkout)).formatCustom(
-                  dateFormat,
-                )}
-              />
-            }
-          />
+          <Touchable onPress={onCheckoutDateClicked}>
+            <AdaptableBadge
+              style={styles.badge}
+              textStyle={styles.badgeText}
+              translation={
+                <Translation
+                  passThrough={DateFormatter(checkout).formatCustom(dateFormat)}
+                />
+              }
+            />
+          </Touchable>
         </View>
       )}
     </View>

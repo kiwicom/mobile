@@ -16,6 +16,7 @@ const navigation = {
   addListener: jest.fn(() => ({
     remove: jest.fn(),
   })),
+  getParam: jest.fn(),
 };
 const checkin = new Date(0);
 const checkout = new Date(1);

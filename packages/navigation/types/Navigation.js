@@ -73,6 +73,7 @@ export type NavigationListener = (
  * Based on official types with custom changes (like RouteNames)
  * @see https://github.com/flow-typed/flow-typed/tree/master/definitions/npm/react-navigation_v2.x.x
  */
+
 export type Navigation = {
   navigate: (
     routeName:
@@ -87,6 +88,7 @@ export type Navigation = {
     params: NavigationStateParameters,
   },
   setParams: (newParameters: NavigationStateParameters) => void,
+  getParam: <T>(key: string) => ?T,
   goBack: (key?: string | null) => void,
   addListener: NavigationListener,
 };
