@@ -13,23 +13,29 @@ import requester from '../services/requester';
 import NoAncillaryMessage from '../components/NoAncillaryMessage';
 
 type Props = {|
-  +serviceName: string,
+  +service: string,
   +token: string,
   +bookingId: number,
 |};
 
-const AncillaryFactory = (props: Props) => {
-  const ancillaryProps = {
-    bookingId: props.bookingId,
-    requester: requester(props.token),
-  };
-
-  switch (props.serviceName) {
-    case AncillaryServiceType.FAST_TRACK:
-      return <FastTrackBanner {...ancillaryProps} />;
-    default:
-      return <NoAncillaryMessage />;
+class AncillaryFactory extends React.Component<Props> {
+  componentDidMount() {
+    // TODO: CodePush sync
   }
-};
+
+  render() {
+    const ancillaryProps = {
+      bookingId: this.props.bookingId,
+      requester: requester(this.props.token),
+    };
+
+    switch (this.props.service) {
+      case AncillaryServiceType.FAST_TRACK:
+        return <FastTrackBanner {...ancillaryProps} />;
+      default:
+        return <NoAncillaryMessage />;
+    }
+  }
+}
 
 export default AncillaryFactory;

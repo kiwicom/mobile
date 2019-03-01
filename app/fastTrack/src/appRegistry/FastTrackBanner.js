@@ -5,12 +5,14 @@ import { View } from 'react-native';
 import { Text, TextButton, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { callApi } from '@kiwicom/mobile-networking';
 
 import FastTrackModal from '../components/FastTrackModal';
 import Services from '../components/Services';
 
 type Props = {|
   +bookingId: number,
+  +requester: {}, // TODO
 |};
 
 type State = {|
@@ -21,6 +23,19 @@ class FastTrackBanner extends React.Component<Props, State> {
   state = {
     isModalVisible: false,
   };
+
+  async componentDidMount() {
+    const { requester, bookingId } = this.props;
+
+    // TODO: Finish
+    // const thirdPartyAncillaries = await requester(
+    //   `bookings/${bookingId}/ancillaries`,
+    // );
+
+    // const { oid } = thirdPartyAncillaries.data;
+
+    // const ancillaryOrder = await requester(`bookings/${bookingId}/third_party_ancillary_order/${oid}`);
+  }
 
   onOpenModal = () => {
     this.setState({

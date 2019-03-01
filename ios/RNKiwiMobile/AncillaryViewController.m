@@ -26,11 +26,11 @@
 
 @implementation AncillaryViewController
 
-- (instancetype)init:(NSString *)serviceName bookingId:(NSNumber *)bookingId token:(NSString *)token{
+- (instancetype)init:(NSString *)service bookingId:(NSNumber *)bookingId token:(NSString *)token{
   self = [super init];
   
   if (self) {
-    _serviceName = serviceName;
+    _serviceName = service;
     _bookingId = bookingId;
     _token = token;
     
@@ -50,8 +50,8 @@
 - (void)loadView {
   
   self.view = [[RCTRootView alloc] initWithBridge:[[AncillarySharedBridge sharedInstance] bridge]
-                                       moduleName:_serviceName
-                                initialProperties: @{@"bookingId": _bookingId, @"token": _token}];
+                                       moduleName: @"AncillaryFactory"
+                                initialProperties: @{@"service": _serviceName, @"bookingId": _bookingId, @"token": _token}];
 }
 
 @end

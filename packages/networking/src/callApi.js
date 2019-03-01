@@ -25,7 +25,6 @@ const callApi = (config: Config) => async (
   const apiRequest = {
     url: `${hostname}/${path}`,
     method: options.method,
-    ...options,
     headers: {
       ...headers,
       ...options.headers,
