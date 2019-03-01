@@ -7,7 +7,7 @@ import { StyleSheet, Device } from '@kiwicom/mobile-shared';
 
 import MapScreen from '../map/allHotels/MapScreen';
 import AllHotelsSearchList from './AllHotelsSearchList';
-import type { RenderSearchResults as RenderResultsType } from './__generated__/RenderSearchResults.graphql';
+import type { RenderSearchResults_data as RenderResultsType } from './__generated__/RenderSearchResults_data.graphql';
 import {
   withSearchResultsContext,
   type SearchResultState,
@@ -130,10 +130,13 @@ const select = ({ show }: SearchResultState) => ({ show });
 
 export default createFragmentContainer(
   withSearchResultsContext(select)(RenderSearchResults),
-  graphql`
-    fragment RenderSearchResults on AllHotelsInterface @relay(plural: true) {
-      ...AllHotelsSearchList
-      ...MapScreen
-    }
-  `,
+  {
+    data: graphql`
+      fragment RenderSearchResults_data on AllHotelsInterface
+        @relay(plural: true) {
+        ...AllHotelsSearchList_data
+        ...MapScreen_data
+      }
+    `,
+  },
 );

@@ -3,7 +3,7 @@
 import createEnvironment from './Environment';
 
 export default new class PublicEnvironment {
-  environment = null;
+  environment = {};
 
   constructor() {
     this.environment = createEnvironment();

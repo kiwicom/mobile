@@ -11,7 +11,7 @@ type Props = {|
   +onPress: () => void,
 |};
 
-export default function CloseButton({ onPress, style }: Props) {
+export default function CloseButton({ onPress }: Props) {
   return (
     <Button onPress={onPress} type="secondary">
       <ButtonTitle

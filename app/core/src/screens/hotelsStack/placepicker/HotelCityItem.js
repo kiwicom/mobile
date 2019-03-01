@@ -6,7 +6,7 @@ import { StyleSheet, Touchable } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { HotelCityItem as City } from './__generated__/HotelCityItem.graphql';
+import type { HotelCityItem_data as City } from './__generated__/HotelCityItem_data.graphql';
 import {
   withHotelsFormContext,
   type HotelsFormContextType,
@@ -57,14 +57,16 @@ const select = ({ actions: { setCity } }: HotelsFormContextType) => ({
 
 export default createFragmentContainer(
   withHotelsFormContext(select)(HotelCityItem),
-  graphql`
-    fragment HotelCityItem on HotelCity {
-      id
-      name
-      location {
-        lat
-        lng
+  {
+    data: graphql`
+      fragment HotelCityItem_data on HotelCity {
+        id
+        name
+        location {
+          lat
+          lng
+        }
       }
-    }
-  `,
+    `,
+  },
 );

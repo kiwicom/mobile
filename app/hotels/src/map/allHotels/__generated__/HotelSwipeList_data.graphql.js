@@ -9,22 +9,22 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 type Address_address$ref = any;
-type HotelSwipeItem$ref = any;
+type HotelSwipeItem_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type HotelSwipeList$ref: FragmentReference;
-export type HotelSwipeList = $ReadOnlyArray<{|
+declare export opaque type HotelSwipeList_data$ref: FragmentReference;
+export type HotelSwipeList_data = $ReadOnlyArray<{|
   +address: ?{|
     +$fragmentRefs: Address_address$ref
   |},
-  +$fragmentRefs: HotelSwipeItem$ref,
-  +$refType: HotelSwipeList$ref,
+  +$fragmentRefs: HotelSwipeItem_data$ref,
+  +$refType: HotelSwipeList_data$ref,
 |}>;
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "HotelSwipeList",
+  "name": "HotelSwipeList_data",
   "type": "AllHotelsInterface",
   "metadata": {
     "plural": true
@@ -33,7 +33,7 @@ const node/*: ReaderFragment*/ = {
   "selections": [
     {
       "kind": "FragmentSpread",
-      "name": "HotelSwipeItem",
+      "name": "HotelSwipeItem_data",
       "args": null
     },
     {
@@ -55,5 +55,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'edcc7343d4b5166e12038f6d0301b47f';
+(node/*: any*/).hash = '214c25e1d55d84e3e71abcbd92d97590';
 module.exports = node;

@@ -40,16 +40,18 @@ beforeEach(() => {
     ]),
     multiSet: jest.fn(),
     multiRemove: jest.fn(),
-    getAllKeys: jest.fn(async () => [
-      `@CACHE_MANAGER:${JSON.stringify({
-        queryID: '123',
-        variables: { a: '', b: 2 },
-      })}`,
-      `@CACHE_MANAGER:${JSON.stringify({
-        queryID: '1234',
-        variables: { a: 'a', b: 22 },
-      })}`,
-    ]),
+    getAllKeys: jest.fn(() =>
+      Promise.resolve([
+        `@CACHE_MANAGER:${JSON.stringify({
+          queryID: '123',
+          variables: { a: '', b: 2 },
+        })}`,
+        `@CACHE_MANAGER:${JSON.stringify({
+          queryID: '1234',
+          variables: { a: 'a', b: 22 },
+        })}`,
+      ]),
+    ),
   }));
 });
 

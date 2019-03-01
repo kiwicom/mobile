@@ -5,7 +5,7 @@ import { FlatList } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import type { HotelCityList as Cities } from './__generated__/HotelCityList.graphql';
+import type { HotelCityList_data as Cities } from './__generated__/HotelCityList_data.graphql';
 import HotelCityItem from './HotelCityItem';
 
 type Props = {|
@@ -39,16 +39,15 @@ class HotelCityList extends React.Component<Props> {
   }
 }
 
-export default createFragmentContainer(
-  HotelCityList,
-  graphql`
-    fragment HotelCityList on HotelCityConnection {
+export default createFragmentContainer(HotelCityList, {
+  data: graphql`
+    fragment HotelCityList_data on HotelCityConnection {
       edges {
         node {
           id
-          ...HotelCityItem
+          ...HotelCityItem_data
         }
       }
     }
   `,
-);
+});

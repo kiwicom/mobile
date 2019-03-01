@@ -37,16 +37,15 @@ class Address extends React.Component<Props> {
   }
 }
 
-export default createFragmentContainer(
-  Address,
-  graphql`
+export default createFragmentContainer(Address, {
+  address: graphql`
     fragment Address_address on Address {
       street
       city
       zip
     }
   `,
-);
+});
 
 const styles = StyleSheet.create({
   container: {

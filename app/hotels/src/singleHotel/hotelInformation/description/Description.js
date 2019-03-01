@@ -50,12 +50,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createFragmentContainer(
-  Description,
-  graphql`
+export default createFragmentContainer(Description, {
+  hotel: graphql`
     fragment Description_hotel on HotelInterface {
       summary
-      ...Amenities
+      ...Amenities_data
     }
   `,
-);
+});

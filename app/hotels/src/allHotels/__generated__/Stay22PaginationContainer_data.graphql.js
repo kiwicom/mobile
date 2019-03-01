@@ -8,25 +8,25 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type RenderSearchResults$ref = any;
+type RenderSearchResults_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type Stay22PaginationContainer$ref: FragmentReference;
-export type Stay22PaginationContainer = {|
+declare export opaque type Stay22PaginationContainer_data$ref: FragmentReference;
+export type Stay22PaginationContainer_data = {|
   +allAvailableStay22Hotels: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
-        +$fragmentRefs: RenderSearchResults$ref
+        +$fragmentRefs: RenderSearchResults_data$ref
       |}
     |}>
   |},
-  +$refType: Stay22PaginationContainer$ref,
+  +$refType: Stay22PaginationContainer_data$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "Stay22PaginationContainer",
+  "name": "Stay22PaginationContainer_data",
   "type": "RootQuery",
   "metadata": {
     "connection": [
@@ -94,7 +94,7 @@ const node/*: ReaderFragment*/ = {
               "selections": [
                 {
                   "kind": "FragmentSpread",
-                  "name": "RenderSearchResults",
+                  "name": "RenderSearchResults_data",
                   "args": null
                 },
                 {
@@ -145,5 +145,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'd5951cedf413a0d9588856613bf85959';
+(node/*: any*/).hash = 'e22d59ac5419f992356425becf7e741e';
 module.exports = node;

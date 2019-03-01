@@ -20,13 +20,12 @@ const HotelInformation = (props: Props) => (
   </React.Fragment>
 );
 
-export default createFragmentContainer(
-  HotelInformation,
-  graphql`
+export default createFragmentContainer(HotelInformation, {
+  hotel: graphql`
     fragment HotelInformation_hotel on HotelInterface {
       ...Location_hotel
       ...Description_hotel
-      ...HotelReview
+      ...HotelReview_data
     }
   `,
-);
+});

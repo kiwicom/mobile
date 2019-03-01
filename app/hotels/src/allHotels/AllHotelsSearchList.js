@@ -7,11 +7,11 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
-import type { AllHotelsSearchList as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList.graphql';
+import type { AllHotelsSearchList_data as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList_data.graphql';
 import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 
 type Props = {|
-  +data: AllHotelsSearchListProps | Array<?empty>,
+  +data: ?AllHotelsSearchListProps,
   +setHotelId: (id: string) => void,
   +ListFooterComponent: React.Node,
 |};
@@ -22,10 +22,10 @@ type HotelType = {|
 
 export class AllHotelsSearchList extends React.Component<Props> {
   componentDidMount() {
-    const hotelId = this.props.data[0]?.hotelId;
+    const data = this.props.data ?? [];
 
-    if (hotelId != null) {
-      this.props.setHotelId(hotelId);
+    if (data.length > 0 && data[0].hotelId != null) {
+      this.props.setHotelId(data[0].hotelId);
     }
   }
 
@@ -67,11 +67,14 @@ const select = ({ setHotelId }: HotelsContextState) => ({ setHotelId });
 
 export default createFragmentContainer(
   withHotelsContext(select)(AllHotelsSearchList),
-  graphql`
-    fragment AllHotelsSearchList on AllHotelsInterface @relay(plural: true) {
-      id
-      ...AllHotelsSearchRow
-      hotelId
-    }
-  `,
+  {
+    data: graphql`
+      fragment AllHotelsSearchList_data on AllHotelsInterface
+        @relay(plural: true) {
+        id
+        ...AllHotelsSearchRow_data
+        hotelId
+      }
+    `,
+  },
 );

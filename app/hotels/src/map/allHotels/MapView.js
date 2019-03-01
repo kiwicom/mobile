@@ -7,7 +7,7 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
 import PriceMarker from './PriceMarker';
-import type { MapView as MapViewData } from './__generated__/MapView.graphql';
+import type { MapView_data as MapViewData } from './__generated__/MapView_data.graphql';
 
 type Props = {|
   data: MapViewData,
@@ -216,13 +216,12 @@ export class Map extends React.Component<Props, State> {
   }
 }
 
-export default createFragmentContainer(
-  Map,
-  graphql`
-    fragment MapView on AllHotelsInterface @relay(plural: true) {
+export default createFragmentContainer(Map, {
+  data: graphql`
+    fragment MapView_data on AllHotelsInterface @relay(plural: true) {
       id
       price {
-        ...PriceMarker
+        ...PriceMarker_data
       }
       coordinates {
         lat
@@ -230,4 +229,4 @@ export default createFragmentContainer(
       }
     }
   `,
-);
+});

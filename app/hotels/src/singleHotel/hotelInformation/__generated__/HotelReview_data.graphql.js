@@ -9,20 +9,20 @@
 /*::
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type HotelReview$ref: FragmentReference;
-export type HotelReview = {|
+declare export opaque type HotelReview_data$ref: FragmentReference;
+export type HotelReview_data = {|
   +review: ?{|
     +score: ?number,
     +count: ?number,
   |},
-  +$refType: HotelReview$ref,
+  +$refType: HotelReview_data$ref,
 |};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "HotelReview",
+  "name": "HotelReview_data",
   "type": "HotelInterface",
   "metadata": null,
   "argumentDefinitions": [],
@@ -55,5 +55,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '5e82d7ff825ad6e83fa338374dc7c9ae';
+(node/*: any*/).hash = '9b8f55ee151945f508d005f482385b3a';
 module.exports = node;

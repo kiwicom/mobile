@@ -31,7 +31,7 @@ class Stay22SingleHotelMapScreen extends React.Component<Props> {
   };
 
   renderInner = (props: Stay22SingleHotelMapScreenQueryResponse) => (
-    <SingleMap data={props.stay22HotelDetail} />
+    <SingleMap hotel={props.stay22HotelDetail} />
   );
 
   render() {
@@ -54,7 +54,7 @@ class Stay22SingleHotelMapScreen extends React.Component<Props> {
               checkin: $checkin
               checkout: $checkout
             ) {
-              ...SingleMap
+              ...SingleMap_hotel
             }
           }
         `}

@@ -12,8 +12,8 @@ import {
 import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import type { Amenities as AmenitiesType } from './__generated__/Amenities.graphql';
 import DescriptionTitle from './DescriptionTitle';
+import type { Amenities_data as AmenitiesType } from './__generated__/Amenities_data.graphql';
 
 type Props = {|
   +data: ?AmenitiesType,
@@ -82,17 +82,16 @@ export class Amenities extends React.Component<Props, State> {
   }
 }
 
-export default createFragmentContainer(
-  Amenities,
-  graphql`
-    fragment Amenities on HotelInterface {
+export default createFragmentContainer(Amenities, {
+  data: graphql`
+    fragment Amenities_data on HotelInterface {
       amenities {
         id
         name
       }
     }
   `,
-);
+});
 
 const styles = StyleSheet.create({
   amenitiesContainer: {

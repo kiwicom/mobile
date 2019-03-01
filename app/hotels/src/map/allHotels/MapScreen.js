@@ -16,7 +16,7 @@ import {
 } from '../../HotelsContext';
 import MapView from './MapView';
 import HotelSwipeList from './HotelSwipeList';
-import type { MapScreen as MapScreenData } from './__generated__/MapScreen.graphql';
+import type { MapScreen_data as MapScreenData } from './__generated__/MapScreen_data.graphql';
 import gradient from '../gradient.png';
 
 type PropsWithContext = {|
@@ -120,14 +120,13 @@ class MapScreen extends React.Component<Props> {
 
 const select = ({ setHotelId }: HotelsContextState) => ({ setHotelId });
 
-export default createFragmentContainer(
-  withHotelsContext(select)(MapScreen),
-  graphql`
-    fragment MapScreen on AllHotelsInterface @relay(plural: true) {
+export default createFragmentContainer(withHotelsContext(select)(MapScreen), {
+  data: graphql`
+    fragment MapScreen_data on AllHotelsInterface @relay(plural: true) {
       id
       hotelId
-      ...MapView
-      ...HotelSwipeList
+      ...MapView_data
+      ...HotelSwipeList_data
     }
   `,
-);
+});

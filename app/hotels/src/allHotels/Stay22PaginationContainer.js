@@ -9,7 +9,7 @@ import {
 } from '@kiwicom/mobile-relay';
 import { Logger } from '@kiwicom/mobile-shared';
 
-import type { Stay22PaginationContainer as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer.graphql';
+import type { Stay22PaginationContainer_data as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer_data.graphql';
 import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
@@ -76,20 +76,24 @@ const select = ({ actions }: HotelsContextState) => ({
 
 export default createPaginationContainer(
   withHotelsContext(select)(Stay22PaginationContainer),
-  graphql`
-    fragment Stay22PaginationContainer on RootQuery {
-      allAvailableStay22Hotels(search: $search, first: $first, after: $after)
-        @connection(key: "Stay22PaginationContainer_allAvailableStay22Hotels") {
-        edges {
-          node {
-            ... on AllAvailableStay22Hotel {
-              ...RenderSearchResults
+  {
+    data: graphql`
+      fragment Stay22PaginationContainer_data on RootQuery {
+        allAvailableStay22Hotels(search: $search, first: $first, after: $after)
+          @connection(
+            key: "Stay22PaginationContainer_allAvailableStay22Hotels"
+          ) {
+          edges {
+            node {
+              ... on AllAvailableStay22Hotel {
+                ...RenderSearchResults_data
+              }
             }
           }
         }
       }
-    }
-  `,
+    `,
+  },
   {
     getVariables(props, { count, cursor }, fragmentVariables) {
       const { search } = fragmentVariables;
@@ -105,7 +109,7 @@ export default createPaginationContainer(
         $after: String
         $first: Int
       ) {
-        ...Stay22PaginationContainer
+        ...Stay22PaginationContainer_data
       }
     `,
   },

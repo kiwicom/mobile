@@ -72,11 +72,10 @@ const style = StyleSheet.create({
   },
 });
 
-export default createFragmentContainer(
-  HotelDistance,
-  graphql`
+export default createFragmentContainer(HotelDistance, {
+  hotel: graphql`
     fragment HotelDistance_hotel on AllHotelsInterface {
       distanceFromCenter
     }
   `,
-);
+});

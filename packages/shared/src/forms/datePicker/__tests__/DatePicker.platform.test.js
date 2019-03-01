@@ -10,12 +10,13 @@ import AndroidDatePicker from '../DatePicker.android';
 jest.mock('DatePickerIOS');
 jest.mock('DatePickerAndroid', () => ({
   dismissedAction: 0,
-  open: async () => ({
-    action: 1,
-    year: 2018,
-    month: 1,
-    day: 1,
-  }),
+  open: () =>
+    Promise.resolve({
+      action: 1,
+      year: 2018,
+      month: 1,
+      day: 1,
+    }),
 }));
 
 const getIOSComponent = (onDateChange: Function = jest.fn()) =>

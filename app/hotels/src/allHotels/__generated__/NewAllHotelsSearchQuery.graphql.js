@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8690255f3a391bb225e8f7ec381d1d3b
+ * @relayHash e75b335fe50bba5f71f23ecac4d27ded
  */
 
 /* eslint-disable */
@@ -9,7 +9,7 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type HotelsPaginationContainer$ref = any;
+type HotelsPaginationContainer_data$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
 export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "engb" | "enus" | "es" | "esar" | "et" | "fi" | "fr" | "he" | "hr" | "hu" | "id" | "is" | "it" | "ja" | "ko" | "lt" | "lv" | "ms" | "nl" | "no" | "pl" | "pt" | "ptbr" | "ptpt" | "ro" | "ru" | "sk" | "sl" | "sr" | "sv" | "th" | "tl" | "tr" | "uk" | "vi" | "zh" | "zhcn" | "zhtw" | "%future added value";
 export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
@@ -76,7 +76,7 @@ export type NewAllHotelsSearchQueryVariables = {|
   after?: ?string,
 |};
 export type NewAllHotelsSearchQueryResponse = {|
-  +$fragmentRefs: HotelsPaginationContainer$ref
+  +$fragmentRefs: HotelsPaginationContainer_data$ref
 |};
 export type NewAllHotelsSearchQuery = {|
   variables: NewAllHotelsSearchQueryVariables,
@@ -93,10 +93,10 @@ query NewAllHotelsSearchQuery(
   $first: Int
   $after: String
 ) {
-  ...HotelsPaginationContainer
+  ...HotelsPaginationContainer_data
 }
 
-fragment HotelsPaginationContainer on RootQuery {
+fragment HotelsPaginationContainer_data on RootQuery {
   allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {
     stats {
       maxPrice
@@ -104,7 +104,7 @@ fragment HotelsPaginationContainer on RootQuery {
     }
     edges {
       node {
-        ...RenderSearchResults
+        ...RenderSearchResults_data
         id
         __typename
       }
@@ -117,28 +117,28 @@ fragment HotelsPaginationContainer on RootQuery {
   }
 }
 
-fragment RenderSearchResults on AllHotelsInterface {
-  ...AllHotelsSearchList
-  ...MapScreen
+fragment RenderSearchResults_data on AllHotelsInterface {
+  ...AllHotelsSearchList_data
+  ...MapScreen_data
 }
 
-fragment AllHotelsSearchList on AllHotelsInterface {
+fragment AllHotelsSearchList_data on AllHotelsInterface {
   id
-  ...AllHotelsSearchRow
+  ...AllHotelsSearchRow_data
   hotelId
 }
 
-fragment MapScreen on AllHotelsInterface {
+fragment MapScreen_data on AllHotelsInterface {
   id
   hotelId
-  ...MapView
-  ...HotelSwipeList
+  ...MapView_data
+  ...HotelSwipeList_data
 }
 
-fragment MapView on AllHotelsInterface {
+fragment MapView_data on AllHotelsInterface {
   id
   price {
-    ...PriceMarker
+    ...PriceMarker_data
   }
   coordinates {
     lat
@@ -146,14 +146,14 @@ fragment MapView on AllHotelsInterface {
   }
 }
 
-fragment HotelSwipeList on AllHotelsInterface {
-  ...HotelSwipeItem
+fragment HotelSwipeList_data on AllHotelsInterface {
+  ...HotelSwipeItem_data
   address {
     ...Address_address
   }
 }
 
-fragment HotelSwipeItem on AllHotelsInterface {
+fragment HotelSwipeItem_data on AllHotelsInterface {
   hotelId
   name
   price {
@@ -178,13 +178,13 @@ fragment Address_address on Address {
   zip
 }
 
-fragment PriceMarker on Price {
+fragment PriceMarker_data on Price {
   amount
   currency
 }
 
-fragment AllHotelsSearchRow on AllHotelsInterface {
-  ...HotelTitle
+fragment AllHotelsSearchRow_data on AllHotelsInterface {
+  ...HotelTitle_data
   hotelId
   mainPhoto {
     highResUrl
@@ -196,7 +196,7 @@ fragment AllHotelsSearchRow on AllHotelsInterface {
   }
 }
 
-fragment HotelTitle on AllHotelsInterface {
+fragment HotelTitle_data on AllHotelsInterface {
   price {
     amount
     currency
@@ -296,7 +296,7 @@ return {
     "selections": [
       {
         "kind": "FragmentSpread",
-        "name": "HotelsPaginationContainer",
+        "name": "HotelsPaginationContainer_data",
         "args": null
       }
     ]
@@ -595,11 +595,11 @@ return {
     "operationKind": "query",
     "name": "NewAllHotelsSearchQuery",
     "id": null,
-    "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...HotelsPaginationContainer\n}\n\nfragment HotelsPaginationContainer on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment RenderSearchResults on AllHotelsInterface {\n  ...AllHotelsSearchList\n  ...MapScreen\n}\n\nfragment AllHotelsSearchList on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow\n  hotelId\n}\n\nfragment MapScreen on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView\n  ...HotelSwipeList\n}\n\nfragment MapView on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList on AllHotelsInterface {\n  ...HotelSwipeItem\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem on AllHotelsInterface {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow on AllHotelsInterface {\n  ...HotelTitle\n  hotelId\n  mainPhoto {\n    highResUrl\n    lowResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
+    "text": "query NewAllHotelsSearchQuery(\n  $search: HotelsSearchInput!\n  $filter: HotelsFilterInput!\n  $options: AvailableHotelOptionsInput\n  $first: Int\n  $after: String\n) {\n  ...HotelsPaginationContainer_data\n}\n\nfragment HotelsPaginationContainer_data on RootQuery {\n  allAvailableBookingComHotels(search: $search, filter: $filter, options: $options, first: $first, after: $after) {\n    stats {\n      maxPrice\n      minPrice\n    }\n    edges {\n      node {\n        ...RenderSearchResults_data\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment RenderSearchResults_data on AllHotelsInterface {\n  ...AllHotelsSearchList_data\n  ...MapScreen_data\n}\n\nfragment AllHotelsSearchList_data on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow_data\n  hotelId\n}\n\nfragment MapScreen_data on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView_data\n  ...HotelSwipeList_data\n}\n\nfragment MapView_data on AllHotelsInterface {\n  id\n  price {\n    ...PriceMarker_data\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment HotelSwipeList_data on AllHotelsInterface {\n  ...HotelSwipeItem_data\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem_data on AllHotelsInterface {\n  hotelId\n  name\n  price {\n    currency\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment PriceMarker_data on Price {\n  amount\n  currency\n}\n\nfragment AllHotelsSearchRow_data on AllHotelsInterface {\n  ...HotelTitle_data\n  hotelId\n  mainPhoto {\n    highResUrl\n    lowResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelTitle_data on AllHotelsInterface {\n  price {\n    amount\n    currency\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '56d04e399dc2c6c969385b3311563239';
+(node/*: any*/).hash = '2d9e355dc906ce930fa9faf1b1a269df';
 module.exports = node;

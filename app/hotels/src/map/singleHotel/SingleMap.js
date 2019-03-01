@@ -9,21 +9,21 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import MapView from './MapView';
 import AdditionalInfo from './AdditionalInfo';
 import gradient from '../gradient.png';
-import type { SingleMap as HotelType } from './__generated__/SingleMap.graphql';
+import type { SingleMap_hotel as HotelType } from './__generated__/SingleMap_hotel.graphql';
 
 type Props = {|
-  +data: ?HotelType,
+  +hotel: ?HotelType,
 |};
 
 const SingleMap = (props: Props) => {
   return (
     <View style={styles.container}>
-      <MapView hotel={props.data?.hotel} />
+      <MapView hotel={props.hotel?.hotel} />
       <View style={styles.underlay}>
         <StretchedImage source={gradient} />
       </View>
       <View style={styles.dropShadow}>
-        <AdditionalInfo data={props.data} />
+        <AdditionalInfo data={props.hotel} />
       </View>
     </View>
   );
@@ -46,14 +46,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createFragmentContainer(
-  SingleMap,
-  graphql`
-    fragment SingleMap on HotelAvailabilityInterface {
+export default createFragmentContainer(SingleMap, {
+  hotel: graphql`
+    fragment SingleMap_hotel on HotelAvailabilityInterface {
       hotel {
         ...MapView_hotel
       }
-      ...AdditionalInfo
+      ...AdditionalInfo_data
     }
   `,
-);
+});

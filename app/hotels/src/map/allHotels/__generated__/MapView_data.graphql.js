@@ -8,25 +8,30 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type PriceMarker_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type HotelCityItem$ref: FragmentReference;
-export type HotelCityItem = {|
+declare export opaque type MapView_data$ref: FragmentReference;
+export type MapView_data = $ReadOnlyArray<{|
   +id: string,
-  +name: ?string,
-  +location: ?{|
+  +price: ?{|
+    +$fragmentRefs: PriceMarker_data$ref
+  |},
+  +coordinates: ?{|
     +lat: ?number,
     +lng: ?number,
   |},
-  +$refType: HotelCityItem$ref,
-|};
+  +$refType: MapView_data$ref,
+|}>;
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "HotelCityItem",
-  "type": "HotelCity",
-  "metadata": null,
+  "name": "MapView_data",
+  "type": "AllHotelsInterface",
+  "metadata": {
+    "plural": true
+  },
   "argumentDefinitions": [],
   "selections": [
     {
@@ -37,16 +42,25 @@ const node/*: ReaderFragment*/ = {
       "storageKey": null
     },
     {
-      "kind": "ScalarField",
+      "kind": "LinkedField",
       "alias": null,
-      "name": "name",
+      "name": "price",
+      "storageKey": null,
       "args": null,
-      "storageKey": null
+      "concreteType": "Price",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "FragmentSpread",
+          "name": "PriceMarker_data",
+          "args": null
+        }
+      ]
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "location",
+      "name": "coordinates",
       "storageKey": null,
       "args": null,
       "concreteType": "Coordinates",
@@ -71,5 +85,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c8decbf5d1ee2c73acdc780cf46502cf';
+(node/*: any*/).hash = '6e37ff96c594a7aa7ce95be2c093c3eb';
 module.exports = node;

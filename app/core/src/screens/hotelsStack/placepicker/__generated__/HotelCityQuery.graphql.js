@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash b53b2bf8f91654d800cd60e0e6df1416
+ * @relayHash 4eb47e4ab5410bc0f7f7c679b6d535d5
  */
 
 /* eslint-disable */
@@ -9,13 +9,13 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
-type HotelCityList$ref = any;
+type HotelCityList_data$ref = any;
 export type HotelCityQueryVariables = {|
   query: string
 |};
 export type HotelCityQueryResponse = {|
   +hotelCities: ?{|
-    +$fragmentRefs: HotelCityList$ref
+    +$fragmentRefs: HotelCityList_data$ref
   |}
 |};
 export type HotelCityQuery = {|
@@ -30,20 +30,20 @@ query HotelCityQuery(
   $query: String!
 ) {
   hotelCities(prefix: $query) {
-    ...HotelCityList
+    ...HotelCityList_data
   }
 }
 
-fragment HotelCityList on HotelCityConnection {
+fragment HotelCityList_data on HotelCityConnection {
   edges {
     node {
       id
-      ...HotelCityItem
+      ...HotelCityItem_data
     }
   }
 }
 
-fragment HotelCityItem on HotelCity {
+fragment HotelCityItem_data on HotelCity {
   id
   name
   location {
@@ -90,7 +90,7 @@ return {
         "selections": [
           {
             "kind": "FragmentSpread",
-            "name": "HotelCityList",
+            "name": "HotelCityList_data",
             "args": null
           }
         ]
@@ -180,11 +180,11 @@ return {
     "operationKind": "query",
     "name": "HotelCityQuery",
     "id": null,
-    "text": "query HotelCityQuery(\n  $query: String!\n) {\n  hotelCities(prefix: $query) {\n    ...HotelCityList\n  }\n}\n\nfragment HotelCityList on HotelCityConnection {\n  edges {\n    node {\n      id\n      ...HotelCityItem\n    }\n  }\n}\n\nfragment HotelCityItem on HotelCity {\n  id\n  name\n  location {\n    lat\n    lng\n  }\n}\n",
+    "text": "query HotelCityQuery(\n  $query: String!\n) {\n  hotelCities(prefix: $query) {\n    ...HotelCityList_data\n  }\n}\n\nfragment HotelCityList_data on HotelCityConnection {\n  edges {\n    node {\n      id\n      ...HotelCityItem_data\n    }\n  }\n}\n\nfragment HotelCityItem_data on HotelCity {\n  id\n  name\n  location {\n    lat\n    lng\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '8136fb53fb26b214fddcf832cc7e74d5';
+(node/*: any*/).hash = '679b2841f9a6e9dd25e02f24976d816f';
 module.exports = node;

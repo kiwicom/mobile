@@ -8,7 +8,7 @@ import { StyleSheet, type OnLayout, Device } from '@kiwicom/mobile-shared';
 import BottomSheet from './BottomSheet';
 import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
 import Address from '../Address';
-import type { AdditionalInfo as AdditionalInfoData } from './__generated__/AdditionalInfo.graphql';
+import type { AdditionalInfo_data as AdditionalInfoData } from './__generated__/AdditionalInfo_data.graphql';
 import BottomSheetHandle from '../BottomSheetHandle';
 import { HotelPreviewProvider } from '../hotelDetailPreview/HotelDetailPreviewContext';
 
@@ -82,10 +82,9 @@ const styles = StyleSheet.create({
   },
 });
 
-export default createFragmentContainer(
-  AdditionalInfo,
-  graphql`
-    fragment AdditionalInfo on HotelAvailabilityInterface {
+export default createFragmentContainer(AdditionalInfo, {
+  data: graphql`
+    fragment AdditionalInfo_data on HotelAvailabilityInterface {
       price {
         amount
         currency
@@ -107,4 +106,4 @@ export default createFragmentContainer(
       }
     }
   `,
-);
+});

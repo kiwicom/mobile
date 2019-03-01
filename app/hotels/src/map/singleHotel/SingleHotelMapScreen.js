@@ -35,7 +35,7 @@ class SingleHotelMapScreen extends React.Component<Props> {
 
   renderInnerComponent = ({
     availableHotel,
-  }: SingleHotelMapScreenQueryResponse) => <SingleMap data={availableHotel} />;
+  }: SingleHotelMapScreenQueryResponse) => <SingleMap hotel={availableHotel} />;
 
   render() {
     const {
@@ -54,7 +54,7 @@ class SingleHotelMapScreen extends React.Component<Props> {
             $options: AvailableHotelOptionsInput
           ) {
             availableHotel(search: $search, options: $options) {
-              ...SingleMap
+              ...SingleMap_hotel
             }
           }
         `}

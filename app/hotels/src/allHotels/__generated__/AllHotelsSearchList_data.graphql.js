@@ -8,21 +8,21 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
-type AllHotelsSearchRow$ref = any;
+type AllHotelsSearchRow_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
-declare export opaque type AllHotelsSearchList$ref: FragmentReference;
-export type AllHotelsSearchList = $ReadOnlyArray<{|
+declare export opaque type AllHotelsSearchList_data$ref: FragmentReference;
+export type AllHotelsSearchList_data = $ReadOnlyArray<{|
   +id: string,
   +hotelId: ?string,
-  +$fragmentRefs: AllHotelsSearchRow$ref,
-  +$refType: AllHotelsSearchList$ref,
+  +$fragmentRefs: AllHotelsSearchRow_data$ref,
+  +$refType: AllHotelsSearchList_data$ref,
 |}>;
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
-  "name": "AllHotelsSearchList",
+  "name": "AllHotelsSearchList_data",
   "type": "AllHotelsInterface",
   "metadata": {
     "plural": true
@@ -38,7 +38,7 @@ const node/*: ReaderFragment*/ = {
     },
     {
       "kind": "FragmentSpread",
-      "name": "AllHotelsSearchRow",
+      "name": "AllHotelsSearchRow_data",
       "args": null
     },
     {
@@ -51,5 +51,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a5c6871335e7fdaa11bfe7a769eb8a88';
+(node/*: any*/).hash = '75f6ebe8799667fb041b0e2cd525faab';
 module.exports = node;
