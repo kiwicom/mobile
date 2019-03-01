@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { withContext } from '@kiwicom/mobile-shared';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
 
@@ -24,6 +25,8 @@ const defaultState = {
   },
   actions: {
     setCurrentSearchStats: () => {},
+    setCheckinDate: () => {},
+    setCheckoutDate: () => {},
   },
   getGuestCount: () => 0,
   setHotelId: () => {},
@@ -84,6 +87,8 @@ type State = {|
       priceMax: number,
       priceMin: number,
     |}) => void,
+    +setCheckinDate: Date => void,
+    +setCheckoutDate: Date => void,
   |},
 |};
 
@@ -127,6 +132,8 @@ class Provider extends React.Component<Props, State> {
       closeHotels: props.closeHotels,
       actions: {
         setCurrentSearchStats: this.setCurrentSearchStats,
+        setCheckinDate: this.setCheckinDate,
+        setCheckoutDate: this.setCheckoutDate,
       },
     };
   }
@@ -142,6 +149,47 @@ class Provider extends React.Component<Props, State> {
   getGuestCount = () => this.props.guestCount;
 
   setPaymentLink = (paymentLink: ?string) => this.setState({ paymentLink });
+
+  setCheckinDate = (checkin: Date) => {
+    this.setState(state => {
+      const checkout = state.checkout ?? new Date();
+      const diffInDays = DateUtils.diffInDays(checkout, checkin);
+
+      if (diffInDays > 30) {
+        return {
+          checkin,
+          checkout: DateUtils(checkin).addDays(30),
+        };
+      }
+      if (diffInDays <= 0) {
+        return {
+          checkin,
+          checkout: DateUtils(checkin).addDays(1),
+        };
+      }
+      return { checkin };
+    });
+  };
+
+  setCheckoutDate = (checkout: Date) => {
+    this.setState(state => {
+      const checkin = state.checkin ?? new Date();
+      const diffInDays = DateUtils.diffInDays(checkout, checkin);
+      if (diffInDays > 30) {
+        return {
+          checkout,
+          checkin: DateUtils(checkout).addDays(-30),
+        };
+      }
+      if (diffInDays <= 0) {
+        return {
+          checkout,
+          checkin: DateUtils(checkout).addDays(-1),
+        };
+      }
+      return { checkout };
+    });
+  };
 
   render() {
     return (

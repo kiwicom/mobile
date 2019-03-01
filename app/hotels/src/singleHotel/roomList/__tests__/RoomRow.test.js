@@ -16,6 +16,7 @@ const navigation = {
   addListener: jest.fn(() => ({
     remove: jest.fn(),
   })),
+  getParam: jest.fn(),
 };
 it('renders without crashing', () => {
   const props = {
