@@ -20,17 +20,19 @@
 
 @property (nonatomic, strong) NSString* serviceName;
 @property (nonatomic, strong) NSNumber* bookingId;
+@property (nonatomic, strong) NSString* token;
 
 @end
 
 @implementation AncillaryViewController
 
-- (instancetype)init:(NSString *)serviceName bookingId:(NSNumber *)bookingId {
+- (instancetype)init:(NSString *)serviceName bookingId:(NSNumber *)bookingId token:(NSString *)token{
   self = [super init];
   
   if (self) {
     _serviceName = serviceName;
     _bookingId = bookingId;
+    _token = token;
     
     [self setupReactWrappersWithObject:self];
     [self loadView];
@@ -49,7 +51,7 @@
   
   self.view = [[RCTRootView alloc] initWithBridge:[[AncillarySharedBridge sharedInstance] bridge]
                                        moduleName:_serviceName
-                                initialProperties: @{@"bookingId": _bookingId}];
+                                initialProperties: @{@"bookingId": _bookingId, @"token": _token}];
 }
 
 @end

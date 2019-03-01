@@ -22,7 +22,7 @@
   static dispatch_once_t pred = 0;
   __strong static id _sharedObject = nil;
   dispatch_once(&pred, ^{
-    _sharedObject = [[self alloc] init];
+    _sharedObject = [[self alloc] bridge];
   });
   return _sharedObject;
 }
@@ -43,7 +43,8 @@
 
 - (NSURL *)bundleURL {
   #ifdef DEBUG
-    return [NSURL URLWithString:@"http://localhost:8081/app/native.bundle?platform=ios&dev=true"];
+     return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+//    return [NSURL URLWithString:@"http://localhost:8081/app/native.bundle?platform=ios&dev=true"];
   #else
     return [CodePush bundleURLForResource:@"main" withExtension:@"jsbundle" subdirectory:nil bundle:[NSBundle bundleWithIdentifier:@"com.kiwi.RNKiwiMobile"]];
   #endif

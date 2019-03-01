@@ -11,7 +11,7 @@
 
 @interface AncillaryViewController : UIViewController
 
-- (nonnull instancetype)init:(NSString *)serviceName bookingId:(NSNumber*)bookingId;
+- (nonnull instancetype)init:(NSString *)serviceName bookingId:(NSNumber *)bookingId token:(NSString *)token;
 
 // Delegates
 @property (nonatomic, weak, nullable) id<RNKiwiCurrencyManager> currencyFormatter;
