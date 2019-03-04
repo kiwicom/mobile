@@ -10,10 +10,13 @@ import {
   Dimensions,
   Device,
   type BarStyle,
+  Color,
+  StatusbarBackground,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
 import isEqual from 'react-fast-compare';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Header from './header/Header';
 import HotelInformation from './hotelInformation/HotelInformation';
@@ -170,16 +173,21 @@ export class HotelDetailScreen extends React.Component<
         />
       );
     }
-
+    const statusBarBackground =
+      this.state.barStyle === 'light-content'
+        ? styles.lightContent
+        : styles.darkContent;
     return (
       <View style={styles.safeArea}>
+        <StatusbarBackground style={statusBarBackground} />
+
         <ScrollView
           contentContainerStyle={styles.container}
           onScroll={this.onScroll}
-          scrollEventThrottle={500}
+          scrollEventThrottle={100}
           testID="hotelDetailScrollView"
         >
-          <LayoutSingleColumn barStyle={this.state.barStyle}>
+          <LayoutSingleColumn>
             <Header hotel={availableHotel.hotel} />
             <HotelInformation hotel={availableHotel.hotel} />
             <RoomList data={availableHotel.availableRooms} />
@@ -269,5 +277,15 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
+  },
+  darkContent: {
+    ios: {
+      backgroundColor: defaultTokens.paletteWhite,
+    },
+  },
+  lightContent: {
+    ios: {
+      backgroundColor: Color.transparent.black.$30,
+    },
   },
 });
