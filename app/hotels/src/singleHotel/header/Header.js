@@ -9,6 +9,7 @@ import {
   Touchable,
   Stars,
   Logger,
+  Device,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -110,6 +111,9 @@ export default createFragmentContainer(withNavigation(Header), {
   `,
 });
 
+const galleryButtonOffset = 32;
+const iPhoneXExtraOffset = 24;
+
 const styles = StyleSheet.create({
   nameAndRating: {
     marginStart: 15,
@@ -141,6 +145,8 @@ const styles = StyleSheet.create({
   galleryButton: {
     position: 'absolute',
     start: 12,
-    top: 32,
+    top: Device.isIPhoneX
+      ? galleryButtonOffset + iPhoneXExtraOffset
+      : galleryButtonOffset,
   },
 });

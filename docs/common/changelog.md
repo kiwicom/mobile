@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.43`
 
+### unreleased
+
+- Set statusbar background color on hotel detail screen, MOBILE-2920
+
 ### v28
 
 - Get rid of Equipment part in detail(stay 22), MOBILE-2963

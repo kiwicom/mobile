@@ -49,6 +49,9 @@ export { default as Duration } from './src/Duration';
 
 export { default as SliderLabels } from './src/SliderLabels';
 export { default as OfflineScreen } from './src/offlineScreen/OfflineScreen';
+export {
+  default as StatusbarBackground,
+} from './src/statusbarBackground/StatusbarBackground';
 
 /**
  * Layout components:
