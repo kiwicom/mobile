@@ -68,7 +68,7 @@ class SearchDatepickers extends React.Component<Props> {
         <DatePicker
           isVisible={this.props.showCheckoutDatepicker}
           labels={labels}
-          onDismiss={this.props.toggleShowCheckinDatepicker}
+          onDismiss={this.props.toggleShowCheckoutDatepicker}
           onConfirm={this.setCheckoutDate}
           date={new Date(this.props.checkout)}
           minDate={DateUtils().addDays(1)}
