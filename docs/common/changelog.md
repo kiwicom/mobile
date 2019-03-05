@@ -7,7 +7,7 @@ this will be evened out from v24
 
 ## Target version 9.0.0
 
-- Upgrade rnkiwimobile to version `0.0.43`
+- Upgrade rnkiwimobile to version `0.0.43` or `0.0.44`, both are compatible with this target-version. The latter contains a patch in the initialization of code-push to fix a crash when upating fails. 
 
 ### unreleased
 
