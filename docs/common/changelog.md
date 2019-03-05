@@ -9,9 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.43`
 
-### unreleased
+### v29
 
 - Set statusbar background color on hotel detail screen, MOBILE-2920
+- Fix bug where cancel button on checkout-datepicker did not work
 
 ### v28
 
