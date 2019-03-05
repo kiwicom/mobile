@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-// eslint-disable-next-line
 import { View, Text } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 
