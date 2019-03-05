@@ -8,6 +8,8 @@ import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
 import com.kiwi.rnkiwimobile.hotels.RNHotelsModule.jsEntryPoint
 import com.microsoft.codepush.react.CodePush
+import com.microsoft.codepush.react.CodePushUpdateManager
+import com.microsoft.codepush.react.SettingsManager
 import com.trinerdis.skypicker.nkiwimobile.BuildConfig
 
 data class RNKiwHostArgs(
@@ -22,11 +24,25 @@ class RNKiwiHost(private val args: RNKiwHostArgs) : ReactNativeHost(args.hostApp
 
   override fun getPackages(): MutableList<ReactPackage> {
     CodePush.overrideAppVersion(args.codePushVersion)
+    var codePush: CodePush
+
+    try {
+      codePush = CodePush(args.codePushKey, args.hostApplication, BuildConfig.DEBUG)
+    } catch (e: Exception) {
+      val context = args.hostApplication.applicationContext
+      val updateManager = CodePushUpdateManager(context.filesDir.absolutePath)
+      val settingsManager = SettingsManager(context)
+
+      updateManager.clearUpdates()
+      settingsManager.removeFailedUpdates()
+      settingsManager.removePendingUpdate()
+      codePush = CodePush(args.codePushKey, args.hostApplication, BuildConfig.DEBUG)
+    }
 
     val packages = mutableListOf(
         MainReactPackage(),
         RNKiwiBackButtonPackage(),
-        CodePush(args.codePushKey, args.hostApplication, BuildConfig.DEBUG)
+        codePush
     )
 
     packages.addAll(args.customPackages)
