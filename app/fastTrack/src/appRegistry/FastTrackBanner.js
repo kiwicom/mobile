@@ -7,12 +7,17 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { callApi } from '@kiwicom/mobile-networking';
 
-import FastTrackModal from '../components/FastTrackModal';
+// Components
 import Services from '../components/Services';
+import FastTrackModal from '../components/FastTrackModal';
+
+// Types
+import type { ThirdPartyAncillariesResponse } from '../types/ThirdPartyAncillariesResponse';
+import type { ThirdPartyAncillariesOrderResponse } from '../types/ThirdPartyAncillariesOrderResponse';
 
 type Props = {|
   +bookingId: number,
-  +requester: {}, // TODO
+  +requester: (url: string) => Promise<{}>,
 |};
 
 type State = {|
@@ -26,27 +31,32 @@ class FastTrackBanner extends React.Component<Props, State> {
     documentUrl: '',
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.fetchFastTrackDocument();
+  }
+
+  fetchFastTrackDocument = async () => {
     const { requester, bookingId } = this.props;
 
-    const thirdPartyAncillaries = await requester(
+    const thirdPartyAncillaries: ThirdPartyAncillariesResponse = await requester(
       `bookings/${bookingId}/ancillaries`,
     );
 
-    const fastTrackOrderId = thirdPartyAncillaries?.data?.fast_track;
+    const fastTrackOrderId = thirdPartyAncillaries.data?.fast_track[0]?.id;
 
-    if (!fastTrackOrderId) {
-      return;
-    }
+    if (!fastTrackOrderId) return;
 
-    const ancillaryOrder = await requester(
+    const ancillaryOrder: ThirdPartyAncillariesOrderResponse = await requester(
       `bookings/${bookingId}/third_party_ancillary_order/${fastTrackOrderId}`,
     );
 
+    const documentUrl =
+      ancillaryOrder.data?.attachments.fast_track_document.url;
+
     this.setState({
-      documentUrl: ancillaryOrder.fast_track_document,
+      documentUrl,
     });
-  }
+  };
 
   onOpenModal = () => {
     this.setState({

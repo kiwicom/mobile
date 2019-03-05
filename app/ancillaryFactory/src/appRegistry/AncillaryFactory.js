@@ -1,7 +1,11 @@
 // @flow strict
 
 import * as React from 'react';
+import CodePush from 'react-native-code-push';
 import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
+
+// Config
+import { DEPLOYMENT_KEY } from '../config/codepushConfig';
 
 // Enums
 import AncillaryServiceType from '../enums/AncillaryServiceType';
@@ -12,6 +16,11 @@ import requester from '../services/requester';
 // Components
 import NoAncillaryMessage from '../components/NoAncillaryMessage';
 
+// CodePush Options
+const codePushOptions = {
+  checkFrequency: CodePush.CheckFrequency.MANUAL,
+};
+
 type Props = {|
   +service: string,
   +token: string,
@@ -20,7 +29,11 @@ type Props = {|
 
 class AncillaryFactory extends React.Component<Props> {
   componentDidMount() {
-    // TODO: CodePush sync
+    CodePush.sync({
+      deploymentKey: DEPLOYMENT_KEY,
+      updateDialog: false,
+      installMode: CodePush.InstallMode.IMMEDIATE,
+    });
   }
 
   render() {
@@ -38,4 +51,4 @@ class AncillaryFactory extends React.Component<Props> {
   }
 }
 
-export default AncillaryFactory;
+export default CodePush(codePushOptions)(AncillaryFactory);

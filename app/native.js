@@ -6,7 +6,6 @@ import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
-import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
 
 // TODO: please check if it's still needed
 YellowBox.ignoreWarnings([
@@ -25,9 +24,6 @@ AppRegistry.registerComponent(
   'SingleHotel',
   () => SingleHotelStandalonePackage,
 );
-
-// Fast Track
-AppRegistry.registerComponent('AncillaryFactory', () => AncillaryFactory);
 
 // This file is only used for native integration and we use CodePush there
 CodePush.sync({

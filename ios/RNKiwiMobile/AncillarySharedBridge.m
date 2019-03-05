@@ -27,8 +27,9 @@
   return _sharedObject;
 }
 
-- (void)initBridge{
+- (void)initBridge:(NSString *)codePushVersion {
   if (!_bridge) {
+    [CodePush overrideAppVersion:codePushVersion];
     _bridge = [[RCTBridge alloc] initWithBundleURL:[RNKiwiConstants bundleURL] moduleProvider:nil launchOptions:nil];
   }  
 }
