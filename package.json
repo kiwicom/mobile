@@ -10,6 +10,7 @@
     "android": "yarn react-native run-android",
     "android-playground": "yarn react-native run-android --appFolder playground",
     "code-push": "node ./scripts/codePush.js",
+    "code-push-ancillaries": "yarn code-push --ancillaries",
     "deploy-translations": "yarn babel-node packages/localization/src/Deployer.js",
     "e2e-aphone": "yarn detox build -c android.emu.debug && yarn detox test -c android.emu.debug",
     "e2e-iphone": "yarn detox build  -c ios.sim.debug && yarn detox test -c ios.sim.debug",
@@ -103,6 +104,7 @@
     "test-runner": "jest"
   },
   "rnkiwimobile": {
-    "code-push-target-binary-version": "9.0.0"
+    "code-push-target-binary-version": "9.0.0",
+    "code-push-ancillaries-target-binary-version": "1.0.0"
   }
 }
