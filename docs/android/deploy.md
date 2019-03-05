@@ -7,7 +7,7 @@ it otherwise if the version has not changed in the [.build/package.json](../../.
 2. It will deploy `rnkiwimobile` with the same version number (and new JS code) or a new one if we bump the 
 [global version](../../.build/package.json#L3).
 
-If we want to tri``gger all this process manually, we can do so from the root of this repo:
+If we want to trigger all this process manually, we can do so from the root of this repo:
 
 ```bash
 RNKIWIMOBILE_DEPLOYMENT_TOKEN=TOKEN_HERE yarn release-android
