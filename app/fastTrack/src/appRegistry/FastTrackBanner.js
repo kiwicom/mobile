@@ -17,24 +17,35 @@ type Props = {|
 
 type State = {|
   +isModalVisible: boolean,
+  +documentUrl: string,
 |};
 
 class FastTrackBanner extends React.Component<Props, State> {
   state = {
     isModalVisible: false,
+    documentUrl: '',
   };
 
   async componentDidMount() {
     const { requester, bookingId } = this.props;
 
-    // TODO: Finish
-    // const thirdPartyAncillaries = await requester(
-    //   `bookings/${bookingId}/ancillaries`,
-    // );
+    const thirdPartyAncillaries = await requester(
+      `bookings/${bookingId}/ancillaries`,
+    );
 
-    // const { oid } = thirdPartyAncillaries.data;
+    const fastTrackOrderId = thirdPartyAncillaries?.data?.fast_track;
 
-    // const ancillaryOrder = await requester(`bookings/${bookingId}/third_party_ancillary_order/${oid}`);
+    if (!fastTrackOrderId) {
+      return;
+    }
+
+    const ancillaryOrder = await requester(
+      `bookings/${bookingId}/third_party_ancillary_order/${fastTrackOrderId}`,
+    );
+
+    this.setState({
+      documentUrl: ancillaryOrder.fast_track_document,
+    });
   }
 
   onOpenModal = () => {
@@ -68,8 +79,8 @@ class FastTrackBanner extends React.Component<Props, State> {
           title={<Translation passThrough="Show QR Code" />}
         />
         <FastTrackModal
+          documentUrl={this.state.documentUrl}
           isVisible={this.state.isModalVisible}
-          onOpenModal={this.onOpenModal}
           onCloseModal={this.onCloseModal}
         />
       </View>
