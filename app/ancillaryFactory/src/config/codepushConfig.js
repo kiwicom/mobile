@@ -2,11 +2,11 @@
 
 import { Platform } from 'react-native';
 
-// TODO: Fill in with CodePush keys
+// TODO: Fill in with Kiwi CodePush keys
 
 const deploymentKeys = {
   ios: {
-    staging: 's',
+    staging: '',
     production: '',
   },
   android: {

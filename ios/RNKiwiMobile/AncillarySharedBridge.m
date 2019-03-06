@@ -5,7 +5,7 @@
 //  Copyright © 2019 Kiwi. All rights reserved.
 //
 #import "AncillarySharedBridge.h"
-#import "RNKiwiConstants.h"
+#import "AncillaryConstants.h"
 #import <React/RCTBridge.h>
 #import <React/RCTRootView.h>
 #import <CodePush/CodePush.h>
@@ -27,10 +27,10 @@
   return _sharedObject;
 }
 
-- (void)initBridge:(NSString *)codePushVersion {
+- (void)initBridge {
   if (!_bridge) {
-    [CodePush overrideAppVersion:codePushVersion];
-    _bridge = [[RCTBridge alloc] initWithBundleURL:[RNKiwiConstants bundleURL] moduleProvider:nil launchOptions:nil];
+    [CodePush overrideAppVersion:[AncillaryConstants codePushAppVersion]];
+    _bridge = [[RCTBridge alloc] initWithBundleURL:[AncillaryConstants bundleURL] moduleProvider:nil launchOptions:nil];
   }  
 }
 

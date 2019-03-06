@@ -22,6 +22,7 @@ let entryFile = path.join(__dirname, '..', 'app/native.js');
 
 let targetProjectAndroid = 'Kiwicom/mobile-android';
 let targetProjectIOS = 'Kiwicom/mobile-ios';
+let bundleName = 'main.jsbundle';
 
 // If --ancillaries flag is passed override entry file, target binary version and target project
 if (isRunningForAncillaries) {
@@ -30,6 +31,7 @@ if (isRunningForAncillaries) {
     packageJson.rnkiwimobile['code-push-ancillaries-target-binary-version'];
   targetProjectAndroid = 'Kiwicom/mobile-android-ancillaries';
   targetProjectIOS = 'Kiwicom/mobile-ios-ancillaries';
+  bundleName = 'ancillaries.jsbundle';
 }
 
 function processCommand() {
@@ -37,11 +39,11 @@ function processCommand() {
   console.log(`Building for ${target}...`);
 
   exec(
-    `appcenter codepush release-react -a ${targetProjectAndroid} --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target}`,
+    `appcenter codepush release-react -a ${targetProjectAndroid} --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target} --bundle-name ${bundleName}`,
   );
 
   exec(
-    `appcenter codepush release-react -a ${targetProjectIOS} --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target}`,
+    `appcenter codepush release-react -a ${targetProjectIOS} --entry-file ${entryFile} --target-binary-version "${targetBinaryVersion}" -d ${target} --bundle-name ${bundleName}`,
   );
 }
 

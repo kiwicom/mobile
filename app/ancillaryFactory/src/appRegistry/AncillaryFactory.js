@@ -7,7 +7,7 @@ import CodePush from 'react-native-code-push';
 import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
 
 // Config
-import { DEPLOYMENT_KEY } from '../config/codepushConfig';
+import { DEPLOYMENT_KEY } from '../config/codePushConfig';
 
 // Enums
 import AncillaryServiceType from '../enums/AncillaryServiceType';
