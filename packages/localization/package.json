@@ -16,6 +16,7 @@
     "react": "^16",
     "react-fast-compare": "^2",
     "react-native": "^0.57",
-    "react-test-renderer": "^16"
+    "react-test-renderer": "^16",
+    "@kiwicom/fetch": "^"
   }
 }
