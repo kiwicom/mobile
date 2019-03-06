@@ -1,5 +1,7 @@
 // @flow strict
 
+/* eslint-disable import/order */
+
 import * as React from 'react';
 import CodePush from 'react-native-code-push';
 import { FastTrackBanner } from '@kiwicom/react-native-fast-track';

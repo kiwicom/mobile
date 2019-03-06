@@ -1,15 +1,16 @@
 // @flow strict
 
+/* eslint-disable import/order */
+
 import * as React from 'react';
 import { View } from 'react-native';
 import { Text, TextButton, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { callApi } from '@kiwicom/mobile-networking';
 
 // Components
-import Services from '../components/Services';
 import FastTrackModal from '../components/FastTrackModal';
+import Services from '../components/Services';
 
 // Types
 import type { ThirdPartyAncillariesResponse } from '../types/ThirdPartyAncillariesResponse';
