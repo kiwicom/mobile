@@ -32,7 +32,6 @@ const HotelsVocabulary = {
   'hotels_search.filter.hotel_facilities_filter.title': 'Amenities',
   'hotels_search.filter.hotel_facilities_filter.wifi': 'Wi-Fi',
   'hotels_search.filter.hotel_facilities_popup.save': 'Save',
-  'hotels_search.filter.hotel_facilities_popup.close': 'Close',
   'hotels_search.filter.hotel_facilities_popup.title': 'Hotel facilities',
   'hotels_search.filter.price_filter.price': 'Price',
   'hotels_search.filter.price_popup.save': 'Save',

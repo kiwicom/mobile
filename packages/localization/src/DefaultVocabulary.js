@@ -49,8 +49,6 @@ const SharedVocabulary = {
   'shared.button.close': 'Close',
   'shared.button.save': 'Save',
   'shared.button.cancel': 'Cancel',
-  'shared.button.delete': 'Delete',
-  'shared.pdf_viewer.load_failed': 'Failed to load pdf',
   'shared.web_view.no_internet_connection':
     'No internet connection, please check your internet settings or try it later.',
   'shared.hours_short': 'h',

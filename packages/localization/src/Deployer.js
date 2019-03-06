@@ -5,7 +5,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import fetch from 'node-fetch';
+import fetch from '@kiwicom/fetch';
 import FormData from 'form-data';
 import { execSync } from 'child_process';
 
