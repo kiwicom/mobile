@@ -11,16 +11,16 @@ import GestureController from './GestureController';
 type NavProps = {
   ...NavigationType,
   +isStandAlonePackage?: boolean,
-  +onBackClicked: () => void,
+  +onBackClicked: ?() => void,
   +goBack?: () => void,
   +lastNavigationMode?: string,
 };
 
-function withStandaloneScreen<Props>(
-  WrappedComponent: React.ComponentType<Props>,
+function withStandaloneScreen<Props: {}>(
+  WrappedComponent: React.AbstractComponent<Props>,
   moduleName: string,
-): React.ComponentType<Props> {
-  return class WithStandaloneScreen extends React.Component<*> {
+): React.AbstractComponent<$Diff<Props, NavProps>> {
+  return class WithStandaloneScreen extends React.Component<Props> {
     static navigationOptions = (props: NavProps) => {
       function closeNativeModal() {
         GestureController.closeModal(moduleName);
@@ -52,7 +52,8 @@ function withStandaloneScreen<Props>(
       if (WrappedComponent.navigationOptions) {
         wrappedOptions =
           typeof WrappedComponent.navigationOptions === 'function'
-            ? WrappedComponent.navigationOptions(props)
+            ? // $FlowExpectedError: Don't know how to type navigationOptions in HOC yet
+              WrappedComponent.navigationOptions(props)
             : WrappedComponent.navigationOptions || {};
       }
 
