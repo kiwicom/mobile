@@ -39,7 +39,11 @@ class AncillaryFactory extends React.Component<Props> {
     const ancillary: AncillaryDefinition =
       ancillariesDefinitions[service.toUpperCase()];
 
-    return ancillary ? ancillary.renderComponent : null;
+    if (ancillary && typeof ancillary.renderComponent === 'function') {
+      return ancillary.renderComponent;
+    }
+
+    return null;
   }
 
   render() {
