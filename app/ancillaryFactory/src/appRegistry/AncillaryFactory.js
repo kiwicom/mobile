@@ -4,7 +4,6 @@
 
 import * as React from 'react';
 import CodePush from 'react-native-code-push';
-import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
 
 // Config
 import { DEPLOYMENT_KEY, codePushOptions } from '../config/codePushConfig';
@@ -12,9 +11,6 @@ import {
   type AncillaryDefinition,
   ancillariesDefinitions,
 } from '../config/ancillariesDefinitions';
-
-// Enums
-import AncillaryServiceType from '../enums/AncillaryServiceType';
 
 // Services
 import createRequester from '../services/createRequester';
