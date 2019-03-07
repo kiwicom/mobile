@@ -77,17 +77,17 @@ class FastTrackBanner extends React.Component<Props, State> {
         <View style={style.header}>
           <Icon name="deals" color={defaultTokens.colorIconSecondary} />
           <Text style={style.title}>
-            <Translation passThrough="Milano Bergamo Stopover Bundle" />
+            <Translation id="fast_track.banner.title" />
           </Text>
         </View>
         <Text style={style.description}>
-          <Translation passThrough="VIP treatment is waiting for you at Milan Bergamo Airport with Fast Track and baggage assistance." />
+          <Translation id="fast_track.banner.description" />
         </Text>
         <Services />
         <TextButton
           type="primary"
           onPress={this.onOpenModal}
-          title={<Translation passThrough="Show QR Code" />}
+          title={<Translation id="fast_track.banner.show_qr_button" />}
         />
         <FastTrackModal
           documentUrl={this.state.documentUrl}

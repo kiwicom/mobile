@@ -7,8 +7,9 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Service = {
+  id: number,
   icon: string,
-  name: string,
+  translation: string,
 };
 
 type Props = {|
@@ -18,14 +19,14 @@ type Props = {|
 const Services = ({ services }: Props) => (
   <React.Fragment>
     <Text style={style.title}>
-      <Translation passThrough="Services included" />
+      <Translation id="fast_track.banner.services_label" />
     </Text>
     <View style={style.list}>
-      {services.map(service => (
-        <View style={style.item} key={service.name}>
+      {services.map((service: Service) => (
+        <View style={style.item} key={service.id}>
           <Icon name={service.icon} color={defaultTokens.colorIconSecondary} />
           <Text style={style.name}>
-            <Translation passThrough={service.name} />
+            <Translation id={service.translation} />
           </Text>
         </View>
       ))}
@@ -35,8 +36,16 @@ const Services = ({ services }: Props) => (
 
 Services.defaultProps = {
   services: [
-    { icon: 'walk', name: 'Fast track security route' },
-    { icon: 'baggage-checked', name: 'Baggage handling assistance' },
+    {
+      id: 1,
+      icon: 'walk',
+      translation: 'fast_track.banner.services_security_route',
+    },
+    {
+      id: 2,
+      icon: 'baggage-checked',
+      translation: 'fast_track.banner.services_handling_assistance',
+    },
   ],
 };
 

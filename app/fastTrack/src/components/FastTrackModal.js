@@ -28,7 +28,9 @@ const FastTrackModal = (props: Props) => (
         <TextButton
           onPress={props.onCloseModal}
           type="secondary"
-          title={<Translation passThrough="Close modal" />}
+          title={
+            <Translation id="fast_track.banner.modal.close_modal_button" />
+          }
         />
       </View>
     </View>
