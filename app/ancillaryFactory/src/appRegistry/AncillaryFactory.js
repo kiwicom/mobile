@@ -13,7 +13,7 @@ import { DEPLOYMENT_KEY, codePushOptions } from '../config/codePushConfig';
 import AncillaryServiceType from '../enums/AncillaryServiceType';
 
 // Services
-import requester from '../services/requester';
+import createRequester from '../services/createRequester';
 
 // Components
 import NoAncillaryMessage from '../components/NoAncillaryMessage';
@@ -36,7 +36,7 @@ class AncillaryFactory extends React.Component<Props> {
   render() {
     const ancillaryProps = {
       bookingId: this.props.bookingId,
-      requester: requester(this.props.token),
+      requester: createRequester(this.props.token),
     };
 
     switch (this.props.service) {

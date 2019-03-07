@@ -9,7 +9,7 @@ import requestConfig from '../config/requestConfig';
  *
  * @param {string} token JSON Web Token
  */
-const requester = (token: string) => {
+const createRequester = (token: string) => {
   return callApi({
     ...requestConfig,
     headers: {
@@ -18,4 +18,4 @@ const requester = (token: string) => {
   });
 };
 
-export default requester;
+export default createRequester;
