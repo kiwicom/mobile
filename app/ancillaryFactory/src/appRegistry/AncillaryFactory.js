@@ -1,21 +1,14 @@
 // @flow strict
 
-/* eslint-disable import/order */
-
 import * as React from 'react';
 import CodePush from 'react-native-code-push';
 
-// Config
 import { DEPLOYMENT_KEY, codePushOptions } from '../config/codePushConfig';
 import {
   type AncillaryDefinition,
   ancillariesDefinitions,
 } from '../config/ancillariesDefinitions';
-
-// Services
 import createRequester from '../services/createRequester';
-
-// Components
 import NoAncillaryMessage from '../components/NoAncillaryMessage';
 
 type Props = {|
