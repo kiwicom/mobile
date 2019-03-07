@@ -1,7 +1,8 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, Text } from 'react-native'; // eslint-disable-line no-restricted-imports
+import { View } from 'react-native';
+import { Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
 const NoAncillary = () => (
