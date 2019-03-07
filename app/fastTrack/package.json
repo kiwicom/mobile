@@ -10,7 +10,8 @@
     "@kiwicom/mobile-networking": "^0",
     "@kiwicom/mobile-orbit": "^0",
     "@kiwicom/mobile-relay": "^0",
-    "@kiwicom/mobile-shared": "^0"
+    "@kiwicom/mobile-shared": "^0",
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0"

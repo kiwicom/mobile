@@ -10,7 +10,11 @@ describe('FastTrackModal', () => {
     const onCloseModalFn = jest.fn();
 
     const component = renderer.create(
-      <FastTrackModal isVisible={true} onCloseModal={onCloseModalFn} />,
+      <FastTrackModal
+        isVisible={true}
+        onCloseModal={onCloseModalFn}
+        documentUrl={'https://www.kiwi.com'}
+      />,
     );
     expect(component).toMatchSnapshot();
   });

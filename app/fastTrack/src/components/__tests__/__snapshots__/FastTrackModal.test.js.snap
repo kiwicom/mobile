@@ -27,7 +27,7 @@ exports[`FastTrackModal Should render correctly 1`] = `
         scalesPageToFit={true}
         source={
           Object {
-            "uri": undefined,
+            "uri": "https://www.kiwi.com",
           }
         }
         style={
