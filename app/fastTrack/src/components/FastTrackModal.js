@@ -4,6 +4,7 @@ import * as React from 'react';
 import { View, WebView } from 'react-native';
 import { Modal, TextButton, StyleSheet, Device } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +documentUrl: string,
@@ -54,6 +55,6 @@ const styles = StyleSheet.create({
   },
   modal: {
     margin: 0,
-    backgroundColor: 'white',
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });
