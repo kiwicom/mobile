@@ -6,11 +6,11 @@ import { Text, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-type Service = {
-  id: number,
-  icon: string,
-  translation: string,
-};
+type Service = {|
+  +id: number,
+  +icon: string,
+  +translation: string,
+|};
 
 type Props = {|
   +services: Service[],
