@@ -16,8 +16,11 @@ const deploymentKeys = {
   },
 };
 
-// TODO: Figure out how to know which stage is
-const env = 'staging';
+let env = 'staging';
+
+if (typeof process.env.NODE_ENV !== 'undefined') {
+  env = process.env.NODE_ENV;
+}
 
 export const DEPLOYMENT_KEY = deploymentKeys[Platform.OS][env];
 
