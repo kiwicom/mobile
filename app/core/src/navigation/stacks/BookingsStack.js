@@ -8,7 +8,7 @@ import {
 import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
 
 const MOCK_PROPS = {
-  service: 'fast-track',
+  service: 'fast_track',
   bookingId: 123,
   token: 'x.y.z',
 };

@@ -8,6 +8,10 @@ import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
 
 // Config
 import { DEPLOYMENT_KEY, codePushOptions } from '../config/codePushConfig';
+import {
+  type AncillaryDefinition,
+  ancillariesDefinitions,
+} from '../config/ancillariesDefinitions';
 
 // Enums
 import AncillaryServiceType from '../enums/AncillaryServiceType';
@@ -33,18 +37,26 @@ class AncillaryFactory extends React.Component<Props> {
     });
   }
 
+  getRequestedAncillary() {
+    const { service } = this.props;
+
+    const ancillary: AncillaryDefinition =
+      ancillariesDefinitions[service.toUpperCase()];
+
+    return ancillary ? ancillary.renderComponent : null;
+  }
+
   render() {
+    const { token, bookingId } = this.props;
+
     const ancillaryProps = {
-      bookingId: this.props.bookingId,
-      requester: createRequester(this.props.token),
+      bookingId,
+      requester: createRequester(token),
     };
 
-    switch (this.props.service) {
-      case AncillaryServiceType.FAST_TRACK:
-        return <FastTrackBanner {...ancillaryProps} />;
-      default:
-        return <NoAncillaryMessage />;
-    }
+    const Component = this.getRequestedAncillary() || NoAncillaryMessage;
+
+    return <Component {...ancillaryProps} />;
   }
 }
 
