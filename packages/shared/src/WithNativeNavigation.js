@@ -12,15 +12,18 @@ type NavigationState = {|
 |};
 
 type InjectedProps = {|
-  onNavigationStateChange: () => void,
-  onBackClicked: () => void,
+  onNavigationStateChange: ?(
+    previousState: NavigationState,
+    currentState: NavigationState,
+  ) => void,
+  onBackClicked: ?() => void,
 |};
 
 function withNativeNavigation<Props: {}>(
-  WrappedComponent: React.ComponentType<Props>,
+  WrappedComponent: React.AbstractComponent<Props>,
   moduleName: string,
-): React.ComponentType<$Diff<Props, InjectedProps>> {
-  return class WithNativeNavigation extends React.Component<*> {
+): React.AbstractComponent<$Diff<Props, InjectedProps>> {
+  return class WithNativeNavigation extends React.Component<Props> {
     constructor(props) {
       super(props);
       // First time we open the app, it should be enabled

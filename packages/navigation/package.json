@@ -5,8 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-localization": "^0",
-    "@kiwicom/mobile-shared": "^0",
     "@kiwicom/mobile-orbit": "^0",
+    "@kiwicom/mobile-shared": "^0",
     "react-native-gesture-handler": "^1.0.15",
     "react-navigation": "^3.0.9",
     "react-navigation-props-mapper": "^0.1.2"
