@@ -3,6 +3,7 @@
 /* eslint-disable import/order */
 
 import * as React from 'react';
+import { AxiosResponse } from 'axios';
 import { View } from 'react-native';
 import { Text, TextButton, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -39,20 +40,19 @@ class FastTrackBanner extends React.Component<Props, State> {
   fetchFastTrackDocument = async () => {
     const { requester, bookingId } = this.props;
 
-    const thirdPartyAncillaries: ThirdPartyAncillariesResponse = await requester(
+    const thirdPartyAncillaries: AxiosResponse<ThirdPartyAncillariesResponse> = await requester(
       `bookings/${bookingId}/ancillaries`,
     );
 
-    const fastTrackOrderId = thirdPartyAncillaries.data?.fast_track[0]?.id;
+    const fastTrackOrderId = thirdPartyAncillaries.data.fast_track[0].id;
 
     if (!fastTrackOrderId) return;
 
-    const ancillaryOrder: ThirdPartyAncillariesOrderResponse = await requester(
+    const ancillaryOrder: AxiosResponse<ThirdPartyAncillariesOrderResponse> = await requester(
       `bookings/${bookingId}/third_party_ancillary_order/${fastTrackOrderId}`,
     );
 
-    const documentUrl =
-      ancillaryOrder.data?.attachments.fast_track_document.url;
+    const documentUrl = ancillaryOrder.data.attachments.fast_track_document.url;
 
     this.setState({
       documentUrl,
