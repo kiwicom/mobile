@@ -1,6 +1,7 @@
 # Application
 #
 .env
+untranslatedStrings.txt
 
 #XCode CODEPUSH_KEYS
 ios/RNNativePlayground/staging.xcconfig
