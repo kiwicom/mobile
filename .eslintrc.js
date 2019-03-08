@@ -29,6 +29,7 @@ module.exports = {
     "@kiwicom/eslint-config"
   ],
   rules: {
+    curly: ERROR,
     "react/no-did-update-set-state": ERROR,
     "no-console": [ERROR, { allow: ["warn", "error"] }],
     "no-duplicate-imports": ERROR,
