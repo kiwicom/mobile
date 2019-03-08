@@ -17,14 +17,6 @@ type Address {
   zip: String
 }
 
-"""AirHelp+ offer as a booking ancillary"""
-type AirHelpPlusOffer {
-  isPossible: Boolean
-
-  """Price per passenger"""
-  pricePerPerson: Price
-}
-
 type Airline {
   name: String
 
@@ -100,14 +92,12 @@ type AllAvailableStay22HotelEdge {
   cursor: String!
 }
 
-enum AllBookingsOnlyEnum {
-  FUTURE
-  PAST
-}
+type AllCustomerSupportNumbers {
+  """Premium customer support phone numbers"""
+  premiumCustomerSupportNumbers: [CustomerSupportNumber]
 
-enum AllDynamicPackagesProviderEnum {
-  LOGITRAVEL
-  BEDFINDER
+  """Standard customer support phone numbers"""
+  standardCustomerSupportNumbers: [CustomerSupportNumber]
 }
 
 """Information about hotel availability during selected time period."""
@@ -189,6 +179,90 @@ type AllowedBaggage {
   checked: [Baggage]
 }
 
+input Ancillaries3rdCarrier {
+  operational: Ancillaries3rdOperational
+}
+
+input Ancillaries3rdItinerary {
+  """Segment code"""
+  segment_code: String
+
+  """
+  Arrival time of the segment, its in timestamp format "1550042100"
+  """
+  arrival: Int
+
+  """Destination of a segment ex. "TXL", "MAD" etc."""
+  destinationCode: String
+
+  """
+  Departure time of the segment, its in timestamp format "1550042100"
+  """
+  departure: Int
+
+  """
+  Source of a segment "TXL", "MAD"
+  """
+  sourceCode: String
+
+  """Carrier of a particular segment"""
+  carrier: Ancillaries3rdCarrier
+  carrier_segment_code: String
+  vehicle: Ancillaries3rdVehicle
+}
+
+"""Ancillaries3rd offers for the booking"""
+type Ancillaries3rdOffers {
+  name: String
+  service: String
+  type: Int
+  data: Ancillaries3rdOffersData
+}
+
+"""A connection to a list of items."""
+type Ancillaries3rdOffersConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [Ancillaries3rdOffersEdge]
+}
+
+type Ancillaries3rdOffersData {
+  is_applicable: Boolean
+  price_info: Ancillaries3rdOffersPriceInfo
+}
+
+"""An edge in a connection."""
+type Ancillaries3rdOffersEdge {
+  """The item at the end of the edge"""
+  node: Ancillaries3rdOffers
+
+  """A cursor for use in pagination"""
+  cursor: String!
+}
+
+type Ancillaries3rdOffersPriceInfo {
+  base_price: Float
+  service_fee: Float
+  currency: String
+}
+
+input Ancillaries3rdOperational {
+  """Carrier segment code"""
+  code: String
+}
+
+input Ancillaries3rdServices {
+  """Name of the requested ancillary"""
+  service: AvailableServicesEnums
+}
+
+input Ancillaries3rdVehicle {
+  """Segment vehicle type"""
+  type: String
+}
+
 input AreaInput {
   """Top left coordinates of the area."""
   topLeft: CoordinatesInput!
@@ -227,6 +301,15 @@ input AvailableHotelSearchInput {
   checkout: Date!
   roomsConfiguration: [RoomsConfiguration!]!
   language: Language
+}
+
+enum AvailableServicesEnums {
+  airhelp_plus
+  blueribbon_bags
+  fast_track
+  paid_checkin
+  cover_more
+  axa
 }
 
 type Baggage {
@@ -403,15 +486,6 @@ type BookingConfirmedTimelineEvent implements TimelineEvent {
   timestamp: DateTime
 }
 
-"""A connection to a list of items."""
-type BookingConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [BookingEdge]
-}
-
 """Contact details related to the booking"""
 type BookingContactDetails {
   phone: String
@@ -427,7 +501,9 @@ type BookingCustomerSupport {
   """
   hasGuaranteeChat: Boolean
 
-  """Localised phone number of customer service."""
+  """
+  Localised phone number of customer service. Null if not available for that locale.
+  """
   phoneNumber: String
 }
 
@@ -441,15 +517,6 @@ enum BookingDestinationImageDimensions {
   _600x330
   _600x600
   _610x251
-}
-
-"""An edge in a connection."""
-type BookingEdge {
-  """The item at the end of the edge"""
-  node: Booking
-
-  """A cursor for use in pagination"""
-  cursor: String!
 }
 
 interface BookingInterface {
@@ -1099,8 +1166,31 @@ type CustomerSupportNumber {
   """Customer Support phone number"""
   number: String
 
+  """Country name from where the customer support information belongs"""
+  countryName: String
+
   """Languages supported by customer service and availability hours"""
   supportedLanguages: [SupportedLanguage]
+}
+
+interface DangerZone_Error {
+  message: String
+}
+
+interface DangerZone_HTTPError {
+  message: String
+  statusCode: Int
+}
+
+type DangerZone_HTTPErrorType implements DangerZone_Error & DangerZone_HTTPError {
+  message: String
+  statusCode: Int
+}
+
+union DangerZone_Locations = LocationConnection | DangerZone_HTTPErrorType
+
+type DangerZone_RootQuery {
+  allLocations(after: String, first: Int, before: String, last: Int, forceFail: Boolean): DangerZone_Locations
 }
 
 """
@@ -1259,6 +1349,9 @@ type DynamicPackageConnection {
 
   """A list of edges."""
   edges: [DynamicPackageEdge]
+
+  """Service that was used for fetching dynamic packages."""
+  provider: Provider
 }
 
 """An edge in a connection."""
@@ -1294,6 +1387,14 @@ input DynamicPackagesSimpleSearchInput {
 type EnterDetailsTimelineEvent implements TimelineEvent {
   """Time of appearance in the timeline."""
   timestamp: DateTime
+}
+
+"""Breakdown of extra charges"""
+type ExtraCharges {
+  type: String
+  name: String
+  price: Price
+  excluded: Boolean
 }
 
 type FAQArticle {
@@ -1366,24 +1467,6 @@ type FAQCategory {
 
   """List of FAQ articles"""
   FAQs: [FAQArticle]
-}
-
-"""A connection to a list of items."""
-type FAQCategoryConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [FAQCategoryEdge]
-}
-
-"""An edge in a connection."""
-type FAQCategoryEdge {
-  """The item at the end of the edge"""
-  node: FAQCategory
-
-  """A cursor for use in pagination"""
-  cursor: String!
 }
 
 enum FAQCommentType {
@@ -1652,6 +1735,9 @@ type HotelCity {
   name: String
   location: Coordinates
   numberOfHotels: Int
+
+  """Two letter country code of the city."""
+  countryCode: String
 }
 
 """A connection to a list of items."""
@@ -1787,6 +1873,12 @@ type HotelPhotoEdge {
   cursor: String!
 }
 
+"""Price with extra charges, included and excluded"""
+type HotelPrice {
+  price: Price
+  extraCharges: [ExtraCharges]
+}
+
 type HotelRating {
   """Star rating is always in the interval 1-5 inclusive."""
   stars: Int
@@ -1848,6 +1940,9 @@ type HotelRoomAvailability implements HotelRoomAvailabilityInterface {
   minimalPrice: Price
   incrementalPrice: [Price]
 
+  """Includes room price with extra charges like VAT and city tax"""
+  incrementalPriceWithExtraCharges: [HotelPrice]
+
   """Original block ID used to open Booking.com page."""
   originalId: String @deprecated(reason: "Use \"id\" field whenever possible.")
   room: HotelRoom
@@ -1859,6 +1954,7 @@ interface HotelRoomAvailabilityInterface {
   isBreakfastIncluded: Boolean
   minimalPrice: Price
   incrementalPrice: [Price]
+  incrementalPriceWithExtraCharges: [HotelPrice]
   room: HotelRoomInterface
 }
 
@@ -1967,7 +2063,13 @@ input HotelsSearchInput {
 
   """Opaque ID of the city."""
   cityId: String
+
+  """Must not be before today."""
   checkin: Date!
+
+  """
+  Max 365 days in the future, and max 30 days greater than checkin date.
+  """
   checkout: Date!
   language: Language
   roomsConfiguration: [RoomsConfiguration!]!
@@ -2213,6 +2315,7 @@ type Location {
   city: LocationArea
   subdivision: LocationArea
   country: LocationArea
+  continent: LocationArea
   countryFlagURL: String
   isActive: Boolean
   stationsCount: Int
@@ -2221,6 +2324,7 @@ type Location {
   autonomousTerritory: LocationArea
   rank: Int
   code: String
+  tags: [LocationTag]
 }
 
 type LocationArea {
@@ -2263,6 +2367,13 @@ input LocationsOptionsInput {
   locationType: LocationType
 }
 
+type LocationTag {
+  name: String
+
+  """If null, tag is valid for the whole year"""
+  monthsConstraint: MonthsConstraint
+}
+
 """Type of location"""
 enum LocationType {
   airport
@@ -2281,6 +2392,16 @@ type LoungeService {
 type LoungeServiceRelevantAirports {
   whitelabelURL: String
   location: Location
+}
+
+scalar MonthNumber
+
+type MonthsConstraint {
+  """Month number, range 1 to 12"""
+  from: MonthNumber
+
+  """Month number, range 1 to 12"""
+  to: MonthNumber
 }
 
 type NavigateToTerminalTimelineEvent implements TimelineEvent {
@@ -2395,6 +2516,12 @@ type Price {
   currency: String
 }
 
+"""Service for fetching dynamic packages."""
+enum Provider {
+  LOGITRAVEL
+  BEDFINDER
+}
+
 input RadiusInput {
   """Latitude of the center of the circle."""
   lat: Float!
@@ -2490,14 +2617,11 @@ type RootMutation {
 
 """Root Query"""
 type RootQuery {
-  """AirHelp+ offer that can be purchased with booking"""
-  airHelpPlusOffer: AirHelpPlusOffer
-
   """
   Search for all available hotels in one location. It's necessary to send
   checkin and checkout dates as well as rooms configuration to get availability info.
   """
-  allAvailableBookingComHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): AllHotelAvailabilityHotelConnection
+  allAvailableBookingComHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, first: Int = 50, after: String): AllHotelAvailabilityHotelConnection
 
   """
   Search for all available hotels in one location. It's necessary to send
@@ -2507,19 +2631,6 @@ type RootQuery {
 
   """All available hotels from provider stay22 for the given time"""
   allAvailableStay22Hotels(search: Stay22HotelsSearchInput!, after: String, first: Int = 50, before: String, last: Int): AllAvailableStay22HotelConnection
-
-  """Search for your flight bookings."""
-  allBookings(
-    """
-    Allows to filter only future bookings or only past bookings but not both.
-    You can skip this argument to fetch all bookings (future and past).
-    """
-    only: AllBookingsOnlyEnum
-    after: String
-    first: Int
-    before: String
-    last: Int
-  ): BookingConnection @deprecated(reason: "Use \"customerBookings\" query instead.")
 
   """Search for the urls of public documents"""
   allDocuments(after: String, first: Int, before: String, last: Int): DocumentInterfaceConnection
@@ -2534,24 +2645,11 @@ type RootQuery {
 
     """An ISO-4217 currency code."""
     currency: Currency
-    provider: AllDynamicPackagesProviderEnum = LOGITRAVEL
     after: String
     first: Int
     before: String
     last: Int
   ): DynamicPackageConnection
-
-  """
-  DEPRECATED - use "FAQSection" query instead.Retrieve list of FAQ categories.
-  """
-  allFAQCategories(
-    """Fetch only subsection of FAQ based on customer's booking status."""
-    section: FAQSection
-    after: String
-    first: Int
-    before: String
-    last: Int
-  ): FAQCategoryConnection
 
   """Search for Frequently Asked Questions"""
   allFAQs(
@@ -2602,6 +2700,11 @@ type RootQuery {
   ): LocationConnection
 
   """
+  Ancillaries are additional services that can be purchased with a Booking
+  """
+  ancillaries3rdOffers(ancillaries: [Ancillaries3rdServices]!, passengers: Int!, itinerary: [Ancillaries3rdItinerary]!, after: String, first: Int, before: String, last: Int): Ancillaries3rdOffersConnection
+
+  """
   Search for single available hotel by its ID. It's necessary to send checkin
   and checkout dates as well as rooms configuration to get availability info.
   """
@@ -2647,11 +2750,13 @@ type RootQuery {
     last: Int
   ): BookingInterfaceConnection
 
-  """Get customer support number for your locale"""
+  """
+  Get CS number by your locale in "Accept-Language" HTTP header. Null if not CS phone is unavailable.
+  """
   customerSupportNumber: CustomerSupportNumber
 
   """Get all customer support numbers"""
-  allCustomerSupportNumbers: [CustomerSupportNumber]
+  allCustomerSupportNumbers: AllCustomerSupportNumbers
 
   """Retrieve single FAQ article."""
   FAQArticle(
@@ -2737,6 +2842,22 @@ type RootQuery {
 
   """Single hotel by ID."""
   stay22HotelDetail(id: ID!, guests: Int!, checkin: Date!, checkout: Date!, currency: Currency = EUR): Stay22HotelDetail
+
+  """
+  Everything in this danger zone can be changed or completely removed without
+  any warning. Do not use in production - only for testing.
+  """
+  dangerZone: DangerZone_RootQuery! @deprecated(reason: "Only for testing.")
+
+  """Search for holidays locations by name"""
+  holidaysLocations(
+    """Search locations by name."""
+    search: String!
+    after: String
+    first: Int
+    before: String
+    last: Int
+  ): LocationConnection
 }
 
 type RouteStop {
@@ -2845,6 +2966,9 @@ type Stay22HotelRoomAvailability implements HotelRoomAvailabilityInterface {
   """Base price for the room in this configuration."""
   minimalPrice: Price
   incrementalPrice: [Price]
+
+  """Includes room price with extra charges like VAT and city tax"""
+  incrementalPriceWithExtraCharges: [HotelPrice]
   room: Stay22HotelRoom
 }
 

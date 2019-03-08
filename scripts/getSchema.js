@@ -1,13 +1,13 @@
 // @flow strict
 
-const fs = require('fs');
-const path = require('path');
-const fetch = require('node-fetch');
-const {
+import fs from 'fs';
+import path from 'path';
+import fetch from '@kiwicom/fetch';
+import {
   buildClientSchema,
   getIntrospectionQuery,
   printSchema,
-} = require('graphql/utilities');
+} from 'graphql/utilities';
 
 fetch('https://graphql.kiwi.com/', {
   method: 'POST',
