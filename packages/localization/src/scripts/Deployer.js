@@ -5,72 +5,29 @@
 
 import fs from 'fs';
 import path from 'path';
-import fetch from '@kiwicom/fetch';
 import FormData from 'form-data';
 import { execSync } from 'child_process';
 
-import { getVocabularies } from './DefaultVocabulary';
+import {
+  _log,
+  _fetch,
+  _paginate,
+  findKeys,
+  _removePrefix,
+  HttpMethod,
+  translations,
+} from './PhraseAppHelpers';
 
 // SEE: https://phraseapp.com/docs/api/v2/
 // yarn deploy-translations
 const PREFIX = 'mobile.';
 
-const { PHRASE_APP_PROJECT_ID, PHRASE_APP_TOKEN } = process.env; // should be added to ~/.bash_profile
-
-const projectId = PHRASE_APP_PROJECT_ID != null ? PHRASE_APP_PROJECT_ID : '###';
-const translations = getVocabularies(['HotelsVocabulary', 'SharedVocabulary']); // Add packages here, this is so we don't accidently deploy MMB translations yet
-
 const foldersToScan = ['app', 'packages']; // Add more folders to scan for unused translation keys
-
-const HttpMethod = {
-  GET: 'GET',
-  PATCH: 'PATCH',
-  POST: 'POST',
-  DELETE: 'DELETE',
-};
 
 const missingScreenshots: string[] = [];
 
-const _log = message => {
-  console.log(`>>> ${message}`); // eslint-disable-line no-console
-};
-
-const _removePrefix = (key: string) => {
-  return key.startsWith(PREFIX) ? key.substring(PREFIX.length) : key;
-};
-
 const _addPrefix = (key: string) => {
   return key.startsWith(PREFIX) ? key : `mobile.${key}`;
-};
-
-const _fetch = async (urlPath, parameters, method) => {
-  const result = await fetch(
-    `https://api.phraseapp.com/api/v2/projects/${projectId}${urlPath}`,
-    {
-      method,
-      headers: {
-        'User-Agent': 'React Native App',
-        Authorization: `token ${
-          PHRASE_APP_TOKEN != null ? PHRASE_APP_TOKEN : '###'
-        }`,
-      },
-      body: parameters,
-    },
-  );
-  if (method === HttpMethod.DELETE) {
-    return result;
-  }
-  return result.json();
-};
-
-const _paginate = async (paginateFn, callbackFn, page = 1) => {
-  const response = await paginateFn(page);
-  for (const key of response) {
-    await callbackFn(key);
-  }
-  if (response.length > 0) {
-    await _paginate(paginateFn, callbackFn, page + 1);
-  }
 };
 
 // keyName could be both keys fetched from server and keyName passed from vocabulary
@@ -80,12 +37,6 @@ const _getScreenshotPath = (keyName: string) => {
     '../screenshots',
     `${_removePrefix(keyName)}.jpg`,
   );
-};
-
-// fetching existing keys from phrase app
-const findKeys = page => {
-  _log(`Fetching keys on page ${page}`);
-  return _fetch(`/keys?page=${page}&per_page=100`, null, HttpMethod.GET);
 };
 
 const findKeyIdByName = (keyName: string) => page => {
