@@ -20,8 +20,13 @@ type Props = {|
 
 export default class HotelsSearch extends React.Component<Props> {
   componentDidMount() {
-    const { text: query } = this.props.query();
-    Logger.hotelsResultsDisplayed(query, JSON.stringify(this.props.variables));
+    // $FlowExpectedError: query can be a function see https://github.com/facebook/relay/blob/70bd16e2508b45215df44fa7d4665305e61ee28d/packages/relay-runtime/query/RelayModernGraphQLTag.js#L25
+    const query = this.props.query();
+
+    Logger.hotelsResultsDisplayed(
+      query?.params?.text,
+      JSON.stringify(this.props.variables, null, 2),
+    );
   }
 
   renderOfflineScreen = (retry: () => void) => {

@@ -1,8 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import Relay from '@kiwicom/relay';
-import { type GraphQLTaggedNode as _GraphQLTaggedNode } from 'react-relay'; // eslint-disable-line
+import {
+  commitMutation as _commitMutation,
+  type GraphQLTaggedNode as _GraphQLTaggedNode,
+} from '@kiwicom/relay';
 import { Alert } from '@kiwicom/mobile-localization';
 
 import PublicEnvironment from './src/PublicEnvironment';
@@ -29,12 +31,9 @@ export const commitMutation = (
     return null;
   }
   if (token) {
-    return Relay.commitMutation(
-      PrivateEnvironment.getEnvironment(token),
-      config,
-    );
+    return _commitMutation(PrivateEnvironment.getEnvironment(token), config);
   }
-  return Relay.commitMutation(PublicEnvironment.getEnvironment(), config);
+  return _commitMutation(PublicEnvironment.getEnvironment(), config);
 };
 
 // Flow types:

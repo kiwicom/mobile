@@ -44,6 +44,7 @@ const config = {
 
 describe('commitMutation', () => {
   it('does not call network if there is no connection', () => {
+    // $FlowExpectedError: Ok to pass string for testing
     commitMutation(config);
     expect(Relay.commitMutation).not.toHaveBeenCalled();
     expect(config.onCompleted).toHaveBeenCalledWith(
