@@ -10,10 +10,10 @@
  * You need to have GITHUB_TOKEN present in your environment with correct
  * write/read permissions (public_repo)
  */
-const fs = require('fs');
-const child_process = require('child_process');
-const fetch = require('node-fetch');
-const path = require('path');
+import fs from 'fs';
+import child_process from 'child_process';
+import fetch from '@kiwicom/fetch';
+import path from 'path';
 
 const version = child_process
   .execSync('git rev-parse --short HEAD')
