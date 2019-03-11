@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, Price } from '@kiwicom/mobile-shared';
+import { StyleSheet, Price } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { View } from 'react-native';
 
+import SummaryRow from './SummaryRow';
 import {
   withHotelDetailScreenContext,
   type HotelDetailScreenState,
@@ -25,23 +26,16 @@ function RoomSummary(props: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.summary}>
-          <Translation id="single_hotel.room_summary.summary" />
-        </Text>
-        <View style={styles.row}>
-          <Translation
-            id="single_hotel.book_now.description"
-            values={{
-              personCount: props.getPersonCount(),
-              numberOfRooms: props.numberOfRooms,
-            }}
-          />
-          <Price
-            amount={props.price.amount}
-            currency={props.price.currency}
-            style={styles.currency}
-          />
-        </View>
+        <SummaryRow
+          text={<Translation id="single_hotel.room_summary.total" />}
+          price={
+            <Price
+              amount={props.price.amount}
+              currency={props.price.currency}
+              style={styles.total}
+            />
+          }
+        />
       </View>
     </View>
   );
@@ -60,16 +54,7 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 12,
   },
-  summary: {
-    color: defaultTokens.colorTextSecondary,
-    fontSize: 12,
-    marginEnd: 4,
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  currency: {
+  total: {
     fontWeight: '800',
   },
 });

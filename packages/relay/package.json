@@ -16,6 +16,7 @@
     "mockdate": "^2",
     "react-native": "^0.57",
     "react-test-renderer": "^16",
-    "react": "^"
+    "react": "^",
+    "relay-runtime": "^"
   }
 }

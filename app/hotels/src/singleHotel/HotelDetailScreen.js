@@ -7,7 +7,7 @@ import {
   LayoutSingleColumn,
   Logger,
   StyleSheet,
-  Dimensions,
+  withDimensions,
   Device,
   type BarStyle,
   Color,
@@ -39,10 +39,19 @@ type Price = {|
   +currency: string,
 |};
 
-type PropsWithContext = {|
-  ...Props,
-  +width: number,
+type Props = {|
   +availableHotel: ?HotelType,
+  +roomsConfiguration: RoomsConfiguration,
+  +goBack: () => void,
+  +getGuestCount: () => number,
+  +paymentLink?: ?string,
+  +setPaymentLink: (?string) => void,
+  +apiProvider: ApiProvider,
+  +maxPersons: number,
+  +reset: () => void,
+  +setPrice: (price: $PropertyType<HotelDetailScreenState, 'price'>) => void,
+  +selected: $PropertyType<HotelDetailScreenState, 'selected'>,
+  +width: number,
 |};
 
 type State = {|
@@ -57,11 +66,8 @@ type NativeEvent = {|
   |},
 |};
 
-export class HotelDetailScreen extends React.Component<
-  PropsWithContext,
-  State,
-> {
-  constructor(props: PropsWithContext) {
+export class HotelDetailScreen extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -88,7 +94,7 @@ export class HotelDetailScreen extends React.Component<
     this.props.setPaymentLink(this.props.paymentLink);
   }
 
-  componentDidUpdate(prevProps: PropsWithContext) {
+  componentDidUpdate(prevProps: Props) {
     if (!isEqual(prevProps.selected, this.props.selected)) {
       const price = this.countBookingPrice();
       if (price != null) {
@@ -121,13 +127,14 @@ export class HotelDetailScreen extends React.Component<
         const [id, count] = selection;
 
         const room = availableRooms.find(room => room?.id === id);
-        return room?.incrementalPrice?.[count - 1]?.amount;
+        return room?.incrementalPriceWithExtraCharges?.[count - 1]?.price
+          ?.amount;
       })
       .reduce((a, b) => a + b, 0);
 
     const currency =
       availableRooms.find(room => room?.id === positiveSelections[0][0])
-        ?.incrementalPrice?.[0]?.currency ?? '';
+        ?.incrementalPriceWithExtraCharges?.[0]?.price?.currency ?? '';
 
     return {
       amount,
@@ -200,30 +207,6 @@ export class HotelDetailScreen extends React.Component<
   }
 }
 
-type Props = {|
-  +availableHotel: ?HotelType,
-  +roomsConfiguration: RoomsConfiguration,
-  +goBack: () => void,
-  +getGuestCount: () => number,
-  +paymentLink?: ?string,
-  +setPaymentLink: (?string) => void,
-  +apiProvider: ApiProvider,
-  +maxPersons: number,
-  +reset: () => void,
-  +setPrice: (price: $PropertyType<HotelDetailScreenState, 'price'>) => void,
-  +selected: $PropertyType<HotelDetailScreenState, 'selected'>,
-|};
-
-class HotelDetailScreenWithContext extends React.Component<Props> {
-  renderInner = ({ width }) => (
-    <HotelDetailScreen {...this.props} width={width} />
-  );
-
-  render() {
-    return <Dimensions.Consumer>{this.renderInner}</Dimensions.Consumer>;
-  }
-}
-
 const select = ({
   getGuestCount,
   setPaymentLink,
@@ -248,7 +231,7 @@ const selectHotelDetailScreen = ({
 export default createFragmentContainer(
   withHotelsContext(select)(
     withHotelDetailScreenContext(selectHotelDetailScreen)(
-      HotelDetailScreenWithContext,
+      withDimensions(HotelDetailScreen),
     ),
   ),
   {
@@ -261,9 +244,11 @@ export default createFragmentContainer(
         availableRooms {
           ...RoomList_data
           id
-          incrementalPrice {
-            amount
-            currency
+          incrementalPriceWithExtraCharges {
+            price {
+              amount
+              currency
+            }
           }
         }
       }
