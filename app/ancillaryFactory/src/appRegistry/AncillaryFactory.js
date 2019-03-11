@@ -3,7 +3,7 @@
 import * as React from 'react';
 import CodePush from 'react-native-code-push';
 
-import { DEPLOYMENT_KEY, codePushOptions } from '../config/codePushConfig';
+import { DEPLOYMENT_KEY, codePushOptions } from '../config/codepushConfig';
 import {
   type AncillaryDefinition,
   ancillariesDefinitions,
