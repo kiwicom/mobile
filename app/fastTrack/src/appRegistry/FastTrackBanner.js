@@ -13,11 +13,7 @@ import type { ThirdPartyAncillariesOrderResponse } from '../types/ThirdPartyAnci
 
 type Props = {|
   +bookingId: number,
-  +requester: (
-    url: string,
-  ) => Promise<
-    ThirdPartyAncillariesResponse | ThirdPartyAncillariesOrderResponse,
-  >,
+  +requester: (url: string) => Promise<Response>,
 |};
 
 type State = {|

@@ -9,7 +9,7 @@ let requesterMock;
 
 describe('FastTrackBanner', () => {
   beforeAll(() => {
-    requesterMock = async () => {
+    requesterMock = async (url: string) => {
       return new Promise(resolve => resolve({}));
     };
   });

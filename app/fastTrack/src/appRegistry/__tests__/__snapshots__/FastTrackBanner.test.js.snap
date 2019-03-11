@@ -62,7 +62,7 @@ exports[`FastTrackBanner Should render correctly 1`] = `
       }
     >
       <Text>
-        Milano Bergamo Stopover Bundle
+        Milan Bergamo Stopover Bundle
       </Text>
     </Text>
   </View>
