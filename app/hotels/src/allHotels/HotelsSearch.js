@@ -48,7 +48,7 @@ export default class HotelsSearch extends React.Component<Props> {
     return (
       <PublicApiRenderer
         renderOfflineScreen={this.renderOfflineScreen}
-        footer={<CloseModal onPress={this.props.onClose} />}
+        errorFooter={<CloseModal onPress={this.props.onClose} />}
         query={this.props.query}
         variables={this.props.variables}
         render={this.props.render}

@@ -33,6 +33,7 @@ import {
   type HotelsContextState,
   type ApiProvider,
 } from '../HotelsContext';
+import BookingSummary from './summary/BookingSummary';
 
 type Price = {|
   +amount: number,
@@ -202,6 +203,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
             <BrandLabel />
           </LayoutSingleColumn>
         </ScrollView>
+        <BookingSummary goBack={this.props.goBack} />
       </View>
     );
   }

@@ -12,7 +12,7 @@ export default function PublicApiRenderer(props: QueryRendererProps) {
       variables={props.variables}
       render={props.render}
       renderOfflineScreen={props.renderOfflineScreen}
-      footer={props.footer}
+      errorFooter={props.errorFooter}
     />
   );
 }

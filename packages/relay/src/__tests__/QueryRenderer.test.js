@@ -22,7 +22,7 @@ describe('QueryRenderer', () => {
     const QR = new QueryRenderer({});
     expect(
       QR.renderRelayContainer({
-        error: new TypeError('Network request failed'),
+        error: new Error('Network request failed'),
         retry,
       }),
     ).toMatchSnapshot();
@@ -32,15 +32,8 @@ describe('QueryRenderer', () => {
     // $FlowExpectedError: Don't need all props for this test
     const QR = new QueryRenderer({});
     expect(
-      QR.renderRelayContainer({ error: new Error('custom message'), retry }),
-    ).toMatchSnapshot();
-  });
-
-  it('returns loader if no props and no errors', () => {
-    // $FlowExpectedError: Don't need all props for this test
-    const QR = new QueryRenderer({});
-    expect(
       QR.renderRelayContainer({
+        error: new Error('custom message'),
         retry,
       }),
     ).toMatchSnapshot();
@@ -52,7 +45,7 @@ describe('QueryRenderer', () => {
     // $FlowExpectedError: Don't need all props for this test
     const QR = new QueryRenderer({ renderOfflineScreen });
     QR.renderRelayContainer({
-      error: new TypeError('Network request failed'),
+      error: new Error('Network request failed'),
       retry,
     });
     expect(renderOfflineScreen).toHaveBeenCalledWith(retry);
@@ -62,9 +55,10 @@ describe('QueryRenderer', () => {
     const Footer = () => 'test';
 
     // $FlowExpectedError: Don't need all props for this test
-    const QR = new QueryRenderer({ footer: <Footer /> });
+    const QR = new QueryRenderer({ errorFooter: <Footer /> });
     expect(
       QR.renderRelayContainer({
+        error: new Error('LOL'),
         retry,
       }),
     ).toMatchSnapshot();
