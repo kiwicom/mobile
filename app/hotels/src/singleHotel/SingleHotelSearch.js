@@ -7,7 +7,7 @@ import {
 } from '@kiwicom/mobile-relay';
 import { OfflineScreen, AdaptableLayout } from '@kiwicom/mobile-shared';
 
-import BookingSummary from './summary/BookingSummary';
+import CloseModal from '../components/CloseModal';
 
 type Props = {|
   +query: GraphQLTaggedNode,
@@ -34,7 +34,7 @@ export default class SingleHotelSearch extends React.Component<Props> {
   render() {
     return (
       <PublicApiRenderer
-        footer={<BookingSummary goBack={this.props.onClose} />}
+        errorFooter={<CloseModal onPress={this.props.onClose} />}
         renderOfflineScreen={this.renderOfflineScreen}
         query={this.props.query}
         variables={this.props.variables}

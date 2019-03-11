@@ -15,11 +15,10 @@ type Props = {|
   +accessToken?: string,
 |};
 
-type RendererResponse = {|
-  +error?: Object,
-  +props?: Object,
-  +retry: () => void,
-|};
+type RendererResponse = {
+  +error: Error,
+  +retry: ?() => void,
+};
 
 const noConnectionErrorMessages = [
   'Network request failed', // See: https://github.com/github/fetch/blob/fcc4e1b48cfb5a2b1625fcd6eac06d954b00ccb6/fetch.js#L438-L444
@@ -36,10 +35,10 @@ export default class QueryRenderer extends React.Component<Props> {
     return PrivateEnvironment.getEnvironment(accessToken);
   };
 
-  renderRelayContainer = ({ error, props, retry }: RendererResponse) => {
-    let Component = <FullPageLoading />; // no data or errors yet
+  renderRelayContainer = ({ error, retry }: RendererResponse) => {
+    let Component = null;
     if (error && noConnectionErrorMessages.includes(error.message)) {
-      if (this.props.renderOfflineScreen != null) {
+      if (this.props.renderOfflineScreen != null && retry != null) {
         return this.props.renderOfflineScreen(retry);
       }
       Component = (
@@ -62,30 +61,26 @@ export default class QueryRenderer extends React.Component<Props> {
       );
     }
 
-    if (props) {
-      // success (data != null, errors == null)
-      Component = this.props.render(props);
-    }
-
     return (
       <React.Fragment>
         {Component}
-        {this.props.footer}
+        {this.props.errorFooter}
       </React.Fragment>
     );
   };
 
+  onLoading = () => <FullPageLoading />;
+
   render() {
-    const queryRenderer = (
-      // $FlowExpectedError: Yes, I can pass variables to this component
+    return (
       <KiwicomQueryRenderer
         environment={this.createEnvironment()}
         query={this.props.query}
         variables={this.props.variables}
-        render={this.renderRelayContainer}
+        onLoading={this.onLoading}
+        onResponse={this.props.render}
+        onSystemError={this.renderRelayContainer}
       />
     );
-
-    return queryRenderer;
   }
 }

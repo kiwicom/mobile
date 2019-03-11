@@ -2,7 +2,13 @@
 
 exports[`QueryRenderer renders footerComponent if passed 1`] = `
 <React.Fragment>
-  <FullPageLoading />
+  <GeneralError
+    errorMessage={
+      <Translation
+        passThrough="LOL"
+      />
+    }
+  />
   <Footer />
 </React.Fragment>
 `;
@@ -28,11 +34,5 @@ exports[`QueryRenderer returns general error for other errors 1`] = `
       />
     }
   />
-</React.Fragment>
-`;
-
-exports[`QueryRenderer returns loader if no props and no errors 1`] = `
-<React.Fragment>
-  <FullPageLoading />
 </React.Fragment>
 `;

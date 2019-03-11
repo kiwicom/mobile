@@ -28,7 +28,7 @@ export default class SingleMapQueryRenderer extends React.Component<Props> {
         variables={this.props.variables}
         render={this.props.render}
         query={this.props.query}
-        footer={<CloseModal onPress={this.props.onClose} />}
+        errorFooter={<CloseModal onPress={this.props.onClose} />}
       />
     );
   }

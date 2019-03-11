@@ -15,11 +15,13 @@ import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
 import FilterStripe from '../filter/FilterStripe';
+import CloseModal from '../components/CloseModal';
 
 type PropsWithContext = {|
-  ...Props,
+  +relay: RelayPaginationProp,
   +data: ?HotelsPaginationContainerType,
   +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
+  +closeHotels: () => void,
 |};
 
 type State = {|
@@ -83,18 +85,15 @@ export class HotelsPaginationContainer extends React.Component<
           data={data}
           top={56}
         />
+        <CloseModal onPress={this.props.closeHotels} />
       </React.Fragment>
     );
   }
 }
 
-type Props = {|
-  +data: ?HotelsPaginationContainerType,
-  +relay: RelayPaginationProp,
-|};
-
-const select = ({ actions }: HotelsContextState) => ({
+const select = ({ actions, closeHotels }: HotelsContextState) => ({
   setCurrentSearchStats: actions.setCurrentSearchStats,
+  closeHotels,
 });
 
 const styles = StyleSheet.create({

@@ -4,6 +4,9 @@ import * as React from 'react';
 import {
   commitMutation as _commitMutation,
   type GraphQLTaggedNode as _GraphQLTaggedNode,
+  type RelayProp as _RelayProp,
+  type RefetchRelayProp,
+  type PaginationRelayProp,
 } from '@kiwicom/relay';
 import { Alert } from '@kiwicom/mobile-localization';
 
@@ -51,35 +54,11 @@ export type QueryRendererProps = {|
   +render: (props: Object) => React.Node,
   +renderOfflineScreen?: ?(retry: () => void) => React.Node,
   +variables?: Object,
-  +footer?: ?React.Node,
+  +errorFooter?: ?React.Node,
 |};
 
-export type RelayPaginationProp = {|
-  +hasMore: () => boolean,
-  +isLoading: () => boolean,
-  +loadMore: (pageSize: number, callback?: (error: ?Error) => void) => void,
-  +refetchConnection: (
-    totalCount: number,
-    callback?: (error: ?Error) => void,
-    refetchVariables: ?any,
-  ) => void,
-|};
-
-type RefetchOptions = {|
-  +force: true, // we always have to force the refetch since we use offline cache (TODO: wrap it)
-|};
-
-type Disposable = {|
-  +dispose: () => void,
-|};
-
-export type RelayRefetchProp = {|
-  +refetch: (
-    refetchVariables: Object | null | ((fragmentVariables: Object) => Object),
-    renderVariables: ?Object,
-    callback: ?(error: ?Error) => void,
-    options: RefetchOptions,
-  ) => Disposable,
-|};
+export type RelayPaginationProp = PaginationRelayProp;
+export type RelayProp = _RelayProp;
+export type RelayRefetchProp = RefetchRelayProp;
 
 export type GraphQLTaggedNode = _GraphQLTaggedNode;

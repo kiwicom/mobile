@@ -24,7 +24,7 @@ export function PrivateApiRenderer(props: PropsWithContext) {
       render={props.render}
       accessToken={props.accessToken}
       renderOfflineScreen={props.renderOfflineScreen}
-      footer={props.footer}
+      errorFooter={props.errorFooter}
     />
   );
 }
