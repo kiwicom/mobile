@@ -1,6 +1,6 @@
 // @flow
 
-import { callApi } from '@kiwicom/mobile-networking';
+import fetch from '@kiwicom/fetch';
 
 import requestConfig from '../config/requestConfig';
 
@@ -9,9 +9,9 @@ import requestConfig from '../config/requestConfig';
  *
  * @param {string} token JSON Web Token
  */
-const createRequester = (token: string) => {
-  return callApi({
-    ...requestConfig,
+const createRequester = (token: string) => async (endpoint: string) => {
+  const url = `${requestConfig.uri}/${endpoint}`;
+  return fetch(url, {
     headers: {
       'KW-User-Token': token,
     },

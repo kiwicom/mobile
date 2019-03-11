@@ -1016,10 +1016,23 @@
     "@kiwicom/js" "^0"
     cross-fetch "^3.0.0"
 
+"@kiwicom/fetch@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@kiwicom/fetch/-/fetch-2.2.1.tgz#8e19b872ff17789dff369a8741c247caa3f1b233"
+  integrity sha512-A9V7Ph8va6Sr+CPQswJR5jQcsM+T/n1wwRbnHJ1I+mWQb4R9NyQk2dOidCvJLDtmUEf6uuLzB4gYzGBD1QXa2g==
+  dependencies:
+    "@kiwicom/js" "^0.4.0"
+    cross-fetch "^3.0.0"
+
 "@kiwicom/js@^0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.2.0.tgz#dff952bd4acaedc3a6edfb11714f1c7aeb430a6e"
   integrity sha512-ft/DLW75P7Ft0YgCHivfz/awOEkrXFMiuG97ZlrLfcTdBmwawrmP4IeUzhAeDxihluBqyvGoa9OWJYVSVlLCWQ==
+
+"@kiwicom/js@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.4.0.tgz#d96f4efd84302b73fafdb5be3080651fd0ece40a"
+  integrity sha512-bGF8s50g70k//6VJ52g3zySygAc5Ok3FEQQ1LD+i2XaUz9uPy+azpj2Ig0fqfDnNK5UK1YNH9O8ea9Pf1LIF8Q==
 
 "@kiwicom/orbit-design-tokens@^0.2.5":
   version "0.2.5"
@@ -1438,14 +1451,6 @@ aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
-
-axios@^0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
-  integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
-  dependencies:
-    follow-redirects "^1.3.0"
-    is-buffer "^1.1.5"
 
 babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -2846,7 +2851,7 @@ debug@3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@^3.1.0, debug@^3.2.6:
+debug@^3.1.0:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   integrity sha512-mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==
@@ -3892,13 +3897,6 @@ flow-bin@^0.87.0:
   version "0.87.0"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.87.0.tgz#fab7f984d8cc767e93fa9eb01cf7d57ed744f19d"
   integrity sha512-mnvBXXZkUp4y6A96bR5BHa3q1ioIIN2L10w5osxJqagAakTXFYZwjl0t9cT3y2aCEf1wnK6n91xgYypQS/Dqbw==
-
-follow-redirects@^1.3.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
-  integrity sha512-m/pZQy4Gj287eNy94nivy5wchN3Kp+Q5WgUPNy5lJSZ3sgkVKSYV/ZChMAQVIgx1SqfZ2zBZtPA2YlXIWxxJOQ==
-  dependencies:
-    debug "^3.2.6"
 
 for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"

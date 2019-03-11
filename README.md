@@ -22,7 +22,6 @@ This is not an actual mobile application. This repository contains only React Na
   - [Error handling](#error-handling)
   - [Working with Playground](#working-with-playground)
   - [Working with GraphQL API](#working-with-graphql-api)
-  - [Working with REST API](#working-with-rest-api)
   - [Working with translations](#working-with-translations)
     - [PhraseApp](#phraseapp)
   - [Upgrading dependencies](#upgrading-dependencies)
@@ -177,7 +176,6 @@ This project uses [Yarn workspaces](https://yarnpkg.com/lang/en/docs/workspaces/
 │   ├── accessibility/          - @kiwicom/mobile-accessibility
 │   ├── config/                 - @kiwicom/mobile-config
 │   ├── navigation/             - @kiwicom/mobile-navigation
-│   ├── networking/             - @kiwicom/mobile-networking
 │   ├── relay/                  - @kiwicom/mobile-relay
 │   ├──  ...
 │   └── shared/                 - @kiwicom/mobile-shared
@@ -335,25 +333,6 @@ Additional useful tools:
 
 - https://kiwi-graphiql.now.sh/ (introspection and docs)
 - https://kiwi-graphql-voyager.now.sh/ (graphical visualisation)
-
-### Working with REST API
-When you need to consume REST API you should import `@kiwicom/mobile-networking` package. Networking packages uses [axios](https://github.com/axios/axios) under the hood for making requests.
-
-For example of usage check `app/ancillaryFactory`
-
-Usage:
-```javascript
-import { callApi } from '@kiwicom/mobile-networking';
-
-// Construct base requester object that has some base url and headers for authorization
-const requester = callApi({ hostname: 'https://api.someapi.com/v1', headers: {
-    'Authorization': 'Bearer ...'
-  }
-});
-
-// Usage
-const res = await requester('path', 'POST', formData);
-```
 
 ### Working with translations
 

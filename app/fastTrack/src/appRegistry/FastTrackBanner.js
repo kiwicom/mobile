@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import { AxiosResponse } from 'axios';
 import { View } from 'react-native';
 import { Text, TextButton, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
@@ -14,7 +13,11 @@ import type { ThirdPartyAncillariesOrderResponse } from '../types/ThirdPartyAnci
 
 type Props = {|
   +bookingId: number,
-  +requester: (url: string) => Promise<{}>,
+  +requester: (
+    url: string,
+  ) => Promise<
+    ThirdPartyAncillariesResponse | ThirdPartyAncillariesOrderResponse,
+  >,
 |};
 
 type State = {|
@@ -35,7 +38,7 @@ class FastTrackBanner extends React.Component<Props, State> {
   fetchFastTrackDocument = async () => {
     const { requester, bookingId } = this.props;
 
-    const thirdPartyAncillaries: AxiosResponse<ThirdPartyAncillariesResponse> = await requester(
+    const thirdPartyAncillaries: Response<ThirdPartyAncillariesResponse> = await requester(
       `bookings/${bookingId}/ancillaries`,
     );
 
@@ -43,7 +46,7 @@ class FastTrackBanner extends React.Component<Props, State> {
 
     if (!fastTrackOrderId) return;
 
-    const ancillaryOrder: AxiosResponse<ThirdPartyAncillariesOrderResponse> = await requester(
+    const ancillaryOrder: Response<ThirdPartyAncillariesOrderResponse> = await requester(
       `bookings/${bookingId}/third_party_ancillary_order/${fastTrackOrderId}`,
     );
 

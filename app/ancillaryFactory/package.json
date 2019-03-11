@@ -7,8 +7,8 @@
     "@kiwicom/mobile-config": "^0",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/react-native-fast-track": "^0",
-    "@kiwicom/mobile-networking": "^0",
     "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/fetch": "^2.2.1",
     "react-native-code-push": "^5.5.2"
   },
   "devDependencies": {
