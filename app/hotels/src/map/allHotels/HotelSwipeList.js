@@ -9,6 +9,7 @@ import {
   Device,
   StyleSheet,
   type OnLayout,
+  BottomSheetHandle,
 } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 
@@ -16,7 +17,6 @@ import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';
 import type { HotelSwipeList_data as HotelSwipeListData } from './__generated__/HotelSwipeList_data.graphql';
 import { openHeight, closedHeight } from '../bottomSheetDimensions';
-import BottomSheetHandle from '../BottomSheetHandle';
 import { HotelPreviewProvider } from '../hotelDetailPreview/HotelDetailPreviewContext';
 
 type Props = {|

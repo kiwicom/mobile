@@ -19,9 +19,11 @@ export type HotelDetailScreen_availableHotel = {|
   |},
   +availableRooms: ?$ReadOnlyArray<?{|
     +id: string,
-    +incrementalPrice: ?$ReadOnlyArray<?{|
-      +amount: ?number,
-      +currency: ?string,
+    +incrementalPriceWithExtraCharges: ?$ReadOnlyArray<?{|
+      +price: ?{|
+        +amount: ?number,
+        +currency: ?string,
+      |}
     |}>,
     +$fragmentRefs: RoomList_data$ref,
   |}>,
@@ -82,25 +84,36 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "LinkedField",
           "alias": null,
-          "name": "incrementalPrice",
+          "name": "incrementalPriceWithExtraCharges",
           "storageKey": null,
           "args": null,
-          "concreteType": "Price",
+          "concreteType": "HotelPrice",
           "plural": true,
           "selections": [
             {
-              "kind": "ScalarField",
+              "kind": "LinkedField",
               "alias": null,
-              "name": "amount",
+              "name": "price",
+              "storageKey": null,
               "args": null,
-              "storageKey": null
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "currency",
-              "args": null,
-              "storageKey": null
+              "concreteType": "Price",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "amount",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "currency",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
             }
           ]
         }
@@ -109,5 +122,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c1979a36ddf67b70844affda6900cfe0';
+(node/*: any*/).hash = '4d84e8b681f1f6dc0de7cef4f9a4793c';
 module.exports = node;

@@ -3,13 +3,17 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, type OnLayout, Device } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  type OnLayout,
+  Device,
+  BottomSheetHandle,
+} from '@kiwicom/mobile-shared';
 
 import BottomSheet from './BottomSheet';
 import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
 import Address from '../Address';
 import type { AdditionalInfo_data as AdditionalInfoData } from './__generated__/AdditionalInfo_data.graphql';
-import BottomSheetHandle from '../BottomSheetHandle';
 import { HotelPreviewProvider } from '../hotelDetailPreview/HotelDetailPreviewContext';
 
 type Props = {

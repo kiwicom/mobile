@@ -94,6 +94,7 @@ const HotelsVocabulary = {
   'single_hotel.hotel_review.rating.8': 'Very good',
   'single_hotel.hotel_review.rating.9': 'Perfect',
   'single_hotel.room_summary.summary': 'Summary',
+  'single_hotel.room_summary.total': 'Total',
   'single_hotel.increment_decrement.count': 'Count',
   'single_hotel.alert.cannot_book_more_rooms_than_guests':
     'You cannot book more rooms than there are guests.',

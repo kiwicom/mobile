@@ -7,28 +7,36 @@ const availableRooms = [
   {
     $fragmentRefs,
     id: 'aaa',
-    incrementalPrice: [
+    incrementalPriceWithExtraCharges: [
       {
-        amount: 500,
-        currency: 'EUR',
+        price: {
+          amount: 500,
+          currency: 'EUR',
+        },
       },
       {
-        amount: 1000,
-        currency: 'EUR',
+        price: {
+          amount: 1000,
+          currency: 'EUR',
+        },
       },
     ],
   },
   {
     $fragmentRefs,
     id: 'bbb',
-    incrementalPrice: [
+    incrementalPriceWithExtraCharges: [
       {
-        amount: 333,
-        currency: 'EUR',
+        price: {
+          amount: 333,
+          currency: 'EUR',
+        },
       },
       {
-        amount: 666,
-        currency: 'EUR',
+        price: {
+          amount: 666,
+          currency: 'EUR',
+        },
       },
     ],
   },
@@ -81,10 +89,12 @@ describe('countBookingPrice', () => {
       {
         $fragmentRefs,
         id: 'bbb',
-        incrementalPrice: [
+        incrementalPriceWithExtraCharges: [
           {
-            amount: 123,
-            currency: 'CZK',
+            price: {
+              amount: 123,
+              currency: 'CZK',
+            },
           },
         ],
       },

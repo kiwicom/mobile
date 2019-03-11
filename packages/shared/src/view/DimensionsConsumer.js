@@ -10,6 +10,37 @@ type Props = {|
   +children: DimensionType => React.Node,
 |};
 
+type InjectedProps = {|
+  +width?: number,
+  +height?: number,
+|};
+
+export function withDimensions<PassedProps: {}>(
+  Component: React.AbstractComponent<PassedProps>,
+): React.AbstractComponent<$Diff<PassedProps, InjectedProps>> {
+  return class WithDimensions extends React.Component<
+    $Diff<PassedProps, InjectedProps>,
+  > {
+    renderInner = ({ dimensions }) => {
+      let height;
+      let width;
+      if (dimensions == null) {
+        const window = Dimensions.get('window');
+        height = window.height;
+        width = window.width;
+      } else {
+        height = dimensions.height;
+        width = dimensions.width;
+      }
+      return <Component {...this.props} height={height} width={width} />;
+    };
+
+    render() {
+      return <Context.Consumer>{this.renderInner}</Context.Consumer>;
+    }
+  };
+}
+
 export default class DimensionsConsumer extends React.Component<Props> {
   render() {
     return (
