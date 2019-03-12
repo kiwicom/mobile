@@ -7,6 +7,7 @@ import {
   type RelayProp as _RelayProp,
   type RefetchRelayProp,
   type PaginationRelayProp,
+  commitLocalUpdate as _commitLocalUpdate,
 } from '@kiwicom/relay';
 import { Alert } from '@kiwicom/mobile-localization';
 
@@ -38,6 +39,8 @@ export const commitMutation = (
   }
   return _commitMutation(PublicEnvironment.getEnvironment(), config);
 };
+
+export const commitLocalUpdate = _commitLocalUpdate;
 
 // Flow types:
 

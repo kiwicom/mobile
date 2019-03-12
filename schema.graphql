@@ -1389,12 +1389,32 @@ type EnterDetailsTimelineEvent implements TimelineEvent {
   timestamp: DateTime
 }
 
+"""How extra charges are calculated"""
+enum ExtraChargeMode {
+  PER_STAY
+  PER_PERSON_PER_STAY
+  PER_NIGHT
+  PER_PERSON_PER_NIGHT
+  PERCENTAGE
+  VARIABLE
+}
+
 """Breakdown of extra charges"""
 type ExtraCharges {
   type: String
   name: String
-  price: Price
+  price: Price @deprecated(reason: "Use chargeAmount and chargePriceMode to calculate price instead, note that this value most likely will be wrong")
+  chargePriceMode: ExtraChargeMode
+
+  """Amount used to calculate charge, depending on chargePriceMode"""
+  chargeAmount: String
+
+  """
+  The amount of the charge, it could be 0, and would then need to be calculated
+  """
+  amount: String
   excluded: Boolean
+  currency: String
 }
 
 type FAQArticle {
@@ -2509,6 +2529,9 @@ type Pkpass {
   passenger: Passenger
 }
 
+"""
+Deprecated -> use Money instead, because you should not use floats for currencies
+"""
 type Price {
   amount: Float
 

@@ -15,7 +15,6 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { Translation } from '@kiwicom/mobile-localization';
-import isEqual from 'react-fast-compare';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Header from './header/Header';
@@ -25,20 +24,11 @@ import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from './AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel as HotelType } from './__generated__/HotelDetailScreen_availableHotel.graphql';
 import {
-  withHotelDetailScreenContext,
-  type HotelDetailScreenState,
-} from './HotelDetailScreenContext';
-import {
   withHotelsContext,
   type HotelsContextState,
   type ApiProvider,
 } from '../HotelsContext';
 import BookingSummary from './summary/BookingSummary';
-
-type Price = {|
-  +amount: number,
-  +currency: string,
-|};
 
 type Props = {|
   +availableHotel: ?HotelType,
@@ -48,10 +38,6 @@ type Props = {|
   +paymentLink?: ?string,
   +setPaymentLink: (?string) => void,
   +apiProvider: ApiProvider,
-  +maxPersons: number,
-  +reset: () => void,
-  +setPrice: (price: $PropertyType<HotelDetailScreenState, 'price'>) => void,
-  +selected: $PropertyType<HotelDetailScreenState, 'selected'>,
   +width: number,
 |};
 
@@ -94,54 +80,6 @@ export class HotelDetailScreen extends React.Component<Props, State> {
 
     this.props.setPaymentLink(this.props.paymentLink);
   }
-
-  componentDidUpdate(prevProps: Props) {
-    if (!isEqual(prevProps.selected, this.props.selected)) {
-      const price = this.countBookingPrice();
-      if (price != null) {
-        this.props.setPrice(price);
-      }
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.reset();
-  }
-
-  countBookingPrice = (): ?Price => {
-    const availableRooms = this.props.availableHotel?.availableRooms;
-    const selected = this.props.selected;
-
-    if (!availableRooms) {
-      return null;
-    }
-    const positiveSelections = Object.entries(selected).filter(
-      (selection: any) => selection[1] > 0,
-    );
-
-    if (positiveSelections.length === 0) {
-      return null;
-    }
-
-    const amount = positiveSelections
-      .map((selection: any) => {
-        const [id, count] = selection;
-
-        const room = availableRooms.find(room => room?.id === id);
-        return room?.incrementalPriceWithExtraCharges?.[count - 1]?.price
-          ?.amount;
-      })
-      .reduce((a, b) => a + b, 0);
-
-    const currency =
-      availableRooms.find(room => room?.id === positiveSelections[0][0])
-        ?.incrementalPriceWithExtraCharges?.[0]?.price?.currency ?? '';
-
-    return {
-      amount,
-      currency,
-    };
-  };
 
   isNarrowLayout = () => {
     return this.props.width < Device.DEVICE_THRESHOLD;
@@ -203,7 +141,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
             <BrandLabel />
           </LayoutSingleColumn>
         </ScrollView>
-        <BookingSummary goBack={this.props.goBack} />
+        <BookingSummary room={availableHotel} goBack={this.props.goBack} />
       </View>
     );
   }
@@ -219,39 +157,18 @@ const select = ({
   apiProvider,
 });
 
-const selectHotelDetailScreen = ({
-  maxPersons,
-  actions: { reset, setPrice },
-  selected,
-}: HotelDetailScreenState) => ({
-  maxPersons,
-  reset,
-  setPrice,
-  selected,
-});
-
 export default createFragmentContainer(
-  withHotelsContext(select)(
-    withHotelDetailScreenContext(selectHotelDetailScreen)(
-      withDimensions(HotelDetailScreen),
-    ),
-  ),
+  withHotelsContext(select)(withDimensions(HotelDetailScreen)),
   {
     availableHotel: graphql`
       fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
+        ...BookingSummary_room
         hotel {
           ...Header_hotel
           ...HotelInformation_hotel
         }
         availableRooms {
           ...RoomList_data
-          id
-          incrementalPriceWithExtraCharges {
-            price {
-              amount
-              currency
-            }
-          }
         }
       }
     `,

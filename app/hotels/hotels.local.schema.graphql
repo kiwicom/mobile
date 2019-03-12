@@ -1,0 +1,11 @@
+extend interface HotelRoomAvailabilityInterface {
+  selectedCount: Int
+}
+
+extend type HotelRoomAvailability {
+  selectedCount: Int
+}
+
+extend type Stay22HotelRoomAvailability {
+  selectedCount: Int
+}

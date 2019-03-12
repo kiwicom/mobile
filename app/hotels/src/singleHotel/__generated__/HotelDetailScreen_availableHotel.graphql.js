@@ -8,6 +8,7 @@
 
 /*::
 import type { ReaderFragment } from 'relay-runtime';
+type BookingSummary_room$ref = any;
 type Header_hotel$ref = any;
 type HotelInformation_hotel$ref = any;
 type RoomList_data$ref = any;
@@ -18,15 +19,9 @@ export type HotelDetailScreen_availableHotel = {|
     +$fragmentRefs: Header_hotel$ref & HotelInformation_hotel$ref
   |},
   +availableRooms: ?$ReadOnlyArray<?{|
-    +id: string,
-    +incrementalPriceWithExtraCharges: ?$ReadOnlyArray<?{|
-      +price: ?{|
-        +amount: ?number,
-        +currency: ?string,
-      |}
-    |}>,
-    +$fragmentRefs: RoomList_data$ref,
+    +$fragmentRefs: RoomList_data$ref
   |}>,
+  +$fragmentRefs: BookingSummary_room$ref,
   +$refType: HotelDetailScreen_availableHotel$ref,
 |};
 */
@@ -39,6 +34,11 @@ const node/*: ReaderFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
+    {
+      "kind": "FragmentSpread",
+      "name": "BookingSummary_room",
+      "args": null
+    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -73,54 +73,11 @@ const node/*: ReaderFragment*/ = {
           "kind": "FragmentSpread",
           "name": "RoomList_data",
           "args": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "id",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "LinkedField",
-          "alias": null,
-          "name": "incrementalPriceWithExtraCharges",
-          "storageKey": null,
-          "args": null,
-          "concreteType": "HotelPrice",
-          "plural": true,
-          "selections": [
-            {
-              "kind": "LinkedField",
-              "alias": null,
-              "name": "price",
-              "storageKey": null,
-              "args": null,
-              "concreteType": "Price",
-              "plural": false,
-              "selections": [
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "amount",
-                  "args": null,
-                  "storageKey": null
-                },
-                {
-                  "kind": "ScalarField",
-                  "alias": null,
-                  "name": "currency",
-                  "args": null,
-                  "storageKey": null
-                }
-              ]
-            }
-          ]
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '4d84e8b681f1f6dc0de7cef4f9a4793c';
+(node/*: any*/).hash = '6b8834bbae01ee643ee3a3057b17e237';
 module.exports = node;

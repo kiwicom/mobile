@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fa2f4c90100e2c7eff9e2a058d15bbc6
+ * @relayHash d5f332a90d19400f991d526dfec85538
  */
 
 /* eslint-disable */
@@ -61,6 +61,7 @@ query BookingComSingleHotelQuery(
 }
 
 fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
+  ...BookingSummary_room
   hotel {
     __typename
     ...Header_hotel
@@ -71,13 +72,11 @@ fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
     __typename
     ...RoomList_data
     id
-    incrementalPriceWithExtraCharges {
-      price {
-        amount
-        currency
-      }
-    }
   }
+}
+
+fragment BookingSummary_room on HotelAvailabilityInterface {
+  ...RoomSummary_room
 }
 
 fragment Header_hotel on HotelInterface {
@@ -187,6 +186,36 @@ fragment Amenities_data on HotelInterface {
     name
   }
 }
+
+fragment RoomSummary_room on HotelAvailabilityInterface {
+  ...SummaryButtons_rooms
+  availableRooms {
+    __typename
+    incrementalPriceWithExtraCharges {
+      price {
+        amount
+        currency
+      }
+    }
+    room {
+      __typename
+      maxPersons
+      id
+    }
+    id
+  }
+}
+
+fragment SummaryButtons_rooms on HotelAvailabilityInterface {
+  ...BookNow_rooms
+}
+
+fragment BookNow_rooms on HotelAvailabilityInterface {
+  availableRooms {
+    __typename
+    id
+  }
+}
 */
 
 const node/*: ConcreteRequest*/ = (function(){
@@ -228,40 +257,19 @@ v2 = {
 v3 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "name",
+  "name": "id",
   "args": null,
   "storageKey": null
 },
 v4 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "highResUrl",
-  "args": null,
-  "storageKey": null
-},
-v5 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "id",
-  "args": null,
-  "storageKey": null
-},
-v6 = {
-  "kind": "ScalarField",
-  "alias": null,
-  "name": "lowResUrl",
-  "args": null,
-  "storageKey": null
-},
-v7 = {
-  "kind": "ScalarField",
-  "alias": null,
   "name": "amount",
   "args": null,
   "storageKey": null
 },
-v8 = [
-  (v7/*: any*/),
+v5 = [
+  (v4/*: any*/),
   {
     "kind": "ScalarField",
     "alias": null,
@@ -269,7 +277,28 @@ v8 = [
     "args": null,
     "storageKey": null
   }
-];
+],
+v6 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "highResUrl",
+  "args": null,
+  "storageKey": null
+},
+v7 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "lowResUrl",
+  "args": null,
+  "storageKey": null
+},
+v8 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "name",
+  "args": null,
+  "storageKey": null
+};
 return {
   "kind": "Request",
   "fragment": {
@@ -314,6 +343,145 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "availableRooms",
+            "storageKey": null,
+            "args": null,
+            "concreteType": null,
+            "plural": true,
+            "selections": [
+              (v2/*: any*/),
+              (v3/*: any*/),
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "incrementalPriceWithExtraCharges",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "HotelPrice",
+                "plural": true,
+                "selections": [
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "price",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "Price",
+                    "plural": false,
+                    "selections": (v5/*: any*/)
+                  }
+                ]
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "room",
+                "storageKey": null,
+                "args": null,
+                "concreteType": null,
+                "plural": false,
+                "selections": [
+                  (v2/*: any*/),
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "maxPersons",
+                    "args": null,
+                    "storageKey": null
+                  },
+                  (v3/*: any*/),
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "description",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "HotelRoomDescription",
+                    "plural": false,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "title",
+                        "args": null,
+                        "storageKey": null
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "roomPhotos",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "HotelPhoto",
+                    "plural": true,
+                    "selections": [
+                      (v6/*: any*/),
+                      (v7/*: any*/),
+                      (v3/*: any*/)
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
+                    "name": "bedding",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "HotelRoomBedding",
+                    "plural": true,
+                    "selections": [
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "type",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      (v4/*: any*/)
+                    ]
+                  }
+                ]
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "isBreakfastIncluded",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "isRefundable",
+                "args": null,
+                "storageKey": null
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "minimalPrice",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Price",
+                "plural": false,
+                "selections": (v5/*: any*/)
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "incrementalPrice",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Price",
+                "plural": true,
+                "selections": (v5/*: any*/)
+              }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
             "name": "hotel",
             "storageKey": null,
             "args": null,
@@ -321,7 +489,7 @@ return {
             "plural": false,
             "selections": [
               (v2/*: any*/),
-              (v3/*: any*/),
+              (v8/*: any*/),
               {
                 "kind": "LinkedField",
                 "alias": null,
@@ -331,8 +499,8 @@ return {
                 "concreteType": "HotelPhoto",
                 "plural": false,
                 "selections": [
-                  (v4/*: any*/),
-                  (v5/*: any*/)
+                  (v6/*: any*/),
+                  (v3/*: any*/)
                 ]
               },
               {
@@ -380,9 +548,9 @@ return {
                         "concreteType": "HotelPhoto",
                         "plural": false,
                         "selections": [
-                          (v5/*: any*/),
-                          (v6/*: any*/),
-                          (v4/*: any*/)
+                          (v3/*: any*/),
+                          (v7/*: any*/),
+                          (v6/*: any*/)
                         ]
                       }
                     ]
@@ -455,8 +623,8 @@ return {
                 "concreteType": "HotelAmenity",
                 "plural": true,
                 "selections": [
-                  (v5/*: any*/),
-                  (v3/*: any*/)
+                  (v3/*: any*/),
+                  (v8/*: any*/)
                 ]
               },
               {
@@ -484,149 +652,10 @@ return {
                   }
                 ]
               },
-              (v5/*: any*/)
+              (v3/*: any*/)
             ]
           },
-          {
-            "kind": "LinkedField",
-            "alias": null,
-            "name": "availableRooms",
-            "storageKey": null,
-            "args": null,
-            "concreteType": null,
-            "plural": true,
-            "selections": [
-              (v2/*: any*/),
-              (v5/*: any*/),
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "isBreakfastIncluded",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "ScalarField",
-                "alias": null,
-                "name": "isRefundable",
-                "args": null,
-                "storageKey": null
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "minimalPrice",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Price",
-                "plural": false,
-                "selections": (v8/*: any*/)
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "incrementalPrice",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "Price",
-                "plural": true,
-                "selections": (v8/*: any*/)
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "room",
-                "storageKey": null,
-                "args": null,
-                "concreteType": null,
-                "plural": false,
-                "selections": [
-                  (v2/*: any*/),
-                  (v5/*: any*/),
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "description",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "HotelRoomDescription",
-                    "plural": false,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "title",
-                        "args": null,
-                        "storageKey": null
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "roomPhotos",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "HotelPhoto",
-                    "plural": true,
-                    "selections": [
-                      (v4/*: any*/),
-                      (v6/*: any*/),
-                      (v5/*: any*/)
-                    ]
-                  },
-                  {
-                    "kind": "ScalarField",
-                    "alias": null,
-                    "name": "maxPersons",
-                    "args": null,
-                    "storageKey": null
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "bedding",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "HotelRoomBedding",
-                    "plural": true,
-                    "selections": [
-                      {
-                        "kind": "ScalarField",
-                        "alias": null,
-                        "name": "type",
-                        "args": null,
-                        "storageKey": null
-                      },
-                      (v7/*: any*/)
-                    ]
-                  }
-                ]
-              },
-              {
-                "kind": "LinkedField",
-                "alias": null,
-                "name": "incrementalPriceWithExtraCharges",
-                "storageKey": null,
-                "args": null,
-                "concreteType": "HotelPrice",
-                "plural": true,
-                "selections": [
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "price",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "Price",
-                    "plural": false,
-                    "selections": (v8/*: any*/)
-                  }
-                ]
-              }
-            ]
-          },
-          (v5/*: any*/)
+          (v3/*: any*/)
         ]
       }
     ]
@@ -635,7 +664,7 @@ return {
     "operationKind": "query",
     "name": "BookingComSingleHotelQuery",
     "id": null,
-    "text": "query BookingComSingleHotelQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...Header_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    __typename\n    ...RoomList_data\n    id\n    incrementalPriceWithExtraCharges {\n      price {\n        amount\n        currency\n      }\n    }\n  }\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview_data\n}\n\nfragment RoomList_data on HotelRoomAvailabilityInterface {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n  room {\n    __typename\n    id\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n    maxPersons\n    ...BeddingInfo_room\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomInterface {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoomInterface {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities_data\n}\n\nfragment HotelReview_data on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Amenities_data on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n",
+    "text": "query BookingComSingleHotelQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  ...BookingSummary_room\n  hotel {\n    __typename\n    ...Header_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  availableRooms {\n    __typename\n    ...RoomList_data\n    id\n  }\n}\n\nfragment BookingSummary_room on HotelAvailabilityInterface {\n  ...RoomSummary_room\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview_data\n}\n\nfragment RoomList_data on HotelRoomAvailabilityInterface {\n  id\n  ...RoomRow_availableRoom\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalPrice {\n    amount\n    currency\n  }\n  incrementalPrice {\n    amount\n    currency\n  }\n  room {\n    __typename\n    id\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n    maxPersons\n    ...BeddingInfo_room\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomInterface {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoomInterface {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities_data\n}\n\nfragment HotelReview_data on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Amenities_data on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n\nfragment RoomSummary_room on HotelAvailabilityInterface {\n  ...SummaryButtons_rooms\n  availableRooms {\n    __typename\n    incrementalPriceWithExtraCharges {\n      price {\n        amount\n        currency\n      }\n    }\n    room {\n      __typename\n      maxPersons\n      id\n    }\n    id\n  }\n}\n\nfragment SummaryButtons_rooms on HotelAvailabilityInterface {\n  ...BookNow_rooms\n}\n\nfragment BookNow_rooms on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

@@ -21,7 +21,10 @@ class RoomList extends React.Component<Props> {
 
   render() {
     const data = this.props.data ?? [];
-
+    const numberOfRooms = data.reduce((acc, curr) => {
+      const selectedCount = curr?.selectedCount ?? 0;
+      return acc + selectedCount;
+    }, 0);
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
@@ -41,6 +44,7 @@ class RoomList extends React.Component<Props> {
             <RoomRow
               availableRoom={availableRoom}
               testID={index === data.length - 1 ? 'lastAvailableRoom' : ''}
+              numberOfRooms={numberOfRooms}
             />
           </React.Fragment>
         ))}
@@ -68,6 +72,7 @@ export default createFragmentContainer(RoomList, {
       @relay(plural: true) {
       id
       ...RoomRow_availableRoom
+      selectedCount
     }
   `,
 });

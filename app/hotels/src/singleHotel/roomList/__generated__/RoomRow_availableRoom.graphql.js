@@ -15,6 +15,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomRow_availableRoom$ref: FragmentReference;
 export type RoomRow_availableRoom = {|
   +id: string,
+  +selectedCount: ?number,
   +minimalPrice: ?{|
     +amount: ?number,
     +currency: ?string,
@@ -74,6 +75,13 @@ return {
   "argumentDefinitions": [],
   "selections": [
     (v0/*: any*/),
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "selectedCount",
+      "args": null,
+      "storageKey": null
+    },
     {
       "kind": "FragmentSpread",
       "name": "RoomBadges_availableRoom",
@@ -176,5 +184,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'fbd7c495ebab8dc3c39eae6386da62a1';
+(node/*: any*/).hash = 'fd18aa6ea5aee454831f75b384edfb64';
 module.exports = node;

@@ -13,42 +13,43 @@ import {
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
 import { DeviceInfo, Translation, Alert } from '@kiwicom/mobile-localization';
+import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
-import convertRooms from './convertRooms';
+import type { BookNow_rooms as RoomsType } from './__generated__/BookNow_rooms.graphql';
 import {
   withHotelsContext,
   type HotelsContextState,
 } from '../../HotelsContext';
-import {
-  withHotelDetailScreenContext,
-  type HotelDetailScreenState,
-} from '../HotelDetailScreenContext';
 
 type Props = {
-  +selected: {
-    [string]: number,
-  },
   +navigation: NavigationType,
   +currency: string,
   +hotelId: ?string,
   +getGuestCount: () => number,
+  +amount: number,
+  +rooms: ?RoomsType,
   +maxPersons: number,
-  +price: {|
-    +amount: number,
-    +currency: string,
-  |},
 };
 
 export class BookNow extends React.Component<Props> {
   handleGoToPayment = () => {
     const hotelId = this.props.hotelId;
     if (hotelId != null) {
-      const rooms = convertRooms(this.props.selected);
+      const availableRooms = this.props.rooms?.availableRooms ?? [];
+      const rooms = availableRooms
+        .filter(room => room?.selectedCount)
+        .map(room => ({
+          id: room?.id,
+          count: room?.selectedCount,
+        }));
       Logger.hotelsBookNowPressed({
         hotelID: hotelId,
         rooms: rooms.reduce((prev, curr) => prev + curr.count, 0),
         guests: this.props.getGuestCount(),
-        price: this.props.price,
+        price: {
+          amount: this.props.amount,
+          currency: this.props.currency,
+        },
       });
       this.props.navigation.navigate('Payment', {
         hotelId,
@@ -104,18 +105,19 @@ const select = ({ currency, hotelId, getGuestCount }: HotelsContextState) => ({
   hotelId,
   getGuestCount,
 });
-const selectHotelDetailScreen = ({
-  selected,
-  maxPersons,
-  price,
-}: HotelDetailScreenState) => ({
-  selected,
-  maxPersons,
-  price,
-});
 
-export default withHotelDetailScreenContext(selectHotelDetailScreen)(
+export default createFragmentContainer(
   withHotelsContext(select)(withNavigation(BookNow)),
+  {
+    rooms: graphql`
+      fragment BookNow_rooms on HotelAvailabilityInterface {
+        availableRooms {
+          id
+          selectedCount
+        }
+      }
+    `,
+  },
 );
 
 const styles = StyleSheet.create({
