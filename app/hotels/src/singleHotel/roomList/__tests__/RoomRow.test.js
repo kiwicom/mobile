@@ -6,6 +6,7 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 import { RoomRow } from '../RoomRow';
 
 const renderer = new ShallowRenderer();
+const environment: any = null;
 const navigation = {
   navigate: jest.fn(),
   setParams: jest.fn(),
@@ -20,9 +21,6 @@ const navigation = {
 };
 it('renders without crashing', () => {
   const props = {
-    select() {},
-    deselect() {},
-    selected: {},
     // $FlowRelayIssue: https://github.com/facebook/relay/issues/2394
     availableRoom: {
       originalId: 'bfmlpsvz',
@@ -33,6 +31,7 @@ it('renders without crashing', () => {
     navigation,
     getGuestCount: () => 2,
     numberOfRooms: 2,
+    relay: { environment },
   };
 
   renderer.render(<RoomRow {...props} />);
@@ -40,13 +39,11 @@ it('renders without crashing', () => {
 
 it('renders without crashing with missing data', () => {
   const props = {
-    select() {},
-    deselect() {},
-    selected: {},
     availableRoom: undefined,
     navigation,
     getGuestCount: () => 2,
     numberOfRooms: 2,
+    relay: { environment },
   };
 
   renderer.render(<RoomRow {...props} />);

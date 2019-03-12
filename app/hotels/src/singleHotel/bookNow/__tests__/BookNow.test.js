@@ -51,6 +51,8 @@ it('renders without crashing', () => {
       amount: 2,
       currency: 'EUR',
     },
+    amount: 0,
+    rooms: null,
   };
   expect(renderer.render(<BookNow {...props} />)).toMatchSnapshot();
 });
@@ -73,6 +75,8 @@ it('renders without crashing with missing data', () => {
       amount: 2,
       currency: 'EUR',
     },
+    amount: 0,
+    rooms: null,
   };
 
   expect(renderer.render(<BookNow {...props} />)).toMatchSnapshot();

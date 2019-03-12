@@ -3,7 +3,12 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { StyleSheet, Logger } from '@kiwicom/mobile-shared';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
+import {
+  createFragmentContainer,
+  graphql,
+  commitLocalUpdate,
+  type RelayProp,
+} from '@kiwicom/mobile-relay';
 import {
   type NavigationType,
   withNavigation,
@@ -17,10 +22,6 @@ import RoomRowTitle from './RoomRowTitle';
 import RoomBadges from './RoomBadges';
 import type { RoomRow_availableRoom as RoomType } from './__generated__/RoomRow_availableRoom.graphql';
 import {
-  withHotelDetailScreenContext,
-  type HotelDetailScreenState,
-} from '../HotelDetailScreenContext';
-import {
   withHotelsContext,
   type HotelsContextState,
 } from '../../HotelsContext';
@@ -29,36 +30,49 @@ type Props = {|
   +testID?: string,
   +availableRoom: ?RoomType,
   +navigation: NavigationType,
-  +select: (availabilityId: string, maxPersons: number) => void,
-  +deselect: (availabilityId: string, maxPersons: number) => void,
-  +selected: {
-    +[string]: number,
-  },
-  +numberOfRooms: number,
   +getGuestCount: () => number,
+  +numberOfRooms: number,
+  +relay: RelayProp,
 |};
 
 export class RoomRow extends React.Component<Props> {
-  isDisabled = () => this.props.getGuestCount() <= this.props.numberOfRooms;
+  isDisabled = () => this.props.numberOfRooms >= this.props.getGuestCount();
 
   select = () => {
     if (this.isDisabled()) {
       Alert.translatedAlert(null, {
         id: 'single_hotel.alert.cannot_book_more_rooms_than_guests',
       });
-    } else {
-      const { id, maxPersons, type, roomId } = this.getSelectData();
-      if (id && maxPersons) {
-        this.props.select(id, maxPersons);
-        Logger.hotelsDetailRoomSelected(roomId, type);
-      }
+      return;
+    }
+    const {
+      id,
+      maxPersons,
+      type,
+      roomId,
+      selectedCount,
+    } = this.getSelectData();
+
+    if (id && maxPersons) {
+      Logger.hotelsDetailRoomSelected(roomId, type);
+      commitLocalUpdate(this.props.relay.environment, store => {
+        const room = store.get(id);
+        if (room != null) {
+          room.setValue(selectedCount + 1, 'selectedCount');
+        }
+      });
     }
   };
 
   deselect = () => {
-    const { id, maxPersons } = this.getSelectData();
+    const { id, maxPersons, selectedCount } = this.getSelectData();
     if (id && maxPersons) {
-      this.props.deselect(id, maxPersons);
+      commitLocalUpdate(this.props.relay.environment, store => {
+        const room = store.get(id);
+        if (room != null) {
+          room.setValue(selectedCount - 1, 'selectedCount');
+        }
+      });
     }
   };
 
@@ -67,7 +81,8 @@ export class RoomRow extends React.Component<Props> {
     const maxPersons = this.props.availableRoom?.room?.maxPersons;
     const type = this.props.availableRoom?.room?.description?.title ?? '';
     const roomId = this.props.availableRoom?.room?.id ?? '';
-    return { id, maxPersons, type, roomId };
+    const selectedCount = this.props.availableRoom?.selectedCount ?? 0;
+    return { id, maxPersons, type, roomId, selectedCount };
   };
 
   openGallery = () => {
@@ -105,8 +120,7 @@ export class RoomRow extends React.Component<Props> {
     const amount = availableRoom?.minimalPrice?.amount ?? null;
     const currency = availableRoom?.minimalPrice?.currency ?? null;
     const selectableCount = availableRoom?.incrementalPrice?.length ?? 0;
-    const id = availableRoom?.id ?? '';
-    const selectedCount = this.props.selected[id] ?? 0;
+    const selectedCount = this.props.availableRoom?.selectedCount ?? 0;
     const room = availableRoom?.room;
 
     return (
@@ -140,31 +154,17 @@ export class RoomRow extends React.Component<Props> {
   }
 }
 
-const select = ({
-  selected,
-  numberOfRooms,
-  actions: { selectRoom, deselectRoom },
-}: HotelDetailScreenState) => ({
-  select: selectRoom,
-  deselect: deselectRoom,
-  selected,
-  numberOfRooms,
-});
-
 const selectHotelsContext = ({ getGuestCount }: HotelsContextState) => ({
   getGuestCount,
 });
 
 export default createFragmentContainer(
-  withNavigation(
-    withHotelDetailScreenContext(select)(
-      withHotelsContext(selectHotelsContext)(RoomRow),
-    ),
-  ),
+  withNavigation(withHotelsContext(selectHotelsContext)(RoomRow)),
   {
     availableRoom: graphql`
       fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
         id
+        selectedCount
         ...RoomBadges_availableRoom
         minimalPrice {
           amount
