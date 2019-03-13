@@ -14,6 +14,7 @@ import {
   type ResultType,
 } from '../navigation/allHotels/SearchResultsContext';
 import LoadMoreButton from './LoadMoreButton';
+import CloseModal from '../components/CloseModal';
 
 type Props = {|
   +data: RenderResultsType,
@@ -22,6 +23,7 @@ type Props = {|
   +onLoadMore: () => void,
   +top: number,
   +show: ResultType,
+  +closeHotels: () => void,
 |};
 
 export const topValue = Dimensions.get('window').height;
@@ -114,6 +116,7 @@ export class RenderSearchResults extends React.Component<Props> {
         >
           <MapScreen data={data} />
         </Animated.View>
+        <CloseModal onPress={this.props.closeHotels} />
       </React.Fragment>
     );
   }

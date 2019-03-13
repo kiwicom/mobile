@@ -15,7 +15,6 @@ import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
 import RenderSearchResults from './RenderSearchResults';
 import FilterStripe from '../filter/FilterStripe';
-import CloseModal from '../components/CloseModal';
 
 type PropsWithContext = {|
   +relay: RelayPaginationProp,
@@ -84,8 +83,8 @@ export class HotelsPaginationContainer extends React.Component<
           isLoading={this.state.isLoading}
           data={data}
           top={56}
+          closeHotels={this.props.closeHotels}
         />
-        <CloseModal onPress={this.props.closeHotels} />
       </React.Fragment>
     );
   }
