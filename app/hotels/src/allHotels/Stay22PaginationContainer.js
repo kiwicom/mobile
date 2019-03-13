@@ -18,6 +18,7 @@ type Props = {|
   +data: Stay22PaginationContainerType,
   +relay: RelayPaginationProp,
   +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
+  +closeHotels: () => void,
 |};
 
 type State = {|
@@ -65,13 +66,15 @@ export class Stay22PaginationContainer extends React.Component<Props, State> {
         isLoading={this.state.isLoading}
         hasMore={this.props.relay.hasMore()}
         top={0}
+        closeHotels={this.props.closeHotels}
       />
     );
   }
 }
 
-const select = ({ actions }: HotelsContextState) => ({
+const select = ({ actions, closeHotels }: HotelsContextState) => ({
   setCurrentSearchStats: actions.setCurrentSearchStats,
+  closeHotels,
 });
 
 export default createPaginationContainer(
