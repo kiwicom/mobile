@@ -782,17 +782,6 @@
   dependencies:
     ramda "^0.25.0"
 
-"@kiwicom/relay@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/relay/-/relay-0.10.0.tgz#f679e30db0d0f808a323acb8e5e05622f7142d55"
-  integrity sha512-PBrea9CuQMjzdP7RCcErInTKnMIlFC05AWQ2rq/ED2FRNsZ+Ix2UXABsjTM9MopZoem3ioiQl7ZhJEbc1++k9A==
-  dependencies:
-    "@kiwicom/fetch" "^2.0.0"
-    "@kiwicom/js" "^0"
-    react-relay "^2.0.0"
-    relay-compiler "^2.0.0"
-    relay-runtime "^2.0.0"
-
 "@kiwicom/universal-components@^0.0.14":
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/@kiwicom/universal-components/-/universal-components-0.0.14.tgz#c0bbc30892ed01bef2c661c2bf294f3e48cd780e"

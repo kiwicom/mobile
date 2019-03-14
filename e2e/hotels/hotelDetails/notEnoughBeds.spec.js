@@ -16,7 +16,7 @@ describe('Hotel detail - Not enough beds warning', () => {
     await goToHotelsTab();
     await expect(element(by.id('adultsIncrement'))).toBeVisible();
 
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < 12; i++) {
       await element(by.id('adultsIncrement')).tap(); // eslint-disable-line no-await-in-loop
     }
 
