@@ -9,6 +9,10 @@ import {
   Observable,
 } from 'relay-runtime';
 import fetchWithRetries from '@kiwicom/fetch';
+// This works, and requires no native setup. Note that @sentry/node does not work since it relies on crypto module, which is not available in RN
+// TODO: try to use rn-nodeify and react-native-crypt and use @sentry/node next time target-version changes
+import * as Sentry from '@sentry/browser';
+import { SENTRY_DSN } from 'react-native-dotenv';
 
 import ConnectionManager from './ConnectionManager';
 import CacheManager from './CacheManager';
@@ -17,6 +21,8 @@ type FetcherResponse = {|
   +data: Object,
   +errors?: $ReadOnlyArray<Object>,
 |};
+
+Sentry.init({ dsn: SENTRY_DSN });
 
 const GRAPHQL_URL = 'https://graphql.kiwi.com/';
 
@@ -55,6 +61,7 @@ async function fetchFromTheNetwork(
     observer.error(error);
     observer.complete();
     console.warn(error);
+    Sentry.captureException(error);
   }
 }
 
@@ -81,7 +88,7 @@ const asyncStoreRead = async (observer, operation, variables) => {
       handleNoNetworkNoCachedResponse(observer);
     }
   } catch (error) {
-    //   // AsyncStorage read wasn't successful - nevermind
+    // AsyncStorage read wasn't successful - nevermind
     console.warn('error', error);
   }
 };
