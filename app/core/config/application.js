@@ -1,34 +1,10 @@
 // @flow
 
-import {
-  API_KEY_GOOGLE_MAPS,
-  AUTH_ANDROID_GOOGLE_CLIENTID,
-  AUTH_IOS_GOOGLE_CLIENTID,
-  AUTH_KIWI_BACKEND,
-  SENTRY_DSN,
-} from 'react-native-dotenv';
+import { SENTRY_DSN } from 'react-native-dotenv';
 
 export default {
   animations: {
     duration: 100, // ms
-  },
-  apiKey: {
-    googleMaps: sanitize(API_KEY_GOOGLE_MAPS),
-  },
-  auth: {
-    android: {
-      google: {
-        clientId: sanitize(AUTH_ANDROID_GOOGLE_CLIENTID),
-      },
-    },
-    ios: {
-      google: {
-        clientId: sanitize(AUTH_IOS_GOOGLE_CLIENTID),
-      },
-    },
-    kiwi: {
-      backend: sanitize(AUTH_KIWI_BACKEND),
-    },
   },
   sentry: {
     dsn: sanitize(SENTRY_DSN),
