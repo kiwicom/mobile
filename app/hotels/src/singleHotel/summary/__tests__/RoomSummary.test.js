@@ -10,19 +10,54 @@ const room = {
       incrementalPriceWithExtraCharges: [
         {
           price: {
+            amount: 1196,
             currency: 'EUR',
-            amount: 5,
           },
+          extraCharges: [
+            {
+              excluded: true,
+              amount: '0',
+              name: 'City tax',
+              chargeAmount: '1.21',
+              type: 'CITYTAX',
+            },
+            {
+              excluded: false,
+              amount: '108.73',
+              name: 'VAT',
+              chargeAmount: '10',
+              type: 'VAT',
+            },
+          ],
         },
         {
           price: {
+            amount: 2181.81,
             currency: 'EUR',
-            amount: 20,
           },
+          extraCharges: [
+            {
+              excluded: true,
+              amount: '0',
+              name: 'City tax',
+              chargeAmount: '1.21',
+              type: 'CITYTAX',
+            },
+            {
+              excluded: false,
+              amount: '218.19',
+              name: 'VAT',
+              chargeAmount: '10',
+              type: 'VAT',
+            },
+          ],
         },
       ],
       room: {
-        maxPersons: 2,
+        description: {
+          title: 'Basic Single Room',
+        },
+        maxPersons: 1,
       },
     },
     {
@@ -31,12 +66,31 @@ const room = {
       incrementalPriceWithExtraCharges: [
         {
           price: {
+            amount: 1196,
             currency: 'EUR',
-            amount: 5,
           },
+          extraCharges: [
+            {
+              excluded: true,
+              amount: '0',
+              name: 'City tax',
+              chargeAmount: '1.21',
+              type: 'CITYTAX',
+            },
+            {
+              excluded: false,
+              amount: '108.73',
+              name: 'VAT',
+              chargeAmount: '10',
+              type: 'VAT',
+            },
+          ],
         },
       ],
       room: {
+        description: {
+          title: 'Basic Double Room',
+        },
         maxPersons: 2,
       },
     },
@@ -45,13 +99,32 @@ const room = {
       incrementalPriceWithExtraCharges: [
         {
           price: {
+            amount: 1196,
             currency: 'EUR',
-            amount: 5,
           },
+          extraCharges: [
+            {
+              excluded: true,
+              amount: '0',
+              name: 'City tax',
+              chargeAmount: '1.21',
+              type: 'CITYTAX',
+            },
+            {
+              excluded: false,
+              amount: '108.73',
+              name: 'VAT',
+              chargeAmount: '10',
+              type: 'VAT',
+            },
+          ],
         },
       ],
       room: {
-        maxPersons: 2,
+        description: {
+          title: 'Basic triple Room',
+        },
+        maxPersons: 3,
       },
     },
   ],
@@ -63,11 +136,32 @@ describe('calculateSelectedData', () => {
     const Component = new RoomSummary({ room });
 
     const test = Component.calculateSelectedData();
-    expect(test).toEqual({
-      amount: 25,
-      currency: 'EUR',
-      maxPersons: 6,
-      numberOfRooms: 3,
-    });
+    expect(test).toMatchInlineSnapshot(`
+Object {
+  "bruttoPrice": 3377.81,
+  "currency": "EUR",
+  "extraCharges": Array [
+    Object {
+      "amount": 326.92,
+      "name": "10% VAT",
+      "type": "VAT",
+    },
+  ],
+  "selectedRooms": Array [
+    Object {
+      "count": 2,
+      "id": "1",
+      "nettoPrice": 1963.62,
+      "title": "Basic Single Room",
+    },
+    Object {
+      "count": 1,
+      "id": "2",
+      "nettoPrice": 1087.27,
+      "title": "Basic Double Room",
+    },
+  ],
+}
+`);
   });
 });

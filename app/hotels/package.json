@@ -25,6 +25,7 @@
     "react-native-maps": "^0",
     "react-navigation": "^3",
     "react-navigation-props-mapper": "^0",
-    "react-test-renderer": "^16"
+    "react-test-renderer": "^16",
+    "memoize-one": "^"
   }
 }

@@ -13,15 +13,26 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomSummary_room$ref: FragmentReference;
 export type RoomSummary_room = {|
   +availableRooms: ?$ReadOnlyArray<?{|
+    +id: string,
     +selectedCount: ?number,
     +incrementalPriceWithExtraCharges: ?$ReadOnlyArray<?{|
       +price: ?{|
         +amount: ?number,
         +currency: ?string,
-      |}
+      |},
+      +extraCharges: ?$ReadOnlyArray<?{|
+        +excluded: ?boolean,
+        +amount: ?string,
+        +name: ?string,
+        +chargeAmount: ?string,
+        +type: ?string,
+      |}>,
     |}>,
     +room: ?{|
-      +maxPersons: ?number
+      +description: ?{|
+        +title: ?string
+      |},
+      +maxPersons: ?number,
     |},
   |}>,
   +$fragmentRefs: SummaryButtons_rooms$ref,
@@ -30,7 +41,15 @@ export type RoomSummary_room = {|
 */
 
 
-const node/*: ReaderFragment*/ = {
+const node/*: ReaderFragment*/ = (function(){
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "amount",
+  "args": null,
+  "storageKey": null
+};
+return {
   "kind": "Fragment",
   "name": "RoomSummary_room",
   "type": "HotelAvailabilityInterface",
@@ -51,6 +70,13 @@ const node/*: ReaderFragment*/ = {
       "concreteType": null,
       "plural": true,
       "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        },
         {
           "kind": "ScalarField",
           "alias": null,
@@ -76,17 +102,51 @@ const node/*: ReaderFragment*/ = {
               "concreteType": "Price",
               "plural": false,
               "selections": [
+                (v0/*: any*/),
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "name": "amount",
+                  "name": "currency",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
+            },
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "extraCharges",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "ExtraCharges",
+              "plural": true,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "excluded",
+                  "args": null,
+                  "storageKey": null
+                },
+                (v0/*: any*/),
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "name",
                   "args": null,
                   "storageKey": null
                 },
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "name": "currency",
+                  "name": "chargeAmount",
+                  "args": null,
+                  "storageKey": null
+                },
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "type",
                   "args": null,
                   "storageKey": null
                 }
@@ -104,6 +164,24 @@ const node/*: ReaderFragment*/ = {
           "plural": false,
           "selections": [
             {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "description",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "HotelRoomDescription",
+              "plural": false,
+              "selections": [
+                {
+                  "kind": "ScalarField",
+                  "alias": null,
+                  "name": "title",
+                  "args": null,
+                  "storageKey": null
+                }
+              ]
+            },
+            {
               "kind": "ScalarField",
               "alias": null,
               "name": "maxPersons",
@@ -116,6 +194,7 @@ const node/*: ReaderFragment*/ = {
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = 'e7b9af5142900f1bafcdadd3ca411c04';
+(node/*: any*/).hash = '06cec6cff27909073a76188d852410fb';
 module.exports = node;
