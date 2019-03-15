@@ -33,6 +33,12 @@ this will be evened out from v24
 
 ## Target version 7.0.0
 
+### 30
+
+- Set statusbar background color on hotel detail screen, MOBILE-2920
+- Enable date change in the header, MOBILE-2972
+- Add sentry logging
+
 ### v25
 
 - Move map/list button to the right of the header on iPad, MOBILE-2427
