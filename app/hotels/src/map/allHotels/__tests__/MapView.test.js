@@ -6,7 +6,7 @@ const $fragmentRefs: any = null;
 const $refType: any = null;
 const data = coordinates => ({
   id: '1',
-  price: {
+  total: {
     $fragmentRefs,
   },
   coordinates,

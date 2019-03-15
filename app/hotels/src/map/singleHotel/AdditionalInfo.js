@@ -38,7 +38,7 @@ export class AdditionalInfo extends React.Component<Props, State> {
   render() {
     const { data } = this.props;
     const name = data?.hotel?.name;
-    const price = data?.price;
+    const price = data?.total;
     const thumbnailUrl = data?.hotel?.mainPhoto?.thumbnailUrl;
     const stars = data?.hotel?.rating?.stars;
     const score = data?.hotel?.review?.score;
@@ -51,7 +51,7 @@ export class AdditionalInfo extends React.Component<Props, State> {
               <HotelDetailPreview
                 name={name}
                 amount={price?.amount}
-                currency={price?.currency}
+                currency={price?.currencyId}
                 thumbnailUrl={thumbnailUrl}
                 stars={stars}
                 score={score}
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
 export default createFragmentContainer(AdditionalInfo, {
   data: graphql`
     fragment AdditionalInfo_data on HotelAvailabilityInterface {
-      price {
+      total {
         amount
-        currency
+        currencyId
       }
       hotel {
         address {

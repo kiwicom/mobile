@@ -16,9 +16,9 @@ export type RoomSummary_room = {|
     +id: string,
     +selectedCount: ?number,
     +incrementalPriceWithExtraCharges: ?$ReadOnlyArray<?{|
-      +price: ?{|
-        +amount: ?number,
-        +currency: ?string,
+      +total: ?{|
+        +amount: ?string,
+        +currencyId: ?string,
       |},
       +extraCharges: ?$ReadOnlyArray<?{|
         +excluded: ?boolean,
@@ -96,17 +96,17 @@ return {
             {
               "kind": "LinkedField",
               "alias": null,
-              "name": "price",
+              "name": "total",
               "storageKey": null,
               "args": null,
-              "concreteType": "Price",
+              "concreteType": "Money",
               "plural": false,
               "selections": [
                 (v0/*: any*/),
                 {
                   "kind": "ScalarField",
                   "alias": null,
-                  "name": "currency",
+                  "name": "currencyId",
                   "args": null,
                   "storageKey": null
                 }
@@ -196,5 +196,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '06cec6cff27909073a76188d852410fb';
+(node/*: any*/).hash = 'edcb6904918686e2753f65bd4793d4db';
 module.exports = node;

@@ -56,7 +56,7 @@ export class HotelSwipeItemWithContext extends React.Component<PropsWithContext>
   render() {
     const { width, data } = this.props;
     const name = data?.name;
-    const price = data?.price;
+    const price = data?.money;
     const thumbnailUrl = data?.mainPhoto?.thumbnailUrl;
     const stars = data?.rating?.stars;
     const score = data?.review?.score;
@@ -66,7 +66,7 @@ export class HotelSwipeItemWithContext extends React.Component<PropsWithContext>
           <HotelDetailPreview
             name={name}
             amount={price?.amount}
-            currency={price?.currency}
+            currency={price?.currencyId}
             thumbnailUrl={thumbnailUrl}
             stars={stars}
             score={score}
@@ -136,8 +136,8 @@ export default createFragmentContainer(
       fragment HotelSwipeItem_data on AllHotelsInterface {
         hotelId
         name
-        price {
-          currency
+        money {
+          currencyId
           amount
         }
         mainPhoto {

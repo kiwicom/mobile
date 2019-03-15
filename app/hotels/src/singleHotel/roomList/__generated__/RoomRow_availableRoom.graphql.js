@@ -16,14 +16,11 @@ declare export opaque type RoomRow_availableRoom$ref: FragmentReference;
 export type RoomRow_availableRoom = {|
   +id: string,
   +selectedCount: ?number,
-  +minimalPrice: ?{|
-    +amount: ?number,
-    +currency: ?string,
+  +minimalCost: ?{|
+    +amount: ?string,
+    +currencyId: ?string,
   |},
-  +incrementalPrice: ?$ReadOnlyArray<?{|
-    +amount: ?number,
-    +currency: ?string,
-  |}>,
+  +availableRoomsCount: ?number,
   +room: ?{|
     +id: string,
     +description: ?{|
@@ -50,23 +47,7 @@ var v0 = {
   "name": "id",
   "args": null,
   "storageKey": null
-},
-v1 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "amount",
-    "args": null,
-    "storageKey": null
-  },
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "currency",
-    "args": null,
-    "storageKey": null
-  }
-];
+};
 return {
   "kind": "Fragment",
   "name": "RoomRow_availableRoom",
@@ -90,22 +71,34 @@ return {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "minimalPrice",
+      "name": "minimalCost",
       "storageKey": null,
       "args": null,
-      "concreteType": "Price",
+      "concreteType": "Money",
       "plural": false,
-      "selections": (v1/*: any*/)
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "amount",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "currencyId",
+          "args": null,
+          "storageKey": null
+        }
+      ]
     },
     {
-      "kind": "LinkedField",
+      "kind": "ScalarField",
       "alias": null,
-      "name": "incrementalPrice",
-      "storageKey": null,
+      "name": "availableRoomsCount",
       "args": null,
-      "concreteType": "Price",
-      "plural": true,
-      "selections": (v1/*: any*/)
+      "storageKey": null
     },
     {
       "kind": "LinkedField",
@@ -184,5 +177,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'fd18aa6ea5aee454831f75b384edfb64';
+(node/*: any*/).hash = '11decfc5905b4d8b51f8aea1b345b817';
 module.exports = node;

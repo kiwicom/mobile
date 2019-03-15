@@ -11,8 +11,8 @@ import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PriceMarker_data$ref: FragmentReference;
 export type PriceMarker_data = {|
-  +amount: ?number,
-  +currency: ?string,
+  +amount: ?string,
+  +currencyId: ?string,
   +$refType: PriceMarker_data$ref,
 |};
 */
@@ -21,7 +21,7 @@ export type PriceMarker_data = {|
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "PriceMarker_data",
-  "type": "Price",
+  "type": "Money",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
@@ -35,12 +35,12 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "currency",
+      "name": "currencyId",
       "args": null,
       "storageKey": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '55557239665bb1bf49612c72f99063ab';
+(node/*: any*/).hash = '3da7f796338b140f19a8887526b85e55';
 module.exports = node;

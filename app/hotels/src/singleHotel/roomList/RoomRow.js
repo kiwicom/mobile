@@ -117,9 +117,10 @@ export class RoomRow extends React.Component<Props> {
     const photo = availableRoom?.room?.roomPhotos?.[0];
     const thumbnailUrl = photo?.lowResUrl ?? photo?.highResUrl;
 
-    const amount = availableRoom?.minimalPrice?.amount ?? null;
-    const currency = availableRoom?.minimalPrice?.currency ?? null;
-    const selectableCount = availableRoom?.incrementalPrice?.length ?? 0;
+    const amount = availableRoom?.minimalCost?.amount ?? null;
+    const currency = availableRoom?.minimalCost?.currencyId ?? null;
+
+    const selectableCount = availableRoom?.availableRoomsCount ?? 0;
     const selectedCount = this.props.availableRoom?.selectedCount ?? 0;
     const room = availableRoom?.room;
 
@@ -166,14 +167,11 @@ export default createFragmentContainer(
         id
         selectedCount
         ...RoomBadges_availableRoom
-        minimalPrice {
+        minimalCost {
           amount
-          currency
+          currencyId
         }
-        incrementalPrice {
-          amount
-          currency
-        }
+        availableRoomsCount
         room {
           id
           description {

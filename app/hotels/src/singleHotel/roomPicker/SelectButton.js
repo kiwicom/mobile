@@ -12,7 +12,7 @@ import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type PriceType = {|
-  +amount: number | null,
+  +amount: string | null,
   +currency: string | null,
 |};
 

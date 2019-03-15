@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fe607a483027774b3800c78cb0842bd3
+ * @relayHash 8d321fa789befa567328be72e2fb5227
  */
 
 /* eslint-disable */
@@ -75,9 +75,9 @@ fragment MapView_hotel on HotelInterface {
 }
 
 fragment AdditionalInfo_data on HotelAvailabilityInterface {
-  price {
+  total {
     amount
-    currency
+    currencyId
   }
   hotel {
     __typename
@@ -324,10 +324,10 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "price",
+            "name": "total",
             "storageKey": null,
             "args": null,
-            "concreteType": "Price",
+            "concreteType": "Money",
             "plural": false,
             "selections": [
               {
@@ -340,7 +340,7 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "currency",
+                "name": "currencyId",
                 "args": null,
                 "storageKey": null
               }
@@ -355,7 +355,7 @@ return {
     "operationKind": "query",
     "name": "SingleHotelMapScreenQuery",
     "id": null,
-    "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+    "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  total {\n    amount\n    currencyId\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
     "metadata": {}
   }
 };

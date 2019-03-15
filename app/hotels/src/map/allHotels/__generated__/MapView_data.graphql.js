@@ -13,7 +13,7 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapView_data$ref: FragmentReference;
 export type MapView_data = $ReadOnlyArray<{|
   +id: string,
-  +price: ?{|
+  +total: ?{|
     +$fragmentRefs: PriceMarker_data$ref
   |},
   +coordinates: ?{|
@@ -43,11 +43,11 @@ const node/*: ReaderFragment*/ = {
     },
     {
       "kind": "LinkedField",
-      "alias": null,
-      "name": "price",
+      "alias": "total",
+      "name": "money",
       "storageKey": null,
       "args": null,
-      "concreteType": "Price",
+      "concreteType": "Money",
       "plural": false,
       "selections": [
         {
@@ -85,5 +85,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '6e37ff96c594a7aa7ce95be2c093c3eb';
+(node/*: any*/).hash = 'b12cc86a96059bd8988379309a107d04';
 module.exports = node;

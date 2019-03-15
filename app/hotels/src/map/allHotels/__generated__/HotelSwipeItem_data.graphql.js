@@ -13,9 +13,9 @@ declare export opaque type HotelSwipeItem_data$ref: FragmentReference;
 export type HotelSwipeItem_data = {|
   +hotelId: ?string,
   +name: ?string,
-  +price: ?{|
-    +currency: ?string,
-    +amount: ?number,
+  +money: ?{|
+    +currencyId: ?string,
+    +amount: ?string,
   |},
   +mainPhoto: ?{|
     +thumbnailUrl: ?string
@@ -55,16 +55,16 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "price",
+      "name": "money",
       "storageKey": null,
       "args": null,
-      "concreteType": "Price",
+      "concreteType": "Money",
       "plural": false,
       "selections": [
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "currency",
+          "name": "currencyId",
           "args": null,
           "storageKey": null
         },
@@ -134,5 +134,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'b509ca6c14390ca2cbdcfcd635584164';
+(node/*: any*/).hash = '6d34760edc2e2aa3fec911b22595a8f0';
 module.exports = node;

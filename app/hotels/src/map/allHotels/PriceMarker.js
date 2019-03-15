@@ -16,7 +16,7 @@ type Props = {|
 const PriceMarker = (props: Props) => {
   const {
     isSelected,
-    data: { amount, currency },
+    data: { amount, currencyId: currency },
   } = props;
   const bubbleStyles = StyleSheet.flatten([
     styles.bubble,
@@ -42,9 +42,9 @@ const PriceMarker = (props: Props) => {
 
 export default createFragmentContainer(PriceMarker, {
   data: graphql`
-    fragment PriceMarker_data on Price {
+    fragment PriceMarker_data on Money {
       amount
-      currency
+      currencyId
     }
   `,
 });
