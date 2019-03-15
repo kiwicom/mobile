@@ -6,7 +6,7 @@ exports[`renders as expected 1`] = `
   increment={[Function]}
   price={
     Object {
-      "amount": 100,
+      "amount": "100",
       "currency": "CZK",
     }
   }
@@ -20,7 +20,7 @@ exports[`renders as expected 2`] = `
   increment={[Function]}
   price={
     Object {
-      "amount": 100,
+      "amount": "100",
       "currency": "CZK",
     }
   }
@@ -36,7 +36,7 @@ exports[`renders as expected 3`] = `
   increment={[Function]}
   price={
     Object {
-      "amount": 100,
+      "amount": "100",
       "currency": "CZK",
     }
   }
@@ -52,7 +52,7 @@ exports[`renders as expected 4`] = `
   increment={[Function]}
   price={
     Object {
-      "amount": 100,
+      "amount": "100",
       "currency": "CZK",
     }
   }

@@ -31,8 +31,8 @@ function HotelTitle({ data }: Props) {
         <Distance hotel={data} />
       </View>
       <Price
-        amount={data.price?.amount}
-        currency={data.price?.currency}
+        amount={data.money?.amount}
+        currency={data.money?.currencyId}
         style={style.price}
       />
     </React.Fragment>
@@ -42,9 +42,9 @@ function HotelTitle({ data }: Props) {
 export default createFragmentContainer(HotelTitle, {
   data: graphql`
     fragment HotelTitle_data on AllHotelsInterface {
-      price {
+      money {
         amount
-        currency
+        currencyId
       }
       ...HotelDistance_hotel
       name

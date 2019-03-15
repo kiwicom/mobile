@@ -55,7 +55,12 @@ type AllAvailableStay22Hotel implements AllHotelsInterface {
   """
   Total price for all guests and nights and in the hotel. (including VAT)
   """
-  price: Price
+  price: Price @deprecated(reason: "Use money type instead")
+
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  money: Money
   rating: HotelRating
 
   """Hotel distance from the center in Km."""
@@ -117,7 +122,12 @@ type AllHotelAvailabilityHotel implements AllHotelsInterface {
   """
   Total price for all guests and nights and in the hotel. (including VAT)
   """
-  price: Price
+  price: Price @deprecated(reason: "Use money type instead")
+
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  money: Money
   rating: HotelRating
 
   """Hotel distance from the center in Km."""
@@ -161,6 +171,7 @@ interface AllHotelsInterface {
   address: Address
   review: HotelReview
   price: Price
+  money: Money
   rating: HotelRating
   distanceFromCenter: Float
   mainPhoto: HotelPhoto
@@ -1568,10 +1579,10 @@ input FlightsOptionsInput {
 
 input FlightsSearchInput {
   """From where you want to fly?"""
-  from: [LocationInput!]!
+  from: [LocationRadiusInput!]!
 
   """To where you want to fly?"""
-  to: [LocationInput!]!
+  to: [LocationRadiusInput!]!
 
   """When do you want to leave?"""
   date: DateInput!
@@ -1587,6 +1598,11 @@ type GeoIP {
 
   """Coordinates"""
   coordinates: Coordinates
+}
+
+input HolidaysLocationInput {
+  """Legacy ID used in Holidays Locations REST API"""
+  locationId: String
 }
 
 """General information about the hotel."""
@@ -1699,7 +1715,12 @@ type HotelAvailability implements HotelAvailabilityInterface {
   """
   Total price for all guests and nights and in the hotel. (including VAT)
   """
-  price: Price
+  price: Price @deprecated(reason: "Use total field instead")
+
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  total: Money
   availableRooms: [HotelRoomAvailability]
   hotel: Hotel
 }
@@ -1729,6 +1750,7 @@ type HotelAvailabilityEdge {
 interface HotelAvailabilityInterface {
   id: ID
   price: Price
+  total: Money
   availableRooms: [HotelRoomAvailabilityInterface]
   hotel: HotelInterface
 }
@@ -1895,7 +1917,8 @@ type HotelPhotoEdge {
 
 """Price with extra charges, included and excluded"""
 type HotelPrice {
-  price: Price
+  price: Price @deprecated(reason: "Use money type instead")
+  total: Money
   extraCharges: [ExtraCharges]
 }
 
@@ -1957,11 +1980,17 @@ type HotelRoomAvailability implements HotelRoomAvailabilityInterface {
   isBreakfastIncluded: Boolean
 
   """Base price for the room in this configuration."""
-  minimalPrice: Price
-  incrementalPrice: [Price]
+  minimalPrice: Price @deprecated(reason: "Use money instead")
+
+  """Base price for the room in this configuration."""
+  minimalCost: Money
+  incrementalPrice: [Price] @deprecated(reason: "Use incrementalPriceWithExtraCharges instead")
 
   """Includes room price with extra charges like VAT and city tax"""
   incrementalPriceWithExtraCharges: [HotelPrice]
+
+  """The amount of available rooms for this type"""
+  availableRoomsCount: Int
 
   """Original block ID used to open Booking.com page."""
   originalId: String @deprecated(reason: "Use \"id\" field whenever possible.")
@@ -1973,9 +2002,11 @@ interface HotelRoomAvailabilityInterface {
   isRefundable: Boolean
   isBreakfastIncluded: Boolean
   minimalPrice: Price
+  minimalCost: Money
   incrementalPrice: [Price]
   incrementalPriceWithExtraCharges: [HotelPrice]
   room: HotelRoomInterface
+  availableRoomsCount: Int
 }
 
 type HotelRoomBedding {
@@ -2373,6 +2404,14 @@ type LocationEdge {
 }
 
 input LocationInput {
+  """Legacy ID used in Locations REST API"""
+  locationId: String
+
+  """Location identification used in URL for SEO reasons"""
+  slug: String
+}
+
+input LocationRadiusInput {
   location: String
   radius: RadiusInput
 }
@@ -2412,6 +2451,18 @@ type LoungeService {
 type LoungeServiceRelevantAirports {
   whitelabelURL: String
   location: Location
+}
+
+type Money {
+  """
+  Amount is a string type because it's not recommended to work with floats in
+  your application when working with money. This little change suggest that you
+  should use something like [decimal.js](https://github.com/MikeMcl/decimal.js/) for example.
+  """
+  amount: String
+
+  """An ISO-4217 currency code."""
+  currencyId: String
 }
 
 scalar MonthNumber
@@ -2828,8 +2879,8 @@ type RootQuery {
   """Url where user will be redirected for payment"""
   hotelPaymentUrls(hotelId: ID, roomConfig: [RoomConfigInput]): HotelPaymentUrls
 
-  """Single location by ID."""
-  location(id: ID!): Location
+  """Single location by various inputs."""
+  location(input: LocationInput): Location
 
   """
   Find most relevant booking relative to current time. That is a booking with
@@ -2881,6 +2932,9 @@ type RootQuery {
     before: String
     last: Int
   ): LocationConnection
+
+  """Single Holidays location by legacy ID."""
+  holidaysLocation(input: HolidaysLocationInput): Location
 }
 
 type RouteStop {
@@ -2953,7 +3007,12 @@ type Stay22HotelDetail implements HotelAvailabilityInterface {
   """
   Total price for all guests and nights and in the hotel. (including VAT)
   """
-  price: Price
+  price: Price @deprecated(reason: "Use total field instead")
+
+  """
+  Total price for all guests and nights and in the hotel. (including VAT)
+  """
+  total: Money
   hotel: Stay22Hotel
   availableRooms: [Stay22HotelRoomAvailability]
   paymentLink: String
@@ -2987,11 +3046,17 @@ type Stay22HotelRoomAvailability implements HotelRoomAvailabilityInterface {
   isBreakfastIncluded: Boolean
 
   """Base price for the room in this configuration."""
-  minimalPrice: Price
-  incrementalPrice: [Price]
+  minimalPrice: Price @deprecated(reason: "Use money instead")
+
+  """Base price for the room in this configuration."""
+  minimalCost: Money
+  incrementalPrice: [Price] @deprecated(reason: "Use incrementalPriceWithExtraCharges instead")
 
   """Includes room price with extra charges like VAT and city tax"""
   incrementalPriceWithExtraCharges: [HotelPrice]
+
+  """The amount of available rooms for this type"""
+  availableRoomsCount: Int
   room: Stay22HotelRoom
 }
 

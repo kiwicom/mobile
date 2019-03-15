@@ -9,9 +9,9 @@ const room = {
       selectedCount: 2,
       incrementalPriceWithExtraCharges: [
         {
-          price: {
-            amount: 1196,
-            currency: 'EUR',
+          total: {
+            currencyId: 'EUR',
+            amount: '1196',
           },
           extraCharges: [
             {
@@ -31,9 +31,9 @@ const room = {
           ],
         },
         {
-          price: {
-            amount: 2181.81,
-            currency: 'EUR',
+          total: {
+            currencyId: 'EUR',
+            amount: '2181.81',
           },
           extraCharges: [
             {
@@ -65,8 +65,8 @@ const room = {
       selectedCount: 1,
       incrementalPriceWithExtraCharges: [
         {
-          price: {
-            amount: 1196,
+          total: {
+            amount: '1196',
             currency: 'EUR',
           },
           extraCharges: [
@@ -98,8 +98,8 @@ const room = {
       id: '3',
       incrementalPriceWithExtraCharges: [
         {
-          price: {
-            amount: 1196,
+          total: {
+            amount: '1196',
             currency: 'EUR',
           },
           extraCharges: [

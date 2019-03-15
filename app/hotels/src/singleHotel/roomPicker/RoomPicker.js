@@ -6,7 +6,7 @@ import SelectButton from './SelectButton';
 import IncrementDecrement from './IncrementDecrement';
 
 type Price = {|
-  +amount: number | null,
+  +amount: string | null,
   +currency: string | null,
 |};
 

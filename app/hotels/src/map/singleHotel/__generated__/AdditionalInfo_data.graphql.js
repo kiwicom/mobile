@@ -12,9 +12,9 @@ type Address_address$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type AdditionalInfo_data$ref: FragmentReference;
 export type AdditionalInfo_data = {|
-  +price: ?{|
-    +amount: ?number,
-    +currency: ?string,
+  +total: ?{|
+    +amount: ?string,
+    +currencyId: ?string,
   |},
   +hotel: ?{|
     +address: ?{|
@@ -46,10 +46,10 @@ const node/*: ReaderFragment*/ = {
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "price",
+      "name": "total",
       "storageKey": null,
       "args": null,
-      "concreteType": "Price",
+      "concreteType": "Money",
       "plural": false,
       "selections": [
         {
@@ -62,7 +62,7 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "ScalarField",
           "alias": null,
-          "name": "currency",
+          "name": "currencyId",
           "args": null,
           "storageKey": null
         }
@@ -159,5 +159,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e1349753bb11208bd96edcafe691989f';
+(node/*: any*/).hash = 'af1360fd2e63efb83e05aacb1aa9fa9f';
 module.exports = node;

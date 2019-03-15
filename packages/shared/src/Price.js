@@ -11,7 +11,7 @@ import CancellablePromise, {
 } from './CancellablePromise';
 
 type Props = {|
-  +amount?: ?number,
+  +amount?: ?number | ?string,
   +currency?: ?string,
   +style?: StylePropType,
 |};
@@ -55,7 +55,7 @@ export default class Price extends React.Component<Props, State> {
     if (amount !== null && currency !== null) {
       try {
         this.cancellablePromise = CancellablePromise(
-          CurrencyFormatter(amount, currency),
+          CurrencyFormatter(parseFloat(amount), currency),
         );
         const formattedCurrency = await this.cancellablePromise.promise;
         this.setState({ formattedCurrency });

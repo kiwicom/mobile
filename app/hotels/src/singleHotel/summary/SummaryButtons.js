@@ -15,7 +15,7 @@ import type { SummaryButtons_rooms as RoomsType } from './__generated__/SummaryB
 type Props = {|
   +maxPersons: number,
   +rooms: ?RoomsType,
-  +amount: ?number,
+  +amount: ?string,
   +goBack: () => void,
 |};
 

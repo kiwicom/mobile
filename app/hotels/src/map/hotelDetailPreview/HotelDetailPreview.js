@@ -21,7 +21,7 @@ import HotelReviewScore from '../../components/HotelReviewScore';
 type Props = {|
   +name?: ?string,
   +currency?: ?string,
-  +amount?: ?number,
+  +amount?: ?string,
   +thumbnailUrl?: ?string,
   +stars?: ?number,
   +score?: ?number,

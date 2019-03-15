@@ -42,15 +42,15 @@ const getMaxNumberOfGuestsInSelection = memoize(selectedRooms => {
 
 export class RoomSummary extends React.Component<Props, State> {
   state = {
-    isExpanded: false,
+    isExpanded: true,
   };
 
   calculateSelectedData = () => {
     const positiveSelections = getSelectedRooms(this.props);
 
     const currency =
-      positiveSelections[0]?.incrementalPriceWithExtraCharges?.[0]?.price
-        ?.currency;
+      positiveSelections[0]?.incrementalPriceWithExtraCharges?.[0]?.total
+        ?.currencyId;
     // I wanted to split these reducers into separate functions
     // However flow does not seem to think that it is a good idea 😞
     return positiveSelections.reduce(
@@ -62,7 +62,7 @@ export class RoomSummary extends React.Component<Props, State> {
 
         const calculatedExtraCharges = extraCharges.reduce(
           (acc, charge) => {
-            const amount: number = parseFloat(charge?.amount) ?? 0;
+            const amount = parseFloat(charge?.amount ?? 0);
             if (amount === 0) {
               // Need more information about calculation
               // We might need to know exactly how may persons are in each room
@@ -78,9 +78,9 @@ export class RoomSummary extends React.Component<Props, State> {
             return {
               includedCharges: excluded
                 ? acc.includedCharges
-                : acc.includedCharges + parseFloat(amount),
+                : acc.includedCharges + amount,
               excludedCharges: excluded
-                ? acc.excludedCharges + parseFloat(amount)
+                ? acc.excludedCharges + amount
                 : acc.excludedCharges,
               extraCharges: [
                 ...acc.extraCharges,
@@ -90,7 +90,7 @@ export class RoomSummary extends React.Component<Props, State> {
                     charge?.type === 'VAT'
                       ? `${chargeAmount}% ${chargeName}`
                       : chargeName,
-                  amount: parseFloat(amount),
+                  amount,
                 },
               ],
             };
@@ -102,7 +102,10 @@ export class RoomSummary extends React.Component<Props, State> {
           },
         );
 
-        const bruttoRoomPrice: number = incrementalPrice?.price?.amount ?? 0;
+        const bruttoRoomPrice = parseFloat(
+          incrementalPrice?.total?.amount ?? 0,
+        );
+
         const roomData = {
           id: room?.id ?? '',
           count: selectedCount ?? 0,
@@ -197,7 +200,7 @@ export class RoomSummary extends React.Component<Props, State> {
           </View>
         )}
         <SummaryButtons
-          amount={amount}
+          amount={amount.toString()}
           maxPersons={maxPersons}
           goBack={this.props.goBack}
           rooms={this.props.room}
@@ -237,9 +240,9 @@ export default createFragmentContainer(RoomSummary, {
         id
         selectedCount
         incrementalPriceWithExtraCharges {
-          price {
+          total {
             amount
-            currency
+            currencyId
           }
           extraCharges {
             excluded

@@ -184,7 +184,7 @@ export class Map extends React.Component<Props, State> {
 
   renderHotelMarker = (hotel: Object, index: number) => {
     const { selectedIndex } = this.props;
-    const price = hotel?.price;
+    const price = hotel?.total;
     const id = hotel?.id;
     const coordinate = this.getCoordinate(hotel);
 
@@ -220,7 +220,7 @@ export default createFragmentContainer(Map, {
   data: graphql`
     fragment MapView_data on AllHotelsInterface @relay(plural: true) {
       id
-      price {
+      total: money {
         ...PriceMarker_data
       }
       coordinates {

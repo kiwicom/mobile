@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 21f0af9e5e7d704bb442862ee82fc8ca
+ * @relayHash ef6897c2cd4517d2f51c1a19cd0e05d2
  */
 
 /* eslint-disable */
@@ -61,9 +61,9 @@ fragment MapView_hotel on HotelInterface {
 }
 
 fragment AdditionalInfo_data on HotelAvailabilityInterface {
-  price {
+  total {
     amount
-    currency
+    currencyId
   }
   hotel {
     __typename
@@ -346,10 +346,10 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
-            "name": "price",
+            "name": "total",
             "storageKey": null,
             "args": null,
-            "concreteType": "Price",
+            "concreteType": "Money",
             "plural": false,
             "selections": [
               {
@@ -362,7 +362,7 @@ return {
               {
                 "kind": "ScalarField",
                 "alias": null,
-                "name": "currency",
+                "name": "currencyId",
                 "args": null,
                 "storageKey": null
               }
@@ -377,7 +377,7 @@ return {
     "operationKind": "query",
     "name": "Stay22SingleHotelMapScreenQuery",
     "id": null,
-    "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  price {\n    amount\n    currency\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+    "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  total {\n    amount\n    currencyId\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
     "metadata": {}
   }
 };
