@@ -55,7 +55,7 @@ dependencies {
 
     api "com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT"
 
-    compileOnly "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
+    api "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"

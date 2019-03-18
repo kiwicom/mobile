@@ -18,6 +18,7 @@ exports[`renders 1`] = `
       autoCorrect={false}
       onChangeText={[Function]}
       placeholder={null}
+      rejectResponderTermination={true}
       style={
         Array [
           Object {
@@ -57,6 +58,7 @@ exports[`renders with default value 1`] = `
       defaultValue="Default value"
       onChangeText={[Function]}
       placeholder={null}
+      rejectResponderTermination={true}
       style={
         Array [
           Object {
@@ -115,6 +117,7 @@ exports[`renders with label 1`] = `
       }
       onChangeText={[Function]}
       placeholder={null}
+      rejectResponderTermination={true}
       style={
         Array [
           Object {
@@ -153,6 +156,7 @@ exports[`renders with placeholder 1`] = `
       autoCorrect={false}
       onChangeText={[Function]}
       placeholder={null}
+      rejectResponderTermination={true}
       style={
         Array [
           Object {
