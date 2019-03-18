@@ -37,8 +37,6 @@ type AlertOptions = {
 
 type AlertButtonStyle = 'default' | 'cancel' | 'destructive';
 
-type AlertType = 'default' | 'plain-text' | 'secure-text' | 'login-password';
-
 const getTranslation = async (translation: ?Translation) => {
   if (translation && translation.id) {
     const nativeKey = `mobile.${translation.id}`;
@@ -63,7 +61,6 @@ export default class Alert extends AlertNative {
     message?: Translation,
     buttons?: AlertButtons,
     options?: AlertOptions,
-    type?: AlertType,
   ) => {
     const translatedTitleWithValues = await getTranslation(title);
     const translatedMessageWithValues = await getTranslation(message);
@@ -89,7 +86,6 @@ export default class Alert extends AlertNative {
       translatedMessageWithValues,
       translatedButtons,
       options,
-      type,
     );
   };
 }

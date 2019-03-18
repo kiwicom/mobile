@@ -10,14 +10,11 @@ import type { PriceMarker_data as PriceMarkerData } from './__generated__/PriceM
 
 type Props = {|
   +isSelected?: boolean,
-  +data: PriceMarkerData,
+  +data: ?PriceMarkerData,
 |};
 
 const PriceMarker = (props: Props) => {
-  const {
-    isSelected,
-    data: { amount, currencyId: currency },
-  } = props;
+  const { isSelected, data } = props;
   const bubbleStyles = StyleSheet.flatten([
     styles.bubble,
     isSelected && selectedStyles.bubble,
@@ -31,7 +28,11 @@ const PriceMarker = (props: Props) => {
     <View>
       <View style={bubbleStyles}>
         {props.data != null && (
-          <Price amount={amount} currency={currency} style={priceStyles} />
+          <Price
+            amount={data?.amount}
+            currency={data?.currencyId}
+            style={priceStyles}
+          />
         )}
       </View>
       <View style={[styles.arrowBorder]} />

@@ -27,7 +27,7 @@ dependencies {
 
     implementation "com.facebook.react:react-native:$reactNativeVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
-    compileOnly "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
+    api("com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT")
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

@@ -6,7 +6,10 @@ import { orderByDistance, getBounds } from 'geolib';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
-import PriceMarker from './PriceMarker';
+import MapViewMarker, {
+  type MarkerPressEvent,
+  type LatLng,
+} from './MapViewMarker';
 import type { MapView_data as MapViewData } from './__generated__/MapView_data.graphql';
 
 type Props = {|
@@ -22,20 +25,6 @@ type State = {|
     latitudeDelta: number,
     longitudeDelta: number,
   |},
-|};
-
-type MarkerPressEvent = {|
-  nativeEvent: {
-    action: 'marker-press',
-    coordinate: LatLng,
-    id: string, // id of the marker
-    target: string,
-  },
-|};
-
-type LatLng = {|
-  longitude: number,
-  latitude: number,
 |};
 
 const NO_OF_MARKERS_IN_REGION = 15;
@@ -148,10 +137,11 @@ export class Map extends React.Component<Props, State> {
     };
   };
 
-  storeMarkerReference = (index: number) => {
-    return (ref: React.Ref<typeof MapView.Marker> | null) => {
-      this.markers[index] = ref;
-    };
+  storeMarkerReference = (
+    index: number,
+    ref: React.Ref<typeof MapView.Marker> | null,
+  ) => {
+    this.markers[index] = ref;
   };
 
   storeMapReference = (map: React.Ref<typeof MapView> | null) => {
@@ -175,7 +165,15 @@ export class Map extends React.Component<Props, State> {
       return;
     }
 
-    this.map.animateToCoordinate(coordinate, duration);
+    this.map.animateCamera(
+      {
+        center: {
+          latitude: coordinate.latitude,
+          longitude: coordinate.longitude,
+        },
+      },
+      duration,
+    );
   };
 
   onMarkerPress = (e: MarkerPressEvent) => {
@@ -184,20 +182,17 @@ export class Map extends React.Component<Props, State> {
 
   renderHotelMarker = (hotel: Object, index: number) => {
     const { selectedIndex } = this.props;
-    const price = hotel?.total;
     const id = hotel?.id;
-    const coordinate = this.getCoordinate(hotel);
 
     return (
-      <MapView.Marker
+      <MapViewMarker
         key={id}
-        identifier={id}
-        coordinate={coordinate}
         onPress={this.onMarkerPress}
-        ref={this.storeMarkerReference(index)}
-      >
-        <PriceMarker data={price} isSelected={index === selectedIndex} />
-      </MapView.Marker>
+        storeRef={this.storeMarkerReference}
+        isSelected={index === selectedIndex}
+        index={index}
+        markerData={hotel}
+      />
     );
   };
 
@@ -220,13 +215,11 @@ export default createFragmentContainer(Map, {
   data: graphql`
     fragment MapView_data on AllHotelsInterface @relay(plural: true) {
       id
-      total: money {
-        ...PriceMarker_data
-      }
       coordinates {
         lat
         lng
       }
+      ...MapViewMarker_markerData
     }
   `,
 });
