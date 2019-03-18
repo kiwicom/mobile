@@ -26,7 +26,7 @@ type Props = {
   +currency: string,
   +hotelId: ?string,
   +getGuestCount: () => number,
-  +amount: number,
+  +amount: ?string,
   +rooms: ?RoomsType,
   +maxPersons: number,
 };
@@ -47,7 +47,7 @@ export class BookNow extends React.Component<Props> {
         rooms: rooms.reduce((prev, curr) => prev + curr.count, 0),
         guests: this.props.getGuestCount(),
         price: {
-          amount: this.props.amount,
+          amount: parseFloat(this.props.amount ?? 0),
           currency: this.props.currency,
         },
       });

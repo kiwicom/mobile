@@ -32,7 +32,7 @@ it('renders without crashing', () => {
         originalId: 'a',
         incrementalPrice: [
           {
-            amount: 100,
+            amount: '100',
             currency: 'EUR',
           },
         ],
@@ -48,10 +48,10 @@ it('renders without crashing', () => {
     getGuestCount: jest.fn(),
     maxPersons: 2,
     price: {
-      amount: 2,
+      amount: '2',
       currency: 'EUR',
     },
-    amount: 0,
+    amount: '0',
     rooms: null,
   };
   expect(renderer.render(<BookNow {...props} />)).toMatchSnapshot();
@@ -72,10 +72,10 @@ it('renders without crashing with missing data', () => {
     getGuestCount: jest.fn(),
     maxPersons: 2,
     price: {
-      amount: 2,
+      amount: '2',
       currency: 'EUR',
     },
-    amount: 0,
+    amount: '0',
     rooms: null,
   };
 
