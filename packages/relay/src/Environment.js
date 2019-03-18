@@ -22,7 +22,16 @@ type FetcherResponse = {|
   +errors?: $ReadOnlyArray<Object>,
 |};
 
-Sentry.init({ dsn: SENTRY_DSN });
+let useSentry;
+const { NODE_ENV } = process.env;
+
+try {
+  // The app will crash if SENTRY_DSN is wrong. Let's rather deactivate it if it for some reason is not set correctly
+  Sentry.init({ dsn: SENTRY_DSN, enabled: NODE_ENV !== 'development' });
+  useSentry = true;
+} catch {
+  useSentry = false;
+}
 
 const GRAPHQL_URL = 'https://graphql.kiwi.com/';
 
@@ -61,7 +70,9 @@ async function fetchFromTheNetwork(
     observer.error(error);
     observer.complete();
     console.warn(error);
-    Sentry.captureException(error);
+    if (useSentry) {
+      Sentry.captureException(error);
+    }
   }
 }
 
