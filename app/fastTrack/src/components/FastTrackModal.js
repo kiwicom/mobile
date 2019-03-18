@@ -1,14 +1,14 @@
 // @flow strict
 
 import * as React from 'react';
-import { View } from 'react-native';
-import { Modal, Text, TextButton, StyleSheet } from '@kiwicom/mobile-shared';
+import { View, WebView } from 'react-native';
+import { Modal, TextButton, StyleSheet, Device } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
+  +documentUrl: string,
   +isVisible: boolean,
-  +onOpenModal: () => void,
   +onCloseModal: () => void,
 |};
 
@@ -16,31 +16,45 @@ const FastTrackModal = (props: Props) => (
   <Modal
     isVisible={props.isVisible}
     onRequestClose={props.onCloseModal}
-    style={style.modal}
+    style={styles.modal}
   >
-    <View>
-      <Text style={style.title}>
-        <Translation passThrough="This is modal content." />
-      </Text>
-      <TextButton
-        onPress={props.onCloseModal}
-        type="secondary"
-        title={<Translation passThrough="Close modal" />}
+    <View style={styles.container}>
+      <WebView
+        source={{
+          uri: props.documentUrl,
+        }}
+        style={styles.webView}
       />
+      <View style={styles.buttonContainer}>
+        <TextButton
+          onPress={props.onCloseModal}
+          type="secondary"
+          title={
+            <Translation id="fast_track.banner.modal.close_modal_button" />
+          }
+        />
+      </View>
     </View>
   </Modal>
 );
 
 export default FastTrackModal;
 
-const style = StyleSheet.create({
-  title: {
-    marginBottom: 16,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: defaultTokens.colorTextPrimary,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: Device.isIPhoneX ? 32 : 24,
+  },
+  webView: {
+    flex: 1,
+    backgroundColor: 'transparent',
+  },
+  buttonContainer: {
+    paddingHorizontal: Device.isIPhoneX ? 16 : 8,
+    paddingBottom: Device.isIPhoneX ? 32 : 8,
   },
   modal: {
     margin: 0,
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });
