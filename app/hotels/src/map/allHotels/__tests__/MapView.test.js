@@ -6,11 +6,9 @@ const $fragmentRefs: any = null;
 const $refType: any = null;
 const data = coordinates => ({
   id: '1',
-  total: {
-    $fragmentRefs,
-  },
   coordinates,
   $refType,
+  $fragmentRefs,
 });
 
 const oldTown = data({

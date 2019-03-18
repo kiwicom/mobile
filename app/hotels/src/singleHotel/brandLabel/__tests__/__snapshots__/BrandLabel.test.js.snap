@@ -22,7 +22,7 @@ exports[`renders as expected 1`] = `
       id="single_hotel.powered_by"
     />
   </Text>
-  <Component
+  <Image
     resizeMode="contain"
     source={
       Object {

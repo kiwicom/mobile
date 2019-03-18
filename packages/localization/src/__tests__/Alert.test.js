@@ -12,24 +12,22 @@ describe('Alert wrapper with translations', () => {
   afterEach(() => {
     spy.mockRestore();
   });
+
   it('should be possible to only have a title', async () => {
     await Alert.translatedAlert({ passThrough: 'Hi' });
-    expect(spy).toHaveBeenCalledWith('Hi', undefined, [], undefined, undefined);
+    expect(spy).toHaveBeenCalledWith('Hi', undefined, [], undefined);
   });
+
   it('should be possible to only have a message', async () => {
     await Alert.translatedAlert(undefined, { passThrough: 'bye' });
-    expect(spy).toHaveBeenCalledWith(
-      undefined,
-      'bye',
-      [],
-      undefined,
-      undefined,
-    );
+    expect(spy).toHaveBeenCalledWith(undefined, 'bye', [], undefined);
   });
+
   it('should be possible to have a title and a message', async () => {
     await Alert.translatedAlert({ passThrough: 'Hi' }, { passThrough: 'bye' });
-    expect(spy).toHaveBeenCalledWith('Hi', 'bye', [], undefined, undefined);
+    expect(spy).toHaveBeenCalledWith('Hi', 'bye', [], undefined);
   });
+
   it('should be possible to have custom buttons', async () => {
     const onPress = jest.fn();
     await Alert.translatedAlert({ passThrough: 'Hi' }, { passThrough: 'bye' }, [
@@ -47,7 +45,6 @@ describe('Alert wrapper with translations', () => {
         { text: 'Button Text3', onPress, style: 'destructive' },
         { text: 'Button Text4', onPress, style: 'default' },
       ],
-      undefined,
       undefined,
     );
   });

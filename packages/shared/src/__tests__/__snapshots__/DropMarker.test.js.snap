@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matches 1`] = `
-<Component
+<Image
   source={
     Object {
       "testUri": "../../../packages/shared/src/dropMarker/images/dropmarker.png",
