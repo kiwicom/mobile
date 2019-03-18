@@ -3,13 +3,16 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { Text, StyleSheet, Icon } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  type TranslationKeysType,
+  Translation,
+} from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Service = {|
   +id: number,
   +icon: string,
-  +translation: string,
+  +translation: TranslationKeysType,
 |};
 
 type Props = {|
