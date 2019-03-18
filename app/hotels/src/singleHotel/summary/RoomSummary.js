@@ -42,7 +42,7 @@ const getMaxNumberOfGuestsInSelection = memoize(selectedRooms => {
 
 export class RoomSummary extends React.Component<Props, State> {
   state = {
-    isExpanded: true,
+    isExpanded: false,
   };
 
   calculateSelectedData = () => {
