@@ -46,6 +46,7 @@ exports[`renders found hotels 1`] = `
   maxToRenderPerBatch={10}
   numColumns={1}
   onEndReachedThreshold={2}
+  removeClippedSubviews={false}
   renderItem={[Function]}
   scrollEventThrottle={50}
   updateCellsBatchingPeriod={50}

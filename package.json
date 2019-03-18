@@ -32,10 +32,10 @@
     "@kiwicom/react-native-app-hotels": "^0",
     "@kiwicom/react-native-fast-track": "^0",
     "chalk": "^2.4.2",
-    "detox": "^10.0.2",
+    "detox": "^12.0.0",
     "dotenv": "^7.0.0",
-    "react": "16.6.3",
-    "react-native": "^0.58.5",
+    "react": "16.8.3",
+    "react-native": "0.59.0",
     "react-native-app-registry-components-to-constants": "0.0.1",
     "react-native-code-push": "^5.5.2"
   },
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.4",
     "@babel/node": "^7.2.2",
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/runtime": "^7.3.1",
@@ -69,7 +69,7 @@
     "metro-react-native-babel-preset": "^0.53.0",
     "prettier": "^1.16.4",
     "react-native-dotenv": "^0.2.0",
-    "react-test-renderer": "16.6.3",
+    "react-test-renderer": "16.8.3",
     "regenerator-runtime": "^0.12.1"
   },
   "resolutions": {
@@ -104,6 +104,6 @@
     "test-runner": "jest"
   },
   "rnkiwimobile": {
-    "code-push-target-binary-version": "9.0.0"
+    "code-push-target-binary-version": "10.0.0"
   }
 }
