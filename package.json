@@ -32,7 +32,7 @@
     "@kiwicom/react-native-app-hotels": "^0",
     "@kiwicom/react-native-fast-track": "^0",
     "chalk": "^2.4.2",
-    "detox": "^10.0.2",
+    "detox": "^12.0.0",
     "dotenv": "^7.0.0",
     "react": "16.6.3",
     "react-native": "^0.58.5",

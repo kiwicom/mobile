@@ -29,6 +29,7 @@ import {
   type ApiProvider,
 } from '../HotelsContext';
 import BookingSummary from './summary/BookingSummary';
+import CloseModal from '../components/CloseModal';
 
 type Props = {|
   +availableHotel: ?HotelType,
@@ -108,15 +109,18 @@ export class HotelDetailScreen extends React.Component<Props, State> {
   };
 
   render() {
-    const { availableHotel } = this.props;
+    const { availableHotel, goBack } = this.props;
 
     if (!availableHotel) {
       return (
-        <GeneralError
-          errorMessage={
-            <Translation id="single_hotel.hotel_detail_screen.hotel_not_found" />
-          }
-        />
+        <>
+          <GeneralError
+            errorMessage={
+              <Translation id="single_hotel.hotel_detail_screen.hotel_not_found" />
+            }
+          />
+          <CloseModal onPress={goBack} />
+        </>
       );
     }
     const statusBarBackground =
