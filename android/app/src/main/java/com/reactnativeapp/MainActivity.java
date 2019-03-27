@@ -43,6 +43,7 @@ public class MainActivity extends ReactActivity {
           new ArrayList<>(),
           BuildConfig.DEBUG,
           BuildConfig.DEBUG,
+          BuildConfig.DEBUG,
           null
         );
     }

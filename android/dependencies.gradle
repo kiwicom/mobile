@@ -30,6 +30,6 @@ ext {
     testRunnerVersion = "1.0.2"
     espressoVersion = "3.0.2"
 
-    loggingVersion = "0.2.10"
+    loggingVersion = "0.2.15"
     trinerdisUtilsVersion = "0.2.15"
 }
