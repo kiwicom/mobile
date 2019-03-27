@@ -33,6 +33,12 @@ try {
   useSentry = false;
 }
 
+const logError = error => {
+  if (useSentry) {
+    Sentry.captureException(error);
+  }
+};
+
 const GRAPHQL_URL = 'https://graphql.kiwi.com/';
 
 const store = new Store(new RecordSource());
@@ -57,7 +63,10 @@ async function fetchFromTheNetwork(
 
     const jsonResponse = await fetchResponse.json();
     if (jsonResponse.errors) {
-      jsonResponse.errors.forEach(error => console.warn(error));
+      jsonResponse.errors.forEach(error => {
+        console.warn(error);
+        logError(error);
+      });
     }
     if (operation.operationKind !== 'mutation') {
       CacheManager.set(operation.name, variables, jsonResponse);
@@ -70,9 +79,7 @@ async function fetchFromTheNetwork(
     observer.error(error);
     observer.complete();
     console.warn(error);
-    if (useSentry) {
-      Sentry.captureException(error);
-    }
+    logError(error);
   }
 }
 
