@@ -127,6 +127,14 @@ const deployLibrary = (packageName, version) => {
         )}.react-native.${reactNativeVersion}`,
         '-SNAPSHOT',
       ),
+      deployDependency(
+        '@react-native-community/async-storage',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
+          '@react-native-community/async-storage',
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
     ]);
     // Main package to publish: rnkiwimobile
     log('-----');
