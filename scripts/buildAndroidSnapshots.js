@@ -135,6 +135,14 @@ const deployLibrary = (packageName, version) => {
         )}.react-native.${reactNativeVersion}`,
         '-SNAPSHOT',
       ),
+      deployDependency(
+        '@react-native-community/netinfo',
+        SKYPICKER_URL,
+        `${getDependencyVersion(
+          '@react-native-community/netinfo',
+        )}.react-native.${reactNativeVersion}`,
+        '-SNAPSHOT',
+      ),
     ]);
     // Main package to publish: rnkiwimobile
     log('-----');
