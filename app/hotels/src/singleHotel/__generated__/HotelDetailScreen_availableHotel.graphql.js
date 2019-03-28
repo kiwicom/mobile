@@ -18,10 +18,7 @@ export type HotelDetailScreen_availableHotel = {|
   +hotel: ?{|
     +$fragmentRefs: Header_hotel$ref & HotelInformation_hotel$ref
   |},
-  +availableRooms: ?$ReadOnlyArray<?{|
-    +$fragmentRefs: RoomList_data$ref
-  |}>,
-  +$fragmentRefs: BookingSummary_room$ref,
+  +$fragmentRefs: BookingSummary_room$ref & RoomList_data$ref,
   +$refType: HotelDetailScreen_availableHotel$ref,
 |};
 */
@@ -61,23 +58,12 @@ const node/*: ReaderFragment*/ = {
       ]
     },
     {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "availableRooms",
-      "storageKey": null,
-      "args": null,
-      "concreteType": null,
-      "plural": true,
-      "selections": [
-        {
-          "kind": "FragmentSpread",
-          "name": "RoomList_data",
-          "args": null
-        }
-      ]
+      "kind": "FragmentSpread",
+      "name": "RoomList_data",
+      "args": null
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '6b8834bbae01ee643ee3a3057b17e237';
+(node/*: any*/).hash = 'cb51b65ce808f30cd94bf90eb32a91df';
 module.exports = node;

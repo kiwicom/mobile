@@ -11,45 +11,56 @@ import type { ReaderFragment } from 'relay-runtime';
 type RoomRow_availableRoom$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomList_data$ref: FragmentReference;
-export type RoomList_data = $ReadOnlyArray<{|
-  +id: string,
-  +selectedCount: ?number,
-  +$fragmentRefs: RoomRow_availableRoom$ref,
+export type RoomList_data = {|
+  +availableRooms: ?$ReadOnlyArray<?{|
+    +id: string,
+    +selectedCount: ?number,
+    +$fragmentRefs: RoomRow_availableRoom$ref,
+  |}>,
   +$refType: RoomList_data$ref,
-|}>;
+|};
 */
 
 
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "RoomList_data",
-  "type": "HotelRoomAvailabilityInterface",
-  "metadata": {
-    "plural": true
-  },
+  "type": "HotelAvailabilityInterface",
+  "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "ScalarField",
+      "kind": "LinkedField",
       "alias": null,
-      "name": "id",
+      "name": "availableRooms",
+      "storageKey": null,
       "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "RoomRow_availableRoom",
-      "args": null
-    },
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "selectedCount",
-      "args": null,
-      "storageKey": null
+      "concreteType": null,
+      "plural": true,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "id",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "FragmentSpread",
+          "name": "RoomRow_availableRoom",
+          "args": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "selectedCount",
+          "args": null,
+          "storageKey": null
+        }
+      ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'e1c4f03dc4beca8cf570e6ef25a0b391';
+(node/*: any*/).hash = 'b69aa45a655909096114a8215dc265a3';
 module.exports = node;
