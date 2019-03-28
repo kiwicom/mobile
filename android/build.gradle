@@ -108,5 +108,10 @@ allprojects {
                 publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeNetInfo-SNAPSHOT")
             }
             break
+        case 'react-native-webview':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeWebView-SNAPSHOT")
+            }
+            break
     }
 }

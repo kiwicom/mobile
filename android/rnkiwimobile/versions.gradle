@@ -17,6 +17,7 @@ ext {
     reactNativeGestureHandler = packageJson['dependencies']['react-native-gesture-handler'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeAsyncStorage = packageJson['dependencies']['@react-native-community/async-storage'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeNetInfo = packageJson['dependencies']['@react-native-community/netinfo'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeWebView = packageJson['dependencies']['react-native-webview'].replace('^', '') + ".react-native." + reactNativeVersion
 
     reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
     rnKiwiMobileVersion = packageJson['version']

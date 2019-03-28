@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { WebView as NativeWebView } from 'react-native';
+import NativeWebView from 'react-native-webview';
 import { Translation } from '@kiwicom/mobile-localization';
 
 import GeneralError from './errors/GeneralError';
