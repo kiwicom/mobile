@@ -2,7 +2,7 @@
 
 /* eslint-disable no-underscore-dangle */
 
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { QueryResponseCache } from 'relay-runtime';
 
 const CACHE_KEY = '@CACHE_MANAGER:';

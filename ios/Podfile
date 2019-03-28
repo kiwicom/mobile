@@ -30,6 +30,7 @@ end
 
 def hotels_package_modules()
   pod 'react-native-maps', path: '../node_modules/react-native-maps'
+  pod 'react-native-async-storage', :path => '../node_modules/@react-native-community/async-storage'
 end
 
 def react_native_modules()

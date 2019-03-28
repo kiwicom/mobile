@@ -1,13 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { AsyncStorage, View } from 'react-native';
+import { View } from 'react-native';
 import {
   SimpleCard,
   LayoutSingleColumn,
   DismissKeyboardView,
   StyleSheet,
 } from '@kiwicom/mobile-shared';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Login from './components/authentication/Login';
 import Logout from './components/authentication/Logout';
