@@ -140,8 +140,7 @@ export class HotelDetailScreen extends React.Component<Props, State> {
           <LayoutSingleColumn>
             <Header hotel={availableHotel.hotel} />
             <HotelInformation hotel={availableHotel.hotel} />
-            {/* $FlowExpectedError: I don't understand this error TODO: Fix */}
-            <RoomList data={availableHotel.availableRooms} />
+            <RoomList data={availableHotel} />
             <BrandLabel />
           </LayoutSingleColumn>
         </ScrollView>
@@ -171,9 +170,7 @@ export default createFragmentContainer(
           ...Header_hotel
           ...HotelInformation_hotel
         }
-        availableRooms {
-          ...RoomList_data
-        }
+        ...RoomList_data
       }
     `,
   },

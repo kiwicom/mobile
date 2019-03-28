@@ -1,4 +1,4 @@
-// @flow
+// @flow strict
 
 import * as React from 'react';
 import { View } from 'react-native';
@@ -6,7 +6,6 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Text } from '@kiwicom/mobile-shared';
 import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import isEqual from 'react-fast-compare';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 
 import RoomRow from './RoomRow';
@@ -17,14 +16,13 @@ type Props = {|
 |};
 
 class RoomList extends React.Component<Props> {
-  shouldComponentUpdate = (nextProps: Props) => !isEqual(nextProps, this.props);
-
   render() {
-    const data = this.props.data ?? [];
+    const data = this.props.data?.availableRooms ?? [];
     const numberOfRooms = data.reduce((acc, curr) => {
       const selectedCount = curr?.selectedCount ?? 0;
       return acc + selectedCount;
     }, 0);
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
@@ -34,7 +32,7 @@ class RoomList extends React.Component<Props> {
           />
         </Text>
         {data.map((availableRoom, index) => (
-          <React.Fragment key={availableRoom.id}>
+          <React.Fragment key={availableRoom?.id}>
             {index !== 0 && (
               <SeparatorFullWidth
                 height={StyleSheet.hairlineWidth}
@@ -68,11 +66,12 @@ const styles = StyleSheet.create({
 
 export default createFragmentContainer(RoomList, {
   data: graphql`
-    fragment RoomList_data on HotelRoomAvailabilityInterface
-      @relay(plural: true) {
-      id
-      ...RoomRow_availableRoom
-      selectedCount
+    fragment RoomList_data on HotelAvailabilityInterface {
+      availableRooms {
+        id
+        ...RoomRow_availableRoom
+        selectedCount
+      }
     }
   `,
 });
