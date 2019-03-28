@@ -1020,6 +1020,11 @@
     xcode "^2.0.0"
     xmldoc "^0.4.0"
 
+"@react-native-community/netinfo@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-1.4.0.tgz#8dd6de55ebf2792321fc392b9bd9144c4cedb9e3"
+  integrity sha512-5HDb7f4MhF8bF+K/5f0HdQtjU+8iujl9IFQHeRz1e4doWqtgWL4DhhfQqczchOI0xI/g8QT0ZZV4A6CayJt24Q==
+
 "@react-navigation/core@3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-3.2.0.tgz#329dfe54f305ee22ed750d51cb09c5d18562d56f"

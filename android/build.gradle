@@ -103,5 +103,10 @@ allprojects {
                 publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeAsyncStorage-SNAPSHOT")
             }
             break
+        case '@react-native-community/netinfo':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeNetInfo-SNAPSHOT")
+            }
+            break
     }
 }
