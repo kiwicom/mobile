@@ -1,8 +1,17 @@
 // @flow strict
 
-import { NetInfo } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 
-type ConnectionType = 'none' | 'wifi' | 'cellular' | 'unknown';
+type ConnectionType =
+  // iOS & Android
+  | 'none'
+  | 'cellular'
+  | 'unknown'
+  | 'wifi'
+  // Android only
+  | 'bluetooth'
+  | 'ethernet'
+  | 'wimax';
 
 class ConnectionManager {
   connectionType: ConnectionType;
