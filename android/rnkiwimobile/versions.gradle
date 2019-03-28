@@ -15,6 +15,7 @@ ext {
     reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeCodePush = packageJson['dependencies']['react-native-code-push'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeGestureHandler = packageJson['dependencies']['react-native-gesture-handler'].replace('^', '') + ".react-native." + reactNativeVersion
+    reactNativeAsyncStorage = packageJson['dependencies']['@react-native-community/async-storage'].replace('^', '') + ".react-native." + reactNativeVersion
 
     reactNativeNativeModules = rnModulesPackageJson['version'] + ".react-native." + reactNativeVersion
     rnKiwiMobileVersion = packageJson['version']

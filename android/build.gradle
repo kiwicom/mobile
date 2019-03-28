@@ -98,5 +98,10 @@ allprojects {
                 publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeGestureHandler-SNAPSHOT")
             }
             break
+        case '@react-native-community/async-storage':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeAsyncStorage-SNAPSHOT")
+            }
+            break
     }
 }

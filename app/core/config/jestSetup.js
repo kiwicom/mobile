@@ -7,3 +7,4 @@ import './NativeModulesMocks/RNCurrencyManager';
 import './NativeModulesMocks/RNDeviceInfo';
 import './NativeModulesMocks/RNKiwiGestureController';
 import './NativeModulesMocks/RNKiwiBackButton';
+import './NativeModulesMocks/AsyncStorage';
