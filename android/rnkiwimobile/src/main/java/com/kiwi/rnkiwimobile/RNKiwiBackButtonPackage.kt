@@ -19,7 +19,7 @@ class RNKiwiBackButtonPackage(): ReactPackage {
     return Collections.singletonList(RNKiwiBackButtonModule(reactContext))
   }
 
-  override fun createViewManagers(reactContext: ReactApplicationContext?): MutableList<ViewManager<View, ReactShadowNode<*>>> {
+  override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<View, ReactShadowNode<*>>> {
     return Collections.emptyList()
   }
 
