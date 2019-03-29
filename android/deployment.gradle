@@ -41,7 +41,7 @@ ext.publishCustomLibrary = { _groupId, _artifactId, _version, closure ->
         publications {
             maven(MavenPublication) {
                 groupId = _groupId
-                artifactId = _artifactId
+                artifactId = _artifactId.replaceAll("@", "")
                 version = _version
 
                 closure(it)

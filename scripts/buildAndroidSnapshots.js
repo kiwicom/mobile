@@ -128,7 +128,7 @@ const deployLibrary = (packageName, version) => {
         '-SNAPSHOT',
       ),
       deployDependency(
-        '@react-native-community/async-storage',
+        '@react-native-community_async-storage',
         SKYPICKER_URL,
         `${getDependencyVersion(
           '@react-native-community/async-storage',
@@ -136,7 +136,7 @@ const deployLibrary = (packageName, version) => {
         '-SNAPSHOT',
       ),
       deployDependency(
-        '@react-native-community/netinfo',
+        '@react-native-community_netinfo',
         SKYPICKER_URL,
         `${getDependencyVersion(
           '@react-native-community/netinfo',

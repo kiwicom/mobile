@@ -49,9 +49,9 @@ dependencies {
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-code-push:$reactNativeCodePush-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-gesture-handler:$reactNativeGestureHandler-SNAPSHOT"
-    api "com.trinerdis.skypicker:@react-native-community/async-storage:$reactNativeAsyncStorage-SNAPSHOT"
-    api "com.trinerdis.skypicker:@react-native-community/netinfo:$reactNativeNetInfo-SNAPSHOT"
-    api "com.trinerdis.skypicker:react-native-web:$reactNativeWebView-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-community_async-storage:$reactNativeAsyncStorage-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-community_netinfo:$reactNativeNetInfo-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-webview:$reactNativeWebView-SNAPSHOT"
 
     api("com.google.android.gms:play-services-base:$playServicesBaseVersion")
     api("com.google.android.gms:play-services-maps:$playServicesMapsVersion")
