@@ -59,7 +59,6 @@ allprojects {
         def androidConfiguration = {
             android {
                 compileSdkVersion = rootProject.ext.compileSdkVersion
-                buildToolsVersion = rootProject.ext.buildToolsVersion
 
                 defaultConfig {
                     minSdkVersion rootProject.ext.minSdkVersion
@@ -97,6 +96,21 @@ allprojects {
         case 'react-native-gesture-handler':
             configure(project) {
                 publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeGestureHandler-SNAPSHOT")
+            }
+            break
+        case '@react-native-community/async-storage':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeAsyncStorage-SNAPSHOT")
+            }
+            break
+        case '@react-native-community/netinfo':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeNetInfo-SNAPSHOT")
+            }
+            break
+        case 'react-native-webview':
+            configure(project) {
+                publishAndroidLibrary("com.trinerdis.skypicker", project.name, "$reactNativeWebView-SNAPSHOT")
             }
             break
     }

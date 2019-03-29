@@ -11,6 +11,7 @@
   },
   "peerDependencies": {
     "react": "^16",
-    "react-native": "^0.57"
+    "react-native": "^0.57",
+    "@react-native-community/async-storage": ""
   }
 }
