@@ -7,7 +7,8 @@
     "@kiwicom/fetch": "^2.0.1",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-shared": "^0",
-    "@kiwicom/relay": "^0.10.0"
+    "@kiwicom/relay": "^0.10.0",
+    "@sentry/browser": "^4.6.6"
   },
   "devDependencies": {
     "graphql": "^14.0.2",
@@ -15,9 +16,9 @@
   },
   "peerDependencies": {
     "mockdate": "^2",
+    "react": "^",
     "react-native": "^0.57",
     "react-test-renderer": "^16",
-    "relay-runtime": "1.7",
-    "react": "^"
+    "relay-runtime": "1.7"
   }
 }

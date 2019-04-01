@@ -9,6 +9,8 @@ import {
   Observable,
 } from 'relay-runtime';
 import fetchWithRetries from '@kiwicom/fetch';
+import * as Sentry from '@sentry/browser';
+import { SENTRY_DSN } from 'react-native-dotenv';
 
 import ConnectionManager from './ConnectionManager';
 import CacheManager from './CacheManager';
@@ -17,6 +19,23 @@ type FetcherResponse = {|
   +data: Object,
   +errors?: $ReadOnlyArray<Object>,
 |};
+
+let useSentry;
+const { NODE_ENV } = process.env;
+
+try {
+  // The app will crash if SENTRY_DSN is wrong. Let's rather deactivate it if it for some reason is not set correctly
+  Sentry.init({ dsn: SENTRY_DSN, enabled: NODE_ENV !== 'development' });
+  useSentry = true;
+} catch {
+  useSentry = false;
+}
+
+const logError = error => {
+  if (useSentry) {
+    Sentry.captureException(error);
+  }
+};
 
 const GRAPHQL_URL = 'https://graphql.kiwi.com/';
 
@@ -42,7 +61,10 @@ async function fetchFromTheNetwork(
 
     const jsonResponse = await fetchResponse.json();
     if (jsonResponse.errors) {
-      jsonResponse.errors.forEach(error => console.warn(error));
+      jsonResponse.errors.forEach(error => {
+        console.warn(error);
+        logError(error);
+      });
     }
     if (operation.operationKind !== 'mutation') {
       CacheManager.set(operation.name, variables, jsonResponse);
@@ -62,6 +84,7 @@ const handleNoNetworkNoCachedResponse = observer => {
   // If not we are stuck on loader forever.
   observer.error({ message: 'No network' });
   observer.complete();
+  logError(error);
 };
 
 const asyncStoreRead = async (observer, operation, variables) => {
