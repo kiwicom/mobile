@@ -138,11 +138,11 @@ describe('calculateSelectedData', () => {
     const test = Component.calculateSelectedData();
     expect(test).toMatchInlineSnapshot(`
 Object {
-  "bruttoPrice": 3377.81,
+  "bruttoPrice": "3377.81",
   "currency": "EUR",
   "extraCharges": Array [
     Object {
-      "amount": 326.92,
+      "amount": "326.92",
       "name": "10% VAT",
       "type": "VAT",
     },
@@ -151,13 +151,13 @@ Object {
     Object {
       "count": 2,
       "id": "1",
-      "nettoPrice": 1963.62,
+      "nettoPrice": "1963.62",
       "title": "Basic Single Room",
     },
     Object {
       "count": 1,
       "id": "2",
-      "nettoPrice": 1087.27,
+      "nettoPrice": "1087.27",
       "title": "Basic Double Room",
     },
   ],

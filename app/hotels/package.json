@@ -10,6 +10,7 @@
     "@kiwicom/mobile-orbit": "^0",
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
+    "decimal.js": "^10.1.1",
     "geolib": "^2.0.24",
     "react-fast-compare": "^2.0.2",
     "react-native-snap-carousel": "^3.7.5",
@@ -20,12 +21,12 @@
   },
   "peerDependencies": {
     "@kiwicom/universal-components": "^0",
+    "memoize-one": "^",
     "react": "^16",
     "react-native": "^0.57",
     "react-native-maps": "^0",
     "react-navigation": "^3",
     "react-navigation-props-mapper": "^0",
-    "react-test-renderer": "^16",
-    "memoize-one": "^"
+    "react-test-renderer": "^16"
   }
 }

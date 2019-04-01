@@ -12,6 +12,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import memoize from 'memoize-one';
+import { Decimal } from 'decimal.js';
 
 import SummaryRow from './SummaryRow';
 import type { RoomSummary_room as Room } from './__generated__/RoomSummary_room.graphql';
@@ -62,14 +63,14 @@ export class RoomSummary extends React.Component<Props, State> {
 
         const calculatedExtraCharges = extraCharges.reduce(
           (acc, charge) => {
-            const amount = parseFloat(charge?.amount ?? 0);
-            if (amount === 0) {
+            const amount = new Decimal(charge?.amount ?? 0);
+            if (amount.equals(0)) {
               // Need more information about calculation
               // We might need to know exactly how may persons are in each room
               // Right now we don't, so we get a diff with what is in the booking.com webview
               return acc;
             }
-            const chargeAmount = charge?.chargeAmount ?? '';
+            const chargeAmount = new Decimal(charge?.chargeAmount ?? 0);
             const excluded = charge?.excluded;
             const chargeName = charge?.name ?? '';
             const chargeType = charge?.type ?? '';
@@ -78,17 +79,17 @@ export class RoomSummary extends React.Component<Props, State> {
             return {
               includedCharges: excluded
                 ? acc.includedCharges
-                : acc.includedCharges + amount,
+                : new Decimal(acc.includedCharges).plus(amount),
               excludedCharges: excluded
-                ? acc.excludedCharges + amount
-                : acc.excludedCharges,
+                ? new Decimal(acc.excludedCharges).plus(amount)
+                : new Decimal(acc.excludedCharges),
               extraCharges: [
                 ...acc.extraCharges,
                 {
                   type: chargeType,
                   name:
                     charge?.type === 'VAT'
-                      ? `${chargeAmount}% ${chargeName}`
+                      ? `${chargeAmount.toFixed(0)}% ${chargeName}`
                       : chargeName,
                   amount,
                 },
@@ -96,13 +97,13 @@ export class RoomSummary extends React.Component<Props, State> {
             };
           },
           {
-            includedCharges: 0,
-            excludedCharges: 0,
+            includedCharges: new Decimal(0),
+            excludedCharges: new Decimal(0),
             extraCharges: [],
           },
         );
 
-        const bruttoRoomPrice = parseFloat(
+        const bruttoRoomPrice = new Decimal(
           incrementalPrice?.total?.amount ?? 0,
         );
 
@@ -110,16 +111,17 @@ export class RoomSummary extends React.Component<Props, State> {
           id: room?.id ?? '',
           count: selectedCount ?? 0,
           title: room?.room?.description?.title ?? '',
-          nettoPrice: bruttoRoomPrice - calculatedExtraCharges.includedCharges,
+          nettoPrice: bruttoRoomPrice.minus(
+            calculatedExtraCharges.includedCharges,
+          ),
         };
 
         return {
           ...acc,
           selectedRooms: [...acc.selectedRooms, roomData],
-          bruttoPrice:
-            acc.bruttoPrice +
-            bruttoRoomPrice +
-            calculatedExtraCharges.excludedCharges,
+          bruttoPrice: acc.bruttoPrice
+            .plus(bruttoRoomPrice)
+            .plus(calculatedExtraCharges.excludedCharges),
           extraCharges: calculatedExtraCharges.extraCharges.reduce(
             (acc, curr) => {
               // We don't want to show each type more than one time
@@ -134,7 +136,7 @@ export class RoomSummary extends React.Component<Props, State> {
                 ...acc.filter(item => item.type !== existingCharge.type),
                 {
                   ...existingCharge,
-                  amount: existingCharge.amount + curr.amount,
+                  amount: existingCharge.amount.plus(curr.amount),
                 },
               ];
             },
@@ -145,7 +147,7 @@ export class RoomSummary extends React.Component<Props, State> {
       {
         selectedRooms: [],
         extraCharges: [],
-        bruttoPrice: 0,
+        bruttoPrice: new Decimal(0),
         currency,
       },
     );
