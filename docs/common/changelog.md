@@ -18,6 +18,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.43` or `0.0.44`, both are compatible with this target-version. The latter contains a patch in the initialization of code-push to fix a crash when upating fails. 
 
+### v33
+
+- Log all graphql errors
+
 ### v29
 
 - Set statusbar background color on hotel detail screen, MOBILE-2920
@@ -41,6 +45,10 @@ this will be evened out from v24
 - Replace `react-native-tooltips` with tooltips from `universal-components`
 
 ## Target version 7.0.0
+
+### v32
+
+- Log all graphql errors
 
 ### 30
 
