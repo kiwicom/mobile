@@ -3,7 +3,9 @@
 When we update a dependency there are no major changes as versions will be taken from 
 [.build/package.json](../../.build/package.json) and a new snapshot will be deployed.
 
-To add a new native dependency though, that is more time consuming. We need to modify the 
+To add a new native dependency though, that is more time consuming. After linking the native module, you should also add the package to [RNHotelsModule.kt](../../android/rnkiwimobile/src/main/java/com/kiwi/rnkiwimobile/hotels/RNHotelsModule.kt) `getPackages` function.
+
+Then we need to modify the 
 `[android/build.gradle](../../android/build.gradle)`.
 This will deploy a new `SNAPSHOT` for it and upload it to 
 [Gitlab packages](https://gitlab.skypicker.com/mobile/android/-/packages).
