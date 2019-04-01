@@ -5,6 +5,15 @@ v22/v21 means v22 for android and v21 for ios
 
 this will be evened out from v24
 
+## Target version 10.0.0
+
+- Upgrade rnkiwimobile to version `0.0.45`
+
+### v31
+
+- Upgraded react-native and other native dependencies
+- New summary layout, see [figma](https://www.figma.com/file/ayF92epBKcFcwdfE8IWIGMNa/Hotels-Results-%26-Detail?node-id=734%3A1) -> Showing only VAT for now, since we need more info from booking.com to show taxes 
+
 ## Target version 9.0.0
 
 - Upgrade rnkiwimobile to version `0.0.43` or `0.0.44`, both are compatible with this target-version. The latter contains a patch in the initialization of code-push to fix a crash when upating fails. 
