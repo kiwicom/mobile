@@ -30,6 +30,7 @@ export const _fetch = async (
   urlPath: string,
   parameters?: any,
   method?: string,
+  extraHeaders?: Object,
 ) => {
   const result = await fetch(
     `https://api.phraseapp.com/api/v2/projects/${projectId}${urlPath}`,
@@ -40,6 +41,7 @@ export const _fetch = async (
         Authorization: `token ${
           PHRASE_APP_TOKEN != null ? PHRASE_APP_TOKEN : '###'
         }`,
+        ...(extraHeaders ?? {}),
       },
       body: parameters,
     },

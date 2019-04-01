@@ -70,8 +70,8 @@ const updateKey = async (keyId, keyName) => {
 };
 
 const updateTranslation = async (keyId: string, unPrefixedKey: string) => {
-  const translations = await _fetch(`/keys/${keyId}/translations`);
-  const defaultLocale = translations.find(
+  const serverTranslations = await _fetch(`/keys/${keyId}/translations`);
+  const defaultLocale = serverTranslations.find(
     translation => translation.locale.code === 'en-GB', // Our default locale
   );
 
@@ -86,6 +86,7 @@ const updateTranslation = async (keyId: string, unPrefixedKey: string) => {
       `/translations/${defaultLocale.id}`,
       JSON.stringify({ content: translations[unPrefixedKey] }),
       HttpMethod.PATCH,
+      { 'Content-Type': 'application/json' },
     );
   }
   return null;
