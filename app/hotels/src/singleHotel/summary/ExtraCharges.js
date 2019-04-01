@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Price, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { type Decimal } from 'decimal.js';
 
 import SummaryRow from './SummaryRow';
 
@@ -15,12 +16,12 @@ type Props = {|
     +id: string,
     +count: number,
     +title: string,
-    +nettoPrice: number,
+    +nettoPrice: Decimal,
   |}>,
   +extraCharges: $ReadOnlyArray<{|
     +type: string,
     +name: string,
-    +amount: number,
+    +amount: Decimal,
   |}>,
 |};
 
