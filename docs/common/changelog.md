@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.45`
 
+### v34
+
+- Added library to handle decimal prices
+
 ### v31
 
 - Upgraded react-native and other native dependencies
