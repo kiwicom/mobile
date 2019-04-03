@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { Translation } from '@kiwicom/mobile-localization';
 import { Price, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { type Decimal } from 'decimal.js';
+import { type Decimal } from 'decimal.js-light';
 
 import SummaryRow from './SummaryRow';
 

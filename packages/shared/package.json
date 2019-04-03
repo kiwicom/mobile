@@ -27,7 +27,7 @@
     "react-native": "^0.57",
     "react-navigation": "^3",
     "react-test-renderer": "^16",
-    "decimal.js": ""
+    "decimal.js-light": ""
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",

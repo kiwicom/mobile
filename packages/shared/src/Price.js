@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Translation } from '@kiwicom/mobile-localization';
-import { type DecimalValue, Decimal } from 'decimal.js';
+import { type DecimalValue, Decimal } from 'decimal.js-light';
 
 import CurrencyFormatter from './CurrencyFormatter';
 import Text from './Text';
