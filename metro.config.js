@@ -10,8 +10,6 @@
 
 const path = require('path');
 
-const { IS_CI } = process.env;
-
 const sharedBlacklist = [
   /node_modules[/\\]react[/\\]dist[/\\].*/,
   /website\/node_modules\/.*/,
@@ -39,5 +37,4 @@ module.exports = {
         ')$',
     ),
   },
-  useWatchman: IS_CI === undefined,
 };
