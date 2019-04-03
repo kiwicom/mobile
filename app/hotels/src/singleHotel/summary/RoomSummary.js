@@ -12,7 +12,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import memoize from 'memoize-one';
-import { Decimal } from 'decimal.js';
+import { Decimal } from 'decimal.js-light';
 
 import SummaryRow from './SummaryRow';
 import type { RoomSummary_room as Room } from './__generated__/RoomSummary_room.graphql';

@@ -1,7 +1,7 @@
 // @flow
 
-// Work in progress, expand as needed, see full typescript types here https://github.com/MikeMcl/decimal.js/blob/master/decimal.d.ts
-declare module 'decimal.js' {
+// Work in progress, expand as needed, see full typescript types here https://github.com/MikeMcl/decimal.js-light/blob/master/decimal.d.ts
+declare module 'decimal.js-light' {
   declare class Decimal {
     constructor(decimal: DecimalValue): Decimal;
     
