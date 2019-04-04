@@ -35,7 +35,7 @@ try {
 
 const logError = error => {
   if (useSentry) {
-    Sentry.captureException(error);
+    Sentry.captureException(new Error(error.message));
   }
 };
 
