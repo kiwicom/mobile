@@ -20,6 +20,7 @@ type Props = {|
   +cityId: string,
   +cityName: string,
   +roomsConfiguration: RoomConfigurationType,
+  +currency: string,
 |};
 
 export default class HotelsPackageWrapper extends React.Component<Props> {
@@ -33,7 +34,7 @@ export default class HotelsPackageWrapper extends React.Component<Props> {
     return (
       <NewHotelsStandAlonePackage
         language="en"
-        currency="EUR" // Only EUR is now fully supported as PriceFilter can't handle anything but EUR
+        currency={this.props.currency}
         onBackClicked={this.goToHomepage}
         dataSaverEnabled={false}
         coordinates={this.props.coordinates}
