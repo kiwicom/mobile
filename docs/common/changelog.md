@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.45`
 
+### v35
+- Replace decimal.js with ligher decimal.js-light
+- Improve sentry logging
+
 ### v34
 
 - Added library to handle decimal prices
