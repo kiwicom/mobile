@@ -18,7 +18,7 @@
     "flow": "flow app --include-warnings",
     "graphql": "yarn babel-node ./scripts/getSchema.js",
     "ios": "yarn react-native run-ios",
-    "lint": "yarn eslint . --report-unused-disable-directives",
+    "lint": "yarn jest --config=.jest-eslint.config.js",
     "postinstall": "node ./scripts/configureApplication.js",
     "relay": "yarn relay-compiler --src . --schema ./schema.graphql",
     "release-android": "yarn babel-node ./scripts/buildAndroidSnapshots.js",
