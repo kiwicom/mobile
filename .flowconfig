@@ -21,7 +21,6 @@
 
 ; Custom Kiwi.com ignores
 <PROJECT_ROOT>/\.git/
-<PROJECT_ROOT>/node_modules/@kiwicom/monorepo/src/ChildProcess.js.flow
 
 [include]
 
