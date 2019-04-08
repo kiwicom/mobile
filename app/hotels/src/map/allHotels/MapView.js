@@ -180,24 +180,8 @@ export class Map extends React.Component<Props, State> {
     this.props.onSelectMarker(e.nativeEvent.id);
   };
 
-  renderHotelMarker = (hotel: Object, index: number) => {
-    const { selectedIndex } = this.props;
-    const id = hotel?.id;
-
-    return (
-      <MapViewMarker
-        key={id}
-        onPress={this.onMarkerPress}
-        storeRef={this.storeMarkerReference}
-        isSelected={index === selectedIndex}
-        index={index}
-        markerData={hotel}
-      />
-    );
-  };
-
   render() {
-    const { data } = this.props;
+    const { data, selectedIndex } = this.props;
 
     return (
       <MapView
@@ -205,7 +189,18 @@ export class Map extends React.Component<Props, State> {
         style={styles.map}
         initialRegion={this.state.region}
       >
-        {data.map(this.renderHotelMarker)}
+        {data.map((hotel, index) => {
+          return (
+            <MapViewMarker
+              key={hotel.id}
+              onPress={this.onMarkerPress}
+              storeRef={this.storeMarkerReference}
+              isSelected={index === selectedIndex}
+              index={index}
+              markerData={hotel}
+            />
+          );
+        })}
       </MapView>
     );
   }

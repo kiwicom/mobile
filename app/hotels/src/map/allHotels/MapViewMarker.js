@@ -1,9 +1,7 @@
 // @flow strict
 
-/* eslint-disable react/no-did-update-set-state */
 import * as React from 'react';
 import MapView from 'react-native-maps';
-import isEqual from 'react-fast-compare';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
 import PriceMarker from './PriceMarker';
@@ -31,56 +29,47 @@ type Props = {|
   +onPress: MarkerPressEvent => void,
 |};
 
-type State = {|
-  tracksViewChanges: boolean,
-|};
+const MapViewMarker = (props: Props) => {
+  const coordinate = props.markerData?.coordinates;
+  const lat = coordinate?.lat;
+  const lng = coordinate?.lng;
+  const price = props.markerData?.price;
+  const id = props.markerData?.id;
+  const [tracksViewChanges, setTracksViewChanges] = React.useState(false);
 
-class MapViewMarker extends React.Component<Props, State> {
-  state = {
-    tracksViewChanges: false,
-  };
+  React.useEffect(() => {
+    // Update marker location if coordinates changed
+    setTracksViewChanges(true);
+  }, [lat, lng]);
 
-  componentDidUpdate(prevProps: Props) {
-    const coordinate = this.props.markerData?.coordinates;
-    const prevCoordinate = prevProps.markerData?.coordinates;
-    if (
-      !isEqual(prevCoordinate, coordinate) // set true only when coordinates changes
-    ) {
-      this.setState({ tracksViewChanges: true });
-    } else if (this.state.tracksViewChanges) {
+  React.useEffect(() => {
+    if (tracksViewChanges === true) {
       // set to false immediately after rendering with tracksViewChanges is true
       // This prevents react-native-maps from eating away all resource on android
       // see https://github.com/react-native-community/react-native-maps/issues/2658#issuecomment-455731624
-      this.setState({ tracksViewChanges: false });
+      setTracksViewChanges(false);
     }
+  }, [tracksViewChanges]);
+
+  function storeMarkerReference(ref: React.Ref<typeof MapView.Marker> | null) {
+    props.storeRef(props.index, ref);
   }
 
-  storeMarkerReference = (ref: React.Ref<typeof MapView.Marker> | null) => {
-    const { index } = this.props;
-    this.props.storeRef(index, ref);
-  };
-
-  render() {
-    const { isSelected, onPress } = this.props;
-    const coordinate = this.props.markerData?.coordinates;
-    const price = this.props.markerData?.price;
-    const id = this.props.markerData?.id;
-    return (
-      <MapView.Marker
-        identifier={id}
-        coordinate={{
-          latitude: coordinate?.lat,
-          longitude: coordinate?.lng,
-        }}
-        onPress={onPress}
-        ref={this.storeMarkerReference}
-        tracksViewChanges={this.state.tracksViewChanges}
-      >
-        <PriceMarker data={price} isSelected={isSelected} />
-      </MapView.Marker>
-    );
-  }
-}
+  return (
+    <MapView.Marker
+      identifier={id}
+      coordinate={{
+        latitude: coordinate?.lat,
+        longitude: coordinate?.lng,
+      }}
+      onPress={props.onPress}
+      ref={storeMarkerReference}
+      tracksViewChanges={tracksViewChanges}
+    >
+      <PriceMarker data={price} isSelected={props.isSelected} />
+    </MapView.Marker>
+  );
+};
 
 export default createFragmentContainer(MapViewMarker, {
   markerData: graphql`
