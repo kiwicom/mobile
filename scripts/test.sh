@@ -6,5 +6,5 @@ set -x # print a trace of simple commands
 
 yarn lint
 yarn flow
-node node_modules/jest/bin/jest.js --ci --color --logHeapUsage --config=.jest.json
+yarn monorepo-run-tests
 yarn relay --validate --watchman false
