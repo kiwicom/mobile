@@ -30,97 +30,97 @@ export const topValue = Dimensions.get('window').height;
 export const lowValue = -100;
 const transitionDuration = 250;
 
-export class RenderSearchResults extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
+export const RenderSearchResults = (props: Props) => {
+  const [mapAnimation] = React.useState(
+    new Animated.Value(props.show === 'list' ? topValue : 0),
+  );
+  const [listAnimation] = React.useState(
+    new Animated.Value(props.show === 'list' ? 0 : lowValue),
+  );
+  const initialRun = React.useRef(true);
 
-    const showList = props.show === 'list';
-    this.mapAnimation = new Animated.Value(showList ? topValue : 0);
-    this.listAnimation = new Animated.Value(showList ? 0 : lowValue);
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (prevProps.show === 'list' && this.props.show === 'map') {
-      this.animateToMap();
+  React.useEffect(() => {
+    if (initialRun.current) {
+      initialRun.current = false;
+      return;
     }
-    if (prevProps.show === 'map' && this.props.show === 'list') {
-      this.animateToList();
+
+    function animateToMap() {
+      Animated.parallel([
+        Animated.timing(mapAnimation, {
+          toValue: 0,
+          duration: transitionDuration,
+          useNativeDriver: true,
+        }),
+        Animated.timing(listAnimation, {
+          toValue: lowValue,
+          duration: transitionDuration,
+          useNativeDriver: true,
+        }),
+      ]).start();
     }
-  }
 
-  mapAnimation: Animated.Value;
-  listAnimation: Animated.Value;
+    function animateToList() {
+      Animated.parallel([
+        Animated.timing(mapAnimation, {
+          toValue: topValue,
+          duration: transitionDuration,
+          useNativeDriver: true,
+        }),
+        Animated.timing(listAnimation, {
+          toValue: 0,
+          duration: transitionDuration,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+    if (props.show === 'list') {
+      animateToList();
+    } else {
+      animateToMap();
+    }
+  }, [listAnimation, mapAnimation, props.show]);
 
-  animateToMap = () => {
-    Animated.parallel([
-      Animated.timing(this.mapAnimation, {
-        toValue: 0,
-        duration: transitionDuration,
-        useNativeDriver: true,
-      }),
-      Animated.timing(this.listAnimation, {
-        toValue: lowValue,
-        duration: transitionDuration,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  };
+  const data = props.data || [];
 
-  animateToList = () => {
-    Animated.parallel([
-      Animated.timing(this.mapAnimation, {
-        toValue: topValue,
-        duration: transitionDuration,
-        useNativeDriver: true,
-      }),
-      Animated.timing(this.listAnimation, {
-        toValue: 0,
-        duration: transitionDuration,
-        useNativeDriver: true,
-      }),
-    ]).start();
-  };
-
-  render() {
-    const data = this.props.data || [];
-
-    return (
-      <React.Fragment>
-        <Animated.View
-          style={{
-            ...StyleSheet.absoluteFillObject,
-            top: this.props.top,
-            transform: [{ translateY: this.listAnimation }],
-          }}
-        >
-          <View style={styles.content}>
-            <AllHotelsSearchList
-              data={data}
-              ListFooterComponent={
-                this.props.hasMore && (
-                  <LoadMoreButton
-                    isLoading={this.props.isLoading}
-                    onPress={this.props.onLoadMore}
-                  />
-                )
-              }
-            />
-          </View>
-        </Animated.View>
-        <Animated.View
-          style={{
-            ...StyleSheet.absoluteFillObject,
-            top: this.props.top,
-            transform: [{ translateY: this.mapAnimation }],
-          }}
-        >
-          <MapScreen data={data} />
-        </Animated.View>
-        <CloseModal onPress={this.props.closeHotels} />
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <>
+      <Animated.View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          top: props.top,
+          transform: [{ translateY: listAnimation }],
+        }}
+        testID="list-wrapper"
+      >
+        <View style={styles.content}>
+          <AllHotelsSearchList
+            data={data}
+            ListFooterComponent={
+              props.hasMore && (
+                <LoadMoreButton
+                  isLoading={props.isLoading}
+                  onPress={props.onLoadMore}
+                />
+              )
+            }
+          />
+        </View>
+      </Animated.View>
+      <Animated.View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          top: props.top,
+          transform: [{ translateY: mapAnimation }],
+        }}
+        testID="map-wrapper"
+      >
+        <MapScreen data={data} />
+      </Animated.View>
+      <CloseModal onPress={props.closeHotels} />
+    </>
+  );
+};
 
 const styles = StyleSheet.create({
   content: {
