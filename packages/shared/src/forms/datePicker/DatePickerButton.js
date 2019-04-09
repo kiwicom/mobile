@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import {
-  Translation,
   DateFormatter,
   type DateFormatterFunctions,
 } from '@kiwicom/mobile-localization';
@@ -12,6 +11,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import Touchable from '../../Touchable';
 import StyleSheet from '../../PlatformStyleSheet';
 import Text from '../../Text';
+import Translation from '../../Translation';
 
 type Props = {|
   +onPress: () => void,

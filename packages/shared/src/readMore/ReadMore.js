@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import OriginalReadMore from 'react-native-read-more-text'; // eslint-disable-line no-restricted-imports
-import { Translation } from '@kiwicom/mobile-localization';
 
+import Translation from '../Translation';
 import ReadMoreLink from './ReadMoreLink';
 import type { StylePropType } from '../../types/Styles';
 

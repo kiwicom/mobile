@@ -2,11 +2,11 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import type { TranslationType } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
+import type { TranslationType } from '../../types/Translation';
 
 type Props = {|
   // error message visible by user

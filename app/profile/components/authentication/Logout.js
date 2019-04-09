@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { LinkButton } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { LinkButton, Translation } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +onLogout: () => void,

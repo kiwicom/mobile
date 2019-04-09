@@ -10,9 +10,9 @@ import {
   Stars,
   Logger,
   Device,
+  Translation,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
   withNavigation,

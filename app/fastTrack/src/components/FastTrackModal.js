@@ -2,8 +2,13 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Modal, Text, TextButton, StyleSheet } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  Modal,
+  Text,
+  TextButton,
+  StyleSheet,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|

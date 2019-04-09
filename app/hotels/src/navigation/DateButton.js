@@ -1,9 +1,12 @@
 // @flow strict
 
 import * as React from 'react';
-import { AdaptableBadge, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  AdaptableBadge,
+  StyleSheet,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { Translation } from '@kiwicom/mobile-localization';
 
 type Props = {|
   +children: React.Element<typeof Translation>,

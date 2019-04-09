@@ -1,7 +1,8 @@
 // @flow strict
 
+import { replaceValues } from '@kiwicom/mobile-localization';
+
 import Translation from '../Translation';
-import { replaceValues } from '../TranslationHelpers';
 
 it('replaces parameter', () => {
   expect(
@@ -40,23 +41,23 @@ it('works without value to replace', () => {
 });
 
 it('works with pass through translations', () => {
-  const Component = new Translation({
+  const Component = Translation({
     passThrough: 'This text should be returned as is.',
   });
-  expect(Component.render()).toMatchSnapshot();
+  expect(Component).toMatchSnapshot();
 });
 
 it('works with optional pass through parameter', () => {
-  const Component = new Translation({
+  const Component = Translation({
     passThrough: undefined,
   });
-  expect(Component.render()).toMatchSnapshot();
+  expect(Component).toMatchSnapshot();
 });
 
 it('works with pass through translations and text transformations', () => {
-  const Component = new Translation({
+  const Component = Translation({
     passThrough: 'This text should be returned in uppercase.',
     textTransform: 'uppercase',
   });
-  expect(Component.render()).toMatchSnapshot();
+  expect(Component).toMatchSnapshot();
 });

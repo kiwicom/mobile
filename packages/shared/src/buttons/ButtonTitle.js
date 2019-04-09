@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import type { TranslationType } from '@kiwicom/mobile-localization';
 
 import Text from '../Text';
+import type { TranslationType } from '../../types/Translation';
 import type { StylePropType } from '../../types/Styles';
 
 type Props = {|

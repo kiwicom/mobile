@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { GeneralError, OfflineScreen, Logger } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  GeneralError,
+  OfflineScreen,
+  Logger,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import {
   PublicApiRenderer,
   type GraphQLTaggedNode,

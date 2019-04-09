@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
 import { type DecimalValue, Decimal } from 'decimal.js-light';
 
+import Translation from './Translation';
 import CurrencyFormatter from './CurrencyFormatter';
 import Text from './Text';
 import type { StylePropType } from '../types/Styles';

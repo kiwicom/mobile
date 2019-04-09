@@ -7,8 +7,8 @@ import {
   Text,
   Dimensions,
   type DimensionType,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';

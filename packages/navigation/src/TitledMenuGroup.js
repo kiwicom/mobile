@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { Platform } from 'react-native';
-import { SimpleCard, StyleSheet } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { SimpleCard, StyleSheet, Translation } from '@kiwicom/mobile-shared';
 
 import MenuGroup from './MenuGroup';
 import MenuGroupTitle from './MenuGroupTitle';

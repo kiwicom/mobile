@@ -2,14 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Translation,
-  type TranslationType,
-} from '@kiwicom/mobile-localization';
 
 import Popup from './Popup';
 import StyleSheet from '../PlatformStyleSheet';
 import LinkButton from '../buttons/LinkButton';
+import type { TranslationType } from '../../types/Translation';
+import Translation from '../Translation';
 
 type Props = {|
   +buttonTitle: TranslationType,

@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Icon, StyleSheet, Text } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { Icon, StyleSheet, Text, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Address_address as AddressType } from './__generated__/Address_address.graphql';

@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
-import { Translation } from '@kiwicom/mobile-localization';
 
+import Translation from '../Translation';
 import SimpleCard from '../SimpleCard';
 
 const DEEP_RENDER = false;

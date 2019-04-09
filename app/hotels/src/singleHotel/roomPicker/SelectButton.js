@@ -7,8 +7,8 @@ import {
   StyleSheet,
   Touchable,
   ButtonTitle,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type PriceType = {|

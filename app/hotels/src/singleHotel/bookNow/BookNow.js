@@ -6,13 +6,14 @@ import {
   Button,
   ButtonTitle,
   Logger,
+  Translation,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import {
   withNavigation,
   type NavigationType,
 } from '@kiwicom/mobile-navigation';
-import { DeviceInfo, Translation, Alert } from '@kiwicom/mobile-localization';
+import { DeviceInfo, Alert } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
 import type { BookNow_rooms as RoomsType } from './__generated__/BookNow_rooms.graphql';

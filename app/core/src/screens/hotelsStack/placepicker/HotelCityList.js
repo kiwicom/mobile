@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { FlatList } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { Translation } from '@kiwicom/mobile-localization';
+import { Translation } from '@kiwicom/mobile-shared';
 
 import type { HotelCityList_data as Cities } from './__generated__/HotelCityList_data.graphql';
 import HotelCityItem from './HotelCityItem';

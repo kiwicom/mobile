@@ -3,8 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Text, Icon } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { StyleSheet, Text, Icon, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BeddingInfo_room as RoomType } from './__generated__/BeddingInfo_room.graphql';

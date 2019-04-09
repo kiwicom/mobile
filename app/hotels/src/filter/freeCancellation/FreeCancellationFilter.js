@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
-import { Logger } from '@kiwicom/mobile-shared';
+import { Translation, Logger } from '@kiwicom/mobile-shared';
 
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';

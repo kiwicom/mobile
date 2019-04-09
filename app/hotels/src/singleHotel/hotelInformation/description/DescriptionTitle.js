@@ -1,9 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import { StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, type TranslationType } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { type TranslationType } from '@kiwicom/mobile-localization';
 
 type Props = {|
   +title: TranslationType,

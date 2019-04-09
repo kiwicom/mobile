@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { StyleSheet, Text } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { StyleSheet, Text, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelDistance_hotel as HotelType } from './__generated__/HotelDistance_hotel.graphql';

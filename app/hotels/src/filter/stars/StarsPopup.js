@@ -7,9 +7,9 @@ import {
   Checkbox,
   Text,
   Logger,
+  Translation,
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SeparatorTrimmed } from '@kiwicom/mobile-navigation';
 import { SafeAreaView } from 'react-navigation';

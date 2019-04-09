@@ -6,8 +6,8 @@ import {
   Text,
   TextButton,
   StyleSheet,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import FastTrackModal from '../components/FastTrackModal';

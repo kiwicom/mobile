@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
 import {
   StyleSheet,
   Price,
   BottomSheetHandle,
   VerticalSwipeResponder,
+  Translation,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { View } from 'react-native';

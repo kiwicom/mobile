@@ -1,12 +1,12 @@
 // @flow strict
 
 import * as React from 'react';
-import { type TranslationType } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
+import type { TranslationType } from '../../types/Translation';
 
 type Props = {|
   +children: TranslationType,

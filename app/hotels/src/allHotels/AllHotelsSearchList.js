@@ -2,9 +2,8 @@
 
 import * as React from 'react';
 import { FlatList } from 'react-native';
-import { GeneralError } from '@kiwicom/mobile-shared';
+import { GeneralError, Translation } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import AllHotelsSearchRow from './AllHotelsSearchRow';
 import type { AllHotelsSearchList_data as AllHotelsSearchListProps } from './__generated__/AllHotelsSearchList_data.graphql';

@@ -8,8 +8,9 @@ import {
   AdaptableBadge,
   Text,
   Touchable,
+  Translation,
+  TranslationFragment,
 } from '@kiwicom/mobile-shared';
-import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DescriptionTitle from './DescriptionTitle';

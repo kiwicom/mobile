@@ -7,8 +7,9 @@ import {
   DatePicker,
   StyleSheet,
   IncrementDecrementButtons,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation, DateUtils } from '@kiwicom/mobile-localization';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import {
   withHotelsFormContext,
@@ -27,11 +28,6 @@ type Props = {|
   +childrenCount: number,
   +onChildrenChange: boolean => void,
 |};
-
-const labels = {
-  cancel: <Translation passThrough="Cancel" />,
-  confirm: <Translation passThrough="Confirm" />,
-};
 
 class HotelsForm extends React.Component<Props> {
   incrementAdults = () => {
@@ -66,7 +62,6 @@ class HotelsForm extends React.Component<Props> {
               date={this.props.checkin}
               onDateChange={this.props.onCheckinChange}
               minDate={new Date()}
-              labels={labels}
             />
           </View>
           <View style={styles.item}>
@@ -76,7 +71,6 @@ class HotelsForm extends React.Component<Props> {
               onDateChange={this.props.onCheckoutChange}
               maxDate={DateUtils().addDays(365)}
               minDate={DateUtils().addDays(1)}
-              labels={labels}
             />
           </View>
         </View>

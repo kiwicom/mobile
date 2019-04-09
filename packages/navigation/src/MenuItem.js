@@ -8,8 +8,8 @@ import {
   Text,
   Touchable,
   AdaptableLayout,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MenuItemIcon from './MenuItemIcon';

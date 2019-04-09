@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, Touchable } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { StyleSheet, Touchable, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelCityItem_data as City } from './__generated__/HotelCityItem_data.graphql';

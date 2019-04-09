@@ -2,8 +2,12 @@
 
 import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { AdaptableBadge, StyleSheet, Icon } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  AdaptableBadge,
+  StyleSheet,
+  Icon,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { RoomBadges_availableRoom as RoomBadgesTypes } from './__generated__/RoomBadges_availableRoom.graphql';

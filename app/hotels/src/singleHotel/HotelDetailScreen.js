@@ -12,9 +12,9 @@ import {
   type BarStyle,
   Color,
   StatusbarBackground,
+  Translation,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Header from './header/Header';
