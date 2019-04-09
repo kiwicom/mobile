@@ -3,13 +3,33 @@
 exports[`works with optional pass through parameter 1`] = `null`;
 
 exports[`works with pass through translations 1`] = `
-<Text>
+<Text
+  expo={false}
+  style={
+    Array [
+      undefined,
+      Object {
+        "fontFamily": "CircularPro-Book",
+      },
+    ]
+  }
+>
   This text should be returned as is.
 </Text>
 `;
 
 exports[`works with pass through translations and text transformations 1`] = `
-<Text>
+<Text
+  expo={false}
+  style={
+    Array [
+      undefined,
+      Object {
+        "fontFamily": "CircularPro-Book",
+      },
+    ]
+  }
+>
   THIS TEXT SHOULD BE RETURNED IN UPPERCASE.
 </Text>
 `;

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Text } from '@kiwicom/mobile-shared';
+import { Text, StyleSheet } from '@kiwicom/universal-components';
 import { translate } from '@kiwicom/rnmodules';
 
 import vocabulary, { type TranslationKeys } from './DefaultVocabulary';
@@ -68,6 +68,7 @@ export default class Translation extends React.Component<Props> {
         }
       : undefined;
 
+    const style = [containerStyle, styles.text];
     if (this.props.id === undefined) {
       // ID prop is missing so let's assume it's "pass through" translation
       // (property passThrough may be undefined)
@@ -75,8 +76,7 @@ export default class Translation extends React.Component<Props> {
         return null;
       }
       return (
-        <Text style={containerStyle}>
-          {/* $FlowExpectedError: we do not allow to use 'string' in the 'Text' components but translations are exceptions. */}
+        <Text style={style}>
           {CaseTransform(
             String(this.props.passThrough),
             this.props.textTransform,
@@ -87,8 +87,7 @@ export default class Translation extends React.Component<Props> {
 
     const values = this.props.values || {};
     return (
-      <Text style={containerStyle}>
-        {/* $FlowExpectedError: we do not allow to use 'string' in the 'Text' components but translations are exceptions. */}
+      <Text style={style}>
         {CaseTransform(
           replaceValues(vocabulary[this.props.id], values),
           this.props.textTransform,
@@ -97,3 +96,14 @@ export default class Translation extends React.Component<Props> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    ios: {
+      fontFamily: 'CircularPro-Book',
+    },
+    android: {
+      fontFamily: 'Roboto',
+    },
+  },
+});

@@ -43,7 +43,22 @@ exports[`renders 1`] = `
         ]
       }
     >
-      <Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "Roboto",
+              "margin": 0,
+            },
+            Array [
+              undefined,
+              Object {
+                "fontFamily": "CircularPro-Book",
+              },
+            ],
+          ]
+        }
+      >
         test
       </Text>
     </Text>

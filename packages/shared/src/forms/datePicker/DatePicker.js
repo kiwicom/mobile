@@ -2,15 +2,15 @@
 
 import * as React from 'react';
 import { DatePicker as UniversalDatePicker } from '@kiwicom/universal-components';
+import {
+  Translation,
+  type DateFormatterFunctions,
+} from '@kiwicom/mobile-localization';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DatePickerButton from './DatePickerButton';
-
-type DateFormatterFunctions =
-  | 'formatToDate'
-  | 'formatToTime'
-  | 'formatToShortDate'
-  | 'formatToBirthday'
-  | 'formatForMachine';
+import Text from '../../Text';
+import StyleSheet from '../../PlatformStyleSheet';
 
 type Props = {|
   +date: ?Date,
@@ -22,11 +22,32 @@ type Props = {|
   +formatFunction?: DateFormatterFunctions,
   +disabled: boolean,
   +customButton?: React.Node | null,
-  +labels: {|
-    +cancel: React.Node,
-    +confirm: React.Node,
-  |},
 |};
+
+const Label = ({
+  children,
+}: {|
+  +children: React.Element<typeof Translation>,
+|}) => <Text style={styles.label}>{children}</Text>;
+
+const labels = {
+  cancel: (
+    <Label>
+      <Translation id="shared.button.cancel" />
+    </Label>
+  ),
+  confirm: (
+    <Label>
+      <Translation id="shared.button.save" />
+    </Label>
+  ),
+};
+
+const styles = StyleSheet.create({
+  label: {
+    color: defaultTokens.paletteProductNormal,
+  },
+});
 
 export default function DatePicker(props: Props) {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -53,7 +74,7 @@ export default function DatePicker(props: Props) {
       />
       <UniversalDatePicker
         isVisible={isVisible}
-        labels={props.labels}
+        labels={labels}
         onDismiss={hidePicker}
         date={props.date ?? new Date()}
         onConfirm={onConfirm}

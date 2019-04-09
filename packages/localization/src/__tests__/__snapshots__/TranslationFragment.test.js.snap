@@ -5,13 +5,15 @@ exports[`overwrites the previous textTransform property 1`] = `
   style={
     Array [
       Object {
-        "color": "#171b1e",
-        "fontFamily": "CircularPro-Book",
-        "fontSize": 14,
-        "fontWeight": "normal",
-        "letterSpacing": -0.15,
+        "fontFamily": "Roboto",
+        "margin": 0,
       },
-      undefined,
+      Array [
+        undefined,
+        Object {
+          "fontFamily": "CircularPro-Book",
+        },
+      ],
     ]
   }
 >
@@ -40,13 +42,15 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
-          "fontFamily": "CircularPro-Book",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
+          "fontFamily": "Roboto",
+          "margin": 0,
         },
-        undefined,
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
       ]
     }
   >
@@ -76,13 +80,15 @@ exports[`works with conditionals 1`] = `
   style={
     Array [
       Object {
-        "color": "#171b1e",
-        "fontFamily": "CircularPro-Book",
-        "fontSize": 14,
-        "fontWeight": "normal",
-        "letterSpacing": -0.15,
+        "fontFamily": "Roboto",
+        "margin": 0,
       },
-      undefined,
+      Array [
+        undefined,
+        Object {
+          "fontFamily": "CircularPro-Book",
+        },
+      ],
     ]
   }
 >
@@ -96,13 +102,15 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
-          "fontFamily": "CircularPro-Book",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
+          "fontFamily": "Roboto",
+          "margin": 0,
         },
-        undefined,
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
       ]
     }
   >
@@ -112,13 +120,15 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
-          "fontFamily": "CircularPro-Book",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
+          "fontFamily": "Roboto",
+          "margin": 0,
         },
-        undefined,
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
       ]
     }
   >
@@ -128,13 +138,15 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
-          "fontFamily": "CircularPro-Book",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
+          "fontFamily": "Roboto",
+          "margin": 0,
         },
-        undefined,
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
       ]
     }
   >
@@ -144,13 +156,15 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
-          "fontFamily": "CircularPro-Book",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
+          "fontFamily": "Roboto",
+          "margin": 0,
         },
-        undefined,
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
       ]
     }
   >
@@ -166,13 +180,15 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
-          "fontFamily": "CircularPro-Book",
-          "fontSize": 14,
-          "fontWeight": "normal",
-          "letterSpacing": -0.15,
+          "fontFamily": "Roboto",
+          "margin": 0,
         },
-        undefined,
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
       ]
     }
   >

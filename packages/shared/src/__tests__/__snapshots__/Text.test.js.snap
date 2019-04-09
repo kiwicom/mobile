@@ -24,7 +24,22 @@ exports[`applies the styles recursively 1`] = `
       }
     }
   >
-    <Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "Roboto",
+            "margin": 0,
+          },
+          Array [
+            undefined,
+            Object {
+              "fontFamily": "CircularPro-Book",
+            },
+          ],
+        ]
+      }
+    >
       bold and red text
     </Text>
   </Text>
@@ -48,7 +63,22 @@ exports[`renders with additional style properties 1`] = `
     ]
   }
 >
-  <Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "Roboto",
+          "margin": 0,
+        },
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
+      ]
+    }
+  >
     bold text
   </Text>
 </Text>
@@ -69,7 +99,22 @@ exports[`renders with the default properties for iOS 1`] = `
     ]
   }
 >
-  <Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "Roboto",
+          "margin": 0,
+        },
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
+      ]
+    }
+  >
     normal text
   </Text>
 </Text>
@@ -93,12 +138,42 @@ exports[`supports multiple nested strings 1`] = `
   }
 >
   <Text>
-    <Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "Roboto",
+            "margin": 0,
+          },
+          Array [
+            undefined,
+            Object {
+              "fontFamily": "CircularPro-Book",
+            },
+          ],
+        ]
+      }
+    >
       red normal text 
     </Text>
   </Text>
   <Text>
-    <Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "Roboto",
+            "margin": 0,
+          },
+          Array [
+            undefined,
+            Object {
+              "fontFamily": "CircularPro-Book",
+            },
+          ],
+        ]
+      }
+    >
       and red normal text
     </Text>
   </Text>
@@ -122,7 +197,22 @@ exports[`supports nested styles 1`] = `
     ]
   }
 >
-  <Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "Roboto",
+          "margin": 0,
+        },
+        Array [
+          undefined,
+          Object {
+            "fontFamily": "CircularPro-Book",
+          },
+        ],
+      ]
+    }
+  >
     bold text 
   </Text>
   <Text
@@ -132,7 +222,22 @@ exports[`supports nested styles 1`] = `
       }
     }
   >
-    <Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "Roboto",
+            "margin": 0,
+          },
+          Array [
+            undefined,
+            Object {
+              "fontFamily": "CircularPro-Book",
+            },
+          ],
+        ]
+      }
+    >
       and bold-red text
     </Text>
   </Text>
@@ -157,7 +262,22 @@ exports[`works even with the distant Text nodes 1`] = `
   }
 >
   <Text>
-    <Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "fontFamily": "Roboto",
+            "margin": 0,
+          },
+          Array [
+            undefined,
+            Object {
+              "fontFamily": "CircularPro-Book",
+            },
+          ],
+        ]
+      }
+    >
       bold default text
     </Text>
   </Text>
