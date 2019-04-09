@@ -10,8 +10,8 @@ import {
   StyleSheet,
   type OnLayout,
   BottomSheetHandle,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelSwipeItem from './HotelSwipeItem';
 import Address from '../Address';

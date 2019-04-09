@@ -1,8 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
-import { StyleSheet, Touchable } from '@kiwicom/mobile-shared';
+import { StyleSheet, Touchable, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 const styles = StyleSheet.create({

@@ -7,8 +7,8 @@ import {
   Text,
   type OnLayout,
   withDimensions,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import { View } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 

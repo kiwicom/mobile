@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { TextInput as OriginalTextInput, View } from 'react-native'; // eslint-disable-line no-restricted-imports
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import Translation from '../Translation';
 import { type StylePropType } from '../../types/Styles';
 import StyleSheet from '../PlatformStyleSheet';
 import Text from '../Text';

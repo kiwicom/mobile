@@ -2,8 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { IconLoading, LinkButton, StyleSheet } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  IconLoading,
+  LinkButton,
+  StyleSheet,
+  Translation,
+} from '@kiwicom/mobile-shared';
 
 type Props = {|
   +isLoading: boolean,

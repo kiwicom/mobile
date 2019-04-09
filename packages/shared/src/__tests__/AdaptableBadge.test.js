@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import AdaptableBadge from '../AdaptableBadge';
+import Translation from '../Translation';
 
 it('renders text', () => {
   PlaygroundRenderer.render(

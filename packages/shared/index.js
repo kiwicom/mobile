@@ -10,6 +10,7 @@
  * These components helps us to build nice UI but they are more or less
  * useless without layout components.
  */
+
 export { default as Button } from './src/buttons/Button';
 export { default as TextButton } from './src/buttons/TextButton';
 export { default as LinkButton } from './src/buttons/LinkButton';
@@ -45,6 +46,8 @@ export { default as DropMarker } from './src/dropMarker/DropMarker';
 export { default as Price } from './src/Price';
 export { default as Stars } from './src/Stars';
 export { default as Text } from './src/Text';
+export { default as Translation } from './src/Translation';
+export { default as TranslationFragment } from './src/TranslationFragment';
 export { default as Duration } from './src/Duration';
 
 export { default as SliderLabels } from './src/SliderLabels';
@@ -148,3 +151,5 @@ export type { CancellablePromiseType } from './src/CancellablePromise';
 export type { DimensionType } from './types/Objects';
 
 export type { BarStyle } from './src/view/Layout';
+
+export type { TranslationType } from './types/Translation';

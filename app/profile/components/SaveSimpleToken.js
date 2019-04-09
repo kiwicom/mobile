@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Translation } from '@kiwicom/mobile-localization';
-import { TextButton, TextInput } from '@kiwicom/mobile-shared';
+import { TextButton, TextInput, Translation } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +onSave: (simpleToken: string, bookingId: string) => void,

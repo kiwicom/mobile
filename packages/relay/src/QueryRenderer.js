@@ -2,8 +2,11 @@
 
 import * as React from 'react';
 import { QueryRenderer as KiwicomQueryRenderer } from '@kiwicom/relay';
-import { FullPageLoading, GeneralError } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  FullPageLoading,
+  GeneralError,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { TimeoutError } from '@kiwicom/fetch';
 
 import PublicEnvironment from './PublicEnvironment';

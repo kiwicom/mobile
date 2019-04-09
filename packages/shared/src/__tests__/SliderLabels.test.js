@@ -1,10 +1,10 @@
 // @flow strict
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
+import Translation from '../Translation';
 import SliderLabels from '../SliderLabels';
 
 const shallowRenderer = new ShallowRenderer();
@@ -38,7 +38,7 @@ it('two labels', () => {
 });
 
 const requestAF = global.requestAnimationFrame;
-beforeEach(async () => (global.requestAnimationFrame = jest.fn()));
+beforeEach(async () => (global.requestAnimationFrame = jest.fn())); // eslint-disable-line require-await
 afterEach(() => (global.requestAnimationFrame = requestAF));
 
 it('startValue in the middle', () => {

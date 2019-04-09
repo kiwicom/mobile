@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import Translation from '../Translation';
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
 import Text from '../Text';

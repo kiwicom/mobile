@@ -5,7 +5,7 @@ import {
   StackNavigator,
   StackNavigatorOptions,
 } from '@kiwicom/mobile-navigation';
-import { Translation } from '@kiwicom/mobile-localization';
+import { Translation } from '@kiwicom/mobile-shared';
 
 export default StackNavigator(
   {

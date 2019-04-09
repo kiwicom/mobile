@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { StyleSheet, Text } from '@kiwicom/mobile-shared';
+import { StyleSheet, Text, Translation } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import HotelReviewScore from '../../components/HotelReviewScore';
 import type { HotelReview_data as HotelReviewType } from './__generated__/HotelReview_data.graphql';

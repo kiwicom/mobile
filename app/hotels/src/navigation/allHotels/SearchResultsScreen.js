@@ -4,9 +4,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
-import { LayoutDoubleColumn, StyleSheet, Icon } from '@kiwicom/mobile-shared';
+import {
+  LayoutDoubleColumn,
+  StyleSheet,
+  Icon,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import HotelsNavigationOptions from '../HotelsNavigationOptions';

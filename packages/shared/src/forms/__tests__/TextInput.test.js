@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { PlaygroundRenderer } from '@kiwicom/mobile-playground';
-import { Translation } from '@kiwicom/mobile-localization';
 
+import Translation from '../../Translation';
 import TextInput from '../TextInput';
 
 it('renders', () => {

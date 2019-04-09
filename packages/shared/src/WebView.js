@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import NativeWebView from 'react-native-webview';
-import { Translation } from '@kiwicom/mobile-localization';
 
+import Translation from './Translation';
 import GeneralError from './errors/GeneralError';
 import type { WebViewStateChangeEvent } from '../types/Events';
 

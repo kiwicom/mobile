@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
+import { Translation } from '@kiwicom/mobile-shared';
 import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';

@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { Translation } from '@kiwicom/mobile-localization';
 
+import Translation from '../Translation';
 import Touchable from '../Touchable';
 
 const renderer = new ShallowRenderer();

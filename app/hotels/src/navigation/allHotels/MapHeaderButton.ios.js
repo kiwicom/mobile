@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { Icon } from '@kiwicom/mobile-shared';
-import type { TranslationType } from '@kiwicom/mobile-localization';
+import { Icon, type TranslationType } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +onPress: () => void,

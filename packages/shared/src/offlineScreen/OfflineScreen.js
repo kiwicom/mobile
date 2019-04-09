@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Translation } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
 
+import Translation from '../Translation';
 import OfflineImage from './offline.png';
 import StyleSheet from '../PlatformStyleSheet';
 import Image from '../image/StretchedImage';

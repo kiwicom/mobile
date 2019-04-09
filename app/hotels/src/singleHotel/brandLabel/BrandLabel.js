@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View, Image } from 'react-native';
-import { StyleSheet, Text } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { StyleSheet, Text, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import brandImage from './bookingLogo.png';

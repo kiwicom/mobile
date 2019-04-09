@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import renderer from 'react-test-renderer';
-import { Translation } from '@kiwicom/mobile-localization';
 
+import Translation from '../../Translation';
 import ButtonPopup from '../ButtonPopup';
 import Touchable from '../../Touchable';
 import Dimensions from '../../view/Dimensions';

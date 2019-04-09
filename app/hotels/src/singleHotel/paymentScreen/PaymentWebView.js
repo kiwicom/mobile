@@ -7,8 +7,8 @@ import {
   GeneralError,
   type WebViewStateChangeEvent,
   Logger,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 
 import {
   withHotelsContext,

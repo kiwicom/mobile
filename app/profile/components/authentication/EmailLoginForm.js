@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View, Keyboard } from 'react-native';
-import { TextInput, TextButton } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { TextInput, TextButton, Translation } from '@kiwicom/mobile-shared';
 
 import LoginMutation, { type Callback } from './mutation/Login';
 import { createAccessToken, type AccessToken } from '../../types/AccessToken';

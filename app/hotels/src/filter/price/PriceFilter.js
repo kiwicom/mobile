@@ -1,12 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import { Icon, Logger, Price } from '@kiwicom/mobile-shared';
 import {
+  Icon,
+  Logger,
+  Price,
   Translation,
   TranslationFragment,
-  DateUtils,
-} from '@kiwicom/mobile-localization';
+} from '@kiwicom/mobile-shared';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';

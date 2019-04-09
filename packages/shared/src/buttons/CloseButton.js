@@ -1,9 +1,9 @@
 // @flow strict
 
 import * as React from 'react';
-import { Translation } from '@kiwicom/mobile-localization';
 import { Button } from '@kiwicom/universal-components';
 
+import Translation from '../Translation';
 import ButtonTitle from './ButtonTitle';
 import StyleSheet from '../PlatformStyleSheet';
 

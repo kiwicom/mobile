@@ -3,12 +3,12 @@
 import * as React from 'react';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { View } from 'react-native';
-import { type TranslationType } from '@kiwicom/mobile-localization';
 
 import type { OnLayout } from '../types/Events';
 import Text from './Text';
 import StyleSheet from './PlatformStyleSheet';
 import Price from './Price';
+import type { TranslationType } from '../types/Translation';
 
 type Props = {|
   +startLabel: TranslationType | React.Element<typeof Price>,

@@ -41,7 +41,6 @@ class PickerWrapper extends React.Component<Props, State> {
         iconComponent={<Icon name="wifi-off" />}
         {...rest}
         customButton={CustomButton}
-        labels={{ confirm: 'Ok', cancel: 'Cancel' }}
       />
     );
   }

@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import type { TranslationType } from '@kiwicom/mobile-localization';
-import type { StylePropType } from '@kiwicom/mobile-shared';
+import type { StylePropType, TranslationType } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from './Text';

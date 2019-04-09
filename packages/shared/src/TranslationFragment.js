@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
+import type { SupportedTransformationsType } from '@kiwicom/mobile-localization';
 
 import Translation from './Translation';
-import type { SupportedTransformationsType } from './transformations/CaseTransform';
 
 /**
  * Allows to concat multiple translations because it's not possible to nest

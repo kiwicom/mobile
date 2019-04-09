@@ -8,8 +8,8 @@ import {
   StyleSheet,
   type OnLayout,
   type DimensionType,
+  Translation,
 } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
 import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';

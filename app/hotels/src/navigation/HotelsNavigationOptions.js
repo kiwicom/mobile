@@ -2,17 +2,19 @@
 
 import * as React from 'react';
 import { View, Platform, StatusBar } from 'react-native';
+import { DateFormatter } from '@kiwicom/mobile-localization';
 import {
+  Text,
+  StyleSheet,
+  DatePicker,
+  Icon,
   Translation,
-  DateFormatter,
   type TranslationType,
-} from '@kiwicom/mobile-localization';
-import { Text, StyleSheet, DatePicker, Icon } from '@kiwicom/mobile-shared';
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MapHeaderButton from './allHotels/MapHeaderButton';
 import DateButton from './DateButton';
-import DatePickerLabels from '../components/DatepickerLabels';
 
 const dateFormat = {
   day: '2-digit',
@@ -56,7 +58,6 @@ const hotelsNavigationOptions = ({
       {checkin != null && checkout != null && (
         <View style={styles.row}>
           <DatePicker
-            labels={DatePickerLabels}
             customButton={
               <DateButton>
                 <Translation
@@ -72,7 +73,6 @@ const hotelsNavigationOptions = ({
           <Translation id="hotels_search.header.to" />
           <Translation passThrough=" " />
           <DatePicker
-            labels={DatePickerLabels}
             customButton={
               <DateButton>
                 <Translation

@@ -8,11 +8,9 @@ import {
   Text,
   Icon,
   type StylePropType,
-} from '@kiwicom/mobile-shared';
-import {
   type TranslationType,
   Translation,
-} from '@kiwicom/mobile-localization';
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|

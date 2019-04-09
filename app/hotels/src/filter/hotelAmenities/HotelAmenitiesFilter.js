@@ -1,8 +1,11 @@
 // @flow
 
 import * as React from 'react';
-import { Translation, TranslationFragment } from '@kiwicom/mobile-localization';
-import { Logger } from '@kiwicom/mobile-shared';
+import {
+  Translation,
+  TranslationFragment,
+  Logger,
+} from '@kiwicom/mobile-shared';
 
 import HotelAmenitiesPopup from './HotelAmenitiesPopup';
 import FilterButton from '../FilterButton';

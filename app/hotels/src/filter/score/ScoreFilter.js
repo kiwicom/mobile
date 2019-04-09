@@ -1,8 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Icon, Logger } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import { Icon, Logger, Translation } from '@kiwicom/mobile-shared';
 
 import ScorePopup from './ScorePopup';
 import FilterButton from '../FilterButton';

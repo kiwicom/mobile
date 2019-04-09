@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { Icon } from '@kiwicom/mobile-shared';
 import {
+  Icon,
   Translation,
   TranslationFragment,
   type TranslationType,
-} from '@kiwicom/mobile-localization';
+} from '@kiwicom/mobile-shared';
 
 import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';

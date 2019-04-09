@@ -1,8 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import { ButtonPopup, StyleSheet, Text } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  ButtonPopup,
+  StyleSheet,
+  Text,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
 

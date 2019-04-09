@@ -1,13 +1,13 @@
 // @flow strict
 
 import * as React from 'react';
-import type { TranslationType } from '@kiwicom/mobile-localization';
 import type { StylePropType } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from '../PlatformStyleSheet';
 import ButtonTitle from './ButtonTitle';
 import Button from './Button';
+import type { TranslationType } from '../../types/Translation';
 
 type Props = {|
   +title: TranslationType,

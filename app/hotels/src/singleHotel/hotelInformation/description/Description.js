@@ -3,8 +3,13 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import { Text, StyleSheet, ReadMore, Logger } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  Text,
+  StyleSheet,
+  ReadMore,
+  Logger,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DescriptionTitle from './DescriptionTitle';

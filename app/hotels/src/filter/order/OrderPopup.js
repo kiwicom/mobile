@@ -2,8 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { ButtonPopup, Text, StyleSheet } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  ButtonPopup,
+  Text,
+  StyleSheet,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 
