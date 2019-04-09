@@ -1,5 +1,6 @@
 // @flow strict
 
+/* eslint-disable react-hooks/exhaustive-deps */ // This rule does not work well with react-navigation, it causes endless re-render
 import * as React from 'react';
 import { View } from 'react-native';
 import { type NavigationType } from '@kiwicom/mobile-navigation';
@@ -38,81 +39,70 @@ type Props = {|
 
 const noop = () => {};
 
-class SearchResultsScreen extends React.Component<Props> {
-  static navigationOptions = ({ cityName, navigation, show }: Props) => {
-    function goToAllHotelsMap() {
-      const showNext = show === 'list' ? 'map' : 'list';
-      navigation.state.params.toggleMap(showNext);
-    }
-    const icon =
-      show === 'list' ? (
-        <Icon name="map" style={styles.icon} />
-      ) : (
-        <Icon name="list" style={styles.icon} />
-      );
-
-    const translationKey =
-      show === 'list'
-        ? 'hotels_search.all_hotels_search_list.show_map'
-        : 'hotels_search.all_hotels_search_list.show_list';
-    const checkin = navigation.getParam<Date>('checkin');
-    const checkout = navigation.getParam<Date>('checkout');
-    const setCheckinDate =
-      navigation.getParam<() => void>('setCheckinDate') ?? noop;
-    const setCheckoutDate =
-      navigation.getParam<() => void>('setCheckoutDate') ?? noop;
-    return HotelsNavigationOptions({
-      checkin,
-      checkout,
-      cityName,
-      text: <Translation id={translationKey} />,
-      icon,
-      goToAllHotelsMap,
-      setCheckinDate,
-      setCheckoutDate,
+const SearchResultsScreen = (props: Props) => {
+  React.useEffect(() => {
+    props.navigation.setParams({
+      toggleMap: props.setResultType,
+      setCheckinDate: props.setCheckinDate,
+      setCheckoutDate: props.setCheckoutDate,
     });
-  };
-
-  componentDidMount() {
-    this.props.navigation.setParams({
-      toggleMap: this.toggleShowMap,
-      show: this.props.show,
-      checkin: this.props.checkinDate,
-      checkout: this.props.checkoutDate,
-      setCheckinDate: this.props.setCheckinDate,
-      setCheckoutDate: this.props.setCheckoutDate,
+  }, []);
+  React.useEffect(() => {
+    props.navigation.setParams({
+      show: props.show,
+      checkin: props.checkinDate,
+      checkout: props.checkoutDate,
     });
+  }, [props.show, props.checkinDate, props.checkoutDate]);
+  return (
+    <LayoutDoubleColumn
+      menuComponent={
+        <View style={styles.container}>
+          <NewAllHotels />
+        </View>
+      }
+      containerComponent={<SingleHotelContainer goBack={noop} />}
+    />
+  );
+};
+
+SearchResultsScreen.navigationOptions = ({
+  cityName,
+  navigation,
+  show,
+}: Props) => {
+  function goToAllHotelsMap() {
+    const showNext = show === 'list' ? 'map' : 'list';
+    navigation.state.params.toggleMap(showNext);
   }
-
-  componentDidUpdate(prevProps: Props) {
-    if (
-      prevProps.show !== this.props.show ||
-      prevProps.checkinDate !== this.props.checkinDate ||
-      prevProps.checkoutDate !== this.props.checkoutDate
-    ) {
-      this.props.navigation.setParams({
-        show: this.props.show,
-        checkin: this.props.checkinDate,
-        checkout: this.props.checkoutDate,
-      });
-    }
-  }
-
-  toggleShowMap = (show: ResultType) => this.props.setResultType(show);
-
-  render() {
-    return (
-      <LayoutDoubleColumn
-        menuComponent={
-          <View style={styles.container}>
-            <NewAllHotels />
-          </View>
-        }
-        containerComponent={<SingleHotelContainer goBack={noop} />}
-      />
+  const icon =
+    show === 'list' ? (
+      <Icon name="map" style={styles.icon} />
+    ) : (
+      <Icon name="list" style={styles.icon} />
     );
-  }
-}
+
+  const translationKey =
+    show === 'list'
+      ? 'hotels_search.all_hotels_search_list.show_map'
+      : 'hotels_search.all_hotels_search_list.show_list';
+  const checkin = navigation.getParam<Date>('checkin');
+  const checkout = navigation.getParam<Date>('checkout');
+  const setCheckinDate =
+    navigation.getParam<() => void>('setCheckinDate') ?? noop;
+  const setCheckoutDate =
+    navigation.getParam<() => void>('setCheckoutDate') ?? noop;
+  return HotelsNavigationOptions({
+    checkin,
+    checkout,
+    cityName,
+    text: <Translation id={translationKey} />,
+    icon,
+    goToAllHotelsMap,
+    setCheckinDate,
+    setCheckoutDate,
+  });
+};
 
 const styles = StyleSheet.create({
   container: {
