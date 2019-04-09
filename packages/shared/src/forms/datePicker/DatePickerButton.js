@@ -19,9 +19,17 @@ type Props = {|
   +date: ?Date,
   +formatFunction: ?DateFormatterFunctions,
   +iconComponent?: React.Node,
+  +customButton?: React.Node | null,
 |};
 
 export default function DatePickerButton(props: Props) {
+  if (props.customButton !== undefined) {
+    return (
+      <Touchable onPress={props.onPress} disabled={props.disabled}>
+        {props.customButton}
+      </Touchable>
+    );
+  }
   return (
     <Touchable
       style={[styles.dateTouchBody, props.disabled ? styles.disabled : null]}

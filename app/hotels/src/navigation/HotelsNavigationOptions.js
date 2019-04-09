@@ -7,16 +7,12 @@ import {
   DateFormatter,
   type TranslationType,
 } from '@kiwicom/mobile-localization';
-import {
-  Text,
-  StyleSheet,
-  AdaptableBadge,
-  Icon,
-  Touchable,
-} from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, DatePicker, Icon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MapHeaderButton from './allHotels/MapHeaderButton';
+import DateButton from './DateButton';
+import DatePickerLabels from '../components/DatepickerLabels';
 
 const dateFormat = {
   day: '2-digit',
@@ -30,8 +26,8 @@ type Props = {|
   +icon: React.Element<typeof Icon>,
   +text: TranslationType,
   +goToAllHotelsMap: () => void,
-  +onCheckoutDateClicked: () => void,
-  +onCheckinDateClicked: () => void,
+  +setCheckinDate: Date => void,
+  +setCheckoutDate: Date => void,
 |};
 
 const hotelsNavigationOptions = ({
@@ -41,8 +37,8 @@ const hotelsNavigationOptions = ({
   text,
   goToAllHotelsMap,
   icon,
-  onCheckinDateClicked,
-  onCheckoutDateClicked,
+  setCheckinDate,
+  setCheckoutDate,
 }: Props) => ({
   headerStyle: {
     height: 64,
@@ -59,31 +55,34 @@ const hotelsNavigationOptions = ({
       </Text>
       {checkin != null && checkout != null && (
         <View style={styles.row}>
-          <Touchable onPress={onCheckinDateClicked}>
-            <AdaptableBadge
-              style={styles.badge}
-              textStyle={styles.badgeText}
-              translation={
+          <DatePicker
+            labels={DatePickerLabels}
+            customButton={
+              <DateButton>
                 <Translation
                   passThrough={DateFormatter(checkin).formatCustom(dateFormat)}
                 />
-              }
-            />
-          </Touchable>
+              </DateButton>
+            }
+            date={checkin}
+            onDateChange={setCheckinDate}
+          />
+
           <Translation passThrough=" " />
           <Translation id="hotels_search.header.to" />
           <Translation passThrough=" " />
-          <Touchable onPress={onCheckoutDateClicked}>
-            <AdaptableBadge
-              style={styles.badge}
-              textStyle={styles.badgeText}
-              translation={
+          <DatePicker
+            labels={DatePickerLabels}
+            customButton={
+              <DateButton>
                 <Translation
                   passThrough={DateFormatter(checkout).formatCustom(dateFormat)}
                 />
-              }
-            />
-          </Touchable>
+              </DateButton>
+            }
+            date={checkout}
+            onDateChange={setCheckoutDate}
+          />
         </View>
       )}
     </View>
@@ -115,13 +114,8 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     paddingTop: 8,
   },
-  badgeText: {
-    fontSize: 12,
-    color: defaultTokens.colorTextPrimary,
-  },
-  badge: {
-    backgroundColor: defaultTokens.paletteCloudNormal,
-    marginBottom: 12,
+  label: {
+    color: defaultTokens.paletteProductNormal,
   },
   row: {
     flexDirection: 'row',
