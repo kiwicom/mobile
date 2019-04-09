@@ -7,7 +7,6 @@ import { LayoutDoubleColumn, StyleSheet, Icon } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { Translation } from '@kiwicom/mobile-localization';
 
-import SearchDatepickers from './SearchDatepickers';
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import HotelsNavigationOptions from '../HotelsNavigationOptions';
 import {
@@ -33,16 +32,13 @@ type Props = {|
   +setResultType: (show: ResultType) => void,
   +show: ResultType,
   +cityId?: string,
-|};
-
-type State = {|
-  showCheckinDatepicker: boolean,
-  showCheckoutDatepicker: boolean,
+  +setCheckinDate: Date => void,
+  +setCheckoutDate: Date => void,
 |};
 
 const noop = () => {};
 
-class SearchResultsScreen extends React.Component<Props, State> {
+class SearchResultsScreen extends React.Component<Props> {
   static navigationOptions = ({ cityName, navigation, show }: Props) => {
     function goToAllHotelsMap() {
       const showNext = show === 'list' ? 'map' : 'list';
@@ -61,10 +57,10 @@ class SearchResultsScreen extends React.Component<Props, State> {
         : 'hotels_search.all_hotels_search_list.show_list';
     const checkin = navigation.getParam<Date>('checkin');
     const checkout = navigation.getParam<Date>('checkout');
-    const onCheckinDateClicked =
-      navigation.getParam<() => void>('onCheckinDateClicked') ?? noop;
-    const onCheckoutDateClicked =
-      navigation.getParam<() => void>('onCheckoutDateClicked') ?? noop;
+    const setCheckinDate =
+      navigation.getParam<() => void>('setCheckinDate') ?? noop;
+    const setCheckoutDate =
+      navigation.getParam<() => void>('setCheckoutDate') ?? noop;
     return HotelsNavigationOptions({
       checkin,
       checkout,
@@ -72,14 +68,9 @@ class SearchResultsScreen extends React.Component<Props, State> {
       text: <Translation id={translationKey} />,
       icon,
       goToAllHotelsMap,
-      onCheckinDateClicked,
-      onCheckoutDateClicked,
+      setCheckinDate,
+      setCheckoutDate,
     });
-  };
-
-  state = {
-    showCheckinDatepicker: false,
-    showCheckoutDatepicker: false,
   };
 
   componentDidMount() {
@@ -88,8 +79,8 @@ class SearchResultsScreen extends React.Component<Props, State> {
       show: this.props.show,
       checkin: this.props.checkinDate,
       checkout: this.props.checkoutDate,
-      onCheckinDateClicked: this.toggleShowCheckinDatePicker,
-      onCheckoutDateClicked: this.toggleShowCheckoutDatePicker,
+      setCheckinDate: this.props.setCheckinDate,
+      setCheckoutDate: this.props.setCheckoutDate,
     });
   }
 
@@ -107,38 +98,18 @@ class SearchResultsScreen extends React.Component<Props, State> {
     }
   }
 
-  toggleShowCheckinDatePicker = () => {
-    this.setState(state => ({
-      showCheckinDatepicker: !state.showCheckinDatepicker,
-    }));
-  };
-
-  toggleShowCheckoutDatePicker = () => {
-    this.setState(state => ({
-      showCheckoutDatepicker: !state.showCheckoutDatepicker,
-    }));
-  };
-
   toggleShowMap = (show: ResultType) => this.props.setResultType(show);
 
   render() {
     return (
-      <>
-        <LayoutDoubleColumn
-          menuComponent={
-            <View style={styles.container}>
-              <NewAllHotels />
-            </View>
-          }
-          containerComponent={<SingleHotelContainer goBack={noop} />}
-        />
-        <SearchDatepickers
-          showCheckinDatepicker={this.state.showCheckinDatepicker}
-          toggleShowCheckinDatepicker={this.toggleShowCheckinDatePicker}
-          showCheckoutDatepicker={this.state.showCheckoutDatepicker}
-          toggleShowCheckoutDatepicker={this.toggleShowCheckoutDatePicker}
-        />
-      </>
+      <LayoutDoubleColumn
+        menuComponent={
+          <View style={styles.container}>
+            <NewAllHotels />
+          </View>
+        }
+        containerComponent={<SingleHotelContainer goBack={noop} />}
+      />
     );
   }
 }
@@ -154,9 +125,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const selectHotelsContext = ({ checkin, checkout }: HotelsContextState) => ({
+const selectHotelsContext = ({
+  checkin,
+  checkout,
+  actions: { setCheckinDate, setCheckoutDate },
+}: HotelsContextState) => ({
   checkinDate: checkin,
   checkoutDate: checkout,
+  setCheckinDate,
+  setCheckoutDate,
 });
 
 export default withSearchResultsContext((state: SearchResultState) => ({
