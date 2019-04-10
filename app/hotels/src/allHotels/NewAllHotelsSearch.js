@@ -5,7 +5,7 @@ import { graphql } from '@kiwicom/mobile-relay';
 import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import {
-  withHotelsFilterContext,
+  HotelsFilterContext,
   type HotelsFilterState,
 } from '../HotelsFilterContext';
 import {
@@ -44,59 +44,49 @@ const query = graphql`
   }
 `;
 
-class NewAllHotelsSearch extends React.Component<Props> {
-  renderAllHotelsSearchList = (
-    propsFromRenderer: NewAllHotelsSearchQueryResponse,
-  ) => {
-    return <HotelsPaginationContainer data={propsFromRenderer} />;
-  };
+const renderAllHotelsSearchList = (
+  propsFromRenderer: NewAllHotelsSearchQueryResponse,
+) => {
+  return <HotelsPaginationContainer data={propsFromRenderer} />;
+};
 
-  render() {
-    const {
-      cityId,
-      checkin,
-      checkout,
-      roomsConfiguration,
-      currency,
-      orderBy,
-      filterParams,
-    } = this.props;
-
-    return (
-      <HotelsSearch
-        shouldRenderDateError={checkin === null || checkout === null}
-        onClose={this.props.onClose}
-        query={query}
-        variables={{
-          search: {
-            cityId,
-            checkin: DateFormatter(checkin ?? new Date()).formatForMachine(),
-            checkout: DateFormatter(checkout ?? new Date()).formatForMachine(),
-            roomsConfiguration,
-          },
-          filter: {
-            ...filterParams,
-            hotelAmenities: sanitizeHotelAmenities(filterParams.hotelAmenities),
-          },
-          first: 50,
-          options: {
-            currency,
-            orderBy,
-          },
-        }}
-        render={this.renderAllHotelsSearchList}
-      />
-    );
-  }
-}
-
-const selectHotelsFilterContext = ({
-  orderBy,
-  filterParams,
-}: HotelsFilterState) => ({
-  orderBy,
-  filterParams,
-});
+const NewAllHotelsSearch = ({
+  cityId,
+  checkin,
+  checkout,
+  roomsConfiguration,
+  currency,
+  onClose,
+}: Props) => {
+  const { orderBy, filterParams }: HotelsFilterState = React.useContext(
+    HotelsFilterContext,
+  );
+  return (
+    <HotelsSearch
+      shouldRenderDateError={checkin === null || checkout === null}
+      onClose={onClose}
+      query={query}
+      variables={{
+        search: {
+          cityId,
+          checkin: DateFormatter(checkin ?? new Date()).formatForMachine(),
+          checkout: DateFormatter(checkout ?? new Date()).formatForMachine(),
+          roomsConfiguration,
+        },
+        filter: {
+          ...filterParams,
+          hotelAmenities: sanitizeHotelAmenities(filterParams.hotelAmenities),
+        },
+        first: 50,
+        options: {
+          currency,
+          orderBy,
+        },
+      }}
+      render={renderAllHotelsSearchList}
+    />
+  );
+};
 
 const selectHotelsContext = (state: HotelsContextState) => ({
   checkin: state.checkin,
@@ -107,6 +97,4 @@ const selectHotelsContext = (state: HotelsContextState) => ({
   onClose: state.closeHotels,
 });
 
-export default withHotelsContext(selectHotelsContext)(
-  withHotelsFilterContext(selectHotelsFilterContext)(NewAllHotelsSearch),
-);
+export default withHotelsContext(selectHotelsContext)(NewAllHotelsSearch);
