@@ -81,6 +81,7 @@ export class HotelsPaginationContainer extends React.Component<
           onLoadMore={this.loadMore}
           hasMore={this.props.relay.hasMore()}
           isLoading={this.state.isLoading}
+          // $FlowExpectedError: Relay flow types does not work for plural: true
           data={data}
           top={56}
           closeHotels={this.props.closeHotels}

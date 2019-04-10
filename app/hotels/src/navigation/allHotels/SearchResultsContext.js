@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { withContext } from '@kiwicom/mobile-shared';
 
 export type ResultType = 'list' | 'map';
 
@@ -10,12 +9,13 @@ const defaultValue = {
   setResultType: () => {},
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext<State>({
+export const SearchResultsContext = React.createContext<State>({
   ...defaultValue,
 });
 
 type Props = {|
   +children: React.Node,
+  +show?: ResultType,
 |};
 
 type State = {
@@ -23,35 +23,19 @@ type State = {
   +setResultType: (show: ResultType) => void,
 };
 
-class Provider extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      show: 'list',
-      setResultType: this.setResultType,
-    };
-  }
-
-  setResultType = (show: ResultType) => {
-    this.setState({ show });
+function Provider(props: Props) {
+  const [show, setResultType] = React.useState(props.show ?? 'list');
+  const state = {
+    show,
+    setResultType,
   };
-
-  render() {
-    return (
-      <ContextProvider value={this.state}>
-        {this.props.children}
-      </ContextProvider>
-    );
-  }
-}
-
-export function withSearchResultsContext(select: (state: State) => Object) {
-  return withContext<State>(select, Consumer);
+  return (
+    <SearchResultsContext.Provider value={state}>
+      {props.children}
+    </SearchResultsContext.Provider>
+  );
 }
 
 export type SearchResultState = State;
 
-const SearchResultsContext = { Consumer, Provider };
-
-export default SearchResultsContext;
+export default { Provider };

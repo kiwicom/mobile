@@ -4,12 +4,9 @@ import * as React from 'react';
 import renderer from 'react-test-renderer';
 
 import { RenderSearchResults } from '../RenderSearchResults';
+import SearchResultsContext from '../../navigation/allHotels/SearchResultsContext';
 
-const defaultProps = (
-  stats: Object = { maxPrice: 100, minPrice: 50 },
-  show = 'list',
-) => ({
-  show,
+const defaultProps = (stats: Object = { maxPrice: 100, minPrice: 50 }) => ({
   setCurrentSearchStats: jest.fn(),
   data: {
     allAvailableBookingComHotels: {
@@ -22,44 +19,50 @@ jest.mock('../../map/allHotels/MapScreen');
 jest.mock('../AllHotelsSearchList');
 
 it('initialises correctly when it should show list', () => {
-  // $FlowExpectedError: Passing only props needed for this test
-  const wrapper = renderer.create(<RenderSearchResults {...defaultProps()} />);
+  const wrapper = renderer.create(
+    <SearchResultsContext.Provider show="list">
+      {/* $FlowExpectedError: Passing only props needed for this test */}
+      <RenderSearchResults {...defaultProps()} />
+    </SearchResultsContext.Provider>,
+  );
   expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-    Object {
-      "bottom": 0,
-      "end": 0,
-      "position": "absolute",
-      "start": 0,
-      "top": undefined,
-      "transform": Array [
-        Object {
-          "translateY": 0,
-        },
-      ],
-    }
-  `);
+            Object {
+              "bottom": 0,
+              "end": 0,
+              "position": "absolute",
+              "start": 0,
+              "top": undefined,
+              "transform": Array [
+                Object {
+                  "translateY": 0,
+                },
+              ],
+            }
+      `);
   expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-    Object {
-      "bottom": 0,
-      "end": 0,
-      "position": "absolute",
-      "start": 0,
-      "top": undefined,
-      "transform": Array [
-        Object {
-          "translateY": 1334,
-        },
-      ],
-    }
-  `);
+            Object {
+              "bottom": 0,
+              "end": 0,
+              "position": "absolute",
+              "start": 0,
+              "top": undefined,
+              "transform": Array [
+                Object {
+                  "translateY": 1334,
+                },
+              ],
+            }
+      `);
 });
 
 it('initialises correctly when it should show map', () => {
   const wrapper = renderer.create(
-    // $FlowExpectedError: Passing only props needed for this test
-    <RenderSearchResults {...defaultProps({}, 'map')} />,
+    <SearchResultsContext.Provider show="map">
+      {/* $FlowExpectedError: Passing only props needed for this test */}
+      <RenderSearchResults {...defaultProps()} />,
+    </SearchResultsContext.Provider>,
   );
   expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
