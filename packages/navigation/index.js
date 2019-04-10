@@ -27,6 +27,9 @@ export {
   default as SplitNavigation,
   withSplitNavigationContext,
 } from './src/SplitNavigation';
+export {
+  default as useSetNavigationParams,
+} from './src/useSetNavigationParams';
 
 const createNavigationOptions = () => {
   const navigationOptions: Object = {
