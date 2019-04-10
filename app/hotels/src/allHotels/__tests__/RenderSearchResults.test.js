@@ -21,7 +21,7 @@ const defaultProps = (
 jest.mock('../../map/allHotels/MapScreen');
 jest.mock('../AllHotelsSearchList');
 
-it('it initiales correctly when it should show list', () => {
+it('initialises correctly when it should show list', () => {
   // $FlowExpectedError: Passing only props needed for this test
   const wrapper = renderer.create(<RenderSearchResults {...defaultProps()} />);
   expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
