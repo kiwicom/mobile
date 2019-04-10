@@ -56,7 +56,7 @@ it('initialises correctly when it should show list', () => {
   `);
 });
 
-it('it initiales correctly when it should show map', () => {
+it('initialises correctly when it should show map', () => {
   const wrapper = renderer.create(
     // $FlowExpectedError: Passing only props needed for this test
     <RenderSearchResults {...defaultProps({}, 'map')} />,
