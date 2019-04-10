@@ -1,15 +1,15 @@
 // @flow
 
-import { Animated } from 'react-native';
+import * as React from 'react';
+import renderer from 'react-test-renderer';
 
-import {
-  RenderSearchResults,
-  topValue,
-  lowValue,
-} from '../RenderSearchResults';
+import { RenderSearchResults } from '../RenderSearchResults';
 
-const defaultProps = (stats: Object = { maxPrice: 100, minPrice: 50 }) => ({
-  show: 'list',
+const defaultProps = (
+  stats: Object = { maxPrice: 100, minPrice: 50 },
+  show = 'list',
+) => ({
+  show,
   setCurrentSearchStats: jest.fn(),
   data: {
     allAvailableBookingComHotels: {
@@ -18,16 +18,77 @@ const defaultProps = (stats: Object = { maxPrice: 100, minPrice: 50 }) => ({
   },
 });
 
-it('it initiales correctly when it should show list', () => {
+jest.mock('../../map/allHotels/MapScreen');
+jest.mock('../AllHotelsSearchList');
+
+it('initialises correctly when it should show list', () => {
   // $FlowExpectedError: Passing only props needed for this test
-  const Component = new RenderSearchResults(defaultProps());
-  expect(Component.mapAnimation).toEqual(new Animated.Value(topValue));
-  expect(Component.listAnimation).toEqual(new Animated.Value(0));
+  const wrapper = renderer.create(<RenderSearchResults {...defaultProps()} />);
+  expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
+    .toMatchInlineSnapshot(`
+    Object {
+      "bottom": 0,
+      "end": 0,
+      "position": "absolute",
+      "start": 0,
+      "top": undefined,
+      "transform": Array [
+        Object {
+          "translateY": 0,
+        },
+      ],
+    }
+  `);
+  expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
+    .toMatchInlineSnapshot(`
+    Object {
+      "bottom": 0,
+      "end": 0,
+      "position": "absolute",
+      "start": 0,
+      "top": undefined,
+      "transform": Array [
+        Object {
+          "translateY": 1334,
+        },
+      ],
+    }
+  `);
 });
 
-it('it initiales correctly when it should show map', () => {
-  // $FlowExpectedError: Passing only props needed for this test
-  const Component = new RenderSearchResults({ show: 'map' });
-  expect(Component.mapAnimation).toEqual(new Animated.Value(0));
-  expect(Component.listAnimation).toEqual(new Animated.Value(lowValue));
+it('initialises correctly when it should show map', () => {
+  const wrapper = renderer.create(
+    // $FlowExpectedError: Passing only props needed for this test
+    <RenderSearchResults {...defaultProps({}, 'map')} />,
+  );
+  expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
+    .toMatchInlineSnapshot(`
+    Object {
+      "bottom": 0,
+      "end": 0,
+      "position": "absolute",
+      "start": 0,
+      "top": undefined,
+      "transform": Array [
+        Object {
+          "translateY": -100,
+        },
+      ],
+    }
+  `);
+  expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
+    .toMatchInlineSnapshot(`
+    Object {
+      "bottom": 0,
+      "end": 0,
+      "position": "absolute",
+      "start": 0,
+      "top": undefined,
+      "transform": Array [
+        Object {
+          "translateY": 0,
+        },
+      ],
+    }
+  `);
 });
