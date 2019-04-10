@@ -111,7 +111,10 @@ const asyncStoreRead = async (observer, operation, variables) => {
   }
 };
 
-export default function createEnvironment(accessToken: string = '') {
+export default function createEnvironment(
+  accessToken: string = '',
+  authHeaderKey: string = 'authorization',
+) {
   const networkHeaders: Object = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
@@ -119,7 +122,7 @@ export default function createEnvironment(accessToken: string = '') {
   };
 
   if (accessToken) {
-    networkHeaders.authorization = accessToken;
+    networkHeaders[authHeaderKey] = accessToken;
   }
 
   const fetchQuery = (operation, variables): Promise<FetcherResponse> => {

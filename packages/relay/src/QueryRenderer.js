@@ -16,6 +16,7 @@ import type { QueryRendererProps } from '../index';
 type Props = {|
   ...QueryRendererProps,
   +accessToken?: string,
+  +authHeaderKey?: string,
 |};
 
 type RendererResponse = {
@@ -35,7 +36,10 @@ export default class QueryRenderer extends React.Component<Props> {
       return PublicEnvironment.getEnvironment();
     }
 
-    return PrivateEnvironment.getEnvironment(accessToken);
+    return PrivateEnvironment.getEnvironment(
+      accessToken,
+      this.props.authHeaderKey,
+    );
   };
 
   renderRelayContainer = ({ error, retry }: RendererResponse) => {

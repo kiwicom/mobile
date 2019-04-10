@@ -9,6 +9,7 @@ import AuthContext from './AuthContext';
 type PropsWithContext = {|
   ...QueryRendererProps,
   +accessToken: string | null,
+  +authHeaderKey?: string,
 |};
 
 export function PrivateApiRenderer(props: PropsWithContext) {
@@ -23,6 +24,7 @@ export function PrivateApiRenderer(props: PropsWithContext) {
       variables={props.variables}
       render={props.render}
       accessToken={props.accessToken}
+      authHeaderKey={props.authHeaderKey}
       renderOfflineScreen={props.renderOfflineScreen}
       errorFooter={props.errorFooter}
     />

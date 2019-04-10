@@ -87,6 +87,22 @@ describe('QueryRenderer', () => {
     // $FlowExpectedError: Don't need to pass all props for this test
     const Component = new QueryRenderer({ accessToken: 'token' });
     Component.createEnvironment();
-    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith('token');
+    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith(
+      'token',
+      undefined,
+    );
+  });
+
+  it('calls PrivateEnvironment.getEnvironment with authHeaderKey if passed', () => {
+    // $FlowExpectedError: Don't need to pass all props for this test
+    const Component = new QueryRenderer({
+      accessToken: 'token',
+      authHeaderKey: 'kw-test',
+    });
+    Component.createEnvironment();
+    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith(
+      'token',
+      'kw-test',
+    );
   });
 });
