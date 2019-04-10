@@ -1,9 +1,11 @@
 // @flow strict
 
-/* eslint-disable react-hooks/exhaustive-deps */ // This rule does not work well with react-navigation, it causes endless re-render
 import * as React from 'react';
 import { View } from 'react-native';
-import { type NavigationType } from '@kiwicom/mobile-navigation';
+import {
+  type NavigationType,
+  useSetNavigationParams,
+} from '@kiwicom/mobile-navigation';
 import {
   LayoutDoubleColumn,
   StyleSheet,
@@ -44,20 +46,15 @@ type Props = {|
 const noop = () => {};
 
 const SearchResultsScreen = (props: Props) => {
-  React.useEffect(() => {
-    props.navigation.setParams({
-      toggleMap: props.setResultType,
-      setCheckinDate: props.setCheckinDate,
-      setCheckoutDate: props.setCheckoutDate,
-    });
-  }, []);
-  React.useEffect(() => {
-    props.navigation.setParams({
-      show: props.show,
-      checkin: props.checkinDate,
-      checkout: props.checkoutDate,
-    });
-  }, [props.show, props.checkinDate, props.checkoutDate]);
+  useSetNavigationParams(props.navigation.setParams, {
+    toggleMap: props.setResultType,
+    setCheckinDate: props.setCheckinDate,
+    setCheckoutDate: props.setCheckoutDate,
+    show: props.show,
+    checkin: props.checkinDate,
+    checkout: props.checkoutDate,
+  });
+
   return (
     <LayoutDoubleColumn
       menuComponent={
