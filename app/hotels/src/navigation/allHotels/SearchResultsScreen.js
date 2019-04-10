@@ -17,8 +17,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import HotelsNavigationOptions from '../HotelsNavigationOptions';
 import {
-  withSearchResultsContext,
-  type ResultType,
+  SearchResultsContext,
   type SearchResultState,
 } from './SearchResultsContext';
 import SingleHotelContainer from '../../singleHotel/SingleHotelContainer';
@@ -36,8 +35,6 @@ type Props = {|
   +checkoutDate: Date,
   +roomsConfiguration: RoomsConfiguration,
   +lastNavigationMode?: 'present' | 'push',
-  +setResultType: (show: ResultType) => void,
-  +show: ResultType,
   +cityId?: string,
   +setCheckinDate: Date => void,
   +setCheckoutDate: Date => void,
@@ -46,11 +43,14 @@ type Props = {|
 const noop = () => {};
 
 const SearchResultsScreen = (props: Props) => {
+  const { show, setResultType }: SearchResultState = React.useContext(
+    SearchResultsContext,
+  );
   useSetNavigationParams(props.navigation.setParams, {
-    toggleMap: props.setResultType,
+    toggleMap: setResultType,
     setCheckinDate: props.setCheckinDate,
     setCheckoutDate: props.setCheckoutDate,
-    show: props.show,
+    show,
     checkin: props.checkinDate,
     checkout: props.checkoutDate,
   });
@@ -67,11 +67,8 @@ const SearchResultsScreen = (props: Props) => {
   );
 };
 
-SearchResultsScreen.navigationOptions = ({
-  cityName,
-  navigation,
-  show,
-}: Props) => {
+SearchResultsScreen.navigationOptions = ({ cityName, navigation }: Props) => {
+  const show = navigation.getParam<string>('show');
   function goToAllHotelsMap() {
     const showNext = show === 'list' ? 'map' : 'list';
     navigation.state.params.toggleMap(showNext);
@@ -127,7 +124,4 @@ const selectHotelsContext = ({
   setCheckoutDate,
 });
 
-export default withSearchResultsContext((state: SearchResultState) => ({
-  setResultType: state.setResultType,
-  show: state.show,
-}))(withHotelsContext(selectHotelsContext)(SearchResultsScreen));
+export default withHotelsContext(selectHotelsContext)(SearchResultsScreen);

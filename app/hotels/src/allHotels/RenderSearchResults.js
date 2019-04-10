@@ -9,9 +9,8 @@ import MapScreen from '../map/allHotels/MapScreen';
 import AllHotelsSearchList from './AllHotelsSearchList';
 import type { RenderSearchResults_data as RenderResultsType } from './__generated__/RenderSearchResults_data.graphql';
 import {
-  withSearchResultsContext,
+  SearchResultsContext,
   type SearchResultState,
-  type ResultType,
 } from '../navigation/allHotels/SearchResultsContext';
 import LoadMoreButton from './LoadMoreButton';
 import CloseModal from '../components/CloseModal';
@@ -22,7 +21,6 @@ type Props = {|
   +isLoading: boolean,
   +onLoadMore: () => void,
   +top: number,
-  +show: ResultType,
   +closeHotels: () => void,
 |};
 
@@ -31,11 +29,12 @@ export const lowValue = -100;
 const transitionDuration = 250;
 
 export const RenderSearchResults = (props: Props) => {
+  const { show }: SearchResultState = React.useContext(SearchResultsContext);
   const [mapAnimation] = React.useState(
-    new Animated.Value(props.show === 'list' ? topValue : 0),
+    new Animated.Value(show === 'list' ? topValue : 0),
   );
   const [listAnimation] = React.useState(
-    new Animated.Value(props.show === 'list' ? 0 : lowValue),
+    new Animated.Value(show === 'list' ? 0 : lowValue),
   );
   const initialRun = React.useRef(true);
 
@@ -74,12 +73,12 @@ export const RenderSearchResults = (props: Props) => {
         }),
       ]).start();
     }
-    if (props.show === 'list') {
+    if (show === 'list') {
       animateToList();
     } else {
       animateToMap();
     }
-  }, [listAnimation, mapAnimation, props.show]);
+  }, [listAnimation, mapAnimation, show]);
 
   const data = props.data || [];
 
@@ -129,17 +128,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const select = ({ show }: SearchResultState) => ({ show });
-
-export default createFragmentContainer(
-  withSearchResultsContext(select)(RenderSearchResults),
-  {
-    data: graphql`
-      fragment RenderSearchResults_data on AllHotelsInterface
-        @relay(plural: true) {
-        ...AllHotelsSearchList_data
-        ...MapScreen_data
-      }
-    `,
-  },
-);
+export default createFragmentContainer(RenderSearchResults, {
+  data: graphql`
+    fragment RenderSearchResults_data on AllHotelsInterface
+      @relay(plural: true) {
+      ...AllHotelsSearchList_data
+      ...MapScreen_data
+    }
+  `,
+});

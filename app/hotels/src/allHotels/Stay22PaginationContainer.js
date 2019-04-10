@@ -61,6 +61,7 @@ export class Stay22PaginationContainer extends React.Component<Props, State> {
 
     return (
       <RenderSearchResults
+        // $FlowExpectedError: Relay flow types does not work for plural: true
         data={data}
         onLoadMore={this.loadMore}
         isLoading={this.state.isLoading}
