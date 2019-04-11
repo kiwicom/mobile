@@ -10,11 +10,7 @@ import {
   Translation,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import {
-  RelayProp,
-  createFragmentContainer,
-  graphql,
-} from '@kiwicom/mobile-relay';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
 import Services from './Services';
 import FastTrackModal from './FastTrackModal';
@@ -49,7 +45,6 @@ class FastTrackBannerContent extends React.Component<Props, State> {
   };
 
   render() {
-    console.log('@Render - FTBannerContent', this.props);
     return (
       <View style={style.container}>
         <View style={style.header}>
