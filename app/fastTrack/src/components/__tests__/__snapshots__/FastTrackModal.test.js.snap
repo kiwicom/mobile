@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FastTrackModal Should render correctly 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "paddingTop": 24,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+        }
+      }
+    >
+      <RCTWebView
+        messagingEnabled={false}
+        onLoadingError={[Function]}
+        onLoadingFinish={[Function]}
+        onLoadingStart={[Function]}
+        onMessage={[Function]}
+        onShouldStartLoadWithRequest={[Function]}
+        scalesPageToFit={true}
+        source={
+          Object {
+            "uri": "https://www.kiwi.com",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "flex": 1,
+            },
+            Object {
+              "backgroundColor": "#ffffff",
+            },
+            Object {
+              "backgroundColor": "transparent",
+              "flex": 1,
+            },
+          ]
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "paddingBottom": 8,
+          "paddingHorizontal": 8,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#e8edf1",
+            "borderRadius": 6,
+            "flexGrow": 1,
+            "height": 44,
+            "justifyContent": "center",
+            "opacity": 1,
+            "paddingHorizontal": 11,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#171b1e",
+                "fontFamily": "CircularPro-Book",
+                "fontSize": 14,
+                "fontWeight": "normal",
+                "letterSpacing": -0.15,
+              },
+              Array [
+                Object {
+                  "fontWeight": "500",
+                },
+                Array [
+                  Object {
+                    "color": "#46515e",
+                  },
+                  false,
+                ],
+              ],
+            ]
+          }
+        >
+          <Text>
+            Close modal
+          </Text>
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

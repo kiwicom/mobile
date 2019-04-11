@@ -9,7 +9,7 @@ import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
 
 const MOCK_PROPS = {
   service: 'fast_track',
-  bookingId: 123,
+  bookingId: 43847386,
 };
 
 export default StackNavigator(

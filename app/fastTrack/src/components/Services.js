@@ -2,11 +2,8 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import { Text, StyleSheet, Icon } from '@kiwicom/mobile-shared';
-import {
-  type TranslationKeysType,
-  Translation,
-} from '@kiwicom/mobile-localization';
+import { Text, StyleSheet, Icon, Translation } from '@kiwicom/mobile-shared';
+import { type TranslationKeysType } from '@kiwicom/mobile-localization';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Service = {|

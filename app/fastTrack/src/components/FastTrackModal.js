@@ -2,43 +2,63 @@
 
 import * as React from 'react';
 import { View, WebView } from 'react-native';
-import { Modal, TextButton, StyleSheet, Device } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
+import {
+  Modal,
+  TextButton,
+  StyleSheet,
+  Device,
+  Translation,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
+
+import type { FastTrackModal_data } from './__generated__/FastTrackModal_data';
 
 type Props = {|
   +documentUrl: string,
   +isVisible: boolean,
   +onCloseModal: () => void,
+  +data: FastTrackModal_data,
 |};
 
-const FastTrackModal = (props: Props) => (
-  <Modal
-    isVisible={props.isVisible}
-    onRequestClose={props.onCloseModal}
-    style={styles.modal}
-  >
-    <View style={styles.container}>
-      <WebView
-        source={{
-          uri: props.documentUrl,
-        }}
-        style={styles.webView}
-      />
-      <View style={styles.buttonContainer}>
-        <TextButton
-          onPress={props.onCloseModal}
-          type="secondary"
-          title={
-            <Translation id="fast_track.banner.modal.close_modal_button" />
-          }
-        />
-      </View>
-    </View>
-  </Modal>
-);
+class FastTrackModal extends React.Component<Props> {
+  render() {
+    const props = this.props;
+    return (
+      <Modal
+        isVisible={props.isVisible}
+        onRequestClose={props.onCloseModal}
+        style={styles.modal}
+      >
+        <View style={styles.container}>
+          <WebView
+            source={{
+              uri: this.props.data.url,
+            }}
+            style={styles.webView}
+          />
+          <View style={styles.buttonContainer}>
+            <TextButton
+              onPress={props.onCloseModal}
+              type="secondary"
+              title={
+                <Translation id="fast_track.banner.modal.close_modal_button" />
+              }
+            />
+          </View>
+        </View>
+      </Modal>
+    );
+  }
+}
 
-export default FastTrackModal;
+export default createFragmentContainer(FastTrackModal, {
+  data: graphql`
+    fragment FastTrackModal_data on AncillaryDocument {
+      url
+    }
+  `,
+});
 
 const styles = StyleSheet.create({
   container: {
