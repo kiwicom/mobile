@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { View, WebView } from 'react-native';
-<<<<<<< HEAD
 import {
   Modal,
   TextButton,
@@ -10,10 +9,6 @@ import {
   Device,
   Translation,
 } from '@kiwicom/mobile-shared';
-=======
-import { Modal, TextButton, StyleSheet, Device } from '@kiwicom/mobile-shared';
-import { Translation } from '@kiwicom/mobile-localization';
->>>>>>> 350efaa7c78b6628bcd3fb8b52a8dade66dcb0d2
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
@@ -26,7 +21,6 @@ type Props = {|
   +data: FastTrackModal_data,
 |};
 
-<<<<<<< HEAD
 class FastTrackModal extends React.Component<Props> {
   render() {
     const props = this.props;
@@ -57,33 +51,6 @@ class FastTrackModal extends React.Component<Props> {
     );
   }
 }
-=======
-const FastTrackModal = (props: Props) => (
-  <Modal
-    isVisible={props.isVisible}
-    onRequestClose={props.onCloseModal}
-    style={styles.modal}
-  >
-    <View style={styles.container}>
-      <WebView
-        source={{
-          uri: props.documentUrl,
-        }}
-        style={styles.webView}
-      />
-      <View style={styles.buttonContainer}>
-        <TextButton
-          onPress={props.onCloseModal}
-          type="secondary"
-          title={
-            <Translation id="fast_track.banner.modal.close_modal_button" />
-          }
-        />
-      </View>
-    </View>
-  </Modal>
-);
->>>>>>> 350efaa7c78b6628bcd3fb8b52a8dade66dcb0d2
 
 export default createFragmentContainer(FastTrackModal, {
   data: graphql`
