@@ -33,7 +33,7 @@
     "@kiwicom/react-native-ancillary-factory": "^0",
     "@kiwicom/react-native-fast-track": "^0",
     "chalk": "^2.4.2",
-    "detox": "^12.1.2",
+    "detox": "^12.1.3",
     "dotenv": "^7.0.0",
     "react": "16.8.3",
     "react-native": "0.59.2",
