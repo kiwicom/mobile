@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Animated, Dimensions, View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, Device } from '@kiwicom/mobile-shared';
+import { StyleSheet, Device, type OnLayout } from '@kiwicom/mobile-shared';
 
 import MapScreen from '../map/allHotels/MapScreen';
 import AllHotelsSearchList from './AllHotelsSearchList';
@@ -24,12 +24,15 @@ type Props = {|
   +closeHotels: () => void,
 |};
 
-export const topValue = Dimensions.get('window').height;
-export const lowValue = -100;
+const lowValue = -100;
 const transitionDuration = 250;
+const paddingBottom = Device.isIPhoneX ? 80 : 44;
 
 export const RenderSearchResults = (props: Props) => {
   const { show }: SearchResultState = React.useContext(SearchResultsContext);
+  const [topValue, setTopValue] = React.useState(
+    Dimensions.get('window').height,
+  );
   const [mapAnimation] = React.useState(
     new Animated.Value(show === 'list' ? topValue : 0),
   );
@@ -78,7 +81,11 @@ export const RenderSearchResults = (props: Props) => {
     } else {
       animateToMap();
     }
-  }, [listAnimation, mapAnimation, show]);
+  }, [listAnimation, mapAnimation, show, topValue]);
+
+  function onLayout(e: OnLayout) {
+    setTopValue(e.nativeEvent.layout.height + paddingBottom);
+  }
 
   const data = props.data || [];
 
@@ -91,6 +98,7 @@ export const RenderSearchResults = (props: Props) => {
           transform: [{ translateY: listAnimation }],
         }}
         testID="list-wrapper"
+        onLayout={onLayout}
       >
         <View style={styles.content}>
           <AllHotelsSearchList
@@ -123,7 +131,7 @@ export const RenderSearchResults = (props: Props) => {
 
 const styles = StyleSheet.create({
   content: {
-    paddingBottom: Device.isIPhoneX ? 80 : 44,
+    paddingBottom,
     flex: 1,
   },
 });
