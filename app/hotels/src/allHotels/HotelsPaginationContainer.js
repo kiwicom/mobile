@@ -11,90 +11,70 @@ import { Logger, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelsPaginationContainer_data as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer_data.graphql';
-import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
-import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
+import { HotelsContext, type HotelsContextState } from '../HotelsContext';
 import RenderSearchResults from './RenderSearchResults';
 import FilterStripe from '../filter/FilterStripe';
 
-type PropsWithContext = {|
+type Props = {|
   +relay: RelayPaginationProp,
   +data: ?HotelsPaginationContainerType,
-  +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
-  +closeHotels: () => void,
 |};
 
-type State = {|
-  isLoading: boolean,
-|};
+export function HotelsPaginationContainer(props: Props) {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const {
+    actions: { setCurrentSearchStats },
+    closeHotels,
+  }: HotelsContextState = React.useContext(HotelsContext);
 
-export class HotelsPaginationContainer extends React.Component<
-  PropsWithContext,
-  State,
-> {
-  constructor(props: PropsWithContext) {
-    super(props);
-
-    this.state = {
-      isLoading: false,
-    };
-  }
-
-  componentDidMount() {
+  React.useEffect(() => {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_RESULTS,
       Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
     );
+  }, []);
 
-    const priceMax = this.props.data?.allAvailableBookingComHotels?.stats
-      ?.maxPrice;
-    const priceMin = this.props.data?.allAvailableBookingComHotels?.stats
-      ?.minPrice;
+  React.useEffect(() => {
+    const priceMax = props.data?.allAvailableBookingComHotels?.stats?.maxPrice;
+    const priceMin = props.data?.allAvailableBookingComHotels?.stats?.minPrice;
 
     if (priceMax != null && priceMin != null) {
-      this.props.setCurrentSearchStats({
+      setCurrentSearchStats({
         priceMax,
         priceMin,
       });
     }
-  }
+  }, [props.data, setCurrentSearchStats]);
 
-  loadMore = () => {
-    if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
-      this.setState({ isLoading: true }, () => {
-        this.props.relay.loadMore(50, () => {
-          this.setState({ isLoading: false });
-        });
+  function loadMore() {
+    if (props.relay.hasMore() && !props.relay.isLoading()) {
+      setIsLoading(true);
+      props.relay.loadMore(50, () => {
+        setIsLoading(false);
       });
     }
-  };
-
-  render() {
-    const edges = this.props.data?.allAvailableBookingComHotels?.edges ?? [];
-    const data = edges.map(hotel => hotel?.node);
-
-    return (
-      <React.Fragment>
-        <View style={styles.filterContainer}>
-          <FilterStripe />
-        </View>
-        <RenderSearchResults
-          onLoadMore={this.loadMore}
-          hasMore={this.props.relay.hasMore()}
-          isLoading={this.state.isLoading}
-          // $FlowExpectedError: Relay flow types does not work for plural: true
-          data={data}
-          top={56}
-          closeHotels={this.props.closeHotels}
-        />
-      </React.Fragment>
-    );
   }
-}
 
-const select = ({ actions, closeHotels }: HotelsContextState) => ({
-  setCurrentSearchStats: actions.setCurrentSearchStats,
-  closeHotels,
-});
+  const edges = props.data?.allAvailableBookingComHotels?.edges ?? [];
+  const data = edges.map(hotel => hotel?.node);
+
+  return (
+    <>
+      <View style={styles.filterContainer}>
+        <FilterStripe />
+      </View>
+      <RenderSearchResults
+        onLoadMore={loadMore}
+        hasMore={props.relay.hasMore()}
+        isLoading={isLoading}
+        // $FlowExpectedError: Relay flow types does not work for plural: true
+        data={data}
+        top={56}
+        closeHotels={closeHotels}
+      />
+    </>
+  );
+}
 
 const styles = StyleSheet.create({
   filterContainer: {
@@ -103,7 +83,7 @@ const styles = StyleSheet.create({
 });
 
 export default createPaginationContainer(
-  withHotelsContext(select)(HotelsPaginationContainer),
+  HotelsPaginationContainer,
   {
     data: graphql`
       fragment HotelsPaginationContainer_data on RootQuery {
