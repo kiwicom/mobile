@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { ConfigContext } from '@kiwicom/mobile-config';
-import {
-  Dimensions,
-  type DimensionType,
-  GestureController,
-} from '@kiwicom/mobile-shared';
+import { Dimensions, GestureController } from '@kiwicom/mobile-shared';
 
 import HotelsFilterContext from '../HotelsFilterContext';
 import HotelsContext, {
@@ -19,7 +15,6 @@ import type { Coordinates } from '../CoordinatesType';
 type Props = {|
   +dataSaverEnabled: boolean,
   +children: React.Node,
-  +dimensions: DimensionType,
   +version: string,
   +cityId?: string,
   +cityName?: string,
@@ -76,9 +71,7 @@ export default class RootComponent extends React.Component<Props> {
               closeHotels={this.onClosePress}
               guestCount={guestCount}
             >
-              <Dimensions.Provider dimensions={this.props.dimensions}>
-                {this.props.children}
-              </Dimensions.Provider>
+              <Dimensions.Provider>{this.props.children}</Dimensions.Provider>
             </HotelsContext.Provider>
           </HotelsFilterContext.Provider>
         </ConfigContext.Provider>

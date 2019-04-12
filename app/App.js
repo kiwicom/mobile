@@ -1,18 +1,14 @@
 // @flow
 
 import React from 'react';
-import { type DimensionType, Dimensions } from '@kiwicom/mobile-shared';
+import { Dimensions } from '@kiwicom/mobile-shared';
 
 import Navigation from './core/src/navigation';
 import HotelsContextForm from './core/src/screens/hotelsStack/HotelsFormContext';
 
-type initialProps = {|
-  +dimensions: DimensionType,
-|};
-
-export default function App(props: initialProps) {
+export default function App() {
   return (
-    <Dimensions.Provider dimensions={props.dimensions}>
+    <Dimensions.Provider>
       <HotelsContextForm>
         <Navigation />
       </HotelsContextForm>

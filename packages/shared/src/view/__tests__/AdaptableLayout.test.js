@@ -9,7 +9,7 @@ import Dimensions from '../Dimensions';
 it('renders empty element without props', () => {
   expect(
     Renderer.create(
-      <Dimensions.Provider dimensions={null}>
+      <Dimensions.Provider>
         <AdaptableLayout />
       </Dimensions.Provider>,
     ),

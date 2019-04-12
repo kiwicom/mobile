@@ -9,9 +9,13 @@ import Touchable from '../../Touchable';
 import Dimensions from '../../view/Dimensions';
 import CloseButton from '../../buttons/CloseButton';
 
+jest.mock('Dimensions', () => ({
+  get: () => ({ width: 500, height: 500 }),
+}));
+
 const renderPopup = (onSave, onClose) =>
   renderer.create(
-    <Dimensions.Provider dimensions={{ width: 500, height: 700 }}>
+    <Dimensions.Provider>
       <ButtonPopup
         buttonTitle={<Translation passThrough="Save" />}
         isVisible={true}
