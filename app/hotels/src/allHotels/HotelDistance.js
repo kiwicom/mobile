@@ -8,14 +8,14 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import type { HotelDistance_hotel as HotelType } from './__generated__/HotelDistance_hotel.graphql';
 
 type Props = {|
-  +hotel: HotelType,
+  +hotel: ?HotelType,
 |};
 
 // 1.5 km city center radius
 const CITY_CENTER_RADIUS = 1.5;
 
 function HotelDistance({ hotel }: Props) {
-  const distance = hotel.distanceFromCenter ?? null;
+  const distance = hotel?.distanceFromCenter ?? null;
 
   if (distance === null) {
     return null;

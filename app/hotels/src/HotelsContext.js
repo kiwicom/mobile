@@ -34,9 +34,11 @@ const defaultState = {
   closeHotels: () => {},
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext<State>({
+export const HotelsContext = React.createContext<State>({
   ...defaultState,
 });
+
+const { Consumer, Provider: ContextProvider } = HotelsContext;
 
 export type ApiProvider = 'booking' | 'stay22';
 
@@ -205,6 +207,4 @@ export const withHotelsContext = (select: (state: State) => Object) =>
 
 export type HotelsContextState = State;
 
-const HotelsContext = { Consumer, Provider };
-
-export default HotelsContext;
+export default { Consumer, Provider };
