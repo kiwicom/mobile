@@ -1,25 +1,36 @@
 // @flow
 
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 
 import Context from './DimensionsContext';
 import StyleSheet from '../PlatformStyleSheet';
-import type { OnLayout, DimensionType } from '../../index';
+import type { OnLayout } from '../../types/Events';
+import type { DimensionType } from '../../types/Objects';
 
 type Props = {|
   +children: React.Node,
-  +dimensions: ?DimensionType,
 |};
 
 type State = {|
-  dimensions: ?DimensionType,
+  dimensions: DimensionType,
 |};
 
 class DimensionsProvider extends React.Component<Props, State> {
-  state = {
-    dimensions: this.props.dimensions,
-  };
+  constructor(props: Props) {
+    super(props);
+
+    const window = Dimensions.get('window');
+    const height = window.height;
+    const width = window.width;
+
+    this.state = {
+      dimensions: {
+        height,
+        width,
+      },
+    };
+  }
 
   onLayout = (event: OnLayout) => {
     const { width, height } = event.nativeEvent.layout;

@@ -1,11 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  WithNativeNavigation,
-  type DimensionType,
-  AdaptableLayout,
-} from '@kiwicom/mobile-shared';
+import { WithNativeNavigation, AdaptableLayout } from '@kiwicom/mobile-shared';
 
 import RootComponent from './RootComponent';
 import HotelsStack from '../navigation/HotelsNavigationStack';
@@ -23,7 +19,6 @@ type Props = {
   +onNavigationStateChange: () => void,
   +onBackClicked: () => void,
   +lastNavigationMode?: string,
-  +dimensions: DimensionType,
   +version: string,
   +cityName: string,
   +cityId: string,
@@ -43,7 +38,6 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
     };
     return (
       <RootComponent
-        dimensions={this.props.dimensions}
         dataSaverEnabled={this.props.dataSaverEnabled}
         version={this.props.version}
         cityId={this.props.cityId}

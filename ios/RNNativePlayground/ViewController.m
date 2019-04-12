@@ -223,14 +223,6 @@
   return [dataArray objectAtIndex:[cityPicker selectedRowInComponent:0]];
 }
 
-- (NSDictionary *)windowDimensions {
-  CGRect windowRect = self.view.window.frame;
-  return @{
-           @"width": @(windowRect.size.width),
-           @"height": @(windowRect.size.height)
-         };
-}
-
 
 
 - (void)setActiveViewController:(RNKiwiViewController *)vc {
@@ -251,7 +243,6 @@
                                                           @"language": @"en",
                                                           @"currency": @"EUR",
                                                           @"lastNavigationMode": @"present",
-                                                          @"dimensions": [self windowDimensions],
                                                           @"checkin": [self selectedStartDate],
                                                           @"checkout": [self selectedEndDate],
                                                           @"version": @"3.7.13-9d55ad66",
@@ -281,7 +272,6 @@
                                                                             @"language": @"en",
                                                                             @"currency": @"EUR",
                                                                             @"lastNavigationMode": @"present",
-                                                                            @"dimensions": [self windowDimensions],
                                                                             @"checkin": [self selectedStartDate],
                                                                             @"checkout": [self selectedEndDate],
                                                                             @"version": @"3.7.13-9d55ad66",

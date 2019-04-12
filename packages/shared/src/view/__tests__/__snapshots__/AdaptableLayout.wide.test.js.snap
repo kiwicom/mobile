@@ -1,25 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders empty element if there is no wide layout 1`] = `
-<View
-  onLayout={[Function]}
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
-/>
-`;
+exports[`renders empty element if there is no wide layout 1`] = `null`;
 
-exports[`renders wide components 1`] = `
-<View
-  onLayout={[Function]}
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  I am going to render without any problems...
-</View>
-`;
+exports[`renders wide components 1`] = `"I am going to render without any problems..."`;

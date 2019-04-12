@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { Dimensions } from 'react-native';
 
 import { type DimensionType } from '../../types/Objects';
 import Context from './DimensionsContext';
@@ -22,17 +21,7 @@ export function withDimensions<PassedProps: {}>(
     $Diff<PassedProps, InjectedProps>,
   > {
     renderInner = ({ dimensions }) => {
-      let height;
-      let width;
-      if (dimensions == null) {
-        const window = Dimensions.get('window');
-        height = window.height;
-        width = window.width;
-      } else {
-        height = dimensions.height;
-        width = dimensions.width;
-      }
-      return <Component {...this.props} height={height} width={width} />;
+      return <Component {...this.props} {...dimensions} />;
     };
 
     render() {
@@ -41,23 +30,8 @@ export function withDimensions<PassedProps: {}>(
   };
 }
 
-export default class DimensionsConsumer extends React.Component<Props> {
-  render() {
-    return (
-      <Context.Consumer>
-        {({ dimensions }) => {
-          if (dimensions == null) {
-            // Dimensions on Android are fine from Dimensions module
-            // so we do not to explicit pass them on a native app
-            const { height, width } = Dimensions.get('window');
-            return this.props.children({
-              width,
-              height,
-            });
-          }
-          return this.props.children(dimensions);
-        }}
-      </Context.Consumer>
-    );
-  }
+export default function DimensionsConsumer(props: Props) {
+  const { dimensions } = React.useContext(Context);
+
+  return props.children({ height: dimensions.height, width: dimensions.width });
 }

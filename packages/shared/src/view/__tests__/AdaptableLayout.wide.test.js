@@ -10,6 +10,16 @@ jest.mock('../../Device', () => ({
   isWideLayout: () => true,
 }));
 
+let width = 700;
+
+jest.doMock('Dimensions', () => ({
+  get: () => ({ width, height: 500 }),
+}));
+
+afterEach(() => {
+  width = 700;
+});
+
 const RendersCorrectly = () => 'I am going to render without any problems...';
 const ThrowsError = () => {
   throw new Error('do not render');
@@ -18,7 +28,7 @@ const ThrowsError = () => {
 it('renders wide components', () => {
   expect(
     Renderer.create(
-      <Dimensions.Provider dimensions={{ width: 700, height: 500 }}>
+      <Dimensions.Provider>
         <AdaptableLayout
           renderOnNarrow={<ThrowsError />}
           renderOnWide={<RendersCorrectly />}
@@ -29,9 +39,10 @@ it('renders wide components', () => {
 });
 
 it('renders empty element if there is no wide layout', () => {
+  width = 200;
   expect(
     Renderer.create(
-      <Dimensions.Provider dimensions={{ width: 200, height: 500 }}>
+      <Dimensions.Provider>
         <AdaptableLayout renderOnNarrow={<ThrowsError />} />
       </Dimensions.Provider>,
     ),

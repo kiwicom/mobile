@@ -1,10 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  WithNativeNavigation,
-  type DimensionType,
-} from '@kiwicom/mobile-shared';
+import { WithNativeNavigation } from '@kiwicom/mobile-shared';
 
 import RootComponent from './RootComponent';
 import SingleHotelStack from '../navigation/singleHotel/SingleHotelStack';
@@ -20,7 +17,6 @@ type Props = {
   +language: string,
   +onNavigationStateChange: () => void,
   +onBackClicked: () => void,
-  +dimensions: DimensionType,
   +version: string,
   +lastNavigationMode?: string,
 };
@@ -37,7 +33,6 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
     };
     return (
       <RootComponent
-        dimensions={this.props.dimensions}
         dataSaverEnabled={this.props.dataSaverEnabled}
         version={this.props.version}
         currency={this.props.currency}
