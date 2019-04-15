@@ -34,7 +34,9 @@ const _addPrefix = (key: string) => {
 const _getScreenshotPath = (keyName: string) => {
   return path.join(
     __dirname,
-    '../screenshots',
+    '..',
+    '..',
+    'screenshots',
     `${_removePrefix(keyName)}.jpg`,
   );
 };
