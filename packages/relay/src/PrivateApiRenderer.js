@@ -8,7 +8,7 @@ import AuthContext from './AuthContext';
 
 type PropsWithContext = {|
   ...QueryRendererProps,
-  +accessToken: string | null,
+  +accessToken?: string | null,
   +authHeaderKey?: string,
 |};
 
@@ -31,9 +31,7 @@ export function PrivateApiRenderer(props: PropsWithContext) {
   );
 }
 
-export default function PrivateApiRendererWithContext(
-  props: QueryRendererProps,
-) {
+export default function PrivateApiRendererWithContext(props: PropsWithContext) {
   return (
     <AuthContext.Consumer>
       {({ accessToken }) => (
