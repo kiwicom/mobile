@@ -10,10 +10,7 @@ import {
   Device,
 } from '@kiwicom/mobile-shared';
 
-import {
-  withHotelsContext,
-  type HotelsContextState,
-} from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import MapView from './MapView';
 import HotelSwipeList from './HotelSwipeList';
 import type { MapScreen_data as MapScreenData } from './__generated__/MapScreen_data.graphql';
@@ -24,71 +21,54 @@ type PropsWithContext = {|
   +deviceWidth: number,
 |};
 
-type State = {|
-  selectedHotelIndex: number,
-|};
+function MapScreenWithContext(props: PropsWithContext) {
+  const [selectedHotelIndex, setSelectedHotelIndex] = React.useState(0);
+  const { setHotelId }: HotelsContextState = React.useContext(HotelsContext);
+  const hotels = props.data ?? [];
 
-class MapScreenWithContext extends React.Component<PropsWithContext, State> {
-  state = {
-    selectedHotelIndex: 0,
-  };
-
-  isNarrowLayout = () => {
-    return this.props.deviceWidth < Device.DEVICE_THRESHOLD;
-  };
-
-  getHotels = () => this.props.data || [];
-
-  selectMarker = (selectedHotelIndex: number) => {
-    if (this.state.selectedHotelIndex === selectedHotelIndex) {
-      return;
+  function selectMarker(index: number) {
+    if (selectedHotelIndex !== index) {
+      setSelectedHotelIndex(index);
     }
-    this.setState({ selectedHotelIndex });
-  };
+  }
 
-  onSelectMarker = (hotelId: string) => {
-    const hotels = this.getHotels();
+  function onSelectMarker(hotelId: string) {
     const index = hotels.findIndex(hotel => hotel.id === hotelId);
 
     if (index !== -1) {
-      this.handleActiveIndex(index, hotels);
+      handleActiveIndex(index);
     }
-  };
-
-  handleActiveIndex = (index: number, hotels: MapScreenData) => {
-    if (!this.isNarrowLayout() && hotels[index].hotelId != null) {
-      this.props.setHotelId(hotels[index].hotelId);
-    }
-    this.selectMarker(index);
-  };
-
-  onSnapToItem = (index: number) => {
-    const hotels = this.getHotels();
-    this.handleActiveIndex(index, hotels);
-  };
-
-  render() {
-    const { selectedHotelIndex } = this.state;
-    const hotels = this.getHotels();
-
-    return (
-      <View style={styles.container} testID="allHotels-mapScreen">
-        <MapView
-          data={hotels}
-          selectedIndex={selectedHotelIndex}
-          onSelectMarker={this.onSelectMarker}
-        />
-        <View style={styles.underlay}>
-          <StretchedImage source={gradient} />
-        </View>
-        <HotelSwipeList
-          data={hotels}
-          selectedIndex={selectedHotelIndex}
-          onSnapToItem={this.onSnapToItem}
-        />
-      </View>
-    );
   }
+
+  function handleActiveIndex(index: number) {
+    const isNarrowLayout = props.deviceWidth < Device.DEVICE_THRESHOLD;
+    if (!isNarrowLayout && hotels[index].hotelId != null) {
+      setHotelId(hotels[index].hotelId);
+    }
+    selectMarker(index);
+  }
+
+  function onSnapToItem(index: number) {
+    handleActiveIndex(index);
+  }
+
+  return (
+    <View style={styles.container} testID="allHotels-mapScreen">
+      <MapView
+        data={hotels}
+        selectedIndex={selectedHotelIndex}
+        onSelectMarker={onSelectMarker}
+      />
+      <View style={styles.underlay}>
+        <StretchedImage source={gradient} />
+      </View>
+      <HotelSwipeList
+        data={hotels}
+        selectedIndex={selectedHotelIndex}
+        onSnapToItem={onSnapToItem}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -96,21 +76,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
-  underlay: { height: 132 },
+  underlay: {
+    height: 132,
+  },
 });
 
 type Props = {|
   +data: MapScreenData,
-  +setHotelId: (hotelId: string) => void,
 |};
 
 class MapScreen extends React.Component<Props> {
   renderDimension = ({ width }) => (
-    <MapScreenWithContext
-      {...this.props}
-      setHotelId={this.props.setHotelId}
-      deviceWidth={width}
-    />
+    <MapScreenWithContext {...this.props} deviceWidth={width} />
   );
 
   render() {
@@ -118,9 +95,7 @@ class MapScreen extends React.Component<Props> {
   }
 }
 
-const select = ({ setHotelId }: HotelsContextState) => ({ setHotelId });
-
-export default createFragmentContainer(withHotelsContext(select)(MapScreen), {
+export default createFragmentContainer(MapScreen, {
   data: graphql`
     fragment MapScreen_data on AllHotelsInterface @relay(plural: true) {
       id

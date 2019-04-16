@@ -12,7 +12,7 @@ import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHo
 import { sanitizeDate } from '../../GraphQLSanitizers';
 import SingleMap from './SingleMap';
 import {
-  withHotelsContext,
+  HotelsContext,
   type RoomConfigurationType,
   type HotelsContextState,
 } from '../../HotelsContext';
@@ -28,63 +28,48 @@ type Props = {|
   +checkout: Date,
 |};
 
-class SingleHotelMapScreen extends React.Component<Props> {
-  goBack = () => {
-    this.props.navigation.goBack(null);
-  };
+const renderInnerComponent = ({
+  availableHotel,
+}: SingleHotelMapScreenQueryResponse) => <SingleMap hotel={availableHotel} />;
 
-  renderInnerComponent = ({
-    availableHotel,
-  }: SingleHotelMapScreenQueryResponse) => <SingleMap hotel={availableHotel} />;
+function SingleHotelMapScreen(props: Props) {
+  const {
+    currency,
+    roomsConfiguration,
+    hotelId,
+    checkin,
+    checkout,
+  }: HotelsContextState = React.useContext(HotelsContext);
 
-  render() {
-    const {
-      currency,
-      roomsConfiguration,
-      checkin,
-      checkout,
-      hotelId,
-    } = this.props;
-    return (
-      <SingleMapQueryRenderer
-        onClose={this.goBack}
-        query={graphql`
-          query SingleHotelMapScreenQuery(
-            $search: AvailableHotelSearchInput!
-            $options: AvailableHotelOptionsInput
-          ) {
-            availableHotel(search: $search, options: $options) {
-              ...SingleMap_hotel
-            }
-          }
-        `}
-        variables={{
-          search: {
-            hotelId,
-            roomsConfiguration,
-            checkin: sanitizeDate(checkin),
-            checkout: sanitizeDate(checkout),
-          },
-          options: { currency },
-        }}
-        render={this.renderInnerComponent}
-      />
-    );
+  function goBack() {
+    props.navigation.goBack(null);
   }
+
+  return (
+    <SingleMapQueryRenderer
+      onClose={goBack}
+      query={graphql`
+        query SingleHotelMapScreenQuery(
+          $search: AvailableHotelSearchInput!
+          $options: AvailableHotelOptionsInput
+        ) {
+          availableHotel(search: $search, options: $options) {
+            ...SingleMap_hotel
+          }
+        }
+      `}
+      variables={{
+        search: {
+          hotelId,
+          roomsConfiguration,
+          checkin: sanitizeDate(checkin),
+          checkout: sanitizeDate(checkout),
+        },
+        options: { currency },
+      }}
+      render={renderInnerComponent}
+    />
+  );
 }
 
-const select = ({
-  currency,
-  roomsConfiguration,
-  hotelId,
-  checkin,
-  checkout,
-}: HotelsContextState) => ({
-  currency,
-  roomsConfiguration,
-  hotelId,
-  checkin,
-  checkout,
-});
-
-export default withHotelsContext(select)(withNavigation(SingleHotelMapScreen));
+export default withNavigation(SingleHotelMapScreen);

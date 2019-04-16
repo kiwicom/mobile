@@ -17,52 +17,53 @@ import { DeviceInfo, Alert } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
 import type { BookNow_rooms as RoomsType } from './__generated__/BookNow_rooms.graphql';
-import {
-  withHotelsContext,
-  type HotelsContextState,
-} from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 
 type Props = {
   +navigation: NavigationType,
-  +currency: string,
-  +hotelId: ?string,
-  +getGuestCount: () => number,
   +amount: ?string,
   +rooms: ?RoomsType,
   +maxPersons: number,
 };
 
-export class BookNow extends React.Component<Props> {
-  handleGoToPayment = () => {
-    const hotelId = this.props.hotelId;
+export function BookNow(props: Props) {
+  const {
+    currency,
+    hotelId,
+    getGuestCount,
+  }: HotelsContextState = React.useContext(HotelsContext);
+
+  function handleGoToPayment() {
     if (hotelId != null) {
-      const availableRooms = this.props.rooms?.availableRooms ?? [];
+      const availableRooms = props.rooms?.availableRooms ?? [];
       const rooms = availableRooms
         .filter(room => room?.selectedCount)
         .map(room => ({
           id: room?.id,
           count: room?.selectedCount,
         }));
+
       Logger.hotelsBookNowPressed({
         hotelID: hotelId,
         rooms: rooms.reduce((prev, curr) => prev + curr.count, 0),
-        guests: this.props.getGuestCount(),
+        guests: getGuestCount(),
         price: {
-          amount: parseFloat(this.props.amount ?? 0),
-          currency: this.props.currency,
+          amount: parseFloat(props.amount ?? 0),
+          currency: currency,
         },
       });
-      this.props.navigation.navigate('Payment', {
+      props.navigation.navigate('Payment', {
         hotelId,
         rooms,
         language: DeviceInfo.getLanguage(),
       });
     }
-  };
+  }
 
-  onPress = () => {
-    const numberOfGuests = this.props.getGuestCount();
-    if (numberOfGuests > this.props.maxPersons) {
+  function onPress() {
+    const numberOfGuests = getGuestCount();
+
+    if (numberOfGuests > props.maxPersons) {
       Alert.translatedAlert(
         {
           id: 'single_hotel.book_now.alert_title',
@@ -80,46 +81,35 @@ export class BookNow extends React.Component<Props> {
             text: {
               id: 'single_hotel.book_now.alert_ok',
             },
-            onPress: this.handleGoToPayment,
+            onPress: handleGoToPayment,
           },
         ],
       );
     } else {
-      this.handleGoToPayment();
+      handleGoToPayment();
     }
-  };
-
-  render() {
-    return (
-      <Button onPress={this.onPress} testID="bookNowButton">
-        <ButtonTitle
-          text={<Translation id="single_hotel.book_now" />}
-          style={styles.text}
-        />
-      </Button>
-    );
   }
+
+  return (
+    <Button onPress={onPress} testID="bookNowButton">
+      <ButtonTitle
+        text={<Translation id="single_hotel.book_now" />}
+        style={styles.text}
+      />
+    </Button>
+  );
 }
 
-const select = ({ currency, hotelId, getGuestCount }: HotelsContextState) => ({
-  currency,
-  hotelId,
-  getGuestCount,
-});
-
-export default createFragmentContainer(
-  withHotelsContext(select)(withNavigation(BookNow)),
-  {
-    rooms: graphql`
-      fragment BookNow_rooms on HotelAvailabilityInterface {
-        availableRooms {
-          id
-          selectedCount
-        }
+export default createFragmentContainer(withNavigation(BookNow), {
+  rooms: graphql`
+    fragment BookNow_rooms on HotelAvailabilityInterface {
+      availableRooms {
+        id
+        selectedCount
       }
-    `,
-  },
-);
+    }
+  `,
+});
 
 const styles = StyleSheet.create({
   text: {

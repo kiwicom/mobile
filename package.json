@@ -69,6 +69,7 @@
     "metro-react-native-babel-preset": "^0.53.1",
     "prettier": "^1.16.4",
     "react-native-dotenv": "^0.2.0",
+    "react-native-testing-library": "^1.7.0",
     "react-test-renderer": "16.8.3",
     "regenerator-runtime": "^0.12.1"
   },
