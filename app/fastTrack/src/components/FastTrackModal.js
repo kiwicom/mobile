@@ -12,13 +12,12 @@ import {
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
-import type { FastTrackModal_data } from './__generated__/FastTrackModal_data';
+import type { FastTrackModal_data as AttachmentUrl } from './__generated__/FastTrackModal_data.graphql';
 
 type Props = {|
-  +documentUrl: string,
   +isVisible: boolean,
   +onCloseModal: () => void,
-  +data: FastTrackModal_data,
+  +data: ?AttachmentUrl,
 |};
 
 class FastTrackModal extends React.Component<Props> {
@@ -33,7 +32,7 @@ class FastTrackModal extends React.Component<Props> {
         <View style={styles.container}>
           <WebView
             source={{
-              uri: this.props.data.url,
+              uri: this.props.data?.url || '',
             }}
             style={styles.webView}
           />

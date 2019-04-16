@@ -14,22 +14,19 @@ import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
 import Services from './Services';
 import FastTrackModal from './FastTrackModal';
-import type { FastTrackBannerContent_data } from './__generated__/FastTrackBannerContent_data.graphql';
+import type { FastTrackBannerContent_data as FastTrack } from './__generated__/FastTrackBannerContent_data.graphql';
 
 type Props = {|
-  +relay: RelayProp,
-  +data: FastTrackBannerContent_data,
+  +data: ?FastTrack,
 |};
 
 type State = {|
   +isModalVisible: boolean,
-  +documentUrl: string,
 |};
 
 class FastTrackBannerContent extends React.Component<Props, State> {
   state = {
     isModalVisible: false,
-    documentUrl: '',
   };
 
   onOpenModal = () => {
@@ -63,10 +60,9 @@ class FastTrackBannerContent extends React.Component<Props, State> {
           title={<Translation id="fast_track.banner.show_qr_button" />}
         />
         <FastTrackModal
-          documentUrl={this.state.documentUrl}
           isVisible={this.state.isModalVisible}
           onCloseModal={this.onCloseModal}
-          data={this.props.data.fastTrack[0]?.attachments[0]}
+          data={this.props.data?.fastTrack?.[0]?.attachments?.[0]}
         />
       </View>
     );

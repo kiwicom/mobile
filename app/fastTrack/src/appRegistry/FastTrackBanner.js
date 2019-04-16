@@ -4,10 +4,11 @@ import * as React from 'react';
 import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
 
 import FastTrackBannerContent from '../components/FastTrackBannerContent';
-import type { FastTrackBannerQueryResponse } from './__generated__/FastTrackBannerQuery.graphql';
+import type { FastTrackBannerQueryResponse as BookingAncillaries } from './__generated__/FastTrackBannerQuery.graphql';
 
 type Props = {|
   +bookingId: number,
+  +kwAuthToken: string,
 |};
 
 const query = graphql`
@@ -19,7 +20,7 @@ const query = graphql`
 `;
 
 class FastTrackBanner extends React.Component<Props> {
-  renderFastTrackBannerContent = (props: FastTrackBannerQueryResponse) => {
+  renderFastTrackBannerContent = (props: BookingAncillaries) => {
     return <FastTrackBannerContent data={props.bookingAncillaries} />;
   };
 
