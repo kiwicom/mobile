@@ -63,7 +63,7 @@ export default class Playground extends React.Component<Props> {
       );
     }
     return (
-      <Dimensions.Provider dimensions={this.props.dimensions}>
+      <Dimensions.Provider>
         <ScrollView>
           {PlaygroundRenderer.components[this.props.name].components.map(
             (component, index) => {

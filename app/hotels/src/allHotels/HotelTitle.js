@@ -16,12 +16,12 @@ import Distance from './HotelDistance';
 import type { HotelTitle_data as HotelTitleType } from './__generated__/HotelTitle_data.graphql';
 
 type Props = {|
-  +data: HotelTitleType,
+  +data: ?HotelTitleType,
 |};
 
 function HotelTitle({ data }: Props) {
-  const hotelName = data.name ?? '';
-  const hotelStars = data.rating?.stars;
+  const hotelName = data?.name ?? '';
+  const hotelStars = data?.rating?.stars;
 
   return (
     <React.Fragment>
@@ -36,8 +36,8 @@ function HotelTitle({ data }: Props) {
         <Distance hotel={data} />
       </View>
       <Price
-        amount={data.money?.amount}
-        currency={data.money?.currencyId}
+        amount={data?.money?.amount}
+        currency={data?.money?.currencyId}
         style={style.price}
       />
     </React.Fragment>

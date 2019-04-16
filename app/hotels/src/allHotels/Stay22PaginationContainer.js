@@ -1,7 +1,6 @@
 // @flow strict
 
 import * as React from 'react';
-import { Animated } from 'react-native';
 import {
   graphql,
   createPaginationContainer,
@@ -10,76 +9,52 @@ import {
 import { Logger } from '@kiwicom/mobile-shared';
 
 import type { Stay22PaginationContainer_data as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer_data.graphql';
-import { withHotelsContext, type HotelsContextState } from '../HotelsContext';
-import type { CurrentSearchStats } from '../filter/CurrentSearchStatsType';
+import { HotelsContext, type HotelsContextState } from '../HotelsContext';
 import RenderSearchResults from './RenderSearchResults';
 
 type Props = {|
   +data: Stay22PaginationContainerType,
   +relay: RelayPaginationProp,
-  +setCurrentSearchStats: (currentSearchStats: CurrentSearchStats) => void,
-  +closeHotels: () => void,
 |};
 
-type State = {|
-  isLoading: boolean,
-|};
+export function Stay22PaginationContainer(props: Props) {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const { closeHotels }: HotelsContextState = React.useContext(HotelsContext);
 
-export class Stay22PaginationContainer extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      isLoading: false,
-    };
-  }
-
-  componentDidMount() {
+  React.useEffect(() => {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_RESULTS,
       Logger.Provider.ANCILLARY_PROVIDER_STAY22,
     );
-    // TODO: Set min max price here when supported by API
-  }
+  }, []);
 
-  mapAnimation: Animated.Value;
-  listAnimation: Animated.Value;
-
-  loadMore = () => {
-    if (this.props.relay.hasMore() && !this.props.relay.isLoading()) {
-      this.setState({ isLoading: true }, () => {
-        this.props.relay.loadMore(50, () => {
-          this.setState({ isLoading: false });
-        });
+  function loadMore() {
+    if (props.relay.hasMore() && !props.relay.isLoading()) {
+      setIsLoading(true);
+      props.relay.loadMore(50, () => {
+        setIsLoading(false);
       });
     }
-  };
-
-  render() {
-    const edges = this.props.data.allAvailableStay22Hotels?.edges ?? [];
-    const data = edges.map(hotel => hotel?.node);
-
-    return (
-      <RenderSearchResults
-        // $FlowExpectedError: Relay flow types does not work for plural: true
-        data={data}
-        onLoadMore={this.loadMore}
-        isLoading={this.state.isLoading}
-        hasMore={this.props.relay.hasMore()}
-        top={0}
-        closeHotels={this.props.closeHotels}
-      />
-    );
   }
+
+  const edges = props.data.allAvailableStay22Hotels?.edges ?? [];
+  const data = edges.map(hotel => hotel?.node);
+
+  return (
+    <RenderSearchResults
+      // $FlowExpectedError: Relay flow types does not work for plural: true
+      data={data}
+      onLoadMore={loadMore}
+      isLoading={isLoading}
+      hasMore={props.relay.hasMore()}
+      top={0}
+      closeHotels={closeHotels}
+    />
+  );
 }
 
-const select = ({ actions, closeHotels }: HotelsContextState) => ({
-  setCurrentSearchStats: actions.setCurrentSearchStats,
-  closeHotels,
-});
-
 export default createPaginationContainer(
-  withHotelsContext(select)(Stay22PaginationContainer),
+  Stay22PaginationContainer,
   {
     data: graphql`
       fragment Stay22PaginationContainer_data on RootQuery {

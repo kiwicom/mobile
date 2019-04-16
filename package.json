@@ -52,7 +52,6 @@
     "@babel/runtime": "^7.4.2",
     "@kiwicom/eslint-config": "^3.3.6",
     "@kiwicom/monorepo": "^0.14.0",
-    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
     "babel-plugin-relay": "^3.0.0",
@@ -73,9 +72,6 @@
     "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.8.3",
     "regenerator-runtime": "^0.12.1"
-  },
-  "resolutions": {
-    "**/babel-core": "7.0.0-bridge.0"
   },
   "rnpm": {
     "assets": [
