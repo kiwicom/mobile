@@ -7,8 +7,8 @@ import { Logger } from '@kiwicom/mobile-shared';
 import { HotelsPaginationContainer } from '../HotelsPaginationContainer';
 import { HotelsContext } from '../../HotelsContext';
 
-jest.mock('../RenderSearchResults.js');
-jest.mock('../../filter/FilterStripe');
+jest.mock('../RenderSearchResults');
+jest.mock('../../filter/FilterStripe', () => () => null);
 
 const defaultProps = (stats: Object = { maxPrice: 100, minPrice: 50 }) => ({
   data: {

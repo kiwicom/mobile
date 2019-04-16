@@ -8,29 +8,11 @@ import {
   HotelsFilterContext,
   type HotelsFilterState,
 } from '../HotelsFilterContext';
-import {
-  type RoomConfigurationType,
-  type HotelsContextState,
-  withHotelsContext,
-} from '../HotelsContext';
+import { type HotelsContextState, HotelsContext } from '../HotelsContext';
 import { sanitizeHotelAmenities } from '../GraphQLSanitizers';
 import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHotelsSearchQuery.graphql';
 import HotelsPaginationContainer from './HotelsPaginationContainer';
 import HotelsSearch from './HotelsSearch';
-
-type Props = {|
-  +checkin: Date | null,
-  +checkout: Date | null,
-  +currency: string,
-  +roomsConfiguration: RoomConfigurationType | null,
-  +cityId: string | null,
-  +orderBy: $PropertyType<HotelsFilterState, 'orderBy'>,
-  +filterParams: $PropertyType<HotelsFilterState, 'filterParams'>,
-  +renderOfflineScreen: (retry: () => void) => React.Node,
-  +onClose: () => void,
-  +renderDateError: () => React.Node,
-  +renderFooter: () => React.Node,
-|};
 
 const query = graphql`
   query NewAllHotelsSearchQuery(
@@ -50,17 +32,18 @@ const renderAllHotelsSearchList = (
   return <HotelsPaginationContainer data={propsFromRenderer} />;
 };
 
-const NewAllHotelsSearch = ({
-  cityId,
-  checkin,
-  checkout,
-  roomsConfiguration,
-  currency,
-  onClose,
-}: Props) => {
+const NewAllHotelsSearch = () => {
   const { orderBy, filterParams }: HotelsFilterState = React.useContext(
     HotelsFilterContext,
   );
+  const {
+    checkin,
+    checkout,
+    currency,
+    roomsConfiguration,
+    cityId,
+    closeHotels: onClose,
+  }: HotelsContextState = React.useContext(HotelsContext);
   return (
     <HotelsSearch
       shouldRenderDateError={checkin === null || checkout === null}
@@ -88,13 +71,4 @@ const NewAllHotelsSearch = ({
   );
 };
 
-const selectHotelsContext = (state: HotelsContextState) => ({
-  checkin: state.checkin,
-  checkout: state.checkout,
-  currency: state.currency,
-  roomsConfiguration: state.roomsConfiguration,
-  cityId: state.cityId,
-  onClose: state.closeHotels,
-});
-
-export default withHotelsContext(selectHotelsContext)(NewAllHotelsSearch);
+export default NewAllHotelsSearch;
