@@ -6911,7 +6911,7 @@ pretty-format@24.0.0-alpha.6:
     ansi-regex "^4.0.0"
     ansi-styles "^3.2.0"
 
-pretty-format@^24.7.0:
+pretty-format@^24.0.0, pretty-format@^24.7.0:
   version "24.7.0"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-24.7.0.tgz#d23106bc2edcd776079c2daa5da02bcb12ed0c10"
   integrity sha512-apen5cjf/U4dj7tHetpC7UEFCvtAgnNZnBDkfPv3fokzIqyOJckAG9OlAPC1BlFALnqT/lGB2tl9EJjlK6eCsA==
@@ -7265,6 +7265,13 @@ react-native-tab-view@^1.0.0, react-native-tab-view@^1.2.0:
   integrity sha512-iufNROTPr4+Z/IKijlp5faEANiDBWxhpgx9NSCg3esZ+HN5+UtFwB0xkn4XpNRqCvbzeBkgKMRJL3V6kr5NhWg==
   dependencies:
     prop-types "^15.6.1"
+
+react-native-testing-library@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-testing-library/-/react-native-testing-library-1.7.0.tgz#8b53d5361faaa276bf67cd0e50dab1d2e26754ad"
+  integrity sha512-aciXmBjZ8GXbkgwBTyXUBSUBqYyIa/m+mZM3ZqU44pfeu+LihuvpljucSQaUutbUEywKb2sgEJWeS8GwEBa09w==
+  dependencies:
+    pretty-format "^24.0.0"
 
 react-native-webview@5.5.0:
   version "5.5.0"

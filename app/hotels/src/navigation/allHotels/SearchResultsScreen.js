@@ -21,23 +21,11 @@ import {
   type SearchResultState,
 } from './SearchResultsContext';
 import SingleHotelContainer from '../../singleHotel/SingleHotelContainer';
-import type { RoomsConfiguration } from '../../singleHotel/AvailableHotelSearchInput';
-import {
-  withHotelsContext,
-  type HotelsContextState,
-} from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 
 type Props = {|
   +navigation: NavigationType,
-  +onBackClicked: () => void,
   +cityName: string,
-  +checkinDate: Date,
-  +checkoutDate: Date,
-  +roomsConfiguration: RoomsConfiguration,
-  +lastNavigationMode?: 'present' | 'push',
-  +cityId?: string,
-  +setCheckinDate: Date => void,
-  +setCheckoutDate: Date => void,
 |};
 
 const noop = () => {};
@@ -46,13 +34,19 @@ const SearchResultsScreen = (props: Props) => {
   const { show, setResultType }: SearchResultState = React.useContext(
     SearchResultsContext,
   );
+  const {
+    checkin: checkinDate,
+    checkout: checkoutDate,
+    actions: { setCheckinDate, setCheckoutDate },
+  }: HotelsContextState = React.useContext(HotelsContext);
+
   useSetNavigationParams(props.navigation.setParams, {
     toggleMap: setResultType,
-    setCheckinDate: props.setCheckinDate,
-    setCheckoutDate: props.setCheckoutDate,
+    setCheckinDate: setCheckinDate,
+    setCheckoutDate: setCheckoutDate,
     show,
-    checkin: props.checkinDate,
-    checkout: props.checkoutDate,
+    checkin: checkinDate,
+    checkout: checkoutDate,
   });
 
   return (
@@ -113,15 +107,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const selectHotelsContext = ({
-  checkin,
-  checkout,
-  actions: { setCheckinDate, setCheckoutDate },
-}: HotelsContextState) => ({
-  checkinDate: checkin,
-  checkoutDate: checkout,
-  setCheckinDate,
-  setCheckoutDate,
-});
-
-export default withHotelsContext(selectHotelsContext)(SearchResultsScreen);
+export default SearchResultsScreen;

@@ -8,10 +8,7 @@ import {
 } from '@kiwicom/mobile-navigation';
 
 import { sanitizeDate } from '../../GraphQLSanitizers';
-import {
-  withHotelsContext,
-  type HotelsContextState,
-} from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import type { Stay22SingleHotelMapScreenQueryResponse } from './__generated__/Stay22SingleHotelMapScreenQuery.graphql';
 import SingleMap from './SingleMap';
 import SingleMapQueryRenderer from './SingleMapQueryRenderer';
@@ -25,66 +22,55 @@ type Props = {|
   +checkout: Date,
 |};
 
-class Stay22SingleHotelMapScreen extends React.Component<Props> {
-  goBack = () => {
-    this.props.navigation.goBack(null);
-  };
+const renderInner = (props: Stay22SingleHotelMapScreenQueryResponse) => (
+  <SingleMap hotel={props.stay22HotelDetail} />
+);
 
-  renderInner = (props: Stay22SingleHotelMapScreenQueryResponse) => (
-    <SingleMap hotel={props.stay22HotelDetail} />
-  );
+function Stay22SingleHotelMapScreen(props: Props) {
+  const {
+    getGuestCount,
+    currency,
+    hotelId,
+    checkin,
+    checkout,
+  }: HotelsContextState = React.useContext(HotelsContext);
 
-  render() {
-    const { getGuestCount, currency, hotelId, checkin, checkout } = this.props;
-    return (
-      <SingleMapQueryRenderer
-        onClose={this.goBack}
-        query={graphql`
-          query Stay22SingleHotelMapScreenQuery(
-            $id: ID!
-            $guests: Int!
-            $currency: Currency
-            $checkin: Date!
-            $checkout: Date!
-          ) {
-            stay22HotelDetail(
-              id: $id
-              guests: $guests
-              currency: $currency
-              checkin: $checkin
-              checkout: $checkout
-            ) {
-              ...SingleMap_hotel
-            }
-          }
-        `}
-        variables={{
-          checkin: sanitizeDate(checkin),
-          checkout: sanitizeDate(checkout),
-          id: hotelId,
-          guests: getGuestCount(),
-          currency,
-        }}
-        render={this.renderInner}
-      />
-    );
+  function goBack() {
+    props.navigation.goBack(null);
   }
+
+  return (
+    <SingleMapQueryRenderer
+      onClose={goBack}
+      query={graphql`
+        query Stay22SingleHotelMapScreenQuery(
+          $id: ID!
+          $guests: Int!
+          $currency: Currency
+          $checkin: Date!
+          $checkout: Date!
+        ) {
+          stay22HotelDetail(
+            id: $id
+            guests: $guests
+            currency: $currency
+            checkin: $checkin
+            checkout: $checkout
+          ) {
+            ...SingleMap_hotel
+          }
+        }
+      `}
+      variables={{
+        checkin: sanitizeDate(checkin),
+        checkout: sanitizeDate(checkout),
+        id: hotelId,
+        guests: getGuestCount(),
+        currency,
+      }}
+      render={renderInner}
+    />
+  );
 }
 
-const select = ({
-  getGuestCount,
-  currency,
-  hotelId,
-  checkin,
-  checkout,
-}: HotelsContextState) => ({
-  getGuestCount,
-  currency,
-  hotelId,
-  checkin,
-  checkout,
-});
-
-export default withHotelsContext(select)(
-  withNavigation(Stay22SingleHotelMapScreen),
-);
+export default withNavigation(Stay22SingleHotelMapScreen);
