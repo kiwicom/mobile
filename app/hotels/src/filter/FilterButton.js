@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import * as React from 'react';
 import { View } from 'react-native';
@@ -12,7 +12,7 @@ import {
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
-  +title: TranslationType,
+  +title: React.Element<(any) => TranslationType> | TranslationType,
   +isActive: boolean,
   +onPress: () => void,
   +icon?: React.Element<typeof Icon>,

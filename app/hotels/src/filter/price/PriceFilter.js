@@ -1,161 +1,14 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Icon,
-  Logger,
-  Price,
-  Translation,
-  TranslationFragment,
-} from '@kiwicom/mobile-shared';
+import { Icon, Logger } from '@kiwicom/mobile-shared';
 import { DateUtils } from '@kiwicom/mobile-localization';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
-import type { CurrentSearchStats } from '../CurrentSearchStatsType';
-import {
-  withHotelsContext,
-  type HotelsContextState,
-} from '../../HotelsContext';
-
-type PropsWithContext = {
-  ...Props,
-  +currentSearchStats: CurrentSearchStats,
-  +currency: string,
-  +daysOfStay: number | null,
-};
-
-type State = {|
-  isPopupOpen: boolean,
-|};
-
-class PriceFilter extends React.Component<PropsWithContext, State> {
-  state = {
-    isPopupOpen: false,
-  };
-
-  filterButtonClicked = () => {
-    if (this.props.isActive) {
-      this.props.onChange({
-        minPrice: null,
-        maxPrice: null,
-      });
-    } else {
-      this.openPopup();
-    }
-  };
-
-  openPopup = () =>
-    this.setState({
-      isPopupOpen: true,
-    });
-
-  closePopup = (callback?: Function) =>
-    this.setState(
-      {
-        isPopupOpen: false,
-      },
-      callback,
-    );
-
-  handleSave = ({
-    minPrice,
-    maxPrice,
-  }: {
-    minPrice: number,
-    maxPrice: number,
-  }) => {
-    const filter = {
-      minPrice:
-        minPrice !== this.props.currentSearchStats.priceMin ? minPrice : null,
-      maxPrice:
-        maxPrice !== this.props.currentSearchStats.priceMax ? maxPrice : null,
-    };
-    this.closePopup(() => {
-      this.props.onChange(filter);
-      Logger.hotelsFilterTagSet('Price');
-    });
-  };
-
-  getTitle = (
-    start: number,
-    end: number,
-    min: number,
-    max: number,
-    currency: string,
-    daysOfStay: number,
-  ) => {
-    if (start === min && end === max) {
-      return <Translation id="hotels_search.filter.price_filter.price" />;
-    }
-    if (start === min) {
-      return (
-        <TranslationFragment>
-          <Translation passThrough="< " />
-          <Price amount={end * daysOfStay} currency={currency} />
-        </TranslationFragment>
-      );
-    }
-    if (end === max) {
-      return (
-        <TranslationFragment>
-          <Translation passThrough="> " />
-          <Price amount={start * daysOfStay} currency={currency} />
-        </TranslationFragment>
-      );
-    }
-    return (
-      <TranslationFragment>
-        <Price amount={start * daysOfStay} currency={currency} />
-        <Translation passThrough=" - " />
-        <Price amount={end * daysOfStay} currency={currency} />
-      </TranslationFragment>
-    );
-  };
-
-  render() {
-    const {
-      currentSearchStats: { priceMin, priceMax },
-      isActive,
-      currency,
-      daysOfStay,
-    } = this.props;
-    const start = this.props.start || priceMin;
-    const end = this.props.end || priceMax;
-    if (daysOfStay === null) {
-      return null;
-    }
-    return (
-      <React.Fragment>
-        <FilterButton
-          title={this.getTitle(
-            start,
-            end,
-            priceMin,
-            priceMax,
-            currency,
-            daysOfStay,
-          )}
-          icon={<Icon name="money" />}
-          isActive={isActive}
-          onPress={this.filterButtonClicked}
-        />
-        <PricePopup
-          isVisible={this.state.isPopupOpen}
-          onClose={this.closePopup}
-          onSave={this.handleSave}
-          min={priceMin}
-          max={priceMax}
-          start={start}
-          end={end}
-          currency={currency}
-          daysOfStay={daysOfStay}
-        />
-      </React.Fragment>
-    );
-  }
-}
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
+import PriceTitle from './PriceTitle';
 
 type Props = {|
   +start: number | null,
@@ -165,6 +18,88 @@ type Props = {|
   +isActive: boolean,
 |};
 
+const PriceFilter = (props: Props) => {
+  const {
+    currency,
+    checkin,
+    checkout,
+    currentSearchStats,
+  }: HotelsContextState = React.useContext(HotelsContext);
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+
+  function filterButtonClicked() {
+    if (props.isActive) {
+      props.onChange({
+        minPrice: null,
+        maxPrice: null,
+      });
+    } else {
+      openPopup();
+    }
+  }
+
+  function openPopup() {
+    setIsPopupOpen(true);
+  }
+
+  function closePopup() {
+    setIsPopupOpen(false);
+  }
+
+  function handleSave({
+    minPrice,
+    maxPrice,
+  }: {
+    minPrice: number,
+    maxPrice: number,
+  }) {
+    const filter = {
+      minPrice: minPrice !== currentSearchStats.priceMin ? minPrice : null,
+      maxPrice: maxPrice !== currentSearchStats.priceMax ? maxPrice : null,
+    };
+    props.onChange(filter);
+    Logger.hotelsFilterTagSet('Price');
+  }
+
+  const { isActive } = props;
+  const start = props.start || currentSearchStats.priceMin;
+  const end = props.end || currentSearchStats.priceMax;
+  const daysOfStay = calculateDaysOfStay(checkin, checkout);
+  if (daysOfStay === null) {
+    return null;
+  }
+  return (
+    <>
+      <FilterButton
+        title={
+          <PriceTitle
+            start={start}
+            end={end}
+            min={currentSearchStats.priceMin}
+            max={currentSearchStats.priceMax}
+            currency={currency}
+            daysOfStay={daysOfStay}
+          />
+        }
+        icon={<Icon name="money" />}
+        isActive={isActive}
+        onPress={filterButtonClicked}
+      />
+      <PricePopup
+        isVisible={isPopupOpen}
+        onClose={closePopup}
+        onSave={handleSave}
+        min={currentSearchStats.priceMin}
+        max={currentSearchStats.priceMax}
+        start={start}
+        end={end}
+        currency={currency}
+        daysOfStay={daysOfStay}
+      />
+    </>
+  );
+};
+
 const calculateDaysOfStay = (checkin, checkout) => {
   if (checkin && checkout) {
     return DateUtils.diffInDays(checkout, checkin);
@@ -172,17 +107,4 @@ const calculateDaysOfStay = (checkin, checkout) => {
   return null;
 };
 
-const select = ({
-  currency,
-  checkin,
-  checkout,
-  currentSearchStats,
-}: HotelsContextState) => ({
-  currency,
-  checkin,
-  checkout,
-  currentSearchStats,
-  daysOfStay: calculateDaysOfStay(checkin, checkout),
-});
-
-export default withHotelsContext(select)(PriceFilter);
+export default PriceFilter;
