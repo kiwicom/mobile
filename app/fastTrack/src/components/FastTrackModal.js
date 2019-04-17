@@ -33,7 +33,7 @@ class FastTrackModal extends React.Component<Props> {
         <View style={styles.container}>
           <WebView
             source={{
-              uri: this.props.data?.url || '',
+              uri: this.props.data?.url ?? '',
             }}
           />
           <View style={styles.buttonContainer}>
