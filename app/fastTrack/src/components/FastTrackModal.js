@@ -1,13 +1,14 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, WebView } from 'react-native';
+import { View } from 'react-native';
 import {
   Modal,
   TextButton,
   StyleSheet,
   Device,
   Translation,
+  WebView,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
@@ -34,7 +35,6 @@ class FastTrackModal extends React.Component<Props> {
             source={{
               uri: this.props.data?.url || '',
             }}
-            style={styles.webView}
           />
           <View style={styles.buttonContainer}>
             <TextButton
@@ -63,10 +63,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: Device.isIPhoneX ? 32 : 24,
-  },
-  webView: {
-    flex: 1,
-    backgroundColor: 'transparent',
   },
   buttonContainer: {
     paddingHorizontal: Device.isIPhoneX ? 16 : 8,
