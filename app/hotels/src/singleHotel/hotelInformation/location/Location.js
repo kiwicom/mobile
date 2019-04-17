@@ -21,107 +21,86 @@ import {
 
 import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel as HotelType } from './__generated__/Location_hotel.graphql';
-import {
-  type RoomConfigurationType,
-  type HotelsContextState,
-  withHotelsContext,
-} from '../../../HotelsContext';
+import { type HotelsContextState, HotelsContext } from '../../../HotelsContext';
 
 type Props = {|
   +hotel: ?HotelType,
   +navigation: NavigationType,
-  +currency: string,
-  +hotelId: string,
-  +checkin: Date,
-  +checkout: Date,
-  +roomsConfiguration: RoomConfigurationType,
 |};
 
-export class Location extends React.Component<Props> {
-  goToMap = () => {
-    this.props.navigation.navigate('SingleHotelMap', {
-      hotelId: this.props.hotelId,
-      checkin: this.props.checkin,
-      checkout: this.props.checkout,
-      roomsConfiguration: this.props.roomsConfiguration,
-      currency: this.props.currency,
+export function Location(props: Props) {
+  const {
+    currency,
+    hotelId,
+    checkin,
+    checkout,
+    roomsConfiguration,
+  }: HotelsContextState = React.useContext(HotelsContext);
+
+  function goToMap() {
+    props.navigation.navigate('SingleHotelMap', {
+      hotelId,
+      checkin,
+      checkout,
+      roomsConfiguration,
+      currency,
     });
     Logger.hotelsDetailMapOpened();
-  };
-
-  render() {
-    const { hotel } = this.props;
-    const address = hotel?.address;
-    const coordinates = hotel?.coordinates;
-    const latitude = coordinates?.lat;
-    const longitude = coordinates?.lng;
-    return (
-      <View style={styles.background}>
-        <TouchableWithoutFeedback onPress={this.goToMap}>
-          <View style={styles.container}>
-            <View style={styles.leftColumn}>
-              <Text style={[styles.addressLine, styles.streetLine]}>
-                <Translation passThrough={address?.street} />
-              </Text>
-              <Text style={[styles.addressLine, styles.cityLine]}>
-                <Translation passThrough={address?.city} />
-              </Text>
-            </View>
-            {typeof latitude === 'number' && typeof longitude === 'number' && (
-              <MapView
-                region={{
-                  latitude: latitude + 0.001, // move center little bit bottom
-                  longitude: longitude - 0.025, // move center little bit right
-                  latitudeDelta: 0.01,
-                  longitudeDelta: 0.01,
-                }}
-                scrollEnabled={false}
-                style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
-              />
-            )}
-
-            <View style={styles.overlayMarker}>
-              <DropMarker />
-            </View>
-            <StretchedImage source={gradient} />
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-    );
   }
+
+  const address = props.hotel?.address;
+  const latitude = props.hotel?.coordinates?.lat;
+  const longitude = props.hotel?.coordinates?.lng;
+
+  return (
+    <View style={styles.background}>
+      <TouchableWithoutFeedback onPress={goToMap}>
+        <View style={styles.container}>
+          <View style={styles.leftColumn}>
+            <Text style={[styles.addressLine, styles.streetLine]}>
+              <Translation passThrough={address?.street} />
+            </Text>
+            <Text style={[styles.addressLine, styles.cityLine]}>
+              <Translation passThrough={address?.city} />
+            </Text>
+          </View>
+          {typeof latitude === 'number' && typeof longitude === 'number' && (
+            <MapView
+              region={{
+                latitude: latitude + 0.001, // move center little bit bottom
+                longitude: longitude - 0.025, // move center little bit right
+                latitudeDelta: 0.01,
+                longitudeDelta: 0.01,
+              }}
+              scrollEnabled={false}
+              style={[StyleSheet.absoluteFillObject, styles.mapBottom]}
+            />
+          )}
+
+          <View style={styles.overlayMarker}>
+            <DropMarker />
+          </View>
+          <StretchedImage source={gradient} />
+        </View>
+      </TouchableWithoutFeedback>
+    </View>
+  );
 }
 
-const select = ({
-  currency,
-  hotelId,
-  checkin,
-  checkout,
-  roomsConfiguration,
-}: HotelsContextState) => ({
-  currency,
-  hotelId,
-  checkin,
-  checkout,
-  roomsConfiguration,
-});
-
-export default createFragmentContainer(
-  withHotelsContext(select)(withNavigation(Location)),
-  {
-    hotel: graphql`
-      fragment Location_hotel on HotelInterface {
-        address {
-          street
-          city
-        }
-        coordinates {
-          lat
-          lng
-        }
+export default createFragmentContainer(withNavigation(Location), {
+  hotel: graphql`
+    fragment Location_hotel on HotelInterface {
+      address {
+        street
+        city
       }
-    `,
-  },
-);
+      coordinates {
+        lat
+        lng
+      }
+    }
+  `,
+});
 
 const styles = StyleSheet.create({
   background: {

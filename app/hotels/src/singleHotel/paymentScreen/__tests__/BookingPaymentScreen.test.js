@@ -1,43 +1,31 @@
 // @flow
 
-import { BookingPaymentScreen } from '../BookingPaymentScreen';
+import { createURI } from '../BookingPaymentScreen';
 
 const ONE_DAY = 8.64e7; // ms
 
 it('creates correct URL', () => {
   expect(
-    new BookingPaymentScreen({
-      hotelId: '1',
+    createURI({
+      url: 'http://test.url.lol',
       checkin: new Date(ONE_DAY),
       checkout: new Date(3 * ONE_DAY), // 2 days later
-      roomConfig: [
-        {
-          roomId: '7709411_91461863_1_1_0',
-          count: 1,
-        },
-        {
-          roomId: '7709404_91461863_0_1_0',
-          count: 2,
-        },
-      ],
       currency: 'EUR',
       version: 'rn-test',
-    }).createURI('http://test.url.lol'),
-  ).toMatchSnapshot();
+    }),
+  ).toMatchInlineSnapshot(
+    `"http://test.url.lol&checkin=1970-01-02&interval=2&label=kiwi-ios-react-rn-test&lang=en&selected_currency=EUR"`,
+  );
 
   expect(
-    new BookingPaymentScreen({
-      hotelId: '2',
+    createURI({
+      url: 'http://test.url.lol',
       checkin: new Date(2 * ONE_DAY),
       checkout: new Date(16 * ONE_DAY), // 14 days later
-      roomConfig: [
-        {
-          roomId: '7709411_91461863_1_1_0',
-          count: 5,
-        },
-      ],
-      currency: 'JPY',
+      currency: 'EUR',
       version: 'rn-test',
-    }).createURI('http://test.url.lol'),
-  ).toMatchSnapshot();
+    }),
+  ).toMatchInlineSnapshot(
+    `"http://test.url.lol&checkin=1970-01-03&interval=14&label=kiwi-ios-react-rn-test&lang=en&selected_currency=EUR"`,
+  );
 });

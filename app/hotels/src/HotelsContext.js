@@ -1,7 +1,6 @@
 // @flow
 
 import * as React from 'react';
-import { withContext } from '@kiwicom/mobile-shared';
 import { DateUtils } from '@kiwicom/mobile-localization';
 
 import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
@@ -38,7 +37,7 @@ export const HotelsContext = React.createContext<State>({
   ...defaultState,
 });
 
-const { Consumer, Provider: ContextProvider } = HotelsContext;
+const { Provider: ContextProvider } = HotelsContext;
 
 export type ApiProvider = 'booking' | 'stay22';
 
@@ -202,9 +201,6 @@ class Provider extends React.Component<Props, State> {
   }
 }
 
-export const withHotelsContext = (select: (state: State) => Object) =>
-  withContext<State>(select, Consumer);
-
 export type HotelsContextState = State;
 
-export default { Consumer, Provider };
+export default { Provider };

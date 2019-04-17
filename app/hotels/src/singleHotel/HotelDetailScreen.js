@@ -9,7 +9,6 @@ import {
   StyleSheet,
   withDimensions,
   Device,
-  type BarStyle,
   Color,
   StatusbarBackground,
   Translation,
@@ -23,11 +22,7 @@ import RoomList from './roomList/RoomList';
 import BrandLabel from './brandLabel/BrandLabel';
 import type { RoomsConfiguration } from './AvailableHotelSearchInput';
 import type { HotelDetailScreen_availableHotel as HotelType } from './__generated__/HotelDetailScreen_availableHotel.graphql';
-import {
-  withHotelsContext,
-  type HotelsContextState,
-  type ApiProvider,
-} from '../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../HotelsContext';
 import BookingSummary from './summary/BookingSummary';
 import CloseModal from '../components/CloseModal';
 
@@ -35,15 +30,8 @@ type Props = {|
   +availableHotel: ?HotelType,
   +roomsConfiguration: RoomsConfiguration,
   +goBack: () => void,
-  +getGuestCount: () => number,
   +paymentLink?: ?string,
-  +setPaymentLink: (?string) => void,
-  +apiProvider: ApiProvider,
   +width: number,
-|};
-
-type State = {|
-  barStyle: BarStyle,
 |};
 
 type NativeEvent = {|
@@ -54,127 +42,109 @@ type NativeEvent = {|
   |},
 |};
 
-export class HotelDetailScreen extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+export function HotelDetailScreen(props: Props) {
+  const isNarrowLayout = props.width < Device.DEVICE_THRESHOLD;
+  const [barStyle, setBarStyle] = React.useState(
+    Platform.select({
+      android: 'default',
+      ios: isNarrowLayout ? 'light-content' : 'dark-content',
+    }),
+  );
 
-    this.state = {
-      barStyle: Platform.select({
-        android: 'default',
-        ios: this.isNarrowLayout() ? 'light-content' : 'dark-content',
-      }),
-    };
-  }
+  const { setPaymentLink, apiProvider }: HotelsContextState = React.useContext(
+    HotelsContext,
+  );
 
-  componentDidMount() {
-    const {
-      ANCILLARY_PROVIDER_BOOKINGCOM,
-      ANCILLARY_PROVIDER_STAY22,
-    } = Logger.Provider;
-
+  React.useEffect(() => {
     const provider =
-      this.props.apiProvider === 'booking'
-        ? ANCILLARY_PROVIDER_BOOKINGCOM
-        : ANCILLARY_PROVIDER_STAY22;
-
+      apiProvider === 'booking'
+        ? Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM
+        : Logger.Provider.ANCILLARY_PROVIDER_STAY22;
     Logger.ancillaryDisplayed(Logger.Type.ANCILLARY_STEP_DETAILS, provider);
+  }, [apiProvider]);
 
-    this.props.setPaymentLink(this.props.paymentLink);
-  }
+  React.useEffect(() => {
+    setPaymentLink(props.paymentLink);
+  }, [props.paymentLink, setPaymentLink]);
 
-  isNarrowLayout = () => {
-    return this.props.width < Device.DEVICE_THRESHOLD;
-  };
-
-  shouldSetStatusBarDark = (yOffset: number) =>
-    Platform.OS === 'ios' &&
-    this.isNarrowLayout() &&
-    yOffset > 180 &&
-    this.state.barStyle !== 'dark-content';
-
-  shouldSetStatusBarLight = (yOffset: number) =>
-    Platform.OS === 'ios' &&
-    this.isNarrowLayout() &&
-    yOffset <= 180 &&
-    this.state.barStyle !== 'light-content';
-
-  onScroll = (e: NativeEvent) => {
-    const yOffset = e.nativeEvent.contentOffset.y;
-
-    if (this.shouldSetStatusBarDark(yOffset)) {
-      this.setState({ barStyle: 'dark-content' });
-    } else if (this.shouldSetStatusBarLight(yOffset)) {
-      this.setState({ barStyle: 'light-content' });
-    }
-  };
-
-  render() {
-    const { availableHotel, goBack } = this.props;
-
-    if (!availableHotel) {
-      return (
-        <>
-          <GeneralError
-            errorMessage={
-              <Translation id="single_hotel.hotel_detail_screen.hotel_not_found" />
-            }
-          />
-          <CloseModal onPress={goBack} />
-        </>
-      );
-    }
-    const statusBarBackground =
-      this.state.barStyle === 'light-content'
-        ? styles.lightContent
-        : styles.darkContent;
+  function shouldSetStatusBarDark(yOffset: number) {
     return (
-      <View style={styles.safeArea}>
-        <StatusbarBackground style={statusBarBackground} />
-
-        <ScrollView
-          contentContainerStyle={styles.container}
-          onScroll={this.onScroll}
-          scrollEventThrottle={100}
-          testID="hotelDetailScrollView"
-        >
-          <LayoutSingleColumn>
-            <Header hotel={availableHotel.hotel} />
-            <HotelInformation hotel={availableHotel.hotel} />
-            <RoomList data={availableHotel} />
-            <BrandLabel />
-          </LayoutSingleColumn>
-        </ScrollView>
-        <BookingSummary room={availableHotel} goBack={this.props.goBack} />
-      </View>
+      Platform.OS === 'ios' &&
+      isNarrowLayout &&
+      yOffset > 180 &&
+      barStyle !== 'dark-content'
     );
   }
+
+  function shouldSetStatusBarLight(yOffset: number) {
+    return (
+      Platform.OS === 'ios' &&
+      isNarrowLayout &&
+      yOffset <= 180 &&
+      barStyle !== 'light-content'
+    );
+  }
+
+  function onScroll(e: NativeEvent) {
+    const yOffset = e.nativeEvent.contentOffset.y;
+
+    if (shouldSetStatusBarDark(yOffset)) {
+      setBarStyle('dark-content');
+    } else if (shouldSetStatusBarLight(yOffset)) {
+      setBarStyle('light-content');
+    }
+  }
+
+  const { availableHotel, goBack } = props;
+
+  if (!availableHotel) {
+    return (
+      <>
+        <GeneralError
+          errorMessage={
+            <Translation id="single_hotel.hotel_detail_screen.hotel_not_found" />
+          }
+        />
+        <CloseModal onPress={goBack} />
+      </>
+    );
+  }
+  const statusBarBackground =
+    barStyle === 'light-content' ? styles.lightContent : styles.darkContent;
+  return (
+    <View style={styles.safeArea}>
+      <StatusbarBackground style={statusBarBackground} />
+
+      <ScrollView
+        contentContainerStyle={styles.container}
+        onScroll={onScroll}
+        scrollEventThrottle={100}
+        testID="hotelDetailScrollView"
+      >
+        <LayoutSingleColumn>
+          <Header hotel={availableHotel.hotel} />
+          <HotelInformation hotel={availableHotel.hotel} />
+          <RoomList data={availableHotel} />
+          <BrandLabel />
+        </LayoutSingleColumn>
+      </ScrollView>
+      <BookingSummary room={availableHotel} goBack={props.goBack} />
+    </View>
+  );
 }
 
-const select = ({
-  getGuestCount,
-  setPaymentLink,
-  apiProvider,
-}: HotelsContextState) => ({
-  getGuestCount,
-  setPaymentLink,
-  apiProvider,
-});
-
-export default createFragmentContainer(
-  withHotelsContext(select)(withDimensions(HotelDetailScreen)),
-  {
-    availableHotel: graphql`
-      fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
-        ...BookingSummary_room
-        hotel {
-          ...Header_hotel
-          ...HotelInformation_hotel
-        }
-        ...RoomList_data
+export default createFragmentContainer(withDimensions(HotelDetailScreen), {
+  availableHotel: graphql`
+    fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
+      ...BookingSummary_room
+      hotel {
+        ...Header_hotel
+        ...HotelInformation_hotel
       }
-    `,
-  },
-);
+      ...RoomList_data
+    }
+  `,
+});
 
 const paddingBottom = 64;
 const iphoneXPadding = paddingBottom + 28;

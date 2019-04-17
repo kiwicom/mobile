@@ -21,72 +21,58 @@ import BeddingInfo from './BeddingInfo';
 import RoomRowTitle from './RoomRowTitle';
 import RoomBadges from './RoomBadges';
 import type { RoomRow_availableRoom as RoomType } from './__generated__/RoomRow_availableRoom.graphql';
-import {
-  withHotelsContext,
-  type HotelsContextState,
-} from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 
 type Props = {|
   +testID?: string,
   +availableRoom: ?RoomType,
   +navigation: NavigationType,
-  +getGuestCount: () => number,
   +numberOfRooms: number,
   +relay: RelayProp,
 |};
 
-export class RoomRow extends React.Component<Props> {
-  isDisabled = () => this.props.numberOfRooms >= this.props.getGuestCount();
+export function RoomRow(props: Props) {
+  const { getGuestCount }: HotelsContextState = React.useContext(HotelsContext);
 
-  select = () => {
-    if (this.isDisabled()) {
+  const availableRoom = props.availableRoom;
+  const isDisabled = props.numberOfRooms >= getGuestCount();
+  const id = availableRoom?.id;
+  const maxPersons = availableRoom?.room?.maxPersons;
+  const type = availableRoom?.room?.description?.title ?? '';
+  const roomId = availableRoom?.room?.id ?? '';
+  const selectedCount = availableRoom?.selectedCount ?? 0;
+
+  function select() {
+    if (isDisabled) {
       Alert.translatedAlert(null, {
         id: 'single_hotel.alert.cannot_book_more_rooms_than_guests',
       });
       return;
     }
-    const {
-      id,
-      maxPersons,
-      type,
-      roomId,
-      selectedCount,
-    } = this.getSelectData();
 
     if (id && maxPersons) {
       Logger.hotelsDetailRoomSelected(roomId, type);
-      commitLocalUpdate(this.props.relay.environment, store => {
+      commitLocalUpdate(props.relay.environment, store => {
         const room = store.get(id);
         if (room != null) {
           room.setValue(selectedCount + 1, 'selectedCount');
         }
       });
     }
-  };
+  }
 
-  deselect = () => {
-    const { id, maxPersons, selectedCount } = this.getSelectData();
+  function deselect() {
     if (id && maxPersons) {
-      commitLocalUpdate(this.props.relay.environment, store => {
+      commitLocalUpdate(props.relay.environment, store => {
         const room = store.get(id);
         if (room != null) {
           room.setValue(selectedCount - 1, 'selectedCount');
         }
       });
     }
-  };
+  }
 
-  getSelectData = () => {
-    const id = this.props.availableRoom?.id;
-    const maxPersons = this.props.availableRoom?.room?.maxPersons;
-    const type = this.props.availableRoom?.room?.description?.title ?? '';
-    const roomId = this.props.availableRoom?.room?.id ?? '';
-    const selectedCount = this.props.availableRoom?.selectedCount ?? 0;
-    return { id, maxPersons, type, roomId, selectedCount };
-  };
-
-  openGallery = () => {
-    const { availableRoom } = this.props;
+  function openGallery() {
     const photosArray = availableRoom?.room?.roomPhotos ?? [];
 
     const photos = photosArray.map(photo => {
@@ -101,95 +87,79 @@ export class RoomRow extends React.Component<Props> {
     });
 
     const roomTitle = availableRoom?.room?.description?.title ?? '';
-    this.props.navigation.navigate('GalleryGrid', {
+    props.navigation.navigate('GalleryGrid', {
       hotelName: roomTitle,
       images: photos,
     });
     Logger.hotelsGalleryOpened(
       Logger.HotelGalleryType.HOTELS_GALLERY_TYPE_ROOM,
     );
-  };
-
-  render() {
-    const availableRoom = this.props.availableRoom;
-    // New provider currently does not support lowResUrl, fallback to highResUrl in that case
-    // ThumbnailUrl provides to low quality
-    const photo = availableRoom?.room?.roomPhotos?.[0];
-    const thumbnailUrl = photo?.lowResUrl ?? photo?.highResUrl;
-
-    const amount = availableRoom?.minimalCost?.amount ?? null;
-    const currency = availableRoom?.minimalCost?.currencyId ?? null;
-
-    const selectableCount = availableRoom?.availableRoomsCount ?? 0;
-    const selectedCount = this.props.availableRoom?.selectedCount ?? 0;
-    const room = availableRoom?.room;
-
-    return (
-      <View style={styles.container}>
-        <View>
-          <View style={styles.row}>
-            <RoomImage
-              openGallery={this.openGallery}
-              thumbnailUrl={thumbnailUrl}
-            />
-            <View style={styles.details}>
-              <RoomRowTitle room={room} />
-              <RoomBadges availableRoom={availableRoom} />
-            </View>
-          </View>
-          <View style={styles.roomDetails}>
-            <BeddingInfo room={room} />
-          </View>
-          <RoomPicker
-            price={{ amount, currency }}
-            selectedCount={selectedCount}
-            selectableCount={selectableCount}
-            increment={this.select}
-            decrement={this.deselect}
-            testID={this.props.testID}
-            disabled={this.isDisabled()}
-          />
-        </View>
-      </View>
-    );
   }
+
+  // New provider currently does not support lowResUrl, fallback to highResUrl in that case
+  // ThumbnailUrl provides to low quality
+  const photo = availableRoom?.room?.roomPhotos?.[0];
+  const thumbnailUrl = photo?.lowResUrl ?? photo?.highResUrl;
+  const amount = availableRoom?.minimalCost?.amount ?? null;
+  const currency = availableRoom?.minimalCost?.currencyId ?? null;
+  const selectableCount = availableRoom?.availableRoomsCount ?? 0;
+  const room = availableRoom?.room;
+
+  return (
+    <View style={styles.container}>
+      <View>
+        <View style={styles.row}>
+          <RoomImage openGallery={openGallery} thumbnailUrl={thumbnailUrl} />
+          <View style={styles.details}>
+            <RoomRowTitle room={room} />
+            <RoomBadges availableRoom={availableRoom} />
+          </View>
+        </View>
+        <View style={styles.roomDetails}>
+          <BeddingInfo room={room} />
+        </View>
+        <RoomPicker
+          price={{ amount, currency }}
+          selectedCount={selectedCount}
+          selectableCount={selectableCount}
+          increment={select}
+          decrement={deselect}
+          testID={props.testID}
+          disabled={isDisabled}
+        />
+      </View>
+    </View>
+  );
 }
 
-const selectHotelsContext = ({ getGuestCount }: HotelsContextState) => ({
-  getGuestCount,
-});
-
-export default createFragmentContainer(
-  withNavigation(withHotelsContext(selectHotelsContext)(RoomRow)),
-  {
-    availableRoom: graphql`
-      fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
-        id
-        selectedCount
-        ...RoomBadges_availableRoom
-        minimalCost {
-          amount
-          currencyId
-        }
-        availableRoomsCount
-        room {
-          id
-          description {
-            title
-          }
-          ...RoomRowTitle_room
-          roomPhotos {
-            highResUrl
-            lowResUrl
-            id
-          }
-          maxPersons
-          ...BeddingInfo_room
-        }
+export default createFragmentContainer(withNavigation(RoomRow), {
+  availableRoom: graphql`
+    fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
+      id
+      selectedCount
+      ...RoomBadges_availableRoom
+      minimalCost {
+        amount
+        currencyId
       }
-    `,
-  },
-);
+      availableRoomsCount
+      room {
+        id
+        description {
+          title
+        }
+        ...RoomRowTitle_room
+        roomPhotos {
+          highResUrl
+          lowResUrl
+          id
+        }
+        maxPersons
+        ...BeddingInfo_room
+      }
+    }
+  `,
+});
 
 const styles = StyleSheet.create({
   container: {
