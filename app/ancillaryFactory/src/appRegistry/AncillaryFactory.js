@@ -19,14 +19,10 @@ class AncillaryFactory extends React.Component<Props> {
   getRequestedAncillary() {
     const { service } = this.props;
 
-    const ancillary: AncillaryDefinition =
+    const ancillary: ?AncillaryDefinition =
       ancillariesDefinitions[service.toUpperCase()];
 
-    if (ancillary && typeof ancillary.renderComponent === 'function') {
-      return ancillary.renderComponent;
-    }
-
-    return null;
+    return ancillary?.renderComponent;
   }
 
   render() {
@@ -37,7 +33,7 @@ class AncillaryFactory extends React.Component<Props> {
       kwAuthToken,
     };
 
-    const Component = this.getRequestedAncillary() || NoAncillaryMessage;
+    const Component = this.getRequestedAncillary() ?? NoAncillaryMessage;
 
     return (
       <AuthContext.Provider accessToken={kwAuthToken}>
