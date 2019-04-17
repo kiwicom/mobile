@@ -18,11 +18,6 @@ const navigation = {
   })),
   getParam: jest.fn(),
 };
-const checkin = new Date(0);
-const checkout = new Date(1);
-const roomsConfiguration = [{ adultsCount: 1, children: [] }];
-const currency = 'EUR';
-const hotelId = 'lol-id';
 
 it('renders without crashing', () => {
   const props = {
@@ -30,11 +25,6 @@ it('renders without crashing', () => {
       hotel: 'asdf',
     }: Object),
     navigation,
-    checkin,
-    checkout,
-    roomsConfiguration,
-    currency,
-    hotelId,
   };
 
   renderer.render(<Location {...props} />);
@@ -44,11 +34,6 @@ it('renders without crashing with missing data', () => {
   const props = {
     hotel: undefined,
     navigation,
-    checkin,
-    checkout,
-    roomsConfiguration,
-    currency,
-    hotelId,
   };
 
   renderer.render(<Location {...props} />);

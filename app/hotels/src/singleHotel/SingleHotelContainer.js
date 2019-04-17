@@ -2,52 +2,46 @@
 
 import * as React from 'react';
 
-import {
-  type RoomConfigurationType,
-  type ApiProvider,
-  type HotelsContextState,
-  withHotelsContext,
-} from '../HotelsContext';
+import { type HotelsContextState, HotelsContext } from '../HotelsContext';
 import Stay22SingleHotel from './Stay22SingleHotel';
 import BookingComSingleHotel from './BookingComSingleHotel';
 
-type PropsWithContext = {|
+type Props = {|
   +goBack: () => void,
-  +currency: string,
-  +getGuestCount: () => number,
-  +hotelId: string,
-  +checkin: Date,
-  +checkout: Date,
-  +roomsConfiguration: RoomConfigurationType,
-  +apiProvider: ApiProvider,
 |};
 
-const SingleHotelContainer = ({ apiProvider, ...rest }: PropsWithContext) => {
-  if (rest.hotelId === '') {
+const SingleHotelContainer = ({ goBack }: Props) => {
+  const {
+    currency,
+    getGuestCount,
+    checkin,
+    checkout,
+    roomsConfiguration,
+    hotelId,
+    apiProvider,
+  }: HotelsContextState = React.useContext(HotelsContext);
+
+  if (
+    hotelId === '' ||
+    checkin == null ||
+    checkout == null ||
+    roomsConfiguration == null
+  ) {
     return null;
   }
+  const props = {
+    currency,
+    getGuestCount,
+    checkin,
+    checkout,
+    roomsConfiguration,
+    hotelId,
+    goBack,
+  };
   if (apiProvider === 'stay22') {
-    return <Stay22SingleHotel {...rest} />;
+    return <Stay22SingleHotel {...props} />;
   }
-  return <BookingComSingleHotel {...rest} />;
+  return <BookingComSingleHotel {...props} />;
 };
 
-const select = ({
-  currency,
-  getGuestCount,
-  checkin,
-  checkout,
-  roomsConfiguration,
-  hotelId,
-  apiProvider,
-}: HotelsContextState) => ({
-  currency,
-  getGuestCount,
-  checkin,
-  checkout,
-  roomsConfiguration,
-  hotelId,
-  apiProvider,
-});
-
-export default withHotelsContext(select)(SingleHotelContainer);
+export default SingleHotelContainer;

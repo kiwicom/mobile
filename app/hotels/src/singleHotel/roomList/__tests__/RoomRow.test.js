@@ -29,7 +29,6 @@ it('renders without crashing', () => {
       incrementalPrice: [],
     },
     navigation,
-    getGuestCount: () => 2,
     numberOfRooms: 2,
     relay: { environment },
   };
@@ -41,7 +40,6 @@ it('renders without crashing with missing data', () => {
   const props = {
     availableRoom: undefined,
     navigation,
-    getGuestCount: () => 2,
     numberOfRooms: 2,
     relay: { environment },
   };

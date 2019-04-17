@@ -4,53 +4,51 @@ import * as React from 'react';
 import { Logger } from '@kiwicom/mobile-shared';
 import { graphql } from '@kiwicom/mobile-relay';
 
-import { withHotelsContext } from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import PaymentWebView from './PaymentWebView';
 import type { Stay22PaymentScreenQueryResponse } from './__generated__/Stay22PaymentScreenQuery.graphql';
 import PaymentQueryRenderer from './PaymentQueryRenderer';
 
 type Props = {|
-  +paymentLink: ?string,
   +roomConfig: $ReadOnlyArray<{|
     +roomId: string,
     +count: number,
   |}>,
 |};
 
-class Stay22PaymentScreen extends React.Component<Props> {
-  componentDidMount() {
+const renderInner = (props: Stay22PaymentScreenQueryResponse) => (
+  <PaymentWebView url={props.hotelPaymentUrls?.stay22PaymentUrl} />
+);
+
+function Stay22PaymentScreen(props: Props) {
+  const { paymentLink }: HotelsContextState = React.useContext(HotelsContext);
+
+  React.useEffect(() => {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_PAYMENT,
       Logger.Provider.ANCILLARY_PROVIDER_STAY22,
     );
-  }
+  }, []);
 
-  renderInner = (props: Stay22PaymentScreenQueryResponse) => (
-    <PaymentWebView url={props.hotelPaymentUrls?.stay22PaymentUrl} />
-  );
-
-  render() {
-    return (
-      <PaymentQueryRenderer
-        render={this.renderInner}
-        query={graphql`
-          query Stay22PaymentScreenQuery(
-            $paymentLink: String!
-            $roomConfig: [RoomConfigInput]
-          ) {
-            hotelPaymentUrls(roomConfig: $roomConfig) {
-              stay22PaymentUrl(paymentLink: $paymentLink)
-            }
+  return (
+    <PaymentQueryRenderer
+      render={renderInner}
+      query={graphql`
+        query Stay22PaymentScreenQuery(
+          $paymentLink: String!
+          $roomConfig: [RoomConfigInput]
+        ) {
+          hotelPaymentUrls(roomConfig: $roomConfig) {
+            stay22PaymentUrl(paymentLink: $paymentLink)
           }
-        `}
-        variables={{
-          paymentLink: this.props.paymentLink,
-          roomConfig: this.props.roomConfig,
-        }}
-      />
-    );
-  }
+        }
+      `}
+      variables={{
+        paymentLink,
+        roomConfig: props.roomConfig,
+      }}
+    />
+  );
 }
-export default withHotelsContext(state => ({
-  paymentLink: state.paymentLink,
-}))(Stay22PaymentScreen);
+
+export default Stay22PaymentScreen;

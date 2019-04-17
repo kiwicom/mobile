@@ -8,84 +8,98 @@ import querystring from 'querystring';
 import { graphql } from '@kiwicom/mobile-relay';
 
 import { sanitizeDate } from '../../GraphQLSanitizers';
-import { withHotelsContext } from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import type { BookingPaymentScreenQueryResponse } from './__generated__/BookingPaymentScreenQuery.graphql';
 import PaymentWebView from './PaymentWebView';
 import PaymentQueryRenderer from './PaymentQueryRenderer';
 
 type Props = {|
-  +hotelId: string,
-  +checkin: Date,
-  +checkout: Date,
-  +currency: string,
-  +version: string,
   +roomConfig: $ReadOnlyArray<{|
     +roomId: string,
     +count: number,
   |}>,
 |};
 
-export class BookingPaymentScreen extends React.Component<Props> {
-  componentDidMount() {
+type CreateURIParams = {|
+  +url: ?string,
+  +checkin: Date | null,
+  +checkout: Date | null,
+  +currency: string,
+  +version: string,
+|};
+
+export function createURI({
+  checkin,
+  checkout,
+  version,
+  currency,
+  url,
+}: CreateURIParams): ?string {
+  if (url == null || checkin == null || checkout == null) {
+    return null;
+  }
+
+  const checkinQuery = sanitizeDate(checkin);
+  const intervalQuery = DateUtils.diffInDays(checkout, checkin);
+
+  return `${url}&${querystring.stringify({
+    checkin: checkinQuery,
+    interval: intervalQuery,
+    label: `kiwi-${Platform.OS}-react-${version}`,
+    lang: DeviceInfo.getLanguage(),
+    selected_currency: currency,
+  })}`;
+}
+
+export function BookingPaymentScreen(props: Props) {
+  const {
+    checkin,
+    checkout,
+    currency,
+    version,
+    hotelId,
+  }: HotelsContextState = React.useContext(HotelsContext);
+
+  React.useEffect(() => {
     Logger.ancillaryDisplayed(
       Logger.Type.ANCILLARY_STEP_PAYMENT,
       Logger.Provider.ANCILLARY_PROVIDER_BOOKINGCOM,
     );
-  }
+  }, []);
 
-  createURI = (url: ?string): ?string => {
-    if (url == null) {
-      return null;
-    }
-
-    const checkinQuery = sanitizeDate(this.props.checkin);
-    const intervalQuery = DateUtils.diffInDays(
-      this.props.checkout,
-      this.props.checkin,
-    );
-
-    return `${url}&${querystring.stringify({
-      checkin: checkinQuery,
-      interval: intervalQuery,
-      label: `kiwi-${Platform.OS}-react-${this.props.version}`,
-      lang: DeviceInfo.getLanguage(),
-      selected_currency: this.props.currency,
-    })}`;
-  };
-
-  renderInner = (props: BookingPaymentScreenQueryResponse) => (
-    <PaymentWebView
-      url={this.createURI(props.hotelPaymentUrls?.bookingComPaymentUrl)}
-    />
-  );
-
-  render() {
+  function renderInner(renderProps: BookingPaymentScreenQueryResponse) {
     return (
-      <PaymentQueryRenderer
-        render={this.renderInner}
-        query={graphql`
-          query BookingPaymentScreenQuery(
-            $hotelId: ID
-            $roomConfig: [RoomConfigInput]
-          ) {
-            hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
-              bookingComPaymentUrl
-            }
-          }
-        `}
-        variables={{
-          hotelId: this.props.hotelId,
-          roomConfig: this.props.roomConfig,
-        }}
+      <PaymentWebView
+        url={createURI({
+          url: renderProps.hotelPaymentUrls?.bookingComPaymentUrl,
+          checkin,
+          checkout,
+          currency,
+          version,
+        })}
       />
     );
   }
+
+  return (
+    <PaymentQueryRenderer
+      render={renderInner}
+      query={graphql`
+        query BookingPaymentScreenQuery(
+          $hotelId: ID
+          $roomConfig: [RoomConfigInput]
+        ) {
+          hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
+            bookingComPaymentUrl
+          }
+        }
+      `}
+      variables={{
+        hotelId,
+        roomConfig: props.roomConfig,
+      }}
+    />
+  );
 }
 
-export default withHotelsContext(state => ({
-  checkin: state.checkin,
-  checkout: state.checkout,
-  currency: state.currency,
-  version: state.version,
-  hotelId: state.hotelId,
-}))(BookingPaymentScreen);
+export default BookingPaymentScreen;
