@@ -16,9 +16,7 @@ exports[`NoAncillaryMessage Should render correctly 1`] = `
       ]
     }
   >
-    <Text>
-      No ancillary view found for the provided parameters.
-    </Text>
+    No ancillary view found for the provided parameters.
   </Text>
 </View>
 `;
