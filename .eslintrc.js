@@ -59,7 +59,8 @@ module.exports = {
               "Switch", //Switch
               "Alert", // Alert (localization)
               "TextInput",
-              "Modal"
+              "Modal",
+              "WebView"
             ],
             message: "Please use '@kiwicom/mobile-shared' package instead."
           },
