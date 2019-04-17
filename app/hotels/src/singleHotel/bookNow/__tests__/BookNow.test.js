@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { render, fireEvent } from 'react-native-testing-library';
+import { create } from 'react-test-renderer';
+import { Alert } from '@kiwicom/mobile-localization';
 
 import { BookNow } from '../BookNow';
 import { HotelsContext } from '../../../HotelsContext';
@@ -90,7 +91,7 @@ it('calls handleGoToPayment when numberOfGuests = maxPersons', () => {
     },
     maxPersons: 5,
   };
-  const { getByTestId } = render(
+  const wrapper = create(
     <HotelsContext.Provider
       // $FlowExpectedError: Passing just props needed to run test
       value={{ hotelId: '1245', getGuestCount: jest.fn(() => 5) }}
@@ -99,7 +100,8 @@ it('calls handleGoToPayment when numberOfGuests = maxPersons', () => {
       <BookNow {...props} />
     </HotelsContext.Provider>,
   );
-  fireEvent.press(getByTestId('bookNowButton'));
+  const button = wrapper.root.findByProps({ testID: 'bookNowButton' });
+  button.props.onPress();
   expect(props.navigation.navigate).toHaveBeenCalledWith('Payment', {
     hotelId: '1245',
     language: 'en',
@@ -114,7 +116,9 @@ it('should show an alert if numberOfGuests > maxPersons', () => {
     },
     maxPersons: 2,
   };
-  const { getByTestId } = render(
+  const spy = jest.spyOn(Alert, 'translatedAlert');
+
+  const wrapper = create(
     <HotelsContext.Provider
       // $FlowExpectedError: Passing just props needed to run test
       value={{ hotelId: '1245', getGuestCount: jest.fn(() => 4) }}
@@ -123,20 +127,10 @@ it('should show an alert if numberOfGuests > maxPersons', () => {
       <BookNow {...props} />
     </HotelsContext.Provider>,
   );
-  fireEvent.press(getByTestId('bookNowButton'));
+  const button = wrapper.root.findByProps({ testID: 'bookNowButton' });
+  button.props.onPress();
+
   expect(props.navigation.navigate).not.toHaveBeenCalled();
-  // TODO: Uncomment test below. Now it says spy was not called, even if I console log in Alert and confirm that it has been called
-  // Showing that navigation.navigate is not called is good enough for now to verify that function works as intented
-  // const spy = jest.spyOn(Alert, 'translatedAlert');
-  // expect(spy).toHaveBeenCalledWith(
-  //   { id: 'single_hotel.book_now.alert_title' },
-  //   { id: 'single_hotel.book_now.alert_body', values: { numberOfGuests: 6 } },
-  //   [
-  //     { style: 'destructive', text: { id: 'shared.button.cancel' } },
-  //     {
-  //       onPress: jest.fn(),
-  //       text: { id: 'single_hotel.book_now.alert_ok' },
-  //     },
-  //   ],
-  // );
+
+  expect(spy).toHaveBeenCalled(); // eslint-disable-line jest/prefer-called-with
 });

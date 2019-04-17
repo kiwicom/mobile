@@ -36,7 +36,6 @@
 <PROJECT_ROOT>/node_modules/react-native/Libraries/Text/.+
 <PROJECT_ROOT>/node_modules/react-native-swiper/.+
 <PROJECT_ROOT>/node_modules/graphql/.+
-<PROJECT_ROOT>/node_modules/react-native-testing-library/.+
 
 
 [libs]
