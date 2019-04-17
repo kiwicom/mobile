@@ -1,3 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FastTrackBanner Should render correctly 1`] = `null`;
+exports[`FastTrackBanner Should render correctly 1`] = `
+<PrivateApiRendererWithContext
+  authHeaderKey="KW-Auth-Token"
+  query={[Function]}
+  render={[Function]}
+  variables={
+    Object {
+      "bookingId": 123,
+    }
+  }
+/>
+`;
