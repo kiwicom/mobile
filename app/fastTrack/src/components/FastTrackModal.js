@@ -4,72 +4,48 @@ import * as React from 'react';
 import { View } from 'react-native';
 import {
   Modal,
+  Text,
   TextButton,
   StyleSheet,
-  Device,
   Translation,
-  WebView,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-
-import type { FastTrackModal_data as AttachmentUrl } from './__generated__/FastTrackModal_data.graphql';
 
 type Props = {|
   +isVisible: boolean,
+  +onOpenModal: () => void,
   +onCloseModal: () => void,
-  +data: ?AttachmentUrl,
 |};
 
-class FastTrackModal extends React.Component<Props> {
-  render() {
-    const props = this.props;
-    return (
-      <Modal
-        isVisible={props.isVisible}
-        onRequestClose={props.onCloseModal}
-        style={styles.modal}
-      >
-        <View style={styles.container}>
-          <WebView
-            source={{
-              uri: this.props.data?.url ?? '',
-            }}
-          />
-          <View style={styles.buttonContainer}>
-            <TextButton
-              onPress={props.onCloseModal}
-              type="secondary"
-              title={
-                <Translation id="fast_track.banner.modal.close_modal_button" />
-              }
-            />
-          </View>
-        </View>
-      </Modal>
-    );
-  }
-}
+const FastTrackModal = (props: Props) => (
+  <Modal
+    isVisible={props.isVisible}
+    onRequestClose={props.onCloseModal}
+    style={style.modal}
+  >
+    <View>
+      <Text style={style.title}>
+        <Translation passThrough="This is modal content." />
+      </Text>
+      <TextButton
+        onPress={props.onCloseModal}
+        type="secondary"
+        title={<Translation passThrough="Close modal" />}
+      />
+    </View>
+  </Modal>
+);
 
-export default createFragmentContainer(FastTrackModal, {
-  data: graphql`
-    fragment FastTrackModal_data on AncillaryDocument {
-      url
-    }
-  `,
-});
+export default FastTrackModal;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: Device.isIPhoneX ? 32 : 24,
-  },
-  buttonContainer: {
-    paddingHorizontal: Device.isIPhoneX ? 16 : 8,
-    paddingBottom: Device.isIPhoneX ? 32 : 8,
+const style = StyleSheet.create({
+  title: {
+    marginBottom: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: defaultTokens.colorTextPrimary,
   },
   modal: {
     margin: 0,
-    backgroundColor: defaultTokens.paletteWhite,
   },
 });

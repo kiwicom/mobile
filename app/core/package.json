@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@kiwicom/react-native-app-hotels": "^0",
-    "@kiwicom/react-native-ancillary-factory": "^0",
     "@kiwicom/react-native-fast-track": "^0",
     "@kiwicom/mobile-profile": "^0",
     "@kiwicom/mobile-navigation": "^0",

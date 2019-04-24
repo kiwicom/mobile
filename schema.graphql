@@ -166,12 +166,7 @@ type AllHotelAvailabilityHotelEdge {
 }
 
 interface AllHotelsInterface {
-  """
-  The globally unique ID of an object. You can unmask this ID to get original
-  value but please note that this unmasked ID is not globally unique anymore and
-  therefore it cannot be used as a cache key.
-  """
-  id(opaque: Boolean = true): ID!
+  id: ID!
   name: String
   address: Address
   review: HotelReview
@@ -193,13 +188,6 @@ type AllowedBaggage {
 
   """Baggage checked online."""
   checked: [Baggage]
-}
-
-"""List of ancillaries that are ordered with booking"""
-type Ancillaries {
-  fastTrack: [AncillaryPerSegmentPerPassenger]
-  blueribbonBags: [AncillaryPerSegmentPerPassenger]
-  airhelpPlus: [AncillaryPerBooking]
 }
 
 input Ancillaries3rdCarrier {
@@ -286,48 +274,6 @@ input Ancillaries3rdVehicle {
   type: String
 }
 
-"""Ancillary document with url to document"""
-type AncillaryDocument {
-  url: String
-}
-
-enum AncillaryOrderStateEnum {
-  DONE
-  PROCESSING
-}
-
-type AncillaryPerBooking {
-  extra_id: Int
-
-  """
-  The globally unique ID of an object. You can unmask this ID to get original
-  value but please note that this unmasked ID is not globally unique anymore and
-  therefore it cannot be used as a cache key.
-  """
-  id(opaque: Boolean = true): ID!
-  orderState: AncillaryOrderStateEnum
-  price: AncillaryPrice
-  thirdPartyAncillaryOrderId: Int
-}
-
-type AncillaryPerSegmentPerPassenger {
-  extraId: Int
-  id: Int
-  items: [PassengerSegment]
-  orderState: AncillaryOrderStateEnum
-  thirdPartyAncillaryOrderId: Int
-  attachments: [AncillaryDocument]
-}
-
-type AncillaryPrice {
-  amount: String
-  base: String
-  currency: String
-  merchant: String
-  service: String
-  service_flat: String
-}
-
 input AreaInput {
   """Top left coordinates of the area."""
   topLeft: CoordinatesInput!
@@ -342,10 +288,6 @@ type ArrivalTimelineEvent implements TimelineEvent {
 
   """Location of arrival"""
   location: RouteStop
-}
-
-enum AttachmentsFor {
-  FAST_TRACK
 }
 
 enum availabilityStatus {
@@ -529,7 +471,6 @@ type Booking {
   oneWay: BookingOneWay
   return: BookingReturn
   multicity: BookingMulticity
-  holiday: BookingHoliday
 }
 
 type BookingAssets {
@@ -587,83 +528,6 @@ enum BookingDestinationImageDimensions {
   _600x330
   _600x600
   _610x251
-}
-
-type BookingHoliday implements BookingInterface & Node {
-  """
-  The globally unique ID of an object. You can unmask this ID to get original
-  value but please note that this unmasked ID is not globally unique anymore and
-  therefore it cannot be used as a cache key.
-  """
-  id(opaque: Boolean = true): ID!
-
-  """Unique number identifying the booking in communication with support."""
-  databaseId: Int @deprecated(reason: "Use field \"id\" directly (with opaque parameter)")
-  type: BookingType @deprecated(reason: "Manual type is not necessary. Use \"__typename\" instead.")
-  status: BookingStatus
-
-  """Total price of the whole booking."""
-  price: Price
-
-  """Date of the booking creation"""
-  bookingDate: Date
-  allowedBaggage: AllowedBaggage
-  baggage: [BookingBaggage]
-
-  """Static assets related to this booking."""
-  assets: BookingAssets
-  passengers: [Passenger]
-  passengerCount: Int
-  destinationImageUrl(dimensions: BookingDestinationImageDimensions = _600x600): String
-
-  """List of carriers involved in the booking."""
-  carriers: [Carrier]
-
-  """
-  You can use this link to access one particular booking directly WITHOUT PASSWORD. Use it carefully.
-  """
-  directAccessURL(deeplinkTo: DirectAccessURLValues): String
-  bookedServices: [BookedService]
-  contactDetails: BookingContactDetails
-  isPastBooking: Boolean
-
-  """All services provided directly by Kiwi.com."""
-  availableServices: Services
-
-  """All services provided via whitelabels."""
-  availableWhitelabeledServices: WhitelabeledServices
-
-  """Support provided by CS for booking."""
-  customerSupport: BookingCustomerSupport
-  onlineCheckinIsAvailable: Boolean
-  insurancePrices: [InsurancePrice]
-  authToken: String
-
-  """Nearest upcoming leg by arrival time."""
-  upcomingLeg(
-    """Filter out only legs with specified guarantee."""
-    guarantee: CoveredBy
-  ): Leg
-  accommodation: HolidayAccommodation
-  travelInfo: HolidayTravelInfo
-}
-
-type BookingIdentity {
-  affiliateId: String
-
-  """Discounts for booking payments in % from base price."""
-  discounts: BookingIdentityDiscounts
-
-  """Current balance of Kiwi.com credits by currency."""
-  balances: [Money]
-}
-
-type BookingIdentityDiscounts {
-  """Discount in % from base price when using Kiwi.com credits."""
-  credits: Int
-
-  """Discount in % from base price when using card."""
-  card: Int
 }
 
 interface BookingInterface {
@@ -1357,7 +1221,9 @@ input DateInput {
   """
   from: Date
 
-  """End of the date range (cannot be used in combination with exact date)."""
+  """
+  End of the date range (cannot be used in combination with exact date).
+  """
   to: Date
 }
 
@@ -1478,7 +1344,9 @@ type DynamicPackage {
   """Transport part of the package"""
   flight: Flight
 
-  """URL to the whitelabel page where this dynamic package can be purchased"""
+  """
+  URL to the whitelabel page where this dynamic package can be purchased
+  """
   whitelabelUrl: String
 
   """Total price"""
@@ -1732,28 +1600,9 @@ type GeoIP {
   coordinates: Coordinates
 }
 
-type HolidayAccommodation {
-  """Accommodation name, usually name of the hotel."""
-  name: String
-
-  """
-  Rating using stars, number express how many stars were given to the accommodation.
-  """
-  starRating: Int
-  previewImage: Image
-
-  """Further location info where holiday takes place."""
-  destination: Location
-}
-
 input HolidaysLocationInput {
   """Legacy ID used in Holidays Locations REST API"""
   locationId: String
-}
-
-type HolidayTravelInfo {
-  """No. of nights to spend in holiday destination."""
-  nightsInDestination: Int
 }
 
 """General information about the hotel."""
@@ -2018,12 +1867,7 @@ type HotelFacilityEdge {
 }
 
 interface HotelInterface {
-  """
-  The globally unique ID of an object. You can unmask this ID to get original
-  value but please note that this unmasked ID is not globally unique anymore and
-  therefore it cannot be used as a cache key.
-  """
-  id(opaque: Boolean = true): ID!
+  id: ID!
   name: String
   address: Address
   review: HotelReview
@@ -2154,12 +1998,7 @@ type HotelRoomAvailability implements HotelRoomAvailabilityInterface {
 }
 
 interface HotelRoomAvailabilityInterface {
-  """
-  The globally unique ID of an object. You can unmask this ID to get original
-  value but please note that this unmasked ID is not globally unique anymore and
-  therefore it cannot be used as a cache key.
-  """
-  id(opaque: Boolean = true): ID!
+  id: ID!
   isRefundable: Boolean
   isBreakfastIncluded: Boolean
   minimalPrice: Price
@@ -2199,12 +2038,7 @@ type HotelRoomEdge {
 }
 
 interface HotelRoomInterface {
-  """
-  The globally unique ID of an object. You can unmask this ID to get original
-  value but please note that this unmasked ID is not globally unique anymore and
-  therefore it cannot be used as a cache key.
-  """
-  id(opaque: Boolean = true): ID!
+  id: ID!
   description: HotelRoomDescription
   roomPhotos: [HotelPhoto]
   maxPersons: Int
@@ -2268,9 +2102,6 @@ input HotelsFilterInput {
 
   """Show only hotels having free cancellation."""
   freeCancellation: Boolean
-
-  """Show only hotels having the selected Mealplan"""
-  mealplan: Mealplan
 }
 
 """You must provide lat/lng combination OR city ID."""
@@ -2287,7 +2118,9 @@ input HotelsSearchInput {
   """Must not be before today."""
   checkin: Date!
 
-  """Max 365 days in the future, and max 30 days greater than checkin date."""
+  """
+  Max 365 days in the future, and max 30 days greater than checkin date.
+  """
   checkout: Date!
   language: Language
   roomsConfiguration: [RoomsConfiguration!]!
@@ -2310,24 +2143,13 @@ type Identity {
   firstName: String
   lastName: String
 
-  """Concatenation of first and last name with fallback to the login field."""
+  """
+  Concatenation of first and last name with fallback to the login field.
+  """
   fullName: String
 
   """Use this in API calls. It is email but normalized."""
   login: String
-}
-
-type Image {
-  url: String
-  dimensions: ImageDimensions
-}
-
-type ImageDimensions {
-  """Width of image in pixels."""
-  width: Int
-
-  """Height of image in pixels."""
-  height: Int
 }
 
 type InsurancePrice {
@@ -2602,9 +2424,6 @@ input LocationsOptionsInput {
 
   """Desired location type the response should only include."""
   locationType: LocationType
-
-  """Desired location types the response should only include."""
-  locationTypes: [LocationType!]
 }
 
 type LocationTag {
@@ -2632,13 +2451,6 @@ type LoungeService {
 type LoungeServiceRelevantAirports {
   whitelabelURL: String
   location: Location
-}
-
-enum Mealplan {
-  FULL_BOARD
-  ALL_INCLUSIVE
-  HALF_BOARD
-  BREAKFAST_INCLUDED
 }
 
 type Money {
@@ -2749,12 +2561,6 @@ input PassengerInsuranceInput {
   insuranceType: InsuranceType
 }
 
-type PassengerSegment {
-  passengerId: Int
-  price: AncillaryPrice
-  segmentCode: String
-}
-
 input PassengersInput {
   adults: Int!
   infants: Int
@@ -2786,6 +2592,7 @@ type Price {
 
 """Service for fetching dynamic packages."""
 enum Provider {
+  LOGITRAVEL
   BEDFINDER
 }
 
@@ -2948,9 +2755,6 @@ type RootQuery {
 
     """Combination of slug and radius. e.g. bratislava-slovakia-169km"""
     slugRadius: String
-
-    """List of legacy location IDs"""
-    legacyIds: [String!]
     options: LocationsOptionsInput
     after: String
     first: Int
@@ -2973,9 +2777,6 @@ type RootQuery {
   Ancillaries are additional services that can be purchased with a Booking
   """
   ancillaries3rdOffers(ancillaries: [Ancillaries3rdServices]!, passengers: Int!, itinerary: [Ancillaries3rdItinerary]!, after: String, first: Int, before: String, last: Int): Ancillaries3rdOffersConnection
-
-  """Get information about ordered ancillaries"""
-  bookingAncillaries(bookingId: Int!, attachmentsFor: [AttachmentsFor!]): Ancillaries
 
   """
   Search for single available hotel by its ID. It's necessary to send checkin
@@ -3134,18 +2935,6 @@ type RootQuery {
 
   """Single Holidays location by legacy ID."""
   holidaysLocation(input: HolidaysLocationInput): Location
-
-  """
-  Destinations most searched / clicked on / booked from the starting location.
-  """
-  topDestinations(
-    """Legacy ID of source location"""
-    legacyId: String!
-    after: String
-    first: Int
-    before: String
-    last: Int
-  ): LocationConnection
 }
 
 type RouteStop {
@@ -3353,11 +3142,6 @@ type User {
   token: String
   isLoggedIn: Boolean
   identity: Identity
-
-  """
-  User settings & credit balances related to making bookings on Kiwi.com.
-  """
-  bookingIdentity: BookingIdentity
 }
 
 type Vehicle {

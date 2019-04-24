@@ -14,7 +14,6 @@ const projectId = PHRASE_APP_PROJECT_ID != null ? PHRASE_APP_PROJECT_ID : '###';
 export const translations = getVocabularies([
   'HotelsVocabulary',
   'SharedVocabulary',
-  'FastTrackVocabulary',
 ]);
 export const HttpMethod = {
   GET: 'GET',
