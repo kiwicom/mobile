@@ -389,8 +389,6 @@ mkdir jpegs
 sips --resampleHeightWidthMax 640 --setProperty format jpeg ./*.png --out jpegs
 ```
 
-We use [Git LFS](https://git-lfs.github.com/) for storing these images. You can read even more about it [here](https://github.com/git-lfs/git-lfs/wiki/Tutorial).
-
 ### Upgrading dependencies
 
 Check all dependencies with `outdated` Yarn command. This will tell you how behind we actually are. Try not to upgrade everything at once since there may be breaking changes (even though it's non-breaking upgrade). The second command will help you significantly with upgrading these dependencies across our workspace repository:
