@@ -1,70 +1,41 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  SimpleCard,
-  Text,
-  TextButton,
-  StyleSheet,
-  Translation,
-} from '@kiwicom/mobile-shared';
-import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { PrivateApiRenderer, graphql } from '@kiwicom/mobile-relay';
 
-import FastTrackModal from '../components/FastTrackModal';
+import FastTrackBannerContent from '../components/FastTrackBannerContent';
+import type { FastTrackBannerQueryResponse as BookingAncillaries } from './__generated__/FastTrackBannerQuery.graphql';
 
 type Props = {|
-  +height: number,
+  +bookingId: number,
+  +kwAuthToken: string,
 |};
 
-type State = {|
-  +isModalVisible: boolean,
-|};
+const query = graphql`
+  query FastTrackBannerQuery($bookingId: Int!) {
+    bookingAncillaries(bookingId: $bookingId, attachmentsFor: [FAST_TRACK]) {
+      ...FastTrackBannerContent_data
+    }
+  }
+`;
 
-class FastTrackBanner extends React.Component<Props, State> {
-  state = {
-    isModalVisible: false,
-  };
-
-  onOpenModal = () => {
-    this.setState({
-      isModalVisible: true,
-    });
-  };
-
-  onCloseModal = () => {
-    this.setState({
-      isModalVisible: false,
-    });
+class FastTrackBanner extends React.Component<Props> {
+  renderFastTrackBannerContent = (props: BookingAncillaries) => {
+    return <FastTrackBannerContent data={props.bookingAncillaries} />;
   };
 
   render() {
     return (
-      <SimpleCard style={{ height: this.props.height }}>
-        <Text style={style.title}>
-          <Translation passThrough="Fast Track Banner test" />
-        </Text>
-        <TextButton
-          type="primary"
-          onPress={this.onOpenModal}
-          title={<Translation passThrough="Open Modal" />}
-        />
-        <FastTrackModal
-          isVisible={this.state.isModalVisible}
-          onOpenModal={this.onOpenModal}
-          onCloseModal={this.onCloseModal}
-        />
-      </SimpleCard>
+      <PrivateApiRenderer
+        query={query}
+        variables={{
+          bookingId: this.props.bookingId,
+        }}
+        authHeaderKey={'KW-Auth-Token'}
+        render={this.renderFastTrackBannerContent}
+      />
     );
   }
 }
 
 export default FastTrackBanner;
-
-const style = StyleSheet.create({
-  title: {
-    marginBottom: 16,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: defaultTokens.colorTextPrimary,
-  },
-});
