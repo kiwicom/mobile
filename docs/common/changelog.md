@@ -7,7 +7,7 @@ this will be evened out from v24
 
 ## Target version 10.0.0
 
-- Upgrade rnkiwimobile to version `0.0.45`
+- Upgrade rnkiwimobile to version `0.0.46`
 
 ### v35
 - Replace decimal.js with ligher decimal.js-light
