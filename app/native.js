@@ -6,7 +6,7 @@ import {
   SingleHotelStandalonePackage,
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
-import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
+import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
 
 // Hotels
 AppRegistry.registerComponent(
@@ -18,8 +18,8 @@ AppRegistry.registerComponent(
   () => SingleHotelStandalonePackage,
 );
 
-// AncillaryFactory
-AppRegistry.registerComponent('AncillaryFactory', () => AncillaryFactory);
+// Fast Track
+AppRegistry.registerComponent('FastTrackBanner', () => FastTrackBanner);
 
 // This file is only used for native integration and we use CodePush there
 CodePush.sync({

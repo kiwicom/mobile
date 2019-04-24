@@ -1,22 +1,15 @@
 // @flow strict
 
-import React from 'react';
 import {
   StackNavigator,
   StackNavigatorOptions,
 } from '@kiwicom/mobile-navigation';
-import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
-
-const MOCK_PROPS = {
-  service: 'fast_track',
-  bookingId: 123,
-  kwAuthToken: 'xyz',
-};
+import { FastTrackBanner } from '@kiwicom/react-native-fast-track';
 
 export default StackNavigator(
   {
     Banner: {
-      screen: () => <AncillaryFactory {...MOCK_PROPS} />,
+      screen: FastTrackBanner,
     },
   },
   {
