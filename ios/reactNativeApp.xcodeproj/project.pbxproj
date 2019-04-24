@@ -46,7 +46,7 @@
 		6AC23FDF8E5142199F66BC24 /* CircularPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71A4A2C5C6994635AF8475F2 /* CircularPro-Bold.otf */; };
 		898C440300784E69B91D0ED6 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D1E4633998A4228B3B7F222 /* Roboto-Medium.ttf */; };
 		9399D42C226F18B6005C0F67 /* AncillaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9399D42A226F18B6005C0F67 /* AncillaryViewController.m */; };
-		9399D42D226F18B6005C0F67 /* AncillaryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9399D42B226F18B6005C0F67 /* AncillaryViewController.h */; };
+		9399D42D226F18B6005C0F67 /* AncillaryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9399D42B226F18B6005C0F67 /* AncillaryViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE942438053B4672A7E086F8 /* orbit-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */; };
 		DD9F4DDDD70840CBBECA0434 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */; };
 		F42D2DA1998548F1808065BE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */; };
