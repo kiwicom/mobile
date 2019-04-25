@@ -41,7 +41,7 @@ class FastTrackModal extends React.Component<Props> {
               onPress={props.onCloseModal}
               type="secondary"
               title={
-                <Translation id="mobile.mmb.fast_track.banner.close_modal_button.bergamo.bergamo_stopover" />
+                <Translation id="mmb.fast_track.banner.close_modal_button.bergamo.bergamo_stopover" />
               }
             />
           </View>

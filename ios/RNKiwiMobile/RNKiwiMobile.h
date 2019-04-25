@@ -13,3 +13,4 @@ FOUNDATION_EXPORT const unsigned char RNKiwiMobileVersionString[];
 #import "RNKiwiCurrencyManager.h"
 #import "RNKiwiSharedBridge.h"
 #import "RNKiwiConstants.h"
+#import "AncillaryViewController.h"

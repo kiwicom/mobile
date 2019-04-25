@@ -1,9 +1,9 @@
 package com.kiwi.rnkiwimobile
 
 import android.annotation.TargetApi
-import android.app.Activity
 import android.os.Build
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity;
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactRootView
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
@@ -11,7 +11,7 @@ import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 
 abstract class RNKiwiActivity(private val initialProperties: Bundle?) :
-  Activity(),
+  AppCompatActivity(),
   DefaultHardwareBackBtnHandler, PermissionAwareActivity {
 
   // region Private Properties

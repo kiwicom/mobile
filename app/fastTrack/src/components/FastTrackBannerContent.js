@@ -47,18 +47,18 @@ class FastTrackBannerContent extends React.Component<Props, State> {
         <View style={style.header}>
           <Icon name="deals" color={defaultTokens.colorIconSecondary} />
           <Text style={style.title}>
-            <Translation id="mobile.mmb.fast_track.banner.title.bergamo.bergamo_stopover" />
+            <Translation id="mmb.fast_track.banner.title.bergamo.bergamo_stopover" />
           </Text>
         </View>
         <Text style={style.description}>
-          <Translation id="mobile.mmb.fast_track.banner.description.bergamo.bergamo_stopover" />
+          <Translation id="mmb.fast_track.banner.description.bergamo.bergamo_stopover" />
         </Text>
         <Services />
         <TextButton
           type="primary"
           onPress={this.onOpenModal}
           title={
-            <Translation id="mobile.mmb.fast_track.banner.show_qr_button.bergamo.bergamo_stopover" />
+            <Translation id="mmb.fast_track.banner.show_qr_button.bergamo.bergamo_stopover" />
           }
         />
         <FastTrackModal
