@@ -7,39 +7,42 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelCityItem_data as City } from './__generated__/HotelCityItem_data.graphql';
 import {
-  withHotelsFormContext,
+  HotelsFormContext,
   type HotelsFormContextType,
-  type SaveCity,
 } from '../HotelsFormContext';
 
 type Props = {|
-  +data: City,
+  +data: ?City,
   +onPress: () => void,
-  +setCity: SaveCity => void,
 |};
 
-class HotelCityItem extends React.Component<Props> {
-  onPress = () => {
-    const { data } = this.props;
-    this.props.setCity({
-      cityId: data.id,
-      cityName: data.name ?? '',
-      coordinates: {
-        lng: data.location?.lng ?? Number.MAX_SAFE_INTEGER,
-        lat: data.location?.lat ?? Number.MAX_SAFE_INTEGER,
-      },
-    });
-    this.props.onPress();
-  };
+const HotelCityItem = (props: Props) => {
+  const {
+    actions: { setCity },
+  }: HotelsFormContextType = React.useContext(HotelsFormContext);
 
-  render() {
-    return (
-      <Touchable onPress={this.onPress} style={styles.row}>
-        <Translation passThrough={this.props.data.name} />
-      </Touchable>
-    );
+  function onPress() {
+    const { data } = props;
+    const cityId = data?.id;
+    if (cityId != null) {
+      setCity({
+        cityId,
+        cityName: data?.name ?? '',
+        coordinates: {
+          lng: data?.location?.lng ?? Number.MAX_SAFE_INTEGER,
+          lat: data?.location?.lat ?? Number.MAX_SAFE_INTEGER,
+        },
+      });
+      props.onPress();
+    }
   }
-}
+
+  return (
+    <Touchable onPress={onPress} style={styles.row}>
+      <Translation passThrough={props.data?.name} />
+    </Touchable>
+  );
+};
 
 const styles = StyleSheet.create({
   row: {
@@ -50,22 +53,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const select = ({ actions: { setCity } }: HotelsFormContextType) => ({
-  setCity,
-});
-
-export default createFragmentContainer(
-  withHotelsFormContext(select)(HotelCityItem),
-  {
-    data: graphql`
-      fragment HotelCityItem_data on HotelCity {
-        id
-        name
-        location {
-          lat
-          lng
-        }
+export default createFragmentContainer(HotelCityItem, {
+  data: graphql`
+    fragment HotelCityItem_data on HotelCity {
+      id
+      name
+      location {
+        lat
+        lng
       }
-    `,
-  },
-);
+    }
+  `,
+});
