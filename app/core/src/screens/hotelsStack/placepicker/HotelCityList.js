@@ -20,7 +20,7 @@ type ItemType = {|
 class HotelCityList extends React.Component<Props> {
   keyExtractor = (item: ItemType) => item.node?.id;
 
-  renderItem = ({ item }: { item: ItemType }) => (
+  renderItem = ({ item }) => (
     <HotelCityItem data={item.node} onPress={this.props.onPress} />
   );
 

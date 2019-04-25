@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { DateUtils } from '@kiwicom/mobile-localization';
-import { withContext } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +children: React.Node,
@@ -59,9 +58,9 @@ const defaultState = {
   },
 };
 
-const { Consumer, Provider: ContextProvider } = React.createContext<State>(
-  defaultState,
-);
+export const HotelsFormContext = React.createContext<State>(defaultState);
+
+const { Provider: ContextProvider } = HotelsFormContext;
 
 export default class Provider extends React.Component<Props, State> {
   constructor() {
@@ -117,8 +116,5 @@ export default class Provider extends React.Component<Props, State> {
     );
   }
 }
-
-export const withHotelsFormContext = (select: (state: State) => Object) =>
-  withContext(select, Consumer);
 
 export type HotelsFormContextType = State;
