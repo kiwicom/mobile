@@ -19,7 +19,7 @@ type Props = {|
 const Services = ({ services }: Props) => (
   <React.Fragment>
     <Text style={style.title}>
-      <Translation id="fast_track.banner.services_label" />
+      <Translation id="mmb.fast_track.banner.services_label.bergamo.bergamo_stopover" />
     </Text>
     <View style={style.list}>
       {services.map((service: Service) => (
@@ -39,12 +39,12 @@ Services.defaultProps = {
     {
       id: 1,
       icon: 'walk',
-      translation: 'fast_track.banner.services_security_route',
+      translation: 'mmb.fast_track.banner.services_security_route.bergamo.bergamo_stopover',
     },
     {
       id: 2,
       icon: 'baggage-checked',
-      translation: 'fast_track.banner.services_handling_assistance',
+      translation: 'mmb.fast_track.banner.services_handling_assistance.bergamo.bergamo_stopover',
     },
   ],
 };
