@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v36
+
+- Refactor slider labels -> hope this solves MOBILE-3932
+
 ### v35
 - Replace decimal.js with ligher decimal.js-light
 - Improve sentry logging
