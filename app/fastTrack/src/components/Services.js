@@ -39,12 +39,14 @@ Services.defaultProps = {
     {
       id: 1,
       icon: 'walk',
-      translation: 'mmb.fast_track.banner.services_security_route.bergamo.bergamo_stopover',
+      translation:
+        'mmb.fast_track.banner.services_security_route.bergamo.bergamo_stopover',
     },
     {
       id: 2,
       icon: 'baggage-checked',
-      translation: 'mmb.fast_track.banner.services_handling_assistance.bergamo.bergamo_stopover',
+      translation:
+        'mmb.fast_track.banner.services_handling_assistance.bergamo.bergamo_stopover',
     },
   ],
 };
