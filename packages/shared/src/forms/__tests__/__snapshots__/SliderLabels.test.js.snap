@@ -1,26 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`one label 1`] = `
+exports[`renders with one label 1`] = `
 <View
   onLayout={[Function]}
   style={
     Array [
       Object {
         "flexDirection": "row",
+        "justifyContent": "space-between",
         "marginBottom": 5,
         "marginTop": 10,
         "width": "100%",
       },
-      Object {
-        "justifyContent": "space-between",
-        "paddingLeft": 0,
-        "paddingRight": 0,
-      },
+      false,
     ]
   }
+  testID="sliderLabelsContainer"
 >
   <View
     onLayout={[Function]}
+    style={
+      Object {
+        "transform": Array [
+          Object {
+            "translateX": 0,
+          },
+        ],
+      }
+    }
+    testID="startLabelContainer"
   >
     <Text
       style={
@@ -38,27 +46,35 @@ exports[`one label 1`] = `
 </View>
 `;
 
-exports[`two labels 1`] = `
+exports[`renders with two labels 1`] = `
 <View
   onLayout={[Function]}
   style={
     Array [
       Object {
         "flexDirection": "row",
+        "justifyContent": "space-between",
         "marginBottom": 5,
         "marginTop": 10,
         "width": "100%",
       },
-      Object {
-        "justifyContent": "space-between",
-        "paddingLeft": 0,
-        "paddingRight": 0,
-      },
+      false,
     ]
   }
+  testID="sliderLabelsContainer"
 >
   <View
     onLayout={[Function]}
+    style={
+      Object {
+        "transform": Array [
+          Object {
+            "translateX": 0,
+          },
+        ],
+      }
+    }
+    testID="startLabelContainer"
   >
     <Text
       style={
@@ -75,6 +91,16 @@ exports[`two labels 1`] = `
   </View>
   <View
     onLayout={[Function]}
+    style={
+      Object {
+        "transform": Array [
+          Object {
+            "translateX": -0,
+          },
+        ],
+      }
+    }
+    testID="endLabelContainer"
   >
     <Text
       style={

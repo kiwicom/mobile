@@ -50,7 +50,7 @@ export { default as Translation } from './src/Translation';
 export { default as TranslationFragment } from './src/TranslationFragment';
 export { default as Duration } from './src/Duration';
 
-export { default as SliderLabels } from './src/SliderLabels';
+export { default as SliderLabels } from './src/forms/SliderLabels';
 export { default as OfflineScreen } from './src/offlineScreen/OfflineScreen';
 export {
   default as StatusbarBackground,
