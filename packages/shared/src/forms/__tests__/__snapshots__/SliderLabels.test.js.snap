@@ -4,16 +4,13 @@ exports[`renders with one label 1`] = `
 <View
   onLayout={[Function]}
   style={
-    Array [
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginBottom": 5,
-        "marginTop": 10,
-        "width": "100%",
-      },
-      false,
-    ]
+    Object {
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginBottom": 5,
+      "marginTop": 10,
+      "width": "100%",
+    }
   }
   testID="sliderLabelsContainer"
 >
@@ -50,16 +47,13 @@ exports[`renders with two labels 1`] = `
 <View
   onLayout={[Function]}
   style={
-    Array [
-      Object {
-        "flexDirection": "row",
-        "justifyContent": "space-between",
-        "marginBottom": 5,
-        "marginTop": 10,
-        "width": "100%",
-      },
-      false,
-    ]
+    Object {
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+      "marginBottom": 5,
+      "marginTop": 10,
+      "width": "100%",
+    }
   }
   testID="sliderLabelsContainer"
 >
@@ -95,7 +89,7 @@ exports[`renders with two labels 1`] = `
       Object {
         "transform": Array [
           Object {
-            "translateX": -0,
+            "translateX": 0,
           },
         ],
       }

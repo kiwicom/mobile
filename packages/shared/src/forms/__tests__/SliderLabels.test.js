@@ -61,14 +61,14 @@ it('should have startValue in the middle', () => {
   });
 
   expect(startLabel.props.style).toMatchInlineSnapshot(`
-    Object {
-      "transform": Array [
         Object {
-          "translateX": 365,
-        },
-      ],
-    }
-  `);
+          "transform": Array [
+            Object {
+              "translateX": 290,
+            },
+          ],
+        }
+    `);
 });
 
 it('should display the label at the end', () => {
@@ -95,7 +95,15 @@ it('should display the label at the end', () => {
     startLabel.props.onLayout({ nativeEvent: { layout: { width: 20 } } });
   });
 
-  expect(viewContainer.props.style[1].justifyContent).toBe('flex-end');
+  expect(startLabel.props.style).toMatchInlineSnapshot(`
+    Object {
+      "transform": Array [
+        Object {
+          "translateX": 472,
+        },
+      ],
+    }
+  `);
 });
 
 it('should have translateX on both labels', () => {
@@ -130,7 +138,7 @@ it('should have translateX on both labels', () => {
         Object {
           "transform": Array [
             Object {
-              "translateX": 201,
+              "translateX": 190,
             },
           ],
         }
@@ -139,7 +147,7 @@ it('should have translateX on both labels', () => {
         Object {
           "transform": Array [
             Object {
-              "translateX": -69,
+              "translateX": -90,
             },
           ],
         }
@@ -175,5 +183,5 @@ it('should have no translateX', () => {
   });
 
   expect(startLabel.props.style.transform[0].translateX).toBe(0);
-  expect(endLabel.props.style.transform[0].translateX).toBe(-0);
+  expect(endLabel.props.style.transform[0].translateX).toBe(0);
 });
