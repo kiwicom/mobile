@@ -9,7 +9,6 @@ import Text from '../Text';
 import StyleSheet from '../PlatformStyleSheet';
 import Price from '../Price';
 import type { TranslationType } from '../../types/Translation';
-import useCalculateSliderPositions from './useCalculateSliderPositions';
 
 type Props = {|
   +startLabel: TranslationType | React.Element<typeof Price>,
@@ -20,30 +19,38 @@ type Props = {|
   +min: number,
 |};
 
+const LABEL_MARGIN = parseInt(defaultTokens.spaceXSmall, 10);
+
 export default function SliderLabels(props: Props) {
   const [width, setWidth] = React.useState(0);
   const [labelStartWidth, setLabelStartWidth] = React.useState(0);
-  const [labelStartAtMax, setLabelStartAtMax] = React.useState(false);
   const [labelEndWidth, setLabelEndWidth] = React.useState(0);
   const [paddingLeft, setPaddingLeft] = React.useState(0);
   const [paddingRight, setPaddingRight] = React.useState(0);
 
-  useCalculateSliderPositions({
-    labelEndWidth,
-    labelStartAtMax,
-    labelStartWidth,
-    paddingLeft,
-    paddingRight,
-    props,
-    width,
-    setPaddingLeft,
-    setLabelStartAtMax,
-    setPaddingRight,
-    min: props.min,
-    max: props.max,
-    endValue: props.endValue,
-    startValue: props.startValue,
-  });
+  React.useEffect(() => {
+    const maxOffsetLeft =
+      width - labelStartWidth - labelEndWidth - LABEL_MARGIN + paddingRight;
+    const offsetLeft = Math.max(
+      (props.startValue / props.max) * width - labelStartWidth / 2,
+      0,
+    );
+    setPaddingLeft(Math.min(maxOffsetLeft, offsetLeft));
+  }, [props.startValue, labelStartWidth]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect(() => {
+    if (props.endValue != null) {
+      const maxOffsetRight =
+        (width - labelEndWidth - labelStartWidth - LABEL_MARGIN - paddingLeft) *
+        -1;
+      const offsetRight = Math.min(
+        (props.endValue / props.max) * width - width + labelEndWidth / 2,
+        0,
+      );
+
+      setPaddingRight(Math.max(maxOffsetRight, offsetRight));
+    }
+  }, [props.endValue, labelEndWidth]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function saveFullWidth(e: OnLayout) {
     setWidth(Math.floor(e.nativeEvent.layout.width));
@@ -59,14 +66,14 @@ export default function SliderLabels(props: Props) {
 
   return (
     <View
-      style={[styles.sliderLabels, labelStartAtMax && styles.sliderLabelsEnd]}
+      style={styles.sliderLabels}
       onLayout={saveFullWidth}
       testID="sliderLabelsContainer"
     >
       <View
         onLayout={saveLabelStartWidth}
         style={{
-          transform: [{ translateX: labelStartAtMax ? 0 : paddingLeft }],
+          transform: [{ translateX: paddingLeft }],
         }}
         testID="startLabelContainer"
       >
@@ -76,7 +83,7 @@ export default function SliderLabels(props: Props) {
         <View
           onLayout={saveLabelEndWidth}
           style={{
-            transform: [{ translateX: -paddingRight }],
+            transform: [{ translateX: paddingRight }],
           }}
           testID="endLabelContainer"
         >
@@ -94,9 +101,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 5,
     justifyContent: 'space-between',
-  },
-  sliderLabelsEnd: {
-    justifyContent: 'flex-end',
   },
   label: {
     fontSize: 14,
