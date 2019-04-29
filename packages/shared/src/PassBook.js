@@ -1,8 +1,8 @@
 // @flow
 
 import { NativeModules } from 'react-native';
+import { noop } from '@kiwicom/mobile-utils';
 
-const noop: (x: *) => void = () => {};
 const { addPass = noop } = NativeModules.RNKiwiAppleWalletManager || {};
 
 const PassBook = { addPass };

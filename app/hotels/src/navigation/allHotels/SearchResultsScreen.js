@@ -13,6 +13,7 @@ import {
   Translation,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { noop } from '@kiwicom/mobile-utils';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
 import HotelsNavigationOptions from '../HotelsNavigationOptions';
@@ -27,8 +28,6 @@ type Props = {|
   +navigation: NavigationType,
   +cityName: string,
 |};
-
-const noop = () => {};
 
 const SearchResultsScreen = (props: Props) => {
   const { show, setResultType }: SearchResultState = React.useContext(

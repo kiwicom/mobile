@@ -1,0 +1,7 @@
+{
+  "name": "@kiwicom/mobile-utils",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {},
+  "main": "index.js"
+}

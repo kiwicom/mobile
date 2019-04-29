@@ -25,7 +25,7 @@ type RelayCacheManager = {|
  * This is a wrapper around relay cache manager, storing to async storage
  * and reading data on startup
  */
-export default new class CacheManager {
+export default new (class CacheManager {
   cache: RelayCacheManager;
 
   constructor() {
@@ -92,4 +92,4 @@ export default new class CacheManager {
       Date.now()
     );
   }
-}();
+})();

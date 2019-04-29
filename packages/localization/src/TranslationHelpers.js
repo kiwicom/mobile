@@ -5,7 +5,7 @@ import DefaultVocabulary, {
   type TranslationKeysObject,
 } from './DefaultVocabulary';
 
-const NATIVE_TRANSLATION_PARAM_REGEX = /%([0-9]+)\$@/g;
+const NATIVE_TRANSLATION_PARAM_REGEX = /%(?<index>[0-9]+)\$@/g;
 
 export const getTranslation = (
   translatedString: ?string,
@@ -59,7 +59,7 @@ export const getTranslation = (
 };
 
 export function replaceValues(text: string, values?: Object): string {
-  const VARIABLE_REGEX = /__([0-9]+_)?([a-zA-Z-_]+)__/g;
+  const VARIABLE_REGEX = /__(?<index>[0-9]+_)?(?<name>[a-zA-Z-_]+)__/g;
   return text.replace(VARIABLE_REGEX, (match, variableIndex, variableName) => {
     // 'variableIndex' is currently being ignored (we don't need it)
     const value = values && values[variableName];

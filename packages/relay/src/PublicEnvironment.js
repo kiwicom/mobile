@@ -2,7 +2,7 @@
 
 import createEnvironment from './Environment';
 
-export default new class PublicEnvironment {
+export default new (class PublicEnvironment {
   environment = {};
 
   constructor() {
@@ -12,4 +12,4 @@ export default new class PublicEnvironment {
   getEnvironment = () => {
     return this.environment;
   };
-}();
+})();

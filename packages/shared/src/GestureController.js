@@ -1,8 +1,7 @@
-// @flow strict
+// @flow
 
 import { NativeModules, Platform } from 'react-native';
-
-const noop: (x: *) => void = () => {};
+import { noop } from '@kiwicom/mobile-utils';
 
 const isNativeGestureModule = () => {
   if (Platform.OS === 'ios') {
@@ -21,7 +20,15 @@ const {
     ? NativeModules.RNKiwiGestureController || {}
     : NativeModules.RNKiwiBackButton || {};
 
-const GestureController = {
+type GestureControllerType = {|
+  enableGestures: Function,
+  disableGestures: Function,
+  closeModal: Function,
+  invokeDefaultBackButton: Function,
+  isNativeGestureModule: boolean,
+|};
+
+const GestureController: GestureControllerType = {
   enableGestures,
   disableGestures,
   closeModal,

@@ -30,7 +30,7 @@ if (it === undefined && process.env.NODE_ENV !== 'test') {
   };
 }
 
-export default new class PlaygroundRenderer {
+export default new (class PlaygroundRenderer {
   components: Object = {};
   shallowRenderer: ShallowTestRenderer;
 
@@ -61,4 +61,4 @@ export default new class PlaygroundRenderer {
       };
     }
   }
-}();
+})();
