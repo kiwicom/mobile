@@ -10,6 +10,7 @@
     "@kiwicom/mobile-orbit": "^0",
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
+    "@kiwicom/mobile-utils": "^0",
     "decimal.js-light": "^2.5.0",
     "geolib": "^2.0.24",
     "react-fast-compare": "^2.0.2",

@@ -2,7 +2,7 @@
 
 import createEnvironment from './Environment';
 
-export default new class PrivateEnvironment {
+export default new (class PrivateEnvironment {
   environment = null;
   token = null;
 
@@ -18,4 +18,4 @@ export default new class PrivateEnvironment {
     this.token = token;
     return this.environment;
   };
-}();
+})();

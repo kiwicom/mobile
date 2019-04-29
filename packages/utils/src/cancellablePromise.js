@@ -1,12 +1,12 @@
-// @flow strict
+// @flow
 
 export type CancellablePromiseType = {|
   cancel: () => void,
-  promise: Promise<*>,
+  promise: Promise<any>,
 |};
 
 const CancellablePromise = (
-  incomingPromise: Promise<*>,
+  incomingPromise: Promise<any>,
 ): CancellablePromiseType => {
   let resolve;
   let reject;

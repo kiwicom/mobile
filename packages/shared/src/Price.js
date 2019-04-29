@@ -2,14 +2,15 @@
 
 import * as React from 'react';
 import { type DecimalValue, Decimal } from 'decimal.js-light';
+import {
+  cancellablePromise,
+  type CancellablePromiseType,
+} from '@kiwicom/mobile-utils';
 
 import Translation from './Translation';
 import CurrencyFormatter from './CurrencyFormatter';
 import Text from './Text';
 import type { StylePropType } from '../types/Styles';
-import CancellablePromise, {
-  type CancellablePromiseType,
-} from './CancellablePromise';
 
 type Props = {|
   +amount?: ?DecimalValue,
@@ -55,7 +56,7 @@ export default class Price extends React.Component<Props, State> {
 
     if (amount !== null && currency !== null) {
       try {
-        this.cancellablePromise = CancellablePromise(
+        this.cancellablePromise = cancellablePromise(
           CurrencyFormatter(
             parseFloat(new Decimal(amount).toFixed(2)),
             currency,

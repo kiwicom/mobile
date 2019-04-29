@@ -8,7 +8,7 @@ import Price from '../Price';
 import CurrencyFormatter from '../CurrencyFormatter';
 
 jest.mock('../CurrencyFormatter', () => jest.fn());
-jest.mock('../CancellablePromise', () => ({
+jest.mock('../../../utils/src/cancellablePromise.js', () => ({
   promise: new Promise((resolve, reject) => {
     reject(new Error('err'));
   }),

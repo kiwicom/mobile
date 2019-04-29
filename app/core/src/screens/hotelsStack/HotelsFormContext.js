@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { DateUtils } from '@kiwicom/mobile-localization';
+import { noop } from '@kiwicom/mobile-utils';
 
 type Props = {|
   +children: React.Node,
@@ -35,8 +36,6 @@ export type SaveCity = {|
     lng: number,
   |},
 |};
-
-const noop = () => {};
 
 const defaultState = {
   cityName: 'Barcelona',

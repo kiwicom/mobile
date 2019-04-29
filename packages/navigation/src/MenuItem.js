@@ -107,7 +107,7 @@ export default function AdaptableMenuItem(props: Props) {
     />
   );
 }
-
+/* eslint-disable react-native/no-unused-styles */
 function createStyleSheet(props: Props) {
   return StyleSheet.create({
     wrapper: {
@@ -158,3 +158,4 @@ function createStyleSheet(props: Props) {
     },
   });
 }
+/* eslint-enable react-native/no-unused-styles */

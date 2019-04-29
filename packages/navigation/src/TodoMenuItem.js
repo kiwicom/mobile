@@ -12,11 +12,11 @@ const VoidAction = () => {
 
 // this type should be compatible with the type from "MenuItem" component
 type Props = {|
-  title: React.Element<*>,
+  title: React.Element<any>,
   onPress?: () => void,
   isActive?: boolean,
-  icon?: React.Element<*>,
-  description?: React.Element<*>,
+  icon?: React.Element<any>,
+  description?: React.Element<any>,
 |};
 
 export default function TodoMenuItem(props: Props) {

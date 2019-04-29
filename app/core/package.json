@@ -11,7 +11,8 @@
     "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
     "@kiwicom/mobile-localization": "^0",
-    "@kiwicom/mobile-orbit": "^0"
+    "@kiwicom/mobile-orbit": "^0",
+    "@kiwicom/mobile-utils": "^0"
   },
   "peerDependencies": {
     "react": "^16",
