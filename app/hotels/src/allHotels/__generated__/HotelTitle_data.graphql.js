@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type HotelDistance_hotel$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelTitle_data$ref: FragmentReference;
+declare export opaque type HotelTitle_data$fragmentType: HotelTitle_data$ref;
 export type HotelTitle_data = {|
   +money: ?{|
     +amount: ?string,
@@ -23,6 +24,11 @@ export type HotelTitle_data = {|
   +$fragmentRefs: HotelDistance_hotel$ref,
   +$refType: HotelTitle_data$ref,
 |};
+export type HotelTitle_data$data = HotelTitle_data;
+export type HotelTitle_data$key = {
+  +$data?: HotelTitle_data$data,
+  +$fragmentRefs: HotelTitle_data$ref,
+};
 */
 
 
@@ -59,11 +65,6 @@ const node/*: ReaderFragment*/ = {
       ]
     },
     {
-      "kind": "FragmentSpread",
-      "name": "HotelDistance_hotel",
-      "args": null
-    },
-    {
       "kind": "ScalarField",
       "alias": null,
       "name": "name",
@@ -87,6 +88,11 @@ const node/*: ReaderFragment*/ = {
           "storageKey": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "HotelDistance_hotel",
+      "args": null
     }
   ]
 };

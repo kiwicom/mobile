@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 3fb87294a8581f341a51123aa16cd739
+ * @relayHash 6d11976f1f5d352dceeea885b8f6a155
  */
 
 /* eslint-disable */
@@ -197,20 +197,17 @@ v1 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "after",
-    "type": "String"
+    "variableName": "after"
   },
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "first",
-    "type": "Int"
+    "variableName": "first"
   },
   {
     "kind": "Variable",
     "name": "search",
-    "variableName": "search",
-    "type": "Stay22HotelsSearchInput!"
+    "variableName": "search"
   }
 ],
 v2 = {

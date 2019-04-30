@@ -10,10 +10,16 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelDistance_hotel$ref: FragmentReference;
+declare export opaque type HotelDistance_hotel$fragmentType: HotelDistance_hotel$ref;
 export type HotelDistance_hotel = {|
   +distanceFromCenter: ?number,
   +$refType: HotelDistance_hotel$ref,
 |};
+export type HotelDistance_hotel$data = HotelDistance_hotel;
+export type HotelDistance_hotel$key = {
+  +$data?: HotelDistance_hotel$data,
+  +$fragmentRefs: HotelDistance_hotel$ref,
+};
 */
 
 

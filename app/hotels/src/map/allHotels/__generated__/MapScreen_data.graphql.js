@@ -12,12 +12,18 @@ type HotelSwipeList_data$ref = any;
 type MapView_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapScreen_data$ref: FragmentReference;
+declare export opaque type MapScreen_data$fragmentType: MapScreen_data$ref;
 export type MapScreen_data = $ReadOnlyArray<{|
   +id: string,
   +hotelId: ?string,
   +$fragmentRefs: MapView_data$ref & HotelSwipeList_data$ref,
   +$refType: MapScreen_data$ref,
 |}>;
+export type MapScreen_data$data = MapScreen_data;
+export type MapScreen_data$key = {
+  +$data?: MapScreen_data$data,
+  +$fragmentRefs: MapScreen_data$ref,
+};
 */
 
 

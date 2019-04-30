@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type Address_address$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type AdditionalInfo_data$ref: FragmentReference;
+declare export opaque type AdditionalInfo_data$fragmentType: AdditionalInfo_data$ref;
 export type AdditionalInfo_data = {|
   +total: ?{|
     +amount: ?string,
@@ -33,6 +34,11 @@ export type AdditionalInfo_data = {|
   |},
   +$refType: AdditionalInfo_data$ref,
 |};
+export type AdditionalInfo_data$data = AdditionalInfo_data;
+export type AdditionalInfo_data$key = {
+  +$data?: AdditionalInfo_data$data,
+  +$fragmentRefs: AdditionalInfo_data$ref,
+};
 */
 
 

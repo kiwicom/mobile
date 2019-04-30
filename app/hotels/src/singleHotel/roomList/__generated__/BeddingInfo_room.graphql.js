@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type BeddingInfo_room$ref: FragmentReference;
+declare export opaque type BeddingInfo_room$fragmentType: BeddingInfo_room$ref;
 export type BeddingInfo_room = {|
   +maxPersons: ?number,
   +bedding: ?$ReadOnlyArray<?{|
@@ -18,6 +19,11 @@ export type BeddingInfo_room = {|
   |}>,
   +$refType: BeddingInfo_room$ref,
 |};
+export type BeddingInfo_room$data = BeddingInfo_room;
+export type BeddingInfo_room$key = {
+  +$data?: BeddingInfo_room$data,
+  +$fragmentRefs: BeddingInfo_room$ref,
+};
 */
 
 

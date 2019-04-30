@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 4eb47e4ab5410bc0f7f7c679b6d535d5
+ * @relayHash 6dddd23878dcb2dba327056b67d1b73f
  */
 
 /* eslint-disable */
@@ -66,8 +66,7 @@ v1 = [
   {
     "kind": "Variable",
     "name": "prefix",
-    "variableName": "query",
-    "type": "String"
+    "variableName": "query"
   }
 ];
 return {

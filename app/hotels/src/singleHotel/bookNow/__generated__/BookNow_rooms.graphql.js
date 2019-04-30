@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type BookNow_rooms$ref: FragmentReference;
+declare export opaque type BookNow_rooms$fragmentType: BookNow_rooms$ref;
 export type BookNow_rooms = {|
   +availableRooms: ?$ReadOnlyArray<?{|
     +id: string,
@@ -17,6 +18,11 @@ export type BookNow_rooms = {|
   |}>,
   +$refType: BookNow_rooms$ref,
 |};
+export type BookNow_rooms$data = BookNow_rooms;
+export type BookNow_rooms$key = {
+  +$data?: BookNow_rooms$data,
+  +$fragmentRefs: BookNow_rooms$ref,
+};
 */
 
 
@@ -44,11 +50,16 @@ const node/*: ReaderFragment*/ = {
           "storageKey": null
         },
         {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "selectedCount",
-          "args": null,
-          "storageKey": null
+          "kind": "ClientExtension",
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "selectedCount",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     }

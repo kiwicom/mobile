@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type SummaryButtons_rooms$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomSummary_room$ref: FragmentReference;
+declare export opaque type RoomSummary_room$fragmentType: RoomSummary_room$ref;
 export type RoomSummary_room = {|
   +availableRooms: ?$ReadOnlyArray<?{|
     +id: string,
@@ -38,6 +39,11 @@ export type RoomSummary_room = {|
   +$fragmentRefs: SummaryButtons_rooms$ref,
   +$refType: RoomSummary_room$ref,
 |};
+export type RoomSummary_room$data = RoomSummary_room;
+export type RoomSummary_room$key = {
+  +$data?: RoomSummary_room$data,
+  +$fragmentRefs: RoomSummary_room$ref,
+};
 */
 
 
@@ -57,11 +63,6 @@ return {
   "argumentDefinitions": [],
   "selections": [
     {
-      "kind": "FragmentSpread",
-      "name": "SummaryButtons_rooms",
-      "args": null
-    },
-    {
       "kind": "LinkedField",
       "alias": null,
       "name": "availableRooms",
@@ -74,13 +75,6 @@ return {
           "kind": "ScalarField",
           "alias": null,
           "name": "id",
-          "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "selectedCount",
           "args": null,
           "storageKey": null
         },
@@ -189,8 +183,25 @@ return {
               "storageKey": null
             }
           ]
+        },
+        {
+          "kind": "ClientExtension",
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "selectedCount",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "SummaryButtons_rooms",
+      "args": null
     }
   ]
 };

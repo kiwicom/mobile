@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Header_hotel$ref: FragmentReference;
+declare export opaque type Header_hotel$fragmentType: Header_hotel$ref;
 export type Header_hotel = {|
   +name: ?string,
   +mainPhoto: ?{|
@@ -29,6 +30,11 @@ export type Header_hotel = {|
   |},
   +$refType: Header_hotel$ref,
 |};
+export type Header_hotel$data = Header_hotel;
+export type Header_hotel$key = {
+  +$data?: Header_hotel$data,
+  +$fragmentRefs: Header_hotel$ref,
+};
 */
 
 

@@ -12,6 +12,7 @@ type Address_address$ref = any;
 type HotelSwipeItem_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelSwipeList_data$ref: FragmentReference;
+declare export opaque type HotelSwipeList_data$fragmentType: HotelSwipeList_data$ref;
 export type HotelSwipeList_data = $ReadOnlyArray<{|
   +address: ?{|
     +$fragmentRefs: Address_address$ref
@@ -19,6 +20,11 @@ export type HotelSwipeList_data = $ReadOnlyArray<{|
   +$fragmentRefs: HotelSwipeItem_data$ref,
   +$refType: HotelSwipeList_data$ref,
 |}>;
+export type HotelSwipeList_data$data = HotelSwipeList_data;
+export type HotelSwipeList_data$key = {
+  +$data?: HotelSwipeList_data$data,
+  +$fragmentRefs: HotelSwipeList_data$ref,
+};
 */
 
 
@@ -31,11 +37,6 @@ const node/*: ReaderFragment*/ = {
   },
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "FragmentSpread",
-      "name": "HotelSwipeItem_data",
-      "args": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -51,6 +52,11 @@ const node/*: ReaderFragment*/ = {
           "args": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "HotelSwipeItem_data",
+      "args": null
     }
   ]
 };

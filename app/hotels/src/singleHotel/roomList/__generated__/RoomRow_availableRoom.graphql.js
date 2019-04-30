@@ -13,6 +13,7 @@ type RoomBadges_availableRoom$ref = any;
 type RoomRowTitle_room$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomRow_availableRoom$ref: FragmentReference;
+declare export opaque type RoomRow_availableRoom$fragmentType: RoomRow_availableRoom$ref;
 export type RoomRow_availableRoom = {|
   +id: string,
   +selectedCount: ?number,
@@ -37,6 +38,11 @@ export type RoomRow_availableRoom = {|
   +$fragmentRefs: RoomBadges_availableRoom$ref,
   +$refType: RoomRow_availableRoom$ref,
 |};
+export type RoomRow_availableRoom$data = RoomRow_availableRoom;
+export type RoomRow_availableRoom$key = {
+  +$data?: RoomRow_availableRoom$data,
+  +$fragmentRefs: RoomRow_availableRoom$ref,
+};
 */
 
 
@@ -56,18 +62,6 @@ return {
   "argumentDefinitions": [],
   "selections": [
     (v0/*: any*/),
-    {
-      "kind": "ScalarField",
-      "alias": null,
-      "name": "selectedCount",
-      "args": null,
-      "storageKey": null
-    },
-    {
-      "kind": "FragmentSpread",
-      "name": "RoomBadges_availableRoom",
-      "args": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -129,11 +123,6 @@ return {
           ]
         },
         {
-          "kind": "FragmentSpread",
-          "name": "RoomRowTitle_room",
-          "args": null
-        },
-        {
           "kind": "LinkedField",
           "alias": null,
           "name": "roomPhotos",
@@ -168,8 +157,30 @@ return {
         },
         {
           "kind": "FragmentSpread",
+          "name": "RoomRowTitle_room",
+          "args": null
+        },
+        {
+          "kind": "FragmentSpread",
           "name": "BeddingInfo_room",
           "args": null
+        }
+      ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "RoomBadges_availableRoom",
+      "args": null
+    },
+    {
+      "kind": "ClientExtension",
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "selectedCount",
+          "args": null,
+          "storageKey": null
         }
       ]
     }

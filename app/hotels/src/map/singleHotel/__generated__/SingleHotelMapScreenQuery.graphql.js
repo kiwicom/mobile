@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8d321fa789befa567328be72e2fb5227
+ * @relayHash 06183e187231937361106d7cef975878
  */
 
 /* eslint-disable */
@@ -125,14 +125,12 @@ v1 = [
   {
     "kind": "Variable",
     "name": "options",
-    "variableName": "options",
-    "type": "AvailableHotelOptionsInput"
+    "variableName": "options"
   },
   {
     "kind": "Variable",
     "name": "search",
-    "variableName": "search",
-    "type": "AvailableHotelSearchInput!"
+    "variableName": "search"
   }
 ],
 v2 = {

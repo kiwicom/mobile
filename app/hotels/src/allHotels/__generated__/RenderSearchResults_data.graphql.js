@@ -12,10 +12,16 @@ type AllHotelsSearchList_data$ref = any;
 type MapScreen_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RenderSearchResults_data$ref: FragmentReference;
+declare export opaque type RenderSearchResults_data$fragmentType: RenderSearchResults_data$ref;
 export type RenderSearchResults_data = $ReadOnlyArray<{|
   +$fragmentRefs: AllHotelsSearchList_data$ref & MapScreen_data$ref,
   +$refType: RenderSearchResults_data$ref,
 |}>;
+export type RenderSearchResults_data$data = RenderSearchResults_data;
+export type RenderSearchResults_data$key = {
+  +$data?: RenderSearchResults_data$data,
+  +$fragmentRefs: RenderSearchResults_data$ref,
+};
 */
 
 

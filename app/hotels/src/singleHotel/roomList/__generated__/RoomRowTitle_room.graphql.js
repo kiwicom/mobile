@@ -10,12 +10,18 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomRowTitle_room$ref: FragmentReference;
+declare export opaque type RoomRowTitle_room$fragmentType: RoomRowTitle_room$ref;
 export type RoomRowTitle_room = {|
   +description: ?{|
     +title: ?string
   |},
   +$refType: RoomRowTitle_room$ref,
 |};
+export type RoomRowTitle_room$data = RoomRowTitle_room;
+export type RoomRowTitle_room$key = {
+  +$data?: RoomRowTitle_room$data,
+  +$fragmentRefs: RoomRowTitle_room$ref,
+};
 */
 
 

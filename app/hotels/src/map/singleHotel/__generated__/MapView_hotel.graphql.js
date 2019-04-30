@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapView_hotel$ref: FragmentReference;
+declare export opaque type MapView_hotel$fragmentType: MapView_hotel$ref;
 export type MapView_hotel = {|
   +coordinates: ?{|
     +lat: ?number,
@@ -17,6 +18,11 @@ export type MapView_hotel = {|
   |},
   +$refType: MapView_hotel$ref,
 |};
+export type MapView_hotel$data = MapView_hotel;
+export type MapView_hotel$key = {
+  +$data?: MapView_hotel$data,
+  +$fragmentRefs: MapView_hotel$ref,
+};
 */
 
 

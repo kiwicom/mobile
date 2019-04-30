@@ -14,6 +14,7 @@ type HotelInformation_hotel$ref = any;
 type RoomList_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelDetailScreen_availableHotel$ref: FragmentReference;
+declare export opaque type HotelDetailScreen_availableHotel$fragmentType: HotelDetailScreen_availableHotel$ref;
 export type HotelDetailScreen_availableHotel = {|
   +hotel: ?{|
     +$fragmentRefs: Header_hotel$ref & HotelInformation_hotel$ref
@@ -21,6 +22,11 @@ export type HotelDetailScreen_availableHotel = {|
   +$fragmentRefs: BookingSummary_room$ref & RoomList_data$ref,
   +$refType: HotelDetailScreen_availableHotel$ref,
 |};
+export type HotelDetailScreen_availableHotel$data = HotelDetailScreen_availableHotel;
+export type HotelDetailScreen_availableHotel$key = {
+  +$data?: HotelDetailScreen_availableHotel$data,
+  +$fragmentRefs: HotelDetailScreen_availableHotel$ref,
+};
 */
 
 
@@ -31,11 +37,6 @@ const node/*: ReaderFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "FragmentSpread",
-      "name": "BookingSummary_room",
-      "args": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -56,6 +57,11 @@ const node/*: ReaderFragment*/ = {
           "args": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "BookingSummary_room",
+      "args": null
     },
     {
       "kind": "FragmentSpread",
