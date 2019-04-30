@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
 });
 
 export class Map extends React.Component<Props, State> {
+  map: typeof MapView | null;
+  markers: { [number]: typeof MapView.Marker | null };
+
   constructor(props: Props) {
     super(props);
 
@@ -51,9 +54,6 @@ export class Map extends React.Component<Props, State> {
       this.animateToCoordinate(this.props.selectedIndex);
     }
   }
-
-  map: typeof MapView | null;
-  markers: { [number]: typeof MapView.Marker | null };
 
   getCoordinate = (hotel: Object): LatLng | null => {
     const coordinate = hotel?.coordinates;

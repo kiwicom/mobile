@@ -36,10 +36,6 @@ export class PlaygroundList extends React.Component<Props> {
 
   keyExtractor = (item: PlaygroundComponent) => item;
 
-  renderItem = ({ item }: { item: string }) => (
-    <PlaygroundListItem name={item} onPress={this.navigateToPlayground} />
-  );
-
   navigateToPlayground = (name: string) => {
     this.props.saveToStorage(name);
     this.props.navigation.navigate('Playground', {
@@ -66,6 +62,10 @@ export class PlaygroundList extends React.Component<Props> {
     });
     return sortedComponents;
   };
+
+  renderItem = ({ item }: { item: string }) => (
+    <PlaygroundListItem name={item} onPress={this.navigateToPlayground} />
+  );
 
   render() {
     return (

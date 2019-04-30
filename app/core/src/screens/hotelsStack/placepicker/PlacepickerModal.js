@@ -28,6 +28,12 @@ type State = {|
 |};
 
 export default class PlacepickerModal extends React.Component<Props, State> {
+  setQuery = debounce(() => {
+    this.setState(state => ({
+      query: state.cityName,
+    }));
+  }, 250);
+
   constructor(props: Props) {
     super(props);
 
@@ -40,12 +46,6 @@ export default class PlacepickerModal extends React.Component<Props, State> {
   onChange = (cityName: string) => {
     this.setState({ cityName }, this.setQuery);
   };
-
-  setQuery = debounce(() => {
-    this.setState(state => ({
-      query: state.cityName,
-    }));
-  }, 250);
 
   render() {
     const { isVisible, onClose } = this.props;

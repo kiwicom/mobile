@@ -34,6 +34,7 @@ const PADDING_HORIZONTAL = 8;
 const CARD_ITEM_WIDTH = Device.DEVICE_THRESHOLD * SNAP_WIDTH;
 
 class HotelSwipeList extends React.Component<Props, State> {
+  carouselRef: React.ElementRef<typeof Carousel>;
   state = {
     containerWidth: 0,
   };
@@ -44,16 +45,10 @@ class HotelSwipeList extends React.Component<Props, State> {
     }
   }
 
-  carouselRef: React.ElementRef<typeof Carousel>;
-
   getSelectedAddress = () => {
     const { selectedIndex, data } = this.props;
 
     return data[selectedIndex].address ?? null;
-  };
-
-  renderItem = ({ item }: { item: Object, index: number }) => {
-    return <HotelSwipeItem width={CARD_ITEM_WIDTH} data={item} />;
   };
 
   storeRef = (ref: React.ElementRef<typeof Carousel>) => {
@@ -65,6 +60,10 @@ class HotelSwipeList extends React.Component<Props, State> {
     this.setState({
       containerWidth: e.nativeEvent.layout.width - containerPadding,
     });
+  };
+
+  renderItem = ({ item }: { item: Object, index: number }) => {
+    return <HotelSwipeItem width={CARD_ITEM_WIDTH} data={item} />;
   };
 
   render() {
