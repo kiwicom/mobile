@@ -42,6 +42,8 @@ export default class QueryRenderer extends React.Component<Props> {
     );
   };
 
+  onLoading = () => <FullPageLoading />;
+
   renderRelayContainer = ({ error, retry }: RendererResponse) => {
     let Component = null;
     if (error && noConnectionErrorMessages.includes(error.message)) {
@@ -75,8 +77,6 @@ export default class QueryRenderer extends React.Component<Props> {
       </React.Fragment>
     );
   };
-
-  onLoading = () => <FullPageLoading />;
 
   render() {
     return (

@@ -16,18 +16,18 @@ type Props = {|
 |};
 
 export default class WebView extends React.Component<Props> {
+  onNavigationStateChange = (event: WebViewStateChangeEvent) => {
+    if (this.props.onNavigationStateChange) {
+      this.props.onNavigationStateChange(event);
+    }
+  };
+
   renderError = () => (
     <GeneralError
       // this message is most probably not true:
       errorMessage={<Translation id="shared.web_view.no_internet_connection" />}
     />
   );
-
-  onNavigationStateChange = (event: WebViewStateChangeEvent) => {
-    if (this.props.onNavigationStateChange) {
-      this.props.onNavigationStateChange(event);
-    }
-  };
 
   render() {
     return (

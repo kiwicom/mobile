@@ -48,6 +48,10 @@ export default class ScorePopup extends React.Component<Props, State> {
   onSave = () =>
     this.props.onSave(this.convertSliderValueToScore(this.state.sliderValue));
 
+  convertSliderValueToScore = (value: number) => {
+    return value ? value + SLIDER_SHIFT : null;
+  };
+
   renderLabel = (sliderValue: number) => {
     const labels = [
       <Translation
@@ -60,10 +64,6 @@ export default class ScorePopup extends React.Component<Props, State> {
       <Translation key="9" id="hotels_search.filter.score_filter.rating.9" />,
     ];
     return labels[sliderValue];
-  };
-
-  convertSliderValueToScore = (value: number) => {
-    return value ? value + SLIDER_SHIFT : null;
   };
 
   render() {
