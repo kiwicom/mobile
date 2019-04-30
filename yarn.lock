@@ -7255,6 +7255,13 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-animatable@^1.3.1:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.2.tgz#4783ee1a73dc98815aef234ce6b819f80bfe7d80"
+  integrity sha512-rmah3KQ63ft8DxkzFUwJSuZeq+oSYwldoGF4DTOR5WM2WR5wiWLgBAtrAHlI3Di3by323uOR21s+MlqPcHz2Kw==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-app-registry-components-to-constants@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/react-native-app-registry-components-to-constants/-/react-native-app-registry-components-to-constants-0.0.1.tgz#21c4d9e95850f8736ef96eda916c3bdde66ba0c1"
@@ -7306,7 +7313,15 @@ react-native-image-progress@^1.1.1:
   version "0.23.0"
   resolved "https://codeload.github.com/react-native-community/react-native-maps/tar.gz/6c225af612d4681a00d4849b60774d7c6426835e"
 
-react-native-modal@^7.0.0, react-native-modal@^7.0.2:
+react-native-modal@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-10.0.0.tgz#1b0b15cc6cda9584f122cced106a9f9f37befc08"
+  integrity sha512-f0paVkkbQ/zNYnzEfqpJ+Xyqda/2mTzg1CL4ECpvRxlMOgTRezJabfEVJKTl+rZZELaaKyjB8FNoB8feC0E9pA==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "^1.3.1"
+
+react-native-modal@^7.0.2:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-7.0.2.tgz#6048217807e03cd585204dace2e1ca1726c0b647"
   integrity sha512-IRTDeErr4asDdPs4DGbaKvz3fgr56tcVA7nAdCLu4IkjNw7DaIlAbQelg0Sdirb+8+RbIDPyrrnuEH84Fnj4ZA==
