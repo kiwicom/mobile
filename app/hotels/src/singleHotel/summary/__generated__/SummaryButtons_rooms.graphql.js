@@ -11,10 +11,16 @@ import type { ReaderFragment } from 'relay-runtime';
 type BookNow_rooms$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type SummaryButtons_rooms$ref: FragmentReference;
+declare export opaque type SummaryButtons_rooms$fragmentType: SummaryButtons_rooms$ref;
 export type SummaryButtons_rooms = {|
   +$fragmentRefs: BookNow_rooms$ref,
   +$refType: SummaryButtons_rooms$ref,
 |};
+export type SummaryButtons_rooms$data = SummaryButtons_rooms;
+export type SummaryButtons_rooms$key = {
+  +$data?: SummaryButtons_rooms$data,
+  +$fragmentRefs: SummaryButtons_rooms$ref,
+};
 */
 
 

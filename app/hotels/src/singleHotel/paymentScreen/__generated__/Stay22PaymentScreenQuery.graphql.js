@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash db275bd1ce83d7d7d1cd2d55edeca241
+ * @relayHash 7d51c6c055c75768fa91f75cb7ddb94a
  */
 
 /* eslint-disable */
@@ -65,8 +65,7 @@ v1 = [
       {
         "kind": "Variable",
         "name": "roomConfig",
-        "variableName": "roomConfig",
-        "type": "[RoomConfigInput]"
+        "variableName": "roomConfig"
       }
     ],
     "concreteType": "HotelPaymentUrls",
@@ -80,8 +79,7 @@ v1 = [
           {
             "kind": "Variable",
             "name": "paymentLink",
-            "variableName": "paymentLink",
-            "type": "String!"
+            "variableName": "paymentLink"
           }
         ],
         "storageKey": null

@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type MapViewMarker_markerData$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapView_data$ref: FragmentReference;
+declare export opaque type MapView_data$fragmentType: MapView_data$ref;
 export type MapView_data = $ReadOnlyArray<{|
   +id: string,
   +coordinates: ?{|
@@ -20,6 +21,11 @@ export type MapView_data = $ReadOnlyArray<{|
   +$fragmentRefs: MapViewMarker_markerData$ref,
   +$refType: MapView_data$ref,
 |}>;
+export type MapView_data$data = MapView_data;
+export type MapView_data$key = {
+  +$data?: MapView_data$data,
+  +$fragmentRefs: MapView_data$ref,
+};
 */
 
 

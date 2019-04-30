@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type RenderSearchResults_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Stay22PaginationContainer_data$ref: FragmentReference;
+declare export opaque type Stay22PaginationContainer_data$fragmentType: Stay22PaginationContainer_data$ref;
 export type Stay22PaginationContainer_data = {|
   +allAvailableStay22Hotels: ?{|
     +edges: ?$ReadOnlyArray<?{|
@@ -21,6 +22,11 @@ export type Stay22PaginationContainer_data = {|
   |},
   +$refType: Stay22PaginationContainer_data$ref,
 |};
+export type Stay22PaginationContainer_data$data = Stay22PaginationContainer_data;
+export type Stay22PaginationContainer_data$key = {
+  +$data?: Stay22PaginationContainer_data$data,
+  +$fragmentRefs: Stay22PaginationContainer_data$ref,
+};
 */
 
 
@@ -67,8 +73,7 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "Variable",
           "name": "search",
-          "variableName": "search",
-          "type": "Stay22HotelsSearchInput!"
+          "variableName": "search"
         }
       ],
       "concreteType": "AllAvailableStay22HotelConnection",
@@ -93,16 +98,16 @@ const node/*: ReaderFragment*/ = {
               "plural": false,
               "selections": [
                 {
-                  "kind": "FragmentSpread",
-                  "name": "RenderSearchResults_data",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "RenderSearchResults_data",
+                  "args": null
                 }
               ]
             },

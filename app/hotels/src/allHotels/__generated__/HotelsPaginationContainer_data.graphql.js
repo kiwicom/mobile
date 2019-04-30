@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type RenderSearchResults_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelsPaginationContainer_data$ref: FragmentReference;
+declare export opaque type HotelsPaginationContainer_data$fragmentType: HotelsPaginationContainer_data$ref;
 export type HotelsPaginationContainer_data = {|
   +allAvailableBookingComHotels: ?{|
     +stats: ?{|
@@ -25,6 +26,11 @@ export type HotelsPaginationContainer_data = {|
   |},
   +$refType: HotelsPaginationContainer_data$ref,
 |};
+export type HotelsPaginationContainer_data$data = HotelsPaginationContainer_data;
+export type HotelsPaginationContainer_data$key = {
+  +$data?: HotelsPaginationContainer_data$data,
+  +$fragmentRefs: HotelsPaginationContainer_data$ref,
+};
 */
 
 
@@ -81,20 +87,17 @@ const node/*: ReaderFragment*/ = {
         {
           "kind": "Variable",
           "name": "filter",
-          "variableName": "filter",
-          "type": "HotelsFilterInput"
+          "variableName": "filter"
         },
         {
           "kind": "Variable",
           "name": "options",
-          "variableName": "options",
-          "type": "AvailableHotelOptionsInput"
+          "variableName": "options"
         },
         {
           "kind": "Variable",
           "name": "search",
-          "variableName": "search",
-          "type": "HotelsSearchInput!"
+          "variableName": "search"
         }
       ],
       "concreteType": "AllHotelAvailabilityHotelConnection",
@@ -144,16 +147,16 @@ const node/*: ReaderFragment*/ = {
               "plural": false,
               "selections": [
                 {
-                  "kind": "FragmentSpread",
-                  "name": "RenderSearchResults_data",
-                  "args": null
-                },
-                {
                   "kind": "ScalarField",
                   "alias": null,
                   "name": "__typename",
                   "args": null,
                   "storageKey": null
+                },
+                {
+                  "kind": "FragmentSpread",
+                  "name": "RenderSearchResults_data",
+                  "args": null
                 }
               ]
             },

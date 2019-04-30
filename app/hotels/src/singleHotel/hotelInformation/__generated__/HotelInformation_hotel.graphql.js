@@ -13,10 +13,16 @@ type HotelReview_data$ref = any;
 type Location_hotel$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelInformation_hotel$ref: FragmentReference;
+declare export opaque type HotelInformation_hotel$fragmentType: HotelInformation_hotel$ref;
 export type HotelInformation_hotel = {|
   +$fragmentRefs: Location_hotel$ref & Description_hotel$ref & HotelReview_data$ref,
   +$refType: HotelInformation_hotel$ref,
 |};
+export type HotelInformation_hotel$data = HotelInformation_hotel;
+export type HotelInformation_hotel$key = {
+  +$data?: HotelInformation_hotel$data,
+  +$fragmentRefs: HotelInformation_hotel$ref,
+};
 */
 
 

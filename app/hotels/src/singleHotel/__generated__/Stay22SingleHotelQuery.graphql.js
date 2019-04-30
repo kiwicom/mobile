@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 122d99d90b6e3fa6924bb0513428d396
+ * @relayHash 07a25211b18c41d87adfd12208491ed3
  */
 
 /* eslint-disable */
@@ -247,32 +247,27 @@ v1 = [
   {
     "kind": "Variable",
     "name": "checkin",
-    "variableName": "checkin",
-    "type": "Date!"
+    "variableName": "checkin"
   },
   {
     "kind": "Variable",
     "name": "checkout",
-    "variableName": "checkout",
-    "type": "Date!"
+    "variableName": "checkout"
   },
   {
     "kind": "Variable",
     "name": "currency",
-    "variableName": "currency",
-    "type": "Currency"
+    "variableName": "currency"
   },
   {
     "kind": "Variable",
     "name": "guests",
-    "variableName": "guests",
-    "type": "Int!"
+    "variableName": "guests"
   },
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = {
@@ -359,12 +354,12 @@ return {
         "concreteType": "Stay22HotelDetail",
         "plural": false,
         "selections": [
+          (v2/*: any*/),
           {
             "kind": "FragmentSpread",
             "name": "HotelDetailScreen_availableHotel",
             "args": null
-          },
-          (v2/*: any*/)
+          }
         ]
       }
     ]
@@ -538,6 +533,18 @@ return {
                 "name": "availableRoomsCount",
                 "args": null,
                 "storageKey": null
+              },
+              {
+                "kind": "ClientExtension",
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "selectedCount",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
               }
             ]
           },

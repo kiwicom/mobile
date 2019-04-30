@@ -10,11 +10,17 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type PriceMarker_data$ref: FragmentReference;
+declare export opaque type PriceMarker_data$fragmentType: PriceMarker_data$ref;
 export type PriceMarker_data = {|
   +amount: ?string,
   +currencyId: ?string,
   +$refType: PriceMarker_data$ref,
 |};
+export type PriceMarker_data$data = PriceMarker_data;
+export type PriceMarker_data$key = {
+  +$data?: PriceMarker_data$data,
+  +$fragmentRefs: PriceMarker_data$ref,
+};
 */
 
 

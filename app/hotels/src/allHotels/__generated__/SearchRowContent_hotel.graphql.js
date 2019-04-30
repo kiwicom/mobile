@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type HotelTitle_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type SearchRowContent_hotel$ref: FragmentReference;
+declare export opaque type SearchRowContent_hotel$fragmentType: SearchRowContent_hotel$ref;
 export type SearchRowContent_hotel = {|
   +mainPhoto: ?{|
     +highResUrl: ?string,
@@ -22,6 +23,11 @@ export type SearchRowContent_hotel = {|
   +$fragmentRefs: HotelTitle_data$ref,
   +$refType: SearchRowContent_hotel$ref,
 |};
+export type SearchRowContent_hotel$data = SearchRowContent_hotel;
+export type SearchRowContent_hotel$key = {
+  +$data?: SearchRowContent_hotel$data,
+  +$fragmentRefs: SearchRowContent_hotel$ref,
+};
 */
 
 
@@ -32,11 +38,6 @@ const node/*: ReaderFragment*/ = {
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
-    {
-      "kind": "FragmentSpread",
-      "name": "HotelTitle_data",
-      "args": null
-    },
     {
       "kind": "LinkedField",
       "alias": null,
@@ -79,6 +80,11 @@ const node/*: ReaderFragment*/ = {
           "storageKey": null
         }
       ]
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "HotelTitle_data",
+      "args": null
     }
   ]
 };

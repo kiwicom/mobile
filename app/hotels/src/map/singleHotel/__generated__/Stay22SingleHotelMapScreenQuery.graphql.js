@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash ef6897c2cd4517d2f51c1a19cd0e05d2
+ * @relayHash 70ae37d8e999cfaa0776fc644c190ebe
  */
 
 /* eslint-disable */
@@ -129,32 +129,27 @@ v1 = [
   {
     "kind": "Variable",
     "name": "checkin",
-    "variableName": "checkin",
-    "type": "Date!"
+    "variableName": "checkin"
   },
   {
     "kind": "Variable",
     "name": "checkout",
-    "variableName": "checkout",
-    "type": "Date!"
+    "variableName": "checkout"
   },
   {
     "kind": "Variable",
     "name": "currency",
-    "variableName": "currency",
-    "type": "Currency"
+    "variableName": "currency"
   },
   {
     "kind": "Variable",
     "name": "guests",
-    "variableName": "guests",
-    "type": "Int!"
+    "variableName": "guests"
   },
   {
     "kind": "Variable",
     "name": "id",
-    "variableName": "id",
-    "type": "ID!"
+    "variableName": "id"
   }
 ],
 v2 = {

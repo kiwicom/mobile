@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 1ef8f14223e030acce973feb500b6d4d
+ * @relayHash 692b54cfd7ab3146890d77fb7a2679ca
  */
 
 /* eslint-disable */
@@ -62,14 +62,12 @@ v1 = [
     "name": "attachmentsFor",
     "value": [
       "FAST_TRACK"
-    ],
-    "type": "[AttachmentsFor!]"
+    ]
   },
   {
     "kind": "Variable",
     "name": "bookingId",
-    "variableName": "bookingId",
-    "type": "Int!"
+    "variableName": "bookingId"
   }
 ];
 return {

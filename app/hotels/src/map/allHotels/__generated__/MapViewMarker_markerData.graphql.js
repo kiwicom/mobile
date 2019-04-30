@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type PriceMarker_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapViewMarker_markerData$ref: FragmentReference;
+declare export opaque type MapViewMarker_markerData$fragmentType: MapViewMarker_markerData$ref;
 export type MapViewMarker_markerData = {|
   +id: string,
   +price: ?{|
@@ -22,6 +23,11 @@ export type MapViewMarker_markerData = {|
   |},
   +$refType: MapViewMarker_markerData$ref,
 |};
+export type MapViewMarker_markerData$data = MapViewMarker_markerData;
+export type MapViewMarker_markerData$key = {
+  +$data?: MapViewMarker_markerData$data,
+  +$fragmentRefs: MapViewMarker_markerData$ref,
+};
 */
 
 

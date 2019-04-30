@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelSwipeItem_data$ref: FragmentReference;
+declare export opaque type HotelSwipeItem_data$fragmentType: HotelSwipeItem_data$ref;
 export type HotelSwipeItem_data = {|
   +hotelId: ?string,
   +name: ?string,
@@ -28,6 +29,11 @@ export type HotelSwipeItem_data = {|
   |},
   +$refType: HotelSwipeItem_data$ref,
 |};
+export type HotelSwipeItem_data$data = HotelSwipeItem_data;
+export type HotelSwipeItem_data$key = {
+  +$data?: HotelSwipeItem_data$data,
+  +$fragmentRefs: HotelSwipeItem_data$ref,
+};
 */
 
 

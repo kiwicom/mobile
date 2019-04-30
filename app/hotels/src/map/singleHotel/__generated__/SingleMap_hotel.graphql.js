@@ -12,6 +12,7 @@ type AdditionalInfo_data$ref = any;
 type MapView_hotel$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type SingleMap_hotel$ref: FragmentReference;
+declare export opaque type SingleMap_hotel$fragmentType: SingleMap_hotel$ref;
 export type SingleMap_hotel = {|
   +hotel: ?{|
     +$fragmentRefs: MapView_hotel$ref
@@ -19,6 +20,11 @@ export type SingleMap_hotel = {|
   +$fragmentRefs: AdditionalInfo_data$ref,
   +$refType: SingleMap_hotel$ref,
 |};
+export type SingleMap_hotel$data = SingleMap_hotel;
+export type SingleMap_hotel$key = {
+  +$data?: SingleMap_hotel$data,
+  +$fragmentRefs: SingleMap_hotel$ref,
+};
 */
 
 

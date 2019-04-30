@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type HotelCityItem_data$ref: FragmentReference;
+declare export opaque type HotelCityItem_data$fragmentType: HotelCityItem_data$ref;
 export type HotelCityItem_data = {|
   +id: string,
   +name: ?string,
@@ -19,6 +20,11 @@ export type HotelCityItem_data = {|
   |},
   +$refType: HotelCityItem_data$ref,
 |};
+export type HotelCityItem_data$data = HotelCityItem_data;
+export type HotelCityItem_data$key = {
+  +$data?: HotelCityItem_data$data,
+  +$fragmentRefs: HotelCityItem_data$ref,
+};
 */
 
 

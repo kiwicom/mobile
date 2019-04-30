@@ -10,10 +10,16 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FastTrackModal_data$ref: FragmentReference;
+declare export opaque type FastTrackModal_data$fragmentType: FastTrackModal_data$ref;
 export type FastTrackModal_data = {|
   +url: ?string,
   +$refType: FastTrackModal_data$ref,
 |};
+export type FastTrackModal_data$data = FastTrackModal_data;
+export type FastTrackModal_data$key = {
+  +$data?: FastTrackModal_data$data,
+  +$fragmentRefs: FastTrackModal_data$ref,
+};
 */
 
 

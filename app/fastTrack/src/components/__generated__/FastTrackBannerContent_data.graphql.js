@@ -11,6 +11,7 @@ import type { ReaderFragment } from 'relay-runtime';
 type FastTrackModal_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FastTrackBannerContent_data$ref: FragmentReference;
+declare export opaque type FastTrackBannerContent_data$fragmentType: FastTrackBannerContent_data$ref;
 export type FastTrackBannerContent_data = {|
   +fastTrack: ?$ReadOnlyArray<?{|
     +attachments: ?$ReadOnlyArray<?{|
@@ -19,6 +20,11 @@ export type FastTrackBannerContent_data = {|
   |}>,
   +$refType: FastTrackBannerContent_data$ref,
 |};
+export type FastTrackBannerContent_data$data = FastTrackBannerContent_data;
+export type FastTrackBannerContent_data$key = {
+  +$data?: FastTrackBannerContent_data$data,
+  +$fragmentRefs: FastTrackBannerContent_data$ref,
+};
 */
 
 

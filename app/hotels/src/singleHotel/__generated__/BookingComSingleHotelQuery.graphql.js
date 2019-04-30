@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 777fdd9a29f0e36f9d8081e6f24f0e12
+ * @relayHash f98c8bcc2e10372718aef97244d7d891
  */
 
 /* eslint-disable */
@@ -243,14 +243,12 @@ v1 = [
   {
     "kind": "Variable",
     "name": "options",
-    "variableName": "options",
-    "type": "AvailableHotelOptionsInput"
+    "variableName": "options"
   },
   {
     "kind": "Variable",
     "name": "search",
-    "variableName": "search",
-    "type": "AvailableHotelSearchInput!"
+    "variableName": "search"
   }
 ],
 v2 = {
@@ -508,6 +506,18 @@ return {
                 "name": "availableRoomsCount",
                 "args": null,
                 "storageKey": null
+              },
+              {
+                "kind": "ClientExtension",
+                "selections": [
+                  {
+                    "kind": "ScalarField",
+                    "alias": null,
+                    "name": "selectedCount",
+                    "args": null,
+                    "storageKey": null
+                  }
+                ]
               }
             ]
           },

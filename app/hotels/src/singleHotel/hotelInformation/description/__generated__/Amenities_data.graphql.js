@@ -10,6 +10,7 @@
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Amenities_data$ref: FragmentReference;
+declare export opaque type Amenities_data$fragmentType: Amenities_data$ref;
 export type Amenities_data = {|
   +amenities: ?$ReadOnlyArray<?{|
     +id: string,
@@ -17,6 +18,11 @@ export type Amenities_data = {|
   |}>,
   +$refType: Amenities_data$ref,
 |};
+export type Amenities_data$data = Amenities_data;
+export type Amenities_data$key = {
+  +$data?: Amenities_data$data,
+  +$fragmentRefs: Amenities_data$ref,
+};
 */
 
 

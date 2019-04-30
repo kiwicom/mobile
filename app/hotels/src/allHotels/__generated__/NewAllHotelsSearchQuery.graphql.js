@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash c442886901e2b674104c79794fa806ee
+ * @relayHash 16fb8a31ba6b0e8756fab10a8a58939a
  */
 
 /* eslint-disable */
@@ -266,32 +266,27 @@ v1 = [
   {
     "kind": "Variable",
     "name": "after",
-    "variableName": "after",
-    "type": "String"
+    "variableName": "after"
   },
   {
     "kind": "Variable",
     "name": "filter",
-    "variableName": "filter",
-    "type": "HotelsFilterInput"
+    "variableName": "filter"
   },
   {
     "kind": "Variable",
     "name": "first",
-    "variableName": "first",
-    "type": "Int"
+    "variableName": "first"
   },
   {
     "kind": "Variable",
     "name": "options",
-    "variableName": "options",
-    "type": "AvailableHotelOptionsInput"
+    "variableName": "options"
   },
   {
     "kind": "Variable",
     "name": "search",
-    "variableName": "search",
-    "type": "HotelsSearchInput!"
+    "variableName": "search"
   }
 ],
 v2 = {

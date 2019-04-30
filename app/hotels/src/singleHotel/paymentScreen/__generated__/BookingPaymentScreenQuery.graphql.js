@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 70da69fac70177dfbbfab3a6f4d2277f
+ * @relayHash f9e20fd2f2162251dd50c0a4d7ac1524
  */
 
 /* eslint-disable */
@@ -65,14 +65,12 @@ v1 = [
       {
         "kind": "Variable",
         "name": "hotelId",
-        "variableName": "hotelId",
-        "type": "ID"
+        "variableName": "hotelId"
       },
       {
         "kind": "Variable",
         "name": "roomConfig",
-        "variableName": "roomConfig",
-        "type": "[RoomConfigInput]"
+        "variableName": "roomConfig"
       }
     ],
     "concreteType": "HotelPaymentUrls",
