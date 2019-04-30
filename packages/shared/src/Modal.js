@@ -7,18 +7,18 @@ import type { StylePropType } from '../index';
 
 // props not exact - additional properties allowed
 type Props = {|
-  children: React.Node,
-  style: StylePropType,
-  isVisible: boolean,
+  +children: React.Node,
+  +style: StylePropType,
+  +isVisible: boolean,
 
   // This function will be invoked when for example user presses back HW
   // button on Android. You should call here function to close this window.
-  onRequestClose: () => void,
+  +onRequestClose: () => void,
 
-  backdropColor?: string,
-  backdropOpacity?: number,
-  onBackdropPress?: () => void,
-  testID?: string,
+  +backdropColor?: string,
+  +backdropOpacity?: number,
+  +onBackdropPress?: () => void,
+  +testID?: string,
 |};
 
 /**
