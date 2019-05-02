@@ -7,8 +7,8 @@ import {
   ButtonPopup,
   Slider,
   StyleSheet,
-  SliderLabels,
   Translation,
+  AdaptableBadge,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
@@ -27,6 +27,14 @@ type State = {|
 const SLIDER_SHIFT = 5;
 const convertScoreToSliderValue = (minScore: number | null) => {
   return minScore ? minScore - SLIDER_SHIFT : 0;
+};
+
+const labels = {
+  '0': <Translation id="hotels_search.filter.score_filter.rating.any" />,
+  '1': <Translation id="hotels_search.filter.score_filter.rating.6" />,
+  '2': <Translation id="hotels_search.filter.score_filter.rating.7" />,
+  '3': <Translation id="hotels_search.filter.score_filter.rating.8" />,
+  '4': <Translation id="hotels_search.filter.score_filter.rating.9" />,
 };
 
 export default class ScorePopup extends React.Component<Props, State> {
@@ -52,20 +60,6 @@ export default class ScorePopup extends React.Component<Props, State> {
     return value ? value + SLIDER_SHIFT : null;
   };
 
-  renderLabel = (sliderValue: number) => {
-    const labels = [
-      <Translation
-        key="any"
-        id="hotels_search.filter.score_filter.rating.any"
-      />,
-      <Translation key="6" id="hotels_search.filter.score_filter.rating.6" />,
-      <Translation key="7" id="hotels_search.filter.score_filter.rating.7" />,
-      <Translation key="8" id="hotels_search.filter.score_filter.rating.8" />,
-      <Translation key="9" id="hotels_search.filter.score_filter.rating.9" />,
-    ];
-    return labels[sliderValue];
-  };
-
   render() {
     return (
       <SafeAreaView>
@@ -77,15 +71,17 @@ export default class ScorePopup extends React.Component<Props, State> {
           onClose={this.props.onClose}
           isVisible={this.props.isVisible}
         >
-          <Text style={styles.title}>
-            <Translation id="hotels_search.filter.score_filter.rating" />
-          </Text>
-          <SliderLabels
-            max={4}
-            min={0}
-            startLabel={this.renderLabel(this.state.sliderValue)}
-            startValue={this.state.sliderValue}
-          />
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>
+              <Translation id="hotels_search.filter.score_filter.rating" />
+            </Text>
+            <AdaptableBadge
+              translation={labels[this.state.sliderValue]}
+              type="info"
+              circled={true}
+              style={styles.badge}
+            />
+          </View>
           <View style={styles.sliderContainer}>
             <Slider
               startValue={this.state.sliderValue}
@@ -93,6 +89,8 @@ export default class ScorePopup extends React.Component<Props, State> {
               max={4}
               onChange={this.handleScoreChanged}
               snapped={true}
+              startLabel={labels[0]}
+              endLabel={labels[4]}
             />
           </View>
         </ButtonPopup>
@@ -106,10 +104,17 @@ const styles = StyleSheet.create({
     color: defaultTokens.colorHeading,
     fontSize: 16,
     fontWeight: '500',
-    paddingTop: 15,
     paddingBottom: 10,
+    marginEnd: 8,
   },
   sliderContainer: {
     paddingHorizontal: 10,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  badge: {
+    paddingHorizontal: 7,
   },
 });
