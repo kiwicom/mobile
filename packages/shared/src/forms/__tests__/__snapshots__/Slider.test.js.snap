@@ -21,47 +21,11 @@ exports[`Slider renders 1`] = `
     enabledTwo={true}
     markerOffsetX={0}
     markerOffsetY={0}
-    markerStyle={
-      Object {
-        "backgroundColor": "#fff",
-        "borderColor": "#bac7d5",
-        "borderRadius": 15,
-        "borderWidth": 1,
-        "height": 30,
-        "margin": 3,
-        "shadowColor": "#171b1e",
-        "shadowOffset": Object {
-          "height": 2,
-          "width": 0,
-        },
-        "shadowOpacity": 0.1,
-        "shadowRadius": 4,
-        "width": 30,
-      }
-    }
     max={50}
     min={1}
     onValuesChange={[Function]}
     onValuesChangeFinish={[Function]}
     onValuesChangeStart={[Function]}
-    pressedMarkerStyle={
-      Object {
-        "backgroundColor": "#fff",
-        "borderColor": "#bac7d5",
-        "borderRadius": 15,
-        "borderWidth": 1,
-        "height": 30,
-        "margin": 3,
-        "shadowColor": "#171b1e",
-        "shadowOffset": Object {
-          "height": 2,
-          "width": 0,
-        },
-        "shadowOpacity": 0.1,
-        "shadowRadius": 4,
-        "width": 30,
-      }
-    }
     selectedStyle={
       Object {
         "backgroundColor": "#0176D2",
@@ -120,47 +84,11 @@ exports[`Slider renders correctly with all values equal 1`] = `
     enabledTwo={false}
     markerOffsetX={0}
     markerOffsetY={0}
-    markerStyle={
-      Object {
-        "backgroundColor": "#fff",
-        "borderColor": "#bac7d5",
-        "borderRadius": 15,
-        "borderWidth": 1,
-        "height": 30,
-        "margin": 3,
-        "shadowColor": "#171b1e",
-        "shadowOffset": Object {
-          "height": 2,
-          "width": 0,
-        },
-        "shadowOpacity": 0.1,
-        "shadowRadius": 4,
-        "width": 30,
-      }
-    }
     max={501}
     min={499}
     onValuesChange={[Function]}
     onValuesChangeFinish={[Function]}
     onValuesChangeStart={[Function]}
-    pressedMarkerStyle={
-      Object {
-        "backgroundColor": "#fff",
-        "borderColor": "#bac7d5",
-        "borderRadius": 15,
-        "borderWidth": 1,
-        "height": 30,
-        "margin": 3,
-        "shadowColor": "#171b1e",
-        "shadowOffset": Object {
-          "height": 2,
-          "width": 0,
-        },
-        "shadowOpacity": 0.1,
-        "shadowRadius": 4,
-        "width": 30,
-      }
-    }
     selectedStyle={
       Object {
         "backgroundColor": "#0176D2",
@@ -219,47 +147,11 @@ exports[`Slider renders with endValue undefined 1`] = `
     enabledTwo={true}
     markerOffsetX={0}
     markerOffsetY={0}
-    markerStyle={
-      Object {
-        "backgroundColor": "#fff",
-        "borderColor": "#bac7d5",
-        "borderRadius": 15,
-        "borderWidth": 1,
-        "height": 30,
-        "margin": 3,
-        "shadowColor": "#171b1e",
-        "shadowOffset": Object {
-          "height": 2,
-          "width": 0,
-        },
-        "shadowOpacity": 0.1,
-        "shadowRadius": 4,
-        "width": 30,
-      }
-    }
     max={50}
     min={1}
     onValuesChange={[Function]}
     onValuesChangeFinish={[Function]}
     onValuesChangeStart={[Function]}
-    pressedMarkerStyle={
-      Object {
-        "backgroundColor": "#fff",
-        "borderColor": "#bac7d5",
-        "borderRadius": 15,
-        "borderWidth": 1,
-        "height": 30,
-        "margin": 3,
-        "shadowColor": "#171b1e",
-        "shadowOffset": Object {
-          "height": 2,
-          "width": 0,
-        },
-        "shadowOpacity": 0.1,
-        "shadowRadius": 4,
-        "width": 30,
-      }
-    }
     selectedStyle={
       Object {
         "backgroundColor": "#0176D2",

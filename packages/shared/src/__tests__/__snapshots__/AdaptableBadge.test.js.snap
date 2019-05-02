@@ -1,5 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`renders correctly with circled true 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignSelf": "flex-start",
+        "backgroundColor": "#7f91a8",
+        "borderRadius": 2,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "paddingHorizontal": 5,
+        "paddingVertical": 2,
+      },
+      undefined,
+      false,
+      Object {
+        "borderRadius": 11,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+        },
+        undefined,
+      ]
+    }
+  >
+    <Translation
+      passThrough="circled"
+    />
+  </Text>
+</View>
+`;
+
+exports[`renders correctly with type info 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignSelf": "flex-start",
+        "backgroundColor": "#7f91a8",
+        "borderRadius": 2,
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "paddingHorizontal": 5,
+        "paddingVertical": 2,
+      },
+      undefined,
+      Object {
+        "backgroundColor": "#0176D2",
+      },
+      false,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+        },
+        undefined,
+      ]
+    }
+  >
+    <Translation
+      passThrough="type info"
+    />
+  </Text>
+</View>
+`;
+
 exports[`renders text 1`] = `
 <View
   style={
@@ -14,6 +90,8 @@ exports[`renders text 1`] = `
         "paddingVertical": 2,
       },
       undefined,
+      false,
+      false,
     ]
   }
 >
@@ -50,6 +128,8 @@ exports[`renders text with color 1`] = `
       Object {
         "backgroundColor": "red",
       },
+      false,
+      false,
     ]
   }
 >
@@ -84,6 +164,8 @@ exports[`renders very long texts 1`] = `
         "paddingVertical": 2,
       },
       undefined,
+      false,
+      false,
     ]
   }
 >

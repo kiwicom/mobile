@@ -13,6 +13,8 @@ type Props = {|
   +style?: StylePropType,
   +textStyle?: StylePropType,
   +icon?: React.Node,
+  +type?: 'neutral' | 'info',
+  +circled?: boolean,
 |};
 
 /**
@@ -31,14 +33,21 @@ type Props = {|
  */
 export default function AdaptableBadge(props: Props) {
   return (
-    <View style={[style.container, props.style]}>
+    <View
+      style={[
+        styles.container,
+        props.style,
+        props.type === 'info' && styles.info,
+        props.circled === true && styles.circled,
+      ]}
+    >
       {props.icon}
-      <Text style={[style.text, props.textStyle]}>{props.translation}</Text>
+      <Text style={[styles.text, props.textStyle]}>{props.translation}</Text>
     </View>
   );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     alignSelf: 'flex-start',
     borderRadius: 2,
@@ -50,5 +59,11 @@ const style = StyleSheet.create({
   },
   text: {
     color: defaultTokens.paletteWhite,
+  },
+  info: {
+    backgroundColor: defaultTokens.paletteBlueNormal,
+  },
+  circled: {
+    borderRadius: 11,
   },
 });
