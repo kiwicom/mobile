@@ -13,6 +13,7 @@ type Props = {|
   +color?: string,
   +style?: StylePropType,
   +fontSize?: number,
+  +testID?: string,
 |};
 
 export default class Icon extends React.Component<Props> {
