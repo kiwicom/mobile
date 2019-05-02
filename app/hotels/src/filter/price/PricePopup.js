@@ -7,9 +7,10 @@ import {
   ButtonPopup,
   Slider,
   StyleSheet,
-  SliderLabels,
   Price,
   Translation,
+  AdaptableBadge,
+  TranslationFragment,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
@@ -77,23 +78,24 @@ export default class PricePopup extends React.Component<Props, State> {
           onClose={this.props.onClose}
           isVisible={this.props.isVisible}
         >
-          <Text style={styles.title}>
-            <Translation id="hotels_search.filter.price_popup.title" />
-            <Translation passThrough=" " />
-            <Text style={styles.subtitle}>
-              <Translation id="hotels_search.filter.price_popup.subtitle" />
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>
+              <Translation id="hotels_search.filter.price_popup.title" />
+              <Translation passThrough=" " />
             </Text>
-          </Text>
-          <SliderLabels
-            max={max}
-            min={min}
-            startLabel={
-              <Price amount={start * daysOfStay} currency={currency} />
-            }
-            startValue={start}
-            endLabel={<Price amount={end * daysOfStay} currency={currency} />}
-            endValue={end}
-          />
+            <AdaptableBadge
+              translation={
+                <TranslationFragment>
+                  <Price amount={start * daysOfStay} currency={currency} />
+                  <Translation passThrough=" - " />
+                  <Price amount={end * daysOfStay} currency={currency} />
+                </TranslationFragment>
+              }
+              type="info"
+              circled={true}
+              style={styles.priceBadge}
+            />
+          </View>
           <View style={styles.sliderContainer}>
             <Slider
               startValue={start}
@@ -101,6 +103,10 @@ export default class PricePopup extends React.Component<Props, State> {
               min={min}
               max={max}
               onChange={this.handlePriceChanged}
+              startLabel={
+                <Price amount={min * daysOfStay} currency={currency} />
+              }
+              endLabel={<Price amount={max * daysOfStay} currency={currency} />}
             />
           </View>
         </ButtonPopup>
@@ -111,18 +117,17 @@ export default class PricePopup extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
   title: {
-    color: defaultTokens.colorHeading,
-    fontSize: 16,
-    fontWeight: '500',
-    paddingTop: 15,
+    color: defaultTokens.paletteInkNormal,
     paddingBottom: 10,
-  },
-  subtitle: {
-    fontSize: 14,
-    fontWeight: '200',
-    color: defaultTokens.colorTextSecondary,
+    lineHeight: 19,
   },
   sliderContainer: {
     paddingHorizontal: 10,
+  },
+  titleContainer: {
+    flexDirection: 'row',
+  },
+  priceBadge: {
+    paddingHorizontal: 7,
   },
 });

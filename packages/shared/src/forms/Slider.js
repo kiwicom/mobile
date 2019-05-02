@@ -5,8 +5,12 @@ import { View } from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import SliderMarker from './SliderMarker';
 import { type OnLayout } from '../../types/Events';
 import StyleSheet from '../PlatformStyleSheet';
+import { type TranslationType } from '../../types/Translation';
+import Price from '../Price';
+import Text from '../Text';
 
 type Props = {|
   +onChange: (number[]) => void,
@@ -17,6 +21,8 @@ type Props = {|
   +step?: number,
   +snapped?: boolean,
   +style?: Object,
+  +startLabel?: TranslationType | React.Element<typeof Price>,
+  +endLabel?: TranslationType | React.Element<typeof Price>,
 |};
 
 type State = {|
@@ -66,6 +72,9 @@ export default class Slider extends React.Component<Props, State> {
       values.push(this.props.endValue);
     }
 
+    const showLabels =
+      this.props.startLabel != null || this.props.endLabel != null;
+
     return (
       <View onLayout={this.onLayout} style={styles.sliderWrapper}>
         <MultiSlider
@@ -84,13 +93,22 @@ export default class Slider extends React.Component<Props, State> {
           }}
           unselectedStyle={styles.unselected}
           trackStyle={styles.track}
-          markerStyle={styles.marker}
-          pressedMarkerStyle={styles.marker}
           containerStyle={[styles.container, this.props.style]}
           onValuesChange={this.props.onChange}
           enabledOne={enabledOne}
           enabledTwo={enabledTwo}
+          customMarker={SliderMarker}
         />
+        {showLabels && (
+          <View style={styles.labelsContainer} testID="labelsContainer">
+            {this.props.startLabel != null && (
+              <Text style={styles.label}>{this.props.startLabel}</Text>
+            )}
+            {this.props.endLabel != null && (
+              <Text style={styles.label}>{this.props.endLabel}</Text>
+            )}
+          </View>
+        )}
       </View>
     );
   }
@@ -107,26 +125,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 4,
   },
-  marker: {
-    height: 30,
-    width: 30,
-    borderRadius: 15,
-    backgroundColor: defaultTokens.paletteWhite,
-    borderWidth: 1,
-    borderColor: defaultTokens.paletteInkLighter,
-    shadowColor: defaultTokens.paletteInkDark,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    margin: 3, // necessary to see the Android elevation properly
-    android: {
-      elevation: 1,
-    },
-  },
   container: {
     justifyContent: 'center',
+  },
+  labelsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: -10,
+  },
+  label: {
+    color: defaultTokens.colorTextSecondary,
+    fontSize: parseInt(defaultTokens.fontSizeTextSmall, 10),
   },
 });

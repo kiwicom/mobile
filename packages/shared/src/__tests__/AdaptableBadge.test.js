@@ -34,3 +34,21 @@ it('renders very long texts', () => {
     />,
   );
 });
+
+it('renders correctly with type info', () => {
+  PlaygroundRenderer.render(
+    <AdaptableBadge
+      translation={<Translation passThrough="type info" />}
+      type="info"
+    />,
+  );
+});
+
+it('renders correctly with circled true', () => {
+  PlaygroundRenderer.render(
+    <AdaptableBadge
+      translation={<Translation passThrough="circled" />}
+      circled={true}
+    />,
+  );
+});
