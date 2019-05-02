@@ -17,6 +17,7 @@ import MapHeaderButton from './allHotels/MapHeaderButton';
 import DateButton from './DateButton';
 
 const dateFormat = {
+  weekday: 'short',
   day: '2-digit',
   month: 'short',
 };
@@ -43,7 +44,7 @@ const hotelsNavigationOptions = ({
   setCheckoutDate,
 }: Props) => ({
   headerStyle: {
-    height: 64,
+    height: 78,
     marginTop: Platform.select({
       ios: 0,
       android: StatusBar.currentHeight,
@@ -68,10 +69,9 @@ const hotelsNavigationOptions = ({
             date={checkin}
             onDateChange={setCheckinDate}
           />
-
-          <Translation passThrough=" " />
-          <Translation id="hotels_search.header.to" />
-          <Translation passThrough=" " />
+          <Text style={styles.toText}>
+            <Translation id="hotels_search.header.to" />
+          </Text>
           <DatePicker
             customButton={
               <DateButton>
@@ -119,6 +119,11 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  toText: {
+    marginHorizontal: 6,
+    fontSize: parseInt(defaultTokens.fontSizeTextSmall, 10),
   },
 });
 
