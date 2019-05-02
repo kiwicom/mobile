@@ -44,6 +44,15 @@ const FilterButton = ({ title, isActive, onPress, icon }: Props) => {
         >
           {title}
         </Text>
+        {isActive && (
+          <View style={styleSheet.closeWrapper} testID="closeWrapper">
+            <Icon
+              name="close"
+              size="small"
+              color={defaultTokens.paletteWhite}
+            />
+          </View>
+        )}
       </View>
     </Button>
   );
@@ -51,26 +60,22 @@ const FilterButton = ({ title, isActive, onPress, icon }: Props) => {
 
 const styleSheet = StyleSheet.create({
   activeButtonGroup: {
-    backgroundColor: defaultTokens.paletteInkNormal,
+    backgroundColor: defaultTokens.backgroundButtonInfo,
   },
   buttonGroup: {
-    backgroundColor: defaultTokens.paletteCloudLight,
+    backgroundColor: defaultTokens.paletteCloudNormal,
     marginEnd: 8,
-    borderColor: defaultTokens.paletteInkLighter,
-    borderWidth: StyleSheet.hairlineWidth,
-    height: 30,
-    borderRadius: 2,
-    paddingVertical: 6,
-    paddingHorizontal: 8,
+    height: 32,
+    borderRadius: parseInt(defaultTokens.borderRadiusSmall, 10),
+    paddingHorizontal: 10,
   },
   activeButtonText: {
-    color: defaultTokens.paletteCloudNormal,
+    color: defaultTokens.paletteWhite,
   },
   buttonText: {
-    fontWeight: '500',
     color: defaultTokens.colorTextPrimary,
-    fontSize: 12,
-    lineHeight: 15,
+    fontSize: parseInt(defaultTokens.fontSizeTextSmall, 10),
+    lineHeight: 17,
   },
   icon: {
     paddingEnd: 5,
@@ -78,6 +83,17 @@ const styleSheet = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  closeWrapper: {
+    backgroundColor: defaultTokens.backgroundButtonInfoActive,
+    width: 32,
+    height: 32,
+    borderTopEndRadius: parseInt(defaultTokens.borderRadiusSmall, 10),
+    borderBottomEndRadius: parseInt(defaultTokens.borderRadiusSmall, 10),
+    marginEnd: -10,
+    marginStart: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
