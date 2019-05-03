@@ -15,27 +15,15 @@ type Props = {|
   +title: React.Element<(any) => TranslationType> | TranslationType,
   +isActive: boolean,
   +onPress: () => void,
-  +icon?: React.Element<typeof Icon>,
 |};
 
-const FilterButton = ({ title, isActive, onPress, icon }: Props) => {
-  const filterIcon =
-    icon == null
-      ? null
-      : React.cloneElement(icon, {
-          size: 'small',
-          color: isActive
-            ? defaultTokens.paletteCloudNormal
-            : defaultTokens.colorIconPrimary,
-        });
-
+const FilterButton = ({ title, isActive, onPress }: Props) => {
   return (
     <Button
       onPress={onPress}
       style={[styleSheet.buttonGroup, isActive && styleSheet.activeButtonGroup]}
     >
       <View style={styleSheet.row}>
-        <View style={styleSheet.icon}>{filterIcon}</View>
         <Text
           style={[
             styleSheet.buttonText,
@@ -76,9 +64,6 @@ const styleSheet = StyleSheet.create({
     color: defaultTokens.colorTextPrimary,
     fontSize: parseInt(defaultTokens.fontSizeTextSmall, 10),
     lineHeight: 17,
-  },
-  icon: {
-    paddingEnd: 5,
   },
   row: {
     flexDirection: 'row',

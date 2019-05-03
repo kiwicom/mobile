@@ -3,12 +3,6 @@
 exports[`StarsFilter renders 1`] = `
 <React.Fragment>
   <FilterButton
-    icon={
-      <Icon
-        color="#7f91a8"
-        name="star-full"
-      />
-    }
     isActive={false}
     onPress={[Function]}
     title={

@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import {
-  Icon,
   Translation,
   TranslationFragment,
   type TranslationType,
@@ -88,7 +87,6 @@ export default class StarsFilter extends React.Component<Props, State> {
       <React.Fragment>
         <FilterButton
           title={this.getTitle(this.props.stars)}
-          icon={<Icon name="star-full" />}
           isActive={this.props.isActive}
           onPress={this.filterButtonClicked}
         />
