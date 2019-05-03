@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Icon, Logger, Translation } from '@kiwicom/mobile-shared';
+import { Logger, Translation } from '@kiwicom/mobile-shared';
 
 import FilterButton from '../FilterButton';
 import type {
@@ -70,7 +70,6 @@ export default class OrderFilter extends React.Component<Props, State> {
           title={this.getTitle()}
           isActive={this.props.isActive}
           onPress={this.filterButtonClicked}
-          icon={<Icon name="sort" />}
         />
         <OrderPopup
           isVisible={this.state.isPopupOpen}

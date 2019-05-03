@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { Icon, Logger } from '@kiwicom/mobile-shared';
+import { Logger } from '@kiwicom/mobile-shared';
 import { DateUtils } from '@kiwicom/mobile-localization';
 
 import PricePopup from './PricePopup';
@@ -81,7 +81,6 @@ const PriceFilter = (props: Props) => {
             daysOfStay={daysOfStay}
           />
         }
-        icon={<Icon name="money" />}
         isActive={isActive}
         onPress={filterButtonClicked}
       />
