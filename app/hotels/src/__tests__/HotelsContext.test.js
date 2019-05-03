@@ -20,12 +20,14 @@ const props = {
   checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
   checkout: DateFormatter(DateUtils().addDays(37)).formatForMachine(),
 };
-const getInstance = () =>
+const getInstance = (additionalProps = {}) =>
   renderer
     .create(
       <>
         {/*  $FlowExpectedError: Just passing props needed for test to pass */}
-        <HotelsContext.Provider {...props}>{null}</HotelsContext.Provider>
+        <HotelsContext.Provider {...props} {...additionalProps}>
+          {null}
+        </HotelsContext.Provider>
       </>,
     )
     .getInstance();
@@ -34,6 +36,68 @@ const getInstance = () =>
 const formatForMachine = (date: Date) => DateFormatter(date).formatForMachine();
 
 describe('HotelsContext', () => {
+  describe('constructor', () => {
+    it('validates correctly when there is no error', () => {
+      const wrapper = getInstance();
+      expect(wrapper.state.errors).toEqual({});
+    });
+
+    it('gives error for cityId -1', () => {
+      const wrapper1 = getInstance({ cityId: '-1' });
+      const wrapper2 = getInstance({ cityId: -1 });
+      expect(wrapper1.state.errors).toEqual({ invalidCityId: true });
+      expect(wrapper2.state.errors).toEqual({ invalidCityId: true });
+    });
+
+    it('gives error for checkin date before today', () => {
+      const wrapper = getInstance({
+        checkin: formatForMachine(DateUtils().addDays(-1)),
+        checkout: formatForMachine(DateUtils().addDays(1)),
+      });
+      expect(wrapper.state.errors).toEqual({ beforeToday: true });
+    });
+
+    it('gives error for checkout too far in the future', () => {
+      const wrapper = getInstance({
+        checkin: formatForMachine(DateUtils().addDays(360)),
+        checkout: formatForMachine(DateUtils().addDays(366)),
+      });
+      expect(wrapper.state.errors).toEqual({ tooFarFuture: true });
+    });
+
+    it('gives error for invalid interval', () => {
+      const wrapper1 = getInstance({
+        checkin: formatForMachine(DateUtils().addDays(3)),
+        checkout: formatForMachine(DateUtils().addDays(1)),
+      });
+      const wrapper2 = getInstance({
+        checkin: formatForMachine(DateUtils().addDays(1)),
+        checkout: formatForMachine(DateUtils().addDays(1)),
+      });
+      const wrapper3 = getInstance({
+        checkin: formatForMachine(DateUtils().addDays(1)),
+        checkout: formatForMachine(DateUtils().addDays(32)),
+      });
+
+      expect(wrapper1.state.errors).toEqual({
+        interval: -2,
+      });
+      expect(wrapper2.state.errors).toEqual({
+        interval: 0,
+      });
+      expect(wrapper3.state.errors).toEqual({
+        interval: 31,
+      });
+    });
+
+    it('gives error for missing dates', () => {
+      const wrapper = getInstance({
+        checkin: null,
+      });
+      expect(wrapper.state.errors).toEqual({ missingDates: true });
+    });
+  });
+
   describe('setCheckinDate', () => {
     it('should set checkinDate', () => {
       const wrapper = getInstance();
