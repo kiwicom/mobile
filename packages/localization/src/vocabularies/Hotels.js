@@ -66,6 +66,16 @@ const HotelsVocabulary = {
     '__distance__km from center',
   'hotels_search.all_hotels_search_list.show_map': 'Show map',
   'hotels_search.all_hotels_search_list.show_list': 'Show list',
+  'hotels_search.new_all_hotels.interval_error':
+    'Time of stay must be between 1 and 30 days. You chose __interval__ days.',
+  'hotels_search.new_all_hotels.checkin_before_today':
+    'Checkin cannot be before today',
+  'hotels_search.new_all_hotels.checkout_too_far_in_future':
+    'Checkout cannot be more than 365 days into the future',
+  'hotels_search.new_all_hotels.invalid_cityid':
+    'There seems to be something wrong with the chosen city. Please go back and try again',
+  'hotels_search.new_all_hotels.missing_dates':
+    'There seems to be something wrong with the chosen dates. Please go back and try again',
 
   'single_hotel.bedding_info.guests': '__numberOfGuests__ Guests',
   'single_hotel.bedding_info.or': ' or ',

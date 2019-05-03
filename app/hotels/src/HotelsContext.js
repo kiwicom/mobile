@@ -18,6 +18,7 @@ const defaultState = {
   latitude: null,
   longitude: null,
   paymentLink: null,
+  errors: null,
   currentSearchStats: {
     priceMax: 10000,
     priceMin: 0,
@@ -83,6 +84,7 @@ type State = {|
   +getGuestCount: () => number,
   +setHotelId: (hotelId: string) => void,
   +closeHotels: () => void,
+  +errors: ValidationError | null,
   +actions: {|
     +setCurrentSearchStats: ({|
       priceMax: number,
@@ -106,22 +108,67 @@ export const getAsUtcDate = (input: ?string): Date | null => {
   return new Date(Date.UTC(year, month - 1, date));
 };
 
+type SearchInput = {|
+  +checkin: Date | null,
+  +checkout: Date | null,
+  +cityId: string | null,
+|};
+
+type ValidationError = {|
+  interval?: number,
+  beforeToday?: boolean,
+  tooFarFuture?: boolean,
+  invalidCityId?: boolean,
+  missingDates?: boolean,
+|};
+
+const validateInput = ({ checkin, checkout, cityId }: SearchInput) => {
+  const validationError = {};
+  if (checkin === null || checkout === null) {
+    return {
+      missingDates: true,
+    };
+  }
+  const diffInDays = DateUtils.diffInDays(checkout, checkin);
+  const isBeforeToday = DateUtils.diffInDays(checkin, new Date()) < 0;
+  const cityIdError = cityId == '-1'; // Intenionally checking string or number
+  const tooFarFuture = DateUtils.diffInDays(checkout, new Date()) > 365;
+
+  if (diffInDays > 30 || diffInDays <= 0) {
+    validationError.interval = diffInDays;
+  }
+  if (isBeforeToday) {
+    validationError.beforeToday = true;
+  }
+  if (cityIdError) {
+    validationError.invalidCityId = true;
+  }
+  if (tooFarFuture) {
+    validationError.tooFarFuture = true;
+  }
+  return validationError;
+};
+
 class Provider extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
+    const checkin = getAsUtcDate(props.checkin);
+    const checkout = getAsUtcDate(props.checkout);
+    const cityId = props.cityId ?? null;
+    const errors = validateInput({ checkin, checkout, cityId });
     this.state = {
       hotelId: props.hotelId ?? '',
       apiProvider: props.apiProvider,
       version: props.version,
-      cityId: props.cityId || null,
-      checkin: getAsUtcDate(props.checkin),
-      checkout: getAsUtcDate(props.checkout),
-      roomsConfiguration: props.roomsConfiguration || null,
+      cityId,
+      checkin,
+      checkout,
+      roomsConfiguration: props.roomsConfiguration ?? null,
       currency: props.currency,
-      cityName: props.cityName || null,
-      latitude: props.latitude || null,
-      longitude: props.longitude || null,
+      cityName: props.cityName ?? null,
+      latitude: props.latitude ?? null,
+      longitude: props.longitude ?? null,
       paymentLink: null,
       currentSearchStats: {
         priceMax: 10000,
@@ -136,6 +183,7 @@ class Provider extends React.Component<Props, State> {
         setCheckinDate: this.setCheckinDate,
         setCheckoutDate: this.setCheckoutDate,
       },
+      errors: { ...errors },
     };
   }
 
@@ -154,41 +202,97 @@ class Provider extends React.Component<Props, State> {
   setCheckinDate = (checkin: Date) => {
     this.setState(state => {
       const checkout = state.checkout ?? new Date();
+      const cityId = state.cityId;
       const diffInDays = DateUtils.diffInDays(checkout, checkin);
 
       if (diffInDays > 30) {
-        return {
+        const newState = {
           checkin,
           checkout: DateUtils(checkin).addDays(30),
         };
+        return {
+          ...newState,
+          errors: {
+            ...validateInput({
+              checkin: newState.checkin,
+              checkout: newState.checkout,
+              cityId,
+            }),
+          },
+        };
       }
       if (diffInDays <= 0) {
-        return {
+        const newState = {
           checkin,
           checkout: DateUtils(checkin).addDays(1),
         };
+        return {
+          ...newState,
+          errors: {
+            ...validateInput({
+              checkin: newState.checkin,
+              checkout: newState.checkout,
+              cityId,
+            }),
+          },
+        };
       }
-      return { checkin };
+      return {
+        checkin,
+        errors: {
+          ...validateInput({ checkin, checkout, cityId }),
+        },
+      };
     });
   };
 
   setCheckoutDate = (checkout: Date) => {
     this.setState(state => {
       const checkin = state.checkin ?? new Date();
+      const cityId = state.cityId;
       const diffInDays = DateUtils.diffInDays(checkout, checkin);
       if (diffInDays > 30) {
-        return {
+        const newState = {
           checkout,
           checkin: DateUtils(checkout).addDays(-30),
         };
+        return {
+          ...newState,
+          errors: {
+            ...validateInput({
+              checkin: newState.checkin,
+              checkout: newState.checkout,
+              cityId,
+            }),
+          },
+        };
       }
       if (diffInDays <= 0) {
-        return {
+        const newState = {
           checkout,
           checkin: DateUtils(checkout).addDays(-1),
         };
+        return {
+          ...newState,
+          errors: {
+            ...validateInput({
+              checkin: newState.checkin,
+              checkout: newState.checkout,
+              cityId,
+            }),
+          },
+        };
       }
-      return { checkout };
+      return {
+        checkout,
+        errors: {
+          ...validateInput({
+            checkin: state.checkin,
+            checkout,
+            cityId,
+          }),
+        },
+      };
     });
   };
 
