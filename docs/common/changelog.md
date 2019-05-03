@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v37
+
+- Hotel results re design - MOBILE-4064
+
 ### v36
 
 - Refactor slider labels -> hope this solves MOBILE-3932
