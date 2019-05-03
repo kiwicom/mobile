@@ -14,7 +14,6 @@ const HotelsVocabulary = {
   'hotels_search.all_hotels_search_list.no_hotels_found': 'No hotels found.',
   'hotels_search.all_hotels_search.date_error':
     'Oops, there seems to be something wrong with the chosen dates',
-  'hotels_search.date_picker.select_date': 'Select date',
   'hotels_search.filter.free_cancellation': 'Free cancellation',
   'hotels_search.filter.hotel_facilities_filter.airport_shuttle':
     'Airport shuttle',
@@ -36,7 +35,6 @@ const HotelsVocabulary = {
   'hotels_search.filter.price_filter.price': 'Price',
   'hotels_search.filter.price_popup.save': 'Save',
   'hotels_search.filter.price_popup.title': 'Price range',
-  'hotels_search.filter.price_popup.subtitle': 'per stay',
   'hotels_search.filter.score_filter.rating': 'Rating',
   'hotels_search.filter.score_filter.rating.6': 'pleasant 6+',
   'hotels_search.filter.score_filter.rating.7': 'good 7+',
@@ -103,7 +101,6 @@ const HotelsVocabulary = {
   'single_hotel.hotel_review.rating.7': 'Good',
   'single_hotel.hotel_review.rating.8': 'Very good',
   'single_hotel.hotel_review.rating.9': 'Perfect',
-  'single_hotel.room_summary.summary': 'Summary',
   'single_hotel.room_summary.total': 'Total',
   'single_hotel.increment_decrement.count': 'Count',
   'single_hotel.alert.cannot_book_more_rooms_than_guests':
