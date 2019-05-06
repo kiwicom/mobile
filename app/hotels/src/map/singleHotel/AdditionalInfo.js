@@ -9,6 +9,7 @@ import {
   Device,
   BottomSheetHandle,
 } from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import BottomSheet from './BottomSheet';
 import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';
@@ -75,6 +76,13 @@ const styles = StyleSheet.create({
     start: 8,
     end: 8,
     bottom: Device.isIPhoneX ? 88 : 60,
+    shadowColor: defaultTokens.paletteInkDark,
+    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    android: {
+      elevation: 1,
+    },
   },
   detailPreviewContainer: {
     flex: 1,
