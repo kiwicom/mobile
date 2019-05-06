@@ -6,7 +6,6 @@ import {
   Price,
   Text,
   type OnLayout,
-  withDimensions,
   Translation,
 } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
@@ -15,49 +14,38 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 type Props = {|
   +text: React.Element<typeof Translation>,
   +price: React.Element<typeof Price>,
-  +width: number,
 |};
 
-type State = {|
-  +maxTextWidth: number | null,
-|};
+const SPACING = 5;
 
-class SummaryRow extends React.Component<Props, State> {
-  state = {
-    maxTextWidth: null,
-  };
+const SummaryRow = ({ text, price }: Props) => {
+  const [containerWidth, setContainerWidth] = React.useState(null);
+  const [priceWidth, setPriceWidth] = React.useState(null);
 
-  onLayout = (event: OnLayout) => {
-    const pagePadding = 34;
-    const spacing = 5;
-    // Text does not play well with price when it grows too long.
-    // Wee need to calculate maxWidth for the text, unless it will push
-    // Price out of the screen
-    this.setState({
-      maxTextWidth:
-        this.props.width -
-        event.nativeEvent.layout.width -
-        pagePadding -
-        spacing,
-    });
-  };
-
-  render() {
-    return (
-      <View style={styles.row}>
-        <Text
-          style={[styles.text, { maxWidth: this.state.maxTextWidth }]}
-          numberOfLines={1}
-        >
-          {this.props.text}
-        </Text>
-        <View onLayout={this.onLayout}>
-          <Text style={styles.price}>{this.props.price}</Text>
-        </View>
-      </View>
-    );
+  function onContainerLayout(event: OnLayout) {
+    setContainerWidth(event.nativeEvent.layout.width);
   }
-}
+
+  function onPriceLayout(event: OnLayout) {
+    setPriceWidth(event.nativeEvent.layout.width);
+  }
+
+  const maxWidth =
+    containerWidth != null && priceWidth != null
+      ? containerWidth - priceWidth - SPACING
+      : 0;
+
+  return (
+    <View style={styles.row} onLayout={onContainerLayout}>
+      <Text style={[styles.text, { maxWidth }]} numberOfLines={1}>
+        {text}
+      </Text>
+      <View onLayout={onPriceLayout}>
+        <Text style={styles.price}>{price}</Text>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   row: {
@@ -73,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withDimensions(SummaryRow);
+export default SummaryRow;
