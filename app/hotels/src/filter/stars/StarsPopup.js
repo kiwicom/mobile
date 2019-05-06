@@ -67,7 +67,7 @@ export default class StarsPopup extends React.Component<Props, State> {
             <SeparatorTrimmed
               gapSizeStart={0}
               color={defaultTokens.paletteInkLighter}
-              height={0.5}
+              height={StyleSheet.hairlineWidth}
             />
           </View>
         </React.Fragment>,
