@@ -174,11 +174,11 @@ export class RoomSummary extends React.Component<Props, State> {
     return (
       <>
         {amount != null && currency != null && (
-          <View style={styles.container}>
-            <VerticalSwipeResponder
-              onSwipeDown={this.onSwipeDown}
-              onSwipeUp={this.onSwipeUp}
-            >
+          <VerticalSwipeResponder
+            onSwipeDown={this.onSwipeDown}
+            onSwipeUp={this.onSwipeUp}
+          >
+            <View style={styles.container}>
               <BottomSheetHandle style={styles.handle} />
               <ExtraCharges
                 rooms={rooms}
@@ -198,8 +198,8 @@ export class RoomSummary extends React.Component<Props, State> {
                   }
                 />
               </View>
-            </VerticalSwipeResponder>
-          </View>
+            </View>
+          </VerticalSwipeResponder>
         )}
         <SummaryButtons
           amount={amount.toString()}
