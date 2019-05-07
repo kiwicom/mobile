@@ -9,6 +9,12 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v38
+
+- Hotels: Fixed lines between options in Star Filter Popup - MOBILE-4112
+- Hotels: (Android) Payment Summary and Hotel Detail card on map are swipeable - MOBILE-4113
+- Hotels: PaymentSummary Row component truncates long hotel names properly (https://github.com/kiwicom/mobile/issues/1607)
+
 ### v37
 
 - Hotel results re design - MOBILE-4064
