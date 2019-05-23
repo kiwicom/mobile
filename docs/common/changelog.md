@@ -9,6 +9,9 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v39
+- Fux Missing rating for hotel on map screen - MOBILE-4149
+
 ### v38
 
 - Hotels: Fixed lines between options in Star Filter Popup - MOBILE-4112
