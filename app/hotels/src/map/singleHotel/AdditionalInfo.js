@@ -44,21 +44,23 @@ export class AdditionalInfo extends React.Component<Props, State> {
     const stars = data?.hotel?.rating?.stars;
     const score = data?.hotel?.review?.score;
     return (
-      <View style={styles.container} onLayout={this.onLayout}>
+      <View style={styles.container}>
         <HotelPreviewProvider value={this.state}>
           <BottomSheet>
-            <BottomSheetHandle />
-            <View style={styles.detailPreviewContainer}>
-              <HotelDetailPreview
-                name={name}
-                amount={price?.amount}
-                currency={price?.currencyId}
-                thumbnailUrl={thumbnailUrl}
-                stars={stars}
-                score={score}
-              />
-              <View style={styles.addressContainer}>
-                <Address address={data?.hotel?.address} />
+            <View onLayout={this.onLayout}>
+              <BottomSheetHandle />
+              <View style={styles.detailPreviewContainer}>
+                <HotelDetailPreview
+                  name={name}
+                  amount={price?.amount}
+                  currency={price?.currencyId}
+                  thumbnailUrl={thumbnailUrl}
+                  stars={stars}
+                  score={score}
+                />
+                <View style={styles.addressContainer}>
+                  <Address address={data?.hotel?.address} />
+                </View>
               </View>
             </View>
           </BottomSheet>
