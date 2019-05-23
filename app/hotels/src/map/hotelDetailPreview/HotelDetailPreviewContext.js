@@ -10,6 +10,10 @@ export type State = {|
   +containerWidth: number,
 |};
 
-const { Provider, Consumer } = React.createContext<State>(defaultContextValue);
+const Context = React.createContext<State>(defaultContextValue);
+
+const { Provider, Consumer } = Context;
 
 export { Provider as HotelPreviewProvider, Consumer as HotelDetailConsumer };
+
+export default Context;

@@ -12,8 +12,7 @@ import {
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import {
-  HotelDetailConsumer,
+import HotelDetailContext, {
   type State as HotelDetailState,
 } from './HotelDetailPreviewContext';
 import HotelReviewScore from '../../components/HotelReviewScore';
@@ -27,40 +26,44 @@ type Props = {|
   +score?: ?number,
 |};
 
-export default class HotelDetailPreview extends React.Component<Props> {
-  renderInner = ({ containerWidth }: HotelDetailState) => {
-    const { name, amount, currency, thumbnailUrl: image, score } = this.props;
-    const stars = this.props.stars ?? 0;
-    return (
-      <View style={[styles.container, { width: containerWidth }]}>
-        <View>
-          <NetworkImage
-            style={styles.image}
-            source={{
-              uri: image,
-            }}
-            resizeMode="contain"
-          />
-        </View>
-        <View style={styles.description}>
-          <Text style={styles.hotelName} numberOfLines={1}>
-            <Translation passThrough={name} />
-          </Text>
-          <View style={styles.row}>
-            <View>
-              {stars > 0 && <Stars rating={stars} style={styles.stars} />}
-              <Price amount={amount} currency={currency} style={styles.price} />
-            </View>
-            <HotelReviewScore score={score} />
+export default function HotelDetailPreview({
+  name,
+  amount,
+  currency,
+  thumbnailUrl: image,
+  score,
+  stars: propsStars,
+}: Props) {
+  const { containerWidth }: HotelDetailState = React.useContext(
+    HotelDetailContext,
+  );
+  const stars = propsStars ?? 0;
+
+  return (
+    <View style={[styles.container, { width: containerWidth }]}>
+      <View>
+        <NetworkImage
+          style={styles.image}
+          source={{
+            uri: image,
+          }}
+          resizeMode="contain"
+        />
+      </View>
+      <View style={styles.description}>
+        <Text style={styles.hotelName} numberOfLines={1}>
+          <Translation passThrough={name} />
+        </Text>
+        <View style={styles.row}>
+          <View>
+            {stars > 0 && <Stars rating={stars} style={styles.stars} />}
+            <Price amount={amount} currency={currency} style={styles.price} />
           </View>
+          <HotelReviewScore score={score} />
         </View>
       </View>
-    );
-  };
-
-  render() {
-    return <HotelDetailConsumer>{this.renderInner}</HotelDetailConsumer>;
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
