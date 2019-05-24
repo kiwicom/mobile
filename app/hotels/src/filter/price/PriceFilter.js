@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Logger } from '@kiwicom/mobile-shared';
 import { DateUtils } from '@kiwicom/mobile-localization';
+import { Decimal } from 'decimal.js-light';
 
 import PricePopup from './PricePopup';
 import FilterButton from '../FilterButton';
@@ -61,9 +62,8 @@ const PriceFilter = (props: Props) => {
     Logger.hotelsFilterTagSet('Price');
   }
 
-  const { isActive } = props;
-  const start = props.start || currentSearchStats.priceMin;
-  const end = props.end || currentSearchStats.priceMax;
+  const start = props.start ?? currentSearchStats.priceMin;
+  const end = props.end ?? currentSearchStats.priceMax;
   const daysOfStay = calculateDaysOfStay(checkin, checkout);
   if (daysOfStay === null) {
     return null;
@@ -73,15 +73,15 @@ const PriceFilter = (props: Props) => {
       <FilterButton
         title={
           <PriceTitle
-            start={start}
-            end={end}
+            start={new Decimal(start)}
+            end={new Decimal(end)}
             min={currentSearchStats.priceMin}
             max={currentSearchStats.priceMax}
             currency={currency}
             daysOfStay={daysOfStay}
           />
         }
-        isActive={isActive}
+        isActive={props.isActive}
         onPress={filterButtonClicked}
       />
       <PricePopup
@@ -90,8 +90,8 @@ const PriceFilter = (props: Props) => {
         onSave={handleSave}
         min={currentSearchStats.priceMin}
         max={currentSearchStats.priceMax}
-        start={start}
-        end={end}
+        start={new Decimal(start)}
+        end={new Decimal(end)}
         currency={currency}
         daysOfStay={daysOfStay}
       />
