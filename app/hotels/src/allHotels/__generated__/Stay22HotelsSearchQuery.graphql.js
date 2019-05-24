@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6d11976f1f5d352dceeea885b8f6a155
+ * @relayHash f72f288e7f020bb7d930d11fe3ad3162
  */
 
 /* eslint-disable */
@@ -47,6 +47,14 @@ query Stay22HotelsSearchQuery(
 
 fragment Stay22PaginationContainer_data on RootQuery {
   allAvailableStay22Hotels(search: $search, first: $first, after: $after) {
+    stats {
+      minPrice {
+        amount
+      }
+      maxPrice {
+        amount
+      }
+    }
     edges {
       node {
         ...RenderSearchResults_data
@@ -213,18 +221,22 @@ v1 = [
 v2 = {
   "kind": "ScalarField",
   "alias": null,
-  "name": "id",
+  "name": "amount",
   "args": null,
   "storageKey": null
 },
 v3 = [
-  {
-    "kind": "ScalarField",
-    "alias": null,
-    "name": "amount",
-    "args": null,
-    "storageKey": null
-  },
+  (v2/*: any*/)
+],
+v4 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v5 = [
+  (v2/*: any*/),
   {
     "kind": "ScalarField",
     "alias": null,
@@ -266,6 +278,37 @@ return {
           {
             "kind": "LinkedField",
             "alias": null,
+            "name": "stats",
+            "storageKey": null,
+            "args": null,
+            "concreteType": "HotelSearchMeta",
+            "plural": false,
+            "selections": [
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "minPrice",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Money",
+                "plural": false,
+                "selections": (v3/*: any*/)
+              },
+              {
+                "kind": "LinkedField",
+                "alias": null,
+                "name": "maxPrice",
+                "storageKey": null,
+                "args": null,
+                "concreteType": "Money",
+                "plural": false,
+                "selections": (v3/*: any*/)
+              }
+            ]
+          },
+          {
+            "kind": "LinkedField",
+            "alias": null,
             "name": "edges",
             "storageKey": null,
             "args": null,
@@ -281,7 +324,7 @@ return {
                 "concreteType": "AllAvailableStay22Hotel",
                 "plural": false,
                 "selections": [
-                  (v2/*: any*/),
+                  (v4/*: any*/),
                   {
                     "kind": "LinkedField",
                     "alias": null,
@@ -290,7 +333,7 @@ return {
                     "args": null,
                     "concreteType": "Money",
                     "plural": false,
-                    "selections": (v3/*: any*/)
+                    "selections": (v5/*: any*/)
                   },
                   {
                     "kind": "ScalarField",
@@ -347,7 +390,7 @@ return {
                         "args": null,
                         "storageKey": null
                       },
-                      (v2/*: any*/),
+                      (v4/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -415,7 +458,7 @@ return {
                     "args": null,
                     "concreteType": "Money",
                     "plural": false,
-                    "selections": (v3/*: any*/)
+                    "selections": (v5/*: any*/)
                   },
                   {
                     "kind": "LinkedField",
@@ -511,7 +554,7 @@ return {
     "operationKind": "query",
     "name": "Stay22HotelsSearchQuery",
     "id": null,
-    "text": "query Stay22HotelsSearchQuery(\n  $search: Stay22HotelsSearchInput!\n  $first: Int\n  $after: String\n) {\n  ...Stay22PaginationContainer_data\n}\n\nfragment Stay22PaginationContainer_data on RootQuery {\n  allAvailableStay22Hotels(search: $search, first: $first, after: $after) {\n    edges {\n      node {\n        ...RenderSearchResults_data\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment RenderSearchResults_data on AllHotelsInterface {\n  ...AllHotelsSearchList_data\n  ...MapScreen_data\n}\n\nfragment AllHotelsSearchList_data on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow_data\n  hotelId\n}\n\nfragment MapScreen_data on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView_data\n  ...HotelSwipeList_data\n}\n\nfragment MapView_data on AllHotelsInterface {\n  id\n  coordinates {\n    lat\n    lng\n  }\n  ...MapViewMarker_markerData\n}\n\nfragment HotelSwipeList_data on AllHotelsInterface {\n  ...HotelSwipeItem_data\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem_data on AllHotelsInterface {\n  hotelId\n  name\n  money {\n    currencyId\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment MapViewMarker_markerData on AllHotelsInterface {\n  id\n  price: money {\n    ...PriceMarker_data\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment PriceMarker_data on Money {\n  amount\n  currencyId\n}\n\nfragment AllHotelsSearchRow_data on AllHotelsInterface {\n  ...HotelTitle_data\n  ...SearchRowContent_hotel\n  hotelId\n}\n\nfragment HotelTitle_data on AllHotelsInterface {\n  money {\n    amount\n    currencyId\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment SearchRowContent_hotel on AllHotelsInterface {\n  ...HotelTitle_data\n  mainPhoto {\n    highResUrl\n    lowResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
+    "text": "query Stay22HotelsSearchQuery(\n  $search: Stay22HotelsSearchInput!\n  $first: Int\n  $after: String\n) {\n  ...Stay22PaginationContainer_data\n}\n\nfragment Stay22PaginationContainer_data on RootQuery {\n  allAvailableStay22Hotels(search: $search, first: $first, after: $after) {\n    stats {\n      minPrice {\n        amount\n      }\n      maxPrice {\n        amount\n      }\n    }\n    edges {\n      node {\n        ...RenderSearchResults_data\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      endCursor\n      hasNextPage\n    }\n  }\n}\n\nfragment RenderSearchResults_data on AllHotelsInterface {\n  ...AllHotelsSearchList_data\n  ...MapScreen_data\n}\n\nfragment AllHotelsSearchList_data on AllHotelsInterface {\n  id\n  ...AllHotelsSearchRow_data\n  hotelId\n}\n\nfragment MapScreen_data on AllHotelsInterface {\n  id\n  hotelId\n  ...MapView_data\n  ...HotelSwipeList_data\n}\n\nfragment MapView_data on AllHotelsInterface {\n  id\n  coordinates {\n    lat\n    lng\n  }\n  ...MapViewMarker_markerData\n}\n\nfragment HotelSwipeList_data on AllHotelsInterface {\n  ...HotelSwipeItem_data\n  address {\n    ...Address_address\n  }\n}\n\nfragment HotelSwipeItem_data on AllHotelsInterface {\n  hotelId\n  name\n  money {\n    currencyId\n    amount\n  }\n  mainPhoto {\n    thumbnailUrl\n    id\n  }\n  rating {\n    stars\n  }\n  review {\n    score\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment MapViewMarker_markerData on AllHotelsInterface {\n  id\n  price: money {\n    ...PriceMarker_data\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment PriceMarker_data on Money {\n  amount\n  currencyId\n}\n\nfragment AllHotelsSearchRow_data on AllHotelsInterface {\n  ...HotelTitle_data\n  ...SearchRowContent_hotel\n  hotelId\n}\n\nfragment HotelTitle_data on AllHotelsInterface {\n  money {\n    amount\n    currencyId\n  }\n  ...HotelDistance_hotel\n  name\n  rating {\n    stars\n  }\n}\n\nfragment SearchRowContent_hotel on AllHotelsInterface {\n  ...HotelTitle_data\n  mainPhoto {\n    highResUrl\n    lowResUrl\n    id\n  }\n  review {\n    score\n  }\n}\n\nfragment HotelDistance_hotel on AllHotelsInterface {\n  distanceFromCenter\n}\n",
     "metadata": {}
   }
 };
