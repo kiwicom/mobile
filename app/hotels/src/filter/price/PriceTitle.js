@@ -7,12 +7,13 @@ import {
   Price,
   type TranslationType,
 } from '@kiwicom/mobile-shared';
+import { Decimal } from 'decimal.js-light';
 
 type Props = {|
-  +start: number,
-  +end: number,
-  +min: number,
-  +max: number,
+  +start: Decimal,
+  +end: Decimal,
+  +min: Decimal,
+  +max: Decimal,
   +currency: string,
   +daysOfStay: number,
 |};
@@ -25,30 +26,34 @@ export default function PriceTitle({
   currency,
   daysOfStay,
 }: Props): TranslationType {
-  if (start === min && end === max) {
+  if (start.equals(min) && end.equals(max)) {
+    // No filter set
     return <Translation id="hotels_search.filter.price_filter.price" />;
   }
-  if (start === min) {
+  if (start.equals(min)) {
+    // Only max price filter
     return (
       <TranslationFragment>
         <Translation passThrough="< " />
-        <Price amount={end * daysOfStay} currency={currency} />
+        <Price amount={end.times(daysOfStay)} currency={currency} />
       </TranslationFragment>
     );
   }
-  if (end === max) {
+  if (end.equals(max)) {
+    // Only min price filter
     return (
       <TranslationFragment>
         <Translation passThrough="> " />
-        <Price amount={start * daysOfStay} currency={currency} />
+        <Price amount={start.times(daysOfStay)} currency={currency} />
       </TranslationFragment>
     );
   }
+  // Max and min set
   return (
     <TranslationFragment>
-      <Price amount={start * daysOfStay} currency={currency} />
+      <Price amount={start.times(daysOfStay)} currency={currency} />
       <Translation passThrough=" - " />
-      <Price amount={end * daysOfStay} currency={currency} />
+      <Price amount={end.times(daysOfStay)} currency={currency} />
     </TranslationFragment>
   );
 }

@@ -14,105 +14,107 @@ import {
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
+import { Decimal } from 'decimal.js-light';
 
 type Props = {|
   onClose: () => void,
   onSave: ({ minPrice: number, maxPrice: number }) => void,
   isVisible: boolean,
-  min: number,
-  max: number,
-  start: number,
-  end: number,
+  min: Decimal,
+  max: Decimal,
+  start: Decimal,
+  end: Decimal,
   currency: string,
   daysOfStay: number,
 |};
 
-type State = {|
-  price: {
-    start: number,
-    end: number,
-  },
-|};
+export default function PricePopup(props: Props) {
+  const { onSave: propsOnSave } = props;
+  const [price, setPrice] = React.useState({
+    start: new Decimal(0),
+    end: new Decimal(0),
+  });
 
-export default class PricePopup extends React.Component<Props, State> {
-  state = {
-    price: {
-      start: 0,
-      end: 0,
-    },
-  };
-
-  static getDerivedStateFromProps = ({ start, end, isVisible }: Props) => {
-    return isVisible
-      ? null
-      : {
-          price: {
-            start,
-            end,
-          },
-        };
-  };
-
-  handlePriceChanged = ([start, end]: number[]) =>
-    this.setState({
-      price: { start, end },
+  React.useEffect(() => {
+    setPrice({
+      start: props.start,
+      end: props.end,
     });
+  }, [props.end, props.start]);
 
-  onSave = () =>
-    this.props.onSave({
-      minPrice: this.state.price.start,
-      maxPrice: this.state.price.end,
+  const handlePriceChanged = React.useCallback(
+    ([start, end]: number[]) =>
+      setPrice({
+        start: new Decimal(start),
+        end: new Decimal(end),
+      }),
+    [],
+  );
+
+  const savePrice = React.useCallback(() => {
+    // If calling props.onSave here, eslint will want to add props to watcher array 😞
+    propsOnSave({
+      minPrice: price.start.toNumber(),
+      maxPrice: price.end.toNumber(),
     });
+  }, [price.end, price.start, propsOnSave]);
 
-  render() {
-    const { start, end } = this.state.price;
-    const { min, max, currency, daysOfStay } = this.props;
-
-    return (
-      <SafeAreaView>
-        <ButtonPopup
-          buttonTitle={
-            <Translation id="hotels_search.filter.price_popup.save" />
-          }
-          onSave={this.onSave}
-          onClose={this.props.onClose}
-          isVisible={this.props.isVisible}
-        >
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>
-              <Translation id="hotels_search.filter.price_popup.title" />
-              <Translation passThrough=" " />
-            </Text>
-            <AdaptableBadge
-              translation={
-                <TranslationFragment>
-                  <Price amount={start * daysOfStay} currency={currency} />
-                  <Translation passThrough=" - " />
-                  <Price amount={end * daysOfStay} currency={currency} />
-                </TranslationFragment>
-              }
-              type="info"
-              circled={true}
-              style={styles.priceBadge}
-            />
-          </View>
-          <View style={styles.sliderContainer}>
-            <Slider
-              startValue={start}
-              endValue={end}
-              min={min}
-              max={max}
-              onChange={this.handlePriceChanged}
-              startLabel={
-                <Price amount={min * daysOfStay} currency={currency} />
-              }
-              endLabel={<Price amount={max * daysOfStay} currency={currency} />}
-            />
-          </View>
-        </ButtonPopup>
-      </SafeAreaView>
-    );
-  }
+  return (
+    <SafeAreaView>
+      <ButtonPopup
+        buttonTitle={<Translation id="hotels_search.filter.price_popup.save" />}
+        onSave={savePrice}
+        onClose={props.onClose}
+        isVisible={props.isVisible}
+      >
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>
+            <Translation id="hotels_search.filter.price_popup.title" />
+            <Translation passThrough=" " />
+          </Text>
+          <AdaptableBadge
+            translation={
+              <TranslationFragment>
+                <Price
+                  amount={price.start.times(props.daysOfStay)}
+                  currency={props.currency}
+                />
+                <Translation passThrough=" - " />
+                <Price
+                  amount={price.end.times(props.daysOfStay)}
+                  currency={props.currency}
+                />
+              </TranslationFragment>
+            }
+            type="info"
+            circled={true}
+            style={styles.priceBadge}
+          />
+        </View>
+        <View style={styles.sliderContainer}>
+          <Slider
+            startValue={price.start.toNumber()}
+            endValue={price.end.toNumber()}
+            min={props.min.toNumber()}
+            max={props.max.toNumber()}
+            onChange={handlePriceChanged}
+            startLabel={
+              <Price
+                amount={props.min.times(props.daysOfStay)}
+                currency={props.currency}
+              />
+            }
+            endLabel={
+              <Price
+                amount={props.max.times(props.daysOfStay)}
+                currency={props.currency}
+              />
+            }
+          />
+        </View>
+      </ButtonPopup>
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({

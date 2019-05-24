@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { DateUtils } from '@kiwicom/mobile-localization';
-
-import type { CurrentSearchStats } from './filter/CurrentSearchStatsType';
+import { Decimal, type Numeric } from 'decimal.js-light';
 
 const defaultState = {
   hotelId: '',
@@ -20,8 +19,8 @@ const defaultState = {
   paymentLink: null,
   errors: null,
   currentSearchStats: {
-    priceMax: 10000,
-    priceMin: 0,
+    priceMax: new Decimal(10000),
+    priceMin: new Decimal(0),
   },
   actions: {
     setCurrentSearchStats: () => {},
@@ -48,6 +47,16 @@ export type RoomConfigurationType = $ReadOnlyArray<{|
     +age: number,
   |}>,
 |}>;
+
+type CurrentSearchStats = {|
+  priceMax: Decimal,
+  priceMin: Decimal,
+|};
+
+type SetSearchStats = {|
+  priceMax: Numeric,
+  priceMin: Numeric,
+|};
 
 type Props = {|
   +children: React.Node,
@@ -86,10 +95,7 @@ type State = {|
   +closeHotels: () => void,
   +errors: ValidationError | null,
   +actions: {|
-    +setCurrentSearchStats: ({|
-      priceMax: number,
-      priceMin: number,
-    |}) => void,
+    +setCurrentSearchStats: SetSearchStats => void,
     +setCheckinDate: Date => void,
     +setCheckoutDate: Date => void,
   |},
@@ -131,7 +137,7 @@ const validateInput = ({ checkin, checkout, cityId }: SearchInput) => {
   }
   const diffInDays = DateUtils.diffInDays(checkout, checkin);
   const isBeforeToday = DateUtils.diffInDays(checkin, new Date()) < 0;
-  const cityIdError = cityId == '-1'; // Intenionally checking string or number
+  const cityIdError = cityId === '-1' || cityId === -1;
   const tooFarFuture = DateUtils.diffInDays(checkout, new Date()) > 365;
 
   if (diffInDays > 30 || diffInDays <= 0) {
@@ -170,10 +176,7 @@ class Provider extends React.Component<Props, State> {
       latitude: props.latitude ?? null,
       longitude: props.longitude ?? null,
       paymentLink: null,
-      currentSearchStats: {
-        priceMax: 10000,
-        priceMin: 0,
-      },
+      currentSearchStats: defaultState.currentSearchStats,
       getGuestCount: this.getGuestCount,
       setHotelId: this.setHotelId,
       setPaymentLink: this.setPaymentLink,
@@ -187,9 +190,12 @@ class Provider extends React.Component<Props, State> {
     };
   }
 
-  setCurrentSearchStats = (currentSearchStats: CurrentSearchStats) => {
+  setCurrentSearchStats = ({ priceMax, priceMin }: SetSearchStats) => {
     this.setState({
-      currentSearchStats,
+      currentSearchStats: {
+        priceMax: new Decimal(priceMax),
+        priceMin: new Decimal(priceMin),
+      },
     });
   };
 
