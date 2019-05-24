@@ -12,8 +12,8 @@ import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import PriceTitle from './PriceTitle';
 
 type Props = {|
-  +start: number | null,
-  +end: number | null,
+  +start: Decimal | null,
+  +end: Decimal | null,
   +currency: string,
   +onChange: OnChangeFilterParams => void,
   +isActive: boolean,
@@ -55,8 +55,10 @@ const PriceFilter = (props: Props) => {
     maxPrice: number,
   }) {
     const filter = {
-      minPrice: minPrice !== currentSearchStats.priceMin ? minPrice : null,
-      maxPrice: maxPrice !== currentSearchStats.priceMax ? maxPrice : null,
+      minPrice:
+        minPrice !== currentSearchStats.priceMin ? new Decimal(minPrice) : null,
+      maxPrice:
+        maxPrice !== currentSearchStats.priceMax ? new Decimal(maxPrice) : null,
     };
     props.onChange(filter);
     Logger.hotelsFilterTagSet('Price');

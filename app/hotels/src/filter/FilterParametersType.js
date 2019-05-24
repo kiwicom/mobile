@@ -1,9 +1,11 @@
 // @flow
 
+import { Decimal } from 'decimal.js-light';
+
 export type FilterParams = {|
   +starsRating: number[],
-  +minPrice: number | null,
-  +maxPrice: number | null,
+  +minPrice: Decimal | null,
+  +maxPrice: Decimal | null,
   +freeCancellation: boolean,
   +hotelAmenities: string[],
   +minScore: number | null,
@@ -19,8 +21,8 @@ export type OrderByEnum =
 
 export type OnChangeFilterParams = {|
   +starsRating?: number[],
-  +minPrice?: ?number,
-  +maxPrice?: ?number,
+  +minPrice?: ?Decimal,
+  +maxPrice?: ?Decimal,
   +freeCancellation?: boolean,
   +hotelAmenities?: string[],
   +minScore?: ?number,
