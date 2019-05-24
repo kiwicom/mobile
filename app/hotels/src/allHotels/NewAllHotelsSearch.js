@@ -44,6 +44,12 @@ const NewAllHotelsSearch = () => {
     cityId,
     closeHotels: onClose,
   }: HotelsContextState = React.useContext(HotelsContext);
+  const {
+    hotelAmenities,
+    maxPrice,
+    minPrice,
+    ...restFilterParams
+  } = filterParams;
   return (
     <HotelsSearch
       shouldRenderDateError={checkin === null || checkout === null}
@@ -57,8 +63,10 @@ const NewAllHotelsSearch = () => {
           roomsConfiguration,
         },
         filter: {
-          ...filterParams,
-          hotelAmenities: sanitizeHotelAmenities(filterParams.hotelAmenities),
+          ...restFilterParams,
+          ...(maxPrice != null ? { maxPrice: maxPrice.toNumber() } : {}),
+          ...(minPrice != null ? { minPrice: minPrice.toNumber() } : {}),
+          hotelAmenities: sanitizeHotelAmenities(hotelAmenities),
         },
         first: 50,
         options: {
