@@ -14,11 +14,19 @@ declare export opaque type Stay22PaginationContainer_data$ref: FragmentReference
 declare export opaque type Stay22PaginationContainer_data$fragmentType: Stay22PaginationContainer_data$ref;
 export type Stay22PaginationContainer_data = {|
   +allAvailableStay22Hotels: ?{|
+    +stats: ?{|
+      +minPrice: ?{|
+        +amount: ?string
+      |},
+      +maxPrice: ?{|
+        +amount: ?string
+      |},
+    |},
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +$fragmentRefs: RenderSearchResults_data$ref
       |}
-    |}>
+    |}>,
   |},
   +$refType: Stay22PaginationContainer_data$ref,
 |};
@@ -30,7 +38,17 @@ export type Stay22PaginationContainer_data$key = {
 */
 
 
-const node/*: ReaderFragment*/ = {
+const node/*: ReaderFragment*/ = (function(){
+var v0 = [
+  {
+    "kind": "ScalarField",
+    "alias": null,
+    "name": "amount",
+    "args": null,
+    "storageKey": null
+  }
+];
+return {
   "kind": "Fragment",
   "name": "Stay22PaginationContainer_data",
   "type": "RootQuery",
@@ -79,6 +97,37 @@ const node/*: ReaderFragment*/ = {
       "concreteType": "AllAvailableStay22HotelConnection",
       "plural": false,
       "selections": [
+        {
+          "kind": "LinkedField",
+          "alias": null,
+          "name": "stats",
+          "storageKey": null,
+          "args": null,
+          "concreteType": "HotelSearchMeta",
+          "plural": false,
+          "selections": [
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "minPrice",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "Money",
+              "plural": false,
+              "selections": (v0/*: any*/)
+            },
+            {
+              "kind": "LinkedField",
+              "alias": null,
+              "name": "maxPrice",
+              "storageKey": null,
+              "args": null,
+              "concreteType": "Money",
+              "plural": false,
+              "selections": (v0/*: any*/)
+            }
+          ]
+        },
         {
           "kind": "LinkedField",
           "alias": null,
@@ -149,6 +198,7 @@ const node/*: ReaderFragment*/ = {
     }
   ]
 };
+})();
 // prettier-ignore
-(node/*: any*/).hash = 'e22d59ac5419f992356425becf7e741e';
+(node/*: any*/).hash = '384b0349c1055c7a7e3a442d4a81a4e2';
 module.exports = node;

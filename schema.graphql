@@ -86,6 +86,9 @@ type AllAvailableStay22HotelConnection {
 
   """Name of the closest city"""
   cityName: String
+
+  """Meta data for the search"""
+  stats: HotelSearchMeta
 }
 
 """An edge in a connection."""
@@ -1318,26 +1321,9 @@ type CustomerSupportNumber {
 
   """Languages supported by customer service and availability hours"""
   supportedLanguages: [SupportedLanguage]
-}
 
-interface DangerZone_Error {
-  message: String
-}
-
-interface DangerZone_HTTPError {
-  message: String
-  statusCode: Int
-}
-
-type DangerZone_HTTPErrorType implements DangerZone_Error & DangerZone_HTTPError {
-  message: String
-  statusCode: Int
-}
-
-union DangerZone_Locations = LocationConnection | DangerZone_HTTPErrorType
-
-type DangerZone_RootQuery {
-  allLocations(after: String, first: Int, before: String, last: Int, forceFail: Boolean): DangerZone_Locations
+  """Additional information about the customer support phone number"""
+  labels: [String]
 }
 
 """
@@ -2229,6 +2215,12 @@ type HotelRoomPhotoEdge {
   cursor: String!
 }
 
+"""Meta data for hotel search"""
+type HotelSearchMeta {
+  minPrice: Money
+  maxPrice: Money
+}
+
 type HotelService {
   relevantLocations: [HotelServiceRelevantLocation]
   roomsConfiguration: RoomsConfigurationOutput
@@ -2280,6 +2272,9 @@ input HotelsSearchInput {
 
   """Longitude in float format (example: 9.1859)."""
   longitude: Float
+
+  """Search radius in kilometres around specified coordinate"""
+  radius: Float = 50
 
   """Opaque ID of the city."""
   cityId: String
@@ -3115,12 +3110,6 @@ type RootQuery {
 
   """Single hotel by ID."""
   stay22HotelDetail(id: ID!, guests: Int!, checkin: Date!, checkout: Date!, currency: Currency = EUR): Stay22HotelDetail
-
-  """
-  Everything in this danger zone can be changed or completely removed without
-  any warning. Do not use in production - only for testing.
-  """
-  dangerZone: DangerZone_RootQuery! @deprecated(reason: "Only for testing.")
 
   """Search for holidays locations by name"""
   holidaysLocations(

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 16fb8a31ba6b0e8756fab10a8a58939a
+ * @relayHash 6d877399590d4b8846e27c311a9a1f45
  */
 
 /* eslint-disable */
@@ -17,6 +17,7 @@ export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_
 export type HotelsSearchInput = {|
   latitude?: ?number,
   longitude?: ?number,
+  radius?: ?number,
   cityId?: ?string,
   checkin: any,
   checkout: any,

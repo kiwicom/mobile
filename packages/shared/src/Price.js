@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { type DecimalValue, Decimal } from 'decimal.js-light';
+import { type Numeric, Decimal } from 'decimal.js-light';
 import {
   cancellablePromise,
   type CancellablePromiseType,
@@ -13,7 +13,7 @@ import Text from './Text';
 import type { StylePropType } from '../types/Styles';
 
 type Props = {|
-  +amount?: ?DecimalValue,
+  +amount?: ?Numeric,
   +currency?: ?string,
   +style?: StylePropType,
 |};
