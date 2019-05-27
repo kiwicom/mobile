@@ -1,7 +1,7 @@
 // @flow
 
 import { Dimensions as RNDimensions } from 'react-native';
-import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
+import { withMappedNavigationParams as withMappedProps } from 'react-navigation-props-mapper';
 import {
   StackNavigator,
   StackNavigatorOptions,
@@ -17,17 +17,17 @@ import AdditionalPropsInjector from './AdditionalPropsInjector';
 const DetailStack = StackNavigator(
   {
     SingleHotel: {
-      screen: withMappedProps(SingleHotelNavigationScreen),
+      screen: withMappedProps()(SingleHotelNavigationScreen),
       navigationOptions: {
         headerLeft: null,
         ...createTransparentHeaderStyle(RNDimensions.get('screen')),
       },
     },
     GalleryGrid: {
-      screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
+      screen: withMappedProps(AdditionalPropsInjector)(GalleryGrid),
     },
     Payment: {
-      screen: withMappedProps(PaymentScreen),
+      screen: withMappedProps()(PaymentScreen),
     },
   },
   {

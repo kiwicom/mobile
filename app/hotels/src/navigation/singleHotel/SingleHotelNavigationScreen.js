@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import { withMappedNavigationAndConfigProps } from 'react-navigation-props-mapper';
+import { withMappedNavigationParams } from 'react-navigation-props-mapper';
 import { WithStandaloneScreen, Logger } from '@kiwicom/mobile-shared';
 
 import SingleHotel from '../../singleHotel/SingleHotelContainer';
@@ -52,6 +52,6 @@ class SingleHotelNavigationScreen extends React.Component<Props> {
   }
 }
 
-export default withMappedNavigationAndConfigProps(
+export default withMappedNavigationParams()(
   WithStandaloneScreen(SingleHotelNavigationScreen, 'SingleHotel'),
 );

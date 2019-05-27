@@ -9,7 +9,7 @@
     "@kiwicom/mobile-shared": "^0",
     "react-native-gesture-handler": "1.1.0",
     "react-navigation": "^3.9.1",
-    "react-navigation-props-mapper": "^0.1.2"
+    "react-navigation-props-mapper": "^1.0.1"
   },
   "peerDependencies": {
     "react": "^16",

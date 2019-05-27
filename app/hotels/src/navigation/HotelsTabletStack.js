@@ -7,7 +7,7 @@ import {
   createTransparentHeaderStyle,
 } from '@kiwicom/mobile-navigation';
 import { Dimensions as RNDimensions } from 'react-native';
-import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
+import { withMappedNavigationParams as withMappedProps } from 'react-navigation-props-mapper';
 
 import SearchResults from './allHotels/SearchResultsScreen';
 import AdditionalPropsInjector from './singleHotel/AdditionalPropsInjector';
@@ -24,13 +24,13 @@ export type NavigationProps = {|
 const TabletStack = StackNavigator(
   {
     SearchResults: {
-      screen: withMappedProps(SearchResults),
+      screen: withMappedProps()(SearchResults),
     },
     GalleryGrid: {
-      screen: withMappedProps(GalleryGrid, AdditionalPropsInjector),
+      screen: withMappedProps(AdditionalPropsInjector)(GalleryGrid),
     },
     Payment: {
-      screen: withMappedProps(Payment),
+      screen: withMappedProps()(Payment),
     },
   },
   {
