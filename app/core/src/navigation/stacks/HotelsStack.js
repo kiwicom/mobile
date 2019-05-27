@@ -1,6 +1,6 @@
 // @flow
 
-import { withMappedNavigationAndConfigProps as withMappedProps } from 'react-navigation-props-mapper';
+import { withMappedNavigationParams as withMappedProps } from 'react-navigation-props-mapper';
 import {
   StackNavigator,
   StackNavigatorOptions,
@@ -12,9 +12,9 @@ import NewHotelsPackageWrapper from '../../screens/hotelsStack/NewHotelsPackageW
 
 const Stack = StackNavigator(
   {
-    Home: withMappedProps(Homepage),
-    SingleHotelPackage: withMappedProps(SingleHotelsPackageWrapper),
-    NewHotelsPackage: withMappedProps(NewHotelsPackageWrapper),
+    Home: withMappedProps()(Homepage),
+    SingleHotelPackage: withMappedProps()(SingleHotelsPackageWrapper),
+    NewHotelsPackage: withMappedProps()(NewHotelsPackageWrapper),
   },
   {
     initialRouteName: 'Home',

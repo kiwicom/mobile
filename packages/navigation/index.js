@@ -60,20 +60,22 @@ const createNavigationOptions = () => {
 
 export const StackNavigator = (
   RouteConfigs: {
-    [string]: {|
-      +screen: mixed,
-      +navigationOptions?: {|
-        +headerTitle?:
-          | React.Element<typeof HeaderTitle>
-          | null
-          | React.Element<typeof Dimensions.Consumer>,
-        +headerStyle?: StylePropType,
-        +mode?: 'modal',
-        +headerTransparent?: boolean,
-        +headerLeft?: Object | null,
-        +header?: Object | null,
-      |},
-    |},
+    [string]:
+      | {|
+          +screen: mixed,
+          +navigationOptions?: {|
+            +headerTitle?:
+              | React.Element<typeof HeaderTitle>
+              | null
+              | React.Element<typeof Dimensions.Consumer>,
+            +headerStyle?: StylePropType,
+            +mode?: 'modal',
+            +headerTransparent?: boolean,
+            +headerLeft?: Object | null,
+            +header?: Object | null,
+          |},
+        |}
+      | React.ComponentType<any>,
   },
   StackNavigatorConfig: {|
     +initialRouteName: string,
