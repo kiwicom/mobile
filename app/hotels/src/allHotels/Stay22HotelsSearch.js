@@ -8,10 +8,12 @@ import { HotelsContext, type HotelsContextState } from '../HotelsContext';
 import type { Stay22HotelsSearchQueryResponse } from './__generated__/Stay22HotelsSearchQuery.graphql';
 import Stay22PaginationContainer from './Stay22PaginationContainer';
 import HotelsSearch from './HotelsSearch';
+import useHotelsFilter from './useHotelsFilter';
 
 const query = graphql`
   query Stay22HotelsSearchQuery(
     $search: Stay22HotelsSearchInput!
+    $filter: HotelsFilterInput!
     $first: Int
     $after: String
   ) {
@@ -34,6 +36,7 @@ export function Stay22HotelsSearch() {
     longitude,
     closeHotels: onClose,
   }: HotelsContextState = React.useContext(HotelsContext);
+  const hotelsFilter = useHotelsFilter();
 
   const shouldRenderDateError =
     checkin === null ||
@@ -56,6 +59,7 @@ export function Stay22HotelsSearch() {
           guests: getGuestCount(),
           currency,
         },
+        filter: hotelsFilter,
       }}
       render={renderAllHotelsSearchList}
     />

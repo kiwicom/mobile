@@ -79,6 +79,11 @@ return {
       "kind": "RootArgument",
       "name": "after",
       "type": "String"
+    },
+    {
+      "kind": "RootArgument",
+      "name": "filter",
+      "type": "HotelsFilterInput"
     }
   ],
   "selections": [
@@ -88,6 +93,11 @@ return {
       "name": "__Stay22PaginationContainer_allAvailableStay22Hotels_connection",
       "storageKey": null,
       "args": [
+        {
+          "kind": "Variable",
+          "name": "filter",
+          "variableName": "filter"
+        },
         {
           "kind": "Variable",
           "name": "search",
@@ -200,5 +210,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '384b0349c1055c7a7e3a442d4a81a4e2';
+(node/*: any*/).hash = '6ad5ee2e3e19f14c6223c3e1f7ecf09d';
 module.exports = node;

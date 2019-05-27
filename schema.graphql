@@ -2237,15 +2237,21 @@ input HotelsFilterInput {
   """List of hotels classes (stars) you want to filter."""
   starsRating: [Int]
 
+  """Deprecated -> Use minimumPrice instead"""
+  minPrice: Float
+
+  """Deprecated -> Use maximumPrice instead"""
+  maxPrice: Float
+
   """
   Show only hotels having minimum total price lower than or equal to this value.
   """
-  minPrice: Float
+  minimumPrice: String
 
   """
   Show only hotels having minimum total price higher than or equal to this value.
   """
-  maxPrice: Float
+  maximumPrice: String
 
   """Deprecated -> use hotelAmenities instead."""
   hotelFacilities: HotelFacilitiesInput
@@ -2892,7 +2898,7 @@ type RootQuery {
   allAvailableHotels(search: HotelsSearchInput!, filter: HotelsFilterInput, options: AvailableHotelOptionsInput, after: String, first: Int = 50, before: String, last: Int): HotelAvailabilityConnection @deprecated(reason: "This query has serious performace issues. That is basically because we are overfeching data\n  from the https://distribution-xml.booking.com/2.0/json/hotels endpoint with way to many extras.\n  Use allAvailableBookingComHotels instead")
 
   """All available hotels from provider stay22 for the given time"""
-  allAvailableStay22Hotels(search: Stay22HotelsSearchInput!, after: String, first: Int = 50, before: String, last: Int): AllAvailableStay22HotelConnection
+  allAvailableStay22Hotels(search: Stay22HotelsSearchInput!, filter: HotelsFilterInput, after: String, first: Int = 50, before: String, last: Int): AllAvailableStay22HotelConnection
 
   """Search for the urls of public documents"""
   allDocuments(after: String, first: Int, before: String, last: Int): DocumentInterfaceConnection
