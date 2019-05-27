@@ -5,7 +5,7 @@ exports[`RoomBadges renders 1`] = `
   <AdaptableBadge
     icon={
       <Icon
-        color="#0176D2"
+        color="#0172CB"
         name="coffee"
         style={
           Object {
@@ -21,13 +21,13 @@ exports[`RoomBadges renders 1`] = `
     }
     style={
       Object {
-        "backgroundColor": "#e0f6ff",
+        "backgroundColor": "#E5F7FF",
         "marginTop": 5,
       }
     }
     textStyle={
       Object {
-        "color": "#0176D2",
+        "color": "#0172CB",
         "fontSize": 12,
       }
     }
@@ -40,7 +40,7 @@ exports[`RoomBadges renders 1`] = `
   <AdaptableBadge
     icon={
       <Icon
-        color="#0176D2"
+        color="#0172CB"
         name="information-circle"
         style={
           Object {
@@ -56,13 +56,13 @@ exports[`RoomBadges renders 1`] = `
     }
     style={
       Object {
-        "backgroundColor": "#e0f6ff",
+        "backgroundColor": "#E5F7FF",
         "marginTop": 5,
       }
     }
     textStyle={
       Object {
-        "color": "#0176D2",
+        "color": "#0172CB",
         "fontSize": 12,
       }
     }

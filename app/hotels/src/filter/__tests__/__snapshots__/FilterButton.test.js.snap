@@ -13,7 +13,7 @@ exports[`renders correctly when active 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "backgroundColor": "#0176D2",
+      "backgroundColor": "#0172CB",
       "borderRadius": 2,
       "flexGrow": 1,
       "height": 32,
@@ -44,7 +44,7 @@ exports[`renders correctly when active 1`] = `
           },
           Array [
             Object {
-              "color": "#46515e",
+              "color": "#252A31",
               "fontSize": 12,
               "lineHeight": 17,
             },
@@ -63,7 +63,7 @@ exports[`renders correctly when active 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "backgroundColor": "#0064b2",
+          "backgroundColor": "#01508E",
           "borderBottomEndRadius": 2,
           "borderTopEndRadius": 2,
           "height": 32,

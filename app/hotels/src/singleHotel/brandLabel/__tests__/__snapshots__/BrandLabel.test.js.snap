@@ -13,7 +13,7 @@ exports[`renders as expected 1`] = `
   <Text
     style={
       Object {
-        "color": "#7f91a8",
+        "color": "#5F738C",
         "fontSize": 10,
       }
     }

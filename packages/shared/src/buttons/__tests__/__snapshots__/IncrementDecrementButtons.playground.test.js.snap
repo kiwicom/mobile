@@ -18,7 +18,7 @@ exports[`renders 1`] = `
   <Button
     icon={
       <Icon
-        color="#7f91a8"
+        color="#5F738C"
         fontSize={14}
         name="minus"
       />
@@ -29,7 +29,7 @@ exports[`renders 1`] = `
   <Button
     icon={
       <Icon
-        color="#7f91a8"
+        color="#5F738C"
         fontSize={14}
         name="plus"
       />
