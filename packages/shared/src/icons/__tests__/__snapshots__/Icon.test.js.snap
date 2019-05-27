@@ -14,7 +14,7 @@ exports[`genereates correct styles for custom fontSize 1`] = `
         "width": 24,
       },
       Object {
-        "color": "#7f91a8",
+        "color": "#5F738C",
       },
       Array [
         undefined,
@@ -46,7 +46,7 @@ exports[`renders 1`] = `
         "width": 24,
       },
       Object {
-        "color": "#7f91a8",
+        "color": "#5F738C",
       },
       Array [
         undefined,
@@ -73,7 +73,7 @@ exports[`renders for small and large 1`] = `
         "width": 16,
       },
       Object {
-        "color": "#7f91a8",
+        "color": "#5F738C",
       },
       Array [
         undefined,
@@ -100,7 +100,7 @@ exports[`renders for small and large 2`] = `
         "width": 32,
       },
       Object {
-        "color": "#7f91a8",
+        "color": "#5F738C",
       },
       Array [
         undefined,

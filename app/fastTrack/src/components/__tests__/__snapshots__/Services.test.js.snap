@@ -13,7 +13,7 @@ Array [
           "letterSpacing": -0.15,
         },
         Object {
-          "color": "#7f91a8",
+          "color": "#5F738C",
           "fontSize": 12,
           "fontWeight": "bold",
           "textTransform": "uppercase",
@@ -55,7 +55,7 @@ Array [
               "width": 24,
             },
             Object {
-              "color": "#7f91a8",
+              "color": "#5F738C",
             },
             Array [
               undefined,
@@ -77,7 +77,7 @@ Array [
               "letterSpacing": -0.15,
             },
             Object {
-              "color": "#46515e",
+              "color": "#252A31",
               "fontWeight": "bold",
               "marginStart": 4,
             },
@@ -111,7 +111,7 @@ Array [
               "width": 24,
             },
             Object {
-              "color": "#7f91a8",
+              "color": "#5F738C",
             },
             Array [
               undefined,
@@ -133,7 +133,7 @@ Array [
               "letterSpacing": -0.15,
             },
             Object {
-              "color": "#46515e",
+              "color": "#252A31",
               "fontWeight": "bold",
               "marginStart": 4,
             },

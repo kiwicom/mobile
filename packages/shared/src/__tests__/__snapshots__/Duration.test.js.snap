@@ -10,7 +10,7 @@ exports[`works with broken input 1`] = `
   }
 >
   <Icon
-    color="#7f91a8"
+    color="#5F738C"
     fontSize={13}
     name="clock"
   />
@@ -18,7 +18,7 @@ exports[`works with broken input 1`] = `
     style={
       Array [
         Object {
-          "color": "#7f91a8",
+          "color": "#5F738C",
           "fontSize": 10,
         },
         undefined,
@@ -57,7 +57,7 @@ exports[`works with broken input 2`] = `
   }
 >
   <Icon
-    color="#7f91a8"
+    color="#5F738C"
     fontSize={13}
     name="clock"
   />
@@ -65,7 +65,7 @@ exports[`works with broken input 2`] = `
     style={
       Array [
         Object {
-          "color": "#7f91a8",
+          "color": "#5F738C",
           "fontSize": 10,
         },
         undefined,

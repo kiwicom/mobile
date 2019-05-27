@@ -6,7 +6,7 @@ exports[`renders correctly with circled true 1`] = `
     Array [
       Object {
         "alignSelf": "flex-start",
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#5F738C",
         "borderRadius": 2,
         "flexDirection": "row",
         "flexWrap": "wrap",
@@ -44,7 +44,7 @@ exports[`renders correctly with type info 1`] = `
     Array [
       Object {
         "alignSelf": "flex-start",
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#5F738C",
         "borderRadius": 2,
         "flexDirection": "row",
         "flexWrap": "wrap",
@@ -53,7 +53,7 @@ exports[`renders correctly with type info 1`] = `
       },
       undefined,
       Object {
-        "backgroundColor": "#0176D2",
+        "backgroundColor": "#0172CB",
       },
       false,
     ]
@@ -82,7 +82,7 @@ exports[`renders text 1`] = `
     Array [
       Object {
         "alignSelf": "flex-start",
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#5F738C",
         "borderRadius": 2,
         "flexDirection": "row",
         "flexWrap": "wrap",
@@ -118,7 +118,7 @@ exports[`renders text with color 1`] = `
     Array [
       Object {
         "alignSelf": "flex-start",
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#5F738C",
         "borderRadius": 2,
         "flexDirection": "row",
         "flexWrap": "wrap",
@@ -156,7 +156,7 @@ exports[`renders very long texts 1`] = `
     Array [
       Object {
         "alignSelf": "flex-start",
-        "backgroundColor": "#7f91a8",
+        "backgroundColor": "#5F738C",
         "borderRadius": 2,
         "flexDirection": "row",
         "flexWrap": "wrap",

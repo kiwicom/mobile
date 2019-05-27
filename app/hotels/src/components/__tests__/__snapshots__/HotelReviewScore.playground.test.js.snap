@@ -9,7 +9,7 @@ exports[`renders with green value 1`] = `
         "paddingHorizontal": 10,
       },
       Object {
-        "backgroundColor": "#e7f3e8",
+        "backgroundColor": "#EBF4EC",
       },
     ]
   }
@@ -19,7 +19,7 @@ exports[`renders with green value 1`] = `
         "fontWeight": "600",
       },
       Object {
-        "color": "#46B655",
+        "color": "#28A138",
       },
     ]
   }
@@ -40,7 +40,7 @@ exports[`renders with red value 1`] = `
         "paddingHorizontal": 10,
       },
       Object {
-        "backgroundColor": "#fae8e8",
+        "backgroundColor": "#FAEAEA",
       },
     ]
   }
@@ -50,7 +50,7 @@ exports[`renders with red value 1`] = `
         "fontWeight": "600",
       },
       Object {
-        "color": "#d21c1c",
+        "color": "#D21C1C",
       },
     ]
   }
@@ -71,7 +71,7 @@ exports[`renders with yellow value 1`] = `
         "paddingHorizontal": 10,
       },
       Object {
-        "backgroundColor": "#fcf1cd",
+        "backgroundColor": "#FDF0E3",
       },
     ]
   }
@@ -81,7 +81,7 @@ exports[`renders with yellow value 1`] = `
         "fontWeight": "600",
       },
       Object {
-        "color": "#f9971e",
+        "color": "#F9971E",
       },
     ]
   }

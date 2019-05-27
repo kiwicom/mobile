@@ -28,7 +28,7 @@ exports[`Slider renders 1`] = `
     onValuesChangeStart={[Function]}
     selectedStyle={
       Object {
-        "backgroundColor": "#0176D2",
+        "backgroundColor": "#0172CB",
       }
     }
     sliderLength={0}
@@ -91,7 +91,7 @@ exports[`Slider renders correctly with all values equal 1`] = `
     onValuesChangeStart={[Function]}
     selectedStyle={
       Object {
-        "backgroundColor": "#0176D2",
+        "backgroundColor": "#0172CB",
       }
     }
     sliderLength={0}
@@ -154,7 +154,7 @@ exports[`Slider renders with endValue undefined 1`] = `
     onValuesChangeStart={[Function]}
     selectedStyle={
       Object {
-        "backgroundColor": "#0176D2",
+        "backgroundColor": "#0172CB",
       }
     }
     sliderLength={0}

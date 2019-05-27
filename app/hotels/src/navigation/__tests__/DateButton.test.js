@@ -35,7 +35,7 @@ it('renders', () => {
               "letterSpacing": -0.15,
             },
             Object {
-              "color": "#46515e",
+              "color": "#252A31",
               "fontSize": 12,
             },
           ]

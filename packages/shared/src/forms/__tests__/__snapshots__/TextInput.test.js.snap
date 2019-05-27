@@ -85,7 +85,7 @@ exports[`renders with label 1`] = `
     style={
       Array [
         Object {
-          "color": "#7f91a8",
+          "color": "#5F738C",
         },
         undefined,
       ]
@@ -181,7 +181,7 @@ exports[`renders with placeholder 1`] = `
             "fontSize": 14,
           },
           Object {
-            "color": "#7f91a8",
+            "color": "#5F738C",
             "padding": 10,
             "paddingVertical": 15,
             "position": "absolute",
