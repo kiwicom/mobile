@@ -9,10 +9,10 @@ import {
   type HotelsFilterState,
 } from '../HotelsFilterContext';
 import { type HotelsContextState, HotelsContext } from '../HotelsContext';
-import { sanitizeHotelAmenities } from '../GraphQLSanitizers';
 import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHotelsSearchQuery.graphql';
 import HotelsPaginationContainer from './HotelsPaginationContainer';
 import HotelsSearch from './HotelsSearch';
+import useHotelsFilter from './useHotelsFilter';
 
 const query = graphql`
   query NewAllHotelsSearchQuery(
@@ -33,9 +33,7 @@ const renderAllHotelsSearchList = (
 };
 
 const NewAllHotelsSearch = () => {
-  const { orderBy, filterParams }: HotelsFilterState = React.useContext(
-    HotelsFilterContext,
-  );
+  const { orderBy }: HotelsFilterState = React.useContext(HotelsFilterContext);
   const {
     checkin,
     checkout,
@@ -44,12 +42,8 @@ const NewAllHotelsSearch = () => {
     cityId,
     closeHotels: onClose,
   }: HotelsContextState = React.useContext(HotelsContext);
-  const {
-    hotelAmenities,
-    maxPrice,
-    minPrice,
-    ...restFilterParams
-  } = filterParams;
+  const hotelsFilter = useHotelsFilter();
+
   return (
     <HotelsSearch
       shouldRenderDateError={checkin === null || checkout === null}
@@ -62,12 +56,7 @@ const NewAllHotelsSearch = () => {
           checkout: DateFormatter(checkout ?? new Date()).formatForMachine(),
           roomsConfiguration,
         },
-        filter: {
-          ...restFilterParams,
-          ...(maxPrice != null ? { maxPrice: maxPrice.toNumber() } : {}),
-          ...(minPrice != null ? { minPrice: minPrice.toNumber() } : {}),
-          hotelAmenities: sanitizeHotelAmenities(hotelAmenities),
-        },
+        filter: hotelsFilter,
         first: 50,
         options: {
           currency,

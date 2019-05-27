@@ -69,7 +69,6 @@ export function HotelsPaginationContainer(props: Props) {
         isLoading={isLoading}
         // $FlowExpectedError: Relay flow types does not work for plural: true
         data={data}
-        top={56}
         closeHotels={closeHotels}
       />
     </>

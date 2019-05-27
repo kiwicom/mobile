@@ -56,9 +56,13 @@ const PriceFilter = (props: Props) => {
   }) {
     const filter = {
       minPrice:
-        minPrice !== currentSearchStats.priceMin ? new Decimal(minPrice) : null,
+        minPrice !== currentSearchStats.priceMin.toNumber()
+          ? new Decimal(minPrice)
+          : null,
       maxPrice:
-        maxPrice !== currentSearchStats.priceMax ? new Decimal(maxPrice) : null,
+        maxPrice !== currentSearchStats.priceMax.toNumber()
+          ? new Decimal(maxPrice)
+          : null,
     };
     props.onChange(filter);
     Logger.hotelsFilterTagSet('Price');

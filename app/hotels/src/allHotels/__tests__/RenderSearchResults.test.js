@@ -27,34 +27,42 @@ it('initialises correctly when it should show list', () => {
   );
   expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-            Object {
-              "bottom": 0,
-              "end": 0,
-              "position": "absolute",
-              "start": 0,
-              "top": undefined,
-              "transform": Array [
-                Object {
-                  "translateY": 0,
-                },
-              ],
-            }
-      `);
+    Array [
+      Object {
+        "bottom": 0,
+        "end": 0,
+        "position": "absolute",
+        "start": 0,
+        "top": 56,
+      },
+      Object {
+        "transform": Array [
+          Object {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
+  `);
   expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-            Object {
-              "bottom": 0,
-              "end": 0,
-              "position": "absolute",
-              "start": 0,
-              "top": undefined,
-              "transform": Array [
-                Object {
-                  "translateY": 1334,
-                },
-              ],
-            }
-      `);
+    Array [
+      Object {
+        "bottom": 0,
+        "end": 0,
+        "position": "absolute",
+        "start": 0,
+        "top": 56,
+      },
+      Object {
+        "transform": Array [
+          Object {
+            "translateY": 1334,
+          },
+        ],
+      },
+    ]
+  `);
 });
 
 it('initialises correctly when it should show map', () => {
@@ -66,32 +74,40 @@ it('initialises correctly when it should show map', () => {
   );
   expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-    Object {
-      "bottom": 0,
-      "end": 0,
-      "position": "absolute",
-      "start": 0,
-      "top": undefined,
-      "transform": Array [
-        Object {
-          "translateY": -100,
-        },
-      ],
-    }
+    Array [
+      Object {
+        "bottom": 0,
+        "end": 0,
+        "position": "absolute",
+        "start": 0,
+        "top": 56,
+      },
+      Object {
+        "transform": Array [
+          Object {
+            "translateY": -100,
+          },
+        ],
+      },
+    ]
   `);
   expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-    Object {
-      "bottom": 0,
-      "end": 0,
-      "position": "absolute",
-      "start": 0,
-      "top": undefined,
-      "transform": Array [
-        Object {
-          "translateY": 0,
-        },
-      ],
-    }
+    Array [
+      Object {
+        "bottom": 0,
+        "end": 0,
+        "position": "absolute",
+        "start": 0,
+        "top": 56,
+      },
+      Object {
+        "transform": Array [
+          Object {
+            "translateY": 0,
+          },
+        ],
+      },
+    ]
   `);
 });

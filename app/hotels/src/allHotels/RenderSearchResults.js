@@ -20,7 +20,6 @@ type Props = {|
   +hasMore: boolean,
   +isLoading: boolean,
   +onLoadMore: () => void,
-  +top: number,
   +closeHotels: () => void,
 |};
 
@@ -92,11 +91,12 @@ export const RenderSearchResults = (props: Props) => {
   return (
     <>
       <Animated.View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          top: props.top,
-          transform: [{ translateY: listAnimation }],
-        }}
+        style={[
+          styles.container,
+          {
+            transform: [{ translateY: listAnimation }],
+          },
+        ]}
         testID="list-wrapper"
         onLayout={onLayout}
       >
@@ -115,11 +115,12 @@ export const RenderSearchResults = (props: Props) => {
         </View>
       </Animated.View>
       <Animated.View
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          top: props.top,
-          transform: [{ translateY: mapAnimation }],
-        }}
+        style={[
+          styles.container,
+          {
+            transform: [{ translateY: mapAnimation }],
+          },
+        ]}
         testID="map-wrapper"
       >
         <MapScreen data={data} />
@@ -133,6 +134,10 @@ const styles = StyleSheet.create({
   content: {
     paddingBottom,
     flex: 1,
+  },
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    top: 56,
   },
 });
 

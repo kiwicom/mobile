@@ -6,12 +6,15 @@ import {
   createPaginationContainer,
   type RelayPaginationProp,
 } from '@kiwicom/mobile-relay';
-import { Logger } from '@kiwicom/mobile-shared';
+import { Logger, StyleSheet } from '@kiwicom/mobile-shared';
 import { Decimal } from 'decimal.js-light';
+import { View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { Stay22PaginationContainer_data as Stay22PaginationContainerType } from './__generated__/Stay22PaginationContainer_data.graphql';
 import { HotelsContext, type HotelsContextState } from '../HotelsContext';
 import RenderSearchResults from './RenderSearchResults';
+import FilterStripe from '../filter/FilterStripe';
 
 type Props = {|
   +data: Stay22PaginationContainerType,
@@ -26,9 +29,9 @@ export function Stay22PaginationContainer(props: Props) {
   }: HotelsContextState = React.useContext(HotelsContext);
 
   const priceMax =
-    props.data.allAvailableStay22Hotels?.stats?.minPrice?.amount ?? 0;
-  const priceMin =
     props.data.allAvailableStay22Hotels?.stats?.maxPrice?.amount ?? 0;
+  const priceMin =
+    props.data.allAvailableStay22Hotels?.stats?.minPrice?.amount ?? 0;
 
   React.useEffect(() => {
     Logger.ancillaryDisplayed(
@@ -57,24 +60,39 @@ export function Stay22PaginationContainer(props: Props) {
   const data = edges.map(hotel => hotel?.node);
 
   return (
-    <RenderSearchResults
-      // $FlowExpectedError: Relay flow types does not work for plural: true
-      data={data}
-      onLoadMore={loadMore}
-      isLoading={isLoading}
-      hasMore={props.relay.hasMore()}
-      top={0}
-      closeHotels={closeHotels}
-    />
+    <>
+      <View style={styles.filterContainer}>
+        <FilterStripe />
+      </View>
+      <RenderSearchResults
+        // $FlowExpectedError: Relay flow types does not work for plural: true
+        data={data}
+        onLoadMore={loadMore}
+        isLoading={isLoading}
+        hasMore={props.relay.hasMore()}
+        closeHotels={closeHotels}
+      />
+    </>
   );
 }
+
+const styles = StyleSheet.create({
+  filterContainer: {
+    zIndex: parseInt(defaultTokens.zIndexSticky, 10),
+  },
+});
 
 export default createPaginationContainer(
   Stay22PaginationContainer,
   {
     data: graphql`
       fragment Stay22PaginationContainer_data on RootQuery {
-        allAvailableStay22Hotels(search: $search, first: $first, after: $after)
+        allAvailableStay22Hotels(
+          search: $search
+          first: $first
+          after: $after
+          filter: $filter
+        )
           @connection(
             key: "Stay22PaginationContainer_allAvailableStay22Hotels"
           ) {
@@ -99,16 +117,18 @@ export default createPaginationContainer(
   },
   {
     getVariables(props, { count, cursor }, fragmentVariables) {
-      const { search } = fragmentVariables;
+      const { search, filter } = fragmentVariables;
       return {
         first: count,
         after: cursor,
         search,
+        filter,
       };
     },
     query: graphql`
       query Stay22PaginationContainerQuery(
         $search: Stay22HotelsSearchInput!
+        $filter: HotelsFilterInput!
         $after: String
         $first: Int
       ) {

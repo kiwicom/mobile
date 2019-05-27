@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6d877399590d4b8846e27c311a9a1f45
+ * @relayHash 9fc919d282ab4ac808622b78b18bd567
  */
 
 /* eslint-disable */
@@ -35,6 +35,8 @@ export type HotelsFilterInput = {|
   starsRating?: ?$ReadOnlyArray<?number>,
   minPrice?: ?number,
   maxPrice?: ?number,
+  minimumPrice?: ?string,
+  maximumPrice?: ?string,
   hotelFacilities?: ?HotelFacilitiesInput,
   hotelAmenities?: ?HotelAmenitiesInput,
   minScore?: ?number,
