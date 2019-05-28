@@ -9,17 +9,11 @@ import type { Stay22HotelsSearchQueryResponse } from './__generated__/Stay22Hote
 import Stay22PaginationContainer from './Stay22PaginationContainer';
 import HotelsSearch from './HotelsSearch';
 import useHotelsFilter from './useHotelsFilter';
+import {
+  HotelsFilterContext,
+  type HotelsFilterState,
+} from '../HotelsFilterContext';
 
-const query = graphql`
-  query Stay22HotelsSearchQuery(
-    $search: Stay22HotelsSearchInput!
-    $filter: HotelsFilterInput!
-    $first: Int
-    $after: String
-  ) {
-    ...Stay22PaginationContainer_data
-  }
-`;
 const renderAllHotelsSearchList = (
   propsFromRenderer: Stay22HotelsSearchQueryResponse,
 ) => {
@@ -36,6 +30,7 @@ export function Stay22HotelsSearch() {
     longitude,
     closeHotels: onClose,
   }: HotelsContextState = React.useContext(HotelsContext);
+  const { orderBy }: HotelsFilterState = React.useContext(HotelsFilterContext);
   const hotelsFilter = useHotelsFilter();
 
   const shouldRenderDateError =
@@ -48,7 +43,16 @@ export function Stay22HotelsSearch() {
     <HotelsSearch
       onClose={onClose}
       shouldRenderDateError={shouldRenderDateError}
-      query={query}
+      query={graphql`
+        query Stay22HotelsSearchQuery(
+          $search: Stay22HotelsSearchInput!
+          $filter: HotelsFilterInput!
+          $first: Int
+          $after: String
+        ) {
+          ...Stay22PaginationContainer_data
+        }
+      `}
       variables={{
         first: 50,
         search: {
@@ -58,6 +62,7 @@ export function Stay22HotelsSearch() {
           checkout: DateFormatter(checkout ?? new Date()).formatForMachine(),
           guests: getGuestCount(),
           currency,
+          ...(orderBy !== null ? { orderBy } : {}),
         },
         filter: hotelsFilter,
       }}
