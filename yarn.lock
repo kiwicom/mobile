@@ -904,6 +904,11 @@
     "@kiwicom/js" "^0.8.0"
     cross-fetch "^3.0.2"
 
+"@kiwicom/js@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.10.0.tgz#79f317e5a6c6ad8e81375215829d65f6c10bbe74"
+  integrity sha512-rTTPAth4/8f9JHkt4c8NyWbfvg4YMe7/F+BjJziA/4QZ1gTTqzfGAncUn6MRRFCFEDk0wJ6YIFKH/mTRy7ecgw==
+
 "@kiwicom/js@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.8.0.tgz#a548fd07073599fb875d3e556f1009080744cc7d"
@@ -913,6 +918,16 @@
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.9.0.tgz#67032574d8ee318cd747001a7b4c87013214327a"
   integrity sha512-CwDiWwLWE0iWzCrL08x7jdEySAIVdmcmF/rik8gjK5oW4jA5G9fOBxsSSVm2bLtq8HG9KIz4YHDbtWO1K7LIiQ==
+
+"@kiwicom/monorepo-utils@^0.21.0":
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/monorepo-utils/-/monorepo-utils-0.21.0.tgz#acad60aa8425c5331e7b8eca7f5f8e620f7f2c96"
+  integrity sha512-ruIl6rQMOgujRpj+Jd2RlJ7swO9119R7BJm2jbGuysJGdwZOo1tpJ8drF215eN8NkoW/4nK8Mv9reoBOZsXIsg==
+  dependencies:
+    "@babel/register" "^7.4.4"
+    "@kiwicom/js" "^0.10.0"
+    glob "^7.1.4"
+    is-ci "^2.0.0"
 
 "@kiwicom/monorepo@^0.21.0":
   version "0.21.0"

@@ -51,7 +51,7 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/runtime": "^7.4.4",
     "@kiwicom/eslint-config": "^4.0.1",
-    "@kiwicom/monorepo": "^0.21.0",
+    "@kiwicom/monorepo-utils": "^0.21.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
     "babel-plugin-relay": "^4.0.0",
