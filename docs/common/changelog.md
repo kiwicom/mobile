@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v41
+
+- Set max date on checkin datepicker
+
 ### v40 
 
 - Set filters on checkin/checkout datepicker. 
