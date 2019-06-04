@@ -9,8 +9,12 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v40 
+
+- Set filters on checkin/checkout datepicker. 
+
 ### v39
-- Fux Missing rating for hotel on map screen - MOBILE-4149
+- Fix Missing rating for hotel on map screen - MOBILE-4149
 
 ### v38
 
