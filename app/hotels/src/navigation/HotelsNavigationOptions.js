@@ -73,6 +73,7 @@ const hotelsNavigationOptions = ({
               date={checkin}
               onDateChange={setCheckinDate}
               minDate={today}
+              maxDate={DateUtils(today).addDays(364)}
             />
             <Text style={styles.toText}>
               <Translation id="hotels_search.header.to" />
