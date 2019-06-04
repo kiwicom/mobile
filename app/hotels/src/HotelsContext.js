@@ -206,6 +206,11 @@ class Provider extends React.Component<Props, State> {
   setPaymentLink = (paymentLink: ?string) => this.setState({ paymentLink });
 
   setCheckinDate = (checkin: Date) => {
+    /**
+     * We need to strip timezone offset, when min or max date is hit on the datepicker
+     * Displayed date will be wrong due to the offset
+     */
+    checkin.setMinutes(checkin.getMinutes() - checkin.getTimezoneOffset());
     this.setState(state => {
       const checkout = state.checkout ?? new Date();
       const cityId = state.cityId;
@@ -253,6 +258,11 @@ class Provider extends React.Component<Props, State> {
   };
 
   setCheckoutDate = (checkout: Date) => {
+    /**
+     * We need to strip timezone offset, when min or max date is hit on the datepicker
+     * Displayed date will be wrong due to the offset
+     */
+    checkout.setMinutes(checkout.getMinutes() - checkout.getTimezoneOffset());
     this.setState(state => {
       const checkin = state.checkin ?? new Date();
       const cityId = state.cityId;

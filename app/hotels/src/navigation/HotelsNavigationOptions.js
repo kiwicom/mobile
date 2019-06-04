@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { View, Platform, StatusBar } from 'react-native';
-import { DateFormatter } from '@kiwicom/mobile-localization';
+import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
 import {
   Text,
   StyleSheet,
@@ -51,42 +51,52 @@ const hotelsNavigationOptions = ({
     }),
     borderBottomColor: defaultTokens.paletteInkLighter,
   },
-  headerLeft: (
-    <View style={styles.headerLeftcontainer}>
-      <Text style={styles.headerLeftText}>
-        <Translation passThrough={cityName || ''} />
-      </Text>
-      {checkin != null && checkout != null && (
-        <View style={styles.row}>
-          <DatePicker
-            customButton={
-              <DateButton>
-                <Translation
-                  passThrough={DateFormatter(checkin).formatCustom(dateFormat)}
-                />
-              </DateButton>
-            }
-            date={checkin}
-            onDateChange={setCheckinDate}
-          />
-          <Text style={styles.toText}>
-            <Translation id="hotels_search.header.to" />
-          </Text>
-          <DatePicker
-            customButton={
-              <DateButton>
-                <Translation
-                  passThrough={DateFormatter(checkout).formatCustom(dateFormat)}
-                />
-              </DateButton>
-            }
-            date={checkout}
-            onDateChange={setCheckoutDate}
-          />
-        </View>
-      )}
-    </View>
-  ),
+  headerLeft: () => {
+    const today = DateUtils.getToday();
+    return (
+      <View style={styles.headerLeftcontainer}>
+        <Text style={styles.headerLeftText}>
+          <Translation passThrough={cityName || ''} />
+        </Text>
+        {checkin != null && checkout != null && (
+          <View style={styles.row}>
+            <DatePicker
+              customButton={
+                <DateButton>
+                  <Translation
+                    passThrough={DateFormatter(checkin).formatCustom(
+                      dateFormat,
+                    )}
+                  />
+                </DateButton>
+              }
+              date={checkin}
+              onDateChange={setCheckinDate}
+              minDate={today}
+            />
+            <Text style={styles.toText}>
+              <Translation id="hotels_search.header.to" />
+            </Text>
+            <DatePicker
+              customButton={
+                <DateButton>
+                  <Translation
+                    passThrough={DateFormatter(checkout).formatCustom(
+                      dateFormat,
+                    )}
+                  />
+                </DateButton>
+              }
+              date={checkout}
+              onDateChange={setCheckoutDate}
+              minDate={DateUtils(today).addDays(1)}
+              maxDate={DateUtils(today).addDays(365)}
+            />
+          </View>
+        )}
+      </View>
+    );
+  },
   headerRight: (
     <React.Fragment>
       {checkin !== null && (
@@ -113,9 +123,6 @@ const styles = StyleSheet.create({
     color: defaultTokens.colorTextAttention,
     marginBottom: 3,
     paddingTop: 8,
-  },
-  label: {
-    color: defaultTokens.paletteProductNormal,
   },
   row: {
     flexDirection: 'row',
