@@ -122,6 +122,11 @@ DateUtils.getUTCToday = () => {
   );
 };
 
+DateUtils.getToday = () => {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+};
+
 DateUtils.getUTCNow = getUTCNow;
 
 DateUtils.latestTimeOfDay = (day: Date) => {
