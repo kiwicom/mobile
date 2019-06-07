@@ -19,13 +19,10 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ["prettier", "react", "react-native", "detox", "import"],
+  plugins: ["react", "react-native", "detox"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    "prettier",
-    "prettier/react",
-    "prettier/flowtype",
     "@kiwicom/eslint-config"
   ],
   rules: {
@@ -88,15 +85,7 @@ module.exports = {
         ]
       }
     ],
-    "prettier/prettier": [
-      ERROR,
-      { singleQuote: true, trailingComma: "all", jsxBracketSameLine: false }
-    ],
     "react/jsx-boolean-value": [ERROR, "always"],
-    "react-native/no-unused-styles": ERROR,
-    "comma-dangle": OFF, // Handled by prettier, vscode adds double comma
-    "babel/semi": OFF, // Handled by prettier, vscode adds double semi-colon
-    "flowtype/space-after-type-colon": OFF, // Conflicted with prettier rule
-    "flowtype/delimiter-dangle": OFF, // Handled by prettier, vscode adds double comma
+    "react-native/no-unused-styles": ERROR
   }
 };
