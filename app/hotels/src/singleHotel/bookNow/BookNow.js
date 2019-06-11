@@ -30,7 +30,7 @@ export function BookNow(props: Props) {
   const {
     currency,
     hotelId,
-    getGuestCount,
+    guestCount,
   }: HotelsContextState = React.useContext(HotelsContext);
 
   function handleGoToPayment() {
@@ -46,7 +46,7 @@ export function BookNow(props: Props) {
       Logger.hotelsBookNowPressed({
         hotelID: hotelId,
         rooms: rooms.reduce((prev, curr) => prev + curr.count, 0),
-        guests: getGuestCount(),
+        guests: guestCount,
         price: {
           amount: parseFloat(props.amount ?? 0),
           currency: currency,
@@ -61,7 +61,7 @@ export function BookNow(props: Props) {
   }
 
   function onPress() {
-    const numberOfGuests = getGuestCount();
+    const numberOfGuests = guestCount;
 
     if (numberOfGuests > props.maxPersons) {
       Alert.translatedAlert(

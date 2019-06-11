@@ -1,10 +1,8 @@
 // @flow strict
 
-import * as React from 'react';
-import { DateUtils, DateFormatter } from '@kiwicom/mobile-localization';
-import renderer from 'react-test-renderer';
+import { DateUtils } from '@kiwicom/mobile-localization';
 
-import HotelsContext, { getAsUtcDate } from '../HotelsContext';
+import { getAsUtcDate, validateInput } from '../HotelsContext';
 
 describe('getAsUtcDate', () => {
   it('should return null for invalid date string', () => {
@@ -16,177 +14,92 @@ describe('getAsUtcDate', () => {
     expect(getAsUtcDate('2018-01-01')).toEqual(new Date(Date.UTC(2018, 0, 1)));
   });
 });
-const props = {
-  checkin: DateFormatter(DateUtils().addDays(30)).formatForMachine(),
-  checkout: DateFormatter(DateUtils().addDays(37)).formatForMachine(),
-};
-const getInstance = (additionalProps = {}) =>
-  renderer
-    .create(
-      <>
-        {/*  $FlowExpectedError: Just passing props needed for test to pass */}
-        <HotelsContext.Provider {...props} {...additionalProps}>
-          {null}
-        </HotelsContext.Provider>
-      </>,
-    )
-    .getInstance();
 
-// In the end this is how this date is used, so it makes sense to pass it through this format for asserting results
-const formatForMachine = (date: Date) => DateFormatter(date).formatForMachine();
+type Input = {|
+  +cityId?: string | number,
+  +checkin?: Date,
+  +checkout?: Date,
+|};
 
-describe('HotelsContext', () => {
-  describe('constructor', () => {
-    it('validates correctly when there is no error', () => {
-      const wrapper = getInstance();
-      expect(wrapper.state.errors).toEqual({});
-    });
+const getValidateProps = ({ cityId, checkin, checkout }: Input) => ({
+  checkin: checkin ?? DateUtils().addDays(1),
+  checkout: checkout ?? DateUtils().addDays(5),
+  cityId: cityId ?? '1',
+});
 
-    it('gives error for cityId -1', () => {
-      const wrapper1 = getInstance({ cityId: '-1' });
-      const wrapper2 = getInstance({ cityId: -1 });
-      expect(wrapper1.state.errors).toEqual({ invalidCityId: true });
-      expect(wrapper2.state.errors).toEqual({ invalidCityId: true });
-    });
+describe('validateInput', () => {
+  it('validates correctly when there is no error', () => {
+    // $FlowExpectedError: Ok for testing
+    const errors = validateInput(getValidateProps({}));
+    expect(errors).toEqual({});
+  });
 
-    it('gives error for checkin date before today', () => {
-      const wrapper = getInstance({
-        checkin: formatForMachine(DateUtils().addDays(-1)),
-        checkout: formatForMachine(DateUtils().addDays(1)),
-      });
-      expect(wrapper.state.errors).toEqual({ beforeToday: true });
-    });
+  it('gives error for cityId -1', () => {
+    const errors1 = validateInput(getValidateProps({ cityId: '-1' }));
 
-    it('gives error for checkout too far in the future', () => {
-      const wrapper = getInstance({
-        checkin: formatForMachine(DateUtils().addDays(360)),
-        checkout: formatForMachine(DateUtils().addDays(366)),
-      });
-      expect(wrapper.state.errors).toEqual({ tooFarFuture: true });
-    });
+    const errors2 = validateInput(getValidateProps({ cityId: -1 }));
 
-    it('gives error for invalid interval', () => {
-      const wrapper1 = getInstance({
-        checkin: formatForMachine(DateUtils().addDays(3)),
-        checkout: formatForMachine(DateUtils().addDays(1)),
-      });
-      const wrapper2 = getInstance({
-        checkin: formatForMachine(DateUtils().addDays(1)),
-        checkout: formatForMachine(DateUtils().addDays(1)),
-      });
-      const wrapper3 = getInstance({
-        checkin: formatForMachine(DateUtils().addDays(1)),
-        checkout: formatForMachine(DateUtils().addDays(32)),
-      });
+    expect(errors1).toEqual({ invalidCityId: true });
+    expect(errors2).toEqual({ invalidCityId: true });
+  });
 
-      expect(wrapper1.state.errors).toEqual({
-        interval: -2,
-      });
-      expect(wrapper2.state.errors).toEqual({
-        interval: 0,
-      });
-      expect(wrapper3.state.errors).toEqual({
-        interval: 31,
-      });
-    });
-
-    it('gives error for missing dates', () => {
-      const wrapper = getInstance({
-        checkin: null,
-      });
-      expect(wrapper.state.errors).toEqual({ missingDates: true });
+  it('gives error for checkin date before today', () => {
+    const errors = validateInput(
+      getValidateProps({ checkin: DateUtils().addDays(-10) }),
+    );
+    expect(errors).toEqual({
+      beforeToday: true,
     });
   });
 
-  describe('setCheckinDate', () => {
-    it('should set checkinDate', () => {
-      const wrapper = getInstance();
+  it('gives error for checkout too far in the future', () => {
+    const errors = validateInput(
+      getValidateProps({
+        checkin: DateUtils().addDays(360),
+        checkout: DateUtils().addDays(366),
+      }),
+    );
 
-      const checkin = DateUtils().addDays(32);
-      wrapper.setCheckinDate(checkin);
+    expect(errors).toEqual({ tooFarFuture: true });
+  });
 
-      expect(formatForMachine(wrapper.state.checkin)).toEqual(
-        formatForMachine(checkin),
-      );
-      expect(formatForMachine(wrapper.state.checkout)).toEqual(props.checkout);
+  it('gives error for invalid interval', () => {
+    const errors1 = validateInput(
+      getValidateProps({
+        checkin: DateUtils().addDays(3),
+        checkout: DateUtils().addDays(1),
+      }),
+    );
+    const errors2 = validateInput(
+      getValidateProps({
+        checkin: DateUtils().addDays(1),
+        checkout: DateUtils().addDays(1),
+      }),
+    );
+    const errors3 = validateInput(
+      getValidateProps({
+        checkin: DateUtils().addDays(1),
+        checkout: DateUtils().addDays(32),
+      }),
+    );
+
+    expect(errors1).toEqual({
+      interval: -2,
     });
-
-    it('should set checkout date = checkin + 30 days when diff in days > 30', () => {
-      const wrapper = getInstance();
-
-      const checkin = DateUtils().addDays(-5);
-      const expectedCheckout = formatForMachine(DateUtils(checkin).addDays(30));
-      wrapper.setCheckinDate(checkin);
-
-      expect(formatForMachine(wrapper.state.checkin)).toEqual(
-        formatForMachine(checkin),
-      );
-      expect(formatForMachine(wrapper.state.checkout)).toEqual(
-        expectedCheckout,
-      );
+    expect(errors2).toEqual({
+      interval: 0,
     });
-
-    it('should set checkout date = checkin + 1 if diff in days <= 0', () => {
-      const wrapper = getInstance();
-      const checkin = DateUtils().addDays(40);
-      const expectedCheckout = formatForMachine(DateUtils(checkin).addDays(1));
-
-      wrapper.setCheckinDate(checkin);
-
-      expect(formatForMachine(wrapper.state.checkin)).toEqual(
-        formatForMachine(checkin),
-      );
-      expect(formatForMachine(wrapper.state.checkout)).toEqual(
-        expectedCheckout,
-      );
+    expect(errors3).toEqual({
+      interval: 31,
     });
   });
 
-  describe('setCheckoutDate', () => {
-    it('sets checkout date', () => {
-      const wrapper = getInstance();
-
-      const checkout = DateUtils(new Date(props.checkout)).addDays(2);
-      wrapper.setCheckoutDate(checkout);
-
-      expect(formatForMachine(wrapper.state.checkout)).toEqual(
-        formatForMachine(checkout),
-      );
-      expect(formatForMachine(wrapper.state.checkin)).toEqual(props.checkin);
+  it('gives error for missing dates', () => {
+    const errors = validateInput({
+      checkin: null,
+      checkout: null,
+      cityId: '2',
     });
-
-    it('sets checkin date to checkout - 30 if diff is more than 30 days', () => {
-      const wrapper = getInstance();
-      const checkout = DateUtils(new Date(props.checkout)).addDays(30);
-      const expectedCheckinDate = formatForMachine(
-        DateUtils(checkout).addDays(-30),
-      );
-
-      wrapper.setCheckoutDate(checkout);
-
-      expect(formatForMachine(wrapper.state.checkout)).toEqual(
-        formatForMachine(checkout),
-      );
-      expect(formatForMachine(wrapper.state.checkin)).toEqual(
-        expectedCheckinDate,
-      );
-    });
-
-    it('sets checkin to checkout - 1 if diff in days is <= 0', () => {
-      const wrapper = getInstance();
-      const checkout = DateUtils(new Date(props.checkout)).addDays(-30);
-      const expectedCheckinDate = formatForMachine(
-        DateUtils(checkout).addDays(-1),
-      );
-
-      wrapper.setCheckoutDate(checkout);
-
-      expect(formatForMachine(wrapper.state.checkout)).toEqual(
-        formatForMachine(checkout),
-      );
-      expect(formatForMachine(wrapper.state.checkin)).toEqual(
-        expectedCheckinDate,
-      );
-    });
+    expect(errors).toEqual({ missingDates: true });
   });
 });

@@ -22,7 +22,7 @@ type Props = {|
 function AllHotelsSearchRow(props: Props) {
   const hotelId = props.data?.hotelId;
   const {
-    setHotelId,
+    actions: { setHotelId },
     checkin,
     checkout,
     roomsConfiguration,

@@ -24,7 +24,7 @@ type PropsWithContext = {|
 
 export function HotelSwipeItemWithContext(props: PropsWithContext) {
   const {
-    setHotelId,
+    actions: { setHotelId },
     checkin,
     checkout,
     roomsConfiguration,

@@ -42,8 +42,8 @@ export function Stay22PaginationContainer(props: Props) {
 
   React.useEffect(() => {
     setCurrentSearchStats({
-      priceMax: new Decimal(priceMax).toNumber(),
-      priceMin: new Decimal(priceMin).toNumber(),
+      priceMax: new Decimal(priceMax),
+      priceMin: new Decimal(priceMin),
     });
   }, [priceMax, priceMin, setCurrentSearchStats]);
 

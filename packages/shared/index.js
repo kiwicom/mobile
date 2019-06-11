@@ -125,6 +125,7 @@ export { default as WithStorage } from './src/WithStorage';
 export { default as WithNativeNavigation } from './src/WithNativeNavigation';
 export { default as WithStandaloneScreen } from './src/WithStandaloneScreen';
 export { default as PassBook } from './src/PassBook';
+export { default as useApi } from './src/useApi/useApi';
 
 // Flow types:
 

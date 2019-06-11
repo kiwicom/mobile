@@ -23,7 +23,9 @@ type PropsWithContext = {|
 
 function MapScreenWithContext(props: PropsWithContext) {
   const [selectedHotelIndex, setSelectedHotelIndex] = React.useState(0);
-  const { setHotelId }: HotelsContextState = React.useContext(HotelsContext);
+  const {
+    actions: { setHotelId },
+  }: HotelsContextState = React.useContext(HotelsContext);
   const hotels = props.data ?? [];
 
   function selectMarker(index: number) {

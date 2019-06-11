@@ -39,7 +39,9 @@ function getFirst<T>(list: $ReadOnlyArray<T>): ?T {
 }
 
 export const AllHotelsSearchList = (props: Props) => {
-  const { setHotelId }: HotelsContextState = React.useContext(HotelsContext);
+  const {
+    actions: { setHotelId },
+  }: HotelsContextState = React.useContext(HotelsContext);
   const hotels = props.data ?? [];
 
   React.useEffect(() => {

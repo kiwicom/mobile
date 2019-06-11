@@ -3,6 +3,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import { Logger } from '@kiwicom/mobile-shared';
+import { Decimal } from 'decimal.js-light';
 
 import { HotelsPaginationContainer } from '../HotelsPaginationContainer';
 import { HotelsContext } from '../../HotelsContext';
@@ -56,8 +57,8 @@ it('calls setCurrentSearchStats when minPrice and maxPrice are defined', () => {
   const wrapper = renderComponent(defaultProps(), setCurrentSearchStats);
   wrapper.update();
   expect(setCurrentSearchStats).toHaveBeenCalledWith({
-    priceMax: 100,
-    priceMin: 50,
+    priceMax: new Decimal(100),
+    priceMin: new Decimal(50),
   });
 });
 
@@ -70,8 +71,8 @@ it('calls setCurrentSearchStats when minPrice and maxPrice are 0', () => {
   wrapper.update();
 
   expect(setCurrentSearchStats).toHaveBeenCalledWith({
-    priceMax: 0,
-    priceMin: 0,
+    priceMax: new Decimal(0),
+    priceMin: new Decimal(0),
   });
 });
 

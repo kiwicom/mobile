@@ -12,7 +12,7 @@ import SingleHotelSearch from './SingleHotelSearch';
 type Props = {|
   +goBack: () => void,
   +currency: string,
-  +getGuestCount: () => number,
+  +guestCount: number,
   +hotelId: string,
   +checkin: Date,
   +checkout: Date,

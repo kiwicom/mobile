@@ -121,7 +121,7 @@ it('should show an alert if numberOfGuests > maxPersons', () => {
   const wrapper = create(
     <HotelsContext.Provider
       // $FlowExpectedError: Passing just props needed to run test
-      value={{ hotelId: '1245', getGuestCount: jest.fn(() => 4) }}
+      value={{ hotelId: '1245', guestCount: 4 }}
     >
       {/*  $FlowExpectedError: Passing just props needed to run test */}
       <BookNow {...props} />
