@@ -16,7 +16,7 @@ type Props = {|
   +checkin: Date,
   +checkout: Date,
   +roomsConfiguration: RoomConfigurationType,
-  +getGuestCount: () => number,
+  +guestCount: number,
 |};
 
 export default class Stay22SingleHotel extends React.Component<Props> {
@@ -59,7 +59,7 @@ export default class Stay22SingleHotel extends React.Component<Props> {
         `}
         variables={{
           id: hotelId,
-          guests: this.props.getGuestCount(),
+          guests: this.props.guestCount,
           checkin: sanitizeDate(checkin),
           checkout: sanitizeDate(checkout),
           currency,

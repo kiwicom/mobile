@@ -9,6 +9,7 @@ import {
 } from '@kiwicom/mobile-relay';
 import { Logger, StyleSheet } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import { Decimal } from 'decimal.js-light';
 
 import type { HotelsPaginationContainer_data as HotelsPaginationContainerType } from './__generated__/HotelsPaginationContainer_data.graphql';
 import { HotelsContext, type HotelsContextState } from '../HotelsContext';
@@ -21,6 +22,8 @@ type Props = {|
 |};
 
 export function HotelsPaginationContainer(props: Props) {
+  const priceMax = props.data?.allAvailableBookingComHotels?.stats?.maxPrice;
+  const priceMin = props.data?.allAvailableBookingComHotels?.stats?.minPrice;
   const [isLoading, setIsLoading] = React.useState(false);
   const {
     actions: { setCurrentSearchStats },
@@ -35,16 +38,13 @@ export function HotelsPaginationContainer(props: Props) {
   }, []);
 
   React.useEffect(() => {
-    const priceMax = props.data?.allAvailableBookingComHotels?.stats?.maxPrice;
-    const priceMin = props.data?.allAvailableBookingComHotels?.stats?.minPrice;
-
     if (priceMax != null && priceMin != null) {
       setCurrentSearchStats({
-        priceMax,
-        priceMin,
+        priceMax: new Decimal(priceMax),
+        priceMin: new Decimal(priceMin),
       });
     }
-  }, [props.data, setCurrentSearchStats]);
+  }, [priceMax, priceMin, setCurrentSearchStats]);
 
   function loadMore() {
     if (props.relay.hasMore() && !props.relay.isLoading()) {

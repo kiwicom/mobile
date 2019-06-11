@@ -18,7 +18,8 @@
     "react-native-swiper": "^1.5.13"
   },
   "devDependencies": {
-    "@kiwicom/mobile-playground": "^0"
+    "@kiwicom/mobile-playground": "^0",
+    "mockdate": "^2.0.2"
   },
   "peerDependencies": {
     "@kiwicom/universal-components": "^0",

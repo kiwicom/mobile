@@ -51,9 +51,10 @@ export function HotelDetailScreen(props: Props) {
     }),
   );
 
-  const { setPaymentLink, apiProvider }: HotelsContextState = React.useContext(
-    HotelsContext,
-  );
+  const {
+    actions: { setPaymentLink },
+    apiProvider,
+  }: HotelsContextState = React.useContext(HotelsContext);
 
   React.useEffect(() => {
     const provider =

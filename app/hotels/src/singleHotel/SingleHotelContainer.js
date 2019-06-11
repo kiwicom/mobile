@@ -13,7 +13,7 @@ type Props = {|
 const SingleHotelContainer = ({ goBack }: Props) => {
   const {
     currency,
-    getGuestCount,
+    guestCount,
     checkin,
     checkout,
     roomsConfiguration,
@@ -31,7 +31,7 @@ const SingleHotelContainer = ({ goBack }: Props) => {
   }
   const props = {
     currency,
-    getGuestCount,
+    guestCount,
     checkin,
     checkout,
     roomsConfiguration,

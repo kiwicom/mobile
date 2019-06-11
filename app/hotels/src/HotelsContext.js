@@ -2,7 +2,10 @@
 
 import * as React from 'react';
 import { DateUtils } from '@kiwicom/mobile-localization';
-import { Decimal, type Numeric } from 'decimal.js-light';
+import { Decimal } from 'decimal.js-light';
+import { useApi } from '@kiwicom/mobile-shared';
+
+import dateFactory from './factories/hotelsContext/dateFactory';
 
 const defaultState = {
   hotelId: '',
@@ -18,6 +21,7 @@ const defaultState = {
   longitude: null,
   paymentLink: null,
   errors: null,
+  guestCount: 0,
   currentSearchStats: {
     priceMax: new Decimal(10000),
     priceMin: new Decimal(0),
@@ -26,10 +30,9 @@ const defaultState = {
     setCurrentSearchStats: () => {},
     setCheckinDate: () => {},
     setCheckoutDate: () => {},
+    setHotelId: () => {},
+    setPaymentLink: () => {},
   },
-  getGuestCount: () => 0,
-  setHotelId: () => {},
-  setPaymentLink: () => {},
   closeHotels: () => {},
 };
 
@@ -48,14 +51,9 @@ export type RoomConfigurationType = $ReadOnlyArray<{|
   |}>,
 |}>;
 
-type CurrentSearchStats = {|
-  priceMax: Decimal,
-  priceMin: Decimal,
-|};
-
-type SetSearchStats = {|
-  priceMax: Numeric,
-  priceMin: Numeric,
+type SearchStats = {|
+  +priceMax: Decimal,
+  +priceMin: Decimal,
 |};
 
 type Props = {|
@@ -85,20 +83,34 @@ type State = {|
   +checkout: Date | null,
   +roomsConfiguration: RoomConfigurationType | null,
   +currency: string,
-  currentSearchStats: CurrentSearchStats,
+  +currentSearchStats: SearchStats,
   +latitude: number | null,
   +longitude: number | null,
   paymentLink: ?string,
-  +setPaymentLink: (?string) => void,
-  +getGuestCount: () => number,
-  +setHotelId: (hotelId: string) => void,
+  +guestCount: number,
   +closeHotels: () => void,
   +errors: ValidationError | null,
   +actions: {|
-    +setCurrentSearchStats: SetSearchStats => void,
+    +setPaymentLink: (?string) => void,
+    +setHotelId: (hotelId: string) => void,
+    +setCurrentSearchStats: SearchStats => void,
     +setCheckinDate: Date => void,
     +setCheckoutDate: Date => void,
   |},
+|};
+
+type SearchInput = {|
+  +checkin: ?Date,
+  +checkout: ?Date,
+  +cityId: string | null,
+|};
+
+type ValidationError = {|
+  interval?: number,
+  beforeToday?: boolean,
+  tooFarFuture?: boolean,
+  invalidCityId?: boolean,
+  missingDates?: boolean,
 |};
 
 const validateDate = (input: string): boolean => {
@@ -114,23 +126,9 @@ export const getAsUtcDate = (input: ?string): Date | null => {
   return new Date(Date.UTC(year, month - 1, date));
 };
 
-type SearchInput = {|
-  +checkin: Date | null,
-  +checkout: Date | null,
-  +cityId: string | null,
-|};
-
-type ValidationError = {|
-  interval?: number,
-  beforeToday?: boolean,
-  tooFarFuture?: boolean,
-  invalidCityId?: boolean,
-  missingDates?: boolean,
-|};
-
-const validateInput = ({ checkin, checkout, cityId }: SearchInput) => {
+export const validateInput = ({ checkin, checkout, cityId }: SearchInput) => {
   const validationError = {};
-  if (checkin === null || checkout === null) {
+  if (checkin == null || checkout == null) {
     return {
       missingDates: true,
     };
@@ -155,170 +153,55 @@ const validateInput = ({ checkin, checkout, cityId }: SearchInput) => {
   return validationError;
 };
 
-class Provider extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+function Provider(props: Props) {
+  const cityId = props.cityId ?? null;
 
-    const checkin = getAsUtcDate(props.checkin);
-    const checkout = getAsUtcDate(props.checkout);
-    const cityId = props.cityId ?? null;
-    const errors = validateInput({ checkin, checkout, cityId });
-    this.state = {
-      hotelId: props.hotelId ?? '',
-      apiProvider: props.apiProvider,
-      version: props.version,
-      cityId,
-      checkin,
-      checkout,
-      roomsConfiguration: props.roomsConfiguration ?? null,
-      currency: props.currency,
-      cityName: props.cityName ?? null,
-      latitude: props.latitude ?? null,
-      longitude: props.longitude ?? null,
-      paymentLink: null,
-      currentSearchStats: defaultState.currentSearchStats,
-      getGuestCount: this.getGuestCount,
-      setHotelId: this.setHotelId,
-      setPaymentLink: this.setPaymentLink,
-      closeHotels: props.closeHotels,
-      actions: {
-        setCurrentSearchStats: this.setCurrentSearchStats,
-        setCheckinDate: this.setCheckinDate,
-        setCheckoutDate: this.setCheckoutDate,
-      },
-      errors: { ...errors },
-    };
-  }
+  const [hotelId, setHotelId] = React.useState(props.hotelId ?? '');
+  const [paymentLink, setPaymentLink] = React.useState(null);
+  const [currentSearchStats, setCurrentSearchStats] = React.useState(
+    defaultState.currentSearchStats,
+  );
 
-  setCurrentSearchStats = ({ priceMax, priceMin }: SetSearchStats) => {
-    this.setState({
-      currentSearchStats: {
-        priceMax: new Decimal(priceMax),
-        priceMin: new Decimal(priceMin),
-      },
-    });
+  const { checkin, checkout, setCheckin, setCheckout } = useApi(dateFactory, {
+    checkin: getAsUtcDate(props.checkin),
+    checkout: getAsUtcDate(props.checkout),
+  });
+
+  const [errors, setErrors] = React.useState(
+    validateInput({ checkin, checkout, cityId }),
+  );
+
+  React.useEffect(() => {
+    setErrors(validateInput({ checkin, checkout, cityId }));
+  }, [checkin, checkout, cityId]);
+
+  const state: State = {
+    hotelId,
+    apiProvider: props.apiProvider,
+    version: props.version,
+    cityId,
+    checkin: checkin ?? null,
+    checkout: checkout ?? null,
+    roomsConfiguration: props.roomsConfiguration ?? null,
+    currency: props.currency,
+    cityName: props.cityName ?? null,
+    latitude: props.latitude ?? null,
+    longitude: props.longitude ?? null,
+    paymentLink,
+    currentSearchStats,
+    guestCount: props.guestCount,
+    closeHotels: props.closeHotels,
+    actions: {
+      setPaymentLink,
+      setHotelId,
+      setCurrentSearchStats,
+      setCheckinDate: setCheckin,
+      setCheckoutDate: setCheckout,
+    },
+    errors: { ...errors },
   };
 
-  setHotelId = (hotelId: string) => this.setState({ hotelId });
-
-  getGuestCount = () => this.props.guestCount;
-
-  setPaymentLink = (paymentLink: ?string) => this.setState({ paymentLink });
-
-  setCheckinDate = (checkin: Date) => {
-    /**
-     * We need to strip timezone offset, when min or max date is hit on the datepicker
-     * Displayed date will be wrong due to the offset
-     */
-    checkin.setMinutes(checkin.getMinutes() - checkin.getTimezoneOffset());
-    this.setState(state => {
-      const checkout = state.checkout ?? new Date();
-      const cityId = state.cityId;
-      const diffInDays = DateUtils.diffInDays(checkout, checkin);
-
-      if (diffInDays > 30) {
-        const newState = {
-          checkin,
-          checkout: DateUtils(checkin).addDays(30),
-        };
-        return {
-          ...newState,
-          errors: {
-            ...validateInput({
-              checkin: newState.checkin,
-              checkout: newState.checkout,
-              cityId,
-            }),
-          },
-        };
-      }
-      if (diffInDays <= 0) {
-        const newState = {
-          checkin,
-          checkout: DateUtils(checkin).addDays(1),
-        };
-        return {
-          ...newState,
-          errors: {
-            ...validateInput({
-              checkin: newState.checkin,
-              checkout: newState.checkout,
-              cityId,
-            }),
-          },
-        };
-      }
-      return {
-        checkin,
-        errors: {
-          ...validateInput({ checkin, checkout, cityId }),
-        },
-      };
-    });
-  };
-
-  setCheckoutDate = (checkout: Date) => {
-    /**
-     * We need to strip timezone offset, when min or max date is hit on the datepicker
-     * Displayed date will be wrong due to the offset
-     */
-    checkout.setMinutes(checkout.getMinutes() - checkout.getTimezoneOffset());
-    this.setState(state => {
-      const checkin = state.checkin ?? new Date();
-      const cityId = state.cityId;
-      const diffInDays = DateUtils.diffInDays(checkout, checkin);
-      if (diffInDays > 30) {
-        const newState = {
-          checkout,
-          checkin: DateUtils(checkout).addDays(-30),
-        };
-        return {
-          ...newState,
-          errors: {
-            ...validateInput({
-              checkin: newState.checkin,
-              checkout: newState.checkout,
-              cityId,
-            }),
-          },
-        };
-      }
-      if (diffInDays <= 0) {
-        const newState = {
-          checkout,
-          checkin: DateUtils(checkout).addDays(-1),
-        };
-        return {
-          ...newState,
-          errors: {
-            ...validateInput({
-              checkin: newState.checkin,
-              checkout: newState.checkout,
-              cityId,
-            }),
-          },
-        };
-      }
-      return {
-        checkout,
-        errors: {
-          ...validateInput({
-            checkin: state.checkin,
-            checkout,
-            cityId,
-          }),
-        },
-      };
-    });
-  };
-
-  render() {
-    return (
-      <ContextProvider value={this.state}>
-        {this.props.children}
-      </ContextProvider>
-    );
-  }
+  return <ContextProvider value={state}>{props.children}</ContextProvider>;
 }
 
 export type HotelsContextState = State;

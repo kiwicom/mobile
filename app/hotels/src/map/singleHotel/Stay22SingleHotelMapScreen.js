@@ -28,7 +28,7 @@ const renderInner = (props: Stay22SingleHotelMapScreenQueryResponse) => (
 
 function Stay22SingleHotelMapScreen(props: Props) {
   const {
-    getGuestCount,
+    guestCount,
     currency,
     hotelId,
     checkin,
@@ -65,7 +65,7 @@ function Stay22SingleHotelMapScreen(props: Props) {
         checkin: sanitizeDate(checkin),
         checkout: sanitizeDate(checkout),
         id: hotelId,
-        guests: getGuestCount(),
+        guests: guestCount,
         currency,
       }}
       render={renderInner}

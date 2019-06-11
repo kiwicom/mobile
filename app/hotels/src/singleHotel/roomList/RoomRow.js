@@ -32,10 +32,10 @@ type Props = {|
 |};
 
 export function RoomRow(props: Props) {
-  const { getGuestCount }: HotelsContextState = React.useContext(HotelsContext);
+  const { guestCount }: HotelsContextState = React.useContext(HotelsContext);
 
   const availableRoom = props.availableRoom;
-  const isDisabled = props.numberOfRooms >= getGuestCount();
+  const isDisabled = props.numberOfRooms >= guestCount;
   const id = availableRoom?.id;
   const maxPersons = availableRoom?.room?.maxPersons;
   const type = availableRoom?.room?.description?.title ?? '';
