@@ -6,7 +6,12 @@ import {
   type NavigationType,
   useSetNavigationParams,
 } from '@kiwicom/mobile-navigation';
-import { LayoutDoubleColumn, StyleSheet } from '@kiwicom/mobile-shared';
+import {
+  LayoutDoubleColumn,
+  StyleSheet,
+  Translation,
+  Toast,
+} from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { noop } from '@kiwicom/mobile-utils';
 
@@ -31,7 +36,8 @@ const SearchResultsScreen = (props: Props) => {
   const {
     checkin: checkinDate,
     checkout: checkoutDate,
-    actions: { setCheckinDate, setCheckoutDate },
+    actions: { setCheckinDate, setCheckoutDate, resetIsDateForceChanged },
+    hasDatesBeenForceChanged,
   }: HotelsContextState = React.useContext(HotelsContext);
 
   useSetNavigationParams(props.navigation.setParams, {
@@ -42,12 +48,27 @@ const SearchResultsScreen = (props: Props) => {
     checkin: checkinDate,
     checkout: checkoutDate,
   });
+  const toastRef = React.useRef<React.ElementRef<typeof Toast> | null>(null);
 
+  React.useEffect(() => {
+    if (hasDatesBeenForceChanged && toastRef.current != null) {
+      toastRef.current.show();
+    }
+  }, [hasDatesBeenForceChanged]);
   return (
     <LayoutDoubleColumn
       menuComponent={
         <View style={styles.container}>
           <NewAllHotels />
+          <Toast
+            ref={toastRef}
+            text={
+              <Translation id="hotels_search.search_result_screen.date_force_changed" />
+            }
+            style={styles.toast}
+            onHide={resetIsDateForceChanged}
+            duration={5000}
+          />
         </View>
       }
       containerComponent={<SingleHotelContainer goBack={noop} />}
@@ -61,6 +82,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: defaultTokens.paletteWhite,
+  },
+  toast: {
+    start: 15,
   },
 });
 

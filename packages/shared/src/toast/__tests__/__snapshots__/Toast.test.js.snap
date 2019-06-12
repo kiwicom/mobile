@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "display": "flex",
+        "position": "absolute",
+        "start": 0,
+        "top": 0,
+      },
+      Object {
+        "display": "none",
+      },
+      undefined,
+    ]
+  }
+  testID="toast"
+>
+  <View
+    style={
+      Object {
+        "opacity": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignSelf": "flex-start",
+            "backgroundColor": "#5F738C",
+            "borderRadius": 2,
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "paddingHorizontal": 5,
+            "paddingVertical": 2,
+          },
+          Object {
+            "borderTopEndRadius": 0,
+            "borderTopStartRadius": 0,
+          },
+          Object {
+            "backgroundColor": "#0172CB",
+          },
+          false,
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#171b1e",
+              "fontFamily": "CircularPro-Book",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "letterSpacing": -0.15,
+            },
+            Array [
+              Object {
+                "color": "#fff",
+              },
+              undefined,
+            ],
+          ]
+        }
+      >
+        <Text>
+          My toast
+        </Text>
+      </Text>
+    </View>
+  </View>
+</View>
+`;
