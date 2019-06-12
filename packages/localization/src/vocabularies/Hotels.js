@@ -11,6 +11,8 @@ const HotelsVocabulary = {
   'hotels.payment_screen.server_error':
     'Failed to get url from the server, please try again.',
 
+  'hotels_search.search_result_screen.date_force_changed':
+    "Sorry, reservations must be made between 1-30 nights. We've adjusted the checkin/checkout dates for you accordingly",
   'hotels_search.all_hotels_search_list.no_hotels_found': 'No hotels found.',
   'hotels_search.all_hotels_search.date_error':
     'Oops, there seems to be something wrong with the chosen dates',

@@ -38,6 +38,8 @@ export { default as Popup } from './src/popup/Popup';
 export { default as BarPopup } from './src/popup/BarPopup';
 export { default as ButtonPopup } from './src/popup/ButtonPopup';
 
+export { default as Toast } from './src/toast/Toast';
+
 export { default as Modal } from './src/Modal';
 export { default as ModalWithLoader } from './src/ModalWithLoader';
 

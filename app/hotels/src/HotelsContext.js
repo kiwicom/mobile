@@ -22,6 +22,7 @@ const defaultState = {
   paymentLink: null,
   errors: null,
   guestCount: 0,
+  hasDatesBeenForceChanged: false,
   currentSearchStats: {
     priceMax: new Decimal(10000),
     priceMin: new Decimal(0),
@@ -32,6 +33,7 @@ const defaultState = {
     setCheckoutDate: () => {},
     setHotelId: () => {},
     setPaymentLink: () => {},
+    resetIsDateForceChanged: () => {},
   },
   closeHotels: () => {},
 };
@@ -90,12 +92,14 @@ type State = {|
   +guestCount: number,
   +closeHotels: () => void,
   +errors: ValidationError | null,
+  +hasDatesBeenForceChanged: boolean,
   +actions: {|
     +setPaymentLink: (?string) => void,
     +setHotelId: (hotelId: string) => void,
     +setCurrentSearchStats: SearchStats => void,
     +setCheckinDate: Date => void,
     +setCheckoutDate: Date => void,
+    +resetIsDateForceChanged: () => void,
   |},
 |};
 
@@ -162,9 +166,17 @@ function Provider(props: Props) {
     defaultState.currentSearchStats,
   );
 
-  const { checkin, checkout, setCheckin, setCheckout } = useApi(dateFactory, {
+  const {
+    checkin,
+    checkout,
+    setCheckin,
+    setCheckout,
+    hasDatesBeenForceChanged,
+    resetForceChanged,
+  } = useApi(dateFactory, {
     checkin: getAsUtcDate(props.checkin),
     checkout: getAsUtcDate(props.checkout),
+    hasDatesBeenForceChanged: false,
   });
 
   const [errors, setErrors] = React.useState(
@@ -191,12 +203,14 @@ function Provider(props: Props) {
     currentSearchStats,
     guestCount: props.guestCount,
     closeHotels: props.closeHotels,
+    hasDatesBeenForceChanged,
     actions: {
       setPaymentLink,
       setHotelId,
       setCurrentSearchStats,
       setCheckinDate: setCheckin,
       setCheckoutDate: setCheckout,
+      resetIsDateForceChanged: resetForceChanged,
     },
     errors: { ...errors },
   };

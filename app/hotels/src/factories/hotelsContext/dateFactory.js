@@ -5,6 +5,7 @@ import { DateUtils } from '@kiwicom/mobile-localization';
 type State = {|
   +checkin: ?Date,
   +checkout: ?Date,
+  +hasDatesBeenForceChanged: boolean,
 |};
 
 type Options = {|
@@ -13,10 +14,10 @@ type Options = {|
 |};
 
 type DateFactory = {|
-  +checkin: ?Date,
-  +checkout: ?Date,
+  ...State,
   +setCheckin: Date => void,
   +setCheckout: Date => void,
+  +resetForceChanged: () => void,
 |};
 
 export default function dateFactory({ state, setState }: Options): DateFactory {
@@ -31,6 +32,7 @@ export default function dateFactory({ state, setState }: Options): DateFactory {
         return {
           checkin,
           checkout: DateUtils(checkin).addDays(30),
+          hasDatesBeenForceChanged: true,
         };
       }
 
@@ -38,10 +40,12 @@ export default function dateFactory({ state, setState }: Options): DateFactory {
         return {
           checkin,
           checkout: DateUtils(checkin).addDays(1),
+          hasDatesBeenForceChanged: true,
         };
       }
 
       return {
+        ...previousState,
         checkin,
         checkout,
       };
@@ -58,6 +62,7 @@ export default function dateFactory({ state, setState }: Options): DateFactory {
         return {
           checkout,
           checkin: DateUtils(checkout).addDays(-30),
+          hasDatesBeenForceChanged: true,
         };
       }
 
@@ -65,19 +70,29 @@ export default function dateFactory({ state, setState }: Options): DateFactory {
         return {
           checkout,
           checkin: DateUtils(checkout).addDays(-1),
+          hasDatesBeenForceChanged: true,
         };
       }
 
       return {
+        ...previousState,
         checkout,
         checkin,
       };
     });
   };
+
+  const resetForceChanged = () => {
+    setState(previousState => ({
+      ...previousState,
+      hasDatesBeenForceChanged: false,
+    }));
+  };
+
   return {
-    checkin: state.checkin,
-    checkout: state.checkout,
+    ...state,
     setCheckin,
     setCheckout,
+    resetForceChanged,
   };
 }

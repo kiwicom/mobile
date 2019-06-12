@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import type { StylePropType, TranslationType } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from './Text';
 import StyleSheet from './PlatformStyleSheet';
+import type { StylePropType } from '../types/Styles';
+import type { TranslationType } from '../types/Translation';
 
 type Props = {|
   +translation: TranslationType,
