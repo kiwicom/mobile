@@ -78,6 +78,8 @@ export default class StarsFilter extends React.Component<Props, State> {
             .filter(star => star > 0)
             .join(',')}
         />
+        <Translation passThrough=" " />
+        <Translation id="hotels_search.filter.stars_filter.stars" />
       </TranslationFragment>
     );
   };
