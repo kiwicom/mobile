@@ -35,8 +35,16 @@ jest.mock('Animated', () => {
 const getWrapper = () =>
   create(<Toast text={<Translation passThrough="My toast" />} />);
 
-it('renders', () => {
+it('renders nothing intially', () => {
   expect(getWrapper()).toMatchSnapshot();
+});
+
+it('renders when show is called', () => {
+  const wrapper = getWrapper();
+  const instance = wrapper.getInstance();
+  instance.show();
+
+  expect(wrapper).toMatchSnapshot();
 });
 
 it('shows toast when show is called', () => {
@@ -45,11 +53,10 @@ it('shows toast when show is called', () => {
   }));
   const wrapper = getWrapper();
   const instance = wrapper.getInstance();
-  const view = wrapper.root.findByProps({ testID: 'toast' });
-  // Asserting that it is hidden at first
-  expect(view.props.style[1]).toEqual({
-    display: 'none',
-  });
+
+  expect(() => {
+    wrapper.root.findByProps({ testID: 'toast' });
+  }).toThrow();
 
   instance.show();
 
@@ -60,7 +67,8 @@ it('shows toast when show is called', () => {
     useNativeDriver: true,
   });
   // No longer hidden
-  expect(view.props.style[1]).toBe(false);
+  const view = wrapper.root.findByProps({ testID: 'toast' });
+  expect(view).toBeDefined();
 });
 
 it('hides toast when hide is called', () => {
@@ -69,20 +77,20 @@ it('hides toast when hide is called', () => {
   }));
   const wrapper = getWrapper();
   const instance = wrapper.getInstance();
-  const view = wrapper.root.findByProps({ testID: 'toast' });
+
   // Asserting that it is hidden at first
-  expect(view.props.style[1]).toEqual({
-    display: 'none',
-  });
+  expect(() => {
+    wrapper.root.findByProps({ testID: 'toast' });
+  }).toThrow();
 
   instance.show();
   // No longer hidden
-  expect(view.props.style[1]).toBe(false);
+  expect(wrapper.root.findByProps({ testID: 'toast' })).toBeDefined();
 
   instance.hide();
 
   // Hidden again
-  expect(view.props.style[1]).toEqual({
-    display: 'none',
-  });
+  expect(() => {
+    wrapper.root.findByProps({ testID: 'toast' });
+  }).toThrow();
 });
