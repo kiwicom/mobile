@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { Animated, View } from 'react-native';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { TranslationType } from '../../types/Translation';
 import AdaptableBadge from '../AdaptableBadge';
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
     top: 0,
     start: 0,
     display: 'flex',
+    zIndex: parseInt(defaultTokens.zIndexOnTheTop, 10),
   },
   hidden: {
     display: 'none',
