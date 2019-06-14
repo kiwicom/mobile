@@ -9,6 +9,19 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v44
+
+- Toast returns null when `this.state.isVisible` is false. It worked on ios, but on android filter stripe became unclickable
+
+### v43
+
+- Add zIndex to toast, it ended up behind filter stripe
+
+### v42
+
+- Add info text when dates are force changed. E.G. User selects checkin after checokut, checkout will automatically be chaged.
+- Add stars behind selected stars in filter stripe. Before it would show `3,4` now it shows `3,4 stars`;
+
 ### v41
 
 - Set max date on checkin datepicker
