@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders 1`] = `
+exports[`renders nothing intially 1`] = `null`;
+
+exports[`renders when show is called 1`] = `
 <View
   style={
     Array [
@@ -10,9 +12,6 @@ exports[`renders 1`] = `
         "start": 0,
         "top": 0,
         "zIndex": 900,
-      },
-      Object {
-        "display": "none",
       },
       undefined,
     ]

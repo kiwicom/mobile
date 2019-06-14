@@ -59,15 +59,11 @@ export default class Toast extends React.Component<Props, State> {
   };
 
   render() {
+    if (this.state.isVisible === false) {
+      return null;
+    }
     return (
-      <View
-        style={[
-          styles.toast,
-          !this.state.isVisible && styles.hidden,
-          this.props.style,
-        ]}
-        testID="toast"
-      >
+      <View style={[styles.toast, this.props.style]} testID="toast">
         <Animated.View style={{ opacity: this.opacityValue }}>
           <AdaptableBadge
             type="info"
@@ -87,9 +83,6 @@ const styles = StyleSheet.create({
     start: 0,
     display: 'flex',
     zIndex: parseInt(defaultTokens.zIndexOnTheTop, 10),
-  },
-  hidden: {
-    display: 'none',
   },
   badge: {
     borderTopStartRadius: 0,
