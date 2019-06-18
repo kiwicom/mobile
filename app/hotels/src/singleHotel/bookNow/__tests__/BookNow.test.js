@@ -9,7 +9,7 @@ import { BookNow } from '../BookNow';
 import { HotelsContext } from '../../../HotelsContext';
 
 const renderer = new ShallowRenderer();
-
+const $refType: any = null;
 const navigation = {
   navigate: jest.fn(),
   setParams: jest.fn(),
@@ -25,58 +25,26 @@ const navigation = {
 
 it('renders without crashing', () => {
   const props = {
-    onGoToPayment() {},
-    selected: {
-      a: 1,
-    },
-    availableRooms: [
-      {
-        originalId: 'a',
-        incrementalPrice: [
-          {
-            amount: '100',
-            currency: 'EUR',
-          },
-        ],
-      },
-    ],
-    hotelId: 'abc',
-    personCount: 2,
-    numberOfRooms: 1,
-    checkin: new Date(0),
-    checkout: new Date(1),
-    currency: 'EUR',
     navigation,
-    getGuestCount: jest.fn(),
     maxPersons: 2,
-    price: {
-      amount: '2',
-      currency: 'EUR',
-    },
     amount: '0',
-    rooms: null,
+    rooms: {
+      availableRooms: [
+        {
+          id: '1',
+          selectedCount: 1,
+        },
+      ],
+      $refType,
+    },
   };
   expect(renderer.render(<BookNow {...props} />)).toMatchSnapshot();
 });
 
 it('renders without crashing with missing data', () => {
   const props = {
-    onGoToPayment() {},
-    selected: {},
-    availableRooms: undefined,
-    hotelId: undefined,
-    personCount: 2,
-    numberOfRooms: 1,
-    checkin: new Date(0),
-    checkout: new Date(1),
-    currency: 'EUR',
     navigation,
-    getGuestCount: jest.fn(),
     maxPersons: 2,
-    price: {
-      amount: '2',
-      currency: 'EUR',
-    },
     amount: '0',
     rooms: null,
   };

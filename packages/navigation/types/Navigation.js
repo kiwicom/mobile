@@ -67,7 +67,7 @@ export type NavigationListener = (
   key: 'willBlur' | 'willFocus' | 'didFocus' | 'didBlur',
   // See payload https://reactnavigation.org/docs/en/navigation-prop.html#addlistener-subscribe-to-updates-to-navigation-lifecycle
   callback: (payload: Object) => void,
-) => { remove: () => void };
+) => { remove: () => void, ... };
 
 /**
  * Based on official types with custom changes (like RouteNames)
@@ -86,9 +86,11 @@ export type Navigation = {
   ) => void, // In fact it returns boolean but we don't care of this result
   state: {
     params: NavigationStateParameters,
+    ...
   },
   setParams: (newParameters: NavigationStateParameters) => void,
   getParam: <T>(key: string) => ?T,
   goBack: (key?: string | null) => void,
   addListener: NavigationListener,
+  ...
 };

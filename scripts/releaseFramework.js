@@ -79,9 +79,7 @@ const version = child_process
       path.join(frameworkFolder, zippedFatFramework),
     );
     await fetch(
-      `https://uploads.github.com/repos/kiwicom/mobile/releases/${
-        release.id
-      }/assets?name=${zippedFatFramework}&access_token=${githubToken}`,
+      `https://uploads.github.com/repos/kiwicom/mobile/releases/${release.id}/assets?name=${zippedFatFramework}&access_token=${githubToken}`,
       {
         method: 'POST',
         headers: {

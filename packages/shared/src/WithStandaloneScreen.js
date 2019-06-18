@@ -14,9 +14,10 @@ type NavProps = {
   +onBackClicked: ?() => void,
   +goBack?: () => void,
   +lastNavigationMode?: string,
+  ...
 };
 
-function withStandaloneScreen<Props: {}>(
+function withStandaloneScreen<Props: { ... }>(
   WrappedComponent: React.AbstractComponent<Props>,
   moduleName: string,
 ): React.AbstractComponent<$Diff<Props, NavProps>> {

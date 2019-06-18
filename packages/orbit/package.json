@@ -4,7 +4,7 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
-    "@kiwicom/orbit-design-tokens": "^0.6.3",
+    "@kiwicom/orbit-design-tokens": "^0.6.4",
     "@kiwicom/universal-components": "^0.0.14"
   }
 }

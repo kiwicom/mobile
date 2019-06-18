@@ -63,7 +63,7 @@ export class PlaygroundList extends React.Component<Props> {
     return sortedComponents;
   };
 
-  renderItem = ({ item }: { item: string }) => (
+  renderItem = ({ item }: { item: string, ... }) => (
     <PlaygroundListItem name={item} onPress={this.navigateToPlayground} />
   );
 

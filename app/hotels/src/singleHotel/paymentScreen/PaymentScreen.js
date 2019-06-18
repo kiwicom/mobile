@@ -42,9 +42,9 @@ export function PaymentScreen(props: Props) {
 
 PaymentScreen.navigationOptions = ({
   navigation,
-}: {
+}: {|
   navigation: NavigationType,
-}) => {
+|}) => {
   function goBack() {
     navigation.goBack(null);
   }

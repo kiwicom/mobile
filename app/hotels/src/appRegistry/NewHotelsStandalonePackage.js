@@ -23,6 +23,7 @@ type Props = {
   +cityName: string,
   +cityId: string,
   +roomsConfiguration: RoomConfigurationType,
+  ...
 };
 
 class NewHotelsStandalonePackage extends React.Component<Props> {

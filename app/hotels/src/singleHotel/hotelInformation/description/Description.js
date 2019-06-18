@@ -16,10 +16,10 @@ import DescriptionTitle from './DescriptionTitle';
 import Amenities from './Amenities';
 import type { Description_hotel as HotelType } from './__generated__/Description_hotel.graphql';
 
-type Props = {
+type Props = {|
   +hotel: ?HotelType,
   +locationView?: React.Node,
-};
+|};
 
 export const Description = (props: Props) => (
   <View style={styles.container}>

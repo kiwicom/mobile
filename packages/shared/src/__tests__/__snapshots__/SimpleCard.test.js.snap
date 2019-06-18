@@ -1,13 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders as expected 1`] = `
-<Context.Consumer>
-  [Function]
-</Context.Consumer>
+<View>
+  <SimpleCard>
+    <Translation
+      passThrough="Default card A"
+    />
+  </SimpleCard>
+  <SimpleCard>
+    <Translation
+      passThrough="Default card B"
+    />
+  </SimpleCard>
+</View>
 `;
 
 exports[`renders as expected with onPress callback 1`] = `
-<Context.Consumer>
-  [Function]
-</Context.Consumer>
+<View>
+  <SimpleCard
+    onPress={[Function]}
+  >
+    <Translation
+      passThrough="Clickable card"
+    />
+  </SimpleCard>
+  <SimpleCard
+    onPress={[Function]}
+  >
+    <Translation
+      passThrough="Clickable card"
+    />
+  </SimpleCard>
+</View>
 `;

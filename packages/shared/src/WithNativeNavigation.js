@@ -19,7 +19,7 @@ type InjectedProps = {|
   onBackClicked: ?() => void,
 |};
 
-function withNativeNavigation<Props: {}>(
+function withNativeNavigation<Props: { ... }>(
   WrappedComponent: React.AbstractComponent<Props>,
   moduleName: string,
 ): React.AbstractComponent<$Diff<Props, InjectedProps>> {

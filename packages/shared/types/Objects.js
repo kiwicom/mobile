@@ -1,6 +1,6 @@
 // @flow
 
-export type DimensionType = {
+export type DimensionType = {|
   width: number,
   height: number,
-};
+|};

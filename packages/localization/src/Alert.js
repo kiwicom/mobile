@@ -18,22 +18,23 @@ export type Translation =
       +passThrough: ?string | ?number,
     |};
 
-type AlertButtons = Array<{
+type AlertButtons = Array<{|
   text?: Translation,
   onPress?: ?() => void,
   style?: AlertButtonStyle,
-}>;
+|}>;
 
 type NativeAlertButtons = Array<{
   text?: string,
   onPress?: ?() => void,
   style?: AlertButtonStyle,
+  ...
 }>;
 
-type AlertOptions = {
+type AlertOptions = {|
   cancelable?: ?boolean,
   onDismiss?: ?() => void,
-};
+|};
 
 type AlertButtonStyle = 'default' | 'cancel' | 'destructive';
 

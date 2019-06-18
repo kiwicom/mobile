@@ -18,6 +18,7 @@ export type MarkerPressEvent = {|
     +coordinate: LatLng,
     +id: string, // id of the marker
     +target: string,
+    ...
   },
 |};
 

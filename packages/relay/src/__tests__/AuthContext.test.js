@@ -5,7 +5,7 @@ import renderer from 'react-test-renderer';
 
 import AuthContext from '../AuthContext';
 
-class ContextConsumer extends React.Component<{}> {
+class ContextConsumer extends React.Component<{ ... }> {
   render() {
     return null;
   }

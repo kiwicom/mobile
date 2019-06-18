@@ -33,6 +33,7 @@ type ReducedDangerouslyImpreciseStyle = $Rest<
 
 export type StyleObjectType = {
   +[key: string]: $Shape<ReducedDangerouslyImpreciseStyle>,
+  ...,
 };
 
 export type PlatformStyleObjectType = {
@@ -45,8 +46,10 @@ export type PlatformStyleObjectType = {
     > & {
       android: ReducedDangerouslyImpreciseStyle,
       ios: ReducedDangerouslyImpreciseStyle,
+      ...
     },
   >,
+  ...,
 };
 
 export type StylePropType = ____DangerouslyImpreciseStyleProp_Internal;

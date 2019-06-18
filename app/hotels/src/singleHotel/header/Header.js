@@ -22,10 +22,10 @@ import {
 import GalleryButton from '../galleryButton/GalleryButton';
 import type { Header_hotel as HotelType } from './__generated__/Header_hotel.graphql';
 
-type Props = {
+type Props = {|
   +hotel: ?HotelType,
   +navigation: NavigationType,
-};
+|};
 
 export class Header extends React.Component<Props> {
   openGallery = () => {

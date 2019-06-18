@@ -12,7 +12,7 @@ export default function withStorage(
   storageKey: string,
   initialValue: any,
 ) {
-  return class WithStorage extends React.Component<{}, State> {
+  return class WithStorage extends React.Component<{ ... }, State> {
     // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
     static navigationOptions = WrappedComponent.navigationOptions;
 

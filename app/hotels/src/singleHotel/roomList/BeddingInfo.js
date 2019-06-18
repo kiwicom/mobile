@@ -8,9 +8,9 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { BeddingInfo_room as RoomType } from './__generated__/BeddingInfo_room.graphql';
 
-type Props = {
+type Props = {|
   +room: ?RoomType,
-};
+|};
 
 export class BeddingInfo extends React.Component<Props> {
   formatBeddingInfo = (): $ReadOnlyArray<React.Element<typeof Translation>> => {

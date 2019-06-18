@@ -13,8 +13,15 @@ MockDate.set('2018-01-01');
 const DEEP_RENDER = false;
 const TITLE = 'DatePicker';
 
-type Props = { +useCustomButton?: boolean };
-type State = {| date: Date |};
+type Props = {|
+  +useCustomButton?: boolean,
+  +minDate?: Date,
+  +maxDate?: Date,
+|};
+
+type State = {|
+  date: Date,
+|};
 
 class PickerWrapper extends React.Component<Props, State> {
   state = {
@@ -65,10 +72,6 @@ describe('DatePicker', () => {
       DEEP_RENDER,
       TITLE,
     );
-  });
-
-  it('works with other date formats', () => {
-    PlaygroundRenderer.render(<PickerWrapper format="L" />, DEEP_RENDER, TITLE);
   });
 
   it('works with custom button', () => {

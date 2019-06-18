@@ -1,9 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`render disabled 1`] = `
-<Context.Consumer>
-  [Function]
-</Context.Consumer>
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "padding": 10,
+    }
+  }
+>
+  <IncrementDecrementButtons
+    max={2}
+    min={1}
+    number={2}
+    numberStyle={
+      Object {
+        "padding": 10,
+      }
+    }
+    onDecrement={[MockFunction]}
+    onIncrement={[MockFunction]}
+    showNumber={true}
+  />
+</View>
 `;
 
 exports[`renders 1`] = `
@@ -41,7 +60,26 @@ exports[`renders 1`] = `
 `;
 
 exports[`shows number 1`] = `
-<Context.Consumer>
-  [Function]
-</Context.Consumer>
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "padding": 10,
+    }
+  }
+>
+  <IncrementDecrementButtons
+    max={3}
+    min={1}
+    number={2}
+    numberStyle={
+      Object {
+        "padding": 10,
+      }
+    }
+    onDecrement={[MockFunction]}
+    onIncrement={[MockFunction]}
+    showNumber={true}
+  />
+</View>
 `;
