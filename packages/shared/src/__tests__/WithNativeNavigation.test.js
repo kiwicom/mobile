@@ -6,10 +6,10 @@ import renderer from 'react-test-renderer';
 import GestureController from '../GestureController';
 import WithNativeNavigation from '../WithNativeNavigation';
 
-type Props = {
+type Props = {|
   onNavigationStateChange: () => void,
   onBackClicked: () => void,
-};
+|};
 
 describe('WithNativeNavigation', () => {
   const WrappedComponent = class TestComponent extends React.Component<Props> {

@@ -20,7 +20,7 @@ class ConnectionManager {
     NetInfo.addEventListener('connectionChange', this.handleConnectionChange);
   }
 
-  handleConnectionChange = ({ type }: { type: ConnectionType }) => {
+  handleConnectionChange = ({ type }: { type: ConnectionType, ... }) => {
     this.connectionType = type;
   };
 

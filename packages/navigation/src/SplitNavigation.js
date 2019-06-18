@@ -12,7 +12,9 @@ type Props = {|
       +screen:
         | React.ComponentType<any>
         | React.StatelessFunctionalComponent<any>,
+      ...
     },
+    ...,
   },
   +menuComponent: React.Element<any>,
   +initialActiveId: string,

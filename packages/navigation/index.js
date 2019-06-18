@@ -76,6 +76,7 @@ export const StackNavigator = (
           |},
         |}
       | React.ComponentType<any>,
+    ...,
   },
   StackNavigatorConfig: {|
     +initialRouteName: string,

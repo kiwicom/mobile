@@ -7,7 +7,7 @@ import { getTranslation, replaceValues } from './TranslationHelpers';
 
 // Preload translations
 Object.keys(vocabulary).forEach(async key => {
-  const nativeKey = 'mobile.' + key;
+  const nativeKey = `mobile.${key}`;
 
   const translatedString = await translate(nativeKey);
   if (translatedString != null) {

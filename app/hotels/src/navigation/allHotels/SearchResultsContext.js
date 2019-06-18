@@ -18,10 +18,10 @@ type Props = {|
   +show?: ResultType,
 |};
 
-type State = {
+type State = {|
   show: ResultType,
   +setResultType: (show: ResultType) => void,
-};
+|};
 
 function Provider(props: Props) {
   const [show, setResultType] = React.useState(props.show ?? 'list');

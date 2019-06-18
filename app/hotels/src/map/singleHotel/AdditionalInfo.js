@@ -17,9 +17,9 @@ import Address from '../Address';
 import type { AdditionalInfo_data as AdditionalInfoData } from './__generated__/AdditionalInfo_data.graphql';
 import { HotelPreviewProvider } from '../hotelDetailPreview/HotelDetailPreviewContext';
 
-type Props = {
+type Props = {|
   +data: ?AdditionalInfoData,
-};
+|};
 
 type State = {|
   containerWidth: number,

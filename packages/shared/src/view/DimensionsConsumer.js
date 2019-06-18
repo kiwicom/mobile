@@ -14,7 +14,7 @@ type InjectedProps = {|
   +height?: number,
 |};
 
-export function withDimensions<PassedProps: {}>(
+export function withDimensions<PassedProps: { ... }>(
   Component: React.AbstractComponent<PassedProps>,
 ): React.AbstractComponent<$Diff<PassedProps, InjectedProps>> {
   return class WithDimensions extends React.Component<

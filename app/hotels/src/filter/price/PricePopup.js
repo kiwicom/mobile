@@ -18,7 +18,7 @@ import { Decimal } from 'decimal.js-light';
 
 type Props = {|
   onClose: () => void,
-  onSave: ({ minPrice: number, maxPrice: number }) => void,
+  onSave: ({| minPrice: number, maxPrice: number |}) => void,
   isVisible: boolean,
   min: Decimal,
   max: Decimal,

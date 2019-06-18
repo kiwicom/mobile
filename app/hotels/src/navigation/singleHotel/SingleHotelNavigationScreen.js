@@ -8,12 +8,12 @@ import SingleHotel from '../../singleHotel/SingleHotelContainer';
 import type { NavigationProps } from '../HotelsNavigationStack';
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 
-type Props = {
+type Props = {|
   ...NavigationProps,
   ...AvailableHotelSearchInput,
   +onBackClicked: () => void,
   +isStandAlonePackage?: boolean,
-};
+|};
 
 class SingleHotelNavigationScreen extends React.Component<Props> {
   static defaultProps = {

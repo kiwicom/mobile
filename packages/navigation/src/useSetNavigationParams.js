@@ -13,7 +13,7 @@ type SetParams = $PropertyType<Navigation, 'setParams'>;
  * the component to go into endless re-render.
  * This custom hook is a workaround for this, ensuring that you watch all values passed to set params, but not react-navigation itself.
  */
-export default function useSetNavigationParams<T: {}>(
+export default function useSetNavigationParams<T: { ... }>(
   setParams: SetParams,
   config: T,
 ) {

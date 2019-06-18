@@ -14,10 +14,10 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +count: number | null,
-  +style?: {
+  +style?: {|
     +container?: StylePropType,
     +text?: StylePropType,
-  },
+  |},
   +iconSize?: 'small' | 'medium' | 'large',
 |};
 

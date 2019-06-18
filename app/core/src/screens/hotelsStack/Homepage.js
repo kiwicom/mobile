@@ -21,7 +21,7 @@ type Props = {|
   +navigation: NavigationType,
 |};
 
-function Section({ children }: { children: React.Node }) {
+function Section({ children }: {| +children: React.Node |}) {
   const sectionStyle = {
     margin: 10,
     padding: 10,

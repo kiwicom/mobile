@@ -50,10 +50,10 @@ const PriceFilter = (props: Props) => {
   function handleSave({
     minPrice,
     maxPrice,
-  }: {
+  }: {|
     minPrice: number,
     maxPrice: number,
-  }) {
+  |}) {
     const filter = {
       minPrice:
         minPrice !== currentSearchStats.priceMin.toNumber()

@@ -19,6 +19,7 @@ type Props = {
   +onBackClicked: () => void,
   +version: string,
   +lastNavigationMode?: string,
+  ...
 };
 
 class SingleHotelStandAlonePackage extends React.Component<Props> {

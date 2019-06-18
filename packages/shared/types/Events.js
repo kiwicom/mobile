@@ -57,6 +57,7 @@ export type GestureState = {
   vy: number,
   x0: number,
   y0: number,
+  ...
 };
 
 export type PressEvent = {
@@ -72,6 +73,7 @@ export type PressEvent = {
     timestamp: number,
     touches: $ReadOnlyArray<$PropertyType<PressEvent, 'nativeEvent'>>,
   |}>,
+  ...
 };
 
 export type WebViewStateChangeEvent = {|

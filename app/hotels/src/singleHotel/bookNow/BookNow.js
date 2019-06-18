@@ -19,12 +19,12 @@ import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import type { BookNow_rooms as RoomsType } from './__generated__/BookNow_rooms.graphql';
 import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 
-type Props = {
+type Props = {|
   +navigation: NavigationType,
   +amount: ?string,
   +rooms: ?RoomsType,
   +maxPersons: number,
-};
+|};
 
 export function BookNow(props: Props) {
   const {

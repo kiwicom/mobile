@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
-    "mockdate": "^2.0.2"
+    "mockdate": "^2.0.3"
   },
   "peerDependencies": {
     "@kiwicom/universal-components": "^0",

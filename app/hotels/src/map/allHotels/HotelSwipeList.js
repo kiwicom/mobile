@@ -62,7 +62,7 @@ class HotelSwipeList extends React.Component<Props, State> {
     });
   };
 
-  renderItem = ({ item }: { item: Object, index: number }) => {
+  renderItem = ({ item }: { item: Object, index: number, ... }) => {
     return <HotelSwipeItem width={CARD_ITEM_WIDTH} data={item} />;
   };
 

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
 export class Map extends React.Component<Props, State> {
   map: typeof MapView | null;
-  markers: { [number]: typeof MapView.Marker | null };
+  markers: { [number]: typeof MapView.Marker | null, ... };
 
   constructor(props: Props) {
     super(props);

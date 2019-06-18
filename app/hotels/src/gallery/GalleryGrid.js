@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export type Image = {
+export type Image = {|
   key: string,
   lowRes: string,
   highRes: string,
-};
+|};
 
 type Props = {|
   +navigation: NavigationType,
@@ -123,7 +123,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
     });
   };
 
-  renderItem = ({ item, index }: { item: Image, index: number }) => (
+  renderItem = ({ item, index }: { item: Image, index: number, ... }) => (
     <GalleryGridTile
       imageUrl={item.lowRes}
       imageIndex={index}

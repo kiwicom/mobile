@@ -62,7 +62,7 @@ function custom(date: Date, config: FormatterConfig) {
 
 function pad(number) {
   if (number < 10) {
-    return '0' + number;
+    return `0${number}`;
   }
   return number;
 }
@@ -85,20 +85,16 @@ function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
      * Always returns YYYY-MM-DD at this moment.
      */
     formatForMachine: () => {
-      return (
-        rawDate.getUTCFullYear() +
-        '-' +
-        pad(rawDate.getUTCMonth() + 1) +
-        '-' +
-        pad(rawDate.getUTCDate())
-      );
+      return `${rawDate.getUTCFullYear()}-${pad(
+        rawDate.getUTCMonth() + 1,
+      )}-${pad(rawDate.getUTCDate())}`;
     },
 
     /**
      * Always returns HH:mm at this moment.
      */
     formatTimeForMachine: () => {
-      return pad(rawDate.getUTCHours()) + ':' + pad(rawDate.getUTCMinutes());
+      return `${pad(rawDate.getUTCHours())}:${pad(rawDate.getUTCMinutes())}`;
     },
 
     // Pass in your own configuration

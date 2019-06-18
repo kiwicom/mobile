@@ -22,6 +22,7 @@ type Props = {|
 type RendererResponse = {
   +error: Error,
   +retry: ?() => void,
+  ...
 };
 
 const noConnectionErrorMessages = [
