@@ -1,7 +1,5 @@
 // @flow
 
-/* eslint-disable no-underscore-dangle */
-
 import AsyncStorage from '@react-native-community/async-storage';
 import { QueryResponseCache } from 'relay-runtime';
 

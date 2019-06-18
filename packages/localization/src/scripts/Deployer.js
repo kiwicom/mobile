@@ -1,6 +1,5 @@
 // @flow strict
 
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-await-in-loop */ // phraseApp has rate limit of 2 concurrent requests
 
 import fs from 'fs';

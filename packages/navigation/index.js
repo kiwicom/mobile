@@ -23,10 +23,10 @@ export { default as TitledMenuGroup } from './src/TitledMenuGroup';
 export { default as HeaderTitle } from './src/HeaderTitle';
 export { default as HeaderButton } from './src/HeaderButton';
 export { withNavigation } from 'react-navigation'; // eslint-disable-line no-restricted-imports
+export { default as SplitNavigation } from './src/SplitNavigation';
 export {
-  default as SplitNavigation,
-  withSplitNavigationContext,
-} from './src/SplitNavigation';
+  default as withSplitNavigationContext,
+} from './src/withSplitNavigation';
 export {
   default as useSetNavigationParams,
 } from './src/useSetNavigationParams';

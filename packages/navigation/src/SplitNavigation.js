@@ -25,9 +25,11 @@ type State = {|
   activeId: string,
 |};
 
-const { Provider, Consumer } = React.createContext<State>({
+const { Provider, Consumer: _Consumer } = React.createContext<State>({
   activeId: '',
 });
+
+export const Consumer = _Consumer;
 
 export default class SplitNavigation extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -85,17 +87,3 @@ export default class SplitNavigation extends React.Component<Props, State> {
     );
   }
 }
-
-export const withSplitNavigationContext = (Component: React.ElementType) => {
-  return class WithSplitNavigationContext extends React.Component<{||}> {
-    // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
-    static navigationOptions = Component.navigationOptions;
-    renderInner = ({ activeId }: State) => (
-      <Component {...this.props} activeId={activeId} />
-    );
-
-    render() {
-      return <Consumer>{this.renderInner}</Consumer>;
-    }
-  };
-};
