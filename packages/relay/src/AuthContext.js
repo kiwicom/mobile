@@ -58,7 +58,7 @@ class Provider extends React.Component<Props, State> {
   }
 }
 
-type PropsWithContext = {};
+type PropsWithContext = { ... };
 
 export function withAuthContext(Component: React.ElementType) {
   const WithAuthContext = (props: PropsWithContext) => (
