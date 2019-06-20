@@ -31,19 +31,21 @@ export default function HotelsForm(props: Props) {
   }: HotelsFormContextType = React.useContext(HotelsFormContext);
 
   function incrementAdults() {
-    setAdults(1);
+    setAdults(adultsCount + 1);
   }
 
   function decrementAdults() {
-    setAdults(-1);
+    setAdults(adultsCount - 1);
   }
 
   function incrementChildren() {
-    setChildren(true);
+    setChildren([...childrenCount, { age: 1 }]);
   }
 
   function decrementChildren() {
-    setChildren(false);
+    // eslint-disable-next-line no-unused-vars
+    const [firstChild, ...rest] = childrenCount;
+    setChildren(rest);
   }
 
   return (
