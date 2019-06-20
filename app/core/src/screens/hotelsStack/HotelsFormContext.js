@@ -8,32 +8,36 @@ type Props = {|
   +children: React.Node,
 |};
 
+type ChildrenType = $ReadOnlyArray<{|
+  +age: number,
+|}>;
+
 type State = {|
-  cityName: string,
-  cityId: string,
-  checkin: Date,
-  checkout: Date,
-  coordinates: {|
-    lat: number,
-    lng: number,
+  +cityName: string,
+  +cityId: string,
+  +checkin: Date,
+  +checkout: Date,
+  +coordinates: {|
+    +lat: number,
+    +lng: number,
   |},
-  adultsCount: number,
-  children: Array<{| +age: number |}>,
+  +adultsCount: number,
+  +children: ChildrenType,
   +actions: {|
     +setCity: SaveCity => void,
     +onCheckinChange: Date => void,
     +onCheckoutChange: Date => void,
     +setAdults: number => void,
-    +setChildren: boolean => void,
+    +setChildren: ChildrenType => void,
   |},
 |};
 
 export type SaveCity = {|
-  cityName: string,
-  cityId: string,
-  coordinates: {|
-    lat: number,
-    lng: number,
+  +cityName: string,
+  +cityId: string,
+  +coordinates: {|
+    +lat: number,
+    +lng: number,
   |},
 |};
 
@@ -61,59 +65,33 @@ export const HotelsFormContext = React.createContext<State>(defaultState);
 
 const { Provider: ContextProvider } = HotelsFormContext;
 
-export default class Provider extends React.Component<Props, State> {
-  constructor() {
-    super();
+export default function Provider(props: Props) {
+  const [cityData, setCity] = React.useState({
+    cityName: defaultState.cityName,
+    cityId: defaultState.cityId,
+    coordinates: defaultState.coordinates,
+  });
+  const [checkin, setCheckin] = React.useState(defaultState.checkin);
+  const [checkout, setCheckout] = React.useState(defaultState.checkout);
+  const [adultsCount, setAdults] = React.useState(defaultState.adultsCount);
+  const [children, setChildren] = React.useState(defaultState.children);
 
-    this.state = {
-      ...defaultState,
-      actions: {
-        setCity: this.setCity,
-        onCheckinChange: this.onCheckinChange,
-        onCheckoutChange: this.onCheckoutChange,
-        setAdults: this.setAdults,
-        setChildren: this.setChildren,
-      },
-    };
-  }
-
-  setCity = (input: SaveCity) => {
-    this.setState(input);
+  const state = {
+    ...cityData,
+    checkin,
+    checkout,
+    adultsCount,
+    children,
+    actions: {
+      setCity,
+      onCheckinChange: setCheckin,
+      onCheckoutChange: setCheckout,
+      setAdults,
+      setChildren,
+    },
   };
 
-  onCheckinChange = (checkin: Date) => {
-    this.setState({ checkin });
-  };
-
-  onCheckoutChange = (checkout: Date) => {
-    this.setState({ checkout });
-  };
-
-  setAdults = (change: number) => {
-    this.setState(state => ({
-      adultsCount: state.adultsCount + change,
-    }));
-  };
-
-  setChildren = (add: boolean) => {
-    if (add) {
-      this.setState(state => ({
-        children: [...state.children, { age: 1 }],
-      }));
-    } else {
-      this.setState(state => ({
-        children: state.children.slice(1, state.children.length),
-      }));
-    }
-  };
-
-  render() {
-    return (
-      <ContextProvider value={this.state}>
-        {this.props.children}
-      </ContextProvider>
-    );
-  }
+  return <ContextProvider value={state}>{props.children}</ContextProvider>;
 }
 
 export type HotelsFormContextType = State;
