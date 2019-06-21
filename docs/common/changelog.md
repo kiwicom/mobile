@@ -9,6 +9,11 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v45
+
+- Hide toast on when swiped upwards
+- Defer loading map view until map header button is clicked. 
+
 ### v44
 
 - Toast returns null when `this.state.isVisible` is false. It worked on ios, but on android filter stripe became unclickable
