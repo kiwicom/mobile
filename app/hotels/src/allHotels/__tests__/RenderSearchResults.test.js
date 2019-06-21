@@ -36,6 +36,7 @@ it('initialises correctly when it should show list', () => {
         "top": 56,
       },
       Object {
+        "opacity": 1,
         "transform": Array [
           Object {
             "translateY": 0,
@@ -46,23 +47,23 @@ it('initialises correctly when it should show list', () => {
   `);
   expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "bottom": 0,
-        "end": 0,
-        "position": "absolute",
-        "start": 0,
-        "top": 56,
-      },
-      Object {
-        "transform": Array [
+        Array [
           Object {
-            "translateY": 1334,
+            "bottom": 0,
+            "end": 0,
+            "position": "absolute",
+            "start": 0,
+            "top": 56,
           },
-        ],
-      },
-    ]
-  `);
+          Object {
+            "transform": Array [
+              Object {
+                "translateY": 1334,
+              },
+            ],
+          },
+        ]
+    `);
 });
 
 it('initialises correctly when it should show map', () => {
@@ -83,6 +84,7 @@ it('initialises correctly when it should show map', () => {
         "top": 56,
       },
       Object {
+        "opacity": 1,
         "transform": Array [
           Object {
             "translateY": -100,
@@ -93,21 +95,21 @@ it('initialises correctly when it should show map', () => {
   `);
   expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
     .toMatchInlineSnapshot(`
-    Array [
-      Object {
-        "bottom": 0,
-        "end": 0,
-        "position": "absolute",
-        "start": 0,
-        "top": 56,
-      },
-      Object {
-        "transform": Array [
+        Array [
           Object {
-            "translateY": 0,
+            "bottom": 0,
+            "end": 0,
+            "position": "absolute",
+            "start": 0,
+            "top": 56,
           },
-        ],
-      },
-    ]
-  `);
+          Object {
+            "transform": Array [
+              Object {
+                "translateY": 0,
+              },
+            ],
+          },
+        ]
+    `);
 });
