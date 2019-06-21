@@ -4,6 +4,9 @@ exports[`renders nothing intially 1`] = `null`;
 
 exports[`renders when show is called 1`] = `
 <View
+  collapsable={false}
+  onGestureHandlerEvent={[Function]}
+  onGestureHandlerStateChange={[Function]}
   style={
     Array [
       Object {
@@ -21,7 +24,11 @@ exports[`renders when show is called 1`] = `
   <View
     style={
       Object {
-        "opacity": 0,
+        "transform": Array [
+          Object {
+            "translateY": -250,
+          },
+        ],
       }
     }
   >

@@ -9,5 +9,6 @@ import './NativeModulesMocks/RNKiwiGestureController';
 import './NativeModulesMocks/RNKiwiBackButton';
 import './NativeModulesMocks/AsyncStorage';
 import './NativeModulesMocks/NetInfo';
+import './NativeModulesMocks/ReactNativeGestureHandler';
 
 jest.mock('@react-native-community/netinfo');

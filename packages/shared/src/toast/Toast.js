@@ -3,6 +3,11 @@
 import * as React from 'react';
 import { Animated, View } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+import {
+  FlingGestureHandler,
+  Directions,
+  State as GestureState,
+} from 'react-native-gesture-handler';
 
 import type { TranslationType } from '../../types/Translation';
 import AdaptableBadge from '../AdaptableBadge';
@@ -20,33 +25,40 @@ type State = {|
   +isVisible: boolean,
 |};
 
+type HandlerChangeEvent = {
+  +nativeEvent: {
+    +state: number,
+    ...
+  },
+  ...
+};
+
 export default class Toast extends React.Component<Props, State> {
-  opacityValue = new Animated.Value(0);
+  translateY = new Animated.Value(-250);
   state = {
     isVisible: false,
   };
 
+  timeout: ?TimeoutID;
   static defaultProps = {
     duration: 3000,
   };
 
   show = () => {
     this.setState({ isVisible: true }, () => {
-      Animated.timing(this.opacityValue, {
-        toValue: 1,
-        duration: 500,
+      Animated.timing(this.translateY, {
+        toValue: 0,
+        duration: 250,
         useNativeDriver: true,
       }).start(() => {
-        setTimeout(() => {
-          this.hide();
-        }, this.props.duration);
+        this.timeout = setTimeout(this.hide, this.props.duration);
       });
     });
   };
 
   hide = () => {
-    Animated.timing(this.opacityValue, {
-      toValue: 0,
+    Animated.timing(this.translateY, {
+      toValue: -250,
       duration: 250,
       useNativeDriver: true,
     }).start(() => {
@@ -54,24 +66,44 @@ export default class Toast extends React.Component<Props, State> {
         if (this.props.onHide != null) {
           this.props.onHide();
         }
+        if (this.timeout != null) {
+          clearTimeout(this.timeout);
+          this.timeout = null;
+        }
       });
     });
+  };
+
+  onHandlerStateChange = ({ nativeEvent }: HandlerChangeEvent) => {
+    if (nativeEvent.state === GestureState.ACTIVE) {
+      this.hide();
+    }
   };
 
   render() {
     if (this.state.isVisible === false) {
       return null;
     }
+
     return (
-      <View style={[styles.toast, this.props.style]} testID="toast">
-        <Animated.View style={{ opacity: this.opacityValue }}>
-          <AdaptableBadge
-            type="info"
-            style={styles.badge}
-            translation={this.props.text}
-          />
-        </Animated.View>
-      </View>
+      <FlingGestureHandler
+        onHandlerStateChange={this.onHandlerStateChange}
+        direction={Directions.UP}
+      >
+        <View style={[styles.toast, this.props.style]} testID="toast">
+          <Animated.View
+            style={{
+              transform: [{ translateY: this.translateY }],
+            }}
+          >
+            <AdaptableBadge
+              type="info"
+              style={styles.badge}
+              translation={this.props.text}
+            />
+          </Animated.View>
+        </View>
+      </FlingGestureHandler>
     );
   }
 }
