@@ -62,8 +62,8 @@ it('shows toast when show is called', () => {
 
   expect(instance.state.isVisible).toBe(true);
   expect(Animated.timing).toHaveBeenCalledWith(expect.any(Animated.Value), {
-    toValue: 1,
-    duration: 500,
+    toValue: 0,
+    duration: 250,
     useNativeDriver: true,
   });
   // No longer hidden
