@@ -8,13 +8,19 @@ import HeaderLeft from './HeaderLeft';
 import HeaderRight from './HeaderRight';
 
 export default function getNavigationOptions() {
+  const statusBarHeight = Platform.select({
+    ios: 0,
+    android: StatusBar.currentHeight,
+  });
   return {
     headerStyle: {
-      height: 78,
-      marginTop: Platform.select({
+      height: 78 + statusBarHeight,
+      marginTop: 0,
+      paddingTop: Platform.select({
         ios: 0,
-        android: StatusBar.currentHeight,
+        android: statusBarHeight,
       }),
+
       borderBottomColor: defaultTokens.paletteInkLighter,
     },
     headerLeft: <HeaderLeft />,
