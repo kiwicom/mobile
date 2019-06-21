@@ -95,7 +95,9 @@ export const RenderSearchResults = (props: Props) => {
     }
     if (show === 'list') {
       animateToList();
-      setShouldRenderMap(false);
+      InteractionManager.runAfterInteractions(() => {
+        setShouldRenderMap(false);
+      });
     } else {
       animateToMap();
       InteractionManager.runAfterInteractions(() => {

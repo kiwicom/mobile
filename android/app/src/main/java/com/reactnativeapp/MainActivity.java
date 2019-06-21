@@ -6,14 +6,16 @@ import com.facebook.FacebookSdk;
 import com.facebook.react.ReactActivity;
 import com.trinerdis.skypicker.logging.configuration.*;
 import com.trinerdis.skypicker.logging.sender.EventSender;
-
+import com.facebook.react.ReactActivityDelegate;
+import com.facebook.react.ReactRootView;
+import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import java.util.ArrayList;
 
 public class MainActivity extends ReactActivity {
 
     /**
-     * Returns the name of the main component registered from JavaScript.
-     * This is used to schedule rendering of the component.
+     * Returns the name of the main component registered from JavaScript. This is
+     * used to schedule rendering of the component.
      */
     @Override
     protected String getMainComponentName() {
@@ -33,18 +35,18 @@ public class MainActivity extends ReactActivity {
         DeviceInfo deviceInfo = new DeviceInfo();
         UserInfo userInfo = new UserInfo();
 
-        EventSender.defaultInitialize(
-          getApplication(),
-          PreferenceManager.getDefaultSharedPreferences(this),
-          deviceInfo,
-          userInfo,
-          new String[]{},
-          "123456",
-          new ArrayList<>(),
-          BuildConfig.DEBUG,
-          BuildConfig.DEBUG,
-          BuildConfig.DEBUG,
-          null
-        );
+        EventSender.defaultInitialize(getApplication(), PreferenceManager.getDefaultSharedPreferences(this), deviceInfo,
+                userInfo, new String[] {}, "123456", new ArrayList<>(), BuildConfig.DEBUG, BuildConfig.DEBUG,
+                BuildConfig.DEBUG, null);
+    }
+
+    @Override
+    protected ReactActivityDelegate createReactActivityDelegate() {
+        return new ReactActivityDelegate(this, getMainComponentName()) {
+            @Override
+            protected ReactRootView createRootView() {
+                return new RNGestureHandlerEnabledRootView(MainActivity.this);
+            }
+        };
     }
 }
