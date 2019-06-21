@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v46
+
+- Fix issue on android where toast would show above header when animating
+
 ### v45
 
 - Hide toast on when swiped upwards
