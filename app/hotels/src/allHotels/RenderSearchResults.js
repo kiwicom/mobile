@@ -1,9 +1,15 @@
 // @flow strict
 
 import * as React from 'react';
-import { Animated, Dimensions, View } from 'react-native';
+import { Animated, Dimensions, View, InteractionManager } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import { StyleSheet, Device, type OnLayout } from '@kiwicom/mobile-shared';
+import {
+  StyleSheet,
+  Device,
+  type OnLayout,
+  FullPageLoading,
+} from '@kiwicom/mobile-shared';
+import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MapScreen from '../map/allHotels/MapScreen';
 import AllHotelsSearchList from './AllHotelsSearchList';
@@ -38,6 +44,8 @@ export const RenderSearchResults = (props: Props) => {
   const [listAnimation] = React.useState(
     new Animated.Value(show === 'list' ? 0 : lowValue),
   );
+  const [listOpacity] = React.useState(new Animated.Value(1));
+  const [shouldRenderMap, setShouldRenderMap] = React.useState(false);
   const initialRun = React.useRef(true);
 
   React.useEffect(() => {
@@ -58,6 +66,11 @@ export const RenderSearchResults = (props: Props) => {
           duration: transitionDuration,
           useNativeDriver: true,
         }),
+        Animated.timing(listOpacity, {
+          toValue: 0,
+          duration: transitionDuration,
+          useNativeDriver: true,
+        }),
       ]).start();
     }
 
@@ -73,14 +86,23 @@ export const RenderSearchResults = (props: Props) => {
           duration: transitionDuration,
           useNativeDriver: true,
         }),
+        Animated.timing(listOpacity, {
+          toValue: 1,
+          duration: transitionDuration,
+          useNativeDriver: true,
+        }),
       ]).start();
     }
     if (show === 'list') {
       animateToList();
+      setShouldRenderMap(false);
     } else {
       animateToMap();
+      InteractionManager.runAfterInteractions(() => {
+        setShouldRenderMap(true);
+      });
     }
-  }, [listAnimation, mapAnimation, show, topValue]);
+  }, [listAnimation, listOpacity, mapAnimation, show, topValue]);
 
   function onLayout(e: OnLayout) {
     setTopValue(e.nativeEvent.layout.height + paddingBottom);
@@ -95,6 +117,7 @@ export const RenderSearchResults = (props: Props) => {
           styles.container,
           {
             transform: [{ translateY: listAnimation }],
+            opacity: listOpacity,
           },
         ]}
         testID="list-wrapper"
@@ -114,6 +137,7 @@ export const RenderSearchResults = (props: Props) => {
           />
         </View>
       </Animated.View>
+
       <Animated.View
         style={[
           styles.container,
@@ -123,8 +147,11 @@ export const RenderSearchResults = (props: Props) => {
         ]}
         testID="map-wrapper"
       >
-        <MapScreen data={data} />
+        <View style={styles.mapContainer}>
+          {shouldRenderMap ? <MapScreen data={data} /> : <FullPageLoading />}
+        </View>
       </Animated.View>
+
       <CloseModal onPress={props.closeHotels} />
     </>
   );
@@ -138,6 +165,10 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     top: 56,
+  },
+  mapContainer: {
+    flex: 1,
+    backgroundColor: defaultTokens.paletteWhite,
   },
 });
 
