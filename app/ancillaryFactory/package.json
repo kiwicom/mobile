@@ -6,20 +6,21 @@
   "dependencies": {
     "@kiwicom/mobile-config": "^0",
     "@kiwicom/mobile-localization": "^0",
-    "@kiwicom/react-native-fast-track": "^0",
+    "@kiwicom/mobile-relay": "^0",
     "@kiwicom/mobile-shared": "^0",
-    "@kiwicom/mobile-relay": "^0"
+    "@kiwicom/react-native-fast-track": "^0"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0"
   },
   "peerDependencies": {
+    "@kiwicom/universal-components": "^0",
+    "date-fns": "^1.30.1",
     "react": ">=16",
     "react-native": ">=0.57",
-    "react-test-renderer": "^16",
-    "react-navigation": "^3",
     "react-native-maps": "^0",
+    "react-navigation": "^3",
     "react-navigation-props-mapper": "^0",
-    "@kiwicom/universal-components": "^0"
+    "react-test-renderer": "^16"
   }
 }
