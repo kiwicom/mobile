@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@kiwicom/orbit-design-tokens": "^0.6.4",
-    "@kiwicom/universal-components": "^0.0.14"
+    "@kiwicom/universal-components": "^0.0.17",
+    "date-fns": "^1.30.1"
   }
 }

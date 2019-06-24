@@ -12,5 +12,6 @@ module.exports = {
   moduleNameMapper: {
     '^@kiwicom/universal-components$':
       '<rootDir>/node_modules/@kiwicom/universal-components/lib/native',
+    '^.+\\.ttf$': '<rootDir>/__mocks__/fileMock.js',
   },
 };
