@@ -172,6 +172,7 @@ dependencies {
     implementation "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
     implementation("com.google.android.gms:play-services-base:$playServicesBaseVersion")
     implementation("com.google.android.gms:play-services-maps:$playServicesMapsVersion")
+    implementation("com.facebook.android:facebook-android-sdk:$facebookVersion")
     androidTestImplementation(project(path: ":detox"))
     androidTestImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

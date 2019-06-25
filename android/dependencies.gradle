@@ -1,6 +1,6 @@
 // Global to all projects and subprojects
 ext {
-    gradlePluginVersion = "3.3.1"
+    gradlePluginVersion = "3.4.0"
     googleServicesPluginVersion = "4.2.0"
     fabricPluginVersion = "1.26.1"
     androidMavenPublishVersion = "3.6.2"
@@ -22,6 +22,7 @@ ext {
     playServicesMapsVersion = "16.1.0"
     playServicesMeasurementBaseVersion = "16.0.2"
     playServicesAnalyticsVersion = "16.0.4"
+    facebookVersion = "4.39.0"
     androidMapsUtilsVersion = "0.5"
 
     firebaseAnalyticsVersion = "16.0.5"
