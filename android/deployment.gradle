@@ -33,6 +33,8 @@ ext.kiwi = {
 }
 
 ext.publishCustomLibrary = { _groupId, _artifactId, _version, closure ->
+    apply plugin: 'digital.wup.android-maven-publish'
+
     publishing {
         repositories {
             kiwi(it)
@@ -58,7 +60,15 @@ ext.publishCustomLibrary = { _groupId, _artifactId, _version, closure ->
     }
 }
 
+ext.publishJavaLibrary = { groupId, artifactId, version ->
+    publishCustomLibrary(groupId, artifactId, version) {
+        it.from components.java
+    }
+}
+
 ext.publishAndroidLibrary = { groupId, artifactId, version ->
+    apply plugin: "com.android.library"
+
     publishCustomLibrary(groupId, artifactId, version) {
         it.from components.android
     }

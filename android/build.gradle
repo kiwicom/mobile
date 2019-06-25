@@ -31,13 +31,11 @@ subprojects {
         }
 
         dependencies {
-            classpath "com.android.tools.build:gradle:3.4.0-alpha04"
+            classpath "com.android.tools.build:gradle:$gradlePluginVersion"
             classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
             classpath "digital.wup:android-maven-publish:$androidMavenPublishVersion"
         }
     }
-
-    apply plugin: 'digital.wup.android-maven-publish'
 
     repositories {
         mavenLocal()
