@@ -7,7 +7,7 @@
     "@kiwicom/fetch": "^2.4.3",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-shared": "^0",
-    "@kiwicom/relay": "^3.0.1",
+    "@kiwicom/relay": "^3.1.0",
     "@react-native-community/async-storage": "1.2.2",
     "@react-native-community/netinfo": "1.4.0",
     "@sentry/browser": "^4.6.4"

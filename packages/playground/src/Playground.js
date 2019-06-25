@@ -55,7 +55,12 @@ export default class Playground extends React.Component<Props> {
   };
 
   render() {
-    if (!PlaygroundRenderer.components.hasOwnProperty(this.props.name)) {
+    if (
+      !Object.prototype.hasOwnProperty.call(
+        PlaygroundRenderer.components,
+        this.props.name,
+      )
+    ) {
       return (
         <Translation
           passThrough={`Component ${this.props.name} no longer exists`}
