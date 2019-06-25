@@ -37,7 +37,6 @@ export const commitMutation = (
   if (token) {
     return _commitMutation(PrivateEnvironment.getEnvironment(token), config);
   }
-  // $FlowExpectedError: Let's wait and see the outcome of https://gitlab.skypicker.com/incubator/universe/issues/504
   return _commitMutation(PublicEnvironment.getEnvironment(), config);
 };
 

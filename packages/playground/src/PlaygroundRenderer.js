@@ -53,7 +53,7 @@ export default new (class PlaygroundRenderer {
           this.shallowRenderer.render(React.Children.only(component)),
         ).toMatchSnapshot();
       }
-    } else if (this.components.hasOwnProperty(title)) {
+    } else if (Object.prototype.hasOwnProperty.call(this.components, title)) {
       this.components[title].components.push(component);
     } else {
       this.components[title] = {

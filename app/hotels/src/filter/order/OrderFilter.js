@@ -35,7 +35,7 @@ export default class OrderFilter extends React.Component<Props, State> {
   getTitle = () => {
     if (
       this.props.orderBy === null ||
-      !orderByOptions.hasOwnProperty(this.props.orderBy)
+      !Object.prototype.hasOwnProperty.call(orderByOptions, this.props.orderBy)
     ) {
       return orderByOptions.default;
     }
