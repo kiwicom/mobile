@@ -9,6 +9,11 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v47
+
+- Use more descriptive names for rooms
+- Show correct max number of guests on rooms. We have had some rooms that have had the same name, same amenities, but with different prices. This is because we have been using the wrong field from provider to calculate max guests in a room
+
 ### v46
 
 - Fix issue on android where toast would show above header when animating
