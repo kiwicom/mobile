@@ -29,11 +29,11 @@ export type RoomSummary_room = {|
         +type: ?string,
       |}>,
     |}>,
+    +maxOccupancy: ?number,
     +room: ?{|
       +description: ?{|
         +title: ?string
-      |},
-      +maxPersons: ?number,
+      |}
     |},
   |}>,
   +$fragmentRefs: SummaryButtons_rooms$ref,
@@ -149,6 +149,13 @@ return {
           ]
         },
         {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "maxOccupancy",
+          "args": null,
+          "storageKey": null
+        },
+        {
           "kind": "LinkedField",
           "alias": null,
           "name": "room",
@@ -174,13 +181,6 @@ return {
                   "storageKey": null
                 }
               ]
-            },
-            {
-              "kind": "ScalarField",
-              "alias": null,
-              "name": "maxPersons",
-              "args": null,
-              "storageKey": null
             }
           ]
         },
@@ -207,5 +207,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'edcb6904918686e2753f65bd4793d4db';
+(node/*: any*/).hash = '9e3b017f3a1b287da5f1c61ff44d6ea8';
 module.exports = node;

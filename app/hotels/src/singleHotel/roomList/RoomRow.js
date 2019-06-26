@@ -37,7 +37,7 @@ export function RoomRow(props: Props) {
   const availableRoom = props.availableRoom;
   const isDisabled = props.numberOfRooms >= guestCount;
   const id = availableRoom?.id;
-  const maxPersons = availableRoom?.room?.maxPersons;
+  const maxPersons = availableRoom?.maxOccupancy;
   const type = availableRoom?.room?.description?.title ?? '';
   const roomId = availableRoom?.room?.id ?? '';
   const selectedCount = availableRoom?.selectedCount ?? 0;
@@ -144,6 +144,7 @@ export default createFragmentContainer(withNavigation(RoomRow), {
       availableRoomsCount
       ...RoomRowTitle_room
       ...BeddingInfo_room
+      maxOccupancy
       room {
         id
         description {
@@ -154,7 +155,6 @@ export default createFragmentContainer(withNavigation(RoomRow), {
           lowResUrl
           id
         }
-        maxPersons
       }
     }
   `,
