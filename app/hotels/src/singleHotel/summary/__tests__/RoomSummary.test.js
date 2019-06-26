@@ -53,11 +53,11 @@ const room = {
           ],
         },
       ],
+      maxOccupancy: 1,
       room: {
         description: {
           title: 'Basic Single Room',
         },
-        maxPersons: 1,
       },
     },
     {
@@ -87,11 +87,11 @@ const room = {
           ],
         },
       ],
+      maxOccupancy: 2,
       room: {
         description: {
           title: 'Basic Double Room',
         },
-        maxPersons: 2,
       },
     },
     {
@@ -120,11 +120,11 @@ const room = {
           ],
         },
       ],
+      maxOccupancy: 3,
       room: {
         description: {
           title: 'Basic triple Room',
         },
-        maxPersons: 3,
       },
     },
   ],

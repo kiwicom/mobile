@@ -22,6 +22,7 @@ export type RoomRow_availableRoom = {|
     +currencyId: ?string,
   |},
   +availableRoomsCount: ?number,
+  +maxOccupancy: ?number,
   +room: ?{|
     +id: string,
     +description: ?{|
@@ -32,7 +33,6 @@ export type RoomRow_availableRoom = {|
       +lowResUrl: ?string,
       +id: string,
     |}>,
-    +maxPersons: ?number,
   |},
   +$fragmentRefs: RoomBadges_availableRoom$ref & RoomRowTitle_room$ref & BeddingInfo_room$ref,
   +$refType: RoomRow_availableRoom$ref,
@@ -94,6 +94,13 @@ return {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "maxOccupancy",
+      "args": null,
+      "storageKey": null
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "room",
@@ -146,13 +153,6 @@ return {
             },
             (v0/*: any*/)
           ]
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "maxPersons",
-          "args": null,
-          "storageKey": null
         }
       ]
     },
@@ -187,5 +187,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '59b898bfbb0aae36e765b3812e848ef2';
+(node/*: any*/).hash = 'b0eba4966a3af3039ebdee5acafb3e3e';
 module.exports = node;

@@ -36,7 +36,7 @@ const getSelectedRooms = memoize((props: Props) => {
 const getMaxNumberOfGuestsInSelection = memoize(selectedRooms => {
   return selectedRooms.reduce((acc, room) => {
     const selectedCount = room?.selectedCount ?? 0;
-    const max = room?.room?.maxPersons ?? 0;
+    const max = room?.maxOccupancy ?? 0;
     return acc + max * selectedCount;
   }, 0);
 });
@@ -254,11 +254,11 @@ export default createFragmentContainer(RoomSummary, {
             type
           }
         }
+        maxOccupancy
         room {
           description {
             title
           }
-          maxPersons
         }
       }
     }
