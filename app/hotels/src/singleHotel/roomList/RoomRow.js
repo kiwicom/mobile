@@ -103,7 +103,6 @@ export function RoomRow(props: Props) {
   const amount = availableRoom?.minimalCost?.amount ?? null;
   const currency = availableRoom?.minimalCost?.currencyId ?? null;
   const selectableCount = availableRoom?.availableRoomsCount ?? 0;
-  const room = availableRoom?.room;
 
   return (
     <View style={styles.container}>
@@ -111,12 +110,12 @@ export function RoomRow(props: Props) {
         <View style={styles.row}>
           <RoomImage openGallery={openGallery} thumbnailUrl={thumbnailUrl} />
           <View style={styles.details}>
-            <RoomRowTitle room={room} />
+            <RoomRowTitle room={availableRoom} />
             <RoomBadges availableRoom={availableRoom} />
           </View>
         </View>
         <View style={styles.roomDetails}>
-          <BeddingInfo room={room} />
+          <BeddingInfo room={availableRoom} />
         </View>
         <RoomPicker
           price={{ amount, currency }}
@@ -143,19 +142,19 @@ export default createFragmentContainer(withNavigation(RoomRow), {
         currencyId
       }
       availableRoomsCount
+      ...RoomRowTitle_room
+      ...BeddingInfo_room
       room {
         id
         description {
           title
         }
-        ...RoomRowTitle_room
         roomPhotos {
           highResUrl
           lowResUrl
           id
         }
         maxPersons
-        ...BeddingInfo_room
       }
     }
   `,

@@ -12,7 +12,7 @@ type Props = {|
 |};
 
 export function RoomRowTitle(props: Props) {
-  const title = props.room?.description?.title ?? '';
+  const title = props.room?.name ?? '';
 
   return (
     <Text style={styles.title}>
@@ -23,10 +23,8 @@ export function RoomRowTitle(props: Props) {
 
 export default createFragmentContainer(RoomRowTitle, {
   room: graphql`
-    fragment RoomRowTitle_room on HotelRoomInterface {
-      description {
-        title
-      }
+    fragment RoomRowTitle_room on HotelRoomAvailabilityInterface {
+      name
     }
   `,
 });
