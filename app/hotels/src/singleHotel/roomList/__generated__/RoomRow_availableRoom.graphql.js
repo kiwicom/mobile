@@ -33,9 +33,8 @@ export type RoomRow_availableRoom = {|
       +id: string,
     |}>,
     +maxPersons: ?number,
-    +$fragmentRefs: RoomRowTitle_room$ref & BeddingInfo_room$ref,
   |},
-  +$fragmentRefs: RoomBadges_availableRoom$ref,
+  +$fragmentRefs: RoomBadges_availableRoom$ref & RoomRowTitle_room$ref & BeddingInfo_room$ref,
   +$refType: RoomRow_availableRoom$ref,
 |};
 export type RoomRow_availableRoom$data = RoomRow_availableRoom;
@@ -154,22 +153,22 @@ return {
           "name": "maxPersons",
           "args": null,
           "storageKey": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "RoomRowTitle_room",
-          "args": null
-        },
-        {
-          "kind": "FragmentSpread",
-          "name": "BeddingInfo_room",
-          "args": null
         }
       ]
     },
     {
       "kind": "FragmentSpread",
       "name": "RoomBadges_availableRoom",
+      "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "RoomRowTitle_room",
+      "args": null
+    },
+    {
+      "kind": "FragmentSpread",
+      "name": "BeddingInfo_room",
       "args": null
     },
     {
@@ -188,5 +187,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '11decfc5905b4d8b51f8aea1b345b817';
+(node/*: any*/).hash = '59b898bfbb0aae36e765b3812e848ef2';
 module.exports = node;

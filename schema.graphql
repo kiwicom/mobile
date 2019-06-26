@@ -1045,6 +1045,14 @@ type CreateAccountResponse {
   identity: Identity
 }
 
+input CreateSimpleTokenInput {
+  email: String!
+  origin: DateAndIataCodeInput!
+  bookingId: Int!
+}
+
+union CreateSimpleTokenResponse = SimpleToken | SimpleTokenError
+
 type CreateStoredOperation {
   createdOperations: [StoredOperation]
 }
@@ -1336,6 +1344,15 @@ outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for
 representation of dates and times using the Gregorian calendar.
 """
 scalar Date
+
+"""Information about departure required to identify single booking."""
+input DateAndIataCodeInput {
+  """ISO date of the departure as YYYY-MM-DD"""
+  date: Date!
+
+  """3-letter IATA code of station."""
+  iataCode: String!
+}
 
 """You always have to setup exact date OR range from-to."""
 input DateInput {
@@ -2097,6 +2114,13 @@ type HotelRoom implements HotelRoomInterface {
 
   """Type of the hotel room."""
   type: String
+
+  """
+  Note that this number should not be used to display number of person for
+  booking a room. This will simply say how many persons will fit in the room
+  type. There could be different price for one person living in a double room vs
+  two pepole living in a double room
+  """
   maxPersons: Int
   bedding: [HotelRoomBedding]
 
@@ -2138,6 +2162,21 @@ type HotelRoomAvailability implements HotelRoomAvailabilityInterface {
   """The amount of available rooms for this type"""
   availableRoomsCount: Int
 
+  """
+  Note that this name is different from HotelRoomDescription.title. This name
+  contains information also about the block type.
+  """
+  name: String
+
+  """
+  Note that this is different from HotelRoomInterface.maxPersons.
+  HotelRoomInterface.maxPersons will show you max number of guests on the room
+  type. This maxOccupancy will show you max number of guests for the
+  reservation. There could be different price for a double room with one person
+  living in it, vs two people living in it.
+  """
+  maxOccupancy: Int
+
   """Original block ID used to open Booking.com page."""
   originalId: String @deprecated(reason: "Use \"id\" field whenever possible.")
   room: HotelRoom
@@ -2158,6 +2197,8 @@ interface HotelRoomAvailabilityInterface {
   incrementalPriceWithExtraCharges: [HotelPrice]
   room: HotelRoomInterface
   availableRoomsCount: Int
+  name: String
+  maxOccupancy: Int
 }
 
 type HotelRoomBedding {
@@ -2879,6 +2920,11 @@ type RootMutation {
   """Sends time limited link on given e-mail to log in."""
   sendMagicLink(email: String!, brand: Brand = "kiwicom"): SendMagicLinkResponse
 
+  """
+  Get "simple token" which can be used to retrieve booking in "singleBooking" query without authorization.
+  """
+  createSimpleToken(input: CreateSimpleTokenInput!): CreateSimpleTokenResponse
+
   """Log into Kiwi.com account with email & password."""
   signIn(email: String!, password: String!, brand: Brand = "kiwicom"): SignInResponse
   updatePassenger(
@@ -3122,7 +3168,9 @@ type RootQuery {
     """
     id: Int!
 
-    """Simple auth token that lets you fetch a unique booking."""
+    """
+    Simple token that lets you fetch a unique booking without authorization.
+    """
     authToken: String
     brand: String = "kiwicom"
   ): BookingInterface
@@ -3183,6 +3231,22 @@ type Services {
 type SignInResponse {
   user: User
   success: Boolean
+}
+
+type SimpleToken {
+  token: String
+  directAccessURL(baseURL: String = "https://kiwi.com"): String
+}
+
+type SimpleTokenError {
+  code: SimpleTokenErrorCode
+  message: String
+}
+
+enum SimpleTokenErrorCode {
+  """Booking matching provided values was not found."""
+  NOT_FOUND
+  UNKNOWN
 }
 
 type Stay22Hotel implements HotelInterface {
@@ -3276,6 +3340,21 @@ type Stay22HotelRoomAvailability implements HotelRoomAvailabilityInterface {
 
   """The amount of available rooms for this type"""
   availableRoomsCount: Int
+
+  """
+  Note that this name is different from HotelRoomDescription.title. This name
+  contains information also about the block type.
+  """
+  name: String
+
+  """
+  Note that this is different from HotelRoomInterface.maxPersons.
+  HotelRoomInterface.maxPersons will show you max number of guests on the room
+  type. This maxOccupancy will show you max number of guests for the
+  reservation. There could be different price for a double room with one person
+  living in it, vs two people living in it.
+  """
+  maxOccupancy: Int
   room: Stay22HotelRoom
 }
 

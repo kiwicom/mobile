@@ -12,11 +12,13 @@ import type { FragmentReference } from "relay-runtime";
 declare export opaque type BeddingInfo_room$ref: FragmentReference;
 declare export opaque type BeddingInfo_room$fragmentType: BeddingInfo_room$ref;
 export type BeddingInfo_room = {|
-  +maxPersons: ?number,
-  +bedding: ?$ReadOnlyArray<?{|
-    +type: ?string,
-    +amount: ?number,
-  |}>,
+  +maxOccupancy: ?number,
+  +room: ?{|
+    +bedding: ?$ReadOnlyArray<?{|
+      +type: ?string,
+      +amount: ?number,
+    |}>
+  |},
   +$refType: BeddingInfo_room$ref,
 |};
 export type BeddingInfo_room$data = BeddingInfo_room;
@@ -30,44 +32,55 @@ export type BeddingInfo_room$key = {
 const node/*: ReaderFragment*/ = {
   "kind": "Fragment",
   "name": "BeddingInfo_room",
-  "type": "HotelRoomInterface",
+  "type": "HotelRoomAvailabilityInterface",
   "metadata": null,
   "argumentDefinitions": [],
   "selections": [
     {
       "kind": "ScalarField",
       "alias": null,
-      "name": "maxPersons",
+      "name": "maxOccupancy",
       "args": null,
       "storageKey": null
     },
     {
       "kind": "LinkedField",
       "alias": null,
-      "name": "bedding",
+      "name": "room",
       "storageKey": null,
       "args": null,
-      "concreteType": "HotelRoomBedding",
-      "plural": true,
+      "concreteType": null,
+      "plural": false,
       "selections": [
         {
-          "kind": "ScalarField",
+          "kind": "LinkedField",
           "alias": null,
-          "name": "type",
+          "name": "bedding",
+          "storageKey": null,
           "args": null,
-          "storageKey": null
-        },
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "amount",
-          "args": null,
-          "storageKey": null
+          "concreteType": "HotelRoomBedding",
+          "plural": true,
+          "selections": [
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "type",
+              "args": null,
+              "storageKey": null
+            },
+            {
+              "kind": "ScalarField",
+              "alias": null,
+              "name": "amount",
+              "args": null,
+              "storageKey": null
+            }
+          ]
         }
       ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c43449659339a2d4c39757d33d614752';
+(node/*: any*/).hash = '619549d31e5072173988bbd05e3051bb';
 module.exports = node;

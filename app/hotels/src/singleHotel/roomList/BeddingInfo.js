@@ -14,7 +14,7 @@ type Props = {|
 
 export class BeddingInfo extends React.Component<Props> {
   formatBeddingInfo = (): $ReadOnlyArray<React.Element<typeof Translation>> => {
-    const { room } = this.props;
+    const room = this.props.room?.room;
     const beddingOptions = room?.bedding ?? [];
     const beddingTranslation = [];
     beddingOptions.forEach((beddingOption, index) => {
@@ -40,7 +40,7 @@ export class BeddingInfo extends React.Component<Props> {
 
   render() {
     const { room } = this.props;
-    const maxPersons = room?.maxPersons;
+    const maxPersons = room?.maxOccupancy;
 
     return (
       <View>
@@ -73,11 +73,13 @@ export class BeddingInfo extends React.Component<Props> {
 
 export default createFragmentContainer(BeddingInfo, {
   room: graphql`
-    fragment BeddingInfo_room on HotelRoomInterface {
-      maxPersons
-      bedding {
-        type
-        amount
+    fragment BeddingInfo_room on HotelRoomAvailabilityInterface {
+      maxOccupancy
+      room {
+        bedding {
+          type
+          amount
+        }
       }
     }
   `,

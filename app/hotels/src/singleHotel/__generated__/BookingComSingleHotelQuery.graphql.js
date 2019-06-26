@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash f98c8bcc2e10372718aef97244d7d891
+ * @relayHash 6ae9b2ef0bb191d1d559087ecfc6a336
  */
 
 /* eslint-disable */
@@ -117,20 +117,20 @@ fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
     currencyId
   }
   availableRoomsCount
+  ...RoomRowTitle_room
+  ...BeddingInfo_room
   room {
     __typename
     id
     description {
       title
     }
-    ...RoomRowTitle_room
     roomPhotos {
       highResUrl
       lowResUrl
       id
     }
     maxPersons
-    ...BeddingInfo_room
   }
 }
 
@@ -139,17 +139,19 @@ fragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {
   isRefundable
 }
 
-fragment RoomRowTitle_room on HotelRoomInterface {
-  description {
-    title
-  }
+fragment RoomRowTitle_room on HotelRoomAvailabilityInterface {
+  name
 }
 
-fragment BeddingInfo_room on HotelRoomInterface {
-  maxPersons
-  bedding {
-    type
-    amount
+fragment BeddingInfo_room on HotelRoomAvailabilityInterface {
+  maxOccupancy
+  room {
+    __typename
+    bedding {
+      type
+      amount
+    }
+    id
   }
 }
 
@@ -450,6 +452,19 @@ return {
                   {
                     "kind": "LinkedField",
                     "alias": null,
+                    "name": "bedding",
+                    "storageKey": null,
+                    "args": null,
+                    "concreteType": "HotelRoomBedding",
+                    "plural": true,
+                    "selections": [
+                      (v7/*: any*/),
+                      (v4/*: any*/)
+                    ]
+                  },
+                  {
+                    "kind": "LinkedField",
+                    "alias": null,
                     "name": "roomPhotos",
                     "storageKey": null,
                     "args": null,
@@ -459,19 +474,6 @@ return {
                       (v8/*: any*/),
                       (v9/*: any*/),
                       (v3/*: any*/)
-                    ]
-                  },
-                  {
-                    "kind": "LinkedField",
-                    "alias": null,
-                    "name": "bedding",
-                    "storageKey": null,
-                    "args": null,
-                    "concreteType": "HotelRoomBedding",
-                    "plural": true,
-                    "selections": [
-                      (v7/*: any*/),
-                      (v4/*: any*/)
                     ]
                   }
                 ]
@@ -504,6 +506,14 @@ return {
                 "kind": "ScalarField",
                 "alias": null,
                 "name": "availableRoomsCount",
+                "args": null,
+                "storageKey": null
+              },
+              (v6/*: any*/),
+              {
+                "kind": "ScalarField",
+                "alias": null,
+                "name": "maxOccupancy",
                 "args": null,
                 "storageKey": null
               },
@@ -706,7 +716,7 @@ return {
     "operationKind": "query",
     "name": "BookingComSingleHotelQuery",
     "id": null,
-    "text": "query BookingComSingleHotelQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  ...BookingSummary_room\n  hotel {\n    __typename\n    ...Header_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  ...RoomList_data\n}\n\nfragment BookingSummary_room on HotelAvailabilityInterface {\n  ...RoomSummary_room\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview_data\n}\n\nfragment RoomList_data on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n    ...RoomRow_availableRoom\n  }\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalCost {\n    amount\n    currencyId\n  }\n  availableRoomsCount\n  room {\n    __typename\n    id\n    description {\n      title\n    }\n    ...RoomRowTitle_room\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n    maxPersons\n    ...BeddingInfo_room\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomInterface {\n  description {\n    title\n  }\n}\n\nfragment BeddingInfo_room on HotelRoomInterface {\n  maxPersons\n  bedding {\n    type\n    amount\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities_data\n}\n\nfragment HotelReview_data on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Amenities_data on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n\nfragment RoomSummary_room on HotelAvailabilityInterface {\n  ...SummaryButtons_rooms\n  availableRooms {\n    __typename\n    id\n    incrementalPriceWithExtraCharges {\n      total {\n        amount\n        currencyId\n      }\n      extraCharges {\n        excluded\n        amount\n        name\n        chargeAmount\n        type\n      }\n    }\n    room {\n      __typename\n      description {\n        title\n      }\n      maxPersons\n      id\n    }\n  }\n}\n\nfragment SummaryButtons_rooms on HotelAvailabilityInterface {\n  ...BookNow_rooms\n}\n\nfragment BookNow_rooms on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n  }\n}\n",
+    "text": "query BookingComSingleHotelQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ... on HotelAvailabilityInterface {\n      ...HotelDetailScreen_availableHotel\n    }\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  ...BookingSummary_room\n  hotel {\n    __typename\n    ...Header_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  ...RoomList_data\n}\n\nfragment BookingSummary_room on HotelAvailabilityInterface {\n  ...RoomSummary_room\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview_data\n}\n\nfragment RoomList_data on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n    ...RoomRow_availableRoom\n  }\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalCost {\n    amount\n    currencyId\n  }\n  availableRoomsCount\n  ...RoomRowTitle_room\n  ...BeddingInfo_room\n  room {\n    __typename\n    id\n    description {\n      title\n    }\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n    maxPersons\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomAvailabilityInterface {\n  name\n}\n\nfragment BeddingInfo_room on HotelRoomAvailabilityInterface {\n  maxOccupancy\n  room {\n    __typename\n    bedding {\n      type\n      amount\n    }\n    id\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities_data\n}\n\nfragment HotelReview_data on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Amenities_data on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n\nfragment RoomSummary_room on HotelAvailabilityInterface {\n  ...SummaryButtons_rooms\n  availableRooms {\n    __typename\n    id\n    incrementalPriceWithExtraCharges {\n      total {\n        amount\n        currencyId\n      }\n      extraCharges {\n        excluded\n        amount\n        name\n        chargeAmount\n        type\n      }\n    }\n    room {\n      __typename\n      description {\n        title\n      }\n      maxPersons\n      id\n    }\n  }\n}\n\nfragment SummaryButtons_rooms on HotelAvailabilityInterface {\n  ...BookNow_rooms\n}\n\nfragment BookNow_rooms on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
