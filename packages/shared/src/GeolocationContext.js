@@ -86,7 +86,7 @@ class Provider extends React.Component<Props, State> {
 }
 
 export const withGeolocationContext = (Component: React.ElementType) => {
-  const withGeolocationContext = (props: { ... }) => {
+  const withGeolocationContext = (props: { [string]: mixed, ... }) => {
     return (
       <Consumer>
         {({ actions, ...rest }) => (

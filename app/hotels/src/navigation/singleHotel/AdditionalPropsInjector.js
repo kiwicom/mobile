@@ -6,7 +6,7 @@ import { Dimensions, type DimensionType } from '@kiwicom/mobile-shared';
 
 type InjectorProps = {|
   navigation: NavigationType,
-  WrappedComponent: React.ElementType,
+  WrappedComponent: React.AbstractComponent<{ ... }>,
 |};
 
 export default class AdditionalPropsInjecter extends React.Component<InjectorProps> {

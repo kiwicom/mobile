@@ -7,12 +7,20 @@ type State = {|
   savedValue: any,
 |};
 
-export default function withStorage(
-  WrappedComponent: React.ElementType,
+type InjectedProps = {|
+  +storageValue: any,
+  +saveToStorage: Function,
+|};
+
+export default function withStorage<Config: { ... }>(
+  WrappedComponent: React.AbstractComponent<Config>,
   storageKey: string,
   initialValue: any,
-) {
-  return class WithStorage extends React.Component<{ ... }, State> {
+): React.AbstractComponent<$Diff<Config, InjectedProps>> {
+  return class WithStorage extends React.Component<
+    $Diff<Config, InjectedProps>,
+    State,
+  > {
     // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
     static navigationOptions = WrappedComponent.navigationOptions;
 

@@ -99,5 +99,4 @@ unsafe-getters-setters
 ;untyped-type-import
 sketchy-null
 
-[version]
-^0.98.1
+

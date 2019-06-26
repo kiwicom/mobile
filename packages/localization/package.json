@@ -4,18 +4,18 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@kiwicom/rnmodules": "^0",
     "@kiwicom/mobile-utils": "^0",
+    "@kiwicom/rnmodules": "^0",
     "date-fns": "^1.30.1",
-    "form-data": "^2.3.3",
+    "form-data": "^2.4.0",
     "intl": "^1.2.5"
   },
   "devDependencies": {},
   "peerDependencies": {
+    "@kiwicom/fetch": "^",
     "react": "^16",
     "react-fast-compare": "^2",
     "react-native": "^0.57",
-    "react-test-renderer": "^16",
-    "@kiwicom/fetch": "^"
+    "react-test-renderer": "^16"
   }
 }
