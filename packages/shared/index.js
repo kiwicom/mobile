@@ -110,7 +110,6 @@ export {
 /**
  * Non-UI components (components without render output):
  */
-export { default as AppStateChange } from './src/AppStateChange';
 export { default as Color } from './src/Color';
 export { default as CurrencyFormatter } from './src/CurrencyFormatter';
 export { default as Device } from './src/Device';
