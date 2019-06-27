@@ -9,6 +9,10 @@ this will be evened out from v24
 
 - Upgrade rnkiwimobile to version `0.0.46`
 
+### v48
+
+- Use new maxOccupancy in rest of application as well
+
 ### v47
 
 - Use more descriptive names for rooms
