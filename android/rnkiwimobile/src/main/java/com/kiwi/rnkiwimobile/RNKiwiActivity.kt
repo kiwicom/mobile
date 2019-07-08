@@ -9,6 +9,7 @@ import com.facebook.react.ReactRootView
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
+import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 abstract class RNKiwiActivity(private val initialProperties: Bundle?) :
   AppCompatActivity(),
@@ -51,7 +52,7 @@ abstract class RNKiwiActivity(private val initialProperties: Bundle?) :
 
     mReactInstanceManager = getReactNativeInstanceManager()
 
-    mReactRootView = ReactRootView(this)
+    mReactRootView = RNGestureHandlerEnabledRootView(this)
     mReactRootView.startReactApplication(mReactInstanceManager, getModuleName(), initialProperties)
 
     setContentView(mReactRootView)
@@ -76,6 +77,7 @@ abstract class RNKiwiActivity(private val initialProperties: Bundle?) :
   // endregion
 
   // region PermissionAwareActivity
+
   override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     if (mPermissionListener != null && mPermissionListener!!.onRequestPermissionsResult(requestCode, permissions, grantResults)) {
@@ -88,5 +90,6 @@ abstract class RNKiwiActivity(private val initialProperties: Bundle?) :
     mPermissionListener = listener
     requestPermissions(permissions, requestCode)
   }
+
   // endregion
 }
