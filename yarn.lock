@@ -1322,10 +1322,10 @@
   resolved "https://registry.yarnpkg.com/@ptomasroos/react-native-multi-slider/-/react-native-multi-slider-1.0.0.tgz#a4ea27b1320b93a1db9f696c24789695df6c9f30"
   integrity sha512-NpX22rQLArg9widwMzGf7XsInTDf6mfY/D1XaDVjglNkVphj3NSN37+nF6MofArCxC++1P+jHv0SGWbmJQwy4g==
 
-"@react-native-community/async-storage@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.2.2.tgz#1f9851a6dd2b0af08ed3ab69b7f7353c4e85ea1d"
-  integrity sha512-sjL32DFXSD26RKVZfdBgRBKQCfqO9Vh8yBukjW0ajnMsCmqRxpe0tic6D+g+EW+MI8sohtr/02bhHfVClG8Eqw==
+"@react-native-community/async-storage@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.5.0.tgz#647ffcd832272068b0be57332e08d73036ed391f"
+  integrity sha512-2yE4RzQ5IL+UTPhuMY0ykNRKHf1m90jOnmp8fcDPUun5U97cXlorjI4p66ovDgF0FuOv8ZpiUKvunGy3qqBxwg==
 
 "@react-native-community/cli@^1.2.1":
   version "1.4.6"
@@ -1367,10 +1367,10 @@
     xcode "^2.0.0"
     xmldoc "^0.4.0"
 
-"@react-native-community/netinfo@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-1.4.0.tgz#8dd6de55ebf2792321fc392b9bd9144c4cedb9e3"
-  integrity sha512-5HDb7f4MhF8bF+K/5f0HdQtjU+8iujl9IFQHeRz1e4doWqtgWL4DhhfQqczchOI0xI/g8QT0ZZV4A6CayJt24Q==
+"@react-native-community/netinfo@3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-3.2.1.tgz#cd073b81a4b978f7f55f1a960a0b56c462813e02"
+  integrity sha512-A2qANOnlRDVe+8kMbKMwy3/0bOlOA2+y8DyWg2Rv2KHICIfin+oxixbG0ewAOLQdLkSEyyumZXRmIVl7VI/KJg==
 
 "@react-navigation/core@~3.4.1":
   version "3.4.1"
@@ -10445,10 +10445,10 @@ react-native-dotenv@^0.2.0:
   dependencies:
     babel-plugin-dotenv "0.1.1"
 
-react-native-gesture-handler@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.1.0.tgz#2a7d545ad2e0ca23adce22b2af441ad360ecccee"
-  integrity sha512-E9IKHpmL+sz/iCYkUriTUjBaQBORWV+oheYPQleADkxjo2sYsQfnlyTz4EQYFONkUwJ6WmfTNkYt2/yc5U4Ziw==
+react-native-gesture-handler@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.3.0.tgz#d0386f565928ccc1849537f03f2e37fd5f6ad43f"
+  integrity sha512-ASRFIXBuKRvqlmwkWJhV8yP2dTpvcqVrLNpd7FKVBFHYWr6SAxjGyO9Ik8w1lAxDhMlRP2IcJ9p9eq5X2WWeLQ==
   dependencies:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.2"
@@ -10461,9 +10461,10 @@ react-native-image-progress@^1.1.1:
   dependencies:
     prop-types "^15.5.10"
 
-"react-native-maps@github:react-native-community/react-native-maps#6c225af612d4681a00d4849b60774d7c6426835e":
-  version "0.23.0"
-  resolved "https://codeload.github.com/react-native-community/react-native-maps/tar.gz/6c225af612d4681a00d4849b60774d7c6426835e"
+react-native-maps@0.24.2:
+  version "0.24.2"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.24.2.tgz#19974f967cb0c2e24dab74ca879118e0932571b2"
+  integrity sha512-1iNIDikp2dkCG+8DguaEviYZiMSYyvwqYT7pO2YTZvuFRDSc/P9jXMhTUnSh4wNDlEeQ47OJ09l0pwWVBZ7wxg==
 
 react-native-modal@^10.0.0:
   version "10.0.0"
@@ -10534,18 +10535,18 @@ react-native-tab-view@^1.2.0, react-native-tab-view@^1.3.4:
   dependencies:
     prop-types "^15.6.1"
 
-react-native-webview@5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-5.5.0.tgz#fd2f2999d3c1628d9d22a018189e943718410e82"
-  integrity sha512-+rxAqREYW2L/Hpv9lNyPZQWO0FHO0ehKPSlOrjWZc8MNVt8Pr6ms/rNKzM3m3QBWRd/lw3QaYGX4Yv0fZrOjmQ==
+react-native-webview@5.12.0:
+  version "5.12.0"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-5.12.0.tgz#e673f72a287829444ddcbc7ea2f28f2e5862f9fb"
+  integrity sha512-tdKBRgxq/DP6kg/B3tYoqmWiARY2BKTqbjFHJ8vH7TcThaPprlyWJyHuO54FfrS9dnPpU2H4C5i3btJvvy2OVQ==
   dependencies:
     escape-string-regexp "1.0.5"
     invariant "2.2.4"
 
-react-native@0.59.2:
-  version "0.59.2"
-  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.2.tgz#c2e2d9e185b04e54948f170841d97c24661a0fa9"
-  integrity sha512-gIygrCr42rGEQnfjcAZdCOqgjC0oZtTIp+mdbUW+yqHpNUU1PbYKzUkLlvSFGeN+IUcL8WTaC1JtJvghKhaLmA==
+react-native@0.59.9:
+  version "0.59.9"
+  resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.59.9.tgz#c94ee4fa35121720c05235a2dd6cdd2784bf5177"
+  integrity sha512-/+8EgIZwFpYHyyJ7Zav7B6LHNrytwUQ+EKGT/QV7HSrgpf2Y5NZNeUYUHKiVKLYpBip1G32/LcAECQj37YRwGQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     "@react-native-community/cli" "^1.2.1"
