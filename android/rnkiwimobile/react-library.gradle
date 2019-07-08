@@ -124,8 +124,6 @@ afterEvaluate {
             enabled currentBundleTask.enabled
         }
 
-        variant.mergeAssets.doLast {
-            currentAssetsCopyTask.execute()
-        }
+        variant.mergeAssets.finalizedBy currentAssetsCopyTask
     }
 }
