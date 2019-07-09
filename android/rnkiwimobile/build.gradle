@@ -46,9 +46,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "com.facebook.react:react-native:$reactNativeVersion"
+    implementation "com.android.support:appcompat-v7:$supportVersion"
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-code-push:$reactNativeCodePush-SNAPSHOT"
-    api "com.trinerdis.skypicker:react-native-gesture-handler:$reactNativeGestureHandler-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-community_async-storage:$reactNativeAsyncStorage-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-community_netinfo:$reactNativeNetInfo-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-webview:$reactNativeWebView-SNAPSHOT"

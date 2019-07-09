@@ -78,6 +78,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "com.android.support:multidex:$multidexVersion"
+    implementation "com.android.support:appcompat-v7:$supportVersion"
 
     /**
      * In debug mode, it will use the local rnkiwimobile project.

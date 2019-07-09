@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "android": "yarn react-native run-android",
-    "android-playground": "yarn react-native run-android --appFolder playground",
+    "android-playground": "yarn react-native bundle --platform android --dev false --entry-file app/native.js --bundle-output ./android/rnkiwimobile/src/main/assets/index.android.bundle && yarn react-native run-android --appFolder playground",
     "code-push": "node ./scripts/codePush.js",
     "deploy-translations": "yarn babel-node packages/localization/src/scripts/Deployer.js",
     "untranslated-strings": "yarn babel-node packages/localization/src/scripts/UntranslatedStrings.js",
