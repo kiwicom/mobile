@@ -1,5 +1,5 @@
 {
-  "name": "reactNativeApp",
+  "name": "reactnativeapp",
   "version": "0.0.1",
   "private": true,
   "workspaces": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "android": "yarn react-native run-android",
-    "android-playground": "yarn react-native bundle --platform android --dev false --entry-file app/native.js --bundle-output ./android/rnkiwimobile/src/main/assets/index.android.bundle && yarn react-native run-android --appFolder playground",
+    "android-playground": "yarn react-native run-android --appFolder playground",
     "code-push": "node ./scripts/codePush.js",
     "deploy-translations": "yarn babel-node packages/localization/src/scripts/Deployer.js",
     "untranslated-strings": "yarn babel-node packages/localization/src/scripts/UntranslatedStrings.js",
@@ -32,6 +32,7 @@
     "@kiwicom/react-native-ancillary-factory": "^0",
     "@kiwicom/react-native-app-hotels": "^0",
     "@kiwicom/react-native-fast-track": "^0",
+    "@kiwicom/monorepo-utils": "^0.21.0",
     "chalk": "^2.4.2",
     "detox": "^12.11.3",
     "dotenv": "^8.0.0",
@@ -51,7 +52,6 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/runtime": "^7.4.4",
     "@kiwicom/eslint-config": "^4.10.0",
-    "@kiwicom/monorepo-utils": "^0.21.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.7.1",
     "babel-plugin-relay": "^5.0.0",
