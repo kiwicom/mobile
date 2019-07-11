@@ -208,7 +208,6 @@
                                              object:nil];
 }
 
-
 - (void)stopObservingGestures {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

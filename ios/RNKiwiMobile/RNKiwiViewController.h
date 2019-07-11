@@ -5,20 +5,22 @@
 
 @interface RNKiwiViewController: UIViewController
 
-- (nonnull instancetype)initWithModule:(NSString *)moduleName initialProperties:(NSDictionary*)properties;
+- (nonnull instancetype)initWithModule:(nonnull NSString *)moduleName initialProperties:(nonnull NSDictionary *)properties;
 - (nonnull instancetype)init NS_UNAVAILABLE;
 - (BOOL)isInteractivePopGestureAllowed;
 
 // Delegates
+@property (nonatomic, weak, nullable) id<RNKiwiViewControllerFlowDelegate> flowDelegate;
+
+// CR: What about moving this to RNKiwiSharedBridge?
 @property (nonatomic, weak, nullable) id<RNKiwiCurrencyManager> currencyFormatter;
 @property (nonatomic, weak, nullable) id<RNKiwiTranslationProvider> translationProvider;
-@property (nonatomic, weak, nullable) id<RNKiwiViewControllerFlowDelegate> flowDelegate;
 
 // Logging
 @property (nonatomic, copy, nullable) void (^didDisplayAncillary)(NSString * _Nonnull type, NSString * _Nonnull provider);
 @property (nonatomic, copy, nullable) void (^didPurchaseAncillary)(NSString * _Nonnull type, NSString * _Nonnull provider);
 
-@property (nonatomic, copy, nullable) void (^logHotelsResultsDisplayed)(NSString * _Nullable searchQuery, NSString *parameters);
+@property (nonatomic, copy, nullable) void (^logHotelsResultsDisplayed)(NSString * _Nullable searchQuery, NSString * _Nonnull parameters);
 @property (nonatomic, copy, nullable) void (^logHotelsFilterTagSet)(id _Nonnull info);
 @property (nonatomic, copy, nullable) void (^logHotelsDetailOpened)(void);
 @property (nonatomic, copy, nullable) void (^logHotelsDetailAbandoned)(void);

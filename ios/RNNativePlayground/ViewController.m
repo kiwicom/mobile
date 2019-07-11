@@ -1,6 +1,7 @@
 #import <RNKiwiMobile/RNKiwiMobile.h>
 #import "ViewController.h"
 #import "City.h"
+#import "ContainerViewController.h"
 
 @interface ViewController () <UIGestureRecognizerDelegate, RNKiwiViewControllerFlowDelegate, RNKiwiCurrencyManager, RNKiwiTranslationProvider>
 
@@ -223,8 +224,6 @@
   return [dataArray objectAtIndex:[cityPicker selectedRowInComponent:0]];
 }
 
-
-
 - (void)setActiveViewController:(RNKiwiViewController *)vc {
   __weak typeof(self) weakSelf = self;
   
@@ -233,6 +232,24 @@
   [vc setFlowDelegate:weakSelf];
   
   _activeVc = vc;
+}
+
+- (IBAction)presentAncillary:(id)sender {
+
+  NSDictionary *initialProperties = @{
+    @"service": @"fast_track",
+    @"bookingId": @(63799285),
+    @"kwAuthToken": @"402525bd-08d2-408d-99e5-902bcd731cdb"
+  };
+
+  RNKiwiViewController *vc = [[RNKiwiViewController alloc]
+                              initWithModule:@"AncillaryFactory"
+                              initialProperties:initialProperties];
+
+  ContainerViewController *containerViewController = [[ContainerViewController alloc] init];
+  [containerViewController setContainedViewController:vc withViewOfSize:CGSizeMake(300, 250)];
+
+  [[self navigationController] presentViewController:containerViewController animated:YES completion:nil];
 }
 
 // Offer search is based on city ID
