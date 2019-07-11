@@ -2,6 +2,8 @@
 
 import { execSync } from 'child_process';
 import fetch from '@kiwicom/fetch';
+import { ShellCommand } from '@kiwicom/monorepo-utils';
+import path from 'path';
 
 const log = (...params) => {
   console.log(...params); // eslint-disable-line no-console
@@ -78,6 +80,27 @@ const deployDependency = async (packageName, url, version, extension = '') => {
 const deployLibrary = (packageName, version) => {
   log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
+    /**
+     * Something happend when upgrading to RN 0.59.9, rnkiwimobile no longer finds intial bundle and app crashes
+     * This should fix the problem, but we are now bundeling twice, since we also do it in the gradle script.
+     * This should be fixed in gradle later
+     */
+    new ShellCommand(
+      path.join(__dirname, '..'),
+      'yarn',
+      'react-native',
+      'bundle',
+      '--platform',
+      'android',
+      '--dev',
+      'false',
+      '--entry-file',
+      'app/native.js',
+      '--bundle-output',
+      './android/rnkiwimobile/src/main/assets/index.android.bundle',
+    )
+      .setOutputToScreen()
+      .runSynchronously();
     exec(
       `cd ${baseFolder}/${packageName} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
         // $FlowFixMe we already checked in the top that is defined
