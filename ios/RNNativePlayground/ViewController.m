@@ -36,6 +36,9 @@
     #else
       [[RNKiwiSharedBridge sharedInstance] initBridge];
     #endif
+
+    [[RNKiwiSharedBridge sharedInstance] setTranslationProvider:self];
+    [[RNKiwiSharedBridge sharedInstance] setCurrencyFormatter:self];
   }
   return self;
 }
@@ -226,9 +229,7 @@
 
 - (void)setActiveViewController:(RNKiwiViewController *)vc {
   __weak typeof(self) weakSelf = self;
-  
-  [vc setCurrencyFormatter:weakSelf];
-  [vc setTranslationProvider:weakSelf];
+
   [vc setFlowDelegate:weakSelf];
   
   _activeVc = vc;

@@ -3,13 +3,11 @@
 #import "RNKiwiGestureController.h"
 
 #import <RNModules/RNLoggingModule.h>
-#import <RNModules/RNTranslationManager.h>
-#import <RNModules/RNCurrencyManager.h>
 #import <RNModules/RNDeviceInfo.h>
 
 #import <React/RCTRootView.h>
 
-@interface RNKiwiViewController() <RNLogger, RNTranslator, RNCurrencyFormatter, RNKiwiGestureControllerDelegate>
+@interface RNKiwiViewController() <RNLogger, RNKiwiGestureControllerDelegate>
 
 @property (nonatomic, strong) NSString* moduleName;
 @property (nonatomic, strong) NSDictionary* properties;
@@ -36,9 +34,7 @@
 
 - (void)setupReactWrappersWithObject:(id)object {
   [RNLoggingModule setLogger:object];
-  [RNTranslationManager setTranslator:object];
   [RNKiwiGestureController setGestureControllerDelegate:object];
-  [RNCurrencyManager setCurrencyFormatter:object];
   if (object) {
     [self startObservingGestures];
   } else {
@@ -148,18 +144,6 @@
   if ([self logHotelsBookNowPressed]) {
     self.logHotelsBookNowPressed(hotelID, rooms, guests, price, formattedPrice);
   }
-}
-
-#pragma mark - RNTranslationManager
-
-- (NSString *)translate:(NSString *)key {
-  return [self.translationProvider localizedStringWithKey:key] ?: key;
-}
-
-#pragma mark - RNCurrencyManager
-
-- (NSString *)formatAmount:(NSNumber *)amount toCurrency:(NSString *)currency {
-  return [self.currencyFormatter formattedPrice:amount withCurrency:currency];
 }
 
 #pragma mark - Helpers

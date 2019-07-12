@@ -1,6 +1,4 @@
 #import <UIKit/UIKit.h>
-#import "RNKiwiCurrencyManager.h"
-#import "RNKiwiTranslationProvider.h"
 #import "RNKiwiViewControllerFlowDelegate.h"
 
 @interface RNKiwiViewController: UIViewController
@@ -11,10 +9,6 @@
 
 // Delegates
 @property (nonatomic, weak, nullable) id<RNKiwiViewControllerFlowDelegate> flowDelegate;
-
-// CR: What about moving this to RNKiwiSharedBridge?
-@property (nonatomic, weak, nullable) id<RNKiwiCurrencyManager> currencyFormatter;
-@property (nonatomic, weak, nullable) id<RNKiwiTranslationProvider> translationProvider;
 
 // Logging
 @property (nonatomic, copy, nullable) void (^didDisplayAncillary)(NSString * _Nonnull type, NSString * _Nonnull provider);
