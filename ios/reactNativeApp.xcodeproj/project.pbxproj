@@ -34,6 +34,8 @@
 		27E931E120ADA0630053AE19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27E931DF20ADA0630053AE19 /* LaunchScreen.storyboard */; };
 		27E931E420ADA0630053AE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931E320ADA0630053AE19 /* main.m */; };
 		2C42DAEB22D77CD600E53BB1 /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C42DAEA22D77CD500E53BB1 /* ContainerViewController.m */; };
+		2C42DAF422D89CDF00E53BB1 /* RNKiwiView.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C42DAF222D89CDF00E53BB1 /* RNKiwiView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C42DAF522D89CDF00E53BB1 /* RNKiwiView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C42DAF322D89CDF00E53BB1 /* RNKiwiView.m */; };
 		51A8F6BE673D4671A3545CD8 /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */; };
 		60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
 		63738759220D81E600665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
@@ -131,6 +133,8 @@
 		27E931E320ADA0630053AE19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C42DAE922D77CD500E53BB1 /* ContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		2C42DAEA22D77CD500E53BB1 /* ContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		2C42DAF222D89CDF00E53BB1 /* RNKiwiView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiView.h; sourceTree = "<group>"; };
+		2C42DAF322D89CDF00E53BB1 /* RNKiwiView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiView.m; sourceTree = "<group>"; };
 		2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Medium.otf"; path = "../assets/fonts/CircularPro-Medium.otf"; sourceTree = "<group>"; };
 		2D1E4633998A4228B3B7F222 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/android/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		34003FC5EE453F3F2C072F56 /* libPods-RNNativePlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNNativePlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,6 +232,8 @@
 				2107154420B5677200E6C96B /* RNKiwiGestureController.m */,
 				2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */,
 				2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */,
+				2C42DAF222D89CDF00E53BB1 /* RNKiwiView.h */,
+				2C42DAF322D89CDF00E53BB1 /* RNKiwiView.m */,
 				27E931BE20AD987C0053AE19 /* RNKiwiViewController.h */,
 				27E931BF20AD987C0053AE19 /* RNKiwiViewController.m */,
 				27E931C220AD9A280053AE19 /* RNKiwiViewControllerFlowDelegate.h */,
@@ -338,6 +344,7 @@
 				27E931C520AD9A4B0053AE19 /* RNKiwiCurrencyManager.h in Headers */,
 				2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */,
 				686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */,
+				2C42DAF422D89CDF00E53BB1 /* RNKiwiView.h in Headers */,
 				27E931B420AD96790053AE19 /* RNKiwiMobile.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,6 +609,7 @@
 				27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */,
 				2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */,
 				686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */,
+				2C42DAF522D89CDF00E53BB1 /* RNKiwiView.m in Sources */,
 				2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

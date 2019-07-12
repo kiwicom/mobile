@@ -8,6 +8,7 @@ FOUNDATION_EXPORT const unsigned char RNKiwiMobileVersionString[];
 
 // Headers
 #import "RNKiwiViewController.h"
+#import "RNKiwiView.h"
 #import "RNKiwiViewControllerFlowDelegate.h"
 #import "RNKiwiTranslationProvider.h"
 #import "RNKiwiCurrencyManager.h"

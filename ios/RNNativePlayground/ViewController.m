@@ -247,7 +247,7 @@
                               initialProperties:initialProperties];
 
   ContainerViewController *containerViewController = [[ContainerViewController alloc] init];
-  [containerViewController setContainedViewController:vc withViewOfSize:CGSizeMake(300, 250)];
+  [containerViewController setContainedViewController:vc withViewOfSize:CGSizeMake(200, 250)];
 
   [[self navigationController] presentViewController:containerViewController animated:YES completion:nil];
 }

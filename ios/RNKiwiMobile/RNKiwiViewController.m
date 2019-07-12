@@ -7,7 +7,6 @@
 #import <RNModules/RNCurrencyManager.h>
 #import <RNModules/RNDeviceInfo.h>
 
-#import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
 @interface RNKiwiViewController() <RNLogger, RNTranslator, RNCurrencyFormatter, RNKiwiGestureControllerDelegate>
