@@ -117,7 +117,7 @@ afterEvaluate {
             description = "copy bundled JS into ${targetName}."
 
             from jsBundleDir
-            into file("$buildDir/intermediates/library_assets/${targetPath}/package${targetName}Assets/out/")
+            into file("$buildDir/intermediates/library_assets/${targetPath}/out/")
 
             dependsOn(currentBundleTask)
 
