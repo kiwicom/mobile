@@ -7,7 +7,7 @@ this will be evened out from v24
 
 ## Target version 11.0.0
 
-### Unreleased
+### v50
 
 - Transpile named-capture-group. Caused bug in iOS devices on version less than 12.
 
