@@ -7,6 +7,8 @@ this will be evened out from v24
 
 ## Target version 11.0.0
 
+- Upgrade rnkiwimobile to version `0.0.47`
+
 ### v50
 
 - Transpile named-capture-group. Caused bug in iOS devices on version less than 12.
@@ -18,6 +20,10 @@ this will be evened out from v24
 ## Target version 10.0.0
 
 - Upgrade rnkiwimobile to version `0.0.46`
+
+### v51
+
+- Transpile named-capture-group. Caused bug in iOS devices on version less than 12.
 
 ### v48
 
