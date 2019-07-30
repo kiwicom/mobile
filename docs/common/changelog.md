@@ -9,6 +9,10 @@ this will be evened out from v24
 
 ### Unreleased
 
+- Transpile named-capture-group. Caused bug in iOS devices on version less than 12.
+
+### v49
+
 - Upgrade react-native to 0.59.9
 
 ## Target version 10.0.0
