@@ -16,6 +16,7 @@ module.exports = (api /* :API */) => {
   const plugins = [
     '@babel/plugin-transform-runtime',
     ['relay', { schema: 'app/schema.graphql' }],
+    '@babel/plugin-transform-named-capturing-groups-regex',
   ];
 
   const exclude = ['**/*.png', '**/*.gif', '**/*.jpg'];
