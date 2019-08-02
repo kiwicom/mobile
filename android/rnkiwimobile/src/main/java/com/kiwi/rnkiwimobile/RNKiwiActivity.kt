@@ -3,7 +3,7 @@ package com.kiwi.rnkiwimobile
 import android.annotation.TargetApi
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactRootView
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler

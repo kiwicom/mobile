@@ -5,6 +5,7 @@ import com.facebook.react.ReactNativeHost
 import com.kiwi.rnkiwimobile.RNKiwHostArgs
 import com.kiwi.rnkiwimobile.RNKiwiHost
 import com.kiwi.rnkiwimobile.hotels.RNHotelsModule
+import com.facebook.soloader.SoLoader;
 
 class PlaygroundApplication : Application() {
 
@@ -27,5 +28,10 @@ class PlaygroundApplication : Application() {
 
   fun clearReactNative() {
     reactNativeHost.clear()
+  }
+
+  override fun onCreate() {
+    super.onCreate();
+    SoLoader.init(this, /* native exopackage */ false);
   }
 }

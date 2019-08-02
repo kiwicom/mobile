@@ -89,6 +89,12 @@ and `android/playground/src/main/res/values/secrets.xml`
 </resources>
 ```
 
+and you have to create the debug.keystore file: 
+
+- cd android/app
+- keytool -genkeypair -v -keystore debug.keystore -alias androiddebugkey -keyalg RSA -keysize 2048 -validity 1000
+- - You will be asked for a password, use `android`, you will be prompted for another password, just hit enter to use same password.
+
 ## Testing
 
 You will usually need only this during development:
