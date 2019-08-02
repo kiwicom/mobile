@@ -7,8 +7,12 @@ apply from: "../dependencies.gradle"
 project.ext.react = [
     entryFile: "app/native.js",
     resourcesDirStagingRelease: "${projectDir}/src/main/assets/res",
-    resourcesDirRelease: "${projectDir}/src/main/assets/res"
+    resourcesDirRelease: "${projectDir}/src/main/assets/res",
+    enableHermes: true
 ]
+
+def enableHermes = project.ext.react.get("enableHermes", true)
+def jscFlavor = 'org.webkit:android-jsc:+'
 
 apply from: "./react-library.gradle"
 apply from: "./codepush-library.gradle"
@@ -40,18 +44,27 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        pickFirst '**/armeabi-v7a/libc++_shared.so'
+        pickFirst '**/x86/libc++_shared.so'
+        pickFirst '**/arm64-v8a/libc++_shared.so'
+        pickFirst '**/x86_64/libc++_shared.so'
+        pickFirst '**/x86/libjsc.so'
+        pickFirst '**/armeabi-v7a/libjsc.so'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "com.facebook.react:react-native:$reactNativeVersion"
-    implementation "com.android.support:appcompat-v7:$supportVersion"
+    implementation "androidx.appcompat:appcompat:$supportVersion"
     api "com.trinerdis.skypicker:react-native-maps:$reactNativeMaps-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-code-push:$reactNativeCodePush-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-community_async-storage:$reactNativeAsyncStorage-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-community_netinfo:$reactNativeNetInfo-SNAPSHOT"
     api "com.trinerdis.skypicker:react-native-webview:$reactNativeWebView-SNAPSHOT"
+    api "com.trinerdis.skypicker:react-native-gesture-handler:$reactNativeGestureHandler-SNAPSHOT"
 
     api("com.google.android.gms:play-services-base:$playServicesBaseVersion")
     api("com.google.android.gms:play-services-maps:$playServicesMapsVersion")
@@ -65,6 +78,14 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$testRunnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    if (enableHermes) {
+      def hermesPath = "../../node_modules/hermesvm/android/";
+      debugImplementation files(hermesPath + "hermes-debug.aar")
+      releaseImplementation files(hermesPath + "hermes-release.aar")
+    } else {
+      implementation jscFlavor
+    }
 }
 
 publishAndroidLibrary("com.trinerdis.skypicker", "rnkiwimobile", "$rnKiwiMobileVersion-SNAPSHOT")

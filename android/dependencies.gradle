@@ -1,6 +1,6 @@
 // Global to all projects and subprojects
 ext {
-    gradlePluginVersion = "3.4.0"
+    gradlePluginVersion = "3.4.1"
     googleServicesPluginVersion = "4.2.0"
     fabricPluginVersion = "1.26.1"
     androidMavenPublishVersion = "3.6.2"
@@ -14,8 +14,8 @@ ext {
     kotlinVersion = "1.3.21"
     detoxKotlinVersion = "1.3.21"
 
-    multidexVersion = "1.0.3"
-    supportVersion = "28.0.0"
+    multidexVersion = "2.0.0"
+    supportVersion = "1.0.0"
     gsonVersion = "2.8.5"
 
     playServicesBaseVersion = "16.1.0"
