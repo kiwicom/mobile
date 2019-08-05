@@ -14,10 +14,7 @@ class ContextConsumer extends React.Component<{ ... }> {
 const ConsumerWithContext = () => (
   <AuthContext.Consumer>
     {({ accessToken, actions: { setAccessToken } }) => (
-      <ContextConsumer
-        accessToken={accessToken}
-        setAccessToken={setAccessToken}
-      />
+      <ContextConsumer accessToken={accessToken} setAccessToken={setAccessToken} />
     )}
   </AuthContext.Consumer>
 );
@@ -36,10 +33,7 @@ describe('AuthContext', () => {
       <AuthContext.Provider>
         <AuthContext.Consumer>
           {({ accessToken, actions: { setAccessToken } }) => (
-            <ContextConsumer
-              setAccessToken={setAccessToken}
-              accessToken={accessToken}
-            />
+            <ContextConsumer setAccessToken={setAccessToken} accessToken={accessToken} />
           )}
         </AuthContext.Consumer>
       </AuthContext.Provider>,

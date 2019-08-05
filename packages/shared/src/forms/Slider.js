@@ -41,11 +41,7 @@ export default class Slider extends React.Component<Props, State> {
   getMaxMinAndEnabled = () => {
     const { max, min } = this.props;
 
-    if (
-      max === min &&
-      max === this.props.startValue &&
-      max === this.props.endValue
-    ) {
+    if (max === min && max === this.props.startValue && max === this.props.endValue) {
       // If all values are equal, expand max and min values by one
       // to make dot appear on the center and disable sliding.
       return {
@@ -72,8 +68,7 @@ export default class Slider extends React.Component<Props, State> {
       values.push(this.props.endValue);
     }
 
-    const showLabels =
-      this.props.startLabel != null || this.props.endLabel != null;
+    const showLabels = this.props.startLabel != null || this.props.endLabel != null;
 
     return (
       <View onLayout={this.onLayout} style={styles.sliderWrapper}>
@@ -104,9 +99,7 @@ export default class Slider extends React.Component<Props, State> {
             {this.props.startLabel != null && (
               <Text style={styles.label}>{this.props.startLabel}</Text>
             )}
-            {this.props.endLabel != null && (
-              <Text style={styles.label}>{this.props.endLabel}</Text>
-            )}
+            {this.props.endLabel != null && <Text style={styles.label}>{this.props.endLabel}</Text>}
           </View>
         )}
       </View>

@@ -13,8 +13,7 @@ const exec = (command, options) =>
     ...options,
   });
 
-const targetBinaryVersion =
-  packageJson.rnkiwimobile['code-push-target-binary-version'];
+const targetBinaryVersion = packageJson.rnkiwimobile['code-push-target-binary-version'];
 
 const entryFile = path.join(__dirname, '..', 'app/native.js');
 

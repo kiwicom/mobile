@@ -25,11 +25,7 @@ class FastTrackModal extends React.Component<Props> {
   render() {
     const props = this.props;
     return (
-      <Modal
-        isVisible={props.isVisible}
-        onRequestClose={props.onCloseModal}
-        style={styles.modal}
-      >
+      <Modal isVisible={props.isVisible} onRequestClose={props.onCloseModal} style={styles.modal}>
         <View style={styles.container}>
           <WebView
             source={{

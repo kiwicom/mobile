@@ -28,8 +28,7 @@ function withStandaloneScreen<Props: { ... }>(
       }
 
       const showAsModal =
-        (typeof props.isStandAlonePackage === 'undefined' ||
-          props.isStandAlonePackage) &&
+        (typeof props.isStandAlonePackage === 'undefined' || props.isStandAlonePackage) &&
         props.lastNavigationMode &&
         props.lastNavigationMode === 'present';
 

@@ -20,9 +20,7 @@ it('renders correctly when there are no errors', () => {
       <NewAllHotels />
     </HotelsContext.Provider>,
   );
-  expect(
-    wrapper.root.findByProps({ testID: 'NewAllHotelsSearch' }),
-  ).not.toBeNull();
+  expect(wrapper.root.findByProps({ testID: 'NewAllHotelsSearch' })).not.toBeNull();
 });
 
 it('renders correctly when there are errors', () => {

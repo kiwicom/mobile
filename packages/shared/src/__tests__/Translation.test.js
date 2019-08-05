@@ -14,27 +14,20 @@ it('replaces parameter', () => {
 
 it('replaces parameters', () => {
   expect(
-    replaceValues(
-      'Your flight __1_number__ departs from __2_airport__ gate __3_gate__.',
-      {
-        number: 42,
-        airport: 'PRG',
-        gate: 'C2',
-      },
-    ),
+    replaceValues('Your flight __1_number__ departs from __2_airport__ gate __3_gate__.', {
+      number: 42,
+      airport: 'PRG',
+      gate: 'C2',
+    }),
   ).toBe('Your flight 42 departs from PRG gate C2.');
 });
 
 it('works without parameters', () => {
-  expect(replaceValues('Your flight departs now.')).toBe(
-    'Your flight departs now.',
-  );
+  expect(replaceValues('Your flight departs now.')).toBe('Your flight departs now.');
 });
 
 it('works without value to replace', () => {
-  expect(replaceValues('Your flight __number__ departs now.')).toBe(
-    'Your flight ? departs now.',
-  );
+  expect(replaceValues('Your flight __number__ departs now.')).toBe('Your flight ? departs now.');
   expect(replaceValues('Your flight __number__ departs now.', {})).toBe(
     'Your flight ? departs now.',
   );

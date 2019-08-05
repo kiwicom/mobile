@@ -21,12 +21,7 @@ const SingleHotelContainer = ({ goBack }: Props) => {
     apiProvider,
   }: HotelsContextState = React.useContext(HotelsContext);
 
-  if (
-    hotelId === '' ||
-    checkin == null ||
-    checkout == null ||
-    roomsConfiguration == null
-  ) {
+  if (hotelId === '' || checkin == null || checkout == null || roomsConfiguration == null) {
     return null;
   }
   const props = {

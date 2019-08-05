@@ -54,9 +54,7 @@ export default class TextInput extends React.Component<Props, State> {
     return (
       <React.Fragment>
         {this.props.label != null && (
-          <Text style={[styleSheet.label, this.props.labelStyle]}>
-            {this.props.label}
-          </Text>
+          <Text style={[styleSheet.label, this.props.labelStyle]}>{this.props.label}</Text>
         )}
         <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
           <OriginalTextInput
@@ -70,11 +68,7 @@ export default class TextInput extends React.Component<Props, State> {
 
           {this.props.placeholder && this.state.displayPlaceholder && (
             <Text
-              style={[
-                styleSheet.text,
-                styleSheet.placeholder,
-                this.props.placeholderStyle,
-              ]}
+              style={[styleSheet.text, styleSheet.placeholder, this.props.placeholderStyle]}
               pointerEvents="none"
             >
               {this.props.placeholder}

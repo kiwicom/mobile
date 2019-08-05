@@ -1,10 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  PublicApiRenderer,
-  type GraphQLTaggedNode,
-} from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, type GraphQLTaggedNode } from '@kiwicom/mobile-relay';
 import { OfflineScreen, AdaptableLayout } from '@kiwicom/mobile-shared';
 
 import CloseModal from '../components/CloseModal';
@@ -23,9 +20,7 @@ export default class SingleHotelSearch extends React.Component<Props> {
     };
     return (
       <AdaptableLayout
-        renderOnNarrow={
-          <OfflineScreen onClose={this.props.onClose} {...sharedProps} />
-        }
+        renderOnNarrow={<OfflineScreen onClose={this.props.onClose} {...sharedProps} />}
         renderOnWide={<OfflineScreen {...sharedProps} />}
       />
     );

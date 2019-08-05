@@ -75,11 +75,7 @@ export default class StarsPopup extends React.Component<Props, State> {
     }
     const isUnratedChecked = stars.includes(0);
     checkboxes.push(
-      <Checkbox
-        key={0}
-        isChecked={isUnratedChecked}
-        onPress={this.handleCheckboxOnPress(0)}
-      >
+      <Checkbox key={0} isChecked={isUnratedChecked} onPress={this.handleCheckboxOnPress(0)}>
         <Text style={styles.unrated}>
           <Translation id="hotels_search.filter.stars_popup.unrated" />
         </Text>
@@ -93,9 +89,7 @@ export default class StarsPopup extends React.Component<Props, State> {
     return (
       <SafeAreaView>
         <ButtonPopup
-          buttonTitle={
-            <Translation id="hotels_search.filter.stars_popup.save" />
-          }
+          buttonTitle={<Translation id="hotels_search.filter.stars_popup.save" />}
           onSave={this.onSave}
           onClose={this.props.onClose}
           isVisible={this.props.isVisible}

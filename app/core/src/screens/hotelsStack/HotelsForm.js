@@ -11,10 +11,7 @@ import {
 } from '@kiwicom/mobile-shared';
 import { DateUtils } from '@kiwicom/mobile-localization';
 
-import {
-  HotelsFormContext,
-  type HotelsFormContextType,
-} from './HotelsFormContext';
+import { HotelsFormContext, type HotelsFormContextType } from './HotelsFormContext';
 
 type Props = {|
   +togglePlacepicker: () => void,
@@ -59,11 +56,7 @@ export default function HotelsForm(props: Props) {
       <View style={styles.row}>
         <View style={styles.item}>
           <Translation passThrough="checkin" />
-          <DatePicker
-            date={checkin}
-            onDateChange={onCheckinChange}
-            minDate={new Date()}
-          />
+          <DatePicker date={checkin} onDateChange={onCheckinChange} minDate={new Date()} />
         </View>
         <View style={styles.item}>
           <Translation passThrough="checkout" />

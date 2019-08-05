@@ -44,9 +44,7 @@ describe('validateInput', () => {
   });
 
   it('gives error for checkin date before today', () => {
-    const errors = validateInput(
-      getValidateProps({ checkin: DateUtils().addDays(-10) }),
-    );
+    const errors = validateInput(getValidateProps({ checkin: DateUtils().addDays(-10) }));
     expect(errors).toEqual({
       beforeToday: true,
     });

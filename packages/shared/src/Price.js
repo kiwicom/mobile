@@ -2,10 +2,7 @@
 
 import * as React from 'react';
 import { type Numeric, Decimal } from 'decimal.js-light';
-import {
-  cancellablePromise,
-  type CancellablePromiseType,
-} from '@kiwicom/mobile-utils';
+import { cancellablePromise, type CancellablePromiseType } from '@kiwicom/mobile-utils';
 
 import Translation from './Translation';
 import CurrencyFormatter from './CurrencyFormatter';
@@ -57,10 +54,7 @@ export default class Price extends React.Component<Props, State> {
     if (amount !== null && currency !== null) {
       try {
         this.cancellablePromise = cancellablePromise(
-          CurrencyFormatter(
-            parseFloat(new Decimal(amount).toFixed(2)),
-            currency,
-          ),
+          CurrencyFormatter(parseFloat(new Decimal(amount).toFixed(2)), currency),
         );
         const formattedCurrency = await this.cancellablePromise.promise;
         this.setState({ formattedCurrency });

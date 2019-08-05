@@ -1,5 +1,3 @@
 // @flow strict
 
-export {
-  default as AncillaryFactory,
-} from './src/appRegistry/AncillaryFactory';
+export { default as AncillaryFactory } from './src/appRegistry/AncillaryFactory';

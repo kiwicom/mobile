@@ -75,15 +75,9 @@ export default function PricePopup(props: Props) {
           <AdaptableBadge
             translation={
               <TranslationFragment>
-                <Price
-                  amount={price.start.times(props.daysOfStay)}
-                  currency={props.currency}
-                />
+                <Price amount={price.start.times(props.daysOfStay)} currency={props.currency} />
                 <Translation passThrough=" - " />
-                <Price
-                  amount={price.end.times(props.daysOfStay)}
-                  currency={props.currency}
-                />
+                <Price amount={price.end.times(props.daysOfStay)} currency={props.currency} />
               </TranslationFragment>
             }
             type="info"
@@ -99,16 +93,10 @@ export default function PricePopup(props: Props) {
             max={props.max.toNumber()}
             onChange={handlePriceChanged}
             startLabel={
-              <Price
-                amount={props.min.times(props.daysOfStay)}
-                currency={props.currency}
-              />
+              <Price amount={props.min.times(props.daysOfStay)} currency={props.currency} />
             }
             endLabel={
-              <Price
-                amount={props.max.times(props.daysOfStay)}
-                currency={props.currency}
-              />
+              <Price amount={props.max.times(props.daysOfStay)} currency={props.currency} />
             }
           />
         </View>

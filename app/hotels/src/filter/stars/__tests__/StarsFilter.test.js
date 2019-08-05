@@ -7,8 +7,6 @@ import StarsFilter from '../StarsFilter';
 
 describe('StarsFilter', () => {
   it('renders', () => {
-    PlaygroundRenderer.render(
-      <StarsFilter stars={[]} isActive={false} onChange={jest.fn()} />,
-    );
+    PlaygroundRenderer.render(<StarsFilter stars={[]} isActive={false} onChange={jest.fn()} />);
   });
 });

@@ -44,10 +44,7 @@ const HotelReview = (props: Props) => {
           <RenderLabel score={props.data?.review?.score} />
           {reviews != null && (
             <Text style={styles.score}>
-              <Translation
-                id="single_hotel.hotel_review.reviews"
-                values={{ count: reviews }}
-              />
+              <Translation id="single_hotel.hotel_review.reviews" values={{ count: reviews }} />
             </Text>
           )}
         </View>

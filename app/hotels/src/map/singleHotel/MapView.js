@@ -27,10 +27,7 @@ export class MapView extends React.Component<Props> {
           longitudeDelta: 0.01,
         }}
       >
-        <NativeMapView.Marker
-          coordinate={{ latitude, longitude }}
-          image={DropMarkerImage}
-        />
+        <NativeMapView.Marker coordinate={{ latitude, longitude }} image={DropMarkerImage} />
       </NativeMapView>
     );
   }

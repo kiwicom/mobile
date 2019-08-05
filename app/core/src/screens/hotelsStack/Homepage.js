@@ -2,20 +2,13 @@
 
 import * as React from 'react';
 import { View, ScrollView } from 'react-native';
-import {
-  TextButton,
-  LayoutSingleColumn,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { TextButton, LayoutSingleColumn, Translation } from '@kiwicom/mobile-shared';
 import { type NavigationType, HeaderTitle } from '@kiwicom/mobile-navigation';
 import { DateFormatter } from '@kiwicom/mobile-localization';
 
 import PlacepickerModal from './placepicker/PlacepickerModal';
 import HotelsForm from './HotelsForm';
-import {
-  HotelsFormContext,
-  type HotelsFormContextType,
-} from './HotelsFormContext';
+import { HotelsFormContext, type HotelsFormContextType } from './HotelsFormContext';
 
 type Props = {|
   +navigation: NavigationType,

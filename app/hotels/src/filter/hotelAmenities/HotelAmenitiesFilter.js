@@ -1,11 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Translation,
-  TranslationFragment,
-  Logger,
-} from '@kiwicom/mobile-shared';
+import { Translation, TranslationFragment, Logger } from '@kiwicom/mobile-shared';
 
 import HotelAmenitiesPopup from './HotelAmenitiesPopup';
 import FilterButton from '../FilterButton';
@@ -21,10 +17,7 @@ type State = {|
   isPopupOpen: boolean,
 |};
 
-export default class HotelAmenitiesFilter extends React.Component<
-  Props,
-  State,
-> {
+export default class HotelAmenitiesFilter extends React.Component<Props, State> {
   state = {
     isPopupOpen: false,
   };
@@ -59,9 +52,7 @@ export default class HotelAmenitiesFilter extends React.Component<
     });
 
   getTitle = () => {
-    const length = this.props.amenities.length
-      ? ` (${this.props.amenities.length})`
-      : '';
+    const length = this.props.amenities.length ? ` (${this.props.amenities.length})` : '';
     return (
       <TranslationFragment>
         <Translation id="hotels_search.filter.hotel_facilities_filter.title" />

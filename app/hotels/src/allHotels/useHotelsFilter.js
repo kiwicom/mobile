@@ -2,24 +2,14 @@
 
 import * as React from 'react';
 
-import {
-  HotelsFilterContext,
-  type HotelsFilterState,
-} from '../HotelsFilterContext';
+import { HotelsFilterContext, type HotelsFilterState } from '../HotelsFilterContext';
 import { sanitizeHotelAmenities } from '../GraphQLSanitizers';
 
 export default function useHotelsFilter() {
-  const { filterParams }: HotelsFilterState = React.useContext(
-    HotelsFilterContext,
-  );
+  const { filterParams }: HotelsFilterState = React.useContext(HotelsFilterContext);
 
   return React.useMemo(() => {
-    const {
-      hotelAmenities,
-      maxPrice,
-      minPrice,
-      ...restFilterParams
-    } = filterParams;
+    const { hotelAmenities, maxPrice, minPrice, ...restFilterParams } = filterParams;
     return {
       ...restFilterParams,
       ...(maxPrice != null ? { maximumPrice: maxPrice.toFixed(2) } : {}),

@@ -1,13 +1,7 @@
 // @flow
 
 import { DeviceInfo } from '@kiwicom/mobile-localization';
-import {
-  Environment,
-  Network,
-  RecordSource,
-  Store,
-  Observable,
-} from 'relay-runtime';
+import { Environment, Network, RecordSource, Store, Observable } from 'relay-runtime';
 import fetchWithRetries from '@kiwicom/fetch';
 // This works, and requires no native setup. Note that @sentry/node does not work since it relies on crypto module, which is not available in RN
 // TODO: try to use rn-nodeify and react-native-crypt and use @sentry/node next time target-version changes
@@ -43,12 +37,7 @@ const GRAPHQL_URL = 'https://graphql.kiwi.com/';
 
 const store = new Store(new RecordSource());
 
-async function fetchFromTheNetwork(
-  networkHeaders,
-  operation,
-  variables,
-  observer,
-) {
+async function fetchFromTheNetwork(networkHeaders, operation, variables, observer) {
   try {
     const fetchResponse = await fetchWithRetries(GRAPHQL_URL, {
       method: 'POST',

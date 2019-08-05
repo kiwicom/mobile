@@ -2,10 +2,7 @@
 
 import * as React from 'react';
 import { graphql } from '@kiwicom/mobile-relay';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import type { AvailableHotelSearchInput } from '../../singleHotel/AvailableHotelSearchInput';
 import type { SingleHotelMapScreenQueryResponse } from './__generated__/SingleHotelMapScreenQuery.graphql';
@@ -28,9 +25,9 @@ type Props = {|
   +checkout: Date,
 |};
 
-const renderInnerComponent = ({
-  availableHotel,
-}: SingleHotelMapScreenQueryResponse) => <SingleMap hotel={availableHotel} />;
+const renderInnerComponent = ({ availableHotel }: SingleHotelMapScreenQueryResponse) => (
+  <SingleMap hotel={availableHotel} />
+);
 
 function SingleHotelMapScreen(props: Props) {
   const {

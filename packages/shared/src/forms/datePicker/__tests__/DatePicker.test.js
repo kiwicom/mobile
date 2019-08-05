@@ -59,26 +59,14 @@ describe('DatePicker', () => {
   });
 
   it('works with min date', () => {
-    PlaygroundRenderer.render(
-      <PickerWrapper minDate={new Date()} />,
-      DEEP_RENDER,
-      TITLE,
-    );
+    PlaygroundRenderer.render(<PickerWrapper minDate={new Date()} />, DEEP_RENDER, TITLE);
   });
 
   it('works with max date', () => {
-    PlaygroundRenderer.render(
-      <PickerWrapper maxDate={new Date()} />,
-      DEEP_RENDER,
-      TITLE,
-    );
+    PlaygroundRenderer.render(<PickerWrapper maxDate={new Date()} />, DEEP_RENDER, TITLE);
   });
 
   it('works with custom button', () => {
-    PlaygroundRenderer.render(
-      <PickerWrapper useCustomButton={true} />,
-      DEEP_RENDER,
-      TITLE,
-    );
+    PlaygroundRenderer.render(<PickerWrapper useCustomButton={true} />, DEEP_RENDER, TITLE);
   });
 });

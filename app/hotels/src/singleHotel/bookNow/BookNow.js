@@ -1,18 +1,9 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  StyleSheet,
-  Button,
-  ButtonTitle,
-  Logger,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Button, ButtonTitle, Logger, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 import { DeviceInfo, Alert } from '@kiwicom/mobile-localization';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
@@ -27,11 +18,7 @@ type Props = {|
 |};
 
 export function BookNow(props: Props) {
-  const {
-    currency,
-    hotelId,
-    guestCount,
-  }: HotelsContextState = React.useContext(HotelsContext);
+  const { currency, hotelId, guestCount }: HotelsContextState = React.useContext(HotelsContext);
 
   function handleGoToPayment() {
     if (hotelId != null) {
@@ -92,10 +79,7 @@ export function BookNow(props: Props) {
 
   return (
     <Button onPress={onPress} testID="bookNowButton">
-      <ButtonTitle
-        text={<Translation id="single_hotel.book_now" />}
-        style={styles.text}
-      />
+      <ButtonTitle text={<Translation id="single_hotel.book_now" />} style={styles.text} />
     </Button>
   );
 }

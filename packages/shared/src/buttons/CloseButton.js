@@ -14,10 +14,7 @@ type Props = {|
 export default function CloseButton({ onPress }: Props) {
   return (
     <Button onPress={onPress} type="secondary">
-      <ButtonTitle
-        style={styles.text}
-        text={<Translation id="shared.button.close" />}
-      />
+      <ButtonTitle style={styles.text} text={<Translation id="shared.button.close" />} />
     </Button>
   );
 }

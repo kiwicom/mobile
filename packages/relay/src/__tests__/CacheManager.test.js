@@ -62,11 +62,7 @@ describe('CacheManager', () => {
     const spy = jest.spyOn(CacheManager.cache, 'set');
 
     await CacheManager.restoreCache();
-    expect(spy).toHaveBeenCalledWith(
-      first.queryID,
-      first.variables,
-      first.payload,
-    );
+    expect(spy).toHaveBeenCalledWith(first.queryID, first.variables, first.payload);
 
     expect(AsyncStorage.multiRemove).toHaveBeenCalledWith([
       `@CACHE_MANAGER:${JSON.stringify({

@@ -2,12 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Checkbox,
-  Icon,
-  StyleSheet,
-  type TranslationType,
-} from '@kiwicom/mobile-shared';
+import { Checkbox, Icon, StyleSheet, type TranslationType } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +isChecked: boolean,

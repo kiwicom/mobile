@@ -6,10 +6,7 @@ import { orderByDistance, getBounds } from 'geolib';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 
-import MapViewMarker, {
-  type MarkerPressEvent,
-  type LatLng,
-} from './MapViewMarker';
+import MapViewMarker, { type MarkerPressEvent, type LatLng } from './MapViewMarker';
 import type { MapView_data as MapViewData } from './__generated__/MapView_data.graphql';
 
 type Props = {|
@@ -85,8 +82,7 @@ export class Map extends React.Component<Props, State> {
     // Use median to filter out extreme positions to compute more appropriate region
     const lowMiddle = Math.floor((distances.length - 1) / 2);
     const highMiddle = Math.ceil((distances.length - 1) / 2);
-    const median =
-      (distances[lowMiddle].distance + distances[highMiddle].distance) / 2;
+    const median = (distances[lowMiddle].distance + distances[highMiddle].distance) / 2;
     const validDistances =
       distances.length > 2
         ? distances
@@ -128,10 +124,7 @@ export class Map extends React.Component<Props, State> {
     };
   };
 
-  storeMarkerReference = (
-    index: number,
-    ref: React.Ref<typeof MapView.Marker> | null,
-  ) => {
+  storeMarkerReference = (index: number, ref: React.Ref<typeof MapView.Marker> | null) => {
     this.markers[index] = ref;
   };
 
@@ -175,11 +168,7 @@ export class Map extends React.Component<Props, State> {
     const { data, selectedIndex } = this.props;
 
     return (
-      <MapView
-        ref={this.storeMapReference}
-        style={styles.map}
-        initialRegion={this.state.region}
-      >
+      <MapView ref={this.storeMapReference} style={styles.map} initialRegion={this.state.region}>
         {data.map((hotel, index) => {
           return (
             <MapViewMarker

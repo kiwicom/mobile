@@ -31,10 +31,7 @@ class Wrapper extends React.Component<{||}, State> {
   render() {
     return (
       <React.Fragment>
-        <TextButton
-          title={<Translation passThrough="Show age picker" />}
-          onPress={this.toggle}
-        />
+        <TextButton title={<Translation passThrough="Show age picker" />} onPress={this.toggle} />
         <AgePicker
           isVisible={this.state.isVisible}
           onClose={this.toggle}

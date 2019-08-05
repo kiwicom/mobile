@@ -10,11 +10,7 @@ type InjectorProps = {|
 |};
 
 export default class AdditionalPropsInjecter extends React.Component<InjectorProps> {
-  goToGalleryStripe = (
-    hotelName: string,
-    highResImages: string[],
-    imageIndex: number,
-  ) => {
+  goToGalleryStripe = (hotelName: string, highResImages: string[], imageIndex: number) => {
     this.props.navigation.navigate('GalleryStripe', {
       hotelName,
       imageUrls: highResImages,

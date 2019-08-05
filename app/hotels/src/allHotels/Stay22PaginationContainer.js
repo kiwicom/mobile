@@ -28,10 +28,8 @@ export function Stay22PaginationContainer(props: Props) {
     actions: { setCurrentSearchStats },
   }: HotelsContextState = React.useContext(HotelsContext);
 
-  const priceMax =
-    props.data.allAvailableStay22Hotels?.stats?.maxPrice?.amount ?? 0;
-  const priceMin =
-    props.data.allAvailableStay22Hotels?.stats?.minPrice?.amount ?? 0;
+  const priceMax = props.data.allAvailableStay22Hotels?.stats?.maxPrice?.amount ?? 0;
+  const priceMin = props.data.allAvailableStay22Hotels?.stats?.minPrice?.amount ?? 0;
 
   React.useEffect(() => {
     Logger.ancillaryDisplayed(
@@ -87,15 +85,8 @@ export default createPaginationContainer(
   {
     data: graphql`
       fragment Stay22PaginationContainer_data on RootQuery {
-        allAvailableStay22Hotels(
-          search: $search
-          first: $first
-          after: $after
-          filter: $filter
-        )
-          @connection(
-            key: "Stay22PaginationContainer_allAvailableStay22Hotels"
-          ) {
+        allAvailableStay22Hotels(search: $search, first: $first, after: $after, filter: $filter)
+          @connection(key: "Stay22PaginationContainer_allAvailableStay22Hotels") {
           stats {
             minPrice {
               amount

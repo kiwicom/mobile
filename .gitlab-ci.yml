@@ -1,4 +1,4 @@
-image: node:11.6
+image: node:12
 
 stages:
   - test_ci
@@ -23,5 +23,3 @@ release:
     - master
   script:
    - curl -gX POST $DEPLOY_TRIGGER_URL$CI_COMMIT_SHA
-
-

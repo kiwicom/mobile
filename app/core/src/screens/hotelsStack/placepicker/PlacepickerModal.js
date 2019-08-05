@@ -2,13 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Modal,
-  StyleSheet,
-  TextInput,
-  TextButton,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Modal, StyleSheet, TextInput, TextButton, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
 import debounce from 'lodash/debounce';
@@ -50,23 +44,13 @@ export default class PlacepickerModal extends React.Component<Props, State> {
   render() {
     const { isVisible, onClose } = this.props;
     return (
-      <Modal
-        isVisible={isVisible}
-        onRequestClose={onClose}
-        style={styles.modal}
-      >
+      <Modal isVisible={isVisible} onRequestClose={onClose} style={styles.modal}>
         <SafeAreaView style={styles.container}>
           <View style={[styles.container, styles.inner]}>
             <Translation passThrough="Search for city" />
-            <TextInput
-              value={this.state.cityName}
-              onChangeText={this.onChange}
-            />
+            <TextInput value={this.state.cityName} onChangeText={this.onChange} />
             <View style={styles.cityList}>
-              <HotelCityQuery
-                query={this.state.query}
-                onPress={this.props.onSave}
-              />
+              <HotelCityQuery query={this.state.query} onPress={this.props.onSave} />
             </View>
           </View>
           <View>

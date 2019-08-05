@@ -77,11 +77,7 @@ class Provider extends React.Component<Props, State> {
   };
 
   render() {
-    return (
-      <ContextProvider value={this.state}>
-        {this.props.children}
-      </ContextProvider>
-    );
+    return <ContextProvider value={this.state}>{this.props.children}</ContextProvider>;
   }
 }
 
@@ -89,9 +85,7 @@ export const withGeolocationContext = (Component: React.ElementType) => {
   const withGeolocationContext = (props: { [string]: mixed, ... }) => {
     return (
       <Consumer>
-        {({ actions, ...rest }) => (
-          <Component {...props} {...actions} {...rest} />
-        )}
+        {({ actions, ...rest }) => <Component {...props} {...actions} {...rest} />}
       </Consumer>
     );
   };

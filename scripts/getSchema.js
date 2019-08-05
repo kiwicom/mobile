@@ -3,11 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import fetch from '@kiwicom/fetch';
-import {
-  buildClientSchema,
-  getIntrospectionQuery,
-  printSchema,
-} from 'graphql/utilities';
+import { buildClientSchema, getIntrospectionQuery, printSchema } from 'graphql/utilities';
 
 fetch('https://graphql.kiwi.com/', {
   method: 'POST',
@@ -22,8 +18,5 @@ fetch('https://graphql.kiwi.com/', {
   .then(res => res.json())
   .then(schemaJSON => printSchema(buildClientSchema(schemaJSON.data)))
   .then(clientSchema =>
-    fs.writeFileSync(
-      path.join(__dirname, '..', 'schema.graphql'),
-      clientSchema,
-    ),
+    fs.writeFileSync(path.join(__dirname, '..', 'schema.graphql'), clientSchema),
   );

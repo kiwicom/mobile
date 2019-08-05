@@ -2,13 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Text,
-  TextButton,
-  StyleSheet,
-  Icon,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Text, TextButton, StyleSheet, Icon, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 
@@ -57,9 +51,7 @@ class FastTrackBannerContent extends React.Component<Props, State> {
         <TextButton
           type="primary"
           onPress={this.onOpenModal}
-          title={
-            <Translation id="mmb.fast_track.banner.show_qr_button.bergamo.bergamo_stopover" />
-          }
+          title={<Translation id="mmb.fast_track.banner.show_qr_button.bergamo.bergamo_stopover" />}
         />
         <FastTrackModal
           isVisible={this.state.isModalVisible}

@@ -28,17 +28,13 @@ describe('WithStorage', () => {
   it('injects storageValue', () => {
     const component = getComponent();
 
-    expect(
-      component.root.findByType(WrappedComponent).props.storageValue,
-    ).toEqual([]);
+    expect(component.root.findByType(WrappedComponent).props.storageValue).toEqual([]);
   });
 
   it('injects saveToStorage function', () => {
     const component = getComponent();
 
-    expect(
-      typeof component.root.findByType(WrappedComponent).props.saveToStorage,
-    ).toBe('function');
+    expect(typeof component.root.findByType(WrappedComponent).props.saveToStorage).toBe('function');
   });
 
   it('gets the stored value', async () => {
@@ -48,9 +44,7 @@ describe('WithStorage', () => {
     await instance.getStoredValue();
     expect(AsyncStorage.getItem).toHaveBeenCalledWith(TestKey);
     expect(instance.state).toEqual({ savedValue: 5 });
-    expect(
-      component.root.findByType(WrappedComponent).props.storageValue,
-    ).toEqual(5);
+    expect(component.root.findByType(WrappedComponent).props.storageValue).toEqual(5);
   });
 
   it('returns initialValue if there is no stored value', async () => {
@@ -63,6 +57,7 @@ describe('WithStorage', () => {
     const storedValue = await instance.getStoredValue();
     expect(AsyncStorage.getItem).toHaveBeenCalledWith(TestKey);
     expect(storedValue).toEqual({ lol: 'lol' });
+    // eslint-disable-next-line require-atomic-updates
     AsyncStorage.getItem = getItem;
   });
 
@@ -71,10 +66,7 @@ describe('WithStorage', () => {
     const instance = component.getInstance();
 
     await instance.saveValue({ test: 'lol' });
-    expect(AsyncStorage.setItem).toBeCalledWith(
-      TestKey,
-      JSON.stringify({ test: 'lol' }),
-    );
+    expect(AsyncStorage.setItem).toBeCalledWith(TestKey, JSON.stringify({ test: 'lol' }));
   });
 
   it('handles number as input value', async () => {
@@ -98,10 +90,7 @@ describe('WithStorage', () => {
     const instance = component.getInstance();
 
     await instance.saveValue('roflmao');
-    expect(AsyncStorage.setItem).toBeCalledWith(
-      TestKey,
-      JSON.stringify('roflmao'),
-    );
+    expect(AsyncStorage.setItem).toBeCalledWith(TestKey, JSON.stringify('roflmao'));
   });
 
   it('handles string as date value', async () => {

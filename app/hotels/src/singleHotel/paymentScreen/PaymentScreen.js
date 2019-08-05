@@ -6,11 +6,7 @@ import { HeaderTitle, type NavigationType } from '@kiwicom/mobile-navigation';
 import { HeaderBackButton } from 'react-navigation';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import {
-  HotelsContext,
-  type HotelsContextState,
-  type ApiProvider,
-} from '../../HotelsContext';
+import { HotelsContext, type HotelsContextState, type ApiProvider } from '../../HotelsContext';
 import BookingPaymentScreen from './BookingPaymentScreen';
 import Stay22PaymentScreen from './Stay22PaymentScreen';
 
@@ -40,11 +36,7 @@ export function PaymentScreen(props: Props) {
   return <Stay22PaymentScreen roomConfig={roomConfig} />;
 }
 
-PaymentScreen.navigationOptions = ({
-  navigation,
-}: {|
-  navigation: NavigationType,
-|}) => {
+PaymentScreen.navigationOptions = ({ navigation }: {| navigation: NavigationType |}) => {
   function goBack() {
     navigation.goBack(null);
   }
@@ -55,10 +47,7 @@ PaymentScreen.navigationOptions = ({
       </HeaderTitle>
     ),
     headerLeft: (
-      <HeaderBackButton
-        onPress={goBack}
-        tintColor={defaultTokens.paletteProductNormal}
-      />
+      <HeaderBackButton onPress={goBack} tintColor={defaultTokens.paletteProductNormal} />
     ),
   };
 };

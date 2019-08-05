@@ -4,10 +4,7 @@ import * as React from 'react';
 import { Logger, Translation } from '@kiwicom/mobile-shared';
 
 import FilterButton from '../FilterButton';
-import type {
-  OnChangeFilterParams,
-  OrderByEnum,
-} from '../FilterParametersType';
+import type { OnChangeFilterParams, OrderByEnum } from '../FilterParametersType';
 import OrderPopup from './OrderPopup';
 
 const orderByOptions = {

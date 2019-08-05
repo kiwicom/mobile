@@ -9,14 +9,8 @@ import {
 import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
 
 // Hotels
-AppRegistry.registerComponent(
-  'NewKiwiHotels',
-  () => NewHotelsStandAlonePackage,
-);
-AppRegistry.registerComponent(
-  'SingleHotel',
-  () => SingleHotelStandalonePackage,
-);
+AppRegistry.registerComponent('NewKiwiHotels', () => NewHotelsStandAlonePackage);
+AppRegistry.registerComponent('SingleHotel', () => SingleHotelStandalonePackage);
 
 // AncillaryFactory
 AppRegistry.registerComponent('AncillaryFactory', () => AncillaryFactory);

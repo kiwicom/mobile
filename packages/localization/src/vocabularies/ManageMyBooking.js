@@ -29,8 +29,7 @@ const MMBVocabulary = {
 
   'mmb.alert.button.settings': 'Settings',
   'mmb.alert.button.ok': 'OK',
-  'mmb.alert.something_went_wrong':
-    'Something went wrong; please try again later.',
+  'mmb.alert.something_went_wrong': 'Something went wrong; please try again later.',
 
   // MMB Guarantee screen
   'mmb.guarantee_screen.title': 'Help',
@@ -40,8 +39,7 @@ const MMBVocabulary = {
   'mmb.boarding_passes.boarding_pass_return.departure': 'Departure',
   'mmb.boarding_passes.boarding_pass_one_way.departure': 'Departure',
   'mmb.boarding_passes.boarding_pass_return.return': 'Return',
-  'mmb.boarding_passes.download_button.open_printable_document':
-    'Open Printable Document',
+  'mmb.boarding_passes.download_button.open_printable_document': 'Open Printable Document',
   'mmb.boarding_passes.past_booking_information.missed_checkin':
     'Missed online check-in. It was available on our site until __date__',
   'mmb.boarding_passes.future_booking_information.available_at_date':
@@ -59,8 +57,7 @@ const MMBVocabulary = {
   'mmb.apple_wallet.apple_wallet_scene.passenger': 'Passenger',
   'mmb.apple_wallet.apple_wallet_scene.departure_date': 'Departure date',
   'mmb.apple_wallet.apple_wallet_scene.departure_time': 'Departure time',
-  'mmb.apple_wallet.apple_wallet_scene.why_use_apple_wallet':
-    'Why use the Apple Wallet?',
+  'mmb.apple_wallet.apple_wallet_scene.why_use_apple_wallet': 'Why use the Apple Wallet?',
   'mmb.apple_wallet.apple_wallet_scene.why_wallet_text':
     'On your departure date, your boarding pass will be displayed directly on the lock screen: making it easy to board the plane. It will also be automatically updated with any schedule changes.',
   'mmb.apple_wallet.apple_wallet_scene.add_pass_error':
@@ -75,8 +72,7 @@ const MMBVocabulary = {
     "Warning: you will depart from a different place. You'll arrive at __1_arrival__ and leave from __2_departure__.",
   'mmb.flight_overview.timeline.warning.different_airport_return_first':
     'Warning: your departure point differs from your return one. You will depart from __1_departure__ and return to __2_arrival__.',
-  'mmb.flight_overview.timeline.terminal':
-    '__1_city__ __2_iata__ - Terminal __3_terminal__',
+  'mmb.flight_overview.timeline.terminal': '__1_city__ __2_iata__ - Terminal __3_terminal__',
 
   // MMB Flight services
   'mmb.flight_services.additional_baggage': 'Baggage',
@@ -97,12 +93,10 @@ const MMBVocabulary = {
   'mmb.tickets.not_available_yet': 'Not available yet',
   'mmb.tickets.open': 'Open Document',
   'mmb.tickets.e_ticket': 'E-Ticket',
-  'mmb.tickets.not_available':
-    'E-Ticket file is not available yet. Please try it later.',
+  'mmb.tickets.not_available': 'E-Ticket file is not available yet. Please try it later.',
   'mmb.tickets.ticket_delete_button.confirm_delete':
     'Are you sure you want to delete locally stored PDF files for this booking?',
-  'mmb.tickets.ticket_delete_button.delete_failed':
-    'Failed to delete locally stored files',
+  'mmb.tickets.ticket_delete_button.delete_failed': 'Failed to delete locally stored files',
 
   // MMB Boarding Passes
   'mmb.boarding_passes.not_available':
@@ -146,47 +140,35 @@ const MMBVocabulary = {
   'mmb.trip_services.insurance.variant.none': 'No Insurance',
   'mmb.trip_services.insurance.variant.basic': 'Travel Basic',
   'mmb.trip_services.insurance.variant.plus': 'Travel Plus',
-  'mmb.trip_services.insurance.variant.basic.quantity':
-    '__quantity__x Travel Basic',
-  'mmb.trip_services.insurance.variant.plus.quantity':
-    '__quantity__x Travel Plus',
-  'mmb.trip_services.insurance.variant.none.quantity':
-    '__quantity__x No Insurance',
+  'mmb.trip_services.insurance.variant.basic.quantity': '__quantity__x Travel Basic',
+  'mmb.trip_services.insurance.variant.plus.quantity': '__quantity__x Travel Plus',
+  'mmb.trip_services.insurance.variant.none.quantity': '__quantity__x No Insurance',
   'mmb.trip_services.insurance.title': 'Edit insurance',
   'mmb.trip_services.insurance.selection.title': 'Insurance',
   'mmb.trip_services.insurance.selection.travel_insurance': 'Travel insurance',
   'mmb.trip_services.insurance.selection.price.free': 'Free',
   'mmb.trip_services.insurance.selection.price.not_available': 'Not available',
-  'mmb.trip_services.insurance.selection.provided_by_axa':
-    'Provided by Axa Assistance',
-  'mmb.trip_services.insurance.selection.insurance_summary.assistance':
-    'Assistance services',
-  'mmb.trip_services.insurance.selection.insurance_summary.bags':
-    'Lost baggage',
+  'mmb.trip_services.insurance.selection.provided_by_axa': 'Provided by Axa Assistance',
+  'mmb.trip_services.insurance.selection.insurance_summary.assistance': 'Assistance services',
+  'mmb.trip_services.insurance.selection.insurance_summary.bags': 'Lost baggage',
   'mmb.trip_services.insurance.selection.insurance_summary.cancellation':
     'Trip cancellation (illness, accident, death)',
-  'mmb.trip_services.insurance.selection.insurance_summary.liability':
-    'Liability',
-  'mmb.trip_services.insurance.selection.insurance_summary.medical':
-    'Medical expenses',
-  'mmb.trip_services.insurance.selection.insurance_summary.travel':
-    'Air travel insurance',
-  'mmb.trip_services.insurance.selection.insurance_summary.more_info':
-    'More info',
+  'mmb.trip_services.insurance.selection.insurance_summary.liability': 'Liability',
+  'mmb.trip_services.insurance.selection.insurance_summary.medical': 'Medical expenses',
+  'mmb.trip_services.insurance.selection.insurance_summary.travel': 'Air travel insurance',
+  'mmb.trip_services.insurance.selection.insurance_summary.more_info': 'More info',
 
   'mmb.trip_services.insurance.more_info.title': 'Travel insurance',
   'mmb.trip_services.insurance.selection.more_info.pitch':
     'Some important facts about your insurance are summarised below. To find all the details, read the full Terms and conditions.',
-  'mmb.trip_services.insurance.selection.more_info.accidental_death':
-    'Accidental death',
+  'mmb.trip_services.insurance.selection.more_info.accidental_death': 'Accidental death',
   'mmb.trip_services.insurance.selection.more_info.agree_with_terms':
     'By purchasing and using this insurance, you agree with terms & conditions negotiated between IPA and Kiwi.com.',
   'mmb.trip_services.insurance.selection.more_info.baggage_limit_item':
     'Baggage  insurance - limit per item',
   'mmb.trip_services.insurance.selection.more_info.baggage_limit_total':
     'Baggage insurance - total limit',
-  'mmb.trip_services.insurance.selection.more_info.co_insurance':
-    'Additional insurance',
+  'mmb.trip_services.insurance.selection.more_info.co_insurance': 'Additional insurance',
   'mmb.trip_services.insurance.selection.more_info.co_insurance_causes_flights_cancellation':
     'Additional insurance for causes of trip cancellations as stated in the T&Cs',
   'mmb.trip_services.insurance.selection.more_info.co_insurance_causes_subsequent_services':
@@ -209,14 +191,12 @@ const MMBVocabulary = {
     'Liability for damages - property',
   'mmb.trip_services.insurance.selection.more_info.loss_travel_documents':
     'Loss of travel documents (passport, ID)',
-  'mmb.trip_services.insurance.selection.more_info.medical_assistance':
-    'Medical assistance',
+  'mmb.trip_services.insurance.selection.more_info.medical_assistance': 'Medical assistance',
   'mmb.trip_services.insurance.selection.more_info.missed_flight_coverage':
     'Missed flight coverage',
   'mmb.trip_services.insurance.selection.more_info.permanent_consequences_of_accident':
     'Permanent consequences of accident',
-  'mmb.trip_services.insurance.selection.more_info.provided_by_axa':
-    'Provided by Axa Assistance',
+  'mmb.trip_services.insurance.selection.more_info.provided_by_axa': 'Provided by Axa Assistance',
   'mmb.trip_services.insurance.selection.more_info.real_cost_to_overall_limit':
     'Actual cost up to the overall limit',
   'mmb.trip_services.insurance.selection.more_info.repatriation_medical_transportation':
@@ -225,14 +205,11 @@ const MMBVocabulary = {
     'Telephone emergency assistance',
   'mmb.trip_services.insurance.selection.more_info.to_amount_paid_for_flights_and':
     'to the amount paid for flights and subsequent services, but not exceeding € 2,000',
-  'mmb.trip_services.insurance.selection.more_info.tourist_assistance':
-    'Tourist assistance',
-  'mmb.trip_services.insurance.selection.more_info.terms':
-    'Terms and Conditions',
+  'mmb.trip_services.insurance.selection.more_info.tourist_assistance': 'Tourist assistance',
+  'mmb.trip_services.insurance.selection.more_info.terms': 'Terms and Conditions',
 
   'mmb.trip_services.insurance.refund.title': 'Refund',
-  'mmb.trip_services.insurance.refund.cancellation_requested':
-    'Insurance cancellation requested',
+  'mmb.trip_services.insurance.refund.cancellation_requested': 'Insurance cancellation requested',
   'mmb.trip_services.insurance.refund.cancellation_requested.comment':
     "It may take a few hours to process your request. We'll email you as soon as it's complete.",
   'mmb.trip_services.insurance.refund.confirm': 'Confirm',
@@ -245,15 +222,13 @@ const MMBVocabulary = {
   'mmb.trip_services.insurance.payment.title': 'Payment - Insurance',
   'mmb.trip_services.insurance.payment.header': 'Payment',
   'mmb.trip_services.insurance.payment.cardholders_name': "Cardholder's name",
-  'mmb.trip_services.insurance.payment.credit_card_number':
-    'Credit card number',
+  'mmb.trip_services.insurance.payment.credit_card_number': 'Credit card number',
   'mmb.trip_services.insurance.payment.pay_now': 'Pay now',
   'mmb.trip_services.insurance.payment.expiry_date': 'Expiry date',
   'mmb.trip_services.insurance.payment.month': 'MM',
   'mmb.trip_services.insurance.payment.year': 'YY',
   'mmb.trip_services.insurance.payment.security_code': 'Security code',
-  'mmb.trip_services.insurance.payment.remember_card':
-    'Remember this card for next time',
+  'mmb.trip_services.insurance.payment.remember_card': 'Remember this card for next time',
   'mmb.trip_services.insurance.payment.security_code.alert_message':
     'The security code (CVC/CVV/CID) is the 3 or 4 digit number on the back of your card or on the front for American Express.',
   'mmb.trip_services.insurance.payment.card': 'Card •••• __1_digits__',
@@ -273,8 +248,7 @@ const MMBVocabulary = {
   'mmb.trip_service.transportation.map.legend.tap': 'Tap =',
   'mmb.trip_service.transportation.map.legend.markerA': 'from',
   'mmb.trip_service.transportation.map.legend.markerB': 'to',
-  'mmb.trip_service.transportation.address_picker.current_location_title':
-    'Your current location',
+  'mmb.trip_service.transportation.address_picker.current_location_title': 'Your current location',
   'mmb.trip_service.transportation.address_picker.all_places': 'All places',
 
   // MMB Support
@@ -282,8 +256,7 @@ const MMBVocabulary = {
   'mmb.support.phone.all_numbers': 'All Numbers',
 
   // MMB Invoices
-  'mmb.invoices.not_available':
-    'Invoice file is not available yet. Please try it later.',
+  'mmb.invoices.not_available': 'Invoice file is not available yet. Please try it later.',
 
   // MMB Passengers
   'mmb.passenger.birthday': 'Date of birth',
@@ -317,28 +290,22 @@ const MMBVocabulary = {
   'mmb.main_menu.passengers': 'Passengers',
   'mmb.main_menu.services': 'Services',
   'mmb.main_menu.services.flight_services': 'Flight Services',
-  'mmb.main_menu.services.flight_services.description':
-    'Wi-Fi, food, sport equipment',
+  'mmb.main_menu.services.flight_services.description': 'Wi-Fi, food, sport equipment',
   'mmb.main_menu.services.trip_services': 'Trip Services',
-  'mmb.main_menu.services.trip_services.description':
-    'Insurance, hotels, transfers',
+  'mmb.main_menu.services.trip_services.description': 'Insurance, hotels, transfers',
 
   'mmb.main_menu.explore_city.prepare_for_trip': 'Prepare for your trip',
-  'mmb.main_menu.explore_city.your_trip_in_days':
-    'Your trip to __1_city__ is in __2_days__ days',
+  'mmb.main_menu.explore_city.your_trip_in_days': 'Your trip to __1_city__ is in __2_days__ days',
   'mmb.main_menu.explore_city.spending_time_in': 'Spending time in __city__?',
   'mmb.main_menu.explore_city.find_stuff_to_do': 'Find something to do',
   'mmb.main_menu.explore_city.card_content.explore_city': 'Explore __city__',
-  'mmb.main_menu.explore_city.card_content.explore_airport':
-    'Explore __airport__ airport',
+  'mmb.main_menu.explore_city.card_content.explore_airport': 'Explore __airport__ airport',
   'mmb.main_menu.explore_city.explore_menu_group.order_transport':
     'Order transportation to __iata__',
-  'mmb.main_menu.explore_city.prior_to_departure.flying_soon':
-    "You're flying soon",
+  'mmb.main_menu.explore_city.prior_to_departure.flying_soon': "You're flying soon",
   'mmb.main_menu.explore_city.prior_to_departure.flying_to_destination':
     'Your flight to __1_destination__ departs at __2_time__.',
-  'mmb.main_menu.explore_city.prior_to_departure.go_to_gate':
-    'Go to gate __gate__.',
+  'mmb.main_menu.explore_city.prior_to_departure.go_to_gate': 'Go to gate __gate__.',
   'mmb.main_menu.explore_city.prior_to_departure.recheck_your_bags':
     "Don't forget to recheck your bags.",
   'mmb.main_menu.explore_city.prior_to_departure.recheck_your_bags_and_go_to_gate':
@@ -353,12 +320,10 @@ const MMBVocabulary = {
   'mmb.sub_menu.help.title': 'Support',
   'mmb.sub_menu.help.help': 'Help',
   'mmb.sub_menu.help.call_support': 'Call Support',
-  'mmb.sub_menu.help.call_support.failed':
-    'Impossible to make a call. Try again later.',
+  'mmb.sub_menu.help.call_support.failed': 'Impossible to make a call. Try again later.',
 
   'mmb.main_menu.manage.other': 'Other',
-  'mmb.main_menu.manage.other.description':
-    'Booking cancellation, invoice, etc',
+  'mmb.main_menu.manage.other.description': 'Booking cancellation, invoice, etc',
   'mmb.sub_menu.manage.other.title': 'Other',
   'mmb.sub_menu.manage.other.invoice': 'Download Invoice',
   'mmb.sub_menu.manage.other.open_on_web': 'Open on the Web',
@@ -370,13 +335,11 @@ const MMBVocabulary = {
 
   // MMB Missing Information
   'mmb.missing_information.missing_informations': 'Missing informations',
-  'mmb.missing_information.fill_in_information':
-    'Please fill in passenger info to confirm booking',
+  'mmb.missing_information.fill_in_information': 'Please fill in passenger info to confirm booking',
   'mmb.missing_information.button_text': 'Fill Passenger Info',
   'mmb.missing_information.passenger_menu_right.not_filled': 'Not Filled',
   'mmb.missing_information.passenger_menu_right.filled': 'Filled',
-  'mmb.missing_information.passenger_travel_document_menu_group.passengers':
-    'Passengers',
+  'mmb.missing_information.passenger_travel_document_menu_group.passengers': 'Passengers',
   'mmb.missing_informaiton.travel_document_modal_screen.close': 'Close',
   'mmb.missing_informaiton.travel_document_modal_screen.save': 'Save',
   'mmb.missing_informaiton.travel_document_modal_screen.passport_or_id_number':
@@ -391,16 +354,13 @@ const MMBVocabulary = {
   'mmb.booking_timeline.today': 'Today',
   'mmb.booking_timeline.explore_airport.button.title': 'Explore Airport',
   'mmb.booking_timeline.event.in_destination': 'in __place__',
-  'mmb.booking_timeline.event.booked_flight.title':
-    'Booked flight to __1_destination__',
+  'mmb.booking_timeline.event.booked_flight.title': 'Booked flight to __1_destination__',
   'mmb.booking_timeline.event.airport_arrival.title':
     'Arrive at __1_airport__ airport (__2_code__)',
-  'mmb.booking_timeline.event.airport_arrival.note':
-    'Give yourself extra time, just in case.',
+  'mmb.booking_timeline.event.airport_arrival.note': 'Give yourself extra time, just in case.',
 
   'mmb.booking_timeline.event.leave_for_airport.title': 'Leave for the airport',
-  'mmb.booking_timeline.event.leave_for_airport.note':
-    "Don't forget your passport/photo ID.",
+  'mmb.booking_timeline.event.leave_for_airport.note': "Don't forget your passport/photo ID.",
 
   'mmb.booking_timeline.event.download_invoice.title': 'Download invoice',
   'mmb.booking_timeline.event.download_invoice.note_not_available':
@@ -415,11 +375,9 @@ const MMBVocabulary = {
   'mmb.booking_timeline.event.gate_arrival.note': 'Beware of the distance.',
   'mmb.booking_timeline.event.gate_arrival.note_terminal':
     'Proceed to Terminal __terminal__. Beware of the distance.',
-  'mmb.booking_timeline.event.arrival.title':
-    'Welcome to __1_airport__ airport (__2_code__)',
+  'mmb.booking_timeline.event.arrival.title': 'Welcome to __1_airport__ airport (__2_code__)',
 
-  'mmb.booking_timeline.event.departure.title':
-    'Plane to __destination__ takes off',
+  'mmb.booking_timeline.event.departure.title': 'Plane to __destination__ takes off',
   'mmb.booking_timeline.event.departure.note': 'Enjoy your flight.',
   'mmb.booking_timeline.event.departure.note_hours':
     'Enjoy your __hours__h flight with __airlineName__ __flightIdentifier__.',
@@ -428,19 +386,14 @@ const MMBVocabulary = {
   'mmb.booking_timeline.event.departure.note_hours_minutes':
     'Enjoy your __hours__h __minutes__m flight with __airlineName__ __flightIdentifier__.',
 
-  'mmb.booking_timeline.event.transport_from_airport.title':
-    'Getting transport from airport',
-  'mmb.booking_timeline.event.transport_from_airport.note':
-    'Expect additional costs.',
+  'mmb.booking_timeline.event.transport_from_airport.title': 'Getting transport from airport',
+  'mmb.booking_timeline.event.transport_from_airport.note': 'Expect additional costs.',
   'mmb.booking_timeline.event.download_eticket.title': 'Download e-ticket',
   'mmb.booking_timeline.event.download_eticket.button.title': 'Download',
-  'mmb.booking_timeline.event.download_eticket.button.title.not_available':
-    'Not available yet',
+  'mmb.booking_timeline.event.download_eticket.button.title.not_available': 'Not available yet',
 
-  'mmb.booking_timeline.event.download_boarding_pass.title':
-    'Download your boarding pass',
-  'mmb.booking_timeline.event.download_boarding_pass.note_not_available':
-    'Not available yet.',
+  'mmb.booking_timeline.event.download_boarding_pass.title': 'Download your boarding pass',
+  'mmb.booking_timeline.event.download_boarding_pass.note_not_available': 'Not available yet.',
   'mmb.booking_timeline.event.download_boarding_pass.button.title': 'Download',
   'mmb.booking_timeline.event.download_boarding_pass.button.title.not_available':
     'Not available yet',

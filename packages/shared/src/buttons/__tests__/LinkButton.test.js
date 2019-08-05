@@ -11,10 +11,7 @@ const noop = () => {};
 describe('Button', () => {
   it('renders', () => {
     PlaygroundRenderer.render(
-      <LinkButton
-        onPress={noop}
-        title={<Translation passThrough="Link button" />}
-      />,
+      <LinkButton onPress={noop} title={<Translation passThrough="Link button" />} />,
     );
   });
 });

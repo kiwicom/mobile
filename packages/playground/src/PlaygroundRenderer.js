@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-standalone-expect */
 // @flow
 
 import * as React from 'react';
@@ -45,13 +46,9 @@ export default new (class PlaygroundRenderer {
   ) {
     if (process.env.NODE_ENV === 'test') {
       if (deeply === true) {
-        expect(
-          DeepTestRenderer.create(React.Children.only(component)),
-        ).toMatchSnapshot();
+        expect(DeepTestRenderer.create(React.Children.only(component))).toMatchSnapshot();
       } else {
-        expect(
-          this.shallowRenderer.render(React.Children.only(component)),
-        ).toMatchSnapshot();
+        expect(this.shallowRenderer.render(React.Children.only(component))).toMatchSnapshot();
       }
     } else if (Object.prototype.hasOwnProperty.call(this.components, title)) {
       this.components[title].components.push(component);

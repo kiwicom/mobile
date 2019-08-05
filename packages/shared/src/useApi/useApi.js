@@ -63,10 +63,7 @@ const StateCounter = props => {
   return <Text>{counterApi.count}</Text>;
 };
  */
-export default function useApi<T, S>(
-  apiFactory: ApiFactory<T, S>,
-  initialState: S,
-): T {
+export default function useApi<T, S>(apiFactory: ApiFactory<T, S>, initialState: S): T {
   const [state, setState] = React.useState(initialState);
 
   return React.useMemo(() => {

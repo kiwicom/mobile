@@ -4,12 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { DateFormatter, DateUtils } from '@kiwicom/mobile-localization';
-import {
-  Text,
-  StyleSheet,
-  DatePicker,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, DatePicker, Translation } from '@kiwicom/mobile-shared';
 
 import DateButton from './DateButton';
 import { HotelsContext, type HotelsContextState } from '../../../HotelsContext';
@@ -38,9 +33,7 @@ export default function HeaderLeft() {
           <DatePicker
             customButton={
               <DateButton>
-                <Translation
-                  passThrough={DateFormatter(checkin).formatCustom(dateFormat)}
-                />
+                <Translation passThrough={DateFormatter(checkin).formatCustom(dateFormat)} />
               </DateButton>
             }
             date={checkin}
@@ -54,9 +47,7 @@ export default function HeaderLeft() {
           <DatePicker
             customButton={
               <DateButton>
-                <Translation
-                  passThrough={DateFormatter(checkout).formatCustom(dateFormat)}
-                />
+                <Translation passThrough={DateFormatter(checkout).formatCustom(dateFormat)} />
               </DateButton>
             }
             date={checkout}

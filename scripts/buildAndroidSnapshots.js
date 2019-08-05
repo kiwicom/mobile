@@ -26,8 +26,7 @@ const exec = (command, options) =>
     ...options,
   });
 
-const SKYPICKER_URL =
-  'https://gitlab.skypicker.com/api/v4/projects/301/packages/maven/';
+const SKYPICKER_URL = 'https://gitlab.skypicker.com/api/v4/projects/301/packages/maven/';
 
 if (!process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN) {
   throw Error('You need to pass RNKIWIMOBILE_DEPLOYMENT_TOKEN.');
@@ -100,9 +99,7 @@ const deployLibrary = (packageName, version) => {
       deployDependency(
         'react-native-maps',
         SKYPICKER_URL,
-        `${getDependencyVersion(
-          'react-native-maps',
-        )}.react-native.${reactNativeVersion}`,
+        `${getDependencyVersion('react-native-maps')}.react-native.${reactNativeVersion}`,
         '-SNAPSHOT',
       ),
       deployDependency(
@@ -114,9 +111,7 @@ const deployLibrary = (packageName, version) => {
       deployDependency(
         'react-native-code-push',
         SKYPICKER_URL,
-        `${getDependencyVersion(
-          'react-native-code-push',
-        )}.react-native.${reactNativeVersion}`,
+        `${getDependencyVersion('react-native-code-push')}.react-native.${reactNativeVersion}`,
         '-SNAPSHOT',
       ),
       deployDependency(
@@ -146,9 +141,7 @@ const deployLibrary = (packageName, version) => {
       deployDependency(
         'react-native-webview',
         SKYPICKER_URL,
-        `${getDependencyVersion(
-          'react-native-webview',
-        )}.react-native.${reactNativeVersion}`,
+        `${getDependencyVersion('react-native-webview')}.react-native.${reactNativeVersion}`,
         '-SNAPSHOT',
       ),
     ]);

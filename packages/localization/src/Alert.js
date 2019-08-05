@@ -4,10 +4,7 @@ import { Alert as AlertNative } from 'react-native'; // eslint-disable-line no-r
 import { translate } from '@kiwicom/rnmodules';
 
 import { type TranslationKeys } from './DefaultVocabulary';
-import {
-  replaceValues,
-  getTranslation as prepareTranslation,
-} from './TranslationHelpers';
+import { replaceValues, getTranslation as prepareTranslation } from './TranslationHelpers';
 
 export type Translation =
   | {|
@@ -43,10 +40,7 @@ const getTranslation = async (translation: ?Translation) => {
     const nativeKey = `mobile.${translation.id}`;
     const translatedString = await translate(nativeKey);
 
-    const translatedTitle = prepareTranslation(
-      translatedString,
-      translation.id,
-    );
+    const translatedTitle = prepareTranslation(translatedString, translation.id);
     if (translatedTitle) {
       return replaceValues(translatedTitle, translation.values);
     }

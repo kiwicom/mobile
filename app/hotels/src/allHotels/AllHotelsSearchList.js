@@ -20,18 +20,8 @@ type HotelType = {|
 
 const keyExtractor = (item: ?HotelType) => item?.id;
 
-const renderItem = ({
-  item,
-  index,
-}: {|
-  +item: ?HotelType,
-  +index: number,
-|}) => (
-  <AllHotelsSearchRow
-    key={item?.id}
-    data={item}
-    testID={index === 0 ? 'firstHotelResult' : ''}
-  />
+const renderItem = ({ item, index }: {| +item: ?HotelType, +index: number |}) => (
+  <AllHotelsSearchRow key={item?.id} data={item} testID={index === 0 ? 'firstHotelResult' : ''} />
 );
 
 function getFirst<T>(list: $ReadOnlyArray<T>): ?T {
@@ -56,9 +46,7 @@ export const AllHotelsSearchList = (props: Props) => {
   if (hotels.length === 0) {
     return (
       <GeneralError
-        errorMessage={
-          <Translation id="hotels_search.all_hotels_search_list.no_hotels_found" />
-        }
+        errorMessage={<Translation id="hotels_search.all_hotels_search_list.no_hotels_found" />}
       />
     );
   }
@@ -75,8 +63,7 @@ export const AllHotelsSearchList = (props: Props) => {
 
 export default createFragmentContainer(AllHotelsSearchList, {
   data: graphql`
-    fragment AllHotelsSearchList_data on AllHotelsInterface
-      @relay(plural: true) {
+    fragment AllHotelsSearchList_data on AllHotelsInterface @relay(plural: true) {
       id
       ...AllHotelsSearchRow_data
       hotelId
