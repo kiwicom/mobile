@@ -44,9 +44,7 @@ const version = child_process
     /**
      * Zip file to its destination to prepare for upload
      */
-    child_process.execSync(
-      `cd ${frameworkFolder} && zip -r ${zippedFatFramework} .`,
-    );
+    child_process.execSync(`cd ${frameworkFolder} && zip -r ${zippedFatFramework} .`);
 
     /**
      * Create Github release that points to the latest commit
@@ -75,9 +73,7 @@ const version = child_process
      * Github API doesn't support sending files with unknown `Content-Lenght`. That means we
      * cannot send a stream.
      */
-    const body = fs.readFileSync(
-      path.join(frameworkFolder, zippedFatFramework),
-    );
+    const body = fs.readFileSync(path.join(frameworkFolder, zippedFatFramework));
     await fetch(
       `https://uploads.github.com/repos/kiwicom/mobile/releases/${release.id}/assets?name=${zippedFatFramework}&access_token=${githubToken}`,
       {

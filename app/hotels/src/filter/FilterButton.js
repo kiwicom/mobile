@@ -2,13 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Button,
-  Text,
-  StyleSheet,
-  Icon,
-  type TranslationType,
-} from '@kiwicom/mobile-shared';
+import { Button, Text, StyleSheet, Icon, type TranslationType } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
@@ -24,21 +18,12 @@ const FilterButton = ({ title, isActive, onPress }: Props) => {
       style={[styleSheet.buttonGroup, isActive && styleSheet.activeButtonGroup]}
     >
       <View style={styleSheet.row}>
-        <Text
-          style={[
-            styleSheet.buttonText,
-            isActive && styleSheet.activeButtonText,
-          ]}
-        >
+        <Text style={[styleSheet.buttonText, isActive && styleSheet.activeButtonText]}>
           {title}
         </Text>
         {isActive && (
           <View style={styleSheet.closeWrapper} testID="closeWrapper">
-            <Icon
-              name="close"
-              size="small"
-              color={defaultTokens.paletteWhite}
-            />
+            <Icon name="close" size="small" color={defaultTokens.paletteWhite} />
           </View>
         )}
       </View>

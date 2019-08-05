@@ -2,12 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Text,
-  StyleSheet,
-  Touchable,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, Touchable, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
@@ -21,10 +16,7 @@ export default class PhotosStripeHeader extends React.Component<Props> {
   render() {
     return (
       <View style={styles.wrapper}>
-        <Touchable
-          style={styles.closeButtonWrapper}
-          onPress={this.props.onClose}
-        >
+        <Touchable style={styles.closeButtonWrapper} onPress={this.props.onClose}>
           <Text style={styles.closeButton}>
             <Translation passThrough="&times;" />
           </Text>

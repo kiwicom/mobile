@@ -1,11 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  AdaptableBadge,
-  StyleSheet,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { AdaptableBadge, StyleSheet, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
@@ -70,9 +66,7 @@ export default class HotelReviewScore extends React.Component<Props> {
     const { backgroundColor, color } = this.calculateColor(reviewScore);
     return (
       <AdaptableBadge
-        translation={
-          <Translation passThrough={this.formatScore(reviewScore)} />
-        }
+        translation={<Translation passThrough={this.formatScore(reviewScore)} />}
         style={[
           style.adaptableBadge,
           {

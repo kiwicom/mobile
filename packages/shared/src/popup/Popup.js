@@ -22,12 +22,8 @@ export default class Popup extends React.Component<Props> {
   render() {
     const modalChild = (
       <React.Fragment>
-        <ScrollView alwaysBounceVertical={false}>
-          {this.props.children}
-        </ScrollView>
-        <View style={Device.isIPhoneX && styles.safeArea}>
-          {this.props.bottomContent}
-        </View>
+        <ScrollView alwaysBounceVertical={false}>{this.props.children}</ScrollView>
+        <View style={Device.isIPhoneX && styles.safeArea}>{this.props.bottomContent}</View>
       </React.Fragment>
     );
 
@@ -42,9 +38,7 @@ export default class Popup extends React.Component<Props> {
             onBackdropPress={this.onClose}
             onRequestClose={this.onClose}
           >
-            <View style={[styles.content, styles.wideContentContainer]}>
-              {modalChild}
-            </View>
+            <View style={[styles.content, styles.wideContentContainer]}>{modalChild}</View>
           </Modal>
         }
         renderOnNarrow={

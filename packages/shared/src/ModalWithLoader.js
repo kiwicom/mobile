@@ -7,7 +7,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import Modal from './Modal';
 import IconLoading from './loaders/IconLoading';
 import StyleSheet from './PlatformStyleSheet';
-import type { StylePropType } from '../index';
+import type { StylePropType } from '../types/Styles';
 
 // props not exact - additional properties allowed
 type Props = {|

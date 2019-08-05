@@ -42,11 +42,7 @@ export default class PhotosStripe extends React.Component<Props> {
         testID={this.props.testID}
       >
         {this.props.imageUrls.map((imageUrl, index) => (
-          <View
-            style={styles.slide}
-            key={imageUrl}
-            testID={`photosStripeImage-${index}`}
-          >
+          <View style={styles.slide} key={imageUrl} testID={`photosStripeImage-${index}`}>
             <NetworkImage
               source={{ uri: imageUrl }}
               style={styles.networkImage}

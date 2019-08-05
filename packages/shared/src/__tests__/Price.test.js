@@ -18,15 +18,9 @@ const renderer = new ShallowRenderer();
 
 describe('Price', () => {
   it('renders null values correctly', () => {
-    expect(
-      renderer.render(<Price amount={null} currency={null} />),
-    ).toMatchSnapshot();
-    expect(
-      renderer.render(<Price amount={45} currency={null} />),
-    ).toMatchSnapshot();
-    expect(
-      renderer.render(<Price amount={null} currency="EUR" />),
-    ).toMatchSnapshot();
+    expect(renderer.render(<Price amount={null} currency={null} />)).toMatchSnapshot();
+    expect(renderer.render(<Price amount={45} currency={null} />)).toMatchSnapshot();
+    expect(renderer.render(<Price amount={null} currency="EUR" />)).toMatchSnapshot();
   });
 
   it('calls Currencyformatter if amount and currency is passed', () => {

@@ -2,24 +2,13 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  type NavigationType,
-  useSetNavigationParams,
-} from '@kiwicom/mobile-navigation';
-import {
-  LayoutDoubleColumn,
-  StyleSheet,
-  Translation,
-  Toast,
-} from '@kiwicom/mobile-shared';
+import { type NavigationType, useSetNavigationParams } from '@kiwicom/mobile-navigation';
+import { LayoutDoubleColumn, StyleSheet, Translation, Toast } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { noop } from '@kiwicom/mobile-utils';
 
 import NewAllHotels from '../../allHotels/NewAllHotels';
-import {
-  SearchResultsContext,
-  type SearchResultState,
-} from './SearchResultsContext';
+import { SearchResultsContext, type SearchResultState } from './SearchResultsContext';
 import SingleHotelContainer from '../../singleHotel/SingleHotelContainer';
 import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import NavigationOptions from './navigationOptions/NavigationOptions';
@@ -30,9 +19,7 @@ type Props = {|
 |};
 
 const SearchResultsScreen = (props: Props) => {
-  const { show, setResultType }: SearchResultState = React.useContext(
-    SearchResultsContext,
-  );
+  const { show, setResultType }: SearchResultState = React.useContext(SearchResultsContext);
   const {
     checkin: checkinDate,
     checkout: checkoutDate,
@@ -62,9 +49,7 @@ const SearchResultsScreen = (props: Props) => {
           <NewAllHotels />
           <Toast
             ref={toastRef}
-            text={
-              <Translation id="hotels_search.search_result_screen.date_force_changed" />
-            }
+            text={<Translation id="hotels_search.search_result_screen.date_force_changed" />}
             style={styles.toast}
             onHide={resetIsDateForceChanged}
             duration={5000}

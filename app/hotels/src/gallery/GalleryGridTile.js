@@ -29,11 +29,7 @@ export default class GalleryGridTile extends React.Component<Props> {
     }
 
     return (
-      <Touchable
-        onPress={this.handleTilePress}
-        testID={this.props.testID}
-        delayPressIn={40}
-      >
+      <Touchable onPress={this.handleTilePress} testID={this.props.testID} delayPressIn={40}>
         <NetworkImage
           source={{ uri: this.props.imageUrl }}
           style={style}

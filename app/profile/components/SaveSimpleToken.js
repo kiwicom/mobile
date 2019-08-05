@@ -27,8 +27,7 @@ export default class SaveSimpleToken extends React.Component<Props, State> {
     this.setState({ simpleToken });
   };
 
-  onSave = () =>
-    this.props.onSave(this.state.simpleToken, this.state.bookingId);
+  onSave = () => this.props.onSave(this.state.simpleToken, this.state.bookingId);
 
   render() {
     return (
@@ -42,10 +41,7 @@ export default class SaveSimpleToken extends React.Component<Props, State> {
           placeholder={<Translation passThrough="simple token" />}
         />
 
-        <TextButton
-          onPress={this.onSave}
-          title={<Translation passThrough="Use simple login" />}
-        />
+        <TextButton onPress={this.onSave} title={<Translation passThrough="Use simple login" />} />
       </View>
     );
   }

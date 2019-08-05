@@ -4,10 +4,7 @@ import * as React from 'react';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { StyleSheet, Touchable, AdaptableLayout } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import { type HotelsContextState, HotelsContext } from '../HotelsContext';
 import type { AllHotelsSearchRow_data as AllHotelsSearchRowProps } from './__generated__/AllHotelsSearchRow_data.graphql';

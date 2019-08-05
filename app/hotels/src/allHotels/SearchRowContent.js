@@ -20,11 +20,7 @@ const SearchRowContent = (props: Props) => {
   return (
     <View style={style.row}>
       <View style={style.imageContainer}>
-        <NetworkImage
-          style={style.image}
-          resizeMode="cover"
-          source={{ uri: imageUrl }}
-        />
+        <NetworkImage style={style.image} resizeMode="cover" source={{ uri: imageUrl }} />
       </View>
       <View style={style.content}>
         <View style={style.hotelTitleWrapper}>

@@ -20,12 +20,9 @@ type Props = {|
 |};
 
 const PriceFilter = (props: Props) => {
-  const {
-    currency,
-    checkin,
-    checkout,
-    currentSearchStats,
-  }: HotelsContextState = React.useContext(HotelsContext);
+  const { currency, checkin, checkout, currentSearchStats }: HotelsContextState = React.useContext(
+    HotelsContext,
+  );
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
   function filterButtonClicked() {
@@ -47,22 +44,10 @@ const PriceFilter = (props: Props) => {
     setIsPopupOpen(false);
   }
 
-  function handleSave({
-    minPrice,
-    maxPrice,
-  }: {|
-    minPrice: number,
-    maxPrice: number,
-  |}) {
+  function handleSave({ minPrice, maxPrice }: {| minPrice: number, maxPrice: number |}) {
     const filter = {
-      minPrice:
-        minPrice !== currentSearchStats.priceMin.toNumber()
-          ? new Decimal(minPrice)
-          : null,
-      maxPrice:
-        maxPrice !== currentSearchStats.priceMax.toNumber()
-          ? new Decimal(maxPrice)
-          : null,
+      minPrice: minPrice !== currentSearchStats.priceMin.toNumber() ? new Decimal(minPrice) : null,
+      maxPrice: maxPrice !== currentSearchStats.priceMax.toNumber() ? new Decimal(maxPrice) : null,
     };
     props.onChange(filter);
     Logger.hotelsFilterTagSet('Price');

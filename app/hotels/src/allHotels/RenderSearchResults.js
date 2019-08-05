@@ -3,12 +3,7 @@
 import * as React from 'react';
 import { Animated, Dimensions, View, InteractionManager } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
-import {
-  StyleSheet,
-  Device,
-  type OnLayout,
-  FullPageLoading,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Device, type OnLayout, FullPageLoading } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import MapScreen from '../map/allHotels/MapScreen';
@@ -35,15 +30,9 @@ const paddingBottom = Device.isIPhoneX ? 80 : 44;
 
 export const RenderSearchResults = (props: Props) => {
   const { show }: SearchResultState = React.useContext(SearchResultsContext);
-  const [topValue, setTopValue] = React.useState(
-    Dimensions.get('window').height,
-  );
-  const [mapAnimation] = React.useState(
-    new Animated.Value(show === 'list' ? topValue : 0),
-  );
-  const [listAnimation] = React.useState(
-    new Animated.Value(show === 'list' ? 0 : lowValue),
-  );
+  const [topValue, setTopValue] = React.useState(Dimensions.get('window').height);
+  const [mapAnimation] = React.useState(new Animated.Value(show === 'list' ? topValue : 0));
+  const [listAnimation] = React.useState(new Animated.Value(show === 'list' ? 0 : lowValue));
   const [listOpacity] = React.useState(new Animated.Value(1));
   const [shouldRenderMap, setShouldRenderMap] = React.useState(false);
   const initialRun = React.useRef(true);
@@ -130,10 +119,7 @@ export const RenderSearchResults = (props: Props) => {
             data={data}
             ListFooterComponent={
               props.hasMore && (
-                <LoadMoreButton
-                  isLoading={props.isLoading}
-                  onPress={props.onLoadMore}
-                />
+                <LoadMoreButton isLoading={props.isLoading} onPress={props.onLoadMore} />
               )
             }
           />
@@ -176,8 +162,7 @@ const styles = StyleSheet.create({
 
 export default createFragmentContainer(RenderSearchResults, {
   data: graphql`
-    fragment RenderSearchResults_data on AllHotelsInterface
-      @relay(plural: true) {
+    fragment RenderSearchResults_data on AllHotelsInterface @relay(plural: true) {
       ...AllHotelsSearchList_data
       ...MapScreen_data
     }

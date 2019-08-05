@@ -8,9 +8,7 @@ import Translation from '../Translation';
 
 it('renders text', () => {
   PlaygroundRenderer.render(
-    <AdaptableBadge
-      translation={<Translation passThrough="default badge" />}
-    />,
+    <AdaptableBadge translation={<Translation passThrough="default badge" />} />,
   );
 });
 
@@ -37,18 +35,12 @@ it('renders very long texts', () => {
 
 it('renders correctly with type info', () => {
   PlaygroundRenderer.render(
-    <AdaptableBadge
-      translation={<Translation passThrough="type info" />}
-      type="info"
-    />,
+    <AdaptableBadge translation={<Translation passThrough="type info" />} type="info" />,
   );
 });
 
 it('renders correctly with circled true', () => {
   PlaygroundRenderer.render(
-    <AdaptableBadge
-      translation={<Translation passThrough="circled" />}
-      circled={true}
-    />,
+    <AdaptableBadge translation={<Translation passThrough="circled" />} circled={true} />,
   );
 });

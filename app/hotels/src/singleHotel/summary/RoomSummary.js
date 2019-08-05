@@ -50,15 +50,13 @@ export class RoomSummary extends React.Component<Props, State> {
     const positiveSelections = getSelectedRooms(this.props);
 
     const currency =
-      positiveSelections[0]?.incrementalPriceWithExtraCharges?.[0]?.total
-        ?.currencyId;
+      positiveSelections[0]?.incrementalPriceWithExtraCharges?.[0]?.total?.currencyId;
     // I wanted to split these reducers into separate functions
     // However flow does not seem to think that it is a good idea 😞
     return positiveSelections.reduce(
       (acc, room) => {
         const selectedCount = room?.selectedCount ?? 0;
-        const incrementalPrice =
-          room?.incrementalPriceWithExtraCharges?.[selectedCount - 1];
+        const incrementalPrice = room?.incrementalPriceWithExtraCharges?.[selectedCount - 1];
         const extraCharges = incrementalPrice?.extraCharges ?? [];
 
         const calculatedExtraCharges = extraCharges.reduce(
@@ -103,17 +101,13 @@ export class RoomSummary extends React.Component<Props, State> {
           },
         );
 
-        const bruttoRoomPrice = new Decimal(
-          incrementalPrice?.total?.amount ?? 0,
-        );
+        const bruttoRoomPrice = new Decimal(incrementalPrice?.total?.amount ?? 0);
 
         const roomData = {
           id: room?.id ?? '',
           count: selectedCount ?? 0,
           title: room?.room?.description?.title ?? '',
-          nettoPrice: bruttoRoomPrice.minus(
-            calculatedExtraCharges.includedCharges,
-          ),
+          nettoPrice: bruttoRoomPrice.minus(calculatedExtraCharges.includedCharges),
         };
 
         return {
@@ -122,26 +116,21 @@ export class RoomSummary extends React.Component<Props, State> {
           bruttoPrice: acc.bruttoPrice
             .plus(bruttoRoomPrice)
             .plus(calculatedExtraCharges.excludedCharges),
-          extraCharges: calculatedExtraCharges.extraCharges.reduce(
-            (acc, curr) => {
-              // We don't want to show each type more than one time
-              // so we sum all charges, they are unique by type.
-              const existingCharge = acc.find(
-                charge => charge.type === curr.type,
-              );
-              if (existingCharge == null) {
-                return [...acc, curr];
-              }
-              return [
-                ...acc.filter(item => item.type !== existingCharge.type),
-                {
-                  ...existingCharge,
-                  amount: existingCharge.amount.plus(curr.amount),
-                },
-              ];
-            },
-            acc.extraCharges,
-          ),
+          extraCharges: calculatedExtraCharges.extraCharges.reduce((acc, curr) => {
+            // We don't want to show each type more than one time
+            // so we sum all charges, they are unique by type.
+            const existingCharge = acc.find(charge => charge.type === curr.type);
+            if (existingCharge == null) {
+              return [...acc, curr];
+            }
+            return [
+              ...acc.filter(item => item.type !== existingCharge.type),
+              {
+                ...existingCharge,
+                amount: existingCharge.amount.plus(curr.amount),
+              },
+            ];
+          }, acc.extraCharges),
         };
       },
       {
@@ -165,19 +154,14 @@ export class RoomSummary extends React.Component<Props, State> {
     const priceAndCharges = this.calculateSelectedData();
     const amount = priceAndCharges.bruttoPrice;
     const currency = priceAndCharges.currency;
-    const maxPersons = getMaxNumberOfGuestsInSelection(
-      getSelectedRooms(this.props),
-    );
+    const maxPersons = getMaxNumberOfGuestsInSelection(getSelectedRooms(this.props));
     const extraCharges = priceAndCharges.extraCharges;
     const rooms = priceAndCharges.selectedRooms;
 
     return (
       <>
         {amount != null && currency != null && (
-          <VerticalSwipeResponder
-            onSwipeDown={this.onSwipeDown}
-            onSwipeUp={this.onSwipeUp}
-          >
+          <VerticalSwipeResponder onSwipeDown={this.onSwipeDown} onSwipeUp={this.onSwipeUp}>
             <View style={styles.container}>
               <BottomSheetHandle style={styles.handle} />
               <ExtraCharges
@@ -189,13 +173,7 @@ export class RoomSummary extends React.Component<Props, State> {
               <View style={styles.content}>
                 <SummaryRow
                   text={<Translation id="single_hotel.room_summary.total" />}
-                  price={
-                    <Price
-                      amount={amount}
-                      currency={currency}
-                      style={styles.total}
-                    />
-                  }
+                  price={<Price amount={amount} currency={currency} style={styles.total} />}
                 />
               </View>
             </View>

@@ -10,9 +10,6 @@ const VoidAction = () => console.warn('It Works!');
 
 it('renders button with custom title', () => {
   PlaygroundRenderer.render(
-    <TextButton
-      title={<Translation passThrough="My Button!" />}
-      onPress={VoidAction}
-    />,
+    <TextButton title={<Translation passThrough="My Button!" />} onPress={VoidAction} />,
   );
 });

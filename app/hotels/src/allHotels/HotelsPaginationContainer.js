@@ -92,10 +92,7 @@ export default createPaginationContainer(
           options: $options
           first: $first
           after: $after
-        )
-          @connection(
-            key: "HotelsPaginationContainer_allAvailableBookingComHotels"
-          ) {
+        ) @connection(key: "HotelsPaginationContainer_allAvailableBookingComHotels") {
           stats {
             maxPrice
             minPrice

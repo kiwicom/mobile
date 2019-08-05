@@ -2,13 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  Price,
-  StyleSheet,
-  Touchable,
-  ButtonTitle,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Price, StyleSheet, Touchable, ButtonTitle, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type PriceType = {|
@@ -23,12 +17,7 @@ type Props = {|
   +disabled: boolean,
 |};
 
-export default function SelectButton({
-  increment,
-  price,
-  testID,
-  disabled,
-}: Props) {
+export default function SelectButton({ increment, price, testID, disabled }: Props) {
   return (
     <Touchable
       style={[styles.container, disabled && styles.containerDisabled]}
@@ -42,11 +31,7 @@ export default function SelectButton({
           text={<Translation id="single_hotel.room_picker.select" />}
         />
         <View style={styles.row} />
-        <Price
-          amount={price.amount}
-          currency={price.currency}
-          style={styles.price}
-        />
+        <Price amount={price.amount} currency={price.currency} style={styles.price} />
       </View>
     </Touchable>
   );

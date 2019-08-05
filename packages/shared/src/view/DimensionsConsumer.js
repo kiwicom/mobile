@@ -17,9 +17,7 @@ type InjectedProps = {|
 export function withDimensions<PassedProps: { ... }>(
   Component: React.AbstractComponent<PassedProps>,
 ): React.AbstractComponent<$Diff<PassedProps, InjectedProps>> {
-  return class WithDimensions extends React.Component<
-    $Diff<PassedProps, InjectedProps>,
-  > {
+  return class WithDimensions extends React.Component<$Diff<PassedProps, InjectedProps>> {
     renderInner = ({ dimensions }) => {
       return <Component {...this.props} {...dimensions} />;
     };

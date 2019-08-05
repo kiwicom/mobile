@@ -3,15 +3,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
-import {
-  TouchableWithoutFeedback,
-  Dimensions,
-  Device,
-} from '@kiwicom/mobile-shared';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
+import { TouchableWithoutFeedback, Dimensions, Device } from '@kiwicom/mobile-shared';
 
 import { type HotelsContextState, HotelsContext } from '../../HotelsContext';
 import HotelDetailPreview from '../hotelDetailPreview/HotelDetailPreview';

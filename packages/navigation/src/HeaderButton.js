@@ -16,9 +16,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 type Props = {|
   +onPress: () => void,
   +onLongPress?: (React.ElementRef<typeof Touchable>) => void,
-  +children:
-    | React.Element<typeof HeaderButton.Text>
-    | React.Element<typeof Icon>,
+  +children: React.Element<typeof HeaderButton.Text> | React.Element<typeof Icon>,
   +left?: boolean,
   +style?: StylePropType,
   +disabled?: boolean,
@@ -35,24 +33,12 @@ type CloseModalProps = {|
 |};
 
 export default class HeaderButton extends React.PureComponent<Props, State> {
-  static Right = (props: Props) => (
-    <HeaderButton {...props} style={[props.style, styles.right]} />
-  );
+  static Right = (props: Props) => <HeaderButton {...props} style={[props.style, styles.right]} />;
 
-  static Left = (props: Props) => (
-    <HeaderButton {...props} style={[props.style, styles.left]} />
-  );
+  static Left = (props: Props) => <HeaderButton {...props} style={[props.style, styles.left]} />;
 
-  static Text = ({
-    children,
-    disabled,
-  }: {|
-    +children: TranslationType,
-    +disabled?: boolean,
-  |}) => (
-    <Text
-      style={[styles.headerButtonText, disabled ? styles.disabledButton : null]}
-    >
+  static Text = ({ children, disabled }: {| +children: TranslationType, +disabled?: boolean |}) => (
+    <Text style={[styles.headerButtonText, disabled ? styles.disabledButton : null]}>
       {Platform.OS === 'android'
         ? React.cloneElement(children, {
             textTransform: 'uppercase',
@@ -66,9 +52,7 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
       {Platform.OS === 'android' ? (
         <Icon name="close" color={defaultTokens.paletteProductNormal} />
       ) : (
-        <HeaderButton.Text>
-          {text || <Translation id="shared.button.close" />}
-        </HeaderButton.Text>
+        <HeaderButton.Text>{text || <Translation id="shared.button.close" />}</HeaderButton.Text>
       )}
     </HeaderButton.Left>
   );

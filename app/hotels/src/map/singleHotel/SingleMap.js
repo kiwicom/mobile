@@ -4,10 +4,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import { StyleSheet, StretchedImage } from '@kiwicom/mobile-shared';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import MapView from './MapView';
 import AdditionalInfo from './AdditionalInfo';

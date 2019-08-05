@@ -96,11 +96,7 @@ export default class Toast extends React.Component<Props, State> {
               transform: [{ translateY: this.translateY }],
             }}
           >
-            <AdaptableBadge
-              type="info"
-              style={styles.badge}
-              translation={this.props.text}
-            />
+            <AdaptableBadge type="info" style={styles.badge} translation={this.props.text} />
           </Animated.View>
         </View>
       </FlingGestureHandler>

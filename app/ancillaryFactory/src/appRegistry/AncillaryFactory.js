@@ -3,10 +3,7 @@
 import * as React from 'react';
 import { AuthContext } from '@kiwicom/mobile-relay';
 
-import {
-  type AncillaryDefinition,
-  ancillariesDefinitions,
-} from '../config/ancillariesDefinitions';
+import { type AncillaryDefinition, ancillariesDefinitions } from '../config/ancillariesDefinitions';
 import NoAncillaryMessage from '../components/NoAncillaryMessage';
 
 type Props = {|
@@ -19,8 +16,7 @@ class AncillaryFactory extends React.Component<Props> {
   getRequestedAncillary() {
     const { service } = this.props;
 
-    const ancillary: ?AncillaryDefinition =
-      ancillariesDefinitions[service.toUpperCase()];
+    const ancillary: ?AncillaryDefinition = ancillariesDefinitions[service.toUpperCase()];
 
     return ancillary?.renderComponent;
   }

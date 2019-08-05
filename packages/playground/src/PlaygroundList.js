@@ -49,17 +49,17 @@ export class PlaygroundList extends React.Component<Props> {
   };
 
   getPlaygroundComponents = () => {
-    const sortedComponents: Array<string> = Object.keys(
-      PlaygroundRenderer.components,
-    ).sort((a: string, b: string) => {
-      if (a > b) {
-        return 1;
-      }
-      if (a < b) {
-        return -1;
-      }
-      return 0;
-    });
+    const sortedComponents: Array<string> = Object.keys(PlaygroundRenderer.components).sort(
+      (a: string, b: string) => {
+        if (a > b) {
+          return 1;
+        }
+        if (a < b) {
+          return -1;
+        }
+        return 0;
+      },
+    );
     return sortedComponents;
   };
 

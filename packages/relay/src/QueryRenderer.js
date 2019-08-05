@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { QueryRenderer as KiwicomQueryRenderer } from '@kiwicom/relay';
-import {
-  FullPageLoading,
-  GeneralError,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { FullPageLoading, GeneralError, Translation } from '@kiwicom/mobile-shared';
 import { TimeoutError } from '@kiwicom/fetch';
 
 import PublicEnvironment from './PublicEnvironment';
@@ -37,10 +33,7 @@ export default class QueryRenderer extends React.Component<Props> {
       return PublicEnvironment.getEnvironment();
     }
 
-    return PrivateEnvironment.getEnvironment(
-      accessToken,
-      this.props.authHeaderKey,
-    );
+    return PrivateEnvironment.getEnvironment(accessToken, this.props.authHeaderKey);
   };
 
   onLoading = () => <FullPageLoading />;
@@ -52,23 +45,13 @@ export default class QueryRenderer extends React.Component<Props> {
         return this.props.renderOfflineScreen(retry);
       }
       Component = (
-        <GeneralError
-          errorMessage={<Translation id="relay.query_renderer.no_connection" />}
-        />
+        <GeneralError errorMessage={<Translation id="relay.query_renderer.no_connection" />} />
       );
     } else if (error instanceof TimeoutError) {
-      Component = (
-        <GeneralError
-          errorMessage={<Translation id="relay.query_renderer.timeout" />}
-        />
-      );
+      Component = <GeneralError errorMessage={<Translation id="relay.query_renderer.timeout" />} />;
     } else if (error) {
       // total failure (data == null, errors != null)
-      Component = (
-        <GeneralError
-          errorMessage={<Translation passThrough={error.message} />}
-        />
-      );
+      Component = <GeneralError errorMessage={<Translation passThrough={error.message} />} />;
     }
 
     return (

@@ -16,12 +16,7 @@ export default function RefreshableScrollView(props: Props) {
   return (
     <ScrollView
       contentContainerStyle={props.contentContainerStyle}
-      refreshControl={
-        <RefreshControl
-          refreshing={props.refreshing}
-          onRefresh={props.onRefresh}
-        />
-      }
+      refreshControl={<RefreshControl refreshing={props.refreshing} onRefresh={props.onRefresh} />}
     >
       {props.children}
     </ScrollView>

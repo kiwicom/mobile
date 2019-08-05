@@ -28,18 +28,14 @@ it('renders found hotels', () => {
     },
   ];
 
-  renderer.render(
-    <AllHotelsSearchList data={data} ListFooterComponent={<Footer />} />,
-  );
+  renderer.render(<AllHotelsSearchList data={data} ListFooterComponent={<Footer />} />);
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 
 it('renders a "not found" message when no hotel is found', () => {
   const data: Array<empty> = [];
 
-  renderer.render(
-    <AllHotelsSearchList data={data} ListFooterComponent={<Footer />} />,
-  );
+  renderer.render(<AllHotelsSearchList data={data} ListFooterComponent={<Footer />} />);
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });
 

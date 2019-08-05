@@ -87,10 +87,7 @@ describe('QueryRenderer', () => {
     // $FlowExpectedError: Don't need to pass all props for this test
     const Component = new QueryRenderer({ accessToken: 'token' });
     Component.createEnvironment();
-    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith(
-      'token',
-      undefined,
-    );
+    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith('token', undefined);
   });
 
   it('calls PrivateEnvironment.getEnvironment with authHeaderKey if passed', () => {
@@ -100,9 +97,6 @@ describe('QueryRenderer', () => {
       authHeaderKey: 'kw-test',
     });
     Component.createEnvironment();
-    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith(
-      'token',
-      'kw-test',
-    );
+    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith('token', 'kw-test');
   });
 });

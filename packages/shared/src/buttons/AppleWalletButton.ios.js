@@ -16,9 +16,7 @@ type Props = {|
 class AppleWalletButton extends React.Component<Props> {
   render() {
     const { onPress, style } = this.props;
-    return (
-      <RNKiwiAppleWallet onPress={onPress} style={[styles.button, style]} />
-    );
+    return <RNKiwiAppleWallet onPress={onPress} style={[styles.button, style]} />;
   }
 }
 

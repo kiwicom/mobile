@@ -1,10 +1,7 @@
 // @flow
 
 import { withMappedNavigationParams as withMappedProps } from 'react-navigation-props-mapper';
-import {
-  StackNavigator,
-  StackNavigatorOptions,
-} from '@kiwicom/mobile-navigation';
+import { StackNavigator, StackNavigatorOptions } from '@kiwicom/mobile-navigation';
 
 import Homepage from '../../screens/hotelsStack/Homepage';
 import SingleHotelsPackageWrapper from '../../screens/hotelsStack/SingleHotelPackageWrapper';

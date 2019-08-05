@@ -49,6 +49,7 @@ node_modules/react-native/flow/
 app/core/config/flow-typed/
 
 [options]
+sharedmemory.hash_table_pow=21
 emoji=true
 
 esproposal.optional_chaining=enable

@@ -13,11 +13,7 @@ type Props = {|
 
 export default function RoomImage({ thumbnailUrl, openGallery }: Props) {
   return (
-    <Touchable
-      onPress={openGallery}
-      disabled={thumbnailUrl == null}
-      delayPressIn={40}
-    >
+    <Touchable onPress={openGallery} disabled={thumbnailUrl == null} delayPressIn={40}>
       <View>
         <NetworkImage source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
         <View style={styles.galleryButton}>

@@ -9,10 +9,7 @@ import {
   commitLocalUpdate,
   type RelayProp,
 } from '@kiwicom/mobile-relay';
-import {
-  type NavigationType,
-  withNavigation,
-} from '@kiwicom/mobile-navigation';
+import { type NavigationType, withNavigation } from '@kiwicom/mobile-navigation';
 import { Alert } from '@kiwicom/mobile-localization';
 
 import RoomPicker from '../roomPicker/RoomPicker';
@@ -91,9 +88,7 @@ export function RoomRow(props: Props) {
       hotelName: roomTitle,
       images: photos,
     });
-    Logger.hotelsGalleryOpened(
-      Logger.HotelGalleryType.HOTELS_GALLERY_TYPE_ROOM,
-    );
+    Logger.hotelsGalleryOpened(Logger.HotelGalleryType.HOTELS_GALLERY_TYPE_ROOM);
   }
 
   // New provider currently does not support lowResUrl, fallback to highResUrl in that case

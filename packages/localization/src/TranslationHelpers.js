@@ -33,13 +33,8 @@ export const getTranslation = (
     const compatibleTranslatedString = translatedString.replace(
       NATIVE_TRANSLATION_PARAM_REGEX,
       (match, variableIndex) => {
-        const ORIGINAL_PARAM_REGEX = new RegExp(
-          `__(${variableIndex}_)?([a-zA-Z-_]+)__`,
-          'g',
-        );
-        const originalParamMatches = defaultTranslation.match(
-          ORIGINAL_PARAM_REGEX,
-        );
+        const ORIGINAL_PARAM_REGEX = new RegExp(`__(${variableIndex}_)?([a-zA-Z-_]+)__`, 'g');
+        const originalParamMatches = defaultTranslation.match(ORIGINAL_PARAM_REGEX);
 
         if (originalParamMatches == null || originalParamMatches.length !== 1) {
           console.warn(

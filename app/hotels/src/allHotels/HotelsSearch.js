@@ -1,16 +1,8 @@
 // @flow
 
 import * as React from 'react';
-import {
-  GeneralError,
-  OfflineScreen,
-  Logger,
-  Translation,
-} from '@kiwicom/mobile-shared';
-import {
-  PublicApiRenderer,
-  type GraphQLTaggedNode,
-} from '@kiwicom/mobile-relay';
+import { GeneralError, OfflineScreen, Logger, Translation } from '@kiwicom/mobile-shared';
+import { PublicApiRenderer, type GraphQLTaggedNode } from '@kiwicom/mobile-relay';
 
 import CloseModal from '../components/CloseModal';
 
@@ -42,9 +34,7 @@ export default class HotelsSearch extends React.Component<Props> {
       return (
         <GeneralError
           testID="render-error"
-          errorMessage={
-            <Translation id="hotels_search.all_hotels_search.date_error" />
-          }
+          errorMessage={<Translation id="hotels_search.all_hotels_search.date_error" />}
         />
       );
     }

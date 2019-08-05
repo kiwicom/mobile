@@ -41,10 +41,7 @@ export default class Playground extends React.Component<Props> {
     return {
       title: 'Playground',
       headerLeft: (
-        <HeaderBackButton
-          tintColor={defaultTokens.paletteProductNormal}
-          onPress={goBack}
-        />
+        <HeaderBackButton tintColor={defaultTokens.paletteProductNormal} onPress={goBack} />
       ),
     };
   };
@@ -55,30 +52,19 @@ export default class Playground extends React.Component<Props> {
   };
 
   render() {
-    if (
-      !Object.prototype.hasOwnProperty.call(
-        PlaygroundRenderer.components,
-        this.props.name,
-      )
-    ) {
-      return (
-        <Translation
-          passThrough={`Component ${this.props.name} no longer exists`}
-        />
-      );
+    if (!Object.prototype.hasOwnProperty.call(PlaygroundRenderer.components, this.props.name)) {
+      return <Translation passThrough={`Component ${this.props.name} no longer exists`} />;
     }
     return (
       <Dimensions.Provider>
         <ScrollView>
-          {PlaygroundRenderer.components[this.props.name].components.map(
-            (component, index) => {
-              return (
-                <PlaygroundSection key={index} index={index}>
-                  {component}
-                </PlaygroundSection>
-              );
-            },
-          )}
+          {PlaygroundRenderer.components[this.props.name].components.map((component, index) => {
+            return (
+              <PlaygroundSection key={index} index={index}>
+                {component}
+              </PlaygroundSection>
+            );
+          })}
         </ScrollView>
       </Dimensions.Provider>
     );

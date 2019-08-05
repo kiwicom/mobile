@@ -51,10 +51,7 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
     });
   }
 
-  handleShouldSetPanResponder = (
-    evt: PressEvent,
-    gestureState: GestureState,
-  ) => {
+  handleShouldSetPanResponder = (evt: PressEvent, gestureState: GestureState) => {
     return (
       evt.nativeEvent.touches.length === 1 &&
       !this.gestureIsClick(gestureState) &&
@@ -91,23 +88,13 @@ export default class VerticalSwipeResponder extends React.Component<Props> {
   isValidHorizontalSwipe = (gestureState: GestureState) => {
     const { vx, dy } = gestureState;
     const { velocityThreshold, directionalOffsetThreshold } = this.swipeConfig;
-    return this.isValidSwipe(
-      vx,
-      velocityThreshold,
-      dy,
-      directionalOffsetThreshold,
-    );
+    return this.isValidSwipe(vx, velocityThreshold, dy, directionalOffsetThreshold);
   };
 
   isValidVerticalSwipe = (gestureState: GestureState) => {
     const { vy, dx } = gestureState;
     const { velocityThreshold, directionalOffsetThreshold } = this.swipeConfig;
-    return this.isValidSwipe(
-      vy,
-      velocityThreshold,
-      dx,
-      directionalOffsetThreshold,
-    );
+    return this.isValidSwipe(vy, velocityThreshold, dx, directionalOffsetThreshold);
   };
 
   isValidSwipe = (

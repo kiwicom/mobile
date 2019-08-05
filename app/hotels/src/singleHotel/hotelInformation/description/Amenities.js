@@ -47,9 +47,7 @@ export class Amenities extends React.Component<Props, State> {
     }
     return (
       <View style={styles.amenitiesContainer}>
-        <DescriptionTitle
-          title={<Translation id="single_hotel.description.equipment" />}
-        />
+        <DescriptionTitle title={<Translation id="single_hotel.description.equipment" />} />
         <View style={styles.amenities}>
           {listToRender.map(amenity => {
             return (
@@ -66,9 +64,7 @@ export class Amenities extends React.Component<Props, State> {
               <Text style={styles.lessMoreButton}>
                 {collapsed ? (
                   <TranslationFragment>
-                    <Translation
-                      passThrough={`+${fullList.length - shortlist.length} `}
-                    />
+                    <Translation passThrough={`+${fullList.length - shortlist.length} `} />
                     <Translation id="single_hotel.description.facilities.show_more" />
                   </TranslationFragment>
                 ) : (

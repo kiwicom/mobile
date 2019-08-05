@@ -7,15 +7,10 @@ const hexToRgba = (hex: string, opacity: number): string => {
     return r + r + g + g + b + b;
   });
 
-  const result = /^#?(?<red>[a-f\d]{2})(?<green>[a-f\d]{2})(?<blue>[a-f\d]{2})$/i.exec(
-    replacedHex,
-  );
+  const result = /^#?(?<red>[a-f\d]{2})(?<green>[a-f\d]{2})(?<blue>[a-f\d]{2})$/i.exec(replacedHex);
   const { red, green, blue } = result?.groups ?? {};
   return result
-    ? `rgba(${parseInt(red, 16)}, ${parseInt(green, 16)}, ${parseInt(
-        blue,
-        16,
-      )}, ${opacity})`
+    ? `rgba(${parseInt(red, 16)}, ${parseInt(green, 16)}, ${parseInt(blue, 16)}, ${opacity})`
     : 'rgba(0,0,0,0)';
 };
 

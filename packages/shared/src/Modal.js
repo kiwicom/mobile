@@ -3,7 +3,7 @@
 import * as React from 'react';
 import ReactModal from 'react-native-modal';
 
-import type { StylePropType } from '../index';
+import type { StylePropType } from '../types/Styles';
 
 // props not exact - additional properties allowed
 type Props = {|

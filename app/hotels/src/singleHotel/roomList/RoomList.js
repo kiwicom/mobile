@@ -25,10 +25,7 @@ class RoomList extends React.Component<Props> {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          <Translation
-            id="single_hotel.room_list.rooms"
-            textTransform="uppercase"
-          />
+          <Translation id="single_hotel.room_list.rooms" textTransform="uppercase" />
         </Text>
         {data.map((availableRoom, index) => (
           <React.Fragment key={availableRoom?.id}>

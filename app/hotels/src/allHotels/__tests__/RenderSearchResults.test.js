@@ -25,8 +25,7 @@ it('initialises correctly when it should show list', () => {
       <RenderSearchResults {...defaultProps()} />
     </SearchResultsContext.Provider>,
   );
-  expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
-    .toMatchInlineSnapshot(`
+  expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style).toMatchInlineSnapshot(`
     Array [
       Object {
         "bottom": 0,
@@ -45,8 +44,7 @@ it('initialises correctly when it should show list', () => {
       },
     ]
   `);
-  expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
-    .toMatchInlineSnapshot(`
+  expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style).toMatchInlineSnapshot(`
         Array [
           Object {
             "bottom": 0,
@@ -73,8 +71,7 @@ it('initialises correctly when it should show map', () => {
       <RenderSearchResults {...defaultProps()} />,
     </SearchResultsContext.Provider>,
   );
-  expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style)
-    .toMatchInlineSnapshot(`
+  expect(wrapper.root.findByProps({ testID: 'list-wrapper' }).props.style).toMatchInlineSnapshot(`
     Array [
       Object {
         "bottom": 0,
@@ -93,8 +90,7 @@ it('initialises correctly when it should show map', () => {
       },
     ]
   `);
-  expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style)
-    .toMatchInlineSnapshot(`
+  expect(wrapper.root.findByProps({ testID: 'map-wrapper' }).props.style).toMatchInlineSnapshot(`
         Array [
           Object {
             "bottom": 0,

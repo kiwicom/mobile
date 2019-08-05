@@ -2,7 +2,7 @@
 
 import { StyleSheet, Platform } from 'react-native'; // eslint-disable-line no-restricted-imports
 
-import type { StyleObjectType, PlatformStyleObjectType } from '../index';
+import type { StyleObjectType, PlatformStyleObjectType } from '../types/Styles';
 
 /**
  * This StyleSheet allows to define platform differences easily:

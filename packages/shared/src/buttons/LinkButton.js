@@ -21,10 +21,7 @@ type Props = {|
 export default function LinkButton(props: Props) {
   return (
     <Button style={styleSheet.link} onPress={props.onPress}>
-      <ButtonTitle
-        style={[styleSheet.text, props.titleStyle]}
-        text={props.title}
-      />
+      <ButtonTitle style={[styleSheet.text, props.titleStyle]} text={props.title} />
     </Button>
   );
 }

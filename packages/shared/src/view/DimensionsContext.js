@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { Dimensions } from 'react-native';
 
-import type { DimensionType } from '../../index';
+import type { DimensionType } from '../../types/Objects';
 
 type ContextType = {|
   +dimensions: DimensionType,

@@ -5,9 +5,7 @@ export type CancellablePromiseType = {|
   promise: Promise<any>,
 |};
 
-const CancellablePromise = (
-  incomingPromise: Promise<any>,
-): CancellablePromiseType => {
+const CancellablePromise = (incomingPromise: Promise<any>): CancellablePromiseType => {
   let resolve;
   let reject;
 

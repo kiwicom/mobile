@@ -31,7 +31,5 @@ it('logs ancillaryPurchased event', () => {
   webView.props.onNavigationStateChange(badUrlEvent);
   webView.props.onNavigationStateChange(loadingEvent);
 
-  expect(
-    NativeModules.RNLoggingModule.ancillaryPurchased,
-  ).toHaveBeenCalledTimes(1);
+  expect(NativeModules.RNLoggingModule.ancillaryPurchased).toHaveBeenCalledTimes(1);
 });

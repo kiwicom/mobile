@@ -5,7 +5,7 @@ import * as React from 'react';
 import Translation from './Translation';
 import Text from './Text';
 import StyleSheet from './PlatformStyleSheet';
-import type { StylePropType } from '../index';
+import type { StylePropType } from '../types/Styles';
 
 type Props = {|
   // number of stars

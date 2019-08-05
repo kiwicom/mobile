@@ -28,13 +28,7 @@ type CreateURIParams = {|
   +version: string,
 |};
 
-export function createURI({
-  checkin,
-  checkout,
-  version,
-  currency,
-  url,
-}: CreateURIParams): ?string {
+export function createURI({ checkin, checkout, version, currency, url }: CreateURIParams): ?string {
   if (url == null || checkin == null || checkout == null) {
     return null;
   }
@@ -52,13 +46,9 @@ export function createURI({
 }
 
 export function BookingPaymentScreen(props: Props) {
-  const {
-    checkin,
-    checkout,
-    currency,
-    version,
-    hotelId,
-  }: HotelsContextState = React.useContext(HotelsContext);
+  const { checkin, checkout, currency, version, hotelId }: HotelsContextState = React.useContext(
+    HotelsContext,
+  );
 
   React.useEffect(() => {
     Logger.ancillaryDisplayed(
@@ -85,10 +75,7 @@ export function BookingPaymentScreen(props: Props) {
     <PaymentQueryRenderer
       render={renderInner}
       query={graphql`
-        query BookingPaymentScreenQuery(
-          $hotelId: ID
-          $roomConfig: [RoomConfigInput]
-        ) {
+        query BookingPaymentScreenQuery($hotelId: ID, $roomConfig: [RoomConfigInput]) {
           hotelPaymentUrls(hotelId: $hotelId, roomConfig: $roomConfig) {
             bookingComPaymentUrl
           }

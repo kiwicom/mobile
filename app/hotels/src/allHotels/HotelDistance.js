@@ -21,24 +21,15 @@ function HotelDistance({ hotel }: Props) {
     return null;
   }
 
-  return (
-    <Text style={style.text}>
-      {getDistanceText(distance, CITY_CENTER_RADIUS)}
-    </Text>
-  );
+  return <Text style={style.text}>{getDistanceText(distance, CITY_CENTER_RADIUS)}</Text>;
 }
 
-export function getDistanceText(
-  distanceFromCenter: number,
-  cityCenterRadius: number,
-) {
+export function getDistanceText(distanceFromCenter: number, cityCenterRadius: number) {
   const distanceFromCityCenter = distanceFromCenter - cityCenterRadius;
   let distanceText = <Translation passThrough="" />;
 
   if (distanceFromCenter <= cityCenterRadius) {
-    distanceText = (
-      <Translation id="hotels_search.hotel_distance.in_city_center" />
-    );
+    distanceText = <Translation id="hotels_search.hotel_distance.in_city_center" />;
   } else if (distanceFromCityCenter < 1) {
     // 1 km from city center radius shows in meters
     // Round up to 100 m

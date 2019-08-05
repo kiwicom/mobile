@@ -38,9 +38,7 @@ export default function TextButton(props: Props) {
           props.type === 'secondary'
             ? styleSheet.buttonTextSecondary
             : styleSheet.buttonTextPrimary,
-          props.disabled &&
-            props.type === 'primary' &&
-            styleSheet.buttonTextPrimaryDisabled,
+          props.disabled && props.type === 'primary' && styleSheet.buttonTextPrimaryDisabled,
         ]}
         text={props.title}
       />

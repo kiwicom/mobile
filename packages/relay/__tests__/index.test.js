@@ -2,11 +2,11 @@
 
 import Relay from '@kiwicom/relay';
 
-import { commitMutation } from '..';
-
 import ConnectionManager from '../src/ConnectionManager';
 import PrivateEnvironment from '../src/PrivateEnvironment';
 import PublicEnvironment from '../src/PublicEnvironment';
+
+import { commitMutation } from '..';
 
 jest.mock('@kiwicom/relay', () => ({
   commitMutation: jest.fn(),
@@ -47,10 +47,7 @@ describe('commitMutation', () => {
     // $FlowExpectedError: Ok to pass string for testing
     commitMutation(config);
     expect(Relay.commitMutation).not.toHaveBeenCalled();
-    expect(config.onCompleted).toHaveBeenCalledWith(
-      { data: null },
-      'No connection',
-    );
+    expect(config.onCompleted).toHaveBeenCalledWith({ data: null }, 'No connection');
   });
 
   it('does calls commit mutation and PrivateEnvironment if there is connection and a token', () => {

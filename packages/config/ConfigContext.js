@@ -43,11 +43,7 @@ class Provider extends React.Component<Props, State> {
   }
 
   render() {
-    return (
-      <ContextProvider value={this.state}>
-        {this.props.children}
-      </ContextProvider>
-    );
+    return <ContextProvider value={this.state}>{this.props.children}</ContextProvider>;
   }
 }
 

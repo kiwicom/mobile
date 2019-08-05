@@ -2,12 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  ButtonPopup,
-  Text,
-  StyleSheet,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { ButtonPopup, Text, StyleSheet, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SeparatorFullWidth } from '@kiwicom/mobile-navigation';
 
@@ -72,10 +67,7 @@ export default class OrderPopup extends React.Component<Props, State> {
           <React.Fragment key={option.key}>
             {index !== 0 && (
               <View style={styles.separator}>
-                <SeparatorFullWidth
-                  color={defaultTokens.paletteInkLighter}
-                  height={0.5}
-                />
+                <SeparatorFullWidth color={defaultTokens.paletteInkLighter} height={0.5} />
               </View>
             )}
             <OrderCheckbox

@@ -27,19 +27,9 @@ it('returns MissingImage component for invalid URI', () => {
 });
 
 it('returns MissingImage component when data saver enabled', () => {
-  renderer.render(
-    <NetworkImage
-      dataSaverEnabled={true}
-      source={{ uri: 'http://image.png' }}
-    />,
-  );
+  renderer.render(<NetworkImage dataSaverEnabled={true} source={{ uri: 'http://image.png' }} />);
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 
-  renderer.render(
-    <NetworkImage
-      dataSaverEnabled={false}
-      source={{ uri: 'http://image.png' }}
-    />,
-  );
+  renderer.render(<NetworkImage dataSaverEnabled={false} source={{ uri: 'http://image.png' }} />);
   expect(renderer.getRenderOutput()).toMatchSnapshot();
 });

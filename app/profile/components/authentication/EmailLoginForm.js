@@ -35,18 +35,14 @@ export default class EmailLoginForm extends React.Component<Props, State> {
     });
 
   handleFormSubmit = () =>
-    this.tryLogIn(
-      this.state.username,
-      this.state.password,
-      (response, errors) => {
-        if (errors) {
-          // TODO: onFailure event with errors
-        } else {
-          this.props.onSuccess(createAccessToken(response && response.token));
-        }
-        Keyboard.dismiss();
-      },
-    );
+    this.tryLogIn(this.state.username, this.state.password, (response, errors) => {
+      if (errors) {
+        // TODO: onFailure event with errors
+      } else {
+        this.props.onSuccess(createAccessToken(response && response.token));
+      }
+      Keyboard.dismiss();
+    });
 
   tryLogIn = (username: string, password: string, callback: Callback) => {
     this.setState({ loading: true });
@@ -77,9 +73,7 @@ export default class EmailLoginForm extends React.Component<Props, State> {
           title={
             <Translation
               id={
-                this.state.loading
-                  ? 'core.authentication.logging_in'
-                  : 'core.authentication.login'
+                this.state.loading ? 'core.authentication.logging_in' : 'core.authentication.login'
               }
             />
           }

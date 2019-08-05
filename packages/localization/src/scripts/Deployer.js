@@ -31,13 +31,7 @@ const _addPrefix = (key: string) => {
 
 // keyName could be both keys fetched from server and keyName passed from vocabulary
 const _getScreenshotPath = (keyName: string) => {
-  return path.join(
-    __dirname,
-    '..',
-    '..',
-    'screenshots',
-    `${_removePrefix(keyName)}.jpg`,
-  );
+  return path.join(__dirname, '..', '..', 'screenshots', `${_removePrefix(keyName)}.jpg`);
 };
 
 const findKeyIdByName = (keyName: string) => page => {

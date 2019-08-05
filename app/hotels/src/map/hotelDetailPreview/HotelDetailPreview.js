@@ -2,19 +2,10 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  StyleSheet,
-  NetworkImage,
-  Price,
-  Text,
-  Stars,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, NetworkImage, Price, Text, Stars, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
-import HotelDetailContext, {
-  type State as HotelDetailState,
-} from './HotelDetailPreviewContext';
+import HotelDetailContext, { type State as HotelDetailState } from './HotelDetailPreviewContext';
 import HotelReviewScore from '../../components/HotelReviewScore';
 
 type Props = {|
@@ -34,9 +25,7 @@ export default function HotelDetailPreview({
   score,
   stars: propsStars,
 }: Props) {
-  const { containerWidth }: HotelDetailState = React.useContext(
-    HotelDetailContext,
-  );
+  const { containerWidth }: HotelDetailState = React.useContext(HotelDetailContext);
   const stars = propsStars ?? 0;
 
   return (

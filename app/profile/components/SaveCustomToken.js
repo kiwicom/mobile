@@ -1,13 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Text, TextInput, Button, StyleSheet, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|

@@ -25,54 +25,37 @@ const getErrors = (errors: $PropertyType<HotelsContextState, 'errors'>) => {
   }
   if (errors.beforeToday === true) {
     errorMessages.push(
-      <Translation
-        key="checkin"
-        id="hotels_search.new_all_hotels.checkin_before_today"
-      />,
+      <Translation key="checkin" id="hotels_search.new_all_hotels.checkin_before_today" />,
     );
   }
   if (errors.tooFarFuture === true) {
     errorMessages.push(
-      <Translation
-        key="future"
-        id="hotels_search.new_all_hotels.checkout_too_far_in_future"
-      />,
+      <Translation key="future" id="hotels_search.new_all_hotels.checkout_too_far_in_future" />,
     );
   }
   if (errors.invalidCityId === true) {
     errorMessages.push(
-      <Translation
-        key="cityId"
-        id="hotels_search.new_all_hotels.invalid_cityid"
-      />,
+      <Translation key="cityId" id="hotels_search.new_all_hotels.invalid_cityid" />,
     );
   }
   if (errors.missingDates === true) {
     errorMessages.push(
-      <Translation
-        key="missing dates"
-        id="hotels_search.new_all_hotels.missing_dates"
-      />,
+      <Translation key="missing dates" id="hotels_search.new_all_hotels.missing_dates" />,
     );
   }
   return errorMessages.length === 0 ? null : errorMessages;
 };
 
 const NewAllHotels = () => {
-  const { cityId, errors }: HotelsContextState = React.useContext(
-    HotelsContext,
-  );
+  const { cityId, errors }: HotelsContextState = React.useContext(HotelsContext);
 
   const errorMessages = getErrors(errors);
-  const SearchProvider =
-    cityId === null ? <Stay22HotelsSearch /> : <NewAllHotelsSearch />;
+  const SearchProvider = cityId === null ? <Stay22HotelsSearch /> : <NewAllHotelsSearch />;
 
   return (
     <View style={styles.container}>
       <View style={styles.absoluteFill}>
-        {errorMessages !== null && (
-          <InputErrorScreen errorMessages={errorMessages} />
-        )}
+        {errorMessages !== null && <InputErrorScreen errorMessages={errorMessages} />}
         {errorMessages === null && SearchProvider}
       </View>
     </View>

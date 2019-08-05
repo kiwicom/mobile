@@ -5,10 +5,7 @@ import { ConfigContext } from '@kiwicom/mobile-config';
 import { Dimensions, GestureController } from '@kiwicom/mobile-shared';
 
 import HotelsFilterContext from '../HotelsFilterContext';
-import HotelsContext, {
-  type RoomConfigurationType,
-  type ApiProvider,
-} from '../HotelsContext';
+import HotelsContext, { type RoomConfigurationType, type ApiProvider } from '../HotelsContext';
 import SearchResultsContext from '../navigation/allHotels/SearchResultsContext';
 import type { Coordinates } from '../CoordinatesType';
 

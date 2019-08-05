@@ -3,13 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import {
-  Text,
-  StyleSheet,
-  ReadMore,
-  Logger,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Text, StyleSheet, ReadMore, Logger, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import DescriptionTitle from './DescriptionTitle';
@@ -23,9 +17,7 @@ type Props = {|
 
 export const Description = (props: Props) => (
   <View style={styles.container}>
-    <DescriptionTitle
-      title={<Translation id="single_hotel.description.description" />}
-    />
+    <DescriptionTitle title={<Translation id="single_hotel.description.description" />} />
     <ReadMore
       numberOfLines={5}
       truncatedText={<Translation id="single_hotel.description.show_more" />}
