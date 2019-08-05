@@ -41,7 +41,7 @@
     "react": "16.8.6",
     "react-native": "0.60.4",
     "react-native-app-registry-components-to-constants": "0.0.1",
-    "react-native-code-push": "5.6.0"
+    "react-native-code-push": "5.6.1"
   },
   "peerDependencies": {
     "@kiwicom/fetch": "^",
