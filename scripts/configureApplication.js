@@ -65,4 +65,26 @@ if (!fs.existsSync(dotEnvPath)) {
   fs.writeFileSync(dotEnvPath, `SENTRY_DSN=${sentryDsn}`);
 }
 
+log('Patch node crawler');
+const nodeCrawlerPath = path.join(
+  __dirname,
+  '..',
+  'node_modules',
+  'jest-haste-map',
+  'build',
+  'crawlers',
+  'node.js',
+);
+const nodeCrawler = fs.readFileSync(nodeCrawlerPath, 'utf-8');
+
+// https://github.com/facebook/jest/pull/8558/files
+// This caused an error on our CI
+fs.writeFileSync(
+  nodeCrawlerPath,
+  nodeCrawler.replace(
+    /throw new Error\(`Option 'mapper' isn't supported by the Node crawler`\);/g,
+    '',
+  ),
+);
+
 log('Configuration complete!');

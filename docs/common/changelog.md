@@ -1,9 +1,15 @@
 # Code-push version changelog
 
-- Due to some initial testing, ios is one version behind android.
-v22/v21 means v22 for android and v21 for ios
+## Target versoin 12.0.0
 
-this will be evened out from v24
+- upgrade rnkiwimobile to version `0.0.48`
+
+### v52
+
+- Upgraded react-native to 0.60.4
+- Using hermes
+- Upgraded rest of native modules to latest version.
+- Improve map to list animation
 
 ## Target version 11.0.0
 
