@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Animated, Dimensions, View, InteractionManager } from 'react-native';
+import { Animated, Dimensions, View } from 'react-native';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 import {
   StyleSheet,
@@ -71,7 +71,9 @@ export const RenderSearchResults = (props: Props) => {
           duration: transitionDuration,
           useNativeDriver: true,
         }),
-      ]).start();
+      ]).start(() => {
+        setShouldRenderMap(true);
+      });
     }
 
     function animateToList() {
@@ -91,18 +93,14 @@ export const RenderSearchResults = (props: Props) => {
           duration: transitionDuration,
           useNativeDriver: true,
         }),
-      ]).start();
+      ]).start(() => {
+        setShouldRenderMap(false);
+      });
     }
     if (show === 'list') {
       animateToList();
-      InteractionManager.runAfterInteractions(() => {
-        setShouldRenderMap(false);
-      });
     } else {
       animateToMap();
-      InteractionManager.runAfterInteractions(() => {
-        setShouldRenderMap(true);
-      });
     }
   }, [listAnimation, listOpacity, mapAnimation, show, topValue]);
 
