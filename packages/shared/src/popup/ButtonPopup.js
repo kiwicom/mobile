@@ -41,18 +41,12 @@ export default class ButtonPopup extends React.Component<Props> {
               <CloseButton onPress={this.onClose} />
             </View>
             <View style={styles.button}>
-              <TextButton
-                title={this.props.buttonTitle}
-                onPress={this.onSave}
-                type="primary"
-              />
+              <TextButton title={this.props.buttonTitle} onPress={this.onSave} type="primary" />
             </View>
           </View>
         }
       >
-        <View
-          style={[styles.content, this.props.style && this.props.style.content]}
-        >
+        <View style={[styles.content, this.props.style && this.props.style.content]}>
           {this.props.children}
         </View>
       </Popup>

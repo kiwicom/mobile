@@ -12,32 +12,18 @@ const onChange = () => {};
 describe('Slider', () => {
   it('renders', () => {
     PlaygroundRenderer.render(
-      <Slider
-        startValue={1}
-        endValue={50}
-        onChange={onChange}
-        min={1}
-        max={50}
-      />,
+      <Slider startValue={1} endValue={50} onChange={onChange} min={1} max={50} />,
     );
   });
 
   it('renders correctly with all values equal', () => {
     PlaygroundRenderer.render(
-      <Slider
-        startValue={500}
-        endValue={500}
-        onChange={onChange}
-        min={500}
-        max={500}
-      />,
+      <Slider startValue={500} endValue={500} onChange={onChange} min={500} max={500} />,
     );
   });
 
   it('renders with endValue undefined', () => {
-    PlaygroundRenderer.render(
-      <Slider startValue={1} onChange={onChange} min={1} max={50} />,
-    );
+    PlaygroundRenderer.render(<Slider startValue={1} onChange={onChange} min={1} max={50} />);
   });
 });
 
@@ -53,12 +39,8 @@ it('renders one label correctly', () => {
     />,
   );
 
-  expect(
-    wrapper.root.findByProps({ testID: 'labelsContainer' }),
-  ).not.toBeNull();
-  expect(wrapper.root.findByType(Translation).props.passThrough).toBe(
-    'startLabel',
-  );
+  expect(wrapper.root.findByProps({ testID: 'labelsContainer' })).not.toBeNull();
+  expect(wrapper.root.findByType(Translation).props.passThrough).toBe('startLabel');
 });
 
 it('renders two labels correctly', () => {
@@ -74,9 +56,7 @@ it('renders two labels correctly', () => {
     />,
   );
 
-  expect(
-    wrapper.root.findByProps({ testID: 'labelsContainer' }),
-  ).not.toBeNull();
+  expect(wrapper.root.findByProps({ testID: 'labelsContainer' })).not.toBeNull();
 
   expect(wrapper.root.findByProps({ testID: 'startLabel' })).not.toBeNull();
   expect(wrapper.root.findByProps({ testID: 'endLabel' })).not.toBeNull();
@@ -84,13 +64,7 @@ it('renders two labels correctly', () => {
 
 it('renders correctly without labels', () => {
   const wrapper = create(
-    <Slider
-      startValue={500}
-      endValue={500}
-      onChange={onChange}
-      min={500}
-      max={500}
-    />,
+    <Slider startValue={500} endValue={500} onChange={onChange} min={500} max={500} />,
   );
 
   expect(() => {

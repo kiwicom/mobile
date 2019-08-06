@@ -4,10 +4,7 @@ import * as React from 'react';
 import { graphql } from '@kiwicom/mobile-relay';
 import { DateFormatter } from '@kiwicom/mobile-localization';
 
-import {
-  HotelsFilterContext,
-  type HotelsFilterState,
-} from '../HotelsFilterContext';
+import { HotelsFilterContext, type HotelsFilterState } from '../HotelsFilterContext';
 import { type HotelsContextState, HotelsContext } from '../HotelsContext';
 import type { NewAllHotelsSearchQueryResponse } from './__generated__/NewAllHotelsSearchQuery.graphql';
 import HotelsPaginationContainer from './HotelsPaginationContainer';
@@ -26,9 +23,7 @@ const query = graphql`
   }
 `;
 
-const renderAllHotelsSearchList = (
-  propsFromRenderer: NewAllHotelsSearchQueryResponse,
-) => {
+const renderAllHotelsSearchList = (propsFromRenderer: NewAllHotelsSearchQueryResponse) => {
   return <HotelsPaginationContainer data={propsFromRenderer} />;
 };
 

@@ -9,12 +9,7 @@ type Props = {|
 |};
 
 function IconLoading(props: Props) {
-  return (
-    <ActivityIndicator
-      size={props.size}
-      color={defaultTokens.paletteProductNormal}
-    />
-  );
+  return <ActivityIndicator size={props.size} color={defaultTokens.paletteProductNormal} />;
 }
 
 IconLoading.defaultProps = {

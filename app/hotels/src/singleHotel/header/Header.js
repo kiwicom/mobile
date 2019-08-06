@@ -14,10 +14,7 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import GalleryButton from '../galleryButton/GalleryButton';
 import type { Header_hotel as HotelType } from './__generated__/Header_hotel.graphql';
@@ -49,9 +46,7 @@ export class Header extends React.Component<Props> {
       hotelName,
       images,
     });
-    Logger.hotelsGalleryOpened(
-      Logger.HotelGalleryType.HOTELS_GALLERY_TYPE_HOTEL,
-    );
+    Logger.hotelsGalleryOpened(Logger.HotelGalleryType.HOTELS_GALLERY_TYPE_HOTEL);
   };
 
   render() {
@@ -60,11 +55,7 @@ export class Header extends React.Component<Props> {
     const photosCount = hotel?.photos?.edges?.length ?? 0;
 
     return (
-      <Touchable
-        onPress={this.openGallery}
-        delayPressIn={40}
-        testID="hotel-openGallery"
-      >
+      <Touchable onPress={this.openGallery} delayPressIn={40} testID="hotel-openGallery">
         <View>
           <NetworkImage style={styles.image} source={{ uri: mainPhotoUrl }} />
           <View style={[styles.nameAndRatingContainer]}>
@@ -145,8 +136,6 @@ const styles = StyleSheet.create({
   galleryButton: {
     position: 'absolute',
     start: 12,
-    top: Device.isIPhoneX
-      ? galleryButtonOffset + iPhoneXExtraOffset
-      : galleryButtonOffset,
+    top: Device.isIPhoneX ? galleryButtonOffset + iPhoneXExtraOffset : galleryButtonOffset,
   },
 });

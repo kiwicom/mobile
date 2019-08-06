@@ -1,11 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  Translation,
-  TranslationFragment,
-  type TranslationType,
-} from '@kiwicom/mobile-shared';
+import { Translation, TranslationFragment, type TranslationType } from '@kiwicom/mobile-shared';
 
 import StarsPopup from './StarsPopup';
 import FilterButton from '../FilterButton';

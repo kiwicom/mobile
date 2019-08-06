@@ -72,9 +72,7 @@ function WideLayout(props: Props) {
   return (
     <Layout>
       <View style={styleSheet.wrapper}>
-        <View style={[styleSheet.menu, styleSheet.menuWide]}>
-          {props.menuComponent}
-        </View>
+        <View style={[styleSheet.menu, styleSheet.menuWide]}>{props.menuComponent}</View>
         <View style={styleSheet.container}>{props.containerComponent}</View>
       </View>
     </Layout>

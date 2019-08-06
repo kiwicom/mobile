@@ -1,13 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import {
-  StyleSheet,
-  Price,
-  Text,
-  type OnLayout,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, Price, Text, type OnLayout, Translation } from '@kiwicom/mobile-shared';
 import { View } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -31,9 +25,7 @@ const SummaryRow = ({ text, price }: Props) => {
   }
 
   const maxWidth =
-    containerWidth != null && priceWidth != null
-      ? containerWidth - priceWidth - SPACING
-      : 0;
+    containerWidth != null && priceWidth != null ? containerWidth - priceWidth - SPACING : 0;
 
   return (
     <View style={styles.row} onLayout={onContainerLayout}>

@@ -38,9 +38,7 @@ type Props = {|
  */
 export default function MenuGroup(props: Props) {
   let separator = null;
-  const children = Array.isArray(props.children)
-    ? props.children
-    : [props.children];
+  const children = Array.isArray(props.children) ? props.children : [props.children];
 
   return children.map<React.Node>((child, index) => {
     const wrappedChild = (

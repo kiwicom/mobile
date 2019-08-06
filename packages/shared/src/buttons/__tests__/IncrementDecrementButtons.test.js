@@ -6,11 +6,7 @@ import renderer from 'react-test-renderer';
 import IncrementDecrementButtons from '../IncrementDecrementButtons';
 import Touchable from '../../Touchable';
 
-const renderButtons = (
-  onIncrement: Function,
-  onDecrement: Function,
-  number: number,
-) => {
+const renderButtons = (onIncrement: Function, onDecrement: Function, number: number) => {
   return renderer.create(
     <IncrementDecrementButtons
       onIncrement={onIncrement}

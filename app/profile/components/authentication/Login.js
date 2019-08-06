@@ -14,8 +14,6 @@ export default class Login extends React.Component<Props> {
   };
 
   render() {
-    return (
-      <EmailLoginForm key="email" onSuccess={this.handleSuccessfulLogin} />
-    );
+    return <EmailLoginForm key="email" onSuccess={this.handleSuccessfulLogin} />;
   }
 }

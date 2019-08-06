@@ -22,10 +22,7 @@ export class BeddingInfo extends React.Component<Props> {
       const amount = beddingOption?.amount;
       if (index > 0) {
         beddingTranslation.push(
-          <Translation
-            key={`key-${index}`}
-            id="single_hotel.bedding_info.or"
-          />,
+          <Translation key={`key-${index}`} id="single_hotel.bedding_info.or" />,
         );
       }
       beddingTranslation.push(
@@ -45,19 +42,11 @@ export class BeddingInfo extends React.Component<Props> {
     return (
       <View>
         <View style={styles.row}>
-          <Icon
-            name="accommodation"
-            style={styles.icon}
-            color={defaultTokens.colorTextSecondary}
-          />
+          <Icon name="accommodation" style={styles.icon} color={defaultTokens.colorTextSecondary} />
           <Text style={styles.text}>{this.formatBeddingInfo()}</Text>
         </View>
         <View style={styles.row}>
-          <Icon
-            name="passengers"
-            style={styles.icon}
-            color={defaultTokens.colorTextSecondary}
-          />
+          <Icon name="passengers" style={styles.icon} color={defaultTokens.colorTextSecondary} />
           <Text style={styles.text}>
             <Translation passThrough={' '} />
             <Translation

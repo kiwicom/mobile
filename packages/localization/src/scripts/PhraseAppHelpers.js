@@ -32,31 +32,22 @@ export const _fetch = async (
   method?: string,
   extraHeaders?: Object,
 ) => {
-  const result = await fetch(
-    `https://api.phraseapp.com/api/v2/projects/${projectId}${urlPath}`,
-    {
-      method,
-      headers: {
-        'User-Agent': 'React Native App',
-        Authorization: `token ${
-          PHRASE_APP_TOKEN != null ? PHRASE_APP_TOKEN : '###'
-        }`,
-        ...(extraHeaders ?? {}),
-      },
-      body: parameters,
+  const result = await fetch(`https://api.phraseapp.com/api/v2/projects/${projectId}${urlPath}`, {
+    method,
+    headers: {
+      'User-Agent': 'React Native App',
+      Authorization: `token ${PHRASE_APP_TOKEN != null ? PHRASE_APP_TOKEN : '###'}`,
+      ...(extraHeaders ?? {}),
     },
-  );
+    body: parameters,
+  });
   if (method === HttpMethod.DELETE) {
     return result;
   }
   return result.json();
 };
 
-export const _paginate = async (
-  paginateFn: Function,
-  callbackFn: Function,
-  page: number = 1,
-) => {
+export const _paginate = async (paginateFn: Function, callbackFn: Function, page: number = 1) => {
   const response = await paginateFn(page);
   for (const key of response) {
     await callbackFn(key);

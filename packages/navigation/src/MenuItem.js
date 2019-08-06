@@ -57,18 +57,11 @@ function MenuItem(props: Props) {
   return (
     <Touchable onPress={props.onPress} style={styleSheet.wrapper}>
       <React.Fragment>
-        {props.icon && (
-          <MenuItemIcon
-            iconComponent={props.icon}
-            invertColors={props.isActive}
-          />
-        )}
+        {props.icon && <MenuItemIcon iconComponent={props.icon} invertColors={props.isActive} />}
 
         <View style={styleSheet.middleWrapper}>
           <Text style={styleSheet.title}>{props.title}</Text>
-          {props.description && (
-            <Text style={styleSheet.description}>{props.description}</Text>
-          )}
+          {props.description && <Text style={styleSheet.description}>{props.description}</Text>}
         </View>
 
         {props.actionIcon ? (
@@ -78,10 +71,7 @@ function MenuItem(props: Props) {
             renderOnNarrow={Platform.select({
               ios: (
                 <View style={styleSheet.rightArrow}>
-                  <Icon
-                    name="chevron-right"
-                    color={defaultTokens.paletteProductNormal}
-                  />
+                  <Icon name="chevron-right" color={defaultTokens.paletteProductNormal} />
                 </View>
               ),
               android: null,
@@ -137,9 +127,7 @@ function createStyleSheet(props: Props) {
         color: defaultTokens.colorTextAttention,
       },
       ios: {
-        color: props.isActive
-          ? defaultTokens.paletteWhite
-          : defaultTokens.colorTextAttention,
+        color: props.isActive ? defaultTokens.paletteWhite : defaultTokens.colorTextAttention,
       },
     },
     description: {
@@ -148,9 +136,7 @@ function createStyleSheet(props: Props) {
         color: defaultTokens.colorTextSecondary,
       },
       ios: {
-        color: props.isActive
-          ? defaultTokens.paletteWhite
-          : defaultTokens.colorTextSecondary,
+        color: props.isActive ? defaultTokens.paletteWhite : defaultTokens.colorTextSecondary,
       },
     },
     rightArrow: {

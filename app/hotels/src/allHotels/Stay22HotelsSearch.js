@@ -9,14 +9,9 @@ import type { Stay22HotelsSearchQueryResponse } from './__generated__/Stay22Hote
 import Stay22PaginationContainer from './Stay22PaginationContainer';
 import HotelsSearch from './HotelsSearch';
 import useHotelsFilter from './useHotelsFilter';
-import {
-  HotelsFilterContext,
-  type HotelsFilterState,
-} from '../HotelsFilterContext';
+import { HotelsFilterContext, type HotelsFilterState } from '../HotelsFilterContext';
 
-const renderAllHotelsSearchList = (
-  propsFromRenderer: Stay22HotelsSearchQueryResponse,
-) => {
+const renderAllHotelsSearchList = (propsFromRenderer: Stay22HotelsSearchQueryResponse) => {
   return <Stay22PaginationContainer data={propsFromRenderer} />;
 };
 
@@ -34,10 +29,7 @@ export function Stay22HotelsSearch() {
   const hotelsFilter = useHotelsFilter();
 
   const shouldRenderDateError =
-    checkin === null ||
-    checkout === null ||
-    latitude === null ||
-    longitude === null;
+    checkin === null || checkout === null || latitude === null || longitude === null;
 
   return (
     <HotelsSearch

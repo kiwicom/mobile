@@ -13,9 +13,7 @@ type Props = {|
 
 export default class HotelCityQuery extends React.Component<Props> {
   renderInner = (props: HotelCityType) => {
-    return (
-      <HotelCityList onPress={this.props.onPress} data={props.hotelCities} />
-    );
+    return <HotelCityList onPress={this.props.onPress} data={props.hotelCities} />;
   };
 
   render() {

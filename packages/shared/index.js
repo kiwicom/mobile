@@ -16,12 +16,8 @@ export { default as TextButton } from './src/buttons/TextButton';
 export { default as LinkButton } from './src/buttons/LinkButton';
 export { default as ButtonTitle } from './src/buttons/ButtonTitle';
 export { default as CloseButton } from './src/buttons/CloseButton';
-export {
-  default as TouchableWithoutFeedback,
-} from './src/TouchableWithoutFeedback';
-export {
-  default as IncrementDecrementButtons,
-} from './src/buttons/IncrementDecrementButtons';
+export { default as TouchableWithoutFeedback } from './src/TouchableWithoutFeedback';
+export { default as IncrementDecrementButtons } from './src/buttons/IncrementDecrementButtons';
 export { default as AppleWalletButton } from './src/buttons/AppleWalletButton';
 
 export { default as AgePicker } from './src/forms/AgePicker';
@@ -53,9 +49,7 @@ export { default as TranslationFragment } from './src/TranslationFragment';
 export { default as Duration } from './src/Duration';
 
 export { default as OfflineScreen } from './src/offlineScreen/OfflineScreen';
-export {
-  default as StatusbarBackground,
-} from './src/statusbarBackground/StatusbarBackground';
+export { default as StatusbarBackground } from './src/statusbarBackground/StatusbarBackground';
 export { default as BottomSheetHandle } from './src/BottomSheetHandle';
 
 /**
@@ -72,9 +66,7 @@ export { default as CenteredView } from './src/view/CenteredView';
 export { default as DismissKeyboardView } from './src/view/DismissKeyboardView';
 export { default as LayoutDoubleColumn } from './src/view/LayoutDoubleColumn';
 export { default as LayoutSingleColumn } from './src/view/LayoutSingleColumn';
-export {
-  default as VerticalSwipeResponder,
-} from './src/view/VerticalSwipeResponder';
+export { default as VerticalSwipeResponder } from './src/view/VerticalSwipeResponder';
 export { default as WebView } from './src/WebView';
 export { default as SimpleCard } from './src/SimpleCard';
 
@@ -92,20 +84,14 @@ export { default as RefreshableScrollView } from './src/RefreshableScrollView';
  *  - image components
  */
 export { default as BlackToAlpha } from './images/black-to-alpha-vertical.png';
-export {
-  default as AppleWalletBackground,
-} from './images/apple-wallet-image.jpg';
-export {
-  default as AppleWalletBackgroundTablet,
-} from './images/apple-wallet-image-2x.jpg';
+export { default as AppleWalletBackground } from './images/apple-wallet-image.jpg';
+export { default as AppleWalletBackgroundTablet } from './images/apple-wallet-image-2x.jpg';
 
 export { default as Icon } from './src/icons/Icon';
 
 export { default as NetworkImage } from './src/image/NetworkImage';
 export { default as StretchedImage } from './src/image/StretchedImage';
-export {
-  default as DropMarkerImage,
-} from './src/dropMarker/images/dropmarker.png';
+export { default as DropMarkerImage } from './src/dropMarker/images/dropmarker.png';
 
 /**
  * Non-UI components (components without render output):
@@ -113,10 +99,7 @@ export {
 export { default as Color } from './src/Color';
 export { default as CurrencyFormatter } from './src/CurrencyFormatter';
 export { default as Device } from './src/Device';
-export {
-  default as GeolocationContext,
-  withGeolocationContext,
-} from './src/GeolocationContext';
+export { default as GeolocationContext, withGeolocationContext } from './src/GeolocationContext';
 export { default as GestureController } from './src/GestureController';
 export { default as LayoutAnimation } from './src/LayoutAnimation';
 export { default as Logger } from './src/Logger';
@@ -139,11 +122,7 @@ export type {
   WebViewStateChangeEvent,
 } from './types/Events';
 
-export type {
-  StylePropType,
-  StyleObjectType,
-  PlatformStyleObjectType,
-} from './types/Styles';
+export type { StylePropType, StyleObjectType, PlatformStyleObjectType } from './types/Styles';
 
 export type { DimensionType } from './types/Objects';
 

@@ -20,9 +20,7 @@ type Props = {|
 |};
 
 export default class BookingComSingleHotel extends React.Component<Props> {
-  renderInnerComponent = ({
-    availableHotel,
-  }: BookingComSingleHotelQueryResponse) => (
+  renderInnerComponent = ({ availableHotel }: BookingComSingleHotelQueryResponse) => (
     <HotelDetailScreen
       availableHotel={availableHotel}
       roomsConfiguration={this.props.roomsConfiguration}

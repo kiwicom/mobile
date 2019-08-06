@@ -7,8 +7,6 @@ describe('GestureController', () => {
     const GestureController = require('../GestureController').default;
 
     GestureController.enableGestures('KiwiHotels');
-    expect(
-      NativeModules.RNKiwiGestureController.enableGestures,
-    ).toHaveBeenCalledWith('KiwiHotels');
+    expect(NativeModules.RNKiwiGestureController.enableGestures).toHaveBeenCalledWith('KiwiHotels');
   });
 });

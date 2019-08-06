@@ -28,9 +28,7 @@ export default function HotelAmenities(props: Props) {
       <HotelAmenityCheckbox
         isChecked={props.selectedAmenities.includes(amenity.amenityName)}
         onPress={props.onPress}
-        icon={
-          <Icon name={amenity.icon} style={styles.amenityIcon} size="small" />
-        }
+        icon={<Icon name={amenity.icon} style={styles.amenityIcon} size="small" />}
         amenityName={amenity.amenityName}
         text={amenity.text}
       />

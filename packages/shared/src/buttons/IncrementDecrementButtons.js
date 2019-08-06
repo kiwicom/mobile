@@ -21,9 +21,7 @@ type ButtonProps = {|
 
 const Button = ({ icon, touchable, onPress, testID }: ButtonProps) => {
   const inner = (
-    <View style={[styles.button, touchable ? null : styles.buttonDisabled]}>
-      {icon}
-    </View>
+    <View style={[styles.button, touchable ? null : styles.buttonDisabled]}>{icon}</View>
   );
 
   if (touchable) {
@@ -57,13 +55,7 @@ export default function IncrementDecrementButtons(props: Props) {
   return (
     <View style={styles.row}>
       <Button
-        icon={
-          <Icon
-            name="minus"
-            color={defaultTokens.colorIconSecondary}
-            fontSize={14}
-          />
-        }
+        icon={<Icon name="minus" color={defaultTokens.colorIconSecondary} fontSize={14} />}
         touchable={!disableDecrement}
         onPress={props.onDecrement}
       />
@@ -73,13 +65,7 @@ export default function IncrementDecrementButtons(props: Props) {
         </Text>
       )}
       <Button
-        icon={
-          <Icon
-            name="plus"
-            color={defaultTokens.colorIconSecondary}
-            fontSize={14}
-          />
-        }
+        icon={<Icon name="plus" color={defaultTokens.colorIconSecondary} fontSize={14} />}
         touchable={!disableIncrement}
         onPress={props.onIncrement}
         testID={props.plusButtonTestID}

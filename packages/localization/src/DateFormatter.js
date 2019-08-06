@@ -85,9 +85,9 @@ function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
      * Always returns YYYY-MM-DD at this moment.
      */
     formatForMachine: () => {
-      return `${rawDate.getUTCFullYear()}-${pad(
-        rawDate.getUTCMonth() + 1,
-      )}-${pad(rawDate.getUTCDate())}`;
+      return `${rawDate.getUTCFullYear()}-${pad(rawDate.getUTCMonth() + 1)}-${pad(
+        rawDate.getUTCDate(),
+      )}`;
     },
 
     /**

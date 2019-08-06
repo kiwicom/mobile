@@ -12,10 +12,7 @@ import FreeCancellationFilter from './freeCancellation/FreeCancellationFilter';
 import HotelAmenitiesFilter from './hotelAmenities/HotelAmenitiesFilter';
 import ScoreFilter from './score/ScoreFilter';
 import OrderFilter from './order/OrderFilter';
-import {
-  HotelsFilterContext,
-  type HotelsFilterState,
-} from '../HotelsFilterContext';
+import { HotelsFilterContext, type HotelsFilterState } from '../HotelsFilterContext';
 import Filters from './Filters';
 
 /**
@@ -66,10 +63,7 @@ const FilterStripe = () => {
             amenities={filterParams.hotelAmenities}
             isActive={activeFilters.isHotelAmenitiesActive}
           />
-          <FreeCancellationFilter
-            onChange={setFilter}
-            isActive={filterParams.freeCancellation}
-          />
+          <FreeCancellationFilter onChange={setFilter} isActive={filterParams.freeCancellation} />
         </Filters>
       </ScrollView>
     </View>

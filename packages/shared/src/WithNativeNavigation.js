@@ -12,10 +12,7 @@ type NavigationState = {|
 |};
 
 type InjectedProps = {|
-  onNavigationStateChange: ?(
-    previousState: NavigationState,
-    currentState: NavigationState,
-  ) => void,
+  onNavigationStateChange: ?(previousState: NavigationState, currentState: NavigationState) => void,
   onBackClicked: ?() => void,
 |};
 
@@ -35,14 +32,10 @@ function withNativeNavigation<Props: { ... }>(
       GestureController.enableGestures(moduleName);
     }
 
-    onNavigationStateChange = (
-      previousState: NavigationState,
-      currentState: NavigationState,
-    ) => {
+    onNavigationStateChange = (previousState: NavigationState, currentState: NavigationState) => {
       // Native gesture should only be enabled in the very first screen
       // We also check the nested index in case there is a modal opened
-      this.isEnabled =
-        currentState.index === 0 && !currentState.routes[0].index;
+      this.isEnabled = currentState.index === 0 && !currentState.routes[0].index;
 
       if (this.isEnabled && this.lastCall !== 'enabled') {
         GestureController.enableGestures(moduleName);
@@ -66,9 +59,7 @@ function withNativeNavigation<Props: { ... }>(
     render() {
       return (
         <WrappedComponent
-          onBackClicked={
-            GestureController.isNativeGestureModule ? this.onBackClicked : null
-          }
+          onBackClicked={GestureController.isNativeGestureModule ? this.onBackClicked : null}
           onNavigationStateChange={this.onNavigationStateChange}
           {...this.props}
         />

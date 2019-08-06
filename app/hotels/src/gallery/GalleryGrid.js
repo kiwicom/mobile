@@ -37,11 +37,7 @@ type Props = {|
   +hotelName: string,
   +dimensions: DimensionType,
   +images: Image[],
-  +onGoToGalleryStripe: (
-    hotelName: string,
-    highResImages: string[],
-    imageIndex: number,
-  ) => void,
+  +onGoToGalleryStripe: (hotelName: string, highResImages: string[], imageIndex: number) => void,
 |};
 
 type State = {|
@@ -67,10 +63,7 @@ export default class GalleryGrid extends React.Component<Props, State> {
         </HeaderTitle>
       ),
       headerLeft: (
-        <HeaderBackButton
-          onPress={goBack}
-          tintColor={defaultTokens.paletteProductNormal}
-        />
+        <HeaderBackButton onPress={goBack} tintColor={defaultTokens.paletteProductNormal} />
       ),
     };
   };

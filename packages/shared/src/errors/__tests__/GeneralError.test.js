@@ -8,10 +8,6 @@ import GeneralError from '../GeneralError';
 
 it('renders without crashing', () => {
   expect(
-    renderer.create(
-      <GeneralError
-        errorMessage={<Translation passThrough="Error Message" />}
-      />,
-    ),
+    renderer.create(<GeneralError errorMessage={<Translation passThrough="Error Message" />} />),
   ).toBeTruthy();
 });

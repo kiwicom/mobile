@@ -2,11 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  StyleSheet,
-  AdaptableLayout,
-  CloseButton,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, AdaptableLayout, CloseButton } from '@kiwicom/mobile-shared';
 import { graphql, createFragmentContainer } from '@kiwicom/mobile-relay';
 
 import BookNow from '../bookNow/BookNow';
@@ -32,11 +28,7 @@ function SummaryButtons(props: Props) {
 
       {props.maxPersons > 0 && (
         <View style={styles.bookNowWrapper}>
-          <BookNow
-            rooms={props.rooms}
-            maxPersons={props.maxPersons}
-            amount={props.amount}
-          />
+          <BookNow rooms={props.rooms} maxPersons={props.maxPersons} amount={props.amount} />
         </View>
       )}
     </View>

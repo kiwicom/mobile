@@ -20,16 +20,12 @@ afterEach(() => (Platform.OS = originalPlatform));
 describe('ButtonText', () => {
   it('should uppercase text on android', () => {
     Platform.OS = 'android';
-    renderer.render(
-      <ButtonTitle text={<Translation passThrough="Button text" />} />,
-    );
+    renderer.render(<ButtonTitle text={<Translation passThrough="Button text" />} />);
     expect(renderer.getRenderOutput()).toMatchSnapshot();
   });
   it('should not be uppercased on ios', () => {
     Platform.OS = 'ios';
-    renderer.render(
-      <ButtonTitle text={<Translation passThrough="Button text" />} />,
-    );
+    renderer.render(<ButtonTitle text={<Translation passThrough="Button text" />} />);
     expect(renderer.getRenderOutput()).toMatchSnapshot();
   });
 });

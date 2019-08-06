@@ -24,26 +24,17 @@ export function PaymentWebView(props: Props) {
      * If that will change in the future, we might pass this url as a prop from parent component
      */
     if (!event.loading && event.url.includes('booking.com/confirmation')) {
-      const {
-        ANCILLARY_PROVIDER_BOOKINGCOM,
-        ANCILLARY_PROVIDER_STAY22,
-      } = Logger.Provider;
+      const { ANCILLARY_PROVIDER_BOOKINGCOM, ANCILLARY_PROVIDER_STAY22 } = Logger.Provider;
 
       Logger.ancillaryPurchased(
         Logger.Type.ANCILLARY_STEP_PAYMENT,
-        apiProvider === 'booking'
-          ? ANCILLARY_PROVIDER_BOOKINGCOM
-          : ANCILLARY_PROVIDER_STAY22,
+        apiProvider === 'booking' ? ANCILLARY_PROVIDER_BOOKINGCOM : ANCILLARY_PROVIDER_STAY22,
       );
     }
   }
 
   if (props.url == null) {
-    return (
-      <GeneralError
-        errorMessage={<Translation id="hotels.payment_screen.server_error" />}
-      />
-    );
+    return <GeneralError errorMessage={<Translation id="hotels.payment_screen.server_error" />} />;
   }
   return (
     <WebView

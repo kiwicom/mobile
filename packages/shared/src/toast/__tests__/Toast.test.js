@@ -32,8 +32,7 @@ jest.mock('Animated', () => {
   };
 });
 
-const getWrapper = () =>
-  create(<Toast text={<Translation passThrough="My toast" />} />);
+const getWrapper = () => create(<Toast text={<Translation passThrough="My toast" />} />);
 
 it('renders nothing intially', () => {
   expect(getWrapper()).toMatchSnapshot();

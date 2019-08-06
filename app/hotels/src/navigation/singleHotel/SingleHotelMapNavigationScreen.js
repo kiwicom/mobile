@@ -12,11 +12,7 @@ const SingleHotelMapNavigationScreen = () => {
   return (
     <React.Fragment>
       <StatusBar barStyle="dark-content" />
-      {apiProvider === 'booking' ? (
-        <SingleHotelMapScreen />
-      ) : (
-        <Stay22SingleHotelMapScreen />
-      )}
+      {apiProvider === 'booking' ? <SingleHotelMapScreen /> : <Stay22SingleHotelMapScreen />}
     </React.Fragment>
   );
 };

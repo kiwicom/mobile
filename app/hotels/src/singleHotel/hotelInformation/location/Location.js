@@ -14,10 +14,7 @@ import {
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import gradient from './white-to-alpha-horizontal.png';
 import type { Location_hotel as HotelType } from './__generated__/Location_hotel.graphql';

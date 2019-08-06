@@ -3,12 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import {
-  StyleSheet,
-  StretchedImage,
-  Dimensions,
-  Device,
-} from '@kiwicom/mobile-shared';
+import { StyleSheet, StretchedImage, Dimensions, Device } from '@kiwicom/mobile-shared';
 
 import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import MapView from './MapView';
@@ -56,11 +51,7 @@ function MapScreenWithContext(props: PropsWithContext) {
 
   return (
     <View style={styles.container} testID="allHotels-mapScreen">
-      <MapView
-        data={hotels}
-        selectedIndex={selectedHotelIndex}
-        onSelectMarker={onSelectMarker}
-      />
+      <MapView data={hotels} selectedIndex={selectedHotelIndex} onSelectMarker={onSelectMarker} />
       <View style={styles.underlay}>
         <StretchedImage source={gradient} />
       </View>
@@ -88,9 +79,7 @@ type Props = {|
 |};
 
 class MapScreen extends React.Component<Props> {
-  renderDimension = ({ width }) => (
-    <MapScreenWithContext {...this.props} deviceWidth={width} />
-  );
+  renderDimension = ({ width }) => <MapScreenWithContext {...this.props} deviceWidth={width} />;
 
   render() {
     return <Dimensions.Consumer>{this.renderDimension}</Dimensions.Consumer>;

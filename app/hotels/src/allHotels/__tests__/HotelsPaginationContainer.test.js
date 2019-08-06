@@ -22,10 +22,7 @@ const defaultProps = (stats: Object = { maxPrice: 100, minPrice: 50 }) => ({
   },
 });
 
-const renderComponent = (
-  props: Object = {},
-  setCurrentSearchStats: Function = () => {},
-) =>
+const renderComponent = (props: Object = {}, setCurrentSearchStats: Function = () => {}) =>
   renderer.create(
     <HotelsContext.Provider
       // $FlowExpectedError: Just passing what is needed for the test
@@ -45,10 +42,7 @@ it('calls Logger when mounted', () => {
   const wrapper = renderComponent(defaultProps());
   wrapper.update(); // useEffect is not called on intial render, but when browser is idle, https://github.com/facebook/react/issues/14050#issuecomment-447888631
   wrapper.update();
-  expect(spy).toHaveBeenCalledWith(
-    'ANCILLARY_STEP_RESULTS',
-    'ANCILLARY_PROVIDER_BOOKINGCOM',
-  );
+  expect(spy).toHaveBeenCalledWith('ANCILLARY_STEP_RESULTS', 'ANCILLARY_PROVIDER_BOOKINGCOM');
   expect(spy).toHaveBeenCalledTimes(1);
 });
 

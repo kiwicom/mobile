@@ -34,7 +34,5 @@ it('renders without crashing', () => {
 });
 
 it('renders without crashing with missing data', () => {
-  expect(
-    renderer.render(<Header navigation={navigation} hotel={undefined} />),
-  ).toBeTruthy();
+  expect(renderer.render(<Header navigation={navigation} hotel={undefined} />)).toBeTruthy();
 });

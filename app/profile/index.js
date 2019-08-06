@@ -26,9 +26,7 @@ export default class LoginScreen extends React.Component<{||}, State> {
 
   componentDidMount = async () => {
     const token = await AsyncStorage.getItem('mobile:MMB-Token');
-    const simpleTokenData = await AsyncStorage.getItem(
-      'mobile:MMB-Simple-Token',
-    );
+    const simpleTokenData = await AsyncStorage.getItem('mobile:MMB-Simple-Token');
     if (token != null || simpleTokenData != null) {
       this.setState({ isLoggedIn: true });
     }

@@ -61,11 +61,7 @@ export default function DimensionsProviderWrapper(props: Props) {
   return (
     <Context.Consumer>
       {ctx => {
-        return ctx.dimensions !== null ? (
-          props.children
-        ) : (
-          <DimensionsProvider {...props} />
-        );
+        return ctx.dimensions !== null ? props.children : <DimensionsProvider {...props} />;
       }}
     </Context.Consumer>
   );

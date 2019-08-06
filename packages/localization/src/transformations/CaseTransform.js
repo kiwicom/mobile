@@ -2,10 +2,7 @@
 
 export type SupportedTransformationsType = 'lowercase' | 'uppercase';
 
-const CaseTransform = (
-  text: string,
-  transformation?: SupportedTransformationsType,
-): string => {
+const CaseTransform = (text: string, transformation?: SupportedTransformationsType): string => {
   switch (transformation) {
     case 'uppercase':
       return text.toUpperCase();

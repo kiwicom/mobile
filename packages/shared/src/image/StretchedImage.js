@@ -12,13 +12,7 @@ type Props = {|
 |};
 
 export default function StretchedImage(props: Props) {
-  return (
-    <Image
-      source={props.source}
-      resizeMode="stretch"
-      style={[styles.image, props.style]}
-    />
-  );
+  return <Image source={props.source} resizeMode="stretch" style={[styles.image, props.style]} />;
 }
 
 const styles = StyleSheet.create({

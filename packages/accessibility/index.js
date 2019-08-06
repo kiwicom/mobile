@@ -23,17 +23,11 @@ type AccessibilityTraitsValues =
 export type AccessibilityProps = {|
   accessible?: boolean,
   accessibilityLabel?: string,
-  accessibilityTraits?:
-    | AccessibilityTraitsValues
-    | $ReadOnlyArray<AccessibilityTraitsValues>,
+  accessibilityTraits?: AccessibilityTraitsValues | $ReadOnlyArray<AccessibilityTraitsValues>,
   accessibilityViewIsModal?: boolean, // iOS only
   onAccessibilityTap?: () => void, // iOS only
   onMagicTap?: () => void, // iOS only
-  accessibilityComponentType?:
-    | 'none'
-    | 'button'
-    | 'radiobutton_checked'
-    | 'radiobutton_unchecked',
+  accessibilityComponentType?: 'none' | 'button' | 'radiobutton_checked' | 'radiobutton_unchecked',
   accessibilityLiveRegion?: 'none' | 'polite' | 'assertive', // Android only
   importantForAccessibility?: 'auto' | 'yes' | 'no' | 'no-hide-descendants', // Android only
 |};

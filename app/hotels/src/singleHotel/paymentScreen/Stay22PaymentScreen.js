@@ -34,10 +34,7 @@ function Stay22PaymentScreen(props: Props) {
     <PaymentQueryRenderer
       render={renderInner}
       query={graphql`
-        query Stay22PaymentScreenQuery(
-          $paymentLink: String!
-          $roomConfig: [RoomConfigInput]
-        ) {
+        query Stay22PaymentScreenQuery($paymentLink: String!, $roomConfig: [RoomConfigInput]) {
           hotelPaymentUrls(roomConfig: $roomConfig) {
             stay22PaymentUrl(paymentLink: $paymentLink)
           }

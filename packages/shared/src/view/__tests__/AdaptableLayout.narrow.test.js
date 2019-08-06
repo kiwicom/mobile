@@ -30,10 +30,7 @@ it('renders narrow components', () => {
   expect(
     Renderer.create(
       <Dimensions.Provider>
-        <AdaptableLayout
-          renderOnWide={<ThrowsError />}
-          renderOnNarrow={<RendersCorrectly />}
-        />
+        <AdaptableLayout renderOnWide={<ThrowsError />} renderOnNarrow={<RendersCorrectly />} />
       </Dimensions.Provider>,
     ),
   ).toMatchSnapshot();

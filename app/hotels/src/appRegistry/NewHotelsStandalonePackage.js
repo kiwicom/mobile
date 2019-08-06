@@ -63,7 +63,4 @@ class NewHotelsStandalonePackage extends React.Component<Props> {
   }
 }
 
-export default WithNativeNavigation(
-  NewHotelsStandalonePackage,
-  'NewKiwiHotels',
-);
+export default WithNativeNavigation(NewHotelsStandalonePackage, 'NewKiwiHotels');

@@ -1,10 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  PublicApiRenderer,
-  type GraphQLTaggedNode,
-} from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, type GraphQLTaggedNode } from '@kiwicom/mobile-relay';
 import { OfflineScreen } from '@kiwicom/mobile-shared';
 import { StatusBar } from 'react-native';
 
@@ -15,9 +12,7 @@ type Props = {|
 |};
 
 export default class PaymentQueryRenderer extends React.Component<Props> {
-  renderOfflineScreen = (retry: () => void) => (
-    <OfflineScreen onTryAgain={retry} />
-  );
+  renderOfflineScreen = (retry: () => void) => <OfflineScreen onTryAgain={retry} />;
 
   render() {
     return (

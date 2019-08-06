@@ -179,9 +179,7 @@ function Provider(props: Props) {
     hasDatesBeenForceChanged: false,
   });
 
-  const [errors, setErrors] = React.useState(
-    validateInput({ checkin, checkout, cityId }),
-  );
+  const [errors, setErrors] = React.useState(validateInput({ checkin, checkout, cityId }));
 
   React.useEffect(() => {
     setErrors(validateInput({ checkin, checkout, cityId }));

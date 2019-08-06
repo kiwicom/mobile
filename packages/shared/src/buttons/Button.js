@@ -5,7 +5,7 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Touchable from '../Touchable';
 import StyleSheet from '../PlatformStyleSheet';
-import type { StylePropType } from '../../index';
+import type { StylePropType } from '../../types/Styles';
 
 type Props = {|
   +children: React.Node,

@@ -69,20 +69,12 @@ export function HotelDetailScreen(props: Props) {
   }, [props.paymentLink, setPaymentLink]);
 
   function shouldSetStatusBarDark(yOffset: number) {
-    return (
-      Platform.OS === 'ios' &&
-      isNarrowLayout &&
-      yOffset > 180 &&
-      barStyle !== 'dark-content'
-    );
+    return Platform.OS === 'ios' && isNarrowLayout && yOffset > 180 && barStyle !== 'dark-content';
   }
 
   function shouldSetStatusBarLight(yOffset: number) {
     return (
-      Platform.OS === 'ios' &&
-      isNarrowLayout &&
-      yOffset <= 180 &&
-      barStyle !== 'light-content'
+      Platform.OS === 'ios' && isNarrowLayout && yOffset <= 180 && barStyle !== 'light-content'
     );
   }
 
@@ -102,9 +94,7 @@ export function HotelDetailScreen(props: Props) {
     return (
       <>
         <GeneralError
-          errorMessage={
-            <Translation id="single_hotel.hotel_detail_screen.hotel_not_found" />
-          }
+          errorMessage={<Translation id="single_hotel.hotel_detail_screen.hotel_not_found" />}
         />
         <CloseModal onPress={goBack} />
       </>

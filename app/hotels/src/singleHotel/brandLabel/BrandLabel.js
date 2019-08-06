@@ -13,11 +13,7 @@ export default function BrandLabel() {
       <Text style={styleSheet.poweredBy}>
         <Translation id="single_hotel.powered_by" />
       </Text>
-      <Image
-        style={styleSheet.image}
-        resizeMode="contain"
-        source={brandImage}
-      />
+      <Image style={styleSheet.image} resizeMode="contain" source={brandImage} />
     </View>
   );
 }

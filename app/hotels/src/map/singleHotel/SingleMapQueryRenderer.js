@@ -1,10 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  PublicApiRenderer,
-  type GraphQLTaggedNode,
-} from '@kiwicom/mobile-relay';
+import { PublicApiRenderer, type GraphQLTaggedNode } from '@kiwicom/mobile-relay';
 import { OfflineScreen } from '@kiwicom/mobile-shared';
 
 import CloseModal from '../../components/CloseModal';

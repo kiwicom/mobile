@@ -55,7 +55,4 @@ class SingleHotelStandAlonePackage extends React.Component<Props> {
   }
 }
 
-export default WithNativeNavigation(
-  SingleHotelStandAlonePackage,
-  'SingleHotel',
-);
+export default WithNativeNavigation(SingleHotelStandAlonePackage, 'SingleHotel');

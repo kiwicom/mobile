@@ -53,9 +53,7 @@ NetworkImage.defaultProps = {
 export default function NetworkImageWithContext(props: Props) {
   return (
     <ConfigContext.Consumer>
-      {({ dataSaverEnabled }) => (
-        <NetworkImage {...props} dataSaverEnabled={dataSaverEnabled} />
-      )}
+      {({ dataSaverEnabled }) => <NetworkImage {...props} dataSaverEnabled={dataSaverEnabled} />}
     </ConfigContext.Consumer>
   );
 }

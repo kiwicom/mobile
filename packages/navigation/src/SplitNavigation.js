@@ -9,9 +9,7 @@ type Props = {|
   +navigation: Navigation,
   +containerComponents: {
     [string]: {
-      +screen:
-        | React.ComponentType<any>
-        | React.StatelessFunctionalComponent<any>,
+      +screen: React.ComponentType<any> | React.StatelessFunctionalComponent<any>,
       ...
     },
     ...,
@@ -58,19 +56,15 @@ export default class SplitNavigation extends React.Component<Props, State> {
     this.props.onContentChange(activeId);
   };
 
-  getContainerComponent = () =>
-    this.props.containerComponents[this.state.activeId].screen;
+  getContainerComponent = () => this.props.containerComponents[this.state.activeId].screen;
 
   render() {
     const MainMenuContainerWide = React.cloneElement(this.props.menuComponent, {
       onNavigate: this.changeContentOnTablet,
     });
-    const MainMenuContainerNarrow = React.cloneElement(
-      this.props.menuComponent,
-      {
-        onNavigate: this.navigate,
-      },
-    );
+    const MainMenuContainerNarrow = React.cloneElement(this.props.menuComponent, {
+      onNavigate: this.navigate,
+    });
     const ContainerComponent = this.getContainerComponent();
     return (
       <Provider value={this.state}>

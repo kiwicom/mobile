@@ -12,8 +12,6 @@ describe('PublicEnvironment', () => {
   });
 
   it('should return the same environment instances', () => {
-    expect(PublicEnvironment.getEnvironment()).toBe(
-      PublicEnvironment.getEnvironment(),
-    );
+    expect(PublicEnvironment.getEnvironment()).toBe(PublicEnvironment.getEnvironment());
   });
 });

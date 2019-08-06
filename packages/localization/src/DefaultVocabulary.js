@@ -41,8 +41,7 @@ const CoreVocabulary = {
 const SharedVocabulary = {
   'relay.query_renderer.no_connection':
     'No internet connection, please check your internet settings or try it later.',
-  'relay.query_renderer.timeout':
-    'The response from the server timed out. Please try again.',
+  'relay.query_renderer.timeout': 'The response from the server timed out. Please try again.',
 
   'shared.age_picker.done': 'Done',
   'shared.bar_popup.cancel': 'Cancel',

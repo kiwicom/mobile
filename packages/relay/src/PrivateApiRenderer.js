@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import QueryRenderer from './QueryRenderer';
-import type { QueryRendererProps } from '../index';
+import type { QueryRendererProps } from '../types';
 import AuthContext from './AuthContext';
 
 type PropsWithContext = {|
@@ -38,9 +38,7 @@ type Props = {|
 export default function PrivateApiRendererWithContext(props: Props) {
   return (
     <AuthContext.Consumer>
-      {({ accessToken }) => (
-        <PrivateApiRenderer {...props} accessToken={accessToken} />
-      )}
+      {({ accessToken }) => <PrivateApiRenderer {...props} accessToken={accessToken} />}
     </AuthContext.Consumer>
   );
 }

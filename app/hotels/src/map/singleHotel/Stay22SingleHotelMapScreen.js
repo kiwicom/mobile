@@ -2,10 +2,7 @@
 
 import * as React from 'react';
 import { graphql } from '@kiwicom/mobile-relay';
-import {
-  withNavigation,
-  type NavigationType,
-} from '@kiwicom/mobile-navigation';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import { sanitizeDate } from '../../GraphQLSanitizers';
 import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
@@ -27,13 +24,9 @@ const renderInner = (props: Stay22SingleHotelMapScreenQueryResponse) => (
 );
 
 function Stay22SingleHotelMapScreen(props: Props) {
-  const {
-    guestCount,
-    currency,
-    hotelId,
-    checkin,
-    checkout,
-  }: HotelsContextState = React.useContext(HotelsContext);
+  const { guestCount, currency, hotelId, checkin, checkout }: HotelsContextState = React.useContext(
+    HotelsContext,
+  );
 
   function goBack() {
     props.navigation.goBack(null);

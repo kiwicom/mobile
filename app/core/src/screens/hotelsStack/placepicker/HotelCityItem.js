@@ -6,10 +6,7 @@ import { StyleSheet, Touchable, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import type { HotelCityItem_data as City } from './__generated__/HotelCityItem_data.graphql';
-import {
-  HotelsFormContext,
-  type HotelsFormContextType,
-} from '../HotelsFormContext';
+import { HotelsFormContext, type HotelsFormContextType } from '../HotelsFormContext';
 
 type Props = {|
   +data: ?City,

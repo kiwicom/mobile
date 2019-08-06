@@ -15,10 +15,10 @@
     "prop-types": "^15.7.2",
     "querystring": "^0.2.0",
     "react-native-image-progress": "^1.1.1",
-    "react-native-maps": "0.24.2",
-    "react-native-modal": "^10.0.0",
+    "react-native-maps": "0.25.0",
+    "react-native-modal": "^11.3.1",
     "react-native-read-more-text": "^1.1.0",
-    "react-native-webview": "5.12.0"
+    "react-native-webview": "6.7.0"
   },
   "peerDependencies": {
     "@kiwicom/universal-components": "^0",
@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
-    "mockdate": "^2.0.3"
+    "mockdate": "^2.0.4"
   }
 }

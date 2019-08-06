@@ -3,13 +3,7 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
-import {
-  Price,
-  Stars,
-  Text,
-  StyleSheet,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { Price, Stars, Text, StyleSheet, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Distance from './HotelDistance';
@@ -35,11 +29,7 @@ function HotelTitle({ data }: Props) {
       <View style={style.distance}>
         <Distance hotel={data} />
       </View>
-      <Price
-        amount={data?.money?.amount}
-        currency={data?.money?.currencyId}
-        style={style.price}
-      />
+      <Price amount={data?.money?.amount} currency={data?.money?.currencyId} style={style.price} />
     </React.Fragment>
   );
 }

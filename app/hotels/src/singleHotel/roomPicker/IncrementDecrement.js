@@ -45,16 +45,9 @@ export default function IncrementDecrement({
       <View style={styles.row}>
         <View style={styles.priceContainer}>
           <Text style={styles.countText}>
-            <Translation
-              id="single_hotel.increment_decrement.count"
-              {...androidProps}
-            />
+            <Translation id="single_hotel.increment_decrement.count" {...androidProps} />
           </Text>
-          <Price
-            amount={price?.amount}
-            currency={price?.currency}
-            style={styles.price}
-          />
+          <Price amount={price?.amount} currency={price?.currency} style={styles.price} />
         </View>
 
         <View style={styles.countContainer}>

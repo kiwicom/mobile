@@ -9,9 +9,6 @@ type Props = {|
 
 export default function Logout(props: Props) {
   return (
-    <LinkButton
-      onPress={props.onLogout}
-      title={<Translation id="core.authentication.logout" />}
-    />
+    <LinkButton onPress={props.onLogout} title={<Translation id="core.authentication.logout" />} />
   );
 }

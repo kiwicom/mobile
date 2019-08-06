@@ -2,12 +2,7 @@
 
 import * as React from 'react';
 import { View } from 'react-native';
-import {
-  IconLoading,
-  LinkButton,
-  StyleSheet,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { IconLoading, LinkButton, StyleSheet, Translation } from '@kiwicom/mobile-shared';
 
 type Props = {|
   +isLoading: boolean,
@@ -23,10 +18,7 @@ export default function LoadMoreButton({ isLoading, onPress }: Props) {
       {isLoading ? (
         <IconLoading />
       ) : (
-        <LinkButton
-          title={<Translation id="hotels_search.load_more" />}
-          onPress={onPress}
-        />
+        <LinkButton title={<Translation id="hotels_search.load_more" />} onPress={onPress} />
       )}
     </View>
   );

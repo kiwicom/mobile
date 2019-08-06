@@ -14,12 +14,12 @@
     "decimal.js-light": "^2.5.0",
     "geolib": "^2.0.24",
     "react-fast-compare": "^2.0.2",
-    "react-native-snap-carousel": "^3.7.5",
+    "react-native-snap-carousel": "^3.8.0",
     "react-native-swiper": "^1.5.13"
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
-    "mockdate": "^2.0.3"
+    "mockdate": "^2.0.4"
   },
   "peerDependencies": {
     "@kiwicom/universal-components": "^0",

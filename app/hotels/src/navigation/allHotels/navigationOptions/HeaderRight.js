@@ -5,16 +5,11 @@ import { StyleSheet, Icon, Translation } from '@kiwicom/mobile-shared';
 
 import { HotelsContext, type HotelsContextState } from '../../../HotelsContext';
 import MapHeaderButton from '../MapHeaderButton';
-import {
-  SearchResultsContext,
-  type SearchResultState,
-} from '../SearchResultsContext';
+import { SearchResultsContext, type SearchResultState } from '../SearchResultsContext';
 
 export default function HeaderRight() {
   const { checkin }: HotelsContextState = React.useContext(HotelsContext);
-  const { show, setResultType }: SearchResultState = React.useContext(
-    SearchResultsContext,
-  );
+  const { show, setResultType }: SearchResultState = React.useContext(SearchResultsContext);
 
   const goToAllHotelsMap = React.useCallback(() => {
     const showNext = show === 'list' ? 'map' : 'list';

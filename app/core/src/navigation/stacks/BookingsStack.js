@@ -1,10 +1,7 @@
 // @flow strict
 
 import React from 'react';
-import {
-  StackNavigator,
-  StackNavigatorOptions,
-} from '@kiwicom/mobile-navigation';
+import { StackNavigator, StackNavigatorOptions } from '@kiwicom/mobile-navigation';
 import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
 
 const MOCK_PROPS = {

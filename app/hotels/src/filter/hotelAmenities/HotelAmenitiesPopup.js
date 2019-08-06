@@ -1,12 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  ButtonPopup,
-  StyleSheet,
-  Text,
-  Translation,
-} from '@kiwicom/mobile-shared';
+import { ButtonPopup, StyleSheet, Text, Translation } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
 
@@ -25,65 +20,47 @@ type State = {|
 
 const amenitiesList = [
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.airport_shuttle" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.airport_shuttle" />,
     icon: 'bus',
     amenityName: 'airportShuttle',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.family_rooms" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.family_rooms" />,
     icon: 'child-friendly',
     amenityName: 'familyRooms',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.facilities_for_disabled" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.facilities_for_disabled" />,
     icon: 'wheelchair',
     amenityName: 'facilitiesForDisabled',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.fitness_center" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.fitness_center" />,
     icon: 'gym',
     amenityName: 'fitnessCenter',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.parking" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.parking" />,
     icon: 'parking',
     amenityName: 'parking',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.free_parking" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.free_parking" />,
     icon: 'parking',
     amenityName: 'freeParking',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.valet_parking" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.valet_parking" />,
     icon: 'parking',
     amenityName: 'valetParking',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.indoor_pool" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.indoor_pool" />,
     icon: 'pool',
     amenityName: 'indoorPool',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.pets_allowed" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.pets_allowed" />,
     icon: 'pet',
     amenityName: 'petsAllowed',
   },
@@ -93,9 +70,7 @@ const amenitiesList = [
     amenityName: 'spa',
   },
   {
-    text: (
-      <Translation id="hotels_search.filter.hotel_facilities_filter.wifi" />
-    ),
+    text: <Translation id="hotels_search.filter.hotel_facilities_filter.wifi" />,
     icon: 'wifi',
     amenityName: 'wifi',
   },
@@ -129,9 +104,7 @@ export default class HotelAmenitiesPopup extends React.Component<Props, State> {
     return (
       <SafeAreaView>
         <ButtonPopup
-          buttonTitle={
-            <Translation id="hotels_search.filter.hotel_facilities_popup.save" />
-          }
+          buttonTitle={<Translation id="hotels_search.filter.hotel_facilities_popup.save" />}
           onSave={this.onSave}
           onClose={this.props.onClose}
           isVisible={this.props.isVisible}

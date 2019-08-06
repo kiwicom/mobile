@@ -88,21 +88,10 @@ function hotelsGalleryOpened(type: LogHotelGalleryType) {
   LoggingModule.hotelsGalleryOpened(type);
 }
 
-async function hotelsBookNowPressed({
-  hotelID,
-  rooms,
-  guests,
-  price,
-}: HotelsBookNowArgs) {
+async function hotelsBookNowPressed({ hotelID, rooms, guests, price }: HotelsBookNowArgs) {
   const { amount, currency } = price;
   const formattedPrice = await currencyFormatter(amount, currency);
-  LoggingModule.hotelsBookNowPressed(
-    hotelID,
-    rooms,
-    guests,
-    amount,
-    formattedPrice,
-  );
+  LoggingModule.hotelsBookNowPressed(hotelID, rooms, guests, amount, formattedPrice);
 }
 
 const Logger = {

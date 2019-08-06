@@ -1,10 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {
-  DateFormatter,
-  type DateFormatterFunctions,
-} from '@kiwicom/mobile-localization';
+import { DateFormatter, type DateFormatterFunctions } from '@kiwicom/mobile-localization';
 import { View } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -41,9 +38,7 @@ export default function DatePickerButton(props: Props) {
         {props.date !== null && (
           <Text style={styles.dateText}>
             <Translation
-              passThrough={DateFormatter(props.date)[
-                props.formatFunction || 'formatToDate'
-              ]()}
+              passThrough={DateFormatter(props.date)[props.formatFunction || 'formatToDate']()}
             />
           </Text>
         )}

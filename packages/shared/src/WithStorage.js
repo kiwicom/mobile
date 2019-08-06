@@ -17,10 +17,7 @@ export default function withStorage<Config: { ... }>(
   storageKey: string,
   initialValue: any,
 ): React.AbstractComponent<$Diff<Config, InjectedProps>> {
-  return class WithStorage extends React.Component<
-    $Diff<Config, InjectedProps>,
-    State,
-  > {
+  return class WithStorage extends React.Component<$Diff<Config, InjectedProps>, State> {
     // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
     static navigationOptions = WrappedComponent.navigationOptions;
 

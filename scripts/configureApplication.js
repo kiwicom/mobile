@@ -19,26 +19,14 @@ const error = message => console.log(chalk.red(`➤ ${message}`)); // eslint-dis
 log('Patching react-native-code-push...');
 const rnCodePushPackgeJson = JSON.parse(
   fs.readFileSync(
-    path.join(
-      __dirname,
-      '..',
-      'node_modules',
-      'react-native-code-push',
-      'package.json',
-    ),
+    path.join(__dirname, '..', 'node_modules', 'react-native-code-push', 'package.json'),
     'utf-8',
   ),
 );
 delete rnCodePushPackgeJson.rnpm;
 
 fs.writeFileSync(
-  path.join(
-    __dirname,
-    '..',
-    'node_modules',
-    'react-native-code-push',
-    'package.json',
-  ),
+  path.join(__dirname, '..', 'node_modules', 'react-native-code-push', 'package.json'),
   JSON.stringify(rnCodePushPackgeJson, null, 2),
 );
 
@@ -47,10 +35,7 @@ childProcess.execSync('yarn react-native link');
 
 log('Patching intl package');
 const intlPackageJson = JSON.parse(
-  fs.readFileSync(
-    path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'),
-    'utf-8',
-  ),
+  fs.readFileSync(path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'), 'utf-8'),
 );
 delete intlPackageJson.browser;
 

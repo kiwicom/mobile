@@ -70,13 +70,7 @@ class Provider extends React.Component<Props, State> {
         ...action,
       };
 
-      const {
-        minPrice,
-        maxPrice,
-        starsRating,
-        minScore,
-        hotelAmenities,
-      } = filterParams;
+      const { minPrice, maxPrice, starsRating, minScore, hotelAmenities } = filterParams;
 
       const activeFilters = {
         isPriceFilterActive: minPrice !== null || maxPrice !== null,

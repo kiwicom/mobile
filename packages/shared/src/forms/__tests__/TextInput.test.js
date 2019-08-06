@@ -15,16 +15,11 @@ it('renders with default value', () => {
 });
 
 it('renders with placeholder', () => {
-  PlaygroundRenderer.render(
-    <TextInput placeholder={<Translation passThrough="Placeholder" />} />,
-  );
+  PlaygroundRenderer.render(<TextInput placeholder={<Translation passThrough="Placeholder" />} />);
 });
 
 it('renders with label', () => {
   PlaygroundRenderer.render(
-    <TextInput
-      label={<Translation passThrough="label" />}
-      defaultValue="Test"
-    />,
+    <TextInput label={<Translation passThrough="label" />} defaultValue="Test" />,
   );
 });

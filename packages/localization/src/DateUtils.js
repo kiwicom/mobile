@@ -84,11 +84,7 @@ DateUtils.diffInHours = (higherDate: Date, lowerDate: Date) => {
 DateUtils.isSameDay = (firstDate: Date, secondDate: Date): boolean => {
   const first = getUTCYearMonthDate(firstDate);
   const second = getUTCYearMonthDate(secondDate);
-  return (
-    first.year === second.year &&
-    first.month === second.month &&
-    first.date === second.date
-  );
+  return first.year === second.year && first.month === second.month && first.date === second.date;
 };
 
 DateUtils.isAfterDate = (firstDate: Date, secondDate: Date): boolean => {
@@ -97,9 +93,7 @@ DateUtils.isAfterDate = (firstDate: Date, secondDate: Date): boolean => {
   return (
     first.year > second.year ||
     (first.year === second.year && first.month > second.month) ||
-    (first.year === second.year &&
-      first.month === second.month &&
-      first.date > second.date)
+    (first.year === second.year && first.month === second.month && first.date > second.date)
   );
 };
 
@@ -109,17 +103,13 @@ DateUtils.isBeforeDate = (firstDate: Date, secondDate: Date): boolean => {
   return (
     first.year < second.year ||
     (first.year === second.year && first.month < second.month) ||
-    (first.year === second.year &&
-      first.month === second.month &&
-      first.date < second.date)
+    (first.year === second.year && first.month === second.month && first.date < second.date)
   );
 };
 
 DateUtils.getUTCToday = () => {
   const now = new Date();
-  return new Date(
-    Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()),
-  );
+  return new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
 };
 
 DateUtils.getToday = () => {

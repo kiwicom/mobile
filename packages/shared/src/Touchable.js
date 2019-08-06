@@ -2,12 +2,7 @@
 
 import * as React from 'react';
 // eslint-disable-next-line no-restricted-imports
-import {
-  Platform,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Platform, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import type { AccessibilityProps } from '@kiwicom/mobile-accessibility';
 
 import Color from './Color';

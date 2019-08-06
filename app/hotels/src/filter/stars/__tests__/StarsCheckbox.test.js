@@ -19,9 +19,7 @@ describe('StarsCheckbox', () => {
   });
 
   it('render checked', () => {
-    const starsCheckbox = (
-      <StarsCheckbox stars={5} isChecked={true} onPress={jest.fn()} />
-    );
+    const starsCheckbox = <StarsCheckbox stars={5} isChecked={true} onPress={jest.fn()} />;
     expect(renderer.render(starsCheckbox)).toMatchSnapshot();
   });
 });

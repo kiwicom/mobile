@@ -29,10 +29,7 @@ it('renders wide components', () => {
   expect(
     Renderer.create(
       <Dimensions.Provider>
-        <AdaptableLayout
-          renderOnNarrow={<ThrowsError />}
-          renderOnWide={<RendersCorrectly />}
-        />
+        <AdaptableLayout renderOnNarrow={<ThrowsError />} renderOnWide={<RendersCorrectly />} />
       </Dimensions.Provider>,
     ),
   ).toMatchSnapshot();

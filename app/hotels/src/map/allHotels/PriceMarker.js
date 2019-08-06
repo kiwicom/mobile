@@ -15,24 +15,14 @@ type Props = {|
 
 const PriceMarker = (props: Props) => {
   const { isSelected, data } = props;
-  const bubbleStyles = StyleSheet.flatten([
-    styles.bubble,
-    isSelected && selectedStyles.bubble,
-  ]);
-  const priceStyles = StyleSheet.flatten([
-    styles.price,
-    isSelected && selectedStyles.price,
-  ]);
+  const bubbleStyles = StyleSheet.flatten([styles.bubble, isSelected && selectedStyles.bubble]);
+  const priceStyles = StyleSheet.flatten([styles.price, isSelected && selectedStyles.price]);
 
   return (
     <View>
       <View style={bubbleStyles}>
         {props.data != null && (
-          <Price
-            amount={data?.amount}
-            currency={data?.currencyId}
-            style={priceStyles}
-          />
+          <Price amount={data?.amount} currency={data?.currencyId} style={priceStyles} />
         )}
       </View>
       <View style={[styles.arrowBorder]} />

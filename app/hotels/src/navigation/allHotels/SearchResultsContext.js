@@ -30,9 +30,7 @@ function Provider(props: Props) {
     setResultType,
   };
   return (
-    <SearchResultsContext.Provider value={state}>
-      {props.children}
-    </SearchResultsContext.Provider>
+    <SearchResultsContext.Provider value={state}>{props.children}</SearchResultsContext.Provider>
   );
 }
 

@@ -10,6 +10,8 @@ YellowBox.ignoreWarnings([
   // TODO this a warning from react-navigation, see: https://reactnavigation.org/docs/en/common-mistakes.html
   // This happens in our app because the package-stack architecture we have for native apps
   'You should only render one navigator',
+  'Warning: componentWillReceiveProps is deprecated',
+  'Warning: componentWillUpdate is deprecated',
 ]);
 
 AppRegistry.registerComponent('reactNativeApp', () => App);

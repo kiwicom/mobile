@@ -28,11 +28,9 @@ type Props = {|
   +customButton?: React.Node | null,
 |};
 
-const Label = ({
-  children,
-}: {|
-  +children: React.Element<typeof Translation>,
-|}) => <Text style={styles.label}>{children}</Text>;
+const Label = ({ children }: {| +children: React.Element<typeof Translation> |}) => (
+  <Text style={styles.label}>{children}</Text>
+);
 
 const labels = {
   cancel: (

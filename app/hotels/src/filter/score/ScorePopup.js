@@ -50,11 +50,9 @@ export default class ScorePopup extends React.Component<Props, State> {
         };
   };
 
-  handleScoreChanged = ([minScore]: number[]) =>
-    this.setState({ sliderValue: minScore });
+  handleScoreChanged = ([minScore]: number[]) => this.setState({ sliderValue: minScore });
 
-  onSave = () =>
-    this.props.onSave(this.convertSliderValueToScore(this.state.sliderValue));
+  onSave = () => this.props.onSave(this.convertSliderValueToScore(this.state.sliderValue));
 
   convertSliderValueToScore = (value: number) => {
     return value ? value + SLIDER_SHIFT : null;
@@ -64,9 +62,7 @@ export default class ScorePopup extends React.Component<Props, State> {
     return (
       <SafeAreaView>
         <ButtonPopup
-          buttonTitle={
-            <Translation id="hotels_search.filter.score_popup.save" />
-          }
+          buttonTitle={<Translation id="hotels_search.filter.score_popup.save" />}
           onSave={this.onSave}
           onClose={this.props.onClose}
           isVisible={this.props.isVisible}
