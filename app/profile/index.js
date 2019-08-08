@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from '@kiwicom/mobile-shared';
 import AsyncStorage from '@react-native-community/async-storage';
+import { withNavigation, type NavigationType } from '@kiwicom/mobile-navigation';
 
 import Login from './components/authentication/Login';
 import Logout from './components/authentication/Logout';
@@ -19,7 +20,11 @@ type State = {|
   isLoggedIn: boolean,
 |};
 
-export default class LoginScreen extends React.Component<{||}, State> {
+type Props = {|
+  +navigation: NavigationType,
+|};
+
+class LoginScreen extends React.Component<Props, State> {
   state = {
     isLoggedIn: false,
   };
@@ -29,12 +34,18 @@ export default class LoginScreen extends React.Component<{||}, State> {
     const simpleTokenData = await AsyncStorage.getItem('mobile:MMB-Simple-Token');
     if (token != null || simpleTokenData != null) {
       this.setState({ isLoggedIn: true });
+      this.navigateToAccountSettings();
     }
   };
 
   onLogin = (token: string) => {
     AsyncStorage.setItem('mobile:MMB-Token', token);
     this.setState({ isLoggedIn: true });
+    this.navigateToAccountSettings();
+  };
+
+  navigateToAccountSettings = () => {
+    this.props.navigation.navigate('AccountSettings');
   };
 
   onSimpleLogin = (simpleToken: string, bookingId: string) => {
@@ -46,6 +57,7 @@ export default class LoginScreen extends React.Component<{||}, State> {
       }),
     );
     this.setState({ isLoggedIn: true });
+    this.navigateToAccountSettings();
   };
 
   onLogout = () => {
@@ -92,3 +104,5 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
+export default withNavigation(LoginScreen);
