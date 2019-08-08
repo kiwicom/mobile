@@ -1,0 +1,12 @@
+{
+  "name": "@kiwicom/mobile-account",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@kiwicom/mobile-shared": "*"
+  },
+  "peerDependencies": {
+    "react": "*"
+  }
+}

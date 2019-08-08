@@ -8,7 +8,8 @@ type CoreStackNavigatorRouteNames =
   | 'HotelsPackage'
   | 'NewHotelsPackage'
   | 'SingleHotelPackage'
-  | 'MMBPackage';
+  | 'MMBPackage'
+  | 'AccountSettings';
 
 type HotelsStackNavigatorNames =
   | 'AllHotelsMap'
