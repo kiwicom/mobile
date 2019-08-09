@@ -4,10 +4,22 @@ import { StackNavigator, StackNavigatorOptions } from '@kiwicom/mobile-navigatio
 import ProfileScreen from '@kiwicom/mobile-profile';
 import { AccountSettings } from '@kiwicom/mobile-account';
 
-export default StackNavigator(
+const ProfileStack = StackNavigator(
   {
     Profile: {
       screen: ProfileScreen,
+    },
+  },
+  {
+    ...StackNavigatorOptions,
+    initialRouteName: 'Profile',
+  },
+);
+
+export default StackNavigator(
+  {
+    Profile: {
+      screen: ProfileStack,
     },
     AccountSettings: {
       screen: AccountSettings,
@@ -16,5 +28,6 @@ export default StackNavigator(
   {
     ...StackNavigatorOptions,
     initialRouteName: 'Profile',
+    headerMode: 'none',
   },
 );
