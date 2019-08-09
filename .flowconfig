@@ -41,7 +41,9 @@ node_modules/warning/.*
 <PROJECT_ROOT>/node_modules/react-native-swiper/.+
 <PROJECT_ROOT>/node_modules/graphql/.+ 
 <PROJECT_ROOT>/node_modules/@kiwicom/monorepo-utils/.+ 
-
+.+/node_modules/graphql-iso-date/dist/date/index.js
+.+/node_modules/graphql-iso-date/dist/dateTime/index.js
+.+/node_modules/graphql-iso-date/dist/time/index.js
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js

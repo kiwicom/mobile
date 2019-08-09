@@ -1,17 +1,14 @@
 // @flow strict
 
 import * as React from 'react';
-import { WithNativeNavigation, Text, Translation } from '@kiwicom/mobile-shared';
+import { WithNativeNavigation } from '@kiwicom/mobile-shared';
+import { Accounts as AccountStack } from '@kiwicom/account-native';
 
 type Props = {||};
 
 class AccountSettings extends React.Component<Props> {
   render() {
-    return (
-      <Text>
-        <Translation passThrough="account" />
-      </Text>
-    );
+    return <AccountStack />;
   }
 }
 
