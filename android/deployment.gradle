@@ -1,15 +1,15 @@
 def gitLabRepositoryUrl = "https://gitlab.skypicker.com/api/v4/projects/301/packages/maven"
 
-ext.reactNativeFromNodeModules = {
+ext.packageFromNodeModules = { name ->
     it.maven {
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-        url("$rootDir/../node_modules/react-native/android")
+        url("$rootDir/../node_modules/$name/android")
     }
 }
 
-ext.reactNativeFromUnpkg = { it, version ->
+ext.packageFromUnpkg = { it, name, version ->
     it.maven {
-        url "https://unpkg.com/react-native@$version/android/"
+        url "https://unpkg.com/$name@$version/android/"
     }
 }
 

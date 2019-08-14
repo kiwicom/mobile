@@ -111,6 +111,7 @@ dependencies {
         exclude group: "com.google.android.gms"
         exclude group: "com.google.firebase"
     }
+    releaseImplementation("com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT")
 
     implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
 

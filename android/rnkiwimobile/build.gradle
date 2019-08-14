@@ -11,9 +11,6 @@ project.ext.react = [
     enableHermes: true
 ]
 
-def enableHermes = project.ext.react.get("enableHermes", true)
-def jscFlavor = 'org.webkit:android-jsc:+'
-
 apply from: "./react-library.gradle"
 apply from: "./codepush-library.gradle"
 
@@ -79,14 +76,19 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-    if (enableHermes) {
-      def hermesPath = "../../node_modules/hermesvm/android/";
-      debugImplementation files(hermesPath + "hermes-debug.aar")
-      stagingReleaseImplementation files(hermesPath + "hermes-release.aar")
-      releaseImplementation files(hermesPath + "hermes-release.aar")
-    } else {
-      implementation jscFlavor
-    }
+    implementation "com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT"
 }
 
 publishAndroidLibrary("com.trinerdis.skypicker", "rnkiwimobile", "$rnKiwiMobileVersion-SNAPSHOT")
+
+publishing {
+    publications {
+        hermes(MavenPublication) {
+            groupId = "com.kiwi.android"
+            artifactId = "hermesvm"
+            version = "$hermesVmVersion-SNAPSHOT"
+
+            artifact('../../node_modules/hermesvm/android/hermes-release.aar')
+        }
+    }
+}
