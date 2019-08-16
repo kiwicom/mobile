@@ -11,6 +11,7 @@ def mainPackageJson = new JsonSlurper().parseText(mainFile.text)
 
 ext {
     reactNativeVersion = packageJson['dependencies']['react-native'].replace('^', '')
+    hermesVmVersion = packageJson['dependencies']['hermesvm'].replace('^', '') + ".react-native." + reactNativeVersion
 
     reactNativeMaps = packageJson['dependencies']['react-native-maps'].replace('^', '') + ".react-native." + reactNativeVersion
     reactNativeCodePush = packageJson['dependencies']['react-native-code-push'].replace('^', '') + ".react-native." + reactNativeVersion
