@@ -76,7 +76,11 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
-    implementation "com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT"
+    def hermesPath = "../../node_modules/hermesvm/android/";	
+    debugImplementation files(hermesPath + "hermes-debug.aar")	
+    stagingReleaseImplementation files(hermesPath + "hermes-release.aar")
+    releaseImplementation "com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT"
+
 }
 
 publishAndroidLibrary("com.trinerdis.skypicker", "rnkiwimobile", "$rnKiwiMobileVersion-SNAPSHOT")
