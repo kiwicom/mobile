@@ -34,6 +34,8 @@
 		27E931E420ADA0630053AE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931E320ADA0630053AE19 /* main.m */; };
 		51A8F6BE673D4671A3545CD8 /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */; };
 		60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
+		63497BE72306A93D0006DC8B /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63497BE62306A93D0006DC8B /* Roboto.ttf */; };
+		63497BE82306A93D0006DC8B /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63497BE62306A93D0006DC8B /* Roboto.ttf */; };
 		63738759220D81E600665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
 		6373875A220D81F200665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
 		6373875B220D820200665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
@@ -106,7 +108,7 @@
 		219FCC5921753450008F5428 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21B8D73121834B830079431F /* City.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		21B8D73321834BA10079431F /* City.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
-		21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		21C03BEA6DA8479DBFFA62F0 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; name = Roboto.ttf; path = ../assets/fonts/Roboto.ttf; sourceTree = "<group>"; };
 		21C5EFC12189F86100F3C098 /* package.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = package.json; path = ../package.json; sourceTree = "<group>"; };
 		2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiSharedBridge.h; sourceTree = "<group>"; };
 		2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiSharedBridge.m; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 		34003FC5EE453F3F2C072F56 /* libPods-RNNativePlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNNativePlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Medium.otf"; path = "../assets/fonts/ios/CircularPro-Medium.otf"; sourceTree = "<group>"; };
 		5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/android/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		63497BE62306A93D0006DC8B /* Roboto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Roboto.ttf; path = "../node_modules/@kiwicom/account-native/apps/account-native/assets/fonts/Roboto/Roboto.ttf"; sourceTree = "<group>"; };
 		63738758220D81E600665942 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		63A8419C20C853840093183F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		63A8419E20C8538A0093183F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -288,8 +291,9 @@
 		A142755D6A354DA78D29BEB8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				63497BE62306A93D0006DC8B /* Roboto.ttf */,
 				21C5EFC12189F86100F3C098 /* package.json */,
-				21C03BEA6DA8479DBFFA62F0 /* Roboto-Regular.ttf */,
+				21C03BEA6DA8479DBFFA62F0 /* Roboto.ttf */,
 				DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */,
 				D1641E3E0F4C42F0A3CB58F1 /* CircularPro-Bold.otf */,
 				2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */,
@@ -468,6 +472,7 @@
 				898C440300784E69B91D0ED6 /* Roboto-Medium.ttf in Resources */,
 				21C5EFC22189F86200F3C098 /* package.json in Resources */,
 				FA705002A8FD4F5BBDB4B4F4 /* Roboto-Regular.ttf in Resources */,
+				63497BE72306A93D0006DC8B /* Roboto.ttf in Resources */,
 				6AC23FDF8E5142199F66BC24 /* CircularPro-Bold.otf in Resources */,
 				DD9F4DDDD70840CBBECA0434 /* CircularPro-Book.otf in Resources */,
 				51A8F6BE673D4671A3545CD8 /* CircularPro-Medium.otf in Resources */,
@@ -481,6 +486,7 @@
 			files = (
 				21C5EFC32189FA0200F3C098 /* package.json in Resources */,
 				21C5EFBA2189DCFA00F3C098 /* orbit-icons.ttf in Resources */,
+				63497BE82306A93D0006DC8B /* Roboto.ttf in Resources */,
 				21EFD4CD21768D8C00B5F21B /* Images.xcassets in Resources */,
 				68E80E25215E66CD00EB4717 /* CircularPro-Book.otf in Resources */,
 				27E931E120ADA0630053AE19 /* LaunchScreen.storyboard in Resources */,
@@ -856,10 +862,11 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = G44VYF3687;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -869,6 +876,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.mobile.rniosplayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
@@ -982,9 +990,10 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = G44VYF3687;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1021,10 +1030,11 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = G44VYF3687;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1034,6 +1044,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kiwi.mobile.rniosplayground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

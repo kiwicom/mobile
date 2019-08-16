@@ -235,6 +235,16 @@
   _activeVc = vc;
 }
 
+// Open accounts
+
+- (IBAction)pushAccountsView:(id)sender {
+  RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountSettings" initialProperties:@{
+                                                                                                                         @"lastNavigationMode": @"push"
+                                                                                                                         }];
+  [self setActiveViewController:controller];
+  [[self navigationController] pushViewController:controller animated:YES];
+}
+
 // Offer search is based on city ID
 - (IBAction)presentNewHotelsView:(id)sender {
   
