@@ -8,6 +8,7 @@
     "@kiwicom/account-native": "^0.0.4"
   },
   "peerDependencies": {
-    "react": "*"
+    "react": "*",
+    "react-native": "*"
   }
 }
