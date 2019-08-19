@@ -27,4 +27,10 @@
         android:layout_height="wrap_content"
         android:text="Stay 22 Hotels"/>
 
+     <Button
+        android:id="@+id/button_account_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account Settings"/>
+
 </LinearLayout>

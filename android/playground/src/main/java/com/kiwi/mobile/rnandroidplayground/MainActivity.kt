@@ -23,6 +23,10 @@ class MainActivity : AppCompatActivity() {
     button_stay22_hotels.setOnClickListener {
       startActivity(Intent(this, HotelsStay22Activity.getViewModelClass()))
     }
+
+    button_account_settings.setOnClickListener {
+      startActivity(Intent(this, AccountSettingsActivity.getViewModelClass()))
+    }
   }
 
   override fun onDestroy() {
