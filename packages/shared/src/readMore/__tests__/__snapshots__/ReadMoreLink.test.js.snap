@@ -29,7 +29,7 @@ exports[`renders 1`] = `
       style={
         Array [
           Object {
-            "color": "#171b1e",
+            "color": "#252A31",
             "fontFamily": "CircularPro-Book",
             "fontSize": 14,
             "fontWeight": "normal",
@@ -37,7 +37,7 @@ exports[`renders 1`] = `
           },
           Array [
             Object {
-              "color": "#00a991",
+              "color": "#00A991",
               "fontWeight": "500",
             },
             undefined,

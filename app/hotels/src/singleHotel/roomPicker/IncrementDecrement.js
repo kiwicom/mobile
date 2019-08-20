@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.paletteWhite,
     height: 44,
     paddingHorizontal: 12,
-    shadowColor: defaultTokens.paletteInkDark,
+    shadowColor: defaultTokens.paletteInkNormal,
     shadowOffset: {
       width: 0,
       height: 2,

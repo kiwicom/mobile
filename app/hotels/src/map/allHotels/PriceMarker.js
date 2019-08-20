@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   price: {
-    color: defaultTokens.paletteInkDark,
+    color: defaultTokens.colorTextPrimary,
     fontSize: 14,
     fontWeight: 'bold',
   },

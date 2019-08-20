@@ -5,7 +5,7 @@ exports[`overwrites the previous textTransform property 1`] = `
   style={
     Array [
       Object {
-        "color": "#171b1e",
+        "color": "#252A31",
         "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
@@ -40,7 +40,7 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
@@ -56,7 +56,7 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
@@ -76,7 +76,7 @@ exports[`works with conditionals 1`] = `
   style={
     Array [
       Object {
-        "color": "#171b1e",
+        "color": "#252A31",
         "fontFamily": "CircularPro-Book",
         "fontSize": 14,
         "fontWeight": "normal",
@@ -96,7 +96,7 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
@@ -112,7 +112,7 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
@@ -128,7 +128,7 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
@@ -144,7 +144,7 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",
@@ -166,7 +166,7 @@ Array [
     style={
       Array [
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontFamily": "CircularPro-Book",
           "fontSize": 14,
           "fontWeight": "normal",

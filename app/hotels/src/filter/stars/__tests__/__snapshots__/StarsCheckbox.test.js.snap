@@ -8,7 +8,7 @@ exports[`StarsCheckbox render checked 1`] = `
   <Text
     style={
       Object {
-        "color": "#00a991",
+        "color": "#00A991",
         "fontSize": 16,
       }
     }
@@ -27,7 +27,7 @@ exports[`StarsCheckbox render unchecked with 1 star 1`] = `
   <Text
     style={
       Object {
-        "color": "#00a991",
+        "color": "#00A991",
         "fontSize": 16,
       }
     }
@@ -46,7 +46,7 @@ exports[`StarsCheckbox render unchecked with 3 stars 1`] = `
   <Text
     style={
       Object {
-        "color": "#00a991",
+        "color": "#00A991",
         "fontSize": 16,
       }
     }

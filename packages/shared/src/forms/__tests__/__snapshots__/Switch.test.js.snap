@@ -5,7 +5,7 @@ exports[`renders with false 1`] = `
   onValueChange={[MockFunction]}
   trackColor={
     Object {
-      "true": "#00a991",
+      "true": "#00A991",
     }
   }
   value={false}
@@ -17,7 +17,7 @@ exports[`renders with true 1`] = `
   onValueChange={[MockFunction]}
   trackColor={
     Object {
-      "true": "#00a991",
+      "true": "#00A991",
     }
   }
   value={true}

@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
       width: 1,
       height: 1,
     },
-    textShadowColor: defaultTokens.paletteInkDark,
+    textShadowColor: defaultTokens.paletteInkNormal,
     textShadowRadius: 2,
   },
   subTitle: {

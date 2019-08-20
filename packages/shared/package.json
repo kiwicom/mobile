@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "@kiwicom/mobile-playground": "^0",
-    "mockdate": "^2.0.4"
+    "mockdate": "^2.0.5"
   }
 }

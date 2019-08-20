@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     backgroundColor: defaultTokens.paletteWhite,
     borderWidth: 0.5,
     borderColor: defaultTokens.paletteInkLighter,
-    shadowColor: defaultTokens.paletteInkDark,
+    shadowColor: defaultTokens.paletteInkNormal,
     shadowOffset: {
       width: 0,
       height: 2,

@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     start: 8,
     end: 8,
     bottom: Device.isIPhoneX ? 88 : 60,
-    shadowColor: defaultTokens.paletteInkDark,
+    shadowColor: defaultTokens.paletteInkNormal,
     shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 4,

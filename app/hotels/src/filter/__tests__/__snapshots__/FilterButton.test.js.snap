@@ -38,7 +38,7 @@ exports[`renders correctly when active 1`] = `
       style={
         Array [
           Object {
-            "color": "#171b1e",
+            "color": "#252A31",
             "fontFamily": "CircularPro-Book",
             "fontSize": 14,
             "fontWeight": "normal",
@@ -51,7 +51,7 @@ exports[`renders correctly when active 1`] = `
               "lineHeight": 17,
             },
             Object {
-              "color": "#fff",
+              "color": "#FFFFFF",
             },
           ],
         ]
@@ -90,7 +90,7 @@ exports[`renders correctly when active 1`] = `
               "width": 16,
             },
             Object {
-              "color": "#fff",
+              "color": "#FFFFFF",
             },
             Array [
               undefined,

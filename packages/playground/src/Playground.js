@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    borderColor: defaultTokens.paletteInkDark,
+    borderColor: defaultTokens.paletteInkNormal,
     backgroundColor: defaultTokens.paletteWhite,
   },
   sectionText: {

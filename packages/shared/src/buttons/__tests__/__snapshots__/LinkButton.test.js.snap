@@ -15,7 +15,7 @@ exports[`Button renders 1`] = `
     style={
       Array [
         Object {
-          "color": "#00a991",
+          "color": "#00A991",
         },
         undefined,
       ]
