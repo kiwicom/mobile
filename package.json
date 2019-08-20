@@ -19,7 +19,7 @@
     "graphql": "yarn babel-node ./scripts/getSchema.js",
     "ios": "yarn react-native run-ios",
     "lint": "yarn jest --config=.jest-eslint.config.js",
-    "postinstall": "node ./scripts/configureApplication.js && jetify",
+    "postinstall": "monorepo-babel-node ./scripts/configureApplication.js && jetify",
     "relay": "yarn relay-compiler --src . --schema ./schema.graphql",
     "release-android": "yarn babel-node ./scripts/buildAndroidSnapshots.js",
     "release-ios": "yarn babel-node ./scripts/releaseFramework.js",
