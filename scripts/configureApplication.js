@@ -1,10 +1,11 @@
 // @flow strict
 
-const fs = require('fs');
-const path = require('path');
-const childProcess = require('child_process');
-const chalk = require('chalk');
-const { config } = require('dotenv');
+import fs from 'fs';
+import path from 'path';
+import childProcess from 'child_process';
+import chalk from 'chalk';
+import { config } from 'dotenv';
+import { globSync } from '@kiwicom/monorepo-utils';
 
 config();
 
@@ -66,25 +67,24 @@ if (!fs.existsSync(dotEnvPath)) {
 }
 
 log('Patch node crawler');
-const nodeCrawlerPath = path.join(
-  __dirname,
-  '..',
-  'node_modules',
-  'jest-haste-map',
-  'build',
-  'crawlers',
-  'node.js',
-);
-const nodeCrawler = fs.readFileSync(nodeCrawlerPath, 'utf-8');
 
-// https://github.com/facebook/jest/pull/8558/files
-// This caused an error on our CI
-fs.writeFileSync(
-  nodeCrawlerPath,
-  nodeCrawler.replace(
-    /throw new Error\(`Option 'mapper' isn't supported by the Node crawler`\);/g,
-    '',
-  ),
-);
+const files = globSync('/**/jest-haste-map/build/crawlers/node.js', {
+  root: path.join(process.cwd(), 'node_modules'),
+  ignore: [],
+});
+
+for (const file of files) {
+  const nodeCrawler = fs.readFileSync(file, 'utf-8');
+
+  // https://github.com/facebook/jest/pull/8558/files
+  // This caused an error on our CI
+  fs.writeFileSync(
+    file,
+    nodeCrawler.replace(
+      /throw new Error\(`Option 'mapper' isn't supported by the Node crawler`\);/g,
+      '',
+    ),
+  );
+}
 
 log('Configuration complete!');
