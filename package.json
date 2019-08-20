@@ -37,7 +37,7 @@
     "@kiwicom/react-native-fast-track": "^0",
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
-    "detox": "^13.3.3",
+    "detox": "^14.0.2",
     "dotenv": "^8.1.0",
     "react": "16.8.6",
     "react-native": "0.60.4",
