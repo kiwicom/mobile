@@ -19,7 +19,7 @@ exports[`Button renders 1`] = `
         "paddingHorizontal": 11,
       },
       Object {
-        "backgroundColor": "#00a991",
+        "backgroundColor": "#00A991",
       },
       undefined,
     ]

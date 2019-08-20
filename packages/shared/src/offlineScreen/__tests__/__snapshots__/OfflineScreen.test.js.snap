@@ -34,7 +34,7 @@ exports[`renders 1`] = `
       <Text
         style={
           Object {
-            "color": "#171b1e",
+            "color": "#252A31",
             "fontWeight": "500",
             "textAlign": "center",
           }

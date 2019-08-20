@@ -15,7 +15,7 @@ exports[`StarsPopup should render popup 1`] = `
     <Text
       style={
         Object {
-          "color": "#171b1e",
+          "color": "#252A31",
           "fontSize": 16,
           "fontWeight": "500",
           "paddingBottom": 10,
@@ -41,7 +41,7 @@ exports[`StarsPopup should render popup 1`] = `
         }
       >
         <SeparatorTrimmed
-          color="#bac7d5"
+          color="#BAC7D5"
           gapSizeEnd={0}
           gapSizeStart={0}
           height={0.5}
@@ -62,7 +62,7 @@ exports[`StarsPopup should render popup 1`] = `
         }
       >
         <SeparatorTrimmed
-          color="#bac7d5"
+          color="#BAC7D5"
           gapSizeEnd={0}
           gapSizeStart={0}
           height={0.5}
@@ -83,7 +83,7 @@ exports[`StarsPopup should render popup 1`] = `
         }
       >
         <SeparatorTrimmed
-          color="#bac7d5"
+          color="#BAC7D5"
           gapSizeEnd={0}
           gapSizeStart={0}
           height={0.5}
@@ -104,7 +104,7 @@ exports[`StarsPopup should render popup 1`] = `
         }
       >
         <SeparatorTrimmed
-          color="#bac7d5"
+          color="#BAC7D5"
           gapSizeEnd={0}
           gapSizeStart={0}
           height={0.5}
@@ -125,7 +125,7 @@ exports[`StarsPopup should render popup 1`] = `
         }
       >
         <SeparatorTrimmed
-          color="#bac7d5"
+          color="#BAC7D5"
           gapSizeEnd={0}
           gapSizeStart={0}
           height={0.5}

@@ -10,7 +10,7 @@ exports[`renders without crashing 1`] = `
   <ButtonTitle
     style={
       Object {
-        "color": "#fff",
+        "color": "#FFFFFF",
         "fontSize": 16,
         "fontWeight": "800",
       }
@@ -34,7 +34,7 @@ exports[`renders without crashing with missing data 1`] = `
   <ButtonTitle
     style={
       Object {
-        "color": "#fff",
+        "color": "#FFFFFF",
         "fontSize": 16,
         "fontWeight": "800",
       }

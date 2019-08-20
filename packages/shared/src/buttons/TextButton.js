@@ -65,6 +65,6 @@ const styleSheet = StyleSheet.create({
     opacity: 0.3,
   },
   buttonTextPrimaryDisabled: {
-    color: defaultTokens.paletteInkDark,
+    color: defaultTokens.paletteInkNormal,
   },
 });

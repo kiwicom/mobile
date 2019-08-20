@@ -17,7 +17,7 @@ it('renders', () => {
     <View
       style={
         Object {
-          "backgroundColor": "#e8edf1",
+          "backgroundColor": "#EFF2F5",
           "borderRadius": 2,
           "marginBottom": 10,
           "padding": 10,
@@ -28,7 +28,7 @@ it('renders', () => {
         style={
           Array [
             Object {
-              "color": "#171b1e",
+              "color": "#252A31",
               "fontFamily": "CircularPro-Book",
               "fontSize": 14,
               "fontWeight": "normal",

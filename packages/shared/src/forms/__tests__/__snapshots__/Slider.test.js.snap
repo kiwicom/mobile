@@ -50,7 +50,7 @@ exports[`Slider renders 1`] = `
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#bac7d5",
+        "backgroundColor": "#BAC7D5",
       }
     }
     values={
@@ -113,7 +113,7 @@ exports[`Slider renders correctly with all values equal 1`] = `
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#bac7d5",
+        "backgroundColor": "#BAC7D5",
       }
     }
     values={
@@ -176,7 +176,7 @@ exports[`Slider renders with endValue undefined 1`] = `
     }
     unselectedStyle={
       Object {
-        "backgroundColor": "#bac7d5",
+        "backgroundColor": "#BAC7D5",
       }
     }
     values={

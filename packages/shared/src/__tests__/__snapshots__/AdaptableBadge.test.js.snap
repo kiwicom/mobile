@@ -25,7 +25,7 @@ exports[`renders correctly with circled true 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#FFFFFF",
         },
         undefined,
       ]
@@ -63,7 +63,7 @@ exports[`renders correctly with type info 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#FFFFFF",
         },
         undefined,
       ]
@@ -99,7 +99,7 @@ exports[`renders text 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#FFFFFF",
         },
         undefined,
       ]
@@ -137,7 +137,7 @@ exports[`renders text with color 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#FFFFFF",
         },
         undefined,
       ]
@@ -173,7 +173,7 @@ exports[`renders very long texts 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#FFFFFF",
         },
         undefined,
       ]

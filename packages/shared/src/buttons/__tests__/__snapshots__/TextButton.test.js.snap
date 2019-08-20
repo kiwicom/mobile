@@ -11,7 +11,7 @@ exports[`renders button with custom title 1`] = `
     style={
       Array [
         Object {
-          "color": "#fff",
+          "color": "#FFFFFF",
         },
         false,
       ]
