@@ -22,6 +22,8 @@
 	<string>26</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MetroBundlerAddress</key>
+	<string>localhost</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
@@ -35,6 +37,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>RELEASE_KEY</key>
+	<string>$(RELEASE_KEY)</string>
+	<key>STAGING_KEY</key>
+	<string>$(STAGING_KEY)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>CircularPro-Book.otf</string>
@@ -63,9 +69,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>STAGING_KEY</key>
-	<string>$(STAGING_KEY)</string>
-	<key>RELEASE_KEY</key>
-	<string>$(RELEASE_KEY)</string>
 </dict>
 </plist>
