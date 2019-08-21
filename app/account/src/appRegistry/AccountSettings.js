@@ -1,21 +1,22 @@
 // @flow strict
 
 import * as React from 'react';
-import { WithNativeNavigation, StyleSheet } from '@kiwicom/mobile-shared';
-import { Settings as AccountSettingsStack, NavigationProvider } from '@kiwicom/account-native';
 import { View, StatusBar } from 'react-native';
+import { WithNativeNavigation, StyleSheet } from '@kiwicom/mobile-shared';
+import { Settings as AccountSettingsStack, AppProvider } from '@kiwicom/account-native';
 
 type Props = {|
   +onBackClicked: () => void,
+  +token: string,
 |};
 
 class AccountSettings extends React.Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <NavigationProvider onBackPressed={this.props.onBackClicked}>
+        <AppProvider onBackPressed={this.props.onBackClicked} token={this.props.token}>
           <AccountSettingsStack />
-        </NavigationProvider>
+        </AppProvider>
       </View>
     );
   }

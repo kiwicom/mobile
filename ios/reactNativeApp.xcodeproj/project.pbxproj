@@ -34,6 +34,8 @@
 		27E931E420ADA0630053AE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931E320ADA0630053AE19 /* main.m */; };
 		51A8F6BE673D4671A3545CD8 /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */; };
 		60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
+		632F9458230D451A007D857E /* CircularPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71A4A2C5C6994635AF8475F2 /* CircularPro-Bold.otf */; };
+		632F9459230D451A007D857E /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */; };
 		63497BE72306A93D0006DC8B /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63497BE62306A93D0006DC8B /* Roboto.ttf */; };
 		63497BE82306A93D0006DC8B /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63497BE62306A93D0006DC8B /* Roboto.ttf */; };
 		63738759220D81E600665942 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63738758220D81E600665942 /* JavaScriptCore.framework */; };
@@ -131,7 +133,6 @@
 		27E931E020ADA0630053AE19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27E931E220ADA0630053AE19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27E931E320ADA0630053AE19 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Medium.otf"; path = "../assets/fonts/CircularPro-Medium.otf"; sourceTree = "<group>"; };
 		2D1E4633998A4228B3B7F222 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/android/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		34003FC5EE453F3F2C072F56 /* libPods-RNNativePlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNNativePlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Medium.otf"; path = "../assets/fonts/ios/CircularPro-Medium.otf"; sourceTree = "<group>"; };
@@ -154,9 +155,7 @@
 		B4E7213E71A344C5AE638015 /* Pods-RNKiwiMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNKiwiMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNKiwiMobile/Pods-RNKiwiMobile.release.xcconfig"; sourceTree = "<group>"; };
 		B6490E2D178E410C908FF998 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/android/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
-		D1641E3E0F4C42F0A3CB58F1 /* CircularPro-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Bold.otf"; path = "../assets/fonts/CircularPro-Bold.otf"; sourceTree = "<group>"; };
 		D9EB95B82ECBF86CAF3AF472 /* Pods-reactNativeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp.debug.xcconfig"; sourceTree = "<group>"; };
-		DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Book.otf"; path = "../assets/fonts/CircularPro-Book.otf"; sourceTree = "<group>"; };
 		E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		F1CBA12F9C74CC3D03C0D84C /* Pods-reactNativeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactNativeApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-reactNativeApp/Pods-reactNativeApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -294,9 +293,6 @@
 				63497BE62306A93D0006DC8B /* Roboto.ttf */,
 				21C5EFC12189F86100F3C098 /* package.json */,
 				21C03BEA6DA8479DBFFA62F0 /* Roboto.ttf */,
-				DF5410E6DB94477AB0C446B4 /* CircularPro-Book.otf */,
-				D1641E3E0F4C42F0A3CB58F1 /* CircularPro-Bold.otf */,
-				2C62C7C2DC5B49F98F047AD3 /* CircularPro-Medium.otf */,
 				E5D77FC9111C4341A99B753A /* Roboto-Bold.ttf */,
 				C969F98F8A854CCB89957EFD /* Roboto-Medium.ttf */,
 				5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */,
@@ -398,6 +394,7 @@
 				27E931CF20ADA0600053AE19 /* Frameworks */,
 				27E931D020ADA0600053AE19 /* Resources */,
 				215881F820C7FF140016707A /* Embed Frameworks */,
+				632F9451230D3D47007D857E /* Inject metro bundler address */,
 			);
 			buildRules = (
 			);
@@ -484,6 +481,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				632F9458230D451A007D857E /* CircularPro-Bold.otf in Resources */,
+				632F9459230D451A007D857E /* CircularPro-Medium.otf in Resources */,
 				21C5EFC32189FA0200F3C098 /* package.json in Resources */,
 				21C5EFBA2189DCFA00F3C098 /* orbit-icons.ttf in Resources */,
 				63497BE82306A93D0006DC8B /* Roboto.ttf in Resources */,
@@ -509,7 +508,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2711985D20B1EA8100C6292B /* Bundle React Native dependencies */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -526,6 +525,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = $SRCROOT/../scripts/bundleIOSJavascript.sh;
+		};
+		632F9451230D3D47007D857E /* Inject metro bundler address */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/RNNativePlayground/Info.plist",
+			);
+			name = "Inject metro bundler address";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\nplistPath=\"${TARGET_BUILD_DIR}/RNNativePlayground.app/Info.plist\"\necho \"path = $plistPath ip= `ipconfig getifaddr en0`\"\nPLISTBUDDY=\"/usr/libexec/PlistBuddy\"\n$PLISTBUDDY -c \"Set :MetroBundlerAddress `ipconfig getifaddr en0`\" \"${plistPath}\"\nfi\n";
 		};
 		686E005220B305D30013512F /* Remove extraneous assets */ = {
 			isa = PBXShellScriptBuildPhase;

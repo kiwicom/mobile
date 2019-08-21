@@ -26,15 +26,15 @@
     
     NSString *codePushVersion = [[[self readPackageJSON] valueForKey:@"rnkiwimobile"] valueForKey:@"code-push-target-binary-version"];
     
-    #ifdef STAGING
-      NSString *stagingCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"STAGING_KEY"];
-      [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:stagingCodePushKey codePushVersion:codePushVersion];
-    #elif RELEASE
-      NSString *releaseCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RELEASE_KEY"];
-      [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:releaseCodePushKey codePushVersion:codePushVersion];
-    #else
-      [[RNKiwiSharedBridge sharedInstance] initBridge];
-    #endif
+#ifdef STAGING
+    NSString *stagingCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"STAGING_KEY"];
+    [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:stagingCodePushKey codePushVersion:codePushVersion];
+#elif RELEASE
+    NSString *releaseCodePushKey = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"RELEASE_KEY"];
+    [[RNKiwiSharedBridge sharedInstance] initBridgeWithCodePush:releaseCodePushKey codePushVersion:codePushVersion];
+#else
+    [[RNKiwiSharedBridge sharedInstance] initBridge];
+#endif
   }
   return self;
 }
@@ -44,7 +44,7 @@
   NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
   NSDate *currentDate = [NSDate date];
   NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
-
+  
   //  Initialize start date picker
   startDatePicker=[[UIDatePicker alloc] init];
   [startDatePicker setDatePickerMode:UIDatePickerModeDate];
@@ -80,7 +80,7 @@
   
   // Display picked end date
   [self.endDateSelectionTextField setInputView:endDatePicker];
- 
+  
   //  Initialize city picker
   cityPicker = [[UIPickerView alloc] init];
   [cityPicker setDataSource:self];
@@ -134,7 +134,7 @@
   NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
   NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
   [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-
+  
   [dateComponent setDay:1];
   NSDate *customEndDate = [calendar dateByAddingComponents:dateComponent toDate:startDatePicker.date options:0];
   endDatePicker.date = customEndDate;
@@ -191,7 +191,7 @@
   
   [dateComponent setDay:30];
   NSDate *startDatePlusThirtyDays = [calendar dateByAddingComponents:dateComponent toDate:startDatePicker.date options:0];
-
+  
   [self.endDateSelectionTextField resignFirstResponder];
   
   // Checkin date > checkout date
@@ -238,9 +238,11 @@
 // Open accounts
 
 - (IBAction)pushAccountsView:(id)sender {
-  RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountSettings" initialProperties:@{
-                                                                                                                         @"lastNavigationMode": @"push"
-                                                                                                                         }];
+  RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountSettings"
+                                                                initialProperties:@{
+                                                                                    @"lastNavigationMode": @"push",
+                                                                                    @"token": @"mockToken",
+                                                                                    }];
   [self setActiveViewController:controller];
   [[self navigationController] pushViewController:controller animated:YES];
 }
@@ -250,25 +252,25 @@
   
   RNKiwiViewController *vc = [[RNKiwiViewController alloc] initWithModule:@"NewKiwiHotels"
                                                         initialProperties:@{
-                                                          @"language": @"en",
-                                                          @"currency": @"EUR",
-                                                          @"lastNavigationMode": @"present",
-                                                          @"checkin": [self selectedStartDate],
-                                                          @"checkout": [self selectedEndDate],
-                                                          @"version": @"3.7.13-9d55ad66",
-                                                          @"cityName": [self selectedCity].cityName,
-                                                          @"cityId": [self selectedCity].cityId,
-                                                          @"roomsConfiguration": @[
-                                                              @{
-                                                                @"adultsCount": @1,
-                                                                @"children": @[
-                                                                    @{
-                                                                      @"age": @2
-                                                                    }
-                                                                ]
-                                                              }
-                                                          ]
-                                                        }];
+                                                                            @"language": @"en",
+                                                                            @"currency": @"EUR",
+                                                                            @"lastNavigationMode": @"present",
+                                                                            @"checkin": [self selectedStartDate],
+                                                                            @"checkout": [self selectedEndDate],
+                                                                            @"version": @"3.7.13-9d55ad66",
+                                                                            @"cityName": [self selectedCity].cityName,
+                                                                            @"cityId": [self selectedCity].cityId,
+                                                                            @"roomsConfiguration": @[
+                                                                                @{
+                                                                                  @"adultsCount": @1,
+                                                                                  @"children": @[
+                                                                                      @{
+                                                                                        @"age": @2
+                                                                                        }
+                                                                                      ]
+                                                                                  }
+                                                                                ]
+                                                                            }];
   
   [self setActiveViewController:vc];
   [[self navigationController] presentViewController:vc animated:YES completion:nil];
