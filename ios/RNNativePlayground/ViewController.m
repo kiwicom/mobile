@@ -247,6 +247,16 @@
   [[self navigationController] pushViewController:controller animated:YES];
 }
 
+- (IBAction)pushPriceAlerts:(id)sender {
+  RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountPriceAlerts"
+                                                                initialProperties:@{
+                                                                                    @"lastNavigationMode": @"push",
+                                                                                    @"token": @"mockToken",
+                                                                                    }];
+  [self setActiveViewController:controller];
+  [[self navigationController] pushViewController:controller animated:YES];
+}
+
 // Offer search is based on city ID
 - (IBAction)presentNewHotelsView:(id)sender {
   
