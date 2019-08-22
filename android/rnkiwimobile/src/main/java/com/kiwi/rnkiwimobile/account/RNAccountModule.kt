@@ -9,7 +9,6 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 
 object RNAccountModule {
     const val jsEntryPoint = "app/native.js"
-    const val moduleName = "AccountSettings"
 
     fun getPackages(): MutableList<ReactPackage> {
         return mutableListOf(RNGestureHandlerPackage())

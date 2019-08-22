@@ -3,10 +3,10 @@ package com.kiwi.mobile.rnandroidplayground
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import com.facebook.react.ReactInstanceManager
-import com.kiwi.rnkiwimobile.account.RNAccountActivity
+import com.kiwi.rnkiwimobile.account.RNAccountSettingsActivity
 import com.kiwi.rnkiwimobile.account.RNAccountInitialProperties
 
-class AccountSettingsActivity : RNAccountActivity(RNAccountInitialProperties(token = "mock")) {
+class AccountSettingsActivity : RNAccountSettingsActivity(RNAccountInitialProperties(token = "mock")) {
   companion object {
     fun getViewModelClass(): Class<AccountSettingsActivity> =
             AccountSettingsActivity::class.java
