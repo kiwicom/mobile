@@ -1,6 +1,21 @@
 # Code-push version changelog
 
-## Target versoin 12.0.0
+## Target version 13.0.0
+
+- upgrade rnkiwimobile to version `0.0.49`
+
+### unreleased
+
+- Expose new RN screen `AccountSettings`
+  - See iOS example [here](../../ios/RNNativePlayground/ViewController.m#L241)
+  - See Android example [here](../../rnandroidplayground/AccountSettingsActivity.kt)
+- Expose new RN screen `AccountPriceAlerts`
+  - See iOS example [here](../../ios/RNNativePlayground/ViewController.m#L250)
+  - See Android example [here](../../rnandroidplayground/AccountPriceAlertsActivity.kt)
+- Upgrade react-native to 0.60.5
+- Upgrade native dependencies
+
+## Target version 12.0.0
 
 - upgrade rnkiwimobile to version `0.0.48`
 
