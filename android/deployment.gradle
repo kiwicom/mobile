@@ -1,6 +1,6 @@
 def gitLabRepositoryUrl = "https://gitlab.skypicker.com/api/v4/projects/301/packages/maven"
 
-ext.packageFromNodeModules = { name ->
+ext.packageFromNodeModules = { it, name ->
     it.maven {
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
         url("$rootDir/../node_modules/$name/android")
