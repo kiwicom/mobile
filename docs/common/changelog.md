@@ -4,14 +4,14 @@
 
 - upgrade rnkiwimobile to version `0.0.49`
 
-### unreleased
+### v53
 
 - Expose new RN screen `AccountSettings`
   - See iOS example [here](../../ios/RNNativePlayground/ViewController.m#L241)
-  - See Android example [here](../../rnandroidplayground/AccountSettingsActivity.kt)
+  - See Android example [here](../../android/playground/src/main/java/com/kiwi/mobile/rnandroidplayground/AccountSettingsActivity.kt)
 - Expose new RN screen `AccountPriceAlerts`
   - See iOS example [here](../../ios/RNNativePlayground/ViewController.m#L250)
-  - See Android example [here](../../rnandroidplayground/AccountPriceAlertsActivity.kt)
+  - See Android example [here](../../android/playground/src/main/java/com/kiwi/mobile/rnandroidplayground/AccountPriceAlertsActivity.kt)
 - Upgrade react-native to 0.60.5
 - Upgrade native dependencies
 
