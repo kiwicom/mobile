@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Button } from '@kiwicom/universal-components';
+import { Button } from '@kiwicom/orbit-react-native';
 
 import Translation from '../Translation';
 import ButtonTitle from './ButtonTitle';
@@ -13,7 +13,7 @@ type Props = {|
 
 export default function CloseButton({ onPress }: Props) {
   return (
-    <Button onPress={onPress} type="secondary">
+    <Button onClick={onPress} type="secondary">
       <ButtonTitle style={styles.text} text={<Translation id="shared.button.close" />} />
     </Button>
   );

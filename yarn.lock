@@ -1518,6 +1518,13 @@
   dependencies:
     ramda "^0.26.1"
 
+"@kiwicom/orbit-react-native@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-react-native/-/orbit-react-native-0.3.2.tgz#4dd99ad7986c04b5ab31bda34ea6a51a871653a9"
+  integrity sha512-VFf+3KsS/FeQ2A71qhIQiEwtyem5g/O3fRRANYZADRrmqXr6x8RVekASZvnYWKHudc+w0OsuhW46d4kFC1dHsA==
+  dependencies:
+    "@kiwicom/orbit-design-tokens" "^0.6.6"
+
 "@kiwicom/relay@^3.2.0":
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/relay/-/relay-3.2.0.tgz#904bd2c248aa9952ca5d2ccdd9c895cf0e2de09d"

@@ -10,6 +10,7 @@
     "@kiwicom/mobile-navigation": "^0",
     "@kiwicom/mobile-orbit": "^0",
     "@kiwicom/mobile-utils": "^0",
+    "@kiwicom/orbit-react-native": "^0.3.2",
     "@kiwicom/rnmodules": "^0",
     "@ptomasroos/react-native-multi-slider": "^1.0.0",
     "prop-types": "^15.7.2",
