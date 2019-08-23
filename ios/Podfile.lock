@@ -1,7 +1,7 @@
 PODS:
   - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
-  - CodePush (5.6.1):
+  - CodePush (5.7.0):
     - Base64 (~> 1.1)
     - JWT (~> 3.0.0-beta.7)
     - React
@@ -66,9 +66,9 @@ PODS:
   - React-jsinspector (0.60.5)
   - react-native-maps (0.25.0):
     - React
-  - react-native-netinfo (4.1.3):
+  - react-native-netinfo (4.1.5):
     - React
-  - react-native-webview (6.7.0):
+  - react-native-webview (6.9.0):
     - React
   - React-RCTActionSheet (0.60.5):
     - React-Core (= 0.60.5)
@@ -95,7 +95,7 @@ PODS:
     - React-Core (= 0.60.5)
   - RNCAsyncStorage (1.6.1):
     - React
-  - RNGestureHandler (1.3.0):
+  - RNGestureHandler (1.4.0):
     - React
   - RNModules/RNAppleWallet (0.0.2):
     - React
@@ -215,7 +215,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  CodePush: 5fead4bea79a99aefcd3841607709846796177b3
+  CodePush: d2e54ad42df82a8db65b2d23d8191b950ba945e1
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
@@ -228,8 +228,8 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 90ad2f9db09513fc763bc757fdc3c4ff8bde2a30
   React-jsinspector: e08662d1bf5b129a3d556eb9ea343a3f40353ae4
   react-native-maps: 190c02ca533fddac5bb49cf17bdece3644612107
-  react-native-netinfo: e2c8a843bb18ab6c3f1e6cbead694491b36e3ffd
-  react-native-webview: fb412f390bd400a8fea72b5ea2b3c6d46f14282f
+  react-native-netinfo: 0e563248a4b9a99c33ec29bd03c2d50767db22a6
+  react-native-webview: 2d8de2be422f0f8b9ba38db3f013f9ebfdb9b78f
   React-RCTActionSheet: b0f1ea83f4bf75fb966eae9bfc47b78c8d3efd90
   React-RCTAnimation: 359ba1b5690b1e87cc173558a78e82d35919333e
   React-RCTBlob: 5e2b55f76e9a1c7ae52b826923502ddc3238df24
@@ -241,7 +241,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 2105b2e0e2b66a6408fc69a46c8a7fb5b2fdade0
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
   RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
-  RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
+  RNGestureHandler: 71871d4792db2a73f70204483d30350ec9384cbd
   RNModules: 52f8a81e37a94c07f4e5f548b90b86c9b22450e9
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411

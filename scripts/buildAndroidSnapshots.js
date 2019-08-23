@@ -28,7 +28,8 @@ const exec = (command, options) =>
 
 const SKYPICKER_URL = 'https://gitlab.skypicker.com/api/v4/projects/301/packages/maven/';
 
-if (!process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN) {
+const { RNKIWIMOBILE_DEPLOYMENT_TOKEN } = process.env;
+if (RNKIWIMOBILE_DEPLOYMENT_TOKEN == null) {
   throw Error('You need to pass RNKIWIMOBILE_DEPLOYMENT_TOKEN.');
 }
 
@@ -55,17 +56,14 @@ const deployDependency = async (packageName, url, version, extension = '') => {
   log(`Checking if ${downloadUrl} exists.`);
 
   const exists = await urlExists(downloadUrl, {
-    'Private-Token': process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN,
+    'Private-Token': RNKIWIMOBILE_DEPLOYMENT_TOKEN,
   });
 
   if (!exists) {
     log(`Deploying ${packageName}/${version}${extension}`);
 
     exec(
-      `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
-        // $FlowFixMe we already checked in the top that is defined
-        process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
-      } ./gradlew --no-daemon :${packageName}:uploadKiwi`,
+      `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${RNKIWIMOBILE_DEPLOYMENT_TOKEN} ./gradlew --no-daemon :${packageName}:uploadKiwi`,
     );
 
     log(`${packageName}/${version}${extension} was successfully deployed.`);
@@ -74,14 +72,24 @@ const deployDependency = async (packageName, url, version, extension = '') => {
   }
 };
 
+const deployHermes = async (version: string) => {
+  const downloadUrl = `${SKYPICKER_URL}com/trinerdis/skypicker/hermesvm/${version}-SNAPSHOT/maven-metadata.xml`;
+  const exists = await urlExists(downloadUrl, {
+    'Private-Token': RNKIWIMOBILE_DEPLOYMENT_TOKEN,
+  });
+  if (!exists) {
+    log('Deploying hermes');
+    exec(
+      `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${RNKIWIMOBILE_DEPLOYMENT_TOKEN} ./gradlew :rnkiwimobile:publishHermesPublicationToMavenRepository`,
+    );
+  }
+};
+
 const deployLibrary = (packageName, version) => {
   log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
     exec(
-      `cd ${baseFolder}/${packageName} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${
-        // $FlowFixMe we already checked in the top that is defined
-        process.env.RNKIWIMOBILE_DEPLOYMENT_TOKEN
-      } ../gradlew --no-daemon :${packageName}:uploadKiwi`,
+      `cd ${baseFolder}/${packageName} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${RNKIWIMOBILE_DEPLOYMENT_TOKEN} ../gradlew --no-daemon :${packageName}:uploadKiwi`,
     );
   } catch (err) {
     log('ERROR:', err);
@@ -144,6 +152,7 @@ const deployLibrary = (packageName, version) => {
         `${getDependencyVersion('react-native-webview')}.react-native.${reactNativeVersion}`,
         '-SNAPSHOT',
       ),
+      deployHermes(`${getDependencyVersion('hermesvm')}.react-native.${reactNativeVersion}`),
     ]);
     // Main package to publish: rnkiwimobile
     log('-----');
