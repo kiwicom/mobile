@@ -24,4 +24,6 @@ ext {
     rnKiwiMobileVersion = packageJson['version']
 
     codePushVersion = mainPackageJson['rnkiwimobile']['code-push-target-binary-version']
+    
+    jscVersion = packageJson['dependencies']['jsc-android'].replace('^', '') + ".react-native." + reactNativeVersion
 }

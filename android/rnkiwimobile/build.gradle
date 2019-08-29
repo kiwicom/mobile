@@ -80,6 +80,7 @@ dependencies {
     debugImplementation files(hermesPath + "hermes-debug.aar")	
     stagingReleaseImplementation files(hermesPath + "hermes-release.aar")
     releaseImplementation "com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT"
+    implementation "com.kiwi.android:android-jsc:$jscVersion-SNAPSHOT"
 
 }
 
@@ -93,6 +94,18 @@ publishing {
             version = "$hermesVmVersion-SNAPSHOT"
 
             artifact('../../node_modules/hermesvm/android/hermes-release.aar')
+        }
+    }
+}
+
+publishing {
+    publications {
+        androidJsc(MavenPublication) {
+            groupId = "com.kiwi.android"
+            artifactId = "android-jsc"
+            version = "$jscVersion-SNAPSHOT"
+
+            artifact('../../node_modules/jsc-android/dist/org/webkit/android-jsc/r245459/android-jsc-r245459.aar')
         }
     }
 }

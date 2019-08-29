@@ -88,6 +88,7 @@ dependencies {
     implementation "com.android.support:multidex:$multidexVersion"
     implementation "androidx.appcompat:appcompat:$supportVersion"
 
+    implementation "com.kiwi.android:android-jsc:$jscVersion-SNAPSHOT"
     /**
      * In debug mode, it will use the local rnkiwimobile project.
      * If we don't have anything in .build/android, then it will also use the packager
