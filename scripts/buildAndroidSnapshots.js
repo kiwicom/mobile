@@ -85,6 +85,19 @@ const deployHermes = async (version: string) => {
   }
 };
 
+const deployJscAndroid = async (version: string) => {
+  const downloadUrl = `${SKYPICKER_URL}com/trinerdis/skypicker/android-jsc/${version}-SNAPSHOT/maven-metadata.xml`;
+  const exists = await urlExists(downloadUrl, {
+    'Private-Token': RNKIWIMOBILE_DEPLOYMENT_TOKEN,
+  });
+  if (!exists) {
+    log('Deploying android-jsc');
+    exec(
+      `cd ${baseFolder} && RNKIWIMOBILE_DEPLOYMENT_TOKEN=${RNKIWIMOBILE_DEPLOYMENT_TOKEN} ./gradlew :rnkiwimobile:publishAndroidJscPublicationToMavenRepository`,
+    );
+  }
+};
+
 const deployLibrary = (packageName, version) => {
   log(`Deploying ${packageName}/${version}-SNAPSHOT`);
   try {
@@ -153,6 +166,7 @@ const deployLibrary = (packageName, version) => {
         '-SNAPSHOT',
       ),
       deployHermes(`${getDependencyVersion('hermesvm')}.react-native.${reactNativeVersion}`),
+      deployJscAndroid(`${getDependencyVersion('jsc-android')}.react-native.${reactNativeVersion}`),
     ]);
     // Main package to publish: rnkiwimobile
     log('-----');

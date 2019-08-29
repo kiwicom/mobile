@@ -39,6 +39,7 @@
     "commander": "^2.20.0",
     "detox": "^14.0.2",
     "dotenv": "^8.1.0",
+    "jsc-android": "245459.0.0",
     "react": "16.8.6",
     "react-native": "0.60.5",
     "react-native-app-registry-components-to-constants": "0.0.1",
