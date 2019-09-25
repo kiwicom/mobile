@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
   },
   closeWrapper: {
     flex: 1,
-    marginEnd: 8,
   },
   bookNowWrapper: {
-    flex: 1,
+    flex: 2,
+    marginStart: 8,
   },
 });
 
