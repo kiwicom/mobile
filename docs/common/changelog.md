@@ -4,6 +4,11 @@
 
 - upgrade rnkiwimobile to version `0.0.49`
 
+### v54
+
+- Change alignment of close button on details page
+- Book now takes twice the size as close (as it is in design)
+
 ### v53
 
 - Expose new RN screen `AccountSettings`
