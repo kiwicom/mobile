@@ -43,7 +43,7 @@ android/app/bin/
 .project
 .classpath
 .settings
-
+secrets.xml
 # Visual studio code
 .vscode
 
