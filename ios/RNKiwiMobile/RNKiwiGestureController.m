@@ -24,21 +24,27 @@ RCT_EXPORT_MODULE(RNKiwiGestureController);
 }
 
 RCT_EXPORT_METHOD(disableGestures:(NSString *)moduleName) {
-  [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiDisableGestures
-                                                      object:nil
-                                                    userInfo:@{ @"moduleName": moduleName }];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiDisableGestures
+                                                        object:nil
+                                                      userInfo:@{ @"moduleName": moduleName }];
+  });
 }
 
 RCT_EXPORT_METHOD(enableGestures:(NSString *)moduleName) {
-  [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiEnableGestures
-                                                      object:nil
-                                                    userInfo:@{ @"moduleName": moduleName }];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiEnableGestures
+                                                        object:nil
+                                                      userInfo:@{ @"moduleName": moduleName }];
+  });
 }
 
 RCT_EXPORT_METHOD(closeModal:(NSString *)moduleName) {
-  [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiCloseModal
-                                                      object:nil
-                                                    userInfo:@{ @"moduleName": moduleName }];
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:RNKiwiCloseModal
+                                                        object:nil
+                                                      userInfo:@{ @"moduleName": moduleName }];
+  });
 }
 
 RCT_EXPORT_METHOD(invokeDefaultBackButton) {
