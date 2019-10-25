@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type FastTrackModal_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -25,10 +23,9 @@ export type FastTrackBannerContent_data$key = {
   +$data?: FastTrackBannerContent_data$data,
   +$fragmentRefs: FastTrackBannerContent_data$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "FastTrackBannerContent_data",
   "type": "Ancillaries",
@@ -65,5 +62,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'a0db8beebefecc1c94474722b08e160a';
-module.exports = node;
+(node: any).hash = 'a0db8beebefecc1c94474722b08e160a';
+export default node;

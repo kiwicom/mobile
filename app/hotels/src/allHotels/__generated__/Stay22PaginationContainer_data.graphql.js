@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type RenderSearchResults_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -35,10 +33,9 @@ export type Stay22PaginationContainer_data$key = {
   +$data?: Stay22PaginationContainer_data$data,
   +$fragmentRefs: Stay22PaginationContainer_data$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = (function(){
+const node: ReaderFragment = (function(){
 var v0 = [
   {
     "kind": "ScalarField",
@@ -210,5 +207,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6ad5ee2e3e19f14c6223c3e1f7ecf09d';
-module.exports = node;
+(node: any).hash = '6ad5ee2e3e19f14c6223c3e1f7ecf09d';
+export default node;

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   headerLeftText: {
     fontWeight: '800',
     fontSize: 16,
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     marginBottom: 3,
     paddingTop: 8,
   },

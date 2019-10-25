@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type AllHotelsSearchRow_data$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -19,14 +17,13 @@ export type AllHotelsSearchList_data = $ReadOnlyArray<{|
   +$refType: AllHotelsSearchList_data$ref,
 |}>;
 export type AllHotelsSearchList_data$data = AllHotelsSearchList_data;
-export type AllHotelsSearchList_data$key = {
+export type AllHotelsSearchList_data$key = $ReadOnlyArray<{
   +$data?: AllHotelsSearchList_data$data,
   +$fragmentRefs: AllHotelsSearchList_data$ref,
-};
-*/
+}>;
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "AllHotelsSearchList_data",
   "type": "AllHotelsInterface",
@@ -57,5 +54,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '75f6ebe8799667fb041b0e2cd525faab';
-module.exports = node;
+(node: any).hash = '75f6ebe8799667fb041b0e2cd525faab';
+export default node;

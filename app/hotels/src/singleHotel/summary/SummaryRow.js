@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     color: defaultTokens.colorTextSecondary,
   },
   price: {
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
   },
 });
 

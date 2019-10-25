@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type Address_address$ref = any;
 type HotelSwipeItem_data$ref = any;
@@ -21,14 +19,13 @@ export type HotelSwipeList_data = $ReadOnlyArray<{|
   +$refType: HotelSwipeList_data$ref,
 |}>;
 export type HotelSwipeList_data$data = HotelSwipeList_data;
-export type HotelSwipeList_data$key = {
+export type HotelSwipeList_data$key = $ReadOnlyArray<{
   +$data?: HotelSwipeList_data$data,
   +$fragmentRefs: HotelSwipeList_data$ref,
-};
-*/
+}>;
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "HotelSwipeList_data",
   "type": "AllHotelsInterface",
@@ -61,5 +58,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '214c25e1d55d84e3e71abcbd92d97590';
-module.exports = node;
+(node: any).hash = '214c25e1d55d84e3e71abcbd92d97590';
+export default node;

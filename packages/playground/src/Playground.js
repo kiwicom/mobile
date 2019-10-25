@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   },
   sectionText: {
     paddingBottom: 10,
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     fontSize: 10,
   },
 });

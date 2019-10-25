@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type AllHotelsSearchList_data$ref = any;
 type MapScreen_data$ref = any;
@@ -18,14 +16,13 @@ export type RenderSearchResults_data = $ReadOnlyArray<{|
   +$refType: RenderSearchResults_data$ref,
 |}>;
 export type RenderSearchResults_data$data = RenderSearchResults_data;
-export type RenderSearchResults_data$key = {
+export type RenderSearchResults_data$key = $ReadOnlyArray<{
   +$data?: RenderSearchResults_data$data,
   +$fragmentRefs: RenderSearchResults_data$ref,
-};
-*/
+}>;
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "RenderSearchResults_data",
   "type": "AllHotelsInterface",
@@ -47,5 +44,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '6f245112b0fcea113e24e1b91da3d848';
-module.exports = node;
+(node: any).hash = '6f245112b0fcea113e24e1b91da3d848';
+export default node;

@@ -91,7 +91,7 @@ const styleSheet = StyleSheet.create({
   },
   input: {
     flex: 1,
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     backgroundColor: defaultTokens.paletteCloudNormal,
     borderRadius: 6,
     padding: 10,

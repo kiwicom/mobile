@@ -4,10 +4,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ConcreteRequest } from 'relay-runtime';
 type HotelCityList_data$ref = any;
 export type HotelCityQueryVariables = {|
@@ -22,8 +20,6 @@ export type HotelCityQuery = {|
   variables: HotelCityQueryVariables,
   response: HotelCityQueryResponse,
 |};
-*/
-
 
 /*
 query HotelCityQuery(
@@ -53,7 +49,7 @@ fragment HotelCityItem_data on HotelCity {
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
@@ -185,5 +181,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '679b2841f9a6e9dd25e02f24976d816f';
-module.exports = node;
+(node: any).hash = '679b2841f9a6e9dd25e02f24976d816f';
+export default node;

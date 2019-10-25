@@ -1,13 +1,11 @@
 /**
  * @flow
- * @relayHash 9fc919d282ab4ac808622b78b18bd567
+ * @relayHash 8541d6442b9ebdf67964f6c7220b6701
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ConcreteRequest } from 'relay-runtime';
 type HotelsPaginationContainer_data$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
@@ -15,13 +13,13 @@ export type Language = "ar" | "bg" | "ca" | "cs" | "da" | "de" | "el" | "en" | "
 export type Mealplan = "ALL_INCLUSIVE" | "BREAKFAST_INCLUDED" | "FULL_BOARD" | "HALF_BOARD" | "%future added value";
 export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
 export type HotelsSearchInput = {|
+  checkin: any,
+  checkout: any,
+  cityId?: ?string,
+  language?: ?Language,
   latitude?: ?number,
   longitude?: ?number,
   radius?: ?number,
-  cityId?: ?string,
-  checkin: any,
-  checkout: any,
-  language?: ?Language,
   roomsConfiguration: $ReadOnlyArray<RoomsConfiguration>,
 |};
 export type RoomsConfiguration = {|
@@ -32,41 +30,41 @@ export type RoomsChildrenConfiguration = {|
   age?: ?number
 |};
 export type HotelsFilterInput = {|
-  starsRating?: ?$ReadOnlyArray<?number>,
-  minPrice?: ?number,
-  maxPrice?: ?number,
-  minimumPrice?: ?string,
-  maximumPrice?: ?string,
-  hotelFacilities?: ?HotelFacilitiesInput,
-  hotelAmenities?: ?HotelAmenitiesInput,
-  minScore?: ?number,
   freeCancellation?: ?boolean,
+  hotelAmenities?: ?HotelAmenitiesInput,
+  hotelFacilities?: ?HotelFacilitiesInput,
+  maximumPrice?: ?string,
+  maxPrice?: ?number,
   mealplan?: ?Mealplan,
-|};
-export type HotelFacilitiesInput = {|
-  airportShuttle?: ?boolean,
-  familyRooms?: ?boolean,
-  facilitiesForDisabled?: ?boolean,
-  fitnessCenter?: ?boolean,
-  parking?: ?boolean,
-  freeParking?: ?boolean,
-  valetParking?: ?boolean,
-  indoorPool?: ?boolean,
-  petsAllowed?: ?boolean,
-  spa?: ?boolean,
-  wifi?: ?boolean,
+  minimumPrice?: ?string,
+  minPrice?: ?number,
+  minScore?: ?number,
+  starsRating?: ?$ReadOnlyArray<?number>,
 |};
 export type HotelAmenitiesInput = {|
   airportShuttle?: ?boolean,
-  familyRooms?: ?boolean,
   facilitiesForDisabled?: ?boolean,
+  familyRooms?: ?boolean,
   fitnessCenter?: ?boolean,
-  parking?: ?boolean,
   freeParking?: ?boolean,
-  valetParking?: ?boolean,
   indoorPool?: ?boolean,
+  parking?: ?boolean,
   petsAllowed?: ?boolean,
   spa?: ?boolean,
+  valetParking?: ?boolean,
+  wifi?: ?boolean,
+|};
+export type HotelFacilitiesInput = {|
+  airportShuttle?: ?boolean,
+  facilitiesForDisabled?: ?boolean,
+  familyRooms?: ?boolean,
+  fitnessCenter?: ?boolean,
+  freeParking?: ?boolean,
+  indoorPool?: ?boolean,
+  parking?: ?boolean,
+  petsAllowed?: ?boolean,
+  spa?: ?boolean,
+  valetParking?: ?boolean,
   wifi?: ?boolean,
 |};
 export type AvailableHotelOptionsInput = {|
@@ -87,8 +85,6 @@ export type NewAllHotelsSearchQuery = {|
   variables: NewAllHotelsSearchQueryVariables,
   response: NewAllHotelsSearchQueryResponse,
 |};
-*/
-
 
 /*
 query NewAllHotelsSearchQuery(
@@ -232,7 +228,7 @@ fragment HotelDistance_hotel on AllHotelsInterface {
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
@@ -626,5 +622,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2d9e355dc906ce930fa9faf1b1a269df';
-module.exports = node;
+(node: any).hash = '2d9e355dc906ce930fa9faf1b1a269df';
+export default node;

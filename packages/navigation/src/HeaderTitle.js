@@ -10,7 +10,7 @@ const HeaderTitle = ({ children }: {| children: TranslationType |}) => (
 
 const styles = StyleSheet.create({
   title: {
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     fontWeight: '600',
     android: {
       fontSize: 18,

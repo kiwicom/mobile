@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import * as React from 'react';
 import { FlatList } from 'react-native';
@@ -14,13 +14,18 @@ type Props = {|
 |};
 
 type ItemType = {|
-  +node?: {| +id: string |},
+  +node?: {|
+    +id: string,
+    +$fragmentRefs: any,
+  |},
 |};
 
 class HotelCityList extends React.Component<Props> {
   keyExtractor = (item: ItemType) => item.node?.id;
 
-  renderItem = ({ item }) => <HotelCityItem data={item.node} onPress={this.props.onPress} />;
+  renderItem = ({ item }: {| +item: ItemType |}) => (
+    <HotelCityItem data={item.node} onPress={this.props.onPress} />
+  );
 
   render() {
     const data = this.props.data?.edges ?? [];

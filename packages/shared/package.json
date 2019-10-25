@@ -18,10 +18,10 @@
     "react-native-maps": "0.25.0",
     "react-native-modal": "^11.3.1",
     "react-native-read-more-text": "^1.1.0",
+    "@kiwicom/universal-components": "^0.0.17",
     "react-native-webview": "6.9.0"
   },
   "peerDependencies": {
-    "@kiwicom/universal-components": "^0",
     "@react-native-community/async-storage": "",
     "date-fns": "^1.30.1",
     "decimal.js-light": "",

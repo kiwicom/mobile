@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type FastTrackModal_data$ref: FragmentReference;
@@ -20,10 +18,9 @@ export type FastTrackModal_data$key = {
   +$data?: FastTrackModal_data$data,
   +$fragmentRefs: FastTrackModal_data$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "FastTrackModal_data",
   "type": "AncillaryDocument",
@@ -40,5 +37,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'ed6bce65bc9087fd1d9d91c37d82efe2';
-module.exports = node;
+(node: any).hash = 'ed6bce65bc9087fd1d9d91c37d82efe2';
+export default node;

@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: '500',
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     textAlign: 'center',
   },
   text: {

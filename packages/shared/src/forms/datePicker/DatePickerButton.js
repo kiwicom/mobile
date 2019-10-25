@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     marginStart: 10,
   },
   dateText: {
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     android: {
       fontSize: 16,
     },
