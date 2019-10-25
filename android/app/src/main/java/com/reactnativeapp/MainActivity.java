@@ -35,9 +35,10 @@ public class MainActivity extends ReactActivity {
         DeviceInfo deviceInfo = new DeviceInfo();
         UserInfo userInfo = new UserInfo();
 
-        EventSender.defaultInitialize(getApplication(), PreferenceManager.getDefaultSharedPreferences(this), deviceInfo,
-                userInfo, new String[] {}, "123456", new ArrayList<>(), BuildConfig.DEBUG, BuildConfig.DEBUG,
-                BuildConfig.DEBUG, null);
+        EventSender.defaultInitialize(
+      getApplication(), deviceInfo, userInfo, new String[] {}, new ArrayList<>(), BuildConfig.DEBUG,
+      BuildConfig.DEBUG, BuildConfig.DEBUG, null
+    );
     }
 
     @Override
