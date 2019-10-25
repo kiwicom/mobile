@@ -1,17 +1,15 @@
 /**
  * @flow
- * @relayHash 7d51c6c055c75768fa91f75cb7ddb94a
+ * @relayHash 749ff6c450fc96e23dcce629110fb3f3
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ConcreteRequest } from 'relay-runtime';
 export type RoomConfigInput = {|
-  roomId: string,
   count: number,
+  roomId: string,
 |};
 export type Stay22PaymentScreenQueryVariables = {|
   paymentLink: string,
@@ -26,8 +24,6 @@ export type Stay22PaymentScreenQuery = {|
   variables: Stay22PaymentScreenQueryVariables,
   response: Stay22PaymentScreenQueryResponse,
 |};
-*/
-
 
 /*
 query Stay22PaymentScreenQuery(
@@ -40,7 +36,7 @@ query Stay22PaymentScreenQuery(
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
@@ -113,5 +109,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2e7ce872382d2baed38d7bb70ba521cb';
-module.exports = node;
+(node: any).hash = '2e7ce872382d2baed38d7bb70ba521cb';
+export default node;

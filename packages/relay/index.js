@@ -34,6 +34,8 @@ export const commitMutation = (config: CommitMutationConfig, token?: string) => 
   if (token) {
     return _commitMutation(PrivateEnvironment.getEnvironment(token), config);
   }
+  /* $FlowFixMe(>=0.110.1) This comment suppresses an error when upgrading Flow.
+   * To see the error delete this comment and run Flow. */
   return _commitMutation(PublicEnvironment.getEnvironment(), config);
 };
 

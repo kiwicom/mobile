@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.15,
   },
   streetLine: {
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
   },
   cityLine: {
     color: defaultTokens.colorTextSecondary,

@@ -1,63 +1,61 @@
 /**
  * @flow
- * @relayHash 9dd88c32825fddac3886bb6f4126eefc
+ * @relayHash 753e03aed7f74fe304292171cb4aff99
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ConcreteRequest } from 'relay-runtime';
 type Stay22PaginationContainer_data$ref = any;
 export type Currency = "AED" | "AFN" | "ALL" | "AMD" | "ANG" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BGN" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HRK" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLL" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UZS" | "VEF" | "VND" | "VUV" | "WST" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWL" | "%future added value";
 export type Mealplan = "ALL_INCLUSIVE" | "BREAKFAST_INCLUDED" | "FULL_BOARD" | "HALF_BOARD" | "%future added value";
 export type OrderBy = "DISTANCE" | "POPULARITY" | "PRICE" | "RANKING" | "REVIEW_SCORE" | "STARS" | "%future added value";
 export type Stay22HotelsSearchInput = {|
-  latitude: number,
-  longitude: number,
-  guests: number,
   checkin: any,
   checkout: any,
   currency?: ?Currency,
+  guests: number,
+  latitude: number,
+  longitude: number,
   orderBy?: ?OrderBy,
 |};
 export type HotelsFilterInput = {|
-  starsRating?: ?$ReadOnlyArray<?number>,
-  minPrice?: ?number,
-  maxPrice?: ?number,
-  minimumPrice?: ?string,
-  maximumPrice?: ?string,
-  hotelFacilities?: ?HotelFacilitiesInput,
-  hotelAmenities?: ?HotelAmenitiesInput,
-  minScore?: ?number,
   freeCancellation?: ?boolean,
+  hotelAmenities?: ?HotelAmenitiesInput,
+  hotelFacilities?: ?HotelFacilitiesInput,
+  maximumPrice?: ?string,
+  maxPrice?: ?number,
   mealplan?: ?Mealplan,
-|};
-export type HotelFacilitiesInput = {|
-  airportShuttle?: ?boolean,
-  familyRooms?: ?boolean,
-  facilitiesForDisabled?: ?boolean,
-  fitnessCenter?: ?boolean,
-  parking?: ?boolean,
-  freeParking?: ?boolean,
-  valetParking?: ?boolean,
-  indoorPool?: ?boolean,
-  petsAllowed?: ?boolean,
-  spa?: ?boolean,
-  wifi?: ?boolean,
+  minimumPrice?: ?string,
+  minPrice?: ?number,
+  minScore?: ?number,
+  starsRating?: ?$ReadOnlyArray<?number>,
 |};
 export type HotelAmenitiesInput = {|
   airportShuttle?: ?boolean,
-  familyRooms?: ?boolean,
   facilitiesForDisabled?: ?boolean,
+  familyRooms?: ?boolean,
   fitnessCenter?: ?boolean,
-  parking?: ?boolean,
   freeParking?: ?boolean,
-  valetParking?: ?boolean,
   indoorPool?: ?boolean,
+  parking?: ?boolean,
   petsAllowed?: ?boolean,
   spa?: ?boolean,
+  valetParking?: ?boolean,
+  wifi?: ?boolean,
+|};
+export type HotelFacilitiesInput = {|
+  airportShuttle?: ?boolean,
+  facilitiesForDisabled?: ?boolean,
+  familyRooms?: ?boolean,
+  fitnessCenter?: ?boolean,
+  freeParking?: ?boolean,
+  indoorPool?: ?boolean,
+  parking?: ?boolean,
+  petsAllowed?: ?boolean,
+  spa?: ?boolean,
+  valetParking?: ?boolean,
   wifi?: ?boolean,
 |};
 export type Stay22PaginationContainerQueryVariables = {|
@@ -73,8 +71,6 @@ export type Stay22PaginationContainerQuery = {|
   variables: Stay22PaginationContainerQueryVariables,
   response: Stay22PaginationContainerQueryResponse,
 |};
-*/
-
 
 /*
 query Stay22PaginationContainerQuery(
@@ -221,7 +217,7 @@ fragment HotelDistance_hotel on AllHotelsInterface {
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
@@ -613,5 +609,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '2c80619cb90a8442f6a0b9abf9bdb577';
-module.exports = node;
+(node: any).hash = '2c80619cb90a8442f6a0b9abf9bdb577';
+export default node;

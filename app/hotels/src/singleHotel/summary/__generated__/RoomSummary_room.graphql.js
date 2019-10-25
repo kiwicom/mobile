@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type SummaryButtons_rooms$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -44,10 +42,9 @@ export type RoomSummary_room$key = {
   +$data?: RoomSummary_room$data,
   +$fragmentRefs: RoomSummary_room$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = (function(){
+const node: ReaderFragment = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -207,5 +204,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '9e3b017f3a1b287da5f1c61ff44d6ea8';
-module.exports = node;
+(node: any).hash = '9e3b017f3a1b287da5f1c61ff44d6ea8';
+export default node;

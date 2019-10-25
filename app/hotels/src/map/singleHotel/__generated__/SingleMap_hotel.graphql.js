@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type AdditionalInfo_data$ref = any;
 type MapView_hotel$ref = any;
@@ -25,10 +23,9 @@ export type SingleMap_hotel$key = {
   +$data?: SingleMap_hotel$data,
   +$fragmentRefs: SingleMap_hotel$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "SingleMap_hotel",
   "type": "HotelAvailabilityInterface",
@@ -59,5 +56,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'edd4d5d42b70359a56be5dfe4e347adf';
-module.exports = node;
+(node: any).hash = 'edd4d5d42b70359a56be5dfe4e347adf';
+export default node;

@@ -32,6 +32,6 @@ export default createFragmentContainer(RoomRowTitle, {
 const styles = StyleSheet.create({
   title: {
     fontSize: 14,
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
   },
 });

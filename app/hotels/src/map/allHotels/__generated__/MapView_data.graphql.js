@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type MapViewMarker_markerData$ref = any;
 import type { FragmentReference } from "relay-runtime";
@@ -22,14 +20,13 @@ export type MapView_data = $ReadOnlyArray<{|
   +$refType: MapView_data$ref,
 |}>;
 export type MapView_data$data = MapView_data;
-export type MapView_data$key = {
+export type MapView_data$key = $ReadOnlyArray<{
   +$data?: MapView_data$data,
   +$fragmentRefs: MapView_data$ref,
-};
-*/
+}>;
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "MapView_data",
   "type": "AllHotelsInterface",
@@ -78,5 +75,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'd82822256325efe906aecd07b8cd564c';
-module.exports = node;
+(node: any).hash = 'd82822256325efe906aecd07b8cd564c';
+export default node;

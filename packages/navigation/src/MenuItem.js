@@ -124,10 +124,10 @@ function createStyleSheet(props: Props) {
     title: {
       fontWeight: 'bold',
       android: {
-        color: defaultTokens.colorTextAttention,
+        color: defaultTokens.colorTextPrimary,
       },
       ios: {
-        color: props.isActive ? defaultTokens.paletteWhite : defaultTokens.colorTextAttention,
+        color: props.isActive ? defaultTokens.paletteWhite : defaultTokens.colorTextPrimary,
       },
     },
     description: {

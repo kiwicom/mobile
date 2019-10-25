@@ -53,7 +53,7 @@ export default createFragmentContainer(HotelTitle, {
 const style = StyleSheet.create({
   title: {
     fontWeight: '600',
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     fontSize: 14,
     lineHeight: 18,
   },

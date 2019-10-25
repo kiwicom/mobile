@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type Header_hotel$ref: FragmentReference;
@@ -35,10 +33,9 @@ export type Header_hotel$key = {
   +$data?: Header_hotel$data,
   +$fragmentRefs: Header_hotel$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = (function(){
+const node: ReaderFragment = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -142,5 +139,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '3780aeaa38467bedc5db18e37f6ebec0';
-module.exports = node;
+(node: any).hash = '3780aeaa38467bedc5db18e37f6ebec0';
+export default node;

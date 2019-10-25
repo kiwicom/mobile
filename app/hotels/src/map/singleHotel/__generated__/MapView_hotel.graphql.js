@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type MapView_hotel$ref: FragmentReference;
@@ -23,10 +21,9 @@ export type MapView_hotel$key = {
   +$data?: MapView_hotel$data,
   +$fragmentRefs: MapView_hotel$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "MapView_hotel",
   "type": "HotelInterface",
@@ -61,5 +58,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '54d5eb1a9e793be8bced0c546d27f87b';
-module.exports = node;
+(node: any).hash = '54d5eb1a9e793be8bced0c546d27f87b';
+export default node;

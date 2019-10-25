@@ -4,10 +4,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ConcreteRequest } from 'relay-runtime';
 type FastTrackBannerContent_data$ref = any;
 export type FastTrackBannerQueryVariables = {|
@@ -22,8 +20,6 @@ export type FastTrackBannerQuery = {|
   variables: FastTrackBannerQueryVariables,
   response: FastTrackBannerQueryResponse,
 |};
-*/
-
 
 /*
 query FastTrackBannerQuery(
@@ -47,7 +43,7 @@ fragment FastTrackModal_data on AncillaryDocument {
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = [
   {
     "kind": "LocalArgument",
@@ -154,5 +150,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'f5782a610c1cec7899351608c70da717';
-module.exports = node;
+(node: any).hash = 'f5782a610c1cec7899351608c70da717';
+export default node;

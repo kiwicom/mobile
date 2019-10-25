@@ -80,7 +80,7 @@ const styleSheet = StyleSheet.create({
   // These values are from the official design. Don't touch it please.
   defaultTextStyle: {
     fontWeight: 'normal',
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
     android: {
       fontSize: 15,
       letterSpacing: 0,

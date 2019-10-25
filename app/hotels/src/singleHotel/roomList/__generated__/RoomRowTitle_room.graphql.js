@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 import type { FragmentReference } from "relay-runtime";
 declare export opaque type RoomRowTitle_room$ref: FragmentReference;
@@ -20,10 +18,9 @@ export type RoomRowTitle_room$key = {
   +$data?: RoomRowTitle_room$data,
   +$fragmentRefs: RoomRowTitle_room$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = {
+const node: ReaderFragment = {
   "kind": "Fragment",
   "name": "RoomRowTitle_room",
   "type": "HotelRoomAvailabilityInterface",
@@ -40,5 +37,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '1bdb6a540a5a35081cb9fcff82e12fc2';
-module.exports = node;
+(node: any).hash = '1bdb6a540a5a35081cb9fcff82e12fc2';
+export default node;

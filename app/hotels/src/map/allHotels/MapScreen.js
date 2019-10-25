@@ -79,7 +79,9 @@ type Props = {|
 |};
 
 class MapScreen extends React.Component<Props> {
-  renderDimension = ({ width }) => <MapScreenWithContext {...this.props} deviceWidth={width} />;
+  renderDimension = ({ width }: { +width: number, ... }) => (
+    <MapScreenWithContext {...this.props} deviceWidth={width} />
+  );
 
   render() {
     return <Dimensions.Consumer>{this.renderDimension}</Dimensions.Consumer>;

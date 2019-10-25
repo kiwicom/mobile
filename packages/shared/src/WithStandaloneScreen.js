@@ -20,6 +20,8 @@ type NavProps = {
 function withStandaloneScreen<Props: { ... }>(
   WrappedComponent: React.AbstractComponent<Props>,
   moduleName: string,
+  /* $FlowFixMe(>=0.110.1) This comment suppresses an error when upgrading Flow.
+   * To see the error delete this comment and run Flow. */
 ): React.AbstractComponent<$Diff<Props, NavProps>> {
   return class WithStandaloneScreen extends React.Component<Props> {
     static navigationOptions = (props: NavProps) => {

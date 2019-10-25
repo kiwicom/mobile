@@ -3,10 +3,8 @@
  */
 
 /* eslint-disable */
+// flowlint untyped-type-import:off
 
-'use strict';
-
-/*::
 import type { ReaderFragment } from 'relay-runtime';
 type BeddingInfo_room$ref = any;
 type RoomBadges_availableRoom$ref = any;
@@ -42,10 +40,9 @@ export type RoomRow_availableRoom$key = {
   +$data?: RoomRow_availableRoom$data,
   +$fragmentRefs: RoomRow_availableRoom$ref,
 };
-*/
 
 
-const node/*: ReaderFragment*/ = (function(){
+const node: ReaderFragment = (function(){
 var v0 = {
   "kind": "ScalarField",
   "alias": null,
@@ -187,5 +184,5 @@ return {
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'b0eba4966a3af3039ebdee5acafb3e3e';
-module.exports = node;
+(node: any).hash = 'b0eba4966a3af3039ebdee5acafb3e3e';
+export default node;

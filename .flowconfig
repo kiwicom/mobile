@@ -27,6 +27,9 @@ node_modules/warning/.*
 
 [include]
 
+[declarations]
+<PROJECT_ROOT>/node_modules/@kiwicom/account-native
+
 [untyped]
 ; Be careful - do not add 'StyleSheet' here
 .*/node_modules/@react-native-community/cli/.*/.*
@@ -102,6 +105,7 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(<VERSION>\\)? *\\(site=[a-z,_]*
 
 [lints]
 unnecessary-optional-chain=error
+untyped-type-import=error
 
 [strict]
 ;nonstrict-import

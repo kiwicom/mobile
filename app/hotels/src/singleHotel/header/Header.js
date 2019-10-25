@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     fontWeight: '800',
     letterSpacing: -0.45,
-    color: defaultTokens.colorTextAttention,
+    color: defaultTokens.colorTextPrimary,
   },
   rating: {
     backgroundColor: defaultTokens.paletteWhite,
