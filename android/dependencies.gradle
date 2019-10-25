@@ -1,8 +1,8 @@
 // Global to all projects and subprojects
 ext {
-    gradlePluginVersion = "3.4.1"
-    googleServicesPluginVersion = "4.2.0"
-    fabricPluginVersion = "1.26.1"
+    gradlePluginVersion = "3.5.0"
+    googleServicesPluginVersion = "4.3.2"
+    fabricPluginVersion = "1.31.0"
     androidMavenPublishVersion = "3.6.2"
 
     compileSdkVersion = 28
@@ -11,26 +11,26 @@ ext {
     minSdkVersion = 21
     targetSdkVersion = 28
 
-    kotlinVersion = "1.3.21"
-    detoxKotlinVersion = "1.3.21"
+    kotlinVersion = "1.3.50"
+    detoxKotlinVersion = "1.3.50"
 
-    multidexVersion = "2.0.0"
-    supportVersion = "1.0.0"
+    multidexVersion = "2.0.1"
+    supportVersion = "1.1.0"
     gsonVersion = "2.8.5"
 
-    playServicesBaseVersion = "16.1.0"
-    playServicesMapsVersion = "16.1.0"
-    playServicesMeasurementBaseVersion = "16.0.2"
-    playServicesAnalyticsVersion = "16.0.4"
+    playServicesBaseVersion = "17.0.0"
+    playServicesMapsVersion = "17.0.0"
+    playServicesMeasurementBaseVersion = "17.0.0"
+    playServicesAnalyticsVersion = "17.0.0"
     facebookVersion = "4.39.0"
     androidMapsUtilsVersion = "0.5"
 
-    firebaseAnalyticsVersion = "16.0.5"
+    firebaseAnalyticsVersion = "17.2.0"
 
     junitVersion = "4.12"
-    testRunnerVersion = "1.0.2"
-    espressoVersion = "3.0.2"
+    testRunnerVersion = "1.2.0"
+    espressoVersion = "3.2.0"
 
-    loggingVersion = "0.2.15"
-    trinerdisUtilsVersion = "0.2.15"
+    loggingVersion = "0.19"
+    utilsVersion = "0.7"
 }
