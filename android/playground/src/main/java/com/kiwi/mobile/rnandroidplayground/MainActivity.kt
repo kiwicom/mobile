@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
     button_account_price_alerts.setOnClickListener {
       startActivity(Intent(this, AccountPriceAlertsActivity.getViewModelClass()))
     }
+
+    button_ancillary_factory.setOnClickListener {
+      startActivity(Intent(this, AncillaryFactoryAcivity.getViewModelClass()))
+    }
   }
 
   override fun onDestroy() {
