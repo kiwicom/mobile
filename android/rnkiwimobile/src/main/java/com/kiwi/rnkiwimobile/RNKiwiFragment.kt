@@ -6,11 +6,11 @@ package com.kiwi.rnkiwimobile
  * Copyright 2017 Agile Sports Technologies, Inc.
  */
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactRootView
 import com.facebook.react.devsupport.DoubleTapReloadRecognizer
