@@ -75,9 +75,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxY-WN-HSN">
-                                <rect key="frame" x="88" y="419" width="105" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="134.45404616042129" y="418" width="105.00000000000023" height="30.000000000000057"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <state key="normal" title="Fast Track BGY"/>
+                                <connections>
+                                    <action selector="FastTrackBergamo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OO3-TV-Agz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
