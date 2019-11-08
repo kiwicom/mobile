@@ -257,15 +257,11 @@
   [[self navigationController] pushViewController:controller animated:YES];
 }
 
-- (IBAction)FastTrackBergamo:(id)sender {
-  RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AncillaryFactory"
-                                                                initialProperties:@{
-                                                                                    @"service": @"fast_track",
-                                                                                    @"bookingId": @"123",
-                                                                                    @"kwAuthToken": @"mock",
-                                                                                    }];
-  [self setActiveViewController:controller];
-  [[self navigationController] pushViewController:controller animated:YES];
+- (IBAction)presentBGYFastTrack:(UIButton *)sender {
+  AncillaryViewController *AncillaryView = [[AncillaryViewController alloc] init:@"fast_track" bookingId:@123 kwAuthToken:@"mock"];
+  
+  [self setActiveViewController:AncillaryView];
+  [[self navigationController] pushViewController:AncillaryView  animated:YES];
 }
 
 // Offer search is based on city ID

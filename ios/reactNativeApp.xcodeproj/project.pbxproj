@@ -51,7 +51,6 @@
 		898C440300784E69B91D0ED6 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D1E4633998A4228B3B7F222 /* Roboto-Medium.ttf */; };
 		9399D42C226F18B6005C0F67 /* AncillaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9399D42A226F18B6005C0F67 /* AncillaryViewController.m */; };
 		9399D42D226F18B6005C0F67 /* AncillaryViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9399D42B226F18B6005C0F67 /* AncillaryViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9DD5D5042374688A00C11B25 /* FastTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD5D5032374688A00C11B25 /* FastTrackViewController.swift */; };
 		AE942438053B4672A7E086F8 /* orbit-icons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */; };
 		DD9F4DDDD70840CBBECA0434 /* CircularPro-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */; };
 		F42D2DA1998548F1808065BE /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */; };
@@ -151,8 +150,6 @@
 		83DEB0A076A11B421C735EE9 /* Pods-RNPlayground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNPlayground.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNPlayground/Pods-RNPlayground.debug.xcconfig"; sourceTree = "<group>"; };
 		9399D42A226F18B6005C0F67 /* AncillaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AncillaryViewController.m; sourceTree = "<group>"; };
 		9399D42B226F18B6005C0F67 /* AncillaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AncillaryViewController.h; sourceTree = "<group>"; };
-		9DD5D5022374688900C11B25 /* RNNativePlayground-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNNativePlayground-Bridging-Header.h"; sourceTree = "<group>"; };
-		9DD5D5032374688A00C11B25 /* FastTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastTrackViewController.swift; sourceTree = "<group>"; };
 		A42E4EC96B6B81F2DFC8C869 /* libPods-RNPlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNPlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6319717E9F64AE8AFA770C0 /* CircularPro-Book.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Book.otf"; path = "../assets/fonts/ios/CircularPro-Book.otf"; sourceTree = "<group>"; };
 		A7DB7617FCB64964BEDA22CA /* orbit-icons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "orbit-icons.ttf"; path = "../assets/fonts/orbit-icons.ttf"; sourceTree = "<group>"; };
@@ -261,8 +258,6 @@
 				21B8D73321834BA10079431F /* City.h */,
 				21535422219038C3007305B8 /* staging.xcconfig */,
 				2153542321903932007305B8 /* release.xcconfig */,
-				9DD5D5032374688A00C11B25 /* FastTrackViewController.swift */,
-				9DD5D5022374688900C11B25 /* RNNativePlayground-Bridging-Header.h */,
 			);
 			path = RNNativePlayground;
 			sourceTree = "<group>";
@@ -644,7 +639,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				27E931D920ADA0600053AE19 /* ViewController.m in Sources */,
-				9DD5D5042374688A00C11B25 /* FastTrackViewController.swift in Sources */,
 				27E931E420ADA0630053AE19 /* main.m in Sources */,
 				21B8D73221834B830079431F /* City.m in Sources */,
 				27E931D620ADA0600053AE19 /* AppDelegate.m in Sources */,

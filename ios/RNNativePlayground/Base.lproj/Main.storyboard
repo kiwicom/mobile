@@ -18,11 +18,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMy-op-KJ7">
+                                <rect key="frame" x="16" y="138.5" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select end date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oID-K6-8uc">
+                                <rect key="frame" x="16" y="176.5" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select city" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBX-BO-IRW">
+                                <rect key="frame" x="16" y="214.5" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QHj-7e-Fcl">
-                                <rect key="frame" x="88.5" y="273.5" width="198" height="120"/>
+                                <rect key="frame" x="88.5" y="295" width="198" height="162"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="MyC-DG-EB7">
-                                        <rect key="frame" x="0.0" y="0.0" width="198" height="120"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="MyC-DG-EB7">
+                                        <rect key="frame" x="0.0" y="0.0" width="198" height="162"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s16-m2-Q3f">
                                                 <rect key="frame" x="0.0" y="0.0" width="198" height="30"/>
@@ -32,56 +50,37 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mO0-5n-Vye">
-                                                <rect key="frame" x="0.0" y="30" width="198" height="30"/>
+                                                <rect key="frame" x="0.0" y="33" width="198" height="30"/>
                                                 <state key="normal" title="Present stay22"/>
                                                 <connections>
                                                     <action selector="present22stay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ujy-xz-cvG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="72D-Ig-efP">
-                                                <rect key="frame" x="0.0" y="60" width="198" height="30"/>
+                                                <rect key="frame" x="0.0" y="66" width="198" height="30"/>
                                                 <state key="normal" title="Push account settings"/>
                                                 <connections>
                                                     <action selector="pushAccountsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UKq-mA-4Cf"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdj-Gt-WLn">
-                                                <rect key="frame" x="0.0" y="90" width="198" height="30"/>
+                                                <rect key="frame" x="0.0" y="99" width="198" height="30"/>
                                                 <state key="normal" title="Push price alerts"/>
                                                 <connections>
                                                     <action selector="pushPriceAlerts:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d10-QU-dJB"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxY-WN-HSN">
+                                                <rect key="frame" x="0.0" y="132" width="198" height="30"/>
+                                                <state key="normal" title="Present Fast Track BGY"/>
+                                                <connections>
+                                                    <action selector="presentBGYFastTrack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sKP-Us-qHm"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select start date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aMy-op-KJ7">
-                                <rect key="frame" x="16" y="159.5" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select end date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oID-K6-8uc">
-                                <rect key="frame" x="16" y="197.5" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select city" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBX-BO-IRW">
-                                <rect key="frame" x="16" y="235.5" width="343" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QxY-WN-HSN">
-                                <rect key="frame" x="134.45404616042129" y="418" width="105.00000000000023" height="30.000000000000057"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <state key="normal" title="Fast Track BGY"/>
-                                <connections>
-                                    <action selector="FastTrackBergamo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OO3-TV-Agz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
@@ -91,8 +90,8 @@
                             <constraint firstItem="QBX-BO-IRW" firstAttribute="centerX" secondItem="QHj-7e-Fcl" secondAttribute="centerX" id="L5l-lZ-Aws"/>
                             <constraint firstItem="oID-K6-8uc" firstAttribute="leading" secondItem="QBX-BO-IRW" secondAttribute="leading" id="PeM-fb-uuH"/>
                             <constraint firstItem="QBX-BO-IRW" firstAttribute="top" secondItem="oID-K6-8uc" secondAttribute="bottom" constant="8" symbolic="YES" id="XIG-fk-LJq"/>
-                            <constraint firstItem="QHj-7e-Fcl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="heN-Dh-Vno"/>
-                            <constraint firstItem="QHj-7e-Fcl" firstAttribute="top" secondItem="QBX-BO-IRW" secondAttribute="bottom" constant="8" symbolic="YES" id="nLg-eD-MaA"/>
+                            <constraint firstItem="QHj-7e-Fcl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="42.5" id="heN-Dh-Vno"/>
+                            <constraint firstItem="QHj-7e-Fcl" firstAttribute="top" secondItem="QBX-BO-IRW" secondAttribute="bottom" constant="50.5" id="nLg-eD-MaA"/>
                             <constraint firstItem="oID-K6-8uc" firstAttribute="top" secondItem="aMy-op-KJ7" secondAttribute="bottom" constant="8" symbolic="YES" id="oCF-Im-yeo"/>
                             <constraint firstItem="QHj-7e-Fcl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ohf-bq-68v"/>
                             <constraint firstItem="aMy-op-KJ7" firstAttribute="leading" secondItem="oID-K6-8uc" secondAttribute="leading" id="rAd-Ys-CDp"/>
