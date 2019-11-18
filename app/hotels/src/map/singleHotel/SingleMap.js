@@ -22,9 +22,14 @@ const SingleMap = (props: Props) => {
     props.navigation.goBack();
   }
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container}>
       <MapView hotel={props.hotel?.hotel} />
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={styles.underlay}>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <StretchedImage source={gradient} />
       </View>
       <AdditionalInfo data={props.hotel} />

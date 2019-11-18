@@ -36,9 +36,17 @@ export default function AdaptableBadge(props: Props) {
   return (
     <View
       style={[
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         styles.container,
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         props.style,
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         props.type === 'info' && styles.info,
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         props.circled === true && styles.circled,
       ]}
     >

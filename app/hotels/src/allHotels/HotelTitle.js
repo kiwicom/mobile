@@ -26,6 +26,8 @@ function HotelTitle({ data }: Props) {
         </Text>
       </Text>
 
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={style.distance}>
         <Distance hotel={data} />
       </View>

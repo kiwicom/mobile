@@ -36,16 +36,24 @@ export default class ButtonPopup extends React.Component<Props> {
         isVisible={this.props.isVisible}
         onClose={this.onClose}
         bottomContent={
+          /* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */
           <View style={styles.buttonsWrapper}>
+            {/* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */}
             <View style={[styles.button, styles.buttonFirst]}>
               <CloseButton onPress={this.onClose} />
             </View>
+            {/* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */}
             <View style={styles.button}>
               <TextButton title={this.props.buttonTitle} onPress={this.onSave} type="primary" />
             </View>
           </View>
         }
       >
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={[styles.content, this.props.style && this.props.style.content]}>
           {this.props.children}
         </View>

@@ -87,7 +87,9 @@ export const getVocabularies = (vocabularies: TranslationPackages[]) => {
   };
   return vocabularies.reduce((acc, curr) => {
     return {
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       ...acc,
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       ...translationPackages[curr],
     };
   }, {});

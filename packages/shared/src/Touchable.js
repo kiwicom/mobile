@@ -76,12 +76,15 @@ export default class Touchable extends React.Component<Props> {
             this.props.borderlessRipple,
           )}
         >
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={style}>{children}</View>
         </TouchableNativeFeedback>
       );
     }
 
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <TouchableOpacity activeOpacity={0.5} {...this.props}>
         {children}
       </TouchableOpacity>

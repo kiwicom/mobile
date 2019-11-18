@@ -70,12 +70,15 @@ class HotelSwipeList extends React.Component<Props, State> {
     const { data, onSnapToItem } = this.props;
 
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.container} onLayout={this.onLayout}>
         <HotelPreviewProvider value={this.state}>
           <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>
             <BottomSheetHandle />
             {data.length ? (
               <React.Fragment>
+                {/* $FlowFixMe Errors after moving rn modules from untyped to
+                 * declarations */}
                 <View style={styles.sliderWrapper}>
                   <Carousel
                     ref={this.storeRef}
@@ -96,6 +99,8 @@ class HotelSwipeList extends React.Component<Props, State> {
                 <Address address={this.getSelectedAddress()} />
               </React.Fragment>
             ) : (
+              /* $FlowFixMe Errors after moving rn modules from untyped to
+               * declarations */
               <View style={styles.noResultsContainer}>
                 <Translation id="hotels.map.no_results" />
               </View>

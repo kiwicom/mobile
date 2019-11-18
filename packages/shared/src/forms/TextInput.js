@@ -56,13 +56,19 @@ export default class TextInput extends React.Component<Props, State> {
         {this.props.label != null && (
           <Text style={[styleSheet.label, this.props.labelStyle]}>{this.props.label}</Text>
         )}
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <OriginalTextInput
             underlineColorAndroid="transparent"
             autoCorrect={false}
             {...this.props}
             placeholder={null}
             onChangeText={this.handlePlaceholder}
+            /* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */
             style={[styleSheet.text, styleSheet.input]}
           />
 

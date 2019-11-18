@@ -46,9 +46,13 @@ export default class PlacepickerModal extends React.Component<Props, State> {
     return (
       <Modal isVisible={isVisible} onRequestClose={onClose} style={styles.modal}>
         <SafeAreaView style={styles.container}>
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={[styles.container, styles.inner]}>
             <Translation passThrough="Search for city" />
             <TextInput value={this.state.cityName} onChangeText={this.onChange} />
+            {/* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */}
             <View style={styles.cityList}>
               <HotelCityQuery query={this.state.query} onPress={this.props.onSave} />
             </View>

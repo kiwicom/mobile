@@ -25,6 +25,7 @@ export default function GalleryButton({ count, style, iconSize }: Props) {
   const containerStyle = style?.container ?? null;
   const textStyle = style?.text ?? null;
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={[styles.container, containerStyle]}>
       <Icon name="gallery" color={defaultTokens.paletteWhite} size={iconSize} />
       {count !== null && (

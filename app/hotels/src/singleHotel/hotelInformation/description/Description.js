@@ -16,6 +16,7 @@ type Props = {|
 |};
 
 export const Description = (props: Props) => (
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   <View style={styles.container}>
     <DescriptionTitle title={<Translation id="single_hotel.description.description" />} />
     <ReadMore

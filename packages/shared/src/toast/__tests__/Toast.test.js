@@ -9,6 +9,7 @@ import Translation from '../../Translation';
 
 let originalTiming;
 
+// $FlowFixMe Errors after moving rn modules from untyped to declarations
 beforeEach(() => (originalTiming = Animated.timing));
 afterEach(() => {
   Animated.timing = originalTiming;
@@ -47,6 +48,7 @@ it('renders when show is called', () => {
 });
 
 it('shows toast when show is called', () => {
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   Animated.timing = jest.fn(() => ({
     start: jest.fn(),
   }));
@@ -71,7 +73,9 @@ it('shows toast when show is called', () => {
 });
 
 it('hides toast when hide is called', () => {
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   Animated.timing = jest.fn(() => ({
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     start: cb => cb(),
   }));
   const wrapper = getWrapper();

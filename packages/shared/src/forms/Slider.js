@@ -71,6 +71,7 @@ export default class Slider extends React.Component<Props, State> {
     const showLabels = this.props.startLabel != null || this.props.endLabel != null;
 
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View onLayout={this.onLayout} style={styles.sliderWrapper}>
         <MultiSlider
           values={values}
@@ -95,6 +96,8 @@ export default class Slider extends React.Component<Props, State> {
           customMarker={SliderMarker}
         />
         {showLabels && (
+          /* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */
           <View style={styles.labelsContainer} testID="labelsContainer">
             {this.props.startLabel != null && (
               <Text style={styles.label}>{this.props.startLabel}</Text>

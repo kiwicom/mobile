@@ -37,7 +37,10 @@ class FastTrackBannerContent extends React.Component<Props, State> {
 
   render() {
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={style.container}>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={style.header}>
           <Icon name="deals" color={defaultTokens.colorIconSecondary} />
           <Text style={style.title}>

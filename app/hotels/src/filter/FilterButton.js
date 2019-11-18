@@ -17,11 +17,15 @@ const FilterButton = ({ title, isActive, onPress }: Props) => {
       onPress={onPress}
       style={[styleSheet.buttonGroup, isActive && styleSheet.activeButtonGroup]}
     >
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={styleSheet.row}>
         <Text style={[styleSheet.buttonText, isActive && styleSheet.activeButtonText]}>
           {title}
         </Text>
         {isActive && (
+          /* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */
           <View style={styleSheet.closeWrapper} testID="closeWrapper">
             <Icon name="close" size="small" color={defaultTokens.paletteWhite} />
           </View>

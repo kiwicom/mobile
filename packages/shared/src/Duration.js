@@ -34,6 +34,7 @@ export default function Duration(props: Props) {
   const { hours, minutes } = separateHours(props.duration || 0);
 
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styleSheet.row}>
       {props.showIcon && (
         <Icon

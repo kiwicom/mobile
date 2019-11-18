@@ -6,6 +6,7 @@ import { requireNativeComponent } from 'react-native';
 import StyleSheet from '../PlatformStyleSheet';
 import type { StylePropType } from '../../types/Styles';
 
+// $FlowFixMe Errors after moving rn modules from untyped to declarations
 const RNKiwiAppleWallet = requireNativeComponent('RNKiwiAppleWallet', null);
 
 type Props = {|

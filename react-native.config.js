@@ -12,7 +12,9 @@ const deactivatedAutolinkingModules = [
 function getAutolinkConfig() {
   return deactivatedAutolinkingModules.reduce((acc, curr) => {
     return {
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       ...acc,
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       [curr]: {
         platforms: {
           ios: null,

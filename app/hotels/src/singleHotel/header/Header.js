@@ -58,7 +58,11 @@ export class Header extends React.Component<Props> {
       <Touchable onPress={this.openGallery} delayPressIn={40} testID="hotel-openGallery">
         <View>
           <NetworkImage style={styles.image} source={{ uri: mainPhotoUrl }} />
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={[styles.nameAndRatingContainer]}>
+            {/* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */}
             <View style={styles.nameAndRating}>
               <Text style={styles.hotelName}>
                 <Translation passThrough={hotel?.name} />
@@ -69,6 +73,8 @@ export class Header extends React.Component<Props> {
             </View>
           </View>
           {photosCount > 0 && (
+            /* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */
             <View style={[styles.galleryButton]}>
               <GalleryButton count={photosCount} />
             </View>

@@ -20,6 +20,8 @@ export default class HotelAmenityCheckbox extends React.Component<Props> {
   render() {
     return (
       <Checkbox isChecked={this.props.isChecked} onPress={this.onPress}>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.checkbox}>
           {this.props.icon}
           {this.props.text}

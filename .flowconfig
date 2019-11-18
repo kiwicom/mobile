@@ -28,25 +28,9 @@ node_modules/warning/.*
 [include]
 
 [declarations]
-<PROJECT_ROOT>/node_modules/@kiwicom/account-native
+.+/node_modules/.+
 
 [untyped]
-; Be careful - do not add 'StyleSheet' here
-.*/node_modules/@react-native-community/cli/.*/.*
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Animated/.+
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Components/.+
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Experimental/.+
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Image/.+
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Lists/.+
-<PROJECT_ROOT>/node_modules/react-native/Libraries/ReactNative/.+
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Utilities/.+
-<PROJECT_ROOT>/node_modules/react-native/Libraries/Text/.+
-<PROJECT_ROOT>/node_modules/react-native-swiper/.+
-<PROJECT_ROOT>/node_modules/graphql/.+ 
-<PROJECT_ROOT>/node_modules/@kiwicom/monorepo-utils/.+ 
-.+/node_modules/graphql-iso-date/dist/date/index.js
-.+/node_modules/graphql-iso-date/dist/dateTime/index.js
-.+/node_modules/graphql-iso-date/dist/time/index.js
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js

@@ -26,6 +26,8 @@ export default function LayoutSingleColumn(props: Props) {
 
   return (
     <Layout barStyle={props.barStyle}>
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={styleSheet.wrapper}>
         <View style={innerStyle} testID={props.testID}>
           {props.children}

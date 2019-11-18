@@ -61,6 +61,8 @@ function withNativeNavigation<Props: { ... }>(
         <WrappedComponent
           onBackClicked={GestureController.isNativeGestureModule ? this.onBackClicked : null}
           onNavigationStateChange={this.onNavigationStateChange}
+          /* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */
           {...this.props}
         />
       );

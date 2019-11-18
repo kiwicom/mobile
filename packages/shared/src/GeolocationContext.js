@@ -85,7 +85,9 @@ export const withGeolocationContext = (Component: React.ElementType) => {
   const withGeolocationContext = (props: { [string]: mixed, ... }) => {
     return (
       <Consumer>
-        {({ actions, ...rest }) => <Component {...props} {...actions} {...rest} />}
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
+        ({ actions, ...rest }) => <Component {...props} {...actions} {...rest} />}
       </Consumer>
     );
   };

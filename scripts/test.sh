@@ -5,6 +5,6 @@ set -e # exit immediately if a pipeline returns a non-zero status
 set -x # print a trace of simple commands
 
 yarn lint
-yarn flow
+yarn typecheck
 yarn monorepo-run-tests
 yarn relay --validate

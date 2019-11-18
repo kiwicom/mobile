@@ -21,6 +21,7 @@ const getProps = (
 });
 
 it('renders', () => {
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   expect(renderer.create(<ReadMoreLink {...getProps()} />)).toMatchSnapshot();
 });
 
@@ -29,6 +30,7 @@ it('calls onExpandText', () => {
   const onHideText = jest.fn();
   const props = getProps('truncated', onExpandText, onHideText);
 
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   const wrapper = renderer.create(<ReadMoreLink {...props} />).getInstance();
   wrapper.handlePress();
 
@@ -41,6 +43,7 @@ it('calls onHideText', () => {
   const onHideText = jest.fn();
   const props = getProps('revealed', onExpandText, onHideText);
 
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   const wrapper = renderer.create(<ReadMoreLink {...props} />).getInstance();
   wrapper.handlePress();
 

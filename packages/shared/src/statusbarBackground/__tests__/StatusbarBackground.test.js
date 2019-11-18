@@ -8,7 +8,9 @@ import StatusbarBackground from '../StatusbarBackground';
 
 let originalPlatform;
 
+// $FlowFixMe Errors after moving rn modules from untyped to declarations
 beforeEach(() => (originalPlatform = Platform.OS));
+// $FlowFixMe Errors after moving rn modules from untyped to declarations
 afterEach(() => (Platform.OS = originalPlatform));
 
 it('renders on ios', () => {

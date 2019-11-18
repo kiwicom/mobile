@@ -24,6 +24,7 @@ const SEPARATOR_HEIGHT = 0.5;
 
 export default function HotelAmenities(props: Props) {
   return props.amenities.map<React.Node>(amenity => (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.wrapper} key={amenity.amenityName}>
       <HotelAmenityCheckbox
         isChecked={props.selectedAmenities.includes(amenity.amenityName)}
@@ -32,6 +33,8 @@ export default function HotelAmenities(props: Props) {
         amenityName={amenity.amenityName}
         text={amenity.text}
       />
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={styles.separatorEnd}>
         <SeparatorTrimmed
           gapSizeStart={31}
