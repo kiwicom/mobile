@@ -1,4 +1,4 @@
-// @flow strict
+// @flow
 
 import * as React from 'react';
 import { FlatList } from 'react-native';
@@ -11,16 +11,12 @@ import { HotelsContext, type HotelsContextState } from '../HotelsContext';
 
 type Props = {|
   +data: ?AllHotelsSearchListProps,
-  +ListFooterComponent: React.Node,
+  +ListFooterComponent: ?(React.ComponentType<any> | React.Element<any>),
 |};
 
-type HotelType = {|
-  +id: string,
-|};
+const keyExtractor = item => item?.id;
 
-const keyExtractor = (item: ?HotelType) => item?.id;
-
-const renderItem = ({ item, index }: {| +item: ?HotelType, +index: number |}) => (
+const renderItem = ({ item, index }) => (
   <AllHotelsSearchRow key={item?.id} data={item} testID={index === 0 ? 'firstHotelResult' : ''} />
 );
 
@@ -40,7 +36,7 @@ export const AllHotelsSearchList = (props: Props) => {
     if (hotelId != null) {
       setHotelId(hotelId);
     }
-    // TODO: create a `componentDidMount` hook
+    // TODO: Find out why we needed this eslint-disable 🤔
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (hotels.length === 0) {
@@ -53,12 +49,9 @@ export const AllHotelsSearchList = (props: Props) => {
 
   return (
     <FlatList
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       keyExtractor={keyExtractor}
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       renderItem={renderItem}
       data={hotels}
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       ListFooterComponent={props.ListFooterComponent}
     />
   );

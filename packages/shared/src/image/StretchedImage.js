@@ -7,7 +7,7 @@ import type { StylePropType } from '../../types/Styles';
 import StyleSheet from '../PlatformStyleSheet';
 
 type Props = {|
-  +source: string,
+  +source: number,
   +style?: StylePropType,
 |};
 

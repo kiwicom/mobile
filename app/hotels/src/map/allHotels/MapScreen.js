@@ -53,8 +53,6 @@ function MapScreenWithContext(props: PropsWithContext) {
     <View style={styles.container} testID="allHotels-mapScreen">
       <MapView data={hotels} selectedIndex={selectedHotelIndex} onSelectMarker={onSelectMarker} />
       <View style={styles.underlay}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <StretchedImage source={gradient} />
       </View>
       <HotelSwipeList

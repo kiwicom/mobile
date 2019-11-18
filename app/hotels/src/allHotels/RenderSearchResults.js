@@ -116,9 +116,9 @@ export const RenderSearchResults = (props: Props) => {
           <AllHotelsSearchList
             data={data}
             ListFooterComponent={
-              props.hasMore && (
+              props.hasMore ? (
                 <LoadMoreButton isLoading={props.isLoading} onPress={props.onLoadMore} />
-              )
+              ) : null
             }
           />
         </View>

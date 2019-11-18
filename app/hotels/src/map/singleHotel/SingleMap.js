@@ -25,8 +25,6 @@ const SingleMap = (props: Props) => {
     <View style={styles.container}>
       <MapView hotel={props.hotel?.hotel} />
       <View style={styles.underlay}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <StretchedImage source={gradient} />
       </View>
       <AdditionalInfo data={props.hotel} />

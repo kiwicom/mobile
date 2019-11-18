@@ -77,8 +77,6 @@ export function Location(props: Props) {
           <View style={styles.overlayMarker}>
             <DropMarker />
           </View>
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <StretchedImage source={gradient} />
         </View>
       </TouchableWithoutFeedback>
