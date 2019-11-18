@@ -32,7 +32,7 @@ type ReducedDangerouslyImpreciseStyle = $Rest<
 >;
 
 export type StyleObjectType = {
-  +[key: string]: $Shape<ReducedDangerouslyImpreciseStyle>,
+  [key: string]: $Shape<ReducedDangerouslyImpreciseStyle>,
   ...,
 };
 

@@ -21,14 +21,8 @@ type Props = {|
 export default function OfflineScreen(props: Props) {
   return (
     <SafeAreaView style={styles.flexItem}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.container}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.flexItem} />
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.flexItem}>
           <Text style={styles.title}>
             <Translation id="shared.offline_screen.offline_title" />
@@ -37,19 +31,13 @@ export default function OfflineScreen(props: Props) {
             <Translation id="shared_offline_screen.offline_text" />
           </Text>
         </View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.imageContainer}>
           {/* $FlowFixMe Errors after moving rn modules from untyped to
            * declarations */}
           <Image source={OfflineImage} />
         </View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.buttonContainer}>
           {props.onClose != null && (
-            /* $FlowFixMe Errors after moving rn modules from untyped to
-             * declarations */
             <View style={styles.closeButton}>
               <CloseButton onPress={props.onClose} />
             </View>

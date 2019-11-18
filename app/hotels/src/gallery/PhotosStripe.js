@@ -23,7 +23,6 @@ export default class PhotosStripe extends React.Component<Props> {
 
   renderPagination = (index: number, total: number) => {
     return (
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.paginationWrapper}>
         <PhotosStripeHeader
           photoNumber={index + 1}
@@ -44,8 +43,6 @@ export default class PhotosStripe extends React.Component<Props> {
         testID={this.props.testID}
       >
         {this.props.imageUrls.map((imageUrl, index) => (
-          /* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */
           <View style={styles.slide} key={imageUrl} testID={`photosStripeImage-${index}`}>
             <NetworkImage
               source={{ uri: imageUrl }}

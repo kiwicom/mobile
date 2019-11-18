@@ -15,7 +15,6 @@ export default function MenuGroupTitle(props: Props) {
     Platform.OS === 'ios' ? { textTransform: 'uppercase' } : {},
   );
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styleSheet.titleWrapper}>
       <Text style={styleSheet.title}>{title}</Text>
     </View>

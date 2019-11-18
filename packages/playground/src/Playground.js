@@ -23,7 +23,6 @@ type Props = {|
 |};
 
 const PlaygroundSection = props => (
-  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   <View style={styles.section}>
     <Text style={styles.sectionText}>
       <Translation passThrough={`SAMPLE #${props.index + 1}`} />

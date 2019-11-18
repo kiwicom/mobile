@@ -33,8 +33,6 @@ export default function DatePickerButton(props: Props) {
       onPress={props.onPress}
       disabled={props.disabled}
     >
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.date}>
         {props.iconComponent}
         {props.date !== null && (

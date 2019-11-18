@@ -27,15 +27,9 @@ type Props = {|
 function ModalWithLoader({ children, ...rest }: Props) {
   return (
     <Modal {...rest}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.overlay}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.box}>
           <IconLoading />
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={styles.message}>{children}</View>
         </View>
       </View>

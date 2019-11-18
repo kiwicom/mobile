@@ -53,17 +53,12 @@ export default function HotelsForm(props: Props) {
         onPress={props.togglePlacepicker}
         type="secondary"
       />
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
+
       <View style={styles.row}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.item}>
           <Translation passThrough="checkin" />
           <DatePicker date={checkin} onDateChange={onCheckinChange} minDate={new Date()} />
         </View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.item}>
           <Translation passThrough="checkout" />
           <DatePicker
@@ -74,8 +69,6 @@ export default function HotelsForm(props: Props) {
           />
         </View>
       </View>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.row}>
         <Translation passThrough="Adults" />
         <IncrementDecrementButtons

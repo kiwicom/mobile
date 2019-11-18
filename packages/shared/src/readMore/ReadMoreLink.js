@@ -36,7 +36,6 @@ class ReadMoreLink extends React.Component<Props> {
     const { style, label } = this.props;
 
     return (
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.linkView}>
         <Touchable onPress={this.handlePress} noRipple={true}>
           <Text style={[styles.linkText, style]}>{label}</Text>

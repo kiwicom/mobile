@@ -96,8 +96,6 @@ export default class Slider extends React.Component<Props, State> {
           customMarker={SliderMarker}
         />
         {showLabels && (
-          /* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */
           <View style={styles.labelsContainer} testID="labelsContainer">
             {this.props.startLabel != null && (
               <Text style={styles.label}>{this.props.startLabel}</Text>

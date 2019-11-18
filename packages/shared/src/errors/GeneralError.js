@@ -16,7 +16,6 @@ type Props = {|
 
 export default function GeneralError({ errorMessage, testID }: Props) {
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styleSheet.wrapper} testID={testID}>
       <Text style={styleSheet.text}>{errorMessage}</Text>
     </View>

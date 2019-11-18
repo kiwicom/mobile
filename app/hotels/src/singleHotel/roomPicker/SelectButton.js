@@ -25,15 +25,11 @@ export default function SelectButton({ increment, price, testID, disabled }: Pro
       delayPressIn={40}
       testID={testID}
     >
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.row}>
         <ButtonTitle
           style={styles.text}
           text={<Translation id="single_hotel.room_picker.select" />}
         />
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.row} />
         <Price amount={price.amount} currency={price.currency} style={styles.price} />
       </View>

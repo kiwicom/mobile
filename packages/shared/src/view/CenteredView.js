@@ -15,7 +15,6 @@ type Props = {|
  */
 export default function CenteredView({ children }: Props) {
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styleSheet.view}>
       <View>{children}</View>
     </View>

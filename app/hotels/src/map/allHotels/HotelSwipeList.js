@@ -77,8 +77,6 @@ class HotelSwipeList extends React.Component<Props, State> {
             <BottomSheetHandle />
             {data.length ? (
               <React.Fragment>
-                {/* $FlowFixMe Errors after moving rn modules from untyped to
-                 * declarations */}
                 <View style={styles.sliderWrapper}>
                   <Carousel
                     ref={this.storeRef}
@@ -99,8 +97,6 @@ class HotelSwipeList extends React.Component<Props, State> {
                 <Address address={this.getSelectedAddress()} />
               </React.Fragment>
             ) : (
-              /* $FlowFixMe Errors after moving rn modules from untyped to
-               * declarations */
               <View style={styles.noResultsContainer}>
                 <Translation id="hotels.map.no_results" />
               </View>

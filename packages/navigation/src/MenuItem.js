@@ -59,23 +59,17 @@ function MenuItem(props: Props) {
       <React.Fragment>
         {props.icon && <MenuItemIcon iconComponent={props.icon} invertColors={props.isActive} />}
 
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styleSheet.middleWrapper}>
           <Text style={styleSheet.title}>{props.title}</Text>
           {props.description && <Text style={styleSheet.description}>{props.description}</Text>}
         </View>
 
         {props.actionIcon ? (
-          /* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */
           <View style={styleSheet.rightArrow}>{props.actionIcon}</View>
         ) : (
           <AdaptableLayout
             renderOnNarrow={Platform.select({
               ios: (
-                /* $FlowFixMe Errors after moving rn modules from untyped to
-                 * declarations */
                 <View style={styleSheet.rightArrow}>
                   <Icon name="chevron-right" color={defaultTokens.paletteProductNormal} />
                 </View>

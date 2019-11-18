@@ -18,8 +18,6 @@ type Props = {|
 
 const DismissKeyboardView = ({ children }: Props) => (
   <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={styles.container}>
-    {/* $FlowFixMe Errors after moving rn modules from untyped to declarations
-     */}
     <View style={styles.container}>{children}</View>
   </TouchableWithoutFeedback>
 );
