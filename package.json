@@ -15,7 +15,7 @@
     "e2e-aphone": "yarn detox build -c android.emu.debug && yarn detox test -c android.emu.debug",
     "e2e-iphone": "yarn detox build  -c ios.sim.debug && yarn detox test -c ios.sim.debug",
     "e2e-ipad": "yarn detox build  -c ios.sim.tablet.debug && yarn detox test -c ios.sim.tablet.debug",
-    "flow": "flow app --include-warnings",
+    "typecheck": "adeira-flow-bin",
     "graphql": "kiwicom-fetch-schema",
     "ios": "yarn react-native run-ios",
     "lint": "yarn jest --config=.jest-eslint.config.js",
@@ -50,6 +50,7 @@
     "graphql": "^14"
   },
   "devDependencies": {
+    "@adeira/flow-bin": "^0.1.0",
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/node": "^7.6.3",
@@ -63,7 +64,7 @@
     "eslint": "^6.5.1",
     "eslint-plugin-detox": "^1.0.0",
     "eslint-plugin-react-native": "^3.7.0",
-    "flow-bin": "^0.110.1",
+    "flow-bin": "^0.112.0",
     "jest": "^24.9.0",
     "jetifier": "^1.6.4",
     "metro": "^0.55.0",
@@ -100,6 +101,6 @@
     "code-push-target-binary-version": "15.0.0"
   },
   "resolutions": {
-    "@kiwicom/relay":"4.7.1"
+    "@kiwicom/relay": "4.7.1"
   }
 }

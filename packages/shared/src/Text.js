@@ -69,6 +69,7 @@ export default class Text extends React.Component<Props> {
     }
 
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <ReactNative.Text {...this.props} style={style}>
         {this.props.children}
       </ReactNative.Text>

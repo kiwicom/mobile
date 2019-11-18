@@ -41,10 +41,14 @@ export class BeddingInfo extends React.Component<Props> {
 
     return (
       <View>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.row}>
           <Icon name="accommodation" style={styles.icon} color={defaultTokens.colorTextSecondary} />
           <Text style={styles.text}>{this.formatBeddingInfo()}</Text>
         </View>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.row}>
           <Icon name="passengers" style={styles.icon} color={defaultTokens.colorTextSecondary} />
           <Text style={styles.text}>

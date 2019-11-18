@@ -63,6 +63,8 @@ export default class StarsPopup extends React.Component<Props, State> {
             isChecked={isStarsRowChecked}
             onPress={this.handleCheckboxOnPress(i)}
           />
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={styles.separatorEnd}>
             <SeparatorTrimmed
               gapSizeStart={0}

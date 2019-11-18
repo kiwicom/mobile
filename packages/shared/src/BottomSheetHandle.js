@@ -12,6 +12,7 @@ type Props = {|
 |};
 
 export default function Handle(props: Props) {
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <View style={[styles.handle, props.style]} />;
 }
 

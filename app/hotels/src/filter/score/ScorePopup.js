@@ -67,6 +67,8 @@ export default class ScorePopup extends React.Component<Props, State> {
           onClose={this.props.onClose}
           isVisible={this.props.isVisible}
         >
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={styles.titleContainer}>
             <Text style={styles.title}>
               <Translation id="hotels_search.filter.score_filter.rating" />
@@ -78,6 +80,8 @@ export default class ScorePopup extends React.Component<Props, State> {
               style={styles.badge}
             />
           </View>
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={styles.sliderContainer}>
             <Slider
               startValue={this.state.sliderValue}

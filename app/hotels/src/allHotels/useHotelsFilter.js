@@ -12,6 +12,7 @@ export default function useHotelsFilter() {
     const { hotelAmenities, maxPrice, minPrice, ...restFilterParams } = filterParams;
     return {
       ...restFilterParams,
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       ...(maxPrice != null ? { maximumPrice: maxPrice.toFixed(2) } : {}),
       ...(minPrice != null ? { minimumPrice: minPrice.toFixed(2) } : {}),
       hotelAmenities: sanitizeHotelAmenities(hotelAmenities),

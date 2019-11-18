@@ -21,6 +21,7 @@ import StyleSheet from '../PlatformStyleSheet';
  *   `-------`
  */
 export default function DropMarker() {
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <Image source={dropmarker} style={styles.image} />;
 }
 

@@ -72,6 +72,8 @@ export class PlaygroundList extends React.Component<Props> {
       <View>
         <FlatList
           data={this.getPlaygroundComponents()}
+          /* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
           bounces={false}

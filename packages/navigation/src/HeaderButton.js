@@ -91,7 +91,11 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
         disabled={disabled}
         testID={testID}
       >
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.container}>
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={[styles.innerContainer, style]}>
             {this.props.children.type === HeaderButton.Text
               ? // $FlowExpectedError: flow is having a hard time here

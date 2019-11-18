@@ -17,6 +17,7 @@ type Props = {|
 |};
 
 export default function TouchableWithoutFeedback(props: Props) {
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <OriginalTouchableWithoutFeedback {...props} />;
 }
 

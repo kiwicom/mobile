@@ -112,6 +112,8 @@ export const RenderSearchResults = (props: Props) => {
         testID="list-wrapper"
         onLayout={onLayout}
       >
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.content}>
           <AllHotelsSearchList
             data={data}
@@ -133,6 +135,8 @@ export const RenderSearchResults = (props: Props) => {
         ]}
         testID="map-wrapper"
       >
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.mapContainer}>
           {shouldRenderMap ? <MapScreen data={data} /> : <FullPageLoading />}
         </View>

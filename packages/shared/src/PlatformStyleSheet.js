@@ -39,9 +39,13 @@ const PlaformStyleSheet = {
     Object.keys(styles).forEach(name => {
       let { ios, android, ...style } = { ...styles[name] };
       if (ios && Platform.OS === 'ios') {
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         style = { ...style, ...ios };
       }
       if (android && Platform.OS === 'android') {
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         style = { ...style, ...android };
       }
       platformStyles[name] = style;

@@ -90,6 +90,8 @@ export default class Toast extends React.Component<Props, State> {
         onHandlerStateChange={this.onHandlerStateChange}
         direction={Directions.UP}
       >
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={[styles.toast, this.props.style]} testID="toast">
           <Animated.View
             style={{

@@ -32,6 +32,8 @@ class HotelCityList extends React.Component<Props> {
     return (
       <>
         <Translation passThrough="Results" />
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <FlatList data={data} keyExtractor={this.keyExtractor} renderItem={this.renderItem} />
       </>
     );

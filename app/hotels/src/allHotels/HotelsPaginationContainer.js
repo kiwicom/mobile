@@ -60,6 +60,8 @@ export function HotelsPaginationContainer(props: Props) {
 
   return (
     <>
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={styles.filterContainer}>
         <FilterStripe />
       </View>

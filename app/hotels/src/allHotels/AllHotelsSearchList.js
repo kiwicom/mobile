@@ -53,9 +53,12 @@ export const AllHotelsSearchList = (props: Props) => {
 
   return (
     <FlatList
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       keyExtractor={keyExtractor}
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       renderItem={renderItem}
       data={hotels}
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       ListFooterComponent={props.ListFooterComponent}
     />
   );

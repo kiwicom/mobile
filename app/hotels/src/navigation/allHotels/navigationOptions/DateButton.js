@@ -11,6 +11,7 @@ type Props = {|
 
 export default function DateButton(props: Props) {
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.buttonWrapper}>
       <Text style={styles.text}>{props.children}</Text>
     </View>

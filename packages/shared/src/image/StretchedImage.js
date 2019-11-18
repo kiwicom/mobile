@@ -12,6 +12,7 @@ type Props = {|
 |};
 
 export default function StretchedImage(props: Props) {
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <Image source={props.source} resizeMode="stretch" style={[styles.image, props.style]} />;
 }
 

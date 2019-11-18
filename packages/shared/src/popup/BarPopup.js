@@ -31,7 +31,11 @@ export default class BarPopup extends React.Component<Props> {
   render() {
     return (
       <Popup isVisible={this.props.isVisible} onClose={this.onClose}>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styleSheet.bar}>
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={styleSheet.leftButton}>
             <LinkButton
               title={<Translation id="shared.bar_popup.cancel" />}
@@ -39,10 +43,14 @@ export default class BarPopup extends React.Component<Props> {
             />
           </View>
 
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */}
           <View style={styleSheet.rightButton}>
             <LinkButton title={this.props.buttonTitle} onPress={this.onSave} />
           </View>
         </View>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styleSheet.children}>{this.props.children}</View>
       </Popup>
     );

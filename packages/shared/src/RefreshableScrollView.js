@@ -15,6 +15,7 @@ type Props = {|
 export default function RefreshableScrollView(props: Props) {
   return (
     <ScrollView
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       contentContainerStyle={props.contentContainerStyle}
       refreshControl={<RefreshControl refreshing={props.refreshing} onRefresh={props.onRefresh} />}
     >

@@ -15,6 +15,7 @@ const withSplitNavigationContext = (Component: React.ElementType) => {
   }> {
     // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it
     static navigationOptions = Component.navigationOptions;
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     renderInner = ({ activeId }: State) => <Component {...this.props} activeId={activeId} />;
 
     render() {

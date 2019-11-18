@@ -39,11 +39,16 @@ export class AdditionalInfo extends React.Component<Props, State> {
     const stars = data?.hotel?.rating?.stars;
     const score = data?.hotel?.review?.score;
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.container}>
         <HotelPreviewProvider value={this.state}>
           <BottomSheet>
+            {/* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */}
             <View onLayout={this.onLayout}>
               <BottomSheetHandle />
+              {/* $FlowFixMe Errors after moving rn modules from untyped to
+               * declarations */}
               <View style={styles.detailPreviewContainer}>
                 <HotelDetailPreview
                   name={name}
@@ -53,6 +58,8 @@ export class AdditionalInfo extends React.Component<Props, State> {
                   stars={stars}
                   score={score}
                 />
+                {/* $FlowFixMe Errors after moving rn modules from untyped to
+                 * declarations */}
                 <View style={styles.addressContainer}>
                   <Address address={data?.hotel?.address} />
                 </View>

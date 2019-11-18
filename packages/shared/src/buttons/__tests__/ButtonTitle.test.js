@@ -15,6 +15,7 @@ beforeEach(() => {
   renderer = new ShallowRenderer();
 });
 
+// $FlowFixMe Errors after moving rn modules from untyped to declarations
 afterEach(() => (Platform.OS = originalPlatform));
 
 describe('ButtonText', () => {

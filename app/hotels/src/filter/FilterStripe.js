@@ -29,8 +29,11 @@ const FilterStripe = () => {
   }: HotelsFilterState = React.useContext(HotelsFilterContext);
   const { currency }: HotelsContextState = React.useContext(HotelsContext);
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.view}>
       <ScrollView
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         contentContainerStyle={[styles.scrollView, styles.backgroundNew]}
         horizontal={true}
         showsHorizontalScrollIndicator={false}

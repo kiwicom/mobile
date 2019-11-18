@@ -28,10 +28,18 @@ export default function Checkbox(props: Props) {
 
   return (
     <TouchableWithoutFeedback onPress={props.onPress}>
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={[styles.wrapper, props.style]}>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.label}>{props.children}</View>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.checkWrapper}>
-          {props.isChecked ? icon : <View style={styles.notChecked} />}
+          {/* $FlowFixMe Errors after moving rn modules from untyped to
+           * declarations */
+          props.isChecked ? icon : <View style={styles.notChecked} />}
         </View>
       </View>
     </TouchableWithoutFeedback>

@@ -28,6 +28,7 @@ export default function SimpleCard(props: Props) {
     );
   }
 
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <View style={[styles.wrapper, props.style]}>{props.children}</View>;
 }
 

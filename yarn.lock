@@ -2,6 +2,42 @@
 # yarn lockfile v1
 
 
+"@adeira/flow-bin@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@adeira/flow-bin/-/flow-bin-0.1.0.tgz#61c26db2faf3e39d1daa9bc391d426ceb86132f1"
+  integrity sha512-56w9vCMDPOMgF3sycfaM8opud7eo2HyAObYsrdipAUuKYCQifEr/3v4sU1lAqBVXaozBzyw3xzVy4sUwVOLaVA==
+  dependencies:
+    "@adeira/js" "^0.1.0"
+    "@adeira/logger" "^0.1.0"
+    "@adeira/monorepo-utils" "^0.1.0"
+    "@babel/register" "^7.6.0"
+    chalk "^2.4.2"
+    is-ci "^2.0.0"
+
+"@adeira/js@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@adeira/js/-/js-0.1.0.tgz#c30444da2000cf545be7d3d99c800c3f3b234c12"
+  integrity sha512-yBDdU8r2HRu8KRv/ogJIqeIUsFO8qh3G7D9qfRmyxgzlNdZfE6TTKoW5BQ8bvmMNDkpJa+pQfSvd+U91CYSx5g==
+
+"@adeira/logger@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@adeira/logger/-/logger-0.1.0.tgz#8c1cce053c1eaf878ef358a09a2c750e2233542c"
+  integrity sha512-uUGZRSdOHL+Mrw4jZWbpWkJvBUoLCosO/sSE2sEF06MKecQyekeTAgzGyH/xsmgF6KSOAz+Q18+JYppojYiGEw==
+  dependencies:
+    "@adeira/js" "^0.1.0"
+    triple-beam "^1.3.0"
+    winston "^3.2.1"
+
+"@adeira/monorepo-utils@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@adeira/monorepo-utils/-/monorepo-utils-0.1.0.tgz#a342e580129d2dc7029b29654e245234e84e6306"
+  integrity sha512-LgwkjSkbYFmhYeiMPK2UFeADkFnMq3XkorS0eI8q1kxF6jcEqgJmI9b4xMt4xnEg/uKb+U/IjssIxWCU28H7UQ==
+  dependencies:
+    "@adeira/js" "^0.1.0"
+    "@babel/register" "^7.6.0"
+    glob "^7.1.5"
+    is-ci "^2.0.0"
+
 "@babel/cli@^7.6.4":
   version "7.6.4"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.6.4.tgz#9b35a4e15fa7d8f487418aaa8229c8b0bc815f20"
@@ -6295,10 +6331,10 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.0.tgz#55122b6536ea496b4b44893ee2608141d10d9916"
   integrity sha512-R+H8IZclI8AAkSBRQJLVOsxwAoHd6WC40b4QTNWIjzAa6BXOBfQcM587MXDTVPeYaopFNWHUFLx7eNmHDSxMWg==
 
-flow-bin@^0.110.1:
-  version "0.110.1"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.110.1.tgz#24ac70bf0871a5d6bc181ba99801ded4d5e3b442"
-  integrity sha512-6FhvNKNvPQ523mx7sqNxTQvI/HgAWa/pbIsQuCst53qRqs387EFfYqgm4I3Zae5HLaVFacBwgWKmjKd92vf19w==
+flow-bin@^0.112.0:
+  version "0.112.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.112.0.tgz#6a21c31937c4a2f23a750056a364c598a95ea216"
+  integrity sha512-vdcuKv0UU55vjv0e2EVh1ZxlU+TSNT19SkE+6gT1vYzTKtzYE6dLuAmBIiS3Rg2N9D9HOI6TKSyl53zPtqZLrA==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -6628,6 +6664,18 @@ glob@^7.1.1, glob@^7.1.2, glob@^7.1.3, glob@^7.1.4:
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.4.tgz#aa608a2f6c577ad357e1ae5a5c26d9a8d1969255"
   integrity sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.4"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
+glob@^7.1.5:
+  version "7.1.6"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.6.tgz#141f33b81a7c2492e125594307480c46679278a6"
+  integrity sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==
   dependencies:
     fs.realpath "^1.0.0"
     inflight "^1.0.4"

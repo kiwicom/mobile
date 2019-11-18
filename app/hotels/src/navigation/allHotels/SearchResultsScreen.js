@@ -45,6 +45,8 @@ const SearchResultsScreen = (props: Props) => {
   return (
     <LayoutDoubleColumn
       menuComponent={
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         <View style={styles.container}>
           <NewAllHotels />
           <Toast

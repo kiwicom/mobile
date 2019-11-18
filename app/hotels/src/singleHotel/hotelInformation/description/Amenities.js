@@ -46,8 +46,11 @@ export class Amenities extends React.Component<Props, State> {
       return null;
     }
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.amenitiesContainer}>
         <DescriptionTitle title={<Translation id="single_hotel.description.equipment" />} />
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.amenities}>
           {listToRender.map(amenity => {
             return (

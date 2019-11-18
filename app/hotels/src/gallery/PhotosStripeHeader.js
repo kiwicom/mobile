@@ -15,12 +15,15 @@ type Props = {|
 export default class PhotosStripeHeader extends React.Component<Props> {
   render() {
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.wrapper}>
         <Touchable style={styles.closeButtonWrapper} onPress={this.props.onClose}>
           <Text style={styles.closeButton}>
             <Translation passThrough="&times;" />
           </Text>
         </Touchable>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>
             <Translation passThrough={this.props.hotelName} />
@@ -35,6 +38,8 @@ export default class PhotosStripeHeader extends React.Component<Props> {
             />
           </Text>
         </View>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={styles.voidRight} />
       </View>
     );

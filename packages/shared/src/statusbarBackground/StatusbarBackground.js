@@ -17,6 +17,7 @@ export default function StatsbarBackground(props: Props) {
     // Default implementation on android is just fine
     return null;
   }
+  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <View style={[styles.statusbar, props.style]} />;
 }
 

@@ -24,11 +24,14 @@ export default function HeaderLeft() {
   }: HotelsContextState = React.useContext(HotelsContext);
   const today = DateUtils.getToday();
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.headerLeftcontainer}>
       <Text style={styles.headerLeftText}>
         <Translation passThrough={cityName || ''} />
       </Text>
       {checkin != null && checkout != null && (
+        /* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */
         <View style={styles.row}>
           <DatePicker
             customButton={

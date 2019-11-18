@@ -58,6 +58,7 @@ type PropsWithContext = { [string]: mixed, ... };
 
 export function withAuthContext(Component: React.ElementType) {
   const WithAuthContext = (props: PropsWithContext) => (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <Consumer>{({ actions, ...rest }) => <Component {...props} {...rest} {...actions} />}</Consumer>
   );
   // $FlowExpectedError: We need to pass on the navigationOptions if any, flow does not know about it, but a react component might have it

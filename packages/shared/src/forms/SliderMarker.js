@@ -8,7 +8,10 @@ import StyleSheet from '../PlatformStyleSheet';
 
 export default function SliderMarker() {
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.marker}>
+      {/* $FlowFixMe Errors after moving rn modules from untyped to
+       * declarations */}
       <View style={styles.innerMarker} />
     </View>
   );

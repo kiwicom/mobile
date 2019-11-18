@@ -13,6 +13,7 @@ type Props = {|
 
 export default function WithAccountStack(props: Props) {
   return (
+    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container}>
       <AppProvider onBackPressed={props.onBackClicked} token={props.token}>
         {props.children}

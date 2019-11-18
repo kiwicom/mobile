@@ -23,6 +23,8 @@ export default class Popup extends React.Component<Props> {
     const modalChild = (
       <React.Fragment>
         <ScrollView alwaysBounceVertical={false}>{this.props.children}</ScrollView>
+        {/* $FlowFixMe Errors after moving rn modules from untyped to
+         * declarations */}
         <View style={Device.isIPhoneX && styles.safeArea}>{this.props.bottomContent}</View>
       </React.Fragment>
     );
@@ -38,6 +40,8 @@ export default class Popup extends React.Component<Props> {
             onBackdropPress={this.onClose}
             onRequestClose={this.onClose}
           >
+            {/* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */}
             <View style={[styles.content, styles.wideContentContainer]}>{modalChild}</View>
           </Modal>
         }
@@ -50,6 +54,8 @@ export default class Popup extends React.Component<Props> {
             onBackdropPress={this.onClose}
             onRequestClose={this.onClose}
           >
+            {/* $FlowFixMe Errors after moving rn modules from untyped to
+             * declarations */}
             <View style={styles.content}>{modalChild}</View>
           </Modal>
         }

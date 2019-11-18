@@ -41,6 +41,7 @@ class DimensionsProvider extends React.Component<Props, State> {
 
   render() {
     return (
+      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styleSheet.providerWrapper} onLayout={this.onLayout}>
         <Context.Provider value={this.state}>
           {this.state.dimensions !== null && this.props.children}
