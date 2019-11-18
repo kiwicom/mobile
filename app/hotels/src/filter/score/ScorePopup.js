@@ -14,19 +14,19 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 import { SafeAreaView } from 'react-navigation';
 
 type Props = {|
-  onClose: () => void,
-  onSave: (minScore: number | null) => void,
-  isVisible: boolean,
-  minScore: number | null,
+  +onClose: () => void,
+  +onSave: (minScore: ?number) => void,
+  +isVisible: boolean,
+  +minScore: ?number,
 |};
 
 type State = {|
-  sliderValue: number,
+  +sliderValue: number,
 |};
 
 const SLIDER_SHIFT = 5;
-const convertScoreToSliderValue = (minScore: number | null) => {
-  return minScore ? minScore - SLIDER_SHIFT : 0;
+const convertScoreToSliderValue = (minScore: ?number) => {
+  return minScore != null ? minScore - SLIDER_SHIFT : 0;
 };
 
 const labels = {

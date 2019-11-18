@@ -4,11 +4,11 @@ import { Decimal } from 'decimal.js-light';
 
 export type FilterParams = {|
   +starsRating: number[],
-  +minPrice: Decimal | null,
-  +maxPrice: Decimal | null,
+  +minPrice: ?Decimal,
+  +maxPrice: ?Decimal,
   +freeCancellation: boolean,
   +hotelAmenities: string[],
-  +minScore: number | null,
+  +minScore: ?number,
 |};
 
 export type OrderByEnum =

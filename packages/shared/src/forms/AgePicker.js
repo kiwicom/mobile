@@ -35,7 +35,8 @@ export default class AgePicker extends React.Component<Props, State> {
     selectedValue,
   });
 
-  handleValueChange = (selectedValue: number | null) => this.setState({ selectedValue });
+  handleValueChange = (selectedValue: number | string) =>
+    this.setState({ selectedValue: parseInt(selectedValue, 10) });
 
   onSave = () => this.props.onChange(this.state.selectedValue || this.props.min);
 
@@ -59,8 +60,6 @@ export default class AgePicker extends React.Component<Props, State> {
         onSave={this.onSave}
       >
         <View style={styles.pickerContainer}>
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <Picker selectedValue={this.state.selectedValue} onValueChange={this.handleValueChange}>
             {this.renderItems(min || min === 0 ? min : 1, max)}
           </Picker>

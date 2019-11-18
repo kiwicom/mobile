@@ -6,13 +6,13 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Text from './Text';
 import StyleSheet from './PlatformStyleSheet';
-import type { StylePropType } from '../types/Styles';
+import type { ViewStyleProp, TextStyleProp } from '../types/Styles';
 import type { TranslationType } from '../types/Translation';
 
 type Props = {|
   +translation: TranslationType,
-  +style?: StylePropType,
-  +textStyle?: StylePropType,
+  +style?: ViewStyleProp,
+  +textStyle?: TextStyleProp,
   +icon?: React.Node,
   +type?: 'neutral' | 'info',
   +circled?: boolean,
@@ -37,8 +37,6 @@ export default function AdaptableBadge(props: Props) {
     <View
       style={[
         styles.container,
-        /* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */
         props.style,
         props.type === 'info' && styles.info,
         props.circled === true && styles.circled,

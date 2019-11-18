@@ -36,7 +36,7 @@ export default class PhotosStripe extends React.Component<Props> {
 
   render() {
     return (
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
+      // $FlowExpectedError: Wrong flow type for Swiper
       <Swiper
         renderPagination={this.renderPagination}
         index={this.props.index}

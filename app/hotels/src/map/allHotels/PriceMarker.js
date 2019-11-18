@@ -15,14 +15,11 @@ type Props = {|
 
 const PriceMarker = (props: Props) => {
   const { isSelected, data } = props;
-  const bubbleStyles = StyleSheet.flatten([styles.bubble, isSelected && selectedStyles.bubble]);
   const priceStyles = StyleSheet.flatten([styles.price, isSelected && selectedStyles.price]);
 
   return (
     <View>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
-      <View style={bubbleStyles}>
+      <View style={[styles.bubble, isSelected && selectedStyles.bubble]}>
         {props.data != null && (
           <Price amount={data?.amount} currency={data?.currencyId} style={priceStyles} />
         )}

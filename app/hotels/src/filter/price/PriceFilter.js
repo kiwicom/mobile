@@ -12,8 +12,8 @@ import { HotelsContext, type HotelsContextState } from '../../HotelsContext';
 import PriceTitle from './PriceTitle';
 
 type Props = {|
-  +start: Decimal | null,
-  +end: Decimal | null,
+  +start: ?Decimal,
+  +end: ?Decimal,
   +currency: string,
   +onChange: OnChangeFilterParams => void,
   +isActive: boolean,
