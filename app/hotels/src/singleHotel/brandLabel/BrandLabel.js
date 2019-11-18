@@ -9,13 +9,10 @@ import brandImage from './bookingLogo.png';
 
 export default function BrandLabel() {
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styleSheet.wrapper}>
       <Text style={styleSheet.poweredBy}>
         <Translation id="single_hotel.powered_by" />
       </Text>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <Image style={styleSheet.image} resizeMode="contain" source={brandImage} />
     </View>
   );

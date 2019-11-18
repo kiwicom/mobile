@@ -19,15 +19,10 @@ class Address extends React.Component<Props> {
     const zip = this.props.address?.zip ?? '';
 
     return (
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.container}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.mapIcon}>
           <Icon name="map" color={defaultTokens.paletteProductNormal} />
         </View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.content}>
           <Text style={styles.header}>
             <Translation id="hotels.map.address" />

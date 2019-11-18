@@ -67,8 +67,6 @@ export default class TextInput extends React.Component<Props, State> {
             {...this.props}
             placeholder={null}
             onChangeText={this.handlePlaceholder}
-            /* $FlowFixMe Errors after moving rn modules from untyped to
-             * declarations */
             style={[styleSheet.text, styleSheet.input]}
           />
 

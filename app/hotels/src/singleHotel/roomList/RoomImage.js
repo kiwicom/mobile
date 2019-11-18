@@ -16,8 +16,6 @@ export default function RoomImage({ thumbnailUrl, openGallery }: Props) {
     <Touchable onPress={openGallery} disabled={thumbnailUrl == null} delayPressIn={40}>
       <View>
         <NetworkImage source={{ uri: thumbnailUrl }} style={styles.thumbnail} />
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.galleryButton}>
           <GalleryButton
             count={null}

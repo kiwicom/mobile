@@ -16,7 +16,6 @@ type Props = {|
 
 const BookingSummary = (props: Props) => {
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.buttonContainer}>
       <RoomSummary room={props.room} goBack={props.goBack} />
     </View>

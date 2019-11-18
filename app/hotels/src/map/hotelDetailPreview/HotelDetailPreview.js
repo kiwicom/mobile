@@ -29,7 +29,6 @@ export default function HotelDetailPreview({
   const stars = propsStars ?? 0;
 
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={[styles.container, { width: containerWidth }]}>
       <View>
         <NetworkImage
@@ -40,14 +39,10 @@ export default function HotelDetailPreview({
           resizeMode="contain"
         />
       </View>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.description}>
         <Text style={styles.hotelName} numberOfLines={1}>
           <Translation passThrough={name} />
         </Text>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.row}>
           <View>
             {stars > 0 && <Stars rating={stars} style={styles.stars} />}

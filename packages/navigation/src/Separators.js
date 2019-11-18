@@ -25,7 +25,6 @@ export function SeparatorFullWidth(props: SeparatorFullWidthType) {
       height: props.height ? props.height : 1,
     };
   }
-  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <View style={[styleSheet.separator, style]} />;
 }
 
@@ -46,14 +45,9 @@ type SeparatorTrimmedType = {|
 export function SeparatorTrimmed(props: SeparatorTrimmedType) {
   const { gapSizeStart, gapSizeEnd, color, height } = props;
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styleSheet.row}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={[styleSheet.gap, { width: gapSizeStart, height }]} />
       <SeparatorFullWidth color={color} height={height} />
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={[styleSheet.gap, { width: gapSizeEnd, height }]} />
     </View>
   );

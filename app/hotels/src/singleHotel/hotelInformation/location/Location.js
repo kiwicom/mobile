@@ -50,14 +50,9 @@ export function Location(props: Props) {
   const longitude = props.hotel?.coordinates?.lng;
 
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.background}>
       <TouchableWithoutFeedback onPress={goToMap}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.container}>
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={styles.leftColumn}>
             <Text style={[styles.addressLine, styles.streetLine]}>
               <Translation passThrough={address?.street} />
@@ -79,8 +74,6 @@ export function Location(props: Props) {
             />
           )}
 
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={styles.overlayMarker}>
             <DropMarker />
           </View>

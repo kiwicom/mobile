@@ -17,12 +17,9 @@ type Props = {|
 
 function SummaryButtons(props: Props) {
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.row}>
       <AdaptableLayout
         renderOnNarrow={
-          /* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */
           <View style={styles.closeWrapper}>
             <CloseButton onPress={props.goBack} />
           </View>
@@ -30,8 +27,6 @@ function SummaryButtons(props: Props) {
       />
 
       {props.maxPersons > 0 && (
-        /* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */
         <View style={styles.bookNowWrapper}>
           <BookNow rooms={props.rooms} maxPersons={props.maxPersons} amount={props.amount} />
         </View>

@@ -36,11 +36,7 @@ export default class BottomSheet extends React.Component<Props> {
 
     return (
       <AdaptableLayout
-        /* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */
         renderOnWide={<View style={styles.wideContainer}>{content}</View>}
-        /* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */
         renderOnNarrow={<View style={styles.narrowContainer}>{content}</View>}
       />
     );

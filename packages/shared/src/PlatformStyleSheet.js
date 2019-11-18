@@ -34,8 +34,8 @@ const PlaformStyleSheet = {
 
   flatten: StyleSheet.flatten,
 
-  create(styles: PlatformStyleObjectType): StyleObjectType {
-    const platformStyles = {};
+  create(styles: PlatformStyleObjectType) {
+    const platformStyles: StyleObjectType = {};
     Object.keys(styles).forEach(name => {
       let { ios, android, ...style } = { ...styles[name] };
       if (ios && Platform.OS === 'ios') {

@@ -50,11 +50,8 @@ function MapScreenWithContext(props: PropsWithContext) {
   }
 
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container} testID="allHotels-mapScreen">
       <MapView data={hotels} selectedIndex={selectedHotelIndex} onSelectMarker={onSelectMarker} />
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.underlay}>
         {/* $FlowFixMe Errors after moving rn modules from untyped to
          * declarations */}

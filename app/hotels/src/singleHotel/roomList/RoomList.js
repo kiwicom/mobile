@@ -23,7 +23,6 @@ class RoomList extends React.Component<Props> {
     }, 0);
 
     return (
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.container}>
         <Text style={styles.title}>
           <Translation id="single_hotel.room_list.rooms" textTransform="uppercase" />

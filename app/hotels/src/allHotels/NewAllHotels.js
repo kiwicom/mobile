@@ -53,10 +53,7 @@ const NewAllHotels = () => {
   const SearchProvider = cityId === null ? <Stay22HotelsSearch /> : <NewAllHotelsSearch />;
 
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.absoluteFill}>
         {errorMessages !== null && <InputErrorScreen errorMessages={errorMessages} />}
         {errorMessages === null && SearchProvider}

@@ -35,13 +35,8 @@ const RenderLabel = ({ score }: {| +score: ?number |}) => {
 const HotelReview = (props: Props) => {
   const reviews = props.data?.review?.count;
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.row}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.badgeWrapper}>
           <HotelReviewScore score={props.data?.review?.score} />
         </View>

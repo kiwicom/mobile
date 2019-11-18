@@ -103,13 +103,10 @@ export function HotelDetailScreen(props: Props) {
   const statusBarBackground =
     barStyle === 'light-content' ? styles.lightContent : styles.darkContent;
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.safeArea}>
       <StatusbarBackground style={statusBarBackground} />
 
       <ScrollView
-        /* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */
         contentContainerStyle={styles.container}
         /* $FlowFixMe Errors after moving rn modules from untyped to
          * declarations */

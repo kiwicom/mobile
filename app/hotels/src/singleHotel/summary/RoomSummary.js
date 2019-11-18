@@ -162,8 +162,6 @@ export class RoomSummary extends React.Component<Props, State> {
       <>
         {amount != null && currency != null && (
           <VerticalSwipeResponder onSwipeDown={this.onSwipeDown} onSwipeUp={this.onSwipeUp}>
-            {/* $FlowFixMe Errors after moving rn modules from untyped to
-             * declarations */}
             <View style={styles.container}>
               <BottomSheetHandle style={styles.handle} />
               <ExtraCharges
@@ -172,8 +170,6 @@ export class RoomSummary extends React.Component<Props, State> {
                 isExpanded={this.state.isExpanded}
                 currency={currency}
               />
-              {/* $FlowFixMe Errors after moving rn modules from untyped to
-               * declarations */}
               <View style={styles.content}>
                 <SummaryRow
                   text={<Translation id="single_hotel.room_summary.total" />}

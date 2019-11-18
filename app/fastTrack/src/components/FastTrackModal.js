@@ -26,16 +26,12 @@ class FastTrackModal extends React.Component<Props> {
     const props = this.props;
     return (
       <Modal isVisible={props.isVisible} onRequestClose={props.onCloseModal} style={styles.modal}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.container}>
           <WebView
             source={{
               uri: this.props.data?.url ?? '',
             }}
           />
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={styles.buttonContainer}>
             <TextButton
               onPress={props.onCloseModal}

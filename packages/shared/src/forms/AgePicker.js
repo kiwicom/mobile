@@ -58,8 +58,6 @@ export default class AgePicker extends React.Component<Props, State> {
         onClose={this.props.onClose}
         onSave={this.onSave}
       >
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.pickerContainer}>
           {/* $FlowFixMe Errors after moving rn modules from untyped to
            * declarations */}

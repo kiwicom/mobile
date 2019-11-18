@@ -100,22 +100,15 @@ export function RoomRow(props: Props) {
   const selectableCount = availableRoom?.availableRoomsCount ?? 0;
 
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container}>
       <View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.row}>
           <RoomImage openGallery={openGallery} thumbnailUrl={thumbnailUrl} />
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={styles.details}>
             <RoomRowTitle room={availableRoom} />
             <RoomBadges availableRoom={availableRoom} />
           </View>
         </View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.roomDetails}>
           <BeddingInfo room={availableRoom} />
         </View>

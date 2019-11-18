@@ -18,26 +18,15 @@ const SearchRowContent = (props: Props) => {
   const highResUrl = props.hotel?.mainPhoto?.highResUrl;
   const imageUrl = props.hotel?.mainPhoto?.lowResUrl ?? highResUrl; // stay 22 don't provide lowResUrl, thumbnail url has to low quality, fallback to highResUrl
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={style.row}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={style.imageContainer}>
         <NetworkImage style={style.image} resizeMode="cover" source={{ uri: imageUrl }} />
       </View>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={style.content}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={style.hotelTitleWrapper}>
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={style.hotelTitle}>
             <HotelTitle data={props.hotel} />
           </View>
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={style.hotelReviewScore}>
             <HotelReviewScore score={props.hotel?.review?.score} />
           </View>

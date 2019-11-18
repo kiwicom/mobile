@@ -66,8 +66,6 @@ export default class OrderPopup extends React.Component<Props, State> {
         {ordersOptions.map((option, index) => (
           <React.Fragment key={option.key}>
             {index !== 0 && (
-              /* $FlowFixMe Errors after moving rn modules from untyped to
-               * declarations */
               <View style={styles.separator}>
                 <SeparatorFullWidth color={defaultTokens.paletteInkLighter} height={0.5} />
               </View>

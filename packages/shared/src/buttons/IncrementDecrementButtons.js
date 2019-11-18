@@ -21,7 +21,6 @@ type ButtonProps = {|
 
 const Button = ({ icon, touchable, onPress, testID }: ButtonProps) => {
   const inner = (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={[styles.button, touchable ? null : styles.buttonDisabled]}>{icon}</View>
   );
 
@@ -54,7 +53,6 @@ export default function IncrementDecrementButtons(props: Props) {
   const disableIncrement = props.number === props.max || props.disableIncrement;
 
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.row}>
       <Button
         icon={<Icon name="minus" color={defaultTokens.colorIconSecondary} fontSize={14} />}

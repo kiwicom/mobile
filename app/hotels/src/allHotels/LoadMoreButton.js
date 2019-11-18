@@ -14,7 +14,6 @@ type Props = {|
  */
 export default function LoadMoreButton({ isLoading, onPress }: Props) {
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styleSheet.wrapper}>
       {isLoading ? (
         <IconLoading />

@@ -27,11 +27,7 @@ const PriceMarker = (props: Props) => {
           <Price amount={data?.amount} currency={data?.currencyId} style={priceStyles} />
         )}
       </View>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={[styles.arrowBorder]} />
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={[styles.arrow, isSelected && selectedStyles.arrow]} />
     </View>
   );

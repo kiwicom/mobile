@@ -65,21 +65,14 @@ export default function LayoutDoubleColumn(props: Props) {
 }
 
 function NarrowLayout(props: {| +menuComponent: React.Node |}) {
-  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <View style={styleSheet.menuNarrow}>{props.menuComponent}</View>;
 }
 
 function WideLayout(props: Props) {
   return (
     <Layout>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styleSheet.wrapper}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={[styleSheet.menu, styleSheet.menuWide]}>{props.menuComponent}</View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styleSheet.container}>{props.containerComponent}</View>
       </View>
     </Layout>

@@ -21,12 +21,8 @@ const Services = ({ services }: Props) => (
     <Text style={style.title}>
       <Translation id="mmb.fast_track.banner.services_label.bergamo.bergamo_stopover" />
     </Text>
-    {/* $FlowFixMe Errors after moving rn modules from untyped to declarations
-     */}
     <View style={style.list}>
       {services.map((service: Service) => (
-        /* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */
         <View style={style.item} key={service.id}>
           <Icon name={service.icon} color={defaultTokens.colorIconSecondary} />
           <Text style={style.name}>

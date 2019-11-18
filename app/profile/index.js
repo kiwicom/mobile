@@ -59,7 +59,6 @@ class LoginScreen extends React.Component<Props, State> {
 
   render() {
     return (
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.container}>
         <DismissKeyboardView>
           <LayoutSingleColumn>

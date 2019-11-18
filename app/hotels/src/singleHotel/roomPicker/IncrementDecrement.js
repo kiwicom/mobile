@@ -41,13 +41,8 @@ export default function IncrementDecrement({
   const disableDecrement = disabled && selectedCount <= 0;
   const disableIncrement = disabled;
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={styles.row}>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.priceContainer}>
           <Text style={styles.countText}>
             <Translation id="single_hotel.increment_decrement.count" {...androidProps} />
@@ -55,8 +50,6 @@ export default function IncrementDecrement({
           <Price amount={price?.amount} currency={price?.currency} style={styles.price} />
         </View>
 
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.countContainer}>
           <IncrementDecrementButtons
             min={0}

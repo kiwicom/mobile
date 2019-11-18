@@ -67,8 +67,6 @@ export default function PricePopup(props: Props) {
         onClose={props.onClose}
         isVisible={props.isVisible}
       >
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.titleContainer}>
           <Text style={styles.title}>
             <Translation id="hotels_search.filter.price_popup.title" />
@@ -87,8 +85,6 @@ export default function PricePopup(props: Props) {
             style={styles.priceBadge}
           />
         </View>
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={styles.sliderContainer}>
           <Slider
             startValue={price.start.toNumber()}

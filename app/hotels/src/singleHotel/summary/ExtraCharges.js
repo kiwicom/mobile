@@ -29,7 +29,6 @@ export default function ExtraCharges(props: Props) {
     return null;
   }
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.container}>
       {props.rooms.map(room => {
         const title = room.title;
