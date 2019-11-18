@@ -28,13 +28,10 @@ const SummaryRow = ({ text, price }: Props) => {
     containerWidth != null && priceWidth != null ? containerWidth - priceWidth - SPACING : 0;
 
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={styles.row} onLayout={onContainerLayout}>
       <Text style={[styles.text, { maxWidth }]} numberOfLines={1}>
         {text}
       </Text>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View onLayout={onPriceLayout}>
         <Text style={styles.price}>{price}</Text>
       </View>

@@ -13,31 +13,17 @@ type Props = {|
   +onPress: () => void,
 |};
 
-type ItemType = {|
-  +node?: {|
-    +id: string,
-    +$fragmentRefs: any,
-  |},
-|};
+const keyExtractor = (item, index) => item?.node?.id ?? index.toString();
 
-class HotelCityList extends React.Component<Props> {
-  keyExtractor = (item: ItemType) => item.node?.id;
-
-  renderItem = ({ item }: {| +item: ItemType |}) => (
-    <HotelCityItem data={item.node} onPress={this.props.onPress} />
+function HotelCityList(props: Props) {
+  const data = props.data?.edges ?? [];
+  const renderItem = ({ item }) => <HotelCityItem data={item?.node} onPress={props.onPress} />;
+  return (
+    <>
+      <Translation passThrough="Results" />
+      <FlatList data={data} keyExtractor={keyExtractor} renderItem={renderItem} />
+    </>
   );
-
-  render() {
-    const data = this.props.data?.edges ?? [];
-    return (
-      <>
-        <Translation passThrough="Results" />
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
-        <FlatList data={data} keyExtractor={this.keyExtractor} renderItem={this.renderItem} />
-      </>
-    );
-  }
 }
 
 export default createFragmentContainer(HotelCityList, {

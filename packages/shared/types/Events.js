@@ -1,21 +1,14 @@
 // @flow
 
+import type { LayoutEvent } from 'react-native/Libraries/Types/CoreEventTypes';
+
 /**
  * <View onLayout={...} />
  * <FlatList onLayout={...} /> (FlatList is just wrapper for View)
  *
  * @see https://facebook.github.io/react-native/docs/view.html#onlayout
  */
-export type OnLayout = {|
-  nativeEvent: {|
-    layout: {|
-      x: number,
-      y: number,
-      width: number,
-      height: number,
-    |},
-  |},
-|};
+export type OnLayout = LayoutEvent;
 
 /**
  * <TextInput onFocus={} />

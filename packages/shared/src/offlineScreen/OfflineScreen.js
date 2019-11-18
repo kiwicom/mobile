@@ -32,8 +32,6 @@ export default function OfflineScreen(props: Props) {
           </Text>
         </View>
         <View style={styles.imageContainer}>
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <Image source={OfflineImage} />
         </View>
         <View style={styles.buttonContainer}>

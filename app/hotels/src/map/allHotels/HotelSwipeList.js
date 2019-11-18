@@ -8,9 +8,9 @@ import {
   BottomSheet,
   Device,
   StyleSheet,
-  type OnLayout,
   BottomSheetHandle,
   Translation,
+  type OnLayout,
 } from '@kiwicom/mobile-shared';
 
 import HotelSwipeItem from './HotelSwipeItem';
@@ -70,7 +70,6 @@ class HotelSwipeList extends React.Component<Props, State> {
     const { data, onSnapToItem } = this.props;
 
     return (
-      // $FlowFixMe Errors after moving rn modules from untyped to declarations
       <View style={styles.container} onLayout={this.onLayout}>
         <HotelPreviewProvider value={this.state}>
           <BottomSheet openHeight={openHeight} closedHeight={closedHeight}>

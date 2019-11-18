@@ -42,8 +42,6 @@ export class AdditionalInfo extends React.Component<Props, State> {
       <View style={styles.container}>
         <HotelPreviewProvider value={this.state}>
           <BottomSheet>
-            {/* $FlowFixMe Errors after moving rn modules from untyped to
-             * declarations */}
             <View onLayout={this.onLayout}>
               <BottomSheetHandle />
               <View style={styles.detailPreviewContainer}>
