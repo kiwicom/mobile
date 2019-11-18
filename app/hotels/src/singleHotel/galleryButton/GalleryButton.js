@@ -6,17 +6,18 @@ import {
   StyleSheet,
   Text,
   Color,
-  type StylePropType,
+  type ViewStyleProp,
   Icon,
   Translation,
+  type TextStyleProp,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +count: number | null,
   +style?: {|
-    +container?: StylePropType,
-    +text?: StylePropType,
+    +container?: ViewStyleProp,
+    +text?: TextStyleProp,
   |},
   +iconSize?: 'small' | 'medium' | 'large',
 |};
@@ -25,7 +26,6 @@ export default function GalleryButton({ count, style, iconSize }: Props) {
   const containerStyle = style?.container ?? null;
   const textStyle = style?.text ?? null;
   return (
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     <View style={[styles.container, containerStyle]}>
       <Icon name="gallery" color={defaultTokens.paletteWhite} size={iconSize} />
       {count !== null && (

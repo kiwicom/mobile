@@ -8,13 +8,13 @@ import FilterButton from '../FilterButton';
 import type { OnChangeFilterParams } from '../FilterParametersType';
 
 type Props = {|
-  minScore: number | null,
-  onChange: OnChangeFilterParams => void,
-  isActive: boolean,
+  +minScore: ?number,
+  +onChange: OnChangeFilterParams => void,
+  +isActive: boolean,
 |};
 
 type State = {|
-  isPopupOpen: boolean,
+  +isPopupOpen: boolean,
 |};
 
 const ratingLabels = {
@@ -50,16 +50,16 @@ export default class ScoreFilter extends React.Component<Props, State> {
     }
   };
 
-  handleSave = (minScore: number | null) =>
+  handleSave = (minScore: ?number) =>
     this.closePopup(() => {
       this.props.onChange({ minScore });
-      if (minScore !== null) {
+      if (minScore != null) {
         Logger.hotelsFilterTagSet('Rating');
       }
     });
 
-  getTitle = (minScore: number | null) => {
-    return minScore ? (
+  getTitle = (minScore: ?number) => {
+    return minScore != null ? (
       ratingLabels[minScore]
     ) : (
       <Translation id="hotels_search.filter.score_filter.rating" />

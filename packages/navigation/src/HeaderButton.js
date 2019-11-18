@@ -7,9 +7,9 @@ import {
   StyleSheet,
   Text,
   Icon,
-  type StylePropType,
   type TranslationType,
   Translation,
+  type ViewStyleProp,
 } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
@@ -18,7 +18,7 @@ type Props = {|
   +onLongPress?: (React.ElementRef<typeof Touchable>) => void,
   +children: React.Element<typeof HeaderButton.Text> | React.Element<typeof Icon>,
   +left?: boolean,
-  +style?: StylePropType,
+  +style?: ViewStyleProp,
   +disabled?: boolean,
   +testID?: string,
 |};
@@ -92,8 +92,6 @@ export default class HeaderButton extends React.PureComponent<Props, State> {
         testID={testID}
       >
         <View style={styles.container}>
-          {/* $FlowFixMe Errors after moving rn modules from untyped to
-           * declarations */}
           <View style={[styles.innerContainer, style]}>
             {this.props.children.type === HeaderButton.Text
               ? // $FlowExpectedError: flow is having a hard time here

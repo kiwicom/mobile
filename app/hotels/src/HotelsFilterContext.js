@@ -63,7 +63,6 @@ class Provider extends React.Component<Props, State> {
   }
 
   setFilter = ({ orderBy, ...action }: OnChangeFilterParams) => {
-    // $FlowFixMe Errors after moving rn modules from untyped to declarations
     this.setState(state => {
       const nextOrderBy = orderBy === undefined ? state.orderBy : orderBy;
       const filterParams = {

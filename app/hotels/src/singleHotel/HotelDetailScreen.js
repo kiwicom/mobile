@@ -12,6 +12,7 @@ import {
   Color,
   StatusbarBackground,
   Translation,
+  type OnScroll,
 } from '@kiwicom/mobile-shared';
 import { createFragmentContainer, graphql } from '@kiwicom/mobile-relay';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
@@ -32,14 +33,6 @@ type Props = {|
   +goBack: () => void,
   +paymentLink?: ?string,
   +width: number,
-|};
-
-type NativeEvent = {|
-  +nativeEvent: {|
-    +contentOffset: {|
-      +y: number,
-    |},
-  |},
 |};
 
 export function HotelDetailScreen(props: Props) {
@@ -78,7 +71,7 @@ export function HotelDetailScreen(props: Props) {
     );
   }
 
-  function onScroll(e: NativeEvent) {
+  function onScroll(e: OnScroll) {
     const yOffset = e.nativeEvent.contentOffset.y;
 
     if (shouldSetStatusBarDark(yOffset)) {
@@ -108,8 +101,6 @@ export function HotelDetailScreen(props: Props) {
 
       <ScrollView
         contentContainerStyle={styles.container}
-        /* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */
         onScroll={onScroll}
         scrollEventThrottle={100}
         testID="hotelDetailScrollView"

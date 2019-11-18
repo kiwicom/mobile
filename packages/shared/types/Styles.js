@@ -11,6 +11,8 @@ import {
   type ____DangerouslyImpreciseStyle_Internal,
 } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
+export type { ViewStyleProp, TextStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet';
+
 type ReducedDangerouslyImpreciseStyle = $Rest<
   ____DangerouslyImpreciseStyle_Internal,
   {|

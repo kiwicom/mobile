@@ -1,13 +1,7 @@
 // @flow
 
-import type { LayoutEvent } from 'react-native/Libraries/Types/CoreEventTypes';
+import type { ScrollEvent, LayoutEvent } from 'react-native/Libraries/Types/CoreEventTypes';
 
-/**
- * <View onLayout={...} />
- * <FlatList onLayout={...} /> (FlatList is just wrapper for View)
- *
- * @see https://facebook.github.io/react-native/docs/view.html#onlayout
- */
 export type OnLayout = LayoutEvent;
 
 /**
@@ -73,3 +67,5 @@ export type WebViewStateChangeEvent = {|
   +url: string,
   +loading: boolean,
 |};
+
+export type OnScroll = ScrollEvent;

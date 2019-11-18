@@ -5,14 +5,13 @@ import { View } from 'react-native';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import StyleSheet from './PlatformStyleSheet';
-import type { StylePropType } from '../types/Styles';
+import type { ViewStyleProp } from '../types/Styles';
 
 type Props = {|
-  +style?: StylePropType,
+  +style?: ViewStyleProp,
 |};
 
 export default function Handle(props: Props) {
-  // $FlowFixMe Errors after moving rn modules from untyped to declarations
   return <View style={[styles.handle, props.style]} />;
 }
 

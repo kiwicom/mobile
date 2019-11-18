@@ -120,9 +120,16 @@ export type {
   GestureState,
   PressEvent,
   WebViewStateChangeEvent,
+  OnScroll,
 } from './types/Events';
 
-export type { StylePropType, StyleObjectType, PlatformStyleObjectType } from './types/Styles';
+export type {
+  StylePropType,
+  StyleObjectType,
+  PlatformStyleObjectType,
+  ViewStyleProp,
+  TextStyleProp,
+} from './types/Styles';
 
 export type { DimensionType } from './types/Objects';
 
