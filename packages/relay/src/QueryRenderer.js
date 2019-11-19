@@ -65,8 +65,6 @@ export default class QueryRenderer extends React.Component<Props> {
   render() {
     return (
       <KiwicomQueryRenderer
-        /* $FlowFixMe(>=0.110.1) This comment suppresses an error when upgrading Flow.
-         * To see the error delete this comment and run Flow. */
         environment={this.createEnvironment()}
         query={this.props.query}
         variables={this.props.variables}

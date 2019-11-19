@@ -2,10 +2,6 @@
 
 import Relay from '@kiwicom/relay';
 
-import ConnectionManager from '../src/ConnectionManager';
-import PrivateEnvironment from '../src/PrivateEnvironment';
-import PublicEnvironment from '../src/PublicEnvironment';
-
 import { commitMutation } from '..';
 
 jest.mock('@kiwicom/relay', () => ({
@@ -45,32 +41,8 @@ const config = {
 describe('commitMutation', () => {
   it('does not call network if there is no connection', () => {
     // $FlowExpectedError: Ok to pass string for testing
-    commitMutation(config);
+    commitMutation(null, config);
     expect(Relay.commitMutation).not.toHaveBeenCalled();
     expect(config.onCompleted).toHaveBeenCalledWith({ data: null }, 'No connection');
-  });
-
-  it('does calls commit mutation and PrivateEnvironment if there is connection and a token', () => {
-    // $FlowExpectedError: method does not exist on class, but in mock
-    ConnectionManager.setDesiredReturn(true);
-    commitMutation(config, 'token');
-    expect(Relay.commitMutation).toHaveBeenCalledWith('private environment', {
-      mutation: 'test',
-      onCompleted: config.onCompleted,
-      variables: {},
-    });
-    expect(PrivateEnvironment.getEnvironment).toHaveBeenCalledWith('token');
-  });
-
-  it('does calls commit mutation and PublicEnvironment if there is connection but not a token', () => {
-    // $FlowExpectedError: method does not exist on class, but in mock
-    ConnectionManager.setDesiredReturn(true);
-    commitMutation(config);
-    expect(Relay.commitMutation).toHaveBeenCalledWith('public environment', {
-      mutation: 'test',
-      onCompleted: config.onCompleted,
-      variables: {},
-    });
-    expect(PublicEnvironment.getEnvironment).toHaveBeenCalledWith();
   });
 });

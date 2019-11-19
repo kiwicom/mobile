@@ -7,13 +7,14 @@ import {
   type RefetchRelayProp,
   type PaginationRelayProp,
   commitLocalUpdate as _commitLocalUpdate,
+  type Environment,
 } from '@kiwicom/relay';
 import { Alert } from '@kiwicom/mobile-localization';
 
-import PublicEnvironment from './src/PublicEnvironment';
-import PrivateEnvironment from './src/PrivateEnvironment';
 import ConnectionManager from './src/ConnectionManager';
 import type { QueryRendererProps as _QueryRendererProps } from './types';
+
+export { default as PublicEnvironment } from './src/PublicEnvironment';
 
 export {
   graphql,
@@ -25,18 +26,14 @@ export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
 export { default as AuthContext, withAuthContext } from './src/AuthContext';
 
-export const commitMutation = (config: CommitMutationConfig, token?: string) => {
+export const commitMutation = (environment: Environment, config: CommitMutationConfig) => {
   if (ConnectionManager.isConnected() === false) {
     Alert.translatedAlert(null, { id: 'relay.query_renderer.no_connection' });
     config.onCompleted({ data: null }, 'No connection');
     return null;
   }
-  if (token) {
-    return _commitMutation(PrivateEnvironment.getEnvironment(token), config);
-  }
-  /* $FlowFixMe(>=0.110.1) This comment suppresses an error when upgrading Flow.
-   * To see the error delete this comment and run Flow. */
-  return _commitMutation(PublicEnvironment.getEnvironment(), config);
+
+  return _commitMutation(environment, config);
 };
 
 export const commitLocalUpdate = _commitLocalUpdate;
