@@ -98,7 +98,7 @@
     "test-runner": "jest"
   },
   "rnkiwimobile": {
-    "code-push-target-binary-version": "15.0.0"
+    "code-push-target-binary-version": "16.0.0"
   },
   "resolutions": {
     "@kiwicom/relay": "4.7.1"

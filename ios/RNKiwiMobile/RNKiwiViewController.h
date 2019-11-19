@@ -14,6 +14,9 @@
 @property (nonatomic, weak, nullable) id<RNKiwiTranslationProvider> translationProvider;
 @property (nonatomic, weak, nullable) id<RNKiwiViewControllerFlowDelegate> flowDelegate;
 
+// Account
+@property (nonatomic, copy, nullable) void (^didDeleteAccount)(void);
+
 // Logging
 @property (nonatomic, copy, nullable) void (^didDisplayAncillary)(NSString * _Nonnull type, NSString * _Nonnull provider);
 @property (nonatomic, copy, nullable) void (^didPurchaseAncillary)(NSString * _Nonnull type, NSString * _Nonnull provider);
