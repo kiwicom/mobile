@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "@kiwicom/mobile-shared": "*",
-    "@kiwicom/account-native": "^0.0.6"
+    "@kiwicom/mobile-localization": "*",
+    "@kiwicom/account-native": "0.0.10"
   },
   "peerDependencies": {
     "react": "*",
