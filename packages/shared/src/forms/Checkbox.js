@@ -6,14 +6,14 @@ import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import TouchableWithoutFeedback from '../TouchableWithoutFeedback';
 import StyleSheet from '../PlatformStyleSheet';
-import type { StylePropType } from '../../types/Styles';
+import type { ViewStyleProp } from '../../types/Styles';
 import Icon from '../icons/Icon';
 
 type Props = {|
   +onPress: () => void,
   +children: React.Node,
   +isChecked?: boolean,
-  +style?: StylePropType,
+  +style?: ViewStyleProp,
 |};
 
 export default function Checkbox(props: Props) {
@@ -28,8 +28,6 @@ export default function Checkbox(props: Props) {
 
   return (
     <TouchableWithoutFeedback onPress={props.onPress}>
-      {/* $FlowFixMe Errors after moving rn modules from untyped to
-       * declarations */}
       <View style={[styles.wrapper, props.style]}>
         <View style={styles.label}>{props.children}</View>
         <View style={styles.checkWrapper}>

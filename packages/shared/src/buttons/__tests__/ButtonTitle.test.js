@@ -8,15 +8,15 @@ import Translation from '../../Translation';
 import ButtonTitle from '../ButtonTitle';
 
 let originalPlatform;
-let renderer;
+const renderer = new ShallowRenderer();
 
 beforeEach(() => {
   originalPlatform = Platform.OS;
-  renderer = new ShallowRenderer();
 });
 
-// $FlowFixMe Errors after moving rn modules from untyped to declarations
-afterEach(() => (Platform.OS = originalPlatform));
+afterEach(() => {
+  Platform.OS = originalPlatform;
+});
 
 describe('ButtonText', () => {
   it('should uppercase text on android', () => {

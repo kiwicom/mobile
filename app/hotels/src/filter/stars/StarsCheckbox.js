@@ -1,14 +1,14 @@
 // @flow strict
 
 import * as React from 'react';
-import { Stars, Checkbox, StyleSheet, Text, type StylePropType } from '@kiwicom/mobile-shared';
+import { Stars, Checkbox, StyleSheet, Text, type ViewStyleProp } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
   +onPress: () => void,
   +stars: number,
   +isChecked?: boolean,
-  +style?: StylePropType,
+  +style?: ViewStyleProp,
 |};
 
 export default function StarsCheckbox(props: Props) {

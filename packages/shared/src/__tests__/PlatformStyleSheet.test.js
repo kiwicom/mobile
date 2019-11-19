@@ -5,10 +5,14 @@ import { Platform } from 'react-native';
 import StyleSheet from '../PlatformStyleSheet';
 
 let originalPlatform;
-// $FlowFixMe Errors after moving rn modules from untyped to declarations
-beforeEach(() => (originalPlatform = Platform.OS));
-// $FlowFixMe Errors after moving rn modules from untyped to declarations
-afterEach(() => (Platform.OS = originalPlatform));
+
+beforeEach(() => {
+  originalPlatform = Platform.OS;
+});
+
+afterEach(() => {
+  Platform.OS = originalPlatform;
+});
 
 const createStyle = () =>
   StyleSheet.create({
