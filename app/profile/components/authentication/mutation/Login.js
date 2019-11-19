@@ -1,6 +1,6 @@
 // @flow
 
-import { graphql, commitMutation } from '@kiwicom/mobile-relay';
+import { graphql, commitMutation, PublicEnvironment } from '@kiwicom/mobile-relay';
 
 import type {
   LoginMutationVariables,
@@ -24,7 +24,8 @@ export type Callback = (
 ) => void;
 
 const LoginMutation = (input: LoginMutationVariables, callback: Callback) => {
-  commitMutation({
+  const environment = PublicEnvironment.getEnvironment();
+  commitMutation(environment, {
     mutation,
     variables: input,
     onCompleted: (response: LoginMutationResponse, errors) => {
