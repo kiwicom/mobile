@@ -1,6 +1,7 @@
 #import "RNKiwiViewController.h"
 #import "RNKiwiSharedBridge.h"
 #import "RNKiwiGestureController.h"
+#import "RNKiwiAccountUpdater.h"
 
 #import <RNModules/RNLoggingModule.h>
 #import <RNModules/RNTranslationManager.h>
@@ -40,10 +41,12 @@
   [RNTranslationManager setTranslator:object];
   [RNKiwiGestureController setGestureControllerDelegate:object];
   [RNCurrencyManager setCurrencyFormatter:object];
+
   if (object) {
+    [self startObservingAccountChanges];
     [self startObservingGestures];
   } else {
-    [self stopObservingGestures];
+    [self stopObservingNotifications];
   }
 }
 
@@ -165,6 +168,10 @@
 
 #pragma mark - Helpers
 
+- (void)stopObservingNotifications {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)notifyFinish {
   if ([self.flowDelegate respondsToSelector:@selector(RNKiwiViewControllerDidFinish:)]) {
     [self.flowDelegate RNKiwiViewControllerDidFinish:self];
@@ -208,11 +215,6 @@
                                              object:nil];
 }
 
-
-- (void)stopObservingGestures {
-  [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (BOOL)isInteractivePopGestureAllowed {
   return _isGestureAllowed;
 }
@@ -225,6 +227,18 @@
 
 - (void)closeModal {
   [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Account
+
+- (void)startObservingAccountChanges {
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAccountDeleted) name:RNKiwiAccountDeletedNotification object:nil];
+}
+
+- (void)handleAccountDeleted {
+  if (self.didDeleteAccount) {
+    self.didDeleteAccount()
+  }
 }
 
 @end
