@@ -3,7 +3,8 @@
 import * as React from 'react';
 import { View, StatusBar } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
-import { AppProvider } from '@kiwicom/account-native';
+import { DeviceInfo } from '@kiwicom/mobile-localization';
+import { AppProvider, LayoutProvider } from '@kiwicom/account-native';
 
 type Props = {|
   +onBackClicked: () => void,
@@ -14,8 +15,12 @@ type Props = {|
 export default function WithAccountStack(props: Props) {
   return (
     <View style={styles.container}>
-      <AppProvider onBackPressed={props.onBackClicked} token={props.token}>
-        {props.children}
+      <AppProvider
+        locale={DeviceInfo.getLanguage()}
+        onBackPressed={props.onBackClicked}
+        token={props.token}
+      >
+        <LayoutProvider>{props.children}</LayoutProvider>
       </AppProvider>
     </View>
   );
