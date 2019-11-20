@@ -12,7 +12,7 @@
  */
 import fs from 'fs';
 import child_process from 'child_process';
-import fetch from '@kiwicom/fetch';
+import fetch from '@adeira/fetch';
 import path from 'path';
 
 const version = child_process
@@ -49,23 +49,25 @@ const version = child_process
     /**
      * Create Github release that points to the latest commit
      */
-    const release = await (await fetch(
-      `https://api.github.com/repos/kiwicom/mobile/releases?access_token=${githubToken}`,
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+    const release = await (
+      await fetch(
+        `https://api.github.com/repos/kiwicom/mobile/releases?access_token=${githubToken}`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            tag_name: version,
+            target_commitish: 'master',
+            name: version,
+            draft: false,
+            prerelease: false,
+          }),
         },
-        body: JSON.stringify({
-          tag_name: version,
-          target_commitish: 'master',
-          name: version,
-          draft: false,
-          prerelease: false,
-        }),
-      },
-    )).json();
+      )
+    ).json();
 
     console.log(`GitHub tag ${version} was created.`);
 

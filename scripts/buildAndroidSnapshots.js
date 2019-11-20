@@ -1,7 +1,7 @@
 // @flow
 
 import { execSync } from 'child_process';
-import fetch from '@kiwicom/fetch';
+import fetch from '@adeira/fetch';
 
 const log = (...params) => {
   console.log(...params); // eslint-disable-line no-console

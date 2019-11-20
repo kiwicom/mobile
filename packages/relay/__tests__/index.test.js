@@ -1,10 +1,10 @@
 // @flow strict
 
-import Relay from '@kiwicom/relay';
+import Relay from '@adeira/relay';
 
 import { commitMutation } from '..';
 
-jest.mock('@kiwicom/relay', () => ({
+jest.mock('@adeira/relay', () => ({
   commitMutation: jest.fn(),
 }));
 

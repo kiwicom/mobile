@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 6dddd23878dcb2dba327056b67d1b73f
+ * @relayHash 46f1a8009e86a77b543949df295b08e8
  */
 
 /* eslint-disable */
@@ -30,21 +30,21 @@ query HotelCityQuery(
   }
 }
 
-fragment HotelCityList_data on HotelCityConnection {
-  edges {
-    node {
-      id
-      ...HotelCityItem_data
-    }
-  }
-}
-
 fragment HotelCityItem_data on HotelCity {
   id
   name
   location {
     lat
     lng
+  }
+}
+
+fragment HotelCityList_data on HotelCityConnection {
+  edges {
+    node {
+      id
+      ...HotelCityItem_data
+    }
   }
 }
 */
@@ -175,7 +175,7 @@ return {
     "operationKind": "query",
     "name": "HotelCityQuery",
     "id": null,
-    "text": "query HotelCityQuery(\n  $query: String!\n) {\n  hotelCities(prefix: $query) {\n    ...HotelCityList_data\n  }\n}\n\nfragment HotelCityList_data on HotelCityConnection {\n  edges {\n    node {\n      id\n      ...HotelCityItem_data\n    }\n  }\n}\n\nfragment HotelCityItem_data on HotelCity {\n  id\n  name\n  location {\n    lat\n    lng\n  }\n}\n",
+    "text": "query HotelCityQuery(\n  $query: String!\n) {\n  hotelCities(prefix: $query) {\n    ...HotelCityList_data\n  }\n}\n\nfragment HotelCityItem_data on HotelCity {\n  id\n  name\n  location {\n    lat\n    lng\n  }\n}\n\nfragment HotelCityList_data on HotelCityConnection {\n  edges {\n    node {\n      id\n      ...HotelCityItem_data\n    }\n  }\n}\n",
     "metadata": {}
   }
 };

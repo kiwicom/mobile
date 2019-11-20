@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 70ae37d8e999cfaa0776fc644c190ebe
+ * @relayHash 4263fdd3a8ea0e909f91345e8ce82218
  */
 
 /* eslint-disable */
@@ -40,22 +40,6 @@ query Stay22SingleHotelMapScreenQuery(
   }
 }
 
-fragment SingleMap_hotel on HotelAvailabilityInterface {
-  hotel {
-    __typename
-    ...MapView_hotel
-    id
-  }
-  ...AdditionalInfo_data
-}
-
-fragment MapView_hotel on HotelInterface {
-  coordinates {
-    lat
-    lng
-  }
-}
-
 fragment AdditionalInfo_data on HotelAvailabilityInterface {
   total {
     amount
@@ -85,6 +69,22 @@ fragment Address_address on Address {
   street
   city
   zip
+}
+
+fragment MapView_hotel on HotelInterface {
+  coordinates {
+    lat
+    lng
+  }
+}
+
+fragment SingleMap_hotel on HotelAvailabilityInterface {
+  hotel {
+    __typename
+    ...MapView_hotel
+    id
+  }
+  ...AdditionalInfo_data
 }
 */
 
@@ -368,7 +368,7 @@ return {
     "operationKind": "query",
     "name": "Stay22SingleHotelMapScreenQuery",
     "id": null,
-    "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  total {\n    amount\n    currencyId\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+    "text": "query Stay22SingleHotelMapScreenQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  total {\n    amount\n    currencyId\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n",
     "metadata": {}
   }
 };

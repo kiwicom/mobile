@@ -8,7 +8,7 @@ import {
   type PaginationRelayProp,
   commitLocalUpdate as _commitLocalUpdate,
   type Environment,
-} from '@kiwicom/relay';
+} from '@adeira/relay';
 import { Alert } from '@kiwicom/mobile-localization';
 
 import ConnectionManager from './src/ConnectionManager';
@@ -21,7 +21,7 @@ export {
   createPaginationContainer,
   createRefetchContainer,
   createFragmentContainer,
-} from '@kiwicom/relay';
+} from '@adeira/relay';
 export { default as PublicApiRenderer } from './src/PublicApiRenderer';
 export { default as PrivateApiRenderer } from './src/PrivateApiRenderer';
 export { default as AuthContext, withAuthContext } from './src/AuthContext';

@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash baccc6a22a84047796e79bc501f78783
+ * @relayHash 9a458bcc21c02dc0c8f1a9eb7c3335b8
  */
 
 /* eslint-disable */
@@ -54,22 +54,6 @@ query SingleHotelMapScreenQuery(
   }
 }
 
-fragment SingleMap_hotel on HotelAvailabilityInterface {
-  hotel {
-    __typename
-    ...MapView_hotel
-    id
-  }
-  ...AdditionalInfo_data
-}
-
-fragment MapView_hotel on HotelInterface {
-  coordinates {
-    lat
-    lng
-  }
-}
-
 fragment AdditionalInfo_data on HotelAvailabilityInterface {
   total {
     amount
@@ -99,6 +83,22 @@ fragment Address_address on Address {
   street
   city
   zip
+}
+
+fragment MapView_hotel on HotelInterface {
+  coordinates {
+    lat
+    lng
+  }
+}
+
+fragment SingleMap_hotel on HotelAvailabilityInterface {
+  hotel {
+    __typename
+    ...MapView_hotel
+    id
+  }
+  ...AdditionalInfo_data
 }
 */
 
@@ -349,7 +349,7 @@ return {
     "operationKind": "query",
     "name": "SingleHotelMapScreenQuery",
     "id": null,
-    "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  total {\n    amount\n    currencyId\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n",
+    "text": "query SingleHotelMapScreenQuery(\n  $search: AvailableHotelSearchInput!\n  $options: AvailableHotelOptionsInput\n) {\n  availableHotel(search: $search, options: $options) {\n    ...SingleMap_hotel\n    id\n  }\n}\n\nfragment AdditionalInfo_data on HotelAvailabilityInterface {\n  total {\n    amount\n    currencyId\n  }\n  hotel {\n    __typename\n    address {\n      ...Address_address\n    }\n    review {\n      score\n    }\n    name\n    mainPhoto {\n      thumbnailUrl\n      id\n    }\n    rating {\n      stars\n    }\n    id\n  }\n}\n\nfragment Address_address on Address {\n  street\n  city\n  zip\n}\n\nfragment MapView_hotel on HotelInterface {\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment SingleMap_hotel on HotelAvailabilityInterface {\n  hotel {\n    __typename\n    ...MapView_hotel\n    id\n  }\n  ...AdditionalInfo_data\n}\n",
     "metadata": {}
   }
 };
