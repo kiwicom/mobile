@@ -81,6 +81,9 @@
   // Display picked end date
   [self.endDateSelectionTextField setInputView:endDatePicker];
   
+  // Account token
+  accountToken = [[UITextField  alloc] init];
+  
   //  Initialize city picker
   cityPicker = [[UIPickerView alloc] init];
   [cityPicker setDataSource:self];
@@ -235,13 +238,17 @@
   _activeVc = vc;
 }
 
+- (IBAction)onTokenChange:(UITextField *)textField {
+  accountToken.text = textField.text;
+}
+
 // Open accounts
 
 - (IBAction)pushAccountsView:(id)sender {
   RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountSettings"
                                                                 initialProperties:@{
                                                                                     @"lastNavigationMode": @"push",
-                                                                                    @"token": @"mockToken",
+                                                                                    @"token":  accountToken.text,
                                                                                     }];
   [self setActiveViewController:controller];
   [[self navigationController] pushViewController:controller animated:YES];
@@ -251,7 +258,7 @@
   RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountPriceAlerts"
                                                                 initialProperties:@{
                                                                                     @"lastNavigationMode": @"push",
-                                                                                    @"token": @"mockToken",
+                                                                                    @"token": accountToken.text,
                                                                                     }];
   [self setActiveViewController:controller];
   [[self navigationController] pushViewController:controller animated:YES];
@@ -361,5 +368,6 @@
   }
   return YES;
 }
+
 
 @end
