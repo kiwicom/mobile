@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 358681b87adcce1ec56fc1fc3206e142
+ * @relayHash c9913b5a729b11a435957d7ff4434229
  */
 
 /* eslint-disable */
@@ -42,19 +42,39 @@ query Stay22SingleHotelQuery(
   }
 }
 
-fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
-  ...BookingSummary_room
-  hotel {
+fragment Amenities_data on HotelInterface {
+  amenities {
+    id
+    name
+  }
+}
+
+fragment BeddingInfo_room on HotelRoomAvailabilityInterface {
+  maxOccupancy
+  room {
     __typename
-    ...Header_hotel
-    ...HotelInformation_hotel
+    bedding {
+      type
+      amount
+    }
     id
   }
-  ...RoomList_data
+}
+
+fragment BookNow_rooms on HotelAvailabilityInterface {
+  availableRooms {
+    __typename
+    id
+  }
 }
 
 fragment BookingSummary_room on HotelAvailabilityInterface {
   ...RoomSummary_room
+}
+
+fragment Description_hotel on HotelInterface {
+  summary
+  ...Amenities_data
 }
 
 fragment Header_hotel on HotelInterface {
@@ -77,10 +97,44 @@ fragment Header_hotel on HotelInterface {
   }
 }
 
+fragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {
+  ...BookingSummary_room
+  hotel {
+    __typename
+    ...Header_hotel
+    ...HotelInformation_hotel
+    id
+  }
+  ...RoomList_data
+}
+
 fragment HotelInformation_hotel on HotelInterface {
   ...Location_hotel
   ...Description_hotel
   ...HotelReview_data
+}
+
+fragment HotelReview_data on HotelInterface {
+  review {
+    score
+    count
+  }
+}
+
+fragment Location_hotel on HotelInterface {
+  address {
+    street
+    city
+  }
+  coordinates {
+    lat
+    lng
+  }
+}
+
+fragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {
+  isBreakfastIncluded
+  isRefundable
 }
 
 fragment RoomList_data on HotelAvailabilityInterface {
@@ -89,6 +143,10 @@ fragment RoomList_data on HotelAvailabilityInterface {
     id
     ...RoomRow_availableRoom
   }
+}
+
+fragment RoomRowTitle_room on HotelRoomAvailabilityInterface {
+  name
 }
 
 fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
@@ -113,57 +171,6 @@ fragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {
       lowResUrl
       id
     }
-  }
-}
-
-fragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {
-  isBreakfastIncluded
-  isRefundable
-}
-
-fragment RoomRowTitle_room on HotelRoomAvailabilityInterface {
-  name
-}
-
-fragment BeddingInfo_room on HotelRoomAvailabilityInterface {
-  maxOccupancy
-  room {
-    __typename
-    bedding {
-      type
-      amount
-    }
-    id
-  }
-}
-
-fragment Location_hotel on HotelInterface {
-  address {
-    street
-    city
-  }
-  coordinates {
-    lat
-    lng
-  }
-}
-
-fragment Description_hotel on HotelInterface {
-  summary
-  ...Amenities_data
-}
-
-fragment HotelReview_data on HotelInterface {
-  review {
-    score
-    count
-  }
-}
-
-fragment Amenities_data on HotelInterface {
-  amenities {
-    id
-    name
   }
 }
 
@@ -198,13 +205,6 @@ fragment RoomSummary_room on HotelAvailabilityInterface {
 
 fragment SummaryButtons_rooms on HotelAvailabilityInterface {
   ...BookNow_rooms
-}
-
-fragment BookNow_rooms on HotelAvailabilityInterface {
-  availableRooms {
-    __typename
-    id
-  }
 }
 */
 
@@ -733,7 +733,7 @@ return {
     "operationKind": "query",
     "name": "Stay22SingleHotelQuery",
     "id": null,
-    "text": "query Stay22SingleHotelQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...HotelDetailScreen_availableHotel\n    paymentLink\n    id\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  ...BookingSummary_room\n  hotel {\n    __typename\n    ...Header_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  ...RoomList_data\n}\n\nfragment BookingSummary_room on HotelAvailabilityInterface {\n  ...RoomSummary_room\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview_data\n}\n\nfragment RoomList_data on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n    ...RoomRow_availableRoom\n  }\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalCost {\n    amount\n    currencyId\n  }\n  availableRoomsCount\n  ...RoomRowTitle_room\n  ...BeddingInfo_room\n  maxOccupancy\n  room {\n    __typename\n    id\n    description {\n      title\n    }\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomRowTitle_room on HotelRoomAvailabilityInterface {\n  name\n}\n\nfragment BeddingInfo_room on HotelRoomAvailabilityInterface {\n  maxOccupancy\n  room {\n    __typename\n    bedding {\n      type\n      amount\n    }\n    id\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities_data\n}\n\nfragment HotelReview_data on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Amenities_data on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n\nfragment RoomSummary_room on HotelAvailabilityInterface {\n  ...SummaryButtons_rooms\n  availableRooms {\n    __typename\n    id\n    incrementalPriceWithExtraCharges {\n      total {\n        amount\n        currencyId\n      }\n      extraCharges {\n        excluded\n        amount\n        name\n        chargeAmount\n        type\n      }\n    }\n    maxOccupancy\n    room {\n      __typename\n      description {\n        title\n      }\n      id\n    }\n  }\n}\n\nfragment SummaryButtons_rooms on HotelAvailabilityInterface {\n  ...BookNow_rooms\n}\n\nfragment BookNow_rooms on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n  }\n}\n",
+    "text": "query Stay22SingleHotelQuery(\n  $id: ID!\n  $guests: Int!\n  $currency: Currency\n  $checkin: Date!\n  $checkout: Date!\n) {\n  stay22HotelDetail(id: $id, guests: $guests, currency: $currency, checkin: $checkin, checkout: $checkout) {\n    ...HotelDetailScreen_availableHotel\n    paymentLink\n    id\n  }\n}\n\nfragment Amenities_data on HotelInterface {\n  amenities {\n    id\n    name\n  }\n}\n\nfragment BeddingInfo_room on HotelRoomAvailabilityInterface {\n  maxOccupancy\n  room {\n    __typename\n    bedding {\n      type\n      amount\n    }\n    id\n  }\n}\n\nfragment BookNow_rooms on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n  }\n}\n\nfragment BookingSummary_room on HotelAvailabilityInterface {\n  ...RoomSummary_room\n}\n\nfragment Description_hotel on HotelInterface {\n  summary\n  ...Amenities_data\n}\n\nfragment Header_hotel on HotelInterface {\n  name\n  mainPhoto {\n    highResUrl\n    id\n  }\n  rating {\n    stars\n  }\n  photos {\n    edges {\n      node {\n        id\n        lowResUrl\n        highResUrl\n      }\n    }\n  }\n}\n\nfragment HotelDetailScreen_availableHotel on HotelAvailabilityInterface {\n  ...BookingSummary_room\n  hotel {\n    __typename\n    ...Header_hotel\n    ...HotelInformation_hotel\n    id\n  }\n  ...RoomList_data\n}\n\nfragment HotelInformation_hotel on HotelInterface {\n  ...Location_hotel\n  ...Description_hotel\n  ...HotelReview_data\n}\n\nfragment HotelReview_data on HotelInterface {\n  review {\n    score\n    count\n  }\n}\n\nfragment Location_hotel on HotelInterface {\n  address {\n    street\n    city\n  }\n  coordinates {\n    lat\n    lng\n  }\n}\n\nfragment RoomBadges_availableRoom on HotelRoomAvailabilityInterface {\n  isBreakfastIncluded\n  isRefundable\n}\n\nfragment RoomList_data on HotelAvailabilityInterface {\n  availableRooms {\n    __typename\n    id\n    ...RoomRow_availableRoom\n  }\n}\n\nfragment RoomRowTitle_room on HotelRoomAvailabilityInterface {\n  name\n}\n\nfragment RoomRow_availableRoom on HotelRoomAvailabilityInterface {\n  id\n  ...RoomBadges_availableRoom\n  minimalCost {\n    amount\n    currencyId\n  }\n  availableRoomsCount\n  ...RoomRowTitle_room\n  ...BeddingInfo_room\n  maxOccupancy\n  room {\n    __typename\n    id\n    description {\n      title\n    }\n    roomPhotos {\n      highResUrl\n      lowResUrl\n      id\n    }\n  }\n}\n\nfragment RoomSummary_room on HotelAvailabilityInterface {\n  ...SummaryButtons_rooms\n  availableRooms {\n    __typename\n    id\n    incrementalPriceWithExtraCharges {\n      total {\n        amount\n        currencyId\n      }\n      extraCharges {\n        excluded\n        amount\n        name\n        chargeAmount\n        type\n      }\n    }\n    maxOccupancy\n    room {\n      __typename\n      description {\n        title\n      }\n      id\n    }\n  }\n}\n\nfragment SummaryButtons_rooms on HotelAvailabilityInterface {\n  ...BookNow_rooms\n}\n",
     "metadata": {}
   }
 };

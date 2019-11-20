@@ -21,8 +21,8 @@ const isIPhoneX = (() => {
     (Platform.OS === 'ios' &&
       ((D_HEIGHT === X_HEIGHT && D_WIDTH === X_WIDTH) ||
         (D_HEIGHT === X_WIDTH && D_WIDTH === X_HEIGHT))) ||
-    ((D_HEIGHT === XSMAX_HEIGHT && D_WIDTH === XSMAX_WIDTH) ||
-      (D_HEIGHT === XSMAX_WIDTH && D_WIDTH === XSMAX_HEIGHT))
+    (D_HEIGHT === XSMAX_HEIGHT && D_WIDTH === XSMAX_WIDTH) ||
+    (D_HEIGHT === XSMAX_WIDTH && D_WIDTH === XSMAX_HEIGHT)
   );
 })();
 

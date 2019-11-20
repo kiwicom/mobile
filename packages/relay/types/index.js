@@ -1,6 +1,6 @@
 // @flow
 
-import { type GraphQLTaggedNode } from '@kiwicom/relay';
+import { type GraphQLTaggedNode } from '@adeira/relay';
 import * as React from 'react';
 
 export type QueryRendererProps = {|

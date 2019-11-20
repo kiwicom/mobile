@@ -24,6 +24,7 @@ module.exports = {
     "@kiwicom/eslint-config"
   ],
   rules: {
+    'relay/generated-flow-types': WARNING, // TODO: Activate
     curly: ERROR,
     "no-console": [ERROR, { allow: ["warn", "error"] }],
     "no-restricted-imports": [
