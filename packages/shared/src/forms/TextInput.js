@@ -5,22 +5,22 @@ import { TextInput as OriginalTextInput, View } from 'react-native'; // eslint-d
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 import Translation from '../Translation';
-import { type StylePropType } from '../../types/Styles';
+import type { ViewStyleProp, TextStyleProp } from '../../types/Styles';
 import StyleSheet from '../PlatformStyleSheet';
 import Text from '../Text';
 
 type Props = {|
   +value?: string,
   +placeholder?: React.Element<typeof Translation>,
-  +placeholderStyle?: StylePropType,
+  +placeholderStyle?: $FlowFixMe, // TODO: TextInput styles should be available from next release
   +defaultValue?: string,
   +autoFocus?: boolean,
   +onChangeText?: (text: string) => void,
   +keyboardType?: 'email-address' | 'numeric' | 'number-pad',
   +secureTextEntry?: boolean,
   +label?: React.Element<typeof Translation>,
-  +labelStyle?: StylePropType,
-  +inputWrapperStyle?: StylePropType,
+  +labelStyle?: TextStyleProp,
+  +inputWrapperStyle?: ViewStyleProp,
   +maxLength?: number,
 |};
 
@@ -56,8 +56,6 @@ export default class TextInput extends React.Component<Props, State> {
         {this.props.label != null && (
           <Text style={[styleSheet.label, this.props.labelStyle]}>{this.props.label}</Text>
         )}
-        {/* $FlowFixMe Errors after moving rn modules from untyped to
-         * declarations */}
         <View style={[styleSheet.wrapper, this.props.inputWrapperStyle]}>
           {/* $FlowFixMe Errors after moving rn modules from untyped to
            * declarations */}
