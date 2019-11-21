@@ -99,6 +99,7 @@ dependencies {
         exclude group: "com.google.android.gms"
         exclude group: "com.google.firebase"
     }
+    debugImplementation(project(":react-native-native-modules"))
 
     // You can choose staging to use the Staging CodePush key
     stagingReleaseImplementation(project(':rnkiwimobile')) {

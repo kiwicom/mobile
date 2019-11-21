@@ -66,8 +66,10 @@ dependencies {
     api("com.google.android.gms:play-services-base:$playServicesBaseVersion")
     api("com.google.android.gms:play-services-maps:$playServicesMapsVersion")
 
-    api "com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT"
 
+    debugImplementation(project(":react-native-native-modules"))
+    stagingReleaseApi("com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT")
+    releaseApi("com.trinerdis.skypicker:react-native-native-modules:$reactNativeNativeModules-SNAPSHOT")
 
     api "com.trinerdis.skypicker:logging:$loggingVersion-SNAPSHOT"
 
@@ -81,7 +83,6 @@ dependencies {
     stagingReleaseImplementation files(hermesPath + "hermes-release.aar")
     releaseImplementation "com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT"
     implementation "com.kiwi.android:android-jsc:$jscVersion-SNAPSHOT"
-
 }
 
 publishAndroidLibrary("com.trinerdis.skypicker", "rnkiwimobile", "$rnKiwiMobileVersion-SNAPSHOT")
