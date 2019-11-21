@@ -5,7 +5,6 @@ import path from 'path';
 import childProcess from 'child_process';
 import chalk from 'chalk';
 import { config } from 'dotenv';
-import { globSync } from '@kiwicom/monorepo-utils';
 
 config();
 
@@ -64,27 +63,6 @@ const dotEnvPath = path.join(__dirname, '..', '.env');
 if (!fs.existsSync(dotEnvPath)) {
   const sentryDsn = SENTRY_DSN || '';
   fs.writeFileSync(dotEnvPath, `SENTRY_DSN=${sentryDsn}`);
-}
-
-log('Patch node crawler');
-
-const files = globSync('/**/jest-haste-map/build/crawlers/node.js', {
-  root: path.join(process.cwd(), 'node_modules'),
-  ignore: [],
-});
-
-for (const file of files) {
-  const nodeCrawler = fs.readFileSync(file, 'utf-8');
-
-  // https://github.com/facebook/jest/pull/8558/files
-  // This caused an error on our CI
-  fs.writeFileSync(
-    file,
-    nodeCrawler.replace(
-      /throw new Error\(`Option 'mapper' isn't supported by the Node crawler`\);/g,
-      '',
-    ),
-  );
 }
 
 log('Configuration complete!');

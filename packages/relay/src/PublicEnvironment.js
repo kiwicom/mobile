@@ -1,6 +1,6 @@
 // @flow strict
 
-import type { Environment as RelayEnvironment } from '@kiwicom/relay';
+import type { Environment as RelayEnvironment } from '@adeira/relay';
 
 import createEnvironment from './Environment';
 

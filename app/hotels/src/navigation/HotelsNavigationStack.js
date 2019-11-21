@@ -3,7 +3,6 @@
 import {
   StackNavigator,
   StackNavigatorOptions,
-  type NavigationType,
   createTransparentHeaderStyle,
 } from '@kiwicom/mobile-navigation';
 import { Dimensions as RNDimensions } from 'react-native';
@@ -15,12 +14,6 @@ import AdditionalPropsInjector from './singleHotel/AdditionalPropsInjector';
 import SingleHotelMapNavigationScreen from './singleHotel/SingleHotelMapNavigationScreen';
 import Payment from '../singleHotel/paymentScreen/PaymentScreen';
 import GalleryGrid from '../gallery/GalleryGrid';
-
-export type NavigationProps = {|
-  navigation: NavigationType,
-  language: string,
-  currency: string,
-|};
 
 const DetailStack = StackNavigator(
   {

@@ -1,13 +1,13 @@
 // @flow
 
 import * as React from 'react';
-import { QueryRenderer as KiwicomQueryRenderer } from '@kiwicom/relay';
+import { QueryRenderer as KiwicomQueryRenderer } from '@adeira/relay';
 import { FullPageLoading, GeneralError, Translation } from '@kiwicom/mobile-shared';
-import { TimeoutError } from '@kiwicom/fetch';
+import { TimeoutError } from '@adeira/fetch';
 
 import PublicEnvironment from './PublicEnvironment';
 import PrivateEnvironment from './PrivateEnvironment';
-import type { QueryRendererProps } from '../index';
+import type { QueryRendererProps } from '../types';
 
 type Props = {|
   ...QueryRendererProps,

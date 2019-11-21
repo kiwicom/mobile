@@ -2,7 +2,7 @@
 
 /* eslint-disable no-await-in-loop */ // phraseApp has rate limit of 2 concurrent requests
 
-import fetch from '@kiwicom/fetch';
+import fetch from '@adeira/fetch';
 
 import { getVocabularies } from '../DefaultVocabulary';
 

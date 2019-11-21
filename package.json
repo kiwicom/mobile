@@ -20,7 +20,7 @@
     "ios": "yarn react-native run-ios",
     "lint": "yarn jest --config=.jest-eslint.config.js",
     "postinstall": "monorepo-babel-node ./scripts/configureApplication.js && jetify",
-    "relay": "kiwicom-relay-compiler",
+    "relay": "adeira-relay-compiler",
     "release-android": "yarn babel-node ./scripts/buildAndroidSnapshots.js",
     "release-ios": "yarn babel-node ./scripts/releaseFramework.js",
     "start": "yarn react-native start",
@@ -43,10 +43,10 @@
     "react": "16.8.6",
     "react-native": "0.60.5",
     "react-native-app-registry-components-to-constants": "0.0.1",
+    "@adeira/fetch": "^1.0.0",
     "react-native-code-push": "5.7.0"
   },
   "peerDependencies": {
-    "@kiwicom/fetch": "^",
     "graphql": "^14"
   },
   "devDependencies": {
@@ -60,7 +60,7 @@
     "@kiwicom/eslint-config": "^8.4.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^24.9.0",
-    "babel-plugin-relay": "^6.0.0",
+    "babel-plugin-relay": "^7.1.0",
     "eslint": "^6.5.1",
     "eslint-plugin-detox": "^1.0.0",
     "eslint-plugin-react-native": "^3.7.0",
@@ -101,6 +101,6 @@
     "code-push-target-binary-version": "16.0.0"
   },
   "resolutions": {
-    "@kiwicom/relay": "4.7.1"
+    "@adeira/relay": "^0.3.0"
   }
 }
