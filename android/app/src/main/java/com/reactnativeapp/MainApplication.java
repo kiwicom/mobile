@@ -1,20 +1,23 @@
 package com.reactnativeapp;
 
 import androidx.multidex.MultiDexApplication;
-import android.util.Log;
 
 import com.airbnb.android.react.maps.MapsPackage;
+
 import com.facebook.react.ReactApplication;
+
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.facebook.react.PackageList;
-import com.skypicker.reactnative.nativemodules.card.RNCardManagerPackage;
+
+import com.skypicker.reactnative.nativemodules.account.*;
 import com.skypicker.reactnative.nativemodules.currency.RNCurrencyManagerPackage;
 import com.skypicker.reactnative.nativemodules.device.RNDeviceInfoPackage;
 import com.skypicker.reactnative.nativemodules.logging.RNLoggingPackage;
@@ -42,10 +45,11 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
         packages.add(new MapsPackage());
         packages.add(new RNDeviceInfoPackage());
         packages.add(new RNGestureHandlerPackage());
-        
+
         packages.add(new RNLoggingPackage());
         packages.add(new RNTranslationManagerPackage());
-        packages.add(new RNCurrencyManagerPackage());                    
+        packages.add(new RNCurrencyManagerPackage());
+        packages.add(new RNAccountManagerPackage());
         return packages;
       }
 
