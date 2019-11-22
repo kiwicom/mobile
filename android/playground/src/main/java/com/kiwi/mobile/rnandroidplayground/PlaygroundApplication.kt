@@ -5,6 +5,7 @@ import com.facebook.react.ReactNativeHost
 import com.kiwi.rnkiwimobile.RNKiwHostArgs
 import com.kiwi.rnkiwimobile.RNKiwiHost
 import com.kiwi.rnkiwimobile.hotels.RNHotelsModule
+import com.kiwi.rnkiwimobile.account.RNAccountModule
 import com.facebook.soloader.SoLoader;
 
 class PlaygroundApplication : Application() {
@@ -13,11 +14,14 @@ class PlaygroundApplication : Application() {
 
   fun startReactNative() {
     val hotelModulesInjection = HotelsModulesInjection()
+    val hotelsPackages = RNHotelsModule.getPackages(hotelModulesInjection)
+    val accountPackages = RNAccountModule.getPackages()
+    hotelsPackages.addAll(accountPackages)
     reactNativeHost = RNKiwiHost(
         RNKiwHostArgs(
             hostApplication = this,
             jsEntryPoint = RNHotelsModule.jsEntryPoint,
-            customPackages = RNHotelsModule.getPackages(hotelModulesInjection),
+            customPackages = hotelsPackages,
             codePushKey = BuildConfig.CODEPUSH_KEY,
             codePushVersion = BuildConfig.CODEPUSH_VERSION
         )
