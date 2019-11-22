@@ -15,10 +15,7 @@ object RNAccountModule {
 
   fun getPackages() =
     mutableListOf(
-      RNGestureHandlerPackage(),
-      RNAccountManagerPackage(),
-      NetInfoPackage(),
-      AsyncStoragePackage()
+      RNAccountManagerPackage()
     )
 
   fun getInitialProperties(initialProperties: RNAccountInitialProperties) =
