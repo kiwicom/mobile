@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name           = 'RNModules'
-  s.version        = '0.0.2'
+  s.version        = '0.0.3'
   s.summary        = 'A group of native wrappers for React Native'
   s.description    = 'A group of native wrappers for React Native'
   s.license        = 'MIT'
@@ -38,5 +38,9 @@ Pod::Spec.new do |s|
   
   s.subspec "RNCardManager" do |ss|
     ss.source_files   = 'RNCardManager/RNCardManager/*.{h,m}'
+  end
+
+  s.subspec "RNAccountManager" do |ss|
+    ss.source_files   = 'RNAccountManager/RNAccountManager/*.{h,m}'
   end
 end

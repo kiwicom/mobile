@@ -11,6 +11,6 @@
 
 RCT_EXTERN const NSNotificationName _Nonnull RNKiwiAccountDeletedNotification;
 
-@interface RNKiwiAccountUpdater : NSObject <RCTBridgeModule>
+@interface RNAccountManager : NSObject <RCTBridgeModule>
 
 @end

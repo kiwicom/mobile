@@ -1,8 +1,8 @@
 #import "RNKiwiViewController.h"
 #import "RNKiwiSharedBridge.h"
 #import "RNKiwiGestureController.h"
-#import "RNKiwiAccountUpdater.h"
 
+#import <RNModules/RNAccountManager.h>
 #import <RNModules/RNLoggingModule.h>
 #import <RNModules/RNTranslationManager.h>
 #import <RNModules/RNCurrencyManager.h>
@@ -237,7 +237,7 @@
 
 - (void)handleAccountDeleted {
   if (self.didDeleteAccount) {
-    self.didDeleteAccount()
+    self.didDeleteAccount();
   }
 }
 
