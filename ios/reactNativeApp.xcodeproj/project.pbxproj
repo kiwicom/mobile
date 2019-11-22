@@ -34,8 +34,6 @@
 		27E931E420ADA0630053AE19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E931E320ADA0630053AE19 /* main.m */; };
 		51A8F6BE673D4671A3545CD8 /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */; };
 		60854A62F6F281394EE676B5 /* libPods-reactNativeApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0520FD3BC77D396F74CF8285 /* libPods-reactNativeApp.a */; };
-		62C5AB7D238419F1008A9678 /* RNKiwiAccountUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 62C5AB7B238419F1008A9678 /* RNKiwiAccountUpdater.h */; };
-		62C5AB7E238419F1008A9678 /* RNKiwiAccountUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 62C5AB7C238419F1008A9678 /* RNKiwiAccountUpdater.m */; };
 		632F9458230D451A007D857E /* CircularPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 71A4A2C5C6994635AF8475F2 /* CircularPro-Bold.otf */; };
 		632F9459230D451A007D857E /* CircularPro-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */; };
 		63497BE72306A93D0006DC8B /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 63497BE62306A93D0006DC8B /* Roboto.ttf */; };
@@ -139,8 +137,6 @@
 		34003FC5EE453F3F2C072F56 /* libPods-RNNativePlayground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNNativePlayground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50EB547AC35C4D25B73F0376 /* CircularPro-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "CircularPro-Medium.otf"; path = "../assets/fonts/ios/CircularPro-Medium.otf"; sourceTree = "<group>"; };
 		5EF541A9996B4D6AB8AEDA5B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/android/Roboto-Bold.ttf"; sourceTree = "<group>"; };
-		62C5AB7B238419F1008A9678 /* RNKiwiAccountUpdater.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNKiwiAccountUpdater.h; sourceTree = "<group>"; };
-		62C5AB7C238419F1008A9678 /* RNKiwiAccountUpdater.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNKiwiAccountUpdater.m; sourceTree = "<group>"; };
 		63497BE62306A93D0006DC8B /* Roboto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Roboto.ttf; path = "../node_modules/@kiwicom/account-native/apps/account-native/assets/fonts/Roboto/Roboto.ttf"; sourceTree = "<group>"; };
 		63738758220D81E600665942 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		63A8419C20C853840093183F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -234,8 +230,6 @@
 				686E005020B2E24B0013512F /* RNKiwiConstants.m */,
 				2107154520B5677200E6C96B /* RNKiwiGestureController.h */,
 				2107154420B5677200E6C96B /* RNKiwiGestureController.m */,
-				62C5AB7B238419F1008A9678 /* RNKiwiAccountUpdater.h */,
-				62C5AB7C238419F1008A9678 /* RNKiwiAccountUpdater.m */,
 				2711986D20B2A0C100C6292B /* RNKiwiSharedBridge.h */,
 				2711986E20B2A0C100C6292B /* RNKiwiSharedBridge.m */,
 				27E931BE20AD987C0053AE19 /* RNKiwiViewController.h */,
@@ -341,7 +335,6 @@
 				27E931C720AD9A620053AE19 /* RNKiwiTranslationProvider.h in Headers */,
 				2107154720B5677200E6C96B /* RNKiwiGestureController.h in Headers */,
 				27E931C320AD9A2A0053AE19 /* RNKiwiViewControllerFlowDelegate.h in Headers */,
-				62C5AB7D238419F1008A9678 /* RNKiwiAccountUpdater.h in Headers */,
 				27E931C520AD9A4B0053AE19 /* RNKiwiCurrencyManager.h in Headers */,
 				2711986F20B2A0C100C6292B /* RNKiwiSharedBridge.h in Headers */,
 				686E004B20B2E1360013512F /* RNKiwiConstants.h in Headers */,
@@ -634,7 +627,6 @@
 				27E931C120AD987C0053AE19 /* RNKiwiViewController.m in Sources */,
 				2711987020B2A0C100C6292B /* RNKiwiSharedBridge.m in Sources */,
 				686E005120B2E24B0013512F /* RNKiwiConstants.m in Sources */,
-				62C5AB7E238419F1008A9678 /* RNKiwiAccountUpdater.m in Sources */,
 				2107154620B5677200E6C96B /* RNKiwiGestureController.m in Sources */,
 				9399D42C226F18B6005C0F67 /* AncillaryViewController.m in Sources */,
 			);

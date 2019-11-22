@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, NativeModules } from 'react-native';
 import { StyleSheet } from '@kiwicom/mobile-shared';
 import { DeviceInfo } from '@kiwicom/mobile-localization';
 import { AppProvider, LayoutProvider } from '@kiwicom/account-native';
@@ -19,6 +19,7 @@ export default function WithAccountStack(props: Props) {
         locale={DeviceInfo.getLanguage()}
         onBackPressed={props.onBackClicked}
         token={props.token}
+        onDeleteAccount={NativeModules.RNAccountManager.accountDeleted}
       >
         <LayoutProvider>{props.children}</LayoutProvider>
       </AppProvider>

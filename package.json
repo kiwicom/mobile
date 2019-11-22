@@ -99,8 +99,5 @@
   },
   "rnkiwimobile": {
     "code-push-target-binary-version": "16.0.0"
-  },
-  "resolutions": {
-    "@adeira/relay": "^0.3.0"
   }
 }
