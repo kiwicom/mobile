@@ -34,7 +34,8 @@ def react_native_modules()
     'RNCurrencyManager',
     'RNDeviceInfo',
     'RNAppleWallet',
-    'RNCardManager'
+    'RNCardManager',
+    'RNAccountManager'
   ]
   pod 'RNGestureHandler',  :podspec => '../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'

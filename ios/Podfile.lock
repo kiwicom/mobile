@@ -97,17 +97,19 @@ PODS:
     - React
   - RNGestureHandler (1.4.0):
     - React
-  - RNModules/RNAppleWallet (0.0.2):
+  - RNModules/RNAccountManager (0.0.3):
     - React
-  - RNModules/RNCardManager (0.0.2):
+  - RNModules/RNAppleWallet (0.0.3):
     - React
-  - RNModules/RNCurrencyManager (0.0.2):
+  - RNModules/RNCardManager (0.0.3):
     - React
-  - RNModules/RNDeviceInfo (0.0.2):
+  - RNModules/RNCurrencyManager (0.0.3):
     - React
-  - RNModules/RNLogging (0.0.2):
+  - RNModules/RNDeviceInfo (0.0.3):
     - React
-  - RNModules/RNTranslationManager (0.0.2):
+  - RNModules/RNLogging (0.0.3):
+    - React
+  - RNModules/RNTranslationManager (0.0.3):
     - React
   - SSZipArchive (2.2.2)
   - yoga (0.60.5.React)
@@ -139,6 +141,7 @@ DEPENDENCIES:
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler/RNGestureHandler.podspec`)
+  - RNModules/RNAccountManager (from `./RNModules`)
   - RNModules/RNAppleWallet (from `./RNModules`)
   - RNModules/RNCardManager (from `./RNModules`)
   - RNModules/RNCurrencyManager (from `./RNModules`)
@@ -242,10 +245,10 @@ SPEC CHECKSUMS:
   React-RCTWebSocket: cd932a16b7214898b6b7f788c8bddb3637246ac4
   RNCAsyncStorage: 2e2e3feb9bdadc752a026703d8c4065ca912e75a
   RNGestureHandler: 71871d4792db2a73f70204483d30350ec9384cbd
-  RNModules: 52f8a81e37a94c07f4e5f548b90b86c9b22450e9
+  RNModules: de9aba5275133fb3f5b4cda1c7ba7eed639915e8
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
-PODFILE CHECKSUM: 0d3a33be0c26b65700ef25b55314f395972202ba
+PODFILE CHECKSUM: 0d5f5395c7f1e3397160af3fbcb94f2299c4f85c
 
 COCOAPODS: 1.8.4
