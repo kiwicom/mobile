@@ -37,7 +37,7 @@
     "@kiwicom/react-native-fast-track": "^0",
     "chalk": "^2.4.2",
     "commander": "^2.20.0",
-    "detox": "^14.5.1",
+    "detox": "^14.8.1",
     "dotenv": "^8.2.0",
     "jsc-android": "245459.0.0",
     "react": "16.8.6",
@@ -80,13 +80,17 @@
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/reactNativeApp.app",
         "build": "xcodebuild -workspace ios/reactNativeApp.xcworkspace -scheme reactNativeApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
-        "name": "iPhone 6"
+        "device": {
+          "type": "iPhone 6"
+        }
       },
       "ios.sim.tablet.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/reactNativeApp.app",
         "build": "xcodebuild -workspace ios/reactNativeApp.xcworkspace -scheme reactNativeApp -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
-        "name": "iPad Air 2"
+        "device": {
+          "type": "iPad Air 2"
+        }
       },
       "android.emu.debug": {
         "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
