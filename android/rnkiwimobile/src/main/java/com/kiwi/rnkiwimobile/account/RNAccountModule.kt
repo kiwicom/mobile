@@ -2,20 +2,15 @@ package com.kiwi.rnkiwimobile.account
 
 import android.os.*
 
-import com.reactnativecommunity.asyncstorage.*
-import com.reactnativecommunity.netinfo.*
-
 import com.skypicker.reactnative.nativemodules.account.*
-
-import com.swmansion.gesturehandler.react.*
 
 object RNAccountModule {
 
   const val jsEntryPoint = "app/native.js"
 
-  fun getPackages() =
+  fun getPackages(accountModuleInjection: RNAccountModuleInjection) =
     mutableListOf(
-      RNAccountManagerPackage()
+      RNAccountManagerPackage(accountModuleInjection.accountCallback)
     )
 
   fun getInitialProperties(initialProperties: RNAccountInitialProperties) =

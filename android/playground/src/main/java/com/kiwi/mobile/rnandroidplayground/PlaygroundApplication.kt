@@ -15,7 +15,8 @@ class PlaygroundApplication : Application() {
   fun startReactNative() {
     val hotelModulesInjection = HotelsModulesInjection()
     val hotelsPackages = RNHotelsModule.getPackages(hotelModulesInjection)
-    val accountPackages = RNAccountModule.getPackages()
+    val accountModuleInjection = AccountModuleInjection()
+    val accountPackages = RNAccountModule.getPackages(accountModuleInjection)
     hotelsPackages.addAll(accountPackages)
     reactNativeHost = RNKiwiHost(
         RNKiwHostArgs(
