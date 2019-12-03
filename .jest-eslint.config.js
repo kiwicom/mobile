@@ -2,7 +2,7 @@
 
 module.exports = {
   displayName: 'lint',
-  runner: '@kiwicom/eslint-config/runner',
+  runner: '@adeira/eslint-config/runner',
   testMatch: [
     '<rootDir>/app/**/*.js',
     '<rootDir>/scripts/**/*.js',

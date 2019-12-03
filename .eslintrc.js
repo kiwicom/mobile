@@ -19,9 +19,9 @@ module.exports = {
       jsx: true
     }
   },
-  plugins: ["detox"],
+  plugins: ["detox", "react-native"],
   extends: [
-    "@kiwicom/eslint-config"
+    "@adeira/eslint-config"
   ],
   rules: {
     'relay/generated-flow-types': WARNING, // TODO: Activate
