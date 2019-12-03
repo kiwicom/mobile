@@ -52,10 +52,10 @@
     chalk "^2.4.2"
     is-ci "^2.0.0"
 
-"@adeira/js@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@adeira/js/-/js-0.1.0.tgz#c30444da2000cf545be7d3d99c800c3f3b234c12"
-  integrity sha512-yBDdU8r2HRu8KRv/ogJIqeIUsFO8qh3G7D9qfRmyxgzlNdZfE6TTKoW5BQ8bvmMNDkpJa+pQfSvd+U91CYSx5g==
+"@adeira/js@^0.1.0", "@adeira/js@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@adeira/js/-/js-0.2.0.tgz#cc1459af8c114af1536b7622a55dc3b905035d13"
+  integrity sha512-IoE5ScsGkabL3jrQ2mNdYwUYkwjUCHsfoV9/hOvOROwh4Y5CeoNlsNoFDKBBm5b5me8ttqwHY0lAT2LCqAP1tA==
 
 "@adeira/logger@^0.1.0":
   version "0.1.0"
@@ -76,22 +76,23 @@
     glob "^7.1.5"
     is-ci "^2.0.0"
 
-"@adeira/relay@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@adeira/relay/-/relay-0.3.0.tgz#f1e4935efd7d16f6728edf317f4b0f50170c23e8"
-  integrity sha512-rY2sMaNQTr4MGJksC2nf55oJOzMcf/r/Gf1SHO0zZ0HMhkpu8e5GkhQX6BsgzKfr8cShgCyGmxVbRYK7VwpeTg==
+"@adeira/relay@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@adeira/relay/-/relay-0.7.0.tgz#340a4adbd5a0f948ac49756d10642184b6cb43a7"
+  integrity sha512-hGTElGPb8mU8Sm2XUWjZnzOQW4789OQyR6fw5DfZ0QZc8BPgnLOLQvvAbBdn8vPPASvUaXxWdzTno+sd4zhUAA==
   dependencies:
     "@adeira/fetch" "^1.0.0"
-    "@adeira/js" "^0.1.0"
+    "@adeira/js" "^0.2.0"
     "@adeira/logger" "^0.1.0"
     "@adeira/monorepo-utils" "^0.1.0"
     "@adeira/signed-source" "^0.1.0"
-    "@babel/register" "^7.6.0"
+    "@babel/register" "^7.7.4"
     babel-plugin-relay "^7.1.0"
     commander "^4.0.1"
     is-ci "^2.0.0"
     react-relay "^7.1.0"
     relay-compiler "^7.1.0"
+    relay-compiler-language-typescript "^10.1.2"
     relay-config "^7.1.0"
     relay-runtime "^7.1.0"
 
@@ -1295,15 +1296,15 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@kiwicom/account-native@0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@kiwicom/account-native/-/account-native-0.0.11.tgz#14d31da9c8278bb73e3cd8c5d315331b074bc731"
-  integrity sha512-1wJ+/+noQDpohVVdw+vfhuP6ogOiBtuxWhZmsMPPfeOw9Y+lZEDDFDFMbuuN9VsBJi/AyVHd0HQu/nnOXxid1Q==
+"@kiwicom/account-native@0.0.14":
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/@kiwicom/account-native/-/account-native-0.0.14.tgz#b888ec69e10167a3a629a0c8010a1ebf2a5399b4"
+  integrity sha512-EcIVtpwbr716HKRgh2TmK0Fzfy0X4cspbtzilEwXNagikQwl4ykTYtDtyIyjdoSzpBhPurvsueDBmHro1FLZtg==
   dependencies:
     "@adeira/fetch" "^1.0.0"
-    "@adeira/js" "^0.1.0"
-    "@adeira/relay" "^0.3.0"
-    "@kiwicom/orbit-components" "^0.66.0"
+    "@adeira/js" "^0.2.0"
+    "@adeira/relay" "^0.7.0"
+    "@kiwicom/orbit-components" "^0.68.0"
     "@kiwicom/orbit-design-tokens" "^0.8.0"
     "@kiwicom/orbit-react-native" "^0.6.0"
     date-fns "^2.7.0"
@@ -1320,11 +1321,6 @@
   resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.16.0.tgz#1eaa1a99b8b7a5ee4c90ecbeac3d1bf4aa12919b"
   integrity sha512-N8z4Aa5vQAx//1ZxvVKUnTibw7uUj+6wDZxPpgr9KzaZof32CwEiup3sWXTiNzVfIk47FI5ZKWtauNpXHhx6TQ==
 
-"@kiwicom/js@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.9.0.tgz#67032574d8ee318cd747001a7b4c87013214327a"
-  integrity sha512-CwDiWwLWE0iWzCrL08x7jdEySAIVdmcmF/rik8gjK5oW4jA5G9fOBxsSSVm2bLtq8HG9KIz4YHDbtWO1K7LIiQ==
-
 "@kiwicom/monorepo-utils@^0.24.0":
   version "0.24.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/monorepo-utils/-/monorepo-utils-0.24.0.tgz#bed49f08319b8686ceae9139cc593369955c13fb"
@@ -1335,12 +1331,12 @@
     glob "^7.1.4"
     is-ci "^2.0.0"
 
-"@kiwicom/orbit-components@^0.66.0":
-  version "0.66.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.66.0.tgz#74e99ed3ed889e17d61a276149675d9dd27f844c"
-  integrity sha512-gZA6R6a5Jhx0CbSPahNZijNCNyZGTiLvNmITy7bdSxao1oJE+IUdjY5zm8MPf7hg3y8XOjNGopKD5/Esq6l8GA==
+"@kiwicom/orbit-components@^0.68.0":
+  version "0.68.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.68.0.tgz#cc8cab9415a9ec015de6e2851916bfecd797e61f"
+  integrity sha512-A9yndEJxmEuijcUVZx7/ufd2OfxGuSEvhSEnj+RyD8loD6lnugOWVpRinKDlTPhaYiNFsBueUlZ1LeEKmdPZdA==
   dependencies:
-    "@kiwicom/js" "^0.9.0"
+    "@adeira/js" "^0.1.0"
     "@kiwicom/orbit-design-tokens" "~0.8.0"
 
 "@kiwicom/orbit-design-tokens@^0.3.0":
@@ -6803,6 +6799,11 @@ immutable@^3.8.1:
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
   integrity sha1-wkOZUUVbs5kT2vKBN28VMOEErfM=
 
+immutable@^4.0.0-rc.12:
+  version "4.0.0-rc.12"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.12.tgz#ca59a7e4c19ae8d9bf74a97bdf0f6e2f2a5d0217"
+  integrity sha512-0M2XxkZLx/mi3t8NVwIm1g8nHoEmM9p9UBl/G9k4+hm0kBgOVdMV/B3CY5dQ8qG8qc80NN4gDV4HQv6FTJ5q7A==
+
 immutable@~3.7.6:
   version "3.7.6"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
@@ -10875,6 +10876,14 @@ relateurl@^0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
+
+relay-compiler-language-typescript@^10.1.2:
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-10.1.2.tgz#e054692384b69ab0a2a84dd4067109d419fa8990"
+  integrity sha512-9dpiyFaV6lyBy04RFYS7gzZ2IXU3MVMGhtz4o+ag8Sh3doaDJjANgTe2MMexB67iBh7sGW0Vxx1lS/8nPeFqQg==
+  dependencies:
+    immutable "^4.0.0-rc.12"
+    invariant "^2.2.4"
 
 relay-compiler@^7.1.0:
   version "7.1.0"

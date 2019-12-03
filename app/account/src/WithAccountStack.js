@@ -16,6 +16,7 @@ export default function WithAccountStack(props: Props) {
   return (
     <View style={styles.container}>
       <AppProvider
+        localeDashed={DeviceInfo.getLocaleDashed()}
         locale={DeviceInfo.getLanguage()}
         onBackPressed={props.onBackClicked}
         token={props.token}
