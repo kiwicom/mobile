@@ -103,5 +103,8 @@
   },
   "rnkiwimobile": {
     "code-push-target-binary-version": "16.0.0"
+  },
+  "resolutions": {
+    "@adeira/js": "^0.2.0"
   }
 }
