@@ -108,6 +108,7 @@ export default function createEnvironment(
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'Accept-Language': DeviceInfo.getLocaleUnderscored(),
+    'X-Client': 'mobile/rn',
   };
 
   if (accessToken) {
