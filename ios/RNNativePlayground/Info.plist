@@ -44,6 +44,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>CircularPro-Book.otf</string>
+		<string>CircularPro-Medium.otf</string>
+		<string>CircularPro-Bold.otf</string>
 		<string>orbit-icons.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
