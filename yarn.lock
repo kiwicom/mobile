@@ -76,10 +76,10 @@
     glob "^7.1.5"
     is-ci "^2.0.0"
 
-"@adeira/relay@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@adeira/relay/-/relay-0.7.0.tgz#340a4adbd5a0f948ac49756d10642184b6cb43a7"
-  integrity sha512-hGTElGPb8mU8Sm2XUWjZnzOQW4789OQyR6fw5DfZ0QZc8BPgnLOLQvvAbBdn8vPPASvUaXxWdzTno+sd4zhUAA==
+"@adeira/relay@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@adeira/relay/-/relay-0.10.0.tgz#a3e2aa4f87fece9d7cc6f1a90200d59cbeef2265"
+  integrity sha512-5WNlJFZEiSC7K90pbyfz3cngf8NV9EPbKQj60XKs1F94snW6UIpCG2zCeac3Zm81iLmg6WZstm/BwGYt9ciGTA==
   dependencies:
     "@adeira/fetch" "^1.0.0"
     "@adeira/js" "^0.2.0"
@@ -92,7 +92,7 @@
     is-ci "^2.0.0"
     react-relay "^7.1.0"
     relay-compiler "^7.1.0"
-    relay-compiler-language-typescript "^10.1.2"
+    relay-compiler-language-typescript "^10.1.3"
     relay-config "^7.1.0"
     relay-runtime "^7.1.0"
 
@@ -1296,25 +1296,26 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@kiwicom/account-native@0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@kiwicom/account-native/-/account-native-0.0.14.tgz#b888ec69e10167a3a629a0c8010a1ebf2a5399b4"
-  integrity sha512-EcIVtpwbr716HKRgh2TmK0Fzfy0X4cspbtzilEwXNagikQwl4ykTYtDtyIyjdoSzpBhPurvsueDBmHro1FLZtg==
+"@kiwicom/account-native@0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@kiwicom/account-native/-/account-native-0.0.16.tgz#1d337d685ef908611b057a81248d3b2e76094c94"
+  integrity sha512-9zMWbY9CgfVheovAr67YWUN2Hc82uDUhPUMHycYHh+Kzit4u7wcD9reoHeEVA0JxwQvH7BuXzp8sqF4gGEoYqA==
   dependencies:
     "@adeira/fetch" "^1.0.0"
     "@adeira/js" "^0.2.0"
-    "@adeira/relay" "^0.7.0"
-    "@kiwicom/orbit-components" "^0.68.0"
+    "@adeira/relay" "^0.10.0"
+    "@kiwicom/orbit-components" "^0.69.0"
     "@kiwicom/orbit-design-tokens" "^0.8.0"
-    "@kiwicom/orbit-react-native" "^0.6.0"
+    "@kiwicom/orbit-react-native" "^0.7.1"
+    "@sentry/browser" "^5.10.2"
+    "@sentry/node" "^5.10.2"
     date-fns "^2.7.0"
-    formik "^2.0.3"
+    formik "^2.0.8"
     js-cookie "^2.2.1"
     react-fast-compare "^2.0.4"
     react-native-safe-area-view "^0.14.8"
     relay-test-utils "^7.0.0"
     styled-components "^4.4.1"
-    uuid "^3.3.3"
 
 "@kiwicom/js@^0.16.0":
   version "0.16.0"
@@ -1331,10 +1332,10 @@
     glob "^7.1.4"
     is-ci "^2.0.0"
 
-"@kiwicom/orbit-components@^0.68.0":
-  version "0.68.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.68.0.tgz#cc8cab9415a9ec015de6e2851916bfecd797e61f"
-  integrity sha512-A9yndEJxmEuijcUVZx7/ufd2OfxGuSEvhSEnj+RyD8loD6lnugOWVpRinKDlTPhaYiNFsBueUlZ1LeEKmdPZdA==
+"@kiwicom/orbit-components@^0.69.0":
+  version "0.69.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.69.0.tgz#85a4552e38d71fd6c1c5e9256c17bfcd28d7ecdb"
+  integrity sha512-4TmQoOAv4/mlNMuVWHTJKIzVhcz1anjwRbeE0sixauVKBG9M9o6g4YiZs2fWYquaGXq5GIH4LbGimo0nuSpVHQ==
   dependencies:
     "@adeira/js" "^0.1.0"
     "@kiwicom/orbit-design-tokens" "~0.8.0"
@@ -1346,13 +1347,6 @@
   dependencies:
     ramda "^0.26.1"
 
-"@kiwicom/orbit-design-tokens@^0.6.6":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.6.6.tgz#3864be300088898e70d66ee85a9e02f3a37c41d6"
-  integrity sha512-7tKnZi3Wn3k50NipO581VuF8wEDDtx589NYxaqLn8UYwYzwVkUR3XSrV54Em/MIU252N3+LNLMmPyj6Ep9fLcg==
-  dependencies:
-    ramda "^0.26.1"
-
 "@kiwicom/orbit-design-tokens@^0.8.0", "@kiwicom/orbit-design-tokens@~0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.8.0.tgz#7eaa0d90fb40701131e1dad1091591d1e77f8490"
@@ -1360,13 +1354,12 @@
   dependencies:
     ramda "^0.26.1"
 
-"@kiwicom/orbit-react-native@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-react-native/-/orbit-react-native-0.6.0.tgz#18fec4ae93404b067a05c80e6f2b43e8b3834129"
-  integrity sha512-4We5r4XiL+KWtSYLb+2e37s9ujPCEhuFmIzMIIh35lXLzvv/d978xOTy6QghnL1Eihi6uEmltSBobo7d7u4fbA==
+"@kiwicom/orbit-react-native@^0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-react-native/-/orbit-react-native-0.7.1.tgz#28aa1aeec48cfcf69b16feb67c5d509aa74619f0"
+  integrity sha512-wOXxLSSqYb8TGAxB1+S6g6wZlxafRIfDkJ3SNHzVP/miS5uQtVSTavWdLhL30yTqFpt8spn4ETWW8EswyvRSyw==
   dependencies:
-    "@kiwicom/orbit-design-tokens" "^0.6.6"
-    styled-components "^4.4.0"
+    "@kiwicom/orbit-design-tokens" "^0.8.0"
 
 "@kiwicom/universal-components@^0.0.17":
   version "0.0.17"
@@ -1500,6 +1493,27 @@
     react-native-safe-area-view "^0.14.1"
     react-native-screens "^1.0.0 || ^1.0.0-alpha"
 
+"@sentry/apm@5.10.2":
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/@sentry/apm/-/apm-5.10.2.tgz#41a401b3964b68514439f8a595b12c6fd05ab21a"
+  integrity sha512-rPeAFsD/6ontvs7bsuHh+XAg1ohWo04ms08SNWqEvLRQJx7WfiWnjziyC0S3dXIYZDGdhruSsqQJPJN8r6Aj5g==
+  dependencies:
+    "@sentry/hub" "5.10.2"
+    "@sentry/minimal" "5.10.2"
+    "@sentry/types" "5.10.0"
+    "@sentry/utils" "5.10.2"
+    tslib "^1.9.3"
+
+"@sentry/browser@^5.10.2":
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.10.2.tgz#0bbb05505c58ea998c833cffec3f922fe4b4fa58"
+  integrity sha512-r3eyBu2ln7odvWtXARCZPzpuGrKsD6U9F3gKTu4xdFkA0swSLUvS7AC2FUksj/1BE23y+eB/zzPT+RYJ58tidA==
+  dependencies:
+    "@sentry/core" "5.10.2"
+    "@sentry/types" "5.10.0"
+    "@sentry/utils" "5.10.2"
+    tslib "^1.9.3"
+
 "@sentry/browser@^5.6.2":
   version "5.9.1"
   resolved "https://registry.yarnpkg.com/@sentry/browser/-/browser-5.9.1.tgz#b2ec27ead501a49f26807a9c0774f44f4292f236"
@@ -1508,6 +1522,17 @@
     "@sentry/core" "5.8.0"
     "@sentry/types" "5.7.1"
     "@sentry/utils" "5.8.0"
+    tslib "^1.9.3"
+
+"@sentry/core@5.10.2":
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.10.2.tgz#1cb64489e6f8363c3249415b49d3f1289814825f"
+  integrity sha512-sKVeFH3v8K8xw2vM5MKMnnyAAwih+JSE3pbNL0CcCCA+/SwX+3jeAo2BhgXev2SAR/TjWW+wmeC9TdIW7KyYbg==
+  dependencies:
+    "@sentry/hub" "5.10.2"
+    "@sentry/minimal" "5.10.2"
+    "@sentry/types" "5.10.0"
+    "@sentry/utils" "5.10.2"
     tslib "^1.9.3"
 
 "@sentry/core@5.8.0":
@@ -1521,6 +1546,15 @@
     "@sentry/utils" "5.8.0"
     tslib "^1.9.3"
 
+"@sentry/hub@5.10.2":
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.10.2.tgz#25d9f36b8f7c5cb65cf486737fa61dc9bf69b7e3"
+  integrity sha512-hSlZIiu3hcR/I5yEhlpN9C0nip+U7hiRzRzUQaBiHO4YG4TC58NqnOPR89D/ekiuHIXzFpjW9OQmqtAMRoSUYA==
+  dependencies:
+    "@sentry/types" "5.10.0"
+    "@sentry/utils" "5.10.2"
+    tslib "^1.9.3"
+
 "@sentry/hub@5.8.0":
   version "5.8.0"
   resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-5.8.0.tgz#56aaeb7324cb66d90db838011cb0127f5558007f"
@@ -1528,6 +1562,15 @@
   dependencies:
     "@sentry/types" "5.7.1"
     "@sentry/utils" "5.8.0"
+    tslib "^1.9.3"
+
+"@sentry/minimal@5.10.2":
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-5.10.2.tgz#267c2f3aa6877a0fe7a86971942e83f3ee616580"
+  integrity sha512-GalixiM9sckYfompH5HHTp9XT2BcjawBkcl1DMEKUBEi37+kUq0bivOBmnN1G/I4/wWOUdnAI/kagDWaWpbZPg==
+  dependencies:
+    "@sentry/hub" "5.10.2"
+    "@sentry/types" "5.10.0"
     tslib "^1.9.3"
 
 "@sentry/minimal@5.8.0":
@@ -1539,10 +1582,38 @@
     "@sentry/types" "5.7.1"
     tslib "^1.9.3"
 
+"@sentry/node@^5.10.2":
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-5.10.2.tgz#1f5d6deefb2c1549ddb542c10952cccf5f9a4ac2"
+  integrity sha512-1ib1hAhVtmfXOThpcCfR4S6wFopd6lHqgOMrAUPo9saHy8zseZPRC7iTWGoSPy2RMwjrURAk54VvFnLe7G+PdQ==
+  dependencies:
+    "@sentry/apm" "5.10.2"
+    "@sentry/core" "5.10.2"
+    "@sentry/hub" "5.10.2"
+    "@sentry/types" "5.10.0"
+    "@sentry/utils" "5.10.2"
+    cookie "^0.3.1"
+    https-proxy-agent "^3.0.0"
+    lru_map "^0.3.3"
+    tslib "^1.9.3"
+
+"@sentry/types@5.10.0":
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.10.0.tgz#4f0ba31b6e4d5371112c38279f11f66c73b43746"
+  integrity sha512-TW20GzkCWsP6uAxR2JIpIkiitCKyIOfkyDsKBeLqYj4SaZjfvBPnzgNCcYR0L0UsP1/Es6oHooZfIGSkp6GGxQ==
+
 "@sentry/types@5.7.1":
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-5.7.1.tgz#4c4c1d4d891b6b8c2c3c7b367d306a8b1350f090"
   integrity sha512-tbUnTYlSliXvnou5D4C8Zr+7/wJrHLbpYX1YkLXuIJRU0NSi81bHMroAuHWILcQKWhVjaV/HZzr7Y/hhWtbXVQ==
+
+"@sentry/utils@5.10.2":
+  version "5.10.2"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-5.10.2.tgz#261f575079d30aaf604e59f5f4de0aa21db22252"
+  integrity sha512-UcbbaFpYrGSV448lQ16Cr+W/MPuKUflQQUdrMCt5vgaf5+M7kpozlcji4GGGZUCXIA7oRP93ABoXj55s1OM9zw==
+  dependencies:
+    "@sentry/types" "5.10.0"
+    tslib "^1.9.3"
 
 "@sentry/utils@5.8.0":
   version "5.8.0"
@@ -4353,6 +4424,11 @@ cookie@0.4.0:
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.0.tgz#beb437e7022b3b6d49019d088665303ebe9c14ba"
   integrity sha512-+Hp8fLp57wnUSt0tY0tHEXh4voZRDnoIrZPqlo3DPiI4y9lwg/jqx+1Om94/W6ZaPDOUbnjOt/99w66zk+l1Xg==
 
+cookie@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
+  integrity sha1-5+Ch+e9DtMi6klxcWpboBtFoc7s=
+
 cookiejar@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/cookiejar/-/cookiejar-2.1.2.tgz#dd8a235530752f988f9a0844f3fc589e3111125c"
@@ -6071,10 +6147,10 @@ formidable@^1.2.1:
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
   integrity sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==
 
-formik@^2.0.3:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/formik/-/formik-2.0.6.tgz#e22e3452399a69ad057ba9828ba8fb0d2319df53"
-  integrity sha512-x2fC80v8AIrGgpxWrLqKaK9hdV8WX4OSLK+Fr5lclqExA59NCuxdB3WiuxJQc9/g043BmfTIuaILrV9Wq0MPVw==
+formik@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/formik/-/formik-2.0.8.tgz#a17740007a9a1394360142c128bb686acb5dbc7c"
+  integrity sha512-PxC9G6EvLdJzMv7z+bsvpI/Euplv2vVgTQebD5yNza4t3fiMBB+iD90VOVTLCyH5Pnv3bljsZiKsIqGp/UNKKg==
   dependencies:
     deepmerge "^2.1.1"
     hoist-non-react-statics "^3.3.0"
@@ -8108,6 +8184,11 @@ lru-cache@^5.1.1:
   integrity sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==
   dependencies:
     yallist "^3.0.2"
+
+lru_map@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/lru_map/-/lru_map-0.3.3.tgz#b5c8351b9464cbd750335a79650a0ec0e56118dd"
+  integrity sha1-tcg1G5Rky9dQM1p5ZQoOwOVhGN0=
 
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"
@@ -10877,10 +10958,10 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
-relay-compiler-language-typescript@^10.1.2:
-  version "10.1.2"
-  resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-10.1.2.tgz#e054692384b69ab0a2a84dd4067109d419fa8990"
-  integrity sha512-9dpiyFaV6lyBy04RFYS7gzZ2IXU3MVMGhtz4o+ag8Sh3doaDJjANgTe2MMexB67iBh7sGW0Vxx1lS/8nPeFqQg==
+relay-compiler-language-typescript@^10.1.3:
+  version "10.1.3"
+  resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-10.1.3.tgz#5a61b9b518b18d98215f2da0198f344d3b1d7c8d"
+  integrity sha512-kyt+yD26Dk9lvCCAtR2JBgrr5JtxdYEGiOZf5T6CXGaUVr43FEKh94cdGMwGYX1e+vHZg3gBH4EFi/VHC4Qs4Q==
   dependencies:
     immutable "^4.0.0-rc.12"
     invariant "^2.2.4"
@@ -11940,7 +12021,7 @@ style-loader@^0.23.1:
     loader-utils "^1.1.0"
     schema-utils "^1.0.0"
 
-styled-components@^4.1.3, styled-components@^4.4.0, styled-components@^4.4.1:
+styled-components@^4.1.3, styled-components@^4.4.1:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-4.4.1.tgz#e0631e889f01db67df4de576fedaca463f05c2f2"
   integrity sha512-RNqj14kYzw++6Sr38n7197xG33ipEOktGElty4I70IKzQF1jzaD1U4xQ+Ny/i03UUhHlC5NWEO+d8olRCDji6g==
@@ -12556,7 +12637,7 @@ uuid@3.0.1:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
   integrity sha1-ZUS7ot/ajBzxfmKaOjBeK7H+5sE=
 
-uuid@^3.0.1, uuid@^3.3.2, uuid@^3.3.3:
+uuid@^3.0.1, uuid@^3.3.2:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
