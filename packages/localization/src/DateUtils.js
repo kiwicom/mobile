@@ -1,6 +1,6 @@
 // @flow strict
 
-import subtractMinutes from 'date-fns/sub_minutes';
+import { subMinutes } from 'date-fns';
 
 // test immutability
 function addDays(date: Date, days: number): Date {
@@ -128,7 +128,7 @@ DateUtils.toUTCDate = toUTCDate;
 
 DateUtils.stripTimeZoneOffset = (date: Date) => {
   const timezoneOffset = date.getTimezoneOffset();
-  return subtractMinutes(date, timezoneOffset);
+  return subMinutes(date, timezoneOffset);
 };
 
 export default DateUtils;
