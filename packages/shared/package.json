@@ -23,7 +23,6 @@
   },
   "peerDependencies": {
     "@react-native-community/async-storage": "",
-    "date-fns": "^1.30.1",
     "decimal.js-light": "",
     "react": "^16",
     "react-fast-compare": "^2",
