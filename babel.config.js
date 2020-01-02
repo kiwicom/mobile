@@ -9,13 +9,10 @@
 module.exports = (api /* :API */) => {
   api.cache(false);
 
-  const presets = [
-    'module:metro-react-native-babel-preset',
-    'module:react-native-dotenv',
-  ];
+  const presets = ['module:metro-react-native-babel-preset', 'module:react-native-dotenv'];
   const plugins = [
     '@babel/plugin-transform-runtime',
-    ['relay', { schema: 'app/schema.graphql' }],
+    'relay',
     '@babel/plugin-transform-named-capturing-groups-regex',
   ];
 

@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
-    "@adeira/relay": "^0.10.0",
+    "@adeira/relay": "^0.11.0",
     "@adeira/fetch": "^1.0.0",
     "@kiwicom/mobile-localization": "^0",
     "@kiwicom/mobile-shared": "^0",

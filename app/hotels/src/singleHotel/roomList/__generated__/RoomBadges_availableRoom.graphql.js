@@ -18,6 +18,7 @@ export type RoomBadges_availableRoom$data = RoomBadges_availableRoom;
 export type RoomBadges_availableRoom$key = {
   +$data?: RoomBadges_availableRoom$data,
   +$fragmentRefs: RoomBadges_availableRoom$ref,
+  ...
 };
 
 

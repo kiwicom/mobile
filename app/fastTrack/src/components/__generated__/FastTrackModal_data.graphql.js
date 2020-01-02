@@ -17,6 +17,7 @@ export type FastTrackModal_data$data = FastTrackModal_data;
 export type FastTrackModal_data$key = {
   +$data?: FastTrackModal_data$data,
   +$fragmentRefs: FastTrackModal_data$ref,
+  ...
 };
 
 

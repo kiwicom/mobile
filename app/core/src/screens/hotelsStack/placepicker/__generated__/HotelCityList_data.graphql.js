@@ -23,6 +23,7 @@ export type HotelCityList_data$data = HotelCityList_data;
 export type HotelCityList_data$key = {
   +$data?: HotelCityList_data$data,
   +$fragmentRefs: HotelCityList_data$ref,
+  ...
 };
 
 

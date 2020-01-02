@@ -18,6 +18,7 @@ export type BookingSummary_room$data = BookingSummary_room;
 export type BookingSummary_room$key = {
   +$data?: BookingSummary_room$data,
   +$fragmentRefs: BookingSummary_room$ref,
+  ...
 };
 
 

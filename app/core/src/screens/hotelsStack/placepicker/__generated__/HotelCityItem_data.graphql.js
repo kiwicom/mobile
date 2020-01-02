@@ -22,6 +22,7 @@ export type HotelCityItem_data$data = HotelCityItem_data;
 export type HotelCityItem_data$key = {
   +$data?: HotelCityItem_data$data,
   +$fragmentRefs: HotelCityItem_data$ref,
+  ...
 };
 
 

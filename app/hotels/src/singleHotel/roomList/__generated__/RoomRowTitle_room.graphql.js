@@ -17,6 +17,7 @@ export type RoomRowTitle_room$data = RoomRowTitle_room;
 export type RoomRowTitle_room$key = {
   +$data?: RoomRowTitle_room$data,
   +$fragmentRefs: RoomRowTitle_room$ref,
+  ...
 };
 
 

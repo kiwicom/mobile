@@ -28,6 +28,7 @@ export type HotelsPaginationContainer_data$data = HotelsPaginationContainer_data
 export type HotelsPaginationContainer_data$key = {
   +$data?: HotelsPaginationContainer_data$data,
   +$fragmentRefs: HotelsPaginationContainer_data$ref,
+  ...
 };
 
 

@@ -18,6 +18,7 @@ export type SummaryButtons_rooms$data = SummaryButtons_rooms;
 export type SummaryButtons_rooms$key = {
   +$data?: SummaryButtons_rooms$data,
   +$fragmentRefs: SummaryButtons_rooms$ref,
+  ...
 };
 
 

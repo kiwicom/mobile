@@ -26,6 +26,7 @@ export type HotelTitle_data$data = HotelTitle_data;
 export type HotelTitle_data$key = {
   +$data?: HotelTitle_data$data,
   +$fragmentRefs: HotelTitle_data$ref,
+  ...
 };
 
 

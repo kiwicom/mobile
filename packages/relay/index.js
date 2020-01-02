@@ -15,6 +15,7 @@ import ConnectionManager from './src/ConnectionManager';
 import type { QueryRendererProps as _QueryRendererProps } from './types';
 
 export { default as PublicEnvironment } from './src/PublicEnvironment';
+export { getRequest } from 'relay-runtime';
 
 export {
   graphql,

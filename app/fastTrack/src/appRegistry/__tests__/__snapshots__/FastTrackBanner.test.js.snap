@@ -3,7 +3,152 @@
 exports[`FastTrackBanner Should render correctly 1`] = `
 <PrivateApiRendererWithContext
   authHeaderKey="KW-Auth-Token"
-  query={[Function]}
+  query={
+    Object {
+      "default": Object {
+        "fragment": Object {
+          "argumentDefinitions": Array [
+            Object {
+              "defaultValue": null,
+              "kind": "LocalArgument",
+              "name": "bookingId",
+              "type": "Int!",
+            },
+          ],
+          "kind": "Fragment",
+          "metadata": null,
+          "name": "FastTrackBannerQuery",
+          "selections": Array [
+            Object {
+              "alias": null,
+              "args": Array [
+                Object {
+                  "kind": "Literal",
+                  "name": "attachmentsFor",
+                  "value": Array [
+                    "FAST_TRACK",
+                  ],
+                },
+                Object {
+                  "kind": "Variable",
+                  "name": "bookingId",
+                  "variableName": "bookingId",
+                },
+              ],
+              "concreteType": "Ancillaries",
+              "kind": "LinkedField",
+              "name": "bookingAncillaries",
+              "plural": false,
+              "selections": Array [
+                Object {
+                  "args": null,
+                  "kind": "FragmentSpread",
+                  "name": "FastTrackBannerContent_data",
+                },
+              ],
+              "storageKey": null,
+            },
+          ],
+          "type": "RootQuery",
+        },
+        "hash": "f5782a610c1cec7899351608c70da717",
+        "kind": "Request",
+        "operation": Object {
+          "argumentDefinitions": Array [
+            Object {
+              "defaultValue": null,
+              "kind": "LocalArgument",
+              "name": "bookingId",
+              "type": "Int!",
+            },
+          ],
+          "kind": "Operation",
+          "name": "FastTrackBannerQuery",
+          "selections": Array [
+            Object {
+              "alias": null,
+              "args": Array [
+                Object {
+                  "kind": "Literal",
+                  "name": "attachmentsFor",
+                  "value": Array [
+                    "FAST_TRACK",
+                  ],
+                },
+                Object {
+                  "kind": "Variable",
+                  "name": "bookingId",
+                  "variableName": "bookingId",
+                },
+              ],
+              "concreteType": "Ancillaries",
+              "kind": "LinkedField",
+              "name": "bookingAncillaries",
+              "plural": false,
+              "selections": Array [
+                Object {
+                  "alias": null,
+                  "args": null,
+                  "concreteType": "AncillaryPerSegmentPerPassenger",
+                  "kind": "LinkedField",
+                  "name": "fastTrack",
+                  "plural": true,
+                  "selections": Array [
+                    Object {
+                      "alias": null,
+                      "args": null,
+                      "concreteType": "AncillaryDocument",
+                      "kind": "LinkedField",
+                      "name": "attachments",
+                      "plural": true,
+                      "selections": Array [
+                        Object {
+                          "alias": null,
+                          "args": null,
+                          "kind": "ScalarField",
+                          "name": "url",
+                          "storageKey": null,
+                        },
+                      ],
+                      "storageKey": null,
+                    },
+                  ],
+                  "storageKey": null,
+                },
+              ],
+              "storageKey": null,
+            },
+          ],
+        },
+        "params": Object {
+          "id": null,
+          "metadata": Object {},
+          "name": "FastTrackBannerQuery",
+          "operationKind": "query",
+          "text": "query FastTrackBannerQuery(
+  $bookingId: Int!
+) {
+  bookingAncillaries(bookingId: $bookingId, attachmentsFor: [FAST_TRACK]) {
+    ...FastTrackBannerContent_data
+  }
+}
+
+fragment FastTrackBannerContent_data on Ancillaries {
+  fastTrack {
+    attachments {
+      ...FastTrackModal_data
+    }
+  }
+}
+
+fragment FastTrackModal_data on AncillaryDocument {
+  url
+}
+",
+        },
+      },
+    }
+  }
   render={[Function]}
   variables={
     Object {

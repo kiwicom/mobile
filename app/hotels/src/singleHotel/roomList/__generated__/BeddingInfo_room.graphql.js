@@ -23,6 +23,7 @@ export type BeddingInfo_room$data = BeddingInfo_room;
 export type BeddingInfo_room$key = {
   +$data?: BeddingInfo_room$data,
   +$fragmentRefs: BeddingInfo_room$ref,
+  ...
 };
 
 

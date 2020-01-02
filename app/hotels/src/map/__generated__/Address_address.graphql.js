@@ -19,6 +19,7 @@ export type Address_address$data = Address_address;
 export type Address_address$key = {
   +$data?: Address_address$data,
   +$fragmentRefs: Address_address$ref,
+  ...
 };
 
 

@@ -20,6 +20,7 @@ export type MapView_hotel$data = MapView_hotel;
 export type MapView_hotel$key = {
   +$data?: MapView_hotel$data,
   +$fragmentRefs: MapView_hotel$ref,
+  ...
 };
 
 
