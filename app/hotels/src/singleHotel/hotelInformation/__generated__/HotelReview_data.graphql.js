@@ -20,6 +20,7 @@ export type HotelReview_data$data = HotelReview_data;
 export type HotelReview_data$key = {
   +$data?: HotelReview_data$data,
   +$fragmentRefs: HotelReview_data$ref,
+  ...
 };
 
 

@@ -39,6 +39,7 @@ export type RoomRow_availableRoom$data = RoomRow_availableRoom;
 export type RoomRow_availableRoom$key = {
   +$data?: RoomRow_availableRoom$data,
   +$fragmentRefs: RoomRow_availableRoom$ref,
+  ...
 };
 
 

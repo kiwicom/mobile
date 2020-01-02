@@ -32,6 +32,7 @@ export type Header_hotel$data = Header_hotel;
 export type Header_hotel$key = {
   +$data?: Header_hotel$data,
   +$fragmentRefs: Header_hotel$ref,
+  ...
 };
 
 

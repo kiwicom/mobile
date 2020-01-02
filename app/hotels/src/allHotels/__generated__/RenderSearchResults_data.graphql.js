@@ -19,6 +19,7 @@ export type RenderSearchResults_data$data = RenderSearchResults_data;
 export type RenderSearchResults_data$key = $ReadOnlyArray<{
   +$data?: RenderSearchResults_data$data,
   +$fragmentRefs: RenderSearchResults_data$ref,
+  ...
 }>;
 
 

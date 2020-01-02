@@ -18,6 +18,7 @@ export type PriceMarker_data$data = PriceMarker_data;
 export type PriceMarker_data$key = {
   +$data?: PriceMarker_data$data,
   +$fragmentRefs: PriceMarker_data$ref,
+  ...
 };
 
 

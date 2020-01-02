@@ -25,6 +25,7 @@ export type SearchRowContent_hotel$data = SearchRowContent_hotel;
 export type SearchRowContent_hotel$key = {
   +$data?: SearchRowContent_hotel$data,
   +$fragmentRefs: SearchRowContent_hotel$ref,
+  ...
 };
 
 

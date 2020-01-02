@@ -24,6 +24,7 @@ export type Location_hotel$data = Location_hotel;
 export type Location_hotel$key = {
   +$data?: Location_hotel$data,
   +$fragmentRefs: Location_hotel$ref,
+  ...
 };
 
 

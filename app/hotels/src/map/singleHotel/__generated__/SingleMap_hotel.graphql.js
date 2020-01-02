@@ -22,6 +22,7 @@ export type SingleMap_hotel$data = SingleMap_hotel;
 export type SingleMap_hotel$key = {
   +$data?: SingleMap_hotel$data,
   +$fragmentRefs: SingleMap_hotel$ref,
+  ...
 };
 
 

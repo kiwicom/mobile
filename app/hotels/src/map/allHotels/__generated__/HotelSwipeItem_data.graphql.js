@@ -31,6 +31,7 @@ export type HotelSwipeItem_data$data = HotelSwipeItem_data;
 export type HotelSwipeItem_data$key = {
   +$data?: HotelSwipeItem_data$data,
   +$fragmentRefs: HotelSwipeItem_data$ref,
+  ...
 };
 
 

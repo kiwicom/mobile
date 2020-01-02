@@ -41,6 +41,7 @@ export type RoomSummary_room$data = RoomSummary_room;
 export type RoomSummary_room$key = {
   +$data?: RoomSummary_room$data,
   +$fragmentRefs: RoomSummary_room$ref,
+  ...
 };
 
 

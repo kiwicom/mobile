@@ -24,6 +24,7 @@ export type HotelDetailScreen_availableHotel$data = HotelDetailScreen_availableH
 export type HotelDetailScreen_availableHotel$key = {
   +$data?: HotelDetailScreen_availableHotel$data,
   +$fragmentRefs: HotelDetailScreen_availableHotel$ref,
+  ...
 };
 
 

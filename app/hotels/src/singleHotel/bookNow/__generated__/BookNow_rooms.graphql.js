@@ -20,6 +20,7 @@ export type BookNow_rooms$data = BookNow_rooms;
 export type BookNow_rooms$key = {
   +$data?: BookNow_rooms$data,
   +$fragmentRefs: BookNow_rooms$ref,
+  ...
 };
 
 

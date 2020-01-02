@@ -23,6 +23,7 @@ export type MapView_data$data = MapView_data;
 export type MapView_data$key = $ReadOnlyArray<{
   +$data?: MapView_data$data,
   +$fragmentRefs: MapView_data$ref,
+  ...
 }>;
 
 

@@ -36,6 +36,7 @@ export type AdditionalInfo_data$data = AdditionalInfo_data;
 export type AdditionalInfo_data$key = {
   +$data?: AdditionalInfo_data$data,
   +$fragmentRefs: AdditionalInfo_data$ref,
+  ...
 };
 
 

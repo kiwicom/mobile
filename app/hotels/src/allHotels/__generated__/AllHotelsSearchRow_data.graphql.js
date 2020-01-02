@@ -20,6 +20,7 @@ export type AllHotelsSearchRow_data$data = AllHotelsSearchRow_data;
 export type AllHotelsSearchRow_data$key = {
   +$data?: AllHotelsSearchRow_data$data,
   +$fragmentRefs: AllHotelsSearchRow_data$ref,
+  ...
 };
 
 

@@ -32,6 +32,7 @@ export type Stay22PaginationContainer_data$data = Stay22PaginationContainer_data
 export type Stay22PaginationContainer_data$key = {
   +$data?: Stay22PaginationContainer_data$data,
   +$fragmentRefs: Stay22PaginationContainer_data$ref,
+  ...
 };
 
 

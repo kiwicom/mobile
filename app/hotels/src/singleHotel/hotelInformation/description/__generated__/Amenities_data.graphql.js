@@ -20,6 +20,7 @@ export type Amenities_data$data = Amenities_data;
 export type Amenities_data$key = {
   +$data?: Amenities_data$data,
   +$fragmentRefs: Amenities_data$ref,
+  ...
 };
 
 

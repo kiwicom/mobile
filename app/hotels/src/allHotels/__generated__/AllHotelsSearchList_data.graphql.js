@@ -20,6 +20,7 @@ export type AllHotelsSearchList_data$data = AllHotelsSearchList_data;
 export type AllHotelsSearchList_data$key = $ReadOnlyArray<{
   +$data?: AllHotelsSearchList_data$data,
   +$fragmentRefs: AllHotelsSearchList_data$ref,
+  ...
 }>;
 
 

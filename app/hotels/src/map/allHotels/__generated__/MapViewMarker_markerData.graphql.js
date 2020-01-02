@@ -25,6 +25,7 @@ export type MapViewMarker_markerData$data = MapViewMarker_markerData;
 export type MapViewMarker_markerData$key = {
   +$data?: MapViewMarker_markerData$data,
   +$fragmentRefs: MapViewMarker_markerData$ref,
+  ...
 };
 
 

@@ -22,6 +22,7 @@ export type RoomList_data$data = RoomList_data;
 export type RoomList_data$key = {
   +$data?: RoomList_data$data,
   +$fragmentRefs: RoomList_data$ref,
+  ...
 };
 
 

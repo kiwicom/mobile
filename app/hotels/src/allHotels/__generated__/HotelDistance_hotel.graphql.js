@@ -17,6 +17,7 @@ export type HotelDistance_hotel$data = HotelDistance_hotel;
 export type HotelDistance_hotel$key = {
   +$data?: HotelDistance_hotel$data,
   +$fragmentRefs: HotelDistance_hotel$ref,
+  ...
 };
 
 

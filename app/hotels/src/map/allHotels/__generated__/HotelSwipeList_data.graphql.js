@@ -22,6 +22,7 @@ export type HotelSwipeList_data$data = HotelSwipeList_data;
 export type HotelSwipeList_data$key = $ReadOnlyArray<{
   +$data?: HotelSwipeList_data$data,
   +$fragmentRefs: HotelSwipeList_data$ref,
+  ...
 }>;
 
 

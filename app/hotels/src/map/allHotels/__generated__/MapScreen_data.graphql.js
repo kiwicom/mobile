@@ -21,6 +21,7 @@ export type MapScreen_data$data = MapScreen_data;
 export type MapScreen_data$key = $ReadOnlyArray<{
   +$data?: MapScreen_data$data,
   +$fragmentRefs: MapScreen_data$ref,
+  ...
 }>;
 
 

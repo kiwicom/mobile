@@ -22,6 +22,7 @@ export type FastTrackBannerContent_data$data = FastTrackBannerContent_data;
 export type FastTrackBannerContent_data$key = {
   +$data?: FastTrackBannerContent_data$data,
   +$fragmentRefs: FastTrackBannerContent_data$ref,
+  ...
 };
 
 
