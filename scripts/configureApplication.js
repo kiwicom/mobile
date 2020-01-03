@@ -33,23 +33,6 @@ fs.writeFileSync(
 log('Linking all native dependencies...');
 childProcess.execSync('yarn react-native link');
 
-log('Patching intl package');
-const intlPackageJson = JSON.parse(
-  fs.readFileSync(path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'), 'utf-8'),
-);
-delete intlPackageJson.browser;
-
-fs.writeFileSync(
-  path.join(__dirname, '..', 'node_modules', 'intl', 'package.json'),
-  JSON.stringify(intlPackageJson, null, 2),
-);
-
-try {
-  fs.unlinkSync(path.join(__dirname, '..', 'node_modules', 'intl', '.babelrc'));
-} catch (e) {
-  // Ignore error - file doesn't exist
-}
-
 log('Checking node version');
 const version = process.versions.node;
 

@@ -16,11 +16,6 @@ export { replaceValues } from './src/TranslationHelpers';
 export type TranslationKeysType = TranslationKeys;
 export type AlertTranslationType = AlertTranslation;
 
-export type DateFormatterFunctions =
-  | 'formatToDate'
-  | 'formatToTime'
-  | 'formatToShortDate'
-  | 'formatToBirthday'
-  | 'formatForMachine';
+export type DateFormatterFunctions = 'formatToDate' | 'formatForMachine';
 
 export type SupportedTransformationsType = _SupportedTransformationsType;

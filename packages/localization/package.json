@@ -8,8 +8,7 @@
     "@kiwicom/rnmodules": "^0",
     "date-fns": "^2.8.1",
     "form-data": "^2.5.1",
-    "@adeira/fetch": "^1.0.0",
-    "intl": "^1.2.5"
+    "@adeira/fetch": "^1.0.0"
   },
   "devDependencies": {},
   "peerDependencies": {

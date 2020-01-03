@@ -1,63 +1,22 @@
 // @flow strict
 
-import { getLocaleDashed } from './GetDeviceLocale';
+import { enGB } from 'date-fns/locale';
+import { format } from 'date-fns';
+
+import { getLanguage } from './GetDeviceLocale';
 import DateUtils from './DateUtils';
+import dateLanguageMap from './dateFnsLanguageMap';
 
-import 'intl'; // Polyfill because of Android
-import 'intl/locale-data/complete';
-
-type FormatterConfig = {|
-  +weekday?: 'narrow' | 'short' | 'long',
-  +year?: 'numeric' | '2-digit',
-  +month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long',
-  +day?: 'numeric' | '2-digit',
-  +hour?: 'numeric' | '2-digit',
-  +minute?: 'numeric' | '2-digit',
-  +second?: 'numeric' | '2-digit',
-|};
-
-// language prop passed from native code is not accessible at this point
-const DEVICE_LOCALE = getLocaleDashed();
+const locale = dateLanguageMap[getLanguage()] ?? enGB; // fallback to default locale
 
 function date(date: Date) {
-  return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    timeZone: 'UTC', // this is very important!
-    weekday: 'short',
-    month: 'numeric',
-    day: 'numeric',
-  }).format(date);
+  return format(date, 'E, MM/dd', {
+    locale,
+  });
 }
 
-function shortDate(date: Date) {
-  return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    timeZone: 'UTC', // this is very important!
-    month: 'numeric',
-    day: 'numeric',
-  }).format(date);
-}
-
-function time(date: Date) {
-  return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    timeZone: 'UTC', // this is very important!
-    hour: 'numeric',
-    minute: 'numeric',
-  }).format(date);
-}
-
-function birthday(date: Date) {
-  return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    timeZone: 'UTC', // this is very important!
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-  }).format(date);
-}
-
-function custom(date: Date, config: FormatterConfig) {
-  return Intl.DateTimeFormat(DEVICE_LOCALE, {
-    ...config,
-    timeZone: 'UTC', // this is very important!
-  }).format(date);
+function custom(date: Date, dateFormat: string) {
+  return format(date, dateFormat, { locale });
 }
 
 function pad(number) {
@@ -75,11 +34,6 @@ function pad(number) {
 function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
   return {
     formatToDate: () => date(rawDate),
-    formatToTime: () => time(rawDate),
-    formatToShortDate: () => shortDate(rawDate),
-
-    // note: I am not sure about the naming - improve when needed
-    formatToBirthday: () => birthday(rawDate),
 
     /**
      * Always returns YYYY-MM-DD at this moment.
@@ -90,15 +44,8 @@ function DateFormatter(rawDate: Date = DateUtils.getUTCNow()) {
       )}`;
     },
 
-    /**
-     * Always returns HH:mm at this moment.
-     */
-    formatTimeForMachine: () => {
-      return `${pad(rawDate.getUTCHours())}:${pad(rawDate.getUTCMinutes())}`;
-    },
-
     // Pass in your own configuration
-    formatCustom: (config: FormatterConfig) => custom(rawDate, config),
+    formatCustom: (dateFormat: string) => custom(rawDate, dateFormat),
   };
 }
 
