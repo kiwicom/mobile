@@ -1345,21 +1345,6 @@
     react-native-safe-area-view "^0.14.8"
     styled-components "^4.4.1"
 
-"@kiwicom/js@^0.16.0":
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/js/-/js-0.16.0.tgz#1eaa1a99b8b7a5ee4c90ecbeac3d1bf4aa12919b"
-  integrity sha512-N8z4Aa5vQAx//1ZxvVKUnTibw7uUj+6wDZxPpgr9KzaZof32CwEiup3sWXTiNzVfIk47FI5ZKWtauNpXHhx6TQ==
-
-"@kiwicom/monorepo-utils@^0.24.0":
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/monorepo-utils/-/monorepo-utils-0.24.0.tgz#bed49f08319b8686ceae9139cc593369955c13fb"
-  integrity sha512-31p51fvG9od36SWLZa3rcvTGGO881n40P0cx/doq1Nt1HaFPXXeYBvJeLbDmCTc5CGjLidXlLA7YeQfKf0gRvw==
-  dependencies:
-    "@babel/register" "^7.6.0"
-    "@kiwicom/js" "^0.16.0"
-    glob "^7.1.4"
-    is-ci "^2.0.0"
-
 "@kiwicom/orbit-components@^0.69.0":
   version "0.69.0"
   resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.69.0.tgz#85a4552e38d71fd6c1c5e9256c17bfcd28d7ecdb"
