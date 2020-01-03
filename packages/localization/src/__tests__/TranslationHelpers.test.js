@@ -36,19 +36,29 @@ describe('getTranslation:', () => {
   });
 
   it('handles changed translations', () => {
+    const spy = jest.spyOn(console, 'warn').mockImplementation(jest.fn());
     const translationId = 'single_hotel.book_now.description';
     const translatedString = 'Počet hostů: %1$@ · Počet pokojů: %2$@ · %3$@';
     expect(getTranslation(translatedString, translationId, vocabulary)).toBe(
       'Počet hostů: __1_personCount__ · Počet pokojů: __2_numberOfRooms__ · ',
     );
+    expect(spy).toHaveBeenCalledWith(
+      'Missing translation parameter for single_hotel.book_now.description variableIndex = 3',
+    );
+    spy.mockRestore();
   });
 
   it('returns translated string if parameter matching is not possible', () => {
+    const spy = jest.spyOn(console, 'warn').mockImplementation(jest.fn());
     const translationId = 'hotels.gallery.pagination';
     const translatedString = '%1$@ of %2$@';
     const mistake = ' and MISTAKE %3$@';
     expect(getTranslation(translatedString + mistake, translationId, vocabulary)).toBe(
       '__1_photoNumber__ of __2_totalPhotos__ and MISTAKE ',
     );
+    expect(spy).toHaveBeenCalledWith(
+      'Missing translation parameter for hotels.gallery.pagination variableIndex = 3',
+    );
+    spy.mockRestore();
   });
 });
