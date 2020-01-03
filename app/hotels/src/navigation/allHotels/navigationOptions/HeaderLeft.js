@@ -9,11 +9,7 @@ import { Text, StyleSheet, DatePicker, Translation } from '@kiwicom/mobile-share
 import DateButton from './DateButton';
 import { HotelsContext, type HotelsContextState } from '../../../HotelsContext';
 
-const dateFormat = {
-  weekday: 'short',
-  day: '2-digit',
-  month: 'short',
-};
+const dateFormat = 'E do MMM';
 
 export default function HeaderLeft() {
   const {

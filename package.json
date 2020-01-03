@@ -104,6 +104,7 @@
     "code-push-target-binary-version": "16.0.0"
   },
   "resolutions": {
-    "@adeira/js": "^0.2.0"
+    "@adeira/js": "^0.2.0",
+    "date-fns": "^2.8.1"
   }
 }

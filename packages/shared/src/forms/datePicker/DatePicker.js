@@ -9,12 +9,7 @@ import Text from '../../Text';
 import Translation from '../../Translation';
 import StyleSheet from '../../PlatformStyleSheet';
 
-type DateFormatterFunctions =
-  | 'formatToDate'
-  | 'formatToTime'
-  | 'formatToShortDate'
-  | 'formatToBirthday'
-  | 'formatForMachine';
+type DateFormatterFunctions = 'formatToDate' | 'formatForMachine';
 
 type Props = {|
   +date: ?Date,
