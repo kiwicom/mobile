@@ -27,9 +27,7 @@ describe('Hotel detail - Not enough beds warning', () => {
     await pressBookNow();
 
     await expect(
-      element(
-        by.label("Thats's fine").and(by.type('_UIAlertControllerActionView')),
-      ),
+      element(by.label("That's fine").and(by.type('_UIAlertControllerActionView'))),
     ).toBeVisible();
   });
 });
