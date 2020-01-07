@@ -262,6 +262,8 @@ const currencyCode = 'NOK';
 const priceInNOK = CurrencyFormatter(priceInEuros, currencyCode);
 ```
 
+Note that in development, it uses a "dummy" currency formatter, so it is possible that some decimals appear as `12.99999999999999`. In production, however, the native module picks the formatter provided by the native host. (See the iOS code [here](https://github.com/kiwicom/mobile/blob/master/ios/RNModules/RNCurrencyManager/RNCurrencyManager/RNCurrencyManager.m#L37-L42) for example)
+
 ## Best practices
 
 ### Accessing arbitrarily nested, possibly nullable properties on a JavaScript object
