@@ -6,7 +6,7 @@
   "dependencies": {
     "@kiwicom/mobile-shared": "*",
     "@kiwicom/mobile-localization": "*",
-    "@kiwicom/account-native": "0.0.17"
+    "@kiwicom/account-native": "0.0.18"
   },
   "peerDependencies": {
     "react": "*",

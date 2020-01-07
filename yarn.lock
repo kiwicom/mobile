@@ -1433,30 +1433,30 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@kiwicom/account-native@0.0.17":
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/@kiwicom/account-native/-/account-native-0.0.17.tgz#05ddafe15b5d0c61b00a266c5439edad09608c2b"
-  integrity sha512-SGduchcbH44cuWX3w3xTZS6PJPhQszMAWKbTkPFpZJGTO2/aGabAKzQi5ruMj+SQRatnaqbdeoWfIbRE0CNwzQ==
+"@kiwicom/account-native@0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@kiwicom/account-native/-/account-native-0.0.18.tgz#ab9f6e1f49442bee5ddd2ed59d08539206d06955"
+  integrity sha512-6mXTmynWr3lJVcH7QobddHKltaFiVAzdJrxaAUQjG6HYmRXNiFFRYtRHjybBQoEoVMjDy6260v/oCRpFl8N2Iw==
   dependencies:
     "@adeira/fetch" "^1.0.0"
     "@adeira/js" "^0.2.0"
     "@adeira/relay" "^0.11.0"
-    "@kiwicom/orbit-components" "^0.69.0"
+    "@kiwicom/orbit-components" "^0.70.0"
     "@kiwicom/orbit-design-tokens" "^0.8.0"
     "@kiwicom/orbit-react-native" "^0.7.1"
     "@sentry/browser" "^5.10.2"
     "@sentry/node" "^5.10.2"
     date-fns "^2.7.0"
-    formik "^2.0.8"
+    formik "^2.1.0"
     js-cookie "^2.2.1"
     react-fast-compare "^2.0.4"
     react-native-safe-area-view "^0.14.8"
     styled-components "^4.4.1"
 
-"@kiwicom/orbit-components@^0.69.0":
-  version "0.69.0"
-  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.69.0.tgz#85a4552e38d71fd6c1c5e9256c17bfcd28d7ecdb"
-  integrity sha512-4TmQoOAv4/mlNMuVWHTJKIzVhcz1anjwRbeE0sixauVKBG9M9o6g4YiZs2fWYquaGXq5GIH4LbGimo0nuSpVHQ==
+"@kiwicom/orbit-components@^0.70.0":
+  version "0.70.0"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-components/-/orbit-components-0.70.0.tgz#316ab550300ca58aaa8d4ee719d6ffc2c6344a2b"
+  integrity sha512-JxM7Wu7p9u+hrGYb0uZN3b8TT5oZrcjao2zMG8QfZFfbZl59tnNJR1e0TMly2vbBCv3fqVkaPJGSKBh71nAxEw==
   dependencies:
     "@adeira/js" "^0.1.0"
     "@kiwicom/orbit-design-tokens" "~0.8.0"
@@ -6258,10 +6258,10 @@ formidable@^1.2.1:
   resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
   integrity sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==
 
-formik@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/formik/-/formik-2.0.8.tgz#a17740007a9a1394360142c128bb686acb5dbc7c"
-  integrity sha512-PxC9G6EvLdJzMv7z+bsvpI/Euplv2vVgTQebD5yNza4t3fiMBB+iD90VOVTLCyH5Pnv3bljsZiKsIqGp/UNKKg==
+formik@^2.1.0:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/formik/-/formik-2.1.1.tgz#a0f436d088e0aecaaa2e619682c323408a9e2c79"
+  integrity sha512-PdpgIPn7ipCzU5KBA+ED6Yy0kPqpZsWzoqI69ZJvcMtUfTzWrNfDeEdv2kd5aMAU3Iqs4PYFREAZjcthS/nqQw==
   dependencies:
     deepmerge "^2.1.1"
     hoist-non-react-statics "^3.3.0"
