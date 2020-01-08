@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import { HeaderButton } from '@kiwicom/mobile-navigation';
-import { Icon, Text, StyleSheet, type TranslationType } from '@kiwicom/mobile-shared';
-import { Tooltip } from '@kiwicom/universal-components';
+import { Icon, Text, StyleSheet, type TranslationType, Tooltip } from '@kiwicom/mobile-shared';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
 type Props = {|
