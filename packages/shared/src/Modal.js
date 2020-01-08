@@ -8,7 +8,7 @@ import type { StylePropType } from '../types/Styles';
 // props not exact - additional properties allowed
 type Props = {|
   +children: React.Node,
-  +style: StylePropType,
+  +style?: StylePropType,
   +isVisible: boolean,
 
   // This function will be invoked when for example user presses back HW

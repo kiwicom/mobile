@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { DatePicker as UniversalDatePicker } from '@kiwicom/universal-components';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
 
+import { DatePicker as UniversalDatePicker } from './universalDatepicker';
 import DatePickerButton from './DatePickerButton';
 import Text from '../../Text';
 import Translation from '../../Translation';
