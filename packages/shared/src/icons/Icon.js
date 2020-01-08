@@ -1,14 +1,15 @@
 // @flow strict
 
 import * as React from 'react';
-import { Icon as UniversalIcon, type StylePropType } from '@kiwicom/universal-components';
 import { defaultTokens } from '@kiwicom/mobile-orbit';
+
+import UniversalIcon from './UniversalIcon';
 
 type Props = {|
   +name: string,
   +size?: 'small' | 'medium' | 'large',
   +color?: string,
-  +style?: StylePropType,
+  +style?: $FlowFixMe,
   +fontSize?: number,
   +testID?: string,
 |};
@@ -37,11 +38,6 @@ export default class Icon extends React.Component<Props> {
 
   render() {
     const { style, ...rest } = this.props;
-    return (
-      <>
-        {/* $FlowExpectedError: string is good enough for now */}
-        <UniversalIcon {...rest} style={[style, this.getCustomFontSizeStyle()]} />
-      </>
-    );
+    return <UniversalIcon {...rest} style={[style, this.getCustomFontSizeStyle()]} />;
   }
 }
