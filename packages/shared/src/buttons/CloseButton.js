@@ -1,7 +1,7 @@
 // @flow strict
 
 import * as React from 'react';
-import { Button } from '@kiwicom/universal-components';
+import { Button } from '@kiwicom/orbit-react-native';
 
 import Translation from '../Translation';
 import ButtonTitle from './ButtonTitle';
