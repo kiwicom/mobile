@@ -81,7 +81,7 @@ dependencies {
     def hermesPath = "../../node_modules/hermesvm/android/";	
     debugImplementation files(hermesPath + "hermes-debug.aar")	
     stagingReleaseImplementation files(hermesPath + "hermes-release.aar")
-    releaseImplementation "com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT"
+//    releaseImplementation "com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT"
     implementation "com.kiwi.android:android-jsc:$jscVersion-SNAPSHOT"
 }
 

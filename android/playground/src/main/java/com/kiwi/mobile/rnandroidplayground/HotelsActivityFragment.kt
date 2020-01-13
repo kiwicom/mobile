@@ -25,10 +25,10 @@ class HotelsActivityFragment : Activity(), DefaultHardwareBackBtnHandler, Permis
     if (savedInstanceState == null) {
       val hotelFragment = HotelsFragment()
 
-      fragmentManager
-          .beginTransaction()
-          .add(R.id.container_main, hotelFragment)
-          .commit()
+//      fragmentManager
+//          .beginTransaction()
+//          .add(R.id.container_main, hotelFragment)
+//          .commit()
     }
   }
 

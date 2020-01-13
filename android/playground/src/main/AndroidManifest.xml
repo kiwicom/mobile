@@ -35,6 +35,8 @@
         </activity>
         <activity android:name="com.kiwi.mobile.rnandroidplayground.HotelsActivityFragment">
         </activity>
+        <activity android:name="com.kiwi.mobile.rnandroidplayground.AncillaryFactoryAcivity">
+        </activity>
         <activity android:name=".HotelsStay22Activity" />
         <activity android:name="com.kiwi.mobile.rnandroidplayground.AccountSettingsActivity" />
         <activity android:name="com.kiwi.mobile.rnandroidplayground.AccountPriceAlertsActivity" />

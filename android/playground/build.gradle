@@ -35,13 +35,13 @@ android {
             keyAlias 'my-key-alias'
             keyPassword 'kiwireactnative'
         }
-        release {
-            // Just a fake keystore / fake password
-            storeFile file("playground-key.keystore")
-            storePassword 'kiwireactnative'
-            keyAlias 'my-key-alias'
-            keyPassword 'kiwireactnative'
-        }
+//        release {
+//            // Just a fake keystore / fake password
+//            storeFile file("playground-key.keystore")
+//            storePassword 'kiwireactnative'
+//            keyAlias 'my-key-alias'
+//            keyPassword 'kiwireactnative'
+//        }
     }
     buildTypes {
         debug {
@@ -56,13 +56,13 @@ android {
             signingConfig signingConfigs.stagingRelease
             matchingFallbacks = ['release']
         }
-        release {
-            buildConfigField "String", "CODEPUSH_KEY", "\"${productionCodePushKey}\""
-            buildConfigField "String", "CODEPUSH_VERSION", "\"${codePushVersion}\""
-            minifyEnabled false
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+//        release {
+//            buildConfigField "String", "CODEPUSH_KEY", "\"${productionCodePushKey}\""
+//            buildConfigField "String", "CODEPUSH_VERSION", "\"${codePushVersion}\""
+//            minifyEnabled false
+//            signingConfig signingConfigs.release
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//        }
     }
     compileOptions {
         sourceCompatibility 1.8
@@ -108,12 +108,12 @@ dependencies {
         exclude group: "com.google.firebase"
     }
 
-    releaseImplementation("com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT") {
-        exclude group: "com.android.support"
-        exclude group: "com.google.android.gms"
-        exclude group: "com.google.firebase"
-    }
-    releaseImplementation("com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT")
+//    releaseImplementation("com.trinerdis.skypicker:rnkiwimobile:$rnKiwiMobileVersion-SNAPSHOT") {
+//        exclude group: "com.android.support"
+//        exclude group: "com.google.android.gms"
+//        exclude group: "com.google.firebase"
+//    }
+//    releaseImplementation("com.kiwi.android:hermesvm:$hermesVmVersion-SNAPSHOT")
 
     implementation "com.google.android.gms:play-services-maps:$playServicesMapsVersion"
 

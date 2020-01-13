@@ -100,7 +100,7 @@
     "test-runner": "jest"
   },
   "rnkiwimobile": {
-    "code-push-target-binary-version": "16.0.0"
+    "code-push-target-binary-version": "17.0.0"
   },
   "resolutions": {
     "@adeira/js": "^0.2.0",

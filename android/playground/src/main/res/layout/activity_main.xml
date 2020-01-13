@@ -39,4 +39,10 @@
         android:layout_height="wrap_content"
         android:text="Account price alerts" />
 
+    <Button
+        android:id="@+id/button_ancillary_factory"
+        android:layout_width="199dp"
+        android:layout_height="wrap_content"
+        android:text="ancillary factory" />
+
 </LinearLayout>
