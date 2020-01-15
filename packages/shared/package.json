@@ -12,7 +12,7 @@
     "@kiwicom/mobile-utils": "^0",
     "@kiwicom/rnmodules": "^0",
     "@ptomasroos/react-native-multi-slider": "^1.0.0",
-    "@kiwicom/orbit-react-native": "^0.7.1",
+    "@kiwicom/orbit-react-native": "^0.7.2",
     "prop-types": "^15.7.2",
     "querystring": "^0.2.0",
     "react-native-image-progress": "^1.1.1",
