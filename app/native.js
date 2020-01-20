@@ -7,7 +7,6 @@ import {
   NewHotelsStandAlonePackage,
 } from '@kiwicom/react-native-app-hotels';
 import { AncillaryFactory } from '@kiwicom/react-native-ancillary-factory';
-import { AccountSettings, AccountPriceAlerts } from '@kiwicom/mobile-account';
 
 // Hotels
 AppRegistry.registerComponent('NewKiwiHotels', () => NewHotelsStandAlonePackage);
@@ -15,10 +14,6 @@ AppRegistry.registerComponent('SingleHotel', () => SingleHotelStandalonePackage)
 
 // AncillaryFactory
 AppRegistry.registerComponent('AncillaryFactory', () => AncillaryFactory);
-
-// Account
-AppRegistry.registerComponent('AccountSettings', () => AccountSettings);
-AppRegistry.registerComponent('AccountPriceAlerts', () => AccountPriceAlerts);
 
 // This file is only used for native integration and we use CodePush there
 CodePush.sync({

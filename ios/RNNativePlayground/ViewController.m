@@ -81,9 +81,6 @@
   // Display picked end date
   [self.endDateSelectionTextField setInputView:endDatePicker];
   
-  // Account token
-  accountToken = [[UITextField  alloc] init];
-  
   //  Initialize city picker
   cityPicker = [[UIPickerView alloc] init];
   [cityPicker setDataSource:self];
@@ -236,32 +233,6 @@
   [vc setFlowDelegate:weakSelf];
   
   _activeVc = vc;
-}
-
-- (IBAction)onTokenChange:(UITextField *)textField {
-  accountToken.text = textField.text;
-}
-
-// Open accounts
-
-- (IBAction)pushAccountsView:(id)sender {
-  RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountSettings"
-                                                                initialProperties:@{
-                                                                                    @"lastNavigationMode": @"push",
-                                                                                    @"token":  accountToken.text,
-                                                                                    }];
-  [self setActiveViewController:controller];
-  [[self navigationController] pushViewController:controller animated:YES];
-}
-
-- (IBAction)pushPriceAlerts:(id)sender {
-  RNKiwiViewController *controller = [[RNKiwiViewController alloc] initWithModule:@"AccountPriceAlerts"
-                                                                initialProperties:@{
-                                                                                    @"lastNavigationMode": @"push",
-                                                                                    @"token": accountToken.text,
-                                                                                    }];
-  [self setActiveViewController:controller];
-  [[self navigationController] pushViewController:controller animated:YES];
 }
 
 // Offer search is based on city ID
