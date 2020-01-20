@@ -30,7 +30,6 @@
   "dependencies": {
     "@adeira/fetch": "^1.0.0",
     "@babel/register": "^7.7.7",
-    "@kiwicom/mobile-account": "*",
     "@kiwicom/mobile-shared": "^0",
     "@kiwicom/react-native-ancillary-factory": "^0",
     "@kiwicom/react-native-app-hotels": "^0",

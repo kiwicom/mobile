@@ -26,7 +26,7 @@ function getAutolinkConfig() {
 }
 
 module.exports = {
-  assets: ['./assets/fonts', '@kiwicom/account-native/apps/account-native/assets/fonts'],
+  assets: ['./assets/fonts'],
   dependencies: {
     ...getAutolinkConfig(),
   },
