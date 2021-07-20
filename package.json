@@ -41,7 +41,7 @@
     "dotenv": "^8.2.0",
     "jsc-android": "245459.0.0",
     "react": "16.8.6",
-    "react-native": "0.60.5",
+    "react-native": "0.62.3",
     "react-native-app-registry-components-to-constants": "0.0.1",
     "react-native-code-push": "5.7.0"
   },
